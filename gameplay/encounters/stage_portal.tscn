@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://gameplay/encounters/stage_portal.gd" id="1"]
+
+[sub_resource type="CircleShape2D" id="trigger"]
+radius = 52.0
+
+[node name="StagePortal" type="Area2D" node_paths=PackedStringArray("rings", "ground_glow")]
+collision_layer = 0
+collision_mask = 2
+monitoring = true
+script = ExtResource("1")
+rings = NodePath("Rings")
+ground_glow = NodePath("GroundGlow")
+
+[node name="GroundGlow" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-22, 0, -16, -10, 0, -14, 16, -10, 22, 0, 16, 10, 0, 14, -16, 10)
+color = Color(0.24, 0.12, 0.5, 0.42)
+z_index = -1
+
+[node name="Rings" type="Node2D" parent="."]
+
+[node name="Outer" type="Line2D" parent="Rings"]
+points = PackedVector2Array(20, 0, 14, 14, 0, 20, -14, 14, -20, 0, -14, -14, 0, -20, 14, -14, 20, 0)
+width = 3.0
+default_color = Color(0.62, 0.36, 0.92, 0.9)
+
+[node name="Inner" type="Line2D" parent="Rings"]
+rotation = 0.392699
+points = PackedVector2Array(12, 0, 8, 8, 0, 12, -8, 8, -12, 0, -8, -8, 0, -12, 8, -8, 12, 0)
+width = 2.0
+default_color = Color(0.75, 0.65, 1, 0.9)
+
+[node name="Trigger" type="CollisionShape2D" parent="."]
+shape = SubResource("trigger")
+
+[node name="InteractionLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 20
+offset_left = -76.0
+offset_top = -49.0
+offset_right = 76.0
+offset_bottom = -29.0
+text = "PRESS F TO ENTER PORTAL"
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_colors/font_color = Color(0.9, 0.82, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.08, 0.03, 0.14, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 9

@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://d0fi77o2m5rxa"]
+
+[ext_resource type="Script" uid="uid://bpyjwhfealhuy" path="res://entities/enemies/mireling/mireling.gd" id="1"]
+[ext_resource type="Resource" path="res://data/enemies/mireling.tres" id="2"]
+[ext_resource type="SpriteFrames" uid="uid://c5b54r7axwlgk" path="res://assets/characters/mireling/mireling_frames.tres" id="3"]
+[ext_resource type="Script" uid="uid://c75hy86crniob" path="res://entities/enemies/mireling/mireling_visual.gd" id="4"]
+[ext_resource type="Script" uid="uid://1th6uujswp43" path="res://gameplay/combat/health_component.gd" id="5"]
+[ext_resource type="Script" uid="uid://edpqlhbhvhav" path="res://gameplay/combat/hurtbox_component.gd" id="6"]
+[ext_resource type="Script" uid="uid://6520tclsqofq" path="res://gameplay/combat/melee_hitbox.gd" id="7"]
+[ext_resource type="Script" uid="uid://4l3spvpulsnw" path="res://entities/player/presentation/player_aim_visual.gd" id="8"]
+[ext_resource type="PackedScene" path="res://ui/world/enemy_health_bar.tscn" id="9"]
+
+[sub_resource type="CircleShape2D" id="foot"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="body"]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id="attack"]
+radius = 13.0
+
+[node name="Mireling" type="CharacterBody2D" unique_id=2113206764]
+collision_layer = 4
+script = ExtResource("1")
+definition = ExtResource("2")
+
+[node name="Shadow" type="Polygon2D" parent="." unique_id=106586711]
+position = Vector2(0, -5)
+color = Color(0.03, 0.06, 0.04, 0.32)
+polygon = PackedVector2Array(-8, 0, -3, -2, 3, -2, 8, 0, 5, 2, -5, 2)
+
+[node name="Visual" type="Node2D" parent="." unique_id=1418975544 node_paths=PackedStringArray("body", "landing_marker")]
+script = ExtResource("4")
+body = NodePath("Body")
+landing_marker = NodePath("../LandingMarker")
+
+[node name="Body" type="AnimatedSprite2D" parent="Visual" unique_id=1348569313]
+position = Vector2(0, -16)
+sprite_frames = ExtResource("3")
+animation = &"idle_left"
+
+[node name="LandingMarker" type="Polygon2D" parent="." unique_id=975010209]
+z_index = -1
+color = Color(0.72, 0.9, 0.32, 0.55)
+polygon = PackedVector2Array(-14, 0, -10, -7, 0, -10, 10, -7, 14, 0, 10, 7, 0, 10, -10, 7)
+
+[node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=520638693]
+position = Vector2(0, -4)
+shape = SubResource("foot")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1904066278]
+unique_name_in_owner = true
+path_desired_distance = 6.0
+target_desired_distance = 6.0
+radius = 6.0
+max_speed = 44.0
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1692864368]
+unique_name_in_owner = true
+script = ExtResource("5")
+
+[node name="EnemyHealthBar" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("9")]
+health_component = NodePath("../HealthComponent")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=143966310 node_paths=PackedStringArray("health_component")]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("6")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=631323456]
+position = Vector2(0, -12)
+shape = SubResource("body")
+
+[node name="AttackPivot" type="Node2D" parent="." unique_id=1521924568]
+position = Vector2(0, -10)
+script = ExtResource("8")
+
+[node name="AttackHitbox" type="Area2D" parent="AttackPivot" unique_id=1640671456]
+unique_name_in_owner = true
+collision_layer = 32
+collision_mask = 64
+script = ExtResource("7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackPivot/AttackHitbox" unique_id=1857687529]
+shape = SubResource("attack")
+
+[connection signal="facing_changed" from="." to="Visual" method="set_facing"]
+[connection signal="facing_changed" from="." to="AttackPivot" method="set_facing_direction"]
+[connection signal="leap_targeted" from="." to="Visual" method="show_landing_target"]
+[connection signal="state_changed" from="." to="Visual" method="play_state"]

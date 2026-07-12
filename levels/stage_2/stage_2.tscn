@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://ui/combat_hud.tscn" id="2_hud"]
+[ext_resource type="TileSet" path="res://assets/environment/prototype/bright_ground_tileset.tres" id="3_tileset"]
+[ext_resource type="Script" path="res://levels/test_arena/prototype_ground.gd" id="4_ground"]
+[ext_resource type="PackedScene" path="res://environment/props/ancient_tree/ancient_tree.tscn" id="5_tree"]
+[ext_resource type="PackedScene" path="res://environment/props/ruined_statue/ruined_statue.tscn" id="6_statue"]
+[ext_resource type="PackedScene" path="res://gameplay/encounters/stage_portal.tscn" id="7_portal"]
+[ext_resource type="Script" path="res://levels/stage_2/stage_2_flow.gd" id="8_flow"]
+
+[sub_resource type="LabelSettings" id="title_settings"]
+font_size = 15
+font_color = Color(0.78, 0.84, 0.68, 1)
+outline_size = 3
+outline_color = Color(0.04, 0.06, 0.04, 1)
+
+[node name="Stage2" type="Node" node_paths=PackedStringArray("player", "combat_hud", "return_portal")]
+script = ExtResource("8_flow")
+player = NodePath("World/Actors/Player")
+combat_hud = NodePath("UI/CombatHUD")
+return_portal = NodePath("World/Effects/ReturnPortal")
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Level" type="Node2D" parent="World"]
+
+[node name="Ground" type="TileMapLayer" parent="World/Level"]
+z_index = -10
+tile_set = ExtResource("3_tileset")
+script = ExtResource("4_ground")
+map_size = Vector2i(20, 12)
+
+[node name="Actors" type="Node2D" parent="World"]
+y_sort_enabled = true
+
+[node name="Player" parent="World/Actors" instance=ExtResource("1_player")]
+position = Vector2(640, 560)
+movement_bounds = Rect2(56, 56, 1168, 656)
+
+[node name="Camera2D" type="Camera2D" parent="World/Actors/Player"]
+position = Vector2(0, -8)
+position_smoothing_enabled = false
+limit_left = 0
+limit_top = 0
+limit_right = 1280
+limit_bottom = 768
+
+[node name="AncientTreeLeft" parent="World/Actors" instance=ExtResource("5_tree")]
+position = Vector2(390, 350)
+
+[node name="AncientTreeRight" parent="World/Actors" instance=ExtResource("5_tree")]
+position = Vector2(890, 350)
+
+[node name="RuinedStatue" parent="World/Actors" instance=ExtResource("6_statue")]
+position = Vector2(640, 310)
+
+[node name="Effects" type="Node2D" parent="World"]
+
+[node name="ReturnPortal" parent="World/Effects" instance=ExtResource("7_portal")]
+position = Vector2(640, 650)
+target_scene_path = "res://levels/test_arena/test_arena.tscn"
+interaction_text = "PRESS F TO RETURN TO STAGE 1"
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="CombatHUD" parent="UI" instance=ExtResource("2_hud")]
+
+[node name="StageTitle" type="Label" parent="UI"]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180.0
+offset_top = 58.0
+offset_right = 180.0
+offset_bottom = 84.0
+text = "STAGE 2  •  THE FORGOTTEN GROVE"
+label_settings = SubResource("title_settings")
+horizontal_alignment = 1
+
+[node name="Placeholder" type="Label" parent="UI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.0
+offset_top = -12.0
+offset_right = 170.0
+offset_bottom = 12.0
+text = "THE VEIL IS QUIET. STAGE CONTENT COMES NEXT."
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.68, 0.74, 0.64, 0.85)
+theme_override_font_sizes/font_size = 11

@@ -1,0 +1,15 @@
+[gd_resource type="TileSet" format=3 uid="uid://ekr7b4b8lqfw"]
+
+[ext_resource type="Texture2D" uid="uid://b4hg121yvd2tv" path="res://assets/environment/prototype/bright_ground_atlas.png" id="1_e3tby"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_apkcs"]
+texture = ExtResource("1_e3tby")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[resource]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_apkcs")

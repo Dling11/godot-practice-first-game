@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/enemies/enemy_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+display_name = "Mireling"
+maximum_health = 30.0
+move_speed = 44.0
+acceleration = 420.0
+attack_range = 105.0
+attack_damage = 5.0
+wind_up_seconds = 0.65
+active_seconds = 0.12
+recovery_seconds = 1.0
+spawn_seconds = 0.65

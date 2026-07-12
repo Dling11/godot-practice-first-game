@@ -1,0 +1,282 @@
+# Architecture
+
+## Status
+
+This document combines the implemented project foundation with proposed gameplay architecture. Sections explicitly identify systems that do not exist yet.
+
+## Architecture Goals
+
+- Responsive deterministic-enough gameplay logic with presentation kept separate where practical.
+- Composition for reusable capabilities such as health, hurtboxes, hitboxes, movement, status effects, and abilities.
+- Data-driven content through custom `Resource` types.
+- Explicit ownership and one-way dependencies.
+- Event-driven updates instead of unnecessary `_process()` work.
+- Support large enemy counts without premature abstraction.
+- Avoid hard-wiring decisions that make later multiplayer authority separation impossible.
+
+## Proposed Folder Organization
+
+Create folders only when their first real asset is added.
+
+```text
+res://
+  assets/                 # Source game assets grouped by type/domain
+  audio/                  # Audio buses and audio resources
+  autoload/               # Deliberately small global services
+  core/                   # Reusable low-level components and utilities
+  data/                   # Custom Resource definitions and content data
+  entities/
+    player/
+    enemies/
+    bosses/
+    npcs/
+  gameplay/
+    abilities/
+    combat/
+    items/
+    progression/
+    status_effects/
+  levels/                 # Maps, encounter scenes, and level-specific logic
+  ui/                     # Screens, HUD, menus, and reusable controls
+  tests/                  # Automated tests when a test framework is selected
+```
+
+## Proposed Runtime Scene Hierarchy
+
+The first playable slice should converge on a hierarchy similar to:
+
+```text
+Game
+|- World
+|  |- Level
+|  |- Actors
+|  |- Projectiles
+|  `- Effects
+|- GameplayServices
+`- UI
+```
+
+Exact ownership should be validated by the prototype. Nodes must not locate core dependencies through fragile absolute scene paths.
+
+## Implemented Foundation
+
+The main scene is `res://levels/test_arena/test_arena.tscn`. Its current hierarchy is:
+
+```text
+Game
+|- World
+|  |- Level
+|  |- Actors
+|  |- Projectiles
+|  `- Effects
+|- GameplayServices
+`- UI
+```
+
+The arena owns a reusable `Player` instance under `World/Actors`. Projectile, effect, and service containers remain empty ownership boundaries for upcoming systems.
+
+The player currently composes:
+
+- `PlayerInputSource`: translates keyboard, mouse, and gamepad input into movement/aim intent.
+- `PlayerMovementComponent`: pure acceleration, deceleration, and speed calculation.
+- `Player`: owns physics authority, movement bounds, and facing state.
+- Hidden attack pivot: observes `facing_changed` and rotates only the authoritative melee hitbox.
+- `MeleeAttackComponent`: owns sword attack phase state and activates its hitbox from weapon data.
+- `PlayerAnimation`: observes movement, facing, attack, evade, and defeat events and selects strict 24x32 `AnimatedSprite2D` states.
+- `EvadeComponent`: owns dash/recovery phases, locked direction, speed, and invulnerability events.
+- `DashVisual`: observes evade events and creates replaceable placeholder afterimages.
+
+The plain sword uses a shared `WeaponDefinition` resource. `MeleeHitbox` deduplicates contacts per swing, `HurtboxComponent` forwards explicit `DamageInfo`, and `HealthComponent` owns health/death state. A resettable training target exercises the full path.
+
+The player dash uses shared `EvadeDefinition` data. `Player` remains movement authority and chooses dash velocity while `EvadeComponent` is in `DASHING`. `HealthComponent` receives invulnerability state from evade signals. Attack/evade mutual exclusion is enforced through the player's public request methods.
+
+The Forsaken Thrall uses shared `EnemyDefinition` data and an explicit state machine. Chase facing follows navigation steering rather than direct target bearing, attacks require unobstructed world line-of-sight, and enemy movement bodies collide with world but not the player. Hitboxes and hurtboxes retain combat authority, preventing attack-lock pinning.
+
+`CombatHUD` binds to the player's `HealthComponent` and observes health/damage-blocked signals. `Player` owns the defeated state and cancels its active combat components. `ArenaFlow` observes `Player.defeated`, reveals the restart presentation through the HUD, and owns scene reload. The HUD never applies damage or reloads gameplay itself.
+
+`EnemyHealthBar` is a reusable world-space presentation component used by Thralls and Mirelings. It observes `HealthComponent.health_changed` and `died`, updates only on signals, and uses a one-shot timer to hide after 2.2 seconds. It never owns, calculates, or mutates health. Boss health presentation may reuse the binding approach without requiring the same compact scene.
+
+`EncounterController` owns the three-wave lifecycle and creates one `StagePortal` after the final wave. `StagePortal` owns player proximity and F-input, emits prompt visibility, and delegates valid destinations to the `SceneTransition` autoload. HUD owns prompt presentation. Stage 1 targets the minimal Stage 2 scene; Stage 2 provides a return portal.
+
+`SummonEffect` is instantiated under `World/Effects` at the selected spawn position. It owns only rune/lightning/spark presentation, cleans itself after 0.8 seconds, and never changes spawn timing, health, collision, or damage. Wave-clear presentation observes controller signals during the 2.25-second inter-wave recovery.
+
+## System Boundaries
+
+### Actors
+
+Player, enemies, and bosses coordinate reusable components. They should not duplicate health, damage, hit detection, or status-effect rules.
+
+### Combat
+
+Combat should model attack intent/data separately from visual effects. Hitboxes produce explicit hit information; hurtboxes validate and forward it to a damage receiver. Damage authority belongs to gameplay logic, not animation callbacks alone.
+
+Implemented sword flow:
+
+```text
+PlayerInputSource -> Player -> MeleeAttackComponent
+-> wind-up -> active MeleeHitbox -> HurtboxComponent
+-> HealthComponent -> health/damage/death signals
+```
+
+Presentation observes facing and attack phase signals. Locomotion uses 24x32 cells, while `PlayerAnimation` selects six 64x48 authored attack frames per direction. Wind-up maps to frames 0-1, the active hit window to frames 2-3, and recovery to frames 4-5. Each pair advances at half its gameplay phase duration. The invisible pivot orients only the authoritative hitbox; animation, effects, audio, HUD icons, or inventory UI must not become damage authority.
+
+Top-down movement collision is a 6-pixel circular foot footprint centered at `y = -4`. Hurtboxes are separate 24-pixel body capsules centered at `y = -14`. Character shadows are centered at `y = -2`, directly beneath sprite feet. Sword and Thrall attack shapes are centered 18 pixels from their body-centered pivots.
+
+### Abilities and Weapons
+
+Definitions should be custom resources; runtime state should live in nodes or plain runtime objects owned by the actor. Shared resource assets must never accidentally store per-instance cooldown or mutable combat state.
+
+### Enemy AI
+
+Use finite-state or hierarchical state behavior appropriate to complexity. Expensive sensing and path recalculation should be scheduled or staggered rather than executed for every enemy every frame.
+
+The Forsaken Thrall uses scheduled `NavigationAgent2D` target updates and follows the baked arena path. Thralls and Mirelings compose `EnemySeparationComponent`, an `Area2D` that observes only nearby enemy bodies and blends gentle repulsion into chase steering. Attack states and committed Mireling leaps ignore separation so combat timing remains predictable.
+
+### Save System
+
+Not designed. Future saves need versioned schemas, explicit serialization, migration support, and separation of settings, profile progression, and run/session state. Do not serialize arbitrary scene trees as the save format.
+
+### UI
+
+UI observes model state through signals or presenters and sends player intent through explicit interfaces. Gameplay rules must not be owned by HUD nodes.
+
+The implemented combat HUD displays a compact corner vitality bar, blocked-damage feedback, and the fallen/restart panel. Persistent control/build banners were removed from combat space; future help belongs in a contextual or paused surface. These controls may be reskinned without changing health or arena flow.
+
+Stage presentation is a brief top-edge label. The lower screen remains free for the future compact weapon and two-skill HUD; no empty skill bar is displayed before skills exist.
+
+Reusable interaction prompts are contextual: an interactable emits visibility/text while the HUD presents the bottom-center prompt. Leaving the area clears it immediately.
+
+### Environment Assets
+
+Reusable environment props should be self-contained scenes when they need behavior or multiple gameplay layers. A large prop may own:
+
+```text
+EnvironmentProp
+|- Visuals
+|  |- LowerVisual       # Trunk/base that can appear behind the player
+|  `- UpperOccluder     # Canopy/roof that can appear in front of the player
+|- Collision
+|- Navigation           # Obstacle/region data when required
+|- Shadow
+|- Effects
+|- Audio
+`- InteractionArea
+```
+
+Only include nodes the prop actually needs. Collision represents traversability and must remain independent from decorative sprite transparency.
+
+Use Godot 4.7 `CanvasItem` ordering and Y-sorting at deliberate ownership boundaries. Split lower and upper visuals when one sprite cannot produce correct occlusion. Do not solve depth by changing arbitrary `z_index` values from unrelated gameplay scripts.
+
+The first environment prototype must validate player-versus-prop ordering, collision, navigation impact, shadow placement, and performance before this becomes a locked scene template.
+
+The implemented `AncientTree` and `RuinedStatue` each use one seam-free convex footprint derived directly into navigation. This replaced the statue's overlapping rectangles and stale small navigation cutout. The tree canopy retains low-frequency presentation-only sway.
+
+### Tile-Based Worlds
+
+Use Godot 4.7's current tilemap workflow and reusable tile data rather than one-off level sprites. Separate conceptual responsibilities where the content requires them: base terrain, transition/variation data, decorative overlays, collision, navigation, and foreground occlusion.
+
+Terrain and tile-source conventions remain provisional until a representative environment test is built. Avoid producing a broad tileset before scale, palette, transitions, collision shapes, and navigation behavior are validated together.
+
+The proving ground uses `TileMapLayer` with a reproducible `bright_ground_tileset.tres` generated from a 2x2 atlas. `prototype_ground.gd` fills a 30x18 test map with deterministic variation. Terrain transitions and editor-painted production maps remain future work.
+
+`ArenaNavigation` builds a `NavigationPolygon` from one traversable arena outline and convex prop footprints. Thralls call `get_next_path_position()` every chase frame as required by `NavigationAgent2D`, use corridor-funnel postprocessing, and limit target reassignment to five times per second. This prevents empty-path deadlocks and extreme edge-centered detours around props.
+
+## Autoload Policy
+
+Autoloads are reserved for truly cross-scene services and must not become general-purpose mutable state. `SceneTransition` is the first autoload: it pauses gameplay, owns a top-layer fade/loading overlay, changes to validated scene paths, resumes the tree, and fades back in. It owns no player progression or level rules.
+
+## Signals and Event Flow
+
+- Use direct signals for local ownership boundaries: component to actor, actor to HUD/presenter, or encounter to level.
+- Use typed signals and connect them in code when the relationship is dynamic; editor connections are acceptable for stable scene-local wiring.
+- Avoid a global event bus for routine communication. If one is introduced, document event ownership and lifecycle.
+- Prefer commands/method calls for requests and signals for notifications of completed state changes.
+
+Example combat flow:
+
+```text
+Input/AI intent -> Actor controller -> Ability/weapon runtime
+-> Hitbox query -> Hurtbox validation -> Health/damage component
+-> state-changed signal -> animation, audio, effects, and UI observers
+```
+
+## Data Flow and Resources
+
+Custom resources are appropriate for immutable/shared definitions such as:
+
+- Weapon definitions
+- Ability definitions
+- Enemy archetypes
+- Status-effect definitions
+- Loot/progression tables
+
+Runtime state such as current health, cooldown remaining, or proc counters must be instance-owned.
+
+## Dependency Rules
+
+- Domain gameplay code may depend on `core` abstractions and data definitions.
+- Presentation may observe domain state; domain logic must not depend on a specific HUD or visual effect.
+- Levels may compose actors and services; reusable actors must not depend on a specific level.
+- Content resources configure systems; resources must not reach into the active scene tree.
+- Avoid circular dependencies and `get_node()` calls that cross distant ownership boundaries.
+
+## Performance Principles
+
+- Measure before introducing pooling; pool frequently spawned objects only when profiling shows allocation/lifecycle cost or spikes.
+- Reuse projectiles/effects through a lifecycle-safe pool when volumes justify it.
+- Use physics collision layers and masks narrowly.
+- Prefer squared-distance checks where exact distance is unnecessary.
+- Stagger AI sensing/path updates and disable processing outside relevant states.
+- Budget particles, lights, navigation work, and simultaneous audio for enemy-dense encounters.
+- Keep collision shapes simple and visual effects independent from damage detection.
+
+## Multiplayer Readiness
+
+Multiplayer is not planned for the first milestone. To avoid blocking it completely:
+
+- Separate player intent from authoritative state changes.
+- Avoid reading local input inside reusable combat/domain components.
+- Give gameplay entities stable runtime identities when save/network requirements demand them.
+- Keep random outcomes injectable/seedable where they affect gameplay.
+
+Do not add networking abstraction before a real requirement; maintain clean authority boundaries instead.
+
+## Testing and Verification
+
+The project should eventually include:
+
+- Unit tests for formulas, data validation, save migrations, and state transitions.
+- Integration scenes for combat interactions and abilities.
+- Performance test scenes for enemy/projectile budgets.
+- Manual feel checks for input latency, dodge timing, telegraph clarity, and controller parity.
+
+The automated test framework is undecided.
+
+An interim headless smoke script at `res://tests/player_movement_smoke.gd` verifies speed limiting, diagonal normalization, and deceleration. It is intentionally lightweight and does not replace the future test framework.
+
+`res://tests/melee_combat_smoke.gd` verifies a full sword attack deals one configured hit and returns to idle.
+
+`res://tests/player_evade_smoke.gd` verifies dash distance, invulnerability, recovery lockout, and attack exclusion.
+
+`res://tests/forsaken_thrall_smoke.gd` verifies enemy-to-player damage, sword-to-enemy damage, and lethal death-state transition.
+
+`res://tests/player_defeat_flow_smoke.gd` verifies blocked-damage feedback, lethal defeat, combat lockout, zero-health HUD state, and delayed defeat presentation.
+
+`res://tests/enemy_health_bar_smoke.gd` verifies hidden-at-full-health, damage visibility/value synchronization, timed hiding, and death hiding for both current enemy archetypes.
+
+`res://tests/environment_navigation_smoke.gd` verifies 135 populated tile cells, Y-sort ownership, deferred navigation synchronization, a multi-point route, and 14-20 pixels of lateral tree clearance.
+
+`res://tests/character_animation_smoke.gd` verifies binary sheet alpha, the 384x192 attack grid, shared attack baseline/scale, directional player/Thrall states, gameplay-aligned attack frames, and foot-plane shadow/collision ownership.
+
+`res://tests/mireling_smoke.gd` verifies spawn state, body-slam damage, and sword damage against the weak Mireling.
+
+`res://tests/mireling_leap_dodge_smoke.gd` verifies leaving the snapshot landing point avoids damage. `res://tests/enemy_obstacle_behavior_smoke.gd` verifies statue line-of-sight blocking, steering-facing agreement, and non-pinning enemy movement collision.
+
+`res://tests/thrall_statue_endpoint_smoke.gd` reproduces the exact opposite-side statue chase and guards against long stalls or incomplete routing. `res://tests/encounter_wave_structure_smoke.gd` enforces three waves, one-to-four enemies per wave, and one portal after stage clear.
+
+`res://tests/enemy_crowd_separation_smoke.gd` starts a tightly clustered mixed group and verifies minimum spacing, lateral spread, and continued pursuit.
+
+`res://tests/summon_effect_smoke.gd` verifies encounter integration, segmented lightning construction, and effect cleanup without residual nodes.
+
+`res://tests/portal_interaction_smoke.gd` verifies prompt enter/exit and explicit interaction. `res://tests/scene_transition_smoke.gd` verifies fade-controlled Stage 2 loading, destination spawn, and the configured return portal.
+

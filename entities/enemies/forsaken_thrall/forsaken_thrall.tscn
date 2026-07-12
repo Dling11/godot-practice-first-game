@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://maebhhj1ooeb"]
+
+[ext_resource type="Script" uid="uid://cnwqmaxp002w6" path="res://entities/enemies/forsaken_thrall/forsaken_thrall.gd" id="1_enemy"]
+[ext_resource type="Resource" path="res://data/enemies/forsaken_thrall.tres" id="2_data"]
+[ext_resource type="Script" uid="uid://cmppvry3fnvg1" path="res://entities/enemies/components/enemy_movement_component.gd" id="3_move"]
+[ext_resource type="Script" uid="uid://1th6uujswp43" path="res://gameplay/combat/health_component.gd" id="4_health"]
+[ext_resource type="Script" uid="uid://edpqlhbhvhav" path="res://gameplay/combat/hurtbox_component.gd" id="5_hurtbox"]
+[ext_resource type="Script" uid="uid://6520tclsqofq" path="res://gameplay/combat/melee_hitbox.gd" id="6_hitbox"]
+[ext_resource type="Script" uid="uid://cg7bjqqrfc1ve" path="res://entities/enemies/forsaken_thrall/forsaken_thrall_visual.gd" id="7_visual"]
+[ext_resource type="Script" uid="uid://4l3spvpulsnw" path="res://entities/player/presentation/player_aim_visual.gd" id="8_facing"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/sprites_24x32/thrall_frames.tres" id="9_enemy_frames"]
+[ext_resource type="PackedScene" path="res://entities/enemies/components/enemy_separation_component.tscn" id="10_separation"]
+[ext_resource type="PackedScene" path="res://ui/world/enemy_health_bar.tscn" id="11_health_bar"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_footprint"]
+radius = 6.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hurtbox"]
+radius = 6.0
+height = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_attack"]
+radius = 9.0
+
+[node name="ForsakenThrall" type="CharacterBody2D" unique_id=1911751369]
+collision_layer = 4
+script = ExtResource("1_enemy")
+definition = ExtResource("2_data")
+
+[node name="Shadow" type="Polygon2D" parent="." unique_id=39226752]
+position = Vector2(0, -2)
+color = Color(0.035, 0.06, 0.035, 0.36)
+polygon = PackedVector2Array(-7, 0, -4, -2, 4, -2, 7, 0, 4, 2, -4, 2)
+
+[node name="VisualPivot" type="Node2D" parent="." unique_id=1033532245 node_paths=PackedStringArray("body_visual", "attack_marker", "spawn_shadow")]
+script = ExtResource("7_visual")
+body_visual = NodePath("Body")
+attack_marker = NodePath("../AttackPivot/AttackMarker")
+spawn_shadow = NodePath("../Shadow")
+
+[node name="Body" type="AnimatedSprite2D" parent="VisualPivot" unique_id=317682269]
+position = Vector2(0, -16)
+sprite_frames = ExtResource("9_enemy_frames")
+animation = &"attack_left"
+frame = 5
+frame_progress = 1.0
+
+[node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=319388639]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_footprint")
+
+[node name="MovementComponent" type="Node" parent="." unique_id=1235408136]
+unique_name_in_owner = true
+script = ExtResource("3_move")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1096657984]
+unique_name_in_owner = true
+path_desired_distance = 6.0
+target_desired_distance = 6.0
+radius = 6.0
+neighbor_distance = 48.0
+max_speed = 58.0
+
+[node name="EnemySeparationComponent" parent="." instance=ExtResource("10_separation")]
+unique_name_in_owner = true
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1849933286]
+unique_name_in_owner = true
+script = ExtResource("4_health")
+maximum_health = 75.0
+
+[node name="EnemyHealthBar" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("11_health_bar")]
+health_component = NodePath("../HealthComponent")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1465819459 node_paths=PackedStringArray("health_component")]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("5_hurtbox")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=2142500797]
+position = Vector2(0, -14)
+shape = SubResource("CapsuleShape2D_hurtbox")
+
+[node name="AttackPivot" type="Node2D" parent="." unique_id=588152299]
+position = Vector2(0, -14)
+script = ExtResource("8_facing")
+
+[node name="AttackMarker" type="Polygon2D" parent="AttackPivot" unique_id=2028326715]
+modulate = Color(1, 1, 1, 0)
+color = Color(1, 0.48, 0.24, 0.4)
+polygon = PackedVector2Array(12, -9, 24, -12, 36, -8, 42, 0, 36, 8, 24, 12, 12, 9, 25, 6, 31, 4, 34, 0, 31, -4, 25, -6)
+
+[node name="AttackHitbox" type="Area2D" parent="AttackPivot" unique_id=325685765]
+unique_name_in_owner = true
+collision_layer = 32
+collision_mask = 64
+script = ExtResource("6_hitbox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackPivot/AttackHitbox" unique_id=2114807984]
+position = Vector2(18, 0)
+shape = SubResource("CircleShape2D_attack")
+
+[connection signal="facing_changed" from="." to="VisualPivot" method="set_facing_direction"]
+[connection signal="facing_changed" from="." to="AttackPivot" method="set_facing_direction"]
+[connection signal="state_changed" from="." to="VisualPivot" method="play_state"]
+[connection signal="damaged" from="HealthComponent" to="VisualPivot" method="flash_damaged"]
