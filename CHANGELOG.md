@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-07-13 - Tiered Project Documentation
+
+- Added `PROJECT_CONTEXT.md` as the compact runtime-state and task-routing entry point.
+- Replaced the 721-line active decision log with a compact ADR index while preserving Decisions 001-025 under `docs/decisions/`.
+- Condensed duplicated completed-roadmap history into milestone summaries; detailed completion records remain in this changelog.
+- Changed documentation guidance to load deep design/history files only when relevant to the task.
+
 ## 2026-07-13 - Reusable Enemy Health Bars
 
 - Added a compact world-space enemy health-bar component driven by existing health/death signals.

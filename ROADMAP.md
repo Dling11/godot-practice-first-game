@@ -4,56 +4,16 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 
 ## Completed
 
-- Established the documentation-based project memory and agent workflow.
-- Recorded the initial game vision, architecture direction, conventions, risks, and decisions.
-- Pinned Godot 4.7 stable for the initial prototype.
-- Bootstrapped a runnable project with pixel-oriented rendering defaults.
-- Added the input map, named collision layers, and combat proving-ground scene hierarchy.
-- Initialized local Git version control and Godot-aware ignore rules.
-- Implemented reusable player movement with acceleration, deceleration, diagonal speed limiting, and arena bounds.
-- Implemented mouse/right-stick facing through a replaceable input-source boundary.
-- Added a signal-driven placeholder aim presentation and headless movement smoke test.
-- Implemented the data-driven plain-sword attack with wind-up, active, and recovery phases.
-- Added reusable hitbox, hurtbox, damage-message, and health contracts.
-- Added a resettable training target and deterministic melee combat smoke test.
-- Implemented a data-driven supernatural dash with locked direction, invulnerability, recovery, and afterimages.
-- Added player health/hurtbox state and deterministic evade integration tests.
-- Implemented the Forsaken Thrall with data-driven stats, direct pursuit, telegraphed melee phases, damage, and death.
-- Added an enemy encounter integration test covering incoming damage, sword damage, and death state.
-- Implemented player vitality HUD, damage/immunity feedback, defeated state, and arena restart flow.
-- Added deterministic defeat-flow integration coverage.
-- Added real prototype pixel-art ground, tree, canopy, and statue raster assets.
-- Added reusable layered prop scenes with collision, shadows, Y-sorting, occlusion data, and navigation cutouts.
-- Added a modular prototype TileSet/TileMapLayer pipeline and runtime-baked arena navigation.
-- Upgraded the Forsaken Thrall from direct steering to scheduled NavigationAgent2D pathfinding.
-- Added deterministic environment and path-routing integration coverage.
-- Added a non-hostile Thrall materialization sequence, footprint-matched navigation tolerances, and a recoil/lunge claw swipe.
-- Replaced the tree and statue presentation with limited-palette layered props and added event-driven canopy sway.
-- Reduced the vitality HUD and removed persistent control/build overlays from combat space.
-- Converted the editor-authored multi-shape tree coverage into one seam-free convex physics/navigation footprint.
-- Replaced the Thrall's temporary reach/lunge with a 24-cell directional six-frame claw-scratch sheet and gameplay-aligned phase playback.
-- Expanded the playable ground from 15x9 to 30x18 cells and added a pixel-stable following camera.
-- Replaced checker-like ground ordering with deterministic weighted variation and arranged trees/statues as landmarks and combat lanes.
-- Removed the training target from normal play while retaining its reusable scene and combat tests.
-- Added three data-driven waves within Stage 1, transient wave UI, lifecycle-based progression, and a stage-clear portal with a future scene-transition boundary.
-- Fixed the Thrall's statue-opposite deadlock by advancing NavigationAgent2D every chase frame and using corridor-funnel postprocessing.
-- Added reusable local-neighbor separation for Thralls and Mirelings without player blocking or attack-phase drift.
-- Added a mixed four-enemy crowd regression proving 20.19 pixels of observed minimum spacing while advancing.
-- Added reusable violet summon runes, inward sparks, and restrained lightning for every encounter spawn.
-- Added wave-clear announcements and a 2.25-second recovery window between waves.
-- Added contextual F-to-enter portal prompts that disappear on proximity exit.
-- Added the reusable paused fade/loading `SceneTransition` autoload.
-- Added a minimal Stage 2 destination with authored spawn, camera bounds, reused HUD, landmarks, and return portal.
-- Added reusable signal-driven enemy health bars for Thralls and Mirelings, hidden until damage and automatically cleared after combat inactivity or death.
-- Added the weak Mireling enemy with directional idle, hop, body-slam, and defeated sprites plus combat coverage.
-- Enlarged the Mireling to 32x32 cells and replaced contact-like attacks with telegraphed snapshot leaps, landing-only damage, and long recovery.
-- Corrected Thrall back-walking, prop line-of-sight attacks, player pinning, and statue physics/navigation mismatch.
-- Moved spawning to a closer navigation-safe ring and added transient edge-direction indicators.
-- Revised the prototype to a 960x540 logical viewport at exact 2x display scale.
-- Replaced dark detailed terrain/props with a simpler bright grass, green tree, and mossy shrine set.
-- Replaced player and Thrall body polygons with strict 24x32, four-direction SpriteFrames.
-- Corrected tree depth by separating ground roots from Y-sorted canopy occlusion.
-- Tightened tree routing to a measured 16-pixel center clearance and added a regression guard.
+- Documentation, Godot 4.7 project foundation, pixel-stable viewport, and automated smoke-test workflow.
+- Composed player movement, aiming, sword combat, supernatural dash, health, defeat, and restart flow.
+- Data-driven Thrall and Mireling enemies with readable attacks, navigation, obstacle handling, and crowd separation.
+- Bright modular terrain, layered tree/statue props, Y-sort occlusion, collision, and runtime-baked navigation.
+- Expanded Stage 1 with three waves, navigation-safe spawning, summon effects, wave pacing, and direction indicators.
+- Reusable portal interaction, fade transition service, Stage 2 structural placeholder, and return portal.
+- Compact combat HUD plus reusable damage-triggered enemy health bars.
+- Regression coverage for player combat, enemies, crowd behavior, navigation, encounters, portals, transitions, and defeat.
+
+Detailed completion history remains in `CHANGELOG.md`.
 
 ## In Progress
 
@@ -66,7 +26,6 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 - Expand the approved two-frame prototype movement into production-quality animation timing only after the visual language is accepted.
 - Feel-test Mireling pressure, stage counts, spawn pacing, camera travel, and landmark layout.
 - Design the next enemy role, recommended as ranged positioning pressure.
-- Design the second enemy role, recommended as ranged positioning pressure.
 
 ## Planned
 

@@ -20,12 +20,13 @@ The prototype uses a 960x540 logical viewport displayed at 1920x1080 for exact 2
 ## Repository Documents
 
 - `GAME_DESIGN.md`: game vision, rules, world, and planned content
+- `PROJECT_CONTEXT.md`: compact current-state entry point and task-based documentation router
 - `ARCHITECTURE.md`: technical boundaries and proposed project structure
 - `STYLE_GUIDE.md`: code, scene, signal, and asset conventions
 - `ROADMAP.md`: delivery status and priorities
 - `CHANGELOG.md`: completed changes
 - `KNOWN_ISSUES.md`: confirmed limitations and unresolved questions
-- `DECISIONS.md`: durable architecture and product decisions
+- `DECISIONS.md`: compact ADR index with detailed history under `docs/decisions/`
 
 ## Setup
 
