@@ -107,7 +107,7 @@ The Forsaken Thrall uses shared `EnemyDefinition` data, canonical runtime art un
 
 `Stage2Flow` composes player/HUD binding, an arrival-lore delay, manual `EncounterController.start_encounter()`, Stage 2 clear messaging, and local defeat/restart ownership. `EncounterController` retains encounter authority; `Stage2Flow` never creates enemies, applies damage, or decides wave results.
 
-`AudioDirector` is a narrow autoload that owns Music, SFX, and reserved UI buses plus one music player. A level-local `StageMusic` requests an `AudioStream`; it never owns gameplay timing or combat authority. The Headless display backend assigns streams but intentionally skips native playback because no audio device exists.
+`AudioDirector` is a narrow autoload that owns Music, SFX, and reserved UI buses plus one music player. The director and music player process while the scene tree is paused so dialogue and menus never interrupt ambience, and assigned OGG music is normalized to loop. A level-local `StageMusic` requests an `AudioStream`; it never owns gameplay timing or combat authority. The Headless display backend assigns streams but intentionally skips native playback because no audio device exists.
 
 `PlayerActionSfx` and `ActorActionSfx` are actor-local `Node2D` observers, so positional sounds follow their owning actor. Player swings/dash and enemy attack cues respond to existing phase/state signals. Accepted hit and player-damage sounds remain in `CombatFeedbackPresenter`, while the Bramble impact scene owns its self-cleaning impact cue. All playback is presentation-only and uses the SFX bus.
 
@@ -172,13 +172,15 @@ The implemented combat HUD displays a compact corner vitality bar, blocked-damag
 
 Stage presentation is a brief top-edge label. The centered lower screen contains a compact four-slot bar that remains readable without covering the playfield center.
 
-The centered HUD shows four numbered active-skill slots. Slot 1 exposes Sweeping Cut readiness and numeric/bar cooldown feedback; slots 2-4 are visibly locked rather than implying implemented abilities. `CharacterMenu` is a paused, read-only Tab surface for The Awakened's progression and authored skill-path information. Both surfaces observe gameplay state and do not calculate readiness, progression, rewards, or casts.
+The centered HUD shows four numbered active-skill slots. Slot 1 exposes Sweeping Cut readiness and numeric/bar cooldown feedback; slots 2-4 are visibly locked rather than implying implemented abilities. `CharacterMenu` is a paused, read-only surface for The Awakened's progression and authored skill-path information. Tab opens it; Escape or its top-right button closes it. Gameplay modals must expose visible mouse controls while retaining keyboard/gamepad focus. Both surfaces observe gameplay state and do not calculate readiness, progression, rewards, or casts.
 
 Reusable interaction prompts are contextual: an interactable emits visibility, text, and an optional semantic presentation icon while the HUD presents one prompt above the centered skill bar. The portal configures `icon_interaction_portal`; future NPCs can use the same path with `icon_interaction_talk`. Interactables do not duplicate the same instruction in world space, gameplay does not branch on icon filenames, and leaving the area clears both text and icon immediately.
 
 `battle_of_gods_theme.tres` is the shared base for HUDs and menus. It owns common panel, label, button, progress-background, separator, focus, disabled, and tooltip treatment. Individual scenes retain local overrides only for meaningful state such as health fill, cooldown, equipped, or sealed presentation. Named icons are independent textures so presentation can replace one concept without repacking an atlas or modifying gameplay authority.
 
 `TitleScreen` is the project entry scene and owns only menu presentation and navigation intent. It resets `RunSession` for a new journey, delegates scene replacement to `SceneTransition`, and changes audio-bus mute state through the existing AudioDirector-owned bus names. Its settings are session-only. `TitleBackground` is a separate presentation scene with `Base`, `DistantSilhouette`, `Atmosphere`, and `Vignette` layers; its tweens perform restrained visual motion without polling or gameplay authority.
+
+`SanctuaryFlow` composes the safe hub. It binds the existing player HUD, forwards contextual prompt metadata from two reusable `DialogueNpc` instances and `ExpeditionAltar`, and opens `DialoguePanel`, `CharacterMenu`, or `ExpeditionMenu`. Eira's completed dialogue opens the existing skill-information surface; an Escape cancellation restores play without chaining into that menu. Orren remains an honest dialogue-only preview until shop authority is designed. Interactables own proximity and emit intent; they do not draw HUD text, mutate progression, calculate prices, or replace scenes. Dialogue and expedition surfaces own their temporary pause and restore it on close. Future route requirements belong in a profile/story access authority, not in button labels or portal code. A future expedition-abandon action belongs in a pause/flow authority with confirmation and explicit run-state policy, not in a stage-local raw scene-change input.
 
 ### Environment Assets
 
@@ -212,6 +214,12 @@ Use Godot 4.7's current tilemap workflow and reusable tile data rather than one-
 Terrain and tile-source conventions remain provisional until a representative environment test is built. Avoid producing a broad tileset before scale, palette, transitions, collision shapes, and navigation behavior are validated together.
 
 The proving ground uses `TileMapLayer` with a reproducible `bright_ground_tileset.tres` generated from a 2x2 atlas. `prototype_ground.gd` fills a 30x18 test map with deterministic variation. Terrain transitions and editor-painted production maps remain future work.
+
+Sanctuary owns a separate 64x64 `sanctuary_ground_tileset.tres`; it never reuses the combat-stage grass resource. `SanctuaryGround` fills the 18x12 hub and derives one-cell cardinal pavement transitions from an authored route set, including branches to both side buildings. Its atlas and generated prop/NPC crops are reproduced by `tools/process_sanctuary_direction_board.gd` from a preserved source board. Border-connected background removal is matched to each crop's sampled board colors so dark costume, limb, interior, and connector pixels survive; broad global keying is reserved for the reviewed portal crop. Runtime scenes load only normalized assets under `assets/`, while collision, Y-sorting, interaction, and bounded idle presentation remain scene-owned. The portal monument uses an authored fountain polygon, small statue footprints, two portal-pillar footprints, and a rear backstop. This preserves continuous player-width routes around both sides of the fountain and allows entry into the doorway, while a compact threshold `Area2D` prevents expedition UI from appearing elsewhere in the courtyard.
+
+`EditorPreviewBackdrop` is reusable authoring-only presentation under `tools/editor/`. It draws a configurable ground checker only when its direct parent is the editor's current isolated scene root. It disables processing, self-removes outside editor hint mode, owns no collision or navigation, and therefore remains absent from composed-level editing, F5/F6, and exported gameplay.
+
+Sanctuary house roots remain `StaticBody2D` physics owners. Their visual ground shadows are `Polygon2D`, while their independently editable blocking footprints are `CollisionPolygon2D`. The collision polygons begin from the previously validated rectangular bounds but may be refined around ground-contact architecture without coupling collision to sprite alpha, roof silhouettes, or shadow geometry.
 
 `ArenaNavigation` builds a `NavigationPolygon` from one traversable arena outline and convex prop footprints. Thralls call `get_next_path_position()` every chase frame as required by `NavigationAgent2D`, use corridor-funnel postprocessing, and limit target reassignment to five times per second. This prevents empty-path deadlocks and extreme edge-centered detours around props.
 
@@ -323,4 +331,6 @@ An interim headless smoke script at `res://tests/player_movement_smoke.gd` verif
 `res://tests/combat_feedback_smoke.gd` verifies accepted incoming and outgoing hits create a number plus burst, then clean up without changing combat authority.
 
 `res://tests/combat_audio_smoke.gd` verifies Music/SFX/UI bus creation, assigned player and enemy action streams, state synchronization, accepted-hit cues, and Bramble impact audio without requiring device playback in headless mode.
+
+`res://tests/sanctuary_hub_smoke.gd` verifies the dedicated tileset, nine normalized binary-alpha assets, NPC idle animation, Eira-to-skill-menu handoff, Orren dialogue, portal idle layers, the compact doorway trigger, continuous six-pixel-footprint routes around both fountain sides, prompt ownership, pause restoration, and the Stage 1 destination.
 

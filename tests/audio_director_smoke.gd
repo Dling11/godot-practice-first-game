@@ -13,12 +13,24 @@ func _run() -> void:
 	if AudioServer.get_bus_index("Music") < 0:
 		_fail("AudioDirector did not create the dedicated Music bus.")
 		return
+	if audio_director.process_mode != Node.PROCESS_MODE_ALWAYS or audio_director.music_player.process_mode != Node.PROCESS_MODE_ALWAYS:
+		_fail("Music playback would pause with dialogue or menu modals.")
+		return
 	var grove_music := load("res://assets/audio/music/cathedral_in_the_forest.ogg") as AudioStream
 	audio_director.play_music(grove_music)
 	await process_frame
 	if audio_director.music_player.stream != grove_music:
 		_fail("AudioDirector did not assign the approved Grove music stream.")
 		return
+	if grove_music is AudioStreamOggVorbis and not (grove_music as AudioStreamOggVorbis).loop:
+		_fail("The approved Grove music is not configured to loop.")
+		return
+	paused = true
+	await process_frame
+	if not audio_director.music_player.can_process():
+		_fail("Music player stopped processing while gameplay was paused.")
+		return
+	paused = false
 	audio_director.stop_music()
 	grove_music = null
 	await process_frame

@@ -26,16 +26,34 @@ func _run() -> void:
 	if menu.visible:
 		_fail("Character menu should begin hidden.")
 		return
-	menu.open_menu()
+	var tab_event := InputEventAction.new()
+	tab_event.action = "player_character_menu"
+	tab_event.pressed = true
+	menu._unhandled_input(tab_event)
 	if not menu.visible or not paused:
-		_fail("Opening the character menu did not display it and pause gameplay.")
+		_fail("Tab did not open the character menu and pause gameplay.")
+		return
+	if root.gui_get_focus_owner() != menu.close_button:
+		_fail("Character menu did not focus its mouse/keyboard close control.")
 		return
 	if not menu.has_node("Panel/Margin/Root/Skills/Skill4"):
 		_fail("Character menu did not present all four authored skill slots.")
 		return
-	menu.close_menu()
+	menu._unhandled_input(tab_event)
+	if not menu.visible:
+		_fail("Tab should open the menu; Esc or the close button should close it.")
+		return
+	var escape_event := InputEventAction.new()
+	escape_event.action = "ui_cancel"
+	escape_event.pressed = true
+	menu._unhandled_input(escape_event)
 	if menu.visible or paused:
-		_fail("Closing the character menu did not resume gameplay.")
+		_fail("Esc did not close the character menu and resume gameplay.")
+		return
+	menu.open_menu()
+	menu.close_button.pressed.emit()
+	if menu.visible or paused:
+		_fail("The top-right close button did not close the character menu.")
 		return
 
 	player.progression_component.grant_rewards(20, 3)

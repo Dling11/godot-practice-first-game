@@ -3,12 +3,15 @@ extends Control
 
 ## Paused, read-only character and authored skill-path presentation.
 
+signal menu_closed
+
 @export var player: Player
 
 @onready var level_label: Label = %LevelLabel
 @onready var experience_bar: ProgressBar = %ExperienceBar
 @onready var experience_label: Label = %ExperienceLabel
 @onready var coin_label: Label = %CoinLabel
+@onready var close_button: Button = %CloseButton
 
 var _owns_pause := false
 
@@ -27,13 +30,14 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not event.is_action_pressed("player_character_menu"):
+	if visible and event.is_action_pressed("ui_cancel"):
+		get_viewport().set_input_as_handled()
+		close_menu()
+		return
+	if visible or not event.is_action_pressed("player_character_menu"):
 		return
 	get_viewport().set_input_as_handled()
-	if visible:
-		close_menu()
-	else:
-		open_menu()
+	open_menu()
 
 
 func open_menu() -> void:
@@ -43,13 +47,17 @@ func open_menu() -> void:
 	_owns_pause = not get_tree().paused
 	if _owns_pause:
 		get_tree().paused = true
+	close_button.grab_focus()
 
 
 func close_menu() -> void:
+	if not visible:
+		return
 	hide()
 	if _owns_pause:
 		get_tree().paused = false
 	_owns_pause = false
+	menu_closed.emit()
 
 
 func _exit_tree() -> void:

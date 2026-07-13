@@ -6,7 +6,7 @@ The setting centers on gods, demons, forgotten civilizations, and **The One Abov
 
 ## Current Status
 
-Pre-alpha title-to-two-stage prototype. F5 opens a focused Battle of Gods title screen with session-audio settings; Begin the Awakening fades into Stage 1. Stage 1 teaches Mireling and Thrall combat; Stage 2, `Thorns of the Forgotten Grove`, introduces the Bramble Spitter through a compact authored encounter. Both stages use pixel-stable cameras, navigation, readable spawning, portal progression, ambient music, positional combat SFX, and the existing combat/defeat loop. An in-memory level-10 XP/coin run and a four-slot character/skill information surface are active; disk saving and additional skills are not yet implemented.
+Pre-alpha title-to-Sanctuary-to-two-stage prototype. F5 opens a focused Battle of Gods title screen with session-audio settings; Begin the Awakening fades into a safe generated-pixel Sanctuary with an angel portal/fountain, Skillkeeper Eira, and Armskeeper Orren. Stage 1 teaches Mireling and Thrall combat; Stage 2, `Thorns of the Forgotten Grove`, introduces the Bramble Spitter and returns to Sanctuary when cleared. An in-memory level-10 XP/coin run and a four-slot character/skill information surface are active; disk saving, purchases, equipment, and additional skills are not yet implemented.
 
 ## Intended Technology
 
@@ -38,6 +38,12 @@ The prototype uses a 960x540 logical viewport displayed at 1920x1080 for exact 2
 
 The current main scene is `res://ui/screens/title/title_screen.tscn`. Stage 1 remains `res://levels/test_arena/test_arena.tscn`.
 
+### Isolated 2D Asset Preview
+
+Supported Sanctuary prop and NPC scenes include an `EditorPreviewBackdrop` child. When one of those asset scenes is opened directly, Godot displays a subtle green checker behind transparent sprites and dark shadows. The backdrop automatically disappears when the asset is instanced in a level and never draws during F5/F6 or an exported game. Select the backdrop node to adjust its preview size, center, checker scale, or colors for that scene.
+
+Current Sanctuary houses use `Polygon2D` for visual shadows and `CollisionPolygon2D` for editable physics footprints. Select the house's `Collision` child in the 2D editor to drag or add collision vertices; editing `Shadow` changes only presentation and never blocks the player.
+
 Command-line validation on this workstation:
 
 ```powershell
@@ -56,6 +62,8 @@ res://
       test_arena.tscn
     stage_2/
       stage_2.tscn
+    sanctuary/
+      sanctuary.tscn
   ui/
     screens/title/
       title_screen.tscn
@@ -78,12 +86,14 @@ The active prototype controls are:
 | Dodge | Space | South face button |
 | Skill 1: Sweeping Cut | 1 (Q legacy fallback) | Left shoulder |
 | Skill slots 2-4 | 2 / 3 / 4 (reserved) | Reserved |
-| Character / skills | Tab | Not assigned |
+| Open character / skills | Tab | Not assigned |
 | Interact / enter portal | F | West face button |
-| Pause | Escape | Start |
+| Close / cancel modal | Escape or visible mouse button | UI Cancel |
 | Rise after defeat | R | North face button |
 
 Movement, aim/facing, primary attack, dash, Sweeping Cut, portal interaction, and arena restart after defeat are active. Slots 2-4 are visibly sealed and currently do nothing. XP and coins survive portal transitions within the running game; defeat restart begins a new run.
+
+In Sanctuary, approach Skillkeeper Eira or Armskeeper Orren and press F. To use the angel portal, walk around either side of the fountain and step between the glowing doorway pillars; its prompt appears only at that threshold. Dialogue and menu controls are clickable; Escape cancels the active modal, and the character surface also has a top-right close button. Eira opens the current skill-information surface only after her dialogue is completed; Orren previews the future weapon service without pretending purchases exist; the portal opens the Forgotten Grove while later routes remain visibly sealed.
 
 ## Verification
 
@@ -103,6 +113,8 @@ Run the current headless movement smoke test with:
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/audio_director_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/ui_theme_icon_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/title_screen_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/sanctuary_hub_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/editor_preview_backdrop_smoke.gd'
 ```
 
 ## Build and Export

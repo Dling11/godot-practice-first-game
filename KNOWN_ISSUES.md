@@ -32,6 +32,20 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 - **Planned resolution:** Store audio preferences in the future versioned settings/profile system.
 - **Workaround:** The title screen applies all three toggles immediately for the current session.
 
+### KI-007 - Expedition unlock state is not persistent or data-driven yet
+
+- **Status:** Open
+- **Impact:** The Sanctuary angel portal offers Stage 1 and shows two authored future-route previews, but it cannot yet evaluate story, boss, discovery, item, or profile requirements.
+- **Planned resolution:** Introduce immutable expedition definitions and a versioned profile/story authority before enabling additional routes.
+- **Workaround:** Keep Stage 1 as the only portal-selected route; Stage 2 remains the direct continuation of Stage 1 and returns to Sanctuary.
+
+### KI-008 - Expeditions have no voluntary return action
+
+- **Status:** Open
+- **Impact:** After entering Stage 1, the player must complete the current Stage 1-to-Stage-2 route or restart after defeat before returning to Sanctuary.
+- **Planned resolution:** Add a confirmed `Abandon Expedition / Return to Sanctuary` pause-menu action after defining when it is allowed and whether current run XP/coins are retained.
+- **Workaround:** Complete Stage 2 to use its existing Sanctuary return portal.
+
 ## Current Bugs
 
 None currently. The project and main scene pass headless editor import and runtime loading under Godot 4.7 stable.

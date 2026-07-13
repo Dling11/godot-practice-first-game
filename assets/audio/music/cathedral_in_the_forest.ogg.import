@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/cathedral_in_the_forest.ogg-6540b093cb253b08d
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

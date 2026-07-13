@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://w4a7m000shlu"]
+
+[ext_resource type="Script" uid="uid://ro6ny7gaugl3" path="res://environment/props/sanctuary/sanctuary_tree_idle.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://b8qcwi46f37nm" path="res://assets/environment/sanctuary/props/sanctuary_tree_tall_96x120.png" id="2_texture"]
+[ext_resource type="PackedScene" path="res://tools/editor/editor_preview_backdrop.tscn" id="99_preview"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wp65y"]
+size = Vector2(74, 34)
+
+[node name="SanctuaryTreeTall" type="StaticBody2D" unique_id=48598849 node_paths=PackedStringArray("sway_visual")]
+script = ExtResource("1_script")
+sway_visual = NodePath("SwayVisual")
+
+[node name="EditorPreviewBackdrop" parent="." unique_id=1711756458 instance=ExtResource("99_preview")]
+
+[node name="Shadow" type="Polygon2D" parent="." unique_id=287607227]
+z_index = -2
+position = Vector2(-0.99999815, -14)
+scale = Vector2(1.6818182, 2.5)
+color = Color(0.02, 0.03, 0.03, 0.4)
+polygon = PackedVector2Array(-22, 0, -19.621624, -4.0000005, -11.891893, -6.0000005, 13.675674, -5.2000003, 21.405403, -2.8000007, 22, 0, 21.405403, 2.8, 18.43243, 6, -2.972974, 6.8, -16, 6)
+
+[node name="SwayVisual" type="Node2D" parent="." unique_id=61258413]
+
+[node name="Sprite" type="Sprite2D" parent="SwayVisual" unique_id=1551757449]
+position = Vector2(0, -60)
+texture = ExtResource("2_texture")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=570823436]
+visible = false
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_wp65y")

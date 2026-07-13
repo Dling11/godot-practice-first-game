@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://kimgwlbptm3o"]
+
+[ext_resource type="Script" uid="uid://m3j64u6rnvln" path="res://environment/props/sanctuary/sanctuary_building_idle.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dgvre2eqwcgdp" path="res://assets/environment/sanctuary/buildings/mushroom_dwelling_128x192.png" id="2_texture"]
+[ext_resource type="PackedScene" path="res://tools/editor/editor_preview_backdrop.tscn" id="99_preview"]
+
+[node name="MushroomDwelling" type="StaticBody2D" unique_id=675735391 node_paths=PackedStringArray("window_glow")]
+script = ExtResource("1_script")
+window_glow = NodePath("WindowGlow")
+
+[node name="EditorPreviewBackdrop" parent="." unique_id=287336522 instance=ExtResource("99_preview")]
+
+[node name="Shadow" type="Polygon2D" parent="." unique_id=649648330]
+z_index = -2
+position = Vector2(0, -5)
+color = Color(0.02, 0.03, 0.03, 0.42)
+polygon = PackedVector2Array(-61, -27, -56, -39, -19, -44, 45, -48, 59, -41, 56, -23, 53, -10, 39, 0, 27, 4, -21, 5, -51, 3, -52, -9)
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=304006480]
+position = Vector2(0, -96)
+texture = ExtResource("2_texture")
+
+[node name="WindowGlow" type="Node2D" parent="." unique_id=1297729189]
+
+[node name="UpperWindow" type="Polygon2D" parent="WindowGlow" unique_id=1984339219]
+position = Vector2(-9, -120)
+color = Color(0.84, 0.69, 0.25, 0.28)
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[node name="SideLantern" type="Polygon2D" parent="WindowGlow" unique_id=1595254414]
+position = Vector2(42, -68)
+color = Color(0.95, 0.7, 0.27, 0.3)
+polygon = PackedVector2Array(-3, -4, 3, -4, 3, 4, -3, 4)
+
+[node name="Collision" type="CollisionPolygon2D" parent="." unique_id=309173173]
+visible = false
+position = Vector2(-7, -33)
+scale = Vector2(1.8502153, 2.9218748)
+polygon = PackedVector2Array(-29.185791, -7.8716583, 35.671524, -7.187166, 35.671524, 2.7379684, 30.807224, 5.4759364, 23.24054, 8.8983965, 15.673851, 10.267381, 1.6214328, 12.320857, -11.35003, 13.005349, -24.861973, 11.294119, -26.483402, 7.1871667, -29.185791, 0)

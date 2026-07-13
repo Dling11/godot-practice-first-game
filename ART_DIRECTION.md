@@ -78,6 +78,8 @@ Default world light travels from upper-left toward lower-right. Highlights, cast
 - Sanctuary assets reuse the forest's lighting and palette while introducing maintained paths, inhabited structures, warm windows, cloth, and the central divine fountain.
 - Fountain visuals should separate base stone, water/glow animation, shadow, collision, and optional interaction marker.
 
+The active Sanctuary establishes inhabited fantasy through a generated-and-normalized angel portal/fountain, violet mushroom dwelling, merchant hall and weapon stall, two tree silhouettes, Skillkeeper Eira, and Armskeeper Orren. Dedicated restrained grass and cobblestone transitions replace borrowed combat-stage terrain. Portal runes, water glints, magic accents, lanterns, windows, and tree sway animate independently from collision and interaction so the hub feels alive without becoming a noisy cartoon town.
+
 ## UI Language
 
 UI should resemble ancient crafted interfaces without sacrificing clarity:

@@ -92,8 +92,18 @@ These files are intentionally outside runtime imports under Godot-ignored `art_s
 | `prop_forest_ancient_tree_base` | `assets/environment/prototype/polished_tree_base.png` | `assets/environment/forest/props/ancient_tree/ancient_tree_base.png` | 94x112 | `ancient_tree.tscn` |
 | `prop_forest_ancient_tree_canopy` | `assets/environment/prototype/polished_tree_canopy.png` | `assets/environment/forest/props/ancient_tree/ancient_tree_canopy.png` | 94x112 | `ancient_tree.tscn` |
 | `prop_forest_ruined_statue` | `assets/environment/prototype/polished_statue.png` | `assets/environment/forest/props/ruined_statue/ruined_statue.png` | 81x104 | `ruined_statue.tscn` |
+| `tile_sanctuary_ground_atlas` | `assets/environment/sanctuary/tiles/sanctuary_ground_atlas_64x64.png` | Active | 256x320; 4x5 of 64x64 | `sanctuary_ground_tileset.tres` |
+| `tile_sanctuary_ground_resource` | `assets/environment/sanctuary/tiles/sanctuary_ground_tileset.tres` | Active | Godot `TileSet` | `sanctuary.tscn` |
+| `landmark_sanctuary_angel_portal_fountain` | `assets/environment/sanctuary/landmarks/angel_portal_fountain_256x240.png` | Active | 256x240; feet/base origin at bottom center; walk-in doorway threshold | `expedition_altar.tscn` |
+| `building_sanctuary_mushroom_dwelling` | `assets/environment/sanctuary/buildings/mushroom_dwelling_128x192.png` | Active | 128x192; base origin at bottom center | `mushroom_dwelling.tscn` |
+| `building_sanctuary_merchant_hall` | `assets/environment/sanctuary/buildings/merchant_hall_176x192.png` | Active | 176x192; base origin at bottom center | `merchant_hall.tscn` |
+| `shop_sanctuary_weapon_stall` | `assets/environment/sanctuary/shops/weapon_stall_128x96.png` | Active | 128x96; base origin at bottom center | `weapon_stall.tscn` |
+| `prop_sanctuary_tree_broad` | `assets/environment/sanctuary/props/sanctuary_tree_broad_96x120.png` | Active | 96x120; footprint origin at bottom center | `sanctuary_tree_broad.tscn` |
+| `prop_sanctuary_tree_tall` | `assets/environment/sanctuary/props/sanctuary_tree_tall_96x120.png` | Active | 96x120; footprint origin at bottom center | `sanctuary_tree_tall.tscn` |
+| `char_npc_skillkeeper_idle` | `assets/characters/npcs/skillkeeper/skillkeeper_idle_sheet_48x80.png` | Active | 192x80; 4x1 of 48x80; full staff and book silhouette | `skillkeeper.tscn` |
+| `char_npc_weapon_merchant_idle` | `assets/characters/npcs/weapon_merchant/weapon_merchant_idle_sheet_48x72.png` | Active | 192x72; 4x1 of 48x72; isolated full-body silhouette | `weapon_merchant.tscn` |
 
-The prop scenes remain under `environment/props/` because they combine presentation with collision, navigation, occlusion, and behavior. Raster art stays under `assets/`.
+The Sanctuary source board is preserved at `art_source/generated/environment/sanctuary/sanctuary_direction_board_source.png`; the exact crop, per-asset border cleanup, optional connected-component isolation, reviewed portal-only global key, outline, scale, idle-frame, and tile-atlas build is reproducible through `tools/process_sanctuary_direction_board.gd`. Character crop bounds must include transparent source-space breathing room around limbs and held props. The prop scenes remain under `environment/props/` because they combine presentation with collision, navigation, occlusion, and behavior. Raster art stays under `assets/`.
 
 ## Active UI and Effects
 
@@ -105,6 +115,8 @@ Current UI visuals combine the approved reusable base theme and named pixel icon
 | `ui_character_menu` | `ui/character_menu.tscn` | `active_resource` | Paused The Awakened progression and skill information. |
 | `ui_title_screen` | `ui/screens/title/title_screen.tscn` | `active_resource` | Main navigation, session-audio settings, and new-journey entry. |
 | `ui_title_background` | `ui/screens/title/title_background.tscn` | `active_resource` | Replaceable title presentation layers and restrained atmosphere. |
+| `ui_dialogue_panel` | `ui/dialogue/dialogue_panel.tscn` | `active_resource` | Paused multi-line NPC dialogue presentation. |
+| `ui_expedition_menu` | `ui/expeditions/expedition_menu.tscn` | `active_resource` | Sanctuary route selection and sealed-route previews. |
 | `ui_enemy_health_bar` | `ui/world/enemy_health_bar.tscn` | `active_resource` | Damage-triggered world-space enemy health. |
 | `ui_damage_number` | `ui/world/damage_number.tscn` | `active_resource` | Short-lived accepted-hit values. |
 | `fx_summon` | `gameplay/encounters/summon_effect.tscn` | `active_resource` | Enemy materialization presentation. |
@@ -181,6 +193,9 @@ These patterns are not approved runtime naming. Preserve them during migration, 
 | `art_source/generated/characters/enemies/forsaken_thrall/` | `source` / `intermediate` | Preserved Thrall generation inputs; ignored by Godot and never loaded at runtime. |
 | `art_source/generated/characters/enemies/mireling/` | `source` / `intermediate` | Preserved Mireling generation inputs; ignored by Godot and never loaded at runtime. |
 | `art_source/generated/characters/enemies/bramble_spitter/` | `source` / `intermediate` | Preserved Spitter generation inputs; ignored by Godot and never loaded at runtime. |
+| `art_source/generated/environment/sanctuary/sanctuary_direction_board_source.png` | `source` | Approved generated direction board; never loaded by runtime scenes. |
+
+The superseded first-round code-drawn Sanctuary sprites, scenes, import metadata, and generator were removed on 2026-07-14 after the generated kit passed replacement verification. Their design history remains in Decision 037 and `CHANGELOG.md`; they are not cataloged as available assets and must not be restored as runtime dependencies.
 
 ## Catalog Update Rule
 

@@ -40,8 +40,8 @@ func _run() -> void:
 	controller._spawn_portal()
 	await process_frame
 	var return_portal: StagePortal = current_scene.get_node("World/Effects").get_child(0)
-	if return_portal.target_scene_path != "res://levels/test_arena/test_arena.tscn":
-		_fail("Cleared Stage 2 portal is not configured to return to Stage 1.")
+	if return_portal.target_scene_path != "res://levels/sanctuary/sanctuary.tscn":
+		_fail("Cleared Stage 2 portal is not configured to return to Sanctuary.")
 		return
 	print("Scene transition smoke test passed.")
 	quit(0)

@@ -104,7 +104,9 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - UI icons use stable canonical concepts and native 16x16 or 24x24 textures. Pass them as presentation configuration or metadata; never parse their filenames to decide gameplay behavior.
 - Keep small pixel icons on binary alpha with one readable symbol and transparent internal margin. Regenerate the baseline kit through `tools/build_ui_icon_kit.gd` rather than hand-editing generated runtime files inconsistently.
 - Menu screens must establish an initial focused control, explicit directional focus loops, modal focus transfer, and focus restoration when the modal closes.
+- Every gameplay modal must provide a visible mouse-operable primary/close control and support `ui_cancel`; do not rely on a hidden keyboard-only toggle to dismiss it.
 - Title/loading/background art remains under a named presentation owner. Never bake navigation labels or controls into background textures.
+- Generated dark-background crops must use asset-specific border cleanup. Do not globally key all dark pixels from characters, buildings, or props; preserve legitimate outlines, interiors, limbs, and connectors.
 
 - Favor strong silhouettes, limited palettes, and readable animation keys.
 - Use nearest-neighbor filtering and pixel-consistent import settings once the base resolution is decided.
@@ -134,9 +136,13 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - Place collision around the traversability footprint, not the full visible canopy, roof, or decorative silhouette.
 - Keep navigation obstacles/regions consistent with collision unless a documented gameplay rule requires different behavior.
 - Keep shadows presentation-only; shadows must not determine collision or damage.
+- Use `Polygon2D` for an editable visual shadow and `CollisionPolygon2D` for an irregular static physics footprint. Never expect a visual polygon to participate in collision.
 - Use Y-sorting within controlled world/prop boundaries and reserve fixed canvas layers or `z_index` bands for genuinely separate visual planes.
 - Never manipulate draw order every frame when a stable scene hierarchy, Y-sort origin, or split sprite solves the relationship.
 - Test each large prop from the front, behind, and both sides with the player before approving it for reuse.
+- Safe-hub props follow the same separation as combat props: raster, shadow/glow, collision, interaction, and idle presentation remain independently replaceable.
+- Ambient idle motion uses bounded tweens or animations. It must not move collision, interaction ranges, navigation footprints, or gameplay authority.
+- Use the shared `EditorPreviewBackdrop` as a direct child when an isolated transparent asset is unreadable against Godot's dark 2D canvas. Editor previews must be context-gated, processing-disabled, collision-free, and absent from runtime drawing.
 
 ## Tilemaps and Modular Environments
 

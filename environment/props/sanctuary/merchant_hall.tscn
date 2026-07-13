@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://415jrd6dymxi"]
+
+[ext_resource type="Script" uid="uid://m3j64u6rnvln" path="res://environment/props/sanctuary/sanctuary_building_idle.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dq4lsjgohcwdr" path="res://assets/environment/sanctuary/buildings/merchant_hall_176x192.png" id="2_texture"]
+[ext_resource type="PackedScene" path="res://tools/editor/editor_preview_backdrop.tscn" id="99_preview"]
+
+[node name="MerchantHall" type="StaticBody2D" unique_id=1492268236 node_paths=PackedStringArray("window_glow")]
+script = ExtResource("1_script")
+window_glow = NodePath("WindowGlow")
+
+[node name="EditorPreviewBackdrop" parent="." unique_id=89792398 instance=ExtResource("99_preview")]
+
+[node name="Shadow" type="Polygon2D" parent="." unique_id=136197251]
+z_index = -2
+position = Vector2(0, -6)
+color = Color(0.02, 0.03, 0.03, 0.42)
+polygon = PackedVector2Array(-80, -22, -80, -34, 79, -34, 80, -22, 67, 6, 67, 28, 48, 36, 26, 36, -6, 36, -36, 36, -60, 24, -60, 4, -74, -5)
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1038591681]
+position = Vector2(0, -96)
+texture = ExtResource("2_texture")
+
+[node name="WindowGlow" type="Node2D" parent="." unique_id=829459396]
+
+[node name="UpperWindow" type="Polygon2D" parent="WindowGlow" unique_id=356900465]
+position = Vector2(0, -137)
+color = Color(0.84, 0.69, 0.25, 0.24)
+polygon = PackedVector2Array(-4, -5, 4, -5, 4, 5, -4, 5)
+
+[node name="WestWindow" type="Polygon2D" parent="WindowGlow" unique_id=1827485622]
+position = Vector2(-46, -99)
+color = Color(0.84, 0.69, 0.25, 0.24)
+polygon = PackedVector2Array(-4, -5, 4, -5, 4, 5, -4, 5)
+
+[node name="EastWindow" type="Polygon2D" parent="WindowGlow" unique_id=838588481]
+position = Vector2(44, -99)
+color = Color(0.84, 0.69, 0.25, 0.24)
+polygon = PackedVector2Array(-4, -5, 4, -5, 4, 5, -4, 5)
+
+[node name="Collision" type="CollisionPolygon2D" parent="." unique_id=616976387]
+position = Vector2(-5, -37)
+scale = Vector2(1.0126325, 1)
+polygon = PackedVector2Array(-88.648895, -8.875, -79.76117, -40.875, 82.5625, -35.125, 90.8523, -5, 89.864784, 19, 78.01448, 34, -27.650703, 36, -74.064384, 32)

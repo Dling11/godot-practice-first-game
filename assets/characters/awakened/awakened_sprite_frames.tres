@@ -1,7 +1,7 @@
-[gd_resource type="SpriteFrames" format=3]
+[gd_resource type="SpriteFrames" format=3 uid="uid://dg6btfhn8ko87"]
 
-[ext_resource type="Texture2D" path="res://assets/characters/awakened/awakened_sword_attack_sheet_64x48.png" id="1_lnrcl"]
-[ext_resource type="Texture2D" path="res://assets/characters/awakened/awakened_locomotion_sheet_24x32.png" id="2_lhik6"]
+[ext_resource type="Texture2D" uid="uid://dy7pqjv0sbh8l" path="res://assets/characters/awakened/awakened_sword_attack_sheet_64x48.png" id="1_lnrcl"]
+[ext_resource type="Texture2D" uid="uid://bv8d3unuhd340" path="res://assets/characters/awakened/awakened_locomotion_sheet_24x32.png" id="2_lhik6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tc4k3"]
 atlas = ExtResource("1_lnrcl")

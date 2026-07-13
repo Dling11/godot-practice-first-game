@@ -43,6 +43,8 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 033 | Give assets canonical identities and replaceable presentation contracts | Art generation, asset naming, folders, UI themes, or backgrounds |
 | 034 | Use one shared theme and semantic UI icons | HUD/menu styling, interaction prompts, icon replacement, or new UI screens |
 | 035 | Make the title screen the explicit journey entry | Main scene, menu navigation, new journeys, settings, or title backgrounds |
+| 036 | Use Sanctuary as the expedition hub | Hub flow, NPCs, destination choice, route unlocks, or stage return behavior |
+| 037 | Generate and normalize a dedicated Sanctuary art kit | Sanctuary tiles, generated props, NPC presentation, hub collisions, or visual replacement |
 
 ## New Decisions
 

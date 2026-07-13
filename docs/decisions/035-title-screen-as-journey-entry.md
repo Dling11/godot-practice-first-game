@@ -15,9 +15,9 @@ The project previously launched directly into Stage 1. The planned Sanctuary str
 
 ## Decision
 
-`title_screen.tscn` is the project main scene. It owns menu focus, session-audio controls, and user intent only. Beginning a journey resets `RunSession` and delegates scene replacement to `SceneTransition`; the title does not load or instantiate gameplay itself.
+`title_screen.tscn` is the project main scene. It owns menu focus, session-audio controls, and user intent only. Beginning a journey resets `RunSession` and delegates scene replacement to `SceneTransition`; the title does not load or instantiate gameplay itself. The configured destination is now Sanctuary.
 
-The background is a separate layered scene with `Base`, `DistantSilhouette`, `Atmosphere`, and `Vignette` owners. Its 960x540 base image contains no logo, buttons, or navigation logic and can be replaced independently. Until Sanctuary exists, a new journey enters Stage 1.
+The background is a separate layered scene with `Base`, `DistantSilhouette`, `Atmosphere`, and `Vignette` owners. Its 960x540 base image contains no logo, buttons, or navigation logic and can be replaced independently.
 
 ## Consequences
 

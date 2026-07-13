@@ -1,5 +1,30 @@
 # Changelog
 
+## 2026-07-14 - Generated Sanctuary Visual and Interaction Rebuild
+
+- Converted the current Mushroom Dwelling and Merchant Hall from rectangle collision resources to editable `CollisionPolygon2D` footprints without changing their existing bounds; visual shadows remain independent `Polygon2D` nodes.
+- Added a reusable editor-only green checker backdrop to isolated Sanctuary prop/NPC scenes so transparent art and dark shadows remain readable against Godot's black 2D canvas; it performs no runtime drawing or processing.
+- Corrected the Sanctuary crop pipeline so dark faces, arms, building interiors, and sign connectors survive while board background is removed; restored Eira's complete staff/book silhouette and Orren's complete arms while filtering the adjacent weapon-stall pole fragment.
+- Moved both houses to connected side routes and rebuilt the angel landmark with a fountain polygon, small statue footprints, separate doorway pillars, a rear backstop, and a compact portal-threshold trigger; both fountain-side approaches remain continuously walkable for the player's footprint.
+- Removed the unused first-round code-drawn house, fountain, altar, mushroom decoration, Veilkeeper presentation, their import metadata, and their obsolete sprite-kit generator after confirming no active runtime references remained.
+- Added a mouse-operable top-right close button to The Awakened menu, clickable dialogue advance/close behavior, and Escape cancellation without accidental Eira menu chaining.
+- Kept ambient music processing through paused modals and enabled continuous OGG looping so NPC conversations no longer interrupt the track.
+- Preserved an approved 1536x1024 generated Sanctuary direction board and added a reproducible processor for reviewed crops, dark-background removal, hard alpha, exact canvases, idle accents, and dedicated terrain.
+- Replaced borrowed Stage 1 ground with a Sanctuary-only 64x64 grass/cobblestone atlas and an authored one-cell route network.
+- Replaced the first-round hub visuals with the angel portal/fountain, mushroom dwelling, merchant hall, weapon stall, two Sanctuary tree silhouettes, Skillkeeper Eira, and Armskeeper Orren.
+- Kept the angel landmark as the existing expedition interaction while adding independent rune, portal, and water idle presentation plus traversal collision.
+- Added a reusable `DialogueNpc` contract; Eira now opens the existing skill-information menu after restrained dialogue, while Orren honestly previews the future weapon service without purchases or equipment logic.
+- Extended Sanctuary regression coverage across nine normalized assets, dedicated tiles, both NPC interactions, idle animation, pause restoration, collision, prompts, and Stage 1 selection.
+
+## 2026-07-14 - Sanctuary Expedition Hub
+
+- Added the safe `Sanctuary of the Remembered Veil` as the new-journey destination and Stage 2 return destination.
+- Added a compact 18x12 hub layout with four mushroom homes, border trees, animated divine fountain, glowing mushroom clusters, central paths, and expedition altar.
+- Added Veilkeeper Eira with a four-frame lantern idle, contextual talk icon, three-line restrained introduction, and reusable paused dialogue panel.
+- Added a reusable expedition menu with Stage 1 available and two clearly sealed future-route previews.
+- Added five reproducible exact-grid hard-alpha runtime sprites and kept shadows/glows separate from raster art.
+- Added automated Sanctuary asset, animation, dialogue, prompt, pause, altar, and destination coverage.
+
 ## 2026-07-14 - Battle of Gods Title Screen
 
 - Changed the F5 main scene from Stage 1 to a dedicated Battle of Gods title screen using the shared UI theme.

@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://cd0px7xq0pte7"]
+
+[ext_resource type="Script" uid="uid://m3j64u6rnvln" path="res://environment/props/sanctuary/sanctuary_building_idle.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://tools/editor/editor_preview_backdrop.tscn" id="99_preview"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7bbi1"]
+load_path = "res://.godot/imported/weapon_stall_128x96.png-4f9d5fd8ad9a524349d80168d842a738.ctex"
+
+[sub_resource type="RectangleShape2D" id="StallShape"]
+size = Vector2(113, 56)
+
+[node name="WeaponStall" type="StaticBody2D" unique_id=1680186277 node_paths=PackedStringArray("window_glow")]
+script = ExtResource("1_script")
+window_glow = NodePath("LanternGlow")
+
+[node name="EditorPreviewBackdrop" parent="." unique_id=1336540549 instance=ExtResource("99_preview")]
+
+[node name="Shadow" type="Polygon2D" parent="." unique_id=264649427]
+z_index = -2
+position = Vector2(0.9999962, -9.5)
+scale = Vector2(1.2553191, 2.2499998)
+color = Color(0.02, 0.03, 0.03, 0.42)
+polygon = PackedVector2Array(-47, 0, -36, -6, 36, -6, 47, 0, 36, 6, -36, 6)
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=116840886]
+position = Vector2(0, -48)
+texture = SubResource("CompressedTexture2D_7bbi1")
+
+[node name="LanternGlow" type="Node2D" parent="." unique_id=2014624804]
+
+[node name="Lantern" type="Polygon2D" parent="LanternGlow" unique_id=1558782322]
+position = Vector2(48, -45)
+color = Color(0.95, 0.67, 0.23, 0.26)
+polygon = PackedVector2Array(-5, 0, -3, -5, 3, -5, 5, 0, 3, 5, -3, 5)
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=610897507]
+visible = false
+position = Vector2(0.5, -26)
+shape = SubResource("StallShape")

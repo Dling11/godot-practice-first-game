@@ -5,7 +5,7 @@ signal journey_requested(destination: String)
 signal settings_opened
 signal quit_requested
 
-@export_file("*.tscn") var new_journey_scene := "res://levels/test_arena/test_arena.tscn"
+@export_file("*.tscn") var new_journey_scene := "res://levels/sanctuary/sanctuary.tscn"
 
 @onready var content: Control = %Content
 @onready var main_menu_panel: PanelContainer = %MainMenuPanel

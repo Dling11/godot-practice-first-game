@@ -2,7 +2,7 @@ extends SceneTree
 
 const TitleScene = preload("res://ui/screens/title/title_screen.tscn")
 const ThemeResource = preload("res://assets/ui/themes/battle_of_gods_theme.tres")
-const STAGE_1 := "res://levels/test_arena/test_arena.tscn"
+const SANCTUARY := "res://levels/sanctuary/sanctuary.tscn"
 
 
 func _initialize() -> void:
@@ -65,11 +65,11 @@ func _run() -> void:
 	if not transition_state.finished:
 		_fail("Title Start transition timed out (started=%s, current=%s)." % [transition_state.started, current_scene.scene_file_path if current_scene != null else "none"])
 		return
-	if transition_state.requested != STAGE_1:
-		_fail("Start did not request the configured Stage 1 destination.")
+	if transition_state.requested != SANCTUARY:
+		_fail("Start did not request the configured Sanctuary destination.")
 		return
-	if current_scene == null or current_scene.scene_file_path != STAGE_1:
-		_fail("Title Start did not transition into Stage 1.")
+	if current_scene == null or current_scene.scene_file_path != SANCTUARY:
+		_fail("Title Start did not transition into the Sanctuary.")
 		return
 	if run_session.total_experience != 0 or run_session.coins != 0:
 		_fail("A new journey did not reset the in-memory run state.")

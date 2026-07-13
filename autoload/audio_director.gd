@@ -10,10 +10,12 @@ var music_player: AudioStreamPlayer
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	_ensure_bus(MUSIC_BUS)
 	_ensure_bus(SFX_BUS)
 	_ensure_bus(UI_BUS)
 	music_player = AudioStreamPlayer.new()
+	music_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	music_player.bus = MUSIC_BUS
 	music_player.volume_db = -13.0
 	add_child(music_player)
@@ -25,6 +27,8 @@ func play_music(stream: AudioStream) -> void:
 		return
 	if music_player.stream == stream and music_player.playing:
 		return
+	if stream is AudioStreamOggVorbis:
+		(stream as AudioStreamOggVorbis).loop = true
 	music_player.stream = stream
 	# Headless verification has no audio device. Retaining the stream assignment
 	# validates scene routing without leaving native OGG playback objects alive at

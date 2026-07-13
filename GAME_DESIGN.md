@@ -29,7 +29,11 @@ Battle of Gods is a fast, skill-based 2D top-down pixel action game. Relentless 
 
 The exact run structure, death penalty, checkpoint rules, and permanent progression model are undecided.
 
-**Implemented journey entry:** the game opens at the Battle of Gods title screen. `Begin the Awakening` starts a fresh in-memory run and fades into Stage 1. Settings currently provide immediate session-only Music, Combat Sound, and Menu Sound toggles. Continue/profile selection and the planned Sanctuary hub do not exist yet.
+**Implemented journey entry:** the game opens at the Battle of Gods title screen. `Begin the Awakening` starts a fresh in-memory run and fades into Sanctuary. Settings currently provide immediate session-only Music, Combat Sound, and Menu Sound toggles. Continue/profile selection does not exist yet.
+
+**Implemented Sanctuary loop:** Sanctuary is a safe expedition hub centered on an animated angel portal and divine fountain. Dedicated grass and cobblestone paths connect the side-positioned mushroom dwelling and merchant hall to the central route. The landmark exposes comfortable left and right approaches around the fountain, and the player can physically step between the portal pillars before the contextual expedition prompt appears; a hidden rear footprint prevents walking through the monument. The hub also contains a weapon stall, generated trees, Skillkeeper Eira, and Armskeeper Orren. Eira's restrained dialogue hands off to the current read-only skill-information menu. Orren previews the future weapon service, but purchasing, prices, equipment, and coin sinks are not implemented. The portal currently offers the beginner Forgotten Grove route and previews two sealed future regions. Stage 1 continues directly to Stage 2; clearing Stage 2 returns to Sanctuary.
+
+Future destination access should combine level, story flags, boss victories, discovered locations, and required key items. Level alone must not unlock every road, and completed early expeditions should remain replayable.
 
 ## Combat
 
@@ -136,7 +140,7 @@ The relationship between divine and demonic power may involve affinity, corrupti
 
 This is in-memory run state: it survives portal scene transitions, resets when the player restarts after defeat, and is not written to disk. Reaching a level does not pause combat, randomly offer upgrades, alter combat stats, or grant an ability yet.
 
-The approved control budget is four equipable active skill slots on keys 1-4, in addition to normal attack and dash. The centered combat bar exposes all four slots; only Sweeping Cut is currently equipped. The Tab character menu pauses combat and presents The Awakened's level, XP, coins, core actions, and four skill paths. Slots 2-4 are deliberately sealed; their displayed level 3/6/9 milestones are presentation scaffolding until authored abilities and unlock rules are approved. Leveling unlocks authored options or requirements rather than interrupting every level with random choices.
+The approved control budget is four equipable active skill slots on keys 1-4, in addition to normal attack and dash. The centered combat bar exposes all four slots; only Sweeping Cut is currently equipped. Tab opens the paused character menu, which presents The Awakened's level, XP, coins, core actions, and four skill paths; Escape or its visible top-right mouse button closes it. Slots 2-4 are deliberately sealed; their displayed level 3/6/9 milestones are presentation scaffolding until authored abilities and unlock rules are approved. Leveling unlocks authored options or requirements rather than interrupting every level with random choices.
 
 Open decisions include how coins are spent, whether skills are unlocked by level or purchased after reaching a level, which abilities occupy slots 2-4, and what eventually persists through a profile save.
 
@@ -175,6 +179,8 @@ Potential sources include build variety, encounter variation, optional bosses, d
 Planned considerations include input remapping, keyboard/gamepad parity, readable text, scalable UI, screen-shake controls, flash reduction, color-independent combat cues, and pause behavior.
 
 **Implemented title UX:** mouse, keyboard, and gamepad UI actions share an explicit focus loop. Opening Settings moves focus into the modal; Back or UI Cancel restores the invoking Settings button. Title presentation uses separate replaceable background layers and never bakes controls into art.
+
+**Implemented gameplay modal UX:** dialogue exposes a clickable Continue/Close action, the character menu exposes a top-right close button, and Escape immediately cancels the active dialogue or menu. Canceling Eira's dialogue does not silently open the skill-information menu. A future in-expedition return must be a confirmed `Abandon Expedition / Return to Sanctuary` action with explicit run consequences, not an unguarded teleport hotkey.
 
 ## Future Ideas
 
