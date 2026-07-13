@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0fi77o2m5rxa"]
+[gd_scene load_steps=14 format=3 uid="uid://d0fi77o2m5rxa"]
 
 [ext_resource type="Script" uid="uid://bpyjwhfealhuy" path="res://entities/enemies/mireling/mireling.gd" id="1"]
 [ext_resource type="Resource" path="res://data/enemies/mireling.tres" id="2"]
@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" path="res://ui/world/enemy_health_bar.tscn" id="9"]
 [ext_resource type="Script" path="res://gameplay/combat/knockback_component.gd" id="10"]
 [ext_resource type="Script" path="res://entities/enemies/components/enemy_reward_component.gd" id="11"]
+[ext_resource type="Script" path="res://gameplay/audio/actor_action_sfx.gd" id="12"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/mireling_leap.wav" id="13"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/mireling_land.wav" id="14"]
 
 [sub_resource type="CircleShape2D" id="foot"]
 radius = 6.0
@@ -65,6 +68,23 @@ script = ExtResource("5")
 script = ExtResource("11")
 health_component = NodePath("../HealthComponent")
 
+[node name="ActionSfx" type="Node2D" parent="." node_paths=PackedStringArray("primary_player", "secondary_player")]
+script = ExtResource("12")
+primary_player = NodePath("Leap")
+secondary_player = NodePath("Land")
+primary_state = 3
+secondary_state = 4
+
+[node name="Leap" type="AudioStreamPlayer2D" parent="ActionSfx"]
+stream = ExtResource("13")
+volume_db = -11.0
+bus = &"SFX"
+
+[node name="Land" type="AudioStreamPlayer2D" parent="ActionSfx"]
+stream = ExtResource("14")
+volume_db = -7.0
+bus = &"SFX"
+
 [node name="EnemyHealthBar" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("9")]
 health_component = NodePath("../HealthComponent")
 
@@ -100,3 +120,4 @@ shape = SubResource("attack")
 [connection signal="facing_changed" from="." to="AttackPivot" method="set_facing_direction"]
 [connection signal="leap_targeted" from="." to="Visual" method="show_landing_target"]
 [connection signal="state_changed" from="." to="Visual" method="play_state"]
+[connection signal="state_changed" from="." to="ActionSfx" method="play_state"]

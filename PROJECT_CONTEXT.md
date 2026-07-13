@@ -13,12 +13,12 @@ This is the compact entry point for routine work. It records current runtime tru
 - Stage 2: authored `Thorns of the Forgotten Grove` introduction with arrival lore, navigation, two waves, the first Bramble Spitter, and a clear-gated return portal.
 - Progression: session-only level 1-10 path with XP and coins from defeated enemies; no random level-up choices, persistence, or skill setup menu yet.
 - UI: compact player vitality, level/XP/coin readout, visible Q/E skill bar, contextual portal prompt, wave messages, spawn direction, and reusable damage-triggered enemy health bars.
-- Audio: a cross-scene `AudioDirector` routes the CC0 forest ambient loop through a dedicated Music bus; each stage requests its own track through `StageMusic`.
+- Audio: `AudioDirector` owns Music, SFX, and reserved UI buses. Stages request a CC0 forest loop, while player actions, accepted hits, enemy attacks, and Bramble impacts use event-driven CC0 combat sounds.
 - Combat feedback: accepted hits produce short-lived world-space damage numbers and pixel bursts; player-facing impacts add a restrained camera nudge without changing gameplay time.
 
 ## Current Priority
 
-Feel-test sword/Sweeping Cut impact readability, the restrained camera nudge, red incoming-damage feedback, reward pace, HUD readability, Stage 2's arrival pacing, grove navigation, and ambient-music volume. Next, design the authored skill-information/setup menu and the first unlocks. Do not implement supernatural powers, inventory, equipment, or save data until their design decisions are approved.
+Feel-test sword/Sweeping Cut/dash sounds, enemy attack cues, impact readability, the restrained camera nudge, reward pace, HUD readability, Stage 2 pacing, and the music-to-SFX balance. Next, design the authored skill-information/setup menu and the first unlocks. Do not implement supernatural powers, inventory, equipment, or save data until their design decisions are approved.
 
 ## Durable Boundaries
 

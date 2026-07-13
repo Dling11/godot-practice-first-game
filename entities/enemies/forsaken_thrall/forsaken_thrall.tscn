@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://maebhhj1ooeb"]
+[gd_scene load_steps=16 format=3 uid="uid://maebhhj1ooeb"]
 
 [ext_resource type="Script" uid="uid://cnwqmaxp002w6" path="res://entities/enemies/forsaken_thrall/forsaken_thrall.gd" id="1_enemy"]
 [ext_resource type="Resource" path="res://data/enemies/forsaken_thrall.tres" id="2_data"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" path="res://ui/world/enemy_health_bar.tscn" id="11_health_bar"]
 [ext_resource type="Script" path="res://gameplay/combat/knockback_component.gd" id="12_knockback"]
 [ext_resource type="Script" path="res://entities/enemies/components/enemy_reward_component.gd" id="13_reward"]
+[ext_resource type="Script" path="res://gameplay/audio/actor_action_sfx.gd" id="14_sfx"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/thrall_claw.wav" id="15_claw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_footprint"]
 radius = 6.0
@@ -75,6 +77,16 @@ maximum_health = 100.0
 script = ExtResource("13_reward")
 health_component = NodePath("../HealthComponent")
 
+[node name="ActionSfx" type="Node2D" parent="." node_paths=PackedStringArray("primary_player")]
+script = ExtResource("14_sfx")
+primary_player = NodePath("Claw")
+primary_state = 3
+
+[node name="Claw" type="AudioStreamPlayer2D" parent="ActionSfx"]
+stream = ExtResource("15_claw")
+volume_db = -8.0
+bus = &"SFX"
+
 [node name="EnemyHealthBar" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("11_health_bar")]
 health_component = NodePath("../HealthComponent")
 
@@ -115,4 +127,5 @@ shape = SubResource("CircleShape2D_attack")
 [connection signal="facing_changed" from="." to="VisualPivot" method="set_facing_direction"]
 [connection signal="facing_changed" from="." to="AttackPivot" method="set_facing_direction"]
 [connection signal="state_changed" from="." to="VisualPivot" method="play_state"]
+[connection signal="state_changed" from="." to="ActionSfx" method="play_state"]
 [connection signal="damaged" from="HealthComponent" to="VisualPivot" method="flash_damaged"]

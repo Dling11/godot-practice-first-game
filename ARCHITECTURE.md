@@ -107,7 +107,9 @@ The Forsaken Thrall uses shared `EnemyDefinition` data and an explicit state mac
 
 `Stage2Flow` composes player/HUD binding, an arrival-lore delay, manual `EncounterController.start_encounter()`, Stage 2 clear messaging, and local defeat/restart ownership. `EncounterController` retains encounter authority; `Stage2Flow` never creates enemies, applies damage, or decides wave results.
 
-`AudioDirector` is a narrow autoload that owns the dedicated Music bus and one music player. A level-local `StageMusic` requests an `AudioStream`; it never owns gameplay timing or combat authority. The Headless display backend assigns streams but intentionally skips native playback because no audio device exists.
+`AudioDirector` is a narrow autoload that owns Music, SFX, and reserved UI buses plus one music player. A level-local `StageMusic` requests an `AudioStream`; it never owns gameplay timing or combat authority. The Headless display backend assigns streams but intentionally skips native playback because no audio device exists.
+
+`PlayerActionSfx` and `ActorActionSfx` are actor-local `Node2D` observers, so positional sounds follow their owning actor. Player swings/dash and enemy attack cues respond to existing phase/state signals. Accepted hit and player-damage sounds remain in `CombatFeedbackPresenter`, while the Bramble impact scene owns its self-cleaning impact cue. All playback is presentation-only and uses the SFX bus.
 
 `CombatFeedbackPresenter` is a level-local presentation observer configured with the player, World/Effects parent, and player camera. It listens to accepted player melee/ability hits and accepted player damage, then spawns self-cleaning `DamageNumber` and `HitBurst` scenes. It moves camera offset briefly in pixel units but never adjusts global time scale, damage, hit detection, or actor state.
 
@@ -211,7 +213,7 @@ The proving ground uses `TileMapLayer` with a reproducible `bright_ground_tilese
 
 ## Autoload Policy
 
-Autoloads are reserved for truly cross-scene services and must not become general-purpose mutable state. `SceneTransition` pauses gameplay, owns a top-layer fade/loading overlay, changes to validated scene paths, resumes the tree, and fades back in. `AudioDirector` owns only cross-scene music routing. Neither owns player progression or level rules.
+Autoloads are reserved for truly cross-scene services and must not become general-purpose mutable state. `SceneTransition` pauses gameplay, owns a top-layer fade/loading overlay, changes to validated scene paths, resumes the tree, and fades back in. `AudioDirector` owns audio-bus setup and cross-scene music routing; actor-local presenters own positional combat playback. Neither owns player progression or level rules.
 
 ## Signals and Event Flow
 
@@ -315,4 +317,6 @@ An interim headless smoke script at `res://tests/player_movement_smoke.gd` verif
 `res://tests/player_progression_smoke.gd` verifies initial state, threshold leveling, cap behavior, reward delivery after enemy death, and HUD presentation. `res://tests/audio_director_smoke.gd` verifies the Music bus and stage-stream routing; it intentionally does not require physical playback in headless mode.
 
 `res://tests/combat_feedback_smoke.gd` verifies accepted incoming and outgoing hits create a number plus burst, then clean up without changing combat authority.
+
+`res://tests/combat_audio_smoke.gd` verifies Music/SFX/UI bus creation, assigned player and enemy action streams, state synchronization, accepted-hit cues, and Bramble impact audio without requiring device playback in headless mode.
 

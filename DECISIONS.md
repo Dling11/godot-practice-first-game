@@ -38,6 +38,7 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 028 | Teach ranged pressure in an authored second stage | Stage pacing, enemy introduction, or stage-owned encounters |
 | 029 | Use a session-only authored level-10 progression foundation | XP, coins, levels, skill unlocks, or save design |
 | 030 | Keep combat impact feedback presentation-only and time-scale-free | Damage numbers, screen shake, hit stop, or effects |
+| 031 | Drive positional combat SFX from authoritative events | Audio buses, player/enemy cues, or combat sound ownership |
 
 ## New Decisions
 

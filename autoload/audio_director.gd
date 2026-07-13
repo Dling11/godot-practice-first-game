@@ -3,12 +3,16 @@ extends Node
 ## Owns music playback and its dedicated bus. Gameplay emits events; it does not own combat rules.
 
 const MUSIC_BUS := "Music"
+const SFX_BUS := "SFX"
+const UI_BUS := "UI"
 
 var music_player: AudioStreamPlayer
 
 
 func _ready() -> void:
-	_ensure_music_bus()
+	_ensure_bus(MUSIC_BUS)
+	_ensure_bus(SFX_BUS)
+	_ensure_bus(UI_BUS)
 	music_player = AudioStreamPlayer.new()
 	music_player.bus = MUSIC_BUS
 	music_player.volume_db = -13.0
@@ -41,8 +45,8 @@ func _exit_tree() -> void:
 	stop_music()
 
 
-func _ensure_music_bus() -> void:
-	if AudioServer.get_bus_index(MUSIC_BUS) >= 0:
+func _ensure_bus(bus_name: String) -> void:
+	if AudioServer.get_bus_index(bus_name) >= 0:
 		return
 	AudioServer.add_bus()
-	AudioServer.set_bus_name(AudioServer.bus_count - 1, MUSIC_BUS)
+	AudioServer.set_bus_name(AudioServer.bus_count - 1, bus_name)

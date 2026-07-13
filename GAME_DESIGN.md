@@ -48,9 +48,11 @@ Damage formulas, stagger, poise, stamina, mana, cooldowns, and targeting rules a
 
 **Implemented combat feedback:** an accepted player hit displays a short gold damage number and three-pixel burst at the target; accepted player damage displays the same feedback in red. Each creates only a brief camera nudge, never a global time-scale pause. Misses, blocked hits, and telegraphed attacks do not display damage numbers.
 
+**Implemented combat audio:** sword activation, accepted sword impacts, Sweeping Cut, dash, incoming player damage, Thrall claws, Mireling leaps/landings, Spitter firing, and seed impacts have distinct positional cues. Sounds follow authoritative attack signals and accepted hits; they never determine whether damage occurs.
+
 ## Player Character
 
-The player character's identity, origin, base attributes, and relationship to The One Above are undecided.
+The player character's personal identity, origin, base attributes, and relationship to The One Above are undecided. `Player` remains the technical gameplay role so future playable characters can reuse the same contracts. The current assassin-like prototype uses **The Awakened** as a working archetype/title, not an approved personal name.
 
 Required capability areas:
 

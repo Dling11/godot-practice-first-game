@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3]
+[gd_scene load_steps=25 format=3]
 
 [ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://entities/enemies/mireling/mireling.tscn" id="2_mireling"]
@@ -20,6 +20,8 @@
 [ext_resource type="Script" path="res://gameplay/presentation/combat_feedback_presenter.gd" id="18_feedback"]
 [ext_resource type="PackedScene" path="res://ui/world/damage_number.tscn" id="19_damage_number"]
 [ext_resource type="PackedScene" path="res://gameplay/presentation/hit_burst.tscn" id="20_hit_burst"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/sword_hit.wav" id="21_sword_hit"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/player_hurt.wav" id="22_player_hurt"]
 
 [sub_resource type="LabelSettings" id="title_settings"]
 font_size = 15
@@ -146,6 +148,8 @@ effects_parent = NodePath("../../World/Effects")
 camera = NodePath("../../World/Actors/Player/Camera2D")
 damage_number_scene = ExtResource("19_damage_number")
 hit_burst_scene = ExtResource("20_hit_burst")
+sword_hit_sound = ExtResource("21_sword_hit")
+player_hurt_sound = ExtResource("22_player_hurt")
 
 [node name="UI" type="CanvasLayer" parent="."]
 

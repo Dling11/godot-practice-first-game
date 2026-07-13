@@ -6,7 +6,7 @@ The setting centers on gods, demons, forgotten civilizations, and **The One Abov
 
 ## Current Status
 
-Pre-alpha two-stage prototype. Stage 1 teaches Mireling and Thrall combat; Stage 2, `Thorns of the Forgotten Grove`, introduces the Bramble Spitter through a compact authored encounter. Both stages use pixel-stable cameras, navigation, readable spawning, portal progression, ambient music, and the existing combat/defeat loop. A session-only level-10 XP/coin foundation is active; skill setup and saving are not yet implemented.
+Pre-alpha two-stage prototype. Stage 1 teaches Mireling and Thrall combat; Stage 2, `Thorns of the Forgotten Grove`, introduces the Bramble Spitter through a compact authored encounter. Both stages use pixel-stable cameras, navigation, readable spawning, portal progression, ambient music, positional combat SFX, and the existing combat/defeat loop. A session-only level-10 XP/coin foundation is active; skill setup and saving are not yet implemented.
 
 ## Intended Technology
 

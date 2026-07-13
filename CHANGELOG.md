@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-07-14 - Event-Driven Combat Audio
+
+- Added distinct CC0 cues for sword swing/impact, Sweeping Cut, dash, player damage, Thrall claw, Mireling leap/landing, Spitter fire, and seed impact.
+- Added dedicated SFX and reserved UI buses beside the existing Music bus.
+- Added actor-local positional audio observers synchronized to existing authoritative phase/state signals.
+- Retained only ten used clips from the 95-file RPG Sound Pack and recorded their CC0 provenance.
+- Added clean headless configuration/state synchronization regression coverage.
+- Clarified that `Player` is the technical role while `The Awakened` is only the current prototype archetype/title; no personal name is approved.
+
 ## 2026-07-14 - Combat Impact Feedback
 
 - Added reusable world-space damage numbers and three-pixel hit bursts for accepted player hits and accepted incoming player damage.

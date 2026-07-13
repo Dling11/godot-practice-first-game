@@ -55,6 +55,8 @@ Use static typing for public APIs, exported data, signals, return values, and no
 
 - Use `AudioDirector` only for cross-scene music routing; level-local `StageMusic` nodes request tracks.
 - Audio observes gameplay and level state. It must not own damage, timing, rewards, or other gameplay authority.
+- Route ambience/music through `Music`, combat/world cues through `SFX`, and menu feedback through `UI`.
+- Positional actor sounds must live beneath a `Node2D` transform owner and respond to authoritative state signals or accepted-hit events.
 - Add third-party audio only with a recorded license and attribution file beside the asset when required or useful for provenance.
 - Headless tests may validate stream routing without requiring device playback.
 

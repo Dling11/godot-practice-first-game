@@ -16,6 +16,7 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 - Session-only level-10 progression foundation: reusable XP/coin rewards, visible HUD progress, and data-driven enemy reward values without random upgrade interruptions.
 - Cross-scene ambient-music foundation with a dedicated Music bus, stage routing, attribution, and headless-safe regression coverage.
 - Reusable combat-impact feedback: accepted-hit damage numbers, pixel bursts, restrained camera nudges, and automatic cleanup.
+- Event-driven combat SFX for sword, Sweeping Cut, dash, player damage, current enemy attacks, and Bramble projectile impacts, with Music/SFX/UI bus separation.
 - Regression coverage for player combat, enemies, crowd behavior, navigation, encounters, portals, transitions, and defeat.
 
 Detailed completion history remains in `CHANGELOG.md`.
@@ -34,6 +35,7 @@ Detailed completion history remains in `CHANGELOG.md`.
 - Feel-test Stage 2 arrival pacing, grove layout/navigation, Wave 1 warm-up, Wave 2 Spitter readability, clear-gated return portal, and restart behavior.
 - Feel-test XP/coin pacing, HUD placement, and the forest ambient-music volume.
 - Feel-test normal sword, Sweeping Cut, and incoming-damage feedback for readability and appropriate camera motion.
+- Feel-test combat cue selection, positional balance, repetition, and SFX-versus-music volume.
 - Design authored skill unlock rules, coin sinks, the three-versus-four active skill budget, and a skill-information/setup menu.
 
 ## Planned
