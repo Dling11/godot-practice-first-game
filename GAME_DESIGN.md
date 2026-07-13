@@ -29,6 +29,8 @@ Battle of Gods is a fast, skill-based 2D top-down pixel action game. Relentless 
 
 The exact run structure, death penalty, checkpoint rules, and permanent progression model are undecided.
 
+**Implemented journey entry:** the game opens at the Battle of Gods title screen. `Begin the Awakening` starts a fresh in-memory run and fades into Stage 1. Settings currently provide immediate session-only Music, Combat Sound, and Menu Sound toggles. Continue/profile selection and the planned Sanctuary hub do not exist yet.
+
 ## Combat
 
 Combat must prioritize control and clarity:
@@ -171,6 +173,8 @@ Potential sources include build variety, encounter variation, optional bosses, d
 ## Accessibility and UX
 
 Planned considerations include input remapping, keyboard/gamepad parity, readable text, scalable UI, screen-shake controls, flash reduction, color-independent combat cues, and pause behavior.
+
+**Implemented title UX:** mouse, keyboard, and gamepad UI actions share an explicit focus loop. Opening Settings moves focus into the modal; Back or UI Cancel restores the invoking Settings button. Title presentation uses separate replaceable background layers and never bakes controls into art.
 
 ## Future Ideas
 

@@ -42,6 +42,7 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 032 | Use four numbered skills and a narrow in-memory run session | Skill controls, character menu, portal progression, or run reset |
 | 033 | Give assets canonical identities and replaceable presentation contracts | Art generation, asset naming, folders, UI themes, or backgrounds |
 | 034 | Use one shared theme and semantic UI icons | HUD/menu styling, interaction prompts, icon replacement, or new UI screens |
+| 035 | Make the title screen the explicit journey entry | Main scene, menu navigation, new journeys, settings, or title backgrounds |
 
 ## New Decisions
 

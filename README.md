@@ -6,7 +6,7 @@ The setting centers on gods, demons, forgotten civilizations, and **The One Abov
 
 ## Current Status
 
-Pre-alpha two-stage prototype. Stage 1 teaches Mireling and Thrall combat; Stage 2, `Thorns of the Forgotten Grove`, introduces the Bramble Spitter through a compact authored encounter. Both stages use pixel-stable cameras, navigation, readable spawning, portal progression, ambient music, positional combat SFX, and the existing combat/defeat loop. An in-memory level-10 XP/coin run and a four-slot character/skill information surface are active; disk saving and additional skills are not yet implemented.
+Pre-alpha title-to-two-stage prototype. F5 opens a focused Battle of Gods title screen with session-audio settings; Begin the Awakening fades into Stage 1. Stage 1 teaches Mireling and Thrall combat; Stage 2, `Thorns of the Forgotten Grove`, introduces the Bramble Spitter through a compact authored encounter. Both stages use pixel-stable cameras, navigation, readable spawning, portal progression, ambient music, positional combat SFX, and the existing combat/defeat loop. An in-memory level-10 XP/coin run and a four-slot character/skill information surface are active; disk saving and additional skills are not yet implemented.
 
 ## Intended Technology
 
@@ -36,7 +36,7 @@ The prototype uses a 960x540 logical viewport displayed at 1920x1080 for exact 2
 2. Import `project.godot` from this repository in the Godot Project Manager.
 3. Open the project and press **F6** for the current scene or **F5** for the project.
 
-The current main scene is `res://levels/test_arena/test_arena.tscn`.
+The current main scene is `res://ui/screens/title/title_screen.tscn`. Stage 1 remains `res://levels/test_arena/test_arena.tscn`.
 
 Command-line validation on this workstation:
 
@@ -56,6 +56,9 @@ res://
       test_arena.tscn
     stage_2/
       stage_2.tscn
+  ui/
+    screens/title/
+      title_screen.tscn
   project.godot
 ```
 
@@ -99,6 +102,7 @@ Run the current headless movement smoke test with:
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/character_menu_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/audio_director_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/ui_theme_icon_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/title_screen_smoke.gd'
 ```
 
 ## Build and Export

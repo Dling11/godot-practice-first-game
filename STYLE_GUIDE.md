@@ -103,6 +103,8 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - Apply `assets/ui/themes/battle_of_gods_theme.tres` at reusable UI roots; add local theme overrides only for semantic states the shared theme cannot represent.
 - UI icons use stable canonical concepts and native 16x16 or 24x24 textures. Pass them as presentation configuration or metadata; never parse their filenames to decide gameplay behavior.
 - Keep small pixel icons on binary alpha with one readable symbol and transparent internal margin. Regenerate the baseline kit through `tools/build_ui_icon_kit.gd` rather than hand-editing generated runtime files inconsistently.
+- Menu screens must establish an initial focused control, explicit directional focus loops, modal focus transfer, and focus restoration when the modal closes.
+- Title/loading/background art remains under a named presentation owner. Never bake navigation labels or controls into background textures.
 
 - Favor strong silhouettes, limited palettes, and readable animation keys.
 - Use nearest-neighbor filtering and pixel-consistent import settings once the base resolution is decided.

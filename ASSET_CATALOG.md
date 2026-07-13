@@ -103,6 +103,8 @@ Current UI visuals combine the approved reusable base theme and named pixel icon
 |---|---|---|---|
 | `ui_combat_hud` | `ui/combat_hud.tscn` | `active_resource` | Vitality, progression, interaction prompt, and skills 1-4. |
 | `ui_character_menu` | `ui/character_menu.tscn` | `active_resource` | Paused The Awakened progression and skill information. |
+| `ui_title_screen` | `ui/screens/title/title_screen.tscn` | `active_resource` | Main navigation, session-audio settings, and new-journey entry. |
+| `ui_title_background` | `ui/screens/title/title_background.tscn` | `active_resource` | Replaceable title presentation layers and restrained atmosphere. |
 | `ui_enemy_health_bar` | `ui/world/enemy_health_bar.tscn` | `active_resource` | Damage-triggered world-space enemy health. |
 | `ui_damage_number` | `ui/world/damage_number.tscn` | `active_resource` | Short-lived accepted-hit values. |
 | `fx_summon` | `gameplay/encounters/summon_effect.tscn` | `active_resource` | Enemy materialization presentation. |
@@ -135,11 +137,11 @@ The icons are reproducibly built by `tools/build_ui_icon_kit.gd` from the approv
 
 Icons identify presentation concepts only. Gameplay logic refers to skill/item definitions and stable IDs, never to texture filenames.
 
-## Planned Screen Backgrounds
+## Screen Backgrounds
 
 | Canonical ID | Target path | Status | Replacement contract |
 |---|---|---|---|
-| `bg_title_forest_sanctuary` | `assets/ui/backgrounds/title/title_forest_sanctuary.png` | `planned` | 960x540 base image; no logo, buttons, or text baked in. |
+| `bg_title_forest_sanctuary` | `assets/ui/backgrounds/title/title_forest_sanctuary.png` | `active_runtime` | 960x540 deterministic base image; no logo, buttons, or text baked in; built by `tools/build_title_background.gd`. |
 | `bg_loading_forest` | `assets/ui/backgrounds/loading/loading_forest.png` | `planned` | Decorative-only; loading logic remains scene-owned. |
 | `bg_dialogue_dark` | `assets/ui/backgrounds/dialogue/dialogue_dark_9slice.png` | `planned` | Reusable dialogue panel, not NPC-specific. |
 

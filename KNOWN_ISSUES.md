@@ -25,6 +25,13 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 - **Planned resolution:** Design the first authored skills and unlock/currency rules after feel-testing the current reward pace and menu.
 - **Workaround:** Keep XP and coins in-memory for the active run and keep slots 2-4 sealed; avoid random run-based upgrade assumptions.
 
+### KI-006 - Title audio settings are session-only
+
+- **Status:** Open
+- **Impact:** Music, combat-sound, and menu-sound mute states return to defaults after closing the game.
+- **Planned resolution:** Store audio preferences in the future versioned settings/profile system.
+- **Workaround:** The title screen applies all three toggles immediately for the current session.
+
 ## Current Bugs
 
 None currently. The project and main scene pass headless editor import and runtime loading under Godot 4.7 stable.

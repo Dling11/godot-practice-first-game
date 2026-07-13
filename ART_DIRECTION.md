@@ -105,6 +105,8 @@ Title, menu, dialogue, and loading backgrounds must be easy to replace without c
 
 A new background can differ in composition, but it must still match Battle of Gods lighting, palette roles, pixel density, and tone.
 
+The active title implementation follows this contract through `TitleBackground`: a generated-on-grid 960x540 base grove, separate enlarged existing tree silhouettes, tweened mist/fireflies, and a vignette. The base contains no title text or controls and is reproducible through `tools/build_title_background.gd`.
+
 ## Asset Lifecycle
 
 Every visual file has one lifecycle state:

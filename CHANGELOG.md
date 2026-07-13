@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-07-14 - Battle of Gods Title Screen
+
+- Changed the F5 main scene from Stage 1 to a dedicated Battle of Gods title screen using the shared UI theme.
+- Added a deterministic 960x540 luminous dark-fantasy grove background with a distant divine fountain, separate tree silhouettes, mist/fireflies, and vignette layers.
+- Added keyboard, mouse, and gamepad-ready focus loops for Begin the Awakening, Settings, and Quit to Desktop.
+- Added functional session-only Music, Combat Sound, and Menu Sound toggles using the existing audio buses.
+- Routed new journeys through `RunSession.reset_run()` and the existing fade/loading transition into Stage 1.
+- Added automated coverage for background contracts, initial/restored focus, settings behavior, audio toggles, run reset, and title-to-Stage-1 transition.
+
 ## 2026-07-14 - Shared UI Theme and Named Icon Kit
 
 - Added a reusable dark-fantasy Godot `Theme` covering common panels, labels, buttons, progress bars, separators, focus, disabled, and tooltip states.
