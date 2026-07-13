@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/enemies/enemy_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+display_name = "Bramble Spitter"
+maximum_health = 40.0
+move_speed = 42.0
+acceleration = 420.0
+attack_range = 190.0
+attack_damage = 8.0
+wind_up_seconds = 0.75
+active_seconds = 0.1
+recovery_seconds = 1.25
+spawn_seconds = 0.7

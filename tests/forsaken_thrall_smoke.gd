@@ -20,6 +20,10 @@ func _run() -> void:
 	player.set_physics_process(false)
 
 	var player_health = player.get_node("HealthComponent")
+	var enemy_health = enemy.get_node("HealthComponent")
+	if not is_equal_approx(enemy_health.maximum_health, 100.0):
+		_fail("Forsaken Thrall durability must remain at the early-stage 100 HP baseline.")
+		return
 	if enemy.state != enemy.State.SPAWNING:
 		_fail("Forsaken Thrall did not begin in its materialization state.")
 		return
@@ -37,7 +41,6 @@ func _run() -> void:
 	enemy.set_physics_process(false)
 	enemy.global_position = Vector2(230.0, 200.0)
 	player._set_facing_direction(Vector2.RIGHT)
-	var enemy_health = enemy.get_node("HealthComponent")
 	enemy_health.current_health = 25.0
 	var death_result := {"died": false, "health": enemy_health.current_health}
 	enemy_health.health_changed.connect(func(current: float, _maximum: float) -> void:

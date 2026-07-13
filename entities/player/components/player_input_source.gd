@@ -39,3 +39,7 @@ func is_primary_attack_just_pressed() -> bool:
 
 func is_evade_just_pressed() -> bool:
 	return Input.is_action_just_pressed("player_dodge")
+
+
+func is_ability_1_just_pressed() -> bool:
+	return Input.is_action_just_pressed("player_ability_1")

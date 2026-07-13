@@ -6,11 +6,12 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 
 - Documentation, Godot 4.7 project foundation, pixel-stable viewport, and automated smoke-test workflow.
 - Composed player movement, aiming, sword combat, supernatural dash, health, defeat, and restart flow.
-- Data-driven Thrall and Mireling enemies with readable attacks, navigation, obstacle handling, and crowd separation.
+- Data-driven Thrall, Mireling, and Bramble Spitter enemies with readable attacks, navigation, obstacle handling, and crowd separation.
 - Bright modular terrain, layered tree/statue props, Y-sort occlusion, collision, and runtime-baked navigation.
 - Expanded Stage 1 with three waves, navigation-safe spawning, summon effects, wave pacing, and direction indicators.
 - Reusable portal interaction, fade transition service, Stage 2 structural placeholder, and return portal.
 - Compact combat HUD plus reusable damage-triggered enemy health bars.
+- Reusable ability/cooldown and knockback contracts with the grounded Q Sweeping Cut and compact HUD slot.
 - Regression coverage for player combat, enemies, crowd behavior, navigation, encounters, portals, transitions, and defeat.
 
 Detailed completion history remains in `CHANGELOG.md`.
@@ -25,7 +26,9 @@ Detailed completion history remains in `CHANGELOG.md`.
 - Feel-test the 960x540 zoom, smaller HUD, stable sprite scale, six-frame directional sword attacks, corrected shadows/collision, canopy occlusion, and 16-pixel Thrall clearance.
 - Expand the approved two-frame prototype movement into production-quality animation timing only after the visual language is accepted.
 - Feel-test Mireling pressure, stage counts, spawn pacing, camera travel, and landmark layout.
-- Design the next enemy role, recommended as ranged positioning pressure.
+- Feel-test Sweeping Cut wind-up, wider arc, 20 damage, spacing pushback, recovery risk, 2.5-second cooldown, arc readability, and two-slot HUD placement.
+- Feel-test the Bramble Spitter's three-frame wind-up, red snapshot marker, restrained recoil, muzzle burst, finite-distance seed trail, impact burst, target-facing retreat, preferred range, recovery, and temporary Wave 3 composition before moving it to authored Stage 2 encounters.
+- Finalize the compact progression specification: proposed level-10 cap, XP curve, coin sources/sinks, three-versus-four active skill budget, unlock rules, and skill-menu behavior.
 
 ## Planned
 

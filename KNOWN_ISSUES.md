@@ -18,12 +18,12 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 - **Planned resolution:** Validate pixel stability with camera movement, richer walk cycles, and representative combat effects.
 - **Workaround:** Treat 960x540 as the active prototype baseline, not an irreversible final asset constraint.
 
-### KI-005 - Core game structure is undecided
+### KI-005 - Progression persistence and exact scope are undecided
 
 - **Status:** Open
-- **Impact:** Save rules, progression, level architecture, content pipeline, and replay loop cannot be finalized.
-- **Planned resolution:** Decide whether the first product is arena survival, an authored action-adventure, a roguelite structure, or a documented hybrid.
-- **Workaround:** Prototype combat in an isolated test arena.
+- **Impact:** The compact authored introduction now targets XP, coins, roughly ten levels, and a small skill set, but save rules, death persistence, exact level cap, and three-versus-four active skills cannot be finalized yet.
+- **Planned resolution:** Confirm those values after the first authored Stage 2 encounter establishes the playable scope.
+- **Workaround:** Keep progression unimplemented while combat and stage boundaries are validated; avoid random run-based upgrade assumptions.
 
 ## Current Bugs
 

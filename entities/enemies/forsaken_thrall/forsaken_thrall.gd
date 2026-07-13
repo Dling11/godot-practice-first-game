@@ -16,12 +16,14 @@ const SeparationComponentScene = preload("res://entities/enemies/components/enem
 @onready var attack_hitbox: MeleeHitbox = %AttackHitbox
 @onready var health_component: HealthComponent = %HealthComponent
 @onready var navigation_agent: NavigationAgent2D = %NavigationAgent2D
+@onready var knockback_component: KnockbackComponent = %KnockbackComponent
 var separation_component: EnemySeparationComponent
 
 var state := State.CHASE
 var facing_direction := Vector2.DOWN
 var _state_time_remaining: float
 var _repath_time_remaining: float
+var _applied_knockback_velocity := Vector2.ZERO
 
 
 func _ready() -> void:
@@ -45,6 +47,8 @@ func _ensure_separation_component() -> EnemySeparationComponent:
 
 
 func _physics_process(delta: float) -> void:
+	velocity -= _applied_knockback_velocity
+	_applied_knockback_velocity = Vector2.ZERO
 	if state == State.DEAD or state == State.SPAWNING or not is_instance_valid(target):
 		velocity = Vector2.ZERO
 		return
@@ -60,6 +64,7 @@ func _physics_process(delta: float) -> void:
 			velocity = movement_component.calculate_velocity(
 				velocity, Vector2.ZERO, definition.move_speed, definition.acceleration, delta
 			)
+			_apply_knockback_velocity()
 			move_and_slide()
 			_tick_attack_state(delta)
 
@@ -85,7 +90,13 @@ func _process_chase(to_target: Vector2, delta: float) -> void:
 	velocity = movement_component.calculate_velocity(
 		velocity, steering_direction, definition.move_speed, definition.acceleration, delta
 	)
+	_apply_knockback_velocity()
 	move_and_slide()
+
+
+func _apply_knockback_velocity() -> void:
+	_applied_knockback_velocity = knockback_component.velocity
+	velocity += _applied_knockback_velocity
 
 
 func _has_clear_attack_line() -> bool:

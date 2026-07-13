@@ -3,6 +3,7 @@
 [resource]
 script = ExtResource("1")
 title = "Final Assault"
-mireling_count = 2
+mireling_count = 1
 thrall_count = 2
+bramble_spitter_count = 1
 spawn_interval = 0.65

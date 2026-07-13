@@ -90,15 +90,17 @@ No named playable characters, NPCs, gods, demons, or factions have been approved
 - Escalation through pattern interaction rather than unavoidable damage.
 - Theme, arena, mechanics, and lore that reinforce each other.
 
-**Implemented enemy prototype - Forsaken Thrall:** a corrupted humanoid pursuer that materializes before becoming hostile, follows obstacle paths to the player's actual footprint, and uses a six-pose directional claw scratch with anticipation, raised arm, slash, impact, follow-through, and vulnerable recovery. It has 75 prototype health and deals 15 prototype damage; values remain provisional.
+**Implemented enemy prototype - Forsaken Thrall:** a corrupted humanoid pursuer that materializes before becoming hostile, follows obstacle paths to the player's actual footprint, and uses a six-pose directional claw scratch with anticipation, raised arm, slash, impact, follow-through, and vulnerable recovery. It has 100 prototype health and deals 15 prototype damage; values remain provisional.
 
 No specific boss roster is approved.
 
-**Implemented Stage 1 encounter:** three sequential waves introduce mixed Mirelings and Thralls. Clearing Wave 3 opens the stage-exit portal. Entering its range shows `F - Enter Portal`; leaving removes the prompt. Interaction fades through a loading veil into a quiet Stage 2 placeholder with a reliable player spawn and return portal. Stage 2 encounters and story remain unauthored.
+**Implemented Stage 1 encounter:** three sequential waves introduce Mirelings, Thralls, then one Bramble Spitter. Wave 3 remains capped at four enemies. Clearing it opens the stage-exit portal. Entering its range shows `F - Enter Portal`; leaving removes the prompt. Interaction fades through a loading veil into a quiet Stage 2 placeholder with a reliable player spawn and return portal. Stage 2 encounters and story remain unauthored.
 
 Every encounter spawn is announced by a short violet ground rune, inward sparks, and restrained lightning strike aligned with the enemy's non-hostile materialization. Clearing a wave provides a 2.25-second recovery window before the next wave begins.
 
 **Mireling:** a small corrupted divine slime with 30 health and a larger 32x32 presentation. Within 105 pixels and clear line-of-sight it snapshots the player's position, shows a 0.65-second landing marker, leaps there over 0.42 seconds, deals 5 damage only on landing, then remains vulnerable for 1 second. Moving or dashing away from the snapshot avoids the hit.
+
+**Bramble Spitter:** a weak forest-corrupted ranged creature with 40 health. It seeks a 95-190 pixel firing band, faces the player while backing away, and uses a three-frame charge/compression/spit sequence. A pulsing red ground marker snapshots the player's position for 0.75 seconds instead of presenting the attack as a laser. It then recoils while firing one bright, trailed 8-damage seed that terminates at the marked position. Seeds burst visibly on impact and the Spitter recovers for 1.25 seconds. Leaving the marker avoids the hit. It temporarily appears in Wave 3 for testing but is intended to become a Stage 2 introduction once that stage has authored encounters.
 
 Standard enemies keep their health bars hidden at full health. Taking damage reveals a compact world-space bar for 2.2 seconds; further hits refresh that window, and death hides it immediately. This preserves exploration readability while still communicating combat progress.
 
@@ -114,11 +116,19 @@ Future weapon families may include spears, dual swords, greatswords, axes, range
 
 **Planned categories:** divine powers, demonic powers, weapon skills, mobility tools, defensive tools, and passive modifiers.
 
+**Implemented prototype weapon skill - Sweeping Cut:** Q/left shoulder performs a broad frontal sword technique with 0.16-second wind-up, 0.12-second active window, 0.22-second recovery, 20 damage, visible spacing pushback, and a 2.5-second cooldown. Casting prevents normal attack and dash until recovery ends. It is intentionally weaker than the 25-damage focused sword attack per target and exists to create space against small groups.
+
+The starting character has no divine or demonic ability. Supernatural powers should arrive through later story or progression so the early player remains weak and their eventual growth remains meaningful.
+
 The relationship between divine and demonic power may involve affinity, corruption, mutual exclusivity, or build synergy. This requires an explicit design decision before implementation.
 
 ## Progression and Economy
 
-Character progression, weapon progression, inventory, equipment, currency, vendors, crafting, loot rules, and persistent unlocks are planned capability areas but not designed yet.
+**Provisional introductory-game direction:** this project is intended to demonstrate a small authored progression arc rather than an endless run-based or advertisement-style upgrade loop. The first playable character may have approximately ten levels, a simple XP bar, coins, and a deliberately small authored skill set. Exact values remain open until the Stage 1-to-Stage 2 loop is playable.
+
+Recommended current control budget is three equipable active skills in addition to normal attack and dash. Skills should have stable names, icons, descriptions, unlock requirements, and coin costs or upgrades. A pause/menu skill panel should let the player inspect and configure them outside immediate combat. Leveling should unlock authored options or requirements rather than interrupting every level with three random choices.
+
+Open decisions include whether the final cap is exactly level 10, whether the character owns three or four active skills, how coins are earned and spent, whether skills are unlocked by level or purchased after reaching a level, and what progression persists after defeat.
 
 Progression must preserve skill-based combat. Numerical growth should not erase the need to dodge, read attacks, and position well.
 

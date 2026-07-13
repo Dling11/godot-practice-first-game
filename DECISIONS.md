@@ -33,6 +33,8 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 023 | Use local proximity separation for prototype crowds | Enemy crowd spacing and movement blending |
 | 024 | Announce spawns with a reusable summon effect | Spawn presentation and effects ownership |
 | 025 | Make portals explicit reusable scene boundaries | Portal interaction and scene transitions |
+| 026 | Begin with a grounded weapon skill | Ability framework, early-game power, or Sweeping Cut |
+| 027 | Introduce ranged pressure through committed projectiles | Ranged enemies, projectile authority, or early enemy balance |
 
 ## New Decisions
 

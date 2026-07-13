@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3]
+[gd_scene load_steps=22 format=3]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_player"]
 [ext_resource type="Script" path="res://entities/player/components/player_input_source.gd" id="2_input"]
@@ -15,6 +15,9 @@
 [ext_resource type="Script" path="res://entities/player/presentation/player_state_visual.gd" id="14_state_visual"]
 [ext_resource type="SpriteFrames" path="res://assets/characters/sprites_24x32/player_frames.tres" id="15_player_frames"]
 [ext_resource type="Script" path="res://entities/player/presentation/player_animation.gd" id="16_player_animation"]
+[ext_resource type="Script" path="res://gameplay/abilities/ability_component.gd" id="17_ability"]
+[ext_resource type="Resource" path="res://data/abilities/sweeping_cut.tres" id="18_sweep_data"]
+[ext_resource type="Script" path="res://entities/player/presentation/sweeping_cut_visual.gd" id="19_sweep_visual"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_player_footprint"]
 radius = 6.0
@@ -32,6 +35,9 @@ outline_color = Color(0.027, 0.02, 0.039, 1)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sword"]
 radius = 8.0
 height = 24.0
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_sweep"]
+points = PackedVector2Array(3, -9, 14, -28, 39, -24, 48, 0, 39, 24, 14, 28, 3, 9)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -64,6 +70,29 @@ position = Vector2(18, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_sword")
 
+[node name="AbilityPivot" type="Node2D" parent="."]
+position = Vector2(0, -16)
+script = ExtResource("4_aim")
+
+[node name="AbilityHitbox" type="Area2D" parent="AbilityPivot"]
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("6_hitbox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AbilityPivot/AbilityHitbox"]
+shape = SubResource("ConvexPolygonShape2D_sweep")
+
+[node name="SweepingCutVisual" type="Line2D" parent="AbilityPivot"]
+visible = false
+z_index = 8
+points = PackedVector2Array(14, -28, 29, -29, 42, -21, 48, 0, 42, 21, 29, 29, 14, 28)
+width = 3.0
+default_color = Color(0.94, 0.88, 0.66, 0.9)
+begin_cap_mode = 2
+end_cap_mode = 2
+joint_mode = 2
+script = ExtResource("19_sweep_visual")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_player_footprint")
@@ -86,6 +115,12 @@ hitbox = NodePath("../SwordPivot/AttackHitbox")
 unique_name_in_owner = true
 script = ExtResource("9_evade")
 definition = ExtResource("10_dash_data")
+
+[node name="Ability1Component" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+unique_name_in_owner = true
+script = ExtResource("17_ability")
+definition = ExtResource("18_sweep_data")
+hitbox = NodePath("../AbilityPivot/AbilityHitbox")
 
 [node name="HealthComponent" type="Node" parent="."]
 unique_name_in_owner = true
@@ -121,9 +156,14 @@ horizontal_alignment = 1
 
 [connection signal="facing_changed" from="." to="Body" method="set_facing_direction"]
 [connection signal="facing_changed" from="." to="SwordPivot" method="set_facing_direction"]
+[connection signal="facing_changed" from="." to="AbilityPivot" method="set_facing_direction"]
 [connection signal="movement_changed" from="." to="Body" method="set_movement"]
 [connection signal="phase_changed" from="MeleeAttackComponent" to="Body" method="play_attack_phase"]
 [connection signal="attack_finished" from="MeleeAttackComponent" to="Body" method="resume_locomotion"]
+[connection signal="phase_changed" from="Ability1Component" to="Body" method="play_ability_phase"]
+[connection signal="phase_changed" from="Ability1Component" to="AbilityPivot/SweepingCutVisual" method="play_phase"]
+[connection signal="ability_finished" from="Ability1Component" to="Body" method="resume_locomotion"]
+[connection signal="ability_finished" from="Ability1Component" to="AbilityPivot/SweepingCutVisual" method="hide_visual"]
 [connection signal="evade_started" from="EvadeComponent" to="Body" method="play_dash"]
 [connection signal="evade_finished" from="EvadeComponent" to="Body" method="resume_locomotion"]
 [connection signal="evade_started" from="EvadeComponent" to="DashVisual" method="play_dash"]

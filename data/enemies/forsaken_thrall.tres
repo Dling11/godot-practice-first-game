@@ -1,16 +1,10 @@
-[gd_resource type="Resource" script_class="EnemyDefinition" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="EnemyDefinition" format=3 uid="uid://d2fw7lw1r1tdv"]
 
-[ext_resource type="Script" path="res://data/enemies/enemy_definition.gd" id="1"]
+[ext_resource type="Script" uid="uid://c5yp0kfbjt25e" path="res://data/enemies/enemy_definition.gd" id="1"]
 
 [resource]
 script = ExtResource("1")
 display_name = "Forsaken Thrall"
-maximum_health = 75.0
 move_speed = 58.0
 acceleration = 520.0
 attack_range = 36.0
-attack_damage = 15.0
-wind_up_seconds = 0.45
-active_seconds = 0.12
-recovery_seconds = 0.55
-spawn_seconds = 0.7

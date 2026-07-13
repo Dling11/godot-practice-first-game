@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://ui/combat_hud.gd" id="1"]
 
@@ -20,6 +20,9 @@ corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ability_cooldown"]
+bg_color = Color(0.72, 0.66, 0.42, 0.9)
 
 [node name="CombatHUD" type="Control"]
 layout_mode = 3
@@ -123,6 +126,102 @@ vertical_alignment = 1
 theme_override_colors/font_color = Color(0.84, 0.76, 1, 1)
 theme_override_font_sizes/font_size = 11
 
+[node name="SkillBar" type="HBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -164.0
+offset_top = -66.0
+offset_right = -16.0
+offset_bottom = -16.0
+theme_override_constants/separation = 6
+
+[node name="AbilityPanel" type="PanelContainer" parent="SkillBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(71, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Margin" type="MarginContainer" parent="SkillBar/AbilityPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 3
+
+[node name="Stack" type="VBoxContainer" parent="SkillBar/AbilityPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Header" type="HBoxContainer" parent="SkillBar/AbilityPanel/Margin/Stack"]
+layout_mode = 2
+
+[node name="KeyLabel" type="Label" parent="SkillBar/AbilityPanel/Margin/Stack/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Q"
+theme_override_colors/font_color = Color(0.94, 0.88, 0.66, 1)
+theme_override_font_sizes/font_size = 13
+
+[node name="Spacer" type="Control" parent="SkillBar/AbilityPanel/Margin/Stack/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CooldownLabel" type="Label" parent="SkillBar/AbilityPanel/Margin/Stack/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "READY"
+theme_override_colors/font_color = Color(0.62, 0.9, 0.54, 1)
+theme_override_font_sizes/font_size = 8
+
+[node name="AbilityName" type="Label" parent="SkillBar/AbilityPanel/Margin/Stack"]
+layout_mode = 2
+text = "SWEEP CUT"
+theme_override_colors/font_color = Color(0.78, 0.8, 0.72, 1)
+theme_override_font_sizes/font_size = 8
+
+[node name="AbilityCooldown" type="ProgressBar" parent="SkillBar/AbilityPanel/Margin/Stack"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+mouse_filter = 2
+show_percentage = false
+theme_override_styles/fill = SubResource("StyleBoxFlat_ability_cooldown")
+
+[node name="LockedAbilityPanel" type="PanelContainer" parent="SkillBar"]
+custom_minimum_size = Vector2(71, 50)
+layout_mode = 2
+modulate = Color(0.48, 0.48, 0.52, 0.82)
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Margin" type="MarginContainer" parent="SkillBar/LockedAbilityPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 3
+
+[node name="Stack" type="VBoxContainer" parent="SkillBar/LockedAbilityPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Key" type="Label" parent="SkillBar/LockedAbilityPanel/Margin/Stack"]
+layout_mode = 2
+text = "E"
+theme_override_font_sizes/font_size = 13
+
+[node name="State" type="Label" parent="SkillBar/LockedAbilityPanel/Margin/Stack"]
+layout_mode = 2
+text = "LOCKED"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.62, 0.58, 0.66, 1)
+theme_override_font_sizes/font_size = 8
+
+[node name="AbilityCooldownTick" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.1
+
 [node name="DefeatPanel" type="PanelContainer" parent="."]
 unique_name_in_owner = true
 visible = false
@@ -158,3 +257,5 @@ theme_override_font_sizes/font_size = 20
 layout_mode = 2
 text = "Press R / gamepad north button to rise again"
 horizontal_alignment = 1
+
+[connection signal="timeout" from="AbilityCooldownTick" to="." method="_on_ability_cooldown_tick"]

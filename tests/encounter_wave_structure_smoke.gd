@@ -20,10 +20,14 @@ func _run() -> void:
 		return
 	for index in range(controller.waves.size()):
 		var wave := controller.waves[index] as EncounterWaveDefinition
-		var enemy_count := wave.mireling_count + wave.thrall_count
+		var enemy_count := wave.mireling_count + wave.thrall_count + wave.bramble_spitter_count
 		if enemy_count < 1 or enemy_count > 4:
 			_fail("Wave %d must contain between one and four enemies." % [index + 1])
 			return
+	var final_wave := controller.waves[2] as EncounterWaveDefinition
+	if final_wave.bramble_spitter_count != 1:
+		_fail("Wave 3 must introduce exactly one Bramble Spitter.")
+		return
 	var clear_state := {"emitted": false}
 	controller.stage_cleared.connect(func() -> void: clear_state.emitted = true)
 	controller._spawn_portal()

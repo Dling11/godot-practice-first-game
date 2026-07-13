@@ -9,10 +9,16 @@ extends Control
 @onready var spawn_indicator: Label = %SpawnIndicator
 @onready var interaction_panel: PanelContainer = %InteractionPanel
 @onready var interaction_label: Label = %InteractionLabel
+@onready var ability_panel: PanelContainer = %AbilityPanel
+@onready var ability_key_label: Label = %KeyLabel
+@onready var ability_cooldown: ProgressBar = %AbilityCooldown
+@onready var ability_cooldown_label: Label = %CooldownLabel
+@onready var ability_cooldown_tick: Timer = %AbilityCooldownTick
 
 var _blocked_tween: Tween
 var _player: Player
 var _spawn_tween: Tween
+var _ability_cooldown_tween: Tween
 
 
 func bind_player(player: Player) -> void:
@@ -20,7 +26,49 @@ func bind_player(player: Player) -> void:
 	var health: HealthComponent = player.health_component
 	health.health_changed.connect(_update_health)
 	health.damage_blocked.connect(_show_blocked)
+	var ability := player.ability_1_component
+	ability.cooldown_started.connect(_show_ability_cooldown)
+	ability.cooldown_finished.connect(_show_ability_ready)
+	ability_panel.tooltip_text = ability.definition.display_name
+	_show_ability_ready()
 	_update_health(health.current_health, health.maximum_health)
+
+
+func _show_ability_cooldown(duration_seconds: float) -> void:
+	if _ability_cooldown_tween != null and _ability_cooldown_tween.is_valid():
+		_ability_cooldown_tween.kill()
+	ability_panel.modulate = Color(0.58, 0.58, 0.58, 1.0)
+	ability_cooldown_label.text = "%.1f" % duration_seconds
+	ability_cooldown_label.add_theme_color_override("font_color", Color(0.94, 0.72, 0.38, 1))
+	ability_cooldown.max_value = duration_seconds
+	ability_cooldown.value = duration_seconds
+	ability_cooldown_tick.start()
+	_ability_cooldown_tween = create_tween()
+	_ability_cooldown_tween.tween_property(
+		ability_cooldown,
+		"value",
+		0.0,
+		duration_seconds
+	)
+
+
+func _show_ability_ready() -> void:
+	if _ability_cooldown_tween != null and _ability_cooldown_tween.is_valid():
+		_ability_cooldown_tween.kill()
+	ability_cooldown.value = 0.0
+	ability_panel.modulate = Color.WHITE
+	ability_key_label.text = "Q"
+	ability_cooldown_label.text = "READY"
+	ability_cooldown_label.add_theme_color_override("font_color", Color(0.62, 0.9, 0.54, 1))
+	ability_cooldown_tick.stop()
+
+
+func _on_ability_cooldown_tick() -> void:
+	if not is_instance_valid(_player):
+		ability_cooldown_tick.stop()
+		return
+	var remaining := _player.ability_1_component.cooldown_remaining
+	ability_cooldown_label.text = "%.1f" % remaining
 
 
 func show_spawn_direction(global_position: Vector2) -> void:

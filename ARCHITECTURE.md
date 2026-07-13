@@ -85,18 +85,22 @@ The player currently composes:
 - `PlayerAnimation`: observes movement, facing, attack, evade, and defeat events and selects strict 24x32 `AnimatedSprite2D` states.
 - `EvadeComponent`: owns dash/recovery phases, locked direction, speed, and invulnerability events.
 - `DashVisual`: observes evade events and creates replaceable placeholder afterimages.
+- `AbilityComponent`: owns Sweeping Cut cast phases and instance-local cooldown state using immutable `AbilityDefinition` data.
+- `SweepingCutVisual`: observes cast phases and renders a replaceable frontal sword arc without owning damage.
 
 The plain sword uses a shared `WeaponDefinition` resource. `MeleeHitbox` deduplicates contacts per swing, `HurtboxComponent` forwards explicit `DamageInfo`, and `HealthComponent` owns health/death state. A resettable training target exercises the full path.
 
 The player dash uses shared `EvadeDefinition` data. `Player` remains movement authority and chooses dash velocity while `EvadeComponent` is in `DASHING`. `HealthComponent` receives invulnerability state from evade signals. Attack/evade mutual exclusion is enforced through the player's public request methods.
 
+Sweeping Cut uses `AbilityDefinition` plus `AbilityComponent`. Its wider `MeleeHitbox` sends normal `DamageInfo` with optional pushback strength. Enemy-local `KnockbackComponent` observes accepted damage and exposes a brief decaying velocity contribution; each enemy remains movement authority and decides when that contribution may affect motion. Committed Mireling leaps ignore pushback motion so their marked landing remains predictable.
+
 The Forsaken Thrall uses shared `EnemyDefinition` data and an explicit state machine. Chase facing follows navigation steering rather than direct target bearing, attacks require unobstructed world line-of-sight, and enemy movement bodies collide with world but not the player. Hitboxes and hurtboxes retain combat authority, preventing attack-lock pinning.
 
 `CombatHUD` binds to the player's `HealthComponent` and observes health/damage-blocked signals. `Player` owns the defeated state and cancels its active combat components. `ArenaFlow` observes `Player.defeated`, reveals the restart presentation through the HUD, and owns scene reload. The HUD never applies damage or reloads gameplay itself.
 
-`EnemyHealthBar` is a reusable world-space presentation component used by Thralls and Mirelings. It observes `HealthComponent.health_changed` and `died`, updates only on signals, and uses a one-shot timer to hide after 2.2 seconds. It never owns, calculates, or mutates health. Boss health presentation may reuse the binding approach without requiring the same compact scene.
+`EnemyHealthBar` is a reusable world-space presentation component used by Thralls, Mirelings, and Bramble Spitters. It observes `HealthComponent.health_changed` and `died`, updates only on signals, and uses a one-shot timer to hide after 2.2 seconds. It never owns, calculates, or mutates health. Boss health presentation may reuse the binding approach without requiring the same compact scene.
 
-`EncounterController` owns the three-wave lifecycle and creates one `StagePortal` after the final wave. `StagePortal` owns player proximity and F-input, emits prompt visibility, and delegates valid destinations to the `SceneTransition` autoload. HUD owns prompt presentation. Stage 1 targets the minimal Stage 2 scene; Stage 2 provides a return portal.
+`EncounterController` owns the three-wave lifecycle, injects the shared `World/Projectiles` parent into projectile-capable enemies, and creates one `StagePortal` after the final wave. `StagePortal` owns player proximity and F-input, emits prompt visibility, and delegates valid destinations to the `SceneTransition` autoload. HUD owns prompt presentation. Stage 1 targets the minimal Stage 2 scene; Stage 2 provides a return portal.
 
 `SummonEffect` is instantiated under `World/Effects` at the selected spawn position. It owns only rune/lightning/spark presentation, cleans itself after 0.8 seconds, and never changes spawn timing, health, collision, or damage. Wave-clear presentation observes controller signals during the 2.25-second inter-wave recovery.
 
@@ -118,6 +122,15 @@ PlayerInputSource -> Player -> MeleeAttackComponent
 -> HealthComponent -> health/damage/death signals
 ```
 
+Implemented ability flow:
+
+```text
+PlayerInputSource -> Player request_ability_1 -> AbilityComponent
+-> cast phases -> wide MeleeHitbox -> HurtboxComponent
+-> HealthComponent -> optional KnockbackComponent response
+-> cooldown signals -> CombatHUD Q slot
+```
+
 Presentation observes facing and attack phase signals. Locomotion uses 24x32 cells, while `PlayerAnimation` selects six 64x48 authored attack frames per direction. Wind-up maps to frames 0-1, the active hit window to frames 2-3, and recovery to frames 4-5. Each pair advances at half its gameplay phase duration. The invisible pivot orients only the authoritative hitbox; animation, effects, audio, HUD icons, or inventory UI must not become damage authority.
 
 Top-down movement collision is a 6-pixel circular foot footprint centered at `y = -4`. Hurtboxes are separate 24-pixel body capsules centered at `y = -14`. Character shadows are centered at `y = -2`, directly beneath sprite feet. Sword and Thrall attack shapes are centered 18 pixels from their body-centered pivots.
@@ -130,7 +143,11 @@ Definitions should be custom resources; runtime state should live in nodes or pl
 
 Use finite-state or hierarchical state behavior appropriate to complexity. Expensive sensing and path recalculation should be scheduled or staggered rather than executed for every enemy every frame.
 
-The Forsaken Thrall uses scheduled `NavigationAgent2D` target updates and follows the baked arena path. Thralls and Mirelings compose `EnemySeparationComponent`, an `Area2D` that observes only nearby enemy bodies and blends gentle repulsion into chase steering. Attack states and committed Mireling leaps ignore separation so combat timing remains predictable.
+The Forsaken Thrall uses scheduled `NavigationAgent2D` target updates and follows the baked arena path. Thralls, Mirelings, and Bramble Spitters compose `EnemySeparationComponent`, an `Area2D` that observes only nearby enemy bodies and blends gentle repulsion into movement steering. Attack states, committed Mireling leaps, and committed Spitter shots ignore separation so combat timing remains predictable.
+
+The Bramble Spitter uses an explicit positioning/wind-up/recovery state machine. It snapshots one player position before presentation displays a world-space red ground marker. `HostileProjectile` owns seed travel and hit delivery through the standard `DamageInfo`/`HurtboxComponent` contract; the sprite and marker remain presentation-only. The configured seed terminates at its committed target position, collides with player hurtboxes and world bodies along the route, and retains a fixed lifetime safety limit.
+
+Spitter firing presentation observes `shot_telegraphed` and `shot_fired`: it owns the three-frame charge sequence, swelling, restrained recoil, red target marker, muzzle flash, and sparks. Movement steering and facing are intentionally separate while kiting so the creature backs away without visually turning from its target. `HostileProjectile` creates a configured presentation-only impact scene when authoritative collision resolves; trails and impact art never determine damage or hit timing.
 
 ### Save System
 
@@ -143,6 +160,8 @@ UI observes model state through signals or presenters and sends player intent th
 The implemented combat HUD displays a compact corner vitality bar, blocked-damage feedback, and the fallen/restart panel. Persistent control/build banners were removed from combat space; future help belongs in a contextual or paused surface. These controls may be reskinned without changing health or arena flow.
 
 Stage presentation is a brief top-edge label. The lower screen remains free for the future compact weapon and two-skill HUD; no empty skill bar is displayed before skills exist.
+
+The lower-right HUD shows a compact two-slot skill bar: Q exposes Sweeping Cut readiness and numeric/bar cooldown feedback, while E is visibly locked rather than implying an implemented ability. The HUD observes ability signals and a 0.1-second presentation timer; it does not calculate readiness or permit casts.
 
 Reusable interaction prompts are contextual: an interactable emits visibility/text while the HUD presents the bottom-center prompt. Leaving the area clears it immediately.
 
@@ -272,6 +291,8 @@ An interim headless smoke script at `res://tests/player_movement_smoke.gd` verif
 
 `res://tests/mireling_leap_dodge_smoke.gd` verifies leaving the snapshot landing point avoids damage. `res://tests/enemy_obstacle_behavior_smoke.gd` verifies statue line-of-sight blocking, steering-facing agreement, and non-pinning enemy movement collision.
 
+`res://tests/bramble_spitter_smoke.gd` verifies the ranged warning, committed aim direction, dodge behavior, and completed firing state transition.
+
 `res://tests/thrall_statue_endpoint_smoke.gd` reproduces the exact opposite-side statue chase and guards against long stalls or incomplete routing. `res://tests/encounter_wave_structure_smoke.gd` enforces three waves, one-to-four enemies per wave, and one portal after stage clear.
 
 `res://tests/enemy_crowd_separation_smoke.gd` starts a tightly clustered mixed group and verifies minimum spacing, lateral spread, and continued pursuit.
@@ -279,4 +300,6 @@ An interim headless smoke script at `res://tests/player_movement_smoke.gd` verif
 `res://tests/summon_effect_smoke.gd` verifies encounter integration, segmented lightning construction, and effect cleanup without residual nodes.
 
 `res://tests/portal_interaction_smoke.gd` verifies prompt enter/exit and explicit interaction. `res://tests/scene_transition_smoke.gd` verifies fade-controlled Stage 2 loading, destination spawn, and the configured return portal.
+
+`res://tests/sweeping_cut_smoke.gd` verifies multi-target 20-damage delivery, pushback metadata and actor displacement, cast-time attack/dash exclusion, 3-second cooldown rejection, and HUD ready/cooldown feedback.
 

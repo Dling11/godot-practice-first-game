@@ -12,8 +12,8 @@ collision_mask = 6
 [node name="Shadow" type="Sprite2D" parent="." unique_id=30098675]
 modulate = Color(0.08, 0.16, 0.06, 0.26)
 z_index = -1
-position = Vector2(0, -2)
-scale = Vector2(0.72, 0.22)
+position = Vector2(-1.0000038, -12.279999)
+scale = Vector2(0.9999999, 0.2830769)
 texture = ExtResource("1_statue")
 
 [node name="Visuals" type="Node2D" parent="." unique_id=952323978]

@@ -14,12 +14,14 @@ signal enemy_spawned(global_position: Vector2)
 @export var waves: Array[Resource]
 @export var mireling_scene: PackedScene
 @export var thrall_scene: PackedScene
+@export var bramble_spitter_scene: PackedScene
 @export var portal_scene: PackedScene
 @export var portal_parent: Node2D
 @export var portal_spawn_point: Marker2D
 @export_file("*.tscn") var portal_target_scene := ""
 @export var summon_effect_scene: PackedScene
 @export var effects_parent: Node2D
+@export var projectiles_parent: Node2D
 @export var auto_start := true
 @export_range(0.5, 10.0, 0.25, "suffix:s") var inter_wave_delay := 2.25
 
@@ -53,6 +55,7 @@ func _advance_wave() -> void:
 	var queue: Array[PackedScene] = []
 	for count in range(wave.mireling_count): queue.append(mireling_scene)
 	for count in range(wave.thrall_count): queue.append(thrall_scene)
+	for count in range(wave.bramble_spitter_count): queue.append(bramble_spitter_scene)
 	for scene in queue:
 		_spawn_enemy(scene)
 		await get_tree().create_timer(wave.spawn_interval).timeout
@@ -65,6 +68,8 @@ func _spawn_enemy(scene: PackedScene) -> void:
 	var enemy := scene.instantiate()
 	enemy.target = player
 	actors.add_child(enemy)
+	if enemy.has_method("set_projectile_parent"):
+		enemy.set_projectile_parent(projectiles_parent)
 	var spawn_position := _choose_spawn_position()
 	enemy.global_position = spawn_position
 	_spawn_summon_effect(spawn_position)

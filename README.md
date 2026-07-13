@@ -69,13 +69,13 @@ The active prototype controls are:
 | Aim/facing | Mouse | Right stick |
 | Primary attack | Left mouse | Right trigger |
 | Dodge | Space | South face button |
-| Ability 1 | Q | Left shoulder |
+| Sweeping Cut | Q | Left shoulder |
 | Ability 2 | E | Right shoulder |
 | Interact / enter portal | F | West face button |
 | Pause | Escape | Start |
 | Rise after defeat | R | North face button |
 
-Movement, aim/facing, primary attack, dash, portal interaction, and arena restart after defeat are active. Ability actions are reserved and currently do nothing.
+Movement, aim/facing, primary attack, dash, Sweeping Cut, portal interaction, and arena restart after defeat are active. The E/right-shoulder ability action remains reserved and currently does nothing.
 
 ## Verification
 
@@ -88,6 +88,7 @@ Run the current headless movement smoke test with:
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/forsaken_thrall_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/player_defeat_flow_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/character_animation_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/sweeping_cut_smoke.gd'
 ```
 
 ## Build and Export

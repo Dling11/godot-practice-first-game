@@ -1,6 +1,6 @@
-[gd_resource type="SpriteFrames" format=3 uid="uid://c5b54r7axwlgk"]
+[gd_resource type="SpriteFrames" format=3]
 
-[ext_resource type="Texture2D" uid="uid://cbep8ln40bkfw" path="res://assets/characters/mireling/mireling_sheet_32x32.png" id="1_vioaw"]
+[ext_resource type="Texture2D" path="res://assets/characters/mireling/mireling_sheet_32x32.png" id="1_vioaw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mqmd4"]
 atlas = ExtResource("1_vioaw")

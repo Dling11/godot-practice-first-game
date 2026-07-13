@@ -11,6 +11,7 @@ const PlayerInputSourceScript = preload("res://entities/player/components/player
 const PlayerMovementComponentScript = preload("res://entities/player/components/player_movement_component.gd")
 const MeleeAttackComponentScript = preload("res://entities/player/components/melee_attack_component.gd")
 const EvadeComponentScript = preload("res://entities/player/components/evade_component.gd")
+const AbilityComponentScript = preload("res://gameplay/abilities/ability_component.gd")
 
 @export var movement_bounds := Rect2(56.0, 56.0, 528.0, 248.0)
 
@@ -18,6 +19,7 @@ const EvadeComponentScript = preload("res://entities/player/components/evade_com
 @onready var movement_component: PlayerMovementComponentScript = %MovementComponent
 @onready var attack_component: MeleeAttackComponentScript = %MeleeAttackComponent
 @onready var evade_component: EvadeComponentScript = %EvadeComponent
+@onready var ability_1_component: AbilityComponentScript = %Ability1Component
 @onready var health_component: HealthComponent = %HealthComponent
 
 var facing_direction := Vector2.DOWN
@@ -35,12 +37,20 @@ func _physics_process(delta: float) -> void:
 	if input_source.is_evade_just_pressed():
 		var evade_direction := move_direction if not move_direction.is_zero_approx() else facing_direction
 		request_evade(evade_direction)
+	if input_source.is_ability_1_just_pressed():
+		request_ability_1()
 
 	if evade_component.is_dashing():
 		velocity = evade_component.get_dash_velocity()
+	elif ability_1_component.is_casting():
+		velocity = movement_component.calculate_velocity(velocity, Vector2.ZERO, delta)
 	else:
 		velocity = movement_component.calculate_velocity(velocity, move_direction, delta)
-	var is_moving := not move_direction.is_zero_approx() and not evade_component.is_dashing()
+	var is_moving := (
+		not move_direction.is_zero_approx()
+		and not evade_component.is_dashing()
+		and not ability_1_component.is_casting()
+	)
 	if is_moving != _was_moving:
 		_was_moving = is_moving
 		movement_changed.emit(move_direction, is_moving)
@@ -62,15 +72,29 @@ func _physics_process(delta: float) -> void:
 
 
 func request_primary_attack() -> bool:
-	if is_defeated or not evade_component.is_ready():
+	if is_defeated or not evade_component.is_ready() or ability_1_component.is_casting():
 		return false
 	return attack_component.request_attack(facing_direction)
 
 
 func request_evade(direction: Vector2) -> bool:
-	if is_defeated or attack_component.phase != attack_component.Phase.IDLE:
+	if (
+		is_defeated
+		or attack_component.phase != attack_component.Phase.IDLE
+		or ability_1_component.is_casting()
+	):
 		return false
 	return evade_component.request_evade(direction)
+
+
+func request_ability_1() -> bool:
+	if (
+		is_defeated
+		or attack_component.phase != attack_component.Phase.IDLE
+		or not evade_component.is_ready()
+	):
+		return false
+	return ability_1_component.request_cast(facing_direction)
 
 
 func _set_facing_direction(direction: Vector2) -> void:
@@ -92,5 +116,6 @@ func _on_died() -> void:
 	velocity = Vector2.ZERO
 	attack_component.cancel_attack()
 	evade_component.cancel_evade()
+	ability_1_component.cancel_cast()
 	set_physics_process(false)
 	defeated.emit()

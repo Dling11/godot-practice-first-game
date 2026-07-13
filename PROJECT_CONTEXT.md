@@ -7,15 +7,15 @@ This is the compact entry point for routine work. It records current runtime tru
 - Godot 4.7 stable, 2D top-down pixel action prototype.
 - Main scene: `res://levels/test_arena/test_arena.tscn`.
 - Logical viewport: 960x540 with exact 2x development scaling and pixel snapping.
-- Player: smooth movement, directional sword attack, supernatural dash with invulnerability, health, defeat, and restart.
-- Enemies: Forsaken Thrall melee pursuer and dodgeable Mireling snapshot leap.
+- Player: smooth movement, directional sword attack, supernatural dash with invulnerability, grounded Q Sweeping Cut, health, defeat, and restart.
+- Enemies: durable Forsaken Thrall melee pursuer, dodgeable Mireling snapshot leap, and telegraphed Bramble Spitter ranged pressure.
 - Stage 1: three data-driven waves, summon effects, crowd separation, navigation around props, and portal exit.
 - Stage 2: structural placeholder with return portal; no authored encounter or story yet.
-- UI: compact player vitality, contextual portal prompt, wave messages, spawn direction, and reusable damage-triggered enemy health bars.
+- UI: compact player vitality and visible Q/E skill bar, contextual portal prompt, wave messages, spawn direction, and reusable damage-triggered enemy health bars.
 
 ## Current Priority
 
-Build the reusable player ability framework and the first Q ability, then add its compact HUD slot. Do not implement progression, inventory, economy, or save data until their design decisions are approved.
+Feel-test Sweeping Cut and the Wave 3 Bramble Spitter's three-frame attack, red snapshot marker, projectile speed, backward-facing correction, spacing behavior, and difficulty. Then author its intended Stage 2 introduction and finalize the compact level/XP/coin/skill-menu specification before implementing progression. Do not implement supernatural powers, inventory, equipment, or save data until their design decisions are approved.
 
 ## Durable Boundaries
 
@@ -24,7 +24,7 @@ Build the reusable player ability framework and the first Q ability, then add it
 - Prefer composition and data-driven resources over deep inheritance.
 - Environment props must align presentation, collision, navigation, depth, and occlusion.
 - Use signals, timers, and state transitions instead of avoidable per-frame polling.
-- Preserve the existing 24x32 locomotion and 64x48 six-frame action-art conventions.
+- Preserve the existing 24x32 humanoid, 32x32 creature, and 64x48 six-frame humanoid action-art conventions.
 
 ## Read Next by Task
 

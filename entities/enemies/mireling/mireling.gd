@@ -15,6 +15,7 @@ signal leap_targeted(global_target: Vector2, duration_seconds: float)
 @onready var health_component: HealthComponent = %HealthComponent
 @onready var attack_hitbox: MeleeHitbox = %AttackHitbox
 @onready var navigation_agent: NavigationAgent2D = %NavigationAgent2D
+@onready var knockback_component: KnockbackComponent = %KnockbackComponent
 var separation_component: EnemySeparationComponent
 
 var state := State.SPAWNING
@@ -24,6 +25,7 @@ var _repath_time := 0.0
 var _leap_origin := Vector2.ZERO
 var _leap_target := Vector2.ZERO
 var _leap_elapsed := 0.0
+var _applied_knockback_velocity := Vector2.ZERO
 
 @export var leap_seconds := 0.42
 
@@ -47,6 +49,8 @@ func _ensure_separation_component() -> EnemySeparationComponent:
 
 
 func _physics_process(delta: float) -> void:
+	velocity -= _applied_knockback_velocity
+	_applied_knockback_velocity = Vector2.ZERO
 	if state == State.DEAD or state == State.SPAWNING or not is_instance_valid(target):
 		velocity = Vector2.ZERO
 		return
@@ -71,6 +75,7 @@ func _physics_process(delta: float) -> void:
 		direction = separation_component.blend_direction(self, direction)
 		_set_facing(direction)
 		velocity = velocity.move_toward(direction.normalized() * definition.move_speed, definition.acceleration * delta)
+		_apply_knockback_velocity()
 		move_and_slide()
 		return
 	if state == State.LEAP:
@@ -85,6 +90,7 @@ func _physics_process(delta: float) -> void:
 			attack_hitbox.activate(definition.attack_damage, self, facing_direction)
 		return
 	velocity = velocity.move_toward(Vector2.ZERO, definition.acceleration * delta)
+	_apply_knockback_velocity()
 	move_and_slide()
 	_state_time -= delta
 	if _state_time > 0.0:
@@ -99,6 +105,11 @@ func _physics_process(delta: float) -> void:
 			_enter(State.RECOVERY, definition.recovery_seconds)
 		State.RECOVERY:
 			_enter(State.CHASE, 0.0)
+
+
+func _apply_knockback_velocity() -> void:
+	_applied_knockback_velocity = knockback_component.velocity
+	velocity += _applied_knockback_velocity
 
 
 func _enter(next_state: State, duration: float) -> void:

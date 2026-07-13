@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AbilityDefinition" format=3 uid="uid://bc2pol4ik4lxf"]
+
+[ext_resource type="Script" uid="uid://m4fn37fkgpjf" path="res://data/abilities/ability_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+display_name = "Sweeping Cut"
+damage = 20.0
+knockback_strength = 90.0
+wind_up_seconds = 0.16
+active_seconds = 0.12
+recovery_seconds = 0.22
+cooldown_seconds = 2.5

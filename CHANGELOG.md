@@ -1,5 +1,41 @@
 # Changelog
 
+## 2026-07-13 - Bramble Spitter Ranged Enemy
+
+- Added a 40-health forest-corrupted Bramble Spitter with navigation-aware range positioning and local crowd separation.
+- Added a readable 0.75-second committed line telegraph, slow 8-damage seed projectile, world collision, finite lifetime, and 1.25-second recovery.
+- Added one Spitter to Wave 3 by replacing one Mireling, preserving the four-enemy encounter cap.
+- Increased Forsaken Thrall prototype health from 75 to 100 while preserving its attack damage and timings.
+- Added generated 4x4 source art, cleaned provenance, a reproducible strict-pixel atlas processor, and runtime SpriteFrames.
+- Added ranged-dodge, wave-composition, Thrall-durability, crowd-separation, and obstacle-navigation regression coverage.
+- Removed a stale Mireling SpriteFrames UID reference that caused a harmless load warning after reproducible frame rebuilding.
+
+### Fixed
+
+- Rebuilt the Bramble Spitter SpriteFrames after texture import so every frame references its atlas instead of rendering an invisible body.
+- Made the frame builder fail explicitly when the Spitter atlas is unavailable and added runtime coverage for a non-null body frame texture.
+
+### Polished
+
+- Made the Spitter swell and brighten during wind-up, added a dark-outlined warning line, firing recoil, muzzle flash, leaf sparks, a brighter seed trail, and a thorny impact burst.
+- Extended the ranged regression test to verify visible telegraph, muzzle-flash, and impact presentation without moving damage authority into effects.
+- Recorded the provisional compact-game progression direction: roughly ten levels, XP and coins, an authored skill menu, and three recommended active skill slots rather than random run-based choices.
+- Expanded every directional Spitter attack from one pose to a three-frame charge, compression, and spit sequence.
+- Replaced the laser-like warning line with a pulsing red ground target marker and made seeds terminate at the committed marked position.
+- Separated kiting steering from sprite facing, preventing the Spitter from turning away immediately before attacking, and corrected zero-length navigation fallback steering.
+
+## 2026-07-13 - Grounded Sweeping Cut Ability
+
+- Added reusable immutable `AbilityDefinition` data and instance-owned cast/cooldown runtime state.
+- Added Q Sweeping Cut with a broad frontal arc, multi-target 20 damage, light pushback, vulnerable recovery, and 3-second cooldown.
+- Added optional pushback metadata to the existing damage contract and reusable signal-driven enemy knockback response.
+- Preserved enemy movement authority and ignored pushback movement during committed Mireling leaps.
+- Added a compact lower-right Q skill slot driven only by cooldown signals.
+- Reused the full-body sword attack animation while adding a separate presentation-only sweep arc.
+- Added end-to-end coverage for damage, multi-target behavior, displacement, action exclusion, cooldown, and HUD feedback.
+- Clarified its crowd-control role with a wider arc, more visible spacing push, shorter recovery, and 2.5-second cooldown while retaining lower single-target damage than the normal sword.
+- Rebuilt the unreliable overlapping skill-panel children as a visible container-based Q/E bar with `READY`, numeric cooldown, and explicit `E LOCKED` states.
+
 ## 2026-07-13 - Tiered Project Documentation
 
 - Added `PROJECT_CONTEXT.md` as the compact runtime-state and task-routing entry point.

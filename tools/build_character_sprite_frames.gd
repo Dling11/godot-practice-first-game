@@ -8,7 +8,8 @@ func _initialize() -> void:
 	var player_error := _build_player_frames()
 	var enemy_error := _build_enemy_frames()
 	var mireling_error := _build_mireling_frames()
-	if player_error != OK or enemy_error != OK or mireling_error != OK:
+	var bramble_spitter_error := _build_bramble_spitter_frames()
+	if player_error != OK or enemy_error != OK or mireling_error != OK or bramble_spitter_error != OK:
 		quit(1)
 		return
 	print("24x32 character SpriteFrames built.")
@@ -56,6 +57,29 @@ func _build_mireling_frames() -> Error:
 	return ResourceSaver.save(frames, "res://assets/characters/mireling/mireling_frames.tres")
 
 
+func _build_bramble_spitter_frames() -> Error:
+	var texture := load("res://assets/characters/bramble_spitter/bramble_spitter_sheet_32x32.png") as Texture2D
+	if texture == null:
+		push_error("Bramble Spitter runtime atlas must be imported before building SpriteFrames.")
+		return ERR_CANT_OPEN
+	var frames := SpriteFrames.new()
+	frames.remove_animation("default")
+	for column in range(4):
+		var direction: String = DIRECTIONS[column]
+		_add_32px_animation(frames, "idle_" + direction, texture, [Vector2i(column, 0)], 1.0, true)
+		_add_32px_animation(frames, "walk_" + direction, texture, [Vector2i(column, 0), Vector2i(column, 1)], 3.5, true)
+		_add_32px_animation(
+			frames,
+			"attack_" + direction,
+			texture,
+			[Vector2i(column, 0), Vector2i(column, 1), Vector2i(column, 2)],
+			4.0,
+			false
+		)
+		_add_32px_animation(frames, "dead_" + direction, texture, [Vector2i(column, 3)], 1.0, false)
+	return ResourceSaver.save(frames, "res://assets/characters/bramble_spitter/bramble_spitter_frames.tres")
+
+
 func _add_mireling_animation(frames: SpriteFrames, name: String, texture: Texture2D, column: int, row: int, speed: float, loop: bool) -> void:
 	frames.add_animation(name)
 	frames.set_animation_speed(name, speed)
@@ -64,6 +88,24 @@ func _add_mireling_animation(frames: SpriteFrames, name: String, texture: Textur
 	atlas.atlas = texture
 	atlas.region = Rect2i(column * 32, row * 32, 32, 32)
 	frames.add_frame(name, atlas)
+
+
+func _add_32px_animation(
+	frames: SpriteFrames,
+	name: String,
+	texture: Texture2D,
+	cells: Array[Vector2i],
+	speed: float,
+	loop: bool
+) -> void:
+	frames.add_animation(name)
+	frames.set_animation_speed(name, speed)
+	frames.set_animation_loop(name, loop)
+	for cell in cells:
+		var atlas := AtlasTexture.new()
+		atlas.atlas = texture
+		atlas.region = Rect2i(cell * 32, Vector2i(32, 32))
+		frames.add_frame(name, atlas)
 
 
 func _add_animation(

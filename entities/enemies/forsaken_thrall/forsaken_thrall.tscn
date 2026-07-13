@@ -11,6 +11,7 @@
 [ext_resource type="SpriteFrames" path="res://assets/characters/sprites_24x32/thrall_frames.tres" id="9_enemy_frames"]
 [ext_resource type="PackedScene" path="res://entities/enemies/components/enemy_separation_component.tscn" id="10_separation"]
 [ext_resource type="PackedScene" path="res://ui/world/enemy_health_bar.tscn" id="11_health_bar"]
+[ext_resource type="Script" path="res://gameplay/combat/knockback_component.gd" id="12_knockback"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_footprint"]
 radius = 6.0
@@ -67,9 +68,14 @@ unique_name_in_owner = true
 [node name="HealthComponent" type="Node" parent="." unique_id=1849933286]
 unique_name_in_owner = true
 script = ExtResource("4_health")
-maximum_health = 75.0
+maximum_health = 100.0
 
 [node name="EnemyHealthBar" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("11_health_bar")]
+health_component = NodePath("../HealthComponent")
+
+[node name="KnockbackComponent" type="Node" parent="." node_paths=PackedStringArray("health_component")]
+unique_name_in_owner = true
+script = ExtResource("12_knockback")
 health_component = NodePath("../HealthComponent")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1465819459 node_paths=PackedStringArray("health_component")]

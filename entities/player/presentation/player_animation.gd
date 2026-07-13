@@ -25,6 +25,14 @@ func set_movement(_direction_vector: Vector2, is_moving: bool) -> void:
 
 
 func play_attack_phase(phase: MeleeAttackComponent.Phase, duration_seconds: float) -> void:
+	_play_action_phase(phase, duration_seconds)
+
+
+func play_ability_phase(phase: AbilityComponent.Phase, duration_seconds: float) -> void:
+	_play_action_phase(phase, duration_seconds)
+
+
+func _play_action_phase(phase: int, duration_seconds: float) -> void:
 	_action_locked = true
 	stop()
 	animation = "attack_" + _direction
@@ -32,11 +40,11 @@ func play_attack_phase(phase: MeleeAttackComponent.Phase, duration_seconds: floa
 		_phase_tween.kill()
 	var first_frame := 0
 	match phase:
-		MeleeAttackComponent.Phase.WIND_UP:
+		1:
 			first_frame = 0
-		MeleeAttackComponent.Phase.ACTIVE:
+		2:
 			first_frame = 2
-		MeleeAttackComponent.Phase.RECOVERY:
+		3:
 			first_frame = 4
 	frame = first_frame
 	frame_progress = 0.0
