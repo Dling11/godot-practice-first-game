@@ -184,14 +184,15 @@ theme_override_colors/font_color = Color(0.84, 0.76, 1, 1)
 theme_override_font_sizes/font_size = 11
 
 [node name="SkillBar" type="HBoxContainer" parent="."]
-anchor_left = 1.0
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -164.0
+offset_left = -151.0
 offset_top = -66.0
-offset_right = -16.0
+offset_right = 151.0
 offset_bottom = -16.0
+grow_horizontal = 2
 theme_override_constants/separation = 6
 
 [node name="AbilityPanel" type="PanelContainer" parent="SkillBar"]
@@ -217,7 +218,7 @@ layout_mode = 2
 [node name="KeyLabel" type="Label" parent="SkillBar/AbilityPanel/Margin/Stack/Header"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Q"
+text = "1"
 theme_override_colors/font_color = Color(0.94, 0.88, 0.66, 1)
 theme_override_font_sizes/font_size = 13
 
@@ -265,10 +266,68 @@ theme_override_constants/separation = 1
 
 [node name="Key" type="Label" parent="SkillBar/LockedAbilityPanel/Margin/Stack"]
 layout_mode = 2
-text = "E"
+text = "2"
 theme_override_font_sizes/font_size = 13
 
 [node name="State" type="Label" parent="SkillBar/LockedAbilityPanel/Margin/Stack"]
+layout_mode = 2
+text = "LOCKED"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.62, 0.58, 0.66, 1)
+theme_override_font_sizes/font_size = 8
+
+[node name="LockedAbilityPanel3" type="PanelContainer" parent="SkillBar"]
+custom_minimum_size = Vector2(71, 50)
+layout_mode = 2
+modulate = Color(0.48, 0.48, 0.52, 0.82)
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Margin" type="MarginContainer" parent="SkillBar/LockedAbilityPanel3"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 3
+
+[node name="Stack" type="VBoxContainer" parent="SkillBar/LockedAbilityPanel3/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Key" type="Label" parent="SkillBar/LockedAbilityPanel3/Margin/Stack"]
+layout_mode = 2
+text = "3"
+theme_override_font_sizes/font_size = 13
+
+[node name="State" type="Label" parent="SkillBar/LockedAbilityPanel3/Margin/Stack"]
+layout_mode = 2
+text = "LOCKED"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.62, 0.58, 0.66, 1)
+theme_override_font_sizes/font_size = 8
+
+[node name="LockedAbilityPanel4" type="PanelContainer" parent="SkillBar"]
+custom_minimum_size = Vector2(71, 50)
+layout_mode = 2
+modulate = Color(0.48, 0.48, 0.52, 0.82)
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Margin" type="MarginContainer" parent="SkillBar/LockedAbilityPanel4"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 3
+
+[node name="Stack" type="VBoxContainer" parent="SkillBar/LockedAbilityPanel4/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Key" type="Label" parent="SkillBar/LockedAbilityPanel4/Margin/Stack"]
+layout_mode = 2
+text = "4"
+theme_override_font_sizes/font_size = 13
+
+[node name="State" type="Label" parent="SkillBar/LockedAbilityPanel4/Margin/Stack"]
 layout_mode = 2
 text = "LOCKED"
 horizontal_alignment = 1

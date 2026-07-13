@@ -26,6 +26,9 @@ func _begin_stage() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if _restart_enabled and event.is_action_pressed("arena_restart"):
+		var run_session := get_node_or_null("/root/RunSession")
+		if run_session != null:
+			run_session.reset_run()
 		get_tree().reload_current_scene()
 
 

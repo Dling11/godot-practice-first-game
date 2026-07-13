@@ -20,6 +20,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func restart_arena() -> void:
+	var run_session := get_node_or_null("/root/RunSession")
+	if run_session != null:
+		run_session.reset_run()
 	get_tree().reload_current_scene()
 
 
@@ -27,4 +30,3 @@ func _on_player_defeated() -> void:
 	await get_tree().create_timer(0.4).timeout
 	combat_hud.show_defeat()
 	_restart_enabled = true
-

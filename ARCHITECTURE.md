@@ -87,7 +87,7 @@ The player currently composes:
 - `DashVisual`: observes evade events and creates replaceable placeholder afterimages.
 - `AbilityComponent`: owns Sweeping Cut cast phases and instance-local cooldown state using immutable `AbilityDefinition` data.
 - `SweepingCutVisual`: observes cast phases and renders a replaceable frontal sword arc without owning damage.
-- `PlayerProgressionComponent`: owns session XP, level, coins, cap evaluation, and progression signals from immutable `ProgressionDefinition` data.
+- `PlayerProgressionComponent`: owns player-local XP, level, coins, cap evaluation, and progression signals from immutable `ProgressionDefinition` data, synchronizing totals through `RunSession` when they change.
 
 The plain sword uses a shared `WeaponDefinition` resource. `MeleeHitbox` deduplicates contacts per swing, `HurtboxComponent` forwards explicit `DamageInfo`, and `HealthComponent` owns health/death state. A resettable training target exercises the full path.
 
@@ -101,7 +101,7 @@ The Forsaken Thrall uses shared `EnemyDefinition` data and an explicit state mac
 
 `EnemyHealthBar` is a reusable world-space presentation component used by Thralls, Mirelings, and Bramble Spitters. It observes `HealthComponent.health_changed` and `died`, updates only on signals, and uses a one-shot timer to hide after 2.2 seconds. It never owns, calculates, or mutates health. Boss health presentation may reuse the binding approach without requiring the same compact scene.
 
-`EnemyRewardComponent` observes its own actor's `HealthComponent.died` event and grants the injected player XP/coins from its `EnemyDefinition`. Enemy definitions own only reward values; the recipient owns mutable totals. `CombatHUD` observes the progression component's signals and never calculates thresholds or awards currency.
+`EnemyRewardComponent` observes its own actor's `HealthComponent.died` event and grants the injected player XP/coins from its `EnemyDefinition`. Enemy definitions own only reward values; the recipient owns mutable totals. `RunSession` retains only XP and coin totals across scene replacement; each new `PlayerProgressionComponent` reconstructs its level from immutable thresholds. `CombatHUD` and `CharacterMenu` observe progression signals and never calculate thresholds or award currency.
 
 `EncounterController` owns a stage's data-driven wave lifecycle, injects the shared `World/Projectiles` parent into projectile-capable enemies, and creates one `StagePortal` after the final wave. `StagePortal` owns player proximity and F-input, emits prompt visibility, and delegates valid destinations to the `SceneTransition` autoload. HUD owns prompt presentation. Stage 1 has three beginner waves and targets Stage 2; Stage 2 has two authored introductory waves and opens its return portal only after clear.
 
@@ -139,7 +139,7 @@ Implemented ability flow:
 PlayerInputSource -> Player request_ability_1 -> AbilityComponent
 -> cast phases -> wide MeleeHitbox -> HurtboxComponent
 -> HealthComponent -> optional KnockbackComponent response
--> cooldown signals -> CombatHUD Q slot
+-> cooldown signals -> CombatHUD slot 1
 ```
 
 Presentation observes facing and attack phase signals. Locomotion uses 24x32 cells, while `PlayerAnimation` selects six 64x48 authored attack frames per direction. Wind-up maps to frames 0-1, the active hit window to frames 2-3, and recovery to frames 4-5. Each pair advances at half its gameplay phase duration. The invisible pivot orients only the authoritative hitbox; animation, effects, audio, HUD icons, or inventory UI must not become damage authority.
@@ -170,9 +170,9 @@ UI observes model state through signals or presenters and sends player intent th
 
 The implemented combat HUD displays a compact corner vitality bar, blocked-damage feedback, and the fallen/restart panel. Persistent control/build banners were removed from combat space; future help belongs in a contextual or paused surface. These controls may be reskinned without changing health or arena flow.
 
-Stage presentation is a brief top-edge label. The lower screen remains free for the future compact weapon and two-skill HUD; no empty skill bar is displayed before skills exist.
+Stage presentation is a brief top-edge label. The centered lower screen contains a compact four-slot bar that remains readable without covering the playfield center.
 
-The lower-right HUD shows a compact two-slot skill bar: Q exposes Sweeping Cut readiness and numeric/bar cooldown feedback, while E is visibly locked rather than implying an implemented ability. The HUD observes ability signals and a 0.1-second presentation timer; it does not calculate readiness or permit casts.
+The centered HUD shows four numbered active-skill slots. Slot 1 exposes Sweeping Cut readiness and numeric/bar cooldown feedback; slots 2-4 are visibly locked rather than implying implemented abilities. `CharacterMenu` is a paused, read-only Tab surface for The Awakened's progression and authored skill-path information. Both surfaces observe gameplay state and do not calculate readiness, progression, rewards, or casts.
 
 Reusable interaction prompts are contextual: an interactable emits visibility/text while the HUD presents the bottom-center prompt. Leaving the area clears it immediately.
 
@@ -213,7 +213,7 @@ The proving ground uses `TileMapLayer` with a reproducible `bright_ground_tilese
 
 ## Autoload Policy
 
-Autoloads are reserved for truly cross-scene services and must not become general-purpose mutable state. `SceneTransition` pauses gameplay, owns a top-layer fade/loading overlay, changes to validated scene paths, resumes the tree, and fades back in. `AudioDirector` owns audio-bus setup and cross-scene music routing; actor-local presenters own positional combat playback. Neither owns player progression or level rules.
+Autoloads are reserved for truly cross-scene services and must not become general-purpose mutable state. `SceneTransition` pauses gameplay, owns a top-layer fade/loading overlay, changes to validated scene paths, resumes the tree, and fades back in. `AudioDirector` owns audio-bus setup and cross-scene music routing; actor-local presenters own positional combat playback. `RunSession` is a deliberately narrow in-memory bridge containing only XP and coins. It does not award rewards, evaluate levels, unlock skills, or write save data.
 
 ## Signals and Event Flow
 
@@ -314,7 +314,7 @@ An interim headless smoke script at `res://tests/player_movement_smoke.gd` verif
 
 `res://tests/sweeping_cut_smoke.gd` verifies multi-target 20-damage delivery, pushback metadata and actor displacement, cast-time attack/dash exclusion, 3-second cooldown rejection, and HUD ready/cooldown feedback.
 
-`res://tests/player_progression_smoke.gd` verifies initial state, threshold leveling, cap behavior, reward delivery after enemy death, and HUD presentation. `res://tests/audio_director_smoke.gd` verifies the Music bus and stage-stream routing; it intentionally does not require physical playback in headless mode.
+`res://tests/player_progression_smoke.gd` verifies initial state, threshold leveling, cap behavior, reward delivery after enemy death, and HUD presentation. `res://tests/run_session_progression_smoke.gd` verifies XP/coin reconstruction across player replacement and explicit run reset. `res://tests/character_menu_smoke.gd` verifies the four skill inputs, pause ownership, four-slot presentation, and reactive progression labels. `res://tests/audio_director_smoke.gd` verifies the Music bus and stage-stream routing; it intentionally does not require physical playback in headless mode.
 
 `res://tests/combat_feedback_smoke.gd` verifies accepted incoming and outgoing hits create a number plus burst, then clean up without changing combat authority.
 

@@ -42,4 +42,7 @@ func is_evade_just_pressed() -> bool:
 
 
 func is_ability_1_just_pressed() -> bool:
-	return Input.is_action_just_pressed("player_ability_1")
+	return (
+		Input.is_action_just_pressed("player_skill_1")
+		or Input.is_action_just_pressed("player_ability_1")
+	)

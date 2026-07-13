@@ -122,7 +122,7 @@ Future weapon families may include spears, dual swords, greatswords, axes, range
 
 **Planned categories:** divine powers, demonic powers, weapon skills, mobility tools, defensive tools, and passive modifiers.
 
-**Implemented prototype weapon skill - Sweeping Cut:** Q/left shoulder performs a broad frontal sword technique with 0.16-second wind-up, 0.12-second active window, 0.22-second recovery, 20 damage, visible spacing pushback, and a 2.5-second cooldown. Casting prevents normal attack and dash until recovery ends. It is intentionally weaker than the 25-damage focused sword attack per target and exists to create space against small groups.
+**Implemented prototype weapon skill - Sweeping Cut:** skill slot 1 (`1`, with Q retained temporarily as a legacy fallback; left shoulder on gamepad) performs a broad frontal sword technique with 0.16-second wind-up, 0.12-second active window, 0.22-second recovery, 20 damage, visible spacing pushback, and a 2.5-second cooldown. Casting prevents normal attack and dash until recovery ends. It is intentionally weaker than the 25-damage focused sword attack per target and exists to create space against small groups.
 
 The starting character has no divine or demonic ability. Supernatural powers should arrive through later story or progression so the early player remains weak and their eventual growth remains meaningful.
 
@@ -132,11 +132,11 @@ The relationship between divine and demonic power may involve affinity, corrupti
 
 **Implemented introductory foundation:** this project uses a small authored progression arc rather than an endless run-based or advertisement-style upgrade loop. A run starts at level 1 and caps at level 10. XP thresholds are cumulative: 0, 20, 50, 90, 140, 200, 270, 350, 440, and 540. Mirelings award 8 XP and 1 coin; Forsaken Thralls award 15 XP and 3 coins; Bramble Spitters award 20 XP and 5 coins. The HUD displays level, current XP progress, and coins.
 
-This is session-only prototype state: it resets when the scene is reloaded. Reaching a level does not pause combat, randomly offer upgrades, alter combat stats, or grant an ability yet.
+This is in-memory run state: it survives portal scene transitions, resets when the player restarts after defeat, and is not written to disk. Reaching a level does not pause combat, randomly offer upgrades, alter combat stats, or grant an ability yet.
 
-Recommended current control budget is three equipable active skills in addition to normal attack and dash. Skills should have stable names, icons, descriptions, unlock requirements, and coin costs or upgrades. A pause/menu skill panel should let the player inspect and configure them outside immediate combat. Leveling should unlock authored options or requirements rather than interrupting every level with three random choices.
+The approved control budget is four equipable active skill slots on keys 1-4, in addition to normal attack and dash. The centered combat bar exposes all four slots; only Sweeping Cut is currently equipped. The Tab character menu pauses combat and presents The Awakened's level, XP, coins, core actions, and four skill paths. Slots 2-4 are deliberately sealed; their displayed level 3/6/9 milestones are presentation scaffolding until authored abilities and unlock rules are approved. Leveling unlocks authored options or requirements rather than interrupting every level with random choices.
 
-Open decisions include whether the character owns three or four active skills, how coins are spent, whether skills are unlocked by level or purchased after reaching a level, and what progression persists after defeat.
+Open decisions include how coins are spent, whether skills are unlocked by level or purchased after reaching a level, which abilities occupy slots 2-4, and what eventually persists through a profile save.
 
 Progression must preserve skill-based combat. Numerical growth should not erase the need to dodge, read attacks, and position well.
 

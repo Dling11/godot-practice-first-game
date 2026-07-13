@@ -67,7 +67,7 @@ func _show_ability_ready() -> void:
 		_ability_cooldown_tween.kill()
 	ability_cooldown.value = 0.0
 	ability_panel.modulate = Color.WHITE
-	ability_key_label.text = "Q"
+	ability_key_label.text = "1"
 	ability_cooldown_label.text = "READY"
 	ability_cooldown_label.add_theme_color_override("font_color", Color(0.62, 0.9, 0.54, 1))
 	ability_cooldown_tick.stop()

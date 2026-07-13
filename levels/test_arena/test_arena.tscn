@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3]
+[gd_scene load_steps=30 format=3]
 
 [ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://entities/enemies/forsaken_thrall/forsaken_thrall.tscn" id="3_enemy"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" path="res://gameplay/presentation/hit_burst.tscn" id="23_hit_burst"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/sword_hit.wav" id="24_sword_hit"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/player_hurt.wav" id="25_player_hurt"]
+[ext_resource type="PackedScene" path="res://ui/character_menu.tscn" id="26_character_menu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.035, 0.043, 0.063, 0.96)
@@ -159,6 +160,9 @@ player_hurt_sound = ExtResource("25_player_hurt")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="CombatHUD" parent="UI" instance=ExtResource("5_hud")]
+
+[node name="CharacterMenu" parent="UI" node_paths=PackedStringArray("player") instance=ExtResource("26_character_menu")]
+player = NodePath("../../World/Actors/Player")
 
 [connection signal="wave_changed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_wave"]
 [connection signal="wave_cleared" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_wave_clear"]

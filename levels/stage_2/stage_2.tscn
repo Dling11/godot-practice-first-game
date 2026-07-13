@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3]
+[gd_scene load_steps=26 format=3]
 
 [ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://entities/enemies/mireling/mireling.tscn" id="2_mireling"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" path="res://gameplay/presentation/hit_burst.tscn" id="20_hit_burst"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/sword_hit.wav" id="21_sword_hit"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/player_hurt.wav" id="22_player_hurt"]
+[ext_resource type="PackedScene" path="res://ui/character_menu.tscn" id="23_character_menu"]
 
 [sub_resource type="LabelSettings" id="title_settings"]
 font_size = 15
@@ -154,6 +155,9 @@ player_hurt_sound = ExtResource("22_player_hurt")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="CombatHUD" parent="UI" instance=ExtResource("4_hud")]
+
+[node name="CharacterMenu" parent="UI" node_paths=PackedStringArray("player") instance=ExtResource("23_character_menu")]
+player = NodePath("../../World/Actors/Player")
 
 [node name="StageTitle" type="Label" parent="UI"]
 anchor_left = 0.5

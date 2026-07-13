@@ -10,6 +10,8 @@ func _initialize() -> void:
 
 
 func _run() -> void:
+	var run_session := root.get_node("RunSession")
+	run_session.reset_run()
 	var player := PlayerScene.instantiate() as Player
 	var hud := HudScene.instantiate() as CombatHUD
 	root.add_child(player)
@@ -40,6 +42,7 @@ func _run() -> void:
 		_fail("Progression HUD did not show maximum-level state.")
 		return
 
+	run_session.reset_run()
 	var reward_player := PlayerScene.instantiate() as Player
 	var mireling := MirelingScene.instantiate() as Mireling
 	mireling.target = reward_player

@@ -14,6 +14,7 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 - Reusable ability/cooldown and knockback contracts with the grounded Q Sweeping Cut and compact HUD slot.
 - Authored Stage 2 `Thorns of the Forgotten Grove`, including arrival lore, navigation, two introductory waves, delayed Bramble Spitter reveal, and clear-gated return portal.
 - Session-only level-10 progression foundation: reusable XP/coin rewards, visible HUD progress, and data-driven enemy reward values without random upgrade interruptions.
+- In-memory run continuity across portal transitions, defeat-reset semantics, a centered four-slot 1-4 skill bar, and a paused Tab character/skill information menu for The Awakened.
 - Cross-scene ambient-music foundation with a dedicated Music bus, stage routing, attribution, and headless-safe regression coverage.
 - Reusable combat-impact feedback: accepted-hit damage numbers, pixel bursts, restrained camera nudges, and automatic cleanup.
 - Event-driven combat SFX for sword, Sweeping Cut, dash, player damage, current enemy attacks, and Bramble projectile impacts, with Music/SFX/UI bus separation.
@@ -31,12 +32,13 @@ Detailed completion history remains in `CHANGELOG.md`.
 - Feel-test the 960x540 zoom, smaller HUD, stable sprite scale, six-frame directional sword attacks, corrected shadows/collision, canopy occlusion, and 16-pixel Thrall clearance.
 - Expand the approved two-frame prototype movement into production-quality animation timing only after the visual language is accepted.
 - Feel-test Mireling pressure, stage counts, spawn pacing, camera travel, and landmark layout.
-- Feel-test Sweeping Cut wind-up, wider arc, 20 damage, spacing pushback, recovery risk, 2.5-second cooldown, arc readability, and two-slot HUD placement.
+- Feel-test Sweeping Cut wind-up, wider arc, 20 damage, spacing pushback, recovery risk, 2.5-second cooldown, arc readability, and centered slot-1 HUD placement.
 - Feel-test Stage 2 arrival pacing, grove layout/navigation, Wave 1 warm-up, Wave 2 Spitter readability, clear-gated return portal, and restart behavior.
 - Feel-test XP/coin pacing, HUD placement, and the forest ambient-music volume.
 - Feel-test normal sword, Sweeping Cut, and incoming-damage feedback for readability and appropriate camera motion.
 - Feel-test combat cue selection, positional balance, repetition, and SFX-versus-music volume.
-- Design authored skill unlock rules, coin sinks, the three-versus-four active skill budget, and a skill-information/setup menu.
+- Feel-test the centered four-slot skill bar and Tab character-menu readability at the 960x540 viewport.
+- Design authored skill unlock rules, coin sinks, and the first abilities for sealed slots 2-4.
 
 ## Planned
 

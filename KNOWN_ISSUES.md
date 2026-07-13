@@ -18,12 +18,12 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 - **Planned resolution:** Validate pixel stability with camera movement, richer walk cycles, and representative combat effects.
 - **Workaround:** Treat 960x540 as the active prototype baseline, not an irreversible final asset constraint.
 
-### KI-005 - Progression persistence and skill setup are undecided
+### KI-005 - Skill unlocks, coin sinks, and disk persistence are undecided
 
 - **Status:** Open
-- **Impact:** The session-only level-10 XP/coin foundation is implemented, but save/death persistence, coin sinks, authored unlocks, and the three-versus-four active skill budget are undecided.
-- **Planned resolution:** Design the skill-information/setup menu and unlock/currency rules after feel-testing the current reward pace.
-- **Workaround:** Keep XP and coins session-only; avoid random run-based upgrade assumptions.
+- **Impact:** The in-memory level-10 run, defeat reset, four-slot budget, and character information menu are implemented, but profile saves, coin sinks, authored unlock rules, and slots 2-4 content are undecided.
+- **Planned resolution:** Design the first authored skills and unlock/currency rules after feel-testing the current reward pace and menu.
+- **Workaround:** Keep XP and coins in-memory for the active run and keep slots 2-4 sealed; avoid random run-based upgrade assumptions.
 
 ## Current Bugs
 

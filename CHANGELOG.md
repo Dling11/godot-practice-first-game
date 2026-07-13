@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-07-14 - Four-Slot Skills and Run Continuity
+
+- Moved Sweeping Cut to numbered skill slot 1 while retaining Q as a temporary compatibility binding, and reserved inputs 2-4 for authored future abilities.
+- Replaced the corner Q/E display with a centered four-slot combat bar.
+- Added a paused Tab character/skill information menu for The Awakened with level, XP, coins, core actions, and sealed skill paths.
+- Added a narrow in-memory `RunSession` so XP and coins survive portal transitions while defeat restart begins a fresh run; no disk save behavior was added.
+- Added progression-continuity and character-menu regression coverage.
+- Replaced the encounter's fixed startup delay with navigation-map readiness checks, preventing first-spawn queries before Godot synchronizes the map.
+
 ## 2026-07-14 - Event-Driven Combat Audio
 
 - Added distinct CC0 cues for sword swing/impact, Sweeping Cut, dash, player damage, Thrall claw, Mireling leap/landing, Spitter fire, and seed impact.

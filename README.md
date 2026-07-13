@@ -6,7 +6,7 @@ The setting centers on gods, demons, forgotten civilizations, and **The One Abov
 
 ## Current Status
 
-Pre-alpha two-stage prototype. Stage 1 teaches Mireling and Thrall combat; Stage 2, `Thorns of the Forgotten Grove`, introduces the Bramble Spitter through a compact authored encounter. Both stages use pixel-stable cameras, navigation, readable spawning, portal progression, ambient music, positional combat SFX, and the existing combat/defeat loop. A session-only level-10 XP/coin foundation is active; skill setup and saving are not yet implemented.
+Pre-alpha two-stage prototype. Stage 1 teaches Mireling and Thrall combat; Stage 2, `Thorns of the Forgotten Grove`, introduces the Bramble Spitter through a compact authored encounter. Both stages use pixel-stable cameras, navigation, readable spawning, portal progression, ambient music, positional combat SFX, and the existing combat/defeat loop. An in-memory level-10 XP/coin run and a four-slot character/skill information surface are active; disk saving and additional skills are not yet implemented.
 
 ## Intended Technology
 
@@ -71,13 +71,14 @@ The active prototype controls are:
 | Aim/facing | Mouse | Right stick |
 | Primary attack | Left mouse | Right trigger |
 | Dodge | Space | South face button |
-| Sweeping Cut | Q | Left shoulder |
-| Ability 2 | E | Right shoulder |
+| Skill 1: Sweeping Cut | 1 (Q legacy fallback) | Left shoulder |
+| Skill slots 2-4 | 2 / 3 / 4 (reserved) | Reserved |
+| Character / skills | Tab | Not assigned |
 | Interact / enter portal | F | West face button |
 | Pause | Escape | Start |
 | Rise after defeat | R | North face button |
 
-Movement, aim/facing, primary attack, dash, Sweeping Cut, portal interaction, and arena restart after defeat are active. The E/right-shoulder ability action remains reserved and currently does nothing.
+Movement, aim/facing, primary attack, dash, Sweeping Cut, portal interaction, and arena restart after defeat are active. Slots 2-4 are visibly sealed and currently do nothing. XP and coins survive portal transitions within the running game; defeat restart begins a new run.
 
 ## Verification
 
@@ -92,6 +93,8 @@ Run the current headless movement smoke test with:
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/character_animation_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/sweeping_cut_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/player_progression_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/run_session_progression_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/character_menu_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/audio_director_smoke.gd'
 ```
 

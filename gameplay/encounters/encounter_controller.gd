@@ -48,7 +48,11 @@ func start_encounter() -> void:
 
 
 func _start_encounter() -> void:
-	for frame in range(2): await get_tree().physics_frame
+	var navigation_map := player.get_world_2d().get_navigation_map()
+	for frame in range(8):
+		if NavigationServer2D.map_get_iteration_id(navigation_map) > 0:
+			break
+		await get_tree().physics_frame
 	_advance_wave()
 
 
@@ -95,13 +99,14 @@ func _spawn_summon_effect(global_position: Vector2) -> void:
 
 func _choose_spawn_position() -> Vector2:
 	var navigation_map := player.get_world_2d().get_navigation_map()
-	for attempt in range(8):
-		var angle := randf_range(0.0, TAU)
-		var requested := player.global_position + Vector2.RIGHT.rotated(angle) * randf_range(250.0, 340.0)
-		var safe := NavigationServer2D.map_get_closest_point(navigation_map, requested)
-		var distance := safe.distance_to(player.global_position)
-		if distance >= 210.0 and distance <= 380.0:
-			return safe
+	if NavigationServer2D.map_get_iteration_id(navigation_map) > 0:
+		for attempt in range(8):
+			var angle := randf_range(0.0, TAU)
+			var requested := player.global_position + Vector2.RIGHT.rotated(angle) * randf_range(250.0, 340.0)
+			var safe := NavigationServer2D.map_get_closest_point(navigation_map, requested)
+			var distance := safe.distance_to(player.global_position)
+			if distance >= 210.0 and distance <= 380.0:
+				return safe
 	var nearest := _spawn_points[0]
 	for point in _spawn_points:
 		if point.global_position.distance_to(player.global_position) < nearest.global_position.distance_to(player.global_position):

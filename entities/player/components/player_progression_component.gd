@@ -1,7 +1,7 @@
 class_name PlayerProgressionComponent
 extends Node
 
-## Session-only level, XP, and coin state. Persistence belongs to a future save service.
+## Player-local progression authority synchronized with the in-memory RunSession service.
 
 signal progression_changed(level: int, total_experience: int, next_level_experience: int)
 signal coins_changed(total_coins: int)
@@ -19,6 +19,11 @@ func _ready() -> void:
 		push_error("PlayerProgressionComponent requires thresholds through its maximum level.")
 		set_process(false)
 		return
+	var run_session := get_node_or_null("/root/RunSession")
+	if run_session != null:
+		total_experience = run_session.total_experience
+		coins = run_session.coins
+	_recalculate_level()
 	_emit_progression_changed()
 	coins_changed.emit(coins)
 
@@ -33,6 +38,7 @@ func grant_rewards(experience: int, coin_amount: int) -> void:
 	if coin_amount > 0:
 		coins += coin_amount
 		coins_changed.emit(coins)
+	_sync_run_session()
 
 
 func experience_into_current_level() -> int:
@@ -52,3 +58,15 @@ func _next_level_threshold() -> int:
 func _emit_progression_changed() -> void:
 	var next_level_experience := _next_level_threshold() if level < definition.maximum_level else total_experience
 	progression_changed.emit(level, total_experience, next_level_experience)
+
+
+func _recalculate_level() -> void:
+	level = 1
+	while level < definition.maximum_level and total_experience >= _next_level_threshold():
+		level += 1
+
+
+func _sync_run_session() -> void:
+	var run_session := get_node_or_null("/root/RunSession")
+	if run_session != null:
+		run_session.update_progression(total_experience, coins)
