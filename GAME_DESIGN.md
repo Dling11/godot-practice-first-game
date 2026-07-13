@@ -46,6 +46,8 @@ Damage formulas, stagger, poise, stamina, mana, cooldowns, and targeting rules a
 
 **Implemented prototype defeat loop:** the player's vitality is visible. At zero health, movement and combat stop, the player enters a fallen presentation, and the player may press R or the gamepad north button to reload the proving ground. The prototype has no progression loss or automatic restart.
 
+**Implemented combat feedback:** an accepted player hit displays a short gold damage number and three-pixel burst at the target; accepted player damage displays the same feedback in red. Each creates only a brief camera nudge, never a global time-scale pause. Misses, blocked hits, and telegraphed attacks do not display damage numbers.
+
 ## Player Character
 
 The player character's identity, origin, base attributes, and relationship to The One Above are undecided.
@@ -94,13 +96,15 @@ No named playable characters, NPCs, gods, demons, or factions have been approved
 
 No specific boss roster is approved.
 
-**Implemented Stage 1 encounter:** three sequential waves introduce Mirelings, Thralls, then one Bramble Spitter. Wave 3 remains capped at four enemies. Clearing it opens the stage-exit portal. Entering its range shows `F - Enter Portal`; leaving removes the prompt. Interaction fades through a loading veil into a quiet Stage 2 placeholder with a reliable player spawn and return portal. Stage 2 encounters and story remain unauthored.
+**Implemented Stage 1 encounter:** three sequential beginner waves introduce Mirelings and Thralls only. Wave 3 remains capped at four enemies. Clearing it opens the stage-exit portal. Entering its range shows `F - Enter Portal`; leaving removes the prompt. Interaction fades through a loading veil into Stage 2.
+
+**Implemented Stage 2 encounter — Thorns of the Forgotten Grove:** the player arrives at a small grove with a central broken shrine, flanking trees, and clear paths to the north exit. The arrival message reads `THE THORNS REMEMBER YOUR FOOTSTEPS`. Wave 1 uses two Mirelings as a warm-up. Wave 2 introduces one Bramble Spitter alongside one Mireling. Clearing both waves opens a return portal to Stage 1; no exit portal exists before the clear.
 
 Every encounter spawn is announced by a short violet ground rune, inward sparks, and restrained lightning strike aligned with the enemy's non-hostile materialization. Clearing a wave provides a 2.25-second recovery window before the next wave begins.
 
 **Mireling:** a small corrupted divine slime with 30 health and a larger 32x32 presentation. Within 105 pixels and clear line-of-sight it snapshots the player's position, shows a 0.65-second landing marker, leaps there over 0.42 seconds, deals 5 damage only on landing, then remains vulnerable for 1 second. Moving or dashing away from the snapshot avoids the hit.
 
-**Bramble Spitter:** a weak forest-corrupted ranged creature with 40 health. It seeks a 95-190 pixel firing band, faces the player while backing away, and uses a three-frame charge/compression/spit sequence. A pulsing red ground marker snapshots the player's position for 0.75 seconds instead of presenting the attack as a laser. It then recoils while firing one bright, trailed 8-damage seed that terminates at the marked position. Seeds burst visibly on impact and the Spitter recovers for 1.25 seconds. Leaving the marker avoids the hit. It temporarily appears in Wave 3 for testing but is intended to become a Stage 2 introduction once that stage has authored encounters.
+**Bramble Spitter:** a weak forest-corrupted ranged creature with 40 health. It seeks a 95-190 pixel firing band, faces the player while backing away, and uses a three-frame charge/compression/spit sequence. A pulsing red ground marker snapshots the player's position for 0.75 seconds instead of presenting the attack as a laser. It then recoils while firing one bright, trailed 8-damage seed that terminates at the marked position. Seeds burst visibly on impact and the Spitter recovers for 1.25 seconds. Leaving the marker avoids the hit. It is officially introduced in Stage 2 Wave 2 alongside one Mireling.
 
 Standard enemies keep their health bars hidden at full health. Taking damage reveals a compact world-space bar for 2.2 seconds; further hits refresh that window, and death hides it immediately. This preserves exploration readability while still communicating combat progress.
 
@@ -124,11 +128,13 @@ The relationship between divine and demonic power may involve affinity, corrupti
 
 ## Progression and Economy
 
-**Provisional introductory-game direction:** this project is intended to demonstrate a small authored progression arc rather than an endless run-based or advertisement-style upgrade loop. The first playable character may have approximately ten levels, a simple XP bar, coins, and a deliberately small authored skill set. Exact values remain open until the Stage 1-to-Stage 2 loop is playable.
+**Implemented introductory foundation:** this project uses a small authored progression arc rather than an endless run-based or advertisement-style upgrade loop. A run starts at level 1 and caps at level 10. XP thresholds are cumulative: 0, 20, 50, 90, 140, 200, 270, 350, 440, and 540. Mirelings award 8 XP and 1 coin; Forsaken Thralls award 15 XP and 3 coins; Bramble Spitters award 20 XP and 5 coins. The HUD displays level, current XP progress, and coins.
+
+This is session-only prototype state: it resets when the scene is reloaded. Reaching a level does not pause combat, randomly offer upgrades, alter combat stats, or grant an ability yet.
 
 Recommended current control budget is three equipable active skills in addition to normal attack and dash. Skills should have stable names, icons, descriptions, unlock requirements, and coin costs or upgrades. A pause/menu skill panel should let the player inspect and configure them outside immediate combat. Leveling should unlock authored options or requirements rather than interrupting every level with three random choices.
 
-Open decisions include whether the final cap is exactly level 10, whether the character owns three or four active skills, how coins are earned and spent, whether skills are unlocked by level or purchased after reaching a level, and what progression persists after defeat.
+Open decisions include whether the character owns three or four active skills, how coins are spent, whether skills are unlocked by level or purchased after reaching a level, and what progression persists after defeat.
 
 Progression must preserve skill-based combat. Numerical growth should not erase the need to dodge, read attacks, and position well.
 

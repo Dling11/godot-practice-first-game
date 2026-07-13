@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://d0fi77o2m5rxa"]
+[gd_scene load_steps=11 format=3 uid="uid://d0fi77o2m5rxa"]
 
 [ext_resource type="Script" uid="uid://bpyjwhfealhuy" path="res://entities/enemies/mireling/mireling.gd" id="1"]
 [ext_resource type="Resource" path="res://data/enemies/mireling.tres" id="2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://4l3spvpulsnw" path="res://entities/player/presentation/player_aim_visual.gd" id="8"]
 [ext_resource type="PackedScene" path="res://ui/world/enemy_health_bar.tscn" id="9"]
 [ext_resource type="Script" path="res://gameplay/combat/knockback_component.gd" id="10"]
+[ext_resource type="Script" path="res://entities/enemies/components/enemy_reward_component.gd" id="11"]
 
 [sub_resource type="CircleShape2D" id="foot"]
 radius = 6.0
@@ -59,6 +60,10 @@ max_speed = 44.0
 [node name="HealthComponent" type="Node" parent="." unique_id=1692864368]
 unique_name_in_owner = true
 script = ExtResource("5")
+
+[node name="EnemyRewardComponent" type="Node" parent="." node_paths=PackedStringArray("health_component")]
+script = ExtResource("11")
+health_component = NodePath("../HealthComponent")
 
 [node name="EnemyHealthBar" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("9")]
 health_component = NodePath("../HealthComponent")

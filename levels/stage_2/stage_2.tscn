@@ -1,13 +1,25 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=23 format=3]
 
 [ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="1_player"]
-[ext_resource type="PackedScene" path="res://ui/combat_hud.tscn" id="2_hud"]
-[ext_resource type="TileSet" path="res://assets/environment/prototype/bright_ground_tileset.tres" id="3_tileset"]
-[ext_resource type="Script" path="res://levels/test_arena/prototype_ground.gd" id="4_ground"]
-[ext_resource type="PackedScene" path="res://environment/props/ancient_tree/ancient_tree.tscn" id="5_tree"]
-[ext_resource type="PackedScene" path="res://environment/props/ruined_statue/ruined_statue.tscn" id="6_statue"]
-[ext_resource type="PackedScene" path="res://gameplay/encounters/stage_portal.tscn" id="7_portal"]
-[ext_resource type="Script" path="res://levels/stage_2/stage_2_flow.gd" id="8_flow"]
+[ext_resource type="PackedScene" path="res://entities/enemies/mireling/mireling.tscn" id="2_mireling"]
+[ext_resource type="PackedScene" path="res://entities/enemies/bramble_spitter/bramble_spitter.tscn" id="3_spitter"]
+[ext_resource type="PackedScene" path="res://ui/combat_hud.tscn" id="4_hud"]
+[ext_resource type="TileSet" path="res://assets/environment/prototype/bright_ground_tileset.tres" id="5_tileset"]
+[ext_resource type="Script" path="res://levels/test_arena/prototype_ground.gd" id="6_ground"]
+[ext_resource type="PackedScene" path="res://environment/props/ancient_tree/ancient_tree.tscn" id="7_tree"]
+[ext_resource type="PackedScene" path="res://environment/props/ruined_statue/ruined_statue.tscn" id="8_statue"]
+[ext_resource type="Script" path="res://levels/test_arena/arena_navigation.gd" id="9_navigation"]
+[ext_resource type="Script" path="res://gameplay/encounters/encounter_controller.gd" id="10_encounter"]
+[ext_resource type="Resource" path="res://data/encounters/stage_2_wave_1.tres" id="11_wave1"]
+[ext_resource type="Resource" path="res://data/encounters/stage_2_wave_2.tres" id="12_wave2"]
+[ext_resource type="PackedScene" path="res://gameplay/encounters/stage_portal.tscn" id="13_portal"]
+[ext_resource type="PackedScene" path="res://gameplay/encounters/summon_effect.tscn" id="14_summon"]
+[ext_resource type="Script" path="res://levels/stage_2/stage_2_flow.gd" id="15_flow"]
+[ext_resource type="Script" path="res://gameplay/audio/stage_music.gd" id="16_music"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/cathedral_in_the_forest.ogg" id="17_music_stream"]
+[ext_resource type="Script" path="res://gameplay/presentation/combat_feedback_presenter.gd" id="18_feedback"]
+[ext_resource type="PackedScene" path="res://ui/world/damage_number.tscn" id="19_damage_number"]
+[ext_resource type="PackedScene" path="res://gameplay/presentation/hit_burst.tscn" id="20_hit_burst"]
 
 [sub_resource type="LabelSettings" id="title_settings"]
 font_size = 15
@@ -15,78 +27,144 @@ font_color = Color(0.78, 0.84, 0.68, 1)
 outline_size = 3
 outline_color = Color(0.04, 0.06, 0.04, 1)
 
-[node name="Stage2" type="Node" node_paths=PackedStringArray("player", "combat_hud", "return_portal")]
-script = ExtResource("8_flow")
+[node name="Stage2" type="Node" node_paths=PackedStringArray("player", "combat_hud", "encounter_controller")]
+script = ExtResource("15_flow")
 player = NodePath("World/Actors/Player")
 combat_hud = NodePath("UI/CombatHUD")
-return_portal = NodePath("World/Effects/ReturnPortal")
+encounter_controller = NodePath("GameplayServices/EncounterController")
 
 [node name="World" type="Node2D" parent="."]
+
+[node name="StageMusic" type="Node" parent="."]
+script = ExtResource("16_music")
+music_stream = ExtResource("17_music_stream")
 
 [node name="Level" type="Node2D" parent="World"]
 
 [node name="Ground" type="TileMapLayer" parent="World/Level"]
 z_index = -10
-tile_set = ExtResource("3_tileset")
-script = ExtResource("4_ground")
-map_size = Vector2i(20, 12)
+tile_set = ExtResource("5_tileset")
+script = ExtResource("6_ground")
+map_size = Vector2i(24, 14)
 
 [node name="Actors" type="Node2D" parent="World"]
 y_sort_enabled = true
 
 [node name="Player" parent="World/Actors" instance=ExtResource("1_player")]
-position = Vector2(640, 560)
-movement_bounds = Rect2(56, 56, 1168, 656)
+position = Vector2(768, 760)
+movement_bounds = Rect2(56, 56, 1424, 772)
 
 [node name="Camera2D" type="Camera2D" parent="World/Actors/Player"]
 position = Vector2(0, -8)
 position_smoothing_enabled = false
 limit_left = 0
 limit_top = 0
-limit_right = 1280
-limit_bottom = 768
+limit_right = 1536
+limit_bottom = 896
 
-[node name="AncientTreeLeft" parent="World/Actors" instance=ExtResource("5_tree")]
-position = Vector2(390, 350)
+[node name="EntryTreeWest" parent="World/Actors" instance=ExtResource("7_tree")]
+position = Vector2(505, 690)
 
-[node name="AncientTreeRight" parent="World/Actors" instance=ExtResource("5_tree")]
-position = Vector2(890, 350)
+[node name="EntryTreeEast" parent="World/Actors" instance=ExtResource("7_tree")]
+position = Vector2(1030, 690)
 
-[node name="RuinedStatue" parent="World/Actors" instance=ExtResource("6_statue")]
-position = Vector2(640, 310)
+[node name="WestGrove" parent="World/Actors" instance=ExtResource("7_tree")]
+position = Vector2(310, 420)
+
+[node name="EastGrove" parent="World/Actors" instance=ExtResource("7_tree")]
+position = Vector2(1230, 420)
+
+[node name="NorthGroveWest" parent="World/Actors" instance=ExtResource("7_tree")]
+position = Vector2(570, 220)
+
+[node name="NorthGroveEast" parent="World/Actors" instance=ExtResource("7_tree")]
+position = Vector2(960, 215)
+
+[node name="BrokenHeart" parent="World/Actors" instance=ExtResource("8_statue")]
+position = Vector2(768, 470)
+
+[node name="WestThornShrine" parent="World/Actors" instance=ExtResource("8_statue")]
+position = Vector2(525, 410)
+
+[node name="EastThornShrine" parent="World/Actors" instance=ExtResource("8_statue")]
+position = Vector2(1015, 410)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="World"]
+script = ExtResource("9_navigation")
+navigation_bounds = Rect2(48, 48, 1440, 800)
+
+[node name="Projectiles" type="Node2D" parent="World"]
 
 [node name="Effects" type="Node2D" parent="World"]
 
-[node name="ReturnPortal" parent="World/Effects" instance=ExtResource("7_portal")]
-position = Vector2(640, 650)
-target_scene_path = "res://levels/test_arena/test_arena.tscn"
-interaction_text = "PRESS F TO RETURN TO STAGE 1"
+[node name="GameplayServices" type="Node" parent="."]
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="West" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(165, 440)
+
+[node name="NorthWest" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(390, 175)
+
+[node name="NorthEast" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1145, 175)
+
+[node name="East" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1370, 440)
+
+[node name="SouthWest" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(335, 735)
+
+[node name="SouthEast" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1195, 735)
+
+[node name="StageExit" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(768, 150)
+
+[node name="EncounterController" type="Node" parent="GameplayServices" node_paths=PackedStringArray("player", "actors", "spawn_points_root", "portal_parent", "portal_spawn_point", "effects_parent", "projectiles_parent")]
+script = ExtResource("10_encounter")
+player = NodePath("../../World/Actors/Player")
+actors = NodePath("../../World/Actors")
+spawn_points_root = NodePath("../../SpawnPoints")
+waves = Array[Resource]([ExtResource("11_wave1"), ExtResource("12_wave2")])
+mireling_scene = ExtResource("2_mireling")
+bramble_spitter_scene = ExtResource("3_spitter")
+portal_scene = ExtResource("13_portal")
+portal_parent = NodePath("../../World/Effects")
+portal_spawn_point = NodePath("../../SpawnPoints/StageExit")
+portal_target_scene = "res://levels/test_arena/test_arena.tscn"
+summon_effect_scene = ExtResource("14_summon")
+effects_parent = NodePath("../../World/Effects")
+projectiles_parent = NodePath("../../World/Projectiles")
+auto_start = false
+
+[node name="CombatFeedback" type="Node" parent="GameplayServices" node_paths=PackedStringArray("player", "effects_parent", "camera")]
+script = ExtResource("18_feedback")
+player = NodePath("../../World/Actors/Player")
+effects_parent = NodePath("../../World/Effects")
+camera = NodePath("../../World/Actors/Player/Camera2D")
+damage_number_scene = ExtResource("19_damage_number")
+hit_burst_scene = ExtResource("20_hit_burst")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="CombatHUD" parent="UI" instance=ExtResource("2_hud")]
+[node name="CombatHUD" parent="UI" instance=ExtResource("4_hud")]
 
 [node name="StageTitle" type="Label" parent="UI"]
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -180.0
+offset_left = -210.0
 offset_top = 58.0
-offset_right = 180.0
+offset_right = 210.0
 offset_bottom = 84.0
-text = "STAGE 2  •  THE FORGOTTEN GROVE"
+text = "STAGE 2  •  THORNS OF THE FORGOTTEN GROVE"
 label_settings = SubResource("title_settings")
 horizontal_alignment = 1
 
-[node name="Placeholder" type="Label" parent="UI"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -170.0
-offset_top = -12.0
-offset_right = 170.0
-offset_bottom = 12.0
-text = "THE VEIL IS QUIET. STAGE CONTENT COMES NEXT."
-horizontal_alignment = 1
-theme_override_colors/font_color = Color(0.68, 0.74, 0.64, 0.85)
-theme_override_font_sizes/font_size = 11
+[connection signal="wave_changed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_wave"]
+[connection signal="wave_cleared" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_wave_clear"]
+[connection signal="enemy_spawned" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_spawn_direction"]
+[connection signal="stage_cleared" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_stage_clear"]
+[connection signal="portal_sealed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_portal_sealed"]
+[connection signal="portal_prompt_changed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_interaction_prompt"]

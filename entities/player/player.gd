@@ -21,6 +21,7 @@ const AbilityComponentScript = preload("res://gameplay/abilities/ability_compone
 @onready var evade_component: EvadeComponentScript = %EvadeComponent
 @onready var ability_1_component: AbilityComponentScript = %Ability1Component
 @onready var health_component: HealthComponent = %HealthComponent
+@onready var progression_component: PlayerProgressionComponent = %ProgressionComponent
 
 var facing_direction := Vector2.DOWN
 var is_defeated := false

@@ -1,5 +1,28 @@
 # Changelog
 
+## 2026-07-14 - Combat Impact Feedback
+
+- Added reusable world-space damage numbers and three-pixel hit bursts for accepted player hits and accepted incoming player damage.
+- Added a restrained 0.11-second camera-offset nudge that preserves gameplay time, dodge windows, telegraphs, and combat authority.
+- Added cleanup and accepted-hit regression coverage for combat feedback.
+
+## 2026-07-14 - Session Progression and Ambient Audio Foundation
+
+- Added reusable session-only level-10 XP/coin progression with cumulative thresholds, capped leveling, and a compact level/XP/coin HUD readout.
+- Added data-driven death rewards: Mirelings grant 8 XP/1 coin, Thralls 15 XP/3 coins, and Bramble Spitters 20 XP/5 coins.
+- Kept levels non-interruptive and free of random upgrade choices; persistence, unlocks, and skill setup remain intentionally deferred.
+- Added `AudioDirector`, its dedicated Music bus, stage-local music requests, and headless-safe music-routing coverage.
+- Added the CC0 `Cathedral in the Forest (ambient loop)` by congusbongus as the first forest/grove background track, with local attribution.
+- Added progression and audio smoke coverage.
+
+## 2026-07-14 - Authored Stage 2 Grove Encounter
+
+- Restored Stage 1 Wave 3 to its beginner 2 Mireling + 2 Thrall composition; the Bramble Spitter no longer appears there.
+- Replaced the Stage 2 placeholder with `Thorns of the Forgotten Grove`: a 24x14 grove layout with deliberate tree, statue, navigation, spawn, projectile, and effect ownership.
+- Added an arrival-lore delay, a two-Mireling warm-up wave, then one Mireling plus the first Bramble Spitter.
+- Added a clear-gated portal back to Stage 1, Stage 2 defeat/restart ownership, and reusable explicit encounter start support.
+- Added Stage 2 layout/encounter regression coverage and expanded transition coverage for the delayed return portal.
+
 ## 2026-07-13 - Bramble Spitter Ranged Enemy
 
 - Added a 40-health forest-corrupted Bramble Spitter with navigation-aware range positioning and local crowd separation.

@@ -87,6 +87,7 @@ The player currently composes:
 - `DashVisual`: observes evade events and creates replaceable placeholder afterimages.
 - `AbilityComponent`: owns Sweeping Cut cast phases and instance-local cooldown state using immutable `AbilityDefinition` data.
 - `SweepingCutVisual`: observes cast phases and renders a replaceable frontal sword arc without owning damage.
+- `PlayerProgressionComponent`: owns session XP, level, coins, cap evaluation, and progression signals from immutable `ProgressionDefinition` data.
 
 The plain sword uses a shared `WeaponDefinition` resource. `MeleeHitbox` deduplicates contacts per swing, `HurtboxComponent` forwards explicit `DamageInfo`, and `HealthComponent` owns health/death state. A resettable training target exercises the full path.
 
@@ -100,7 +101,15 @@ The Forsaken Thrall uses shared `EnemyDefinition` data and an explicit state mac
 
 `EnemyHealthBar` is a reusable world-space presentation component used by Thralls, Mirelings, and Bramble Spitters. It observes `HealthComponent.health_changed` and `died`, updates only on signals, and uses a one-shot timer to hide after 2.2 seconds. It never owns, calculates, or mutates health. Boss health presentation may reuse the binding approach without requiring the same compact scene.
 
-`EncounterController` owns the three-wave lifecycle, injects the shared `World/Projectiles` parent into projectile-capable enemies, and creates one `StagePortal` after the final wave. `StagePortal` owns player proximity and F-input, emits prompt visibility, and delegates valid destinations to the `SceneTransition` autoload. HUD owns prompt presentation. Stage 1 targets the minimal Stage 2 scene; Stage 2 provides a return portal.
+`EnemyRewardComponent` observes its own actor's `HealthComponent.died` event and grants the injected player XP/coins from its `EnemyDefinition`. Enemy definitions own only reward values; the recipient owns mutable totals. `CombatHUD` observes the progression component's signals and never calculates thresholds or awards currency.
+
+`EncounterController` owns a stage's data-driven wave lifecycle, injects the shared `World/Projectiles` parent into projectile-capable enemies, and creates one `StagePortal` after the final wave. `StagePortal` owns player proximity and F-input, emits prompt visibility, and delegates valid destinations to the `SceneTransition` autoload. HUD owns prompt presentation. Stage 1 has three beginner waves and targets Stage 2; Stage 2 has two authored introductory waves and opens its return portal only after clear.
+
+`Stage2Flow` composes player/HUD binding, an arrival-lore delay, manual `EncounterController.start_encounter()`, Stage 2 clear messaging, and local defeat/restart ownership. `EncounterController` retains encounter authority; `Stage2Flow` never creates enemies, applies damage, or decides wave results.
+
+`AudioDirector` is a narrow autoload that owns the dedicated Music bus and one music player. A level-local `StageMusic` requests an `AudioStream`; it never owns gameplay timing or combat authority. The Headless display backend assigns streams but intentionally skips native playback because no audio device exists.
+
+`CombatFeedbackPresenter` is a level-local presentation observer configured with the player, World/Effects parent, and player camera. It listens to accepted player melee/ability hits and accepted player damage, then spawns self-cleaning `DamageNumber` and `HitBurst` scenes. It moves camera offset briefly in pixel units but never adjusts global time scale, damage, hit detection, or actor state.
 
 `SummonEffect` is instantiated under `World/Effects` at the selected spawn position. It owns only rune/lightning/spark presentation, cleans itself after 0.8 seconds, and never changes spawn timing, health, collision, or damage. Wave-clear presentation observes controller signals during the 2.25-second inter-wave recovery.
 
@@ -202,7 +211,7 @@ The proving ground uses `TileMapLayer` with a reproducible `bright_ground_tilese
 
 ## Autoload Policy
 
-Autoloads are reserved for truly cross-scene services and must not become general-purpose mutable state. `SceneTransition` is the first autoload: it pauses gameplay, owns a top-layer fade/loading overlay, changes to validated scene paths, resumes the tree, and fades back in. It owns no player progression or level rules.
+Autoloads are reserved for truly cross-scene services and must not become general-purpose mutable state. `SceneTransition` pauses gameplay, owns a top-layer fade/loading overlay, changes to validated scene paths, resumes the tree, and fades back in. `AudioDirector` owns only cross-scene music routing. Neither owns player progression or level rules.
 
 ## Signals and Event Flow
 
@@ -299,7 +308,11 @@ An interim headless smoke script at `res://tests/player_movement_smoke.gd` verif
 
 `res://tests/summon_effect_smoke.gd` verifies encounter integration, segmented lightning construction, and effect cleanup without residual nodes.
 
-`res://tests/portal_interaction_smoke.gd` verifies prompt enter/exit and explicit interaction. `res://tests/scene_transition_smoke.gd` verifies fade-controlled Stage 2 loading, destination spawn, and the configured return portal.
+`res://tests/portal_interaction_smoke.gd` verifies prompt enter/exit and explicit interaction. `res://tests/scene_transition_smoke.gd` verifies fade-controlled Stage 2 loading, destination spawn, delayed exit-portal absence, and its configured post-clear return destination. `res://tests/stage_2_encounter_smoke.gd` verifies the Grove's two-wave Spitter introduction, tile layout, navigation path, Y-sort ownership, and removal of placeholder presentation.
 
 `res://tests/sweeping_cut_smoke.gd` verifies multi-target 20-damage delivery, pushback metadata and actor displacement, cast-time attack/dash exclusion, 3-second cooldown rejection, and HUD ready/cooldown feedback.
+
+`res://tests/player_progression_smoke.gd` verifies initial state, threshold leveling, cap behavior, reward delivery after enemy death, and HUD presentation. `res://tests/audio_director_smoke.gd` verifies the Music bus and stage-stream routing; it intentionally does not require physical playback in headless mode.
+
+`res://tests/combat_feedback_smoke.gd` verifies accepted incoming and outgoing hits create a number plus burst, then clean up without changing combat authority.
 

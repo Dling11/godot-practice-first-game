@@ -12,6 +12,10 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 - Reusable portal interaction, fade transition service, Stage 2 structural placeholder, and return portal.
 - Compact combat HUD plus reusable damage-triggered enemy health bars.
 - Reusable ability/cooldown and knockback contracts with the grounded Q Sweeping Cut and compact HUD slot.
+- Authored Stage 2 `Thorns of the Forgotten Grove`, including arrival lore, navigation, two introductory waves, delayed Bramble Spitter reveal, and clear-gated return portal.
+- Session-only level-10 progression foundation: reusable XP/coin rewards, visible HUD progress, and data-driven enemy reward values without random upgrade interruptions.
+- Cross-scene ambient-music foundation with a dedicated Music bus, stage routing, attribution, and headless-safe regression coverage.
+- Reusable combat-impact feedback: accepted-hit damage numbers, pixel bursts, restrained camera nudges, and automatic cleanup.
 - Regression coverage for player combat, enemies, crowd behavior, navigation, encounters, portals, transitions, and defeat.
 
 Detailed completion history remains in `CHANGELOG.md`.
@@ -27,8 +31,10 @@ Detailed completion history remains in `CHANGELOG.md`.
 - Expand the approved two-frame prototype movement into production-quality animation timing only after the visual language is accepted.
 - Feel-test Mireling pressure, stage counts, spawn pacing, camera travel, and landmark layout.
 - Feel-test Sweeping Cut wind-up, wider arc, 20 damage, spacing pushback, recovery risk, 2.5-second cooldown, arc readability, and two-slot HUD placement.
-- Feel-test the Bramble Spitter's three-frame wind-up, red snapshot marker, restrained recoil, muzzle burst, finite-distance seed trail, impact burst, target-facing retreat, preferred range, recovery, and temporary Wave 3 composition before moving it to authored Stage 2 encounters.
-- Finalize the compact progression specification: proposed level-10 cap, XP curve, coin sources/sinks, three-versus-four active skill budget, unlock rules, and skill-menu behavior.
+- Feel-test Stage 2 arrival pacing, grove layout/navigation, Wave 1 warm-up, Wave 2 Spitter readability, clear-gated return portal, and restart behavior.
+- Feel-test XP/coin pacing, HUD placement, and the forest ambient-music volume.
+- Feel-test normal sword, Sweeping Cut, and incoming-damage feedback for readability and appropriate camera motion.
+- Design authored skill unlock rules, coin sinks, the three-versus-four active skill budget, and a skill-information/setup menu.
 
 ## Planned
 

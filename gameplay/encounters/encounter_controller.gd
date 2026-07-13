@@ -30,13 +30,21 @@ var _active_enemies := 0
 var _spawning := false
 var _spawn_points: Array[Marker2D] = []
 var _transition_pending := false
+var _started := false
 
 
 func _ready() -> void:
 	for child in spawn_points_root.get_children():
 		if child is Marker2D and child != portal_spawn_point: _spawn_points.append(child)
 	if auto_start:
-		call_deferred("_start_encounter")
+		call_deferred("start_encounter")
+
+
+func start_encounter() -> void:
+	if _started:
+		return
+	_started = true
+	_start_encounter()
 
 
 func _start_encounter() -> void:

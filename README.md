@@ -6,7 +6,7 @@ The setting centers on gods, demons, forgotten civilizations, and **The One Abov
 
 ## Current Status
 
-Pre-alpha playable-level prototype. The expanded 30x18 world uses a pixel-stable following camera, varied bright terrain, deliberate tree/statue landmarks, staged Mireling/Thrall encounters, strict sprite animation, navigation, and the existing combat/defeat loop.
+Pre-alpha two-stage prototype. Stage 1 teaches Mireling and Thrall combat; Stage 2, `Thorns of the Forgotten Grove`, introduces the Bramble Spitter through a compact authored encounter. Both stages use pixel-stable cameras, navigation, readable spawning, portal progression, ambient music, and the existing combat/defeat loop. A session-only level-10 XP/coin foundation is active; skill setup and saving are not yet implemented.
 
 ## Intended Technology
 
@@ -52,6 +52,8 @@ res://
   levels/
     test_arena/
       test_arena.tscn
+    stage_2/
+      stage_2.tscn
   project.godot
 ```
 
@@ -89,6 +91,8 @@ Run the current headless movement smoke test with:
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/player_defeat_flow_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/character_animation_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/sweeping_cut_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/player_progression_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/audio_director_smoke.gd'
 ```
 
 ## Build and Export

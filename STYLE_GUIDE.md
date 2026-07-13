@@ -51,6 +51,13 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - Avoid signal chains that obscure the source of a gameplay state change.
 - Do not use a global event bus as the default communication mechanism.
 
+## Audio
+
+- Use `AudioDirector` only for cross-scene music routing; level-local `StageMusic` nodes request tracks.
+- Audio observes gameplay and level state. It must not own damage, timing, rewards, or other gameplay authority.
+- Add third-party audio only with a recorded license and attribution file beside the asset when required or useful for provenance.
+- Headless tests may validate stream routing without requiring device playback.
+
 ## Scene Organization
 
 - Reusable scenes own their internal nodes and expose a small configured API.

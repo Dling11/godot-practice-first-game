@@ -23,12 +23,25 @@ func _run() -> void:
 		_fail("Fade transition did not install Stage 2 as the current scene.")
 		return
 	var player: Player = current_scene.get_node("World/Actors/Player")
-	if player.global_position != Vector2(640, 560):
+	if player.global_position != Vector2(768, 760):
 		_fail("Stage 2 player did not arrive at the authored spawn point.")
 		return
-	var return_portal: StagePortal = current_scene.get_node("World/Effects/ReturnPortal")
+	var controller: EncounterController = current_scene.get_node("GameplayServices/EncounterController")
+	if controller.waves.size() != 2:
+		_fail("Stage 2 must contain its authored two-wave encounter.")
+		return
+	var spitter_wave := controller.waves[1] as EncounterWaveDefinition
+	if spitter_wave.bramble_spitter_count != 1:
+		_fail("Stage 2 does not introduce exactly one Bramble Spitter in Wave 2.")
+		return
+	if current_scene.get_node("World/Effects").get_child_count() != 0:
+		_fail("Stage 2 exit portal should not exist before its encounter is cleared.")
+		return
+	controller._spawn_portal()
+	await process_frame
+	var return_portal: StagePortal = current_scene.get_node("World/Effects").get_child(0)
 	if return_portal.target_scene_path != "res://levels/test_arena/test_arena.tscn":
-		_fail("Stage 2 return portal is not configured.")
+		_fail("Cleared Stage 2 portal is not configured to return to Stage 1.")
 		return
 	print("Scene transition smoke test passed.")
 	quit(0)

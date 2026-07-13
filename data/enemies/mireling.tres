@@ -14,3 +14,5 @@ wind_up_seconds = 0.65
 active_seconds = 0.12
 recovery_seconds = 1.0
 spawn_seconds = 0.65
+experience_reward = 8
+coin_reward = 1

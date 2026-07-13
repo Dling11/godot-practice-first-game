@@ -13,3 +13,5 @@ extends Resource
 @export_range(0.01, 2.0, 0.01, "suffix:s") var active_seconds: float = 0.12
 @export_range(0.01, 3.0, 0.01, "suffix:s") var recovery_seconds: float = 0.55
 @export_range(0.05, 3.0, 0.05, "suffix:s") var spawn_seconds: float = 0.7
+@export_range(0, 9999, 1) var experience_reward := 1
+@export_range(0, 9999, 1) var coin_reward := 0

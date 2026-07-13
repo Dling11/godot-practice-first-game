@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://ui/combat_hud.gd" id="1"]
 
@@ -23,6 +23,9 @@ corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ability_cooldown"]
 bg_color = Color(0.72, 0.66, 0.42, 0.9)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_experience"]
+bg_color = Color(0.25, 0.62, 0.86, 1)
 
 [node name="CombatHUD" type="Control"]
 layout_mode = 3
@@ -65,6 +68,60 @@ layout_mode = 2
 value = 100.0
 show_percentage = false
 theme_override_styles/fill = SubResource("StyleBoxFlat_health")
+
+[node name="ProgressPanel" type="PanelContainer" parent="."]
+offset_left = 12.0
+offset_top = 42.0
+offset_right = 152.0
+offset_bottom = 73.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Margin" type="MarginContainer" parent="ProgressPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 3
+
+[node name="Stack" type="VBoxContainer" parent="ProgressPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Header" type="HBoxContainer" parent="ProgressPanel/Margin/Stack"]
+layout_mode = 2
+
+[node name="LevelLabel" type="Label" parent="ProgressPanel/Margin/Stack/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "LV 1"
+theme_override_colors/font_color = Color(0.76, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 9
+
+[node name="Spacer" type="Control" parent="ProgressPanel/Margin/Stack/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CoinLabel" type="Label" parent="ProgressPanel/Margin/Stack/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "COINS 0"
+theme_override_colors/font_color = Color(0.94, 0.76, 0.34, 1)
+theme_override_font_sizes/font_size = 8
+
+[node name="ExperienceBar" type="ProgressBar" parent="ProgressPanel/Margin/Stack"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+show_percentage = false
+theme_override_styles/fill = SubResource("StyleBoxFlat_experience")
+
+[node name="ExperienceLabel" type="Label" parent="ProgressPanel/Margin/Stack"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0 / 20 XP"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.64, 0.78, 0.9, 1)
+theme_override_font_sizes/font_size = 7
 
 [node name="BlockedLabel" type="Label" parent="."]
 unique_name_in_owner = true

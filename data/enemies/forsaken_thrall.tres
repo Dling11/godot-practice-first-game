@@ -8,3 +8,5 @@ display_name = "Forsaken Thrall"
 move_speed = 58.0
 acceleration = 520.0
 attack_range = 36.0
+experience_reward = 15
+coin_reward = 3

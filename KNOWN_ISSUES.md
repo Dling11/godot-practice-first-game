@@ -18,12 +18,12 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 - **Planned resolution:** Validate pixel stability with camera movement, richer walk cycles, and representative combat effects.
 - **Workaround:** Treat 960x540 as the active prototype baseline, not an irreversible final asset constraint.
 
-### KI-005 - Progression persistence and exact scope are undecided
+### KI-005 - Progression persistence and skill setup are undecided
 
 - **Status:** Open
-- **Impact:** The compact authored introduction now targets XP, coins, roughly ten levels, and a small skill set, but save rules, death persistence, exact level cap, and three-versus-four active skills cannot be finalized yet.
-- **Planned resolution:** Confirm those values after the first authored Stage 2 encounter establishes the playable scope.
-- **Workaround:** Keep progression unimplemented while combat and stage boundaries are validated; avoid random run-based upgrade assumptions.
+- **Impact:** The session-only level-10 XP/coin foundation is implemented, but save/death persistence, coin sinks, authored unlocks, and the three-versus-four active skill budget are undecided.
+- **Planned resolution:** Design the skill-information/setup menu and unlock/currency rules after feel-testing the current reward pace.
+- **Workaround:** Keep XP and coins session-only; avoid random run-based upgrade assumptions.
 
 ## Current Bugs
 

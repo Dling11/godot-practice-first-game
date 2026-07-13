@@ -14,6 +14,10 @@ extends Control
 @onready var ability_cooldown: ProgressBar = %AbilityCooldown
 @onready var ability_cooldown_label: Label = %CooldownLabel
 @onready var ability_cooldown_tick: Timer = %AbilityCooldownTick
+@onready var level_label: Label = %LevelLabel
+@onready var experience_bar: ProgressBar = %ExperienceBar
+@onready var experience_label: Label = %ExperienceLabel
+@onready var coin_label: Label = %CoinLabel
 
 var _blocked_tween: Tween
 var _player: Player
@@ -32,6 +36,12 @@ func bind_player(player: Player) -> void:
 	ability_panel.tooltip_text = ability.definition.display_name
 	_show_ability_ready()
 	_update_health(health.current_health, health.maximum_health)
+	var progression := player.progression_component
+	progression.progression_changed.connect(_update_progression)
+	progression.coins_changed.connect(_update_coins)
+	progression.leveled_up.connect(_show_level_up)
+	_update_progression(progression.level, progression.total_experience, 0)
+	_update_coins(progression.coins)
 
 
 func _show_ability_cooldown(duration_seconds: float) -> void:
@@ -102,6 +112,34 @@ func show_wave_clear(index: int, total: int) -> void:
 
 func show_stage_clear() -> void:
 	_show_announcement("STAGE CLEAR  •  PORTAL OPEN", 2.4)
+
+
+func show_story_message(message: String, hold_seconds := 3.0) -> void:
+	_show_announcement(message, hold_seconds)
+
+
+func _update_progression(_level: int, _total_experience: int, _next_level_experience: int) -> void:
+	if not is_instance_valid(_player):
+		return
+	var progression := _player.progression_component
+	level_label.text = "LV %d" % progression.level
+	if progression.level >= progression.definition.maximum_level:
+		experience_bar.max_value = 1.0
+		experience_bar.value = 1.0
+		experience_label.text = "MAX"
+		return
+	var required := progression.experience_required_for_current_level()
+	experience_bar.max_value = required
+	experience_bar.value = progression.experience_into_current_level()
+	experience_label.text = "%d / %d XP" % [experience_bar.value, required]
+
+
+func _update_coins(total_coins: int) -> void:
+	coin_label.text = "COINS %d" % total_coins
+
+
+func _show_level_up(new_level: int) -> void:
+	_show_announcement("LEVEL %d  •  NEW PATHS AWAKEN" % new_level, 2.0)
 
 
 func show_portal_sealed() -> void:
