@@ -1,6 +1,11 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://ui/character_menu.gd" id="1_script"]
+[ext_resource type="Theme" path="res://assets/ui/themes/battle_of_gods_theme.tres" id="2_theme"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/status/icon_status_experience_16x16.png" id="3_experience"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/economy/icon_currency_coin_16x16.png" id="4_coin"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/actions/icon_action_primary_attack_24x24.png" id="5_attack"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/actions/icon_action_dash_24x24.png" id="6_dash"]
 
 [sub_resource type="StyleBoxFlat" id="panel"]
 bg_color = Color(0.035, 0.043, 0.063, 0.98)
@@ -47,6 +52,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_theme")
 script = ExtResource("1_script")
 
 [node name="Veil" type="ColorRect" parent="."]
@@ -104,6 +110,13 @@ layout_mode = 2
 [node name="ProgressHeader" type="HBoxContainer" parent="Panel/Margin/Root"]
 layout_mode = 2
 
+[node name="ExperienceIcon" type="TextureRect" parent="Panel/Margin/Root/ProgressHeader"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("3_experience")
+expand_mode = 3
+stretch_mode = 5
+
 [node name="LevelLabel" type="Label" parent="Panel/Margin/Root/ProgressHeader"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -114,6 +127,13 @@ theme_override_font_sizes/font_size = 12
 [node name="Spacer" type="Control" parent="Panel/Margin/Root/ProgressHeader"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="CoinIcon" type="TextureRect" parent="Panel/Margin/Root/ProgressHeader"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("4_coin")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="CoinLabel" type="Label" parent="Panel/Margin/Root/ProgressHeader"]
 unique_name_in_owner = true
@@ -136,10 +156,40 @@ horizontal_alignment = 1
 theme_override_colors/font_color = Color(0.62, 0.72, 0.82, 1)
 theme_override_font_sizes/font_size = 9
 
-[node name="Actions" type="Label" parent="Panel/Margin/Root"]
+[node name="Actions" type="HBoxContainer" parent="Panel/Margin/Root"]
 layout_mode = 2
-text = "CORE ACTIONS  •  MOUSE: SWORD  •  SPACE: DASH"
-horizontal_alignment = 1
+alignment = 1
+theme_override_constants/separation = 5
+
+[node name="Title" type="Label" parent="Panel/Margin/Root/Actions"]
+layout_mode = 2
+text = "CORE ACTIONS"
+theme_override_colors/font_color = Color(0.72, 0.72, 0.66, 1)
+theme_override_font_sizes/font_size = 10
+
+[node name="AttackIcon" type="TextureRect" parent="Panel/Margin/Root/Actions"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("5_attack")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AttackLabel" type="Label" parent="Panel/Margin/Root/Actions"]
+layout_mode = 2
+text = "MOUSE: SWORD"
+theme_override_colors/font_color = Color(0.72, 0.72, 0.66, 1)
+theme_override_font_sizes/font_size = 10
+
+[node name="DashIcon" type="TextureRect" parent="Panel/Margin/Root/Actions"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("6_dash")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DashLabel" type="Label" parent="Panel/Margin/Root/Actions"]
+layout_mode = 2
+text = "SPACE: DASH"
 theme_override_colors/font_color = Color(0.72, 0.72, 0.66, 1)
 theme_override_font_sizes/font_size = 10
 

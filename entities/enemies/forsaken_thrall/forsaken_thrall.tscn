@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://6520tclsqofq" path="res://gameplay/combat/melee_hitbox.gd" id="6_hitbox"]
 [ext_resource type="Script" uid="uid://cg7bjqqrfc1ve" path="res://entities/enemies/forsaken_thrall/forsaken_thrall_visual.gd" id="7_visual"]
 [ext_resource type="Script" uid="uid://4l3spvpulsnw" path="res://entities/player/presentation/player_aim_visual.gd" id="8_facing"]
-[ext_resource type="SpriteFrames" path="res://assets/characters/sprites_24x32/thrall_frames.tres" id="9_enemy_frames"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/enemies/forsaken_thrall/forsaken_thrall_sprite_frames.tres" id="9_enemy_frames"]
 [ext_resource type="PackedScene" path="res://entities/enemies/components/enemy_separation_component.tscn" id="10_separation"]
 [ext_resource type="PackedScene" path="res://ui/world/enemy_health_bar.tscn" id="11_health_bar"]
 [ext_resource type="Script" path="res://gameplay/combat/knockback_component.gd" id="12_knockback"]

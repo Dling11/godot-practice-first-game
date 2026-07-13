@@ -10,13 +10,17 @@ func _initialize() -> void:
 
 
 func _run() -> void:
-	if not _validate_sheet("res://assets/characters/sprites_24x32/player_sheet_24x32.png"):
+	if not _validate_sheet("res://assets/characters/awakened/awakened_locomotion_sheet_24x32.png"):
 		return
-	if not _validate_sheet("res://assets/characters/sprites_24x32/thrall_sheet_24x32.png"):
+	if not _validate_sheet("res://assets/characters/enemies/forsaken_thrall/forsaken_thrall_locomotion_sheet_24x32.png"):
 		return
-	if not _validate_attack_sheet("res://assets/characters/sprites_24x32/player_attack_sheet_64x48.png", "Player"):
+	if not _validate_creature_sheet("res://assets/characters/enemies/mireling/mireling_action_sheet_32x32.png", "Mireling"):
 		return
-	if not _validate_attack_sheet("res://assets/characters/sprites_24x32/thrall_claw_attack_sheet_64x48.png", "Thrall"):
+	if not _validate_creature_sheet("res://assets/characters/enemies/bramble_spitter/bramble_spitter_action_sheet_32x32.png", "Bramble Spitter"):
+		return
+	if not _validate_attack_sheet("res://assets/characters/awakened/awakened_sword_attack_sheet_64x48.png", "The Awakened"):
+		return
+	if not _validate_attack_sheet("res://assets/characters/enemies/forsaken_thrall/forsaken_thrall_claw_attack_sheet_64x48.png", "Forsaken Thrall"):
 		return
 	var player := PlayerScene.instantiate()
 	root.add_child(player)
@@ -117,6 +121,21 @@ func _validate_attack_sheet(path: String, actor_name: String) -> bool:
 			var bounds := image.get_region(Rect2i(column * 64, row * 48, 64, 48)).get_used_rect()
 			if bounds.end.y != 40 or bounds.size.y < 29:
 				_fail("%s attack frame %s,%s violates shared scale/baseline." % [actor_name, column, row])
+				return false
+	return true
+
+
+func _validate_creature_sheet(path: String, actor_name: String) -> bool:
+	var texture := load(path) as Texture2D
+	var image := texture.get_image() if texture != null else null
+	if image == null or image.get_size() != Vector2i(128, 128):
+		_fail("Invalid %s 32x32 action sheet dimensions." % actor_name)
+		return false
+	for y in range(image.get_height()):
+		for x in range(image.get_width()):
+			var alpha := image.get_pixel(x, y).a
+			if alpha != 0.0 and alpha != 1.0:
+				_fail("%s action sheet contains non-binary alpha at %s,%s." % [actor_name, x, y])
 				return false
 	return true
 

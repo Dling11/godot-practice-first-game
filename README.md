@@ -23,6 +23,8 @@ The prototype uses a 960x540 logical viewport displayed at 1920x1080 for exact 2
 - `PROJECT_CONTEXT.md`: compact current-state entry point and task-based documentation router
 - `ARCHITECTURE.md`: technical boundaries and proposed project structure
 - `STYLE_GUIDE.md`: code, scene, signal, and asset conventions
+- `ART_DIRECTION.md`: visual theme, palette roles, pixel baselines, and replaceable-art rules
+- `ASSET_CATALOG.md`: canonical asset identities, paths, status, dimensions, and runtime owners
 - `ROADMAP.md`: delivery status and priorities
 - `CHANGELOG.md`: completed changes
 - `KNOWN_ISSUES.md`: confirmed limitations and unresolved questions
@@ -57,7 +59,7 @@ res://
   project.godot
 ```
 
-Prototype environment raster assets live in `res://assets/environment/prototype/`. Active character sheets and generated `SpriteFrames` live in `res://assets/characters/sprites_24x32/`. Reusable prop scenes live under `res://environment/props/`. Source atlases are retained for provenance; exact-grid sheets are the runtime assets.
+Prototype environment raster assets live in `res://assets/environment/prototype/`. The Awakened's runtime art lives under `res://assets/characters/awakened/`; all current enemy runtime art lives in named domains under `res://assets/characters/enemies/`. The shared UI theme and individually replaceable named icons live under `res://assets/ui/`. Reusable prop scenes live under `res://environment/props/`. Original, cleaned, and superseded generation material is preserved under the Godot-ignored `art_source/`; exact-grid sheets under `assets/` are the runtime files.
 
 The longer-term proposed structure is documented in `ARCHITECTURE.md`. Directories are created only with their first real asset.
 
@@ -96,6 +98,7 @@ Run the current headless movement smoke test with:
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/run_session_progression_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/character_menu_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/audio_director_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe' --headless --path . --script 'res://tests/ui_theme_icon_smoke.gd'
 ```
 
 ## Build and Export

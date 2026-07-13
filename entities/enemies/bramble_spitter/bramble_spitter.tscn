@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://entities/enemies/bramble_spitter/bramble_spitter.gd" id="1"]
 [ext_resource type="Resource" path="res://data/enemies/bramble_spitter.tres" id="2"]
-[ext_resource type="SpriteFrames" path="res://assets/characters/bramble_spitter/bramble_spitter_frames.tres" id="3"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/enemies/bramble_spitter/bramble_spitter_sprite_frames.tres" id="3"]
 [ext_resource type="Script" path="res://entities/enemies/bramble_spitter/bramble_spitter_visual.gd" id="4"]
 [ext_resource type="Script" path="res://gameplay/combat/health_component.gd" id="5"]
 [ext_resource type="Script" path="res://gameplay/combat/hurtbox_component.gd" id="6"]

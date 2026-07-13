@@ -17,8 +17,8 @@ func _initialize() -> void:
 
 
 func _build_player_frames() -> Error:
-	var texture := load("res://assets/characters/sprites_24x32/player_sheet_24x32.png") as Texture2D
-	var attack_texture := load("res://assets/characters/sprites_24x32/player_attack_sheet_64x48.png") as Texture2D
+	var texture := load("res://assets/characters/awakened/awakened_locomotion_sheet_24x32.png") as Texture2D
+	var attack_texture := load("res://assets/characters/awakened/awakened_sword_attack_sheet_64x48.png") as Texture2D
 	var frames := SpriteFrames.new()
 	frames.remove_animation("default")
 	for column in range(4):
@@ -27,12 +27,12 @@ func _build_player_frames() -> Error:
 		_add_animation(frames, "walk_" + direction, texture, [Vector2i(column, 0), Vector2i(column, 1)], 5.0, true)
 		_add_attack_animation(frames, "attack_" + direction, attack_texture, column)
 		_add_animation(frames, "dash_" + direction, texture, [Vector2i(column, 3)], 1.0, false)
-	return ResourceSaver.save(frames, "res://assets/characters/sprites_24x32/player_frames.tres")
+	return ResourceSaver.save(frames, "res://assets/characters/awakened/awakened_sprite_frames.tres")
 
 
 func _build_enemy_frames() -> Error:
-	var texture := load("res://assets/characters/sprites_24x32/thrall_sheet_24x32.png") as Texture2D
-	var attack_texture := load("res://assets/characters/sprites_24x32/thrall_claw_attack_sheet_64x48.png") as Texture2D
+	var texture := load("res://assets/characters/enemies/forsaken_thrall/forsaken_thrall_locomotion_sheet_24x32.png") as Texture2D
+	var attack_texture := load("res://assets/characters/enemies/forsaken_thrall/forsaken_thrall_claw_attack_sheet_64x48.png") as Texture2D
 	var frames := SpriteFrames.new()
 	frames.remove_animation("default")
 	for column in range(4):
@@ -41,11 +41,11 @@ func _build_enemy_frames() -> Error:
 		_add_animation(frames, "walk_" + direction, texture, [Vector2i(column, 0), Vector2i(column, 1)], 4.0, true)
 		_add_attack_animation(frames, "attack_" + direction, attack_texture, column)
 		_add_animation(frames, "dead_" + direction, texture, [Vector2i(column, 3)], 1.0, false)
-	return ResourceSaver.save(frames, "res://assets/characters/sprites_24x32/thrall_frames.tres")
+	return ResourceSaver.save(frames, "res://assets/characters/enemies/forsaken_thrall/forsaken_thrall_sprite_frames.tres")
 
 
 func _build_mireling_frames() -> Error:
-	var texture := load("res://assets/characters/mireling/mireling_sheet_32x32.png") as Texture2D
+	var texture := load("res://assets/characters/enemies/mireling/mireling_action_sheet_32x32.png") as Texture2D
 	var frames := SpriteFrames.new()
 	frames.remove_animation("default")
 	for column in range(4):
@@ -54,11 +54,11 @@ func _build_mireling_frames() -> Error:
 		_add_mireling_animation(frames, "hop_" + direction, texture, column, 1, 4.0, true)
 		_add_mireling_animation(frames, "attack_" + direction, texture, column, 2, 1.0, false)
 		_add_mireling_animation(frames, "dead_" + direction, texture, column, 3, 1.0, false)
-	return ResourceSaver.save(frames, "res://assets/characters/mireling/mireling_frames.tres")
+	return ResourceSaver.save(frames, "res://assets/characters/enemies/mireling/mireling_sprite_frames.tres")
 
 
 func _build_bramble_spitter_frames() -> Error:
-	var texture := load("res://assets/characters/bramble_spitter/bramble_spitter_sheet_32x32.png") as Texture2D
+	var texture := load("res://assets/characters/enemies/bramble_spitter/bramble_spitter_action_sheet_32x32.png") as Texture2D
 	if texture == null:
 		push_error("Bramble Spitter runtime atlas must be imported before building SpriteFrames.")
 		return ERR_CANT_OPEN
@@ -77,7 +77,7 @@ func _build_bramble_spitter_frames() -> Error:
 			false
 		)
 		_add_32px_animation(frames, "dead_" + direction, texture, [Vector2i(column, 3)], 1.0, false)
-	return ResourceSaver.save(frames, "res://assets/characters/bramble_spitter/bramble_spitter_frames.tres")
+	return ResourceSaver.save(frames, "res://assets/characters/enemies/bramble_spitter/bramble_spitter_sprite_frames.tres")
 
 
 func _add_mireling_animation(frames: SpriteFrames, name: String, texture: Texture2D, column: int, row: int, speed: float, loop: bool) -> void:

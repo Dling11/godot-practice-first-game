@@ -5,7 +5,7 @@ signal wave_changed(index: int, total: int, title: String)
 signal wave_cleared(index: int, total: int)
 signal stage_cleared
 signal portal_sealed
-signal portal_prompt_changed(is_visible: bool, prompt_text: String)
+signal portal_prompt_changed(is_visible: bool, prompt_text: String, prompt_icon: Texture2D)
 signal enemy_spawned(global_position: Vector2)
 
 @export var player: Player
@@ -141,7 +141,7 @@ func _spawn_portal() -> void:
 	portal.player_entered.connect(func() -> void:
 		if portal.target_scene_path.is_empty(): portal_sealed.emit()
 	)
-	portal.proximity_changed.connect(func(is_near: bool, prompt_text: String) -> void:
-		portal_prompt_changed.emit(is_near, prompt_text)
+	portal.proximity_changed.connect(func(is_near: bool, prompt_text: String, prompt_icon: Texture2D) -> void:
+		portal_prompt_changed.emit(is_near, prompt_text, prompt_icon)
 	)
 	stage_cleared.emit()

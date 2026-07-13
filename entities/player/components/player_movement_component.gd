@@ -16,4 +16,3 @@ func calculate_velocity(
 	var target_velocity := move_direction.limit_length(1.0) * max_speed
 	var change_rate := acceleration if not move_direction.is_zero_approx() else deceleration
 	return current_velocity.move_toward(target_velocity, change_rate * delta)
-

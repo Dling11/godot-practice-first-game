@@ -2,21 +2,18 @@ class_name StagePortal
 extends Area2D
 
 signal player_entered
-signal proximity_changed(is_near: bool, prompt_text: String)
+signal proximity_changed(is_near: bool, prompt_text: String, prompt_icon: Texture2D)
 
 @export_file("*.tscn") var target_scene_path := ""
 @export var rings: Node2D
 @export var ground_glow: Polygon2D
 @export var interaction_text := "PRESS F TO ENTER PORTAL"
-
-@onready var interaction_label: Label = %InteractionLabel
+@export var interaction_icon: Texture2D
 
 var _player_inside := false
 
 
 func _ready() -> void:
-	interaction_label.text = interaction_text
-	interaction_label.hide()
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	var tween := create_tween().set_loops()
@@ -33,8 +30,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	player_entered.emit()
 	if target_scene_path.is_empty():
 		return
-	proximity_changed.emit(false, "")
-	interaction_label.hide()
+	proximity_changed.emit(false, "", null)
 	_player_inside = false
 	var transition_service := get_node_or_null("/root/SceneTransition")
 	if transition_service == null:
@@ -46,13 +42,10 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if not body is Player: return
 	_player_inside = true
-	interaction_label.text = interaction_text
-	interaction_label.show()
-	proximity_changed.emit(true, interaction_text)
+	proximity_changed.emit(true, interaction_text, interaction_icon)
 
 
 func _on_body_exited(body: Node2D) -> void:
 	if not body is Player: return
 	_player_inside = false
-	interaction_label.hide()
-	proximity_changed.emit(false, "")
+	proximity_changed.emit(false, "", null)

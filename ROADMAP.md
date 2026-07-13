@@ -19,6 +19,12 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 - Reusable combat-impact feedback: accepted-hit damage numbers, pixel bursts, restrained camera nudges, and automatic cleanup.
 - Event-driven combat SFX for sword, Sweeping Cut, dash, player damage, current enemy attacks, and Bramble projectile impacts, with Music/SFX/UI bus separation.
 - Regression coverage for player combat, enemies, crowd behavior, navigation, encounters, portals, transitions, and defeat.
+- Visual asset foundation: documented art direction, canonical asset catalog, naming/lifecycle rules, and replaceable-background contract.
+- Controlled Awakened asset migration: canonical runtime names/folder plus preserved Godot-ignored source and intermediate art.
+- Controlled Forsaken Thrall asset migration: canonical enemy runtime names/folder plus preserved source and intermediate art.
+- Controlled Mireling asset migration: canonical 32x32 runtime art, preserved generation material, and archived superseded 24x24 sheet.
+- Completed current character-art migration with canonical Bramble Spitter runtime art and preserved generation material.
+- Added the reusable Godot base theme, nine named hard-pixel UI icons, themed HUD/menu presentation, and icon-bearing contextual portal prompt.
 
 Detailed completion history remains in `CHANGELOG.md`.
 
@@ -39,6 +45,8 @@ Detailed completion history remains in `CHANGELOG.md`.
 - Feel-test combat cue selection, positional balance, repetition, and SFX-versus-music volume.
 - Feel-test the centered four-slot skill bar and Tab character-menu readability at the 960x540 viewport.
 - Design authored skill unlock rules, coin sinks, and the first abilities for sealed slots 2-4.
+- Feel-test the shared theme, named HUD icons, expanded skill-bar height, and portal-prompt placement at 960x540.
+- Build the title-screen shell with replaceable background layers and keyboard/gamepad focus.
 
 ## Planned
 

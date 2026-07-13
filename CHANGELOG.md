@@ -1,5 +1,51 @@
 # Changelog
 
+## 2026-07-14 - Shared UI Theme and Named Icon Kit
+
+- Added a reusable dark-fantasy Godot `Theme` covering common panels, labels, buttons, progress bars, separators, focus, disabled, and tooltip states.
+- Added nine reproducible binary-alpha pixel icons for health, XP, coins, attack, dash, Sweeping Cut, sealed slots, portal interaction, and future NPC dialogue.
+- Applied the theme and semantic icons to the combat HUD and character menu while retaining local styles only for meaningful health/cooldown/skill states.
+- Extended the portal proximity event with presentation metadata so the existing HUD prompt displays a portal icon and can later serve other interactables.
+- Added automated theme, icon-size, hard-alpha, scene-wiring, and portal-icon coverage.
+
+## 2026-07-14 - Bramble Spitter Asset Migration
+
+- Migrated the Bramble Spitter's active 32x32 action sheet and `SpriteFrames` into its canonical `assets/characters/enemies/bramble_spitter/` runtime domain.
+- Updated the Spitter scene, shared frame builder, architecture, README, roadmap, art-source mapping, and asset catalog.
+- Extended exact-grid and binary-alpha regression validation to both 32x32 creature sheets.
+- Preserved original and cleaned Bramble generation images under Godot-ignored `art_source/generated/`, completing migration for all current playable character art.
+
+## 2026-07-14 - Mireling Asset Migration
+
+- Migrated the Mireling's active 32x32 action sheet and `SpriteFrames` into its canonical `assets/characters/enemies/mireling/` runtime domain.
+- Updated the Mireling scene, shared frame builder, animation test, architecture, README, roadmap, art-source mapping, and asset catalog.
+- Preserved original and cleaned generation images under `art_source/generated/` and moved the superseded 24x24 runtime experiment into `art_source/archive/` rather than deleting it.
+
+## 2026-07-14 - Forsaken Thrall Asset Migration
+
+- Migrated the Forsaken Thrall's locomotion sheet, six-frame claw sheet, and `SpriteFrames` into its canonical `assets/characters/enemies/forsaken_thrall/` runtime domain.
+- Updated the Thrall scene, shared reproducible frame builder, animation regression test, architecture, README, roadmap, and asset catalog to the canonical identity and paths.
+- Preserved four original/cleaned Thrall generation images under Godot-ignored `art_source/` and removed obsolete import sidecars from their former locations.
+
+## 2026-07-14 - The Awakened Asset Migration
+
+- Migrated The Awakened's locomotion sheet, six-frame sword sheet, and `SpriteFrames` into the canonical `assets/characters/awakened/` runtime domain.
+- Updated the player scene, reproducible frame builder, animation regression test, architecture, README, and asset catalog to the canonical identity and paths.
+- Added the Godot-ignored `art_source/` workspace and preserved four original/cleaned Awakened generation images there without loading them at runtime.
+- Removed obsolete Godot import sidecars for the moved files so the editor can regenerate correct metadata at their new paths.
+
+## 2026-07-14 - Visual Asset Documentation Foundation
+
+- Added `ART_DIRECTION.md` as the source of truth for the luminous dark-fantasy theme, palette roles, lighting, pixel baselines, UI language, and replaceable-background contract.
+- Added `ASSET_CATALOG.md` with canonical IDs, verified dimensions, current runtime paths, controlled migration targets, runtime owners, planned UI assets, and lifecycle status.
+- Defined non-destructive source/intermediate/runtime/archive handling and semantic asset naming before any physical file migration.
+- Recorded the asset identity and replaceable-presentation decision as ADR 033.
+
+## 2026-07-14 - Portal Prompt Layout Correction
+
+- Removed the portal's duplicate world-space instruction and retained one reusable HUD-owned interaction prompt.
+- Moved the prompt above the centered four-slot skill bar so contextual interaction text no longer overlaps combat controls.
+
 ## 2026-07-14 - Four-Slot Skills and Run Continuity
 
 - Moved Sweeping Cut to numbered skill slot 1 while retaining Q as a temporary compatibility binding, and reserved inputs 2-4 for authored future abilities.

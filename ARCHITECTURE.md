@@ -95,11 +95,11 @@ The player dash uses shared `EvadeDefinition` data. `Player` remains movement au
 
 Sweeping Cut uses `AbilityDefinition` plus `AbilityComponent`. Its wider `MeleeHitbox` sends normal `DamageInfo` with optional pushback strength. Enemy-local `KnockbackComponent` observes accepted damage and exposes a brief decaying velocity contribution; each enemy remains movement authority and decides when that contribution may affect motion. Committed Mireling leaps ignore pushback motion so their marked landing remains predictable.
 
-The Forsaken Thrall uses shared `EnemyDefinition` data and an explicit state machine. Chase facing follows navigation steering rather than direct target bearing, attacks require unobstructed world line-of-sight, and enemy movement bodies collide with world but not the player. Hitboxes and hurtboxes retain combat authority, preventing attack-lock pinning.
+The Forsaken Thrall uses shared `EnemyDefinition` data, canonical runtime art under `assets/characters/enemies/forsaken_thrall/`, and an explicit state machine. Chase facing follows navigation steering rather than direct target bearing, attacks require unobstructed world line-of-sight, and enemy movement bodies collide with world but not the player. Hitboxes and hurtboxes retain combat authority, preventing attack-lock pinning.
 
 `CombatHUD` binds to the player's `HealthComponent` and observes health/damage-blocked signals. `Player` owns the defeated state and cancels its active combat components. `ArenaFlow` observes `Player.defeated`, reveals the restart presentation through the HUD, and owns scene reload. The HUD never applies damage or reloads gameplay itself.
 
-`EnemyHealthBar` is a reusable world-space presentation component used by Thralls, Mirelings, and Bramble Spitters. It observes `HealthComponent.health_changed` and `died`, updates only on signals, and uses a one-shot timer to hide after 2.2 seconds. It never owns, calculates, or mutates health. Boss health presentation may reuse the binding approach without requiring the same compact scene.
+`EnemyHealthBar` is a reusable world-space presentation component used by Thralls, Mirelings, and Bramble Spitters. Mireling runtime art is canonicalized under `assets/characters/enemies/mireling/`; its superseded 24x24 experiment is preserved outside Godot runtime imports. The health bar observes `HealthComponent.health_changed` and `died`, updates only on signals, and uses a one-shot timer to hide after 2.2 seconds. It never owns, calculates, or mutates health. Boss health presentation may reuse the binding approach without requiring the same compact scene.
 
 `EnemyRewardComponent` observes its own actor's `HealthComponent.died` event and grants the injected player XP/coins from its `EnemyDefinition`. Enemy definitions own only reward values; the recipient owns mutable totals. `RunSession` retains only XP and coin totals across scene replacement; each new `PlayerProgressionComponent` reconstructs its level from immutable thresholds. `CombatHUD` and `CharacterMenu` observe progression signals and never calculate thresholds or award currency.
 
@@ -142,7 +142,7 @@ PlayerInputSource -> Player request_ability_1 -> AbilityComponent
 -> cooldown signals -> CombatHUD slot 1
 ```
 
-Presentation observes facing and attack phase signals. Locomotion uses 24x32 cells, while `PlayerAnimation` selects six 64x48 authored attack frames per direction. Wind-up maps to frames 0-1, the active hit window to frames 2-3, and recovery to frames 4-5. Each pair advances at half its gameplay phase duration. The invisible pivot orients only the authoritative hitbox; animation, effects, audio, HUD icons, or inventory UI must not become damage authority.
+Presentation observes facing and attack phase signals. The Awakened's canonical runtime art lives under `assets/characters/awakened/`: locomotion uses 24x32 cells, while `PlayerAnimation` selects six 64x48 authored attack frames per direction. Wind-up maps to frames 0-1, the active hit window to frames 2-3, and recovery to frames 4-5. Each pair advances at half its gameplay phase duration. The invisible pivot orients only the authoritative hitbox; animation, effects, audio, HUD icons, or inventory UI must not become damage authority.
 
 Top-down movement collision is a 6-pixel circular foot footprint centered at `y = -4`. Hurtboxes are separate 24-pixel body capsules centered at `y = -14`. Character shadows are centered at `y = -2`, directly beneath sprite feet. Sword and Thrall attack shapes are centered 18 pixels from their body-centered pivots.
 
@@ -156,7 +156,7 @@ Use finite-state or hierarchical state behavior appropriate to complexity. Expen
 
 The Forsaken Thrall uses scheduled `NavigationAgent2D` target updates and follows the baked arena path. Thralls, Mirelings, and Bramble Spitters compose `EnemySeparationComponent`, an `Area2D` that observes only nearby enemy bodies and blends gentle repulsion into movement steering. Attack states, committed Mireling leaps, and committed Spitter shots ignore separation so combat timing remains predictable.
 
-The Bramble Spitter uses an explicit positioning/wind-up/recovery state machine. It snapshots one player position before presentation displays a world-space red ground marker. `HostileProjectile` owns seed travel and hit delivery through the standard `DamageInfo`/`HurtboxComponent` contract; the sprite and marker remain presentation-only. The configured seed terminates at its committed target position, collides with player hurtboxes and world bodies along the route, and retains a fixed lifetime safety limit.
+The Bramble Spitter uses canonical 32x32 runtime art under `assets/characters/enemies/bramble_spitter/` and an explicit positioning/wind-up/recovery state machine. It snapshots one player position before presentation displays a world-space red ground marker. `HostileProjectile` owns seed travel and hit delivery through the standard `DamageInfo`/`HurtboxComponent` contract; the sprite and marker remain presentation-only. The configured seed terminates at its committed target position, collides with player hurtboxes and world bodies along the route, and retains a fixed lifetime safety limit.
 
 Spitter firing presentation observes `shot_telegraphed` and `shot_fired`: it owns the three-frame charge sequence, swelling, restrained recoil, red target marker, muzzle flash, and sparks. Movement steering and facing are intentionally separate while kiting so the creature backs away without visually turning from its target. `HostileProjectile` creates a configured presentation-only impact scene when authoritative collision resolves; trails and impact art never determine damage or hit timing.
 
@@ -174,7 +174,9 @@ Stage presentation is a brief top-edge label. The centered lower screen contains
 
 The centered HUD shows four numbered active-skill slots. Slot 1 exposes Sweeping Cut readiness and numeric/bar cooldown feedback; slots 2-4 are visibly locked rather than implying implemented abilities. `CharacterMenu` is a paused, read-only Tab surface for The Awakened's progression and authored skill-path information. Both surfaces observe gameplay state and do not calculate readiness, progression, rewards, or casts.
 
-Reusable interaction prompts are contextual: an interactable emits visibility/text while the HUD presents the bottom-center prompt. Leaving the area clears it immediately.
+Reusable interaction prompts are contextual: an interactable emits visibility, text, and an optional semantic presentation icon while the HUD presents one prompt above the centered skill bar. The portal configures `icon_interaction_portal`; future NPCs can use the same path with `icon_interaction_talk`. Interactables do not duplicate the same instruction in world space, gameplay does not branch on icon filenames, and leaving the area clears both text and icon immediately.
+
+`battle_of_gods_theme.tres` is the shared base for HUDs and menus. It owns common panel, label, button, progress-background, separator, focus, disabled, and tooltip treatment. Individual scenes retain local overrides only for meaningful state such as health fill, cooldown, equipped, or sealed presentation. Named icons are independent textures so presentation can replace one concept without repacking an atlas or modifying gameplay authority.
 
 ### Environment Assets
 

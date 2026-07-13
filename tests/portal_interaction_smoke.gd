@@ -23,25 +23,26 @@ func _run() -> void:
 	if trigger_shape.radius < 48.0:
 		_fail("Portal interaction radius is too small to behave as a proximity prompt.")
 		return
-	var prompt := {"visible": false, "text": "", "entered": false}
-	portal.proximity_changed.connect(func(visible: bool, text: String) -> void:
+	var prompt := {"visible": false, "text": "", "icon": null, "entered": false}
+	portal.proximity_changed.connect(func(visible: bool, text: String, icon: Texture2D) -> void:
 		prompt.visible = visible
 		prompt.text = text
+		prompt.icon = icon
 	)
 	portal.player_entered.connect(func() -> void: prompt.entered = true)
 	player.global_position = Vector2(200.0, 200.0)
 	portal.global_position = Vector2(200.0, 200.0)
 	for frame in range(3): await physics_frame
-	if not hud.interaction_panel.visible or not portal.interaction_label.visible:
-		_fail("Real physics overlap did not display both portal interaction prompts.")
+	if not hud.interaction_panel.visible:
+		_fail("Real physics overlap did not display the portal interaction prompt.")
 		return
 	player.global_position = Vector2(400.0, 400.0)
 	for frame in range(3): await physics_frame
-	if hud.interaction_panel.visible or portal.interaction_label.visible:
-		_fail("Real physics separation did not hide both portal interaction prompts.")
+	if hud.interaction_panel.visible:
+		_fail("Real physics separation did not hide the portal interaction prompt.")
 		return
 	portal._on_body_entered(player)
-	if not prompt.visible or not prompt.text.contains("PRESS F TO ENTER PORTAL"):
+	if not prompt.visible or not prompt.text.contains("PRESS F TO ENTER PORTAL") or prompt.icon == null:
 		_fail("Entering portal range did not show the interaction prompt.")
 		return
 	portal._on_body_exited(player)

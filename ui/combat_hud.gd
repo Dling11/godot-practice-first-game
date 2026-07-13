@@ -8,6 +8,7 @@ extends Control
 @onready var stage_label: Label = %StageLabel
 @onready var spawn_indicator: Label = %SpawnIndicator
 @onready var interaction_panel: PanelContainer = %InteractionPanel
+@onready var interaction_icon: TextureRect = %InteractionIcon
 @onready var interaction_label: Label = %InteractionLabel
 @onready var ability_panel: PanelContainer = %AbilityPanel
 @onready var ability_key_label: Label = %KeyLabel
@@ -146,8 +147,10 @@ func show_portal_sealed() -> void:
 	_show_announcement("THE NEXT STAGE IS SEALED", 2.0)
 
 
-func show_interaction_prompt(is_visible: bool, prompt_text: String) -> void:
+func show_interaction_prompt(is_visible: bool, prompt_text: String, prompt_icon: Texture2D = null) -> void:
 	interaction_label.text = prompt_text
+	interaction_icon.texture = prompt_icon
+	interaction_icon.visible = prompt_icon != null
 	interaction_panel.visible = is_visible
 
 

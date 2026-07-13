@@ -94,6 +94,16 @@ Use static typing for public APIs, exported data, signals, return values, and no
 
 ## Assets and Pixel Art
 
+- Give each approved asset a canonical semantic ID in `ASSET_CATALOG.md`.
+- Runtime filenames use descriptive `snake_case`; prefer `<identity>_<action-or-purpose>_<asset-type>_<dimensions>` where the dimensions communicate a real grid contract.
+- Never use `final`, `new`, `fixed`, `better`, unexplained numbers, or personal names in runtime filenames.
+- Keep source, cleaned intermediate, runtime, and archived states distinct. Only runtime assets belong in load-bearing scene paths.
+- Backgrounds, icons, and panel art are presentation dependencies. Reference them through configured scenes/resources rather than branching gameplay logic on filenames.
+- Follow `ART_DIRECTION.md` for palette roles, lighting, pixel density, and replaceable-background requirements.
+- Apply `assets/ui/themes/battle_of_gods_theme.tres` at reusable UI roots; add local theme overrides only for semantic states the shared theme cannot represent.
+- UI icons use stable canonical concepts and native 16x16 or 24x24 textures. Pass them as presentation configuration or metadata; never parse their filenames to decide gameplay behavior.
+- Keep small pixel icons on binary alpha with one readable symbol and transparent internal margin. Regenerate the baseline kit through `tools/build_ui_icon_kit.gd` rather than hand-editing generated runtime files inconsistently.
+
 - Favor strong silhouettes, limited palettes, and readable animation keys.
 - Use nearest-neighbor filtering and pixel-consistent import settings once the base resolution is decided.
 - Avoid subpixel shimmer by aligning camera/rendering policy with the chosen pixel scale.

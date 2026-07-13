@@ -40,6 +40,8 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 030 | Keep combat impact feedback presentation-only and time-scale-free | Damage numbers, screen shake, hit stop, or effects |
 | 031 | Drive positional combat SFX from authoritative events | Audio buses, player/enemy cues, or combat sound ownership |
 | 032 | Use four numbered skills and a narrow in-memory run session | Skill controls, character menu, portal progression, or run reset |
+| 033 | Give assets canonical identities and replaceable presentation contracts | Art generation, asset naming, folders, UI themes, or backgrounds |
+| 034 | Use one shared theme and semantic UI icons | HUD/menu styling, interaction prompts, icon replacement, or new UI screens |
 
 ## New Decisions
 
