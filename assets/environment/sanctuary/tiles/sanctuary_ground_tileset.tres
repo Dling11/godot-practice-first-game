@@ -1,6 +1,6 @@
-[gd_resource type="TileSet" format=3]
+[gd_resource type="TileSet" format=3 uid="uid://l2j1o71w1x0s"]
 
-[ext_resource type="Texture2D" path="res://assets/environment/sanctuary/tiles/sanctuary_ground_atlas_64x64.png" id="1_atlas"]
+[ext_resource type="Texture2D" uid="uid://dd5t7mu58q2qc" path="res://assets/environment/sanctuary/tiles/sanctuary_ground_atlas_64x64.png" id="1_atlas"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sanctuary"]
 texture = ExtResource("1_atlas")

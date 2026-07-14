@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-07-15 - Portal Front/Behind Occlusion
+
+- Split the existing portal image into an always-behind center-stair layer and a normally Y-sorted arch/guardian structure without changing its combined appearance.
+- Added a separate front-approach depth area spanning the doorway and both guardians that moves the portal structure behind the character before their head overlaps it, while the smaller expedition prompt trigger keeps its independently authored close range.
+- Players now remain visible throughout the southern approach and interaction, then return to normal front/behind Y-sorting after leaving; the user's small front stop, trigger, placement, and rear-backstop edits remain unchanged.
+- Documented that `PortalBackstopCollision` prevents physical traversal through the rear monument but does not control render order.
+
+## 2026-07-14 - Walk-In Portal and NPC Idle Refinement
+
+- Replaced the combined portal/fountain runtime crop with a standalone 192x192 angel expedition portal and independent 112x96 divine fountain generated for the approved Sanctuary style.
+- Reauthored the north courtyard so the player walks around the fountain, crosses visible open space, and ascends an unobstructed center staircase before the expedition prompt appears at the doorway.
+- Split fountain collision and water presentation into a reusable `DivineFountain` scene; the expedition altar now owns only portal interaction, guardian footprints, rear backstop, glow, and runes.
+- Replaced Armskeeper Orren's board crop with a standalone full-body source whose hands and silhouette remain intact in all four runtime frames.
+- Added reusable timer-driven, one-pixel NPC breathing to Eira and Orren without moving their collision, interaction, shadows, or gameplay authority.
+- Added deterministic standalone-asset processing, archived the superseded combined landmark outside runtime imports, and extended Sanctuary traversal, asset, scene, and editor-preview regression coverage.
+
 ## 2026-07-14 - Generated Sanctuary Visual and Interaction Rebuild
 
 - Converted the current Mushroom Dwelling and Merchant Hall from rectangle collision resources to editable `CollisionPolygon2D` footprints without changing their existing bounds; visual shadows remain independent `Polygon2D` nodes.

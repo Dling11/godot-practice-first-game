@@ -7,13 +7,20 @@ signal selection_requested
 @export var interaction_icon: Texture2D
 @export var portal_glow: Node2D
 @export var rune_orbit: Node2D
-@export var water_glint: Node2D
+@export var portal_structure: CanvasItem
+@export var front_depth_area: Area2D
 var _player_inside := false
+var _portal_structure_default_z_index := 0
 
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
+	if front_depth_area != null:
+		front_depth_area.body_entered.connect(_on_front_depth_body_entered)
+		front_depth_area.body_exited.connect(_on_front_depth_body_exited)
+	if portal_structure != null:
+		_portal_structure_default_z_index = portal_structure.z_index
 	if rune_orbit != null:
 		var orbit_tween := create_tween().set_loops()
 		orbit_tween.tween_property(rune_orbit, "rotation", TAU, 7.0).from(0.0)
@@ -23,10 +30,6 @@ func _ready() -> void:
 		glow_tween.parallel().tween_property(portal_glow, "modulate:a", 0.58, 1.2).from(0.9)
 		glow_tween.tween_property(portal_glow, "scale", Vector2.ONE, 1.4).set_trans(Tween.TRANS_SINE)
 		glow_tween.parallel().tween_property(portal_glow, "modulate:a", 0.9, 1.4)
-	if water_glint != null:
-		var water_tween := create_tween().set_loops()
-		water_tween.tween_property(water_glint, "position:x", 3.0, 0.8).from(-3.0).set_trans(Tween.TRANS_SINE)
-		water_tween.tween_property(water_glint, "position:x", -3.0, 0.9).set_trans(Tween.TRANS_SINE)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -52,3 +55,23 @@ func _on_body_exited(body: Node2D) -> void:
 	if not body is Player: return
 	_player_inside = false
 	proximity_changed.emit(false, "", null)
+
+
+func _on_front_depth_body_entered(body: Node2D) -> void:
+	if body is Player:
+		_set_player_in_front(true)
+
+
+func _on_front_depth_body_exited(body: Node2D) -> void:
+	if body is Player:
+		_set_player_in_front(false)
+
+
+func _set_player_in_front(is_in_front: bool) -> void:
+	if portal_structure == null:
+		return
+	portal_structure.z_index = (
+		_portal_structure_default_z_index - 1
+		if is_in_front
+		else _portal_structure_default_z_index
+	)

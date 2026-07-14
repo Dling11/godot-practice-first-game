@@ -3,7 +3,9 @@ extends SceneTree
 const SanctuaryScene = preload("res://levels/sanctuary/sanctuary.tscn")
 
 const RUNTIME_SPRITES := {
-	"res://assets/environment/sanctuary/landmarks/angel_portal_fountain_256x240.png": Vector2i(256, 240),
+	"res://assets/environment/sanctuary/landmarks/angel_expedition_portal_192x192.png": Vector2i(192, 192),
+	"res://assets/environment/sanctuary/landmarks/angel_expedition_portal_ground_192x192.png": Vector2i(192, 192),
+	"res://assets/environment/sanctuary/landmarks/divine_fountain_112x96.png": Vector2i(112, 96),
 	"res://assets/environment/sanctuary/buildings/mushroom_dwelling_128x192.png": Vector2i(128, 192),
 	"res://assets/environment/sanctuary/buildings/merchant_hall_176x192.png": Vector2i(176, 192),
 	"res://assets/environment/sanctuary/shops/weapon_stall_128x96.png": Vector2i(128, 96),
@@ -15,6 +17,9 @@ const RUNTIME_SPRITES := {
 }
 
 const MINIMUM_OPAQUE_PIXELS := {
+	"res://assets/environment/sanctuary/landmarks/angel_expedition_portal_192x192.png": 7000,
+	"res://assets/environment/sanctuary/landmarks/angel_expedition_portal_ground_192x192.png": 900,
+	"res://assets/environment/sanctuary/landmarks/divine_fountain_112x96.png": 3500,
 	"res://assets/environment/sanctuary/buildings/mushroom_dwelling_128x192.png": 14000,
 	"res://assets/environment/sanctuary/buildings/merchant_hall_176x192.png": 21000,
 	"res://assets/environment/sanctuary/shops/weapon_stall_128x96.png": 7000,
@@ -76,6 +81,7 @@ func _run() -> void:
 	var skillkeeper := sanctuary.get_node("World/Actors/Skillkeeper") as DialogueNpc
 	var merchant := sanctuary.get_node("World/Actors/WeaponMerchant") as DialogueNpc
 	var altar := sanctuary.get_node("World/Actors/ExpeditionAltar") as ExpeditionAltar
+	var fountain := sanctuary.get_node("World/Actors/DivineFountain") as DivineFountain
 	var dialogue := sanctuary.get_node("UI/DialoguePanel") as DialoguePanel
 	var menu := sanctuary.get_node("UI/ExpeditionMenu") as ExpeditionMenu
 	var ground := sanctuary.get_node("World/Level/Ground") as SanctuaryGround
@@ -90,8 +96,8 @@ func _run() -> void:
 	if ground.get_used_cells().size() != 216:
 		_fail("Sanctuary dedicated ground did not fill its authored 18x12 map.")
 		return
-	if sanctuary.has_node("World/Actors/DivineFountain"):
-		_fail("The superseded prototype fountain is still instantiated in Sanctuary.")
+	if fountain == null:
+		_fail("The standalone divine fountain is not instantiated in Sanctuary.")
 		return
 	var skillkeeper_sprite := skillkeeper.get_node("Sprite") as AnimatedSprite2D
 	var merchant_sprite := merchant.get_node("Sprite") as AnimatedSprite2D
@@ -101,26 +107,64 @@ func _run() -> void:
 	if not merchant_sprite.is_playing() or merchant_sprite.sprite_frames.get_frame_count("idle") != 4:
 		_fail("Armskeeper Orren does not have the required four-frame idle state.")
 		return
-	if altar.rune_orbit == null or altar.portal_glow == null or altar.water_glint == null:
-		_fail("The angel portal is missing portal, rune, or fountain-water idle presentation.")
+	for npc: DialogueNpc in [skillkeeper, merchant]:
+		var breath := npc.get_node_or_null("IdleBreath") as NpcIdleBreath
+		var npc_sprite := npc.get_node("Sprite") as AnimatedSprite2D
+		var npc_collision := npc.get_node("Body/Collision") as CollisionShape2D
+		if breath == null or breath.visual != npc_sprite or breath.wait_time > 0.25:
+			_fail("Sanctuary NPC is missing its reusable pixel-stepped idle breath: %s" % npc.name)
+			return
+		var starting_visual_position := npc_sprite.position
+		var starting_collision_position := npc_collision.position
+		breath._advance_phase()
+		if absf(npc_sprite.position.y - starting_visual_position.y) > 1.0 or not is_equal_approx(npc_sprite.position.x, starting_visual_position.x):
+			_fail("Sanctuary NPC idle breath does not use restrained integer-pixel motion: %s" % npc.name)
+			return
+		if npc_collision.position != starting_collision_position:
+			_fail("Sanctuary NPC idle presentation moved gameplay collision: %s" % npc.name)
+			return
+	if altar.rune_orbit == null or altar.portal_glow == null:
+		_fail("The angel portal is missing its portal or rune idle presentation.")
+		return
+	var portal_ground := altar.get_node_or_null("GroundSprite") as Sprite2D
+	var portal_structure := altar.get_node_or_null("Sprite") as Sprite2D
+	if portal_ground == null or portal_structure == null:
+		_fail("The portal is missing its separate ground and Y-sorted structure layers.")
+		return
+	if portal_ground.z_index >= portal_structure.z_index or portal_structure.z_index != 0:
+		_fail("Portal stairs are not behind the player or the structure is not participating in Y-sort.")
+		return
+	if altar.front_depth_area == null:
+		_fail("The portal has no front approach depth area.")
+		return
+	altar._on_front_depth_body_entered(player)
+	if portal_structure.z_index != -1:
+		_fail("The player is still rendered behind the portal while approaching its trigger.")
+		return
+	altar._on_front_depth_body_exited(player)
+	if portal_structure.z_index != 0:
+		_fail("The portal structure did not restore normal Y-sorting after the player left its trigger.")
+		return
+	if fountain.water_glint == null or fountain.fountain_glow == null:
+		_fail("The standalone fountain is missing its water presentation.")
 		return
 	for collision_name in [
-		"FountainCollision",
-		"WestPortalPillarCollision",
-		"EastPortalPillarCollision",
+		"WestGuardianCollision",
+		"EastGuardianCollision",
 		"PortalBackstopCollision",
-		"WestStatueCollision",
-		"EastStatueCollision",
 	]:
 		if not altar.has_node("MonumentBody/%s" % collision_name):
-			_fail("The angel portal is missing walkable-pavement collision separation: %s" % collision_name)
+			_fail("The angel portal is missing authored doorway collision: %s" % collision_name)
 			return
+	if altar.has_node("MonumentBody/FountainCollision"):
+		_fail("Fountain collision still belongs to the portal instead of its standalone scene.")
+		return
 	if altar.has_node("MonumentBody/PortalCollision"):
 		_fail("A solid collision still blocks the glowing portal doorway.")
 		return
-	var fountain_collision := altar.get_node("MonumentBody/FountainCollision") as CollisionPolygon2D
+	var fountain_collision := fountain.get_node("Collision") as CollisionPolygon2D
 	if fountain_collision == null or fountain_collision.polygon.size() < 12:
-		_fail("The portal fountain does not have its authored walk-around footprint.")
+		_fail("The standalone fountain does not have its authored walk-around footprint.")
 		return
 	var trigger := altar.get_node("Trigger") as CollisionShape2D
 	if not trigger.shape is RectangleShape2D or (trigger.shape as RectangleShape2D).size.x > 56.0:
@@ -128,14 +172,34 @@ func _run() -> void:
 		return
 	var trigger_size := (trigger.shape as RectangleShape2D).size
 	var trigger_bounds := Rect2(-trigger_size * 0.5, trigger_size)
+	var front_depth_shape := altar.get_node("FrontDepthArea/Collision") as CollisionShape2D
+	if not front_depth_shape.shape is RectangleShape2D:
+		_fail("The portal front-depth zone has no editable rectangle shape.")
+		return
+	var front_depth_size := (front_depth_shape.shape as RectangleShape2D).size
+	var front_depth_bounds := Rect2(
+		altar.front_depth_area.position - front_depth_size * 0.5,
+		front_depth_size
+	)
+	var trigger_world_bounds := Rect2(trigger.position - trigger_size * 0.5, trigger_size)
+	if front_depth_bounds.end.y < trigger_world_bounds.end.y + 40.0:
+		_fail("The portal front-depth zone does not begin early enough to protect the player's head.")
+		return
+	if front_depth_bounds.position.x > -88.0 or front_depth_bounds.end.x < 88.0:
+		_fail("The portal front-depth zone does not protect both guardian sides.")
+		return
 	if (
-		not trigger_bounds.has_point(Vector2(0, -126) - trigger.position)
-		or trigger_bounds.has_point(Vector2(0, -24) - trigger.position)
+		not trigger_bounds.has_point(Vector2(0, -72) - trigger.position)
+		or trigger_bounds.has_point(Vector2(0, -10) - trigger.position)
 	):
 		_fail("The expedition trigger does not isolate the doorway from the courtyard.")
 		return
-	if not _portal_approach_is_clear(altar):
-		_fail("The authored fountain-side route into the portal threshold is obstructed.")
+	var landmark_spacing := fountain.position.y - altar.position.y
+	if landmark_spacing < 140.0 or landmark_spacing > 170.0:
+		_fail("Portal and fountain do not have a believable independent courtyard gap.")
+		return
+	if not _portal_approach_is_clear(altar, fountain):
+		_fail("The authored walk-around route to the portal's front interaction point is obstructed.")
 		return
 	for path_cell in [Vector2i(3, 5), Vector2i(3, 6), Vector2i(14, 5), Vector2i(14, 6)]:
 		if ground.get_cell_source_id(path_cell) < 0:
@@ -198,7 +262,7 @@ func _run() -> void:
 
 	altar._on_body_entered(player)
 	if not hud.interaction_label.text.contains("CHOOSE EXPEDITION"):
-		_fail("Approaching the angel portal did not show its expedition prompt.")
+		_fail("The physically reachable front interaction point did not present the expedition prompt.")
 		return
 	altar._unhandled_input(interact)
 	if not menu.visible or not paused:
@@ -250,7 +314,7 @@ func _count_opaque_components(image: Image) -> int:
 	return component_count
 
 
-func _portal_approach_is_clear(altar: ExpeditionAltar) -> bool:
+func _portal_approach_is_clear(altar: ExpeditionAltar, fountain: DivineFountain) -> bool:
 	var footprint := CircleShape2D.new()
 	footprint.radius = 6.0
 	var query := PhysicsShapeQueryParameters2D.new()
@@ -259,23 +323,25 @@ func _portal_approach_is_clear(altar: ExpeditionAltar) -> bool:
 	query.collide_with_areas = false
 	query.collide_with_bodies = true
 	var right_route: Array[Vector2] = [
-		Vector2(0, -24),
-		Vector2(62, -36),
-		Vector2(62, -72),
-		Vector2(44, -94),
-		Vector2(44, -105),
-		Vector2(12, -110),
-		Vector2(12, -118),
-		Vector2(0, -130),
+		fountain.global_position + Vector2(0, 48),
+		fountain.global_position + Vector2(64, 32),
+		fountain.global_position + Vector2(64, -34),
+		fountain.global_position + Vector2(56, -62),
+		altar.global_position + Vector2(28, 10),
+		altar.global_position + Vector2(12, -24),
+		altar.global_position + Vector2(0, -52),
+		altar.global_position + Vector2(0, -53),
 	]
 	for side_sign in [-1.0, 1.0]:
 		for segment_index in range(right_route.size() - 1):
-			var start := right_route[segment_index] * Vector2(side_sign, 1.0)
-			var end := right_route[segment_index + 1] * Vector2(side_sign, 1.0)
+			var start := right_route[segment_index]
+			var end := right_route[segment_index + 1]
+			start.x = fountain.global_position.x + (start.x - fountain.global_position.x) * side_sign
+			end.x = fountain.global_position.x + (end.x - fountain.global_position.x) * side_sign
 			var sample_count := maxi(1, ceili(start.distance_to(end) / 4.0))
 			for sample_index in range(sample_count + 1):
 				var local_point := start.lerp(end, float(sample_index) / float(sample_count))
-				query.transform = Transform2D(0.0, altar.global_position + local_point)
+				query.transform = Transform2D(0.0, local_point)
 				if not altar.get_world_2d().direct_space_state.intersect_shape(query, 1).is_empty():
 					return false
 	return true

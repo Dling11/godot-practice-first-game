@@ -10,13 +10,6 @@ const VOID_INK := Color("090b10")
 const TILE_SIZE := 64
 
 const PROP_CROPS := {
-	"res://assets/environment/sanctuary/landmarks/angel_portal_fountain_256x240.png": {
-		"rect": Rect2i(438, 8, 506, 470),
-		"canvas": Vector2i(256, 240),
-		"scale": 0.5,
-		"keep_largest": true,
-		"global_key": true,
-	},
 	"res://assets/environment/sanctuary/buildings/mushroom_dwelling_128x192.png": {
 		"rect": Rect2i(944, 8, 248, 382),
 		"canvas": Vector2i(128, 192),
@@ -54,16 +47,6 @@ const CHARACTER_CROPS := {
 		"cell": Vector2i(48, 80),
 		"scale": 0.46,
 		"pulse": "violet",
-	},
-	"res://assets/characters/npcs/weapon_merchant/weapon_merchant_idle_sheet_48x72.png": {
-		# Orren's left shoulder/hand begins just outside the former x=1288 crop.
-		# End at x=1329 to retain his right arm plus outline while excluding the
-		# first disconnected pixels of the nearby stall lantern.
-		"rect": Rect2i(1284, 432, 45, 136),
-		"cell": Vector2i(48, 72),
-		"scale": 0.46,
-		"keep_largest": true,
-		"pulse": "gold",
 	},
 }
 

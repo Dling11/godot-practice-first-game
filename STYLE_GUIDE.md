@@ -142,6 +142,7 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - Test each large prop from the front, behind, and both sides with the player before approving it for reuse.
 - Safe-hub props follow the same separation as combat props: raster, shadow/glow, collision, interaction, and idle presentation remain independently replaceable.
 - Ambient idle motion uses bounded tweens or animations. It must not move collision, interaction ranges, navigation footprints, or gameplay authority.
+- Pixel-character ambient breathing should use integer-pixel, timer/animation-driven visual steps with a stable gameplay footprint; do not poll or translate the actor root every frame.
 - Use the shared `EditorPreviewBackdrop` as a direct child when an isolated transparent asset is unreadable against Godot's dark 2D canvas. Editor previews must be context-gated, processing-disabled, collision-free, and absent from runtime drawing.
 
 ## Tilemaps and Modular Environments

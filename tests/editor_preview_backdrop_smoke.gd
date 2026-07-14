@@ -2,6 +2,7 @@ extends SceneTree
 
 const PREVIEW_SCENES := [
 	"res://gameplay/expeditions/expedition_altar.tscn",
+	"res://environment/props/sanctuary/divine_fountain.tscn",
 	"res://environment/props/sanctuary/mushroom_dwelling.tscn",
 	"res://environment/props/sanctuary/merchant_hall.tscn",
 	"res://environment/props/sanctuary/weapon_stall.tscn",

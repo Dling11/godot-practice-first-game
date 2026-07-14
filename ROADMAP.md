@@ -26,10 +26,11 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 - Completed current character-art migration with canonical Bramble Spitter runtime art and preserved generation material.
 - Added the reusable Godot base theme, nine named hard-pixel UI icons, themed HUD/menu presentation, and icon-bearing contextual portal prompt.
 - Added the layered Battle of Gods title screen, deterministic replaceable forest/Sanctuary background, focus-safe navigation, functional session-audio settings, and fade-driven new-journey entry.
-- Rebuilt the playable Sanctuary around a generated-and-normalized nine-asset runtime kit, dedicated grass/pavement tiles, animated angel portal/fountain, Skillkeeper Eira, Armskeeper Orren, expedition selection, title arrival, and Stage 2 return flow.
+- Rebuilt the playable Sanctuary around a generated-and-normalized eleven-asset runtime kit, dedicated grass/pavement tiles, a depth-correct split angel portal, separate fountain, Skillkeeper Eira, Armskeeper Orren, expedition selection, title arrival, and Stage 2 return flow.
 - Corrected Sanctuary crop integrity through full NPC limb/held-prop silhouettes and neighbor-fragment isolation, connected side-building pavement, replaced the solid portal blocker with bilateral fountain routes and a walk-in doorway threshold, added mouse/Escape modal controls, and made ambient music pause-safe and continuously looping.
 - Added reusable context-gated editor preview ground to isolated Sanctuary props and NPCs without affecting composed maps or runtime presentation.
 - Converted Sanctuary house footprints from fixed rectangle resources to independently editable collision polygons while preserving their validated blocking bounds.
+- Replaced the combined Sanctuary portal/fountain crop with independent runtime landmarks, a physically verified walk-around-to-staircase route, a complete standalone Orren sprite, and reusable collision-safe NPC breathing.
 - Removed the superseded first-round code-drawn Sanctuary scenes, sprites, imports, and obsolete generator after confirming the generated runtime kit owns every active reference.
 
 Detailed completion history remains in `CHANGELOG.md`.
@@ -53,7 +54,7 @@ Detailed completion history remains in `CHANGELOG.md`.
 - Design authored skill unlock rules, coin sinks, and the first abilities for sealed slots 2-4.
 - Feel-test the shared theme, named HUD icons, expanded skill-bar height, and portal-prompt placement at 960x540.
 - Feel-test the title-screen composition, restrained background motion, focus loop, audio toggles, and title-to-Stage-1 fade.
-- Feel-test Sanctuary navigation, dedicated pavement, generated prop scale/collision, portal/water/NPC/building idle effects, both NPC interactions, expedition usability, and the transition loop on F5.
+- Feel-test Sanctuary navigation, dedicated pavement, separate fountain/portal scale and courtyard spacing, portal/water/NPC/building idle effects, both NPC interactions, expedition usability, and the transition loop on F5.
 - Design authored expedition definitions and profile/story unlock authority without making level the only gate.
 - Design a confirmed `Abandon Expedition / Return to Sanctuary` pause-menu action, including combat restrictions and explicit XP/coin/run consequences.
 

@@ -94,16 +94,32 @@ These files are intentionally outside runtime imports under Godot-ignored `art_s
 | `prop_forest_ruined_statue` | `assets/environment/prototype/polished_statue.png` | `assets/environment/forest/props/ruined_statue/ruined_statue.png` | 81x104 | `ruined_statue.tscn` |
 | `tile_sanctuary_ground_atlas` | `assets/environment/sanctuary/tiles/sanctuary_ground_atlas_64x64.png` | Active | 256x320; 4x5 of 64x64 | `sanctuary_ground_tileset.tres` |
 | `tile_sanctuary_ground_resource` | `assets/environment/sanctuary/tiles/sanctuary_ground_tileset.tres` | Active | Godot `TileSet` | `sanctuary.tscn` |
-| `landmark_sanctuary_angel_portal_fountain` | `assets/environment/sanctuary/landmarks/angel_portal_fountain_256x240.png` | Active | 256x240; feet/base origin at bottom center; walk-in doorway threshold | `expedition_altar.tscn` |
+| `landmark_sanctuary_angel_expedition_portal_structure` | `assets/environment/sanctuary/landmarks/angel_expedition_portal_192x192.png` | Active | 192x192; Y-sorted arch, guardians, and doorway | `expedition_altar.tscn` |
+| `landmark_sanctuary_angel_expedition_portal_ground` | `assets/environment/sanctuary/landmarks/angel_expedition_portal_ground_192x192.png` | Active | 192x192; center stairs and threshold ground layer | `expedition_altar.tscn` |
+| `prop_sanctuary_divine_fountain` | `assets/environment/sanctuary/landmarks/divine_fountain_112x96.png` | Active | 112x96; basin origin at bottom center; standalone walk-around footprint | `divine_fountain.tscn` |
 | `building_sanctuary_mushroom_dwelling` | `assets/environment/sanctuary/buildings/mushroom_dwelling_128x192.png` | Active | 128x192; base origin at bottom center | `mushroom_dwelling.tscn` |
 | `building_sanctuary_merchant_hall` | `assets/environment/sanctuary/buildings/merchant_hall_176x192.png` | Active | 176x192; base origin at bottom center | `merchant_hall.tscn` |
 | `shop_sanctuary_weapon_stall` | `assets/environment/sanctuary/shops/weapon_stall_128x96.png` | Active | 128x96; base origin at bottom center | `weapon_stall.tscn` |
 | `prop_sanctuary_tree_broad` | `assets/environment/sanctuary/props/sanctuary_tree_broad_96x120.png` | Active | 96x120; footprint origin at bottom center | `sanctuary_tree_broad.tscn` |
 | `prop_sanctuary_tree_tall` | `assets/environment/sanctuary/props/sanctuary_tree_tall_96x120.png` | Active | 96x120; footprint origin at bottom center | `sanctuary_tree_tall.tscn` |
 | `char_npc_skillkeeper_idle` | `assets/characters/npcs/skillkeeper/skillkeeper_idle_sheet_48x80.png` | Active | 192x80; 4x1 of 48x80; full staff and book silhouette | `skillkeeper.tscn` |
-| `char_npc_weapon_merchant_idle` | `assets/characters/npcs/weapon_merchant/weapon_merchant_idle_sheet_48x72.png` | Active | 192x72; 4x1 of 48x72; isolated full-body silhouette | `weapon_merchant.tscn` |
+| `char_npc_weapon_merchant_idle` | `assets/characters/npcs/weapon_merchant/weapon_merchant_idle_sheet_48x72.png` | Active | 192x72; 4x1 of 48x72; standalone full-body silhouette with both hands inside every cell | `weapon_merchant.tscn` |
 
-The Sanctuary source board is preserved at `art_source/generated/environment/sanctuary/sanctuary_direction_board_source.png`; the exact crop, per-asset border cleanup, optional connected-component isolation, reviewed portal-only global key, outline, scale, idle-frame, and tile-atlas build is reproducible through `tools/process_sanctuary_direction_board.gd`. Character crop bounds must include transparent source-space breathing room around limbs and held props. The prop scenes remain under `environment/props/` because they combine presentation with collision, navigation, occlusion, and behavior. Raster art stays under `assets/`.
+The Sanctuary source board is preserved at `art_source/generated/environment/sanctuary/sanctuary_direction_board_source.png`; its exact terrain/building/stall/tree/Eira crops, per-asset border cleanup, outline, scale, idle-frame, and tile-atlas build are reproducible through `tools/process_sanctuary_direction_board.gd`. The standalone portal, fountain, and Orren assets are reproducible through `tools/process_sanctuary_individual_assets.gd`. Character crop bounds must include transparent source-space breathing room around limbs and held props. The prop scenes remain under `environment/props/` because they combine presentation with collision, navigation, occlusion, and behavior. Raster art stays under `assets/`.
+
+### Preserved Sanctuary Standalone Pipeline Material
+
+These source and intermediate images remain outside Godot runtime imports:
+
+| Related canonical ID | Preserved path | Status | Source dimensions |
+|---|---|---|---|
+| `landmark_sanctuary_angel_expedition_portal_structure` | `art_source/generated/environment/sanctuary/portal/angel_expedition_portal_source.png` | `source` | 1254x1254 |
+| `landmark_sanctuary_angel_expedition_portal_structure` | `art_source/generated/environment/sanctuary/portal/angel_expedition_portal_clean.png` | `intermediate` | 1254x1254 |
+| `prop_sanctuary_divine_fountain` | `art_source/generated/environment/sanctuary/fountain/divine_fountain_source.png` | `source` | 1254x1254 |
+| `prop_sanctuary_divine_fountain` | `art_source/generated/environment/sanctuary/fountain/divine_fountain_clean.png` | `intermediate` | 1254x1254 |
+| `char_npc_weapon_merchant_idle` | `art_source/generated/characters/npcs/weapon_merchant/weapon_merchant_idle_source.png` | `source` | 1254x1254 |
+| `char_npc_weapon_merchant_idle` | `art_source/generated/characters/npcs/weapon_merchant/weapon_merchant_idle_clean.png` | `intermediate` | 1254x1254 |
+| `landmark_sanctuary_angel_portal_fountain` | `art_source/archive/environment/sanctuary/angel_portal_fountain_256x240_legacy.png` | `legacy` | 256x240; superseded combined runtime crop |
 
 ## Active UI and Effects
 

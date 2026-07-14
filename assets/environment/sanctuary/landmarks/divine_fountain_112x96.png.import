@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dd1c0trh7mf6k"
-path="res://.godot/imported/angel_portal_fountain_256x240.png-62f7594249723acda251ab1edf05fdd6.ctex"
+uid="uid://b51jsg87igyr5"
+path="res://.godot/imported/divine_fountain_112x96.png-365c4a43e6106d223b3a094ec464cb12.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/environment/sanctuary/landmarks/angel_portal_fountain_256x240.png"
-dest_files=["res://.godot/imported/angel_portal_fountain_256x240.png-62f7594249723acda251ab1edf05fdd6.ctex"]
+source_file="res://assets/environment/sanctuary/landmarks/divine_fountain_112x96.png"
+dest_files=["res://.godot/imported/divine_fountain_112x96.png-365c4a43e6106d223b3a094ec464cb12.ctex"]
 
 [params]
 

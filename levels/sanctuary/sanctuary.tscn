@@ -1,25 +1,26 @@
-[gd_scene load_steps=19 format=3]
+[gd_scene format=3 uid="uid://cya5pdouba08m"]
 
-[ext_resource type="Script" path="res://levels/sanctuary/sanctuary_flow.gd" id="1_flow"]
+[ext_resource type="Script" uid="uid://krn2lwlcb2bw" path="res://levels/sanctuary/sanctuary_flow.gd" id="1_flow"]
 [ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="2_player"]
-[ext_resource type="TileSet" path="res://assets/environment/sanctuary/tiles/sanctuary_ground_tileset.tres" id="3_tileset"]
-[ext_resource type="Script" path="res://levels/sanctuary/sanctuary_ground.gd" id="4_ground"]
-[ext_resource type="PackedScene" path="res://environment/props/sanctuary/mushroom_dwelling.tscn" id="5_dwelling"]
-[ext_resource type="PackedScene" path="res://environment/props/sanctuary/merchant_hall.tscn" id="6_hall"]
-[ext_resource type="PackedScene" path="res://environment/props/sanctuary/weapon_stall.tscn" id="7_stall"]
-[ext_resource type="PackedScene" path="res://environment/props/sanctuary/sanctuary_tree_broad.tscn" id="8_tree_broad"]
-[ext_resource type="PackedScene" path="res://environment/props/sanctuary/sanctuary_tree_tall.tscn" id="9_tree_tall"]
+[ext_resource type="TileSet" uid="uid://l2j1o71w1x0s" path="res://assets/environment/sanctuary/tiles/sanctuary_ground_tileset.tres" id="3_tileset"]
+[ext_resource type="Script" uid="uid://cs5v5avc0hil2" path="res://levels/sanctuary/sanctuary_ground.gd" id="4_ground"]
+[ext_resource type="PackedScene" uid="uid://kimgwlbptm3o" path="res://environment/props/sanctuary/mushroom_dwelling.tscn" id="5_dwelling"]
+[ext_resource type="PackedScene" uid="uid://415jrd6dymxi" path="res://environment/props/sanctuary/merchant_hall.tscn" id="6_hall"]
+[ext_resource type="PackedScene" uid="uid://cd0px7xq0pte7" path="res://environment/props/sanctuary/weapon_stall.tscn" id="7_stall"]
+[ext_resource type="PackedScene" uid="uid://dimiinh5avf53" path="res://environment/props/sanctuary/sanctuary_tree_broad.tscn" id="8_tree_broad"]
+[ext_resource type="PackedScene" uid="uid://w4a7m000shlu" path="res://environment/props/sanctuary/sanctuary_tree_tall.tscn" id="9_tree_tall"]
 [ext_resource type="PackedScene" path="res://entities/npcs/skillkeeper/skillkeeper.tscn" id="10_skillkeeper"]
 [ext_resource type="PackedScene" path="res://entities/npcs/weapon_merchant/weapon_merchant.tscn" id="11_merchant"]
-[ext_resource type="PackedScene" path="res://gameplay/expeditions/expedition_altar.tscn" id="12_altar"]
+[ext_resource type="PackedScene" uid="uid://dxh0gl18lug1c" path="res://gameplay/expeditions/expedition_altar.tscn" id="12_altar"]
+[ext_resource type="PackedScene" uid="uid://ch613n2b3q848" path="res://environment/props/sanctuary/divine_fountain.tscn" id="12_fountain"]
 [ext_resource type="PackedScene" path="res://ui/combat_hud.tscn" id="13_hud"]
 [ext_resource type="PackedScene" path="res://ui/character_menu.tscn" id="14_character"]
 [ext_resource type="PackedScene" path="res://ui/dialogue/dialogue_panel.tscn" id="15_dialogue"]
 [ext_resource type="PackedScene" path="res://ui/expeditions/expedition_menu.tscn" id="16_expedition"]
-[ext_resource type="Script" path="res://gameplay/audio/stage_music.gd" id="17_music_script"]
-[ext_resource type="AudioStream" path="res://assets/audio/music/cathedral_in_the_forest.ogg" id="18_music"]
+[ext_resource type="Script" uid="uid://ds6tx8vmvokpu" path="res://gameplay/audio/stage_music.gd" id="17_music_script"]
+[ext_resource type="AudioStream" uid="uid://c1vj618m4ysv1" path="res://assets/audio/music/cathedral_in_the_forest.ogg" id="18_music"]
 
-[node name="Sanctuary" type="Node" node_paths=PackedStringArray("player", "combat_hud", "character_menu", "skillkeeper", "weapon_merchant", "expedition_altar", "dialogue_panel", "expedition_menu")]
+[node name="Sanctuary" type="Node" unique_id=1171524165 node_paths=PackedStringArray("player", "combat_hud", "character_menu", "skillkeeper", "weapon_merchant", "expedition_altar", "dialogue_panel", "expedition_menu")]
 script = ExtResource("1_flow")
 player = NodePath("World/Actors/Player")
 combat_hud = NodePath("UI/CombatHUD")
@@ -30,72 +31,79 @@ expedition_altar = NodePath("World/Actors/ExpeditionAltar")
 dialogue_panel = NodePath("UI/DialoguePanel")
 expedition_menu = NodePath("UI/ExpeditionMenu")
 
-[node name="StageMusic" type="Node" parent="."]
+[node name="StageMusic" type="Node" parent="." unique_id=2133377204]
 script = ExtResource("17_music_script")
 music_stream = ExtResource("18_music")
 
-[node name="World" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="." unique_id=782410060]
 
-[node name="Level" type="Node2D" parent="World"]
+[node name="Level" type="Node2D" parent="World" unique_id=52788733]
 
-[node name="Ground" type="TileMapLayer" parent="World/Level"]
+[node name="Ground" type="TileMapLayer" parent="World/Level" unique_id=1019399547]
 z_index = -10
 tile_set = ExtResource("3_tileset")
 script = ExtResource("4_ground")
-map_size = Vector2i(18, 12)
 
-[node name="Actors" type="Node2D" parent="World"]
+[node name="Actors" type="Node2D" parent="World" unique_id=323569221]
 y_sort_enabled = true
 
-[node name="MushroomDwelling" parent="World/Actors" instance=ExtResource("5_dwelling")]
+[node name="MushroomDwelling" parent="World/Actors" unique_id=1724302009 instance=ExtResource("5_dwelling")]
 position = Vector2(240, 390)
 
-[node name="MerchantHall" parent="World/Actors" instance=ExtResource("6_hall")]
+[node name="MerchantHall" parent="World/Actors" unique_id=1513425118 instance=ExtResource("6_hall")]
 position = Vector2(912, 390)
 
-[node name="WeaponStall" parent="World/Actors" instance=ExtResource("7_stall")]
+[node name="WeaponStall" parent="World/Actors" unique_id=590228413 instance=ExtResource("7_stall")]
 position = Vector2(820, 566)
 
-[node name="TreeNorthWest" parent="World/Actors" instance=ExtResource("8_tree_broad")]
+[node name="TreeNorthWest" parent="World/Actors" unique_id=944688965 instance=ExtResource("8_tree_broad")]
 position = Vector2(112, 154)
-[node name="TreeNorthEast" parent="World/Actors" instance=ExtResource("9_tree_tall")]
+
+[node name="TreeNorthEast" parent="World/Actors" unique_id=1023069424 instance=ExtResource("9_tree_tall")]
 position = Vector2(1042, 154)
-[node name="TreeWest" parent="World/Actors" instance=ExtResource("9_tree_tall")]
+
+[node name="TreeWest" parent="World/Actors" unique_id=717903842 instance=ExtResource("9_tree_tall")]
 position = Vector2(80, 464)
-[node name="TreeEast" parent="World/Actors" instance=ExtResource("8_tree_broad")]
+
+[node name="TreeEast" parent="World/Actors" unique_id=540706843 instance=ExtResource("8_tree_broad")]
 position = Vector2(1070, 478)
-[node name="TreeSouthWest" parent="World/Actors" instance=ExtResource("8_tree_broad")]
+
+[node name="TreeSouthWest" parent="World/Actors" unique_id=1680711405 instance=ExtResource("8_tree_broad")]
 position = Vector2(126, 718)
-[node name="TreeSouthEast" parent="World/Actors" instance=ExtResource("9_tree_tall")]
+
+[node name="TreeSouthEast" parent="World/Actors" unique_id=2072765598 instance=ExtResource("9_tree_tall")]
 position = Vector2(1026, 718)
 
-[node name="ExpeditionAltar" parent="World/Actors" instance=ExtResource("12_altar")]
-position = Vector2(576, 352)
+[node name="ExpeditionAltar" parent="World/Actors" unique_id=2049147653 instance=ExtResource("12_altar")]
+position = Vector2(576, 300)
 
-[node name="Skillkeeper" parent="World/Actors" instance=ExtResource("10_skillkeeper")]
+[node name="DivineFountain" parent="World/Actors" unique_id=1246935042 instance=ExtResource("12_fountain")]
+position = Vector2(576, 452)
+
+[node name="Skillkeeper" parent="World/Actors" unique_id=1532334195 instance=ExtResource("10_skillkeeper")]
 position = Vector2(360, 520)
 
-[node name="WeaponMerchant" parent="World/Actors" instance=ExtResource("11_merchant")]
+[node name="WeaponMerchant" parent="World/Actors" unique_id=70869700 instance=ExtResource("11_merchant")]
 position = Vector2(916, 580)
 
-[node name="Player" parent="World/Actors" instance=ExtResource("2_player")]
+[node name="Player" parent="World/Actors" unique_id=1654953230 instance=ExtResource("2_player")]
 position = Vector2(576, 676)
 movement_bounds = Rect2(56, 56, 1040, 656)
 
-[node name="Camera2D" type="Camera2D" parent="World/Actors/Player"]
+[node name="Camera2D" type="Camera2D" parent="World/Actors/Player" unique_id=1964421429]
 position = Vector2(0, -8)
 limit_left = 0
 limit_top = 0
 limit_right = 1152
 limit_bottom = 768
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=545047153]
 
-[node name="CombatHUD" parent="UI" instance=ExtResource("13_hud")]
+[node name="CombatHUD" parent="UI" unique_id=914588911 instance=ExtResource("13_hud")]
 
-[node name="CharacterMenu" parent="UI" node_paths=PackedStringArray("player") instance=ExtResource("14_character")]
+[node name="CharacterMenu" parent="UI" unique_id=603162087 node_paths=PackedStringArray("player") instance=ExtResource("14_character")]
 player = NodePath("../../World/Actors/Player")
 
-[node name="DialoguePanel" parent="UI" instance=ExtResource("15_dialogue")]
+[node name="DialoguePanel" parent="UI" unique_id=1063779937 instance=ExtResource("15_dialogue")]
 
-[node name="ExpeditionMenu" parent="UI" instance=ExtResource("16_expedition")]
+[node name="ExpeditionMenu" parent="UI" unique_id=385825578 instance=ExtResource("16_expedition")]

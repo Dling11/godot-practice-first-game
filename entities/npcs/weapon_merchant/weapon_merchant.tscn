@@ -1,38 +1,56 @@
-[gd_scene load_steps=12 format=3]
+[gd_scene format=3 uid="uid://clndkkq0jlvwa"]
 
-[ext_resource type="Script" path="res://entities/npcs/components/dialogue_npc.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://assets/characters/npcs/weapon_merchant/weapon_merchant_idle_sheet_48x72.png" id="2_sheet"]
-[ext_resource type="Texture2D" path="res://assets/ui/icons/interactions/icon_interaction_talk_16x16.png" id="3_icon"]
+[ext_resource type="Script" uid="uid://8xjmsyo4eldi" path="res://entities/npcs/components/dialogue_npc.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://rkwbiq2ndp2" path="res://assets/characters/npcs/weapon_merchant/weapon_merchant_idle_sheet_48x72.png" id="2_sheet"]
+[ext_resource type="Texture2D" uid="uid://baqfmxwvki4xe" path="res://assets/ui/icons/interactions/icon_interaction_talk_16x16.png" id="3_icon"]
+[ext_resource type="Script" uid="uid://3dk63oc5krev" path="res://entities/npcs/presentation/npc_idle_breath.gd" id="4_breath"]
 [ext_resource type="PackedScene" path="res://tools/editor/editor_preview_backdrop.tscn" id="99_preview"]
 
 [sub_resource type="AtlasTexture" id="Frame1"]
 atlas = ExtResource("2_sheet")
 region = Rect2(0, 0, 48, 72)
+
 [sub_resource type="AtlasTexture" id="Frame2"]
 atlas = ExtResource("2_sheet")
 region = Rect2(48, 0, 48, 72)
+
 [sub_resource type="AtlasTexture" id="Frame3"]
 atlas = ExtResource("2_sheet")
 region = Rect2(96, 0, 48, 72)
+
 [sub_resource type="AtlasTexture" id="Frame4"]
 atlas = ExtResource("2_sheet")
 region = Rect2(144, 0, 48, 72)
+
 [sub_resource type="SpriteFrames" id="IdleFrames"]
 animations = [{
-"frames": [{"duration": 1.0, "texture": SubResource("Frame1")}, {"duration": 1.0, "texture": SubResource("Frame2")}, {"duration": 1.0, "texture": SubResource("Frame3")}, {"duration": 1.0, "texture": SubResource("Frame4")}],
-"loop": true,
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Frame1")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame2")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame3")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame4")
+}],
+"loop": 1,
 "name": &"idle",
 "speed": 2.5
 }]
+
 [sub_resource type="CircleShape2D" id="TriggerShape"]
 radius = 48.0
+
 [sub_resource type="CircleShape2D" id="BodyShape"]
 radius = 7.0
 
-[node name="WeaponMerchant" type="Area2D" node_paths=PackedStringArray("idle_aura")]
+[node name="WeaponMerchant" type="Area2D" unique_id=2039857408 node_paths=PackedStringArray("idle_aura")]
 collision_layer = 0
 collision_mask = 2
-monitoring = true
 script = ExtResource("1_script")
 interaction_icon = ExtResource("3_icon")
 prompt_text = "PRESS F TO BROWSE WEAPONS"
@@ -40,41 +58,48 @@ speaker_name = "ARMSKEEPER ORREN"
 dialogue_lines = Array[String](["A plain blade is honest. It reveals every weak step before sharper steel can hide it.", "My racks will open when the Sanctuary knows what a coin should truly buy.", "Until then, master the sword you carried through the veil."])
 idle_aura = NodePath("LanternAura")
 
-[node name="EditorPreviewBackdrop" parent="." instance=ExtResource("99_preview")]
+[node name="EditorPreviewBackdrop" parent="." unique_id=139834858 instance=ExtResource("99_preview")]
 
-[node name="Shadow" type="Polygon2D" parent="."]
-position = Vector2(0, -2)
-polygon = PackedVector2Array(-9, 0, -6, -3, 6, -3, 9, 0, 6, 3, -6, 3)
-color = Color(0.02, 0.03, 0.03, 0.45)
+[node name="Shadow" type="Polygon2D" parent="." unique_id=1262870131]
 z_index = -2
+position = Vector2(-0.49999928, -6.4999995)
+scale = Vector2(1.2777779, 1.8333334)
+color = Color(0.02, 0.03, 0.03, 0.45)
+polygon = PackedVector2Array(-9, 0, -6, -3, 0.39130375, -3, 6, -3, 9.782608, -0.2727275, 8.999999, 2.454545, -7.4347825, 2.454545)
 
-[node name="LanternAura" type="Node2D" parent="."]
-position = Vector2(-15, -38)
+[node name="LanternAura" type="Node2D" parent="." unique_id=813575814]
 z_index = -1
+position = Vector2(-15, -38)
 
-[node name="Glow" type="Polygon2D" parent="LanternAura"]
-polygon = PackedVector2Array(0, -8, 6, -4, 8, 0, 6, 4, 0, 8, -6, 4, -8, 0, -6, -4)
+[node name="Glow" type="Polygon2D" parent="LanternAura" unique_id=1627004088]
 color = Color(0.94, 0.66, 0.25, 0.28)
+polygon = PackedVector2Array(0, -8, 6, -4, 8, 0, 6, 4, 0, 8, -6, 4, -8, 0, -6, -4)
 
-[node name="NorthSpark" type="Polygon2D" parent="LanternAura"]
+[node name="NorthSpark" type="Polygon2D" parent="LanternAura" unique_id=537960415]
 position = Vector2(0, -10)
-polygon = PackedVector2Array(0, -2, 2, 0, 0, 2, -2, 0)
 color = Color(1, 0.82, 0.42, 0.72)
+polygon = PackedVector2Array(0, -2, 2, 0, 0, 2, -2, 0)
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=439822000]
 position = Vector2(0, -36)
 sprite_frames = SubResource("IdleFrames")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="Trigger" type="CollisionShape2D" parent="."]
+[node name="IdleBreath" type="Timer" parent="." unique_id=886036167 node_paths=PackedStringArray("visual")]
+wait_time = 0.22
+autostart = true
+script = ExtResource("4_breath")
+visual = NodePath("../Sprite")
+start_phase = 2
+
+[node name="Trigger" type="CollisionShape2D" parent="." unique_id=296922746]
 position = Vector2(0, -9)
 shape = SubResource("TriggerShape")
 
-[node name="Body" type="StaticBody2D" parent="."]
-collision_layer = 1
+[node name="Body" type="StaticBody2D" parent="." unique_id=307196885]
 collision_mask = 2
 
-[node name="Collision" type="CollisionShape2D" parent="Body"]
+[node name="Collision" type="CollisionShape2D" parent="Body" unique_id=95370279]
 position = Vector2(0, -5)
 shape = SubResource("BodyShape")

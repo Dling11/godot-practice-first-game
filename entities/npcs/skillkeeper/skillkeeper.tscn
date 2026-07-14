@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3]
+[gd_scene load_steps=13 format=3]
 
 [ext_resource type="Script" path="res://entities/npcs/components/dialogue_npc.gd" id="1_script"]
 [ext_resource type="Texture2D" path="res://assets/characters/npcs/skillkeeper/skillkeeper_idle_sheet_48x80.png" id="2_sheet"]
 [ext_resource type="Texture2D" path="res://assets/ui/icons/interactions/icon_interaction_talk_16x16.png" id="3_icon"]
 [ext_resource type="PackedScene" path="res://tools/editor/editor_preview_backdrop.tscn" id="99_preview"]
+[ext_resource type="Script" path="res://entities/npcs/presentation/npc_idle_breath.gd" id="4_breath"]
 
 [sub_resource type="AtlasTexture" id="Frame1"]
 atlas = ExtResource("2_sheet")
@@ -72,6 +73,12 @@ position = Vector2(0, -40)
 sprite_frames = SubResource("IdleFrames")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="IdleBreath" type="Timer" parent="." node_paths=PackedStringArray("visual")]
+wait_time = 0.24
+autostart = true
+script = ExtResource("4_breath")
+visual = NodePath("../Sprite")
 
 [node name="Trigger" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10)

@@ -6,7 +6,7 @@ The setting centers on gods, demons, forgotten civilizations, and **The One Abov
 
 ## Current Status
 
-Pre-alpha title-to-Sanctuary-to-two-stage prototype. F5 opens a focused Battle of Gods title screen with session-audio settings; Begin the Awakening fades into a safe generated-pixel Sanctuary with an angel portal/fountain, Skillkeeper Eira, and Armskeeper Orren. Stage 1 teaches Mireling and Thrall combat; Stage 2, `Thorns of the Forgotten Grove`, introduces the Bramble Spitter and returns to Sanctuary when cleared. An in-memory level-10 XP/coin run and a four-slot character/skill information surface are active; disk saving, purchases, equipment, and additional skills are not yet implemented.
+Pre-alpha title-to-Sanctuary-to-two-stage prototype. F5 opens a focused Battle of Gods title screen with session-audio settings; Begin the Awakening fades into a safe generated-pixel Sanctuary with a separate divine fountain, walk-in angel portal, Skillkeeper Eira, and Armskeeper Orren. Stage 1 teaches Mireling and Thrall combat; Stage 2, `Thorns of the Forgotten Grove`, introduces the Bramble Spitter and returns to Sanctuary when cleared. An in-memory level-10 XP/coin run and a four-slot character/skill information surface are active; disk saving, purchases, equipment, and additional skills are not yet implemented.
 
 ## Intended Technology
 
@@ -93,7 +93,7 @@ The active prototype controls are:
 
 Movement, aim/facing, primary attack, dash, Sweeping Cut, portal interaction, and arena restart after defeat are active. Slots 2-4 are visibly sealed and currently do nothing. XP and coins survive portal transitions within the running game; defeat restart begins a new run.
 
-In Sanctuary, approach Skillkeeper Eira or Armskeeper Orren and press F. To use the angel portal, walk around either side of the fountain and step between the glowing doorway pillars; its prompt appears only at that threshold. Dialogue and menu controls are clickable; Escape cancels the active modal, and the character surface also has a top-right close button. Eira opens the current skill-information surface only after her dialogue is completed; Orren previews the future weapon service without pretending purchases exist; the portal opens the Forgotten Grove while later routes remain visibly sealed.
+In Sanctuary, approach Skillkeeper Eira or Armskeeper Orren and press F. To use the angel portal, walk around either side of the standalone fountain, cross the open courtyard, and ascend the portal's center stairs; its prompt appears only at the doorway threshold. Dialogue and menu controls are clickable; Escape cancels the active modal, and the character surface also has a top-right close button. Eira opens the current skill-information surface only after her dialogue is completed; Orren previews the future weapon service without pretending purchases exist; the portal opens the Forgotten Grove while later routes remain visibly sealed.
 
 ## Verification
 
