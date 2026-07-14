@@ -58,20 +58,29 @@ theme_override_font_sizes/font_size = 8
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 62)
 layout_mode = 2
+focus_neighbor_top = NodePath("../CloseButton")
+focus_neighbor_bottom = NodePath("../CloseButton")
+mouse_default_cursor_shape = 2
 text = "I  •  FORGOTTEN GROVE\nBEGINNER EXPEDITION  •  AVAILABLE"
 theme_override_font_sizes/font_size = 11
 [node name="Locked2" type="Button" parent="Panel/Margin/Root"]
 custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
 disabled = true
+mouse_default_cursor_shape = 8
 text = "II  •  ASHEN PILGRIMAGE\nSEALED  •  STORY PATH REQUIRED"
 [node name="Locked3" type="Button" parent="Panel/Margin/Root"]
 custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
 disabled = true
+mouse_default_cursor_shape = 8
 text = "III  •  THE DROWNED BELLS\nSEALED  •  POWER UNKNOWN"
 [node name="CloseButton" type="Button" parent="Panel/Margin/Root"]
+unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_top = NodePath("../FirstExpeditionButton")
+focus_neighbor_bottom = NodePath("../FirstExpeditionButton")
+mouse_default_cursor_shape = 2
 text = "RETURN TO SANCTUARY"
 [connection signal="pressed" from="Panel/Margin/Root/FirstExpeditionButton" to="." method="begin_first_expedition"]
 [connection signal="pressed" from="Panel/Margin/Root/CloseButton" to="." method="close_menu"]

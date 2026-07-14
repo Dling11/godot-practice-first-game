@@ -5,6 +5,7 @@ signal menu_closed
 
 @export_file("*.tscn") var first_expedition_scene := "res://levels/test_arena/test_arena.tscn"
 @onready var first_expedition_button: Button = %FirstExpeditionButton
+@onready var close_button: Button = %CloseButton
 var _owns_pause := false
 
 
@@ -21,6 +22,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func open_menu() -> void:
 	if visible: return
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	_owns_pause = not get_tree().paused
 	if _owns_pause: get_tree().paused = true
 	show()

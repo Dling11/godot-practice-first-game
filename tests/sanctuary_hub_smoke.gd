@@ -271,9 +271,15 @@ func _run() -> void:
 	if menu.first_expedition_scene != "res://levels/test_arena/test_arena.tscn":
 		_fail("The first available Sanctuary expedition is not Stage 1.")
 		return
-	menu.close_menu()
+	if root.gui_get_focus_owner() != menu.first_expedition_button:
+		_fail("Expedition selection did not establish keyboard/gamepad focus.")
+		return
+	if menu.first_expedition_button.get_node_or_null(menu.first_expedition_button.focus_neighbor_bottom) != menu.close_button:
+		_fail("Expedition selection does not provide an explicit directional focus loop.")
+		return
+	menu.close_button.pressed.emit()
 	if menu.visible or paused:
-		_fail("Closing expedition selection did not restore Sanctuary control.")
+		_fail("The mouse/keyboard expedition close control did not restore Sanctuary control.")
 		return
 	print("Sanctuary hub smoke test passed.")
 	quit(0)

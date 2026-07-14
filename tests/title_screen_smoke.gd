@@ -30,23 +30,28 @@ func _run() -> void:
 	if root.gui_get_focus_owner() != title.start_button:
 		_fail("Title screen did not give initial keyboard/gamepad focus to Start.")
 		return
-	title.open_settings()
+	var transition_service := root.get_node("SceneTransition")
+	if transition_service.is_input_blocking():
+		_fail("The transparent scene-transition overlay is intercepting idle menu clicks.")
+		return
+	title.settings_button.pressed.emit()
 	if title.main_menu_panel.visible or not title.settings_panel.visible:
-		_fail("Settings did not replace the main menu cleanly.")
+		_fail("The mouse/keyboard Settings control did not replace the main menu cleanly.")
 		return
 	if root.gui_get_focus_owner() != title.music_button:
 		_fail("Settings did not move focus to its first control.")
 		return
 	var music_bus := AudioServer.get_bus_index(AudioDirector.MUSIC_BUS)
 	var original_music_mute := AudioServer.is_bus_mute(music_bus)
-	title.toggle_music()
+	title.music_button.pressed.emit()
 	if AudioServer.is_bus_mute(music_bus) == original_music_mute:
-		_fail("Title music setting did not change the Music bus.")
+		_fail("The mouse/keyboard Music control did not change the Music bus.")
 		return
-	title.toggle_music()
-	title.close_settings()
+	title.music_button.pressed.emit()
+	var back_button := title.get_node("Content/SettingsPanel/Margin/Root/BackButton") as Button
+	back_button.pressed.emit()
 	if not title.main_menu_panel.visible or title.settings_panel.visible:
-		_fail("Closing settings did not restore the main menu.")
+		_fail("The mouse/keyboard Back control did not restore the main menu.")
 		return
 	if root.gui_get_focus_owner() != title.settings_button:
 		_fail("Closing settings did not restore focus to its invoking button.")
@@ -55,8 +60,10 @@ func _run() -> void:
 	run_session.update_progression(80, 12)
 	var transition_state := {"requested": "", "started": false, "finished": false}
 	title.journey_requested.connect(func(destination: String) -> void: transition_state.requested = destination)
-	var transition_service := root.get_node("SceneTransition")
-	transition_service.transition_started.connect(func(_destination: String) -> void: transition_state.started = true, CONNECT_ONE_SHOT)
+	transition_service.transition_started.connect(func(_destination: String) -> void:
+		transition_state.started = true
+		transition_state["blocked_during_fade"] = transition_service.is_input_blocking()
+	, CONNECT_ONE_SHOT)
 	transition_service.transition_finished.connect(func(_destination: String) -> void: transition_state.finished = true, CONNECT_ONE_SHOT)
 	title.begin_new_journey()
 	var timeout := create_timer(3.0, true, true)
@@ -64,6 +71,9 @@ func _run() -> void:
 		await process_frame
 	if not transition_state.finished:
 		_fail("Title Start transition timed out (started=%s, current=%s)." % [transition_state.started, current_scene.scene_file_path if current_scene != null else "none"])
+		return
+	if not transition_state.get("blocked_during_fade", false) or transition_service.is_input_blocking():
+		_fail("Scene transitions do not block clicks only for the duration of the fade.")
 		return
 	if transition_state.requested != SANCTUARY:
 		_fail("Start did not request the configured Sanctuary destination.")

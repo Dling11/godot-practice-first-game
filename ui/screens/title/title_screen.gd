@@ -22,6 +22,7 @@ var _transitioning := false
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	settings_panel.hide()
 	_refresh_audio_labels()
 	content.modulate.a = 0.0

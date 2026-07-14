@@ -52,10 +52,10 @@ func _run() -> void:
 	if hud.ability_panel.modulate == Color.WHITE:
 		_fail("Ability HUD did not enter cooldown presentation.")
 		return
-	if not hud.ability_panel.is_visible_in_tree() or not hud.has_node("SkillBar/LockedAbilityPanel"):
-		_fail("The two-slot skill bar is not visibly composed in the HUD.")
+	if not hud.ability_panel.is_visible_in_tree() or not hud.has_node("SkillBar/Skill4"):
+		_fail("The reusable four-slot skill bar is not visibly composed in the HUD.")
 		return
-	if hud.ability_cooldown_label.text != "2.5":
+	if hud.ability_panel.state_label.text != "2.5":
 		_fail("Ability HUD did not show the initial numeric cooldown.")
 		return
 
@@ -78,7 +78,7 @@ func _run() -> void:
 	if not ability.is_ready() or hud.ability_panel.modulate != Color.WHITE:
 		_fail("Sweeping Cut or its HUD did not return to ready state.")
 		return
-	if hud.ability_cooldown_label.text != "READY":
+	if hud.ability_panel.state_label.text != "READY":
 		_fail("Ability HUD did not restore its READY label.")
 		return
 	if not await _test_knockback_response(player):

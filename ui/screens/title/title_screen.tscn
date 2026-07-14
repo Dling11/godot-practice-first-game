@@ -96,6 +96,7 @@ custom_minimum_size = Vector2(228, 38)
 layout_mode = 2
 focus_neighbor_top = NodePath("../QuitButton")
 focus_neighbor_bottom = NodePath("../SettingsButton")
+mouse_default_cursor_shape = 2
 text = "BEGIN THE AWAKENING"
 theme_override_font_sizes/font_size = 12
 
@@ -105,6 +106,7 @@ custom_minimum_size = Vector2(228, 34)
 layout_mode = 2
 focus_neighbor_top = NodePath("../StartButton")
 focus_neighbor_bottom = NodePath("../QuitButton")
+mouse_default_cursor_shape = 2
 text = "SETTINGS"
 theme_override_font_sizes/font_size = 11
 
@@ -114,6 +116,7 @@ custom_minimum_size = Vector2(228, 34)
 layout_mode = 2
 focus_neighbor_top = NodePath("../SettingsButton")
 focus_neighbor_bottom = NodePath("../StartButton")
+mouse_default_cursor_shape = 2
 text = "QUIT TO DESKTOP"
 theme_override_font_sizes/font_size = 11
 
@@ -158,6 +161,7 @@ custom_minimum_size = Vector2(248, 30)
 layout_mode = 2
 focus_neighbor_top = NodePath("../BackButton")
 focus_neighbor_bottom = NodePath("../SfxButton")
+mouse_default_cursor_shape = 2
 text = "MUSIC  ON"
 
 [node name="SfxButton" type="Button" parent="Content/SettingsPanel/Margin/Root"]
@@ -166,6 +170,7 @@ custom_minimum_size = Vector2(248, 30)
 layout_mode = 2
 focus_neighbor_top = NodePath("../MusicButton")
 focus_neighbor_bottom = NodePath("../UiAudioButton")
+mouse_default_cursor_shape = 2
 text = "COMBAT SOUND  ON"
 
 [node name="UiAudioButton" type="Button" parent="Content/SettingsPanel/Margin/Root"]
@@ -174,6 +179,7 @@ custom_minimum_size = Vector2(248, 30)
 layout_mode = 2
 focus_neighbor_top = NodePath("../SfxButton")
 focus_neighbor_bottom = NodePath("../BackButton")
+mouse_default_cursor_shape = 2
 text = "MENU SOUND  ON"
 
 [node name="BackButton" type="Button" parent="Content/SettingsPanel/Margin/Root"]
@@ -182,6 +188,7 @@ custom_minimum_size = Vector2(248, 30)
 layout_mode = 2
 focus_neighbor_top = NodePath("../UiAudioButton")
 focus_neighbor_bottom = NodePath("../MusicButton")
+mouse_default_cursor_shape = 2
 text = "BACK"
 
 [node name="Footer" type="Label" parent="Content"]

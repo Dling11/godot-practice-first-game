@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-07-15 - Reusable Skill Surfaces and Unified Menu Input
+
+- Fixed the layer-100 transition overlay permanently consuming pointer events while transparent; it now blocks input only during an active fade and restores click-through afterward.
+- Kept menu activation on native Godot buttons so mouse clicks, arrow-key focus plus Enter, Escape, and controller-ready focus share one event path.
+- Added immutable four-slot skill-loadout/slot resources and moved Sweeping Cut's display name, icon, and description into its existing ability definition.
+- Replaced duplicated character-menu and combat-HUD slot trees with reusable `SkillSlotCard` and `SkillBarSlot` scenes consuming the same player loadout.
+- Preserved gameplay authority in actor-owned `AbilityComponent` instances; the reusable HUD slot observes cooldown signals without calculating casts or damage.
+- Added regression coverage for the transition input shield, shared loadout identity, selectable skill cards, four-slot HUD composition, modal close controls, and focus ownership.
+
 ## 2026-07-15 - Portal Front/Behind Occlusion
 
 - Split the existing portal image into an always-behind center-stair layer and a normally Y-sorted arch/guardian structure without changing its combined appearance.

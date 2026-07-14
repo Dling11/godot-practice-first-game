@@ -33,6 +33,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func show_dialogue(speaker: String, lines: Array[String]) -> void:
 	if lines.is_empty():
 		return
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	_lines = lines.duplicate()
 	_line_index = 0
 	speaker_label.text = speaker

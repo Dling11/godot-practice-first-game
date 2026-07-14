@@ -33,11 +33,20 @@ func _run() -> void:
 	if not menu.visible or not paused:
 		_fail("Tab did not open the character menu and pause gameplay.")
 		return
-	if root.gui_get_focus_owner() != menu.close_button:
-		_fail("Character menu did not focus its mouse/keyboard close control.")
+	if menu._skill_cards.size() != 4 or root.gui_get_focus_owner() != menu._skill_cards[0]:
+		_fail("Character menu did not build and focus its reusable four-slot skill controls.")
 		return
-	if not menu.has_node("Panel/Margin/Root/Skills/Skill4"):
-		_fail("Character menu did not present all four authored skill slots.")
+	if not menu.has_node("Panel/Margin/Root/Skills/Skill4") or not (menu._skill_cards[0] is SkillSlotCard):
+		_fail("Character menu did not present all four authored reusable skill slots.")
+		return
+	if player.skill_loadout == null or not player.skill_loadout.has_complete_layout():
+		_fail("Player does not expose the shared four-slot loadout definition.")
+		return
+	if player.skill_loadout.get_slot(1).ability != player.ability_1_component.definition:
+		_fail("Sweeping Cut gameplay and skill presentation do not share one definition.")
+		return
+	if menu._skill_cards[0].get_node_or_null(menu._skill_cards[0].focus_neighbor_right) != menu._skill_cards[1]:
+		_fail("Character skill cards do not provide explicit directional focus navigation.")
 		return
 	menu._unhandled_input(tab_event)
 	if not menu.visible:
@@ -51,9 +60,13 @@ func _run() -> void:
 		_fail("Esc did not close the character menu and resume gameplay.")
 		return
 	menu.open_menu()
+	menu._skill_cards[1].pressed.emit()
+	if not menu.skill_detail_label.text.contains("SLOT 2"):
+		_fail("Selecting a reusable skill card did not update the information surface.")
+		return
 	menu.close_button.pressed.emit()
 	if menu.visible or paused:
-		_fail("The top-right close button did not close the character menu.")
+		_fail("The mouse/keyboard close control did not close the character menu.")
 		return
 
 	player.progression_component.grant_rewards(20, 3)

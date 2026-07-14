@@ -85,7 +85,7 @@ The player currently composes:
 - `PlayerAnimation`: observes movement, facing, attack, evade, and defeat events and selects strict 24x32 `AnimatedSprite2D` states.
 - `EvadeComponent`: owns dash/recovery phases, locked direction, speed, and invulnerability events.
 - `DashVisual`: observes evade events and creates replaceable placeholder afterimages.
-- `AbilityComponent`: owns Sweeping Cut cast phases and instance-local cooldown state using immutable `AbilityDefinition` data.
+- `AbilityComponent`: owns Sweeping Cut cast phases and instance-local cooldown state using immutable `AbilityDefinition` data; its definition also supplies read-only name, icon, and description metadata to presentation.
 - `SweepingCutVisual`: observes cast phases and renders a replaceable frontal sword arc without owning damage.
 - `PlayerProgressionComponent`: owns player-local XP, level, coins, cap evaluation, and progression signals from immutable `ProgressionDefinition` data, synchronizing totals through `RunSession` when they change.
 
@@ -93,7 +93,7 @@ The plain sword uses a shared `WeaponDefinition` resource. `MeleeHitbox` dedupli
 
 The player dash uses shared `EvadeDefinition` data. `Player` remains movement authority and chooses dash velocity while `EvadeComponent` is in `DASHING`. `HealthComponent` receives invulnerability state from evade signals. Attack/evade mutual exclusion is enforced through the player's public request methods.
 
-Sweeping Cut uses `AbilityDefinition` plus `AbilityComponent`. Its wider `MeleeHitbox` sends normal `DamageInfo` with optional pushback strength. Enemy-local `KnockbackComponent` observes accepted damage and exposes a brief decaying velocity contribution; each enemy remains movement authority and decides when that contribution may affect motion. Committed Mireling leaps ignore pushback motion so their marked landing remains predictable.
+Sweeping Cut uses `AbilityDefinition` plus `AbilityComponent`. `SkillLoadoutDefinition` references four immutable `SkillSlotDefinition` resources; the first points to that same Sweeping Cut definition while the remaining slots describe sealed presentation without inventing gameplay components. `Player.get_ability_component_for_slot()` resolves an equipped definition to actor-owned runtime state. Its wider `MeleeHitbox` sends normal `DamageInfo` with optional pushback strength. Enemy-local `KnockbackComponent` observes accepted damage and exposes a brief decaying velocity contribution; each enemy remains movement authority and decides when that contribution may affect motion. Committed Mireling leaps ignore pushback motion so their marked landing remains predictable.
 
 The Forsaken Thrall uses shared `EnemyDefinition` data, canonical runtime art under `assets/characters/enemies/forsaken_thrall/`, and an explicit state machine. Chase facing follows navigation steering rather than direct target bearing, attacks require unobstructed world line-of-sight, and enemy movement bodies collide with world but not the player. Hitboxes and hurtboxes retain combat authority, preventing attack-lock pinning.
 
@@ -139,7 +139,7 @@ Implemented ability flow:
 PlayerInputSource -> Player request_ability_1 -> AbilityComponent
 -> cast phases -> wide MeleeHitbox -> HurtboxComponent
 -> HealthComponent -> optional KnockbackComponent response
--> cooldown signals -> CombatHUD slot 1
+-> cooldown signals -> reusable SkillBarSlot bound through the player loadout
 ```
 
 Presentation observes facing and attack phase signals. The Awakened's canonical runtime art lives under `assets/characters/awakened/`: locomotion uses 24x32 cells, while `PlayerAnimation` selects six 64x48 authored attack frames per direction. Wind-up maps to frames 0-1, the active hit window to frames 2-3, and recovery to frames 4-5. Each pair advances at half its gameplay phase duration. The invisible pivot orients only the authoritative hitbox; animation, effects, audio, HUD icons, or inventory UI must not become damage authority.
@@ -172,7 +172,9 @@ The implemented combat HUD displays a compact corner vitality bar, blocked-damag
 
 Stage presentation is a brief top-edge label. The centered lower screen contains a compact four-slot bar that remains readable without covering the playfield center.
 
-The centered HUD shows four numbered active-skill slots. Slot 1 exposes Sweeping Cut readiness and numeric/bar cooldown feedback; slots 2-4 are visibly locked rather than implying implemented abilities. `CharacterMenu` is a paused, read-only surface for The Awakened's progression and authored skill-path information. Tab opens it; Escape or its top-right button closes it. Gameplay modals must expose visible mouse controls while retaining keyboard/gamepad focus. Both surfaces observe gameplay state and do not calculate readiness, progression, rewards, or casts.
+The centered HUD and `CharacterMenu` consume the same player-owned `SkillLoadoutDefinition`. `CombatHUD` creates four reusable `SkillBarSlot` observers; the slot bound to an actor `AbilityComponent` displays its signal-driven cooldown, while unbound definitions remain visibly sealed. `CharacterMenu` creates four reusable `SkillSlotCard` buttons for read-only information and future setup intent. Mouse click and directional focus plus `ui_accept` select cards; Tab opens the surface, while Escape or its top-right button closes it. Neither surface calculates readiness, progression, rewards, unlocks, or casts.
+
+Native Godot `Button` signals remain the common activation path for mouse, keyboard, and controller input. `SceneTransition` owns the only global layer-100 input shield: its transparent overlay uses `MOUSE_FILTER_IGNORE` while idle, switches to `MOUSE_FILTER_STOP` only during an active fade/scene replacement, and restores pointer pass-through after completion or failure. Decorative controls must not intercept pointer events. Gameplay modals keep explicit focus loops and visible pointer-operable controls.
 
 Reusable interaction prompts are contextual: an interactable emits visibility, text, and an optional semantic presentation icon while the HUD presents one prompt above the centered skill bar. The portal configures `icon_interaction_portal`; future NPCs can use the same path with `icon_interaction_talk`. Interactables do not duplicate the same instruction in world space, gameplay does not branch on icon filenames, and leaving the area clears both text and icon immediately.
 
@@ -227,7 +229,7 @@ Sanctuary house roots remain `StaticBody2D` physics owners. Their visual ground 
 
 ## Autoload Policy
 
-Autoloads are reserved for truly cross-scene services and must not become general-purpose mutable state. `SceneTransition` pauses gameplay, owns a top-layer fade/loading overlay, changes to validated scene paths, resumes the tree, and fades back in. `AudioDirector` owns audio-bus setup and cross-scene music routing; actor-local presenters own positional combat playback. `RunSession` is a deliberately narrow in-memory bridge containing only XP and coins. It does not award rewards, evaluate levels, unlock skills, or write save data.
+Autoloads are reserved for truly cross-scene services and must not become general-purpose mutable state. `SceneTransition` pauses gameplay, enables its top-layer fade/loading input shield, changes to validated scene paths, resumes the tree, fades back in, and disables the shield. `AudioDirector` owns audio-bus setup and cross-scene music routing; actor-local presenters own positional combat playback. `RunSession` is a deliberately narrow in-memory bridge containing only XP and coins. It does not award rewards, evaluate levels, unlock skills, or write save data.
 
 ## Signals and Event Flow
 
@@ -326,9 +328,9 @@ An interim headless smoke script at `res://tests/player_movement_smoke.gd` verif
 
 `res://tests/portal_interaction_smoke.gd` verifies prompt enter/exit and explicit interaction. `res://tests/scene_transition_smoke.gd` verifies fade-controlled Stage 2 loading, destination spawn, delayed exit-portal absence, and its configured post-clear return destination. `res://tests/stage_2_encounter_smoke.gd` verifies the Grove's two-wave Spitter introduction, tile layout, navigation path, Y-sort ownership, and removal of placeholder presentation.
 
-`res://tests/sweeping_cut_smoke.gd` verifies multi-target 20-damage delivery, pushback metadata and actor displacement, cast-time attack/dash exclusion, 3-second cooldown rejection, and HUD ready/cooldown feedback.
+`res://tests/sweeping_cut_smoke.gd` verifies multi-target 20-damage delivery, pushback metadata and actor displacement, cast-time attack/dash exclusion, cooldown rejection, and reusable HUD-slot ready/cooldown feedback.
 
-`res://tests/player_progression_smoke.gd` verifies initial state, threshold leveling, cap behavior, reward delivery after enemy death, and HUD presentation. `res://tests/run_session_progression_smoke.gd` verifies XP/coin reconstruction across player replacement and explicit run reset. `res://tests/character_menu_smoke.gd` verifies the four skill inputs, pause ownership, four-slot presentation, and reactive progression labels. `res://tests/audio_director_smoke.gd` verifies the Music bus and stage-stream routing; it intentionally does not require physical playback in headless mode.
+`res://tests/player_progression_smoke.gd` verifies initial state, threshold leveling, cap behavior, reward delivery after enemy death, and HUD presentation. `res://tests/run_session_progression_smoke.gd` verifies XP/coin reconstruction across player replacement and explicit run reset. `res://tests/character_menu_smoke.gd` verifies the shared loadout, reusable selectable cards, focus ownership, pause ownership, close control, and reactive progression labels. `res://tests/title_screen_smoke.gd` additionally guards the global transition overlay's idle/during-fade pointer-filter contract. `res://tests/audio_director_smoke.gd` verifies the Music bus and stage-stream routing; it intentionally does not require physical playback in headless mode.
 
 `res://tests/combat_feedback_smoke.gd` verifies accepted incoming and outgoing hits create a number plus burst, then clean up without changing combat authority.
 

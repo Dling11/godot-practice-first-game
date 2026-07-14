@@ -1,0 +1,86 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://ui/skills/skill_bar_slot.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="cooldown_fill"]
+bg_color = Color(0.72, 0.66, 0.42, 0.9)
+
+[node name="SkillBarSlot" type="PanelContainer"]
+custom_minimum_size = Vector2(78, 64)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("1_script")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 3
+
+[node name="Content" type="HBoxContainer" parent="Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 3
+
+[node name="AbilityIcon" type="TextureRect" parent="Margin/Content"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Stack" type="VBoxContainer" parent="Margin/Content"]
+layout_mode = 2
+mouse_filter = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 1
+
+[node name="Header" type="HBoxContainer" parent="Margin/Content/Stack"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="KeyLabel" type="Label" parent="Margin/Content/Stack/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+text = "1"
+theme_override_colors/font_color = Color(0.94, 0.88, 0.66, 1)
+theme_override_font_sizes/font_size = 13
+
+[node name="Spacer" type="Control" parent="Margin/Content/Stack/Header"]
+layout_mode = 2
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="StateLabel" type="Label" parent="Margin/Content/Stack/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+text = "READY"
+theme_override_colors/font_color = Color(0.62, 0.9, 0.54, 1)
+theme_override_font_sizes/font_size = 8
+
+[node name="AbilityName" type="Label" parent="Margin/Content/Stack"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+text = "ABILITY"
+theme_override_colors/font_color = Color(0.78, 0.8, 0.72, 1)
+theme_override_font_sizes/font_size = 8
+
+[node name="CooldownBar" type="ProgressBar" parent="Margin/Content/Stack"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+mouse_filter = 2
+show_percentage = false
+theme_override_styles/fill = SubResource("cooldown_fill")
+
+[node name="CooldownTick" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.1
+
+[connection signal="timeout" from="CooldownTick" to="." method="_on_cooldown_tick"]

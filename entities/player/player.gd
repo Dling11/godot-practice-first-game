@@ -14,6 +14,7 @@ const EvadeComponentScript = preload("res://entities/player/components/evade_com
 const AbilityComponentScript = preload("res://gameplay/abilities/ability_component.gd")
 
 @export var movement_bounds := Rect2(56.0, 56.0, 528.0, 248.0)
+@export var skill_loadout: SkillLoadoutDefinition
 
 @onready var input_source: PlayerInputSourceScript = %InputSource
 @onready var movement_component: PlayerMovementComponentScript = %MovementComponent
@@ -96,6 +97,19 @@ func request_ability_1() -> bool:
 	):
 		return false
 	return ability_1_component.request_cast(facing_direction)
+
+
+func get_ability_component_for_slot(slot_number: int) -> AbilityComponent:
+	if skill_loadout == null:
+		return null
+	var slot := skill_loadout.get_slot(slot_number)
+	if slot == null or slot.ability == null:
+		return null
+	for child: Node in get_children():
+		var component := child as AbilityComponent
+		if component != null and component.definition == slot.ability:
+			return component
+	return null
 
 
 func _set_facing_direction(direction: Vector2) -> void:

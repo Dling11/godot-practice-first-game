@@ -105,6 +105,9 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - Keep small pixel icons on binary alpha with one readable symbol and transparent internal margin. Regenerate the baseline kit through `tools/build_ui_icon_kit.gd` rather than hand-editing generated runtime files inconsistently.
 - Menu screens must establish an initial focused control, explicit directional focus loops, modal focus transfer, and focus restoration when the modal closes.
 - Every gameplay modal must provide a visible mouse-operable primary/close control and support `ui_cancel`; do not rely on a hidden keyboard-only toggle to dismiss it.
+- Use native `Button.pressed` activation as the shared path for mouse click, `ui_accept`, and controller confirmation. Do not create separate gameplay outcomes for each device.
+- Full-screen transition or modal shields may use `MOUSE_FILTER_STOP` only while they are intentionally active; transparent idle overlays and decorative controls must use `MOUSE_FILTER_IGNORE` so they cannot silently consume clicks.
+- Repeated skill presentation must consume `SkillLoadoutDefinition`/`SkillSlotDefinition` data through reusable slot scenes. HUD views may observe an injected `AbilityComponent`, but UI must not own cast, cooldown, unlock, or damage authority.
 - Title/loading/background art remains under a named presentation owner. Never bake navigation labels or controls into background textures.
 - Generated dark-background crops must use asset-specific border cleanup. Do not globally key all dark pixels from characters, buildings, or props; preserve legitimate outlines, interiors, limbs, and connectors.
 
