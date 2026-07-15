@@ -520,7 +520,7 @@ Feel-test hand alignment and perceived reach in Godot. Future frames must pass b
 ## Decision 017 - Author Full-Body Six-Frame Sword Attacks
 
 - **Date:** 2026-07-11
-- **Status:** Accepted for the prototype
+- **Status:** Superseded for the active player by Decision 039; retained as prototype history
 
 ### Context
 

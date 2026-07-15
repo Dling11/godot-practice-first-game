@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EquipmentDefinition" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://data/items/equipment_definition.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/items/weapons/icons/sunroot_oath_64x64.png" id="2_icon"]
+
+[resource]
+script = ExtResource("1_script")
+item_id = &"weapon_sunroot_oath"
+display_name = "Sunroot Oath"
+slot = 0
+rarity = 2
+icon = ExtResource("2_icon")
+preview_power = 46
+lore = "A vow from the first grove, still alive beneath its ivory edge and relic-gold roots."
+synergy_name = "Living Reprisal"
+synergy_description = "Planned identity: catching several enemies in Sweeping Cut awakens a brief protective thorn ward."

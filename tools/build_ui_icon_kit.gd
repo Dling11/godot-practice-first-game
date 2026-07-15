@@ -19,6 +19,7 @@ const ICONS := {
 	"res://assets/ui/icons/interactions/icon_interaction_portal_16x16.png": [16, "portal"],
 	"res://assets/ui/icons/interactions/icon_interaction_talk_16x16.png": [16, "talk"],
 	"res://assets/ui/icons/states/icon_slot_locked_16x16.png": [16, "locked"],
+	"res://assets/ui/icons/inventory/icon_inventory_bag_24x24.png": [24, "bag"],
 }
 
 
@@ -50,6 +51,7 @@ func _draw_icon(image: Image, icon_name: String) -> void:
 		"portal": _draw_portal(image)
 		"talk": _draw_talk(image)
 		"locked": _draw_locked(image)
+		"bag": _draw_bag(image)
 
 
 func _draw_sword(image: Image) -> void:
@@ -117,6 +119,18 @@ func _draw_locked(image: Image) -> void:
 	_fill_rect(image, Rect2i(9, 3, 2, 5), MUTED_MOSS)
 	_fill_rect(image, Rect2i(7, 2, 2, 2), MUTED_MOSS)
 	_fill_rect(image, Rect2i(7, 9, 2, 3), VOID_INK)
+
+
+func _draw_bag(image: Image) -> void:
+	# A compact travel satchel: pale handle, violet body, and gold clasp.
+	_fill_rect(image, Rect2i(8, 4, 8, 2), BONE_TEXT)
+	_fill_rect(image, Rect2i(6, 6, 3, 5), BONE_TEXT)
+	_fill_rect(image, Rect2i(15, 6, 3, 5), BONE_TEXT)
+	_fill_rect(image, Rect2i(4, 9, 16, 11), DIVINE_VIOLET)
+	_fill_rect(image, Rect2i(6, 11, 12, 7), Color("38284f"))
+	_fill_rect(image, Rect2i(10, 10, 4, 5), RELIC_GOLD)
+	_fill_rect(image, Rect2i(11, 11, 2, 2), Color("f2df8c"))
+	_fill_rect(image, Rect2i(4, 18, 16, 2), MUTED_MOSS)
 
 
 func _draw_line(image: Image, from: Vector2i, to: Vector2i, color: Color, width := 1) -> void:

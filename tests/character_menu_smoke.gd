@@ -2,6 +2,7 @@ extends SceneTree
 
 const PlayerScene = preload("res://entities/player/player.tscn")
 const CharacterMenuScene = preload("res://ui/character_menu.tscn")
+const HudScene = preload("res://ui/combat_hud.tscn")
 
 
 func _initialize() -> void:
@@ -14,6 +15,14 @@ func _run() -> void:
 		if not InputMap.has_action(action_name):
 			_fail("Missing input action: %s" % action_name)
 			return
+	var has_tab_binding := false
+	for input_event: InputEvent in InputMap.action_get_events("player_character_menu"):
+		if input_event is InputEventKey and input_event.physical_keycode == KEY_TAB:
+			has_tab_binding = true
+			break
+	if not has_tab_binding:
+		_fail("Character-menu action is not physically bound to Tab.")
+		return
 
 	var player := PlayerScene.instantiate() as Player
 	root.add_child(player)
@@ -26,17 +35,51 @@ func _run() -> void:
 	if menu.visible:
 		_fail("Character menu should begin hidden.")
 		return
-	var tab_event := InputEventAction.new()
-	tab_event.action = "player_character_menu"
-	tab_event.pressed = true
-	menu._unhandled_input(tab_event)
+	var physical_tab_event := InputEventKey.new()
+	physical_tab_event.physical_keycode = KEY_TAB
+	physical_tab_event.pressed = true
+	Input.parse_input_event(physical_tab_event)
+	await process_frame
+	physical_tab_event.pressed = false
+	Input.parse_input_event(physical_tab_event)
 	if not menu.visible or not paused:
-		_fail("Tab did not open the character menu and pause gameplay.")
+		_fail("The live physical Tab event did not open the character menu and pause gameplay.")
 		return
-	if menu._skill_cards.size() != 4 or root.gui_get_focus_owner() != menu._skill_cards[0]:
-		_fail("Character menu did not build and focus its reusable four-slot skill controls.")
+	if menu._equipment_cards.size() != 1 or root.gui_get_focus_owner() != menu._equipment_cards[0]:
+		_fail("Character menu did not build and focus Alden's starter armory item.")
 		return
-	if not menu.has_node("Panel/Margin/Root/Skills/Skill4") or not (menu._skill_cards[0] is SkillSlotCard):
+	var identity_title: Label = menu.get_node("Panel/Margin/Root/Header/Identity/Title")
+	if identity_title.text != "ALDEN":
+		_fail("Character menu does not present Alden's approved mortal identity.")
+		return
+	if menu._equipment_slot_cards.size() != 5 or not menu.gear_page.visible or menu.skills_page.visible:
+		_fail("Character menu did not open on the five-slot Gear page.")
+		return
+	if player.equipment_showcase == null or not player.equipment_showcase.has_valid_layout():
+		_fail("Player does not expose a valid authored equipment showcase.")
+		return
+	if menu.equipment_detail_panel.current_definition != player.equipment_showcase.equipped_weapon:
+		_fail("Character menu did not initially inspect the equipped weapon.")
+		return
+	if menu.skills_tab_button.get_node_or_null(menu.skills_tab_button.focus_neighbor_bottom) != menu._equipment_cards[0]:
+		_fail("Both tab controls must lead into the visible Gear page.")
+		return
+	menu._equipment_cards[0].pressed.emit()
+	if (
+		menu.equipment_detail_panel.current_definition == null
+		or menu.equipment_detail_panel.current_definition.rarity != EquipmentDefinition.Rarity.WOOD
+		or not menu.equipment_detail_panel.state_label.text.contains("ASHWOOD")
+	):
+		_fail("Selecting the Ashwood Blade did not update the starter equipment detail surface.")
+		return
+	menu.skills_tab_button.pressed.emit()
+	if menu.gear_page.visible or not menu.skills_page.visible or root.gui_get_focus_owner() != menu._skill_cards[0]:
+		_fail("Skills tab did not switch pages and focus the first reusable skill control.")
+		return
+	if menu.gear_tab_button.get_node_or_null(menu.gear_tab_button.focus_neighbor_bottom) != menu._skill_cards[0]:
+		_fail("Both tab controls must lead into the visible Active Skills page.")
+		return
+	if not menu.has_node("Panel/Margin/Root/PageHost/SkillsPage/Skills/Skill4") or not (menu._skill_cards[0] is SkillSlotCard):
 		_fail("Character menu did not present all four authored reusable skill slots.")
 		return
 	if player.skill_loadout == null or not player.skill_loadout.has_complete_layout():
@@ -48,14 +91,17 @@ func _run() -> void:
 	if menu._skill_cards[0].get_node_or_null(menu._skill_cards[0].focus_neighbor_right) != menu._skill_cards[1]:
 		_fail("Character skill cards do not provide explicit directional focus navigation.")
 		return
-	menu._unhandled_input(tab_event)
+	var tab_action_event := InputEventAction.new()
+	tab_action_event.action = "player_character_menu"
+	tab_action_event.pressed = true
+	menu._input(tab_action_event)
 	if not menu.visible:
 		_fail("Tab should open the menu; Esc or the close button should close it.")
 		return
 	var escape_event := InputEventAction.new()
 	escape_event.action = "ui_cancel"
 	escape_event.pressed = true
-	menu._unhandled_input(escape_event)
+	menu._input(escape_event)
 	if menu.visible or paused:
 		_fail("Esc did not close the character menu and resume gameplay.")
 		return
@@ -68,6 +114,16 @@ func _run() -> void:
 	if menu.visible or paused:
 		_fail("The mouse/keyboard close control did not close the character menu.")
 		return
+
+	var hud := HudScene.instantiate() as CombatHUD
+	root.add_child(hud)
+	hud.character_menu_requested.connect(menu.open_menu)
+	hud.character_menu_button.pressed.emit()
+	if not menu.visible or not paused:
+		_fail("The visible HUD character/bag button did not open the menu.")
+		return
+	menu.close_menu()
+	hud.free()
 
 	player.progression_component.grant_rewards(20, 3)
 	if menu.level_label.text != "LEVEL 2 / 10" or menu.coin_label.text != "3 COINS":

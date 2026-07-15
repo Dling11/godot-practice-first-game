@@ -28,6 +28,7 @@ func _ready() -> void:
 		push_error("SanctuaryFlow is missing a required hub dependency.")
 		return
 	combat_hud.bind_player(player)
+	combat_hud.character_menu_requested.connect(character_menu.open_menu)
 	skillkeeper.proximity_changed.connect(combat_hud.show_interaction_prompt)
 	weapon_merchant.proximity_changed.connect(combat_hud.show_interaction_prompt)
 	expedition_altar.proximity_changed.connect(combat_hud.show_interaction_prompt)

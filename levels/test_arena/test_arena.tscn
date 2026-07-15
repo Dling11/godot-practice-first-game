@@ -42,10 +42,11 @@ corner_radius_bottom_left = 3
 font_size = 12
 font_color = Color(0.86, 0.9, 0.82, 1)
 
-[node name="Game" type="Node" node_paths=PackedStringArray("player", "combat_hud")]
+[node name="Game" type="Node" node_paths=PackedStringArray("player", "combat_hud", "character_menu")]
 script = ExtResource("4_flow")
 player = NodePath("World/Actors/Player")
 combat_hud = NodePath("UI/CombatHUD")
+character_menu = NodePath("UI/CharacterMenu")
 
 [node name="World" type="Node2D" parent="."]
 

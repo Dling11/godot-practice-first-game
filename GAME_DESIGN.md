@@ -31,7 +31,7 @@ The exact run structure, death penalty, checkpoint rules, and permanent progress
 
 **Implemented journey entry:** the game opens at the Battle of Gods title screen. `Begin the Awakening` starts a fresh in-memory run and fades into Sanctuary. Settings currently provide immediate session-only Music, Combat Sound, and Menu Sound toggles. Continue/profile selection does not exist yet.
 
-**Implemented Sanctuary loop:** Sanctuary is a safe expedition hub centered on two separate landmarks: a walk-around divine fountain in the courtyard and an animated angel portal farther north. Dedicated grass and cobblestone paths connect the side-positioned mushroom dwelling and merchant hall to the central route. The player walks around either side of the fountain, crosses a visible open gap, ascends the portal's broad center staircase, and reaches the contextual expedition prompt immediately before the portal surface; the authored threshold and rear footprints prevent walking through the monument. The hub also contains a weapon stall, generated trees, Skillkeeper Eira, and Armskeeper Orren. Both NPCs use restrained pixel-stepped breathing while their collision and interaction footprints remain fixed. Eira's dialogue hands off to the current read-only skill-information menu. Orren previews the future weapon service, but purchasing, prices, equipment, and coin sinks are not implemented. The portal currently offers the beginner Forgotten Grove route and previews two sealed future regions. Stage 1 continues directly to Stage 2; clearing Stage 2 returns to Sanctuary.
+**Implemented Sanctuary loop:** Sanctuary is a safe expedition hub centered on two separate landmarks: a walk-around divine fountain in the courtyard and an animated angel portal farther north. Dedicated grass and cobblestone paths connect the side-positioned mushroom dwelling and merchant hall to the central route. The player walks around either side of the fountain, crosses a visible open gap, ascends the portal's broad center staircase, and reaches the contextual expedition prompt immediately before the portal surface; the authored threshold and rear footprints prevent walking through the monument. The hub also contains a weapon stall, generated trees, Skillkeeper Eira, and Armskeeper Orren. Both NPCs use restrained pixel-stepped breathing while their collision and interaction footprints remain fixed. Alden turns toward either speaker and holds the matching directional interaction pose while dialogue is active. Eira's dialogue hands off to the current character surface. Orren previews the future weapon service, but purchasing, prices, item ownership, equip commands, combat bonuses, and coin sinks are not implemented. The portal currently offers the beginner Forgotten Grove route and previews two sealed future regions. Stage 1 continues directly to Stage 2; clearing Stage 2 returns to Sanctuary.
 
 Future destination access should combine level, story flags, boss victories, discovered locations, and required key items. Level alone must not unlock every road, and completed early expeditions should remain replayable.
 
@@ -58,7 +58,9 @@ Damage formulas, stagger, poise, stamina, mana, cooldowns, and targeting rules a
 
 ## Player Character
 
-The player character's personal identity, origin, base attributes, and relationship to The One Above are undecided. `Player` remains the technical gameplay role so future playable characters can reuse the same contracts. The current assassin-like prototype uses **The Awakened** as a working archetype/title, not an approved personal name.
+The active mortal player is **Alden**, presented as a **Mortal Wayfarer** and **Novice Warrior**. `Player` remains the technical gameplay role so Alden, future classes, and possible additional playable characters can reuse the same contracts. Alden's origin, base attributes, and relationship to The One Above remain undecided; naming him does not resolve those lore questions. **The Awakened** is now a preserved legacy prototype title rather than the active character identity.
+
+Alden establishes a modular playable-character direction: one reusable 32x32 four-direction body carries locomotion, interaction, hurt, and staged defeat poses, while class clothing, weapons, hair, armor, and aura may be composed as separate reviewed presentation layers. The active Novice Warrior currently uses only a minimal starter outfit and the Ashwood Blade. Future Ranger and Mage candidates should reuse the body contract with their own authored layers instead of duplicating an entire actor controller. Class rules, selection, and progression are not implemented.
 
 Required capability areas:
 
@@ -87,7 +89,12 @@ Future lore should preserve mystery and avoid turning The One Above into an ordi
 
 ## Characters and Factions
 
-No named playable characters, NPCs, gods, demons, or factions have been approved beyond The One Above.
+- **Alden:** implemented mortal player identity; currently a Novice Warrior. His deeper history and divine significance remain open.
+- **Skillkeeper Eira:** implemented Sanctuary NPC who introduces the current skill-information surface.
+- **Armskeeper Orren:** implemented Sanctuary merchant NPC who previews the future equipment service without selling items yet.
+- **The One Above:** approved primordial creator and strongest known being; exact present state remains mysterious.
+
+No additional named gods, demons, or factions are approved. Eira and Orren retain their current bespoke sprites until a later, separately reviewed modular-NPC migration.
 
 ## Enemies and Bosses
 
@@ -106,7 +113,7 @@ No specific boss roster is approved.
 
 **Implemented Stage 1 encounter:** three sequential beginner waves introduce Mirelings and Thralls only. Wave 3 remains capped at four enemies. Clearing it opens the stage-exit portal. Entering its range shows `F - Enter Portal`; leaving removes the prompt. Interaction fades through a loading veil into Stage 2.
 
-**Implemented Stage 2 encounter — Thorns of the Forgotten Grove:** the player arrives at a small grove with a central broken shrine, flanking trees, and clear paths to the north exit. The arrival message reads `THE THORNS REMEMBER YOUR FOOTSTEPS`. Wave 1 uses two Mirelings as a warm-up. Wave 2 introduces one Bramble Spitter alongside one Mireling. Clearing both waves opens a return portal to Stage 1; no exit portal exists before the clear.
+**Implemented Stage 2 encounter — Thorns of the Forgotten Grove:** the player arrives at a small grove with a central broken shrine, flanking trees, and clear paths to the north exit. The arrival message reads `THE THORNS REMEMBER YOUR FOOTSTEPS`. Wave 1 uses two Mirelings as a warm-up. Wave 2 introduces one Bramble Spitter alongside one Mireling. Clearing both waves opens a return portal to Sanctuary; no exit portal exists before the clear.
 
 Every encounter spawn is announced by a short violet ground rune, inward sparks, and restrained lightning strike aligned with the enemy's non-hostile materialization. Clearing a wave provides a 2.25-second recovery window before the next wave begins.
 
@@ -120,7 +127,11 @@ Standard enemies keep their health bars hidden at full health. Taking damage rev
 
 **Planned:** data-driven weapon definitions with composable attack behaviors. Weapons should differ in reach, timing, mobility, risk, resource use, and synergy—not only damage.
 
-**Implemented prototype:** a plain one-handed sword establishes directional melee timing through wind-up, active, and recovery phases. Its current 25 damage and timings are feel-test values, not final balance.
+**Implemented starter weapon - Ashwood Blade:** Alden carries a small wooden sword as a separate world presentation sprite. Its `WeaponDefinition` supplies the texture's grip offset, visual scale, and swing radius so short swords and future greatswords rotate around an authored hand point rather than their image center. It observes the authoritative melee wind-up, active, and recovery phases while Alden's separate weaponless body sheet shows matching brace, committed step, and recovery poses at a fixed scale; the blade sweeps through a short visible trail and settles. The existing directional hitbox still owns contacts and damage. Its current 25 damage and timings deliberately match the previous plain-sword tuning so the visual repair does not silently rebalance combat.
+
+**Implemented equipment design preview:** the paused character surface presents only the Ashwood Blade at **Wood** rank and uses the same stable weapon ID, world texture, and equipped presentation as the player scene. The early intended material vocabulary is **Wood -> Stonebound -> Iron -> Rare**, with spirit blue reserved for the first Rare tier. Only Wood is active; Stonebound, Iron, Rare, ownership, drops, purchases, saving, and stat aggregation are not implemented. The former A Grade, S Grade, Legendary, and Mythic weapon concepts are preserved as legacy exploration material and are no longer player-facing beginner equipment.
+
+Equipment must reinforce decisions across normal attack, dash, and active skills rather than replace skills with larger numbers. Armor, gloves, boots, and one accessory may begin as icon-and-stat equipment without changing the world sprite. Activating higher ranks also requires stronger authored enemies, elites, and bosses; Legendary or Mythic gear must not trivialize the beginner expeditions.
 
 Future weapon families may include spears, dual swords, greatswords, axes, ranged weapons, and supernatural weapons. They should reuse combat contracts while providing genuinely different attack behavior rather than reskinning the sword.
 
@@ -140,9 +151,9 @@ The relationship between divine and demonic power may involve affinity, corrupti
 
 This is in-memory run state: it survives portal scene transitions, resets when the player restarts after defeat, and is not written to disk. Reaching a level does not pause combat, randomly offer upgrades, alter combat stats, or grant an ability yet.
 
-The approved control budget is four equipable active skill slots on keys 1-4, in addition to normal attack and dash. The centered combat bar exposes all four slots; only Sweeping Cut is currently equipped. Tab opens the paused character menu, which presents The Awakened's level, XP, coins, core actions, and four selectable information cards sourced from the same loadout as the HUD. Mouse click or directional focus plus Enter selects a card; Escape or the visible top-right mouse button closes the menu. Slots 2-4 are deliberately sealed; their displayed level 3/6/9 milestones are presentation scaffolding until authored abilities and unlock rules are approved. Leveling unlocks authored options or requirements rather than interrupting every level with random choices.
+The approved control budget is four equipable active skill slots on keys 1-4, in addition to normal attack and dash. The centered combat bar exposes all four slots; only Sweeping Cut is currently equipped. Physical Tab or the visible top-left satchel/Character button opens the paused two-page character surface. `Gear & Armory` shows level, XP, coins, animated Alden with the Ashwood Blade, five eventual equipment slots, the single Wood starter, lore, and skill-synergy intent. `Active Skills` presents core actions and four selectable cards sourced from the same loadout as the HUD. Mouse click or directional focus plus Enter selects cards and tabs; Escape or the visible top-right button closes the menu. Slots 2-4 remain sealed; their displayed level 3/6/9 milestones are presentation scaffolding until authored abilities and unlock rules are approved. Leveling unlocks authored options or requirements rather than interrupting every level with random choices.
 
-Open decisions include how coins are spent, whether skills are unlocked by level or purchased after reaching a level, which abilities occupy slots 2-4, and what eventually persists through a profile save.
+Open decisions include how coins are spent, whether skills are unlocked by level or purchased after reaching a level, which abilities occupy slots 2-4, what persists through a profile save, how owned inventory/equipment is represented, where items are acquired, and how bonuses scale without erasing combat mastery.
 
 Progression must preserve skill-based combat. Numerical growth should not erase the need to dodge, read attacks, and position well.
 
@@ -160,9 +171,9 @@ Large props must communicate depth correctly. A player walking behind a tree can
 
 Tile-based environments should support reusable terrain transitions, ground variation, decorative overlays, collision, and navigation instead of being authored for only one location.
 
-**Implemented prototype revision:** four bright grass variants, a layered limited-palette ancient tree, and a broken forgotten-god shrine establish a simple colorful fantasy palette. The tree canopy uses subtle intermittent sway. The player and Forsaken Thrall use strict 24x32 directional sprites with 14 and 11 opaque colors respectively.
+**Implemented prototype revision:** four bright grass variants, a layered limited-palette ancient tree, and a broken forgotten-god shrine establish a simple colorful fantasy palette. The tree canopy uses subtle intermittent sway. Alden uses a strict 32x32 modular directional sheet; the Forsaken Thrall retains its validated 24x32 locomotion and 64x48 claw-action contracts. Existing Mireling and Bramble Spitter art remains unchanged.
 
-The player locomotion sheet provides idle, two-frame walk, and dash poses in four directions. Sword and Thrall claw attacks use separate 64x48 action canvases with six authored frames per direction. The Thrall scratch uses anticipation, raised arm, slash, impact, follow-through, and recovery; its locomotion sheet retains idle, two-frame chase, and defeated poses.
+Alden's separate direction-row sheets provide two-frame idle, four-frame walk, three-pose weaponless attack, three-frame dash, two-frame interaction, two-frame hurt, and four-stage defeat. Every direction begins from the same 18x27 reference silhouette and y=32 foot baseline; wider action cells preserve scale during reaches, leans, and collapse. Normal attacks map wind-up, active, and recovery to authored body poses while the separately rendered Ashwood Blade supplies grip-anchored placement, phase-driven swing/trail, and a visual drop during defeat. Runtime fading follows the authored collapse rather than replacing it. The Thrall scratch still uses anticipation, raised arm, slash, impact, follow-through, and recovery on its six-frame 64x48 canvas.
 
 Tree depth is intentionally split into base and canopy while the prop participates in actor Y-sorting. The player can appear behind the tree when north of its footprint and in front when south of it; canopy motion never changes collision or navigation.
 

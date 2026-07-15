@@ -101,13 +101,17 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - Backgrounds, icons, and panel art are presentation dependencies. Reference them through configured scenes/resources rather than branching gameplay logic on filenames.
 - Follow `ART_DIRECTION.md` for palette roles, lighting, pixel density, and replaceable-background requirements.
 - Apply `assets/ui/themes/battle_of_gods_theme.tres` at reusable UI roots; add local theme overrides only for semantic states the shared theme cannot represent.
-- UI icons use stable canonical concepts and native 16x16 or 24x24 textures. Pass them as presentation configuration or metadata; never parse their filenames to decide gameplay behavior.
+- UI icons use stable canonical concepts and native 16x16 or 24x24 textures; detailed inventory item portraits use the approved 64x64 contract. Pass them as presentation configuration or metadata; never parse their filenames to decide gameplay behavior.
 - Keep small pixel icons on binary alpha with one readable symbol and transparent internal margin. Regenerate the baseline kit through `tools/build_ui_icon_kit.gd` rather than hand-editing generated runtime files inconsistently.
 - Menu screens must establish an initial focused control, explicit directional focus loops, modal focus transfer, and focus restoration when the modal closes.
 - Every gameplay modal must provide a visible mouse-operable primary/close control and support `ui_cancel`; do not rely on a hidden keyboard-only toggle to dismiss it.
 - Use native `Button.pressed` activation as the shared path for mouse click, `ui_accept`, and controller confirmation. Do not create separate gameplay outcomes for each device.
+- Handle global modal-open shortcuts in `_input()` when their physical key also serves GUI navigation, mark accepted events handled, and ignore open requests while another owner has paused the tree. Use `_unhandled_input()` only when GUI consumption is intended.
+- HUD entry buttons emit intent signals to the current scene flow; they do not locate menus globally or mutate pause, inventory, or equipment state directly.
 - Full-screen transition or modal shields may use `MOUSE_FILTER_STOP` only while they are intentionally active; transparent idle overlays and decorative controls must use `MOUSE_FILTER_IGNORE` so they cannot silently consume clicks.
 - Repeated skill presentation must consume `SkillLoadoutDefinition`/`SkillSlotDefinition` data through reusable slot scenes. HUD views may observe an injected `AbilityComponent`, but UI must not own cast, cooldown, unlock, or damage authority.
+- Repeated equipment presentation must consume `EquipmentDefinition` data through reusable item, slot, and detail scenes. Preview power, rarity aura, lore, and synergy copy are presentation until an approved equipment/stat authority exists; UI must not apply bonuses or mutate ownership.
+- Equipment rank color is semantic for the active early ladder: Wood uses warm ash brown, Stonebound uses neutral stone gray, Iron uses pale steel, and Rare uses spirit blue. Former A/S/Legendary/Mythic colors belong only to preserved legacy concepts until a later decision reintroduces them. Rank animation remains a restrained pulse and must not compete with menu focus.
 - Title/loading/background art remains under a named presentation owner. Never bake navigation labels or controls into background textures.
 - Generated dark-background crops must use asset-specific border cleanup. Do not globally key all dark pixels from characters, buildings, or props; preserve legitimate outlines, interiors, limbs, and connectors.
 
@@ -122,11 +126,14 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - Judge animation at gameplay scale and speed, not only zoomed in within an art tool.
 - Prefer simple color blocks and controlled clusters over noisy micro-detail; environment assets must not visually overpower actors or combat telegraphs.
 - Validate asset scale in the full gameplay viewport before approving detail density.
-- Prototype actors use exact 24x32 cells. Do not substitute larger illustrations that are merely downscaled or filtered to appear pixelated.
-- Keep active actor sheets on a fixed direction grid: down, left, right, up.
-- Character body scale must remain constant across action cells. Never shrink an entire actor to fit a long weapon silhouette.
-- Actions that extend beyond the 24x32 locomotion cell may use a larger fixed canvas, currently 64x48, provided body scale and foot baseline remain constant across every frame.
-- Held weapons must be authored together with hands, arms, and body poses throughout attack frames. Avoid detached overlays, independent weapon orbits, or freely rotating polygon weapons.
+- Alden and future modular playable bodies use an 18x27 upright reference on a 32-pixel-high foot-baseline contract. Idle, locomotion, and compact reactions use 32x32 cells; authored reaches may use 48x32 and grounded defeat may use 64x32 so the body is never scaled down to fit a pose. Existing enemy-humanoid locomotion may retain its validated 24x32 contract, and small creatures retain 32x32. Do not substitute larger illustrations that are merely downscaled or filtered to appear pixelated.
+- Keep active actor sheets on a fixed direction-row grid: down, left, right, up; action time advances across columns.
+- Character body scale must remain constant across directions and action cells. Normalize from a per-direction standing reference, keep one foot baseline, and allocate a wider cell rather than shrinking an actor, long weapon, reach, lean, or collapse.
+- Prefer action-owned playable sheets when one mixed board would couple unrelated frame counts or encourage unstable crops. Preserve the `<action>_<direction>` animation API so scenes do not depend on atlas layout.
+- Existing integrated actor actions that extend beyond a 24x32 locomotion cell may retain a documented larger fixed canvas, currently 64x48, provided body scale and foot baseline remain constant across every frame.
+- Modular playable weapons may be separate `Sprite2D` presentation driven by the same `WeaponDefinition` and attack-phase signals as the actor. Treat the presentation node as the grip/hand pivot; store each texture's `sprite_offset_from_grip`, visual scale, and swing radius in weapon data. Never rotate a weapon around its texture center unless the grip is actually centered. Visible weapons must use reviewed integer-pixel hand anchors, never own hit timing or damage, and remain close enough to read as intentionally held/floating beside the hand. Do not use unbounded decorative weapon orbits or free rotation unrelated to combat phases.
+- Integrated weapon-and-hand art remains appropriate for non-modular actors whose silhouettes depend on it. Do not mix integrated and detached versions of the same active weapon without an explicit presentation owner.
+- Defeat presentation should use authored recoil/weaken/slump frames before a runtime fade. Keep active raster edges binary-alpha; translucency belongs to runtime modulation rather than partially transparent sprite fragments.
 - Active hard-pixel sheets must use binary alpha only. Semi-transparent edge fragments are prohibited.
 - Movement collision represents the foot footprint; hurtboxes represent the damageable body and remain separate shapes.
 - Palette reduction must use no dithering for the current style unless a later art-direction decision explicitly changes it.

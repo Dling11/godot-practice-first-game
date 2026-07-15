@@ -14,16 +14,16 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 ### KI-004 - Pixel rendering baseline is not art-validated
 
 - **Status:** Open
-- **Impact:** The 960x540 baseline has strict directional sprite validation but no moving-camera or production animation timing validation yet.
-- **Planned resolution:** Validate pixel stability with camera movement, richer walk cycles, and representative combat effects.
-- **Workaround:** Treat 960x540 as the active prototype baseline, not an irreversible final asset constraint.
+- **Impact:** The 960x540 baseline now mechanically validates Alden's separate idle/walk/attack/dash/interaction/hurt/defeat sheets, fixed reference scale and baseline, grip-anchored weapon, active swing trail, binary alpha, and staged defeat, but the new timing and silhouettes have not yet been visually approved through extended moving-camera combat play.
+- **Planned resolution:** Feel-test Alden's gameplay scale, serious black-eye/scarf readability, four-frame locomotion, three-pose body/weapon synchronization in all directions, dash lean, hurt recovery, defeat fade, and representative effects in Sanctuary and both stages.
+- **Workaround:** Treat 960x540 and the current action-owned sheets as the active prototype baseline, not irreversible final assets.
 
-### KI-005 - Skill unlocks, coin sinks, and disk persistence are undecided
+### KI-005 - Skill unlocks, equipment acquisition, coin sinks, and disk persistence are undecided
 
 - **Status:** Open
-- **Impact:** The in-memory level-10 run, defeat reset, four-slot budget, and character information menu are implemented, but profile saves, coin sinks, authored unlock rules, and slots 2-4 content are undecided.
-- **Planned resolution:** Design the first authored skills and unlock/currency rules after feel-testing the current reward pace and menu.
-- **Workaround:** Keep XP and coins in-memory for the active run and keep slots 2-4 sealed; avoid random run-based upgrade assumptions.
+- **Impact:** The in-memory level-10 run, defeat reset, four-skill budget, and read-only Gear/Armory preview are implemented, but profile saves, owned inventory, equip commands, stat formulas, Stonebound/Iron/Rare acquisition, drops, prices, coin sinks, authored skill unlocks, and slots 2-4 content are undecided.
+- **Planned resolution:** Approve persistent profile/death rules first, then inventory/equipment authority, acquisition and balance, and the first authored skills.
+- **Workaround:** Keep XP and coins in-memory, slots 2-4 sealed, and Ashwood Blade as the only active starter presentation. Stonebound, Iron, and Rare remain planned; former high-tier concepts remain legacy-only. Do not grant items or apply preview power/synergy text to combat.
 
 ### KI-006 - Title audio settings are session-only
 

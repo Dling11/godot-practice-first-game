@@ -28,12 +28,14 @@ Art must never hide collision boundaries, attack telegraphs, the player, or requ
 |---|---|---|
 | Logical viewport | 960x540 | Review every asset at this gameplay scale. |
 | Development display | 1920x1080 | Preserve exact 2x integer scaling. |
-| Humanoid locomotion | 24x32 cells | Feet, body scale, and direction columns remain stable. |
-| Extended humanoid actions | 64x48 cells | Six-frame actions may exceed the body cell without shrinking the actor. |
-| Small creatures | 32x32 cells | Keep silhouettes readable beside 24x32 humanoids. |
+| Modular playable body | 32x32 cells | Alden's feet, body scale, direction columns, and layer anchors remain stable. |
+| Existing enemy-humanoid locomotion | 24x32 cells | Preserve validated Thrall scale and direction columns. |
+| Existing extended enemy actions | 64x48 cells | Six-frame actions may exceed the body cell without shrinking the actor. |
+| Small creatures | 32x32 cells | Keep silhouettes readable beside modular players and enemy humanoids. |
 | Prototype terrain | 64x64 tiles | New terrain must match or deliberately replace this density. |
 | Standard action/skill icon | 24x24 | Use a centered readable glyph with transparent padding. |
 | Compact status/currency icon | 16x16 | Use only when readable at native size. |
+| Inventory equipment portrait | 64x64 | One complete item silhouette, transparent padding, binary alpha, and no baked rarity frame or text. |
 
 Nearest-neighbor filtering, binary-alpha hard-pixel character edges, integer placement, and pixel snapping remain mandatory. Do not disguise an illustration as pixel art by downscaling it.
 
@@ -63,9 +65,12 @@ Default world light travels from upper-left toward lower-right. Highlights, cast
 - Direction order is `down`, `left`, `right`, `up` unless a documented asset contract says otherwise.
 - Animation names use `<action>_<direction>`, such as `walk_left` or `attack_up`.
 - Feet are the stable origin for top-down actors and must not drift between frames.
-- The face, hands, held weapon, and major silhouette features must survive every frame; no transparent holes or detached fragments.
-- Weapons are integrated into attack poses when hands and body motion depend on them.
+- The face, hands, equipped presentation, and major silhouette features must survive every frame; no transparent holes or accidental fragments. Playable standing references use one documented screen-space width, height, and foot baseline across every direction.
+- Alden's eyes remain pure black with no mascot-like white highlight. His head is slightly boxy rather than a perfect circle; the body stays narrow and serious rather than baby-like or chubby.
+- Modular playable weapons may remain separate from the body when stable grip pivots and phase-driven motion make equipment replacement practical. Author each texture with a known grip point, keep the weapon visually attached to the intended hand space, and rotate the sprite around that grip rather than the image center. A restrained active trail may clarify the swing but must not imply a different damage area.
+- Weapons remain integrated into attack poses when the actor's hand/body silhouette depends on them, as with the existing Thrall claw action.
 - Anticipation, active action, and recovery poses matter more than extra decorative frames.
+- Defeat uses readable recoil, weaken/slump, and final grounded poses before runtime fade; fading alone is not an authored death animation.
 - Shadows are separate presentation and align beneath the foot position.
 - Collision and hurtboxes are authored from gameplay needs, not copied from sprite opacity.
 
@@ -92,6 +97,10 @@ UI should resemble ancient crafted interfaces without sacrificing clarity:
 - Icons use one clear symbol, a limited palette, and a consistent internal margin.
 
 The UI implementation uses `battle_of_gods_theme.tres` as its reusable base. Buttons, panels, labels, progress bars, focus states, and disabled states consume that shared theme; scene-local overrides remain only for semantic states such as health, cooldown, equipped, or sealed content. The first named 16x16/24x24 icon kit follows the same palette and hard-pixel rules.
+
+Equipment presentation extends that language without becoming noisy loot UI. The active early ladder uses warm ash brown for Wood, neutral stone gray for Stonebound, pale steel for Iron, and spirit blue for Rare. The former A/S/Legendary/Mythic palette is preserved only with legacy concepts and is not shown to beginner players. Rarity frames and optional aura pulses remain separate Godot presentation, so item images contain only the complete 64x64 silhouette and can be restyled independently.
+
+The active playable presentation is Alden: a serious mortal wayfarer built from separate four-direction idle, walk, weaponless attack, dash, interaction, hurt, and defeat sheets plus a separate Ashwood Blade. Every direction's upright reference is normalized to an 18x27 silhouette on a 32-pixel foot baseline. His slightly boxy head, narrow pure-black determined eyes without white highlights, rust-red scarf, small pointed boots, compact tunic, and grip-anchored weapon establish the reusable Warrior/Ranger/Mage body direction. Wider action cells exist only to preserve the same physical body scale during reaches, leans, and collapse. This approval applies only to the player. Existing enemies remain unchanged, and Eira/Orren keep their current bespoke sprites until later reviewed migrations.
 
 ## Replaceable Background Contract
 

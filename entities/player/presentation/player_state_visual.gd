@@ -1,6 +1,8 @@
 extends Node
 
-@export var body_visual: AnimatedSprite2D
+@export var visual_root: CanvasItem
+
+var _visual_tween: Tween
 
 
 func flash_damaged(_info: DamageInfo) -> void:
@@ -12,16 +14,23 @@ func flash_blocked(_info: DamageInfo) -> void:
 
 
 func play_defeat() -> void:
-	if body_visual == null:
+	if visual_root == null:
 		return
-	var tween := create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(body_visual, "modulate", Color(0.28, 0.25, 0.35, 0.7), 0.35)
+	_kill_visual_tween()
+	_visual_tween = create_tween()
+	_visual_tween.tween_interval(0.58)
+	_visual_tween.tween_property(visual_root, "modulate", Color(0.28, 0.25, 0.35, 0.0), 0.42)
 
 
 func _flash(color: Color, duration_seconds: float) -> void:
-	if body_visual == null:
+	if visual_root == null:
 		return
-	var tween := create_tween()
-	body_visual.modulate = color
-	tween.tween_property(body_visual, "modulate", Color.WHITE, duration_seconds)
+	_kill_visual_tween()
+	visual_root.modulate = color
+	_visual_tween = create_tween()
+	_visual_tween.tween_property(visual_root, "modulate", Color.WHITE, duration_seconds)
+
+
+func _kill_visual_tween() -> void:
+	if _visual_tween != null and _visual_tween.is_valid():
+		_visual_tween.kill()

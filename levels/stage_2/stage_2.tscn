@@ -30,10 +30,11 @@ font_color = Color(0.78, 0.84, 0.68, 1)
 outline_size = 3
 outline_color = Color(0.04, 0.06, 0.04, 1)
 
-[node name="Stage2" type="Node" node_paths=PackedStringArray("player", "combat_hud", "encounter_controller")]
+[node name="Stage2" type="Node" node_paths=PackedStringArray("player", "combat_hud", "character_menu", "encounter_controller")]
 script = ExtResource("15_flow")
 player = NodePath("World/Actors/Player")
 combat_hud = NodePath("UI/CombatHUD")
+character_menu = NodePath("UI/CharacterMenu")
 encounter_controller = NodePath("GameplayServices/EncounterController")
 
 [node name="World" type="Node2D" parent="."]

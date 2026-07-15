@@ -6,7 +6,7 @@ The setting centers on gods, demons, forgotten civilizations, and **The One Abov
 
 ## Current Status
 
-Pre-alpha title-to-Sanctuary-to-two-stage prototype. F5 opens a mouse/keyboard/gamepad-ready Battle of Gods title screen with session-audio settings; Begin the Awakening fades into a safe generated-pixel Sanctuary with a separate divine fountain, walk-in angel portal, Skillkeeper Eira, and Armskeeper Orren. Stage 1 teaches Mireling and Thrall combat; Stage 2, `Thorns of the Forgotten Grove`, introduces the Bramble Spitter and returns to Sanctuary when cleared. An in-memory level-10 XP/coin run and a reusable data-driven four-slot character/skill information surface are active; disk saving, purchases, equipment, and additional skills are not yet implemented.
+Pre-alpha title-to-Sanctuary-to-two-stage prototype. F5 opens a mouse/keyboard/gamepad-ready Battle of Gods title screen with session-audio settings; Begin the Awakening fades into a safe generated-pixel Sanctuary with a separate divine fountain, walk-in angel portal, Skillkeeper Eira, and Armskeeper Orren. The active mortal player is Alden, a Novice Warrior whose serious scarfed body uses separate stable-scale directional action sheets and carries a separately rendered Ashwood Blade. Stage 1 teaches Mireling and Thrall combat; Stage 2, `Thorns of the Forgotten Grove`, introduces the Bramble Spitter and returns to Sanctuary when cleared. An in-memory level-10 XP/coin run, reusable four-slot skills, and a polished read-only Gear/Armory preview are active. Disk saving, owned inventory, equipment bonuses, purchases/drops, and additional skills are not yet implemented.
 
 ## Intended Technology
 
@@ -65,18 +65,44 @@ res://
     sanctuary/
       sanctuary.tscn
   ui/
+    equipment/
+      equipment_item_card.tscn
+      equipment_slot_card.tscn
+      equipment_detail_panel.tscn
     skills/
       skill_bar_slot.tscn
       skill_slot_card.tscn
     screens/title/
       title_screen.tscn
   data/
+    items/
+      alden_equipment_showcase.tres
     skills/
-      awakened_starting_loadout.tres
+      alden_starting_loadout.tres
+  assets/
+    characters/playable/alden/
+      alden_idle_sheet_32x32.png
+      alden_walk_sheet_32x32.png
+      alden_attack_body_sheet_48x32.png
+      alden_dash_sheet_48x32.png
+      alden_interact_sheet_48x32.png
+      alden_hurt_sheet_32x32.png
+      alden_defeat_sheet_64x32.png
+      alden_sprite_frames.tres
+    items/weapons/
+      world/ashwood_blade_16x24.png
+      icons/ashwood_blade_64x64.png
   project.godot
 ```
 
-Prototype environment raster assets live in `res://assets/environment/prototype/`. The Awakened's runtime art lives under `res://assets/characters/awakened/`; all current enemy runtime art lives in named domains under `res://assets/characters/enemies/`. The shared UI theme and individually replaceable named icons live under `res://assets/ui/`. Reusable prop scenes live under `res://environment/props/`. Original, cleaned, and superseded generation material is preserved under the Godot-ignored `art_source/`; exact-grid sheets under `assets/` are the runtime files.
+Prototype environment raster assets live in `res://assets/environment/prototype/`. Alden's active runtime art lives under `res://assets/characters/playable/alden/`; the previous Awakened art is preserved under `res://assets/characters/awakened/` as legacy material. All current enemy runtime art lives in named domains under `res://assets/characters/enemies/`. The shared UI theme and individually replaceable named icons live under `res://assets/ui/`. Reusable prop scenes live under `res://environment/props/`. Original, cleaned, and superseded generation material is preserved under the Godot-ignored `art_source/`; exact-grid sheets under `assets/` are the runtime files.
+
+Alden's action-owned sheets and the Ashwood Blade can be regenerated from their preserved sources, then assembled into one stable animation API, with:
+
+```powershell
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tools/process_alden_modular_assets.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tools/build_character_sprite_frames.gd'
+```
 
 The longer-term proposed structure is documented in `ARCHITECTURE.md`. Directories are created only with their first real asset.
 
@@ -88,18 +114,18 @@ The active prototype controls are:
 |---|---|---|
 | Move | W/A/S/D | Left stick |
 | Aim/facing | Mouse | Right stick |
-| Primary attack | Left mouse | Right trigger |
+| Primary attack: Ashwood Blade | Left mouse | Right trigger |
 | Dodge | Space | South face button |
 | Skill 1: Sweeping Cut | 1 (Q legacy fallback) | Left shoulder |
 | Skill slots 2-4 | 2 / 3 / 4 (reserved) | Reserved |
-| Open character / skills | Tab | Not assigned |
+| Open character / gear / skills | Tab or click the HUD satchel button | Not assigned |
 | Interact / enter portal | F | West face button |
 | Close / cancel modal | Escape or visible mouse button | UI Cancel |
 | Rise after defeat | R | North face button |
 
 Movement, aim/facing, primary attack, dash, Sweeping Cut, portal interaction, and arena restart after defeat are active. Slots 2-4 are visibly sealed and currently do nothing. XP and coins survive portal transitions within the running game; defeat restart begins a new run.
 
-In Sanctuary, approach Skillkeeper Eira or Armskeeper Orren and press F. To use the angel portal, walk around either side of the standalone fountain, cross the open courtyard, and ascend the portal's center stairs; its prompt appears only at the doorway threshold. Dialogue and menu controls support mouse click or arrow-key focus plus Enter; Escape cancels the active modal, and the character surface also has a top-right close button. Eira opens the current selectable skill-information surface only after her dialogue is completed; Orren previews the future weapon service without pretending purchases exist; the portal opens the Forgotten Grove while later routes remain visibly sealed.
+In Sanctuary, approach Skillkeeper Eira or Armskeeper Orren and press F. To use the angel portal, walk around either side of the standalone fountain, cross the open courtyard, and ascend the portal's center stairs; its prompt appears only at the doorway threshold. The character surface opens from physical Tab or the clickable top-left satchel button. Dialogue and menu controls support mouse click or arrow-key focus plus Enter; Escape cancels the active modal, and the character surface also has a top-right close button. Its tabs show Alden, his read-only five-slot Gear/Armory preview with the Wood-rank Ashwood Blade, and the four active-skill slots. Eira opens this surface only after her dialogue is completed; Orren previews the future weapon service without pretending purchases or item ownership exist; the portal opens the Forgotten Grove while later routes remain visibly sealed.
 
 ## Verification
 
@@ -116,6 +142,7 @@ Run the current headless movement smoke test with:
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/player_progression_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/run_session_progression_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/character_menu_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/equipment_preview_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/audio_director_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/ui_theme_icon_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/title_screen_smoke.gd'

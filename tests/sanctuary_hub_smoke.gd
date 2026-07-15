@@ -76,6 +76,7 @@ func _run() -> void:
 	await process_frame
 	await process_frame
 	var player := sanctuary.get_node("World/Actors/Player") as Player
+	var player_body := player.get_node("VisualRoot/Body") as AnimatedSprite2D
 	var hud := sanctuary.get_node("UI/CombatHUD") as CombatHUD
 	var character_menu := sanctuary.get_node("UI/CharacterMenu") as CharacterMenu
 	var skillkeeper := sanctuary.get_node("World/Actors/Skillkeeper") as DialogueNpc
@@ -217,6 +218,13 @@ func _run() -> void:
 	if not dialogue.visible or not paused:
 		_fail("Skillkeeper interaction did not open and safely pause dialogue.")
 		return
+	var eira_direction := (skillkeeper.global_position - player.global_position).normalized()
+	if (
+		player.facing_direction.dot(eira_direction) < 0.999
+		or not String(player_body.animation).begins_with("interact_")
+	):
+		_fail("Alden did not face Eira and enter the directional interaction pose.")
+		return
 	await process_frame
 	var escape := InputEventAction.new()
 	escape.action = "ui_cancel"
@@ -224,6 +232,9 @@ func _run() -> void:
 	dialogue._unhandled_input(escape)
 	if dialogue.visible or character_menu.visible or paused:
 		_fail("Esc did not cancel Eira's dialogue without opening another modal.")
+		return
+	if not String(player_body.animation).begins_with("idle_"):
+		_fail("Alden did not resume directional locomotion after dialogue closed.")
 		return
 	skillkeeper._unhandled_input(interact)
 	if not dialogue.visible or not paused:
@@ -236,7 +247,7 @@ func _run() -> void:
 		_fail("Completing Eira's dialogue did not open the existing skill-information menu.")
 		return
 	if not character_menu.has_node("CloseButton"):
-		_fail("The Awakened menu has no top-right mouse close button.")
+		_fail("Alden's character menu has no top-right mouse close button.")
 		return
 	character_menu.close_menu()
 	if character_menu.visible or paused:

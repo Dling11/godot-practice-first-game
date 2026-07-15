@@ -1,5 +1,53 @@
 # Changelog
 
+## 2026-07-15 - Alden Action-Owned Animation Rebuild
+
+- Replaced Alden's active single mixed-pose atlas with independently generated idle, four-frame walk, three-pose weaponless attack, three-frame dash, two-frame interaction, two-frame hurt, and four-stage defeat sources.
+- Refined the playable identity with a slightly boxy head, narrow pure-black determined eyes, rust-red scarf, narrow starter outfit, and small pointed boots while preserving the external Ashwood Blade.
+- Rebuilt the deterministic processor around canonical direction rows, safe source-cell isolation, a shared 18x27 reference silhouette, binary alpha, and one y=32 foot baseline.
+- Allocated 48x32 cells to extended actions and 64x32 cells to defeat so reaching, leaning, and horizontal collapse never force Alden's body to become smaller.
+- Mapped authoritative melee wind-up, active, and recovery phases directly to body frames 0, 1, and 2; added event-driven hurt playback and locomotion restoration without changing combat authority.
+- Rebuilt `alden_sprite_frames.tres`, preserved the superseded single atlas as legacy material, expanded regression coverage across all seven sheets, and left enemies, collisions, balance, and external weapon hit authority unchanged.
+
+## 2026-07-15 - Alden Direction, Interaction, and Weapon-Swing Repair
+
+- Corrected the generated Alden source order from `down/right/left/up` into the runtime `down/left/right/up` convention, fixing reversed side-facing movement and interaction art.
+- Removed the crouched/shrunken normal-attack body cell and preserved Alden's full-size directional silhouette with a restrained one-pixel wind-up and two-pixel active step.
+- Rebuilt the visible weapon around a true hand/grip pivot and added data-driven sprite offset, visual scale, and swing radius metadata so later greatswords can reuse the same presentation rig.
+- Added a short presentation-only active swing trail while preserving the existing hitbox as the sole reach/contact/damage authority.
+- Aligned the character-menu Ashwood Blade preview to the same grip contract instead of positioning the texture independently.
+- Made dialogue interactions turn Alden toward Eira/Orren, hold the canonical directional interaction pose during conversation, and restore locomotion afterward.
+- Expanded regression coverage for side-profile semantics, full-size attack frames, grip configuration, swing/trail phases, speaker-facing interaction, and dialogue restoration.
+
+## 2026-07-15 - Alden Modular Mortal and Ashwood Blade
+
+- Named the active mortal player **Alden**, with the presentation title `Mortal Wayfarer • Novice Warrior`, while retaining `Player` as the reusable technical actor role.
+- Replaced the active Awakened body/attack presentation with a reproducible 128x256 modular atlas containing 32x32 directional idle, walk, brace, interaction, hurt, and staged-defeat poses.
+- Added the Wood-rank **Ashwood Blade** as both a 16x24 visible world weapon and 64x64 inventory portrait, sharing one stable ID across weapon and equipment definitions.
+- Added a presentation-only weapon observer that uses direction anchors and melee/ability phase signals for idle placement, swing motion, and defeat drop while the existing hidden hitbox remains authoritative.
+- Added a three-pose recoil/weaken/slump defeat followed by runtime fade of the complete visual root; collision, damage, and restart authority remain unchanged.
+- Reframed the active armory around one honest Wood starter and the planned Wood-to-Stonebound-to-Iron-to-Rare material ladder. Former A/S/Legendary/Mythic concepts and Awakened art remain preserved as legacy material without active player references.
+- Updated menu identity, equipment focus behavior for a single item, reusable art rules, canonical asset records, design/architecture decisions, and focused regression coverage.
+- Left existing enemies, Sanctuary NPC sprites, environment art, combat tuning, inventory authority, economy, and persistence unchanged for separate future passes.
+
+## 2026-07-15 - Discoverable Character/Gear Entry and Tab Correction
+
+- Corrected `player_character_menu` from an accidental Backspace physical-key code to the real Tab binding.
+- Moved the global character-menu open shortcut to the early input stage so Godot's built-in Tab focus navigation cannot consume it first; opening remains blocked while another modal owns pause.
+- Added a visible clickable top-left Character button with a reproducible hard-pixel satchel icon to the shared HUD in Sanctuary and both expeditions.
+- Routed the HUD button through a presentation-intent signal and scene-flow wiring, keeping pause ownership and future inventory/equipment authority outside the HUD.
+- Extended smoke coverage for the exact physical Tab binding, both open paths, modal pause/close behavior, icon dimensions, and binary alpha.
+
+## 2026-07-15 - Equipment and Skill-Synergy Preview
+
+- Rebuilt the paused character surface as polished `Gear & Armory` and `Active Skills` pages while preserving mouse, directional/Enter, Tab-open, Escape-close, pause, and progression behavior.
+- Added an animated Awakened portrait, reusable Weapon/Armor/Gloves/Boots/Accessory slot presentation, and reusable equipment item/detail scenes with restrained rank-driven aura motion.
+- Added immutable equipment/showcase resources and four original weapon concepts: A-grade Wayfarer's Iron, S-grade Gloamfang, Legendary Sunroot Oath, and Mythic Veilrender.
+- Gave each weapon a future skill-synergy identity so equipment reinforces attack/dash/active-skill decisions instead of replacing skills with raw power.
+- Kept the system honest and read-only: Wayfarer's Iron is the only equipped preview, while preview power, other weapons, synergies, inventory ownership, purchases, drops, persistence, and combat bonuses remain inactive.
+- Generated and normalized one four-weapon source atlas into individually replaceable 64x64, compact-palette, binary-alpha runtime portraits with a reproducible Godot processor.
+- Added regression coverage for rarity order, stable IDs, compact palettes, transparent corners, unchanged authoritative sword damage, two-page focus navigation, selectable armory details, and explicit inactive-state copy.
+
 ## 2026-07-15 - Reusable Skill Surfaces and Unified Menu Input
 
 - Fixed the layer-100 transition overlay permanently consuming pointer events while transparent; it now blocks input only during an active fade and restores click-through afterward.

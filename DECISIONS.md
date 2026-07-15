@@ -24,7 +24,7 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 014 | Favor a wider, simpler, brighter gameplay presentation | Viewport, palette, visual density, or HUD scale |
 | 015 | Enforce strict 24x32 sprite cells and integrated weapon poses | Character sprite production and import rules |
 | 016 | Preserve body scale and separate the hand-anchored swing | Attack sprite alignment, shadows, or collision placement |
-| 017 | Author full-body six-frame sword attacks | Player attack animation and phase mapping |
+| 017 | Author full-body six-frame sword attacks (superseded for the active player by 039) | Legacy attack art or integrated non-modular actions |
 | 018 | Polish enemy arrival, footprint navigation, and combat-space presentation | Spawning, navigation footprints, or combat readability |
 | 019 | Author the Thrall claw scratch as full-body directional animation | Thrall animation and attack telegraphs |
 | 020 | Turn the proving ground into a small staged playable level | Map layout, waves, camera, and encounter structure |
@@ -45,6 +45,9 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 035 | Make the title screen the explicit journey entry | Main scene, menu navigation, new journeys, settings, or title backgrounds |
 | 036 | Use Sanctuary as the expedition hub | Hub flow, NPCs, destination choice, route unlocks, or stage return behavior |
 | 037 | Generate and normalize a dedicated Sanctuary art kit | Sanctuary tiles, generated props, NPC presentation, hub collisions, or visual replacement |
+| 038 | Preview skill-synergy equipment before persistence | Equipment ranks, inventory UI, weapon synergies, shops, drops, or stat authority |
+| 039 | Use modular mortal character presentation | Alden, playable classes, layered equipment, visible weapons, or NPC scale migration |
+| 040 | Split playable animation by action while locking body scale | Alden animation sheets, directional scale, attack-body phases, dash, hurt, or defeat |
 
 ## New Decisions
 

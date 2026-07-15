@@ -15,6 +15,7 @@ const ICON_SIZES := {
 	"res://assets/ui/icons/interactions/icon_interaction_portal_16x16.png": Vector2i(16, 16),
 	"res://assets/ui/icons/interactions/icon_interaction_talk_16x16.png": Vector2i(16, 16),
 	"res://assets/ui/icons/states/icon_slot_locked_16x16.png": Vector2i(16, 16),
+	"res://assets/ui/icons/inventory/icon_inventory_bag_24x24.png": Vector2i(24, 24),
 }
 
 
@@ -48,6 +49,9 @@ func _run() -> void:
 		return
 	if hud.get_node("HealthPanel/Margin/Stack/Header/HealthIcon").texture == null:
 		_fail("CombatHUD health icon is not configured.")
+		return
+	if hud.character_menu_button.icon == null or hud.character_menu_button.text != "CHARACTER  [TAB]":
+		_fail("CombatHUD character/inventory entry button is not configured.")
 		return
 	var menu := CharacterMenuScene.instantiate() as CharacterMenu
 	if menu.theme != ThemeResource:

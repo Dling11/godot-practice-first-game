@@ -3,6 +3,8 @@ extends Control
 
 const SkillBarSlotScene = preload("res://ui/skills/skill_bar_slot.tscn")
 
+signal character_menu_requested
+
 @onready var health_bar: ProgressBar = %HealthBar
 @onready var health_label: Label = %HealthLabel
 @onready var blocked_label: Label = %BlockedLabel
@@ -17,12 +19,17 @@ const SkillBarSlotScene = preload("res://ui/skills/skill_bar_slot.tscn")
 @onready var experience_bar: ProgressBar = %ExperienceBar
 @onready var experience_label: Label = %ExperienceLabel
 @onready var coin_label: Label = %CoinLabel
+@onready var character_menu_button: Button = %CharacterMenuButton
 
 var _blocked_tween: Tween
 var _player: Player
 var _spawn_tween: Tween
 var ability_panel: SkillBarSlot
 var _skill_slots: Array[SkillBarSlot] = []
+
+
+func _ready() -> void:
+	character_menu_button.pressed.connect(_on_character_menu_button_pressed)
 
 
 func bind_player(player: Player) -> void:
@@ -163,3 +170,7 @@ func _show_blocked(_info: DamageInfo) -> void:
 	_blocked_tween.tween_interval(0.25)
 	_blocked_tween.tween_property(blocked_label, "modulate:a", 0.0, 0.2)
 	_blocked_tween.tween_callback(blocked_label.hide)
+
+
+func _on_character_menu_button_pressed() -> void:
+	character_menu_requested.emit()

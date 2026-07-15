@@ -20,7 +20,7 @@ Paths marked as migrated are current runtime truth. Remaining `Target path` entr
 Canonical IDs use `<domain>_<identity>_<action-or-purpose>`. Runtime filenames use descriptive `snake_case` and add sheet/cell dimensions where useful.
 
 ```text
-char_awakened_locomotion
+char_alden_walk
 char_forsaken_thrall_claw_attack
 icon_skill_sweeping_cut
 ui_panel_dark
@@ -29,15 +29,20 @@ prop_sanctuary_fountain
 audio_sfx_sword_hit
 ```
 
-Do not introduce `final`, `new`, `fixed`, `better`, unexplained numbers, or personal names into runtime filenames. Git owns history; descriptive variants such as `mossy`, `winter`, or `corrupted` are allowed when both variants intentionally coexist.
+Do not introduce `final`, `new`, `fixed`, `better`, unexplained numbers, or contributor/user names into runtime filenames. Approved in-world character names such as `alden`, `eira`, or `orren` are useful identities and should be used consistently. Git owns history; descriptive variants such as `mossy`, `winter`, or `corrupted` are allowed when both variants intentionally coexist.
 
 ## Active Character Art
 
 | Canonical ID | Current runtime path | Target path/name | Size and grid | Runtime owner |
 |---|---|---|---|---|
-| `char_awakened_locomotion` | `assets/characters/awakened/awakened_locomotion_sheet_24x32.png` | Migrated | 96x128; 4x4 of 24x32 | `awakened_sprite_frames.tres` |
-| `char_awakened_sword_attack` | `assets/characters/awakened/awakened_sword_attack_sheet_64x48.png` | Migrated | 384x192; 6x4 of 64x48 | `awakened_sprite_frames.tres` |
-| `char_awakened_frames` | `assets/characters/awakened/awakened_sprite_frames.tres` | Migrated | Godot `SpriteFrames` | `player.tscn` |
+| `char_alden_idle` | `assets/characters/playable/alden/alden_idle_sheet_32x32.png` | Active | 64x128; 2 frames x 4 direction rows; 32x32 cells | `alden_sprite_frames.tres` |
+| `char_alden_walk` | `assets/characters/playable/alden/alden_walk_sheet_32x32.png` | Active | 128x128; 4 frames x 4 direction rows; 32x32 cells | `alden_sprite_frames.tres` |
+| `char_alden_attack_body` | `assets/characters/playable/alden/alden_attack_body_sheet_48x32.png` | Active | 144x128; 3 phases x 4 direction rows; 48x32 cells | `alden_sprite_frames.tres` |
+| `char_alden_dash` | `assets/characters/playable/alden/alden_dash_sheet_48x32.png` | Active | 144x128; 3 frames x 4 direction rows; 48x32 cells | `alden_sprite_frames.tres` |
+| `char_alden_interact` | `assets/characters/playable/alden/alden_interact_sheet_48x32.png` | Active | 96x128; 2 frames x 4 direction rows; 48x32 cells | `alden_sprite_frames.tres` |
+| `char_alden_hurt` | `assets/characters/playable/alden/alden_hurt_sheet_32x32.png` | Active | 64x128; 2 frames x 4 direction rows; 32x32 cells | `alden_sprite_frames.tres` |
+| `char_alden_defeat` | `assets/characters/playable/alden/alden_defeat_sheet_64x32.png` | Active | 256x128; 4 frames x 4 direction rows; 64x32 cells | `alden_sprite_frames.tres` |
+| `char_alden_frames` | `assets/characters/playable/alden/alden_sprite_frames.tres` | Active | Godot `SpriteFrames` | `player.tscn` |
 | `char_forsaken_thrall_locomotion` | `assets/characters/enemies/forsaken_thrall/forsaken_thrall_locomotion_sheet_24x32.png` | Migrated | 96x128; 4x4 of 24x32 | `forsaken_thrall_sprite_frames.tres` |
 | `char_forsaken_thrall_claw_attack` | `assets/characters/enemies/forsaken_thrall/forsaken_thrall_claw_attack_sheet_64x48.png` | Migrated | 384x192; 6x4 of 64x48 | `forsaken_thrall_sprite_frames.tres` |
 | `char_forsaken_thrall_frames` | `assets/characters/enemies/forsaken_thrall/forsaken_thrall_sprite_frames.tres` | Migrated | Godot `SpriteFrames` | `forsaken_thrall.tscn` |
@@ -46,14 +51,28 @@ Do not introduce `final`, `new`, `fixed`, `better`, unexplained numbers, or pers
 | `char_bramble_spitter_actions` | `assets/characters/enemies/bramble_spitter/bramble_spitter_action_sheet_32x32.png` | Migrated | 128x128; 4x4 of 32x32 | `bramble_spitter_sprite_frames.tres` |
 | `char_bramble_spitter_frames` | `assets/characters/enemies/bramble_spitter/bramble_spitter_sprite_frames.tres` | Migrated | Godot `SpriteFrames` | `bramble_spitter.tscn` |
 
-Character columns use `down`, `left`, `right`, `up`. Humanoid extended attack sheets use those directions as rows and six action phases as columns.
+All active Alden sheets use direction rows in canonical `down`, `left`, `right`, `up` order and animation frames as columns. `tools/process_alden_modular_assets.gd` isolates each padded generated cell, removes chroma, normalizes every direction reference to 18x27 on the shared foot baseline, and emits binary-alpha runtime sheets. Normal attack body columns map directly to wind-up, active, and recovery while the external weapon owns the visible blade arc. The former single 4x8 Alden atlas is preserved as superseded runtime material and has no active `SpriteFrames` reference. Existing humanoid extended enemy attack sheets use directions as rows and six action phases as columns.
 
-### Preserved Awakened Pipeline Material
+### Preserved Alden Pipeline Material
 
 These files are intentionally outside runtime imports under Godot-ignored `art_source/`:
 
 | Related canonical ID | Preserved path | Status | Source dimensions |
 |---|---|---|---|
+| `char_alden_action_set` | `art_source/generated/characters/playable/alden/v2/alden_idle_source.png` through `alden_defeat_source.png` | `source` | Seven independently generated action boards |
+| `char_alden_action_set` | `art_source/generated/characters/playable/alden/v2/alden_idle_clean.png` through `alden_defeat_clean.png` | `intermediate` | Chroma-cleaned source boards |
+| `char_alden_modular_actions_legacy` | `art_source/generated/characters/playable/alden/alden_modular_action_source.png` | `legacy_source` | 1024x1536; superseded single board |
+| `char_alden_modular_actions_legacy` | `art_source/generated/characters/playable/alden/alden_modular_action_clean.png` | `legacy_intermediate` | 1024x1536; superseded single board |
+
+### Preserved Legacy Awakened Material
+
+These files are intentionally outside runtime imports under Godot-ignored `art_source/`:
+
+| Related canonical ID | Preserved path | Status | Source dimensions |
+|---|---|---|---|
+| `char_awakened_locomotion` | `assets/characters/awakened/awakened_locomotion_sheet_24x32.png` | `legacy` | 96x128; superseded active player sheet |
+| `char_awakened_sword_attack` | `assets/characters/awakened/awakened_sword_attack_sheet_64x48.png` | `legacy` | 384x192; superseded active player attack sheet |
+| `char_awakened_frames` | `assets/characters/awakened/awakened_sprite_frames.tres` | `legacy` | Superseded Godot `SpriteFrames` |
 | `char_awakened_locomotion` | `art_source/generated/characters/awakened/awakened_locomotion_source.png` | `source` | 1254x1254 |
 | `char_awakened_locomotion` | `art_source/generated/characters/awakened/awakened_locomotion_clean.png` | `intermediate` | 1254x1254 |
 | `char_awakened_sword_attack` | `art_source/generated/characters/awakened/awakened_sword_attack_source.png` | `source` | 1536x1024 |
@@ -127,8 +146,11 @@ Current UI visuals combine the approved reusable base theme and named pixel icon
 
 | Canonical ID | Current path | Status | Purpose |
 |---|---|---|---|
-| `ui_combat_hud` | `ui/combat_hud.tscn` | `active_resource` | Vitality, progression, interaction prompt, and skills 1-4. |
-| `ui_character_menu` | `ui/character_menu.tscn` | `active_resource` | Paused The Awakened progression and skill information. |
+| `ui_combat_hud` | `ui/combat_hud.tscn` | `active_resource` | Vitality, progression, character/satchel entry, interaction prompt, and skills 1-4. |
+| `ui_character_menu` | `ui/character_menu.tscn` | `active_resource` | Paused Gear/Armory and Active Skills surface for Alden. |
+| `ui_equipment_item_card` | `ui/equipment/equipment_item_card.tscn` | `active_resource` | Focusable rarity/item preview card. |
+| `ui_equipment_slot_card` | `ui/equipment/equipment_slot_card.tscn` | `active_resource` | Reusable equipped or empty slot presentation. |
+| `ui_equipment_detail_panel` | `ui/equipment/equipment_detail_panel.tscn` | `active_resource` | Lore, preview power, inactive synergy, and restrained aura presentation. |
 | `ui_title_screen` | `ui/screens/title/title_screen.tscn` | `active_resource` | Main navigation, session-audio settings, and new-journey entry. |
 | `ui_title_background` | `ui/screens/title/title_background.tscn` | `active_resource` | Replaceable title presentation layers and restrained atmosphere. |
 | `ui_dialogue_panel` | `ui/dialogue/dialogue_panel.tscn` | `active_resource` | Paused multi-line NPC dialogue presentation. |
@@ -144,7 +166,7 @@ Current UI visuals combine the approved reusable base theme and named pixel icon
 | Canonical ID | Runtime path | Status | Purpose |
 |---|---|---|---|
 | `theme_battle_of_gods` | `assets/ui/themes/battle_of_gods_theme.tres` | `active_resource` | Shared panels, labels, buttons, progress bars, focus, disabled, separators, and tooltips. |
-| `icon_action_primary_attack` | `assets/ui/icons/actions/icon_action_primary_attack_24x24.png` | `active_runtime` | Plain-sword action symbol. |
+| `icon_action_primary_attack` | `assets/ui/icons/actions/icon_action_primary_attack_24x24.png` | `active_runtime` | Primary melee/Ashwood Blade action symbol. |
 | `icon_action_dash` | `assets/ui/icons/actions/icon_action_dash_24x24.png` | `active_runtime` | Supernatural dash symbol. |
 | `icon_skill_sweeping_cut` | `assets/ui/icons/skills/icon_skill_sweeping_cut_24x24.png` | `active_runtime` | Wide sword-arc skill symbol. |
 | `icon_currency_coin` | `assets/ui/icons/economy/icon_currency_coin_16x16.png` | `active_runtime` | Run coin readout and future shop currency. |
@@ -153,8 +175,24 @@ Current UI visuals combine the approved reusable base theme and named pixel icon
 | `icon_interaction_portal` | `assets/ui/icons/interactions/icon_interaction_portal_16x16.png` | `active_runtime` | Contextual stage-travel prompt. |
 | `icon_interaction_talk` | `assets/ui/icons/interactions/icon_interaction_talk_16x16.png` | `active_runtime` | Reserved presentation for the first NPC interaction. |
 | `icon_slot_locked` | `assets/ui/icons/states/icon_slot_locked_16x16.png` | `active_runtime` | Sealed skill or unavailable-feature state. |
+| `icon_inventory_bag` | `assets/ui/icons/inventory/icon_inventory_bag_24x24.png` | `active_runtime` | Visible Character/Gear menu entry on the combat HUD. |
 
 The icons are reproducibly built by `tools/build_ui_icon_kit.gd` from the approved palette. They use binary alpha and remain independently replaceable at their stable paths.
+
+### Active Equipment Presentation
+
+| Canonical ID | Runtime path | Status | Contract and owner |
+|---|---|---|---|
+| `item_weapon_ashwood_blade_world` | `assets/items/weapons/world/ashwood_blade_16x24.png` | `active_runtime` | Binary-alpha visible weapon shared by `WeaponDefinition`, grip-anchored `PlayerWeaponVisual`, and grip-aligned character preview. |
+| `item_weapon_ashwood_blade_icon` | `assets/items/weapons/icons/ashwood_blade_64x64.png` | `active_runtime` | Compact-palette Wood-rank portrait used by `ashwood_blade.tres`. |
+| `item_weapon_wayfarers_iron` | `assets/items/weapons/icons/wayfarers_iron_64x64.png` | `legacy` | Former A-grade preview; no active showcase reference. |
+| `item_weapon_gloamfang` | `assets/items/weapons/icons/gloamfang_64x64.png` | `legacy` | Former S-grade preview; no active showcase reference. |
+| `item_weapon_sunroot_oath` | `assets/items/weapons/icons/sunroot_oath_64x64.png` | `legacy` | Former Legendary preview; no active showcase reference. |
+| `item_weapon_veilrender` | `assets/items/weapons/icons/veilrender_64x64.png` | `legacy` | Former Mythic preview; no active showcase reference. |
+
+The Ashwood Blade originates at `art_source/generated/items/weapons/ashwood_blade/ashwood_blade_source.png`; its cleaned intermediate is preserved beside it. `tools/process_alden_modular_assets.gd` produces both the 16x24 world texture and the 64x64 inventory icon with binary alpha and compact palettes. Rarity borders, labels, and aura animation are not baked into item art.
+
+The four legacy portraits originate from `art_source/generated/items/weapons/equipment_weapon_atlas_source.png`; the chroma-cleaned board and `tools/process_equipment_weapon_atlas.gd` remain preserved for provenance but must not restore active player-facing references without a new equipment decision.
 
 ## Planned Reusable UI Kit
 

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EquipmentShowcaseDefinition" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://data/items/equipment_showcase_definition.gd" id="1_script"]
+[ext_resource type="Resource" path="res://data/items/equipment/ashwood_blade.tres" id="2_ashwood"]
+
+[resource]
+script = ExtResource("1_script")
+equipped_weapon = ExtResource("2_ashwood")
+featured_items = Array[Resource]([ExtResource("2_ashwood")])

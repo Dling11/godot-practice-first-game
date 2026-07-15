@@ -2,16 +2,18 @@ extends Node
 
 @export var player: Player
 @export var combat_hud: CombatHUD
+@export var character_menu: CharacterMenu
 @export var encounter_controller: EncounterController
 
 var _restart_enabled := false
 
 
 func _ready() -> void:
-	if player == null or combat_hud == null or encounter_controller == null:
-		push_error("Stage2Flow requires Player, CombatHUD, and EncounterController.")
+	if player == null or combat_hud == null or character_menu == null or encounter_controller == null:
+		push_error("Stage2Flow requires Player, CombatHUD, CharacterMenu, and EncounterController.")
 		return
 	combat_hud.bind_player(player)
+	combat_hud.character_menu_requested.connect(character_menu.open_menu)
 	player.defeated.connect(_on_player_defeated)
 	encounter_controller.stage_cleared.connect(_on_stage_cleared)
 	_begin_stage()

@@ -5,6 +5,8 @@ extends CharacterBody2D
 
 signal facing_changed(direction: Vector2)
 signal movement_changed(direction: Vector2, is_moving: bool)
+signal interaction_started
+signal interaction_finished
 signal defeated
 
 const PlayerInputSourceScript = preload("res://entities/player/components/player_input_source.gd")
@@ -15,6 +17,7 @@ const AbilityComponentScript = preload("res://gameplay/abilities/ability_compone
 
 @export var movement_bounds := Rect2(56.0, 56.0, 528.0, 248.0)
 @export var skill_loadout: SkillLoadoutDefinition
+@export var equipment_showcase: EquipmentShowcaseDefinition
 
 @onready var input_source: PlayerInputSourceScript = %InputSource
 @onready var movement_component: PlayerMovementComponentScript = %MovementComponent
@@ -97,6 +100,25 @@ func request_ability_1() -> bool:
 	):
 		return false
 	return ability_1_component.request_cast(facing_direction)
+
+
+func face_toward(world_position: Vector2) -> void:
+	## Used by explicit world interactions before their modal pauses gameplay.
+	## Input remains the normal owner of facing outside that interaction moment.
+	_set_facing_direction(world_position - global_position)
+
+
+func begin_interaction(world_position: Vector2) -> void:
+	if is_defeated:
+		return
+	face_toward(world_position)
+	interaction_started.emit()
+
+
+func finish_interaction() -> void:
+	if is_defeated:
+		return
+	interaction_finished.emit()
 
 
 func get_ability_component_for_slot(slot_number: int) -> AbilityComponent:

@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://ui/equipment/equipment_item_card.gd" id="1_script"]
+[ext_resource type="Theme" path="res://assets/ui/themes/battle_of_gods_theme.tres" id="2_theme"]
+
+[node name="EquipmentItemCard" type="Button"]
+custom_minimum_size = Vector2(146, 82)
+layout_mode = 2
+theme = ExtResource("2_theme")
+toggle_mode = true
+mouse_default_cursor_shape = 2
+script = ExtResource("1_script")
+
+[node name="Margin" type="MarginContainer" parent="."]
+mouse_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 5
+
+[node name="Content" type="HBoxContainer" parent="Margin"]
+mouse_filter = 2
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ItemIcon" type="TextureRect" parent="Margin/Content"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(58, 58)
+mouse_filter = 2
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Text" type="VBoxContainer" parent="Margin/Content"]
+mouse_filter = 2
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+theme_override_constants/separation = 2
+
+[node name="RarityLabel" type="Label" parent="Margin/Content/Text"]
+unique_name_in_owner = true
+mouse_filter = 2
+layout_mode = 2
+text = "A GRADE"
+theme_override_font_sizes/font_size = 8
+
+[node name="NameLabel" type="Label" parent="Margin/Content/Text"]
+unique_name_in_owner = true
+mouse_filter = 2
+layout_mode = 2
+text = "WEAPON"
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 9
+
+[node name="StatusLabel" type="Label" parent="Margin/Content/Text"]
+unique_name_in_owner = true
+mouse_filter = 2
+layout_mode = 2
+text = "ARMORY PREVIEW"
+theme_override_font_sizes/font_size = 7

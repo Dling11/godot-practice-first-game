@@ -2,15 +2,17 @@ extends Node
 
 @export var player: Player
 @export var combat_hud: CombatHUD
+@export var character_menu: CharacterMenu
 
 var _restart_enabled := false
 
 
 func _ready() -> void:
-	if player == null or combat_hud == null:
-		push_error("ArenaFlow requires a Player and CombatHUD.")
+	if player == null or combat_hud == null or character_menu == null:
+		push_error("ArenaFlow requires a Player, CombatHUD, and CharacterMenu.")
 		return
 	combat_hud.bind_player(player)
+	combat_hud.character_menu_requested.connect(character_menu.open_menu)
 	player.defeated.connect(_on_player_defeated)
 
 
