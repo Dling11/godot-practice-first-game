@@ -2,6 +2,10 @@
 
 ## 2026-07-15 - Alden Action-Owned Animation Rebuild
 
+- Replaced fixed generated-cell insets with expanded connected-silhouette isolation, restoring the complete up-facing walk/dash head and preventing neighboring-row fragments from squashing the right dash.
+- Lowered and widened Alden's directional Ashwood hand anchors from face height to arm height, then replaced the inverted left-side perpendicular path with a true mirror of the right swing.
+- Centered the active trail on the hand path and added a short snappy weapon scale/color accent plus tapering trail width for more readable impact without changing hit timing, reach, damage, or collision.
+- Restored the player sword, Sweeping Cut, and dash players' explicit `SFX` bus assignments after the full regression run exposed missing scene declarations.
 - Replaced Alden's active single mixed-pose atlas with independently generated idle, four-frame walk, three-pose weaponless attack, three-frame dash, two-frame interaction, two-frame hurt, and four-stage defeat sources.
 - Refined the playable identity with a slightly boxy head, narrow pure-black determined eyes, rust-red scarf, narrow starter outfit, and small pointed boots while preserving the external Ashwood Blade.
 - Rebuilt the deterministic processor around canonical direction rows, safe source-cell isolation, a shared 18x27 reference silhouette, binary alpha, and one y=32 foot baseline.

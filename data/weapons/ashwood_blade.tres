@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="WeaponDefinition" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="WeaponDefinition" format=3 uid="uid://bjhgo0si3p63v"]
 
-[ext_resource type="Script" path="res://data/weapons/weapon_definition.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://assets/items/weapons/world/ashwood_blade_16x24.png" id="2_world"]
+[ext_resource type="Script" uid="uid://3fc8aekdiqmr" path="res://data/weapons/weapon_definition.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://b8uiyhic463ne" path="res://assets/items/weapons/world/ashwood_blade_16x24.png" id="2_world"]
 
 [resource]
 script = ExtResource("1_script")
@@ -13,5 +13,4 @@ world_visual_scale = 1.1
 swing_visual_radius = 13.0
 damage = 25.0
 wind_up_seconds = 0.08
-active_seconds = 0.1
 recovery_seconds = 0.22

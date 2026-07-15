@@ -1,32 +1,39 @@
-[gd_scene load_steps=30 format=3]
+[gd_scene format=3 uid="uid://7gpqrhm32t6x"]
 
-[ext_resource type="Script" path="res://entities/player/player.gd" id="1_player"]
-[ext_resource type="Script" path="res://entities/player/components/player_input_source.gd" id="2_input"]
-[ext_resource type="Script" path="res://entities/player/components/player_movement_component.gd" id="3_movement"]
-[ext_resource type="Script" path="res://entities/player/presentation/player_aim_visual.gd" id="4_aim"]
-[ext_resource type="Script" path="res://entities/player/components/melee_attack_component.gd" id="5_attack"]
-[ext_resource type="Script" path="res://gameplay/combat/melee_hitbox.gd" id="6_hitbox"]
+[ext_resource type="Script" uid="uid://bfjslqi8334my" path="res://entities/player/player.gd" id="1_player"]
+[ext_resource type="Script" uid="uid://dob8x3ikf6t0i" path="res://entities/player/components/player_input_source.gd" id="2_input"]
+[ext_resource type="Script" uid="uid://cj8rt8iwktnj2" path="res://entities/player/components/player_movement_component.gd" id="3_movement"]
+[ext_resource type="Script" uid="uid://4l3spvpulsnw" path="res://entities/player/presentation/player_aim_visual.gd" id="4_aim"]
+[ext_resource type="Script" uid="uid://bewr0rcrltrhq" path="res://entities/player/components/melee_attack_component.gd" id="5_attack"]
+[ext_resource type="Script" uid="uid://6520tclsqofq" path="res://gameplay/combat/melee_hitbox.gd" id="6_hitbox"]
 [ext_resource type="Resource" path="res://data/weapons/ashwood_blade.tres" id="7_sword_data"]
-[ext_resource type="Script" path="res://entities/player/components/evade_component.gd" id="9_evade"]
+[ext_resource type="Script" uid="uid://cciyoum4pr3f7" path="res://entities/player/components/evade_component.gd" id="9_evade"]
 [ext_resource type="Resource" path="res://data/evade/player_dash.tres" id="10_dash_data"]
-[ext_resource type="Script" path="res://gameplay/combat/health_component.gd" id="11_health"]
-[ext_resource type="Script" path="res://gameplay/combat/hurtbox_component.gd" id="12_hurtbox"]
-[ext_resource type="Script" path="res://entities/player/presentation/dash_visual.gd" id="13_dash_visual"]
-[ext_resource type="Script" path="res://entities/player/presentation/player_state_visual.gd" id="14_state_visual"]
+[ext_resource type="Script" uid="uid://1th6uujswp43" path="res://gameplay/combat/health_component.gd" id="11_health"]
+[ext_resource type="Script" uid="uid://edpqlhbhvhav" path="res://gameplay/combat/hurtbox_component.gd" id="12_hurtbox"]
+[ext_resource type="Script" uid="uid://c6tnb2d6x4r3l" path="res://entities/player/presentation/dash_visual.gd" id="13_dash_visual"]
+[ext_resource type="Script" uid="uid://bfftqao8u5k1s" path="res://entities/player/presentation/player_state_visual.gd" id="14_state_visual"]
 [ext_resource type="SpriteFrames" path="res://assets/characters/playable/alden/alden_sprite_frames.tres" id="15_player_frames"]
-[ext_resource type="Script" path="res://entities/player/presentation/player_animation.gd" id="16_player_animation"]
-[ext_resource type="Script" path="res://gameplay/abilities/ability_component.gd" id="17_ability"]
-[ext_resource type="Resource" path="res://data/abilities/sweeping_cut.tres" id="18_sweep_data"]
-[ext_resource type="Script" path="res://entities/player/presentation/sweeping_cut_visual.gd" id="19_sweep_visual"]
-[ext_resource type="Script" path="res://entities/player/components/player_progression_component.gd" id="20_progression"]
+[ext_resource type="Script" uid="uid://q76dk4eb6285" path="res://entities/player/presentation/player_animation.gd" id="16_player_animation"]
+[ext_resource type="Script" uid="uid://cn8r3l6ef5evh" path="res://gameplay/abilities/ability_component.gd" id="17_ability"]
+[ext_resource type="Resource" uid="uid://bc2pol4ik4lxf" path="res://data/abilities/sweeping_cut.tres" id="18_sweep_data"]
+[ext_resource type="Script" uid="uid://dluv63hfr7xdh" path="res://entities/player/presentation/sweeping_cut_visual.gd" id="19_sweep_visual"]
+[ext_resource type="Script" uid="uid://y4q77uqmwwkr" path="res://entities/player/components/player_progression_component.gd" id="20_progression"]
 [ext_resource type="Resource" path="res://data/progression/alden_path.tres" id="21_progression_data"]
-[ext_resource type="Script" path="res://gameplay/audio/player_action_sfx.gd" id="22_player_sfx"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/sword_swing.wav" id="23_sword_swing"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/sweeping_cut.wav" id="24_sweeping_cut"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/dash.wav" id="25_dash"]
+[ext_resource type="Script" uid="uid://b61awjvau5rtl" path="res://gameplay/audio/player_action_sfx.gd" id="22_player_sfx"]
+[ext_resource type="AudioStream" uid="uid://tg77jorh8gfu" path="res://assets/audio/sfx/sword_swing.wav" id="23_sword_swing"]
+[ext_resource type="AudioStream" uid="uid://c7cghxwksrqyh" path="res://assets/audio/sfx/sweeping_cut.wav" id="24_sweeping_cut"]
+[ext_resource type="AudioStream" uid="uid://b53wbwpaltwr" path="res://assets/audio/sfx/dash.wav" id="25_dash"]
 [ext_resource type="Resource" path="res://data/skills/alden_starting_loadout.tres" id="26_loadout"]
 [ext_resource type="Resource" path="res://data/items/alden_equipment_showcase.tres" id="27_equipment_showcase"]
-[ext_resource type="Script" path="res://entities/player/presentation/player_weapon_visual.gd" id="28_weapon_visual"]
+[ext_resource type="Script" uid="uid://bdrcc6co0unfp" path="res://entities/player/presentation/player_weapon_visual.gd" id="28_weapon_visual"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sword"]
+radius = 8.0
+height = 24.0
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_sweep"]
+points = PackedVector2Array(3, -9, 14, -28, 39, -24, 48, 0, 39, 24, 14, 28, 3, 9)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_player_footprint"]
 radius = 6.0
@@ -41,164 +48,156 @@ font_color = Color(0.741, 0.69, 0.859, 1)
 outline_size = 2
 outline_color = Color(0.027, 0.02, 0.039, 1)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sword"]
-radius = 8.0
-height = 24.0
-
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_sweep"]
-points = PackedVector2Array(3, -9, 14, -28, 39, -24, 48, 0, 39, 24, 14, 28, 3, 9)
-
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=442018439]
 collision_layer = 2
-collision_mask = 1
 script = ExtResource("1_player")
 skill_loadout = ExtResource("26_loadout")
 equipment_showcase = ExtResource("27_equipment_showcase")
 
-[node name="VisualRoot" type="Node2D" parent="."]
+[node name="VisualRoot" type="Node2D" parent="." unique_id=1303120843]
 
-[node name="Shadow" type="Polygon2D" parent="VisualRoot"]
-position = Vector2(0, -2)
+[node name="Shadow" type="Polygon2D" parent="VisualRoot" unique_id=146521578]
 z_index = -2
-polygon = PackedVector2Array(-7, 0, -4, -2, 4, -2, 7, 0, 4, 2, -4, 2)
+position = Vector2(0, -2)
 color = Color(0.035, 0.06, 0.035, 0.36)
+polygon = PackedVector2Array(-7, 0, -4, -2, 4, -2, 7, 0, 4, 2, -4, 2)
 
-[node name="Body" type="AnimatedSprite2D" parent="VisualRoot"]
+[node name="Body" type="AnimatedSprite2D" parent="VisualRoot" unique_id=924091774]
 unique_name_in_owner = true
 position = Vector2(0, -16)
 sprite_frames = ExtResource("15_player_frames")
-animation = &"idle_down"
+animation = &"hurt_down"
 script = ExtResource("16_player_animation")
 
-[node name="SwordSwingTrail" type="Line2D" parent="VisualRoot"]
+[node name="SwordSwingTrail" type="Line2D" parent="VisualRoot" unique_id=300580408]
 visible = false
 z_index = 1
 width = 2.0
 default_color = Color(0.94, 0.74, 0.32, 0.72)
 
-[node name="WeaponVisual" type="Node2D" parent="VisualRoot" node_paths=PackedStringArray("weapon_sprite", "swing_trail")]
+[node name="WeaponVisual" type="Node2D" parent="VisualRoot" unique_id=455917304 node_paths=PackedStringArray("weapon_sprite", "swing_trail")]
 script = ExtResource("28_weapon_visual")
 weapon = ExtResource("7_sword_data")
 weapon_sprite = NodePath("Weapon")
 swing_trail = NodePath("../SwordSwingTrail")
 
-[node name="Weapon" type="Sprite2D" parent="VisualRoot/WeaponVisual"]
+[node name="Weapon" type="Sprite2D" parent="VisualRoot/WeaponVisual" unique_id=995404015]
 
-[node name="SwordPivot" type="Node2D" parent="."]
+[node name="SwordPivot" type="Node2D" parent="." unique_id=14777553]
 position = Vector2(0, -16)
 script = ExtResource("4_aim")
 
-[node name="AttackHitbox" type="Area2D" parent="SwordPivot"]
+[node name="AttackHitbox" type="Area2D" parent="SwordPivot" unique_id=996490997]
 collision_layer = 8
 collision_mask = 16
 script = ExtResource("6_hitbox")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordPivot/AttackHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordPivot/AttackHitbox" unique_id=1837141321]
 position = Vector2(18, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_sword")
 
-[node name="AbilityPivot" type="Node2D" parent="."]
+[node name="AbilityPivot" type="Node2D" parent="." unique_id=560028112]
 position = Vector2(0, -16)
 script = ExtResource("4_aim")
 
-[node name="AbilityHitbox" type="Area2D" parent="AbilityPivot"]
+[node name="AbilityHitbox" type="Area2D" parent="AbilityPivot" unique_id=299637553]
 collision_layer = 8
 collision_mask = 16
 script = ExtResource("6_hitbox")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AbilityPivot/AbilityHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AbilityPivot/AbilityHitbox" unique_id=1161930034]
 shape = SubResource("ConvexPolygonShape2D_sweep")
 
-[node name="SweepingCutVisual" type="Line2D" parent="AbilityPivot"]
+[node name="SweepingCutVisual" type="Line2D" parent="AbilityPivot" unique_id=242255085]
 visible = false
 z_index = 8
 points = PackedVector2Array(14, -28, 29, -29, 42, -21, 48, 0, 42, 21, 29, 29, 14, 28)
 width = 3.0
 default_color = Color(0.94, 0.88, 0.66, 0.9)
+joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
-joint_mode = 2
 script = ExtResource("19_sweep_visual")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=256904912]
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_player_footprint")
 
-[node name="InputSource" type="Node" parent="."]
+[node name="InputSource" type="Node" parent="." unique_id=889070660]
 unique_name_in_owner = true
 script = ExtResource("2_input")
 
-[node name="MovementComponent" type="Node" parent="."]
+[node name="MovementComponent" type="Node" parent="." unique_id=2013263965]
 unique_name_in_owner = true
 script = ExtResource("3_movement")
 
-[node name="MeleeAttackComponent" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+[node name="MeleeAttackComponent" type="Node" parent="." unique_id=2065298328 node_paths=PackedStringArray("hitbox")]
 unique_name_in_owner = true
 script = ExtResource("5_attack")
 weapon = ExtResource("7_sword_data")
 hitbox = NodePath("../SwordPivot/AttackHitbox")
 
-[node name="EvadeComponent" type="Node" parent="."]
+[node name="EvadeComponent" type="Node" parent="." unique_id=730348988]
 unique_name_in_owner = true
 script = ExtResource("9_evade")
 definition = ExtResource("10_dash_data")
 
-[node name="Ability1Component" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+[node name="Ability1Component" type="Node" parent="." unique_id=1997312539 node_paths=PackedStringArray("hitbox")]
 unique_name_in_owner = true
 script = ExtResource("17_ability")
 definition = ExtResource("18_sweep_data")
 hitbox = NodePath("../AbilityPivot/AbilityHitbox")
 
-[node name="ProgressionComponent" type="Node" parent="."]
+[node name="ProgressionComponent" type="Node" parent="." unique_id=611931721]
 unique_name_in_owner = true
 script = ExtResource("20_progression")
 definition = ExtResource("21_progression_data")
 
-[node name="HealthComponent" type="Node" parent="."]
+[node name="HealthComponent" type="Node" parent="." unique_id=1183354851]
 unique_name_in_owner = true
 script = ExtResource("11_health")
 
-[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=618577649 node_paths=PackedStringArray("health_component")]
 collision_layer = 64
 collision_mask = 32
 script = ExtResource("12_hurtbox")
 health_component = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1772155013]
 position = Vector2(0, -14)
 shape = SubResource("CapsuleShape2D_player_hurtbox")
 
-[node name="DashVisual" type="Node" parent="." node_paths=PackedStringArray("body_visual")]
+[node name="DashVisual" type="Node" parent="." unique_id=1237805110 node_paths=PackedStringArray("body_visual")]
 script = ExtResource("13_dash_visual")
 body_visual = NodePath("../VisualRoot/Body")
 
-[node name="StateVisual" type="Node" parent="." node_paths=PackedStringArray("visual_root")]
+[node name="StateVisual" type="Node" parent="." unique_id=161641014 node_paths=PackedStringArray("visual_root")]
 script = ExtResource("14_state_visual")
 visual_root = NodePath("../VisualRoot")
 
-[node name="PlayerActionSfx" type="Node2D" parent="." node_paths=PackedStringArray("sword_swing_player", "sweeping_cut_player", "dash_player")]
+[node name="PlayerActionSfx" type="Node2D" parent="." unique_id=1478518642 node_paths=PackedStringArray("sword_swing_player", "sweeping_cut_player", "dash_player")]
 script = ExtResource("22_player_sfx")
 sword_swing_player = NodePath("SwordSwing")
 sweeping_cut_player = NodePath("SweepingCut")
 dash_player = NodePath("Dash")
 
-[node name="SwordSwing" type="AudioStreamPlayer2D" parent="PlayerActionSfx"]
+[node name="SwordSwing" type="AudioStreamPlayer2D" parent="PlayerActionSfx" unique_id=1524140265]
 stream = ExtResource("23_sword_swing")
 volume_db = -7.0
 bus = &"SFX"
 
-[node name="SweepingCut" type="AudioStreamPlayer2D" parent="PlayerActionSfx"]
+[node name="SweepingCut" type="AudioStreamPlayer2D" parent="PlayerActionSfx" unique_id=714989272]
 stream = ExtResource("24_sweeping_cut")
 volume_db = -5.0
 bus = &"SFX"
 
-[node name="Dash" type="AudioStreamPlayer2D" parent="PlayerActionSfx"]
+[node name="Dash" type="AudioStreamPlayer2D" parent="PlayerActionSfx" unique_id=795989634]
 stream = ExtResource("25_dash")
 volume_db = -9.0
 bus = &"SFX"
 
-[node name="Name" type="Label" parent="."]
+[node name="Name" type="Label" parent="." unique_id=336850558]
 visible = false
 offset_left = -18.0
 offset_top = 14.0
@@ -208,34 +207,34 @@ text = "ALDEN"
 label_settings = SubResource("LabelSettings_name")
 horizontal_alignment = 1
 
+[connection signal="defeated" from="." to="VisualRoot/Body" method="play_defeat"]
+[connection signal="defeated" from="." to="VisualRoot/WeaponVisual" method="play_defeat"]
+[connection signal="defeated" from="." to="StateVisual" method="play_defeat"]
 [connection signal="facing_changed" from="." to="VisualRoot/Body" method="set_facing_direction"]
 [connection signal="facing_changed" from="." to="VisualRoot/WeaponVisual" method="set_facing_direction"]
 [connection signal="facing_changed" from="." to="SwordPivot" method="set_facing_direction"]
 [connection signal="facing_changed" from="." to="AbilityPivot" method="set_facing_direction"]
-[connection signal="movement_changed" from="." to="VisualRoot/Body" method="set_movement"]
-[connection signal="interaction_started" from="." to="VisualRoot/Body" method="play_interaction"]
 [connection signal="interaction_finished" from="." to="VisualRoot/Body" method="resume_locomotion"]
+[connection signal="interaction_started" from="." to="VisualRoot/Body" method="play_interaction"]
+[connection signal="movement_changed" from="." to="VisualRoot/Body" method="set_movement"]
+[connection signal="attack_finished" from="MeleeAttackComponent" to="VisualRoot/Body" method="resume_locomotion"]
+[connection signal="attack_finished" from="MeleeAttackComponent" to="VisualRoot/WeaponVisual" method="resume_locomotion"]
 [connection signal="phase_changed" from="MeleeAttackComponent" to="VisualRoot/Body" method="play_attack_phase"]
 [connection signal="phase_changed" from="MeleeAttackComponent" to="VisualRoot/WeaponVisual" method="play_attack_phase"]
 [connection signal="phase_changed" from="MeleeAttackComponent" to="PlayerActionSfx" method="play_attack_phase"]
-[connection signal="attack_finished" from="MeleeAttackComponent" to="VisualRoot/Body" method="resume_locomotion"]
-[connection signal="attack_finished" from="MeleeAttackComponent" to="VisualRoot/WeaponVisual" method="resume_locomotion"]
-[connection signal="phase_changed" from="Ability1Component" to="VisualRoot/Body" method="play_ability_phase"]
-[connection signal="phase_changed" from="Ability1Component" to="VisualRoot/WeaponVisual" method="play_ability_phase"]
-[connection signal="phase_changed" from="Ability1Component" to="PlayerActionSfx" method="play_ability_phase"]
-[connection signal="phase_changed" from="Ability1Component" to="AbilityPivot/SweepingCutVisual" method="play_phase"]
-[connection signal="ability_finished" from="Ability1Component" to="VisualRoot/Body" method="resume_locomotion"]
-[connection signal="ability_finished" from="Ability1Component" to="VisualRoot/WeaponVisual" method="resume_locomotion"]
-[connection signal="ability_finished" from="Ability1Component" to="AbilityPivot/SweepingCutVisual" method="hide_visual"]
-[connection signal="evade_started" from="EvadeComponent" to="VisualRoot/Body" method="play_dash"]
 [connection signal="evade_finished" from="EvadeComponent" to="VisualRoot/Body" method="resume_locomotion"]
+[connection signal="evade_started" from="EvadeComponent" to="VisualRoot/Body" method="play_dash"]
 [connection signal="evade_started" from="EvadeComponent" to="DashVisual" method="play_dash"]
 [connection signal="evade_started" from="EvadeComponent" to="PlayerActionSfx" method="play_dash"]
 [connection signal="invulnerability_changed" from="EvadeComponent" to="HealthComponent" method="set_invulnerable"]
 [connection signal="invulnerability_changed" from="EvadeComponent" to="DashVisual" method="set_invulnerable"]
-[connection signal="defeated" from="." to="StateVisual" method="play_defeat"]
-[connection signal="defeated" from="." to="VisualRoot/Body" method="play_defeat"]
-[connection signal="defeated" from="." to="VisualRoot/WeaponVisual" method="play_defeat"]
+[connection signal="ability_finished" from="Ability1Component" to="VisualRoot/Body" method="resume_locomotion"]
+[connection signal="ability_finished" from="Ability1Component" to="VisualRoot/WeaponVisual" method="resume_locomotion"]
+[connection signal="ability_finished" from="Ability1Component" to="AbilityPivot/SweepingCutVisual" method="hide_visual"]
+[connection signal="phase_changed" from="Ability1Component" to="VisualRoot/Body" method="play_ability_phase"]
+[connection signal="phase_changed" from="Ability1Component" to="VisualRoot/WeaponVisual" method="play_ability_phase"]
+[connection signal="phase_changed" from="Ability1Component" to="AbilityPivot/SweepingCutVisual" method="play_phase"]
+[connection signal="phase_changed" from="Ability1Component" to="PlayerActionSfx" method="play_ability_phase"]
 [connection signal="damage_blocked" from="HealthComponent" to="StateVisual" method="flash_blocked"]
-[connection signal="damaged" from="HealthComponent" to="StateVisual" method="flash_damaged"]
 [connection signal="damaged" from="HealthComponent" to="VisualRoot/Body" method="play_hurt"]
+[connection signal="damaged" from="HealthComponent" to="StateVisual" method="flash_damaged"]

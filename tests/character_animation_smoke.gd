@@ -22,6 +22,10 @@ func _run() -> void:
 	for sheet: Array in player_sheets:
 		if not _validate_player_action_sheet(sheet[0], sheet[1], sheet[2], sheet[3], sheet[4]):
 			return
+	if not _validate_dash_side_symmetry("res://assets/characters/playable/alden/alden_dash_sheet_48x32.png"):
+		return
+	if not _validate_up_head_contour("res://assets/characters/playable/alden/alden_walk_sheet_32x32.png", 4):
+		return
 	if not _validate_world_weapon("res://assets/items/weapons/world/ashwood_blade_16x24.png"):
 		return
 	if not _validate_sheet("res://assets/characters/enemies/forsaken_thrall/forsaken_thrall_locomotion_sheet_24x32.png"):
@@ -56,11 +60,25 @@ func _run() -> void:
 	):
 		_fail("Alden's visible weapon does not use its data-driven grip offset and scale.")
 		return
+	if weapon_visual.position != Vector2(6.0, -9.0):
+		_fail("Alden's down-facing Ashwood grip is no longer aligned with his arm.")
+		return
+	var right_rotations: Vector2 = weapon_visual.call("_attack_rotations", &"right", 1.15, 0.72)
+	var left_rotations: Vector2 = weapon_visual.call("_attack_rotations", &"left", 1.15, 0.72)
+	if (
+		not is_equal_approx(left_rotations.x, -right_rotations.x)
+		or not is_equal_approx(left_rotations.y, -right_rotations.y)
+	):
+		_fail("Alden's left sword swing is not a true mirror of the right swing.")
+		return
 
 	player._set_facing_direction(Vector2.RIGHT)
 	player.movement_changed.emit(Vector2.RIGHT, true)
 	if player_body.animation != &"walk_right":
 		_fail("Player did not select walk_right.")
+		return
+	if weapon_visual.position != Vector2(7.0, -9.0):
+		_fail("Alden's right-facing Ashwood grip is not aligned with his arm.")
 		return
 	var idle_weapon_position := weapon_visual.position
 	var idle_weapon_rotation := weapon_visual.rotation
@@ -233,6 +251,42 @@ func _validate_player_action_sheet(
 			if not allows_low_pose and bounds.size.y < 19:
 				_fail("Alden action pose became visually miniature at %s,%s: %s" % [column, row, path])
 				return false
+	return true
+
+
+func _validate_dash_side_symmetry(path: String) -> bool:
+	var texture := load(path) as Texture2D
+	var image := texture.get_image() if texture != null else null
+	if image == null:
+		_fail("Unable to inspect Alden's dash side poses.")
+		return false
+	var left_bounds := image.get_region(Rect2i(48, 32, 48, 32)).get_used_rect()
+	var right_bounds := image.get_region(Rect2i(48, 64, 48, 32)).get_used_rect()
+	var left_area := left_bounds.size.x * left_bounds.size.y
+	var right_area := right_bounds.size.x * right_bounds.size.y
+	var area_ratio := float(right_area) / float(maxi(left_area, 1))
+	if area_ratio < 0.72 or area_ratio > 1.38:
+		_fail("Alden's right dash is squashed relative to the left dash (ratio %.2f)." % area_ratio)
+		return false
+	return true
+
+
+func _validate_up_head_contour(path: String, frame_count: int) -> bool:
+	var texture := load(path) as Texture2D
+	var image := texture.get_image() if texture != null else null
+	if image == null:
+		_fail("Unable to inspect Alden's up-facing head contour.")
+		return false
+	for column in frame_count:
+		var cell := image.get_region(Rect2i(column * 32, 96, 32, 32))
+		var bounds := cell.get_used_rect()
+		var top_pixel_count := 0
+		for x in range(bounds.position.x, bounds.end.x):
+			if cell.get_pixel(x, bounds.position.y).a > 0.5:
+				top_pixel_count += 1
+		if top_pixel_count >= bounds.size.x - 1:
+			_fail("Alden's up-facing walk head is clipped flat in frame %s." % column)
+			return false
 	return true
 
 

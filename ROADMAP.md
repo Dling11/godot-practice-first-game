@@ -39,6 +39,7 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 - Reframed the armory's active beginning around one Wood-rank Ashwood Blade and an early Wood-to-Stonebound-to-Iron-to-Rare material ladder, while preserving the former A-to-Mythic concepts as inactive legacy material.
 - Corrected Alden's reversed side-facing source mapping, removed the shrinking attack pose, added data-driven weapon grip/scale/radius metadata, and rebuilt normal attacks around a hand pivot with a readable active swing trail and NPC-facing interaction pose.
 - Replaced Alden's single mixed-pose atlas with independently authored directional idle, four-frame walk, three-pose weaponless attack, three-frame dash, interaction, hurt, and four-stage defeat sheets; normalized every reference pose to one 18x27 scale and retained the external equipment rig.
+- Replaced fixed source-grid trimming with connected-silhouette isolation, restoring complete up-facing heads and correcting the squashed right dash; lowered the Ashwood grip to Alden's arm and rebuilt side attacks as mirrored hand-centered arcs with sharper strike feedback.
 
 Detailed completion history remains in `CHANGELOG.md`.
 

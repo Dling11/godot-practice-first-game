@@ -14,7 +14,7 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 ### KI-004 - Pixel rendering baseline is not art-validated
 
 - **Status:** Open
-- **Impact:** The 960x540 baseline now mechanically validates Alden's separate idle/walk/attack/dash/interaction/hurt/defeat sheets, fixed reference scale and baseline, grip-anchored weapon, active swing trail, binary alpha, and staged defeat, but the new timing and silhouettes have not yet been visually approved through extended moving-camera combat play.
+- **Impact:** The 960x540 baseline now mechanically validates Alden's separate idle/walk/attack/dash/interaction/hurt/defeat sheets, connected full-head extraction, left/right dash weight, fixed reference scale and baseline, arm-level grip, mirrored side arcs, active strike accent/trail, binary alpha, and staged defeat, but the corrected timing and silhouettes have not yet been visually approved through extended moving-camera combat play.
 - **Planned resolution:** Feel-test Alden's gameplay scale, serious black-eye/scarf readability, four-frame locomotion, three-pose body/weapon synchronization in all directions, dash lean, hurt recovery, defeat fade, and representative effects in Sanctuary and both stages.
 - **Workaround:** Treat 960x540 and the current action-owned sheets as the active prototype baseline, not irreversible final assets.
 

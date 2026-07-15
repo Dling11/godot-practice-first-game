@@ -13,6 +13,18 @@ const CHARACTER_DEFEAT_CELL_SIZE := Vector2i(64, 32)
 const CHARACTER_STANDING_WIDTH := 18
 const CHARACTER_STANDING_HEIGHT := 27
 const CHARACTER_CELL_PADDING := 2
+const SOURCE_CELL_EXPANSION_RATIO := 0.08
+const COMPONENT_JOIN_RATIO := 0.06
+const COMPONENT_NEIGHBORS := [
+	Vector2i(-1, -1),
+	Vector2i(0, -1),
+	Vector2i(1, -1),
+	Vector2i(-1, 0),
+	Vector2i(1, 0),
+	Vector2i(-1, 1),
+	Vector2i(0, 1),
+	Vector2i(1, 1),
+]
 
 const CHARACTER_ACTIONS := [
 	{
@@ -188,22 +200,103 @@ func _process_character_action(action: Dictionary) -> bool:
 
 func _get_source_cell(image: Image, columns: int, rows: int, column: int, row: int) -> Image:
 	# Image-generation sources do not always use dimensions evenly divisible by
-	# the requested grid. Rounded proportional boundaries keep every pixel in one
-	# deterministic cell. A small safe inset rejects occasional one-pixel spill
-	# from the neighboring generated pose without approaching the padded actor.
+	# the requested grid, and a pose may cross an ideal boundary by a few pixels.
+	# Expand around the ideal cell, then retain the connected actor nearest that
+	# cell instead of trimming valid head/weapon-side pixels with a fixed inset.
 	var left := roundi(float(column) * image.get_width() / float(columns))
 	var right := roundi(float(column + 1) * image.get_width() / float(columns))
 	var top := roundi(float(row) * image.get_height() / float(rows))
 	var bottom := roundi(float(row + 1) * image.get_height() / float(rows))
 	var cell_size := Vector2i(right - left, bottom - top)
-	var safe_inset := Vector2i(
-		maxi(2, roundi(cell_size.x * 0.04)),
-		maxi(2, roundi(cell_size.y * 0.04))
+	var expansion := Vector2i(
+		maxi(2, roundi(cell_size.x * SOURCE_CELL_EXPANSION_RATIO)),
+		maxi(2, roundi(cell_size.y * SOURCE_CELL_EXPANSION_RATIO))
 	)
-	return image.get_region(Rect2i(
-		Vector2i(left, top) + safe_inset,
-		cell_size - safe_inset * 2
-	))
+	var expanded_position := Vector2i(
+		maxi(0, left - expansion.x),
+		maxi(0, top - expansion.y)
+	)
+	var expanded_end := Vector2i(
+		mini(image.get_width(), right + expansion.x),
+		mini(image.get_height(), bottom + expansion.y)
+	)
+	var expanded := image.get_region(Rect2i(expanded_position, expanded_end - expanded_position))
+	var expected_center := Vector2(
+		(left + right) * 0.5 - expanded_position.x,
+		(top + bottom) * 0.5 - expanded_position.y
+	)
+	return _isolate_actor_components(expanded, expected_center)
+
+
+func _isolate_actor_components(image: Image, expected_center: Vector2) -> Image:
+	var width := image.get_width()
+	var height := image.get_height()
+	var visited := PackedByteArray()
+	visited.resize(width * height)
+	var components: Array[Dictionary] = []
+
+	for y in height:
+		for x in width:
+			var start_index := y * width + x
+			if visited[start_index] != 0 or image.get_pixel(x, y).a < 0.5:
+				continue
+			var queue: Array[Vector2i] = [Vector2i(x, y)]
+			var pixels: Array[Vector2i] = []
+			var queue_index := 0
+			var minimum := Vector2i(x, y)
+			var maximum := Vector2i(x, y)
+			visited[start_index] = 1
+			while queue_index < queue.size():
+				var point: Vector2i = queue[queue_index]
+				queue_index += 1
+				pixels.append(point)
+				minimum.x = mini(minimum.x, point.x)
+				minimum.y = mini(minimum.y, point.y)
+				maximum.x = maxi(maximum.x, point.x)
+				maximum.y = maxi(maximum.y, point.y)
+				for offset: Vector2i in COMPONENT_NEIGHBORS:
+					var neighbor := point + offset
+					if neighbor.x < 0 or neighbor.y < 0 or neighbor.x >= width or neighbor.y >= height:
+						continue
+					var neighbor_index := neighbor.y * width + neighbor.x
+					if visited[neighbor_index] != 0:
+						continue
+					visited[neighbor_index] = 1
+					if image.get_pixelv(neighbor).a >= 0.5:
+						queue.append(neighbor)
+			var bounds := Rect2i(minimum, maximum - minimum + Vector2i.ONE)
+			components.append({
+				"pixels": pixels,
+				"bounds": bounds,
+				"center": Vector2(bounds.get_center()),
+				"count": pixels.size(),
+			})
+
+	if components.is_empty():
+		return image
+
+	var primary_index := 0
+	var primary_score := -INF
+	for component_index in components.size():
+		var component: Dictionary = components[component_index]
+		var center_distance_squared := (component.center as Vector2).distance_squared_to(expected_center)
+		var score: float = float(component.count) - center_distance_squared * 0.1
+		if score > primary_score:
+			primary_score = score
+			primary_index = component_index
+
+	var isolated := Image.create_empty(width, height, false, Image.FORMAT_RGBA8)
+	isolated.fill(Color.TRANSPARENT)
+	var primary_bounds: Rect2i = components[primary_index].bounds
+	var join_distance := maxi(4, roundi(mini(width, height) * COMPONENT_JOIN_RATIO))
+	var join_area := primary_bounds.grow(join_distance)
+	for component_index in components.size():
+		var component: Dictionary = components[component_index]
+		if component_index != primary_index and not join_area.intersects(component.bounds):
+			continue
+		for point: Vector2i in component.pixels:
+			isolated.set_pixelv(point, image.get_pixelv(point))
+	return isolated
 
 
 func _normalize_character_cell_at_scale(cell: Image, scale: Vector2, cell_size: Vector2i) -> Image:
