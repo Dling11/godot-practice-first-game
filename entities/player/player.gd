@@ -26,6 +26,7 @@ const AbilityComponentScript = preload("res://gameplay/abilities/ability_compone
 @onready var ability_1_component: AbilityComponentScript = %Ability1Component
 @onready var health_component: HealthComponent = %HealthComponent
 @onready var progression_component: PlayerProgressionComponent = %ProgressionComponent
+@onready var weapon_visual: PlayerWeaponVisual = $VisualRoot/WeaponVisual
 
 var facing_direction := Vector2.DOWN
 var is_defeated := false
@@ -100,6 +101,24 @@ func request_ability_1() -> bool:
 	):
 		return false
 	return ability_1_component.request_cast(facing_direction)
+
+
+func set_weapon_definition(next_weapon: WeaponDefinition) -> bool:
+	## Equipment/inventory may call this seam later. Swapping is intentionally
+	## idle-only, and never changes the shared Opaw body SpriteFrames.
+	if (
+		next_weapon == null
+		or next_weapon.world_texture == null
+		or is_defeated
+		or attack_component.phase != attack_component.Phase.IDLE
+		or ability_1_component.is_casting()
+		or evade_component.is_dashing()
+	):
+		return false
+	if not weapon_visual.set_weapon_definition(next_weapon):
+		return false
+	attack_component.weapon = next_weapon
+	return true
 
 
 func face_toward(world_position: Vector2) -> void:

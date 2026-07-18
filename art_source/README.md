@@ -8,8 +8,9 @@ Only approved, optimized files under `res://assets/` may be referenced by scenes
 
 | Canonical asset | Preserved source/intermediate |
 |---|---|
-| `char_alden_action_set` | `generated/characters/playable/alden/v2/alden_idle_*`, `alden_walk_*`, `alden_attack_body_*`, `alden_dash_*`, `alden_interact_*`, `alden_hurt_*`, `alden_defeat_*` |
-| `char_alden_modular_actions_legacy` | `generated/characters/playable/alden/alden_modular_action_source.png`, `alden_modular_action_clean.png` |
+| `char_opaw_compact_armless_action_set` | `generated/characters/playable/opaw/compact_armless/opaw_compact_armless_idle_*`, `walk_*`, `attack_body_*`, `dash_*`, `interact_*`, `hurt_*`, `defeat_*` |
+| `char_opaw_wayfarer_original_action_set` | `generated/characters/playable/opaw/v2/opaw_idle_*`, `opaw_walk_*`, `opaw_attack_body_*`, `opaw_dash_*`, `opaw_interact_*`, `opaw_hurt_*`, `opaw_defeat_*` |
+| `char_opaw_modular_actions_legacy` | `generated/characters/playable/opaw/opaw_modular_action_source.png`, `opaw_modular_action_clean.png` |
 | `item_weapon_ashwood_blade` | `generated/items/weapons/ashwood_blade/ashwood_blade_source.png`, `ashwood_blade_clean.png` |
 | `char_awakened_locomotion` | `generated/characters/awakened/awakened_locomotion_source.png`, `awakened_locomotion_clean.png` |
 | `char_awakened_sword_attack` | `generated/characters/awakened/awakened_sword_attack_source.png`, `awakened_sword_attack_clean.png` |
@@ -18,4 +19,4 @@ Only approved, optimized files under `res://assets/` may be referenced by scenes
 | `char_mireling_actions` | `generated/characters/enemies/mireling/mireling_action_source.png`, `mireling_action_clean.png` |
 | `char_bramble_spitter_actions` | `generated/characters/enemies/bramble_spitter/bramble_spitter_action_source.png`, `bramble_spitter_action_clean.png` |
 
-The single-board Alden files and Awakened rows are legacy source provenance after the action-owned migration. Superseded but preserved runtime experiments live under `archive/`. The Mireling's former 24x24 sheet is `archive/characters/enemies/mireling/mireling_action_sheet_24x24_legacy.png`.
+The compact armless Opaw boards are the active source set. `opaw_compact_armless_attack_vertical_revision.png` preserves the corrected centered down/up poses and is composed into the canonical attack board without replacing its approved side rows. The earlier `v2` boards are preserved provenance for the complete Wayfarer rollback under runtime `variants/wayfarer_original/`. The external game screenshot used during the compact pass was a broad proportion/readability reference only and is not copied or redistributed in the repository. The single-board Opaw files and Awakened rows are legacy source provenance after the action-owned migration. Superseded but preserved runtime experiments live under `archive/`. The Mireling's former 24x24 sheet is `archive/characters/enemies/mireling/mireling_action_sheet_24x24_legacy.png`.

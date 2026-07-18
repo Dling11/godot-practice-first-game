@@ -17,6 +17,7 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 - In-memory run continuity across portal transitions, defeat-reset semantics, a centered four-slot 1-4 skill bar, and a paused Tab character/skill information menu.
 - Cross-scene ambient-music foundation with a dedicated Music bus, stage routing, attribution, and headless-safe regression coverage.
 - Reusable combat-impact feedback: accepted-hit damage numbers, pixel bursts, restrained camera nudges, and automatic cleanup.
+- Confirmed-hit feel pass with reusable white enemy flashes, short non-stacking hitstop, and light Ashwood Blade knockback while preserving stronger Sweeping Cut spacing.
 - Event-driven combat SFX for sword, Sweeping Cut, dash, player damage, current enemy attacks, and Bramble projectile impacts, with Music/SFX/UI bus separation.
 - Regression coverage for player combat, enemies, crowd behavior, navigation, encounters, portals, transitions, and defeat.
 - Visual asset foundation: documented art direction, canonical asset catalog, naming/lifecycle rules, and replaceable-background contract.
@@ -35,22 +36,26 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 - Replaced duplicated skill-slot UI with one data-driven four-slot loadout plus reusable HUD/card scenes, and corrected the transparent transition overlay so mouse, arrow/Enter, Escape, and gamepad-ready menu controls coexist.
 - Added the read-only equipment vertical slice: a two-page Gear/Armory and Active Skills character surface, five future equipment slots, animated Awakened preview, reusable item/slot/detail scenes, and four original A-to-Mythic weapon concepts with clearly inactive skill-synergy identities.
 - Corrected the character-menu action from an accidental Backspace binding to physical Tab, moved its global open shortcut ahead of GUI focus consumption, and added a visible clickable HUD satchel button in Sanctuary and both expeditions.
-- Named the active mortal player Alden, replaced the active Awakened presentation with a reusable 32x32 modular four-direction body, and added a phase-driven visible Ashwood Blade without moving damage authority out of the existing hitbox.
+- Named the active mortal player Opaw, replaced the active Awakened presentation with a reusable 32x32 modular four-direction body, and added a phase-driven visible Ashwood Blade without moving damage authority out of the existing hitbox.
 - Reframed the armory's active beginning around one Wood-rank Ashwood Blade and an early Wood-to-Stonebound-to-Iron-to-Rare material ladder, while preserving the former A-to-Mythic concepts as inactive legacy material.
-- Corrected Alden's reversed side-facing source mapping, removed the shrinking attack pose, added data-driven weapon grip/scale/radius metadata, and rebuilt normal attacks around a hand pivot with a readable active swing trail and NPC-facing interaction pose.
-- Replaced Alden's single mixed-pose atlas with independently authored directional idle, four-frame walk, three-pose weaponless attack, three-frame dash, interaction, hurt, and four-stage defeat sheets; normalized every reference pose to one 18x27 scale and retained the external equipment rig.
-- Replaced fixed source-grid trimming with connected-silhouette isolation, restoring complete up-facing heads and correcting the squashed right dash; lowered the Ashwood grip to Alden's arm and rebuilt side attacks as mirrored hand-centered arcs with sharper strike feedback.
+- Corrected Opaw's reversed side-facing source mapping, removed the shrinking attack pose, added data-driven weapon grip/scale/radius metadata, and rebuilt normal attacks around a hand pivot with a readable active swing trail and NPC-facing interaction pose.
+- Replaced Opaw's single mixed-pose atlas with independently authored directional idle, four-frame walk, three-pose weaponless attack, three-frame dash, interaction, hurt, and four-stage defeat sheets; normalized every reference pose to one 18x27 scale and retained the external equipment rig.
+- Replaced fixed source-grid trimming with connected-silhouette isolation, restoring complete up-facing heads and correcting the squashed right dash; lowered the Ashwood grip to Opaw's arm and rebuilt side attacks as mirrored hand-centered arcs with sharper strike feedback.
+- Replaced the playable presentation with a complete compact armless Opaw action set inspired only by broad top-down readability cues, preserved Opaw's original identity and gameplay scale, widened the detached Ashwood Blade orbit, and archived the complete previous Wayfarer model as an independently loadable backup.
+- Raised the down-facing Ashwood Blade beside Opaw's torso and replaced hard-coded sword motion with reusable Balanced Slash, Swift Slash, and Heavy Cleave presentation profiles; idle-only weapon-definition switching now preserves one shared body animation without activating inventory or additional items.
 
 Detailed completion history remains in `CHANGELOG.md`.
 
 ## In Progress
 
-- Decide the first playable structure, Alden's deeper origin/fantasy, and release platform priorities.
+- Feel-test the Ashwood Blade's wider anticipation-to-impact arc, faster committed sweep, forward extension, denser white-gold trail, 0.10-second enemy flash, and white-hot impact core.
+
+- Decide the first playable structure, Opaw's deeper origin/fantasy, and release platform priorities.
 - Feel-test and tune the Ashwood Blade's timing, reach, phase-driven swing, and anchor placement.
 - Feel-test dash distance, duration, recovery, and afterimage readability.
 - Feel-test the Forsaken Thrall's spawn readability, obstacle approach, claw telegraph, range, damage, and recovery.
 - Feel-test vitality readability, defeat delay, and restart controls.
-- Feel-test the 960x540 zoom, smaller HUD, Alden's stable action-owned body scale, serious eyes/scarf, four-frame walk, attack/dash timing, separate weapon presentation, corrected shadows/collision, canopy occlusion, and 16-pixel Thrall clearance.
+- Feel-test the 960x540 zoom, smaller HUD, Opaw's compact armless silhouette and stable action-owned body scale, serious eyes/scarf, tiny-foot grounding, four-frame walk, attack/dash timing, detached weapon orbit, corrected shadows/collision, canopy occlusion, and 16-pixel Thrall clearance.
 - Feel-test Mireling pressure, stage counts, spawn pacing, camera travel, and landmark layout.
 - Feel-test Sweeping Cut wind-up, wider arc, 20 damage, spacing pushback, recovery risk, 2.5-second cooldown, arc readability, and centered slot-1 HUD placement.
 - Feel-test Stage 2 arrival pacing, grove layout/navigation, Wave 1 warm-up, Wave 2 Spitter readability, clear-gated return portal, and restart behavior.
@@ -59,14 +64,14 @@ Detailed completion history remains in `CHANGELOG.md`.
 - Feel-test combat cue selection, positional balance, repetition, and SFX-versus-music volume.
 - Feel-test the centered four-slot skill bar, top-left character/satchel entry button, and Tab character-menu readability at the 960x540 viewport.
 - Design authored skill unlock rules, coin sinks, and the first abilities for sealed slots 2-4.
-- Feel-test the 960x540 equipment layout, Alden portrait, Ashwood world/icon consistency, Wood-rank readability, and the clarity of preview-only versus equipped states.
+- Feel-test the 960x540 equipment layout, Opaw portrait, Ashwood world/icon consistency, Wood-rank readability, and the clarity of preview-only versus equipped states.
 - Decide persistent ownership, death retention, equip commands, stat formulas, acquisition sources, and enemy/elite/boss power bands before activating equipment.
 - Feel-test the shared theme, named HUD icons, expanded skill-bar height, and portal-prompt placement at 960x540.
 - Feel-test the title-screen composition, restrained background motion, focus loop, audio toggles, and title-to-Stage-1 fade.
 - Feel-test Sanctuary navigation, dedicated pavement, separate fountain/portal scale and courtyard spacing, portal/water/NPC/building idle effects, both NPC interactions, expedition usability, and the transition loop on F5.
 - Design authored expedition definitions and profile/story unlock authority without making level the only gate.
 - Design a confirmed `Abandon Expedition / Return to Sanctuary` pause-menu action, including combat restrictions and explicit XP/coin/run consequences.
-- After Alden is visually accepted in motion, define reusable modular starter layers for future Warrior, Ranger, and Mage presentations; migrate NPC bodies and environment/UI style only in separate reviewed passes.
+- After Opaw is visually accepted in motion, define reusable modular starter layers for future Warrior, Ranger, and Mage presentations; migrate NPC bodies and environment/UI style only in separate reviewed passes.
 
 ## Planned
 
@@ -124,5 +129,5 @@ Before creating gameplay code, approve:
 
 1. Desktop/web/mobile release priorities.
 2. First playable scope: arena survival, authored action-adventure slice, or another structure.
-3. Alden's deeper origin and whether Warrior/Ranger/Mage are selectable classes, progression paths, or separate characters.
+3. Opaw's deeper origin and whether Warrior/Ranger/Mage are selectable classes, progression paths, or separate characters.
 4. Persistent ownership, shop/acquisition rules, and the first Stonebound equipment step after Ashwood is visually accepted.

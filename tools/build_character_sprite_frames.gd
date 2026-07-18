@@ -12,18 +12,18 @@ func _initialize() -> void:
 	if player_error != OK or enemy_error != OK or mireling_error != OK or bramble_spitter_error != OK:
 		quit(1)
 		return
-	print("Character SpriteFrames built, including Alden's action-owned presentation.")
+	print("Character SpriteFrames built, including Opaw's action-owned presentation.")
 	quit(0)
 
 
 func _build_player_frames() -> Error:
-	var idle_texture := load("res://assets/characters/playable/alden/alden_idle_sheet_32x32.png") as Texture2D
-	var walk_texture := load("res://assets/characters/playable/alden/alden_walk_sheet_32x32.png") as Texture2D
-	var attack_texture := load("res://assets/characters/playable/alden/alden_attack_body_sheet_48x32.png") as Texture2D
-	var dash_texture := load("res://assets/characters/playable/alden/alden_dash_sheet_48x32.png") as Texture2D
-	var interact_texture := load("res://assets/characters/playable/alden/alden_interact_sheet_48x32.png") as Texture2D
-	var hurt_texture := load("res://assets/characters/playable/alden/alden_hurt_sheet_32x32.png") as Texture2D
-	var defeat_texture := load("res://assets/characters/playable/alden/alden_defeat_sheet_64x32.png") as Texture2D
+	var idle_texture := load("res://assets/characters/playable/opaw/compact_armless/opaw_compact_armless_idle_sheet_32x32.png") as Texture2D
+	var walk_texture := load("res://assets/characters/playable/opaw/compact_armless/opaw_compact_armless_walk_sheet_32x32.png") as Texture2D
+	var attack_texture := load("res://assets/characters/playable/opaw/compact_armless/opaw_compact_armless_attack_body_sheet_48x32.png") as Texture2D
+	var dash_texture := load("res://assets/characters/playable/opaw/compact_armless/opaw_compact_armless_dash_sheet_48x32.png") as Texture2D
+	var interact_texture := load("res://assets/characters/playable/opaw/compact_armless/opaw_compact_armless_interact_sheet_48x32.png") as Texture2D
+	var hurt_texture := load("res://assets/characters/playable/opaw/compact_armless/opaw_compact_armless_hurt_sheet_32x32.png") as Texture2D
+	var defeat_texture := load("res://assets/characters/playable/opaw/compact_armless/opaw_compact_armless_defeat_sheet_64x32.png") as Texture2D
 	if (
 		idle_texture == null
 		or walk_texture == null
@@ -33,7 +33,7 @@ func _build_player_frames() -> Error:
 		or hurt_texture == null
 		or defeat_texture == null
 	):
-		push_error("Every Alden action sheet must be imported before building SpriteFrames.")
+		push_error("Every Opaw action sheet must be imported before building SpriteFrames.")
 		return ERR_CANT_OPEN
 	var frames := SpriteFrames.new()
 	frames.remove_animation("default")
@@ -46,7 +46,7 @@ func _build_player_frames() -> Error:
 		_add_player_action_animation(frames, "interact_" + direction, interact_texture, row, 2, Vector2i(48, 32), 2.0, true)
 		_add_player_action_animation(frames, "hurt_" + direction, hurt_texture, row, 2, Vector2i(32, 32), 8.0, false)
 		_add_player_action_animation(frames, "defeat_" + direction, defeat_texture, row, 4, Vector2i(64, 32), 5.0, false)
-	return ResourceSaver.save(frames, "res://assets/characters/playable/alden/alden_sprite_frames.tres")
+	return ResourceSaver.save(frames, "res://assets/characters/playable/opaw/compact_armless/opaw_compact_armless_sprite_frames.tres")
 
 
 func _add_player_action_animation(

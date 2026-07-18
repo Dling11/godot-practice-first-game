@@ -42,6 +42,20 @@ func _run() -> void:
 		mireling.get_node("Hurtbox") as HurtboxComponent,
 		DamageInfo.new(25.0, player, Vector2.RIGHT)
 	)
+	var mireling_body := mireling.get_node("Visual/Body") as AnimatedSprite2D
+	if not mireling_body.material is ShaderMaterial:
+		_fail("Accepted player hit did not apply the reusable enemy hit-flash material.")
+		return
+	if not paused:
+		_fail("Accepted player hit did not start hitstop.")
+		return
+	await create_timer(0.12, true, false, true).timeout
+	if paused:
+		_fail("Hitstop did not restore gameplay after its short real-time window.")
+		return
+	if mireling_body.material != null:
+		_fail("Enemy hit flash did not restore the original material.")
+		return
 	await process_frame
 	if effects.get_child_count() != 2:
 		_fail("Accepted player hit did not create outgoing impact feedback.")

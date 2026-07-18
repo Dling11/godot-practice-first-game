@@ -14,9 +14,9 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 ### KI-004 - Pixel rendering baseline is not art-validated
 
 - **Status:** Open
-- **Impact:** The 960x540 baseline now mechanically validates Alden's separate idle/walk/attack/dash/interaction/hurt/defeat sheets, connected full-head extraction, left/right dash weight, fixed reference scale and baseline, arm-level grip, mirrored side arcs, active strike accent/trail, binary alpha, and staged defeat, but the corrected timing and silhouettes have not yet been visually approved through extended moving-camera combat play.
-- **Planned resolution:** Feel-test Alden's gameplay scale, serious black-eye/scarf readability, four-frame locomotion, three-pose body/weapon synchronization in all directions, dash lean, hurt recovery, defeat fade, and representative effects in Sanctuary and both stages.
-- **Workaround:** Treat 960x540 and the current action-owned sheets as the active prototype baseline, not irreversible final assets.
+- **Impact:** The 960x540 baseline mechanically validates Opaw's active compact armless action set, but its oversized-head/tiny-foot silhouette and widened detached sword orbit still need a human in-motion judgment in Sanctuary and both combat stages. The complete previous Wayfarer model is available as a safe rollback if the new silhouette fails that review.
+- **Planned resolution:** Feel-test Opaw's gameplay scale, serious black-eye/scarf readability, four-frame locomotion, three-pose body/weapon synchronization in all directions, dash lean, hurt recovery, defeat fade, and representative effects in Sanctuary and both stages.
+- **Workaround:** Treat 960x540 and the compact armless sheets as the active prototype baseline, not irreversible final assets; restore the archived Wayfarer `SpriteFrames` resource if a rollback is required.
 
 ### KI-005 - Skill unlocks, equipment acquisition, coin sinks, and disk persistence are undecided
 

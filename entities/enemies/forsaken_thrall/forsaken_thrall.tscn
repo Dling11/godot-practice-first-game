@@ -128,4 +128,3 @@ shape = SubResource("CircleShape2D_attack")
 [connection signal="facing_changed" from="." to="AttackPivot" method="set_facing_direction"]
 [connection signal="state_changed" from="." to="VisualPivot" method="play_state"]
 [connection signal="state_changed" from="." to="ActionSfx" method="play_state"]
-[connection signal="damaged" from="HealthComponent" to="VisualPivot" method="flash_damaged"]

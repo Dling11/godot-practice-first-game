@@ -1,7 +1,8 @@
+class_name PlayerWeaponVisual
 extends Node2D
 
-## Presentation-only grip-anchored weapon. It observes authoritative combat
-## phases; the sibling SwordPivot and MeleeHitbox continue to own reach/damage.
+## Presentation-only detached weapon orbit for Opaw's armless silhouette. It
+## observes authoritative combat phases; SwordPivot/MeleeHitbox own reach/damage.
 
 @export var weapon: WeaponDefinition
 @export var weapon_sprite: Sprite2D
@@ -14,21 +15,40 @@ var _pose_tween: Tween
 var _trail_tween: Tween
 var _accent_tween: Tween
 var _base_weapon_scale := Vector2.ONE
+var _fallback_attack_style := SwordAttackStyleDefinition.new()
 
 
 func _ready() -> void:
-	if weapon == null or weapon.world_texture == null or weapon_sprite == null:
+	if not set_weapon_definition(weapon):
 		push_error("PlayerWeaponVisual requires a weapon with world art and a Sprite2D.")
 		visible = false
 		return
+	_apply_idle_pose()
+
+
+func set_weapon_definition(next_weapon: WeaponDefinition) -> bool:
+	## Changes only the detached weapon presentation. Player coordinates this
+	## with MeleeAttackComponent so gameplay and art always use the same data.
+	if next_weapon == null or next_weapon.world_texture == null or weapon_sprite == null:
+		return false
+	_kill_pose_tween()
+	_kill_accent_tween()
+	_hide_swing_trail()
+	weapon = next_weapon
+	visible = true
 	weapon_sprite.texture = weapon.world_texture
 	weapon_sprite.position = weapon.sprite_offset_from_grip
 	_base_weapon_scale = Vector2.ONE * weapon.world_visual_scale
 	weapon_sprite.scale = _base_weapon_scale
+	weapon_sprite.modulate = Color.WHITE
+	var style := _attack_style()
 	if swing_trail != null:
 		swing_trail.visible = false
-		swing_trail.width = 2.0
-	_apply_idle_pose()
+		swing_trail.width = style.trail_width
+		swing_trail.default_color = style.trail_color
+	if is_node_ready() and not _action_locked:
+		_apply_idle_pose()
+	return true
 
 
 func set_facing_direction(direction: Vector2) -> void:
@@ -73,8 +93,9 @@ func _play_action_phase(phase: int, duration_seconds: float, is_ability: bool) -
 		_action_locked = true
 		_action_direction = _direction
 	_set_depth(_action_direction)
-	var wind_up_arc := 1.45 if is_ability else 1.15
-	var strike_arc := 1.0 if is_ability else 0.72
+	var style := _attack_style()
+	var wind_up_arc := style.ability_wind_up_arc if is_ability else style.normal_wind_up_arc
+	var strike_arc := style.ability_strike_arc if is_ability else style.normal_strike_arc
 	var rotations := _attack_rotations(_action_direction, wind_up_arc, strike_arc)
 	var wind_up_position := _attack_anchor(_action_direction, MeleeAttackComponent.Phase.WIND_UP, is_ability)
 	var active_position := _attack_anchor(_action_direction, MeleeAttackComponent.Phase.ACTIVE, is_ability)
@@ -106,35 +127,38 @@ func _apply_idle_pose() -> void:
 func _idle_transform(direction: StringName) -> Transform2D:
 	match direction:
 		&"left":
-			return Transform2D(-1.72, _hand_anchor(direction))
+			return Transform2D(-1.72, _weapon_anchor(direction))
 		&"right":
-			return Transform2D(1.72, _hand_anchor(direction))
+			return Transform2D(1.72, _weapon_anchor(direction))
 		&"up":
-			return Transform2D(-0.35, _hand_anchor(direction))
-	return Transform2D(0.4, _hand_anchor(direction))
+			return Transform2D(-0.35, _weapon_anchor(direction))
+	return Transform2D(0.4, _weapon_anchor(direction))
 
 
-func _hand_anchor(direction: StringName) -> Vector2:
+func _weapon_anchor(direction: StringName) -> Vector2:
 	match direction:
 		&"left":
-			return Vector2(-7.0, -9.0)
+			return Vector2(-11.0, -9.0)
 		&"right":
-			return Vector2(7.0, -9.0)
+			return Vector2(11.0, -9.0)
 		&"up":
-			return Vector2(-6.0, -11.0)
-	return Vector2(6.0, -9.0)
+			return Vector2(-12.0, -11.0)
+	return Vector2(12.0, -6.0)
 
 
 func _attack_anchor(direction: StringName, phase: int, is_ability: bool) -> Vector2:
-	var active_extension := 2.0 if is_ability else 0.0
+	var style := _attack_style()
+	var active_extension := (
+		style.ability_active_extension if is_ability else style.normal_active_extension
+	)
 	match direction:
 		&"left":
-			return Vector2(-5.0, -11.0) if phase == MeleeAttackComponent.Phase.WIND_UP else Vector2(-10.0 - active_extension, -8.0)
+			return Vector2(-12.0, -11.0) if phase == MeleeAttackComponent.Phase.WIND_UP else Vector2(-13.0 - active_extension, -7.0)
 		&"right":
-			return Vector2(5.0, -11.0) if phase == MeleeAttackComponent.Phase.WIND_UP else Vector2(10.0 + active_extension, -8.0)
+			return Vector2(12.0, -11.0) if phase == MeleeAttackComponent.Phase.WIND_UP else Vector2(13.0 + active_extension, -7.0)
 		&"up":
-			return Vector2(-8.0, -11.0) if phase == MeleeAttackComponent.Phase.WIND_UP else Vector2(-5.0, -14.0 - active_extension)
-	return Vector2(8.0, -10.0) if phase == MeleeAttackComponent.Phase.WIND_UP else Vector2(5.0, -7.0 + active_extension)
+			return Vector2(-9.0, -10.0) if phase == MeleeAttackComponent.Phase.WIND_UP else Vector2(-6.0, -16.0 - active_extension)
+	return Vector2(9.0, -10.0) if phase == MeleeAttackComponent.Phase.WIND_UP else Vector2(6.0, -5.0 + active_extension)
 
 
 func _attack_rotations(direction: StringName, wind_up_arc: float, strike_arc: float) -> Vector2:
@@ -182,16 +206,18 @@ func _show_swing_trail(
 		return
 	if _trail_tween != null and _trail_tween.is_valid():
 		_trail_tween.kill()
+	var style := _attack_style()
 	var points := PackedVector2Array()
-	var point_count := 9
+	var point_count := style.trail_point_count
 	for point_index in range(point_count):
 		var weight := float(point_index) / float(point_count - 1)
 		var angle := lerp_angle(start_rotation, end_rotation, weight)
 		points.append(center + Vector2.UP.rotated(angle) * weapon.swing_visual_radius)
 	swing_trail.points = points
 	swing_trail.z_index = -1 if _action_direction == &"up" else 1
-	swing_trail.width = 3.0
-	swing_trail.modulate.a = 0.82
+	swing_trail.width = style.trail_width
+	swing_trail.default_color = style.trail_color
+	swing_trail.modulate.a = 0.95
 	swing_trail.visible = true
 	_trail_tween = create_tween().set_parallel(true)
 	_trail_tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
@@ -199,29 +225,35 @@ func _show_swing_trail(
 		swing_trail,
 		"modulate:a",
 		0.0,
-		maxf(duration_seconds + 0.06, 0.08)
+		maxf(duration_seconds + style.trail_fade_padding_seconds, 0.08)
 	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	_trail_tween.tween_property(
 		swing_trail,
 		"width",
 		0.75,
-		maxf(duration_seconds + 0.06, 0.08)
+		maxf(duration_seconds + style.trail_fade_padding_seconds, 0.08)
 	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	_trail_tween.chain().tween_callback(swing_trail.hide)
 
 
 func _play_strike_accent(duration_seconds: float) -> void:
 	_kill_accent_tween()
+	var style := _attack_style()
 	var peak_seconds := maxf(duration_seconds * 0.3, 0.025)
 	var settle_seconds := maxf(duration_seconds - peak_seconds, 0.025)
 	_accent_tween = create_tween()
 	_accent_tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	_accent_tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	_accent_tween.tween_property(weapon_sprite, "scale", _base_weapon_scale * 1.12, peak_seconds)
+	_accent_tween.tween_property(
+		weapon_sprite,
+		"scale",
+		_base_weapon_scale * style.strike_scale_multiplier,
+		peak_seconds
+	)
 	_accent_tween.parallel().tween_property(
 		weapon_sprite,
 		"modulate",
-		Color(1.24, 1.12, 0.82, 1.0),
+		style.strike_tint,
 		peak_seconds
 	)
 	_accent_tween.tween_property(weapon_sprite, "scale", _base_weapon_scale, settle_seconds)
@@ -232,8 +264,10 @@ func _hide_swing_trail() -> void:
 	if _trail_tween != null and _trail_tween.is_valid():
 		_trail_tween.kill()
 	if swing_trail != null:
+		var style := _attack_style()
 		swing_trail.visible = false
-		swing_trail.width = 2.0
+		swing_trail.width = style.trail_width
+		swing_trail.default_color = style.trail_color
 		swing_trail.modulate.a = 1.0
 
 
@@ -265,3 +299,9 @@ func _direction_name(direction: Vector2) -> StringName:
 	if absf(direction.x) > absf(direction.y):
 		return &"right" if direction.x > 0.0 else &"left"
 	return &"down" if direction.y > 0.0 else &"up"
+
+
+func _attack_style() -> SwordAttackStyleDefinition:
+	if weapon != null and weapon.attack_style != null and weapon.attack_style.is_valid_style():
+		return weapon.attack_style
+	return _fallback_attack_style

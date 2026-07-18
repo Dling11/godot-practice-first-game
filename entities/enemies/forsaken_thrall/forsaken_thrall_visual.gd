@@ -68,14 +68,6 @@ func play_state(state: ForsakenThrall.State, duration_seconds: float) -> void:
 			tween.tween_property(body_visual, "modulate:a", 0.0, duration_seconds)
 
 
-func flash_damaged(_info: DamageInfo) -> void:
-	if body_visual == null:
-		return
-	var tween := create_tween()
-	body_visual.modulate = Color(2.0, 0.8, 0.8, 1.0)
-	tween.tween_property(body_visual, "modulate", Color.WHITE, 0.12)
-
-
 func _play_with_prefix(prefix: String) -> void:
 	var current_direction := body_visual.animation.get_slice("_", 1)
 	if current_direction.is_empty():

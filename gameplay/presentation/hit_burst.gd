@@ -15,9 +15,22 @@ func configure(direction: Vector2, tint: Color) -> void:
 
 
 func _ready() -> void:
+	_create_white_core()
 	for index in 3:
 		_create_spark(index)
 	get_tree().create_timer(lifetime_seconds).timeout.connect(queue_free)
+
+
+func _create_white_core() -> void:
+	var core := Polygon2D.new()
+	core.color = Color.WHITE
+	core.polygon = PackedVector2Array([
+		Vector2(0, -4), Vector2(3, 0), Vector2(0, 4), Vector2(-3, 0)
+	])
+	add_child(core)
+	var tween := create_tween().set_parallel(true)
+	tween.tween_property(core, "scale", Vector2(0.35, 0.35), 0.09)
+	tween.tween_property(core, "modulate:a", 0.0, 0.09)
 
 
 func _create_spark(index: int) -> void:

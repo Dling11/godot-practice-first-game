@@ -1,7 +1,7 @@
-[gd_resource type="SpriteFrames" format=3]
+[gd_resource type="SpriteFrames" format=3 uid="uid://okh8g3q6pcot"]
 
-[ext_resource type="Texture2D" path="res://assets/characters/enemies/forsaken_thrall/forsaken_thrall_claw_attack_sheet_64x48.png" id="1_p1e06"]
-[ext_resource type="Texture2D" path="res://assets/characters/enemies/forsaken_thrall/forsaken_thrall_locomotion_sheet_24x32.png" id="2_la6nf"]
+[ext_resource type="Texture2D" uid="uid://dj6dtpmos6oy1" path="res://assets/characters/enemies/forsaken_thrall/forsaken_thrall_claw_attack_sheet_64x48.png" id="1_p1e06"]
+[ext_resource type="Texture2D" uid="uid://bgxu4kcestruv" path="res://assets/characters/enemies/forsaken_thrall/forsaken_thrall_locomotion_sheet_24x32.png" id="2_la6nf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k7nja"]
 atlas = ExtResource("1_p1e06")

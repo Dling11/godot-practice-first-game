@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" path="res://assets/ui/icons/economy/icon_currency_coin_16x16.png" id="4_coin"]
 [ext_resource type="Texture2D" path="res://assets/ui/icons/actions/icon_action_primary_attack_24x24.png" id="5_attack"]
 [ext_resource type="Texture2D" path="res://assets/ui/icons/actions/icon_action_dash_24x24.png" id="6_dash"]
-[ext_resource type="SpriteFrames" path="res://assets/characters/playable/alden/alden_sprite_frames.tres" id="7_frames"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/playable/opaw/compact_armless/opaw_compact_armless_sprite_frames.tres" id="7_frames"]
 [ext_resource type="PackedScene" path="res://ui/equipment/equipment_detail_panel.tscn" id="8_detail"]
 [ext_resource type="Script" path="res://entities/npcs/presentation/npc_idle_breath.gd" id="9_breath"]
 [ext_resource type="Texture2D" path="res://assets/items/weapons/world/ashwood_blade_16x24.png" id="10_ashwood_world"]
@@ -134,7 +134,7 @@ theme_override_constants/separation = 1
 
 [node name="Title" type="Label" parent="Panel/Margin/Root/Header/Identity"]
 layout_mode = 2
-text = "ALDEN"
+text = "OPAW"
 theme_override_colors/font_color = Color(0.84, 0.76, 1, 1)
 theme_override_font_sizes/font_size = 20
 
@@ -352,7 +352,7 @@ theme_override_constants/v_separation = 6
 
 [node name="ArmoryNote" type="Label" parent="Panel/Margin/Root/PageHost/GearPage/Armory"]
 layout_mode = 2
-text = "WOOD  →  STONEBOUND  →  IRON  →  RARE\nOnly Alden's wooden beginning is active."
+text = "WOOD  →  STONEBOUND  →  IRON  →  RARE\nOnly Opaw's wooden beginning is active."
 horizontal_alignment = 1
 autowrap_mode = 2
 theme_override_colors/font_color = Color(0.5, 0.54, 0.5, 1)

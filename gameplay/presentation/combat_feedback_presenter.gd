@@ -5,6 +5,9 @@ extends Node
 
 const PLAYER_HIT_TINT := Color(1.0, 0.9, 0.42, 1.0)
 const PLAYER_DAMAGED_TINT := Color(1.0, 0.42, 0.42, 1.0)
+const HIT_FLASH_SHADER := preload("res://gameplay/presentation/hit_flash.gdshader")
+const HIT_FLASH_SECONDS := 0.1
+const HITSTOP_SECONDS := 0.045
 
 @export var player: Player
 @export var effects_parent: Node2D
@@ -16,9 +19,11 @@ const PLAYER_DAMAGED_TINT := Color(1.0, 0.42, 0.42, 1.0)
 
 var _camera_base_offset := Vector2.ZERO
 var _camera_tween: Tween
+var _hitstop_active := false
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	if player == null or effects_parent == null or camera == null:
 		push_error("CombatFeedbackPresenter requires player, effects parent, and camera references.")
 		return
@@ -33,11 +38,15 @@ func _ready() -> void:
 
 func _on_player_hit_landed(target: HurtboxComponent, info: DamageInfo) -> void:
 	_show_hit(target.global_position + Vector2(0.0, -22.0), info, PLAYER_HIT_TINT, 1.5)
+	_flash_target(target)
+	_request_hitstop()
 	_play_sound_at(sword_hit_sound, target.global_position, 1.0)
 
 
 func _on_player_ability_hit_landed(target: HurtboxComponent, info: DamageInfo) -> void:
 	_show_hit(target.global_position + Vector2(0.0, -22.0), info, PLAYER_HIT_TINT, 2.5)
+	_flash_target(target)
+	_request_hitstop()
 	_play_sound_at(sword_hit_sound, target.global_position, 0.88)
 
 
@@ -67,6 +76,41 @@ func _pulse_camera(strength: float) -> void:
 	_camera_tween.tween_property(camera, "offset", _camera_base_offset + Vector2(strength, 0.0), 0.025)
 	_camera_tween.tween_property(camera, "offset", _camera_base_offset + Vector2(-strength, 0.0), 0.04)
 	_camera_tween.tween_property(camera, "offset", _camera_base_offset, 0.045)
+
+
+func _flash_target(target: HurtboxComponent) -> void:
+	var actor := target.get_parent()
+	if actor == null:
+		return
+	var body := actor.find_child("Body", true, false) as CanvasItem
+	if body == null:
+		return
+	var original_material := body.material
+	var flash_material := ShaderMaterial.new()
+	flash_material.shader = HIT_FLASH_SHADER
+	flash_material.set_shader_parameter("flash_amount", 1.0)
+	body.material = flash_material
+	var timer := get_tree().create_timer(HIT_FLASH_SECONDS, true, false, true)
+	timer.timeout.connect(func() -> void:
+		if is_instance_valid(body) and body.material == flash_material:
+			body.material = original_material
+	)
+
+
+func _request_hitstop() -> void:
+	if _hitstop_active or get_tree().paused:
+		return
+	_hitstop_active = true
+	get_tree().paused = true
+	var timer := get_tree().create_timer(HITSTOP_SECONDS, true, false, true)
+	timer.timeout.connect(_finish_hitstop)
+
+
+func _finish_hitstop() -> void:
+	if not _hitstop_active:
+		return
+	_hitstop_active = false
+	get_tree().paused = false
 
 
 func _play_sound_at(stream: AudioStream, position: Vector2, pitch: float) -> void:

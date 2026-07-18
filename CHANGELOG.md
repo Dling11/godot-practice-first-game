@@ -1,31 +1,92 @@
 # Changelog
 
-## 2026-07-15 - Alden Action-Owned Animation Rebuild
+## 2026-07-18 - Reusable Sword Attack Styles and Raised Front Blade
+
+- Raised the down-facing Ashwood Blade two pixels so its front-view grip sits higher beside Opaw's torso.
+- Added immutable Balanced Slash, Swift Slash, and Heavy Cleave presentation profiles for sword orbit, extension, trail, and impact accent; Ashwood uses Balanced Slash while the other profiles remain inactive foundations.
+- Added an idle-only weapon-definition switch seam that synchronizes combat and detached presentation while preserving Opaw's shared weaponless body animation.
+- Kept damage, knockback, phase timing, hitbox reach, ownership, acquisition, and persistence outside the style resource, and added focused regression coverage for those reuse boundaries.
+
+## 2026-07-18 - Vertical Attack Direction and Front Sword Spacing
+
+- Re-authored only Opaw's down/up attack rows so their wind-up, committed strike, and recovery remain centered on the screen-space vertical axis instead of leaning into a side-facing pose.
+- Kept down attacks fully front-facing with both eyes and up attacks fully back-facing with a symmetrical head, torso, belt, and stance; the approved left/right source rows remain unchanged.
+- Moved the down-facing idle/recovery Ashwood pivot inward from `(16, -5)` to `(12, -4)`, keeping the sword beside the torso without returning it to the face-overlap zone.
+- Preserved the generated vertical revision and added a deterministic row-composition tool plus runtime skin/tunic-axis regression coverage.
+
+## 2026-07-18 - Opaw Attack and Dash Face-Integrity Repair
+
+- Replaced the compact armless attack and dash source boards whose extreme head rotation lost eyes and facial contour after 18x27 normalization.
+- Kept down-facing frames front-readable with both eyes, preserved complete left/right profile heads and eyes, and kept up-facing frames as complete back-of-head silhouettes across all wind-up, launch/strike, and settle/recovery poses.
+- Shifted motion emphasis from head rotation into torso lean, tiny-foot bracing, and scarf follow-through while retaining the existing action grids, timings, detached sword presentation, and gameplay authority.
+- Moved down-facing idle/dash placement and side-facing wind-up anchors farther outside the head so the detached Ashwood Blade cannot visually slice across the repaired face.
+- Added source crop-edge rejection for attack/dash and runtime regression checks for head padding, minimum head size, and direction-appropriate eye detail.
+
+## 2026-07-18 - Compact Armless Opaw Activated With Full Model Backup
+
+- Created a complete original compact top-down Opaw set across idle, walk, attack, dash, interaction, hurt, and defeat while preserving his serious black eyes, rust scarf, green tunic, tiny boots, direction contract, and stable gameplay scale.
+- Removed arm, sleeve, and hand silhouettes from the active body; attack momentum now comes from deep whole-body anticipation, lunge, overshoot, foot bracing, and scarf follow-through.
+- Switched `player.tscn` and the character preview to the compact armless `SpriteFrames`, moved the Ashwood Blade farther outside the body, and widened its presentation-only swing orbit without changing damage, reach, collision, or hit timing.
+- Backed up the complete previously active Wayfarer model under `variants/wayfarer_original/` with seven independent textures and a loadable rollback `SpriteFrames` resource.
+- Preserved every generated source and clean intermediate, added a reproducible compact-asset processor, documented that the supplied game screenshot informed broad proportion/readability only, and added regression coverage for active/backup independence.
+
+## 2026-07-18 - Armless Compact-Feet Chibi Candidate
+
+- Preserved the first truly armless Opaw attack model unchanged and created a separate sibling candidate with shorter lower legs and smaller compact boots.
+- Kept Opaw's serious face, narrow torso, fully armless silhouette, direction rows, attack phases, scarf momentum, and grounded combat stance while moving the proportion modestly toward chibi.
+- Extended the armless prototype builder to regenerate both candidates independently without touching the active player sheets.
+- Expanded regression coverage across both 144x128 binary-alpha candidates and confirmed neither is wired into `player.tscn`.
+
+## 2026-07-18 - Truly Armless Opaw Attack Prototype
+
+- Clarified that the previous `handless` comparison still retained sleeve-shaped arms and preserved it without activating it.
+- Added a separate image-generated Opaw attack board with no arms, sleeves, hands, fists, shoulder projections, or detached limbs; attack motion is carried by torso lean, footwork, head direction, and scarf follow-through.
+- Added deterministic white-board removal, palette reduction, binary-alpha cleanup, and normalization into a review-only 144x128 sheet containing three 48x32 phases across all four directions.
+- Kept Opaw's current active animation and gameplay scene unchanged pending an in-motion review of the armless prototype beside the detached Ashwood Blade.
+- Added focused regression coverage for grid dimensions, binary alpha, complete cells, and active-art isolation.
+
+## 2026-07-18 - Handless Opaw Candidate and Sword-Momentum Pass
+
+- Preserved the approved Opaw sheets and added a complete grid-identical handless candidate whose exposed hands are replaced with closed green sleeve ends across all seven action sets.
+- Preserved an image-generated handless attack-board exploration as source material and added a deterministic variant builder plus independent `SpriteFrames` resource; the candidate is not wired into the active player scene.
+- Widened the normal Ashwood anticipation-to-impact arc, extended the committed pose, increased trail density/brightness, and retimed the phases to 0.11-second wind-up, 0.08-second active sweep, and 0.21-second recovery without changing damage authority or reach.
+- Extended confirmed-hit presentation to a 0.10-second white silhouette flash and a short white-hot impact core while retaining the 0.045-second non-stacking hitstop.
+- Added regression coverage that protects the active Opaw sheets, validates complete animation parity, and confirms the candidate differs without changing any grid dimensions.
+
+## 2026-07-18 - Opaw Identity and Confirmed-Hit Feel Pass
+
+- Renamed the active mortal character from Alden to **Opaw** across player-facing UI, canonical runtime/source assets, loadout and progression resources, build tools, tests, and project documentation while retaining `Player` as the reusable technical role.
+- Added a reusable white-silhouette enemy flash and short non-stacking hitstop that trigger only from accepted player hits; misses, blocked contacts, and incoming player damage do not freeze gameplay.
+- Added data-driven weapon knockback and configured the Ashwood Blade for a light 48 px/s push, preserving Sweeping Cut's stronger 90 px/s crowd-spacing role.
+- Removed the Thrall-only reddish damage pulse so all current enemies use the same confirmed-hit presentation path.
+- Extended combat regression coverage for hit flash cleanup, hitstop restoration, and Ashwood knockback metadata.
+
+## 2026-07-15 - Opaw Action-Owned Animation Rebuild
 
 - Replaced fixed generated-cell insets with expanded connected-silhouette isolation, restoring the complete up-facing walk/dash head and preventing neighboring-row fragments from squashing the right dash.
-- Lowered and widened Alden's directional Ashwood hand anchors from face height to arm height, then replaced the inverted left-side perpendicular path with a true mirror of the right swing.
+- Lowered and widened Opaw's directional Ashwood hand anchors from face height to arm height, then replaced the inverted left-side perpendicular path with a true mirror of the right swing.
 - Centered the active trail on the hand path and added a short snappy weapon scale/color accent plus tapering trail width for more readable impact without changing hit timing, reach, damage, or collision.
 - Restored the player sword, Sweeping Cut, and dash players' explicit `SFX` bus assignments after the full regression run exposed missing scene declarations.
-- Replaced Alden's active single mixed-pose atlas with independently generated idle, four-frame walk, three-pose weaponless attack, three-frame dash, two-frame interaction, two-frame hurt, and four-stage defeat sources.
+- Replaced Opaw's active single mixed-pose atlas with independently generated idle, four-frame walk, three-pose weaponless attack, three-frame dash, two-frame interaction, two-frame hurt, and four-stage defeat sources.
 - Refined the playable identity with a slightly boxy head, narrow pure-black determined eyes, rust-red scarf, narrow starter outfit, and small pointed boots while preserving the external Ashwood Blade.
 - Rebuilt the deterministic processor around canonical direction rows, safe source-cell isolation, a shared 18x27 reference silhouette, binary alpha, and one y=32 foot baseline.
-- Allocated 48x32 cells to extended actions and 64x32 cells to defeat so reaching, leaning, and horizontal collapse never force Alden's body to become smaller.
+- Allocated 48x32 cells to extended actions and 64x32 cells to defeat so reaching, leaning, and horizontal collapse never force Opaw's body to become smaller.
 - Mapped authoritative melee wind-up, active, and recovery phases directly to body frames 0, 1, and 2; added event-driven hurt playback and locomotion restoration without changing combat authority.
-- Rebuilt `alden_sprite_frames.tres`, preserved the superseded single atlas as legacy material, expanded regression coverage across all seven sheets, and left enemies, collisions, balance, and external weapon hit authority unchanged.
+- Rebuilt `opaw_sprite_frames.tres`, preserved the superseded single atlas as legacy material, expanded regression coverage across all seven sheets, and left enemies, collisions, balance, and external weapon hit authority unchanged.
 
-## 2026-07-15 - Alden Direction, Interaction, and Weapon-Swing Repair
+## 2026-07-15 - Opaw Direction, Interaction, and Weapon-Swing Repair
 
-- Corrected the generated Alden source order from `down/right/left/up` into the runtime `down/left/right/up` convention, fixing reversed side-facing movement and interaction art.
-- Removed the crouched/shrunken normal-attack body cell and preserved Alden's full-size directional silhouette with a restrained one-pixel wind-up and two-pixel active step.
+- Corrected the generated Opaw source order from `down/right/left/up` into the runtime `down/left/right/up` convention, fixing reversed side-facing movement and interaction art.
+- Removed the crouched/shrunken normal-attack body cell and preserved Opaw's full-size directional silhouette with a restrained one-pixel wind-up and two-pixel active step.
 - Rebuilt the visible weapon around a true hand/grip pivot and added data-driven sprite offset, visual scale, and swing radius metadata so later greatswords can reuse the same presentation rig.
 - Added a short presentation-only active swing trail while preserving the existing hitbox as the sole reach/contact/damage authority.
 - Aligned the character-menu Ashwood Blade preview to the same grip contract instead of positioning the texture independently.
-- Made dialogue interactions turn Alden toward Eira/Orren, hold the canonical directional interaction pose during conversation, and restore locomotion afterward.
+- Made dialogue interactions turn Opaw toward Eira/Orren, hold the canonical directional interaction pose during conversation, and restore locomotion afterward.
 - Expanded regression coverage for side-profile semantics, full-size attack frames, grip configuration, swing/trail phases, speaker-facing interaction, and dialogue restoration.
 
-## 2026-07-15 - Alden Modular Mortal and Ashwood Blade
+## 2026-07-15 - Opaw Modular Mortal and Ashwood Blade
 
-- Named the active mortal player **Alden**, with the presentation title `Mortal Wayfarer • Novice Warrior`, while retaining `Player` as the reusable technical actor role.
+- Named the active mortal player **Opaw**, with the presentation title `Mortal Wayfarer • Novice Warrior`, while retaining `Player` as the reusable technical actor role.
 - Replaced the active Awakened body/attack presentation with a reproducible 128x256 modular atlas containing 32x32 directional idle, walk, brace, interaction, hurt, and staged-defeat poses.
 - Added the Wood-rank **Ashwood Blade** as both a 16x24 visible world weapon and 64x64 inventory portrait, sharing one stable ID across weapon and equipment definitions.
 - Added a presentation-only weapon observer that uses direction anchors and melee/ability phase signals for idle placement, swing motion, and defeat drop while the existing hidden hitbox remains authoritative.

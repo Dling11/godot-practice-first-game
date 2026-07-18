@@ -20,6 +20,10 @@ func _run() -> void:
 
 	var attack_component = player.get_node("MeleeAttackComponent")
 	var health_component = target.get_node("HealthComponent")
+	var received_knockback := {"strength": 0.0}
+	health_component.damaged.connect(func(info: DamageInfo) -> void:
+		received_knockback.strength = info.knockback_strength
+	)
 	if not attack_component.request_attack(Vector2.RIGHT):
 		_fail("The first sword attack request was rejected.")
 		return
@@ -29,6 +33,9 @@ func _run() -> void:
 
 	if not is_equal_approx(health_component.current_health, 75.0):
 		_fail("Expected one 25-damage sword hit; health was %s." % health_component.current_health)
+		return
+	if not is_equal_approx(received_knockback.strength, 48.0):
+		_fail("Ashwood Blade did not deliver its configured light knockback.")
 		return
 	if attack_component.phase != attack_component.Phase.IDLE:
 		_fail("Sword attack did not return to IDLE.")

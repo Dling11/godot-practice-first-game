@@ -28,7 +28,7 @@ Art must never hide collision boundaries, attack telegraphs, the player, or requ
 |---|---|---|
 | Logical viewport | 960x540 | Review every asset at this gameplay scale. |
 | Development display | 1920x1080 | Preserve exact 2x integer scaling. |
-| Modular playable body | 32x32 cells | Alden's feet, body scale, direction columns, and layer anchors remain stable. |
+| Modular playable body | 32x32 cells | Opaw's feet, body scale, direction columns, and layer anchors remain stable. |
 | Existing enemy-humanoid locomotion | 24x32 cells | Preserve validated Thrall scale and direction columns. |
 | Existing extended enemy actions | 64x48 cells | Six-frame actions may exceed the body cell without shrinking the actor. |
 | Small creatures | 32x32 cells | Keep silhouettes readable beside modular players and enemy humanoids. |
@@ -65,9 +65,9 @@ Default world light travels from upper-left toward lower-right. Highlights, cast
 - Direction order is `down`, `left`, `right`, `up` unless a documented asset contract says otherwise.
 - Animation names use `<action>_<direction>`, such as `walk_left` or `attack_up`.
 - Feet are the stable origin for top-down actors and must not drift between frames.
-- The face, hands, equipped presentation, and major silhouette features must survive every frame; no transparent holes or accidental fragments. Playable standing references use one documented screen-space width, height, and foot baseline across every direction.
-- Alden's eyes remain pure black with no mascot-like white highlight. His head is slightly boxy rather than a perfect circle; the body stays narrow and serious rather than baby-like or chubby.
-- Modular playable weapons may remain separate from the body when stable grip pivots and phase-driven motion make equipment replacement practical. Author each texture with a known grip point, keep the weapon visually attached to the intended hand space, and rotate the sprite around that grip rather than the image center. A restrained active trail may clarify the swing but must not imply a different damage area.
+- The face, approved limb treatment, equipped presentation, and major silhouette features must survive every frame; no transparent holes or accidental fragments. Opaw's active body has no arms, sleeves, hands, fists, elbows, or shoulder stubs: motion comes from head/torso lean, tiny grounded feet, scarf follow-through, and detached equipment. Sleeve-ended bodies remain a distinct alternate convention and must not be confused with a truly armless silhouette. Playable standing references use one documented screen-space width, height, and foot baseline across every direction.
+- Opaw's eyes remain pure black with no mascot-like white highlight. His head is slightly boxy rather than a perfect circle; the body stays narrow and serious rather than baby-like or chubby.
+- Modular playable weapons may remain separate from the body when stable authored pivots and phase-driven motion make equipment replacement practical. Author each texture with a known grip point and rotate the texture around that point rather than its image center. For armless bodies, keep a small deliberate gap and use a bounded integer-pixel orbit that reads as controlled equipment rather than an accidental missing hand. A restrained active trail may clarify the swing but must not imply a different damage area.
 - Weapons remain integrated into attack poses when the actor's hand/body silhouette depends on them, as with the existing Thrall claw action.
 - Anticipation, active action, and recovery poses matter more than extra decorative frames.
 - Defeat uses readable recoil, weaken/slump, and final grounded poses before runtime fade; fading alone is not an authored death animation.
@@ -100,7 +100,13 @@ The UI implementation uses `battle_of_gods_theme.tres` as its reusable base. But
 
 Equipment presentation extends that language without becoming noisy loot UI. The active early ladder uses warm ash brown for Wood, neutral stone gray for Stonebound, pale steel for Iron, and spirit blue for Rare. The former A/S/Legendary/Mythic palette is preserved only with legacy concepts and is not shown to beginner players. Rarity frames and optional aura pulses remain separate Godot presentation, so item images contain only the complete 64x64 silhouette and can be restyled independently.
 
-The active playable presentation is Alden: a serious mortal wayfarer built from separate four-direction idle, walk, weaponless attack, dash, interaction, hurt, and defeat sheets plus a separate Ashwood Blade. Every direction's upright reference is normalized to an 18x27 silhouette on a 32-pixel foot baseline. His slightly boxy head, narrow pure-black determined eyes without white highlights, rust-red scarf, small pointed boots, compact tunic, and grip-anchored weapon establish the reusable Warrior/Ranger/Mage body direction. Wider action cells exist only to preserve the same physical body scale during reaches, leans, and collapse. This approval applies only to the player. Existing enemies remain unchanged, and Eira/Orren keep their current bespoke sprites until later reviewed migrations.
+The active playable presentation is Opaw: a serious compact armless mortal built from separate four-direction idle, walk, weaponless attack, dash, interaction, hurt, and defeat sheets plus a detached Ashwood Blade. Every direction's upright reference remains normalized to an 18x27 silhouette on a 32-pixel foot baseline. His oversized slightly boxy head, narrow pure-black determined eyes without highlights, rust-red scarf, narrow green tunic, tiny boots, complete absence of arm/sleeve silhouettes, and bounded equipment orbit establish the current Warrior baseline. Wider action cells exist only to preserve the same physical body scale during lunges, leans, and collapse. The supplied game screenshot informed only broad compact top-down proportion/readability; no character, costume, weapon, UI, environment, or named design was copied. This approval applies only to the player. Existing enemies remain unchanged, and Eira/Orren keep their current bespoke sprites until later reviewed migrations.
+
+The complete previous Opaw presentation is preserved under `variants/wayfarer_original/` with all seven sheets and its own `SpriteFrames` resource. It is the supported visual rollback and must remain independent from the active compact model.
+
+The older `handless` comparison keeps closed sleeve ends, while the `armless` and `armless_small_feet` attack-only boards preserve earlier no-arm explorations. They remain review/source history and are not wired into the player.
+
+Active armless attacks communicate force through anticipation, whole-body rotation/lean, planted or lunging tiny feet, head counter-motion, scarf follow-through, detached weapon acceleration, trail, hit flash, and hitstop. The compact proportion must remain grounded, serious, and combat-capable rather than round, smiling, or mascot-like.
 
 ## Replaceable Background Contract
 

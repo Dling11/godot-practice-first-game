@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="EquipmentDefinition" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="EquipmentDefinition" format=3 uid="uid://cbdxp0keomxye"]
 
-[ext_resource type="Script" path="res://data/items/equipment_definition.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://assets/items/weapons/icons/ashwood_blade_64x64.png" id="2_icon"]
+[ext_resource type="Script" uid="uid://qsfxyo323knw" path="res://data/items/equipment_definition.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://beeby6julfyfv" path="res://assets/items/weapons/icons/ashwood_blade_64x64.png" id="2_icon"]
 
 [resource]
 script = ExtResource("1_script")
@@ -10,6 +10,6 @@ display_name = "Ashwood Blade"
 rarity = 4
 icon = ExtResource("2_icon")
 preview_power = 10
-lore = "A short blade carved for mortals who have not yet earned iron. Alden carries it without pretense."
+lore = "A short blade carved for mortals who have not yet earned iron. Opaw carries it without pretense."
 synergy_name = "Grounded Form"
-synergy_description = "Supports Alden's basic sword form and Sweeping Cut. No bonus effect is active yet."
+synergy_description = "Supports Opaw's basic sword form and Sweeping Cut. No bonus effect is active yet."

@@ -223,7 +223,7 @@ func _run() -> void:
 		player.facing_direction.dot(eira_direction) < 0.999
 		or not String(player_body.animation).begins_with("interact_")
 	):
-		_fail("Alden did not face Eira and enter the directional interaction pose.")
+		_fail("Opaw did not face Eira and enter the directional interaction pose.")
 		return
 	await process_frame
 	var escape := InputEventAction.new()
@@ -234,7 +234,7 @@ func _run() -> void:
 		_fail("Esc did not cancel Eira's dialogue without opening another modal.")
 		return
 	if not String(player_body.animation).begins_with("idle_"):
-		_fail("Alden did not resume directional locomotion after dialogue closed.")
+		_fail("Opaw did not resume directional locomotion after dialogue closed.")
 		return
 	skillkeeper._unhandled_input(interact)
 	if not dialogue.visible or not paused:
@@ -247,7 +247,7 @@ func _run() -> void:
 		_fail("Completing Eira's dialogue did not open the existing skill-information menu.")
 		return
 	if not character_menu.has_node("CloseButton"):
-		_fail("Alden's character menu has no top-right mouse close button.")
+		_fail("Opaw's character menu has no top-right mouse close button.")
 		return
 	character_menu.close_menu()
 	if character_menu.visible or paused:

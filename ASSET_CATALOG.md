@@ -20,7 +20,7 @@ Paths marked as migrated are current runtime truth. Remaining `Target path` entr
 Canonical IDs use `<domain>_<identity>_<action-or-purpose>`. Runtime filenames use descriptive `snake_case` and add sheet/cell dimensions where useful.
 
 ```text
-char_alden_walk
+char_opaw_walk
 char_forsaken_thrall_claw_attack
 icon_skill_sweeping_cut
 ui_panel_dark
@@ -29,20 +29,20 @@ prop_sanctuary_fountain
 audio_sfx_sword_hit
 ```
 
-Do not introduce `final`, `new`, `fixed`, `better`, unexplained numbers, or contributor/user names into runtime filenames. Approved in-world character names such as `alden`, `eira`, or `orren` are useful identities and should be used consistently. Git owns history; descriptive variants such as `mossy`, `winter`, or `corrupted` are allowed when both variants intentionally coexist.
+Do not introduce `final`, `new`, `fixed`, `better`, unexplained numbers, or contributor/user names into runtime filenames. Approved in-world character names such as `opaw`, `eira`, or `orren` are useful identities and should be used consistently. Git owns history; descriptive variants such as `mossy`, `winter`, or `corrupted` are allowed when both variants intentionally coexist.
 
 ## Active Character Art
 
 | Canonical ID | Current runtime path | Target path/name | Size and grid | Runtime owner |
 |---|---|---|---|---|
-| `char_alden_idle` | `assets/characters/playable/alden/alden_idle_sheet_32x32.png` | Active | 64x128; 2 frames x 4 direction rows; 32x32 cells | `alden_sprite_frames.tres` |
-| `char_alden_walk` | `assets/characters/playable/alden/alden_walk_sheet_32x32.png` | Active | 128x128; 4 frames x 4 direction rows; 32x32 cells | `alden_sprite_frames.tres` |
-| `char_alden_attack_body` | `assets/characters/playable/alden/alden_attack_body_sheet_48x32.png` | Active | 144x128; 3 phases x 4 direction rows; 48x32 cells | `alden_sprite_frames.tres` |
-| `char_alden_dash` | `assets/characters/playable/alden/alden_dash_sheet_48x32.png` | Active | 144x128; 3 frames x 4 direction rows; 48x32 cells | `alden_sprite_frames.tres` |
-| `char_alden_interact` | `assets/characters/playable/alden/alden_interact_sheet_48x32.png` | Active | 96x128; 2 frames x 4 direction rows; 48x32 cells | `alden_sprite_frames.tres` |
-| `char_alden_hurt` | `assets/characters/playable/alden/alden_hurt_sheet_32x32.png` | Active | 64x128; 2 frames x 4 direction rows; 32x32 cells | `alden_sprite_frames.tres` |
-| `char_alden_defeat` | `assets/characters/playable/alden/alden_defeat_sheet_64x32.png` | Active | 256x128; 4 frames x 4 direction rows; 64x32 cells | `alden_sprite_frames.tres` |
-| `char_alden_frames` | `assets/characters/playable/alden/alden_sprite_frames.tres` | Active | Godot `SpriteFrames` | `player.tscn` |
+| `char_opaw_idle` | `assets/characters/playable/opaw/compact_armless/opaw_compact_armless_idle_sheet_32x32.png` | Active | 64x128; 2 frames x 4 direction rows; 32x32 cells | `opaw_compact_armless_sprite_frames.tres` |
+| `char_opaw_walk` | `assets/characters/playable/opaw/compact_armless/opaw_compact_armless_walk_sheet_32x32.png` | Active | 128x128; 4 frames x 4 direction rows; 32x32 cells | `opaw_compact_armless_sprite_frames.tres` |
+| `char_opaw_attack_body` | `assets/characters/playable/opaw/compact_armless/opaw_compact_armless_attack_body_sheet_48x32.png` | Active | 144x128; 3 phases x 4 direction rows; 48x32 cells | `opaw_compact_armless_sprite_frames.tres` |
+| `char_opaw_dash` | `assets/characters/playable/opaw/compact_armless/opaw_compact_armless_dash_sheet_48x32.png` | Active | 144x128; 3 frames x 4 direction rows; 48x32 cells | `opaw_compact_armless_sprite_frames.tres` |
+| `char_opaw_interact` | `assets/characters/playable/opaw/compact_armless/opaw_compact_armless_interact_sheet_48x32.png` | Active | 96x128; 2 frames x 4 direction rows; 48x32 cells | `opaw_compact_armless_sprite_frames.tres` |
+| `char_opaw_hurt` | `assets/characters/playable/opaw/compact_armless/opaw_compact_armless_hurt_sheet_32x32.png` | Active | 64x128; 2 frames x 4 direction rows; 32x32 cells | `opaw_compact_armless_sprite_frames.tres` |
+| `char_opaw_defeat` | `assets/characters/playable/opaw/compact_armless/opaw_compact_armless_defeat_sheet_64x32.png` | Active | 256x128; 4 frames x 4 direction rows; 64x32 cells | `opaw_compact_armless_sprite_frames.tres` |
+| `char_opaw_frames` | `assets/characters/playable/opaw/compact_armless/opaw_compact_armless_sprite_frames.tres` | Active | Godot `SpriteFrames` | `player.tscn` |
 | `char_forsaken_thrall_locomotion` | `assets/characters/enemies/forsaken_thrall/forsaken_thrall_locomotion_sheet_24x32.png` | Migrated | 96x128; 4x4 of 24x32 | `forsaken_thrall_sprite_frames.tres` |
 | `char_forsaken_thrall_claw_attack` | `assets/characters/enemies/forsaken_thrall/forsaken_thrall_claw_attack_sheet_64x48.png` | Migrated | 384x192; 6x4 of 64x48 | `forsaken_thrall_sprite_frames.tres` |
 | `char_forsaken_thrall_frames` | `assets/characters/enemies/forsaken_thrall/forsaken_thrall_sprite_frames.tres` | Migrated | Godot `SpriteFrames` | `forsaken_thrall.tscn` |
@@ -51,18 +51,37 @@ Do not introduce `final`, `new`, `fixed`, `better`, unexplained numbers, or cont
 | `char_bramble_spitter_actions` | `assets/characters/enemies/bramble_spitter/bramble_spitter_action_sheet_32x32.png` | Migrated | 128x128; 4x4 of 32x32 | `bramble_spitter_sprite_frames.tres` |
 | `char_bramble_spitter_frames` | `assets/characters/enemies/bramble_spitter/bramble_spitter_sprite_frames.tres` | Migrated | Godot `SpriteFrames` | `bramble_spitter.tscn` |
 
-All active Alden sheets use direction rows in canonical `down`, `left`, `right`, `up` order and animation frames as columns. `tools/process_alden_modular_assets.gd` isolates each padded generated cell, removes chroma, normalizes every direction reference to 18x27 on the shared foot baseline, and emits binary-alpha runtime sheets. Normal attack body columns map directly to wind-up, active, and recovery while the external weapon owns the visible blade arc. The former single 4x8 Alden atlas is preserved as superseded runtime material and has no active `SpriteFrames` reference. Existing humanoid extended enemy attack sheets use directions as rows and six action phases as columns.
+All active Opaw sheets use direction rows in canonical `down`, `left`, `right`, `up` order and animation frames as columns. `tools/process_opaw_compact_armless_assets.gd` isolates each padded generated cell, removes chroma, normalizes every direction reference to 18x27 on the shared foot baseline, and emits binary-alpha runtime sheets. Normal attack body columns map directly to wind-up, active, and recovery while the detached external weapon owns the visible blade arc. The complete previous Wayfarer model and former single 4x8 atlas have no active `SpriteFrames` references. Existing humanoid extended enemy attack sheets use directions as rows and six action phases as columns.
 
-### Preserved Alden Pipeline Material
+### Preserved Opaw Pipeline Material
 
 These files are intentionally outside runtime imports under Godot-ignored `art_source/`:
 
 | Related canonical ID | Preserved path | Status | Source dimensions |
 |---|---|---|---|
-| `char_alden_action_set` | `art_source/generated/characters/playable/alden/v2/alden_idle_source.png` through `alden_defeat_source.png` | `source` | Seven independently generated action boards |
-| `char_alden_action_set` | `art_source/generated/characters/playable/alden/v2/alden_idle_clean.png` through `alden_defeat_clean.png` | `intermediate` | Chroma-cleaned source boards |
-| `char_alden_modular_actions_legacy` | `art_source/generated/characters/playable/alden/alden_modular_action_source.png` | `legacy_source` | 1024x1536; superseded single board |
-| `char_alden_modular_actions_legacy` | `art_source/generated/characters/playable/alden/alden_modular_action_clean.png` | `legacy_intermediate` | 1024x1536; superseded single board |
+| `char_opaw_wayfarer_original_action_set` | `art_source/generated/characters/playable/opaw/v2/opaw_idle_source.png` through `opaw_defeat_source.png` | `legacy_source` | Seven independently generated boards for the complete visual rollback |
+| `char_opaw_wayfarer_original_action_set` | `art_source/generated/characters/playable/opaw/v2/opaw_idle_clean.png` through `opaw_defeat_clean.png` | `legacy_intermediate` | Chroma-cleaned boards for the complete visual rollback |
+| `char_opaw_compact_armless_action_set` | `art_source/generated/characters/playable/opaw/compact_armless/opaw_compact_armless_*_source.png` | `source` | Seven original action boards; external screenshot used only for broad compact top-down readability/proportion reference |
+| `char_opaw_compact_armless_action_set` | `art_source/generated/characters/playable/opaw/compact_armless/opaw_compact_armless_*_clean.png` | `intermediate` | Chroma-cleaned, palette-normalized source boards |
+| `char_opaw_compact_armless_attack_vertical_revision` | `art_source/generated/characters/playable/opaw/compact_armless/opaw_compact_armless_attack_vertical_revision.png` | `source` | Corrected centered down/up rows; composed into the attack source without changing approved left/right rows |
+| `char_opaw_modular_actions_legacy` | `art_source/generated/characters/playable/opaw/opaw_modular_action_source.png` | `legacy_source` | 1024x1536; superseded single board |
+| `char_opaw_modular_actions_legacy` | `art_source/generated/characters/playable/opaw/opaw_modular_action_clean.png` | `legacy_intermediate` | 1024x1536; superseded single board |
+| `char_opaw_handless_candidate` | `art_source/generated/characters/playable/opaw/variants/handless/opaw_attack_body_handless_imagegen_source.png` | `source` | Image-generated handless attack-pose exploration; not loaded at runtime |
+
+### Review-Only Opaw Variant
+
+| Canonical ID | Preserved path | Status | Contract |
+|---|---|---|---|
+| `char_opaw_handless_action_set` | `assets/characters/playable/opaw/variants/handless/opaw_handless_*_sheet_*.png` | `planned` | Seven duplicate grids; exposed hands covered by closed sleeve ends; active sheets untouched |
+| `char_opaw_handless_frames` | `assets/characters/playable/opaw/variants/handless/opaw_handless_sprite_frames.tres` | `planned` | Complete animation resource for review or an explicit later swap |
+| `char_opaw_armless_attack_source` | `art_source/generated/characters/playable/opaw/variants/armless/opaw_armless_attack_body_source.png` | `source` | Built-in image edit preserving Opaw identity/layout while removing both complete arms |
+| `char_opaw_armless_attack_clean` | `art_source/generated/characters/playable/opaw/variants/armless/opaw_armless_attack_body_clean.png` | `intermediate` | White-board removal before palette/grid normalization |
+| `char_opaw_armless_attack_prototype` | `assets/characters/playable/opaw/variants/armless/opaw_armless_attack_body_sheet_48x32.png` | `planned` | Review-only 3 phases x 4 directions; 48x32 cells; not wired into `player.tscn` |
+| `char_opaw_armless_small_feet_source` | `art_source/generated/characters/playable/opaw/variants/armless_small_feet/opaw_armless_small_feet_attack_body_source.png` | `source` | Built-in image edit of the preserved armless board; compact boots and shorter lower legs |
+| `char_opaw_armless_small_feet_clean` | `art_source/generated/characters/playable/opaw/variants/armless_small_feet/opaw_armless_small_feet_attack_body_clean.png` | `intermediate` | White-board removal before palette/grid normalization |
+| `char_opaw_armless_small_feet_prototype` | `assets/characters/playable/opaw/variants/armless_small_feet/opaw_armless_small_feet_attack_body_sheet_48x32.png` | `planned` | Review-only chibi-foot 3x4 attack candidate; original armless prototype preserved |
+| `char_opaw_wayfarer_original_backup` | `assets/characters/playable/opaw/variants/wayfarer_original/opaw_wayfarer_original_*_sheet_*.png` | `legacy` | Complete seven-sheet backup of the model active before the compact armless swap |
+| `char_opaw_wayfarer_original_frames` | `assets/characters/playable/opaw/variants/wayfarer_original/opaw_wayfarer_original_sprite_frames.tres` | `legacy_resource` | Independently loadable rollback resource with animation parity |
 
 ### Preserved Legacy Awakened Material
 
@@ -147,7 +166,7 @@ Current UI visuals combine the approved reusable base theme and named pixel icon
 | Canonical ID | Current path | Status | Purpose |
 |---|---|---|---|
 | `ui_combat_hud` | `ui/combat_hud.tscn` | `active_resource` | Vitality, progression, character/satchel entry, interaction prompt, and skills 1-4. |
-| `ui_character_menu` | `ui/character_menu.tscn` | `active_resource` | Paused Gear/Armory and Active Skills surface for Alden. |
+| `ui_character_menu` | `ui/character_menu.tscn` | `active_resource` | Paused Gear/Armory and Active Skills surface for Opaw. |
 | `ui_equipment_item_card` | `ui/equipment/equipment_item_card.tscn` | `active_resource` | Focusable rarity/item preview card. |
 | `ui_equipment_slot_card` | `ui/equipment/equipment_slot_card.tscn` | `active_resource` | Reusable equipped or empty slot presentation. |
 | `ui_equipment_detail_panel` | `ui/equipment/equipment_detail_panel.tscn` | `active_resource` | Lore, preview power, inactive synergy, and restrained aura presentation. |
@@ -183,14 +202,14 @@ The icons are reproducibly built by `tools/build_ui_icon_kit.gd` from the approv
 
 | Canonical ID | Runtime path | Status | Contract and owner |
 |---|---|---|---|
-| `item_weapon_ashwood_blade_world` | `assets/items/weapons/world/ashwood_blade_16x24.png` | `active_runtime` | Binary-alpha visible weapon shared by `WeaponDefinition`, grip-anchored `PlayerWeaponVisual`, and grip-aligned character preview. |
+| `item_weapon_ashwood_blade_world` | `assets/items/weapons/world/ashwood_blade_16x24.png` | `active_runtime` | Binary-alpha visible weapon shared by `WeaponDefinition`, detached-orbit `PlayerWeaponVisual`, and grip-aligned character preview. |
 | `item_weapon_ashwood_blade_icon` | `assets/items/weapons/icons/ashwood_blade_64x64.png` | `active_runtime` | Compact-palette Wood-rank portrait used by `ashwood_blade.tres`. |
 | `item_weapon_wayfarers_iron` | `assets/items/weapons/icons/wayfarers_iron_64x64.png` | `legacy` | Former A-grade preview; no active showcase reference. |
 | `item_weapon_gloamfang` | `assets/items/weapons/icons/gloamfang_64x64.png` | `legacy` | Former S-grade preview; no active showcase reference. |
 | `item_weapon_sunroot_oath` | `assets/items/weapons/icons/sunroot_oath_64x64.png` | `legacy` | Former Legendary preview; no active showcase reference. |
 | `item_weapon_veilrender` | `assets/items/weapons/icons/veilrender_64x64.png` | `legacy` | Former Mythic preview; no active showcase reference. |
 
-The Ashwood Blade originates at `art_source/generated/items/weapons/ashwood_blade/ashwood_blade_source.png`; its cleaned intermediate is preserved beside it. `tools/process_alden_modular_assets.gd` produces both the 16x24 world texture and the 64x64 inventory icon with binary alpha and compact palettes. Rarity borders, labels, and aura animation are not baked into item art.
+The Ashwood Blade originates at `art_source/generated/items/weapons/ashwood_blade/ashwood_blade_source.png`; its cleaned intermediate is preserved beside it. `tools/process_opaw_modular_assets.gd` produces both the 16x24 world texture and the 64x64 inventory icon with binary alpha and compact palettes. Rarity borders, labels, and aura animation are not baked into item art.
 
 The four legacy portraits originate from `art_source/generated/items/weapons/equipment_weapon_atlas_source.png`; the chroma-cleaned board and `tools/process_equipment_weapon_atlas.gd` remain preserved for provenance but must not restore active player-facing references without a new equipment decision.
 

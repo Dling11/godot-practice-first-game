@@ -53,7 +53,12 @@ func _advance_phase() -> void:
 	match phase:
 		Phase.WIND_UP:
 			_enter_phase(Phase.ACTIVE, weapon.active_seconds)
-			hitbox.activate(weapon.damage, owner, _attack_direction)
+			hitbox.activate(
+				weapon.damage,
+				owner,
+				_attack_direction,
+				weapon.knockback_strength
+			)
 		Phase.ACTIVE:
 			hitbox.deactivate()
 			_enter_phase(Phase.RECOVERY, weapon.recovery_seconds)

@@ -46,8 +46,10 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 036 | Use Sanctuary as the expedition hub | Hub flow, NPCs, destination choice, route unlocks, or stage return behavior |
 | 037 | Generate and normalize a dedicated Sanctuary art kit | Sanctuary tiles, generated props, NPC presentation, hub collisions, or visual replacement |
 | 038 | Preview skill-synergy equipment before persistence | Equipment ranks, inventory UI, weapon synergies, shops, drops, or stat authority |
-| 039 | Use modular mortal character presentation | Alden, playable classes, layered equipment, visible weapons, or NPC scale migration |
-| 040 | Split playable animation by action while locking body scale | Alden animation sheets, directional scale, attack-body phases, dash, hurt, or defeat |
+| 039 | Use modular mortal character presentation | Opaw, playable classes, layered equipment, visible weapons, or NPC scale migration |
+| 040 | Split playable animation by action while locking body scale | Opaw animation sheets, directional scale, attack-body phases, dash, hurt, or defeat |
+| 041 | Activate compact armless Opaw with an explicit visual rollback | Opaw's active silhouette, detached weapon orbit, model replacement, or art backup |
+| 042 | Share body animation across data-driven sword styles and grades | Sword grades, attack presentation profiles, visible weapon swapping, or animation reuse |
 
 ## New Decisions
 

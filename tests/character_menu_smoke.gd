@@ -3,6 +3,7 @@ extends SceneTree
 const PlayerScene = preload("res://entities/player/player.tscn")
 const CharacterMenuScene = preload("res://ui/character_menu.tscn")
 const HudScene = preload("res://ui/combat_hud.tscn")
+const CompactOpawFrames = preload("res://assets/characters/playable/opaw/compact_armless/opaw_compact_armless_sprite_frames.tres")
 
 
 func _initialize() -> void:
@@ -46,11 +47,15 @@ func _run() -> void:
 		_fail("The live physical Tab event did not open the character menu and pause gameplay.")
 		return
 	if menu._equipment_cards.size() != 1 or root.gui_get_focus_owner() != menu._equipment_cards[0]:
-		_fail("Character menu did not build and focus Alden's starter armory item.")
+		_fail("Character menu did not build and focus Opaw's starter armory item.")
 		return
 	var identity_title: Label = menu.get_node("Panel/Margin/Root/Header/Identity/Title")
-	if identity_title.text != "ALDEN":
-		_fail("Character menu does not present Alden's approved mortal identity.")
+	if identity_title.text != "OPAW":
+		_fail("Character menu does not present Opaw's approved mortal identity.")
+		return
+	var preview_body := menu.get_node("Panel/Margin/Root/PageHost/GearPage/Loadout/Portrait/PortraitCanvas/Body") as AnimatedSprite2D
+	if preview_body.sprite_frames != CompactOpawFrames:
+		_fail("Character menu preview is not using Opaw's active compact armless model.")
 		return
 	if menu._equipment_slot_cards.size() != 5 or not menu.gear_page.visible or menu.skills_page.visible:
 		_fail("Character menu did not open on the five-slot Gear page.")

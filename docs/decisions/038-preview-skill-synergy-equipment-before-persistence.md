@@ -18,7 +18,7 @@ Equipment can make progression and Sanctuary services meaningful, but a numerica
 
 The character surface has two authored pages: `Gear & Armory` and `Active Skills`. Gear presents five eventual slots—Weapon, Armor, Gloves, Boots, and Accessory—around an animated character preview. Armor and accessories may remain icon-and-stat equipment in the first playable version; they do not require layered world sprites.
 
-The original preview explored `A Grade`, `S Grade`, `Legendary`, and `Mythic` through Wayfarer's Iron, Gloamfang, Sunroot Oath, and Veilrender. Decision 039 supersedes that vocabulary for the active beginner surface: Alden now shows only the Wood-rank Ashwood Blade, and the former four concepts remain preserved legacy material. The read-only presentation boundary in this decision still applies.
+The original preview explored `A Grade`, `S Grade`, `Legendary`, and `Mythic` through Wayfarer's Iron, Gloamfang, Sunroot Oath, and Veilrender. Decision 039 supersedes that vocabulary for the active beginner surface: Opaw now shows only the Wood-rank Ashwood Blade, and the former four concepts remain preserved legacy material. The read-only presentation boundary in this decision still applies.
 
 Every showcased weapon may have an authored skill-synergy identity. Equipment may reinforce normal attacks, dash, and equipped skills, but must not replace active-skill decisions or readable combat mastery. These synergy descriptions and preview power values are presentation only. The authoritative Ashwood Blade remains `WeaponDefinition` with the existing 25 damage; no preview resource changes combat, inventory, saving, rewards, or enemy balance.
 

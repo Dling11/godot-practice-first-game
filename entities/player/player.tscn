@@ -6,26 +6,26 @@
 [ext_resource type="Script" uid="uid://4l3spvpulsnw" path="res://entities/player/presentation/player_aim_visual.gd" id="4_aim"]
 [ext_resource type="Script" uid="uid://bewr0rcrltrhq" path="res://entities/player/components/melee_attack_component.gd" id="5_attack"]
 [ext_resource type="Script" uid="uid://6520tclsqofq" path="res://gameplay/combat/melee_hitbox.gd" id="6_hitbox"]
-[ext_resource type="Resource" path="res://data/weapons/ashwood_blade.tres" id="7_sword_data"]
+[ext_resource type="Resource" uid="uid://bjhgo0si3p63v" path="res://data/weapons/ashwood_blade.tres" id="7_sword_data"]
 [ext_resource type="Script" uid="uid://cciyoum4pr3f7" path="res://entities/player/components/evade_component.gd" id="9_evade"]
 [ext_resource type="Resource" path="res://data/evade/player_dash.tres" id="10_dash_data"]
 [ext_resource type="Script" uid="uid://1th6uujswp43" path="res://gameplay/combat/health_component.gd" id="11_health"]
 [ext_resource type="Script" uid="uid://edpqlhbhvhav" path="res://gameplay/combat/hurtbox_component.gd" id="12_hurtbox"]
 [ext_resource type="Script" uid="uid://c6tnb2d6x4r3l" path="res://entities/player/presentation/dash_visual.gd" id="13_dash_visual"]
 [ext_resource type="Script" uid="uid://bfftqao8u5k1s" path="res://entities/player/presentation/player_state_visual.gd" id="14_state_visual"]
-[ext_resource type="SpriteFrames" path="res://assets/characters/playable/alden/alden_sprite_frames.tres" id="15_player_frames"]
+[ext_resource type="SpriteFrames" uid="uid://ckpod1suerfxq" path="res://assets/characters/playable/opaw/compact_armless/opaw_compact_armless_sprite_frames.tres" id="15_player_frames"]
 [ext_resource type="Script" uid="uid://q76dk4eb6285" path="res://entities/player/presentation/player_animation.gd" id="16_player_animation"]
 [ext_resource type="Script" uid="uid://cn8r3l6ef5evh" path="res://gameplay/abilities/ability_component.gd" id="17_ability"]
 [ext_resource type="Resource" uid="uid://bc2pol4ik4lxf" path="res://data/abilities/sweeping_cut.tres" id="18_sweep_data"]
 [ext_resource type="Script" uid="uid://dluv63hfr7xdh" path="res://entities/player/presentation/sweeping_cut_visual.gd" id="19_sweep_visual"]
 [ext_resource type="Script" uid="uid://y4q77uqmwwkr" path="res://entities/player/components/player_progression_component.gd" id="20_progression"]
-[ext_resource type="Resource" path="res://data/progression/alden_path.tres" id="21_progression_data"]
+[ext_resource type="Resource" path="res://data/progression/opaw_path.tres" id="21_progression_data"]
 [ext_resource type="Script" uid="uid://b61awjvau5rtl" path="res://gameplay/audio/player_action_sfx.gd" id="22_player_sfx"]
 [ext_resource type="AudioStream" uid="uid://tg77jorh8gfu" path="res://assets/audio/sfx/sword_swing.wav" id="23_sword_swing"]
 [ext_resource type="AudioStream" uid="uid://c7cghxwksrqyh" path="res://assets/audio/sfx/sweeping_cut.wav" id="24_sweeping_cut"]
 [ext_resource type="AudioStream" uid="uid://b53wbwpaltwr" path="res://assets/audio/sfx/dash.wav" id="25_dash"]
-[ext_resource type="Resource" path="res://data/skills/alden_starting_loadout.tres" id="26_loadout"]
-[ext_resource type="Resource" path="res://data/items/alden_equipment_showcase.tres" id="27_equipment_showcase"]
+[ext_resource type="Resource" path="res://data/skills/opaw_starting_loadout.tres" id="26_loadout"]
+[ext_resource type="Resource" path="res://data/items/opaw_equipment_showcase.tres" id="27_equipment_showcase"]
 [ext_resource type="Script" uid="uid://bdrcc6co0unfp" path="res://entities/player/presentation/player_weapon_visual.gd" id="28_weapon_visual"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sword"]
@@ -66,7 +66,7 @@ polygon = PackedVector2Array(-7, 0, -4, -2, 4, -2, 7, 0, 4, 2, -4, 2)
 unique_name_in_owner = true
 position = Vector2(0, -16)
 sprite_frames = ExtResource("15_player_frames")
-animation = &"hurt_down"
+animation = &"attack_down"
 script = ExtResource("16_player_animation")
 
 [node name="SwordSwingTrail" type="Line2D" parent="VisualRoot" unique_id=300580408]
@@ -185,17 +185,14 @@ dash_player = NodePath("Dash")
 [node name="SwordSwing" type="AudioStreamPlayer2D" parent="PlayerActionSfx" unique_id=1524140265]
 stream = ExtResource("23_sword_swing")
 volume_db = -7.0
-bus = &"SFX"
 
 [node name="SweepingCut" type="AudioStreamPlayer2D" parent="PlayerActionSfx" unique_id=714989272]
 stream = ExtResource("24_sweeping_cut")
 volume_db = -5.0
-bus = &"SFX"
 
 [node name="Dash" type="AudioStreamPlayer2D" parent="PlayerActionSfx" unique_id=795989634]
 stream = ExtResource("25_dash")
 volume_db = -9.0
-bus = &"SFX"
 
 [node name="Name" type="Label" parent="." unique_id=336850558]
 visible = false
@@ -203,7 +200,7 @@ offset_left = -18.0
 offset_top = 14.0
 offset_right = 18.0
 offset_bottom = 25.0
-text = "ALDEN"
+text = "OPAW"
 label_settings = SubResource("LabelSettings_name")
 horizontal_alignment = 1
 
