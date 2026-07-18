@@ -35,6 +35,12 @@ func is_casting() -> bool:
 	return phase != Phase.IDLE
 
 
+func get_cast_direction() -> Vector2:
+	## The cast direction is immutable from wind-up through recovery. Presentation
+	## pivots use this instead of live movement-facing input during a technique.
+	return _cast_direction
+
+
 func request_cast(direction: Vector2, equipped_weapon_damage := 0.0) -> bool:
 	if (
 		not is_ready()

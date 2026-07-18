@@ -56,6 +56,7 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 046 | Buffer basic attack through dash recovery | Dash attacks, evade recovery, input buffering, cancel windows, or invulnerability overlap |
 | 047 | Equip weapon-scaled Piercing Rush and preserve Sweeping Cut | Skill 1, ability movement, weapon scaling, clickable skills, spectral thrusts, or alternate techniques |
 | 048 | Use an effect-only animation atlas for exaggerated Piercing Rush presentation | Piercing Rush VFX, oversized skill art, visual-versus-hitbox bounds, directional effect reuse, or sword-independent technique animation |
+| 049 | Align Piercing Rush's central lance and audio with its presentation | Piercing Rush reach, first-skill balance, damage multiplier, pushback, accepted-hit audio, or CC0 sound sourcing |
 
 ## New Decisions
 

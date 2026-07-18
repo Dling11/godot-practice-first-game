@@ -21,8 +21,15 @@ func _run() -> void:
 	var player := PlayerScene.instantiate() as Player
 	root.add_child(player)
 	var player_sfx := player.get_node("PlayerActionSfx") as PlayerActionSfx
-	if not _valid_sfx_player(player_sfx.sword_swing_player) or not _valid_sfx_player(player_sfx.ability_player) or not _valid_sfx_player(player_sfx.dash_player):
-		_fail("Player action SFX are not fully assigned to the SFX bus.")
+	if (
+		not _valid_sfx_player(player_sfx.sword_swing_player)
+		or not _valid_sfx_player(player_sfx.ability_player)
+		or not _valid_sfx_player(player_sfx.dash_player)
+		or not _valid_sfx_player(player_sfx.piercing_charge_player)
+		or not _valid_sfx_player(player_sfx.piercing_thrust_player)
+		or player_sfx.piercing_thrust_player.stream == player_sfx.sword_swing_player.stream
+	):
+		_fail("Player action and dedicated Piercing Rush SFX are not fully assigned to the SFX bus.")
 		return
 
 	var thrall := ThrallScene.instantiate() as ForsakenThrall
@@ -54,8 +61,8 @@ func _run() -> void:
 		return
 	var arena := ArenaScene.instantiate()
 	var feedback := arena.get_node("GameplayServices/CombatFeedback") as CombatFeedbackPresenter
-	if feedback.sword_hit_sound == null or feedback.player_hurt_sound == null:
-		_fail("Accepted-hit and player-damage SFX are not configured in the arena.")
+	if feedback.sword_hit_sound == null or feedback.ability_hit_sound == null or feedback.player_hurt_sound == null:
+		_fail("Accepted-hit, Piercing Rush impact, and player-damage SFX are not configured in the arena.")
 		return
 	arena.free()
 	print("Combat audio smoke test passed.")

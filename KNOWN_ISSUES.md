@@ -49,7 +49,7 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 ### KI-009 - Ground-targeted skills and longer encounter pacing are not implemented
 
 - **Status:** Open
-- **Impact:** Piercing Rush now proves immediate-direction keyboard/controller/click activation, weapon scaling, cast movement, and a dedicated six-frame oversized spectral presentation, but no ground-target cursor/preview exists, slots 2-4 remain sealed, and the two expeditions are short with few reinforcement waves.
+- **Impact:** Piercing Rush now proves immediate-direction keyboard/controller/click activation, weapon scaling, cast movement, a 98-pixel central lance, dedicated charge/thrust/impact audio, and a six-frame oversized spectral presentation, but no ground-target cursor/preview exists, slots 2-4 remain sealed, and the two expeditions are short with few reinforcement waves.
 - **Planned resolution:** Feel-test Piercing Rush first, then measure kill time, clear duration, skill uptime, and crowd readability before adding authored reinforcement waves and mixed roles. Build the reusable ground-target confirmation flow before the first skill that actually requires it.
 - **Workaround:** Use F9 in a debug build to compare Ashwood/Iron quickly. Treat ground targeting, Consecutive Thrust, later skills, and expanded encounters as unimplemented.
 

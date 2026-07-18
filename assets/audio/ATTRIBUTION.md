@@ -19,3 +19,14 @@ The track is used as low-volume ambient music through the dedicated `Music` bus.
 - **Downloaded:** 2026-07-14
 
 Only the ten clips used by the current combat prototype are retained. The original pack contains 95 WAV files; unused material is not committed.
+
+## Piercing Rush CC0 SFX
+
+- **Charge source:** `Swishes Sound Pack` by artisticdude
+- **Thrust and impact source:** `20 Sword Sound Effects (Attacks and Clashes)` by StarNinjas
+- **License:** CC0 1.0 / Public Domain dedication
+- **Sources:** https://opengameart.org/content/swishes-sound-pack and https://opengameart.org/content/20-sword-sound-effects-attacks-and-clashes
+- **Runtime files:** `sfx/opaw_piercing_rush_charge.wav`, `sfx/opaw_piercing_rush_thrust.ogg`, and `sfx/opaw_piercing_rush_impact.ogg`
+- **Downloaded:** 2026-07-18
+
+The selected clips are used as a quiet wind-up, distinct active thrust, and accepted-hit impact for Piercing Rush. The downloaded source packs are preserved outside runtime import under `art_source/archive/audio/opaw_piercing_rush_cc0_source_packs/`; only the three named runtime clips are loaded by Godot.

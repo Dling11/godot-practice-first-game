@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-07-18 - Piercing Rush Direction Lock and Clustered-Impact Smoothing
+
+- Fixed Piercing Rush rotating its visible lance and collision shape after movement-facing input changed during an active cast. The ability pivot now locks to the cast direction from wind-up through recovery, then refreshes to the player's latest idle facing.
+- Added regression coverage that casts upward while forcing left/down/right facing changes and verifies only the upward enemy takes its 45 damage.
+- Kept target-local numbers, bursts, and white flashes for clustered hits while sharing one camera nudge, hitstop request, impact cue, and reusable flash material per physics frame to reduce small multi-target presentation spikes.
+
+## 2026-07-18 - Piercing Rush Reach, Damage, and Dedicated Audio
+
+- Expanded Piercing Rush's authoritative tapered contact lane from 44x12 to 98x22 and raised the first Warrior technique to 180% equipped-weapon damage: 45 with Ashwood and 57.6 with Iron.
+- Raised Piercing Rush pushback from 78 to 112 while retaining its roughly 50-pixel cast movement, cooldown, no-invulnerability rule, and one-hit-per-target authority.
+- Replaced the reused normal/sweep sound with three positional CC0 audio layers: a quiet wind-up, a loud active thrust, and a separate accepted-hit impact in both expeditions.
+- Preserved source-pack provenance, CC0 licensing, and the selected runtime-only clips; added focused hit-range/scaling and dedicated-audio regression assertions.
+
 ## 2026-07-18 - Exaggerated Piercing Rush Animation
 
 - Replaced the provisional code-drawn thrust beam with a dedicated generated six-frame pixel-art sequence covering compressed charge, ignition, lance extension, an oversized roughly 160-pixel peak plume, shock-ring impact, and fading ribbons.

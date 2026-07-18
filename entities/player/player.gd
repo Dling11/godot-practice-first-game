@@ -41,6 +41,7 @@ var _buffered_primary_attack_direction := Vector2.DOWN
 func _ready() -> void:
 	health_component.died.connect(_on_died)
 	evade_component.phase_changed.connect(_on_evade_phase_changed)
+	ability_1_component.ability_finished.connect(_restore_ability_presentation_facing)
 	_apply_inventory_weapon()
 	facing_changed.emit(facing_direction)
 
@@ -260,6 +261,12 @@ func _on_evade_phase_changed(phase: int, _duration_seconds: float) -> void:
 	_set_facing_direction(attack_direction)
 	if not attack_component.request_attack(attack_direction):
 		push_error("Buffered primary attack could not start after dash recovery.")
+
+
+func _restore_ability_presentation_facing() -> void:
+	## Ability pivots deliberately ignore movement-facing changes while casting.
+	## Refresh them once the lock is released so idle presentation is current.
+	facing_changed.emit(facing_direction)
 
 
 func _on_died() -> void:

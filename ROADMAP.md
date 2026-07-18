@@ -4,6 +4,7 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 
 ## Completed
 
+- Locked Piercing Rush's visible and authoritative pivot to its snapshotted cast direction, so movement input cannot turn an in-flight thrust into a side/back hit; coalesced shared impact presentation for same-frame multi-target contacts.
 - Documentation, Godot 4.7 project foundation, pixel-stable viewport, and automated smoke-test workflow.
 - Composed player movement, aiming, sword combat, supernatural dash, health, defeat, and restart flow.
 - Data-driven Thrall, Mireling, and Bramble Spitter enemies with readable attacks, navigation, obstacle handling, and crowd separation.
@@ -51,12 +52,13 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 - Replaced passive mouse-facing with movement-owned four-way combat facing, retained left mouse/right trigger for basic attack, added a safe dash-to-normal-attack buffer/recovery cancel, and added a debug-build-only F9 level-10/999-coin testing preset with HUD confirmation and run-state synchronization.
 - Equipped Piercing Rush as Opaw's clickable immediate-direction Skill 1 with collision-limited cast movement, a narrow definition-owned path hitbox, 135% snapshotted weapon scaling across Ashwood/Iron, white-gold spectral thrust presentation, cooldown-safe HUD activation, and preserved unequipped Sweeping Cut content.
 - Replaced Piercing Rush's provisional drawn beam with a generated six-frame effect-only atlas: charge, ignition, long lance, roughly 160-pixel peak plume, shock-ring impact, and decay now animate independently from Opaw and the equipped sword while the narrow gameplay hitbox remains unchanged.
+- Aligned Piercing Rush combat and audio with its large presentation: widened the central hit lane from 44x12 to a 98x22 tapered lance, raised its multiplier to 180% and pushback to 112, and replaced the reused swing with dedicated CC0 charge, thrust, and accepted-impact streams.
 
 Detailed completion history remains in `CHANGELOG.md`.
 
 ## In Progress
 
-- Feel-test Piercing Rush's narrow hit path, roughly 50-pixel collision-limited movement, thrusting detached sword, oversized six-frame white/blue/gold plume and impact readability, 135% Ashwood/Iron scaling, 3-second cooldown, click/`1` activation, and reused technique SFX at 960x540.
+- Feel-test Piercing Rush's 98-pixel central hit path, roughly 50-pixel collision-limited movement, thrusting detached sword, oversized six-frame white/blue/gold plume and impact readability, 180% Ashwood/Iron scaling, dedicated charge/thrust/impact SFX, 3-second cooldown, and click/`1` activation at 960x540.
 - Measure clear time, kill time, skill uptime, and crowd readability with Piercing Rush before extending the short expeditions with authored reinforcement waves and mixed enemy roles.
 - Feel-test the Ashwood Blade's wider anticipation-to-impact arc, faster committed sweep, forward extension, denser white-gold trail, 0.10-second enemy flash, and white-hot impact core.
 

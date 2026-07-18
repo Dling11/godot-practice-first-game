@@ -15,11 +15,14 @@ const HITSTOP_SECONDS := 0.045
 @export var damage_number_scene: PackedScene
 @export var hit_burst_scene: PackedScene
 @export var sword_hit_sound: AudioStream
+@export var ability_hit_sound: AudioStream
 @export var player_hurt_sound: AudioStream
 
 var _camera_base_offset := Vector2.ZERO
 var _camera_tween: Tween
 var _hitstop_active := false
+var _last_ability_impact_physics_frame := -1
+var _hit_flash_material: ShaderMaterial
 
 
 func _ready() -> void:
@@ -31,6 +34,9 @@ func _ready() -> void:
 		push_error("CombatFeedbackPresenter requires damage-number and hit-burst scenes.")
 		return
 	_camera_base_offset = camera.offset
+	_hit_flash_material = ShaderMaterial.new()
+	_hit_flash_material.shader = HIT_FLASH_SHADER
+	_hit_flash_material.set_shader_parameter("flash_amount", 1.0)
 	player.attack_component.hit_landed.connect(_on_player_hit_landed)
 	player.ability_1_component.hit_landed.connect(_on_player_ability_hit_landed)
 	player.health_component.damaged.connect(_on_player_damaged)
@@ -44,10 +50,22 @@ func _on_player_hit_landed(target: HurtboxComponent, info: DamageInfo) -> void:
 
 
 func _on_player_ability_hit_landed(target: HurtboxComponent, info: DamageInfo) -> void:
-	_show_hit(target.global_position + Vector2(0.0, -22.0), info, PLAYER_HIT_TINT, 2.5)
+	## One thrust can land on several enemies in the same physics tick. Preserve
+	## each target's flash/number/burst, but coalesce shared camera, hitstop, and
+	## audio work so a clustered hit does not repeatedly rebuild those effects.
+	var is_first_impact_this_frame := Engine.get_physics_frames() != _last_ability_impact_physics_frame
+	if is_first_impact_this_frame:
+		_last_ability_impact_physics_frame = Engine.get_physics_frames()
+	_show_hit(
+		target.global_position + Vector2(0.0, -22.0),
+		info,
+		PLAYER_HIT_TINT,
+		2.5 if is_first_impact_this_frame else 0.0
+	)
 	_flash_target(target)
-	_request_hitstop()
-	_play_sound_at(sword_hit_sound, target.global_position, 0.88)
+	if is_first_impact_this_frame:
+		_request_hitstop()
+		_play_sound_at(ability_hit_sound if ability_hit_sound != null else sword_hit_sound, target.global_position, 0.96)
 
 
 func _on_player_damaged(info: DamageInfo) -> void:
@@ -65,7 +83,8 @@ func _show_hit(position: Vector2, info: DamageInfo, tint: Color, camera_strength
 	burst.global_position = position + info.direction * 3.0
 	burst.configure(info.direction, tint)
 	effects_parent.add_child(burst)
-	_pulse_camera(camera_strength)
+	if camera_strength > 0.0:
+		_pulse_camera(camera_strength)
 
 
 func _pulse_camera(strength: float) -> void:
@@ -86,13 +105,10 @@ func _flash_target(target: HurtboxComponent) -> void:
 	if body == null:
 		return
 	var original_material := body.material
-	var flash_material := ShaderMaterial.new()
-	flash_material.shader = HIT_FLASH_SHADER
-	flash_material.set_shader_parameter("flash_amount", 1.0)
-	body.material = flash_material
+	body.material = _hit_flash_material
 	var timer := get_tree().create_timer(HIT_FLASH_SECONDS, true, false, true)
 	timer.timeout.connect(func() -> void:
-		if is_instance_valid(body) and body.material == flash_material:
+		if is_instance_valid(body) and body.material == _hit_flash_material:
 			body.material = original_material
 	)
 

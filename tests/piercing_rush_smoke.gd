@@ -19,7 +19,7 @@ func _run() -> void:
 			!= AbilityDefinition.ActivationMode.IMMEDIATE_DIRECTIONAL
 		or PiercingRushDefinition.presentation_style
 			!= AbilityDefinition.PresentationStyle.THRUST
-		or not is_equal_approx(PiercingRushDefinition.weapon_damage_multiplier, 1.35)
+		or not is_equal_approx(PiercingRushDefinition.weapon_damage_multiplier, 1.8)
 		or PiercingRushDefinition.hitbox_shape == null
 	):
 		_fail("Piercing Rush definition is missing its directional, thrust, scaling, or hitbox data.")
@@ -70,8 +70,8 @@ func _run() -> void:
 	if player.get_node("AbilityPivot/SweepingCutVisual").visible:
 		_fail("Piercing Rush incorrectly activated the preserved sweep presentation.")
 		return
-	if not is_equal_approx(ability.get_resolved_damage(), 33.75):
-		_fail("Ashwood Piercing Rush did not snapshot 135% weapon damage.")
+	if not is_equal_approx(ability.get_resolved_damage(), 45.0):
+		_fail("Ashwood Piercing Rush did not snapshot 180% weapon damage.")
 		return
 	if player.request_primary_attack() or player.request_evade(Vector2.RIGHT):
 		_fail("Normal attack or evade was accepted during Piercing Rush commitment.")
@@ -96,7 +96,7 @@ func _run() -> void:
 	if not player.set_weapon_definition(IronSword) or not player.request_ability_1():
 		_fail("Iron Sword could not begin the shared Piercing Rush technique.")
 		return
-	if not is_equal_approx(ability.get_resolved_damage(), 43.2):
+	if not is_equal_approx(ability.get_resolved_damage(), 57.6):
 		_fail("Iron Piercing Rush did not derive damage from the equipped weapon.")
 		return
 	ability.cancel_cast()
@@ -105,7 +105,9 @@ func _run() -> void:
 
 	if not await _test_click_and_hit():
 		return
-	print("Piercing Rush movement, scaling, click, and hit smoke test passed.")
+	if not await _test_cast_facing_lock():
+		return
+	print("Piercing Rush movement, scaling, click, hit, and facing-lock smoke test passed.")
 	quit(0)
 
 
@@ -117,7 +119,9 @@ func _test_click_and_hit() -> bool:
 	root.add_child(target)
 	root.add_child(hud)
 	player.global_position = Vector2(100.0, 180.0)
-	target.global_position = Vector2(142.0, 180.0)
+	# This target sits beyond the former 44 px tip. It proves the new long
+	# central lance reaches targets suggested by the enlarged visual core.
+	target.global_position = Vector2(190.0, 180.0)
 	player._set_facing_direction(Vector2.RIGHT)
 	hud.bind_player(player)
 	await process_frame
@@ -137,14 +141,59 @@ func _test_click_and_hit() -> bool:
 	for frame in range(45):
 		await physics_frame
 	var health := target.get_node("HealthComponent") as HealthComponent
-	if not is_equal_approx(health.current_health, 66.25) or hit.count != 1:
-		_fail("Piercing Rush did not deliver one 33.75-damage path hit.")
+	if not is_equal_approx(health.current_health, 55.0) or hit.count != 1:
+		_fail("Piercing Rush did not deliver one 45-damage extended-lance hit.")
 		return false
-	if not is_equal_approx(hit.knockback, 78.0):
+	if not is_equal_approx(hit.knockback, 112.0):
 		_fail("Piercing Rush did not deliver its authored knockback.")
 		return false
 	if slot.state_label.text == "READY":
 		_fail("Piercing Rush HUD ignored its cooldown after a clicked cast.")
+		return false
+	return true
+
+
+func _test_cast_facing_lock() -> bool:
+	var player := PlayerScene.instantiate() as Player
+	var up_target := TargetScene.instantiate()
+	var left_target := TargetScene.instantiate()
+	var right_target := TargetScene.instantiate()
+	var down_target := TargetScene.instantiate()
+	root.add_child(player)
+	root.add_child(up_target)
+	root.add_child(left_target)
+	root.add_child(right_target)
+	root.add_child(down_target)
+	player.global_position = Vector2(300.0, 260.0)
+	up_target.global_position = Vector2(300.0, 180.0)
+	left_target.global_position = Vector2(220.0, 260.0)
+	right_target.global_position = Vector2(380.0, 260.0)
+	down_target.global_position = Vector2(300.0, 340.0)
+	player._set_facing_direction(Vector2.UP)
+	await process_frame
+	if not player.request_ability_1():
+		_fail("Upward Piercing Rush request was rejected.")
+		return false
+	var pivot := player.get_node("AbilityPivot") as Node2D
+	for direction in [Vector2.LEFT, Vector2.DOWN, Vector2.RIGHT]:
+		await physics_frame
+		player._set_facing_direction(direction)
+		if not is_equal_approx(pivot.rotation, Vector2.UP.angle()):
+			_fail("Piercing Rush pivot followed movement-facing input during a locked cast.")
+			return false
+	while player.ability_1_component.is_casting():
+		await physics_frame
+	var up_health := up_target.get_node("HealthComponent") as HealthComponent
+	for wrong_target in [left_target, right_target, down_target]:
+		var wrong_health := wrong_target.get_node("HealthComponent") as HealthComponent
+		if not is_equal_approx(wrong_health.current_health, wrong_health.maximum_health):
+			_fail("Piercing Rush hit a target outside its cast-facing lane.")
+			return false
+	if not is_equal_approx(up_health.current_health, 55.0):
+		_fail("Piercing Rush did not retain its upward damage lane through movement-facing input.")
+		return false
+	if not is_equal_approx(pivot.rotation, Vector2.RIGHT.angle()):
+		_fail("Ability pivot did not restore the latest facing after the cast ended.")
 		return false
 	return true
 

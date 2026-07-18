@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ch6uyrv03h77"
+path="res://.godot/imported/sword.10.ogg-dde3e1dd707bf817c29989b7ec90ca71.oggvorbisstr"
+
+[deps]
+
+source_file="res://tmp/piercing_rush_audio_source/sword/sword - StarNinjas/sword.10.ogg"
+dest_files=["res://.godot/imported/sword.10.ogg-dde3e1dd707bf817c29989b7ec90ca71.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

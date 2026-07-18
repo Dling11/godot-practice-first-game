@@ -247,6 +247,9 @@ Backgrounds are replaceable presentation dependencies. Screen scripts and focus/
 | `audio_sfx_sword_hit` | `assets/audio/sfx/sword_hit.wav` | `active_runtime` |
 | `audio_sfx_sweeping_cut` | `assets/audio/sfx/sweeping_cut.wav` | `active_runtime` |
 | `audio_sfx_dash` | `assets/audio/sfx/dash.wav` | `active_runtime` |
+| `audio_sfx_opaw_piercing_rush_charge` | `assets/audio/sfx/opaw_piercing_rush_charge.wav` | `active_runtime` |
+| `audio_sfx_opaw_piercing_rush_thrust` | `assets/audio/sfx/opaw_piercing_rush_thrust.ogg` | `active_runtime` |
+| `audio_sfx_opaw_piercing_rush_impact` | `assets/audio/sfx/opaw_piercing_rush_impact.ogg` | `active_runtime` |
 | `audio_sfx_player_hurt` | `assets/audio/sfx/player_hurt.wav` | `active_runtime` |
 | `audio_sfx_thrall_claw` | `assets/audio/sfx/thrall_claw.wav` | `active_runtime` |
 | `audio_sfx_mireling_leap` | `assets/audio/sfx/mireling_leap.wav` | `active_runtime` |
