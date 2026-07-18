@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3]
+[gd_scene load_steps=35 format=3]
 
 [ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://entities/enemies/forsaken_thrall/forsaken_thrall.tscn" id="3_enemy"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" path="res://environment/props/ruined_statue/ruined_statue.tscn" id="9_statue"]
 [ext_resource type="Script" path="res://levels/test_arena/arena_navigation.gd" id="10_navigation"]
 [ext_resource type="PackedScene" path="res://entities/enemies/mireling/mireling.tscn" id="11_mireling"]
+[ext_resource type="PackedScene" path="res://entities/enemies/rootling/rootling.tscn" id="31_rootling"]
 [ext_resource type="Script" path="res://gameplay/encounters/encounter_controller.gd" id="12_encounter"]
 [ext_resource type="Resource" path="res://data/encounters/wave_1.tres" id="13_wave1"]
 [ext_resource type="Resource" path="res://data/encounters/wave_2.tres" id="14_wave2"]
@@ -28,6 +29,9 @@
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_piercing_rush_impact.ogg" id="27_pierce_impact"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_consecutive_thrust_final_hit.ogg" id="29_consecutive_final_hit"]
 [ext_resource type="PackedScene" path="res://ui/pause_menu.tscn" id="28_pause_menu"]
+[ext_resource type="Resource" path="res://data/encounters/wave_4.tres" id="30_wave4"]
+[ext_resource type="Resource" path="res://data/encounters/wave_5.tres" id="32_wave5"]
+[ext_resource type="Resource" path="res://data/encounters/wave_6.tres" id="33_wave6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.035, 0.043, 0.063, 0.96)
@@ -139,8 +143,9 @@ script = ExtResource("12_encounter")
 player = NodePath("../../World/Actors/Player")
 actors = NodePath("../../World/Actors")
 spawn_points_root = NodePath("../../SpawnPoints")
-waves = Array[Resource]([ExtResource("13_wave1"), ExtResource("14_wave2"), ExtResource("15_wave3")])
+waves = Array[Resource]([ExtResource("13_wave1"), ExtResource("14_wave2"), ExtResource("15_wave3"), ExtResource("30_wave4"), ExtResource("32_wave5"), ExtResource("33_wave6")])
 mireling_scene = ExtResource("11_mireling")
+rootling_scene = ExtResource("31_rootling")
 thrall_scene = ExtResource("3_enemy")
 bramble_spitter_scene = ExtResource("18_spitter")
 portal_scene = ExtResource("16_portal")

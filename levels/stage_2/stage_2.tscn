@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3]
+[gd_scene load_steps=35 format=3]
 
 [ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://entities/enemies/mireling/mireling.tscn" id="2_mireling"]
@@ -26,6 +26,13 @@
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_piercing_rush_impact.ogg" id="24_pierce_impact"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_consecutive_thrust_final_hit.ogg" id="26_consecutive_final_hit"]
 [ext_resource type="PackedScene" path="res://ui/pause_menu.tscn" id="25_pause_menu"]
+[ext_resource type="PackedScene" path="res://entities/enemies/forsaken_thrall/forsaken_thrall.tscn" id="27_thrall"]
+[ext_resource type="Resource" path="res://data/encounters/stage_2_wave_3.tres" id="28_wave3"]
+[ext_resource type="PackedScene" path="res://entities/enemies/rootling/rootling.tscn" id="29_rootling"]
+[ext_resource type="Resource" path="res://data/encounters/stage_2_wave_4.tres" id="30_wave4"]
+[ext_resource type="Resource" path="res://data/encounters/stage_2_wave_5.tres" id="31_wave5"]
+[ext_resource type="Resource" path="res://data/encounters/stage_2_wave_6.tres" id="32_wave6"]
+[ext_resource type="Resource" path="res://data/encounters/stage_2_wave_7.tres" id="33_wave7"]
 
 [sub_resource type="LabelSettings" id="title_settings"]
 font_size = 15
@@ -134,8 +141,10 @@ script = ExtResource("10_encounter")
 player = NodePath("../../World/Actors/Player")
 actors = NodePath("../../World/Actors")
 spawn_points_root = NodePath("../../SpawnPoints")
-waves = Array[Resource]([ExtResource("11_wave1"), ExtResource("12_wave2")])
+waves = Array[Resource]([ExtResource("11_wave1"), ExtResource("12_wave2"), ExtResource("28_wave3"), ExtResource("30_wave4"), ExtResource("31_wave5"), ExtResource("32_wave6"), ExtResource("33_wave7")])
 mireling_scene = ExtResource("2_mireling")
+rootling_scene = ExtResource("29_rootling")
+thrall_scene = ExtResource("27_thrall")
 bramble_spitter_scene = ExtResource("3_spitter")
 portal_scene = ExtResource("13_portal")
 portal_parent = NodePath("../../World/Effects")

@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1")
 title = "The Grove Stirs"
-mireling_count = 2
+mireling_count = 3
 spawn_interval = 0.85

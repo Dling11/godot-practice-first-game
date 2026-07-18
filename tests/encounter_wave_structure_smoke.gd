@@ -12,21 +12,36 @@ func _run() -> void:
 	var controller: EncounterController = arena.get_node("GameplayServices/EncounterController")
 	controller.auto_start = false
 	root.add_child(arena)
-	if controller.waves.size() != 3:
-		_fail("Stage 1 must contain exactly three waves.")
+	if controller.waves.size() != 6:
+		_fail("Stage 1 must contain six authored forest waves.")
 		return
 	if controller.inter_wave_delay < 2.0:
 		_fail("Inter-wave recovery is too short to provide a readable breathing window.")
 		return
+	if controller.max_active_enemies != 4:
+		_fail("Stage 1 must retain the validated four-enemy active cap.")
+		return
+	if controller.rootling_scene == null:
+		_fail("Stage 1 Rootling waves require the dedicated Rootling scene.")
+		return
 	for index in range(controller.waves.size()):
 		var wave := controller.waves[index] as EncounterWaveDefinition
-		var enemy_count := wave.mireling_count + wave.thrall_count + wave.bramble_spitter_count
-		if enemy_count < 1 or enemy_count > 4:
-			_fail("Wave %d must contain between one and four enemies." % [index + 1])
+		if wave.total_enemy_count() < 3:
+			_fail("Wave %d must contain a meaningful combat group." % [index + 1])
 			return
-	var final_wave := controller.waves[2] as EncounterWaveDefinition
+	var reinforcement_wave := controller.waves[2] as EncounterWaveDefinition
+	if reinforcement_wave.total_enemy_count() != 5 or reinforcement_wave.reinforcement_delay < 0.5:
+		_fail("Stage 1 must introduce controlled reinforcements in Wave 3.")
+		return
+	var final_wave := controller.waves[5] as EncounterWaveDefinition
 	if final_wave.bramble_spitter_count != 0:
 		_fail("Stage 1 must remain a beginner melee and leap tutorial without Bramble Spitters.")
+		return
+	if final_wave.mireling_count != 2 or final_wave.rootling_count != 2 or final_wave.thrall_count != 3:
+		_fail("Stage 1 finale must be a seven-enemy melee/leap/root-jab endurance wave.")
+		return
+	if final_wave.total_enemy_count() != 7 or final_wave.reinforcement_delay < 0.5:
+		_fail("Stage 1 finale must use the reinforcement queue instead of an oversized initial crowd.")
 		return
 	var clear_state := {"emitted": false}
 	controller.stage_cleared.connect(func() -> void: clear_state.emitted = true)

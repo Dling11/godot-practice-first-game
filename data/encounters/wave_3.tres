@@ -2,7 +2,9 @@
 [ext_resource type="Script" path="res://gameplay/encounters/encounter_wave_definition.gd" id="1"]
 [resource]
 script = ExtResource("1")
-title = "Final Assault"
+title = "Split Pursuit"
 mireling_count = 2
+rootling_count = 1
 thrall_count = 2
-spawn_interval = 0.65
+spawn_interval = 0.7
+reinforcement_delay = 0.85

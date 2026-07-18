@@ -53,3 +53,26 @@ func resolve_strike_stagger(strike_index: int) -> float:
 	if strike_index >= strike_count() - 1:
 		return stagger_seconds
 	return stagger_seconds * non_final_stagger_multiplier
+
+
+## Returns the forward tip of a convex thrust lane in local gameplay pixels.
+## Other shape styles may return zero because they do not share this contract.
+func get_forward_lance_reach_pixels() -> float:
+	var polygon := hitbox_shape as ConvexPolygonShape2D
+	if polygon == null or presentation_style != PresentationStyle.THRUST:
+		return 0.0
+	var reach_pixels := 0.0
+	for point in polygon.points:
+		reach_pixels = maxf(reach_pixels, point.x)
+	return reach_pixels
+
+
+## Returns the widest half-width of a convex thrust lane in gameplay pixels.
+func get_forward_lance_half_width_pixels() -> float:
+	var polygon := hitbox_shape as ConvexPolygonShape2D
+	if polygon == null or presentation_style != PresentationStyle.THRUST:
+		return 0.0
+	var half_width_pixels := 0.0
+	for point in polygon.points:
+		half_width_pixels = maxf(half_width_pixels, absf(point.y))
+	return half_width_pixels

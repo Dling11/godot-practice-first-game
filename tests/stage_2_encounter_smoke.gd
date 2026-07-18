@@ -17,16 +17,41 @@ func _run() -> void:
 	if controller.auto_start:
 		_fail("Stage 2 must delay combat until its arrival lore has been presented.")
 		return
-	if controller.waves.size() != 2:
-		_fail("Stage 2 must use exactly two introductory waves.")
+	if controller.waves.size() != 7:
+		_fail("Stage 2 must use seven authored Grove waves.")
+		return
+	if controller.max_active_enemies != 4:
+		_fail("Stage 2 must retain the validated four-enemy active cap.")
 		return
 	var first_wave := controller.waves[0] as EncounterWaveDefinition
 	var second_wave := controller.waves[1] as EncounterWaveDefinition
-	if first_wave.mireling_count != 2 or first_wave.bramble_spitter_count != 0:
+	var rootling_lesson := controller.waves[2] as EncounterWaveDefinition
+	var final_wave := controller.waves[6] as EncounterWaveDefinition
+	if first_wave.mireling_count != 3 or first_wave.bramble_spitter_count != 0:
 		_fail("Stage 2 Wave 1 must remain a Mireling-only warm-up.")
 		return
-	if second_wave.mireling_count != 1 or second_wave.bramble_spitter_count != 1:
-		_fail("Stage 2 Wave 2 must introduce one Spitter alongside one familiar enemy.")
+	if second_wave.mireling_count != 2 or second_wave.bramble_spitter_count != 1:
+		_fail("Stage 2 Wave 2 must introduce one Spitter alongside familiar enemies.")
+		return
+	if rootling_lesson.mireling_count != 2 or rootling_lesson.rootling_count != 1 or rootling_lesson.bramble_spitter_count != 1:
+		_fail("Stage 2 Wave 3 must introduce Rootling alongside the Grove's ranged pressure.")
+		return
+	if (
+		final_wave.mireling_count != 2
+		or final_wave.rootling_count != 1
+		or final_wave.thrall_count != 2
+		or final_wave.bramble_spitter_count != 2
+	):
+		_fail("Stage 2 finale must combine all learned roles in a seven-enemy endurance wave.")
+		return
+	if final_wave.total_enemy_count() != 7 or final_wave.reinforcement_delay < 0.5:
+		_fail("Stage 2 finale must use controlled reinforcements rather than an oversized crowd.")
+		return
+	if controller.thrall_scene == null:
+		_fail("Stage 2 finale is missing its configured Forsaken Thrall scene.")
+		return
+	if controller.rootling_scene == null:
+		_fail("Stage 2 Rootling waves require the dedicated Rootling scene.")
 		return
 	if ground.map_size != Vector2i(24, 14) or not actors.y_sort_enabled:
 		_fail("Stage 2 grove layout or Y-sorted actor ownership is not configured.")

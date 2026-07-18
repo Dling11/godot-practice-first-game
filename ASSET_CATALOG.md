@@ -51,6 +51,10 @@ Do not introduce `final`, `new`, `fixed`, `better`, unexplained numbers, or cont
 | `char_mireling_frames` | `assets/characters/enemies/mireling/mireling_sprite_frames.tres` | Migrated | Godot `SpriteFrames` | `mireling.tscn` |
 | `char_bramble_spitter_actions` | `assets/characters/enemies/bramble_spitter/bramble_spitter_action_sheet_32x32.png` | Migrated | 128x128; 4x4 of 32x32 | `bramble_spitter_sprite_frames.tres` |
 | `char_bramble_spitter_frames` | `assets/characters/enemies/bramble_spitter/bramble_spitter_sprite_frames.tres` | Migrated | Godot `SpriteFrames` | `bramble_spitter.tscn` |
+| `char_rootling_walk` | `assets/characters/enemies/rootling/rootling_walk_sheet_32x32.png` | Active | 128x128; 4x4 of 32x32, direction rows `down/left/right/up` | `rootling.tscn` / `RootlingVisual` |
+| `char_rootling_reactions` | `assets/characters/enemies/rootling/rootling_reaction_sheet_32x32.png` | Active | 128x128; ready/hurt/wither/defeat across 4 direction rows | `rootling.tscn` / `RootlingVisual` |
+| `fx_rootling_root_jab` | `assets/characters/enemies/rootling/rootling_root_jab_vfx_sheet_48x48.png` | Active | 192x192; crack/branch/eruption/retract across 4 direction rows | `rootling.tscn` / `RootlingVisual` |
+| `sfx_rootling_root_jab` | `assets/audio/sfx/rootling_root_jab.wav` | Active | 0.31-second mono 44.1 kHz WAV | `rootling.tscn` / `ActionSfx` |
 
 All active Opaw sheets use direction rows in canonical `down`, `left`, `right`, `up` order and animation frames as columns. `tools/process_opaw_compact_armless_assets.gd` isolates each padded generated cell, removes chroma, normalizes every direction reference to 18x27 on the shared foot baseline, and emits binary-alpha runtime sheets. Normal attack body columns map directly to wind-up, active, and recovery while the detached external weapon owns the visible blade arc. The complete previous Wayfarer model and former single 4x8 atlas have no active `SpriteFrames` references. Existing humanoid extended enemy attack sheets use directions as rows and six action phases as columns.
 
@@ -115,6 +119,16 @@ These files are intentionally outside runtime imports under Godot-ignored `art_s
 |---|---|---|---|
 | `char_bramble_spitter_actions` | `art_source/generated/characters/enemies/bramble_spitter/bramble_spitter_action_source.png` | `source` | 1254x1254 |
 | `char_bramble_spitter_actions` | `art_source/generated/characters/enemies/bramble_spitter/bramble_spitter_action_clean.png` | `intermediate` | 1254x1254 |
+
+### Preserved Rootling Pipeline Material
+
+| Related canonical ID | Preserved path | Status | Source dimensions |
+|---|---|---|---|
+| `char_rootling_walk` | `art_source/generated/characters/enemies/rootling/final/rootling_walk_board_clean.png` | `intermediate` | 1254x1254; sole approved 4x4 board for down/left/right/up walking |
+| `char_rootling_reactions` | `art_source/generated/characters/enemies/rootling/final/rootling_reaction_board_clean.png` | `intermediate` | 1254x1254; sole approved four-direction reaction board |
+| `fx_rootling_root_jab` | `art_source/generated/characters/enemies/rootling/final/rootling_root_jab_vfx_board_clean.png` | `intermediate` | 1254x1254; sole approved four-direction root-jab VFX board |
+| `char_rootling_walk`, `char_rootling_reactions`, `fx_rootling_root_jab` | `art_source/archive/characters/enemies/rootling/superseded_generation/*` | `legacy` | Original generation sources, the rejected separate down-walk strip, and unused root-jab action board; no runtime or build references |
+| `char_rootbound_husk_action_package` | `art_source/generated/characters/enemies/rootbound_husk/*_board_source_v1.png` and `*_board_clean_v1.png` | `source` / `intermediate` | Approved larger Husk walk, Root Spear, reaction, and VFX boards reserved for later Stage 2 implementation; no runtime references yet |
 
 ## Active Environment Art
 

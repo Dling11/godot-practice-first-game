@@ -20,9 +20,11 @@ func _run() -> void:
 		or PiercingRushDefinition.presentation_style
 			!= AbilityDefinition.PresentationStyle.THRUST
 		or not is_equal_approx(PiercingRushDefinition.weapon_damage_multiplier, 1.8)
+		or not is_equal_approx(PiercingRushDefinition.get_forward_lance_reach_pixels(), 128.0)
+		or not is_equal_approx(PiercingRushDefinition.get_forward_lance_half_width_pixels(), 15.0)
 		or PiercingRushDefinition.hitbox_shape == null
 	):
-		_fail("Piercing Rush definition is missing its directional, thrust, scaling, or hitbox data.")
+		_fail("Piercing Rush definition is missing its directional, thrust, scaling, or 128x30 hitbox data.")
 		return
 
 	var player := PlayerScene.instantiate() as Player
@@ -119,9 +121,9 @@ func _test_click_and_hit() -> bool:
 	root.add_child(target)
 	root.add_child(hud)
 	player.global_position = Vector2(100.0, 180.0)
-	# This target sits beyond the former 44 px tip. It proves the new long
-	# central lance reaches targets suggested by the enlarged visual core.
-	target.global_position = Vector2(190.0, 180.0)
+	# This target sits beyond the former 98 px contact tip, proving the enlarged
+	# 128 px central lance reaches the visibly extended bright core at activation.
+	target.global_position = Vector2(235.0, 180.0)
 	player._set_facing_direction(Vector2.RIGHT)
 	hud.bind_player(player)
 	await process_frame

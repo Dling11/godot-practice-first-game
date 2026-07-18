@@ -1,6 +1,6 @@
-[gd_resource type="SpriteFrames" format=3]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bq2urt33070sb"]
 
-[ext_resource type="Texture2D" path="res://assets/characters/enemies/bramble_spitter/bramble_spitter_action_sheet_32x32.png" id="1_ungd8"]
+[ext_resource type="Texture2D" uid="uid://lst1v67xk237" path="res://assets/characters/enemies/bramble_spitter/bramble_spitter_action_sheet_32x32.png" id="1_ungd8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mwc38"]
 atlas = ExtResource("1_ungd8")

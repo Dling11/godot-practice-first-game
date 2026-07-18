@@ -17,6 +17,15 @@ const FRAME_SIZE := Vector2i(192, 192)
 const FRAME_COLUMNS := 6
 const FRAME_ROWS := 2
 const SOURCE_SCALE := 0.40
+const FINAL_IMPACT_FRAME_INDEX := FRAME_COLUMNS * FRAME_ROWS - 1
+## Frame 11's spear point reaches one pixel farther right than the surrounding
+## source safety inset. Preserve that last pixel so the finishing thrust has a
+## complete pointed cap rather than a subtly flat/cut end in game.
+const FINAL_IMPACT_RIGHT_INSET := SOURCE_INSET - 1
+## Frames 8 and 10 contained isolated fragments beyond otherwise-complete lance
+## tips. They read as a cut neighboring image at gameplay scale, so strip only
+## that detached front residue from the packed frames.
+const DETACHED_FRONT_FRAGMENT_START_X_BY_FRAME := {8: 81, 10: 88}
 
 
 func _initialize() -> void:
@@ -37,20 +46,30 @@ func _initialize() -> void:
 		var right := roundi(float(column + 1) * source.get_width() / float(FRAME_COLUMNS))
 		var top := roundi(float(row) * source.get_height() / float(FRAME_ROWS))
 		var bottom := roundi(float(row + 1) * source.get_height() / float(FRAME_ROWS))
+		var right_inset := SOURCE_INSET
+		if frame_index == FINAL_IMPACT_FRAME_INDEX:
+			right_inset = FINAL_IMPACT_RIGHT_INSET
 		var capture := source.get_region(Rect2i(
 			Vector2i(left + SOURCE_INSET, top + SOURCE_INSET),
-			Vector2i(right - left, bottom - top) - Vector2i.ONE * SOURCE_INSET * 2
+			Vector2i(
+				right - left - SOURCE_INSET - right_inset,
+				bottom - top - SOURCE_INSET * 2
+			)
 		))
 		_harden_alpha(capture)
 		var used := capture.get_used_rect()
 		if used.size.x <= 0 or used.size.y <= 0:
 			return _fail("Rapid Consecutive Thrust VFX frame %d is empty." % frame_index)
 		var frame := capture.get_region(used)
-		frame.resize(
+		var target_size := Vector2i(
 			maxi(1, roundi(frame.get_width() * SOURCE_SCALE)),
-			maxi(1, roundi(frame.get_height() * SOURCE_SCALE)),
-			Image.INTERPOLATE_NEAREST
+			maxi(1, roundi(frame.get_height() * SOURCE_SCALE))
 		)
+		if frame_index == FINAL_IMPACT_FRAME_INDEX:
+			## Preserve the recovered source pixel through nearest-neighbor scaling.
+			target_size.x += 1
+		frame.resize(target_size.x, target_size.y, Image.INTERPOLATE_NEAREST)
+		frame = _remove_detached_front_fragments(frame, frame_index)
 		if frame.get_width() > FRAME_SIZE.x - 12 or frame.get_height() > FRAME_SIZE.y - 12:
 			return _fail("Rapid Consecutive Thrust VFX frame %d exceeds its runtime cell." % frame_index)
 		var destination := Vector2i(
@@ -78,6 +97,17 @@ func _harden_alpha(image: Image) -> void:
 			else:
 				pixel.a = 1.0
 				image.set_pixel(x, y, pixel)
+
+
+func _remove_detached_front_fragments(image: Image, frame_index: int) -> Image:
+	if not DETACHED_FRONT_FRAGMENT_START_X_BY_FRAME.has(frame_index):
+		return image
+	var fragment_start_x := int(DETACHED_FRONT_FRAGMENT_START_X_BY_FRAME[frame_index])
+	var cleaned := image.duplicate()
+	for y in cleaned.get_height():
+		for x in range(fragment_start_x, cleaned.get_width()):
+			cleaned.set_pixel(x, y, Color.TRANSPARENT)
+	return cleaned
 
 
 func _fail(message: String) -> void:

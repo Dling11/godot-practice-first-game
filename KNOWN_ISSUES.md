@@ -39,12 +39,12 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 - **Planned resolution:** Approve the first versioned disk-profile boundary, then author the Thornbound Warden, Cinder Sigil, and Ashen Pilgrimage before enabling Route II.
 - **Workaround:** Forgotten Grove remains the only playable portal-selected route. Future routes honestly display their first unmet requirement and remain sealed even if test code satisfies their requirement data.
 
-### KI-009 - Ground-targeted skills and longer encounter pacing are not implemented
+### KI-009 - Ground targeting and normal Skill 2 awakening are not implemented
 
 - **Status:** Open
-- **Impact:** Piercing Rush and F9-only Consecutive Thrust prove immediate-direction keyboard/controller/click activation, weapon scaling, cast direction locking, one moving lance and one seven-window stationary rapid flurry, dedicated combat audio, exaggerated effect-only presentation, and Light/Elite/Boss crowd-control resistance. No ground-target cursor/preview exists; normal progression still seals Skill 2 until Eira's future ritual, slots 3-4 remain unimplemented, and the two expeditions are short with few reinforcement waves.
-- **Planned resolution:** Feel-test both authored techniques, then measure kill time, clear duration, skill uptime, and crowd readability before adding authored reinforcement waves and mixed roles. Build the reusable ground-target confirmation flow before the first skill that actually requires it.
-- **Workaround:** Use F9 in a debug build to compare Ashwood/Iron and both completed Warrior skills quickly. Treat ground targeting, normal Skill 2 awakening, later skills, and expanded encounters as unimplemented.
+- **Impact:** Piercing Rush and F9-only Consecutive Thrust prove immediate-direction keyboard/controller/click activation, weapon scaling, cast direction locking, dedicated combat audio, exaggerated effect-only presentation, and Light/Elite/Boss crowd-control resistance. Six authored Stage 1 waves and seven authored Stage 2 waves now provide the current mixed-role pacing slice through controlled reinforcements at a four-enemy cap. No ground-target cursor/preview exists; normal progression still seals Skill 2 until Eira's future ritual, and slots 3-4 remain unimplemented.
+- **Planned resolution:** Feel-test both authored techniques and the new encounter clear times, then measure skill uptime, crowd readability, and frame stability before any higher enemy cap. Build the reusable ground-target confirmation flow before the first skill that actually requires it, then return to Eira's free awakening authority.
+- **Workaround:** Use F9 in a debug build to compare Ashwood/Iron and both completed Warrior skills quickly. Treat ground targeting, normal Skill 2 awakening, later skills, and encounter sizes above four active enemies as unimplemented.
 
 ## Current Bugs
 

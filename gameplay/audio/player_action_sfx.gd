@@ -14,6 +14,11 @@ extends Node2D
 @export var consecutive_flurry_player: AudioStreamPlayer2D
 @export var consecutive_final_player: AudioStreamPlayer2D
 
+## StarNinjas sword.9 is intentionally a long build-up recording: its decisive
+## metal burst starts at roughly 0.51 seconds. Skill 2 needs that burst on the
+## final strike, not half a second after it.
+const CONSECUTIVE_FINAL_THRUST_ONSET_SECONDS := 0.50
+
 var _consecutive_flurry_index := 0
 
 
@@ -43,7 +48,7 @@ func play_ability_strike(strike_index: int, strike_count: int, _duration_seconds
 	if not _is_consecutive_thrust(_get_casting_ability()):
 		return
 	if strike_index >= strike_count - 1:
-		_play(consecutive_final_player, 0.96)
+		_play(consecutive_final_player, 0.96, CONSECUTIVE_FINAL_THRUST_ONSET_SECONDS)
 		return
 	## Three evenly spaced steel-thrust beats communicate the rapid flurry without
 	## restarting a short clip on every one of the seven damage contacts.
@@ -58,11 +63,11 @@ func play_dash(_direction: Vector2) -> void:
 	_play(dash_player, 1.08)
 
 
-func _play(player: AudioStreamPlayer2D, pitch: float) -> void:
+func _play(player: AudioStreamPlayer2D, pitch: float, from_position_seconds: float = 0.0) -> void:
 	if player == null or player.stream == null or DisplayServer.get_name() == "headless":
 		return
 	player.pitch_scale = pitch
-	player.play()
+	player.play(from_position_seconds)
 
 
 func _get_casting_ability() -> AbilityComponent:

@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1")
 title = "Bramble Watcher"
-mireling_count = 1
+mireling_count = 2
 bramble_spitter_count = 1
 spawn_interval = 1.0

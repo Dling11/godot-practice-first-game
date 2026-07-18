@@ -27,8 +27,8 @@ func _run() -> void:
 		_fail("Stage 2 player did not arrive at the authored spawn point.")
 		return
 	var controller: EncounterController = current_scene.get_node("GameplayServices/EncounterController")
-	if controller.waves.size() != 2:
-		_fail("Stage 2 must contain its authored two-wave encounter.")
+	if controller.waves.size() != 7:
+		_fail("Stage 2 must contain its authored seven-wave encounter.")
 		return
 	var spitter_wave := controller.waves[1] as EncounterWaveDefinition
 	if spitter_wave.bramble_spitter_count != 1:

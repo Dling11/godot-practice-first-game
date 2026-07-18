@@ -8,6 +8,9 @@ const PLAYER_DAMAGED_TINT := Color(1.0, 0.42, 0.42, 1.0)
 const HIT_FLASH_SHADER := preload("res://gameplay/presentation/hit_flash.gdshader")
 const HIT_FLASH_SECONDS := 0.1
 const HITSTOP_SECONDS := 0.045
+## The dedicated final contact recording contains 125 ms of leading silence.
+## Start at its metal impact so an accepted final hit does not arrive late.
+const CONSECUTIVE_FINAL_CONTACT_ONSET_SECONDS := 0.125
 
 @export var player: Player
 @export var effects_parent: Node2D
@@ -84,7 +87,12 @@ func _on_player_ability_hit_landed(target: HurtboxComponent, info: DamageInfo) -
 	if is_first_impact_this_frame and (not is_consecutive_thrust or is_final_consecutive_hit):
 		_request_hitstop()
 		if is_final_consecutive_hit:
-			_play_sound_at(consecutive_final_hit_sound, target.global_position, 1.0)
+			_play_sound_at(
+				consecutive_final_hit_sound,
+				target.global_position,
+				1.0,
+				CONSECUTIVE_FINAL_CONTACT_ONSET_SECONDS
+			)
 		else:
 			_play_sound_at(ability_hit_sound if ability_hit_sound != null else sword_hit_sound, target.global_position, 0.96)
 
@@ -157,7 +165,12 @@ func _finish_hitstop() -> void:
 	get_tree().paused = false
 
 
-func _play_sound_at(stream: AudioStream, position: Vector2, pitch: float) -> void:
+func _play_sound_at(
+	stream: AudioStream,
+	position: Vector2,
+	pitch: float,
+	from_position_seconds: float = 0.0
+) -> void:
 	if stream == null or DisplayServer.get_name() == "headless":
 		return
 	var player_2d := AudioStreamPlayer2D.new()
@@ -167,4 +180,4 @@ func _play_sound_at(stream: AudioStream, position: Vector2, pitch: float) -> voi
 	effects_parent.add_child(player_2d)
 	player_2d.global_position = position
 	player_2d.finished.connect(player_2d.queue_free)
-	player_2d.play()
+	player_2d.play(from_position_seconds)

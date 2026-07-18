@@ -36,6 +36,9 @@ func _run() -> void:
 	):
 		_fail("Player action, Piercing Rush, and Consecutive Thrust SFX are not fully assigned to the SFX bus.")
 		return
+	if not is_equal_approx(PlayerActionSfx.CONSECUTIVE_FINAL_THRUST_ONSET_SECONDS, 0.50):
+		_fail("Consecutive Thrust final sword playback is not skipping its delayed source lead-in.")
+		return
 
 	var thrall := ThrallScene.instantiate() as ForsakenThrall
 	var mireling := MirelingScene.instantiate() as Mireling
@@ -73,6 +76,9 @@ func _run() -> void:
 		or feedback.player_hurt_sound == null
 	):
 		_fail("Accepted-hit, Piercing Rush, Consecutive Thrust, and player-damage SFX are not configured in the arena.")
+		return
+	if not is_equal_approx(CombatFeedbackPresenter.CONSECUTIVE_FINAL_CONTACT_ONSET_SECONDS, 0.125):
+		_fail("Consecutive Thrust final contact playback is not skipping its delayed source lead-in.")
 		return
 	arena.free()
 	print("Combat audio smoke test passed.")

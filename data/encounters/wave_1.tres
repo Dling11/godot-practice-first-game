@@ -3,5 +3,5 @@
 [resource]
 script = ExtResource("1")
 title = "Mire Awakening"
-mireling_count = 2
+mireling_count = 3
 spawn_interval = 0.9

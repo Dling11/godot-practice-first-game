@@ -40,4 +40,12 @@ The selected clips are used as a quiet wind-up, distinct active thrust, and acce
 - **Runtime files:** `sfx/opaw_consecutive_thrust_charge.wav`, `sfx/opaw_consecutive_thrust_flurry_thrust.ogg`, `sfx/opaw_consecutive_thrust_final_thrust.ogg`, and `sfx/opaw_consecutive_thrust_final_hit.ogg`
 - **Downloaded:** 2026-07-18; revised selection 2026-07-19
 
-The quiet charge, three spaced steel-thrust beats, strong final sword thrust, and accepted-contact blade impact are deliberately separate streams. They replace normal-swing reuse during Skill 2 while still following the authored cast and strike signals. The replaced swish clips are archived outside Godot imports under `art_source/archive/skills/opaw/consecutive_thrust_v3_replaced/`; the selected source packs remain in the existing CC0 combat-source archive.
+The quiet charge, three spaced steel-thrust beats, strong final sword thrust, and accepted-contact blade impact are deliberately separate streams. They replace normal-swing reuse during Skill 2 while still following the authored cast and strike signals. The selected final source recordings retain their original data, but runtime playback starts at 0.50 seconds for the sword burst and 0.125 seconds for the contact burst to skip their recorded lead-ins. The replaced swish clips are archived outside Godot imports under `art_source/archive/skills/opaw/consecutive_thrust_v3_replaced/`; the selected source packs remain in the existing CC0 combat-source archive.
+
+## Rootling Root Jab
+
+- **Runtime file:** `sfx/rootling_root_jab.wav`
+- **Source:** Original deterministic in-project synthesis via `tools/build_rootling_root_jab_sfx.py`
+- **Created:** 2026-07-19
+
+This 0.31-second mono cue layers a low wooden ground push with three filtered crack bursts and a short snap. It is used only by Rootling's authoritative eruption signal and does not reuse sword, Mireling, or Bramble attack audio.

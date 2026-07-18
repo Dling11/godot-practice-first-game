@@ -13,6 +13,7 @@ signal enemy_spawned(global_position: Vector2)
 @export var spawn_points_root: Node2D
 @export var waves: Array[Resource]
 @export var mireling_scene: PackedScene
+@export var rootling_scene: PackedScene
 @export var thrall_scene: PackedScene
 @export var bramble_spitter_scene: PackedScene
 @export var portal_scene: PackedScene
@@ -24,6 +25,7 @@ signal enemy_spawned(global_position: Vector2)
 @export var projectiles_parent: Node2D
 @export var auto_start := true
 @export_range(0.5, 10.0, 0.25, "suffix:s") var inter_wave_delay := 2.25
+@export_range(1, 4, 1) var max_active_enemies := 4
 
 var wave_index := -1
 var _active_enemies := 0
@@ -31,6 +33,10 @@ var _spawning := false
 var _spawn_points: Array[Marker2D] = []
 var _transition_pending := false
 var _started := false
+var _pending_enemies: Array[PackedScene] = []
+var _current_wave: EncounterWaveDefinition
+var _initial_batch_active := false
+var _reinforcement_pending := false
 
 
 func _ready() -> void:
@@ -62,17 +68,45 @@ func _advance_wave() -> void:
 		_spawn_portal()
 		return
 	var wave := waves[wave_index] as EncounterWaveDefinition
+	_current_wave = wave
 	wave_changed.emit(wave_index + 1, waves.size(), wave.title)
 	_spawning = true
-	var queue: Array[PackedScene] = []
-	for count in range(wave.mireling_count): queue.append(mireling_scene)
-	for count in range(wave.thrall_count): queue.append(thrall_scene)
-	for count in range(wave.bramble_spitter_count): queue.append(bramble_spitter_scene)
-	for scene in queue:
-		_spawn_enemy(scene)
-		await get_tree().create_timer(wave.spawn_interval).timeout
-	_spawning = false
+	_pending_enemies.clear()
+	for count in range(wave.mireling_count): _pending_enemies.append(mireling_scene)
+	for count in range(wave.rootling_count): _pending_enemies.append(rootling_scene)
+	for count in range(wave.thrall_count): _pending_enemies.append(thrall_scene)
+	for count in range(wave.bramble_spitter_count): _pending_enemies.append(bramble_spitter_scene)
+	_initial_batch_active = true
+	await _spawn_initial_batch()
+	_initial_batch_active = false
+	_spawning = not _pending_enemies.is_empty()
 	_try_finish_stage()
+
+
+func _spawn_initial_batch() -> void:
+	while _active_enemies < max_active_enemies and not _pending_enemies.is_empty():
+		_spawn_enemy(_pending_enemies.pop_front())
+		if not _pending_enemies.is_empty():
+			await get_tree().create_timer(_current_wave.spawn_interval).timeout
+
+
+func _queue_reinforcements() -> void:
+	if _reinforcement_pending or _pending_enemies.is_empty() or _current_wave == null:
+		return
+	_reinforcement_pending = true
+	_spawning = true
+	await get_tree().create_timer(_current_wave.reinforcement_delay).timeout
+	if not is_inside_tree():
+		return
+	while _active_enemies < max_active_enemies and not _pending_enemies.is_empty():
+		_spawn_enemy(_pending_enemies.pop_front())
+		if not _pending_enemies.is_empty():
+			await get_tree().create_timer(_current_wave.spawn_interval).timeout
+	_reinforcement_pending = false
+	_spawning = not _pending_enemies.is_empty()
+	_try_finish_stage()
+	if not _pending_enemies.is_empty() and _active_enemies < max_active_enemies:
+		call_deferred("_queue_reinforcements")
 
 
 func _spawn_enemy(scene: PackedScene) -> void:
@@ -117,12 +151,14 @@ func _choose_spawn_position() -> Vector2:
 func _on_enemy_removed() -> void:
 	_active_enemies = maxi(0, _active_enemies - 1)
 	if not is_inside_tree(): return
+	if not _initial_batch_active:
+		_queue_reinforcements()
 	_try_finish_stage()
 
 
 func _try_finish_stage() -> void:
 	if not is_inside_tree() or _transition_pending: return
-	if not _spawning and _active_enemies == 0:
+	if not _spawning and _pending_enemies.is_empty() and _active_enemies == 0:
 		_transition_pending = true
 		wave_cleared.emit(wave_index + 1, waves.size())
 		await get_tree().create_timer(inter_wave_delay).timeout

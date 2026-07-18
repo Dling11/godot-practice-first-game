@@ -19,7 +19,7 @@ Choose option 3. `AbilityDefinition` declares per-strike damage multipliers and 
 
 ## Consequences
 
-- Seven contacts scale from the equipped weapon without duplicating the ability for Ashwood and Iron. The current rapid-flurry balance is 18/19/20/21/22/25/100% (225% total), with no non-final pushback, a 150 final push, refreshed 0.21 small-hit stagger, and 0.42 final stagger. Enemy control resistance is governed by Decision 051 rather than the ability itself.
+- Seven contacts scale from the equipped weapon without duplicating the ability for Ashwood and Iron. The current rapid-flurry balance is 18/19/20/21/22/25/100% (225% total), with a shared 128x26 tapered forward lane, no non-final pushback, a 150 final push, refreshed 0.21 small-hit stagger, and 0.42 final stagger. Enemy control resistance is governed by Decision 051 rather than the ability itself.
 - Body, weapon, VFX, HUD, audio, and hit feedback observe cast/strike signals and do not calculate damage.
 - F9 exposes all currently authored Warrior skills (Piercing Rush and Consecutive Thrust) and grants current compatible Warrior weapons for comparison, but does not pretend that slots 3-4, normal awakening, or normal purchases are finished.
 - Future repeated techniques can reuse the same data contract, subject to dedicated balance and visual review.

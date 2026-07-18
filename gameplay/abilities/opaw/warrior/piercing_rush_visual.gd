@@ -1,9 +1,9 @@
 class_name PiercingRushVisual
 extends Node2D
 
-## Generated six-frame spirit-lance presentation for Piercing Rush. The large
-## outer ribbons are cosmetic; AbilityComponent and its narrow hitbox remain
-## movement, contact, damage, and cooldown authority.
+## Generated six-frame spirit-lance presentation for Piercing Rush. Its bright
+## central lance reads the definition-owned contact lane; outer ribbons remain
+## cosmetic while AbilityComponent owns movement, contact, damage, and cooldown.
 
 const FRAME_SIZE := Vector2(192.0, 192.0)
 const FRAME_COLUMNS := 3
@@ -100,11 +100,25 @@ func hide_visual() -> void:
 func _draw() -> void:
 	if _core_alpha <= 0.001:
 		return
-	# This tight underlay follows the actual 44 px contact lane. The generated
-	# plume can be enormous without teaching the player that its outer ribbons hit.
+	var contact_reach := _get_contact_reach_pixels()
+	if contact_reach <= 6.0:
+		return
+	# The bright underlay reads directly from immutable gameplay data. The generated
+	# plume can stay dramatic without teaching the player that every outer ribbon hits.
 	var alpha := clampf(_core_alpha, 0.0, 1.0)
-	draw_line(Vector2(6.0, 0.0), Vector2(50.0, 0.0), Color(RELIC_GOLD, 0.52 * alpha), 5.0)
-	draw_line(Vector2(6.0, 0.0), Vector2(50.0, 0.0), Color(SPIRIT_WHITE, 0.96 * alpha), 2.0)
+	var outer_width := maxf(_get_contact_half_width_pixels() * 0.72, 6.0)
+	draw_line(
+		Vector2(5.0, 0.0),
+		Vector2(contact_reach, 0.0),
+		Color(RELIC_GOLD, 0.52 * alpha),
+		outer_width
+	)
+	draw_line(
+		Vector2(5.0, 0.0),
+		Vector2(contact_reach, 0.0),
+		Color(SPIRIT_WHITE, 0.96 * alpha),
+		3.0
+	)
 
 
 func _show_frame(frame_index: int) -> void:
@@ -122,6 +136,18 @@ func _show_frame(frame_index: int) -> void:
 func _set_core_alpha(value: float) -> void:
 	_core_alpha = value
 	queue_redraw()
+
+
+func _get_contact_reach_pixels() -> float:
+	if ability_component == null or ability_component.definition == null:
+		return 0.0
+	return ability_component.definition.get_forward_lance_reach_pixels()
+
+
+func _get_contact_half_width_pixels() -> float:
+	if ability_component == null or ability_component.definition == null:
+		return 0.0
+	return ability_component.definition.get_forward_lance_half_width_pixels()
 
 
 func _kill_tween() -> void:

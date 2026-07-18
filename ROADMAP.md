@@ -4,12 +4,14 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 
 ## Completed
 
+- Added Rootling as the compact Stage 1 forest mob: independent directional walk/reaction/root-jab art, a direction-locked narrow ground-jab controller, reward/health/audio integration, and focused regression coverage. Stage 1 now teaches it beside familiar Mirelings before mixing in Thralls.
+- Extended expedition pacing without raising the four-enemy active cap: Stage 1 now has six waves and 30 total melee/leap/root-jab enemies, while Stage 2 has seven waves and 32 total enemies. The reusable reinforcement queue releases late-wave enemies in readable groups instead of spawning a horde.
 - Cleaned the Opaw runtime asset boundary: the approved compact-armless action set and intentional Wayfarer rollback remain visible, while unused duplicate sheets and rejected Consecutive Thrust source boards are archived outside Godot imports.
 - Added the shared in-stage pause menu with safe pause ownership, shared Music/SFX/UI toggles, Sanctuary return that preserves the current run, quit control, and focused smoke coverage.
 - Locked Piercing Rush's visible and authoritative pivot to its snapshotted cast direction, so movement input cannot turn an in-flight thrust into a side/back hit; coalesced shared impact presentation for same-frame multi-target contacts.
 - Documentation, Godot 4.7 project foundation, pixel-stable viewport, and automated smoke-test workflow.
 - Composed player movement, aiming, sword combat, supernatural dash, health, defeat, and restart flow.
-- Data-driven Thrall, Mireling, and Bramble Spitter enemies with readable attacks, navigation, obstacle handling, and crowd separation.
+- Data-driven Thrall, Mireling, Rootling, and Bramble Spitter enemies with readable attacks, navigation, obstacle handling, and crowd separation.
 - Bright modular terrain, layered tree/statue props, Y-sort occlusion, collision, and runtime-baked navigation.
 - Expanded Stage 1 with three waves, navigation-safe spawning, summon effects, wave pacing, and direction indicators.
 - Reusable portal interaction, fade transition service, Stage 2 structural placeholder, and return portal.
@@ -55,14 +57,14 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 - Equipped Piercing Rush as Opaw's clickable immediate-direction Skill 1 with collision-limited cast movement, a narrow definition-owned path hitbox, 135% snapshotted weapon scaling across Ashwood/Iron, white-gold spectral thrust presentation, cooldown-safe HUD activation, and preserved unequipped Sweeping Cut content.
 - Replaced Piercing Rush's provisional drawn beam with a generated six-frame effect-only atlas: charge, ignition, long lance, roughly 160-pixel peak plume, shock-ring impact, and decay now animate independently from Opaw and the equipped sword while the narrow gameplay hitbox remains unchanged.
 - Aligned Piercing Rush combat and audio with its large presentation: widened the central hit lane from 44x12 to a 98x22 tapered lance, raised its multiplier to 180% and pushback to 112, and replaced the reused swing with dedicated CC0 charge, thrust, and accepted-impact streams.
-- Rebuilt the debug-test Consecutive Thrust as a seven-window rapid flurry, then established reusable crowd-control tiers: Light enemies accept full push/stagger and have attacks interrupted, Elites receive 35%/45% control, and future Bosses reject it. F9 still grants every authored compatible Warrior weapon and equips every authored Warrior skill, while Skill 2 now has 18/19/20/21/22/25/100% weapon-scaled forward contacts, final-only 150 pushback, repeated stagger, approved-Opaw eight-beat body sheet, twelve-frame effect-only spirit-lance VFX, alternating thrust poses, steel-thrust/final-blade audio, and focused regression coverage.
+- Rebuilt the debug-test Consecutive Thrust as a seven-window rapid flurry, then established reusable crowd-control tiers: Light enemies accept full push/stagger and have attacks interrupted, Elites receive 35%/45% control, and future Bosses reject it. F9 still grants every authored compatible Warrior weapon and equips every authored Warrior skill, while Skill 2 now has 18/19/20/21/22/25/100% weapon-scaled forward contacts, final-only 150 pushback, repeated stagger, approved-Opaw eight-beat body sheet, twelve-frame effect-only spirit-lance VFX, alternating thrust poses, steel-thrust/final-blade audio, and focused regression coverage. Its final effect now starts with the final sword cue and decays through three small fading frames rather than lingering as recovery slow motion; source-clip lead-ins are skipped so its sword and contact sounds begin with their actual impacts.
 
 Detailed completion history remains in `CHANGELOG.md`.
 
 ## In Progress
 
-- Feel-test Piercing Rush's 98-pixel central hit path, roughly 50-pixel collision-limited movement, thrusting detached sword, oversized six-frame white/blue/gold plume and impact readability, 180% Ashwood/Iron scaling, dedicated charge/thrust/impact SFX, 3-second cooldown, and click/`1` activation at 960x540.
-- Feel-test Consecutive Thrust's F9-only Skill 2 discoverability, snapshotted direction, 76-pixel lane versus oversized rapid-flurry effects, 18/19/20/21/22/25/100% weapon damage sequence, Light-enemy attack interruption, Elite/Boss control resistance, final-only knockback/hitstop, spaced-steel-thrust/final-blade audio, 5-second cooldown, and crowd performance at 960x540.
+- Feel-test Piercing Rush's 128x30 central hit lane, roughly 50-pixel collision-limited movement, thrusting detached sword, oversized six-frame white/blue/gold plume and impact readability, 180% Ashwood/Iron scaling, dedicated charge/thrust/impact SFX, 3-second cooldown, and click/`1` activation at 960x540.
+- Feel-test Consecutive Thrust's F9-only Skill 2 discoverability, snapshotted direction, 128x26 lane versus oversized rapid-flurry effects, 18/19/20/21/22/25/100% weapon damage sequence, Light-enemy attack interruption, Elite/Boss control resistance, final-only knockback/hitstop, final sword/VFX synchronization and rapid four-frame effect decay, 5-second cooldown, and crowd performance at 960x540.
 - Measure clear time, kill time, skill uptime, and crowd readability with Piercing Rush before extending the short expeditions with authored reinforcement waves and mixed enemy roles.
 - Feel-test the Ashwood Blade's wider anticipation-to-impact arc, faster committed sweep, forward extension, denser white-gold trail, 0.10-second enemy flash, and white-hot impact core.
 
@@ -73,8 +75,9 @@ Detailed completion history remains in `CHANGELOG.md`.
 - Feel-test vitality readability, defeat delay, and restart controls.
 - Feel-test the 960x540 zoom, smaller HUD, Opaw's compact armless silhouette and stable action-owned body scale, serious eyes/scarf, tiny-foot grounding, four-frame walk, attack/dash timing, detached weapon orbit, corrected shadows/collision, canopy occlusion, and 16-pixel Thrall clearance.
 - Feel-test Mireling pressure, stage counts, spawn pacing, camera travel, and landmark layout.
+- Feel-test Rootling's compact silhouette, 0.58-second crack telegraph, lateral dodge window, 40x16 locked jab lane, sound level, and its expanded Stage 1/Stage 2 placement before introducing Rootbound Husk in Stage 3.
 - Keep preserved Sweeping Cut's 20 damage, wide arc, 90 pushback, phases, and cooldown regression-safe while it remains unequipped.
-- Feel-test Stage 2 arrival pacing, grove layout/navigation, Wave 1 warm-up, Wave 2 Spitter readability, clear-gated return portal, and restart behavior.
+- Feel-test Stage 1 and Stage 2 reinforcement pacing, clear time, recovery windows, Grove layout/navigation, Wave 1 warm-up, Wave 2 Spitter readability, clear-gated return portal, and restart behavior.
 - Feel-test XP/coin pacing, HUD placement, and the forest ambient-music volume.
 - Feel-test normal sword, Sweeping Cut, and incoming-damage feedback for readability and appropriate camera motion.
 - Feel-test combat cue selection, positional balance, repetition, and SFX-versus-music volume.

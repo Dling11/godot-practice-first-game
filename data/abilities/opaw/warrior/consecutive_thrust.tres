@@ -1,24 +1,24 @@
-[gd_resource type="Resource" script_class="AbilityDefinition" load_steps=4 format=3]
+[gd_resource type="Resource" script_class="AbilityDefinition" format=3 uid="uid://b6nd2yq8f3gjm"]
 
-[ext_resource type="Script" path="res://data/abilities/ability_definition.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://assets/ui/icons/skills/icon_skill_consecutive_thrust_24x24.png" id="2_icon"]
+[ext_resource type="Script" uid="uid://m4fn37fkgpjf" path="res://data/abilities/ability_definition.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dtw80slu3cyml" path="res://assets/ui/icons/skills/icon_skill_consecutive_thrust_24x24.png" id="2_icon"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_consecutive_thrust"]
-points = PackedVector2Array(4, -9, 63, -9, 76, 0, 63, 9, 4, 9)
+points = PackedVector2Array(4, -13, 108, -13, 128, 0, 108, 13, 4, 13)
 
 [resource]
 script = ExtResource("1_script")
 ability_id = &"consecutive_thrust"
 display_name = "Consecutive Thrust"
 hud_name = "RAPID THRUST"
-description = "Seven spirit-lance strikes\n225% total weapon damage if all connect"
+description = "Seven spirit-lance strikes
+128 px reach - 225% total weapon damage"
 icon = ExtResource("2_icon")
-activation_mode = 0
 presentation_style = 1
 hitbox_shape = SubResource("ConvexPolygonShape2D_consecutive_thrust")
 weapon_damage_multiplier = 1.0
 knockback_strength = 150.0
-strike_damage_multipliers = PackedFloat32Array(0.18, 0.19, 0.2, 0.21, 0.22, 0.25, 1.0)
+strike_damage_multipliers = PackedFloat32Array(0.18, 0.19, 0.2, 0.21, 0.22, 0.25, 1)
 non_final_knockback_multiplier = 0.0
 stagger_seconds = 0.42
 non_final_stagger_multiplier = 0.5

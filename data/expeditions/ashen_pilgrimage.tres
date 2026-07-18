@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="ExpeditionDefinition" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="ExpeditionDefinition" format=3 uid="uid://22acvv6itm1s"]
 
-[ext_resource type="Script" path="res://data/expeditions/expedition_definition.gd" id="1_definition"]
-[ext_resource type="Script" path="res://data/expeditions/expedition_requirement.gd" id="2_requirement"]
+[ext_resource type="Script" uid="uid://cc5ey0o5cyle8" path="res://data/expeditions/expedition_definition.gd" id="1_definition"]
+[ext_resource type="Script" uid="uid://bce1s2bt2iedf" path="res://data/expeditions/expedition_requirement.gd" id="2_requirement"]
 
 [sub_resource type="Resource" id="Requirement"]
 script = ExtResource("2_requirement")
 minimum_level = 3
 required_story_flags = PackedStringArray("forgotten_grove_completed")
 required_boss_victories = PackedStringArray("thornbound_warden")
+required_discoveries = null
 required_key_items = PackedStringArray("cinder_sigil")
 
 [resource]

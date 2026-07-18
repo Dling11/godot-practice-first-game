@@ -32,13 +32,13 @@ While a ground-targeted skill is pending, gameplay continues and Opaw may move. 
 ### Skill 1 — Piercing Rush
 
 - **Implemented:** immediate directional thrust-dash using current facing, triggered by `1`, legacy Q, left shoulder, or the ready HUD slot.
-- Opaw commits about 50 collision-limited pixels behind the sword, damages each target once along the 98-pixel narrow path for 180% snapshotted equipped-weapon damage, and uses 112 pushback without invulnerability.
+- Opaw commits about 50 collision-limited pixels behind the sword, damages each target once along the 128x30 bright central lane for 180% snapshotted equipped-weapon damage, and uses 112 pushback without invulnerability.
 - The detached sword enters a forward thrust while a six-frame white-gold spirit blade, blue/gold streaks, sparks, and shared confirmed-hit feedback carry the presentation. Dedicated CC0 charge, thrust, and accepted-impact cues replace normal-swing reuse.
 
 ### Skill 2 — Consecutive Thrust
 
 - **Implemented for F9 testing:** immediate-directional stationary seven-thrust rapid-flurry technique on `2` or the refreshed HUD button; normal play remains sealed pending Eira.
-- A 76-pixel lane reactivates once for each authored 18%, 19%, 20%, 21%, 22%, 25%, and 100% weapon-scaled strike during the 0.88-second active flurry. Small hits have no knockback, refresh 0.21 seconds of stagger, and use only alternating local number/flash feedback; the final thrust receives the strongest white flash, 150 pushback, 0.42 seconds stagger, sound, camera response, and hitstop. Light enemies are interrupted, Elites receive reduced control, and Bosses resist both effects.
+- A 128x26 lane reactivates once for each authored 18%, 19%, 20%, 21%, 22%, 25%, and 100% weapon-scaled strike during the 0.88-second active flurry. Small hits have no knockback, refresh 0.21 seconds of stagger, and use only alternating local number/flash feedback; the final thrust receives the strongest white flash, 150 pushback, 0.42 seconds stagger, sound, camera response, and hitstop. Its large flash begins on the same event as the final sword cue, then quickly contracts through three smaller faded frames instead of lingering in recovery. Light enemies are interrupted, Elites receive reduced control, and Bosses resist both effects.
 - Multi-hit deduplication is explicit per strike window through `AbilityComponent` hitbox activation; it does not bypass the shared hurtbox contract. An approved-Opaw eight-beat body sheet, twelve-frame effect-only VFX atlas, shallow alternating sword extension, quiet charge/three-steel-thrust/final-blade cues, and a final contact-only blade impact are presentation observers only.
 
 ### Skill 3 — Provisional Ground-Targeted Leap
@@ -77,7 +77,7 @@ A skill's total power budget includes raw damage, hit count, area, stun or other
 
 ## Encounter Length and Enemy Pressure
 
-The current expeditions are acknowledged as short and lightly populated. Do not compensate by only inflating enemy health or dumping an unreadable horde onto one screen. With Piercing Rush now playable, measure time-to-kill, stage-clear duration, damage taken, crowd readability, and skill uptime, then extend encounters with authored reinforcement waves and mixed enemy roles. Stage 1 should still teach; Stage 2 should add ranged pressure; later elites and bosses should demand the stronger skill budget without becoming passive health sponges.
+The expeditions now use authored reinforcement waves rather than short single-burst encounters. Do not compensate for remaining clear-time issues by inflating enemy health or dumping an unreadable horde onto one screen. With Piercing Rush now playable, measure time-to-kill, stage-clear duration, damage taken, crowd readability, and skill uptime across the six-wave Stage 1 and seven-wave Stage 2. Stage 1 should still teach; Stage 2 should add ranged pressure; later elites and bosses should demand the stronger skill budget without becoming passive health sponges.
 
 ## Feedback and Theme
 

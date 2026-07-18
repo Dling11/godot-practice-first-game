@@ -1,23 +1,24 @@
-[gd_resource type="Resource" script_class="AbilityDefinition" load_steps=4 format=3]
+[gd_resource type="Resource" script_class="AbilityDefinition" format=3 uid="uid://bsblrwp56g1hp"]
 
-[ext_resource type="Script" path="res://data/abilities/ability_definition.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://assets/ui/icons/skills/icon_skill_piercing_rush_24x24.png" id="2_icon"]
+[ext_resource type="Script" uid="uid://m4fn37fkgpjf" path="res://data/abilities/ability_definition.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://c6s8gacqu1omc" path="res://assets/ui/icons/skills/icon_skill_piercing_rush_24x24.png" id="2_icon"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_thrust"]
-points = PackedVector2Array(5, -11, 83, -11, 98, 0, 83, 11, 5, 11)
+points = PackedVector2Array(5, -15, 112, -15, 128, 0, 112, 15, 5, 15)
 
 [resource]
 script = ExtResource("1_script")
 ability_id = &"piercing_rush"
 display_name = "Piercing Rush"
 hud_name = "PIERCE RUSH"
-description = "Extended spirit lance\n180% weapon damage • 98 px reach"
+description = "Extended spirit lance
+180% weapon damage - 128 px reach"
 icon = ExtResource("2_icon")
-activation_mode = 0
 presentation_style = 1
 hitbox_shape = SubResource("ConvexPolygonShape2D_thrust")
 weapon_damage_multiplier = 1.8
 knockback_strength = 112.0
+strike_damage_multipliers = null
 active_movement_speed = 280.0
 wind_up_seconds = 0.14
 active_seconds = 0.18

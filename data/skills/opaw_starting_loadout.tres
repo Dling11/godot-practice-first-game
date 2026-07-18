@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="SkillLoadoutDefinition" format=3]
+[gd_resource type="Resource" script_class="SkillLoadoutDefinition" format=3 uid="uid://c56vgwl06icvt"]
 
-[ext_resource type="Script" path="res://data/skills/skill_loadout_definition.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://dv7d2mg2dg00r" path="res://data/skills/skill_loadout_definition.gd" id="1_script"]
 [ext_resource type="Resource" path="res://data/skills/slots/opaw_piercing_rush_slot.tres" id="2_slot_1"]
 [ext_resource type="Resource" path="res://data/skills/slots/opaw_sealed_slot_2.tres" id="3_slot_2"]
 [ext_resource type="Resource" path="res://data/skills/slots/opaw_sealed_slot_3.tres" id="4_slot_3"]

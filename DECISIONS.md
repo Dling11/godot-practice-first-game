@@ -59,6 +59,9 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 049 | Align Piercing Rush's central lance and audio with its presentation | Piercing Rush reach, first-skill balance, damage multiplier, pushback, accepted-hit audio, or CC0 sound sourcing |
 | 050 | Use authored multi-strike data and a debug-only test loadout for Consecutive Thrust | Repeated hits, Skill 2, debug testing, effect-only VFX, weapon scaling, or future free awakening |
 | 051 | Use data-driven crowd-control tiers for enemy resistance | Knockback, stagger, enemy interruption, elites, bosses, control immunity, or future poise |
+| 052 | Extend expedition pacing within the readable four-enemy cap | Stage wave counts, mixed enemy pacing, encounter length, or crowd-performance budgets |
+| 053 | Use Rootbound Husk as an authored forest melee archetype | Forest enemy art, Root Spear attack, Stage 1 roster, or future Rootbound Elder boss |
+| 054 | Make Rootling the compact Stage 1 rooted melee enemy | Rootling art, locked ground-jab authority, Stage 1 wave composition, or Rootbound escalation |
 
 ## New Decisions
 
