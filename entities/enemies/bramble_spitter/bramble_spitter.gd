@@ -1,7 +1,7 @@
 class_name BrambleSpitter
 extends CharacterBody2D
 
-enum State { SPAWNING, POSITIONING, WIND_UP, RECOVERY, DEAD }
+enum State { SPAWNING, POSITIONING, WIND_UP, RECOVERY, STAGGER, DEAD }
 
 signal state_changed(state: State, duration_seconds: float)
 signal facing_changed(direction: Vector2)
@@ -18,6 +18,7 @@ const SeparationComponentScene = preload("res://entities/enemies/components/enem
 @onready var health_component: HealthComponent = %HealthComponent
 @onready var navigation_agent: NavigationAgent2D = %NavigationAgent2D
 @onready var knockback_component: KnockbackComponent = %KnockbackComponent
+@onready var stagger_component: StaggerComponent = %StaggerComponent
 
 var state := State.SPAWNING
 var facing_direction := Vector2.DOWN
@@ -39,6 +40,9 @@ func _ready() -> void:
 	health_component.maximum_health = definition.maximum_health
 	health_component.current_health = definition.maximum_health
 	health_component.died.connect(_die)
+	knockback_component.configure(definition)
+	stagger_component.configure(definition)
+	stagger_component.stagger_started.connect(_on_stagger_started)
 	state_changed.emit(State.SPAWNING, definition.spawn_seconds)
 	get_tree().create_timer(definition.spawn_seconds).timeout.connect(_finish_spawn)
 
@@ -62,6 +66,9 @@ func _physics_process(delta: float) -> void:
 	_applied_knockback_velocity = Vector2.ZERO
 	if state == State.DEAD or state == State.SPAWNING or not is_instance_valid(target):
 		velocity = Vector2.ZERO
+		return
+	if state == State.STAGGER:
+		_process_stagger(delta)
 		return
 
 	match state:
@@ -111,6 +118,14 @@ func _process_positioning(delta: float) -> void:
 	velocity = velocity.move_toward(direction.normalized() * definition.move_speed, definition.acceleration * delta)
 	_apply_knockback_velocity()
 	move_and_slide()
+
+
+func _process_stagger(delta: float) -> void:
+	velocity = velocity.move_toward(Vector2.ZERO, definition.acceleration * delta)
+	_apply_knockback_velocity()
+	move_and_slide()
+	if not stagger_component.is_staggered():
+		_enter(State.POSITIONING, 0.0)
 
 
 func _tick_attack(delta: float) -> void:
@@ -178,6 +193,13 @@ func _set_facing(direction: Vector2) -> void:
 		return
 	facing_direction = direction.normalized()
 	facing_changed.emit(facing_direction)
+
+
+func _on_stagger_started(duration_seconds: float) -> void:
+	if state == State.DEAD or state == State.SPAWNING:
+		return
+	if state != State.STAGGER:
+		_enter(State.STAGGER, duration_seconds)
 
 
 func _die() -> void:

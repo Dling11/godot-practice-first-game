@@ -141,14 +141,15 @@ The active prototype controls are:
 | Primary attack: equipped sword | Left mouse | Right trigger |
 | Dodge | Space | South face button |
 | Skill 1: Piercing Rush | 1, Q legacy fallback, or click its HUD slot | Left shoulder |
-| Skill slots 2-4 | 2 / 3 / 4 (reserved) | Reserved |
+| Skill 2: Consecutive Thrust | 2 or click its HUD slot after debug F9 | Reserved |
+| Skill slots 3-4 | 3 / 4 (reserved) | Reserved |
 | Open character / gear / skills | Tab or click the HUD satchel button | Not assigned |
 | Interact / enter portal | F | West face button |
 | Close / cancel modal | Escape or visible mouse button | UI Cancel |
 | Rise after defeat | R | North face button |
-| Debug test progression | F9 (debug builds: level 10 and 999 coins) | Not assigned |
+| Debug test loadout | F9 (debug builds: level 10, 999 coins, all authored skills and gear) | Not assigned |
 
-Movement, movement-owned facing, left-click primary attack, dash, Piercing Rush, portal interaction, and arena restart after defeat are active. Passive mouse motion no longer turns Opaw, and right mouse is currently unassigned. Pressing basic attack during dash movement queues one normal sword attack for the exact end of the dash; pressing it during dash recovery cancels that recovery into the same attack. Piercing Rush moves about 50 pixels along Opaw's facing, sends a 98-pixel forward lance that deals 180% equipped-weapon damage, and can be cast with `1`, Q, left shoulder, or its ready HUD slot. Its dedicated CC0 charge, thrust, and confirmed-impact sounds are separate from normal sword audio. Sweeping Cut is preserved but unequipped. Slots 2-4 remain sealed. F9 provides a debug-build-only level-10/999-coin test state and does not create a disk save.
+Movement, movement-owned facing, left-click primary attack, dash, Piercing Rush, Consecutive Thrust, portal interaction, and arena restart after defeat are active. Passive mouse motion no longer turns Opaw, and right mouse is currently unassigned. Pressing basic attack during dash movement queues one normal sword attack for the exact end of the dash; pressing it during dash recovery cancels that recovery into the same attack. Piercing Rush moves about 50 pixels along Opaw's facing, sends a 98-pixel forward lance that deals 180% equipped-weapon damage, and can be cast with `1`, Q, left shoulder, or its ready HUD slot. Consecutive Thrust is a stationary 1.34-second rapid forward flurry: seven lances deal 18%, 19%, 20%, 21%, 22%, 25%, then 100% weapon damage (225% total if every hit lands). Light enemies are briefly staggered by every lance, so their current attack is canceled for the flurry; only the final lance pushes targets and triggers heavy hit feedback. Elite enemies receive reduced control, while Boss enemies ignore knockback and stagger entirely. The audio is a quiet charge, three spaced steel-thrust beats, a strong final sword thrust, and a contact-only blade impact. Normal progression still leaves slot 2 sealed until Eira's future free awakening; F9 equips the two currently authored skills, grants all currently authored Warrior-compatible weapons to the test inventory, sets level 10 and 999 coins, refreshes HUD/menu cards, and creates no disk save.
 
 In Sanctuary, approach Skillkeeper Eira or Armskeeper Orren and press F. To use the angel portal, walk around either side of the standalone fountain, cross the open courtyard, and ascend the portal's center stairs; its prompt appears only at the doorway threshold. The character surface opens from physical Tab or the clickable top-left satchel button. Dialogue and menu controls support mouse click or arrow-key focus plus Enter; Escape cancels the active modal, and the character surface also has a top-right close button. Its Gear tab lists owned weapons; clicking a compatible sword equips it immediately. Ashwood is Opaw's permanent fallback, while Orren sells the Warrior-only Iron Sword for 18 coins. Skills are never sold: future level-eligible skills will be awakened through Eira. The portal builds its routes from expedition data: Forgotten Grove opens after Sanctuary awakening, while later routes display real unmet level/story/boss/discovery/key-item requirements and remain sealed until their scenes exist.
 
@@ -167,6 +168,8 @@ Run the current headless movement smoke test with:
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/character_animation_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/opaw_model_backup_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/piercing_rush_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/consecutive_thrust_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/enemy_crowd_control_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/sweeping_cut_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/player_progression_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/run_session_progression_smoke.gd'
@@ -176,6 +179,7 @@ Run the current headless movement smoke test with:
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/sword_attack_style_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/runtime_archive_boundary_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/audio_director_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/combat_audio_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/ui_theme_icon_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/title_screen_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/sanctuary_hub_smoke.gd'

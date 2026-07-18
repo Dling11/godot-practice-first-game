@@ -8,6 +8,7 @@ signal knockback_started(velocity: Vector2)
 
 var velocity := Vector2.ZERO
 var _deceleration := 0.0
+var _strength_multiplier := 1.0
 
 
 func _ready() -> void:
@@ -31,10 +32,15 @@ func clear() -> void:
 	set_physics_process(false)
 
 
+func configure(enemy_definition: EnemyDefinition) -> void:
+	_strength_multiplier = enemy_definition.knockback_multiplier() if enemy_definition != null else 1.0
+
+
 func _on_damaged(info: DamageInfo) -> void:
-	if info.knockback_strength <= 0.0 or info.direction.is_zero_approx():
+	var resolved_strength := info.knockback_strength * _strength_multiplier
+	if resolved_strength <= 0.0 or info.direction.is_zero_approx():
 		return
-	velocity = info.direction * info.knockback_strength
-	_deceleration = info.knockback_strength / duration_seconds
+	velocity = info.direction * resolved_strength
+	_deceleration = resolved_strength / duration_seconds
 	set_physics_process(true)
 	knockback_started.emit(velocity)

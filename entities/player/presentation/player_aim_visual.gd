@@ -3,16 +3,20 @@ extends Node2D
 ## Presents aim direction without owning or changing player gameplay state.
 
 @export var ability_component: AbilityComponent
+@export var ability_2_component: AbilityComponent
 @export var lock_during_ability_cast := false
 
 var _cast_facing_locked := false
 
 
 func _ready() -> void:
-	if not lock_during_ability_cast or ability_component == null:
+	if not lock_during_ability_cast:
 		return
-	ability_component.ability_started.connect(_lock_cast_facing)
-	ability_component.ability_finished.connect(_release_cast_facing)
+	for component in [ability_component, ability_2_component]:
+		if component == null:
+			continue
+		component.ability_started.connect(_lock_cast_facing.bind(component))
+		component.ability_finished.connect(_release_cast_facing)
 
 
 func set_facing_direction(direction: Vector2) -> void:
@@ -22,10 +26,10 @@ func set_facing_direction(direction: Vector2) -> void:
 		rotation = direction.angle()
 
 
-func _lock_cast_facing() -> void:
-	if ability_component == null:
+func _lock_cast_facing(source_component: AbilityComponent) -> void:
+	if source_component == null:
 		return
-	var cast_direction := ability_component.get_cast_direction()
+	var cast_direction := source_component.get_cast_direction()
 	if cast_direction.is_zero_approx():
 		return
 	_cast_facing_locked = true

@@ -16,3 +16,4 @@ recovery_seconds = 1.25
 spawn_seconds = 0.7
 experience_reward = 20
 coin_reward = 5
+crowd_control_tier = 0

@@ -1,7 +1,7 @@
 class_name ForsakenThrall
 extends CharacterBody2D
 
-enum State { SPAWNING, CHASE, WIND_UP, ACTIVE, RECOVERY, DEAD }
+enum State { SPAWNING, CHASE, WIND_UP, ACTIVE, RECOVERY, STAGGER, DEAD }
 
 signal state_changed(state: State, duration_seconds: float)
 signal facing_changed(direction: Vector2)
@@ -17,6 +17,7 @@ const SeparationComponentScene = preload("res://entities/enemies/components/enem
 @onready var health_component: HealthComponent = %HealthComponent
 @onready var navigation_agent: NavigationAgent2D = %NavigationAgent2D
 @onready var knockback_component: KnockbackComponent = %KnockbackComponent
+@onready var stagger_component: StaggerComponent = %StaggerComponent
 var separation_component: EnemySeparationComponent
 
 var state := State.CHASE
@@ -35,6 +36,9 @@ func _ready() -> void:
 	health_component.maximum_health = definition.maximum_health
 	health_component.current_health = definition.maximum_health
 	health_component.died.connect(_on_died)
+	knockback_component.configure(definition)
+	stagger_component.configure(definition)
+	stagger_component.stagger_started.connect(_on_stagger_started)
 	_begin_spawn()
 
 
@@ -51,6 +55,9 @@ func _physics_process(delta: float) -> void:
 	_applied_knockback_velocity = Vector2.ZERO
 	if state == State.DEAD or state == State.SPAWNING or not is_instance_valid(target):
 		velocity = Vector2.ZERO
+		return
+	if state == State.STAGGER:
+		_process_stagger(delta)
 		return
 
 	var to_target := target.global_position - global_position
@@ -92,6 +99,16 @@ func _process_chase(to_target: Vector2, delta: float) -> void:
 	)
 	_apply_knockback_velocity()
 	move_and_slide()
+
+
+func _process_stagger(delta: float) -> void:
+	velocity = movement_component.calculate_velocity(
+		velocity, Vector2.ZERO, definition.move_speed, definition.acceleration, delta
+	)
+	_apply_knockback_velocity()
+	move_and_slide()
+	if not stagger_component.is_staggered():
+		_enter_state(State.CHASE, 0.0)
 
 
 func _apply_knockback_velocity() -> void:
@@ -151,6 +168,14 @@ func _set_facing_direction(direction: Vector2) -> void:
 		return
 	facing_direction = normalized
 	facing_changed.emit(facing_direction)
+
+
+func _on_stagger_started(duration_seconds: float) -> void:
+	if state == State.DEAD or state == State.SPAWNING:
+		return
+	attack_hitbox.deactivate()
+	if state != State.STAGGER:
+		_enter_state(State.STAGGER, duration_seconds)
 
 
 func _on_died() -> void:

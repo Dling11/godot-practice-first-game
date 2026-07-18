@@ -46,6 +46,12 @@ func play_state(state: Mireling.State, duration: float) -> void:
 		Mireling.State.RECOVERY:
 			body.play("idle_" + _direction)
 			create_tween().tween_property(body, "modulate", Color.WHITE, duration)
+		Mireling.State.STAGGER:
+			landing_marker.hide()
+			body.play("idle_" + _direction)
+			body.position = Vector2(0, -14)
+			body.scale = Vector2(1.14, 0.82)
+			body.modulate = Color(1.0, 0.86, 0.58, 1.0)
 		Mireling.State.DEAD:
 			landing_marker.hide()
 			body.play("dead_" + _direction)

@@ -57,6 +57,8 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 047 | Equip weapon-scaled Piercing Rush and preserve Sweeping Cut | Skill 1, ability movement, weapon scaling, clickable skills, spectral thrusts, or alternate techniques |
 | 048 | Use an effect-only animation atlas for exaggerated Piercing Rush presentation | Piercing Rush VFX, oversized skill art, visual-versus-hitbox bounds, directional effect reuse, or sword-independent technique animation |
 | 049 | Align Piercing Rush's central lance and audio with its presentation | Piercing Rush reach, first-skill balance, damage multiplier, pushback, accepted-hit audio, or CC0 sound sourcing |
+| 050 | Use authored multi-strike data and a debug-only test loadout for Consecutive Thrust | Repeated hits, Skill 2, debug testing, effect-only VFX, weapon scaling, or future free awakening |
+| 051 | Use data-driven crowd-control tiers for enemy resistance | Knockback, stagger, enemy interruption, elites, bosses, control immunity, or future poise |
 
 ## New Decisions
 

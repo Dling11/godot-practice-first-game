@@ -4,6 +4,8 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 
 ## Completed
 
+- Cleaned the Opaw runtime asset boundary: the approved compact-armless action set and intentional Wayfarer rollback remain visible, while unused duplicate sheets and rejected Consecutive Thrust source boards are archived outside Godot imports.
+- Added the shared in-stage pause menu with safe pause ownership, shared Music/SFX/UI toggles, Sanctuary return that preserves the current run, quit control, and focused smoke coverage.
 - Locked Piercing Rush's visible and authoritative pivot to its snapshotted cast direction, so movement input cannot turn an in-flight thrust into a side/back hit; coalesced shared impact presentation for same-frame multi-target contacts.
 - Documentation, Godot 4.7 project foundation, pixel-stable viewport, and automated smoke-test workflow.
 - Composed player movement, aiming, sword combat, supernatural dash, health, defeat, and restart flow.
@@ -53,12 +55,14 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 - Equipped Piercing Rush as Opaw's clickable immediate-direction Skill 1 with collision-limited cast movement, a narrow definition-owned path hitbox, 135% snapshotted weapon scaling across Ashwood/Iron, white-gold spectral thrust presentation, cooldown-safe HUD activation, and preserved unequipped Sweeping Cut content.
 - Replaced Piercing Rush's provisional drawn beam with a generated six-frame effect-only atlas: charge, ignition, long lance, roughly 160-pixel peak plume, shock-ring impact, and decay now animate independently from Opaw and the equipped sword while the narrow gameplay hitbox remains unchanged.
 - Aligned Piercing Rush combat and audio with its large presentation: widened the central hit lane from 44x12 to a 98x22 tapered lance, raised its multiplier to 180% and pushback to 112, and replaced the reused swing with dedicated CC0 charge, thrust, and accepted-impact streams.
+- Rebuilt the debug-test Consecutive Thrust as a seven-window rapid flurry, then established reusable crowd-control tiers: Light enemies accept full push/stagger and have attacks interrupted, Elites receive 35%/45% control, and future Bosses reject it. F9 still grants every authored compatible Warrior weapon and equips every authored Warrior skill, while Skill 2 now has 18/19/20/21/22/25/100% weapon-scaled forward contacts, final-only 150 pushback, repeated stagger, approved-Opaw eight-beat body sheet, twelve-frame effect-only spirit-lance VFX, alternating thrust poses, steel-thrust/final-blade audio, and focused regression coverage.
 
 Detailed completion history remains in `CHANGELOG.md`.
 
 ## In Progress
 
 - Feel-test Piercing Rush's 98-pixel central hit path, roughly 50-pixel collision-limited movement, thrusting detached sword, oversized six-frame white/blue/gold plume and impact readability, 180% Ashwood/Iron scaling, dedicated charge/thrust/impact SFX, 3-second cooldown, and click/`1` activation at 960x540.
+- Feel-test Consecutive Thrust's F9-only Skill 2 discoverability, snapshotted direction, 76-pixel lane versus oversized rapid-flurry effects, 18/19/20/21/22/25/100% weapon damage sequence, Light-enemy attack interruption, Elite/Boss control resistance, final-only knockback/hitstop, spaced-steel-thrust/final-blade audio, 5-second cooldown, and crowd performance at 960x540.
 - Measure clear time, kill time, skill uptime, and crowd readability with Piercing Rush before extending the short expeditions with authored reinforcement waves and mixed enemy roles.
 - Feel-test the Ashwood Blade's wider anticipation-to-impact arc, faster committed sweep, forward extension, denser white-gold trail, 0.10-second enemy flash, and white-hot impact core.
 
@@ -75,7 +79,7 @@ Detailed completion history remains in `CHANGELOG.md`.
 - Feel-test normal sword, Sweeping Cut, and incoming-damage feedback for readability and appropriate camera motion.
 - Feel-test combat cue selection, positional balance, repetition, and SFX-versus-music volume.
 - Feel-test the centered four-slot skill bar, top-left character/satchel entry button, and Tab character-menu readability at the 960x540 viewport.
-- Design authored skill unlock rules, coin sinks, and the first abilities for sealed slots 2-4.
+- Design Eira's authored free-awakening rules and ritual for the complete Consecutive Thrust test skill, then design abilities for sealed slots 3-4.
 - Upgrade Eira's skill service into a free awakening ritual: level creates eligibility, Eira unlocks the skill without coins, and ultimate awakenings use a distinct red ritual treatment.
 - Feel-test Orren's 18-coin shop, the 960x540 owned-inventory layout, Ashwood/Iron portrait and world consistency, immediate equip feedback, and insufficient-funds messaging.
 - Decide disk-persistent ownership, armor/stat formulas, drop sources, selling policy, and enemy/elite/boss power bands before expanding beyond the active two-sword slice.

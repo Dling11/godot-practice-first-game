@@ -44,6 +44,7 @@ func bind_player(player: Player) -> void:
 	progression.coins_changed.connect(_update_coins)
 	progression.leveled_up.connect(_show_level_up)
 	player.testing_preset_applied.connect(_show_testing_preset)
+	player.skill_loadout_changed.connect(_on_skill_loadout_changed)
 	_update_progression(progression.level, progression.total_experience, 0)
 	_update_coins(progression.coins)
 
@@ -141,7 +142,12 @@ func _show_level_up(new_level: int) -> void:
 
 
 func _show_testing_preset(level: int, coins: int) -> void:
-	_show_announcement("DEBUG TEST  •  LEVEL %d  •  %d COINS" % [level, coins], 2.0)
+	_show_announcement("DEBUG TEST  •  LEVEL %d  •  %d COINS  •  ALL SKILLS + GEAR" % [level, coins], 2.0)
+
+
+func _on_skill_loadout_changed() -> void:
+	if is_instance_valid(_player):
+		_build_skill_bar(_player)
 
 
 func show_portal_sealed() -> void:

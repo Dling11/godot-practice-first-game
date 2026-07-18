@@ -48,6 +48,7 @@ func _ready() -> void:
 	var progression := player.progression_component
 	progression.progression_changed.connect(_update_progression)
 	progression.coins_changed.connect(_update_coins)
+	player.skill_loadout_changed.connect(_on_skill_loadout_changed)
 	_update_progression(progression.level, progression.total_experience, 0)
 	_update_coins(progression.coins)
 	_configure_tabs()
@@ -274,6 +275,13 @@ func _build_skill_cards() -> void:
 	if not _skill_cards.is_empty():
 		_skill_cards[0].set_pressed_no_signal(true)
 		_on_skill_slot_selected(_skill_cards[0].slot_definition)
+
+
+func _on_skill_loadout_changed() -> void:
+	_build_equipment_inventory()
+	_build_skill_cards()
+	if visible:
+		_refresh_page_focus_links()
 
 
 func _configure_skill_focus() -> void:

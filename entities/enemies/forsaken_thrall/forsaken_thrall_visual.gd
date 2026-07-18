@@ -61,6 +61,11 @@ func play_state(state: ForsakenThrall.State, duration_seconds: float) -> void:
 			_play_attack_pair(4, duration_seconds)
 			var tween := create_tween()
 			tween.tween_property(body_visual, "modulate", Color.WHITE, duration_seconds)
+		ForsakenThrall.State.STAGGER:
+			attack_marker.modulate.a = 0.0
+			_play_with_prefix("idle")
+			body_visual.scale = Vector2(1.12, 0.84)
+			body_visual.modulate = Color(1.0, 0.86, 0.58, 1.0)
 		ForsakenThrall.State.DEAD:
 			attack_marker.modulate.a = 0.0
 			_play_with_prefix("dead")

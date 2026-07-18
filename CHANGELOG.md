@@ -1,5 +1,38 @@
 # Changelog
 
+## 2026-07-19 - Crowd-Control Tiers and Rapid Thrust Audio Revision
+
+- Added reusable Light/Elite/Boss crowd-control data: Light enemies accept full knockback/stagger, Elites receive 35% knockback and 45% stagger, and Bosses reject both without per-skill conditionals.
+- Added `DamageInfo`/ability stagger metadata plus observing `StaggerComponent`s. Thrall, Mireling, and Bramble Spitter now cancel their current attack while staggered; Rapid Consecutive Thrust refreshes the interruption across its flurry and extends it on the final lance.
+- Replaced the noisy rapid swishes with three spaced steel-thrust beats, a strong final sword thrust, and a separate blade-contact impact only after the final hit lands. Archived the replaced V3 swish clips outside runtime imports.
+- Added focused coverage for Light attack interruption, Boss resistance, authored stagger values, and final-contact audio configuration.
+
+## 2026-07-19 - Rapid Consecutive Thrust Feel Pass
+
+- Rebuilt F9 Skill 2 from three separated stabs into a 1.34-second seven-lance rapid flurry with 225% total weapon scaling, final-only 150 knockback, and an unchanged forward-only 76-pixel contact lane.
+- Kept the approved compact-armless Opaw model intact: an eight-beat runtime body sheet is deterministically built from its existing frames, while a new twelve-cell effect-only VFX atlas supplies the extra visual motion and shallow alternating thrust angles.
+- Replaced the restarted stab clip with three alternating short CC0 swishes plus a distinct final whoosh. Small flurry contacts skip expensive burst/camera/hitstop presentation, retaining the strong final impact and smoother clustered-enemy performance.
+- Replaced obsolete Skill 2 runtime sheets, builders, and audio with archived copies outside Godot imports; expanded focused multi-hit and audio smoke coverage to the seven-window contract.
+
+## 2026-07-18 - Consecutive Thrust Test Skill and Full F9 Loadout
+
+- Extended reusable ability data/component authority with timed per-strike damage and knockback values, then authored Opaw's debug-test Skill 2 as a three-hit weapon-scaled Consecutive Thrust: 42%, 48%, and 115% damage with heavy final-only pushback.
+- Reworked F9 from a progression-only shortcut into a debug-only test loadout: it still gives level 10/999 coins, grants every authored Warrior-compatible weapon, equips every completed Warrior skill, and rebuilds the HUD/character menu without claiming Eira or Orren progression is complete in normal play.
+- Added a four-pose action-owned Opaw body sheet made from the approved model, an independent 4x2 white/gold/blue spirit-lance atlas, sword extension, final-hit feedback, a unique icon, and distinct CC0 charge/repeated-stab/final-stab cues. The mismatched generated character board remains archived and unused.
+- Added focused test coverage for F9 slot refresh, three ordered hit windows, damage, knockback, input exclusion, VFX cleanup, and the dedicated sound assignments.
+
+## 2026-07-18 - Opaw Runtime Asset Cleanup
+
+- Removed unused duplicate root-level Opaw sheets from the runtime asset folder and preserved them intact under `art_source/archive/characters/playable/opaw/legacy_runtime_root/`.
+- Archived the unfinished, unreferenced Consecutive Thrust body/VFX board after review confirmed that it does not meet the approved compact-armless Opaw design. No scene, skill, or animation used that board.
+- Added a local Opaw runtime README that identifies the active compact-armless model and the supported Wayfarer rollback at a glance.
+
+## 2026-07-18 - In-Stage Pause and Sanctuary Return
+
+- Added a reusable pause menu to both expeditions. Escape/Start opens Resume, Music/Combat Sound/Menu Sound controls, Return to Sanctuary, and Quit to Desktop with mouse, keyboard, and controller-compatible native buttons.
+- Returning home now deliberately preserves the current session's XP, coins, and equipped weapon while abandoning only the active encounter; audio routing remains on the shared buses.
+- Added headless coverage for modal pause/resume ownership, shared SFX toggle behavior, and the valid Sanctuary destination.
+
 ## 2026-07-18 - Piercing Rush Direction Lock and Clustered-Impact Smoothing
 
 - Fixed Piercing Rush rotating its visible lance and collision shape after movement-facing input changed during an active cast. The ability pivot now locks to the cast direction from wind-up through recovery, then refreshes to the player's latest idle facing.

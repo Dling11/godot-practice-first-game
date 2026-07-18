@@ -71,6 +71,8 @@ These files are intentionally outside runtime imports under Godot-ignored `art_s
 
 ### Archived Opaw Experiments and Supported Rollback
 
+The active runtime folder now exposes only the approved compact-armless set and the supported Wayfarer rollback. The former root-level duplicate sheets are preserved outside runtime at `art_source/archive/characters/playable/opaw/legacy_runtime_root/`; the rejected, unreferenced Consecutive Thrust board is at `art_source/archive/skills/opaw/consecutive_thrust_rejected_v1/`.
+
 | Canonical ID | Preserved path | Status | Contract |
 |---|---|---|---|
 | `char_opaw_handless_action_set` | `art_source/archive/characters/playable/opaw/review_variants/runtime/handless/` | `archived` | Rejected sleeve-ended seven-action comparison; no active build/test hooks |
@@ -182,6 +184,11 @@ Current UI visuals combine the approved reusable base theme and named pixel icon
 | `fx_opaw_piercing_rush` | `assets/skills/opaw/warrior/piercing_rush/opaw_piercing_rush_vfx_sheet_192x192.png` | `active_runtime` | Six 192x192 cells in a 3x2 atlas; right-facing charge, ignition, lance, peak plume, shock ring, and decay frames rotated by presentation. |
 | `fx_opaw_piercing_rush_source` | `art_source/generated/skills/opaw/piercing_rush/opaw_piercing_rush_vfx_source_v1.png` | `source` | 1536x1024 generated 3x2 chroma board preserved outside runtime loading. |
 | `fx_opaw_piercing_rush_clean` | `art_source/generated/skills/opaw/piercing_rush/opaw_piercing_rush_vfx_clean_v1.png` | `intermediate` | 1536x1024 alpha-clean source consumed by `tools/process_piercing_rush_vfx.gd`. |
+| `char_opaw_consecutive_thrust_rapid_body` | `assets/characters/playable/opaw/compact_armless/opaw_consecutive_thrust_rapid_body_sheet_48x32.png` | `active_runtime` | 8x4 action-owned directional sheet deterministically built from approved compact-armless Opaw frames; no generated replacement character. |
+| `fx_opaw_consecutive_thrust_rapid` | `assets/skills/opaw/warrior/consecutive_thrust/opaw_consecutive_thrust_rapid_vfx_sheet_192x192.png` | `active_runtime` | Twelve 192x192 cells in a 6x2 right-facing effect-only atlas, rotated by presentation. |
+| `fx_opaw_consecutive_thrust_rapid_source` | `art_source/generated/skills/opaw/consecutive_thrust/rapid_v3/opaw_consecutive_thrust_rapid_vfx_source_v3.png` | `source` | Generated VFX-only 6x2 source board preserved outside runtime loading. |
+| `fx_opaw_consecutive_thrust_rapid_clean` | `art_source/generated/skills/opaw/consecutive_thrust/rapid_v3/opaw_consecutive_thrust_rapid_vfx_clean_v3.png` | `intermediate` | Alpha-clean source consumed by `tools/process_consecutive_thrust_rapid_vfx.gd`. |
+| `skill_opaw_consecutive_thrust_v2` | `art_source/archive/skills/opaw/consecutive_thrust_v2_replaced/` | `archived` | Superseded three-hit runtime sheets, source boards, audio, and builders retained for rollback/provenance only. |
 
 ### Reusable Theme and Icon Kit
 
@@ -192,6 +199,7 @@ Current UI visuals combine the approved reusable base theme and named pixel icon
 | `icon_action_dash` | `assets/ui/icons/actions/icon_action_dash_24x24.png` | `active_runtime` | Supernatural dash symbol. |
 | `icon_skill_sweeping_cut` | `assets/ui/icons/skills/icon_skill_sweeping_cut_24x24.png` | `active_runtime` | Wide sword-arc skill symbol. |
 | `icon_skill_piercing_rush` | `assets/ui/icons/skills/icon_skill_piercing_rush_24x24.png` | `active_runtime` | White spirit-thrust symbol for Opaw's equipped Skill 1. |
+| `icon_skill_consecutive_thrust` | `assets/ui/icons/skills/icon_skill_consecutive_thrust_24x24.png` | `active_runtime` | Rapid spirit-lance symbol for debug-test Skill 2. |
 | `icon_currency_coin` | `assets/ui/icons/economy/icon_currency_coin_16x16.png` | `active_runtime` | Run coin readout and future shop currency. |
 | `icon_status_health` | `assets/ui/icons/status/icon_status_health_16x16.png` | `active_runtime` | Player vitality symbol. |
 | `icon_status_experience` | `assets/ui/icons/status/icon_status_experience_16x16.png` | `active_runtime` | XP and level-progress symbol. |
@@ -250,6 +258,11 @@ Backgrounds are replaceable presentation dependencies. Screen scripts and focus/
 | `audio_sfx_opaw_piercing_rush_charge` | `assets/audio/sfx/opaw_piercing_rush_charge.wav` | `active_runtime` |
 | `audio_sfx_opaw_piercing_rush_thrust` | `assets/audio/sfx/opaw_piercing_rush_thrust.ogg` | `active_runtime` |
 | `audio_sfx_opaw_piercing_rush_impact` | `assets/audio/sfx/opaw_piercing_rush_impact.ogg` | `active_runtime` |
+| `audio_sfx_opaw_consecutive_thrust_charge` | `assets/audio/sfx/opaw_consecutive_thrust_charge.wav` | `active_runtime` |
+| `audio_sfx_opaw_consecutive_thrust_flurry_thrust` | `assets/audio/sfx/opaw_consecutive_thrust_flurry_thrust.ogg` | `active_runtime` |
+| `audio_sfx_opaw_consecutive_thrust_final_thrust` | `assets/audio/sfx/opaw_consecutive_thrust_final_thrust.ogg` | `active_runtime` |
+| `audio_sfx_opaw_consecutive_thrust_final_hit` | `assets/audio/sfx/opaw_consecutive_thrust_final_hit.ogg` | `active_runtime` |
+| `audio_sfx_opaw_consecutive_thrust_v3` | `art_source/archive/skills/opaw/consecutive_thrust_v3_replaced/audio/` | `archived` | Replaced three-voice swish and final-whoosh runtime audio retained for provenance only. |
 | `audio_sfx_player_hurt` | `assets/audio/sfx/player_hurt.wav` | `active_runtime` |
 | `audio_sfx_thrall_claw` | `assets/audio/sfx/thrall_claw.wav` | `active_runtime` |
 | `audio_sfx_mireling_leap` | `assets/audio/sfx/mireling_leap.wav` | `active_runtime` |

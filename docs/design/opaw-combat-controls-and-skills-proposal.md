@@ -1,7 +1,7 @@
 # Opaw Combat Controls and Skills Proposal
 
 - **Date:** 2026-07-18
-- **Status:** Movement-facing, left-click basic attack, dash-to-attack chaining, F9 testing, clickable immediate-direction activation, weapon scaling, and Piercing Rush are implemented. Ground targeting, later skill identities, exact future balance, and encounter pacing remain proposals.
+- **Status:** Movement-facing, left-click basic attack, dash-to-attack chaining, F9 test loadouts, clickable immediate-direction activation, weapon scaling, Piercing Rush, and debug-test Consecutive Thrust are implemented. Ground targeting, normal Eira awakening, Skills 3-4, exact future balance, and encounter pacing remain proposals.
 
 ## Player Direction
 
@@ -32,14 +32,14 @@ While a ground-targeted skill is pending, gameplay continues and Opaw may move. 
 ### Skill 1 — Piercing Rush
 
 - **Implemented:** immediate directional thrust-dash using current facing, triggered by `1`, legacy Q, left shoulder, or the ready HUD slot.
-- Opaw commits about 50 collision-limited pixels behind the sword, damages each target once along the narrow path for 135% snapshotted equipped-weapon damage, and uses 78 pushback without invulnerability.
-- The detached sword enters a forward thrust while a white-gold spirit blade, blue/gold streaks, sparks, and shared confirmed-hit feedback carry the presentation. The existing weapon-technique sound is reused temporarily until timing is approved.
+- Opaw commits about 50 collision-limited pixels behind the sword, damages each target once along the 98-pixel narrow path for 180% snapshotted equipped-weapon damage, and uses 112 pushback without invulnerability.
+- The detached sword enters a forward thrust while a six-frame white-gold spirit blade, blue/gold streaks, sparks, and shared confirmed-hit feedback carry the presentation. Dedicated CC0 charge, thrust, and accepted-impact cues replace normal-swing reuse.
 
 ### Skill 2 — Consecutive Thrust
 
-- Immediate directional multi-hit technique.
-- Several narrow thrusts build rhythm; minor hits use light feedback so repeated hitstop does not make the game stutter, while the final thrust receives the strongest white flash, knockback, sound, and camera response.
-- Multi-hit deduplication must be authored per strike rather than bypassing the shared hurtbox contract.
+- **Implemented for F9 testing:** immediate-directional stationary seven-thrust rapid-flurry technique on `2` or the refreshed HUD button; normal play remains sealed pending Eira.
+- A 76-pixel lane reactivates once for each authored 18%, 19%, 20%, 21%, 22%, 25%, and 100% weapon-scaled strike during the 0.88-second active flurry. Small hits have no knockback, refresh 0.21 seconds of stagger, and use only alternating local number/flash feedback; the final thrust receives the strongest white flash, 150 pushback, 0.42 seconds stagger, sound, camera response, and hitstop. Light enemies are interrupted, Elites receive reduced control, and Bosses resist both effects.
+- Multi-hit deduplication is explicit per strike window through `AbilityComponent` hitbox activation; it does not bypass the shared hurtbox contract. An approved-Opaw eight-beat body sheet, twelve-frame effect-only VFX atlas, shallow alternating sword extension, quiet charge/three-steel-thrust/final-blade cues, and a final contact-only blade impact are presentation observers only.
 
 ### Skill 3 — Provisional Ground-Targeted Leap
 
@@ -107,8 +107,8 @@ Reuse Opaw's stable body sheets and detached sword rig when the action remains r
 
 The implemented debug-build-only testing control changes test state without changing normal progression:
 
-- `F9`: set the current run to level 10 and 999 coins, with a visible debug confirmation.
-- A later debug action may awaken all authored test skills after real awakening authority exists.
+- `F9`: set the current run to level 10 and 999 coins, swap in the immutable test loadout with every completed skill (Piercing Rush and Consecutive Thrust), refresh HUD/menu cards, and show a visible debug confirmation.
+- F9 does not mark a normal awakening complete, expose unfinished Skills 3-4, or imply disk persistence.
 - The shortcut must be ignored in release builds and must not claim disk-save behavior.
 
 ## Recommended Implementation Order
@@ -116,8 +116,8 @@ The implemented debug-build-only testing control changes test state without chan
 1. ~~Approve and implement movement-facing, left-click basic attack, dash-to-attack chaining, and the debug testing preset.~~ Completed on 2026-07-18; Piercing Rush now occupies Skill 1 and Sweeping Cut is preserved unequipped.
 2. Feel-test the completed control remap and debug preset in Sanctuary and both stages.
 3. Implement reusable skill activation modes and clickable HUD skill buttons. **Immediate-direction mode and clicking are complete; ground targeting remains open.**
-4. ~~Build Piercing Rush completely, generating only the body/VFX/audio assets it proves necessary.~~ Completed with code-native spectral VFX and a temporary reused technique cue.
-5. Build Consecutive Thrust and validate multi-hit feedback.
+4. ~~Build Piercing Rush completely, generating only the body/VFX/audio assets it proves necessary.~~ Completed with a six-frame effect-only atlas and dedicated CC0 cues.
+5. ~~Build Consecutive Thrust and validate multi-hit feedback.~~ Completed for F9 testing with approved-Opaw action poses, effect-only VFX, seven contact windows, weapon scaling, Light/Elite/Boss crowd-control resistance, final-hit emphasis, and focused smoke coverage.
 6. Approve and build the ground-targeted third skill.
 7. Return to Eira's level-eligible free awakening flow using the finished skill definitions.
 8. Design the ultimate separately after the ordinary Warrior kit feels coherent.

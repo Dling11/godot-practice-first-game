@@ -10,3 +10,4 @@ acceleration = 520.0
 attack_range = 36.0
 experience_reward = 15
 coin_reward = 3
+crowd_control_tier = 0

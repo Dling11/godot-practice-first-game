@@ -21,8 +21,8 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 ### KI-005 - Skill awakening, expanded equipment balance, and disk persistence remain incomplete
 
 - **Status:** Open
-- **Impact:** Ashwood/Iron ownership, one 18-coin Orren purchase, class-gated equip commands, and defeat/scene retention now work in memory, but closing the application loses them. Drops, selling, armor/stat aggregation, higher tiers, authored Eira awakening, and slots 2-4 content remain incomplete.
-- **Planned resolution:** Implement Eira's free level-eligibility awakening next, then approve a versioned disk profile and expand acquisition/balance only with authored enemies and content.
+- **Impact:** Ashwood/Iron ownership, one 18-coin Orren purchase, class-gated equip commands, and defeat/scene retention now work in memory, but closing the application loses them. Consecutive Thrust is complete only in F9's debug test loadout; normal Eira awakening, slots 3-4, drops, selling, armor/stat aggregation, higher tiers, and disk persistence remain incomplete.
+- **Planned resolution:** Implement Eira's free level-eligibility awakening for Consecutive Thrust next, then approve a versioned disk profile and expand acquisition/balance only with authored enemies and content.
 - **Workaround:** Treat Ashwood as the permanent fallback and Iron as the complete beginner shop slice. Do not expose legacy/high-tier previews, sell skills, or claim session ownership is a disk save.
 
 ### KI-006 - Title audio settings are session-only
@@ -39,19 +39,12 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 - **Planned resolution:** Approve the first versioned disk-profile boundary, then author the Thornbound Warden, Cinder Sigil, and Ashen Pilgrimage before enabling Route II.
 - **Workaround:** Forgotten Grove remains the only playable portal-selected route. Future routes honestly display their first unmet requirement and remain sealed even if test code satisfies their requirement data.
 
-### KI-008 - Expeditions have no voluntary return action
-
-- **Status:** Open
-- **Impact:** After entering Stage 1, the player must complete the current Stage 1-to-Stage-2 route or restart after defeat before returning to Sanctuary.
-- **Planned resolution:** Add a confirmed `Abandon Expedition / Return to Sanctuary` pause-menu action after defining when it is allowed and whether current run XP/coins are retained.
-- **Workaround:** Complete Stage 2 to use its existing Sanctuary return portal.
-
 ### KI-009 - Ground-targeted skills and longer encounter pacing are not implemented
 
 - **Status:** Open
-- **Impact:** Piercing Rush now proves immediate-direction keyboard/controller/click activation, weapon scaling, cast movement, a 98-pixel central lance, dedicated charge/thrust/impact audio, and a six-frame oversized spectral presentation, but no ground-target cursor/preview exists, slots 2-4 remain sealed, and the two expeditions are short with few reinforcement waves.
-- **Planned resolution:** Feel-test Piercing Rush first, then measure kill time, clear duration, skill uptime, and crowd readability before adding authored reinforcement waves and mixed roles. Build the reusable ground-target confirmation flow before the first skill that actually requires it.
-- **Workaround:** Use F9 in a debug build to compare Ashwood/Iron quickly. Treat ground targeting, Consecutive Thrust, later skills, and expanded encounters as unimplemented.
+- **Impact:** Piercing Rush and F9-only Consecutive Thrust prove immediate-direction keyboard/controller/click activation, weapon scaling, cast direction locking, one moving lance and one seven-window stationary rapid flurry, dedicated combat audio, exaggerated effect-only presentation, and Light/Elite/Boss crowd-control resistance. No ground-target cursor/preview exists; normal progression still seals Skill 2 until Eira's future ritual, slots 3-4 remain unimplemented, and the two expeditions are short with few reinforcement waves.
+- **Planned resolution:** Feel-test both authored techniques, then measure kill time, clear duration, skill uptime, and crowd readability before adding authored reinforcement waves and mixed roles. Build the reusable ground-target confirmation flow before the first skill that actually requires it.
+- **Workaround:** Use F9 in a debug build to compare Ashwood/Iron and both completed Warrior skills quickly. Treat ground targeting, normal Skill 2 awakening, later skills, and expanded encounters as unimplemented.
 
 ## Current Bugs
 

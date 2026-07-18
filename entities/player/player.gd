@@ -9,6 +9,7 @@ signal interaction_started
 signal interaction_finished
 signal defeated
 signal testing_preset_applied(level: int, coins: int)
+signal skill_loadout_changed
 
 const PlayerInputSourceScript = preload("res://entities/player/components/player_input_source.gd")
 const PlayerMovementComponentScript = preload("res://entities/player/components/player_movement_component.gd")
@@ -20,6 +21,7 @@ const AbilityComponentScript = preload("res://gameplay/abilities/ability_compone
 @export var character_id: StringName = &"opaw"
 @export var character_class_id: StringName = &"warrior"
 @export var skill_loadout: SkillLoadoutDefinition
+@export var debug_test_skill_loadout: SkillLoadoutDefinition
 @export var weapon_catalog: WeaponCatalogDefinition
 
 @onready var input_source: PlayerInputSourceScript = %InputSource
@@ -27,6 +29,7 @@ const AbilityComponentScript = preload("res://gameplay/abilities/ability_compone
 @onready var attack_component: MeleeAttackComponentScript = %MeleeAttackComponent
 @onready var evade_component: EvadeComponentScript = %EvadeComponent
 @onready var ability_1_component: AbilityComponentScript = %Ability1Component
+@onready var ability_2_component: AbilityComponentScript = %Ability2Component
 @onready var health_component: HealthComponent = %HealthComponent
 @onready var progression_component: PlayerProgressionComponent = %ProgressionComponent
 @onready var weapon_visual: PlayerWeaponVisual = $VisualRoot/WeaponVisual
@@ -42,6 +45,7 @@ func _ready() -> void:
 	health_component.died.connect(_on_died)
 	evade_component.phase_changed.connect(_on_evade_phase_changed)
 	ability_1_component.ability_finished.connect(_restore_ability_presentation_facing)
+	ability_2_component.ability_finished.connect(_restore_ability_presentation_facing)
 	_apply_inventory_weapon()
 	facing_changed.emit(facing_direction)
 
@@ -55,12 +59,15 @@ func _physics_process(delta: float) -> void:
 		request_evade(evade_direction)
 	if input_source.is_ability_1_just_pressed():
 		request_ability_1()
+	if input_source.is_ability_2_just_pressed():
+		request_ability(2)
 
 	if evade_component.is_dashing():
 		velocity = evade_component.get_dash_velocity()
-	elif ability_1_component.is_casting():
-		if ability_1_component.has_active_movement():
-			velocity = ability_1_component.get_active_velocity()
+	elif is_any_ability_casting():
+		var active_ability := get_active_ability_component()
+		if active_ability != null and active_ability.has_active_movement():
+			velocity = active_ability.get_active_velocity()
 		else:
 			velocity = movement_component.calculate_velocity(velocity, Vector2.ZERO, delta)
 	else:
@@ -68,7 +75,7 @@ func _physics_process(delta: float) -> void:
 	var is_moving := (
 		not move_direction.is_zero_approx()
 		and not evade_component.is_dashing()
-		and not ability_1_component.is_casting()
+		and not is_any_ability_casting()
 	)
 	if is_moving != _was_moving:
 		_was_moving = is_moving
@@ -87,6 +94,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_action_pressed("debug_max_progression"):
 		return
 	if progression_component.apply_debug_testing_preset():
+		_unlock_debug_test_equipment()
+		_enable_debug_test_loadout()
 		get_viewport().set_input_as_handled()
 		testing_preset_applied.emit(
 			progression_component.level,
@@ -97,7 +106,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func request_primary_attack() -> bool:
 	if (
 		is_defeated
-		or ability_1_component.is_casting()
+		or is_any_ability_casting()
 		or attack_component.phase != attack_component.Phase.IDLE
 	):
 		return false
@@ -119,7 +128,7 @@ func request_evade(direction: Vector2) -> bool:
 	if (
 		is_defeated
 		or attack_component.phase != attack_component.Phase.IDLE
-		or ability_1_component.is_casting()
+		or is_any_ability_casting()
 	):
 		return false
 	return evade_component.request_evade(direction)
@@ -156,7 +165,7 @@ func set_weapon_definition(next_weapon: WeaponDefinition) -> bool:
 		or next_weapon.world_texture == null
 		or is_defeated
 		or attack_component.phase != attack_component.Phase.IDLE
-		or ability_1_component.is_casting()
+		or is_any_ability_casting()
 		or evade_component.is_dashing()
 	):
 		return false
@@ -233,6 +242,17 @@ func get_ability_component_for_slot(slot_number: int) -> AbilityComponent:
 	return null
 
 
+func get_active_ability_component() -> AbilityComponent:
+	for component in [ability_1_component, ability_2_component]:
+		if component != null and component.is_casting():
+			return component
+	return null
+
+
+func is_any_ability_casting() -> bool:
+	return get_active_ability_component() != null
+
+
 func _set_facing_direction(direction: Vector2) -> void:
 	if direction.is_zero_approx():
 		return
@@ -269,6 +289,28 @@ func _restore_ability_presentation_facing() -> void:
 	facing_changed.emit(facing_direction)
 
 
+func _enable_debug_test_loadout() -> void:
+	## F9 previews every fully authored test skill. The immutable normal loadout
+	## remains sealed until Eira's future awakening flow owns normal unlocks.
+	if debug_test_skill_loadout == null or skill_loadout == debug_test_skill_loadout:
+		return
+	skill_loadout = debug_test_skill_loadout
+	skill_loadout_changed.emit()
+
+
+func _unlock_debug_test_equipment() -> void:
+	## Debug F9 makes every already-authored compatible weapon testable without
+	## pretending that normal Orren purchases or future loot were completed.
+	if weapon_catalog == null or not weapon_catalog.has_valid_layout():
+		return
+	var inventory := get_node_or_null("/root/WeaponInventory")
+	if inventory == null:
+		return
+	for item: EquipmentDefinition in weapon_catalog.weapons:
+		if item != null and item.is_compatible_with(character_class_id):
+			inventory.acquire_weapon(item)
+
+
 func _on_died() -> void:
 	if is_defeated:
 		return
@@ -278,5 +320,6 @@ func _on_died() -> void:
 	attack_component.cancel_attack()
 	evade_component.cancel_evade()
 	ability_1_component.cancel_cast()
+	ability_2_component.cancel_cast()
 	set_physics_process(false)
 	defeated.emit()

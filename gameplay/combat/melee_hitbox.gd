@@ -7,6 +7,7 @@ var _damage: float
 var _direction := Vector2.RIGHT
 var _source: Node
 var _knockback_strength := 0.0
+var _stagger_seconds := 0.0
 var _hit_targets: Dictionary = {}
 var _enabled := false
 
@@ -28,12 +29,14 @@ func activate(
 	damage: float,
 	source: Node,
 	direction: Vector2,
-	knockback_strength := 0.0
+	knockback_strength := 0.0,
+	stagger_seconds := 0.0
 ) -> void:
 	_damage = damage
 	_source = source
 	_direction = direction.normalized()
 	_knockback_strength = maxf(knockback_strength, 0.0)
+	_stagger_seconds = maxf(stagger_seconds, 0.0)
 	_hit_targets.clear()
 	_set_enabled(true)
 	set_physics_process(true)
@@ -63,6 +66,12 @@ func _try_hit(area: Area2D) -> void:
 	if _hit_targets.has(hurtbox):
 		return
 	_hit_targets[hurtbox] = true
-	var info := DamageInfo.new(_damage, _source, _direction, _knockback_strength)
+	var info := DamageInfo.new(
+		_damage,
+		_source,
+		_direction,
+		_knockback_strength,
+		_stagger_seconds
+	)
 	if hurtbox.receive_hit(info):
 		hit_landed.emit(hurtbox, info)

@@ -16,6 +16,7 @@ const HITSTOP_SECONDS := 0.045
 @export var hit_burst_scene: PackedScene
 @export var sword_hit_sound: AudioStream
 @export var ability_hit_sound: AudioStream
+@export var consecutive_final_hit_sound: AudioStream
 @export var player_hurt_sound: AudioStream
 
 var _camera_base_offset := Vector2.ZERO
@@ -39,6 +40,7 @@ func _ready() -> void:
 	_hit_flash_material.set_shader_parameter("flash_amount", 1.0)
 	player.attack_component.hit_landed.connect(_on_player_hit_landed)
 	player.ability_1_component.hit_landed.connect(_on_player_ability_hit_landed)
+	player.ability_2_component.hit_landed.connect(_on_player_ability_hit_landed)
 	player.health_component.damaged.connect(_on_player_damaged)
 
 
@@ -50,22 +52,41 @@ func _on_player_hit_landed(target: HurtboxComponent, info: DamageInfo) -> void:
 
 
 func _on_player_ability_hit_landed(target: HurtboxComponent, info: DamageInfo) -> void:
+	var active_ability := player.get_active_ability_component()
+	var is_consecutive_thrust := (
+		active_ability != null
+		and active_ability.definition != null
+		and active_ability.definition.ability_id == &"consecutive_thrust"
+	)
+	var is_final_consecutive_hit := is_consecutive_thrust and active_ability.is_current_strike_final()
+	var consecutive_strike_index := active_ability.get_current_strike_index() if is_consecutive_thrust else -1
 	## One thrust can land on several enemies in the same physics tick. Preserve
 	## each target's flash/number/burst, but coalesce shared camera, hitstop, and
 	## audio work so a clustered hit does not repeatedly rebuild those effects.
 	var is_first_impact_this_frame := Engine.get_physics_frames() != _last_ability_impact_physics_frame
 	if is_first_impact_this_frame:
 		_last_ability_impact_physics_frame = Engine.get_physics_frames()
+	if is_consecutive_thrust and not is_final_consecutive_hit:
+		## A rapid flurry can land seven contacts in under a second. Its small hits
+		## deliberately avoid seven burst instances, flash timers, camera pulses, and
+		## hitstops; every other strike keeps a readable damage tick instead.
+		if consecutive_strike_index % 2 == 0:
+			_show_minor_consecutive_tick(target.global_position + Vector2(0.0, -22.0), info)
+			_flash_target(target)
+		return
 	_show_hit(
 		target.global_position + Vector2(0.0, -22.0),
 		info,
 		PLAYER_HIT_TINT,
-		2.5 if is_first_impact_this_frame else 0.0
+		2.8 if is_final_consecutive_hit else 2.5 if is_first_impact_this_frame else 0.0
 	)
 	_flash_target(target)
-	if is_first_impact_this_frame:
+	if is_first_impact_this_frame and (not is_consecutive_thrust or is_final_consecutive_hit):
 		_request_hitstop()
-		_play_sound_at(ability_hit_sound if ability_hit_sound != null else sword_hit_sound, target.global_position, 0.96)
+		if is_final_consecutive_hit:
+			_play_sound_at(consecutive_final_hit_sound, target.global_position, 1.0)
+		else:
+			_play_sound_at(ability_hit_sound if ability_hit_sound != null else sword_hit_sound, target.global_position, 0.96)
 
 
 func _on_player_damaged(info: DamageInfo) -> void:
@@ -85,6 +106,13 @@ func _show_hit(position: Vector2, info: DamageInfo, tint: Color, camera_strength
 	effects_parent.add_child(burst)
 	if camera_strength > 0.0:
 		_pulse_camera(camera_strength)
+
+
+func _show_minor_consecutive_tick(position: Vector2, info: DamageInfo) -> void:
+	var number := damage_number_scene.instantiate() as DamageNumber
+	number.global_position = position
+	number.configure(info.amount, PLAYER_HIT_TINT)
+	effects_parent.add_child(number)
 
 
 func _pulse_camera(strength: float) -> void:

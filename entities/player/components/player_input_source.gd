@@ -44,3 +44,10 @@ func is_ability_1_just_pressed() -> bool:
 		Input.is_action_just_pressed("player_skill_1")
 		or Input.is_action_just_pressed("player_ability_1")
 	)
+
+
+func is_ability_2_just_pressed() -> bool:
+	return (
+		Input.is_action_just_pressed("player_skill_2")
+		or Input.is_action_just_pressed("player_ability_2")
+	)

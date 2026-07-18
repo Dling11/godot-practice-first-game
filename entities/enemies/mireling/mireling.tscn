@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d0fi77o2m5rxa"]
+[gd_scene load_steps=15 format=3 uid="uid://d0fi77o2m5rxa"]
 
 [ext_resource type="Script" uid="uid://bpyjwhfealhuy" path="res://entities/enemies/mireling/mireling.gd" id="1"]
 [ext_resource type="Resource" path="res://data/enemies/mireling.tres" id="2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://4l3spvpulsnw" path="res://entities/player/presentation/player_aim_visual.gd" id="8"]
 [ext_resource type="PackedScene" path="res://ui/world/enemy_health_bar.tscn" id="9"]
 [ext_resource type="Script" path="res://gameplay/combat/knockback_component.gd" id="10"]
+[ext_resource type="Script" path="res://gameplay/combat/stagger_component.gd" id="15_stagger"]
 [ext_resource type="Script" path="res://entities/enemies/components/enemy_reward_component.gd" id="11"]
 [ext_resource type="Script" path="res://gameplay/audio/actor_action_sfx.gd" id="12"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/mireling_leap.wav" id="13"]
@@ -91,6 +92,11 @@ health_component = NodePath("../HealthComponent")
 [node name="KnockbackComponent" type="Node" parent="." node_paths=PackedStringArray("health_component")]
 unique_name_in_owner = true
 script = ExtResource("10")
+health_component = NodePath("../HealthComponent")
+
+[node name="StaggerComponent" type="Node" parent="." node_paths=PackedStringArray("health_component")]
+unique_name_in_owner = true
+script = ExtResource("15_stagger")
 health_component = NodePath("../HealthComponent")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=143966310 node_paths=PackedStringArray("health_component")]

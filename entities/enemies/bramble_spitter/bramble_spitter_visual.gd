@@ -47,6 +47,11 @@ func play_state(state: BrambleSpitter.State, duration: float) -> void:
 		BrambleSpitter.State.RECOVERY:
 			_hide_telegraph()
 			body.play("idle_" + _direction)
+		BrambleSpitter.State.STAGGER:
+			_hide_telegraph()
+			body.play("idle_" + _direction)
+			body.scale = Vector2(1.12, 0.84)
+			body.modulate = Color(1.0, 0.86, 0.58, 1.0)
 		BrambleSpitter.State.DEAD:
 			_hide_telegraph()
 			body.play("dead_" + _direction)

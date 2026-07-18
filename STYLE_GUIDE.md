@@ -87,6 +87,7 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - Make delta usage explicit and avoid frame-rate-dependent gameplay behavior.
 - Keep action buffers actor-owned, non-stacking, and bounded to explicit state transitions. Snapshot any required direction/target when input is accepted, expose phase-specific cancel methods instead of broadly resetting a state machine, and regression-test that damage and invulnerability never overlap unintentionally.
 - Ability data may declare activation mode, presentation style, authoritative shape, flat/weapon scaling, and phase movement. Snapshot resolved combat values at cast acceptance; actor controllers consume movement, hitboxes consume contacts/damage, and skill visuals/HUD/audio only observe those states.
+- Multi-strike abilities declare their ordered damage multipliers and final-versus-non-final knockback in immutable ability data. The ability runtime may reactivate a hitbox only at explicit strike windows; each body/VFX/sword/audio flourish must observe the emitted strike signal and never create a second contact or damage path.
 
 ## Error Handling
 

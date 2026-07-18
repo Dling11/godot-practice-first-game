@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=17 format=3]
 
 [ext_resource type="Script" path="res://entities/enemies/bramble_spitter/bramble_spitter.gd" id="1"]
 [ext_resource type="Resource" path="res://data/enemies/bramble_spitter.tres" id="2"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" path="res://entities/enemies/components/enemy_separation_component.tscn" id="7"]
 [ext_resource type="PackedScene" path="res://ui/world/enemy_health_bar.tscn" id="8"]
 [ext_resource type="Script" path="res://gameplay/combat/knockback_component.gd" id="9"]
+[ext_resource type="Script" path="res://gameplay/combat/stagger_component.gd" id="14_stagger"]
 [ext_resource type="PackedScene" path="res://gameplay/projectiles/bramble_seed_projectile.tscn" id="10"]
 [ext_resource type="Script" path="res://entities/enemies/components/enemy_reward_component.gd" id="11"]
 [ext_resource type="Script" path="res://gameplay/audio/actor_action_sfx.gd" id="12"]
@@ -133,6 +134,11 @@ health_component = NodePath("../HealthComponent")
 [node name="KnockbackComponent" type="Node" parent="." node_paths=PackedStringArray("health_component")]
 unique_name_in_owner = true
 script = ExtResource("9")
+health_component = NodePath("../HealthComponent")
+
+[node name="StaggerComponent" type="Node" parent="." node_paths=PackedStringArray("health_component")]
+unique_name_in_owner = true
+script = ExtResource("14_stagger")
 health_component = NodePath("../HealthComponent")
 
 [node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]

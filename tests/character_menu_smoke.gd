@@ -92,7 +92,20 @@ func _run() -> void:
 		_fail("Player does not expose the shared four-slot loadout definition.")
 		return
 	if player.skill_loadout.get_slot(1).ability != player.ability_1_component.definition:
-		_fail("Sweeping Cut gameplay and skill presentation do not share one definition.")
+		_fail("Piercing Rush gameplay and skill presentation do not share one definition.")
+		return
+	var f9_event := InputEventAction.new()
+	f9_event.action = "debug_max_progression"
+	f9_event.pressed = true
+	player._unhandled_input(f9_event)
+	await process_frame
+	if (
+		player.skill_loadout.get_slot(2).ability != player.ability_2_component.definition
+		or menu._skill_cards[1].slot_definition.ability != player.ability_2_component.definition
+		or not menu._skill_cards[1].text.contains("CONSECUTIVE THRUST")
+		or menu._equipment_cards.size() != player.weapon_catalog.weapons.size()
+	):
+		_fail("F9 did not refresh the paused character menu with the complete test skills and gear.")
 		return
 	if menu._skill_cards[0].get_node_or_null(menu._skill_cards[0].focus_neighbor_right) != menu._skill_cards[1]:
 		_fail("Character skill cards do not provide explicit directional focus navigation.")
@@ -132,7 +145,7 @@ func _run() -> void:
 	hud.free()
 
 	player.progression_component.grant_rewards(20, 3)
-	if menu.level_label.text != "LEVEL 2 / 10" or menu.coin_label.text != "3 COINS":
+	if menu.level_label.text != "LEVEL 10 / 10" or menu.coin_label.text != "1002 COINS":
 		_fail("Character menu did not react to progression changes.")
 		return
 

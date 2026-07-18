@@ -8,6 +8,7 @@ extends Node2D
 @export var weapon_sprite: Sprite2D
 @export var swing_trail: Line2D
 @export var ability_component: AbilityComponent
+@export var ability_2_component: AbilityComponent
 
 var _direction := &"down"
 var _action_direction := &"down"
@@ -19,6 +20,9 @@ var _base_weapon_scale := Vector2.ONE
 var _fallback_attack_style := SwordAttackStyleDefinition.new()
 var _normal_swing_sequence_index := -1
 var _normal_swing_variant_index := 0
+
+const CONSECUTIVE_THRUST_ANGLE_OFFSETS := [-0.14, 0.12, -0.10, 0.14, -0.11, 0.08, 0.0]
+const CONSECUTIVE_THRUST_EXTENSIONS := [2.0, 4.0, 3.0, 5.0, 4.0, 6.0, 12.0]
 
 
 func _ready() -> void:
@@ -67,15 +71,46 @@ func play_attack_phase(phase: int, duration_seconds: float) -> void:
 
 
 func play_ability_phase(phase: int, duration_seconds: float) -> void:
+	var active_ability := _get_casting_ability()
 	if (
-		ability_component != null
-		and ability_component.definition != null
-		and ability_component.definition.presentation_style
+		active_ability != null
+		and active_ability.definition != null
+		and active_ability.definition.presentation_style
 			== AbilityDefinition.PresentationStyle.THRUST
 	):
 		_play_thrust_phase(phase, duration_seconds)
 		return
 	_play_action_phase(phase, duration_seconds, true)
+
+
+func play_ability_strike(strike_index: int, strike_count: int, duration_seconds: float) -> void:
+	var active_ability := _get_casting_ability()
+	if (
+		active_ability == null
+		or active_ability.definition == null
+		or active_ability.definition.ability_id != &"consecutive_thrust"
+	):
+		return
+	var forward_rotation := Vector2.UP.angle_to(_direction_vector(_action_direction))
+	var flurry_index := clampi(strike_index, 0, CONSECUTIVE_THRUST_EXTENSIONS.size() - 1)
+	var extension: float = CONSECUTIVE_THRUST_EXTENSIONS[flurry_index]
+	var target: Vector2 = _thrust_anchor(_action_direction, true) + _direction_vector(_action_direction) * extension
+	_tween_pose(
+		target,
+		forward_rotation + float(CONSECUTIVE_THRUST_ANGLE_OFFSETS[flurry_index]),
+		duration_seconds,
+		true
+	)
+	_play_strike_accent(duration_seconds)
+	if strike_index >= strike_count - 1:
+		weapon_sprite.modulate = Color(1.0, 0.91, 0.58, 1.0)
+
+
+func _get_casting_ability() -> AbilityComponent:
+	for component in [ability_component, ability_2_component]:
+		if component != null and component.is_casting():
+			return component
+	return null
 
 
 func resume_locomotion() -> void:
