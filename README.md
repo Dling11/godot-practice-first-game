@@ -137,17 +137,18 @@ The active prototype controls are:
 | Action | Keyboard/Mouse | Gamepad |
 |---|---|---|
 | Move | W/A/S/D | Left stick |
-| Aim/facing | Mouse | Right stick |
+| Combat facing | W/A/S/D movement direction; last direction is retained while standing | Left stick movement direction |
 | Primary attack: equipped sword | Left mouse | Right trigger |
 | Dodge | Space | South face button |
-| Skill 1: Sweeping Cut | 1 (Q legacy fallback) | Left shoulder |
+| Skill 1: Piercing Rush | 1, Q legacy fallback, or click its HUD slot | Left shoulder |
 | Skill slots 2-4 | 2 / 3 / 4 (reserved) | Reserved |
 | Open character / gear / skills | Tab or click the HUD satchel button | Not assigned |
 | Interact / enter portal | F | West face button |
 | Close / cancel modal | Escape or visible mouse button | UI Cancel |
 | Rise after defeat | R | North face button |
+| Debug test progression | F9 (debug builds: level 10 and 999 coins) | Not assigned |
 
-Movement, aim/facing, primary attack, dash, Sweeping Cut, portal interaction, and arena restart after defeat are active. Slots 2-4 are visibly sealed and currently do nothing. XP and coins survive portal transitions within the running game; defeat restart begins a new run.
+Movement, movement-owned facing, left-click primary attack, dash, Piercing Rush, portal interaction, and arena restart after defeat are active. Passive mouse motion no longer turns Opaw, and right mouse is currently unassigned. Pressing basic attack during dash movement queues one normal sword attack for the exact end of the dash; pressing it during dash recovery cancels that recovery into the same attack. Piercing Rush moves about 50 pixels along Opaw's facing, uses 135% equipped-weapon damage, and can be cast with `1`, Q, left shoulder, or its ready HUD slot. Sweeping Cut is preserved but unequipped. Slots 2-4 remain sealed. F9 provides a debug-build-only level-10/999-coin test state and does not create a disk save.
 
 In Sanctuary, approach Skillkeeper Eira or Armskeeper Orren and press F. To use the angel portal, walk around either side of the standalone fountain, cross the open courtyard, and ascend the portal's center stairs; its prompt appears only at the doorway threshold. The character surface opens from physical Tab or the clickable top-left satchel button. Dialogue and menu controls support mouse click or arrow-key focus plus Enter; Escape cancels the active modal, and the character surface also has a top-right close button. Its Gear tab lists owned weapons; clicking a compatible sword equips it immediately. Ashwood is Opaw's permanent fallback, while Orren sells the Warrior-only Iron Sword for 18 coins. Skills are never sold: future level-eligible skills will be awakened through Eira. The portal builds its routes from expedition data: Forgotten Grove opens after Sanctuary awakening, while later routes display real unmet level/story/boss/discovery/key-item requirements and remain sealed until their scenes exist.
 
@@ -157,12 +158,15 @@ Run the current headless movement smoke test with:
 
 ```powershell
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/player_movement_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/player_control_scheme_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/dash_attack_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/melee_combat_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/player_evade_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/forsaken_thrall_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/player_defeat_flow_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/character_animation_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/opaw_model_backup_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/piercing_rush_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/sweeping_cut_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/player_progression_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/run_session_progression_smoke.gd'

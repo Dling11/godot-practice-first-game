@@ -48,12 +48,16 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 - Rebuilt Sanctuary's skill/equipment service corner around compact Opaw-scale Eira and Orren sprites, a complete spirit-study lodge, arms workshop, and body-free weapon cart; archived superseded service art/scenes, Awakened legacy runtime files, and rejected Opaw experiments outside Godot while retaining the supported Wayfarer rollback.
 - Recentered Sanctuary's portal/fountain pavement as a paired avenue, snapped both service doors to compact one-cell approaches, grounded Orren's cart on a bounded bay, and preserved garden breaks instead of expanding the route into a gray plaza.
 - Established the isekai/uncaring-gods premise and future switchable character-versus-class boundary in a canonical story bible; added versioned in-memory story memory plus data-driven expedition definitions that combine level, story, boss, discovery, and key-item requirements without opening unbuilt routes.
+- Replaced passive mouse-facing with movement-owned four-way combat facing, retained left mouse/right trigger for basic attack, added a safe dash-to-normal-attack buffer/recovery cancel, and added a debug-build-only F9 level-10/999-coin testing preset with HUD confirmation and run-state synchronization.
+- Equipped Piercing Rush as Opaw's clickable immediate-direction Skill 1 with collision-limited cast movement, a narrow definition-owned path hitbox, 135% snapshotted weapon scaling across Ashwood/Iron, white-gold spectral thrust presentation, cooldown-safe HUD activation, and preserved unequipped Sweeping Cut content.
+- Replaced Piercing Rush's provisional drawn beam with a generated six-frame effect-only atlas: charge, ignition, long lance, roughly 160-pixel peak plume, shock-ring impact, and decay now animate independently from Opaw and the equipped sword while the narrow gameplay hitbox remains unchanged.
 
 Detailed completion history remains in `CHANGELOG.md`.
 
 ## In Progress
 
-- Review the provisional movement-facing/right-click control redesign, reusable ground-targeting flow, weapon-scaled Warrior skills, and debug testing preset recorded in `docs/design/opaw-combat-controls-and-skills-proposal.md` before changing runtime controls or generating skill-specific animation.
+- Feel-test Piercing Rush's narrow hit path, roughly 50-pixel collision-limited movement, thrusting detached sword, oversized six-frame white/blue/gold plume and impact readability, 135% Ashwood/Iron scaling, 3-second cooldown, click/`1` activation, and reused technique SFX at 960x540.
+- Measure clear time, kill time, skill uptime, and crowd readability with Piercing Rush before extending the short expeditions with authored reinforcement waves and mixed enemy roles.
 - Feel-test the Ashwood Blade's wider anticipation-to-impact arc, faster committed sweep, forward extension, denser white-gold trail, 0.10-second enemy flash, and white-hot impact core.
 
 - Decide the exact reveal of Opaw's former-life death, the first full story-act structure, and release platform priorities.
@@ -63,7 +67,7 @@ Detailed completion history remains in `CHANGELOG.md`.
 - Feel-test vitality readability, defeat delay, and restart controls.
 - Feel-test the 960x540 zoom, smaller HUD, Opaw's compact armless silhouette and stable action-owned body scale, serious eyes/scarf, tiny-foot grounding, four-frame walk, attack/dash timing, detached weapon orbit, corrected shadows/collision, canopy occlusion, and 16-pixel Thrall clearance.
 - Feel-test Mireling pressure, stage counts, spawn pacing, camera travel, and landmark layout.
-- Feel-test Sweeping Cut wind-up, wider arc, 20 damage, spacing pushback, recovery risk, 2.5-second cooldown, arc readability, and centered slot-1 HUD placement.
+- Keep preserved Sweeping Cut's 20 damage, wide arc, 90 pushback, phases, and cooldown regression-safe while it remains unequipped.
 - Feel-test Stage 2 arrival pacing, grove layout/navigation, Wave 1 warm-up, Wave 2 Spitter readability, clear-gated return portal, and restart behavior.
 - Feel-test XP/coin pacing, HUD placement, and the forest ambient-music volume.
 - Feel-test normal sword, Sweeping Cut, and incoming-damage feedback for readability and appropriate camera motion.

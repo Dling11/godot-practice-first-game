@@ -7,6 +7,7 @@ extends Node2D
 @export var weapon: WeaponDefinition
 @export var weapon_sprite: Sprite2D
 @export var swing_trail: Line2D
+@export var ability_component: AbilityComponent
 
 var _direction := &"down"
 var _action_direction := &"down"
@@ -66,6 +67,14 @@ func play_attack_phase(phase: int, duration_seconds: float) -> void:
 
 
 func play_ability_phase(phase: int, duration_seconds: float) -> void:
+	if (
+		ability_component != null
+		and ability_component.definition != null
+		and ability_component.definition.presentation_style
+			== AbilityDefinition.PresentationStyle.THRUST
+	):
+		_play_thrust_phase(phase, duration_seconds)
+		return
 	_play_action_phase(phase, duration_seconds, true)
 
 
@@ -143,6 +152,47 @@ func _play_action_phase(phase: int, duration_seconds: float, is_ability: bool) -
 		MeleeAttackComponent.Phase.RECOVERY:
 			var idle: Transform2D = _idle_transform(_action_direction)
 			_tween_pose(idle.origin, idle.get_rotation(), duration_seconds, false)
+
+
+func _play_thrust_phase(phase: int, duration_seconds: float) -> void:
+	if weapon_sprite == null or not visible:
+		return
+	if phase == AbilityComponent.Phase.WIND_UP:
+		_action_locked = true
+		_action_direction = _direction
+	_set_depth(_action_direction)
+	_hide_swing_trail()
+	var forward_rotation := Vector2.UP.angle_to(_direction_vector(_action_direction))
+	match phase:
+		AbilityComponent.Phase.WIND_UP:
+			_tween_pose(
+				_thrust_anchor(_action_direction, false),
+				forward_rotation,
+				duration_seconds,
+				false
+			)
+		AbilityComponent.Phase.ACTIVE:
+			_tween_pose(
+				_thrust_anchor(_action_direction, true),
+				forward_rotation,
+				duration_seconds,
+				true
+			)
+			_play_strike_accent(duration_seconds)
+		AbilityComponent.Phase.RECOVERY:
+			var idle := _idle_transform(_action_direction)
+			_tween_pose(idle.origin, idle.get_rotation(), duration_seconds, false)
+
+
+func _thrust_anchor(direction: StringName, is_active: bool) -> Vector2:
+	match direction:
+		&"left":
+			return Vector2(-17.0, -9.0) if is_active else Vector2(-7.0, -9.0)
+		&"right":
+			return Vector2(17.0, -9.0) if is_active else Vector2(7.0, -9.0)
+		&"up":
+			return Vector2(-2.0, -19.0) if is_active else Vector2(-2.0, -8.0)
+	return Vector2(2.0, 1.0) if is_active else Vector2(2.0, -12.0)
 
 
 func _apply_idle_pose() -> void:

@@ -9,6 +9,7 @@ const ICON_SIZES := {
 	"res://assets/ui/icons/actions/icon_action_primary_attack_24x24.png": Vector2i(24, 24),
 	"res://assets/ui/icons/actions/icon_action_dash_24x24.png": Vector2i(24, 24),
 	"res://assets/ui/icons/skills/icon_skill_sweeping_cut_24x24.png": Vector2i(24, 24),
+	"res://assets/ui/icons/skills/icon_skill_piercing_rush_24x24.png": Vector2i(24, 24),
 	"res://assets/ui/icons/economy/icon_currency_coin_16x16.png": Vector2i(16, 16),
 	"res://assets/ui/icons/status/icon_status_health_16x16.png": Vector2i(16, 16),
 	"res://assets/ui/icons/status/icon_status_experience_16x16.png": Vector2i(16, 16),

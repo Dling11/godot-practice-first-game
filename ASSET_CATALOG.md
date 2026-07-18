@@ -23,6 +23,7 @@ Canonical IDs use `<domain>_<identity>_<action-or-purpose>`. Runtime filenames u
 char_opaw_walk
 char_forsaken_thrall_claw_attack
 icon_skill_sweeping_cut
+icon_skill_piercing_rush
 ui_panel_dark
 tile_forest_ground_bright
 prop_sanctuary_fountain
@@ -178,6 +179,9 @@ Current UI visuals combine the approved reusable base theme and named pixel icon
 | `fx_summon` | `gameplay/encounters/summon_effect.tscn` | `active_resource` | Enemy materialization presentation. |
 | `fx_hit_burst` | `gameplay/presentation/hit_burst.tscn` | `active_resource` | Accepted-hit pixel burst. |
 | `fx_bramble_seed_impact` | `gameplay/projectiles/bramble_seed_impact.tscn` | `active_resource` | Seed collision presentation. |
+| `fx_opaw_piercing_rush` | `assets/skills/opaw/warrior/piercing_rush/opaw_piercing_rush_vfx_sheet_192x192.png` | `active_runtime` | Six 192x192 cells in a 3x2 atlas; right-facing charge, ignition, lance, peak plume, shock ring, and decay frames rotated by presentation. |
+| `fx_opaw_piercing_rush_source` | `art_source/generated/skills/opaw/piercing_rush/opaw_piercing_rush_vfx_source_v1.png` | `source` | 1536x1024 generated 3x2 chroma board preserved outside runtime loading. |
+| `fx_opaw_piercing_rush_clean` | `art_source/generated/skills/opaw/piercing_rush/opaw_piercing_rush_vfx_clean_v1.png` | `intermediate` | 1536x1024 alpha-clean source consumed by `tools/process_piercing_rush_vfx.gd`. |
 
 ### Reusable Theme and Icon Kit
 
@@ -187,6 +191,7 @@ Current UI visuals combine the approved reusable base theme and named pixel icon
 | `icon_action_primary_attack` | `assets/ui/icons/actions/icon_action_primary_attack_24x24.png` | `active_runtime` | Primary melee/Ashwood Blade action symbol. |
 | `icon_action_dash` | `assets/ui/icons/actions/icon_action_dash_24x24.png` | `active_runtime` | Supernatural dash symbol. |
 | `icon_skill_sweeping_cut` | `assets/ui/icons/skills/icon_skill_sweeping_cut_24x24.png` | `active_runtime` | Wide sword-arc skill symbol. |
+| `icon_skill_piercing_rush` | `assets/ui/icons/skills/icon_skill_piercing_rush_24x24.png` | `active_runtime` | White spirit-thrust symbol for Opaw's equipped Skill 1. |
 | `icon_currency_coin` | `assets/ui/icons/economy/icon_currency_coin_16x16.png` | `active_runtime` | Run coin readout and future shop currency. |
 | `icon_status_health` | `assets/ui/icons/status/icon_status_health_16x16.png` | `active_runtime` | Player vitality symbol. |
 | `icon_status_experience` | `assets/ui/icons/status/icon_status_experience_16x16.png` | `active_runtime` | XP and level-progress symbol. |

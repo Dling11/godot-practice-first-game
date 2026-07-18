@@ -46,6 +46,22 @@ func is_dashing() -> bool:
 	return phase == Phase.DASHING
 
 
+func is_recovering() -> bool:
+	return phase == Phase.RECOVERY
+
+
+func cancel_recovery() -> bool:
+	## Basic attacks may cancel only the vulnerable recovery window. Keeping
+	## active-dash cancellation unavailable preserves distance and i-frame rules.
+	if phase != Phase.RECOVERY:
+		return false
+	phase = Phase.READY
+	_phase_time_remaining = 0.0
+	set_physics_process(false)
+	evade_finished.emit()
+	return true
+
+
 func cancel_evade() -> void:
 	if phase == Phase.DASHING:
 		invulnerability_changed.emit(false)

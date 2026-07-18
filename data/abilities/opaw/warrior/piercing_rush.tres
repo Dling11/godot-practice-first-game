@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="AbilityDefinition" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://data/abilities/ability_definition.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/skills/icon_skill_piercing_rush_24x24.png" id="2_icon"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_thrust"]
+points = PackedVector2Array(6, -6, 37, -6, 44, 0, 37, 6, 6, 6)
+
+[resource]
+script = ExtResource("1_script")
+ability_id = &"piercing_rush"
+display_name = "Piercing Rush"
+hud_name = "PIERCE RUSH"
+description = "Forward spirit thrust\n135% weapon damage • 50 px rush"
+icon = ExtResource("2_icon")
+activation_mode = 0
+presentation_style = 1
+hitbox_shape = SubResource("ConvexPolygonShape2D_thrust")
+weapon_damage_multiplier = 1.35
+knockback_strength = 78.0
+active_movement_speed = 280.0
+wind_up_seconds = 0.14
+active_seconds = 0.18
+recovery_seconds = 0.24
+cooldown_seconds = 3.0

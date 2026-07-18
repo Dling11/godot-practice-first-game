@@ -1,10 +1,20 @@
 class_name SweepingCutVisual
 extends Line2D
 
+@export var ability_component: AbilityComponent
+
 var _fade_tween: Tween
 
 
 func play_phase(phase: AbilityComponent.Phase, duration_seconds: float) -> void:
+	if (
+		ability_component == null
+		or ability_component.definition == null
+		or ability_component.definition.presentation_style
+			!= AbilityDefinition.PresentationStyle.SWEEP
+	):
+		hide_visual()
+		return
 	if _fade_tween != null and _fade_tween.is_valid():
 		_fade_tween.kill()
 	show()

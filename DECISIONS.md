@@ -53,6 +53,9 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 043 | Align Sanctuary services with compact characters and archive superseded runtime material | Eira/Orren art, service buildings, asset cleanup, supported rollbacks, or archive policy |
 | 044 | Use story memory for data-driven expedition access | Story flags, bosses, discoveries, key items, route requirements, lore memory, or future profile saves |
 | 045 | Use a class-gated session weapon inventory | Weapon ownership, shops, equip switching, class restrictions, default weapons, or session retention |
+| 046 | Buffer basic attack through dash recovery | Dash attacks, evade recovery, input buffering, cancel windows, or invulnerability overlap |
+| 047 | Equip weapon-scaled Piercing Rush and preserve Sweeping Cut | Skill 1, ability movement, weapon scaling, clickable skills, spectral thrusts, or alternate techniques |
+| 048 | Use an effect-only animation atlas for exaggerated Piercing Rush presentation | Piercing Rush VFX, oversized skill art, visual-versus-hitbox bounds, directional effect reuse, or sword-independent technique animation |
 
 ## New Decisions
 

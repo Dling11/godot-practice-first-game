@@ -85,6 +85,8 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - Use `_process()` only for frame-dependent presentation or logic that truly needs it.
 - Prefer signals, timers, animation callbacks, and explicit state transitions over permanent polling.
 - Make delta usage explicit and avoid frame-rate-dependent gameplay behavior.
+- Keep action buffers actor-owned, non-stacking, and bounded to explicit state transitions. Snapshot any required direction/target when input is accepted, expose phase-specific cancel methods instead of broadly resetting a state machine, and regression-test that damage and invulnerability never overlap unintentionally.
+- Ability data may declare activation mode, presentation style, authoritative shape, flat/weapon scaling, and phase movement. Snapshot resolved combat values at cast acceptance; actor controllers consume movement, hitboxes consume contacts/damage, and skill visuals/HUD/audio only observe those states.
 
 ## Error Handling
 
@@ -145,6 +147,7 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - Integrated weapon-and-hand art remains appropriate for non-modular actors whose silhouettes depend on it. Do not mix integrated and detached versions of the same active weapon without an explicit presentation owner.
 - Defeat presentation should use authored recoil/weaken/slump frames before a runtime fade. Keep active raster edges binary-alpha; translucency belongs to runtime modulation rather than partially transparent sprite fragments.
 - Active hard-pixel sheets must use binary alpha only. Semi-transparent edge fragments are prohibited.
+- Oversized ability VFX may use effect-only atlases with cells larger than the actor when that space preserves a peak plume, shock ring, or decay frame without shrinking it. Keep one stable local origin, rotate reusable directional effects through a presentation pivot, use a narrow bright core to communicate the real contact lane, and document all larger outer ribbons as cosmetic. Never bake Opaw, a hand, or one sword grade into a reusable Warrior-technique atlas.
 - Movement collision represents the foot footprint; hurtboxes represent the damageable body and remain separate shapes.
 - Palette reduction must use no dithering for the current style unless a later art-direction decision explicitly changes it.
 

@@ -43,6 +43,7 @@ func bind_player(player: Player) -> void:
 	progression.progression_changed.connect(_update_progression)
 	progression.coins_changed.connect(_update_coins)
 	progression.leveled_up.connect(_show_level_up)
+	player.testing_preset_applied.connect(_show_testing_preset)
 	_update_progression(progression.level, progression.total_experience, 0)
 	_update_coins(progression.coins)
 
@@ -67,9 +68,15 @@ func _build_skill_bar(player: Player) -> void:
 		skill_bar.add_child(slot)
 		slot.configure(definition)
 		slot.bind_ability(player.get_ability_component_for_slot(definition.slot_number))
+		slot.activation_requested.connect(_on_skill_activation_requested)
 		_skill_slots.append(slot)
 		if definition.slot_number == 1:
 			ability_panel = slot
+
+
+func _on_skill_activation_requested(slot_number: int) -> void:
+	if is_instance_valid(_player):
+		_player.request_ability(slot_number)
 
 
 func show_spawn_direction(global_position: Vector2) -> void:
@@ -131,6 +138,10 @@ func _update_coins(total_coins: int) -> void:
 
 func _show_level_up(new_level: int) -> void:
 	_show_announcement("LEVEL %d  •  NEW PATHS AWAKEN" % new_level, 2.0)
+
+
+func _show_testing_preset(level: int, coins: int) -> void:
+	_show_announcement("DEBUG TEST  •  LEVEL %d  •  %d COINS" % [level, coins], 2.0)
 
 
 func show_portal_sealed() -> void:

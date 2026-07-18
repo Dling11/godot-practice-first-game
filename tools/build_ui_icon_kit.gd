@@ -13,6 +13,7 @@ const ICONS := {
 	"res://assets/ui/icons/actions/icon_action_primary_attack_24x24.png": [24, "sword"],
 	"res://assets/ui/icons/actions/icon_action_dash_24x24.png": [24, "dash"],
 	"res://assets/ui/icons/skills/icon_skill_sweeping_cut_24x24.png": [24, "sweep"],
+	"res://assets/ui/icons/skills/icon_skill_piercing_rush_24x24.png": [24, "piercing_rush"],
 	"res://assets/ui/icons/economy/icon_currency_coin_16x16.png": [16, "coin"],
 	"res://assets/ui/icons/status/icon_status_health_16x16.png": [16, "health"],
 	"res://assets/ui/icons/status/icon_status_experience_16x16.png": [16, "experience"],
@@ -45,6 +46,7 @@ func _draw_icon(image: Image, icon_name: String) -> void:
 		"sword": _draw_sword(image)
 		"dash": _draw_dash(image)
 		"sweep": _draw_sweep(image)
+		"piercing_rush": _draw_piercing_rush(image)
 		"coin": _draw_coin(image)
 		"health": _draw_health(image)
 		"experience": _draw_experience(image)
@@ -73,6 +75,18 @@ func _draw_sweep(image: Image) -> void:
 		_fill_rect(image, Rect2i(point, Vector2i(2, 2)), RELIC_GOLD)
 	_draw_line(image, Vector2i(8, 19), Vector2i(17, 10), BONE_TEXT, 2)
 	_fill_rect(image, Rect2i(6, 18, 4, 3), MUTED_MOSS)
+
+
+func _draw_piercing_rush(image: Image) -> void:
+	# Narrow white spirit blade with gold rim and blue-gold speed fragments.
+	_draw_line(image, Vector2i(4, 12), Vector2i(19, 12), RELIC_GOLD, 4)
+	_draw_line(image, Vector2i(5, 12), Vector2i(20, 12), BONE_TEXT, 2)
+	_fill_rect(image, Rect2i(19, 10, 3, 5), BONE_TEXT)
+	_fill_rect(image, Rect2i(2, 10, 4, 5), MUTED_MOSS)
+	_draw_line(image, Vector2i(3, 6), Vector2i(11, 8), SPIRIT_BLUE, 1)
+	_draw_line(image, Vector2i(3, 18), Vector2i(11, 16), SPIRIT_BLUE, 1)
+	_fill_rect(image, Rect2i(14, 6, 2, 2), RELIC_GOLD)
+	_fill_rect(image, Rect2i(15, 17, 2, 2), RELIC_GOLD)
 
 
 func _draw_coin(image: Image) -> void:

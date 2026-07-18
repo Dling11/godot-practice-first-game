@@ -21,7 +21,7 @@ func _run() -> void:
 	var player := PlayerScene.instantiate() as Player
 	root.add_child(player)
 	var player_sfx := player.get_node("PlayerActionSfx") as PlayerActionSfx
-	if not _valid_sfx_player(player_sfx.sword_swing_player) or not _valid_sfx_player(player_sfx.sweeping_cut_player) or not _valid_sfx_player(player_sfx.dash_player):
+	if not _valid_sfx_player(player_sfx.sword_swing_player) or not _valid_sfx_player(player_sfx.ability_player) or not _valid_sfx_player(player_sfx.dash_player):
 		_fail("Player action SFX are not fully assigned to the SFX bus.")
 		return
 

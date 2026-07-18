@@ -16,8 +16,8 @@
 [ext_resource type="SpriteFrames" uid="uid://ckpod1suerfxq" path="res://assets/characters/playable/opaw/compact_armless/opaw_compact_armless_sprite_frames.tres" id="15_player_frames"]
 [ext_resource type="Script" uid="uid://q76dk4eb6285" path="res://entities/player/presentation/player_animation.gd" id="16_player_animation"]
 [ext_resource type="Script" uid="uid://cn8r3l6ef5evh" path="res://gameplay/abilities/ability_component.gd" id="17_ability"]
-[ext_resource type="Resource" uid="uid://bc2pol4ik4lxf" path="res://data/abilities/sweeping_cut.tres" id="18_sweep_data"]
-[ext_resource type="Script" uid="uid://dluv63hfr7xdh" path="res://entities/player/presentation/sweeping_cut_visual.gd" id="19_sweep_visual"]
+[ext_resource type="Resource" path="res://data/abilities/opaw/warrior/piercing_rush.tres" id="18_ability_data"]
+[ext_resource type="Script" path="res://gameplay/abilities/opaw/warrior/piercing_rush_visual.gd" id="19_ability_visual"]
 [ext_resource type="Script" uid="uid://y4q77uqmwwkr" path="res://entities/player/components/player_progression_component.gd" id="20_progression"]
 [ext_resource type="Resource" path="res://data/progression/opaw_path.tres" id="21_progression_data"]
 [ext_resource type="Script" uid="uid://b61awjvau5rtl" path="res://gameplay/audio/player_action_sfx.gd" id="22_player_sfx"]
@@ -27,6 +27,8 @@
 [ext_resource type="Resource" path="res://data/skills/opaw_starting_loadout.tres" id="26_loadout"]
 [ext_resource type="Resource" path="res://data/items/opaw_weapon_catalog.tres" id="27_weapon_catalog"]
 [ext_resource type="Script" uid="uid://bdrcc6co0unfp" path="res://entities/player/presentation/player_weapon_visual.gd" id="28_weapon_visual"]
+[ext_resource type="Script" uid="uid://dluv63hfr7xdh" path="res://entities/player/presentation/sweeping_cut_visual.gd" id="29_sweep_visual"]
+[ext_resource type="Texture2D" path="res://assets/skills/opaw/warrior/piercing_rush/opaw_piercing_rush_vfx_sheet_192x192.png" id="30_pierce_vfx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sword"]
 radius = 8.0
@@ -75,11 +77,12 @@ z_index = 1
 width = 2.0
 default_color = Color(0.94, 0.74, 0.32, 0.72)
 
-[node name="WeaponVisual" type="Node2D" parent="VisualRoot" unique_id=455917304 node_paths=PackedStringArray("weapon_sprite", "swing_trail")]
+[node name="WeaponVisual" type="Node2D" parent="VisualRoot" unique_id=455917304 node_paths=PackedStringArray("weapon_sprite", "swing_trail", "ability_component")]
 script = ExtResource("28_weapon_visual")
 weapon = ExtResource("7_sword_data")
 weapon_sprite = NodePath("Weapon")
 swing_trail = NodePath("../SwordSwingTrail")
+ability_component = NodePath("../../Ability1Component")
 
 [node name="Weapon" type="Sprite2D" parent="VisualRoot/WeaponVisual" unique_id=995404015]
 
@@ -109,7 +112,23 @@ script = ExtResource("6_hitbox")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AbilityPivot/AbilityHitbox" unique_id=1161930034]
 shape = SubResource("ConvexPolygonShape2D_sweep")
 
-[node name="SweepingCutVisual" type="Line2D" parent="AbilityPivot" unique_id=242255085]
+[node name="PiercingRushVisual" type="Node2D" parent="AbilityPivot" unique_id=242255085 node_paths=PackedStringArray("ability_component", "effect_sprite")]
+visible = false
+z_index = 8
+script = ExtResource("19_ability_visual")
+ability_component = NodePath("../../Ability1Component")
+effect_sprite = NodePath("EffectSprite")
+
+[node name="EffectSprite" type="Sprite2D" parent="AbilityPivot/PiercingRushVisual"]
+texture_filter = 1
+position = Vector2(0, -96)
+texture = ExtResource("30_pierce_vfx")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 192, 192)
+region_filter_clip_enabled = true
+
+[node name="SweepingCutVisual" type="Line2D" parent="AbilityPivot" node_paths=PackedStringArray("ability_component")]
 visible = false
 z_index = 8
 points = PackedVector2Array(14, -28, 29, -29, 42, -21, 48, 0, 42, 21, 29, 29, 14, 28)
@@ -118,7 +137,8 @@ default_color = Color(0.94, 0.88, 0.66, 0.9)
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
-script = ExtResource("19_sweep_visual")
+script = ExtResource("29_sweep_visual")
+ability_component = NodePath("../../Ability1Component")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=256904912]
 position = Vector2(0, -4)
@@ -143,11 +163,12 @@ unique_name_in_owner = true
 script = ExtResource("9_evade")
 definition = ExtResource("10_dash_data")
 
-[node name="Ability1Component" type="Node" parent="." unique_id=1997312539 node_paths=PackedStringArray("hitbox")]
+[node name="Ability1Component" type="Node" parent="." unique_id=1997312539 node_paths=PackedStringArray("hitbox", "collision_shape")]
 unique_name_in_owner = true
 script = ExtResource("17_ability")
-definition = ExtResource("18_sweep_data")
+definition = ExtResource("18_ability_data")
 hitbox = NodePath("../AbilityPivot/AbilityHitbox")
+collision_shape = NodePath("../AbilityPivot/AbilityHitbox/CollisionShape2D")
 
 [node name="ProgressionComponent" type="Node" parent="." unique_id=611931721]
 unique_name_in_owner = true
@@ -176,10 +197,10 @@ body_visual = NodePath("../VisualRoot/Body")
 script = ExtResource("14_state_visual")
 visual_root = NodePath("../VisualRoot")
 
-[node name="PlayerActionSfx" type="Node2D" parent="." unique_id=1478518642 node_paths=PackedStringArray("sword_swing_player", "sweeping_cut_player", "dash_player")]
+[node name="PlayerActionSfx" type="Node2D" parent="." unique_id=1478518642 node_paths=PackedStringArray("sword_swing_player", "ability_player", "dash_player")]
 script = ExtResource("22_player_sfx")
 sword_swing_player = NodePath("SwordSwing")
-sweeping_cut_player = NodePath("SweepingCut")
+ability_player = NodePath("WeaponTechnique")
 dash_player = NodePath("Dash")
 
 [node name="SwordSwing" type="AudioStreamPlayer2D" parent="PlayerActionSfx" unique_id=1524140265]
@@ -187,7 +208,7 @@ stream = ExtResource("23_sword_swing")
 volume_db = -7.0
 bus = &"SFX"
 
-[node name="SweepingCut" type="AudioStreamPlayer2D" parent="PlayerActionSfx" unique_id=714989272]
+[node name="WeaponTechnique" type="AudioStreamPlayer2D" parent="PlayerActionSfx" unique_id=714989272]
 stream = ExtResource("24_sweeping_cut")
 volume_db = -5.0
 bus = &"SFX"
@@ -230,9 +251,11 @@ horizontal_alignment = 1
 [connection signal="invulnerability_changed" from="EvadeComponent" to="DashVisual" method="set_invulnerable"]
 [connection signal="ability_finished" from="Ability1Component" to="VisualRoot/Body" method="resume_locomotion"]
 [connection signal="ability_finished" from="Ability1Component" to="VisualRoot/WeaponVisual" method="resume_locomotion"]
+[connection signal="ability_finished" from="Ability1Component" to="AbilityPivot/PiercingRushVisual" method="hide_visual"]
 [connection signal="ability_finished" from="Ability1Component" to="AbilityPivot/SweepingCutVisual" method="hide_visual"]
 [connection signal="phase_changed" from="Ability1Component" to="VisualRoot/Body" method="play_ability_phase"]
 [connection signal="phase_changed" from="Ability1Component" to="VisualRoot/WeaponVisual" method="play_ability_phase"]
+[connection signal="phase_changed" from="Ability1Component" to="AbilityPivot/PiercingRushVisual" method="play_phase"]
 [connection signal="phase_changed" from="Ability1Component" to="AbilityPivot/SweepingCutVisual" method="play_phase"]
 [connection signal="phase_changed" from="Ability1Component" to="PlayerActionSfx" method="play_ability_phase"]
 [connection signal="damage_blocked" from="HealthComponent" to="StateVisual" method="flash_blocked"]

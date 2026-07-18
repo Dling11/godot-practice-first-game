@@ -50,6 +50,21 @@ func spend_coins(amount: int) -> bool:
 	return true
 
 
+func apply_debug_testing_preset() -> bool:
+	if not OS.is_debug_build() or definition == null:
+		return false
+	var maximum_index := mini(definition.maximum_level - 1, definition.total_experience_by_level.size() - 1)
+	if maximum_index < 0:
+		return false
+	total_experience = definition.total_experience_by_level[maximum_index]
+	coins = 999
+	_recalculate_level()
+	_emit_progression_changed()
+	coins_changed.emit(coins)
+	_sync_run_session()
+	return true
+
+
 func experience_into_current_level() -> int:
 	return total_experience - definition.total_experience_by_level[level - 1]
 

@@ -1,5 +1,31 @@
 # Changelog
 
+## 2026-07-18 - Exaggerated Piercing Rush Animation
+
+- Replaced the provisional code-drawn thrust beam with a dedicated generated six-frame pixel-art sequence covering compressed charge, ignition, lance extension, an oversized roughly 160-pixel peak plume, shock-ring impact, and fading ribbons.
+- Kept the effect independent from Opaw's armless body and every sword texture so Ashwood, Iron, and future Warrior-compatible swords can reuse one presentation without duplicated character animation.
+- Added a deterministic processor that preserves the irregular peak source crop, downsamples with nearest-neighbor filtering, hardens alpha, and packs six 192x192 runtime cells; the generated chroma source and cleaned intermediate remain preserved under `art_source`.
+- Retained the narrow definition-owned contact shape, roughly 50-pixel movement, damage, pushback, cooldown, and phase timing. The larger white/blue/gold outer wings are cosmetic exaggeration around a tight readable core.
+- Verified Godot import and the focused Piercing Rush movement/scaling/click/hit smoke test after integration.
+
+## 2026-07-18 - Weapon-Scaled Piercing Rush Vertical Slice
+
+- Replaced equipped Skill 1 with Piercing Rush while preserving Sweeping Cut's data, old slot, arc visual, fixed damage/pushback, and regression coverage as unequipped reusable content.
+- Extended immutable ability data with activation/presentation modes, authoritative hitbox shapes, flat-plus-weapon damage scaling, and active movement speed; cast acceptance snapshots resolved damage while Player remains movement/collision authority.
+- Added collision-limited roughly 50-pixel thrust movement, 135% equipped-weapon damage (33.75 Ashwood / 43.2 Iron), 78 pushback, 0.14/0.18/0.24 cast phases, a 3-second cooldown, and no invulnerability.
+- Added a forward detached-sword pose plus a code-native white-gold spirit blade, blue/gold streaks, sparks, binary-alpha Piercing Rush icon, and a temporarily reused sharper-pitched weapon-technique cue.
+- Made equipped ready HUD skills clickable through a native overlay button that requests the actor command and disables during cooldown; sealed slots remain inert and ground targeting remains unimplemented.
+- Added focused coverage for movement/collision authority boundaries, scaling, hit deduplication, visual activation, click routing, cooldown, icon integrity, and preserved Sweeping Cut reuse.
+
+## 2026-07-18 - Movement-Facing Controls, Dash Attack Chain, and Debug Test Preset
+
+- Replaced passive pointer/right-stick combat facing with movement-owned four-way facing that preserves Opaw's last direction while standing.
+- Retained left mouse/right trigger for the basic sword chain, kept right mouse unassigned for a future reviewed action, and kept passive pointer movement from changing combat facing.
+- Added a one-input dash-to-attack chain: an attack during active dash movement waits for full distance and invulnerability to end, then cancels only the vulnerable recovery into the ordinary equipped-weapon attack; an attack during recovery cancels it immediately.
+- Added a debug-build-only F9 preset that authoritatively synchronizes level-cap XP and 999 coins through the current run, with a visible HUD confirmation and no disk persistence or skill awakening.
+- Recorded the proposed white-gold spectral skill-overlay strategy, full-value skill power budget, and measured reinforcement-wave approach without claiming those systems as implemented.
+- Added focused regression coverage for bindings, facing resolution/retention, safe dash-attack timing and deduplication, progression synchronization, and HUD feedback.
+
 ## 2026-07-18 - Class-Gated Weapon Inventory and Orren Shop
 
 - Added application-session owned weapons with per-character equipped IDs, permanent Ashwood fallback, scene/defeat continuity, class compatibility checks, and explicit new-journey reset without claiming disk persistence.

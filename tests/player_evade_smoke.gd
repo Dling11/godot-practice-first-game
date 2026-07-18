@@ -23,10 +23,6 @@ func _run() -> void:
 	if not evade_component.is_dashing() or not health_component.is_invulnerable:
 		_fail("Dash did not enter its invulnerable phase immediately.")
 		return
-	if player.request_primary_attack():
-		_fail("Attack was accepted during evade.")
-		return
-
 	var damage := DamageInfoScript.new(25.0, player, Vector2.LEFT)
 	if health_component.apply_damage(damage):
 		_fail("Damage was accepted during invulnerability.")

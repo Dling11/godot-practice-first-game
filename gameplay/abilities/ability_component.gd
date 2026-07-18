@@ -12,11 +12,13 @@ signal hit_landed(target: HurtboxComponent, info: DamageInfo)
 
 @export var definition: AbilityDefinition
 @export var hitbox: MeleeHitbox
+@export var collision_shape: CollisionShape2D
 
 var phase := Phase.IDLE
 var cooldown_remaining := 0.0
 var _phase_time_remaining := 0.0
 var _cast_direction := Vector2.RIGHT
+var _resolved_damage := 0.0
 
 
 func _ready() -> void:
@@ -33,16 +35,38 @@ func is_casting() -> bool:
 	return phase != Phase.IDLE
 
 
-func request_cast(direction: Vector2) -> bool:
-	if not is_ready() or definition == null or hitbox == null:
+func request_cast(direction: Vector2, equipped_weapon_damage := 0.0) -> bool:
+	if (
+		not is_ready()
+		or definition == null
+		or hitbox == null
+		or collision_shape == null
+		or definition.hitbox_shape == null
+	):
 		return false
 	_cast_direction = direction.normalized() if not direction.is_zero_approx() else Vector2.RIGHT
+	_resolved_damage = definition.resolve_damage(equipped_weapon_damage)
+	collision_shape.shape = definition.hitbox_shape
 	cooldown_remaining = definition.cooldown_seconds
 	ability_started.emit()
 	cooldown_started.emit(definition.cooldown_seconds)
 	_enter_phase(Phase.WIND_UP, definition.wind_up_seconds)
 	set_physics_process(true)
 	return true
+
+
+func get_active_velocity() -> Vector2:
+	if phase != Phase.ACTIVE or definition == null:
+		return Vector2.ZERO
+	return _cast_direction * definition.active_movement_speed
+
+
+func has_active_movement() -> bool:
+	return definition != null and definition.active_movement_speed > 0.0
+
+
+func get_resolved_damage() -> float:
+	return _resolved_damage
 
 
 func cancel_cast() -> void:
@@ -74,7 +98,7 @@ func _advance_phase() -> void:
 		Phase.WIND_UP:
 			_enter_phase(Phase.ACTIVE, definition.active_seconds)
 			hitbox.activate(
-				definition.damage,
+				_resolved_damage,
 				owner,
 				_cast_direction,
 				definition.knockback_strength

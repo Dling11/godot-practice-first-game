@@ -1,14 +1,14 @@
 # Opaw Combat Controls and Skills Proposal
 
 - **Date:** 2026-07-18
-- **Status:** Discussion; not implemented or accepted as final balance
+- **Status:** Movement-facing, left-click basic attack, dash-to-attack chaining, F9 testing, clickable immediate-direction activation, weapon scaling, and Piercing Rush are implemented. Ground targeting, later skill identities, exact future balance, and encounter pacing remain proposals.
 
 ## Player Direction
 
 - WASD/left-stick movement becomes Opaw's combat-facing authority.
 - Moving diagonally remains allowed, but four-direction art resolves facing from the dominant movement axis and retains the last non-zero cardinal direction while standing.
 - Ordinary mouse motion no longer rotates Opaw or redirects basic attacks.
-- Right mouse becomes basic attack. The current three-swing outward/reverse/finish sequence remains the basic sword chain.
+- Left mouse remains basic attack. The current three-swing outward/reverse/finish sequence remains the basic sword chain; right mouse is unassigned for a future reviewed action.
 - Mouse input remains fully available for UI, clickable HUD skills, and explicit ground-targeting modes.
 
 ## Reusable Skill Activation Modes
@@ -16,7 +16,7 @@
 Do not hard-code cursor behavior inside one skill. Each ability should declare one activation mode:
 
 1. **Immediate directional:** pressing the key or clicking the HUD slot casts along Opaw's current movement-facing direction.
-2. **Ground targeted:** pressing the key or clicking the HUD slot enters targeting, changes the cursor, and presents a range/area preview. Left click confirms a valid point. Escape or pressing the skill again cancels. Right-click cancellation may flow immediately into basic attack after feel testing.
+2. **Ground targeted:** pressing the key or clicking the HUD slot enters targeting, changes the cursor, and presents a range/area preview. Left click confirms a valid point. Escape, right click, or pressing the skill again cancels. Normal left-click attacks resume after targeting ends.
 3. **Self/area:** activates around Opaw without a target cursor.
 
 While a ground-targeted skill is pending, gameplay continues and Opaw may move. Damage, displacement, cooldown, and cast commitment begin only after a valid confirmation. A controller version should aim the preview with the right stick and confirm/cancel with explicit actions; passive right-stick aim must not silently override movement-facing basic attacks.
@@ -25,15 +25,15 @@ While a ground-targeted skill is pending, gameplay continues and Opaw may move. 
 
 ### Basic Attack — Balanced Sword Chain
 
-- Right-click.
+- Left-click.
 - Current three visual variants remain: outward slash, reverse return, extended finish.
 - Equipped sword owns authoritative base damage and knockback.
 
 ### Skill 1 — Piercing Rush
 
-- Immediate directional thrust-dash using current facing.
-- Opaw commits forward behind the sword, damages targets along the path, and ends with a sharp white thrust line and restrained impact stop.
-- This should be the first new vertical slice because it validates movement, collision, hit delivery, body pose, sword pose, VFX, SFX, and camera feedback together.
+- **Implemented:** immediate directional thrust-dash using current facing, triggered by `1`, legacy Q, left shoulder, or the ready HUD slot.
+- Opaw commits about 50 collision-limited pixels behind the sword, damages each target once along the narrow path for 135% snapshotted equipped-weapon damage, and uses 78 pushback without invulnerability.
+- The detached sword enters a forward thrust while a white-gold spirit blade, blue/gold streaks, sparks, and shared confirmed-hit feedback carry the presentation. The existing weapon-technique sound is reused temporarily until timing is approved.
 
 ### Skill 2 — Consecutive Thrust
 
@@ -52,9 +52,17 @@ While a ground-targeted skill is pending, gameplay continues and Opaw may move. 
 - Identity remains intentionally open.
 - It should receive the strongest unique anticipation, red Eira awakening ritual, musical/SFX accent, hit feedback, and screen presentation without sacrificing readable danger or dodge timing.
 
-Sweeping Cut should be preserved as a reusable learned technique or alternate loadout skill instead of deleting its tested code and assets. Whether it stays equipped during the transition is an approval choice.
+Sweeping Cut is preserved as a reusable learned technique/alternate loadout resource with its tested code, data, old slot, presentation, and fixed damage, but it is no longer equipped.
 
-## Damage Scaling Proposal
+## Spectral Skill Presentation Strategy
+
+- Opaw's equipped weapon remains the authoritative weapon throughout a technique. A skill does not secretly unequip it or switch weapon data.
+- A white-gold spectral blade may briefly overwhelm or replace the small world-sword silhouette at the strongest thrust frame. If the equipment sprite is hidden, it is hidden only for those presentation frames and returns before recovery ends.
+- Piercing Rush should read as Opaw driving a much longer spirit edge through the target: a narrow white thrust core, gold rim, short afterimages, and directional streak communicate power without changing the collision shape.
+- The body, hitbox, resolved weapon damage, and equipped item stay independent from the spectral overlay. The overlay never decides contacts or damage.
+- Stronger skills may grow the spirit silhouette, ground response, and finish impact, but enemy telegraphs and Opaw's facing must remain visible at 960x540.
+
+## Damage Scaling and Power Budget
 
 Move future weapon skills away from unrelated fixed damage. `AbilityDefinition` should support authoritative weapon scaling such as:
 
@@ -64,6 +72,12 @@ Move future weapon skills away from unrelated fixed damage. `AbilityDefinition` 
 - final-hit knockback and impact tier separate from cosmetic trail size.
 
 The cast snapshots the equipped weapon and resolved damage when the skill begins so changing equipment cannot alter an attack already in progress. UI may display the formula but never calculates it. Exact multipliers remain balance decisions after the motion feels correct.
+
+A skill's total power budget includes raw damage, hit count, area, stun or other control, mobility, defensive safety, commitment/recovery, cooldown, and any resource cost. Later slots should normally feel stronger overall, but slot number alone does not require every later technique to have the largest raw-damage number. A stun technique may trade some damage for control; a committed third skill should still have a clearly larger total payoff than a quick first skill. Balance should preserve the exciting motion and effect before considering reductions, while enemy health and encounter composition keep those tools from trivializing play.
+
+## Encounter Length and Enemy Pressure
+
+The current expeditions are acknowledged as short and lightly populated. Do not compensate by only inflating enemy health or dumping an unreadable horde onto one screen. With Piercing Rush now playable, measure time-to-kill, stage-clear duration, damage taken, crowd readability, and skill uptime, then extend encounters with authored reinforcement waves and mixed enemy roles. Stage 1 should still teach; Stage 2 should add ranged pressure; later elites and bosses should demand the stronger skill budget without becoming passive health sponges.
 
 ## Feedback and Theme
 
@@ -91,7 +105,7 @@ Reuse Opaw's stable body sheets and detached sword rig when the action remains r
 
 ## Development Testing Preset
 
-Add debug-build-only testing controls rather than changing normal progression:
+The implemented debug-build-only testing control changes test state without changing normal progression:
 
 - `F9`: set the current run to level 10 and 999 coins, with a visible debug confirmation.
 - A later debug action may awaken all authored test skills after real awakening authority exists.
@@ -99,10 +113,10 @@ Add debug-build-only testing controls rather than changing normal progression:
 
 ## Recommended Implementation Order
 
-1. Approve movement-facing, right-click basic attack, Sweeping Cut preservation, and provisional skill identities.
-2. Implement the control remap and debug testing preset with regression coverage.
-3. Implement reusable skill activation/targeting modes and clickable HUD skill buttons.
-4. Build Piercing Rush completely, generating only the body/VFX/audio assets it proves necessary.
+1. ~~Approve and implement movement-facing, left-click basic attack, dash-to-attack chaining, and the debug testing preset.~~ Completed on 2026-07-18; Piercing Rush now occupies Skill 1 and Sweeping Cut is preserved unequipped.
+2. Feel-test the completed control remap and debug preset in Sanctuary and both stages.
+3. Implement reusable skill activation modes and clickable HUD skill buttons. **Immediate-direction mode and clicking are complete; ground targeting remains open.**
+4. ~~Build Piercing Rush completely, generating only the body/VFX/audio assets it proves necessary.~~ Completed with code-native spectral VFX and a temporary reused technique cue.
 5. Build Consecutive Thrust and validate multi-hit feedback.
 6. Approve and build the ground-targeted third skill.
 7. Return to Eira's level-eligible free awakening flow using the finished skill definitions.

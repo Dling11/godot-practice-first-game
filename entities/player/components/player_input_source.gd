@@ -4,9 +4,6 @@ extends Node
 ## Translates local device input into player intent.
 ## Keeping this boundary separate lets another authority source replace it later.
 
-@export_range(0.0, 1.0, 0.01) var aim_deadzone: float = 0.25
-
-
 func get_move_direction() -> Vector2:
 	return Input.get_vector(
 		"player_move_left",
@@ -16,21 +13,22 @@ func get_move_direction() -> Vector2:
 	)
 
 
-func get_aim_direction(origin: Vector2, pointer_world_position: Vector2) -> Vector2:
-	var stick_direction := Input.get_vector(
-		"player_aim_left",
-		"player_aim_right",
-		"player_aim_up",
-		"player_aim_down"
-	)
-	if stick_direction.length() >= aim_deadzone:
-		return stick_direction.normalized()
-
-	var pointer_direction := pointer_world_position - origin
-	if pointer_direction.length_squared() > 16.0:
-		return pointer_direction.normalized()
-
-	return Vector2.ZERO
+func resolve_cardinal_facing(move_direction: Vector2, current_facing: Vector2) -> Vector2:
+	## Combat facing follows movement intent, never passive pointer position.
+	## Exact diagonal ties retain the matching current axis to avoid flicker.
+	if move_direction.is_zero_approx():
+		return current_facing
+	var horizontal := Vector2(signf(move_direction.x), 0.0)
+	var vertical := Vector2(0.0, signf(move_direction.y))
+	if absf(move_direction.x) > absf(move_direction.y):
+		return horizontal
+	if absf(move_direction.y) > absf(move_direction.x):
+		return vertical
+	if absf(current_facing.x) > 0.5 and signf(current_facing.x) == signf(move_direction.x):
+		return horizontal
+	if absf(current_facing.y) > 0.5 and signf(current_facing.y) == signf(move_direction.y):
+		return vertical
+	return horizontal if not is_zero_approx(move_direction.x) else vertical
 
 
 func is_primary_attack_just_pressed() -> bool:

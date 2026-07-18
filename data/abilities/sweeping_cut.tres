@@ -1,14 +1,19 @@
-[gd_resource type="Resource" script_class="AbilityDefinition" format=3 uid="uid://bc2pol4ik4lxf"]
+[gd_resource type="Resource" script_class="AbilityDefinition" load_steps=3 format=3 uid="uid://bc2pol4ik4lxf"]
 
 [ext_resource type="Script" uid="uid://m4fn37fkgpjf" path="res://data/abilities/ability_definition.gd" id="1"]
 [ext_resource type="Texture2D" path="res://assets/ui/icons/skills/icon_skill_sweeping_cut_24x24.png" id="2_icon"]
 
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_sweep"]
+points = PackedVector2Array(3, -9, 14, -28, 39, -24, 48, 0, 39, 24, 14, 28, 3, 9)
+
 [resource]
 script = ExtResource("1")
+ability_id = &"sweeping_cut"
 display_name = "Sweeping Cut"
 hud_name = "SWEEP CUT"
 description = "Wide weapon arc\n20 damage • Pushback"
 icon = ExtResource("2_icon")
+hitbox_shape = SubResource("ConvexPolygonShape2D_sweep")
 damage = 20.0
 knockback_strength = 90.0
 wind_up_seconds = 0.16

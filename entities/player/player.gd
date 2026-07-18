@@ -8,6 +8,7 @@ signal movement_changed(direction: Vector2, is_moving: bool)
 signal interaction_started
 signal interaction_finished
 signal defeated
+signal testing_preset_applied(level: int, coins: int)
 
 const PlayerInputSourceScript = preload("res://entities/player/components/player_input_source.gd")
 const PlayerMovementComponentScript = preload("res://entities/player/components/player_movement_component.gd")
@@ -33,16 +34,21 @@ const AbilityComponentScript = preload("res://gameplay/abilities/ability_compone
 var facing_direction := Vector2.DOWN
 var is_defeated := false
 var _was_moving := false
+var _primary_attack_buffered := false
+var _buffered_primary_attack_direction := Vector2.DOWN
 
 
 func _ready() -> void:
 	health_component.died.connect(_on_died)
+	evade_component.phase_changed.connect(_on_evade_phase_changed)
 	_apply_inventory_weapon()
 	facing_changed.emit(facing_direction)
 
 
 func _physics_process(delta: float) -> void:
 	var move_direction := input_source.get_move_direction()
+	if not move_direction.is_zero_approx():
+		_set_movement_facing_direction(move_direction)
 	if input_source.is_evade_just_pressed():
 		var evade_direction := move_direction if not move_direction.is_zero_approx() else facing_direction
 		request_evade(evade_direction)
@@ -52,7 +58,10 @@ func _physics_process(delta: float) -> void:
 	if evade_component.is_dashing():
 		velocity = evade_component.get_dash_velocity()
 	elif ability_1_component.is_casting():
-		velocity = movement_component.calculate_velocity(velocity, Vector2.ZERO, delta)
+		if ability_1_component.has_active_movement():
+			velocity = ability_1_component.get_active_velocity()
+		else:
+			velocity = movement_component.calculate_velocity(velocity, Vector2.ZERO, delta)
 	else:
 		velocity = movement_component.calculate_velocity(velocity, move_direction, delta)
 	var is_moving := (
@@ -69,19 +78,38 @@ func _physics_process(delta: float) -> void:
 		movement_bounds.end
 	)
 
-	var aim_direction := input_source.get_aim_direction(
-		global_position,
-		get_global_mouse_position()
-	)
-	if aim_direction.is_zero_approx() and not move_direction.is_zero_approx():
-		aim_direction = move_direction.normalized()
-	_set_facing_direction(aim_direction)
 	if input_source.is_primary_attack_just_pressed():
 		request_primary_attack()
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if not event.is_action_pressed("debug_max_progression"):
+		return
+	if progression_component.apply_debug_testing_preset():
+		get_viewport().set_input_as_handled()
+		testing_preset_applied.emit(
+			progression_component.level,
+			progression_component.coins
+		)
+
+
 func request_primary_attack() -> bool:
-	if is_defeated or not evade_component.is_ready() or ability_1_component.is_casting():
+	if (
+		is_defeated
+		or ability_1_component.is_casting()
+		or attack_component.phase != attack_component.Phase.IDLE
+	):
+		return false
+	if evade_component.is_dashing():
+		_primary_attack_buffered = true
+		_buffered_primary_attack_direction = facing_direction
+		return true
+	if evade_component.is_recovering():
+		var attack_direction := facing_direction
+		if not evade_component.cancel_recovery():
+			return false
+		return attack_component.request_attack(attack_direction)
+	if not evade_component.is_ready():
 		return false
 	return attack_component.request_attack(facing_direction)
 
@@ -97,13 +125,26 @@ func request_evade(direction: Vector2) -> bool:
 
 
 func request_ability_1() -> bool:
+	return request_ability(1)
+
+
+func request_ability(slot_number: int) -> bool:
+	var component := get_ability_component_for_slot(slot_number)
 	if (
-		is_defeated
+		component == null
+		or is_defeated
 		or attack_component.phase != attack_component.Phase.IDLE
 		or not evade_component.is_ready()
 	):
 		return false
-	return ability_1_component.request_cast(facing_direction)
+	if component.definition.activation_mode != AbilityDefinition.ActivationMode.IMMEDIATE_DIRECTIONAL:
+		return false
+	var weapon_damage := (
+		attack_component.weapon.damage
+		if attack_component.weapon != null
+		else 0.0
+	)
+	return component.request_cast(facing_direction, weapon_damage)
 
 
 func set_weapon_definition(next_weapon: WeaponDefinition) -> bool:
@@ -203,10 +244,29 @@ func _set_facing_direction(direction: Vector2) -> void:
 	facing_changed.emit(facing_direction)
 
 
+func _set_movement_facing_direction(move_direction: Vector2) -> void:
+	_set_facing_direction(
+		input_source.resolve_cardinal_facing(move_direction, facing_direction)
+	)
+
+
+func _on_evade_phase_changed(phase: int, _duration_seconds: float) -> void:
+	if phase != EvadeComponent.Phase.RECOVERY or not _primary_attack_buffered:
+		return
+	var attack_direction := _buffered_primary_attack_direction
+	_primary_attack_buffered = false
+	if not evade_component.cancel_recovery():
+		return
+	_set_facing_direction(attack_direction)
+	if not attack_component.request_attack(attack_direction):
+		push_error("Buffered primary attack could not start after dash recovery.")
+
+
 func _on_died() -> void:
 	if is_defeated:
 		return
 	is_defeated = true
+	_primary_attack_buffered = false
 	velocity = Vector2.ZERO
 	attack_component.cancel_attack()
 	evade_component.cancel_evade()
