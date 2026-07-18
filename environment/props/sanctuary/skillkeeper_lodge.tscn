@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://environment/props/sanctuary/sanctuary_building_idle.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/environment/sanctuary/buildings/skillkeeper_lodge_128x192.png" id="2_texture"]
+[ext_resource type="PackedScene" path="res://tools/editor/editor_preview_backdrop.tscn" id="99_preview"]
+
+[node name="SkillkeeperLodge" type="StaticBody2D" node_paths=PackedStringArray("window_glow")]
+script = ExtResource("1_script")
+window_glow = NodePath("RuneGlow")
+
+[node name="EditorPreviewBackdrop" parent="." instance=ExtResource("99_preview")]
+
+[node name="Shadow" type="Polygon2D" parent="."]
+position = Vector2(0, -8)
+polygon = PackedVector2Array(-58, -24, 58, -24, 62, 2, 49, 12, -49, 12, -62, 2)
+color = Color(0.02, 0.03, 0.03, 0.42)
+z_index = -2
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -96)
+texture = ExtResource("2_texture")
+
+[node name="RuneGlow" type="Node2D" parent="."]
+
+[node name="Crystal" type="Polygon2D" parent="RuneGlow"]
+position = Vector2(-43, -67)
+polygon = PackedVector2Array(0, -8, 5, -2, 4, 6, 0, 10, -4, 6, -5, -2)
+color = Color(0.62, 0.28, 0.92, 0.22)
+
+[node name="Collision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-59, -36, 59, -36, 62, -5, 51, 4, -51, 4, -62, -5)

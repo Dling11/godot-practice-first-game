@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://environment/props/sanctuary/sanctuary_building_idle.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/environment/sanctuary/shops/armskeeper_cart_128x96.png" id="2_texture"]
+[ext_resource type="PackedScene" path="res://tools/editor/editor_preview_backdrop.tscn" id="99_preview"]
+
+[sub_resource type="RectangleShape2D" id="CartShape"]
+size = Vector2(116, 38)
+
+[node name="ArmskeeperCart" type="StaticBody2D" node_paths=PackedStringArray("window_glow")]
+script = ExtResource("1_script")
+window_glow = NodePath("LanternGlow")
+
+[node name="EditorPreviewBackdrop" parent="." instance=ExtResource("99_preview")]
+
+[node name="Shadow" type="Polygon2D" parent="."]
+position = Vector2(0, -8)
+polygon = PackedVector2Array(-58, -15, 58, -15, 62, 4, 51, 10, -51, 10, -62, 4)
+color = Color(0.02, 0.03, 0.03, 0.42)
+z_index = -2
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -48)
+texture = ExtResource("2_texture")
+
+[node name="LanternGlow" type="Node2D" parent="."]
+
+[node name="Lantern" type="Polygon2D" parent="LanternGlow"]
+position = Vector2(-51, -48)
+polygon = PackedVector2Array(0, -6, 4, -2, 4, 3, 0, 7, -4, 3, -4, -2)
+color = Color(1, 0.52, 0.16, 0.24)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -19)
+shape = SubResource("CartShape")

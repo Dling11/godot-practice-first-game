@@ -31,9 +31,11 @@ The exact run structure, death penalty, checkpoint rules, and permanent progress
 
 **Implemented journey entry:** the game opens at the Battle of Gods title screen. `Begin the Awakening` starts a fresh in-memory run and fades into Sanctuary. Settings currently provide immediate session-only Music, Combat Sound, and Menu Sound toggles. Continue/profile selection does not exist yet.
 
-**Implemented Sanctuary loop:** Sanctuary is a safe expedition hub centered on two separate landmarks: a walk-around divine fountain in the courtyard and an animated angel portal farther north. Dedicated grass and cobblestone paths connect the side-positioned mushroom dwelling and merchant hall to the central route. The player walks around either side of the fountain, crosses a visible open gap, ascends the portal's broad center staircase, and reaches the contextual expedition prompt immediately before the portal surface; the authored threshold and rear footprints prevent walking through the monument. The hub also contains a weapon stall, generated trees, Skillkeeper Eira, and Armskeeper Orren. Both NPCs use restrained pixel-stepped breathing while their collision and interaction footprints remain fixed. Opaw turns toward either speaker and holds the matching directional interaction pose while dialogue is active. Eira's dialogue hands off to the current character surface. Orren previews the future weapon service, but purchasing, prices, item ownership, equip commands, combat bonuses, and coin sinks are not implemented. The portal currently offers the beginner Forgotten Grove route and previews two sealed future regions. Stage 1 continues directly to Stage 2; clearing Stage 2 returns to Sanctuary.
+**Implemented Sanctuary loop:** Sanctuary is a safe expedition hub centered on two separate landmarks: a walk-around divine fountain in the courtyard and an animated angel portal farther north. A paired central cobblestone avenue aligns both landmarks on the hub's even-width grid; one-cell door approaches align Eira's violet spirit-study lodge and Orren's warm arms workshop to a restrained east-west connector, while a compact paved bay grounds Orren's cart without consuming the surrounding garden. The player walks around either side of the fountain, crosses a visible open gap, ascends the portal's broad center staircase, and reaches the contextual expedition prompt immediately before the portal surface; the authored threshold and rear footprints prevent walking through the monument. Orren's separate weapon cart has a complete prop-only silhouette with no merchant body baked into it. Eira and Orren use compact oversized-head/tiny-body proportions aligned with Opaw, plus two intentional detached role props each and restrained pixel-stepped breathing while collision and interaction footprints remain fixed. Opaw turns toward either speaker and holds the matching directional interaction pose while dialogue is active. Eira's dialogue hands off to the current character surface. Orren previews the future weapon service, but purchasing, prices, item ownership, equip commands, combat bonuses, and coin sinks are not implemented. The portal currently offers the beginner Forgotten Grove route and previews two sealed future regions. Stage 1 continues directly to Stage 2; clearing Stage 2 returns to Sanctuary.
 
 Future destination access should combine level, story flags, boss victories, discovered locations, and required key items. Level alone must not unlock every road, and completed early expeditions should remain replayable.
+
+**Implemented expedition access foundation:** immutable destination definitions now combine those five requirement categories. The portal creates its route buttons from data and explains missing requirements. Forgotten Grove opens after Sanctuary records Opaw's awakening. Ashen Pilgrimage and The Drowned Bells contain authored future requirements but remain sealed because their scenes and required content do not exist yet. Story memory survives scene changes only for the current application session; disk saves remain unimplemented.
 
 ## Combat
 
@@ -58,9 +60,9 @@ Damage formulas, stagger, poise, stamina, mana, cooldowns, and targeting rules a
 
 ## Player Character
 
-The active mortal player is **Opaw**, presented as a **Mortal Wayfarer** and **Novice Warrior**. `Player` remains the technical gameplay role so Opaw, future classes, and possible additional playable characters can reuse the same contracts. Opaw's origin, base attributes, and relationship to The One Above remain undecided; naming him does not resolve those lore questions. **The Awakened** is now a preserved legacy prototype title rather than the active character identity.
+The active mortal player is **Opaw**, presented as a **Mortal Wayfarer** and **Novice Warrior**. He was killed in a former world and awakened through the Remembered Veil with the final moments of his previous life fractured. `Player` remains the technical gameplay role so Opaw and a future switchable roster can reuse the same contracts. Character identity is distinct from class: Opaw begins the Warrior foundation, while Mage and Archer remain planned combat archetypes that may belong to later characters or class paths. **The Awakened** is now a preserved legacy prototype title rather than the active character identity.
 
-Opaw establishes a modular playable-character direction: one compact armless four-direction body carries locomotion, interaction, hurt, and staged defeat poses, while the Ashwood Blade is a detached presentation layer. His oversized boxy head, serious eyes, rust scarf, narrow green tunic, and tiny boots keep his identity readable without arm or sleeve silhouettes. Future Ranger and Mage candidates may reuse the action/foot-baseline contract, but their limb treatment and equipment motion require their own review instead of inheriting Opaw's orbit automatically. Class rules, selection, and progression are not implemented.
+Opaw establishes a modular playable-character direction: one compact armless four-direction body carries locomotion, interaction, hurt, and staged defeat poses, while the Ashwood Blade is a detached presentation layer. His oversized boxy head, serious eyes, rust scarf, narrow green tunic, and tiny boots keep his identity readable without arm or sleeve silhouettes. Future Archer and Mage characters may reuse the action/foot-baseline contract, but their limb treatment, equipment motion, resources, and skills require their own review instead of inheriting Opaw's sword orbit. Roster switching and class rules are not implemented; future switching should occur in Sanctuary or another safe preparation space.
 
 Required capability areas:
 
@@ -75,21 +77,15 @@ Required capability areas:
 
 ## World and Story
 
-Reality was shaped by **The One Above**, an ancient primordial creator and the strongest known being. Gods, demons, and forgotten civilizations exist within the consequences of that creation.
+Opaw's death and isekai awakening establish the mortal viewpoint. Most known gods treat mortal worlds, wars, chosen heroes, and catastrophes as trials, wagers, or entertainment rather than lives with equal value. Individual gods may still be cruel, indifferent, constrained, sympathetic, or rebellious; the story should not flatten the pantheon into identical villains.
 
-The following remain open design questions:
+Reality was shaped by **The One Above**, an ancient primordial creator and the strongest known being. The One Above predates the known gods and remains a mystery rather than an ordinary quest-giver or automatically confirmed final villain. The lesser gods' behavior does not yet prove whether The One Above is absent, observing, imprisoned, or acting under unknown rules.
 
-- Is The One Above absent, sleeping, imprisoned, dead, or observing?
-- What event placed the world in its current crisis?
-- Who is the player, and why can they wield divine and demonic power?
-- Are gods bosses, allies, factions, or all three?
-- Is the story linear, region-based, or run-based?
-
-Future lore should preserve mystery and avoid turning The One Above into an ordinary quest-giver or conventional villain without a recorded design decision.
+Sanctuary preserves soul-memory beyond death. Opaw's first mystery is why the Veil remembered him at all. The story escalates from mortal corruption and divine servants to gods, beyond-god beings, boundless law-distorters, and a provisional far-future author-class tier while keeping every attack readable and dodgeable. `STORY_BIBLE.md` is the canonical source for this premise, planned opening arc, roster direction, and unresolved questions.
 
 ## Characters and Factions
 
-- **Opaw:** implemented mortal player identity; currently a Novice Warrior. His deeper history and divine significance remain open.
+- **Opaw:** implemented isekai mortal player identity; currently a Novice Warrior whose former-life death memory is fractured.
 - **Skillkeeper Eira:** implemented Sanctuary NPC who introduces the current skill-information surface.
 - **Armskeeper Orren:** implemented Sanctuary merchant NPC who previews the future equipment service without selling items yet.
 - **The One Above:** approved primordial creator and strongest known being; exact present state remains mysterious.
@@ -109,7 +105,7 @@ No additional named gods, demons, or factions are approved. Eira and Orren retai
 
 **Implemented enemy prototype - Forsaken Thrall:** a corrupted humanoid pursuer that materializes before becoming hostile, follows obstacle paths to the player's actual footprint, and uses a six-pose directional claw scratch with anticipation, raised arm, slash, impact, follow-through, and vulnerable recovery. It has 100 prototype health and deals 15 prototype damage; values remain provisional.
 
-No specific boss roster is approved.
+The **Thornbound Warden** is the first planned named boss and a future requirement for Ashen Pilgrimage. Its arena, mechanics, art, rewards, and exact place after the current two Forgotten Grove stages remain unimplemented and require a dedicated design pass.
 
 **Implemented Stage 1 encounter:** three sequential beginner waves introduce Mirelings and Thralls only. Wave 3 remains capped at four enemies. Clearing it opens the stage-exit portal. Entering its range shows `F - Enter Portal`; leaving removes the prompt. Interaction fades through a loading veil into Stage 2.
 
@@ -129,7 +125,7 @@ Standard enemies keep their health bars hidden at full health. Taking damage rev
 
 **Implemented starter weapon - Ashwood Blade:** Opaw carries a small wooden sword as a separate world presentation sprite. Its `WeaponDefinition` supplies the texture's grip offset, visual scale, and swing radius so the weapon rotates around its authored grip rather than its image center. The presentation node follows a small bounded orbit beside Opaw's armless body and observes authoritative wind-up, active, and recovery phases, while the weaponless body supplies a deep coil, explosive lunge, and overshoot at fixed scale. The normal attack uses a 0.11-second anticipation, fast 0.08-second committed sweep, nearly half-turn mirrored presentation arc, forward extension, dense white-gold trail, and 0.21-second recovery. The existing directional hitbox still owns contacts, reach, and 25 damage.
 
-**Implemented sword-style foundation:** the Ashwood Blade selects the Balanced Slash presentation profile. Swift Slash and Heavy Cleave profiles provide alternate orbit, extension, trail, and strike-accent tuning for future sword families, but they are not obtainable weapons. A higher-grade sword may reuse Balanced Slash and Opaw's same weaponless body animation while changing its own texture, grip, scale, damage, knockback, and authoritative timing. A genuinely different weapon family may select another reviewed style; visual arc or trail changes never change hitbox reach or damage by themselves.
+**Implemented sword-style foundation:** the Ashwood Blade selects the Balanced Slash presentation profile. Consecutive normal attacks cycle through a broad outward sweep, a reverse return sweep, and a farther-reaching visual finishing sweep, then repeat. This is visual variety rather than a damage combo: all three still use the weapon's same authoritative timing, hitbox, damage, and knockback. Swift Slash and Heavy Cleave profiles provide alternate orbit, extension, trail, strike-accent, and three-swing sequence tuning for future sword families, but they are not obtainable weapons. A higher-grade sword may reuse Balanced Slash and Opaw's same weaponless body animation while changing its own texture, grip, scale, damage, knockback, and authoritative timing. A genuinely different weapon family may select another reviewed style; visual arc or trail changes never change hitbox reach or damage by themselves.
 
 **Implemented equipment design preview:** the paused character surface presents only the Ashwood Blade at **Wood** rank and uses the same stable weapon ID, world texture, and equipped presentation as the player scene. The early intended material vocabulary is **Wood -> Stonebound -> Iron -> Rare**, with spirit blue reserved for the first Rare tier. Only Wood is active; Stonebound, Iron, Rare, ownership, drops, purchases, saving, and stat aggregation are not implemented. The former A Grade, S Grade, Legendary, and Mythic weapon concepts are preserved as legacy exploration material and are no longer player-facing beginner equipment.
 

@@ -61,9 +61,7 @@ func _emit_progression_changed() -> void:
 
 
 func _recalculate_level() -> void:
-	level = 1
-	while level < definition.maximum_level and total_experience >= _next_level_threshold():
-		level += 1
+	level = definition.get_level_for_total_experience(total_experience)
 
 
 func _sync_run_session() -> void:

@@ -35,6 +35,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_stage_cleared() -> void:
+	var story_state := get_node_or_null("/root/StoryState")
+	if story_state != null:
+		story_state.remember_story(&"forgotten_grove_completed")
+		story_state.record_discovery(&"remembered_thorn_shrine")
 	combat_hud.show_story_message("THE GROVE RELENTS  •  A WAY BACK OPENS", 2.8)
 
 

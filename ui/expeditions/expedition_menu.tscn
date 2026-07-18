@@ -1,6 +1,12 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=7 format=3]
+
 [ext_resource type="Script" path="res://ui/expeditions/expedition_menu.gd" id="1_script"]
 [ext_resource type="Theme" path="res://assets/ui/themes/battle_of_gods_theme.tres" id="2_theme"]
+[ext_resource type="Resource" path="res://data/expeditions/forgotten_grove.tres" id="3_grove"]
+[ext_resource type="Resource" path="res://data/expeditions/ashen_pilgrimage.tres" id="4_ashen"]
+[ext_resource type="Resource" path="res://data/expeditions/drowned_bells.tres" id="5_bells"]
+[ext_resource type="Resource" path="res://data/progression/opaw_path.tres" id="6_progression"]
+
 [node name="ExpeditionMenu" type="Control"]
 visible = false
 process_mode = 3
@@ -12,6 +18,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_theme")
 script = ExtResource("1_script")
+expeditions = Array[Resource]([ExtResource("3_grove"), ExtResource("4_ashen"), ExtResource("5_bells")])
+progression_definition = ExtResource("6_progression")
+
 [node name="Veil" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -20,6 +29,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.01, 0.015, 0.025, 0.76)
+
 [node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -33,54 +43,41 @@ offset_right = 250.0
 offset_bottom = 172.0
 grow_horizontal = 2
 grow_vertical = 2
+
 [node name="Margin" type="MarginContainer" parent="Panel"]
 layout_mode = 2
 theme_override_constants/margin_left = 18
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 18
 theme_override_constants/margin_bottom = 15
+
 [node name="Root" type="VBoxContainer" parent="Panel/Margin"]
 layout_mode = 2
 theme_override_constants/separation = 8
+
 [node name="Title" type="Label" parent="Panel/Margin/Root"]
 layout_mode = 2
 text = "EXPEDITION ALTAR"
 horizontal_alignment = 1
 theme_override_colors/font_color = Color(0.839, 0.757, 0.443, 1)
 theme_override_font_sizes/font_size = 20
+
 [node name="Subtitle" type="Label" parent="Panel/Margin/Root"]
 layout_mode = 2
-text = "THE VEIL OPENS ONLY TO PATHS YOU HAVE EARNED"
+text = "THE VEIL OPENS ONLY TO PATHS YOUR SOUL REMEMBERS"
 horizontal_alignment = 1
 theme_override_colors/font_color = Color(0.455, 0.502, 0.42, 1)
 theme_override_font_sizes/font_size = 8
-[node name="FirstExpeditionButton" type="Button" parent="Panel/Margin/Root"]
+
+[node name="RouteList" type="VBoxContainer" parent="Panel/Margin/Root"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 62)
 layout_mode = 2
-focus_neighbor_top = NodePath("../CloseButton")
-focus_neighbor_bottom = NodePath("../CloseButton")
-mouse_default_cursor_shape = 2
-text = "I  •  FORGOTTEN GROVE\nBEGINNER EXPEDITION  •  AVAILABLE"
-theme_override_font_sizes/font_size = 11
-[node name="Locked2" type="Button" parent="Panel/Margin/Root"]
-custom_minimum_size = Vector2(0, 52)
-layout_mode = 2
-disabled = true
-mouse_default_cursor_shape = 8
-text = "II  •  ASHEN PILGRIMAGE\nSEALED  •  STORY PATH REQUIRED"
-[node name="Locked3" type="Button" parent="Panel/Margin/Root"]
-custom_minimum_size = Vector2(0, 52)
-layout_mode = 2
-disabled = true
-mouse_default_cursor_shape = 8
-text = "III  •  THE DROWNED BELLS\nSEALED  •  POWER UNKNOWN"
+theme_override_constants/separation = 7
+
 [node name="CloseButton" type="Button" parent="Panel/Margin/Root"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../FirstExpeditionButton")
-focus_neighbor_bottom = NodePath("../FirstExpeditionButton")
 mouse_default_cursor_shape = 2
 text = "RETURN TO SANCTUARY"
-[connection signal="pressed" from="Panel/Margin/Root/FirstExpeditionButton" to="." method="begin_first_expedition"]
+
 [connection signal="pressed" from="Panel/Margin/Root/CloseButton" to="." method="close_menu"]

@@ -16,6 +16,8 @@ var _trail_tween: Tween
 var _accent_tween: Tween
 var _base_weapon_scale := Vector2.ONE
 var _fallback_attack_style := SwordAttackStyleDefinition.new()
+var _normal_swing_sequence_index := -1
+var _normal_swing_variant_index := 0
 
 
 func _ready() -> void:
@@ -35,6 +37,8 @@ func set_weapon_definition(next_weapon: WeaponDefinition) -> bool:
 	_kill_accent_tween()
 	_hide_swing_trail()
 	weapon = next_weapon
+	_normal_swing_sequence_index = -1
+	_normal_swing_variant_index = 0
 	visible = true
 	weapon_sprite.texture = weapon.world_texture
 	weapon_sprite.position = weapon.sprite_offset_from_grip
@@ -92,11 +96,35 @@ func _play_action_phase(phase: int, duration_seconds: float, is_ability: bool) -
 	if phase == MeleeAttackComponent.Phase.WIND_UP:
 		_action_locked = true
 		_action_direction = _direction
+		if not is_ability:
+			_normal_swing_sequence_index = posmod(
+				_normal_swing_sequence_index + 1,
+				_attack_style().normal_variant_count()
+			)
+			_normal_swing_variant_index = _normal_swing_sequence_index
 	_set_depth(_action_direction)
 	var style := _attack_style()
-	var wind_up_arc := style.ability_wind_up_arc if is_ability else style.normal_wind_up_arc
-	var strike_arc := style.ability_strike_arc if is_ability else style.normal_strike_arc
-	var rotations := _attack_rotations(_action_direction, wind_up_arc, strike_arc)
+	var wind_up_arc := (
+		style.ability_wind_up_arc
+		if is_ability
+		else style.normal_variant_wind_up_arc(_normal_swing_variant_index)
+	)
+	var strike_arc := (
+		style.ability_strike_arc
+		if is_ability
+		else style.normal_variant_strike_arc(_normal_swing_variant_index)
+	)
+	var swing_direction := (
+		1.0
+		if is_ability
+		else style.normal_variant_direction(_normal_swing_variant_index)
+	)
+	var rotations := _attack_rotations(
+		_action_direction,
+		wind_up_arc,
+		strike_arc,
+		swing_direction
+	)
 	var wind_up_position := _attack_anchor(_action_direction, MeleeAttackComponent.Phase.WIND_UP, is_ability)
 	var active_position := _attack_anchor(_action_direction, MeleeAttackComponent.Phase.ACTIVE, is_ability)
 	match phase:
@@ -143,13 +171,13 @@ func _weapon_anchor(direction: StringName) -> Vector2:
 			return Vector2(11.0, -9.0)
 		&"up":
 			return Vector2(-12.0, -11.0)
-	return Vector2(12.0, -6.0)
+	return Vector2(12.0, -8.0)
 
 
 func _attack_anchor(direction: StringName, phase: int, is_ability: bool) -> Vector2:
 	var style := _attack_style()
-	var active_extension := (
-		style.ability_active_extension if is_ability else style.normal_active_extension
+	var active_extension := style.ability_active_extension if is_ability else (
+		style.normal_variant_active_extension(_normal_swing_variant_index)
 	)
 	match direction:
 		&"left":
@@ -161,18 +189,26 @@ func _attack_anchor(direction: StringName, phase: int, is_ability: bool) -> Vect
 	return Vector2(9.0, -10.0) if phase == MeleeAttackComponent.Phase.WIND_UP else Vector2(6.0, -5.0 + active_extension)
 
 
-func _attack_rotations(direction: StringName, wind_up_arc: float, strike_arc: float) -> Vector2:
+func _attack_rotations(
+	direction: StringName,
+	wind_up_arc: float,
+	strike_arc: float,
+	swing_direction: float = 1.0
+) -> Vector2:
 	# Side attacks are true screen-space mirrors. Using the direction's
 	# perpendicular vector inverted the left arc vertically and made it look like
 	# a different swing rather than the right attack's mirrored counterpart.
 	if direction == &"left":
 		var right_forward_rotation := Vector2.UP.angle_to(Vector2.RIGHT)
 		return Vector2(
-			-(right_forward_rotation - wind_up_arc),
-			-(right_forward_rotation + strike_arc)
+			-(right_forward_rotation - wind_up_arc * swing_direction),
+			-(right_forward_rotation + strike_arc * swing_direction)
 		)
 	var forward_rotation := Vector2.UP.angle_to(_direction_vector(direction))
-	return Vector2(forward_rotation - wind_up_arc, forward_rotation + strike_arc)
+	return Vector2(
+		forward_rotation - wind_up_arc * swing_direction,
+		forward_rotation + strike_arc * swing_direction
+	)
 
 
 func _set_depth(direction: StringName) -> void:

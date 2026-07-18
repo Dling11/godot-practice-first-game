@@ -27,6 +27,9 @@ func _ready() -> void:
 	):
 		push_error("SanctuaryFlow is missing a required hub dependency.")
 		return
+	var story_state := get_node_or_null("/root/StoryState")
+	if story_state != null:
+		story_state.remember_story(&"awakened_in_sanctuary")
 	combat_hud.bind_player(player)
 	combat_hud.character_menu_requested.connect(character_menu.open_menu)
 	skillkeeper.proximity_changed.connect(combat_hud.show_interaction_prompt)

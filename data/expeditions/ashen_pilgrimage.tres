@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ExpeditionDefinition" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://data/expeditions/expedition_definition.gd" id="1_definition"]
+[ext_resource type="Script" path="res://data/expeditions/expedition_requirement.gd" id="2_requirement"]
+
+[sub_resource type="Resource" id="Requirement"]
+script = ExtResource("2_requirement")
+minimum_level = 3
+required_story_flags = PackedStringArray("forgotten_grove_completed")
+required_boss_victories = PackedStringArray("thornbound_warden")
+required_key_items = PackedStringArray("cinder_sigil")
+
+[resource]
+script = ExtResource("1_definition")
+expedition_id = &"ashen_pilgrimage"
+route_label = "II"
+display_name = "ASHEN PILGRIMAGE"
+difficulty_label = "DIVINE TRIAL"
+description = "A road of scorched shrines left by worshippers whose god answered only with fire."
+requirement = SubResource("Requirement")

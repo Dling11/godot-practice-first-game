@@ -43,6 +43,10 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 - Replaced fixed source-grid trimming with connected-silhouette isolation, restoring complete up-facing heads and correcting the squashed right dash; lowered the Ashwood grip to Opaw's arm and rebuilt side attacks as mirrored hand-centered arcs with sharper strike feedback.
 - Replaced the playable presentation with a complete compact armless Opaw action set inspired only by broad top-down readability cues, preserved Opaw's original identity and gameplay scale, widened the detached Ashwood Blade orbit, and archived the complete previous Wayfarer model as an independently loadable backup.
 - Raised the down-facing Ashwood Blade beside Opaw's torso and replaced hard-coded sword motion with reusable Balanced Slash, Swift Slash, and Heavy Cleave presentation profiles; idle-only weapon-definition switching now preserves one shared body animation without activating inventory or additional items.
+- Raised the front-view blade again and made each sword style carry a three-step normal-attack presentation sequence: outward sweep, reverse return, and farther-reaching visual finish, all without changing authoritative combat values.
+- Rebuilt Sanctuary's skill/equipment service corner around compact Opaw-scale Eira and Orren sprites, a complete spirit-study lodge, arms workshop, and body-free weapon cart; archived superseded service art/scenes, Awakened legacy runtime files, and rejected Opaw experiments outside Godot while retaining the supported Wayfarer rollback.
+- Recentered Sanctuary's portal/fountain pavement as a paired avenue, snapped both service doors to compact one-cell approaches, grounded Orren's cart on a bounded bay, and preserved garden breaks instead of expanding the route into a gray plaza.
+- Established the isekai/uncaring-gods premise and future switchable character-versus-class boundary in a canonical story bible; added versioned in-memory story memory plus data-driven expedition definitions that combine level, story, boss, discovery, and key-item requirements without opening unbuilt routes.
 
 Detailed completion history remains in `CHANGELOG.md`.
 
@@ -50,7 +54,7 @@ Detailed completion history remains in `CHANGELOG.md`.
 
 - Feel-test the Ashwood Blade's wider anticipation-to-impact arc, faster committed sweep, forward extension, denser white-gold trail, 0.10-second enemy flash, and white-hot impact core.
 
-- Decide the first playable structure, Opaw's deeper origin/fantasy, and release platform priorities.
+- Decide the exact reveal of Opaw's former-life death, the first full story-act structure, and release platform priorities.
 - Feel-test and tune the Ashwood Blade's timing, reach, phase-driven swing, and anchor placement.
 - Feel-test dash distance, duration, recovery, and afterimage readability.
 - Feel-test the Forsaken Thrall's spawn readability, obstacle approach, claw telegraph, range, damage, and recovery.
@@ -64,14 +68,18 @@ Detailed completion history remains in `CHANGELOG.md`.
 - Feel-test combat cue selection, positional balance, repetition, and SFX-versus-music volume.
 - Feel-test the centered four-slot skill bar, top-left character/satchel entry button, and Tab character-menu readability at the 960x540 viewport.
 - Design authored skill unlock rules, coin sinks, and the first abilities for sealed slots 2-4.
+- Upgrade Eira's skill service and Orren's weapon service from dialogue/read-only previews into functional menus only after skill ownership, inventory, prices, equip commands, and persistence rules are approved.
 - Feel-test the 960x540 equipment layout, Opaw portrait, Ashwood world/icon consistency, Wood-rank readability, and the clarity of preview-only versus equipped states.
 - Decide persistent ownership, death retention, equip commands, stat formulas, acquisition sources, and enemy/elite/boss power bands before activating equipment.
 - Feel-test the shared theme, named HUD icons, expanded skill-bar height, and portal-prompt placement at 960x540.
 - Feel-test the title-screen composition, restrained background motion, focus loop, audio toggles, and title-to-Stage-1 fade.
-- Feel-test Sanctuary navigation, dedicated pavement, separate fountain/portal scale and courtyard spacing, portal/water/NPC/building idle effects, both NPC interactions, expedition usability, and the transition loop on F5.
-- Design authored expedition definitions and profile/story unlock authority without making level the only gate.
+- Feel-test Sanctuary navigation, the aligned paired avenue and compact service/cart approaches, separate fountain/portal scale and courtyard spacing, portal/water/NPC/building idle effects, both NPC interactions, expedition usability, and the transition loop on F5.
+- Feel-test compact Eira/Orren readability, detached book/wisp/hammer/sword props, new service-building collision, and the skill-versus-weapons visual distinction at gameplay scale.
+- Feel-test the generated expedition requirement copy, tooltip detail, disabled-state contrast, and mouse/keyboard/gamepad focus loop at 960x540.
+- Decide the first disk-persistent profile/story boundary and migration policy; the current versioned story snapshot performs no file I/O.
+- Design the Thornbound Warden encounter and Cinder Sigil acquisition before building or enabling Ashen Pilgrimage.
 - Design a confirmed `Abandon Expedition / Return to Sanctuary` pause-menu action, including combat restrictions and explicit XP/coin/run consequences.
-- After Opaw is visually accepted in motion, define reusable modular starter layers for future Warrior, Ranger, and Mage presentations; migrate NPC bodies and environment/UI style only in separate reviewed passes.
+- After Opaw is visually accepted in motion, define reusable modular starter layers for future Warrior, Archer, and Mage presentations; migrate NPC bodies and environment/UI style only in separate reviewed passes.
 
 ## Planned
 
@@ -129,5 +137,5 @@ Before creating gameplay code, approve:
 
 1. Desktop/web/mobile release priorities.
 2. First playable scope: arena survival, authored action-adventure slice, or another structure.
-3. Opaw's deeper origin and whether Warrior/Ranger/Mage are selectable classes, progression paths, or separate characters.
+3. Whether Mage and Archer first arrive as distinct playable souls, Opaw class paths, or both through a later roster/class system.
 4. Persistent ownership, shop/acquisition rules, and the first Stonebound equipment step after Ashwood is visually accepted.

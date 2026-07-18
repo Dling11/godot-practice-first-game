@@ -14,8 +14,8 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 ### KI-004 - Pixel rendering baseline is not art-validated
 
 - **Status:** Open
-- **Impact:** The 960x540 baseline mechanically validates Opaw's active compact armless action set, but its oversized-head/tiny-foot silhouette and widened detached sword orbit still need a human in-motion judgment in Sanctuary and both combat stages. The complete previous Wayfarer model is available as a safe rollback if the new silhouette fails that review.
-- **Planned resolution:** Feel-test Opaw's gameplay scale, serious black-eye/scarf readability, four-frame locomotion, three-pose body/weapon synchronization in all directions, dash lean, hurt recovery, defeat fade, and representative effects in Sanctuary and both stages.
+- **Impact:** The 960x540 baseline mechanically validates Opaw's active compact armless action set and the new compact Eira/Orren service corner, but their oversized-head/tiny-foot silhouettes, detached props, widened sword orbit, and new building/cart density still need human in-motion judgment in Sanctuary and both combat stages. The complete previous Wayfarer model is available as a safe player rollback if Opaw fails that review.
+- **Planned resolution:** Feel-test Opaw's gameplay scale, serious black-eye/scarf readability, four-frame locomotion, three-pose body/weapon synchronization in all directions, dash lean, hurt recovery, defeat fade, Eira/Orren scale and role props, service-building collision, and representative effects in Sanctuary and both stages.
 - **Workaround:** Treat 960x540 and the compact armless sheets as the active prototype baseline, not irreversible final assets; restore the archived Wayfarer `SpriteFrames` resource if a rollback is required.
 
 ### KI-005 - Skill unlocks, equipment acquisition, coin sinks, and disk persistence are undecided
@@ -32,12 +32,12 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 - **Planned resolution:** Store audio preferences in the future versioned settings/profile system.
 - **Workaround:** The title screen applies all three toggles immediately for the current session.
 
-### KI-007 - Expedition unlock state is not persistent or data-driven yet
+### KI-007 - Story memory is not persisted to disk and future expeditions have no content
 
 - **Status:** Open
-- **Impact:** The Sanctuary angel portal offers Stage 1 and shows two authored future-route previews, but it cannot yet evaluate story, boss, discovery, item, or profile requirements.
-- **Planned resolution:** Introduce immutable expedition definitions and a versioned profile/story authority before enabling additional routes.
-- **Workaround:** Keep Stage 1 as the only portal-selected route; Stage 2 remains the direct continuation of Stage 1 and returns to Sanctuary.
+- **Impact:** The Sanctuary portal now evaluates data-driven level, story, boss, discovery, and narrative key-item requirements, but `StoryState` survives only for the current application session. Ashen Pilgrimage and The Drowned Bells have no destination scenes, required boss encounters, or obtainable key items.
+- **Planned resolution:** Approve the first versioned disk-profile boundary, then author the Thornbound Warden, Cinder Sigil, and Ashen Pilgrimage before enabling Route II.
+- **Workaround:** Forgotten Grove remains the only playable portal-selected route. Future routes honestly display their first unmet requirement and remain sealed even if test code satisfies their requirement data.
 
 ### KI-008 - Expeditions have no voluntary return action
 

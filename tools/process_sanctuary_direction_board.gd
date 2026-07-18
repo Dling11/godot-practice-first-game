@@ -1,8 +1,8 @@
 extends SceneTree
 
-## Converts the approved generated Sanctuary direction board into hard-pixel runtime
-## assets. Crop rectangles are source-space contracts; runtime scenes never load the
-## generated board directly.
+## Converts the approved generated Sanctuary direction board into hard-pixel
+## ground and tree assets. Superseded service NPC/building crops moved to the
+## standalone service pipeline so this board cannot regenerate retired art.
 
 const SOURCE_PATH := "res://art_source/generated/environment/sanctuary/sanctuary_direction_board_source.png"
 const CLEAR := Color(0, 0, 0, 0)
@@ -10,21 +10,6 @@ const VOID_INK := Color("090b10")
 const TILE_SIZE := 64
 
 const PROP_CROPS := {
-	"res://assets/environment/sanctuary/buildings/mushroom_dwelling_128x192.png": {
-		"rect": Rect2i(944, 8, 248, 382),
-		"canvas": Vector2i(128, 192),
-		"scale": 0.5,
-	},
-	"res://assets/environment/sanctuary/buildings/merchant_hall_176x192.png": {
-		"rect": Rect2i(1200, 6, 332, 384),
-		"canvas": Vector2i(176, 192),
-		"scale": 0.49,
-	},
-	"res://assets/environment/sanctuary/shops/weapon_stall_128x96.png": {
-		"rect": Rect2i(1072, 394, 218, 174),
-		"canvas": Vector2i(128, 96),
-		"scale": 0.52,
-	},
 	"res://assets/environment/sanctuary/props/sanctuary_tree_broad_96x120.png": {
 		"rect": Rect2i(1168, 776, 130, 160),
 		"canvas": Vector2i(96, 120),
@@ -38,18 +23,6 @@ const PROP_CROPS := {
 		"keep_largest": true,
 	},
 }
-
-const CHARACTER_CROPS := {
-	"res://assets/characters/npcs/skillkeeper/skillkeeper_idle_sheet_48x80.png": {
-		# Preserve source-space air around the staff and book. The old crop began
-		# and ended on live silhouette pixels, so its hard outline clipped both.
-		"rect": Rect2i(962, 410, 100, 164),
-		"cell": Vector2i(48, 80),
-		"scale": 0.46,
-		"pulse": "violet",
-	},
-}
-
 
 func _initialize() -> void:
 	var source := Image.new()
@@ -77,24 +50,10 @@ func _initialize() -> void:
 		if not _save(sprite, output_path):
 			return
 
-	for output_path: String in CHARACTER_CROPS:
-		var spec: Dictionary = CHARACTER_CROPS[output_path]
-		var base := _extract_sprite(
-			source,
-			spec.rect as Rect2i,
-			spec.cell as Vector2i,
-			float(spec.scale),
-			bool(spec.get("keep_largest", false)),
-			bool(spec.get("global_key", false))
-		)
-		var sheet := _build_idle_sheet(base, String(spec.pulse))
-		if not _save(sheet, output_path):
-			return
-
 	var tile_atlas := _build_ground_atlas()
 	if not _save(tile_atlas, "res://assets/environment/sanctuary/tiles/sanctuary_ground_atlas_64x64.png"):
 		return
-	print("Processed Sanctuary direction board into %d runtime assets." % (PROP_CROPS.size() + CHARACTER_CROPS.size() + 1))
+	print("Processed Sanctuary direction board into %d runtime assets." % (PROP_CROPS.size() + 1))
 	quit(0)
 
 
@@ -275,35 +234,6 @@ func _alpha_used_rect(image: Image) -> Rect2i:
 	if maximum.x < minimum.x:
 		return Rect2i()
 	return Rect2i(minimum, maximum - minimum + Vector2i.ONE)
-
-
-func _build_idle_sheet(base: Image, pulse_kind: String) -> Image:
-	var sheet := _new_image(base.get_width() * 4, base.get_height())
-	var pulse_strengths := [0.88, 1.0, 1.12, 1.0]
-	for frame in range(4):
-		var frame_image := base.duplicate()
-		for y in range(frame_image.get_height()):
-			for x in range(frame_image.get_width()):
-				var color: Color = frame_image.get_pixel(x, y)
-				if color.a < 0.5 or not _is_pulse_color(color, pulse_kind):
-					continue
-				var strength: float = pulse_strengths[frame]
-				color.r = clampf(color.r * strength, 0.0, 1.0)
-				color.g = clampf(color.g * strength, 0.0, 1.0)
-				color.b = clampf(color.b * strength, 0.0, 1.0)
-				frame_image.set_pixel(x, y, _opaque(color))
-		sheet.blit_rect(
-			frame_image,
-			Rect2i(Vector2i.ZERO, frame_image.get_size()),
-			Vector2i(frame * base.get_width(), 0)
-		)
-	return sheet
-
-
-func _is_pulse_color(color: Color, pulse_kind: String) -> bool:
-	if pulse_kind == "violet":
-		return color.b > color.g * 1.12 and color.r > color.g * 0.92 and color.b > 0.28
-	return color.r > 0.45 and color.g > 0.28 and color.r > color.b * 1.2
 
 
 func _build_ground_atlas() -> Image:

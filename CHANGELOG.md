@@ -1,5 +1,35 @@
 # Changelog
 
+## 2026-07-18 - Story Memory and Data-Driven Expedition Access
+
+- Established Opaw's isekai awakening, the lesser gods' treatment of mortal struggle as entertainment, The One Above's unresolved greater mystery, a future switchable roster separated from Warrior/Mage/Archer class concepts, and long-range god/beyond/boundless escalation in `STORY_BIBLE.md`.
+- Added immutable expedition definitions and requirements covering minimum level, story flags, boss victories, discoveries, and narrative key items; rebuilt the Sanctuary route menu from those resources with visible unmet requirements and safe focus behavior.
+- Added a narrow `StoryState` autoload with versioned in-memory snapshots, Sanctuary awakening memory, and Forgotten Grove completion/discovery recording while deliberately leaving disk persistence, inventory, roster switching, shops, and unbuilt routes inactive.
+- Added focused regression coverage for combined unlock evaluation, unavailable destination protection, story reset/snapshot behavior, generated menu routes, and the existing title-to-Sanctuary flow.
+
+## 2026-07-18 - Sanctuary Pavement Alignment Pass
+
+- Recentered the Sanctuary's north-south pavement as a two-cell avenue beneath the even-grid portal and fountain instead of a single lane leaning to the east.
+- Snapped the skill lodge and arms workshop door centers to their one-cell approaches, centered the weapon cart on a compact two-cell bay, and retained a restrained one-row service connector with garden breaks.
+- Added route-shape regression coverage for the paired central lane, landmark aprons, exact service alignment, cart bay, and preserved grass gaps; captured the composed hub at gameplay scale for visual review.
+
+## 2026-07-18 - Compact Sanctuary Service Corner and Runtime Archive Cleanup
+
+- Rebuilt Skillkeeper Eira and Armskeeper Orren as compact 48x48-cell NPCs aligned with Opaw's oversized-head, tiny-body scale language while preserving their violet-scholar and rust/iron-armskeeper identities.
+- Replaced the mushroom dwelling, merchant hall, and weapon stall with a complete skillkeeper lodge, armskeeper workshop, and prop-only weapon cart; no NPC body or cropped figure is baked into the new structures.
+- Kept dialogue, interaction, collision, portal/fountain/ground presentation, and Orren's preview-only service rules unchanged.
+- Split Sanctuary generation ownership so the direction board produces only ground/trees and the standalone processor owns landmarks plus all service content.
+- Moved superseded service scenes/assets/sources, rejected Opaw variants and their retired builders/tests, and the legacy Awakened presentation under Godot-ignored `art_source/archive/`; retained the full Wayfarer rollback under active assets.
+- Added gameplay-scale review capture and regression coverage for binary alpha, exact canvases, compact NPC bounds, editable service-building collision, preview behavior, dialogue flow, and archive-safe runtime references.
+- Restored the player sword, Sweeping Cut, and dash audio players' explicit `SFX` bus declarations after the full active-suite cleanup exposed scene drift.
+
+## 2026-07-18 - Three-Swing Sword Sequence and Higher Front Placement
+
+- Raised the down-facing Ashwood Blade from `(12, -6)` to `(12, -8)` so it sits higher beside Opaw in the front view.
+- Expanded sword-style data with a deterministic three-attack presentation sequence: broad outward sweep, reverse return sweep, and a farther-reaching visual finishing sweep.
+- Kept all three variants on the shared weaponless Opaw body animation and unchanged weapon timing, hitbox reach, damage, and knockback.
+- Reset the sequence on weapon-definition changes and added runtime coverage for variant order, reverse direction, and finishing extension.
+
 ## 2026-07-18 - Reusable Sword Attack Styles and Raised Front Blade
 
 - Raised the down-facing Ashwood Blade two pixels so its front-view grip sits higher beside Opaw's torso.

@@ -66,7 +66,7 @@ func _run() -> void:
 	):
 		_fail("Opaw's visible weapon does not use its data-driven grip offset and scale.")
 		return
-	if weapon_visual.position != Vector2(12.0, -6.0):
+	if weapon_visual.position != Vector2(12.0, -8.0):
 		_fail("Opaw's down-facing Ashwood Blade is no longer clear of his armless body.")
 		return
 	var right_rotations: Vector2 = weapon_visual.call("_attack_rotations", &"right", 1.15, 0.72)

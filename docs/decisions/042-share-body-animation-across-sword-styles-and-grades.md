@@ -16,7 +16,7 @@ Opaw's weaponless attack body and detached Ashwood Blade already separate charac
 
 ## Decision
 
-`WeaponDefinition` may reference an immutable `SwordAttackStyleDefinition`. A style owns only the detached weapon's wind-up/strike arcs, active extension, trail points/width/color/fade, and strike scale/tint. Balanced Slash reproduces the approved Ashwood motion. Swift Slash and Heavy Cleave are authored reusable profiles for future content but do not create obtainable weapons.
+`WeaponDefinition` may reference an immutable `SwordAttackStyleDefinition`. A style owns only the detached weapon's wind-up/strike arcs, active extension, trail points/width/color/fade, strike scale/tint, and deterministic normal-swing presentation variants. Balanced Slash cycles an outward sweep, reverse return, and extended visual finish. The sequence advances when authoritative wind-up begins, but does not change combat values. Swift Slash and Heavy Cleave are authored reusable profiles for future content but do not create obtainable weapons.
 
 Sword grades may share Opaw's same weaponless `SpriteFrames` and the same style while supplying their own world texture, grip offset, visual scale, swing radius, damage, knockback, and authoritative phase timing. `Player.set_weapon_definition()` synchronizes the combat component and weapon presentation only while no attack, ability, dash, or defeat is active. This seam does not implement inventory, ownership, drops, purchases, equipment UI commands, or saving.
 

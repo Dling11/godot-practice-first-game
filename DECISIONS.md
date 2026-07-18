@@ -50,6 +50,8 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 040 | Split playable animation by action while locking body scale | Opaw animation sheets, directional scale, attack-body phases, dash, hurt, or defeat |
 | 041 | Activate compact armless Opaw with an explicit visual rollback | Opaw's active silhouette, detached weapon orbit, model replacement, or art backup |
 | 042 | Share body animation across data-driven sword styles and grades | Sword grades, attack presentation profiles, visible weapon swapping, or animation reuse |
+| 043 | Align Sanctuary services with compact characters and archive superseded runtime material | Eira/Orren art, service buildings, asset cleanup, supported rollbacks, or archive policy |
+| 044 | Use story memory for data-driven expedition access | Story flags, bosses, discoveries, key items, route requirements, lore memory, or future profile saves |
 
 ## New Decisions
 

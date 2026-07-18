@@ -6,11 +6,11 @@
 script = ExtResource("1_style")
 style_id = &"heavy_cleave"
 display_name = "Heavy Cleave"
-normal_wind_up_arc = 1.95
-normal_strike_arc = 1.58
+normal_wind_up_arc = 1.72
+normal_strike_arc = 1.38
 normal_active_extension = 3.0
-ability_wind_up_arc = 2.15
-ability_strike_arc = 1.72
+ability_wind_up_arc = 1.82
+ability_strike_arc = 1.28
 ability_active_extension = 5.0
 trail_point_count = 17
 trail_width = 5.5

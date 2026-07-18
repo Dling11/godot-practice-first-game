@@ -6,13 +6,13 @@ const RUNTIME_SPRITES := {
 	"res://assets/environment/sanctuary/landmarks/angel_expedition_portal_192x192.png": Vector2i(192, 192),
 	"res://assets/environment/sanctuary/landmarks/angel_expedition_portal_ground_192x192.png": Vector2i(192, 192),
 	"res://assets/environment/sanctuary/landmarks/divine_fountain_112x96.png": Vector2i(112, 96),
-	"res://assets/environment/sanctuary/buildings/mushroom_dwelling_128x192.png": Vector2i(128, 192),
-	"res://assets/environment/sanctuary/buildings/merchant_hall_176x192.png": Vector2i(176, 192),
-	"res://assets/environment/sanctuary/shops/weapon_stall_128x96.png": Vector2i(128, 96),
+	"res://assets/environment/sanctuary/buildings/skillkeeper_lodge_128x192.png": Vector2i(128, 192),
+	"res://assets/environment/sanctuary/buildings/armskeeper_workshop_176x192.png": Vector2i(176, 192),
+	"res://assets/environment/sanctuary/shops/armskeeper_cart_128x96.png": Vector2i(128, 96),
 	"res://assets/environment/sanctuary/props/sanctuary_tree_broad_96x120.png": Vector2i(96, 120),
 	"res://assets/environment/sanctuary/props/sanctuary_tree_tall_96x120.png": Vector2i(96, 120),
-	"res://assets/characters/npcs/skillkeeper/skillkeeper_idle_sheet_48x80.png": Vector2i(192, 80),
-	"res://assets/characters/npcs/weapon_merchant/weapon_merchant_idle_sheet_48x72.png": Vector2i(192, 72),
+	"res://assets/characters/npcs/skillkeeper/skillkeeper_idle_sheet_48x48.png": Vector2i(192, 48),
+	"res://assets/characters/npcs/armskeeper/armskeeper_idle_sheet_48x48.png": Vector2i(192, 48),
 	"res://assets/environment/sanctuary/tiles/sanctuary_ground_atlas_64x64.png": Vector2i(256, 320),
 }
 
@@ -20,16 +20,16 @@ const MINIMUM_OPAQUE_PIXELS := {
 	"res://assets/environment/sanctuary/landmarks/angel_expedition_portal_192x192.png": 7000,
 	"res://assets/environment/sanctuary/landmarks/angel_expedition_portal_ground_192x192.png": 900,
 	"res://assets/environment/sanctuary/landmarks/divine_fountain_112x96.png": 3500,
-	"res://assets/environment/sanctuary/buildings/mushroom_dwelling_128x192.png": 14000,
-	"res://assets/environment/sanctuary/buildings/merchant_hall_176x192.png": 21000,
-	"res://assets/environment/sanctuary/shops/weapon_stall_128x96.png": 7000,
-	"res://assets/characters/npcs/skillkeeper/skillkeeper_idle_sheet_48x80.png": 6100,
-	"res://assets/characters/npcs/weapon_merchant/weapon_merchant_idle_sheet_48x72.png": 2400,
+	"res://assets/environment/sanctuary/buildings/skillkeeper_lodge_128x192.png": 6000,
+	"res://assets/environment/sanctuary/buildings/armskeeper_workshop_176x192.png": 10000,
+	"res://assets/environment/sanctuary/shops/armskeeper_cart_128x96.png": 4000,
+	"res://assets/characters/npcs/skillkeeper/skillkeeper_idle_sheet_48x48.png": 1000,
+	"res://assets/characters/npcs/armskeeper/armskeeper_idle_sheet_48x48.png": 1000,
 }
 
 const CHARACTER_FRAME_SIZES := {
-	"res://assets/characters/npcs/skillkeeper/skillkeeper_idle_sheet_48x80.png": Vector2i(48, 80),
-	"res://assets/characters/npcs/weapon_merchant/weapon_merchant_idle_sheet_48x72.png": Vector2i(48, 72),
+	"res://assets/characters/npcs/skillkeeper/skillkeeper_idle_sheet_48x48.png": Vector2i(48, 48),
+	"res://assets/characters/npcs/armskeeper/armskeeper_idle_sheet_48x48.png": Vector2i(48, 48),
 }
 
 
@@ -67,8 +67,8 @@ func _run() -> void:
 				if used_rect.position.x < 1 or used_rect.end.x > frame_size.x - 1:
 					_fail("Sanctuary NPC silhouette touches a frame edge: %s" % path)
 					return
-				if path.contains("weapon_merchant") and _count_opaque_components(frame) != 1:
-					_fail("Weapon merchant crop contains a disconnected neighboring prop fragment.")
+				if used_rect.size.y < 24 or used_rect.size.y > 42:
+					_fail("Compact Sanctuary NPC no longer matches Opaw's body-scale language: %s" % path)
 					return
 	var sanctuary := SanctuaryScene.instantiate()
 	root.add_child(sanctuary)
@@ -86,7 +86,7 @@ func _run() -> void:
 	var dialogue := sanctuary.get_node("UI/DialoguePanel") as DialoguePanel
 	var menu := sanctuary.get_node("UI/ExpeditionMenu") as ExpeditionMenu
 	var ground := sanctuary.get_node("World/Level/Ground") as SanctuaryGround
-	for building_name in ["MushroomDwelling", "MerchantHall"]:
+	for building_name in ["SkillkeeperLodge", "ArmskeeperWorkshop"]:
 		var building_collision := sanctuary.get_node("World/Actors/%s/Collision" % building_name) as CollisionPolygon2D
 		if building_collision == null or building_collision.polygon.size() < 4:
 			_fail("Sanctuary building does not expose an editable collision polygon: %s" % building_name)
@@ -96,6 +96,22 @@ func _run() -> void:
 		return
 	if ground.get_used_cells().size() != 216:
 		_fail("Sanctuary dedicated ground did not fill its authored 18x12 map.")
+		return
+	var lodge := sanctuary.get_node("World/Actors/SkillkeeperLodge") as Node2D
+	var workshop := sanctuary.get_node("World/Actors/ArmskeeperWorkshop") as Node2D
+	var cart := sanctuary.get_node("World/Actors/ArmskeeperCart") as Node2D
+	if lodge.position.x != ground.map_to_local(Vector2i(3, 6)).x:
+		_fail("The skill lodge door is not centered on its pavement approach.")
+		return
+	if workshop.position.x != ground.map_to_local(Vector2i(14, 6)).x:
+		_fail("The arms workshop door is not centered on its pavement approach.")
+		return
+	var cart_bay_center_x := (
+		ground.map_to_local(Vector2i(12, 8)).x
+		+ ground.map_to_local(Vector2i(13, 8)).x
+	) * 0.5
+	if cart.position.x != cart_bay_center_x:
+		_fail("The Armskeeper cart is not centered on its two-cell pavement bay.")
 		return
 	if fountain == null:
 		_fail("The standalone divine fountain is not instantiated in Sanctuary.")
@@ -202,9 +218,25 @@ func _run() -> void:
 	if not _portal_approach_is_clear(altar, fountain):
 		_fail("The authored walk-around route to the portal's front interaction point is obstructed.")
 		return
-	for path_cell in [Vector2i(3, 5), Vector2i(3, 6), Vector2i(14, 5), Vector2i(14, 6)]:
-		if ground.get_cell_source_id(path_cell) < 0:
-			_fail("A side-building pavement connection is missing at %s." % path_cell)
+	var required_path_cells := [
+		Vector2i(8, 4), Vector2i(9, 4),
+		Vector2i(8, 11), Vector2i(9, 11),
+		Vector2i(3, 5), Vector2i(3, 6),
+		Vector2i(14, 5), Vector2i(14, 6),
+		Vector2i(7, 6), Vector2i(10, 6),
+		Vector2i(12, 8), Vector2i(13, 8),
+	]
+	for path_cell in required_path_cells:
+		if ground.get_cell_atlas_coords(path_cell).y <= 0:
+			_fail("An aligned Sanctuary pavement connection is missing at %s." % path_cell)
+			return
+	for grass_cell in [
+		Vector2i(4, 6), Vector2i(5, 6), Vector2i(6, 6),
+		Vector2i(11, 6), Vector2i(12, 6), Vector2i(13, 6),
+		Vector2i(7, 8), Vector2i(10, 8),
+	]:
+		if ground.get_cell_atlas_coords(grass_cell).y != 0:
+			_fail("A service courtyard expanded into its intended garden break at %s." % grass_cell)
 			return
 
 	var interact := InputEventAction.new()
@@ -279,8 +311,21 @@ func _run() -> void:
 	if not menu.visible or not paused:
 		_fail("Angel portal interaction did not open its paused destination menu.")
 		return
-	if menu.first_expedition_scene != "res://levels/test_arena/test_arena.tscn":
+	if (
+		menu.expeditions.is_empty()
+		or menu.expeditions[0].destination_scene != "res://levels/test_arena/test_arena.tscn"
+	):
 		_fail("The first available Sanctuary expedition is not Stage 1.")
+		return
+	if menu.route_buttons.size() != 3 or menu.first_expedition_button.disabled:
+		_fail("The expedition menu did not build one available and two sealed data-driven routes.")
+		return
+	if (
+		not menu.route_buttons[1].disabled
+		or not menu.route_buttons[1].tooltip_text.contains("BOSS: Thornbound Warden")
+		or not menu.route_buttons[2].disabled
+	):
+		_fail("Future expedition buttons do not expose their authored access requirements.")
 		return
 	if root.gui_get_focus_owner() != menu.first_expedition_button:
 		_fail("Expedition selection did not establish keyboard/gamepad focus.")
@@ -299,36 +344,6 @@ func _run() -> void:
 func _fail(message: String) -> void:
 	push_error(message)
 	quit(1)
-
-
-func _count_opaque_components(image: Image) -> int:
-	var visited := PackedByteArray()
-	visited.resize(image.get_width() * image.get_height())
-	var component_count := 0
-	for y in image.get_height():
-		for x in image.get_width():
-			var start_index := y * image.get_width() + x
-			if visited[start_index] == 1 or image.get_pixel(x, y).a < 0.999:
-				continue
-			component_count += 1
-			var stack: Array[Vector2i] = [Vector2i(x, y)]
-			while not stack.is_empty():
-				var point: Vector2i = stack.pop_back()
-				var index := point.y * image.get_width() + point.x
-				if visited[index] == 1:
-					continue
-				visited[index] = 1
-				if image.get_pixelv(point).a < 0.999:
-					continue
-				for offset in [
-					Vector2i(-1, -1), Vector2i(0, -1), Vector2i(1, -1),
-					Vector2i(-1, 0), Vector2i(1, 0),
-					Vector2i(-1, 1), Vector2i(0, 1), Vector2i(1, 1),
-				]:
-					var neighbor: Vector2i = point + offset
-					if neighbor.x >= 0 and neighbor.y >= 0 and neighbor.x < image.get_width() and neighbor.y < image.get_height():
-						stack.append(neighbor)
-	return component_count
 
 
 func _portal_approach_is_clear(altar: ExpeditionAltar, fountain: DivineFountain) -> bool:

@@ -46,6 +46,9 @@ func begin_new_journey() -> void:
 	var run_session := get_node_or_null("/root/RunSession")
 	if run_session != null:
 		run_session.reset_run()
+	var story_state := get_node_or_null("/root/StoryState")
+	if story_state != null:
+		story_state.reset_story()
 	var transition_service := get_node_or_null("/root/SceneTransition")
 	if transition_service == null:
 		push_error("TitleScreen requires the SceneTransition autoload.")

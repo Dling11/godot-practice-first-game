@@ -66,20 +66,17 @@ These files are intentionally outside runtime imports under Godot-ignored `art_s
 | `char_opaw_compact_armless_attack_vertical_revision` | `art_source/generated/characters/playable/opaw/compact_armless/opaw_compact_armless_attack_vertical_revision.png` | `source` | Corrected centered down/up rows; composed into the attack source without changing approved left/right rows |
 | `char_opaw_modular_actions_legacy` | `art_source/generated/characters/playable/opaw/opaw_modular_action_source.png` | `legacy_source` | 1024x1536; superseded single board |
 | `char_opaw_modular_actions_legacy` | `art_source/generated/characters/playable/opaw/opaw_modular_action_clean.png` | `legacy_intermediate` | 1024x1536; superseded single board |
-| `char_opaw_handless_candidate` | `art_source/generated/characters/playable/opaw/variants/handless/opaw_attack_body_handless_imagegen_source.png` | `source` | Image-generated handless attack-pose exploration; not loaded at runtime |
+| `char_opaw_handless_candidate` | `art_source/archive/characters/playable/opaw/review_variants/source/handless/opaw_attack_body_handless_imagegen_source.png` | `archived` | Rejected handless attack-pose exploration; outside Godot imports |
 
-### Review-Only Opaw Variant
+### Archived Opaw Experiments and Supported Rollback
 
 | Canonical ID | Preserved path | Status | Contract |
 |---|---|---|---|
-| `char_opaw_handless_action_set` | `assets/characters/playable/opaw/variants/handless/opaw_handless_*_sheet_*.png` | `planned` | Seven duplicate grids; exposed hands covered by closed sleeve ends; active sheets untouched |
-| `char_opaw_handless_frames` | `assets/characters/playable/opaw/variants/handless/opaw_handless_sprite_frames.tres` | `planned` | Complete animation resource for review or an explicit later swap |
-| `char_opaw_armless_attack_source` | `art_source/generated/characters/playable/opaw/variants/armless/opaw_armless_attack_body_source.png` | `source` | Built-in image edit preserving Opaw identity/layout while removing both complete arms |
-| `char_opaw_armless_attack_clean` | `art_source/generated/characters/playable/opaw/variants/armless/opaw_armless_attack_body_clean.png` | `intermediate` | White-board removal before palette/grid normalization |
-| `char_opaw_armless_attack_prototype` | `assets/characters/playable/opaw/variants/armless/opaw_armless_attack_body_sheet_48x32.png` | `planned` | Review-only 3 phases x 4 directions; 48x32 cells; not wired into `player.tscn` |
-| `char_opaw_armless_small_feet_source` | `art_source/generated/characters/playable/opaw/variants/armless_small_feet/opaw_armless_small_feet_attack_body_source.png` | `source` | Built-in image edit of the preserved armless board; compact boots and shorter lower legs |
-| `char_opaw_armless_small_feet_clean` | `art_source/generated/characters/playable/opaw/variants/armless_small_feet/opaw_armless_small_feet_attack_body_clean.png` | `intermediate` | White-board removal before palette/grid normalization |
-| `char_opaw_armless_small_feet_prototype` | `assets/characters/playable/opaw/variants/armless_small_feet/opaw_armless_small_feet_attack_body_sheet_48x32.png` | `planned` | Review-only chibi-foot 3x4 attack candidate; original armless prototype preserved |
+| `char_opaw_handless_action_set` | `art_source/archive/characters/playable/opaw/review_variants/runtime/handless/` | `archived` | Rejected sleeve-ended seven-action comparison; no active build/test hooks |
+| `char_opaw_armless_attack_prototype` | `art_source/archive/characters/playable/opaw/review_variants/runtime/armless/` | `archived` | Rejected attack-only no-arm experiment |
+| `char_opaw_armless_small_feet_prototype` | `art_source/archive/characters/playable/opaw/review_variants/runtime/armless_small_feet/` | `archived` | Rejected attack-only compact-foot experiment |
+| `char_opaw_review_variant_sources` | `art_source/archive/characters/playable/opaw/review_variants/source/` | `archived` | Source and cleaned material for the three rejected experiments |
+| `char_opaw_review_variant_code` | `art_source/archive/characters/playable/opaw/review_variants/code/` | `archived` | Retired builders, smoke tests, and UID files; ignored by Godot |
 | `char_opaw_wayfarer_original_backup` | `assets/characters/playable/opaw/variants/wayfarer_original/opaw_wayfarer_original_*_sheet_*.png` | `legacy` | Complete seven-sheet backup of the model active before the compact armless swap |
 | `char_opaw_wayfarer_original_frames` | `assets/characters/playable/opaw/variants/wayfarer_original/opaw_wayfarer_original_sprite_frames.tres` | `legacy_resource` | Independently loadable rollback resource with animation parity |
 
@@ -89,13 +86,8 @@ These files are intentionally outside runtime imports under Godot-ignored `art_s
 
 | Related canonical ID | Preserved path | Status | Source dimensions |
 |---|---|---|---|
-| `char_awakened_locomotion` | `assets/characters/awakened/awakened_locomotion_sheet_24x32.png` | `legacy` | 96x128; superseded active player sheet |
-| `char_awakened_sword_attack` | `assets/characters/awakened/awakened_sword_attack_sheet_64x48.png` | `legacy` | 384x192; superseded active player attack sheet |
-| `char_awakened_frames` | `assets/characters/awakened/awakened_sprite_frames.tres` | `legacy` | Superseded Godot `SpriteFrames` |
-| `char_awakened_locomotion` | `art_source/generated/characters/awakened/awakened_locomotion_source.png` | `source` | 1254x1254 |
-| `char_awakened_locomotion` | `art_source/generated/characters/awakened/awakened_locomotion_clean.png` | `intermediate` | 1254x1254 |
-| `char_awakened_sword_attack` | `art_source/generated/characters/awakened/awakened_sword_attack_source.png` | `source` | 1536x1024 |
-| `char_awakened_sword_attack` | `art_source/generated/characters/awakened/awakened_sword_attack_clean.png` | `intermediate` | 1536x1024 |
+| `char_awakened_runtime_legacy` | `art_source/archive/characters/playable/awakened_legacy/runtime/` | `archived` | Superseded locomotion, attack, imports, and `SpriteFrames`; outside Godot |
+| `char_awakened_source_legacy` | `art_source/archive/characters/playable/awakened_legacy/source/` | `archived` | Original and cleaned Awakened generation material |
 
 ### Preserved Forsaken Thrall Pipeline Material
 
@@ -135,15 +127,15 @@ These files are intentionally outside runtime imports under Godot-ignored `art_s
 | `landmark_sanctuary_angel_expedition_portal_structure` | `assets/environment/sanctuary/landmarks/angel_expedition_portal_192x192.png` | Active | 192x192; Y-sorted arch, guardians, and doorway | `expedition_altar.tscn` |
 | `landmark_sanctuary_angel_expedition_portal_ground` | `assets/environment/sanctuary/landmarks/angel_expedition_portal_ground_192x192.png` | Active | 192x192; center stairs and threshold ground layer | `expedition_altar.tscn` |
 | `prop_sanctuary_divine_fountain` | `assets/environment/sanctuary/landmarks/divine_fountain_112x96.png` | Active | 112x96; basin origin at bottom center; standalone walk-around footprint | `divine_fountain.tscn` |
-| `building_sanctuary_mushroom_dwelling` | `assets/environment/sanctuary/buildings/mushroom_dwelling_128x192.png` | Active | 128x192; base origin at bottom center | `mushroom_dwelling.tscn` |
-| `building_sanctuary_merchant_hall` | `assets/environment/sanctuary/buildings/merchant_hall_176x192.png` | Active | 176x192; base origin at bottom center | `merchant_hall.tscn` |
-| `shop_sanctuary_weapon_stall` | `assets/environment/sanctuary/shops/weapon_stall_128x96.png` | Active | 128x96; base origin at bottom center | `weapon_stall.tscn` |
+| `building_sanctuary_skillkeeper_lodge` | `assets/environment/sanctuary/buildings/skillkeeper_lodge_128x192.png` | Active | 128x192; compact violet study, complete bottom-center origin | `skillkeeper_lodge.tscn` |
+| `building_sanctuary_armskeeper_workshop` | `assets/environment/sanctuary/buildings/armskeeper_workshop_176x192.png` | Active | 176x192; warm smith/weapon workshop, complete bottom-center origin | `armskeeper_workshop.tscn` |
+| `shop_sanctuary_armskeeper_cart` | `assets/environment/sanctuary/shops/armskeeper_cart_128x96.png` | Active | 128x96; complete prop-only cart with no baked character | `armskeeper_cart.tscn` |
 | `prop_sanctuary_tree_broad` | `assets/environment/sanctuary/props/sanctuary_tree_broad_96x120.png` | Active | 96x120; footprint origin at bottom center | `sanctuary_tree_broad.tscn` |
 | `prop_sanctuary_tree_tall` | `assets/environment/sanctuary/props/sanctuary_tree_tall_96x120.png` | Active | 96x120; footprint origin at bottom center | `sanctuary_tree_tall.tscn` |
-| `char_npc_skillkeeper_idle` | `assets/characters/npcs/skillkeeper/skillkeeper_idle_sheet_48x80.png` | Active | 192x80; 4x1 of 48x80; full staff and book silhouette | `skillkeeper.tscn` |
-| `char_npc_weapon_merchant_idle` | `assets/characters/npcs/weapon_merchant/weapon_merchant_idle_sheet_48x72.png` | Active | 192x72; 4x1 of 48x72; standalone full-body silhouette with both hands inside every cell | `weapon_merchant.tscn` |
+| `char_npc_skillkeeper_idle` | `assets/characters/npcs/skillkeeper/skillkeeper_idle_sheet_48x48.png` | Active | 192x48; 4x1 compact Eira with detached book/wisp | `skillkeeper.tscn` |
+| `char_npc_armskeeper_idle` | `assets/characters/npcs/armskeeper/armskeeper_idle_sheet_48x48.png` | Active | 192x48; 4x1 compact Orren with detached hammer/sword | `armskeeper.tscn` |
 
-The Sanctuary source board is preserved at `art_source/generated/environment/sanctuary/sanctuary_direction_board_source.png`; its exact terrain/building/stall/tree/Eira crops, per-asset border cleanup, outline, scale, idle-frame, and tile-atlas build are reproducible through `tools/process_sanctuary_direction_board.gd`. The standalone portal, fountain, and Orren assets are reproducible through `tools/process_sanctuary_individual_assets.gd`. Character crop bounds must include transparent source-space breathing room around limbs and held props. The prop scenes remain under `environment/props/` because they combine presentation with collision, navigation, occlusion, and behavior. Raster art stays under `assets/`.
+The Sanctuary source board is preserved at `art_source/generated/environment/sanctuary/sanctuary_direction_board_source.png`; only its terrain and tree crops remain active through `tools/process_sanctuary_direction_board.gd`. The standalone portal, fountain, compact Eira/Orren, skillkeeper lodge, armskeeper workshop, and cart are reproducible through `tools/process_sanctuary_individual_assets.gd`. Detached NPC props remain intentional within padded 48x48 cells. Prop scenes remain under `environment/props/` because they combine presentation with editable collision and idle effects. Superseded service crops/scenes/runtime files are archived and cannot be regenerated by the direction-board processor.
 
 ### Preserved Sanctuary Standalone Pipeline Material
 
@@ -155,8 +147,14 @@ These source and intermediate images remain outside Godot runtime imports:
 | `landmark_sanctuary_angel_expedition_portal_structure` | `art_source/generated/environment/sanctuary/portal/angel_expedition_portal_clean.png` | `intermediate` | 1254x1254 |
 | `prop_sanctuary_divine_fountain` | `art_source/generated/environment/sanctuary/fountain/divine_fountain_source.png` | `source` | 1254x1254 |
 | `prop_sanctuary_divine_fountain` | `art_source/generated/environment/sanctuary/fountain/divine_fountain_clean.png` | `intermediate` | 1254x1254 |
-| `char_npc_weapon_merchant_idle` | `art_source/generated/characters/npcs/weapon_merchant/weapon_merchant_idle_source.png` | `source` | 1254x1254 |
-| `char_npc_weapon_merchant_idle` | `art_source/generated/characters/npcs/weapon_merchant/weapon_merchant_idle_clean.png` | `intermediate` | 1254x1254 |
+| `char_npc_skillkeeper_idle` | `art_source/generated/characters/npcs/skillkeeper/skillkeeper_compact_source.png` | `source` | 1254x1254 |
+| `char_npc_skillkeeper_idle` | `art_source/generated/characters/npcs/skillkeeper/skillkeeper_compact_clean.png` | `intermediate` | 1254x1254 |
+| `char_npc_armskeeper_idle` | `art_source/generated/characters/npcs/armskeeper/armskeeper_compact_source.png` | `source` | 1254x1254 |
+| `char_npc_armskeeper_idle` | `art_source/generated/characters/npcs/armskeeper/armskeeper_compact_clean.png` | `intermediate` | 1254x1254 |
+| `building_sanctuary_skillkeeper_lodge` | `art_source/generated/environment/sanctuary/services/skillkeeper_lodge_source.png` | `source` | 1254x1254 |
+| `building_sanctuary_armskeeper_workshop` | `art_source/generated/environment/sanctuary/services/armskeeper_workshop_source.png` | `source` | 1254x1254 |
+| `shop_sanctuary_armskeeper_cart` | `art_source/generated/environment/sanctuary/services/armskeeper_cart_source.png` | `source` | 1254x1254 |
+| `sanctuary_service_legacy_pass` | `art_source/archive/environment/sanctuary/legacy_service_pass/` | `archived` | Replaced scenes, runtime files, and reviewed legacy PNGs |
 | `landmark_sanctuary_angel_portal_fountain` | `art_source/archive/environment/sanctuary/angel_portal_fountain_256x240_legacy.png` | `legacy` | 256x240; superseded combined runtime crop |
 
 ## Active UI and Effects

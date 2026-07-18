@@ -57,7 +57,9 @@ func _run() -> void:
 		_fail("Closing settings did not restore focus to its invoking button.")
 		return
 	var run_session := root.get_node("RunSession")
+	var story_state := root.get_node("StoryState")
 	run_session.update_progression(80, 12)
+	story_state.remember_story(&"forgotten_grove_completed")
 	var transition_state := {"requested": "", "started": false, "finished": false}
 	title.journey_requested.connect(func(destination: String) -> void: transition_state.requested = destination)
 	transition_service.transition_started.connect(func(_destination: String) -> void:
@@ -83,6 +85,9 @@ func _run() -> void:
 		return
 	if run_session.total_experience != 0 or run_session.coins != 0:
 		_fail("A new journey did not reset the in-memory run state.")
+		return
+	if story_state.has_story_flag(&"forgotten_grove_completed"):
+		_fail("A new journey did not reset the in-memory story state.")
 		return
 	print("Title screen smoke test passed.")
 	quit(0)

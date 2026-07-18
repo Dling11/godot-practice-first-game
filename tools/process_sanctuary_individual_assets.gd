@@ -1,7 +1,7 @@
 extends SceneTree
 
-## Normalizes the approved standalone Sanctuary portal, fountain, and merchant
-## generation sources into exact hard-pixel runtime assets.
+## Normalizes approved standalone Sanctuary landmarks, compact service NPCs,
+## and service structures into exact hard-pixel runtime assets.
 
 const CLEAR := Color(0, 0, 0, 0)
 const VOID_INK := Color("090b10")
@@ -24,14 +24,54 @@ const ASSET_SPECS := {
 		"content": Vector2i(108, 92),
 		"bottom_margin": 2,
 	},
-	"merchant": {
-		"source": "res://art_source/generated/characters/npcs/weapon_merchant/weapon_merchant_idle_source.png",
-		"clean": "res://art_source/generated/characters/npcs/weapon_merchant/weapon_merchant_idle_clean.png",
-		"runtime": "res://assets/characters/npcs/weapon_merchant/weapon_merchant_idle_sheet_48x72.png",
-		"canvas": Vector2i(48, 72),
-		"content": Vector2i(34, 60),
-		"bottom_margin": 4,
+	"skillkeeper": {
+		"source": "res://art_source/generated/characters/npcs/skillkeeper/skillkeeper_compact_source.png",
+		"clean": "res://art_source/generated/characters/npcs/skillkeeper/skillkeeper_compact_clean.png",
+		"runtime": "res://assets/characters/npcs/skillkeeper/skillkeeper_idle_sheet_48x48.png",
+		"canvas": Vector2i(48, 48),
+		"content": Vector2i(44, 42),
+		"bottom_margin": 3,
 		"sheet": true,
+		"pulse": "violet",
+		"keep_largest": false,
+	},
+	"merchant": {
+		"source": "res://art_source/generated/characters/npcs/armskeeper/armskeeper_compact_source.png",
+		"clean": "res://art_source/generated/characters/npcs/armskeeper/armskeeper_compact_clean.png",
+		"runtime": "res://assets/characters/npcs/armskeeper/armskeeper_idle_sheet_48x48.png",
+		"canvas": Vector2i(48, 48),
+		"content": Vector2i(44, 42),
+		"bottom_margin": 3,
+		"sheet": true,
+		"pulse": "ember",
+		"keep_largest": false,
+	},
+	"skillkeeper_lodge": {
+		"source": "res://art_source/generated/environment/sanctuary/services/skillkeeper_lodge_source.png",
+		"clean": "res://art_source/generated/environment/sanctuary/services/skillkeeper_lodge_clean.png",
+		"runtime": "res://assets/environment/sanctuary/buildings/skillkeeper_lodge_128x192.png",
+		"canvas": Vector2i(128, 192),
+		"content": Vector2i(124, 150),
+		"bottom_margin": 2,
+		"keep_largest": false,
+	},
+	"armskeeper_workshop": {
+		"source": "res://art_source/generated/environment/sanctuary/services/armskeeper_workshop_source.png",
+		"clean": "res://art_source/generated/environment/sanctuary/services/armskeeper_workshop_clean.png",
+		"runtime": "res://assets/environment/sanctuary/buildings/armskeeper_workshop_176x192.png",
+		"canvas": Vector2i(176, 192),
+		"content": Vector2i(170, 180),
+		"bottom_margin": 2,
+		"keep_largest": false,
+	},
+	"armskeeper_cart": {
+		"source": "res://art_source/generated/environment/sanctuary/services/armskeeper_cart_source.png",
+		"clean": "res://art_source/generated/environment/sanctuary/services/armskeeper_cart_clean.png",
+		"runtime": "res://assets/environment/sanctuary/shops/armskeeper_cart_128x96.png",
+		"canvas": Vector2i(128, 96),
+		"content": Vector2i(124, 92),
+		"bottom_margin": 2,
+		"keep_largest": false,
 	},
 }
 
@@ -46,7 +86,8 @@ func _initialize() -> void:
 			return
 		image.convert(Image.FORMAT_RGBA8)
 		_remove_chroma_background(image)
-		_keep_largest_component(image)
+		if bool(spec.get("keep_largest", true)):
+			_keep_largest_component(image)
 		if not _save(image, String(spec.clean)):
 			return
 		var runtime := _fit_to_canvas(
@@ -61,7 +102,7 @@ func _initialize() -> void:
 				return
 			runtime = portal_layers.structure as Image
 		if bool(spec.get("sheet", false)):
-			runtime = _build_merchant_idle_sheet(runtime)
+			runtime = _build_npc_idle_sheet(runtime, String(spec.get("pulse", "ember")))
 		if not _save(runtime, String(spec.runtime)):
 			return
 	print("Processed %d standalone Sanctuary assets." % ASSET_SPECS.size())
@@ -173,7 +214,7 @@ func _fit_to_canvas(
 	return canvas
 
 
-func _build_merchant_idle_sheet(base: Image) -> Image:
+func _build_npc_idle_sheet(base: Image, pulse: String) -> Image:
 	var sheet := _new_image(Vector2i(base.get_width() * 4, base.get_height()))
 	var pulse_strengths := [0.96, 1.0, 1.04, 1.0]
 	for frame_index in 4:
@@ -181,7 +222,7 @@ func _build_merchant_idle_sheet(base: Image) -> Image:
 		for y in frame.get_height():
 			for x in frame.get_width():
 				var color: Color = frame.get_pixel(x, y)
-				if color.a < 0.999 or not _is_relic_accent(color):
+				if color.a < 0.999 or not _is_npc_accent(color, pulse):
 					continue
 				var strength: float = pulse_strengths[frame_index]
 				color.r = clampf(color.r * strength, 0.0, 1.0)
@@ -196,8 +237,10 @@ func _build_merchant_idle_sheet(base: Image) -> Image:
 	return sheet
 
 
-func _is_relic_accent(color: Color) -> bool:
-	return color.r > 0.42 and color.g > 0.25 and color.r > color.b * 1.15
+func _is_npc_accent(color: Color, pulse: String) -> bool:
+	if pulse == "violet":
+		return color.b > 0.35 and color.r > color.g * 1.08
+	return color.r > 0.42 and color.g > 0.18 and color.r > color.b * 1.25
 
 
 func _harden_runtime_pixels(image: Image) -> void:

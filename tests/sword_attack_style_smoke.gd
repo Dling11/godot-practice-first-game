@@ -31,8 +31,39 @@ func _run() -> void:
 	player.set_physics_process(false)
 	var body: AnimatedSprite2D = player.get_node("VisualRoot/Body")
 	var shared_body_frames := body.sprite_frames
-	if player.weapon_visual.position != Vector2(12.0, -6.0):
+	if player.weapon_visual.position != Vector2(12.0, -8.0):
 		_fail("The down-facing sword was not raised to its approved front-view anchor.")
+		return
+	if BalancedSlash.normal_variant_count() != 3:
+		_fail("Balanced Slash must expose the approved three-swing visual sequence.")
+		return
+	var opening_rotations := player.weapon_visual._attack_rotations(
+		&"right",
+		BalancedSlash.normal_variant_wind_up_arc(0),
+		BalancedSlash.normal_variant_strike_arc(0),
+		BalancedSlash.normal_variant_direction(0)
+	)
+	var return_rotations := player.weapon_visual._attack_rotations(
+		&"right",
+		BalancedSlash.normal_variant_wind_up_arc(1),
+		BalancedSlash.normal_variant_strike_arc(1),
+		BalancedSlash.normal_variant_direction(1)
+	)
+	if (
+		opening_rotations.x >= opening_rotations.y
+		or return_rotations.x <= return_rotations.y
+		or BalancedSlash.normal_variant_active_extension(2)
+		<= BalancedSlash.normal_variant_active_extension(0)
+	):
+		_fail("The three-swing sequence lacks an opening, reverse return, or extended finish.")
+		return
+	var observed_variants: Array[int] = []
+	for attack_index in 3:
+		player.weapon_visual.play_attack_phase(MeleeAttackComponent.Phase.WIND_UP, 0.01)
+		observed_variants.append(player.weapon_visual._normal_swing_variant_index)
+		player.weapon_visual.resume_locomotion()
+	if observed_variants != [0, 1, 2]:
+		_fail("Normal attacks did not cycle through all three swing variants: %s" % [observed_variants])
 		return
 
 	var upgraded_weapon := AshwoodBlade.duplicate(true) as WeaponDefinition

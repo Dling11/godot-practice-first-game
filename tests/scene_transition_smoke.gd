@@ -37,8 +37,16 @@ func _run() -> void:
 	if current_scene.get_node("World/Effects").get_child_count() != 0:
 		_fail("Stage 2 exit portal should not exist before its encounter is cleared.")
 		return
+	var story_state := root.get_node("StoryState")
+	story_state.reset_story()
 	controller._spawn_portal()
 	await process_frame
+	if (
+		not story_state.has_story_flag(&"forgotten_grove_completed")
+		or not story_state.has_discovery(&"remembered_thorn_shrine")
+	):
+		_fail("Clearing the current grove route did not record its story memories.")
+		return
 	var return_portal: StagePortal = current_scene.get_node("World/Effects").get_child(0)
 	if return_portal.target_scene_path != "res://levels/sanctuary/sanctuary.tscn":
 		_fail("Cleared Stage 2 portal is not configured to return to Sanctuary.")

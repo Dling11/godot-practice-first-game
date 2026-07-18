@@ -185,14 +185,17 @@ dash_player = NodePath("Dash")
 [node name="SwordSwing" type="AudioStreamPlayer2D" parent="PlayerActionSfx" unique_id=1524140265]
 stream = ExtResource("23_sword_swing")
 volume_db = -7.0
+bus = &"SFX"
 
 [node name="SweepingCut" type="AudioStreamPlayer2D" parent="PlayerActionSfx" unique_id=714989272]
 stream = ExtResource("24_sweeping_cut")
 volume_db = -5.0
+bus = &"SFX"
 
 [node name="Dash" type="AudioStreamPlayer2D" parent="PlayerActionSfx" unique_id=795989634]
 stream = ExtResource("25_dash")
 volume_db = -9.0
+bus = &"SFX"
 
 [node name="Name" type="Label" parent="." unique_id=336850558]
 visible = false
