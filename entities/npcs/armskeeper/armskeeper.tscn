@@ -41,7 +41,7 @@ script = ExtResource("1_script")
 interaction_icon = ExtResource("3_icon")
 prompt_text = "PRESS F TO BROWSE WEAPONS"
 speaker_name = "ARMSKEEPER ORREN"
-dialogue_lines = Array[String](["A plain blade is honest. It reveals every weak step before sharper steel can hide it.", "My racks will open when the Sanctuary knows what a coin should truly buy.", "Until then, master the sword you carried through the veil."])
+dialogue_lines = Array[String](["A plain blade is honest. It reveals every weak step before sharper steel can hide it.", "You have carried ashwood long enough. I can offer a Warrior's iron sword for eighteen coins.", "Buy it here, then choose it from your character inventory whenever you want to change blades."])
 idle_aura = NodePath("LanternAura")
 
 [node name="EditorPreviewBackdrop" parent="." instance=ExtResource("99_preview")]

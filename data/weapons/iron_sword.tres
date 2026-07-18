@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="WeaponDefinition" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://data/weapons/weapon_definition.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/items/weapons/world/iron_sword_16x24.png" id="2_world"]
+[ext_resource type="Resource" path="res://data/weapons/attack_styles/balanced_slash.tres" id="3_style"]
+
+[resource]
+script = ExtResource("1_script")
+weapon_id = &"weapon_iron_sword"
+display_name = "Iron Sword"
+world_texture = ExtResource("2_world")
+attack_style = ExtResource("3_style")
+sprite_offset_from_grip = Vector2(0, -9)
+world_visual_scale = 1.1
+swing_visual_radius = 14.0
+damage = 32.0
+knockback_strength = 56.0
+wind_up_seconds = 0.11
+active_seconds = 0.08
+recovery_seconds = 0.21

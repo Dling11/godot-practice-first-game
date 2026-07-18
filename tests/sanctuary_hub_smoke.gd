@@ -85,6 +85,7 @@ func _run() -> void:
 	var fountain := sanctuary.get_node("World/Actors/DivineFountain") as DivineFountain
 	var dialogue := sanctuary.get_node("UI/DialoguePanel") as DialoguePanel
 	var menu := sanctuary.get_node("UI/ExpeditionMenu") as ExpeditionMenu
+	var weapon_shop := sanctuary.get_node("UI/WeaponShopMenu") as WeaponShopMenu
 	var ground := sanctuary.get_node("World/Level/Ground") as SanctuaryGround
 	for building_name in ["SkillkeeperLodge", "ArmskeeperWorkshop"]:
 		var building_collision := sanctuary.get_node("World/Actors/%s/Collision" % building_name) as CollisionPolygon2D
@@ -298,8 +299,15 @@ func _run() -> void:
 	dialogue.advance()
 	dialogue.advance()
 	dialogue.advance()
-	if dialogue.visible or paused:
-		_fail("Completing merchant dialogue did not restore Sanctuary control.")
+	if dialogue.visible or not weapon_shop.visible or not paused:
+		_fail("Completing Orren's dialogue did not open the paused weapon shop.")
+		return
+	if weapon_shop.stock_buttons.size() != 1 or weapon_shop.catalog.find_weapon(&"weapon_iron_sword") == null:
+		_fail("Orren's shop does not expose the authored Iron Sword stock.")
+		return
+	weapon_shop.close_button.pressed.emit()
+	if weapon_shop.visible or paused:
+		_fail("Closing Orren's shop did not restore Sanctuary control.")
 		return
 	merchant._on_body_exited(player)
 

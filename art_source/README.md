@@ -12,6 +12,7 @@ Only approved, optimized files under `res://assets/` may be referenced by scenes
 | `char_opaw_wayfarer_original_action_set` | `generated/characters/playable/opaw/v2/opaw_idle_*`, `opaw_walk_*`, `opaw_attack_body_*`, `opaw_dash_*`, `opaw_interact_*`, `opaw_hurt_*`, `opaw_defeat_*` |
 | `char_opaw_modular_actions_legacy` | `generated/characters/playable/opaw/opaw_modular_action_source.png`, `opaw_modular_action_clean.png` |
 | `item_weapon_ashwood_blade` | `generated/items/weapons/ashwood_blade/ashwood_blade_source.png`, `ashwood_blade_clean.png` |
+| `item_weapon_iron_sword` | `generated/items/weapons/iron_sword/iron_sword_source.png`, `iron_sword_clean.png` |
 | `char_awakened_legacy` | `archive/characters/playable/awakened_legacy/` |
 | `char_forsaken_thrall_locomotion` | `generated/characters/enemies/forsaken_thrall/forsaken_thrall_locomotion_source.png`, `forsaken_thrall_locomotion_clean.png` |
 | `char_forsaken_thrall_claw_attack` | `generated/characters/enemies/forsaken_thrall/forsaken_thrall_claw_attack_source.png`, `forsaken_thrall_claw_attack_clean.png` |

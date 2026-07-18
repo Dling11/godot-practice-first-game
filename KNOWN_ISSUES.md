@@ -18,12 +18,12 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 - **Planned resolution:** Feel-test Opaw's gameplay scale, serious black-eye/scarf readability, four-frame locomotion, three-pose body/weapon synchronization in all directions, dash lean, hurt recovery, defeat fade, Eira/Orren scale and role props, service-building collision, and representative effects in Sanctuary and both stages.
 - **Workaround:** Treat 960x540 and the compact armless sheets as the active prototype baseline, not irreversible final assets; restore the archived Wayfarer `SpriteFrames` resource if a rollback is required.
 
-### KI-005 - Skill unlocks, equipment acquisition, coin sinks, and disk persistence are undecided
+### KI-005 - Skill awakening, expanded equipment balance, and disk persistence remain incomplete
 
 - **Status:** Open
-- **Impact:** The in-memory level-10 run, defeat reset, four-skill budget, and read-only Gear/Armory preview are implemented, but profile saves, owned inventory, equip commands, stat formulas, Stonebound/Iron/Rare acquisition, drops, prices, coin sinks, authored skill unlocks, and slots 2-4 content are undecided.
-- **Planned resolution:** Approve persistent profile/death rules first, then inventory/equipment authority, acquisition and balance, and the first authored skills.
-- **Workaround:** Keep XP and coins in-memory, slots 2-4 sealed, and Ashwood Blade as the only active starter presentation. Stonebound, Iron, and Rare remain planned; former high-tier concepts remain legacy-only. Do not grant items or apply preview power/synergy text to combat.
+- **Impact:** Ashwood/Iron ownership, one 18-coin Orren purchase, class-gated equip commands, and defeat/scene retention now work in memory, but closing the application loses them. Drops, selling, armor/stat aggregation, higher tiers, authored Eira awakening, and slots 2-4 content remain incomplete.
+- **Planned resolution:** Implement Eira's free level-eligibility awakening next, then approve a versioned disk profile and expand acquisition/balance only with authored enemies and content.
+- **Workaround:** Treat Ashwood as the permanent fallback and Iron as the complete beginner shop slice. Do not expose legacy/high-tier previews, sell skills, or claim session ownership is a disk save.
 
 ### KI-006 - Title audio settings are session-only
 

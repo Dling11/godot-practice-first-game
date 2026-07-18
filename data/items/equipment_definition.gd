@@ -1,8 +1,8 @@
 class_name EquipmentDefinition
 extends Resource
 
-## Immutable identity and presentation contract for one equipment item.
-## Combat modifiers remain intentionally absent until stat authority is approved.
+## Immutable identity, ownership, compatibility, and presentation contract for
+## one equipment item. Weapon combat authority remains in WeaponDefinition.
 
 enum Slot {
 	WEAPON,
@@ -28,6 +28,9 @@ enum Rarity {
 @export var slot := Slot.WEAPON
 @export var rarity := Rarity.A_GRADE
 @export var icon: Texture2D
+@export var compatible_classes: PackedStringArray = []
+@export_range(0, 9999, 1, "suffix: coins") var purchase_price := 0
+@export var weapon_definition: WeaponDefinition
 @export_range(0, 999, 1) var preview_power := 0
 @export_multiline var lore := ""
 @export var synergy_name := "Skill Synergy"
@@ -78,6 +81,30 @@ func get_rarity_color() -> Color:
 		Rarity.RARE:
 			return Color("66a4d8")
 	return Color.WHITE
+
+
+func is_compatible_with(character_class_id: StringName) -> bool:
+	return compatible_classes.has(String(character_class_id))
+
+
+func get_class_requirement_text() -> String:
+	if compatible_classes.is_empty():
+		return "NO CLASS"
+	var labels: PackedStringArray = []
+	for class_id in compatible_classes:
+		labels.append(class_id.capitalize())
+	return " / ".join(labels)
+
+
+func is_equippable_weapon() -> bool:
+	return (
+		is_valid_definition()
+		and slot == Slot.WEAPON
+		and not compatible_classes.is_empty()
+		and weapon_definition != null
+		and weapon_definition.weapon_id == item_id
+		and weapon_definition.world_texture != null
+	)
 
 
 func is_valid_definition() -> bool:

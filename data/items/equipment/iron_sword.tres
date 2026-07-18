@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="EquipmentDefinition" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://data/items/equipment_definition.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/items/weapons/icons/iron_sword_64x64.png" id="2_icon"]
+[ext_resource type="Resource" path="res://data/weapons/iron_sword.tres" id="3_weapon"]
+
+[resource]
+script = ExtResource("1_script")
+item_id = &"weapon_iron_sword"
+display_name = "Iron Sword"
+slot = 0
+rarity = 6
+icon = ExtResource("2_icon")
+compatible_classes = PackedStringArray("warrior")
+purchase_price = 18
+weapon_definition = ExtResource("3_weapon")
+preview_power = 32
+lore = "Orren's first honest length of forged iron: heavier than ashwood, but still made for learning."
+synergy_name = "Steady Iron Arc"
+synergy_description = "Uses the same readable Warrior form with stronger impact and knockback."

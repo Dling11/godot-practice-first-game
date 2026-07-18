@@ -30,6 +30,9 @@ func _run() -> void:
 	if hud.get_node("ProgressPanel/Margin/Stack/Header/LevelLabel").text != "LV 1":
 		_fail("Progression HUD did not display the current level.")
 		return
+	if not progression.spend_coins(1) or progression.coins != 1 or progression.spend_coins(2):
+		_fail("Coin spending did not deduct valid purchases or reject insufficient funds.")
+		return
 	progression.grant_rewards(1, 0)
 	if progression.level != 2:
 		_fail("Crossing the first authored threshold did not level the player.")

@@ -49,6 +49,9 @@ func begin_new_journey() -> void:
 	var story_state := get_node_or_null("/root/StoryState")
 	if story_state != null:
 		story_state.reset_story()
+	var weapon_inventory := get_node_or_null("/root/WeaponInventory")
+	if weapon_inventory != null:
+		weapon_inventory.reset_inventory()
 	var transition_service := get_node_or_null("/root/SceneTransition")
 	if transition_service == null:
 		push_error("TitleScreen requires the SceneTransition autoload.")

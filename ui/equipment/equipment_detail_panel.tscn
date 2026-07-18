@@ -91,7 +91,7 @@ theme_override_font_sizes/font_size = 14
 [node name="PowerLabel" type="Label" parent="Margin/Root"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "PREVIEW POWER  25"
+text = "ATTACK POWER  25"
 horizontal_alignment = 1
 theme_override_colors/font_color = Color(0.7, 0.86, 1, 1)
 theme_override_font_sizes/font_size = 9
@@ -127,6 +127,6 @@ theme_override_font_sizes/font_size = 8
 [node name="StateLabel" type="Label" parent="Margin/Root"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "DESIGN PREVIEW • EFFECT NOT ACTIVE"
+text = "OWNED • CLICK TO EQUIP"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 7

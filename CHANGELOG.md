@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-07-18 - Class-Gated Weapon Inventory and Orren Shop
+
+- Added application-session owned weapons with per-character equipped IDs, permanent Ashwood fallback, scene/defeat continuity, class compatibility checks, and explicit new-journey reset without claiming disk persistence.
+- Added Orren's functional weapon shop and an 18-coin Warrior-only Iron Sword; purchases deduct authoritative run coins, enter inventory without auto-equipping, and never include skills or selling.
+- Converted Opaw's Gear/Armory page from preview-only data to owned click-to-equip behavior that synchronizes combat weapon data, detached world art, portrait, labels, damage, and knockback while reusing Balanced Slash and the same body animation.
+- Generated and normalized separate 64x64 inventory and 16x24 world Iron Sword assets with preserved source/provenance and a deterministic processor.
+- Added regression coverage for coin spending, insufficient funds, ownership, equip switching, class rejection, replacement-player continuity, Sanctuary shop handoff, and new-journey reset.
+
 ## 2026-07-18 - Story Memory and Data-Driven Expedition Access
 
 - Established Opaw's isekai awakening, the lesser gods' treatment of mortal struggle as entertainment, The One Above's unresolved greater mystery, a future switchable roster separated from Warrior/Mage/Archer class concepts, and long-range god/beyond/boundless escalation in `STORY_BIBLE.md`.

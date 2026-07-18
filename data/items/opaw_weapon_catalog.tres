@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WeaponCatalogDefinition" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://data/items/weapon_catalog_definition.gd" id="1_script"]
+[ext_resource type="Resource" path="res://data/items/equipment/ashwood_blade.tres" id="2_ashwood"]
+[ext_resource type="Resource" path="res://data/items/equipment/iron_sword.tres" id="3_iron"]
+
+[resource]
+script = ExtResource("1_script")
+default_weapon = ExtResource("2_ashwood")
+weapons = Array[Resource]([ExtResource("2_ashwood"), ExtResource("3_iron")])

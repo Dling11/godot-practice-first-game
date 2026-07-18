@@ -1,7 +1,7 @@
 class_name EquipmentDetailPanel
 extends PanelContainer
 
-## Read-only detailed item preview with rarity-driven, tweened presentation.
+## Detailed owned-item view with rarity-driven, tweened presentation.
 
 @onready var aura_back: Panel = %AuraBack
 @onready var item_icon: TextureRect = %ItemIcon
@@ -17,26 +17,26 @@ var current_definition: EquipmentDefinition
 var _aura_tween: Tween
 
 
-func configure(item: EquipmentDefinition, equipped: bool) -> void:
+func configure(item: EquipmentDefinition, equipped: bool, class_compatible: bool = true) -> void:
 	current_definition = item
 	var rarity_color := item.get_rarity_color()
 	item_icon.texture = item.icon
 	rarity_label.text = "%s  •  %s" % [item.get_rarity_name(), item.get_slot_name().to_upper()]
 	rarity_label.add_theme_color_override("font_color", rarity_color)
 	name_label.text = item.display_name.to_upper()
-	power_label.text = "PREVIEW POWER  %d" % item.preview_power
+	power_label.text = "ATTACK POWER  %d" % roundi(item.weapon_definition.damage)
 	lore_label.text = item.lore
 	synergy_title.text = item.synergy_name.to_upper()
 	synergy_title.add_theme_color_override("font_color", rarity_color)
 	synergy_body.text = item.synergy_description
 	state_label.text = (
-		"EQUIPPED • ACTIVE ASHWOOD TUNING"
+		"EQUIPPED • ACTIVE COMBAT WEAPON"
 		if equipped
-		else "DESIGN PREVIEW • EFFECT NOT ACTIVE"
+		else ("OWNED • CLICK TO EQUIP" if class_compatible else "OWNED • WRONG CLASS")
 	)
 	state_label.add_theme_color_override(
 		"font_color",
-		Color("d6c171") if equipped else Color("74806b")
+		Color("d6c171") if equipped else (Color("9ab85d") if class_compatible else Color("c45b50"))
 	)
 	_apply_aura_style(rarity_color)
 	_start_aura(item.rarity)

@@ -164,10 +164,11 @@ Current UI visuals combine the approved reusable base theme and named pixel icon
 | Canonical ID | Current path | Status | Purpose |
 |---|---|---|---|
 | `ui_combat_hud` | `ui/combat_hud.tscn` | `active_resource` | Vitality, progression, character/satchel entry, interaction prompt, and skills 1-4. |
-| `ui_character_menu` | `ui/character_menu.tscn` | `active_resource` | Paused Gear/Armory and Active Skills surface for Opaw. |
-| `ui_equipment_item_card` | `ui/equipment/equipment_item_card.tscn` | `active_resource` | Focusable rarity/item preview card. |
+| `ui_character_menu` | `ui/character_menu.tscn` | `active_resource` | Paused owned Gear/Armory and Active Skills surface for Opaw. |
+| `ui_weapon_shop_menu` | `ui/shops/weapon_shop_menu.tscn` | `active_resource` | Orren's paused class-aware weapon purchase surface. |
+| `ui_equipment_item_card` | `ui/equipment/equipment_item_card.tscn` | `active_resource` | Focusable owned-item equip card. |
 | `ui_equipment_slot_card` | `ui/equipment/equipment_slot_card.tscn` | `active_resource` | Reusable equipped or empty slot presentation. |
-| `ui_equipment_detail_panel` | `ui/equipment/equipment_detail_panel.tscn` | `active_resource` | Lore, preview power, inactive synergy, and restrained aura presentation. |
+| `ui_equipment_detail_panel` | `ui/equipment/equipment_detail_panel.tscn` | `active_resource` | Lore, authoritative weapon power, ownership/equip state, and restrained aura presentation. |
 | `ui_title_screen` | `ui/screens/title/title_screen.tscn` | `active_resource` | Main navigation, session-audio settings, and new-journey entry. |
 | `ui_title_background` | `ui/screens/title/title_background.tscn` | `active_resource` | Replaceable title presentation layers and restrained atmosphere. |
 | `ui_dialogue_panel` | `ui/dialogue/dialogue_panel.tscn` | `active_resource` | Paused multi-line NPC dialogue presentation. |
@@ -202,12 +203,14 @@ The icons are reproducibly built by `tools/build_ui_icon_kit.gd` from the approv
 |---|---|---|---|
 | `item_weapon_ashwood_blade_world` | `assets/items/weapons/world/ashwood_blade_16x24.png` | `active_runtime` | Binary-alpha visible weapon shared by `WeaponDefinition`, detached-orbit `PlayerWeaponVisual`, and grip-aligned character preview. |
 | `item_weapon_ashwood_blade_icon` | `assets/items/weapons/icons/ashwood_blade_64x64.png` | `active_runtime` | Compact-palette Wood-rank portrait used by `ashwood_blade.tres`. |
+| `item_weapon_iron_sword_world` | `assets/items/weapons/world/iron_sword_16x24.png` | `active_runtime` | Binary-alpha Warrior sword bought from Orren and consumed by `iron_sword.tres` plus detached presentation. |
+| `item_weapon_iron_sword_icon` | `assets/items/weapons/icons/iron_sword_64x64.png` | `active_runtime` | Pale-steel Iron-rank inventory and shop portrait. |
 | `item_weapon_wayfarers_iron` | `assets/items/weapons/icons/wayfarers_iron_64x64.png` | `legacy` | Former A-grade preview; no active showcase reference. |
 | `item_weapon_gloamfang` | `assets/items/weapons/icons/gloamfang_64x64.png` | `legacy` | Former S-grade preview; no active showcase reference. |
 | `item_weapon_sunroot_oath` | `assets/items/weapons/icons/sunroot_oath_64x64.png` | `legacy` | Former Legendary preview; no active showcase reference. |
 | `item_weapon_veilrender` | `assets/items/weapons/icons/veilrender_64x64.png` | `legacy` | Former Mythic preview; no active showcase reference. |
 
-The Ashwood Blade originates at `art_source/generated/items/weapons/ashwood_blade/ashwood_blade_source.png`; its cleaned intermediate is preserved beside it. `tools/process_opaw_modular_assets.gd` produces both the 16x24 world texture and the 64x64 inventory icon with binary alpha and compact palettes. Rarity borders, labels, and aura animation are not baked into item art.
+The Ashwood Blade originates at `art_source/generated/items/weapons/ashwood_blade/ashwood_blade_source.png`; its cleaned intermediate is preserved beside it. `tools/process_opaw_modular_assets.gd` produces both the 16x24 world texture and the 64x64 inventory icon with binary alpha and compact palettes. Iron Sword follows the same runtime contract: its generated chroma-key source and cleaned intermediate live under `art_source/generated/items/weapons/iron_sword/`, and `tools/process_iron_sword.gd` deterministically emits both active textures. Rarity borders, labels, and aura animation are not baked into item art.
 
 The four legacy portraits originate from `art_source/generated/items/weapons/equipment_weapon_atlas_source.png`; the chroma-cleaned board and `tools/process_equipment_weapon_atlas.gd` remain preserved for provenance but must not restore active player-facing references without a new equipment decision.
 

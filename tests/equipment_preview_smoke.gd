@@ -1,7 +1,8 @@
 extends SceneTree
 
-const Showcase = preload("res://data/items/opaw_equipment_showcase.tres")
+const Catalog = preload("res://data/items/opaw_weapon_catalog.tres")
 const AshwoodBlade = preload("res://data/weapons/ashwood_blade.tres")
+const IronSword = preload("res://data/weapons/iron_sword.tres")
 
 
 func _initialize() -> void:
@@ -9,10 +10,10 @@ func _initialize() -> void:
 
 
 func _run() -> void:
-	if not Showcase.has_valid_layout() or Showcase.featured_items.size() != 1:
-		_fail("Opaw's starter showcase must expose only one valid authored item.")
+	if not Catalog.has_valid_layout() or Catalog.weapons.size() != 2:
+		_fail("Opaw's catalog must expose the two approved early-game swords.")
 		return
-	var item: EquipmentDefinition = Showcase.featured_items[0]
+	var item: EquipmentDefinition = Catalog.default_weapon
 	if item.rarity != EquipmentDefinition.Rarity.WOOD:
 		_fail("Opaw's first equipment item must remain in the Wood tier.")
 		return
@@ -36,13 +37,29 @@ func _run() -> void:
 		return
 	if not _validate_binary_icon(item.icon):
 		return
-	if Showcase.equipped_weapon != item:
-		_fail("The Ashwood Blade must remain Opaw's only equipped starter presentation.")
+	if item.weapon_definition != AshwoodBlade or item.purchase_price != 0:
+		_fail("The Ashwood Blade must remain Opaw's free permanent fallback.")
 		return
 	if not is_equal_approx(AshwoodBlade.damage, 25.0):
 		_fail("The presentation migration unexpectedly changed authoritative sword tuning.")
 		return
-	print("Equipment preview smoke test passed.")
+	var iron_item := Catalog.find_weapon(&"weapon_iron_sword")
+	if (
+		iron_item == null
+		or iron_item.weapon_definition != IronSword
+		or iron_item.purchase_price != 18
+		or not iron_item.is_compatible_with(&"warrior")
+		or iron_item.is_compatible_with(&"mage")
+	):
+		_fail("Iron Sword catalog ownership, price, or Warrior restriction is invalid.")
+		return
+	if IronSword.world_texture.get_size() != Vector2(16, 24) or iron_item.icon.get_size() != Vector2(64, 64):
+		_fail("Iron Sword runtime assets do not match the approved icon/world sizes.")
+		return
+	if IronSword.attack_style != AshwoodBlade.attack_style or not is_equal_approx(IronSword.damage, 32.0):
+		_fail("Iron Sword must reuse Balanced Slash while providing its authored damage upgrade.")
+		return
+	print("Equipment catalog smoke test passed.")
 	quit(0)
 
 

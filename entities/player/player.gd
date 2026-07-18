@@ -16,8 +16,10 @@ const EvadeComponentScript = preload("res://entities/player/components/evade_com
 const AbilityComponentScript = preload("res://gameplay/abilities/ability_component.gd")
 
 @export var movement_bounds := Rect2(56.0, 56.0, 528.0, 248.0)
+@export var character_id: StringName = &"opaw"
+@export var character_class_id: StringName = &"warrior"
 @export var skill_loadout: SkillLoadoutDefinition
-@export var equipment_showcase: EquipmentShowcaseDefinition
+@export var weapon_catalog: WeaponCatalogDefinition
 
 @onready var input_source: PlayerInputSourceScript = %InputSource
 @onready var movement_component: PlayerMovementComponentScript = %MovementComponent
@@ -35,6 +37,7 @@ var _was_moving := false
 
 func _ready() -> void:
 	health_component.died.connect(_on_died)
+	_apply_inventory_weapon()
 	facing_changed.emit(facing_direction)
 
 
@@ -104,8 +107,8 @@ func request_ability_1() -> bool:
 
 
 func set_weapon_definition(next_weapon: WeaponDefinition) -> bool:
-	## Equipment/inventory may call this seam later. Swapping is intentionally
-	## idle-only, and never changes the shared Opaw body SpriteFrames.
+	## Swapping is intentionally idle-only and never changes the shared Opaw
+	## body SpriteFrames. Ownership is validated by equip_owned_weapon().
 	if (
 		next_weapon == null
 		or next_weapon.world_texture == null
@@ -119,6 +122,41 @@ func set_weapon_definition(next_weapon: WeaponDefinition) -> bool:
 		return false
 	attack_component.weapon = next_weapon
 	return true
+
+
+func get_equipped_weapon_item() -> EquipmentDefinition:
+	if weapon_catalog == null or not weapon_catalog.has_valid_layout():
+		return null
+	var inventory := get_node_or_null("/root/WeaponInventory")
+	if inventory == null:
+		return weapon_catalog.default_weapon
+	var item_id: StringName = inventory.get_equipped_weapon_id(
+		character_id,
+		weapon_catalog.default_weapon.item_id
+	)
+	return weapon_catalog.find_weapon(item_id)
+
+
+func equip_owned_weapon(item: EquipmentDefinition) -> bool:
+	if (
+		item == null
+		or weapon_catalog == null
+		or weapon_catalog.find_weapon(item.item_id) != item
+		or not item.is_compatible_with(character_class_id)
+	):
+		return false
+	var inventory := get_node_or_null("/root/WeaponInventory")
+	if inventory == null or not inventory.owns_weapon(item.item_id):
+		return false
+	if not set_weapon_definition(item.weapon_definition):
+		return false
+	return inventory.equip_weapon(character_id, character_class_id, item)
+
+
+func _apply_inventory_weapon() -> void:
+	var equipped_item := get_equipped_weapon_item()
+	if equipped_item == null or not set_weapon_definition(equipped_item.weapon_definition):
+		push_error("Player requires a valid equipped weapon from its weapon catalog.")
 
 
 func face_toward(world_position: Vector2) -> void:

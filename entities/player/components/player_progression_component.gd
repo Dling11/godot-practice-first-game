@@ -41,6 +41,15 @@ func grant_rewards(experience: int, coin_amount: int) -> void:
 	_sync_run_session()
 
 
+func spend_coins(amount: int) -> bool:
+	if amount <= 0 or coins < amount:
+		return false
+	coins -= amount
+	coins_changed.emit(coins)
+	_sync_run_session()
+	return true
+
+
 func experience_into_current_level() -> int:
 	return total_experience - definition.total_experience_by_level[level - 1]
 

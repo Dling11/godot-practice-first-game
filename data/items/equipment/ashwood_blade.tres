@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="EquipmentDefinition" format=3 uid="uid://cbdxp0keomxye"]
+[gd_resource type="Resource" script_class="EquipmentDefinition" load_steps=4 format=3 uid="uid://cbdxp0keomxye"]
 
 [ext_resource type="Script" uid="uid://qsfxyo323knw" path="res://data/items/equipment_definition.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://beeby6julfyfv" path="res://assets/items/weapons/icons/ashwood_blade_64x64.png" id="2_icon"]
+[ext_resource type="Resource" uid="uid://bjhgo0si3p63v" path="res://data/weapons/ashwood_blade.tres" id="3_weapon"]
 
 [resource]
 script = ExtResource("1_script")
@@ -9,7 +10,9 @@ item_id = &"weapon_ashwood_blade"
 display_name = "Ashwood Blade"
 rarity = 4
 icon = ExtResource("2_icon")
+compatible_classes = PackedStringArray("warrior")
+weapon_definition = ExtResource("3_weapon")
 preview_power = 10
 lore = "A short blade carved for mortals who have not yet earned iron. Opaw carries it without pretense."
 synergy_name = "Grounded Form"
-synergy_description = "Supports Opaw's basic sword form and Sweeping Cut. No bonus effect is active yet."
+synergy_description = "A dependable Warrior blade that uses Opaw's Balanced Slash form and Sweeping Cut."

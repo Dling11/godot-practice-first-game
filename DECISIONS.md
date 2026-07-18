@@ -52,6 +52,7 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 042 | Share body animation across data-driven sword styles and grades | Sword grades, attack presentation profiles, visible weapon swapping, or animation reuse |
 | 043 | Align Sanctuary services with compact characters and archive superseded runtime material | Eira/Orren art, service buildings, asset cleanup, supported rollbacks, or archive policy |
 | 044 | Use story memory for data-driven expedition access | Story flags, bosses, discoveries, key items, route requirements, lore memory, or future profile saves |
+| 045 | Use a class-gated session weapon inventory | Weapon ownership, shops, equip switching, class restrictions, default weapons, or session retention |
 
 ## New Decisions
 

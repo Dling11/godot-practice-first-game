@@ -37,7 +37,8 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 - Added the read-only equipment vertical slice: a two-page Gear/Armory and Active Skills character surface, five future equipment slots, animated Awakened preview, reusable item/slot/detail scenes, and four original A-to-Mythic weapon concepts with clearly inactive skill-synergy identities.
 - Corrected the character-menu action from an accidental Backspace binding to physical Tab, moved its global open shortcut ahead of GUI focus consumption, and added a visible clickable HUD satchel button in Sanctuary and both expeditions.
 - Named the active mortal player Opaw, replaced the active Awakened presentation with a reusable 32x32 modular four-direction body, and added a phase-driven visible Ashwood Blade without moving damage authority out of the existing hitbox.
-- Reframed the armory's active beginning around one Wood-rank Ashwood Blade and an early Wood-to-Stonebound-to-Iron-to-Rare material ladder, while preserving the former A-to-Mythic concepts as inactive legacy material.
+- Reframed the armory's active beginning around the Wood-rank Ashwood Blade; the later two-sword implementation superseded the provisional Stonebound step while preserving former high-tier concepts as inactive legacy material.
+- Activated the first owned-weapon slice: Ashwood is Opaw's permanent fallback, Orren sells an 18-coin Warrior-only Iron Sword, the character inventory equips owned compatible swords, and shared body/style animation remains reusable across both grades.
 - Corrected Opaw's reversed side-facing source mapping, removed the shrinking attack pose, added data-driven weapon grip/scale/radius metadata, and rebuilt normal attacks around a hand pivot with a readable active swing trail and NPC-facing interaction pose.
 - Replaced Opaw's single mixed-pose atlas with independently authored directional idle, four-frame walk, three-pose weaponless attack, three-frame dash, interaction, hurt, and four-stage defeat sheets; normalized every reference pose to one 18x27 scale and retained the external equipment rig.
 - Replaced fixed source-grid trimming with connected-silhouette isolation, restoring complete up-facing heads and correcting the squashed right dash; lowered the Ashwood grip to Opaw's arm and rebuilt side attacks as mirrored hand-centered arcs with sharper strike feedback.
@@ -52,6 +53,7 @@ Detailed completion history remains in `CHANGELOG.md`.
 
 ## In Progress
 
+- Review the provisional movement-facing/right-click control redesign, reusable ground-targeting flow, weapon-scaled Warrior skills, and debug testing preset recorded in `docs/design/opaw-combat-controls-and-skills-proposal.md` before changing runtime controls or generating skill-specific animation.
 - Feel-test the Ashwood Blade's wider anticipation-to-impact arc, faster committed sweep, forward extension, denser white-gold trail, 0.10-second enemy flash, and white-hot impact core.
 
 - Decide the exact reveal of Opaw's former-life death, the first full story-act structure, and release platform priorities.
@@ -68,9 +70,9 @@ Detailed completion history remains in `CHANGELOG.md`.
 - Feel-test combat cue selection, positional balance, repetition, and SFX-versus-music volume.
 - Feel-test the centered four-slot skill bar, top-left character/satchel entry button, and Tab character-menu readability at the 960x540 viewport.
 - Design authored skill unlock rules, coin sinks, and the first abilities for sealed slots 2-4.
-- Upgrade Eira's skill service and Orren's weapon service from dialogue/read-only previews into functional menus only after skill ownership, inventory, prices, equip commands, and persistence rules are approved.
-- Feel-test the 960x540 equipment layout, Opaw portrait, Ashwood world/icon consistency, Wood-rank readability, and the clarity of preview-only versus equipped states.
-- Decide persistent ownership, death retention, equip commands, stat formulas, acquisition sources, and enemy/elite/boss power bands before activating equipment.
+- Upgrade Eira's skill service into a free awakening ritual: level creates eligibility, Eira unlocks the skill without coins, and ultimate awakenings use a distinct red ritual treatment.
+- Feel-test Orren's 18-coin shop, the 960x540 owned-inventory layout, Ashwood/Iron portrait and world consistency, immediate equip feedback, and insufficient-funds messaging.
+- Decide disk-persistent ownership, armor/stat formulas, drop sources, selling policy, and enemy/elite/boss power bands before expanding beyond the active two-sword slice.
 - Feel-test the shared theme, named HUD icons, expanded skill-bar height, and portal-prompt placement at 960x540.
 - Feel-test the title-screen composition, restrained background motion, focus loop, audio toggles, and title-to-Stage-1 fade.
 - Feel-test Sanctuary navigation, the aligned paired avenue and compact service/cart approaches, separate fountain/portal scale and courtyard spacing, portal/water/NPC/building idle effects, both NPC interactions, expedition usability, and the transition loop on F5.
@@ -138,4 +140,4 @@ Before creating gameplay code, approve:
 1. Desktop/web/mobile release priorities.
 2. First playable scope: arena survival, authored action-adventure slice, or another structure.
 3. Whether Mage and Archer first arrive as distinct playable souls, Opaw class paths, or both through a later roster/class system.
-4. Persistent ownership, shop/acquisition rules, and the first Stonebound equipment step after Ashwood is visually accepted.
+4. Disk-persistent ownership, future drops/selling rules, and the first spirit-blue equipment tier after the Wood/Iron beginner pair is visually accepted.

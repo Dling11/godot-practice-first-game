@@ -1,8 +1,8 @@
 class_name CharacterMenu
 extends Control
 
-## Paused character, authored equipment-preview, and skill-information surface.
-## It observes player data; inventory, stats, unlocks, and equipment authority remain external.
+## Paused character inventory/equipment and skill-information surface. Runtime
+## ownership stays in WeaponInventory; the Player owns safe combat swapping.
 
 const SkillSlotCardScene = preload("res://ui/skills/skill_slot_card.tscn")
 const EquipmentItemCardScene = preload("res://ui/equipment/equipment_item_card.tscn")
@@ -28,6 +28,8 @@ signal menu_closed
 @onready var skills_container: HBoxContainer = %Skills
 @onready var skill_detail_label: Label = %SkillDetailLabel
 @onready var portrait_aura: Polygon2D = %PortraitAura
+@onready var weapon_preview: Sprite2D = %WeaponPreview
+@onready var attack_label: Label = %AttackLabel
 
 var _owns_pause := false
 var _equipment_cards: Array[EquipmentItemCard] = []
@@ -49,7 +51,7 @@ func _ready() -> void:
 	_update_progression(progression.level, progression.total_experience, 0)
 	_update_coins(progression.coins)
 	_configure_tabs()
-	_build_equipment_preview()
+	_build_equipment_inventory()
 	_build_skill_cards()
 	_show_page(&"gear", false)
 	_start_portrait_aura()
@@ -70,6 +72,7 @@ func _input(event: InputEvent) -> void:
 func open_menu() -> void:
 	if visible or get_tree().paused:
 		return
+	_build_equipment_inventory()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	show()
 	_owns_pause = not get_tree().paused
@@ -155,15 +158,15 @@ func _refresh_page_focus_links() -> void:
 	close_button.focus_neighbor_top = close_button.get_path_to(last_control)
 
 
-func _build_equipment_preview() -> void:
+func _build_equipment_inventory() -> void:
 	_clear_children(equipment_slots)
 	_clear_children(inventory_grid)
 	_equipment_cards.clear()
 	_equipment_slot_cards.clear()
-	if player.equipment_showcase == null or not player.equipment_showcase.has_valid_layout():
-		push_error("CharacterMenu requires a valid equipment showcase definition.")
+	if player.weapon_catalog == null or not player.weapon_catalog.has_valid_layout():
+		push_error("CharacterMenu requires a valid weapon catalog definition.")
 		return
-	var equipped_weapon := player.equipment_showcase.equipped_weapon
+	var equipped_weapon := player.get_equipped_weapon_item()
 	for slot_name in ["Weapon", "Armor", "Gloves", "Boots", "Accessory"]:
 		var slot_card := EquipmentSlotCardScene.instantiate() as EquipmentSlotCard
 		equipment_slots.add_child(slot_card)
@@ -172,18 +175,26 @@ func _build_equipment_preview() -> void:
 
 	var item_group := ButtonGroup.new()
 	item_group.allow_unpress = false
-	for item: EquipmentDefinition in player.equipment_showcase.featured_items:
+	var inventory := get_node_or_null("/root/WeaponInventory")
+	var selected_card: EquipmentItemCard
+	for item: EquipmentDefinition in player.weapon_catalog.weapons:
+		if inventory != null and not inventory.owns_weapon(item.item_id):
+			continue
 		var card := EquipmentItemCardScene.instantiate() as EquipmentItemCard
 		inventory_grid.add_child(card)
 		var equipped := item == equipped_weapon
-		card.configure(item, equipped)
+		card.configure(item, equipped, item.is_compatible_with(player.character_class_id))
 		card.button_group = item_group
 		card.item_selected.connect(_on_equipment_selected)
 		_equipment_cards.append(card)
+		if equipped:
+			selected_card = card
 	_configure_equipment_focus()
 	if not _equipment_cards.is_empty():
-		_equipment_cards[0].set_pressed_no_signal(true)
-		_on_equipment_selected(_equipment_cards[0].definition)
+		if selected_card == null:
+			selected_card = _equipment_cards[0]
+		selected_card.set_pressed_no_signal(true)
+		_refresh_equipment_presentation(selected_card.definition)
 
 
 func _configure_equipment_focus() -> void:
@@ -214,11 +225,33 @@ func _configure_equipment_focus() -> void:
 
 
 func _on_equipment_selected(definition: EquipmentDefinition) -> void:
-	if definition == null or player.equipment_showcase == null:
+	if definition == null or player.weapon_catalog == null:
 		return
+	var equipped := player.get_equipped_weapon_item()
+	if definition != equipped and definition.is_compatible_with(player.character_class_id):
+		player.equip_owned_weapon(definition)
+	_refresh_equipment_presentation(definition)
+
+
+func _refresh_equipment_presentation(selected: EquipmentDefinition) -> void:
+	var equipped := player.get_equipped_weapon_item()
+	if equipped == null:
+		return
+	for card: EquipmentItemCard in _equipment_cards:
+		card.configure(
+			card.definition,
+			card.definition == equipped,
+			card.definition.is_compatible_with(player.character_class_id)
+		)
+	if not _equipment_slot_cards.is_empty():
+		_equipment_slot_cards[0].configure("Weapon", equipped, EmptySlotIcon)
+	weapon_preview.texture = equipped.weapon_definition.world_texture
+	weapon_preview.position = equipped.weapon_definition.sprite_offset_from_grip
+	attack_label.text = "MOUSE: %s" % equipped.display_name.to_upper()
 	equipment_detail_panel.configure(
-		definition,
-		definition == player.equipment_showcase.equipped_weapon
+		selected,
+		selected == equipped,
+		selected.is_compatible_with(player.character_class_id)
 	)
 
 

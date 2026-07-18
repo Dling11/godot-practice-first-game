@@ -12,6 +12,7 @@ func _initialize() -> void:
 
 func _run() -> void:
 	root.get_node("RunSession").reset_run()
+	root.get_node("WeaponInventory").reset_inventory()
 	for action_name in ["player_skill_1", "player_skill_2", "player_skill_3", "player_skill_4", "player_character_menu"]:
 		if not InputMap.has_action(action_name):
 			_fail("Missing input action: %s" % action_name)
@@ -60,10 +61,10 @@ func _run() -> void:
 	if menu._equipment_slot_cards.size() != 5 or not menu.gear_page.visible or menu.skills_page.visible:
 		_fail("Character menu did not open on the five-slot Gear page.")
 		return
-	if player.equipment_showcase == null or not player.equipment_showcase.has_valid_layout():
-		_fail("Player does not expose a valid authored equipment showcase.")
+	if player.weapon_catalog == null or not player.weapon_catalog.has_valid_layout():
+		_fail("Player does not expose a valid authored weapon catalog.")
 		return
-	if menu.equipment_detail_panel.current_definition != player.equipment_showcase.equipped_weapon:
+	if menu.equipment_detail_panel.current_definition != player.get_equipped_weapon_item():
 		_fail("Character menu did not initially inspect the equipped weapon.")
 		return
 	if menu.skills_tab_button.get_node_or_null(menu.skills_tab_button.focus_neighbor_bottom) != menu._equipment_cards[0]:
@@ -73,9 +74,9 @@ func _run() -> void:
 	if (
 		menu.equipment_detail_panel.current_definition == null
 		or menu.equipment_detail_panel.current_definition.rarity != EquipmentDefinition.Rarity.WOOD
-		or not menu.equipment_detail_panel.state_label.text.contains("ASHWOOD")
+		or not menu.equipment_detail_panel.state_label.text.contains("ACTIVE COMBAT")
 	):
-		_fail("Selecting the Ashwood Blade did not update the starter equipment detail surface.")
+		_fail("Selecting the Ashwood Blade did not update the active equipment detail surface.")
 		return
 	menu.skills_tab_button.pressed.emit()
 	if menu.gear_page.visible or not menu.skills_page.visible or root.gui_get_focus_owner() != menu._skill_cards[0]:

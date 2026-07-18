@@ -25,7 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://c7cghxwksrqyh" path="res://assets/audio/sfx/sweeping_cut.wav" id="24_sweeping_cut"]
 [ext_resource type="AudioStream" uid="uid://b53wbwpaltwr" path="res://assets/audio/sfx/dash.wav" id="25_dash"]
 [ext_resource type="Resource" path="res://data/skills/opaw_starting_loadout.tres" id="26_loadout"]
-[ext_resource type="Resource" path="res://data/items/opaw_equipment_showcase.tres" id="27_equipment_showcase"]
+[ext_resource type="Resource" path="res://data/items/opaw_weapon_catalog.tres" id="27_weapon_catalog"]
 [ext_resource type="Script" uid="uid://bdrcc6co0unfp" path="res://entities/player/presentation/player_weapon_visual.gd" id="28_weapon_visual"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sword"]
@@ -52,7 +52,7 @@ outline_color = Color(0.027, 0.02, 0.039, 1)
 collision_layer = 2
 script = ExtResource("1_player")
 skill_loadout = ExtResource("26_loadout")
-equipment_showcase = ExtResource("27_equipment_showcase")
+weapon_catalog = ExtResource("27_weapon_catalog")
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=1303120843]
 

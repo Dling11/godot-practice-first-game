@@ -6,7 +6,7 @@ The setting centers on gods, demons, forgotten civilizations, and **The One Abov
 
 ## Current Status
 
-Pre-alpha title-to-Sanctuary-to-two-stage prototype. F5 opens a mouse/keyboard/gamepad-ready Battle of Gods title screen with session-audio settings; Begin the Awakening fades into a safe generated-pixel Sanctuary with a separate divine fountain, walk-in angel portal, Skillkeeper Eira, and Armskeeper Orren. The active mortal player is Opaw, a compact armless Novice Warrior whose serious scarfed body uses separate stable-scale directional action sheets and a detached Ashwood Blade; his complete previous Wayfarer model is preserved as a runtime backup. Stage 1 teaches Mireling and Thrall combat; Stage 2, `Thorns of the Forgotten Grove`, introduces the Bramble Spitter and returns to Sanctuary when cleared. An in-memory level-10 XP/coin run, reusable four-slot skills, and a polished read-only Gear/Armory preview are active. Disk saving, owned inventory, equipment bonuses, purchases/drops, and additional skills are not yet implemented.
+Pre-alpha title-to-Sanctuary-to-two-stage prototype. F5 opens a mouse/keyboard/gamepad-ready Battle of Gods title screen with session-audio settings; Begin the Awakening fades into a safe generated-pixel Sanctuary with a separate divine fountain, walk-in angel portal, Skillkeeper Eira, and Armskeeper Orren. The active mortal player is Opaw, a compact armless Novice Warrior whose stable-scale body uses a detached equippable sword; his complete previous Wayfarer model is preserved as a runtime backup. Stage 1 teaches Mireling and Thrall combat; Stage 2, `Thorns of the Forgotten Grove`, introduces the Bramble Spitter and returns to Sanctuary when cleared. An in-memory level-10 XP/coin run, reusable four-slot skills, class-gated owned weapon inventory, Orren shop, and Ashwood/Iron switching are active. Disk saving, drops, armor bonuses, character switching, and additional skills are not yet implemented.
 
 ## Intended Technology
 
@@ -80,11 +80,12 @@ res://
       ashen_pilgrimage.tres
       drowned_bells.tres
     items/
-      opaw_equipment_showcase.tres
+      opaw_weapon_catalog.tres
     skills/
       opaw_starting_loadout.tres
     weapons/
       ashwood_blade.tres
+      iron_sword.tres
       attack_styles/
   assets/
     characters/playable/opaw/
@@ -103,10 +104,13 @@ res://
       shops/armskeeper_cart_128x96.png
     items/weapons/
       world/ashwood_blade_16x24.png
+      world/iron_sword_16x24.png
       icons/ashwood_blade_64x64.png
+      icons/iron_sword_64x64.png
   autoload/
     run_session.gd
     story_state.gd
+    weapon_inventory.gd
   project.godot
 ```
 
@@ -118,6 +122,7 @@ Opaw's active compact armless sheets, the earlier Wayfarer pipeline, Ashwood Bla
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tools/apply_opaw_attack_vertical_revision.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tools/process_opaw_compact_armless_assets.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tools/process_opaw_modular_assets.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tools/process_iron_sword.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tools/build_character_sprite_frames.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tools/process_sanctuary_direction_board.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tools/process_sanctuary_individual_assets.gd'
@@ -133,7 +138,7 @@ The active prototype controls are:
 |---|---|---|
 | Move | W/A/S/D | Left stick |
 | Aim/facing | Mouse | Right stick |
-| Primary attack: Ashwood Blade | Left mouse | Right trigger |
+| Primary attack: equipped sword | Left mouse | Right trigger |
 | Dodge | Space | South face button |
 | Skill 1: Sweeping Cut | 1 (Q legacy fallback) | Left shoulder |
 | Skill slots 2-4 | 2 / 3 / 4 (reserved) | Reserved |
@@ -144,7 +149,7 @@ The active prototype controls are:
 
 Movement, aim/facing, primary attack, dash, Sweeping Cut, portal interaction, and arena restart after defeat are active. Slots 2-4 are visibly sealed and currently do nothing. XP and coins survive portal transitions within the running game; defeat restart begins a new run.
 
-In Sanctuary, approach Skillkeeper Eira or Armskeeper Orren and press F. To use the angel portal, walk around either side of the standalone fountain, cross the open courtyard, and ascend the portal's center stairs; its prompt appears only at the doorway threshold. The character surface opens from physical Tab or the clickable top-left satchel button. Dialogue and menu controls support mouse click or arrow-key focus plus Enter; Escape cancels the active modal, and the character surface also has a top-right close button. Its tabs show Opaw, his read-only five-slot Gear/Armory preview with the Wood-rank Ashwood Blade, and the four active-skill slots. Eira opens this surface only after her dialogue is completed; Orren previews the future weapon service without pretending purchases or item ownership exist. The portal builds its routes from expedition data: Forgotten Grove opens after Sanctuary awakening, while later routes display real unmet level/story/boss/discovery/key-item requirements and remain sealed until their scenes exist.
+In Sanctuary, approach Skillkeeper Eira or Armskeeper Orren and press F. To use the angel portal, walk around either side of the standalone fountain, cross the open courtyard, and ascend the portal's center stairs; its prompt appears only at the doorway threshold. The character surface opens from physical Tab or the clickable top-left satchel button. Dialogue and menu controls support mouse click or arrow-key focus plus Enter; Escape cancels the active modal, and the character surface also has a top-right close button. Its Gear tab lists owned weapons; clicking a compatible sword equips it immediately. Ashwood is Opaw's permanent fallback, while Orren sells the Warrior-only Iron Sword for 18 coins. Skills are never sold: future level-eligible skills will be awakened through Eira. The portal builds its routes from expedition data: Forgotten Grove opens after Sanctuary awakening, while later routes display real unmet level/story/boss/discovery/key-item requirements and remain sealed until their scenes exist.
 
 ## Verification
 

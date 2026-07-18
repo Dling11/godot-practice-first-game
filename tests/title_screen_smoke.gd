@@ -58,8 +58,10 @@ func _run() -> void:
 		return
 	var run_session := root.get_node("RunSession")
 	var story_state := root.get_node("StoryState")
+	var weapon_inventory := root.get_node("WeaponInventory")
 	run_session.update_progression(80, 12)
 	story_state.remember_story(&"forgotten_grove_completed")
+	weapon_inventory.acquire_weapon(preload("res://data/items/equipment/iron_sword.tres"))
 	var transition_state := {"requested": "", "started": false, "finished": false}
 	title.journey_requested.connect(func(destination: String) -> void: transition_state.requested = destination)
 	transition_service.transition_started.connect(func(_destination: String) -> void:
@@ -88,6 +90,9 @@ func _run() -> void:
 		return
 	if story_state.has_story_flag(&"forgotten_grove_completed"):
 		_fail("A new journey did not reset the in-memory story state.")
+		return
+	if weapon_inventory.owns_weapon(&"weapon_iron_sword"):
+		_fail("A new journey did not reset purchased weapon ownership.")
 		return
 	print("Title screen smoke test passed.")
 	quit(0)
