@@ -4,6 +4,22 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 
 ## Current Limitations
 
+### KI-011 - Combat responsiveness, audio distinction, and Husk presentation need a playtest repair pass
+
+- **Status:** Open
+- **Audio progress:** Opaw's accepted-damage cue is now a distinct original cloth/body impact, and the dash uses a curated light CC0 swish; confirm their volume and clarity against every enemy attack in controller playtests.
+- **Progress:** A focused smoke-tested input buffer resolves the reported rejected attack-to-skill follow-up without interrupting live damage or dash invulnerability. Rootbound Husk now uses direct-preloaded attack-profile typing, a redesigned stump-guardian body, a true contact/passing `72x64` walk with leg exchange and arm counter-swing, matching v4 root-attack plus v3 reaction/defeat sheets, byte-verified mirrored side rows, a constant foot baseline, an above-crown health bar, six-beat ground-root VFX, and a profiled quick-spear/slow-fan sequence. The defective side contact and clipped up-facing crown were repaired, the visually stale root-command body was replaced across all four directions, all 28 named body animations use authoritative assets, and every retired Husk body/archive/import was permanently deleted. Focused boss and Stage 3 smokes pass; audio balance, threat direction, reach/commitment, and human Husk timing/readability remain open.
+- **Impact:** Earlier playtesting reported rejected attack-to-skill follow-ups, repetitive dash/incoming-hit audio, unclear threat direction, and Rootbound Husk scale popping. The structural input and Husk animation causes are repaired, but only a controller playtest can approve their final feel.
+- **Planned resolution:** Complete the roadmap's responsiveness, feedback/audio, and Husk-repair milestones in that order; measure each change with focused smoke coverage and a controller playtest before changing encounter counts or adding Stage 4 content.
+- **Workaround:** Use F9 to test the completed skills and implemented routes; treat only Husk timing/readability and exact combat reach tuning as provisional, not its animation or attack-authority architecture.
+
+### KI-010 - Expedition pacing still needs human controller playtesting
+
+- **Status:** Open
+- **Impact:** Automated coverage verifies the four-enemy cap, reinforcement warning/release order, queue completion, crowd spacing, and individual attack behavior, but cannot judge clear-time satisfaction, damage pressure, camera readability, or skill feel with Ashwood and Iron.
+- **Planned resolution:** Record timed Stage 1 and Stage 2 controller runs using normal and F9 test loadouts, then adjust authored wave cadence only if the evidence shows a material pacing issue.
+- **Workaround:** Keep the current one-at-a-time warned reinforcements, existing low-health starter enemies, and four-enemy ceiling; do not compensate with health inflation or a larger crowd.
+
 ### KI-003 - Target platforms are undecided
 
 - **Status:** Open

@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" path="res://ui/world/damage_number.tscn" id="22_damage_number"]
 [ext_resource type="PackedScene" path="res://gameplay/presentation/hit_burst.tscn" id="23_hit_burst"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/sword_hit.wav" id="24_sword_hit"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/player_hurt.wav" id="25_player_hurt"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_hurt_impact.wav" id="25_player_hurt"]
 [ext_resource type="PackedScene" path="res://ui/character_menu.tscn" id="26_character_menu"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_piercing_rush_impact.ogg" id="27_pierce_impact"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_consecutive_thrust_final_hit.ogg" id="29_consecutive_final_hit"]
@@ -49,11 +49,12 @@ corner_radius_bottom_left = 3
 font_size = 12
 font_color = Color(0.86, 0.9, 0.82, 1)
 
-[node name="Game" type="Node" node_paths=PackedStringArray("player", "combat_hud", "character_menu")]
+[node name="Game" type="Node" node_paths=PackedStringArray("player", "combat_hud", "character_menu", "encounter_controller")]
 script = ExtResource("4_flow")
 player = NodePath("World/Actors/Player")
 combat_hud = NodePath("UI/CombatHUD")
 character_menu = NodePath("UI/CharacterMenu")
+encounter_controller = NodePath("GameplayServices/EncounterController")
 
 [node name="World" type="Node2D" parent="."]
 
@@ -179,6 +180,7 @@ player = NodePath("../../World/Actors/Player")
 
 [connection signal="wave_changed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_wave"]
 [connection signal="wave_cleared" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_wave_clear"]
+[connection signal="reinforcement_announced" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_reinforcement_warning"]
 [connection signal="enemy_spawned" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_spawn_direction"]
 [connection signal="stage_cleared" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_stage_clear"]
 [connection signal="portal_sealed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_portal_sealed"]

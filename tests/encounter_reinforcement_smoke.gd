@@ -17,11 +17,31 @@ func _run() -> void:
 		wave.spawn_interval = 0.1
 		wave.reinforcement_delay = 0.25
 	var expected_spawns := 0
+	var expected_reinforcements := 0
 	for resource in controller.waves:
-		expected_spawns += (resource as EncounterWaveDefinition).total_enemy_count()
-	var state := {"spawned": 0, "max_active": 0, "cleared": false}
+		var wave := resource as EncounterWaveDefinition
+		expected_spawns += wave.total_enemy_count()
+		expected_reinforcements += maxi(0, wave.total_enemy_count() - controller.max_active_enemies)
+	var state := {
+		"spawned": 0,
+		"max_active": 0,
+		"cleared": false,
+		"reinforcements": 0,
+		"waiting_for_reinforcement": false,
+		"announced_at_msec": 0,
+		"released_too_early": false,
+	}
 	controller.enemy_spawned.connect(func(_position: Vector2) -> void:
+		if state.waiting_for_reinforcement:
+			if Time.get_ticks_msec() - state.announced_at_msec < 200:
+				state.released_too_early = true
+			state.waiting_for_reinforcement = false
 		state.spawned += 1
+	)
+	controller.reinforcement_announced.connect(func(_delay_seconds: float) -> void:
+		state.reinforcements += 1
+		state.waiting_for_reinforcement = true
+		state.announced_at_msec = Time.get_ticks_msec()
 	)
 	controller.stage_cleared.connect(func() -> void: state.cleared = true)
 	root.add_child(arena)
@@ -41,6 +61,12 @@ func _run() -> void:
 		return
 	if state.max_active > controller.max_active_enemies:
 		_fail("Reinforcement queue exceeded the configured active-enemy cap.")
+		return
+	if state.reinforcements != expected_reinforcements:
+		_fail("Each pending enemy must receive its own reinforcement warning.")
+		return
+	if state.released_too_early:
+		_fail("A reinforcement arrived before its readable warning window elapsed.")
 		return
 	print("Encounter reinforcement smoke test passed.")
 	quit(0)

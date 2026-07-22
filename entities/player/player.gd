@@ -11,6 +11,8 @@ signal defeated
 signal testing_preset_applied(level: int, coins: int)
 signal skill_loadout_changed
 
+enum BufferedAction { NONE, PRIMARY_ATTACK, ABILITY_1, ABILITY_2 }
+
 const PlayerInputSourceScript = preload("res://entities/player/components/player_input_source.gd")
 const PlayerMovementComponentScript = preload("res://entities/player/components/player_movement_component.gd")
 const MeleeAttackComponentScript = preload("res://entities/player/components/melee_attack_component.gd")
@@ -37,13 +39,14 @@ const AbilityComponentScript = preload("res://gameplay/abilities/ability_compone
 var facing_direction := Vector2.DOWN
 var is_defeated := false
 var _was_moving := false
-var _primary_attack_buffered := false
-var _buffered_primary_attack_direction := Vector2.DOWN
+var _buffered_action := BufferedAction.NONE
+var _buffered_action_direction := Vector2.DOWN
 
 
 func _ready() -> void:
 	health_component.died.connect(_on_died)
 	evade_component.phase_changed.connect(_on_evade_phase_changed)
+	attack_component.phase_changed.connect(_on_attack_phase_changed)
 	ability_1_component.ability_finished.connect(_restore_ability_presentation_facing)
 	ability_2_component.ability_finished.connect(_restore_ability_presentation_facing)
 	_apply_inventory_weapon()
@@ -96,6 +99,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if progression_component.apply_debug_testing_preset():
 		_unlock_debug_test_equipment()
 		_enable_debug_test_loadout()
+		_unlock_debug_test_expeditions()
 		get_viewport().set_input_as_handled()
 		testing_preset_applied.emit(
 			progression_component.level,
@@ -111,9 +115,7 @@ func request_primary_attack() -> bool:
 	):
 		return false
 	if evade_component.is_dashing():
-		_primary_attack_buffered = true
-		_buffered_primary_attack_direction = facing_direction
-		return true
+		return _buffer_action(BufferedAction.PRIMARY_ATTACK, facing_direction)
 	if evade_component.is_recovering():
 		var attack_direction := facing_direction
 		if not evade_component.cancel_recovery():
@@ -143,18 +145,30 @@ func request_ability(slot_number: int) -> bool:
 	if (
 		component == null
 		or is_defeated
-		or attack_component.phase != attack_component.Phase.IDLE
-		or not evade_component.is_ready()
+		or is_any_ability_casting()
+		or not component.is_ready()
 	):
 		return false
 	if component.definition.activation_mode != AbilityDefinition.ActivationMode.IMMEDIATE_DIRECTIONAL:
 		return false
-	var weapon_damage := (
-		attack_component.weapon.damage
-		if attack_component.weapon != null
-		else 0.0
+	var action := (
+		BufferedAction.ABILITY_1
+		if slot_number == 1
+		else BufferedAction.ABILITY_2
 	)
-	return component.request_cast(facing_direction, weapon_damage)
+	if attack_component.phase != attack_component.Phase.IDLE:
+		_buffer_action(action, facing_direction)
+		if attack_component.phase == attack_component.Phase.RECOVERY:
+			return _try_execute_buffered_action()
+		return true
+	if evade_component.is_dashing():
+		return _buffer_action(action, facing_direction)
+	if evade_component.is_recovering():
+		_buffer_action(action, facing_direction)
+		return _try_execute_buffered_action()
+	if not evade_component.is_ready():
+		return false
+	return _start_ability(component, facing_direction)
 
 
 func set_weapon_definition(next_weapon: WeaponDefinition) -> bool:
@@ -272,15 +286,65 @@ func _set_movement_facing_direction(move_direction: Vector2) -> void:
 
 
 func _on_evade_phase_changed(phase: int, _duration_seconds: float) -> void:
-	if phase != EvadeComponent.Phase.RECOVERY or not _primary_attack_buffered:
+	if phase != EvadeComponent.Phase.RECOVERY:
 		return
-	var attack_direction := _buffered_primary_attack_direction
-	_primary_attack_buffered = false
-	if not evade_component.cancel_recovery():
-		return
-	_set_facing_direction(attack_direction)
-	if not attack_component.request_attack(attack_direction):
-		push_error("Buffered primary attack could not start after dash recovery.")
+	_try_execute_buffered_action()
+
+
+func _on_attack_phase_changed(phase: int, _duration_seconds: float) -> void:
+	## A buffered technique never interrupts a live sword hit. It may replace only
+	## the normal attack's recovery, matching the existing dash-recovery rule.
+	if phase == MeleeAttackComponent.Phase.RECOVERY:
+		_try_execute_buffered_action()
+
+
+func _buffer_action(action: BufferedAction, direction: Vector2) -> bool:
+	## One intent is retained until the current committed action reaches its
+	## explicit safe boundary. A later valid input intentionally replaces it.
+	_buffered_action = action
+	_buffered_action_direction = (
+		direction.normalized()
+		if not direction.is_zero_approx()
+		else facing_direction
+	)
+	return true
+
+
+func _try_execute_buffered_action() -> bool:
+	if _buffered_action == BufferedAction.NONE or is_defeated or is_any_ability_casting():
+		return false
+	if attack_component.phase != attack_component.Phase.IDLE:
+		if attack_component.phase != attack_component.Phase.RECOVERY:
+			return false
+		attack_component.cancel_attack()
+	if evade_component.is_dashing():
+		return false
+	if evade_component.is_recovering() and not evade_component.cancel_recovery():
+		return false
+	if not evade_component.is_ready():
+		return false
+	var action := _buffered_action
+	var action_direction := _buffered_action_direction
+	_buffered_action = BufferedAction.NONE
+	if action == BufferedAction.PRIMARY_ATTACK:
+		_set_facing_direction(action_direction)
+		return attack_component.request_attack(action_direction)
+	var component := get_ability_component_for_slot(
+		1 if action == BufferedAction.ABILITY_1 else 2
+	)
+	if component == null:
+		return false
+	_set_facing_direction(action_direction)
+	return _start_ability(component, action_direction)
+
+
+func _start_ability(component: AbilityComponent, direction: Vector2) -> bool:
+	var weapon_damage := (
+		attack_component.weapon.damage
+		if attack_component.weapon != null
+		else 0.0
+	)
+	return component.request_cast(direction, weapon_damage)
 
 
 func _restore_ability_presentation_facing() -> void:
@@ -311,11 +375,17 @@ func _unlock_debug_test_equipment() -> void:
 			inventory.acquire_weapon(item)
 
 
+func _unlock_debug_test_expeditions() -> void:
+	var story_state := get_node_or_null("/root/StoryState")
+	if story_state != null:
+		story_state.apply_debug_expedition_unlocks()
+
+
 func _on_died() -> void:
 	if is_defeated:
 		return
 	is_defeated = true
-	_primary_attack_buffered = false
+	_buffered_action = BufferedAction.NONE
 	velocity = Vector2.ZERO
 	attack_component.cancel_attack()
 	evade_component.cancel_evade()

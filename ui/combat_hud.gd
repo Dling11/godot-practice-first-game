@@ -109,6 +109,10 @@ func show_wave_clear(index: int, total: int) -> void:
 	_show_announcement("WAVE %d/%d CLEARED" % [index, total], 1.25)
 
 
+func show_reinforcement_warning(_delay_seconds: float) -> void:
+	_show_announcement("REINFORCEMENTS APPROACH", 0.9)
+
+
 func show_stage_clear() -> void:
 	_show_announcement("STAGE CLEAR  •  PORTAL OPEN", 2.4)
 

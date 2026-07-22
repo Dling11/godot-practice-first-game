@@ -1,0 +1,147 @@
+[gd_scene load_steps=31 format=3]
+
+[ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://entities/enemies/mireling/mireling.tscn" id="2_mireling"]
+[ext_resource type="PackedScene" path="res://entities/enemies/rootling/rootling.tscn" id="3_rootling"]
+[ext_resource type="PackedScene" path="res://entities/enemies/forsaken_thrall/forsaken_thrall.tscn" id="4_thrall"]
+[ext_resource type="PackedScene" path="res://entities/enemies/bramble_spitter/bramble_spitter.tscn" id="5_spitter"]
+[ext_resource type="PackedScene" path="res://entities/enemies/rootbound_husk/rootbound_husk.tscn" id="6_husk"]
+[ext_resource type="Script" path="res://levels/stage_3/stage_3_flow.gd" id="7_flow"]
+[ext_resource type="PackedScene" path="res://ui/combat_hud.tscn" id="8_hud"]
+[ext_resource type="PackedScene" path="res://ui/character_menu.tscn" id="9_menu"]
+[ext_resource type="PackedScene" path="res://ui/pause_menu.tscn" id="10_pause"]
+[ext_resource type="TileSet" path="res://assets/environment/prototype/bright_ground_tileset.tres" id="11_tiles"]
+[ext_resource type="Script" path="res://levels/test_arena/prototype_ground.gd" id="12_ground"]
+[ext_resource type="Script" path="res://levels/test_arena/arena_navigation.gd" id="13_navigation"]
+[ext_resource type="Script" path="res://gameplay/encounters/encounter_controller.gd" id="14_encounter"]
+[ext_resource type="Resource" path="res://data/encounters/stage_3_wave_1.tres" id="15_wave1"]
+[ext_resource type="Resource" path="res://data/encounters/stage_3_wave_2.tres" id="16_wave2"]
+[ext_resource type="PackedScene" path="res://gameplay/encounters/stage_portal.tscn" id="17_portal"]
+[ext_resource type="PackedScene" path="res://gameplay/encounters/summon_effect.tscn" id="18_summon"]
+[ext_resource type="Script" path="res://gameplay/audio/stage_music.gd" id="19_music"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/cathedral_in_the_forest.ogg" id="20_forest_music"]
+[ext_resource type="Script" path="res://gameplay/audio/boss_music_trigger.gd" id="21_boss_music"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/boss/rootbound_husk_basilisk_boss_loop.ogg" id="22_boss_track"]
+[ext_resource type="Script" path="res://gameplay/presentation/combat_feedback_presenter.gd" id="23_feedback"]
+[ext_resource type="PackedScene" path="res://ui/world/damage_number.tscn" id="24_number"]
+[ext_resource type="PackedScene" path="res://gameplay/presentation/hit_burst.tscn" id="25_burst"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/sword_hit.wav" id="26_sword_hit"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_hurt_impact.wav" id="27_player_hurt"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_piercing_rush_impact.ogg" id="28_piercing_impact"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_consecutive_thrust_final_hit.ogg" id="29_consecutive_impact"]
+
+[node name="AshenPilgrimage" type="Node" node_paths=PackedStringArray("player", "combat_hud", "character_menu", "encounter_controller")]
+script = ExtResource("7_flow")
+player = NodePath("World/Actors/Player")
+combat_hud = NodePath("UI/CombatHUD")
+character_menu = NodePath("UI/CharacterMenu")
+encounter_controller = NodePath("GameplayServices/EncounterController")
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="StageMusic" type="Node" parent="."]
+script = ExtResource("19_music")
+music_stream = ExtResource("20_forest_music")
+
+[node name="Level" type="Node2D" parent="World"]
+
+[node name="Ground" type="TileMapLayer" parent="World/Level"]
+z_index = -10
+tile_set = ExtResource("11_tiles")
+script = ExtResource("12_ground")
+map_size = Vector2i(24, 14)
+
+[node name="Actors" type="Node2D" parent="World"]
+y_sort_enabled = true
+
+[node name="Player" parent="World/Actors" instance=ExtResource("1_player")]
+position = Vector2(768, 760)
+movement_bounds = Rect2(56, 56, 1424, 840)
+
+[node name="Camera2D" type="Camera2D" parent="World/Actors/Player"]
+position = Vector2(0, -8)
+limit_left = 0
+limit_top = 0
+limit_right = 1536
+limit_bottom = 896
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="World"]
+script = ExtResource("13_navigation")
+navigation_bounds = Rect2(48, 48, 1440, 800)
+
+[node name="Projectiles" type="Node2D" parent="World"]
+
+[node name="Effects" type="Node2D" parent="World"]
+
+[node name="GameplayServices" type="Node" parent="."]
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="NorthWest" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(260, 150)
+
+[node name="NorthEast" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1280, 150)
+
+[node name="West" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(170, 470)
+
+[node name="East" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1360, 470)
+
+[node name="StageExit" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(768, 210)
+
+[node name="EncounterController" type="Node" parent="GameplayServices" node_paths=PackedStringArray("player", "actors", "spawn_points_root", "portal_parent", "portal_spawn_point", "effects_parent", "projectiles_parent")]
+script = ExtResource("14_encounter")
+player = NodePath("../../World/Actors/Player")
+actors = NodePath("../../World/Actors")
+spawn_points_root = NodePath("../../SpawnPoints")
+waves = Array[Resource]([ExtResource("15_wave1"), ExtResource("16_wave2")])
+mireling_scene = ExtResource("2_mireling")
+rootling_scene = ExtResource("3_rootling")
+thrall_scene = ExtResource("4_thrall")
+bramble_spitter_scene = ExtResource("5_spitter")
+rootbound_husk_scene = ExtResource("6_husk")
+portal_scene = ExtResource("17_portal")
+portal_parent = NodePath("../../World/Effects")
+portal_spawn_point = NodePath("../../SpawnPoints/StageExit")
+portal_target_scene = "res://levels/sanctuary/sanctuary.tscn"
+summon_effect_scene = ExtResource("18_summon")
+effects_parent = NodePath("../../World/Effects")
+projectiles_parent = NodePath("../../World/Projectiles")
+auto_start = false
+
+[node name="BossMusicTrigger" type="Node" parent="GameplayServices" node_paths=PackedStringArray("encounter_controller")]
+script = ExtResource("21_boss_music")
+encounter_controller = NodePath("../EncounterController")
+boss_music = ExtResource("22_boss_track")
+
+[node name="CombatFeedback" type="Node" parent="GameplayServices" node_paths=PackedStringArray("player", "effects_parent", "camera")]
+script = ExtResource("23_feedback")
+player = NodePath("../../World/Actors/Player")
+effects_parent = NodePath("../../World/Effects")
+camera = NodePath("../../World/Actors/Player/Camera2D")
+damage_number_scene = ExtResource("24_number")
+hit_burst_scene = ExtResource("25_burst")
+sword_hit_sound = ExtResource("26_sword_hit")
+ability_hit_sound = ExtResource("28_piercing_impact")
+consecutive_final_hit_sound = ExtResource("29_consecutive_impact")
+player_hurt_sound = ExtResource("27_player_hurt")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="CombatHUD" parent="UI" instance=ExtResource("8_hud")]
+
+[node name="CharacterMenu" parent="UI" node_paths=PackedStringArray("player") instance=ExtResource("9_menu")]
+player = NodePath("../../World/Actors/Player")
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("10_pause")]
+
+[connection signal="wave_changed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_wave"]
+[connection signal="wave_cleared" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_wave_clear"]
+[connection signal="reinforcement_announced" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_reinforcement_warning"]
+[connection signal="enemy_spawned" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_spawn_direction"]
+[connection signal="stage_cleared" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_stage_clear"]
+[connection signal="portal_sealed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_portal_sealed"]
+[connection signal="portal_prompt_changed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_interaction_prompt"]

@@ -1,7 +1,7 @@
 # Decision 053: Rootbound Husk as an Authored Forest Melee Archetype
 
 - **Date:** 2026-07-19
-- **Status:** Accepted
+- **Status:** Accepted, revised 2026-07-23
 
 ## Context
 
@@ -21,6 +21,32 @@ Its initial Light-tier tuning target is 70 health, 48 px/s movement, 9 contact d
 
 ## Consequences
 
+## Revision 2026-07-19
+
+Rootbound Husk is implemented as Stage 3's first solo Boss-tier mini-boss, not a Stage 2 Light enemy. It has 160 health, Boss crowd-control resistance, a 112x20 snapshotted Root Spear, and an alternating three-lane rooted volley. Its danger comes from readable positioning tests rather than inflated health or extra live enemies.
+
 - A later Stage 3 introduction gains a larger lateral-dodge role while the readable Stage 1 beginner space remains owned by Rootling and Stage 2 escalates only established forest roles.
 - The Rootbound Elder can later evolve the same Root Spear language into multi-lane and arena-root boss mechanics without invalidating the base mob.
 - The enemy requires independent art, collision, controller, audio, health UI binding, navigation, and regression coverage before it enters a wave.
+
+## Revision 2026-07-22
+
+Rootbound Husk presentation uses a fixed-scale `AnimatedSprite2D` body with named `SpriteFrames` for idle, walk, root-attack wind-up, root-attack active, root-attack recovery, hurt, and defeat. Its separate root telegraph/eruption nodes also use `AnimatedSprite2D` and render on the ground layer beneath actors. The Godot asset processor recovers connected actor pixels that cross generated cell boundaries, rejects disconnected debris, and applies one standing-reference scale unchanged across each direction row, preserving one foot baseline and using wider root-attack cells rather than shrinking extended poses. Animation remains a presentation observer; the controller's snapshotted hitboxes continue to own attack timing and damage.
+
+## Revision 2026-07-23
+
+Rootbound Husk's implemented attack language is now a profiled quick Root Spear plus a slower Root Fan. The fan warns all three snapshotted lanes, erupts its center first, and delays its two sides by 0.11 seconds; below half health, timings tighten modestly and fans occur more often. This increases readable challenge without changing 160 health, 10 damage, Boss control resistance, or the four-enemy cap. One attack-start signal owns sound while staged eruption signals own presentation, and authoritative hitboxes remain controller-owned.
+
+Generated character work now follows `docs/design/character-animation-pixel-contract.md`. Husk uses `72x64` walk cells, `64x64` reaction cells, `96x64` root-attack cells, `128x64` ground-VFX cells, fixed per-direction actor scale, a stable foot baseline, binary alpha, and containment/component validation. The wider walk cell preserves complete planted strides without shrinking.
+
+At this now-superseded original-body revision, the gliding side cycle was replaced with planted/lifted poses and the four-frame tree-like eruption was replaced with six ground-owned stages from crack through collapse. Root sprites remained unrotated and centered on the ground-plane lane location, the health bar moved above the crown, and the controller directly preloaded its profile script to avoid editor global-class cache failures. The later stump-guardian revision retains those VFX and editor-robustness corrections while replacing the body animation package.
+
+The independently generated v2 side rows were rejected because the right row changed antlers, torso mass, arms, and stride relative to left. Foot-level review then rejected the generated v3 side motion as a complete gait because its passing feet remained effectively planted. A temporary processor repair lifted opposite feet by two pixels and mirrored the side row after normalization; the stump-guardian revision below supersedes that repair with reviewed contact/passing source poses.
+
+## Revision 2026-07-23 - Stump-Guardian Redesign
+
+Further gameplay review rejected the original long-antler body rather than continuing to patch its generated feet. The active Rootbound Husk is now a broad stump guardian with a compact branch crown, plated shoulders, moss-draped core, separated heavy root legs, and explicit foreground/background limb layering. All retired long-antler and pre-final body packages were permanently deleted after final approval so they cannot be mistaken for active content.
+
+The active side cycle is contact A, passing A, opposite contact B, and passing B. Legs exchange horizontal front/back ownership and arms counter-swing; vertical-only foot movement is not accepted as locomotion. Because a single multi-frame generation repeatedly preserved the same stance, the v4 walk source is reproducibly assembled from individually reviewed poses with one shared source scale per direction row. Left is derived from the approved right cycle, and the runtime processor again mirrors left into right after normalization and byte-verifies the result.
+
+The v3 reaction board still owns neutral/hurt/recovery/compact-defeat reactions. Editor review revealed that the earlier root-command side poses retained pre-final body proportions, so they were replaced by an assembled v4 six-stage ready/brace/gather/ground-command/hold/recover board matching the approved stump guardian in every direction. Runtime animations are named `root_attack_wind_up_*`, `root_attack_active_*`, and `root_attack_recovery_*`; every former `cast_*` animation and cast-named Husk asset was permanently removed. Raw boundary-crossing poses are recovered as connected actors and normalized into an exact 6x4 source before runtime processing. The existing root-ground VFX, profiled spear/fan authority, damage, health, timing, and collision remain unchanged; this revision replaces presentation rather than combat rules.

@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" path="res://ui/world/damage_number.tscn" id="19_damage_number"]
 [ext_resource type="PackedScene" path="res://gameplay/presentation/hit_burst.tscn" id="20_hit_burst"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/sword_hit.wav" id="21_sword_hit"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/player_hurt.wav" id="22_player_hurt"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_hurt_impact.wav" id="22_player_hurt"]
 [ext_resource type="PackedScene" path="res://ui/character_menu.tscn" id="23_character_menu"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_piercing_rush_impact.ogg" id="24_pierce_impact"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_consecutive_thrust_final_hit.ogg" id="26_consecutive_final_hit"]
@@ -189,6 +189,7 @@ horizontal_alignment = 1
 
 [connection signal="wave_changed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_wave"]
 [connection signal="wave_cleared" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_wave_clear"]
+[connection signal="reinforcement_announced" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_reinforcement_warning"]
 [connection signal="enemy_spawned" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_spawn_direction"]
 [connection signal="stage_cleared" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_stage_clear"]
 [connection signal="portal_sealed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_portal_sealed"]

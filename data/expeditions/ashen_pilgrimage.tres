@@ -18,4 +18,5 @@ route_label = "II"
 display_name = "ASHEN PILGRIMAGE"
 difficulty_label = "DIVINE TRIAL"
 description = "A road of scorched shrines left by worshippers whose god answered only with fire."
+destination_scene = "res://levels/stage_3/stage_3.tscn"
 requirement = SubResource("Requirement")

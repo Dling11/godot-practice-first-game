@@ -7,6 +7,7 @@ signal stage_cleared
 signal portal_sealed
 signal portal_prompt_changed(is_visible: bool, prompt_text: String, prompt_icon: Texture2D)
 signal enemy_spawned(global_position: Vector2)
+signal reinforcement_announced(delay_seconds: float)
 
 @export var player: Player
 @export var actors: Node2D
@@ -16,6 +17,7 @@ signal enemy_spawned(global_position: Vector2)
 @export var rootling_scene: PackedScene
 @export var thrall_scene: PackedScene
 @export var bramble_spitter_scene: PackedScene
+@export var rootbound_husk_scene: PackedScene
 @export var portal_scene: PackedScene
 @export var portal_parent: Node2D
 @export var portal_spawn_point: Marker2D
@@ -76,17 +78,21 @@ func _advance_wave() -> void:
 	for count in range(wave.rootling_count): _pending_enemies.append(rootling_scene)
 	for count in range(wave.thrall_count): _pending_enemies.append(thrall_scene)
 	for count in range(wave.bramble_spitter_count): _pending_enemies.append(bramble_spitter_scene)
+	for count in range(wave.rootbound_husk_count): _pending_enemies.append(rootbound_husk_scene)
 	_initial_batch_active = true
 	await _spawn_initial_batch()
 	_initial_batch_active = false
 	_spawning = not _pending_enemies.is_empty()
+	if not _pending_enemies.is_empty() and _active_enemies < max_active_enemies:
+		_queue_reinforcements()
 	_try_finish_stage()
 
 
 func _spawn_initial_batch() -> void:
-	while _active_enemies < max_active_enemies and not _pending_enemies.is_empty():
+	var initial_batch_size: int = mini(max_active_enemies, _pending_enemies.size())
+	for spawn_index in range(initial_batch_size):
 		_spawn_enemy(_pending_enemies.pop_front())
-		if not _pending_enemies.is_empty():
+		if spawn_index < initial_batch_size - 1:
 			await get_tree().create_timer(_current_wave.spawn_interval).timeout
 
 
@@ -95,18 +101,15 @@ func _queue_reinforcements() -> void:
 		return
 	_reinforcement_pending = true
 	_spawning = true
+	reinforcement_announced.emit(_current_wave.reinforcement_delay)
 	await get_tree().create_timer(_current_wave.reinforcement_delay).timeout
 	if not is_inside_tree():
 		return
-	while _active_enemies < max_active_enemies and not _pending_enemies.is_empty():
+	if _active_enemies < max_active_enemies and not _pending_enemies.is_empty():
 		_spawn_enemy(_pending_enemies.pop_front())
-		if not _pending_enemies.is_empty():
-			await get_tree().create_timer(_current_wave.spawn_interval).timeout
 	_reinforcement_pending = false
 	_spawning = not _pending_enemies.is_empty()
 	_try_finish_stage()
-	if not _pending_enemies.is_empty() and _active_enemies < max_active_enemies:
-		call_deferred("_queue_reinforcements")
 
 
 func _spawn_enemy(scene: PackedScene) -> void:

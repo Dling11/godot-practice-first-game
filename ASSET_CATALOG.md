@@ -55,8 +55,16 @@ Do not introduce `final`, `new`, `fixed`, `better`, unexplained numbers, or cont
 | `char_rootling_reactions` | `assets/characters/enemies/rootling/rootling_reaction_sheet_32x32.png` | Active | 128x128; ready/hurt/wither/defeat across 4 direction rows | `rootling.tscn` / `RootlingVisual` |
 | `fx_rootling_root_jab` | `assets/characters/enemies/rootling/rootling_root_jab_vfx_sheet_48x48.png` | Active | 192x192; crack/branch/eruption/retract across 4 direction rows | `rootling.tscn` / `RootlingVisual` |
 | `sfx_rootling_root_jab` | `assets/audio/sfx/rootling_root_jab.wav` | Active | 0.31-second mono 44.1 kHz WAV | `rootling.tscn` / `ActionSfx` |
+| `char_rootbound_husk_walk` | `assets/characters/enemies/rootbound_husk/rootbound_husk_walk_sheet_72x64.png` | Active | 288x256; stump-guardian contact A/pass A/contact B/pass B; opposite side is an exact mirror | `rootbound_husk_sprite_frames.tres` |
+| `char_rootbound_husk_root_attack` | `assets/characters/enemies/rootbound_husk/rootbound_husk_root_attack_body_sheet_96x64.png` | Active | 576x256; 6 root-command poses x 4 direction rows; wider cells preserve body scale | `rootbound_husk_sprite_frames.tres` |
+| `char_rootbound_husk_reactions` | `assets/characters/enemies/rootbound_husk/rootbound_husk_reaction_sheet_64x64.png` | Active | 256x256; neutral/hurt/wounded/defeat x 4 direction rows | `rootbound_husk_sprite_frames.tres` |
+| `char_rootbound_husk_frames` | `assets/characters/enemies/rootbound_husk/rootbound_husk_sprite_frames.tres` | Active | Godot `SpriteFrames`; exactly 28 directional idle/walk/root-attack/hurt/defeat animations | `rootbound_husk.tscn` / `RootboundHuskVisual` |
+| `fx_rootbound_husk_root_spear` | `assets/characters/enemies/rootbound_husk/rootbound_husk_root_spear_vfx_sheet_128x64.png` | Active | 768x64; six telegraph-to-eruption ground cells | `rootbound_husk_root_spear_vfx_sprite_frames.tres` |
+| `fx_rootbound_husk_root_spear_frames` | `assets/characters/enemies/rootbound_husk/rootbound_husk_root_spear_vfx_sprite_frames.tres` | Active | Godot `SpriteFrames`; telegraph and eruption animations | `rootbound_husk.tscn` / `RootboundHuskVisual` |
 
 All active Opaw sheets use direction rows in canonical `down`, `left`, `right`, `up` order and animation frames as columns. `tools/process_opaw_compact_armless_assets.gd` isolates each padded generated cell, removes chroma, normalizes every direction reference to 18x27 on the shared foot baseline, and emits binary-alpha runtime sheets. Normal attack body columns map directly to wind-up, active, and recovery while the detached external weapon owns the visible blade arc. The complete previous Wayfarer model and former single 4x8 atlas have no active `SpriteFrames` references. Existing humanoid extended enemy attack sheets use directions as rows and six action phases as columns.
+
+Rootbound Husk runtime sheets are reproducibly emitted by `tools/assemble_rootbound_husk_redesign.gd`, `tools/process_rootbound_husk_assets.gd`, and `tools/build_rootbound_husk_sprite_frames.gd`. The assembler composes exact-grid v4 walk and root-attack sources from reviewed redesign components, uses a dedicated two-frame front-facing down-active strip, recovers complete up-facing crowns and boundary-crossing root-command poses through bounded connected-component overlap, and applies one scale per direction row. The processor chroma-cleans active boards, retains separated readable body components, removes sheet-specific debris, applies one standing-reference scale unchanged across each direction row, and byte-verifies exact mirrored side rows for walk, root attack, and reaction. Active sources are `rootbound_husk_walk_board_source_v4.png`, `rootbound_husk_root_attack_body_board_source_v4.png`, `rootbound_husk_reaction_board_source_v3.png`, and the preserved `rootbound_husk_root_ground_attack_board_source_v2.png` beside their clean intermediates. The active runtime folder contains only these four sheets and their two `SpriteFrames` resources. Retired Husk body packages were permanently deleted and have no rollback path.
 
 ### Preserved Opaw Pipeline Material
 
@@ -128,7 +136,7 @@ These files are intentionally outside runtime imports under Godot-ignored `art_s
 | `char_rootling_reactions` | `art_source/generated/characters/enemies/rootling/final/rootling_reaction_board_clean.png` | `intermediate` | 1254x1254; sole approved four-direction reaction board |
 | `fx_rootling_root_jab` | `art_source/generated/characters/enemies/rootling/final/rootling_root_jab_vfx_board_clean.png` | `intermediate` | 1254x1254; sole approved four-direction root-jab VFX board |
 | `char_rootling_walk`, `char_rootling_reactions`, `fx_rootling_root_jab` | `art_source/archive/characters/enemies/rootling/superseded_generation/*` | `legacy` | Original generation sources, the rejected separate down-walk strip, and unused root-jab action board; no runtime or build references |
-| `char_rootbound_husk_action_package` | `art_source/generated/characters/enemies/rootbound_husk/*_board_source_v1.png` and `*_board_clean_v1.png` | `source` / `intermediate` | Approved larger Husk walk, Root Spear, reaction, and VFX boards reserved for later Stage 2 implementation; no runtime references yet |
+| `char_rootbound_husk_action_package` | `art_source/generated/characters/enemies/rootbound_husk/rootbound_husk_walk_board_source_v4.png`, `rootbound_husk_root_attack_body_board_source_v4.png`, `rootbound_husk_reaction_board_source_v3.png`, ground-root v2 source, and matching clean boards | `source` / `intermediate` | Active redesigned Stage 3 Husk locomotion, v4 six-stage root attack, reactions/defeat, and preserved six-beat ground roots |
 
 ## Active Environment Art
 
@@ -268,7 +276,7 @@ Backgrounds are replaceable presentation dependencies. Screen scripts and focus/
 | `audio_sfx_sword_swing` | `assets/audio/sfx/sword_swing.wav` | `active_runtime` |
 | `audio_sfx_sword_hit` | `assets/audio/sfx/sword_hit.wav` | `active_runtime` |
 | `audio_sfx_sweeping_cut` | `assets/audio/sfx/sweeping_cut.wav` | `active_runtime` |
-| `audio_sfx_dash` | `assets/audio/sfx/dash.wav` | `active_runtime` |
+| `audio_sfx_opaw_dash_light_swoosh` | `assets/audio/sfx/opaw_dash_light_swoosh.wav` | `active_runtime` |
 | `audio_sfx_opaw_piercing_rush_charge` | `assets/audio/sfx/opaw_piercing_rush_charge.wav` | `active_runtime` |
 | `audio_sfx_opaw_piercing_rush_thrust` | `assets/audio/sfx/opaw_piercing_rush_thrust.ogg` | `active_runtime` |
 | `audio_sfx_opaw_piercing_rush_impact` | `assets/audio/sfx/opaw_piercing_rush_impact.ogg` | `active_runtime` |
@@ -277,7 +285,7 @@ Backgrounds are replaceable presentation dependencies. Screen scripts and focus/
 | `audio_sfx_opaw_consecutive_thrust_final_thrust` | `assets/audio/sfx/opaw_consecutive_thrust_final_thrust.ogg` | `active_runtime` |
 | `audio_sfx_opaw_consecutive_thrust_final_hit` | `assets/audio/sfx/opaw_consecutive_thrust_final_hit.ogg` | `active_runtime` |
 | `audio_sfx_opaw_consecutive_thrust_v3` | `art_source/archive/skills/opaw/consecutive_thrust_v3_replaced/audio/` | `archived` | Replaced three-voice swish and final-whoosh runtime audio retained for provenance only. |
-| `audio_sfx_player_hurt` | `assets/audio/sfx/player_hurt.wav` | `active_runtime` |
+| `audio_sfx_opaw_hurt_impact` | `assets/audio/sfx/opaw_hurt_impact.wav` | `active_runtime` |
 | `audio_sfx_thrall_claw` | `assets/audio/sfx/thrall_claw.wav` | `active_runtime` |
 | `audio_sfx_mireling_leap` | `assets/audio/sfx/mireling_leap.wav` | `active_runtime` |
 | `audio_sfx_mireling_land` | `assets/audio/sfx/mireling_land.wav` | `active_runtime` |
@@ -285,6 +293,8 @@ Backgrounds are replaceable presentation dependencies. Screen scripts and focus/
 | `audio_sfx_bramble_impact` | `assets/audio/sfx/bramble_impact.wav` | `active_runtime` |
 
 Audio provenance remains in `assets/audio/ATTRIBUTION.md`.
+
+The superseded generic dash, player-hurt, and synthetic dash-burst clips are preserved outside runtime imports under `art_source/archive/audio/replaced_player_action_sfx/`; they must not be rebound to Opaw because their character is too close to enemy cues or did not pass playtest review.
 
 ## Transitional and Legacy Material
 

@@ -37,6 +37,17 @@ func grant_key_item(item_id: StringName) -> void:
 	_record(_key_items, item_id)
 
 
+func apply_debug_expedition_unlocks() -> bool:
+	if not OS.is_debug_build():
+		return false
+	remember_story(&"awakened_in_sanctuary")
+	remember_story(&"forgotten_grove_stage_1_cleared")
+	remember_story(&"forgotten_grove_completed")
+	record_boss_victory(&"thornbound_warden")
+	grant_key_item(&"cinder_sigil")
+	return true
+
+
 func has_story_flag(flag_id: StringName) -> bool:
 	return _story_flags.has(flag_id)
 

@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://c482dvqfbxph8" path="res://gameplay/combat/stagger_component.gd" id="12_stagger"]
 [ext_resource type="Script" uid="uid://k00adtwpm5uh" path="res://entities/enemies/components/enemy_reward_component.gd" id="13_rewards"]
 [ext_resource type="Script" uid="uid://dyes4qkflxig2" path="res://gameplay/audio/actor_action_sfx.gd" id="14_action_sfx"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/rootling_root_jab.wav" id="15_root_jab"]
+[ext_resource type="AudioStream" uid="uid://lktn827r8x60" path="res://assets/audio/sfx/rootling_root_jab.wav" id="15_root_jab"]
 
 [sub_resource type="CircleShape2D" id="foot"]
 radius = 6.0

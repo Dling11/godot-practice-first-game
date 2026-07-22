@@ -28,7 +28,7 @@
 [ext_resource type="Script" uid="uid://b61awjvau5rtl" path="res://gameplay/audio/player_action_sfx.gd" id="22_player_sfx"]
 [ext_resource type="AudioStream" uid="uid://tg77jorh8gfu" path="res://assets/audio/sfx/sword_swing.wav" id="23_sword_swing"]
 [ext_resource type="AudioStream" uid="uid://c7cghxwksrqyh" path="res://assets/audio/sfx/sweeping_cut.wav" id="24_sweeping_cut"]
-[ext_resource type="AudioStream" uid="uid://b53wbwpaltwr" path="res://assets/audio/sfx/dash.wav" id="25_dash"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_dash_light_swoosh.wav" id="25_dash"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_piercing_rush_charge.wav" id="31_pierce_charge"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_piercing_rush_thrust.ogg" id="32_pierce_thrust"]
 [ext_resource type="Resource" path="res://data/skills/opaw_starting_loadout.tres" id="26_loadout"]
@@ -281,7 +281,7 @@ bus = &"SFX"
 
 [node name="Dash" type="AudioStreamPlayer2D" parent="PlayerActionSfx" unique_id=795989634]
 stream = ExtResource("25_dash")
-volume_db = -9.0
+volume_db = -13.0
 bus = &"SFX"
 
 [node name="PiercingRushCharge" type="AudioStreamPlayer2D" parent="PlayerActionSfx"]

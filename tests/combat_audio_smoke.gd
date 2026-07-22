@@ -6,6 +6,8 @@ const MirelingScene = preload("res://entities/enemies/mireling/mireling.tscn")
 const SpitterScene = preload("res://entities/enemies/bramble_spitter/bramble_spitter.tscn")
 const ImpactScene = preload("res://gameplay/projectiles/bramble_seed_impact.tscn")
 const ArenaScene = preload("res://levels/test_arena/test_arena.tscn")
+const OpawDashLightSwoosh = preload("res://assets/audio/sfx/opaw_dash_light_swoosh.wav")
+const OpawHurtImpact = preload("res://assets/audio/sfx/opaw_hurt_impact.wav")
 
 
 func _initialize() -> void:
@@ -38,6 +40,9 @@ func _run() -> void:
 		return
 	if not is_equal_approx(PlayerActionSfx.CONSECUTIVE_FINAL_THRUST_ONSET_SECONDS, 0.50):
 		_fail("Consecutive Thrust final sword playback is not skipping its delayed source lead-in.")
+		return
+	if player_sfx.dash_player.stream != OpawDashLightSwoosh or player_sfx.dash_player.volume_db > -12.0:
+		_fail("Opaw's dash does not use the dedicated light swoosh at a safe volume.")
 		return
 
 	var thrall := ThrallScene.instantiate() as ForsakenThrall
@@ -76,6 +81,9 @@ func _run() -> void:
 		or feedback.player_hurt_sound == null
 	):
 		_fail("Accepted-hit, Piercing Rush, Consecutive Thrust, and player-damage SFX are not configured in the arena.")
+		return
+	if feedback.player_hurt_sound != OpawHurtImpact or feedback.player_hurt_sound == thrall_sfx.primary_player.stream:
+		_fail("Player damage does not use a distinct Opaw impact sound.")
 		return
 	if not is_equal_approx(CombatFeedbackPresenter.CONSECUTIVE_FINAL_CONTACT_ONSET_SECONDS, 0.125):
 		_fail("Consecutive Thrust final contact playback is not skipping its delayed source lead-in.")

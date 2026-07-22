@@ -3,6 +3,8 @@ extends SceneTree
 const ACTIVE_PATHS := [
 	"res://assets/characters/playable/opaw/compact_armless/opaw_compact_armless_sprite_frames.tres",
 	"res://assets/characters/playable/opaw/variants/wayfarer_original/opaw_wayfarer_original_sprite_frames.tres",
+	"res://assets/characters/enemies/rootbound_husk/rootbound_husk_sprite_frames.tres",
+	"res://assets/characters/enemies/rootbound_husk/rootbound_husk_root_spear_vfx_sprite_frames.tres",
 	"res://assets/characters/npcs/skillkeeper/skillkeeper_idle_sheet_48x48.png",
 	"res://assets/characters/npcs/armskeeper/armskeeper_idle_sheet_48x48.png",
 	"res://environment/props/sanctuary/skillkeeper_lodge.tscn",
@@ -21,6 +23,11 @@ const RETIRED_RUNTIME_PATHS := [
 	"res://environment/props/sanctuary/weapon_stall.tscn",
 	"res://tools/build_opaw_handless_variant.gd",
 	"res://tools/build_opaw_armless_attack_prototype.gd",
+	"res://assets/characters/enemies/rootbound_husk/rootbound_husk_attack_sheet_96x64_from_scratch.png",
+	"res://assets/characters/enemies/rootbound_husk/rootbound_husk_attack_sheet_96x64_v2.png",
+	"res://assets/characters/enemies/rootbound_husk/rootbound_husk_walk_sheet_72x64_from_scratch.png",
+	"res://assets/characters/enemies/rootbound_husk/rootbound_husk_walk_sheet_72x64_passing_v2.png",
+	"res://assets/characters/enemies/rootbound_husk/rootbound_husk_walk_sheet_72x64_v2.png",
 ]
 
 

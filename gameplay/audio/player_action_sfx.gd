@@ -60,7 +60,7 @@ func play_ability_strike(strike_index: int, strike_count: int, _duration_seconds
 
 
 func play_dash(_direction: Vector2) -> void:
-	_play(dash_player, 1.08)
+	_play(dash_player, 0.96)
 
 
 func _play(player: AudioStreamPlayer2D, pitch: float, from_position_seconds: float = 0.0) -> void:

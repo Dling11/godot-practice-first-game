@@ -1,5 +1,24 @@
 # Audio Attribution
 
+## Original Opaw Action Cues
+
+- **Runtime file:** `sfx/opaw_hurt_impact.wav`
+- **Source:** Original deterministic in-project synthesis via `tools/build_opaw_hurt_impact_sfx.py`
+- **Created:** 2026-07-19
+
+The hurt cue is a restrained cloth/body impact reserved for accepted player damage. It does not reuse enemy attack audio.
+
+## Opaw Dash CC0 SFX
+
+- **Author:** artisticdude
+- **License:** CC0 1.0 / Public Domain dedication
+- **Source:** https://opengameart.org/content/swishes-sound-pack
+- **Runtime file:** `sfx/opaw_dash_light_swoosh.wav`
+- **Selected source clip:** `swish-4.wav`
+- **Source pack downloaded:** 2026-07-18; curated for dash: 2026-07-19
+
+The short light swish is reserved for Opaw's dash at a restrained volume. The full source pack remains outside runtime imports under `art_source/archive/audio/opaw_piercing_rush_cc0_source_packs/`.
+
 ## Cathedral in the Forest (ambient loop)
 
 - **Author:** congusbongus
@@ -9,6 +28,16 @@
 - **Downloaded:** 2026-07-14
 
 The track is used as low-volume ambient music through the dedicated `Music` bus. Attribution is retained for provenance even though CC0 does not require it.
+
+## Rootbound Husk Boss Loop
+
+- **Author:** beardalaxy
+- **License:** CC0 1.0 / Public Domain dedication
+- **Source:** https://opengameart.org/content/basilisk-boss-battle-loop
+- **Runtime file:** `music/boss/rootbound_husk_basilisk_boss_loop.ogg`
+- **Downloaded:** 2026-07-19
+
+This loop is used only by Stage 3 when the solo Rootbound Husk wave begins. Its SHA-256 at download is `3CA99A4FDC962BBB7A2EF314F0EAAFD153CAE2FF2220AADD32071348BAE5D6B2`.
 
 ## RPG Sound Pack
 

@@ -1,5 +1,53 @@
 # Changelog
 
+## 2026-07-23 - Rootbound Husk Attack and Pixel Contracts
+
+- Replaced the original long-antler Rootbound Husk with a broad stump-guardian redesign across locomotion, six-stage root-command attacks, hurt/recovery, and compact defeat while preserving existing health, damage, attack timing, hitboxes, SFX, and six-beat ground-root VFX.
+- Rebuilt side walking around individually reviewed contact A, passing A, opposite contact B, and passing B poses. Foreground/background legs now exchange forward/back positions while arms counter-swing; the assembler fixes one source-row scale and the processor derives every opposite side frame by exact mirroring.
+- Fixed a visible 40-to-56-pixel side-walk size pop caused when debris filtering removed disconnected pieces from the direction-board contact source. Contact A now comes from the complete approved side strip; all four side-walk silhouettes and the neutral walk/cast/reaction references retain the 56-pixel body-height contract, protected by the focused boss smoke.
+- Restored the clipped `walk_up` crown by recovering each connected up-facing actor through a bounded source-row overlap, and recovered complete cast limbs that crossed ideal generated cell boundaries without changing the approved body design.
+- Replaced the visually stale root-command body revealed by the editor with a new v4 six-stage board matching the final stump-guardian walk model in all four directions. The assembler now recovers and normalizes every raw root-attack actor into an exact 6x4 source grid before runtime processing.
+- Replaced the two down-active poses that turned into side profiles with dedicated front-facing root-command frames matching the approved `walk_down` identity, and added a symmetry smoke so down-facing attacks cannot silently rotate sideways again.
+- Renamed every root-command body animation to `root_attack_wind_up_*`, `root_attack_active_*`, and `root_attack_recovery_*`; permanently deleted every former `cast_*` animation, cast-named Husk asset, stale import cache, and retired Husk model archive so the editor exposes only authoritative content.
+- Added the reproducible v4 body assembler, complete-component retention, sheet-specific debris rejection, raw mirror verification, and expanded boss smoke coverage. The former walk/cast body packages are archived as rollback material; reaction v3 remains active.
+- Archived the asymmetric v2 source/intermediate and expanded the focused boss smoke to protect canonical left/right atlas-row wiring.
+- Fixed editor parsing of the new attack-profile type by using a direct script preload, moved the damage-revealed health bar above the Husk's antlers, and expanded the focused smoke to protect both contracts.
+- Replaced the gliding v1 walk with the superseded original-body fixed-scale cycle; the later stump-guardian redesign above now owns the active four-step contact/passing gait.
+- Replaced the four-frame tree-like eruption with six ground-owned beats: crack, spread, bulge, spear, peak, and collapse. VFX now sit unrotated on the ground plane instead of near horizontal hand height, while authoritative 112x20 lanes and attack timing remain unchanged.
+- Moved superseded v1 walk/VFX sources and the old `64x64` walk runtime sheet into the Godot-ignored archive after confirming no active references.
+- Replaced the mini-boss's strict attack alternation with a dedicated data profile: a quick Root Spear, a slower three-lane Root Fan whose warned center erupts before its sides, and a modest faster/fan-heavier second phase below half health. Health, damage, Boss control resistance, and snapshotted 112x20 hitboxes remain unchanged.
+- Split attack-start audio from staged eruption presentation so each attack plays one sound while the fan can emit center and side VFX separately; expanded the focused boss smoke to protect cadence, timings, lane staging, second-phase behavior, and SFX routing.
+- Added the character-animation pixel contract, updated the Husk processor to use rounded proportional source-grid boundaries, rebuilt all active Husk sheets, and verified every walk/reaction/root-attack cell is contained and single-component. Rejected body material was later permanently deleted after final approval.
+
+## 2026-07-22 - Rootbound Husk Native Animation Rebuild
+
+- Regenerated the earlier Rootbound Husk root-command and reaction boards around one stable bark body, antler silhouette, lime chest core, body scale, and foot baseline; the rejected root-command body was later replaced and permanently deleted.
+- Replaced per-frame Python normalization and manual `Sprite2D.frame`/Tween loops with a reproducible Godot fixed-scale processor, generated body/VFX `SpriteFrames`, and named `AnimatedSprite2D` animations using wider cast cells instead of actor shrinkage.
+- Recovered the left active-cast hand across its generated source-cell boundary, removed detached foot/head debris from right-facing walk/cast/hurt frames, centered the down defeat pose, and added strict overflow rejection plus one stable scale per direction row.
+- Moved root telegraph and eruption presentation beneath actor silhouettes without changing the snapshotted 112x20 Root Spear or alternating three-lane boss authority. Rootbound Husk, Stage 3 encounter, and expedition-unlock smokes pass.
+
+## 2026-07-19 - Distinct Opaw Damage and Dash Audio
+
+- Replaced the generic player-hurt clip with an original short cloth/body impact used only after accepted damage, so it no longer reads as a Thrall attack.
+- Replaced the synthetic dash burst with artisticdude's curated CC0 `swish-4.wav` at restrained volume, then archived all rejected generic/synthetic dash candidates outside runtime imports. Combat-audio, feedback, input-buffer, Stage 2, and Stage 3 smokes pass.
+
+## 2026-07-19 - Safe Attack-to-Skill Input Buffer
+
+- Added one bounded latest-valid-input buffer for normal attacks and immediate-directional skills. A skill pressed during a normal strike or active dash now begins at the first safe vulnerable boundary instead of being rejected; it never overlaps a live hit window or dash invulnerability.
+- Preserved committed-skill behavior: dash input cannot cancel an active skill. Added `ability_input_buffer_smoke.gd` and passed it alongside existing dash and both active-skill smokes.
+
+## 2026-07-19 - Rootbound Husk Stage 3 and Developer Routes
+
+- Added Stage 3 Ashen Pilgrimage, the Boss-tier Rootbound Husk, its anchored Root Spear and three-lane root-volley telegraphs, dedicated runtime art/audio, and boss-wave music trigger.
+- Added Sanctuary menu routes for directly testing Stage 2 and Stage 3. Normal gates remain authored; debug F9 grants the required in-memory route flags alongside its existing skills, gear, level, and coin preset.
+- Added focused Husk behavior, Stage 3 composition/music, and updated expedition-unlock smoke coverage.
+
+## 2026-07-19 - Reinforcement Fairness Pass
+
+- Changed the encounter queue to warn before every queued replacement and release exactly one enemy after its authored delay. A fast multi-kill now creates a real reset window instead of immediately refilling every empty slot.
+- Added the `REINFORCEMENTS APPROACH` HUD announcement to both expedition scenes while retaining the four-enemy cap, existing wave totals, health values, and initial spawn cadence.
+- Expanded the queued-encounter smoke test to verify one warning per pending enemy and prevent releases before the readable delay.
+
 ## 2026-07-19 - Reinforced Expedition Pacing
 
 - Added a data-driven encounter reinforcement queue. `EncounterWaveDefinition` now carries a short reinforcement delay, so long waves release pending enemies as positions open while `EncounterController` retains a strict four-enemy live cap.

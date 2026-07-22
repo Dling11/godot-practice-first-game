@@ -1,6 +1,7 @@
 extends SceneTree
 
 const ForgottenGrove = preload("res://data/expeditions/forgotten_grove.tres")
+const GroveThorns = preload("res://data/expeditions/thorns_of_the_forgotten_grove.tres")
 const AshenPilgrimage = preload("res://data/expeditions/ashen_pilgrimage.tres")
 const DrownedBells = preload("res://data/expeditions/drowned_bells.tres")
 const Progression = preload("res://data/progression/opaw_path.tres")
@@ -16,7 +17,7 @@ func _run() -> void:
 	story_state.reset_story()
 	run_session.reset_run()
 
-	for definition: ExpeditionDefinition in [ForgottenGrove, AshenPilgrimage, DrownedBells]:
+	for definition: ExpeditionDefinition in [ForgottenGrove, GroveThorns, AshenPilgrimage, DrownedBells]:
 		if not definition.is_valid_definition():
 			_fail("An expedition definition is missing its stable identity or display metadata.")
 			return
@@ -27,6 +28,13 @@ func _run() -> void:
 	story_state.remember_story(&"awakened_in_sanctuary")
 	if not ForgottenGrove.is_available(story_state, 1):
 		_fail("The introductory route did not open after Sanctuary awakening.")
+		return
+	if GroveThorns.is_available(story_state, 1):
+		_fail("Stage 2 opened before Stage 1's clear flag.")
+		return
+	story_state.remember_story(&"forgotten_grove_stage_1_cleared")
+	if not GroveThorns.is_available(story_state, 1):
+		_fail("Stage 2 did not open after Stage 1's clear flag.")
 		return
 
 	var ashen_requirement := AshenPilgrimage.requirement
@@ -49,8 +57,8 @@ func _run() -> void:
 	if player_level != 3 or not ashen_requirement.is_satisfied(story_state, player_level):
 		_fail("Combined level, story, boss, and key-item requirements did not resolve.")
 		return
-	if AshenPilgrimage.is_available(story_state, player_level):
-		_fail("A future expedition opened without an implemented destination scene.")
+	if not AshenPilgrimage.is_available(story_state, player_level):
+		_fail("Stage 3 did not open after its authored requirements were met.")
 		return
 
 	story_state.record_discovery(&"remembered_thorn_shrine")
