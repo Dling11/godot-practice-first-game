@@ -13,6 +13,7 @@ required_key_items = null
 [resource]
 script = ExtResource("1_definition")
 expedition_id = &"forgotten_grove"
+route_label = "STAGE I"
 display_name = "FORGOTTEN GROVE"
 difficulty_label = "BEGINNER EXPEDITION"
 description = "A wounded forest where divine corruption has begun to remember the mortals it consumed."

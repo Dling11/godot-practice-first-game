@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-07-23 - Rootbound Hollow Reveal and Enemy Portraits
+
+- Connected the playable forest sequence end-to-end: Stage 2's clear portal now advances directly into The Rootbound Hollow, while Stage 3 retains the post-mini-boss return portal to Sanctuary.
+- Confirmed Stage 1 still contains exactly six wave resources and 30 total enemies; reinforcement and clear announcements are presentation events rather than a seventh wave.
+- Replaced chapter-like Sanctuary labels with Stage I-IV hierarchy and renamed Stage III from `Ashen Pilgrimage` to `The Rootbound Hollow`, including stable IDs, requirements, arrival text, and mini-boss description.
+- Reworked Stage III's approach into ten Rootlings released under the unchanged four-active-enemy cap, followed by a reusable inter-wave gate and a solo Rootbound Husk finale.
+- Added a short skippable Husk introduction after the brood falls. Dialogue owns pause safety, includes the Husk portrait, releases the encounter on complete or skip, and prevents the mini-boss wave/music from beginning behind the modal.
+- Generated and normalized reusable transparent 96x96 portraits for Rootling, Rootbound Husk, Mireling, Forsaken Thrall, and Bramble Spitter; preserved full source and cleaned intermediates outside runtime imports.
+- Extended `DialoguePanel` with an optional portrait slot while retaining portraitless NPC calls, and expanded Stage III smoke coverage for brood count, active cap, gate configuration, portrait display, paused safety, and skip/resume behavior.
+
 ## 2026-07-23 - Rootbound Husk Attack and Pixel Contracts
 
 - Replaced the original long-antler Rootbound Husk with a broad stump-guardian redesign across locomotion, six-stage root-command attacks, hurt/recovery, and compact defeat while preserving controller-owned attack timing, hitboxes, and six-beat ground-root VFX.

@@ -39,7 +39,7 @@ func _on_stage_cleared() -> void:
 	if story_state != null:
 		story_state.remember_story(&"forgotten_grove_completed")
 		story_state.record_discovery(&"remembered_thorn_shrine")
-	combat_hud.show_story_message("THE GROVE RELENTS  •  A WAY BACK OPENS", 2.8)
+	combat_hud.show_story_message("THE GROVE RELENTS  •  THE HOLLOW OPENS", 2.8)
 
 
 func _on_player_defeated() -> void:

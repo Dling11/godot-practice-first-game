@@ -2,7 +2,7 @@ extends SceneTree
 
 const ForgottenGrove = preload("res://data/expeditions/forgotten_grove.tres")
 const GroveThorns = preload("res://data/expeditions/thorns_of_the_forgotten_grove.tres")
-const AshenPilgrimage = preload("res://data/expeditions/ashen_pilgrimage.tres")
+const RootboundHollow = preload("res://data/expeditions/rootbound_hollow.tres")
 const DrownedBells = preload("res://data/expeditions/drowned_bells.tres")
 const Progression = preload("res://data/progression/opaw_path.tres")
 
@@ -17,7 +17,7 @@ func _run() -> void:
 	story_state.reset_story()
 	run_session.reset_run()
 
-	for definition: ExpeditionDefinition in [ForgottenGrove, GroveThorns, AshenPilgrimage, DrownedBells]:
+	for definition: ExpeditionDefinition in [ForgottenGrove, GroveThorns, RootboundHollow, DrownedBells]:
 		if not definition.is_valid_definition():
 			_fail("An expedition definition is missing its stable identity or display metadata.")
 			return
@@ -37,8 +37,8 @@ func _run() -> void:
 		_fail("Stage 2 did not open after Stage 1's clear flag.")
 		return
 
-	var ashen_requirement := AshenPilgrimage.requirement
-	var initial_unmet := ashen_requirement.get_unmet_requirements(story_state, 1)
+	var hollow_requirement := RootboundHollow.requirement
+	var initial_unmet := hollow_requirement.get_unmet_requirements(story_state, 1)
 	for expected in [
 		"REACH LEVEL 3",
 		"STORY: Forgotten Grove Completed",
@@ -46,7 +46,7 @@ func _run() -> void:
 		"KEY ITEM: Cinder Sigil",
 	]:
 		if expected not in initial_unmet:
-			_fail("Ashen Pilgrimage omitted an authored requirement: %s" % expected)
+			_fail("The Rootbound Hollow omitted an authored requirement: %s" % expected)
 			return
 
 	run_session.update_progression(50, 0)
@@ -54,10 +54,10 @@ func _run() -> void:
 	story_state.remember_story(&"forgotten_grove_completed")
 	story_state.record_boss_victory(&"thornbound_warden")
 	story_state.grant_key_item(&"cinder_sigil")
-	if player_level != 3 or not ashen_requirement.is_satisfied(story_state, player_level):
+	if player_level != 3 or not hollow_requirement.is_satisfied(story_state, player_level):
 		_fail("Combined level, story, boss, and key-item requirements did not resolve.")
 		return
-	if not AshenPilgrimage.is_available(story_state, player_level):
+	if not RootboundHollow.is_available(story_state, player_level):
 		_fail("Stage 3 did not open after its authored requirements were met.")
 		return
 

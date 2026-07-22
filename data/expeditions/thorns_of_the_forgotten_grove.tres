@@ -10,9 +10,9 @@ required_story_flags = PackedStringArray("forgotten_grove_stage_1_cleared")
 [resource]
 script = ExtResource("1_definition")
 expedition_id = &"thorns_of_the_forgotten_grove"
-route_label = "I-2"
+route_label = "STAGE II"
 display_name = "THORNS OF THE FORGOTTEN GROVE"
 difficulty_label = "GROVE PRESSURE"
-description = "Return directly to the thorn shrine to test rooted and ranged forest pressure."
+description = "Press deeper into the wounded grove, where rooted ambushes and Bramble Spitters turn the forest against you."
 destination_scene = "res://levels/stage_2/stage_2.tscn"
 requirement = SubResource("Requirement")

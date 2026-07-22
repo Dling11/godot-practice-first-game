@@ -47,9 +47,9 @@ func _run() -> void:
 	):
 		_fail("Clearing the current grove route did not record its story memories.")
 		return
-	var return_portal: StagePortal = current_scene.get_node("World/Effects").get_child(0)
-	if return_portal.target_scene_path != "res://levels/sanctuary/sanctuary.tscn":
-		_fail("Cleared Stage 2 portal is not configured to return to Sanctuary.")
+	var forward_portal: StagePortal = current_scene.get_node("World/Effects").get_child(0)
+	if forward_portal.target_scene_path != "res://levels/stage_3/stage_3.tscn":
+		_fail("Cleared Stage 2 portal is not configured to continue into Stage 3.")
 		return
 	print("Scene transition smoke test passed.")
 	quit(0)

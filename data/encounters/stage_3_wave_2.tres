@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_definition")
-title = "Rootbound Husk"
+title = "The Rootbound Husk"
 rootbound_husk_count = 1
 spawn_interval = 0.8

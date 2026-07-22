@@ -6,7 +6,7 @@
 [sub_resource type="Resource" id="Requirement"]
 script = ExtResource("2_requirement")
 minimum_level = 5
-required_story_flags = PackedStringArray("ashen_pilgrimage_completed")
+required_story_flags = PackedStringArray("rootbound_hollow_completed")
 required_boss_victories = PackedStringArray("ashen_seraph")
 required_discoveries = PackedStringArray("drowned_bell_tower")
 required_key_items = PackedStringArray("tideglass_chime")
@@ -14,7 +14,7 @@ required_key_items = PackedStringArray("tideglass_chime")
 [resource]
 script = ExtResource("1_definition")
 expedition_id = &"drowned_bells"
-route_label = "III"
+route_label = "STAGE IV"
 display_name = "THE DROWNED BELLS"
 difficulty_label = "FORBIDDEN DEPTHS"
 description = "A sunken sanctuary whose bells still call to gods that abandoned it."

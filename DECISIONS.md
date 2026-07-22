@@ -62,6 +62,7 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 052 | Extend expedition pacing within the readable four-enemy cap | Stage wave counts, mixed enemy pacing, encounter length, or crowd-performance budgets |
 | 053 | Use Rootbound Husk as an authored forest melee archetype | Forest enemy art, Root Spear attack, Stage 1 roster, or future Rootbound Elder boss |
 | 054 | Make Rootling the compact Stage 1 rooted melee enemy | Rootling art, locked ground-jab authority, Stage 1 wave composition, or Rootbound escalation |
+| 055 | Gate authored reveals and give recurring characters reusable portraits | Pre-fight dialogue, encounter gates, character portraits, bestiary art, or expedition previews |
 
 ## New Decisions
 

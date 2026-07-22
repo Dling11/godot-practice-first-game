@@ -35,5 +35,5 @@ The narrative direction is preserved in `STORY_BIBLE.md`. Playable character ide
 - Story state survives scene replacement for the application session but is lost when the application closes.
 - The snapshot version is an integration boundary, not a claim that disk saving exists.
 - Key-item memory does not create a general inventory or equipment system.
-- Ashen Pilgrimage and The Drowned Bells remain honest sealed previews until playable scenes are authored.
+- The destination formerly called Ashen Pilgrimage is now the implemented Rootbound Hollow but remains sealed in normal progression until its requirements are authored; The Drowned Bells remains an honest unbuilt preview.
 - Switchable characters, class selection, shops, skills 2-4, and high-tier bosses remain planned rather than partially activated.

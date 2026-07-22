@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3]
+[gd_scene load_steps=33 format=3]
 
 [ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://entities/enemies/mireling/mireling.tscn" id="2_mireling"]
@@ -29,13 +29,17 @@
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_hurt_impact.wav" id="27_player_hurt"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_piercing_rush_impact.ogg" id="28_piercing_impact"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_consecutive_thrust_final_hit.ogg" id="29_consecutive_impact"]
+[ext_resource type="PackedScene" path="res://ui/dialogue/dialogue_panel.tscn" id="30_dialogue"]
+[ext_resource type="Texture2D" path="res://assets/characters/enemies/portraits/rootbound_husk_portrait_96x96.png" id="31_husk_portrait"]
 
-[node name="AshenPilgrimage" type="Node" node_paths=PackedStringArray("player", "combat_hud", "character_menu", "encounter_controller")]
+[node name="RootboundHollow" type="Node" node_paths=PackedStringArray("player", "combat_hud", "character_menu", "encounter_controller", "dialogue_panel")]
 script = ExtResource("7_flow")
 player = NodePath("World/Actors/Player")
 combat_hud = NodePath("UI/CombatHUD")
 character_menu = NodePath("UI/CharacterMenu")
 encounter_controller = NodePath("GameplayServices/EncounterController")
+dialogue_panel = NodePath("UI/DialoguePanel")
+rootbound_husk_portrait = ExtResource("31_husk_portrait")
 
 [node name="World" type="Node2D" parent="."]
 
@@ -111,6 +115,7 @@ summon_effect_scene = ExtResource("18_summon")
 effects_parent = NodePath("../../World/Effects")
 projectiles_parent = NodePath("../../World/Projectiles")
 auto_start = false
+gated_wave_numbers = PackedInt32Array(2)
 
 [node name="MinibossMusicTrigger" type="Node" parent="GameplayServices" node_paths=PackedStringArray("encounter_controller")]
 script = ExtResource("21_miniboss_music")
@@ -137,6 +142,8 @@ player_hurt_sound = ExtResource("27_player_hurt")
 player = NodePath("../../World/Actors/Player")
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("10_pause")]
+
+[node name="DialoguePanel" parent="UI" instance=ExtResource("30_dialogue")]
 
 [connection signal="wave_changed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_wave"]
 [connection signal="wave_cleared" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_wave_clear"]

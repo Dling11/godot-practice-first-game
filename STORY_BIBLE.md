@@ -53,9 +53,9 @@ Opaw awakens in Sanctuary with no clear explanation for why he crossed worlds. T
 
 The Grove is the first available expedition. Its corruption has begun to imitate memory, suggesting that the monsters are consequences of deliberate divine interference rather than random decay. The currently playable two-stage route establishes this mystery and records completion in story memory.
 
-### Planned Continuation — Ashen Pilgrimage
+### Implemented Mini-Boss Expedition — The Rootbound Hollow
 
-A road of scorched shrines reveals worshippers whose god answered devotion with fire. Its authored access contract currently requires level 3, completion of the Forgotten Grove story memory, victory over the planned **Thornbound Warden**, and the planned **Cinder Sigil** key item. The route has no playable scene yet and must remain sealed.
+A corrupted hollow reveals that the small Rootlings behave as the Rootbound Husk's brood. After Opaw cuts through ten of them, the ancient guardian names the deaths as a trespass before confronting him as the first mini-boss. Its authored normal-access contract currently requires level 3, completion of the Forgotten Grove story memory, victory over the planned **Thornbound Warden**, and the planned **Cinder Sigil** key item. The playable scene is available through F9 for development, while normal access remains sealed until those requirements can be earned.
 
 ### Planned Continuation — The Drowned Bells
 

@@ -19,7 +19,7 @@ anchors_preset = 12
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 118.0
-offset_top = -142.0
+offset_top = -166.0
 offset_right = -118.0
 offset_bottom = -22.0
 grow_horizontal = 2
@@ -30,23 +30,35 @@ theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 10
-[node name="Root" type="VBoxContainer" parent="Panel/Margin"]
+[node name="Root" type="HBoxContainer" parent="Panel/Margin"]
 layout_mode = 2
+theme_override_constants/separation = 12
+[node name="Portrait" type="TextureRect" parent="Panel/Margin/Root"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+texture_filter = 1
+[node name="Text" type="VBoxContainer" parent="Panel/Margin/Root"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 7
-[node name="SpeakerLabel" type="Label" parent="Panel/Margin/Root"]
+[node name="SpeakerLabel" type="Label" parent="Panel/Margin/Root/Text"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "VEILKEEPER"
 theme_override_colors/font_color = Color(0.839, 0.757, 0.443, 1)
 theme_override_font_sizes/font_size = 14
-[node name="BodyLabel" type="Label" parent="Panel/Margin/Root"]
+[node name="BodyLabel" type="Label" parent="Panel/Margin/Root/Text"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 text = "The fountain remembers."
 autowrap_mode = 2
 theme_override_font_sizes/font_size = 11
-[node name="ContinueButton" type="Button" parent="Panel/Margin/Root"]
+[node name="ContinueButton" type="Button" parent="Panel/Margin/Root/Text"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "F / ENTER  •  CONTINUE"
@@ -54,4 +66,4 @@ size_flags_horizontal = 8
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 8
 
-[connection signal="pressed" from="Panel/Margin/Root/ContinueButton" to="." method="advance"]
+[connection signal="pressed" from="Panel/Margin/Root/Text/ContinueButton" to="." method="advance"]

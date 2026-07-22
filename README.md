@@ -6,7 +6,7 @@ The setting centers on gods, demons, forgotten civilizations, and **The One Abov
 
 ## Current Status
 
-Pre-alpha title-to-Sanctuary-to-two-stage prototype. F5 opens a mouse/keyboard/gamepad-ready Battle of Gods title screen with session-audio settings; Begin the Awakening fades into a safe generated-pixel Sanctuary with a separate divine fountain, walk-in angel portal, Skillkeeper Eira, and Armskeeper Orren. The active mortal player is Opaw, a compact armless Novice Warrior whose stable-scale body uses a detached equippable sword; his complete previous Wayfarer model is preserved as a runtime backup. Stage 1 teaches Mireling, Rootling, and Thrall combat across six reinforcement-paced waves; Stage 2, `Thorns of the Forgotten Grove`, escalates those roles with the Bramble Spitter across seven waves before returning to Sanctuary. An in-memory level-10 XP/coin run, reusable four-slot skills, class-gated owned weapon inventory, Orren shop, and Ashwood/Iron switching are active. Disk saving, drops, armor bonuses, character switching, and additional skills are not yet implemented.
+Pre-alpha title-to-Sanctuary-to-three-stage prototype. F5 opens a mouse/keyboard/gamepad-ready Battle of Gods title screen with session-audio settings; Begin the Awakening fades into a safe generated-pixel Sanctuary with a separate divine fountain, walk-in angel portal, Skillkeeper Eira, and Armskeeper Orren. The active mortal player is Opaw, a compact armless Novice Warrior whose stable-scale body uses a detached equippable sword; his complete previous Wayfarer model is preserved as a runtime backup. Stage 1 teaches Mireling, Rootling, and Thrall combat across six reinforcement-paced waves; Stage 2, `Thorns of the Forgotten Grove`, escalates those roles with the Bramble Spitter across seven waves and continues into Stage 3, `The Rootbound Hollow`. Defeating its Rootbound Husk mini-boss opens the return portal to Sanctuary. An in-memory level-10 XP/coin run, reusable four-slot skills, class-gated owned weapon inventory, Orren shop, and Ashwood/Iron switching are active. Disk saving, drops, armor bonuses, character switching, and additional skills are not yet implemented.
 
 ## Intended Technology
 
@@ -77,7 +77,7 @@ res://
   data/
     expeditions/
       forgotten_grove.tres
-      ashen_pilgrimage.tres
+      rootbound_hollow.tres
       drowned_bells.tres
     items/
       opaw_weapon_catalog.tres

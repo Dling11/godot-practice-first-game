@@ -16,8 +16,8 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 ### KI-010 - Expedition pacing still needs human controller playtesting
 
 - **Status:** Open
-- **Impact:** Automated coverage verifies the four-enemy cap, reinforcement warning/release order, queue completion, crowd spacing, and individual attack behavior, but cannot judge clear-time satisfaction, damage pressure, camera readability, or skill feel with Ashwood and Iron.
-- **Planned resolution:** Record timed Stage 1 and Stage 2 controller runs using normal and F9 test loadouts, then adjust authored wave cadence only if the evidence shows a material pacing issue.
+- **Impact:** Automated coverage verifies the four-enemy cap, reinforcement warning/release order, queue completion, crowd spacing, Stage 3's ten-Rootling gated brood, and individual attack behavior, but cannot judge clear-time satisfaction, whether ten Rootlings overstay their narrative purpose, portrait readability at 960x540, damage pressure, camera readability, or skill feel with Ashwood and Iron.
+- **Planned resolution:** Record timed Stage 1, Stage 2, and Rootbound Hollow controller runs using normal and F9 test loadouts, then adjust authored cadence only if the evidence shows a material pacing issue.
 - **Workaround:** Keep the current one-at-a-time warned reinforcements, existing low-health starter enemies, and four-enemy ceiling; do not compensate with health inflation or a larger crowd.
 
 ### KI-003 - Target platforms are undecided
@@ -51,9 +51,9 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 ### KI-007 - Story memory is not persisted to disk and future expeditions have no content
 
 - **Status:** Open
-- **Impact:** The Sanctuary portal now evaluates data-driven level, story, boss, discovery, and narrative key-item requirements, but `StoryState` survives only for the current application session. Ashen Pilgrimage and The Drowned Bells have no destination scenes, required boss encounters, or obtainable key items.
-- **Planned resolution:** Approve the first versioned disk-profile boundary, then author the Thornbound Warden, Cinder Sigil, and Ashen Pilgrimage before enabling Route II.
-- **Workaround:** Forgotten Grove remains the only playable portal-selected route. Future routes honestly display their first unmet requirement and remain sealed even if test code satisfies their requirement data.
+- **Impact:** The Sanctuary portal now evaluates data-driven level, story, boss, discovery, and narrative key-item requirements, but `StoryState` survives only for the current application session. The Rootbound Hollow is implemented and reachable through F9, yet its normal Thornbound Warden/Cinder Sigil requirements remain unobtainable; The Drowned Bells has no destination scene or obtainable requirements.
+- **Planned resolution:** Approve the first versioned disk-profile boundary, then author the Thornbound Warden and Cinder Sigil to open The Rootbound Hollow through normal progression before advancing to Stage IV.
+- **Workaround:** The implemented forest sequence remains playable continuously from Stage 1 through Stage 3; Sanctuary replay buttons still enforce their authored requirements, and unbuilt future routes remain sealed.
 
 ### KI-009 - Ground targeting and normal Skill 2 awakening are not implemented
 

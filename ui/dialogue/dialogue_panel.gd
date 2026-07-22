@@ -6,6 +6,7 @@ signal dialogue_closed(completed: bool)
 @onready var speaker_label: Label = %SpeakerLabel
 @onready var body_label: Label = %BodyLabel
 @onready var continue_button: Button = %ContinueButton
+@onready var portrait: TextureRect = %Portrait
 
 var _lines: Array[String] = []
 var _line_index := 0
@@ -30,13 +31,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		advance()
 
 
-func show_dialogue(speaker: String, lines: Array[String]) -> void:
+func show_dialogue(speaker: String, lines: Array[String], portrait_texture: Texture2D = null) -> void:
 	if lines.is_empty():
 		return
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	_lines = lines.duplicate()
 	_line_index = 0
 	speaker_label.text = speaker
+	portrait.texture = portrait_texture
+	portrait.visible = portrait_texture != null
 	_owns_pause = not get_tree().paused
 	if _owns_pause:
 		get_tree().paused = true

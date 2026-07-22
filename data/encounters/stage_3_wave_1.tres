@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_definition")
-title = "The Burned Roots"
-rootling_count = 2
-thrall_count = 1
+title = "Brood of the Hollow"
+rootling_count = 10
 spawn_interval = 0.8
+reinforcement_delay = 0.65

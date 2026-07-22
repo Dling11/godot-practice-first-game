@@ -13,10 +13,10 @@ required_key_items = PackedStringArray("cinder_sigil")
 
 [resource]
 script = ExtResource("1_definition")
-expedition_id = &"ashen_pilgrimage"
-route_label = "II"
-display_name = "ASHEN PILGRIMAGE"
-difficulty_label = "DIVINE TRIAL"
-description = "A road of scorched shrines left by worshippers whose god answered only with fire."
+expedition_id = &"rootbound_hollow"
+route_label = "STAGE III"
+display_name = "THE ROOTBOUND HOLLOW"
+difficulty_label = "MINI-BOSS EXPEDITION"
+description = "Cut through the Husk's Rootling brood and enter a corrupted hollow guarded by the first mini-boss: the Rootbound Husk."
 destination_scene = "res://levels/stage_3/stage_3.tscn"
 requirement = SubResource("Requirement")

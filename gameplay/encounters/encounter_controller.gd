@@ -8,6 +8,8 @@ signal portal_sealed
 signal portal_prompt_changed(is_visible: bool, prompt_text: String, prompt_icon: Texture2D)
 signal enemy_spawned(global_position: Vector2)
 signal reinforcement_announced(delay_seconds: float)
+signal inter_wave_gate_requested(next_wave_number: int)
+signal inter_wave_gate_released
 
 @export var player: Player
 @export var actors: Node2D
@@ -28,6 +30,7 @@ signal reinforcement_announced(delay_seconds: float)
 @export var auto_start := true
 @export_range(0.5, 10.0, 0.25, "suffix:s") var inter_wave_delay := 2.25
 @export_range(1, 4, 1) var max_active_enemies := 4
+@export var gated_wave_numbers: PackedInt32Array = []
 
 var wave_index := -1
 var _active_enemies := 0
@@ -39,6 +42,7 @@ var _pending_enemies: Array[PackedScene] = []
 var _current_wave: EncounterWaveDefinition
 var _initial_batch_active := false
 var _reinforcement_pending := false
+var _inter_wave_gate_active := false
 
 
 func _ready() -> void:
@@ -53,6 +57,13 @@ func start_encounter() -> void:
 		return
 	_started = true
 	_start_encounter()
+
+
+func release_inter_wave_gate() -> void:
+	if not _inter_wave_gate_active:
+		return
+	_inter_wave_gate_active = false
+	inter_wave_gate_released.emit()
 
 
 func _start_encounter() -> void:
@@ -165,6 +176,13 @@ func _try_finish_stage() -> void:
 		_transition_pending = true
 		wave_cleared.emit(wave_index + 1, waves.size())
 		await get_tree().create_timer(inter_wave_delay).timeout
+		var next_wave_number := wave_index + 2
+		if next_wave_number in gated_wave_numbers:
+			_inter_wave_gate_active = true
+			inter_wave_gate_requested.emit(next_wave_number)
+			await inter_wave_gate_released
+			if not is_inside_tree():
+				return
 		_transition_pending = false
 		_advance_wave()
 
