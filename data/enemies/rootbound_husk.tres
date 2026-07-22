@@ -5,15 +5,15 @@
 [resource]
 script = ExtResource("1_definition")
 display_name = "Rootbound Husk"
-maximum_health = 160.0
+maximum_health = 280.0
 move_speed = 46.0
 acceleration = 440.0
 attack_range = 120.0
-attack_damage = 10.0
+attack_damage = 12.0
 wind_up_seconds = 0.68
 active_seconds = 0.14
 recovery_seconds = 0.72
 spawn_seconds = 0.8
-experience_reward = 70
-coin_reward = 12
+experience_reward = 90
+coin_reward = 16
 crowd_control_tier = 2

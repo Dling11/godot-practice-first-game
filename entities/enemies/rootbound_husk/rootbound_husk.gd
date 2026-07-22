@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 const AttackProfile = preload("res://data/enemies/rootbound_husk_attack_profile.gd")
 
-enum State { SPAWNING, CHASE, SPEAR_WIND_UP, SPEAR_ACTIVE, TRIAD_WIND_UP, TRIAD_ACTIVE, RECOVERY, DEAD }
+enum State { SPAWNING, CHASE, SPEAR_WIND_UP, SPEAR_ACTIVE, TRIAD_WIND_UP, TRIAD_ACTIVE, BURST_WIND_UP, BURST_ACTIVE, RECOVERY, DEAD }
 
 signal state_changed(state: State, duration_seconds: float)
 signal facing_changed(direction: Vector2)
@@ -11,6 +11,8 @@ signal movement_changed(is_moving: bool)
 signal root_attack_telegraphed(directions: Array[Vector2], duration_seconds: float)
 signal root_attack_erupted(directions: Array[Vector2])
 signal root_attack_started
+signal root_burst_telegraphed(duration_seconds: float)
+signal root_burst_erupted
 
 @export var definition: EnemyDefinition
 @export var attack_profile: AttackProfile
@@ -22,6 +24,7 @@ signal root_attack_started
 @onready var center_hitbox: MeleeHitbox = %CenterHitbox
 @onready var left_hitbox: MeleeHitbox = %LeftHitbox
 @onready var right_hitbox: MeleeHitbox = %RightHitbox
+@onready var burst_hitbox: MeleeHitbox = %BurstHitbox
 @onready var center_pivot: Node2D = %CenterPivot
 @onready var left_pivot: Node2D = %LeftPivot
 @onready var right_pivot: Node2D = %RightPivot
@@ -76,6 +79,9 @@ func _physics_process(delta: float) -> void:
 
 func _process_chase(delta: float) -> void:
 	var offset := target.global_position - global_position
+	if offset.length() <= attack_profile.burst_trigger_range and _has_clear_line():
+		_begin_root_burst(offset.normalized())
+		return
 	if offset.length() <= definition.attack_range and _has_clear_line():
 		_begin_root_attack(offset.normalized())
 		return
@@ -94,6 +100,15 @@ func _process_chase(delta: float) -> void:
 	_apply_knockback_velocity()
 	move_and_slide()
 	_set_moving(not velocity.is_zero_approx())
+
+
+func _begin_root_burst(direction: Vector2) -> void:
+	_locked_directions = [direction if not direction.is_zero_approx() else facing_direction]
+	_set_facing(_locked_directions[0])
+	_current_attack_is_triad = false
+	_current_recovery_seconds = attack_profile.burst_recovery_seconds
+	root_burst_telegraphed.emit(attack_profile.burst_wind_up_seconds)
+	_enter(State.BURST_WIND_UP, attack_profile.burst_wind_up_seconds)
 
 
 func _begin_root_attack(direction: Vector2) -> void:
@@ -153,7 +168,16 @@ func _tick_attack(delta: float) -> void:
 				attack_profile.triad_side_delay_seconds + attack_profile.triad_side_active_seconds
 			)
 			_erupt_center_lane()
-		State.SPEAR_ACTIVE, State.TRIAD_ACTIVE:
+		State.BURST_WIND_UP:
+			_enter(State.BURST_ACTIVE, attack_profile.burst_active_seconds)
+			root_attack_started.emit()
+			root_burst_erupted.emit()
+			burst_hitbox.activate(
+				definition.attack_damage * attack_profile.burst_damage_multiplier,
+				self,
+				_locked_directions[0]
+			)
+		State.SPEAR_ACTIVE, State.TRIAD_ACTIVE, State.BURST_ACTIVE:
 			_deactivate_root_hitboxes()
 			_enter(State.RECOVERY, _current_recovery_seconds)
 		State.RECOVERY:
@@ -198,6 +222,7 @@ func _deactivate_root_hitboxes() -> void:
 	center_hitbox.deactivate()
 	left_hitbox.deactivate()
 	right_hitbox.deactivate()
+	burst_hitbox.deactivate()
 
 
 func _finish_spawn() -> void:

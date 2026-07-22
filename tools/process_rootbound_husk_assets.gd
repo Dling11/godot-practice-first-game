@@ -4,13 +4,10 @@ const WALK_SOURCE_RAW := "res://art_source/generated/characters/enemies/rootboun
 const WALK_SOURCE := "res://art_source/generated/characters/enemies/rootbound_husk/rootbound_husk_walk_board_clean_v4.png"
 const ROOT_ATTACK_SOURCE_RAW := "res://art_source/generated/characters/enemies/rootbound_husk/rootbound_husk_root_attack_body_board_source_v4.png"
 const ROOT_ATTACK_SOURCE := "res://art_source/generated/characters/enemies/rootbound_husk/rootbound_husk_root_attack_body_board_clean_v4.png"
-const REACTION_SOURCE_RAW := "res://art_source/generated/characters/enemies/rootbound_husk/rootbound_husk_reaction_board_source_v3.png"
-const REACTION_SOURCE := "res://art_source/generated/characters/enemies/rootbound_husk/rootbound_husk_reaction_board_clean_v3.png"
 const ROOT_VFX_SOURCE_RAW := "res://art_source/generated/characters/enemies/rootbound_husk/rootbound_husk_root_ground_attack_board_source_v2.png"
 const ROOT_VFX_SOURCE := "res://art_source/generated/characters/enemies/rootbound_husk/rootbound_husk_root_ground_attack_board_clean_v2.png"
 const WALK_OUTPUT := "res://assets/characters/enemies/rootbound_husk/rootbound_husk_walk_sheet_72x64.png"
 const ROOT_ATTACK_OUTPUT := "res://assets/characters/enemies/rootbound_husk/rootbound_husk_root_attack_body_sheet_96x64.png"
-const REACTION_OUTPUT := "res://assets/characters/enemies/rootbound_husk/rootbound_husk_reaction_sheet_64x64.png"
 const ROOT_VFX_OUTPUT := "res://assets/characters/enemies/rootbound_husk/rootbound_husk_root_spear_vfx_sheet_128x64.png"
 const TARGET_UPRIGHT_HEIGHT := 56
 const FOOT_MARGIN := 2
@@ -21,7 +18,6 @@ func _initialize() -> void:
 	for source_pair in [
 		[WALK_SOURCE_RAW, WALK_SOURCE],
 		[ROOT_ATTACK_SOURCE_RAW, ROOT_ATTACK_SOURCE],
-		[REACTION_SOURCE_RAW, REACTION_SOURCE],
 		[ROOT_VFX_SOURCE_RAW, ROOT_VFX_SOURCE],
 	]:
 		var clean_result := _prepare_chroma_clean_source(source_pair[0], source_pair[1])
@@ -49,16 +45,6 @@ func _initialize() -> void:
 			"minimum_component_size": 11,
 			"source_overlap": 0,
 		},
-		{
-			"source": REACTION_SOURCE,
-			"output": REACTION_OUTPUT,
-			"columns": 4,
-			"rows": 4,
-			"cell_size": Vector2i(64, 64),
-			"preserve_horizontal_origin": false,
-			"minimum_component_size": 5,
-			"source_overlap": 0,
-		},
 	]
 	for build in builds:
 		var result := _build_sheet(
@@ -77,7 +63,6 @@ func _initialize() -> void:
 	for mirror_build in [
 		{"sheet": WALK_OUTPUT, "cell_size": Vector2i(72, 64), "columns": 4},
 		{"sheet": ROOT_ATTACK_OUTPUT, "cell_size": Vector2i(96, 64), "columns": 6},
-		{"sheet": REACTION_OUTPUT, "cell_size": Vector2i(64, 64), "columns": 4},
 	]:
 		var mirror_result := _mirror_runtime_row(
 			mirror_build.sheet,

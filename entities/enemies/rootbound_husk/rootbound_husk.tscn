@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://djtbawlyvnr28"]
 
 [ext_resource type="Script" uid="uid://cnmsxooaubeqv" path="res://entities/enemies/rootbound_husk/rootbound_husk.gd" id="1_controller"]
-[ext_resource type="Resource" path="res://data/enemies/rootbound_husk.tres" id="2_definition"]
 [ext_resource type="Resource" path="res://data/enemies/rootbound_husk_attack_profile.tres" id="2_attack_profile"]
+[ext_resource type="Resource" path="res://data/enemies/rootbound_husk.tres" id="2_definition"]
 [ext_resource type="Script" uid="uid://df2url3l4sbfp" path="res://entities/enemies/rootbound_husk/rootbound_husk_visual.gd" id="3_visual"]
 [ext_resource type="SpriteFrames" path="res://assets/characters/enemies/rootbound_husk/rootbound_husk_sprite_frames.tres" id="4_body_frames"]
 [ext_resource type="SpriteFrames" path="res://assets/characters/enemies/rootbound_husk/rootbound_husk_root_spear_vfx_sprite_frames.tres" id="5_vfx_frames"]
@@ -13,15 +13,19 @@
 [ext_resource type="Script" uid="uid://c8rfkjxuqq0u8" path="res://gameplay/combat/knockback_component.gd" id="12_knockback"]
 [ext_resource type="Script" uid="uid://k00adtwpm5uh" path="res://entities/enemies/components/enemy_reward_component.gd" id="13_rewards"]
 [ext_resource type="Script" uid="uid://dyes4qkflxig2" path="res://gameplay/audio/actor_action_sfx.gd" id="14_sfx"]
-[ext_resource type="AudioStream" uid="uid://bb47u0fe6835n" path="res://assets/audio/sfx/rootbound_husk_root_spear.wav" id="15_root_spear"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/enemies/rootbound_husk/rootbound_husk_root_spear.wav" id="15_root_spear"]
 
 [sub_resource type="CircleShape2D" id="foot"]
+radius = 16.0
 
 [sub_resource type="CircleShape2D" id="body"]
 radius = 14.0
 
 [sub_resource type="RectangleShape2D" id="root_spear"]
 size = Vector2(112, 20)
+
+[sub_resource type="CircleShape2D" id="root_burst"]
+radius = 34.0
 
 [node name="RootboundHusk" type="CharacterBody2D" unique_id=347062417]
 collision_layer = 4
@@ -43,7 +47,7 @@ root_spear_vfx = [NodePath("RootSpearVfx"), NodePath("LeftRootSpearVfx"), NodePa
 [node name="Body" type="AnimatedSprite2D" parent="Visual" unique_id=1873607413]
 position = Vector2(0, -32)
 sprite_frames = ExtResource("4_body_frames")
-animation = &"walk_right"
+animation = &"idle_down"
 
 [node name="RootSpearVfx" type="AnimatedSprite2D" parent="Visual" unique_id=1030358274]
 z_index = -1
@@ -79,13 +83,20 @@ script = ExtResource("8_health")
 script = ExtResource("13_rewards")
 health_component = NodePath("../HealthComponent")
 
-[node name="ActionSfx" type="Node2D" parent="." unique_id=819672248 node_paths=PackedStringArray("primary_player")]
+[node name="ActionSfx" type="Node2D" parent="." unique_id=819672248 node_paths=PackedStringArray("primary_player", "secondary_player")]
 script = ExtResource("14_sfx")
 primary_player = NodePath("RootSpear")
+secondary_player = NodePath("GroundRumble")
 
 [node name="RootSpear" type="AudioStreamPlayer2D" parent="ActionSfx" unique_id=1534854978]
 stream = ExtResource("15_root_spear")
 volume_db = -9.0
+bus = &"SFX"
+
+[node name="GroundRumble" type="AudioStreamPlayer2D" parent="ActionSfx"]
+stream = ExtResource("15_root_spear")
+volume_db = -15.0
+pitch_scale = 0.68
 bus = &"SFX"
 
 [node name="EnemyHealthBar" parent="." unique_id=303883607 node_paths=PackedStringArray("health_component") instance=ExtResource("11_health_bar")]
@@ -150,10 +161,23 @@ script = ExtResource("10_hitbox")
 position = Vector2(64, 0)
 shape = SubResource("root_spear")
 
+[node name="BurstHitbox" type="Area2D" parent="." unique_id=199482010]
+unique_name_in_owner = true
+position = Vector2(0, -12)
+collision_layer = 32
+collision_mask = 64
+script = ExtResource("10_hitbox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BurstHitbox"]
+shape = SubResource("root_burst")
+
 [connection signal="facing_changed" from="." to="Visual" method="set_facing"]
 [connection signal="movement_changed" from="." to="Visual" method="set_moving"]
 [connection signal="root_attack_erupted" from="." to="Visual" method="play_root_attack"]
 [connection signal="root_attack_started" from="." to="ActionSfx" method="play_primary"]
+[connection signal="root_attack_started" from="." to="ActionSfx" method="play_secondary"]
 [connection signal="root_attack_telegraphed" from="." to="Visual" method="show_root_attack_telegraph"]
+[connection signal="root_burst_erupted" from="." to="Visual" method="play_root_burst"]
+[connection signal="root_burst_telegraphed" from="." to="Visual" method="show_root_burst_telegraph"]
 [connection signal="state_changed" from="." to="Visual" method="play_state"]
 [connection signal="damaged" from="HealthComponent" to="Visual" method="play_hurt"]

@@ -7,4 +7,4 @@ script = ExtResource("1")
 speed = 320.0
 dash_seconds = 0.15
 recovery_seconds = 0.25
-
+cooldown_seconds = 0.85

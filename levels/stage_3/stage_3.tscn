@@ -20,8 +20,8 @@
 [ext_resource type="PackedScene" path="res://gameplay/encounters/summon_effect.tscn" id="18_summon"]
 [ext_resource type="Script" path="res://gameplay/audio/stage_music.gd" id="19_music"]
 [ext_resource type="AudioStream" path="res://assets/audio/music/cathedral_in_the_forest.ogg" id="20_forest_music"]
-[ext_resource type="Script" path="res://gameplay/audio/boss_music_trigger.gd" id="21_boss_music"]
-[ext_resource type="AudioStream" path="res://assets/audio/music/boss/rootbound_husk_basilisk_boss_loop.ogg" id="22_boss_track"]
+[ext_resource type="Script" path="res://gameplay/audio/miniboss_music_trigger.gd" id="21_miniboss_music"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/miniboss/rootbound_husk_basilisk_miniboss_loop.ogg" id="22_boss_track"]
 [ext_resource type="Script" path="res://gameplay/presentation/combat_feedback_presenter.gd" id="23_feedback"]
 [ext_resource type="PackedScene" path="res://ui/world/damage_number.tscn" id="24_number"]
 [ext_resource type="PackedScene" path="res://gameplay/presentation/hit_burst.tscn" id="25_burst"]
@@ -112,10 +112,10 @@ effects_parent = NodePath("../../World/Effects")
 projectiles_parent = NodePath("../../World/Projectiles")
 auto_start = false
 
-[node name="BossMusicTrigger" type="Node" parent="GameplayServices" node_paths=PackedStringArray("encounter_controller")]
-script = ExtResource("21_boss_music")
+[node name="MinibossMusicTrigger" type="Node" parent="GameplayServices" node_paths=PackedStringArray("encounter_controller")]
+script = ExtResource("21_miniboss_music")
 encounter_controller = NodePath("../EncounterController")
-boss_music = ExtResource("22_boss_track")
+miniboss_music = ExtResource("22_boss_track")
 
 [node name="CombatFeedback" type="Node" parent="GameplayServices" node_paths=PackedStringArray("player", "effects_parent", "camera")]
 script = ExtResource("23_feedback")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rp1jbqg6xer3"
-path="res://.godot/imported/mireling_action_sheet_32x32.png-3c7ad909c4a60002967ce9f4dd0cb9a1.ctex"
+uid="uid://n7r3xf6wj84m"
+path="res://.godot/imported/mireling_action_sheet_48x32.png-86f222347dfce1621e6215527ec70842.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/enemies/mireling/mireling_action_sheet_32x32.png"
-dest_files=["res://.godot/imported/mireling_action_sheet_32x32.png-3c7ad909c4a60002967ce9f4dd0cb9a1.ctex"]
+source_file="res://assets/characters/enemies/mireling/mireling_action_sheet_48x32.png"
+dest_files=["res://.godot/imported/mireling_action_sheet_48x32.png-86f222347dfce1621e6215527ec70842.ctex"]
 
 [params]
 

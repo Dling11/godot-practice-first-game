@@ -59,6 +59,8 @@ func _run() -> void:
 
 	while attack_component.phase != attack_component.Phase.IDLE:
 		await physics_frame
+	while not evade_component.is_evade_available():
+		await physics_frame
 
 	if not player.request_evade(Vector2.DOWN):
 		_fail("Second dash was rejected after the first attack completed.")

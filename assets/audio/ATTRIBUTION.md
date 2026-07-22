@@ -29,15 +29,22 @@ The short light swish is reserved for Opaw's dash at a restrained volume. The fu
 
 The track is used as low-volume ambient music through the dedicated `Music` bus. Attribution is retained for provenance even though CC0 does not require it.
 
-## Rootbound Husk Boss Loop
+## Rootbound Husk Mini-Boss Loop
 
 - **Author:** beardalaxy
 - **License:** CC0 1.0 / Public Domain dedication
 - **Source:** https://opengameart.org/content/basilisk-boss-battle-loop
-- **Runtime file:** `music/boss/rootbound_husk_basilisk_boss_loop.ogg`
+- **Runtime file:** `music/miniboss/rootbound_husk_basilisk_miniboss_loop.ogg`
 - **Downloaded:** 2026-07-19
 
-This loop is used only by Stage 3 when the solo Rootbound Husk wave begins. Its SHA-256 at download is `3CA99A4FDC962BBB7A2EF314F0EAAFD153CAE2FF2220AADD32071348BAE5D6B2`.
+This loop is used only by Stage 3 when the solo Rootbound Husk mini-boss wave begins. Its SHA-256 at download is `3CA99A4FDC962BBB7A2EF314F0EAAFD153CAE2FF2220AADD32071348BAE5D6B2`.
+
+## Rootbound Husk Root Impact
+
+- **Runtime file:** `sfx/enemies/rootbound_husk/rootbound_husk_root_spear.wav`
+- **Runtime treatment:** The authored root impact is layered once at normal pitch and once quietly at `0.68` pitch for additional ground weight.
+
+This cue belongs only to Rootbound Husk root attacks and is organized under the enemy-specific SFX directory rather than the reusable combat folder.
 
 ## RPG Sound Pack
 

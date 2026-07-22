@@ -13,6 +13,7 @@ signal evade_finished
 var phase := Phase.READY
 var dash_direction := Vector2.DOWN
 var _phase_time_remaining: float
+var _cooldown_time_remaining := 0.0
 
 
 func _ready() -> void:
@@ -20,11 +21,12 @@ func _ready() -> void:
 
 
 func request_evade(direction: Vector2) -> bool:
-	if phase != Phase.READY or definition == null or direction.is_zero_approx():
+	if not is_evade_available() or definition == null or direction.is_zero_approx():
 		return false
 	dash_direction = direction.normalized()
 	phase = Phase.DASHING
 	_phase_time_remaining = definition.dash_seconds
+	_cooldown_time_remaining = definition.cooldown_seconds
 	evade_started.emit(dash_direction)
 	phase_changed.emit(phase, definition.dash_seconds)
 	invulnerability_changed.emit(true)
@@ -42,6 +44,14 @@ func is_ready() -> bool:
 	return phase == Phase.READY
 
 
+func is_evade_available() -> bool:
+	return phase == Phase.READY and _cooldown_time_remaining <= 0.0
+
+
+func get_cooldown_remaining() -> float:
+	return maxf(_cooldown_time_remaining, 0.0)
+
+
 func is_dashing() -> bool:
 	return phase == Phase.DASHING
 
@@ -57,7 +67,7 @@ func cancel_recovery() -> bool:
 		return false
 	phase = Phase.READY
 	_phase_time_remaining = 0.0
-	set_physics_process(false)
+	set_physics_process(_cooldown_time_remaining > 0.0)
 	evade_finished.emit()
 	return true
 
@@ -67,11 +77,13 @@ func cancel_evade() -> void:
 		invulnerability_changed.emit(false)
 	phase = Phase.READY
 	_phase_time_remaining = 0.0
+	_cooldown_time_remaining = 0.0
 	set_physics_process(false)
 	evade_finished.emit()
 
 
 func _physics_process(delta: float) -> void:
+	_cooldown_time_remaining = maxf(_cooldown_time_remaining - delta, 0.0)
 	_phase_time_remaining -= delta
 	if _phase_time_remaining > 0.0:
 		return
@@ -83,5 +95,6 @@ func _physics_process(delta: float) -> void:
 		phase_changed.emit(phase, definition.recovery_seconds)
 	elif phase == Phase.RECOVERY:
 		phase = Phase.READY
-		set_physics_process(false)
 		evade_finished.emit()
+	if phase == Phase.READY and _cooldown_time_remaining <= 0.0:
+		set_physics_process(false)

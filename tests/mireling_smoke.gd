@@ -17,6 +17,52 @@ func _run() -> void:
 	player.global_position = Vector2(200, 200)
 	mireling.global_position = Vector2(222, 200)
 	player.set_physics_process(false)
+	var mireling_body := mireling.get_node("Visual/Body") as AnimatedSprite2D
+	if mireling_body.sprite_frames.get_animation_names().size() != 16:
+		_fail("Mireling SpriteFrames contains obsolete or missing animation groups.")
+		return
+	for direction_name in [&"down", &"left", &"right", &"up"]:
+		var idle_name := StringName("idle_%s" % direction_name)
+		var hop_name := StringName("hop_%s" % direction_name)
+		var attack_name := StringName("attack_%s" % direction_name)
+		var dead_name := StringName("dead_%s" % direction_name)
+		if mireling_body.sprite_frames.get_frame_count(idle_name) != 1:
+			_fail("Mireling %s must use the approved compact walk model." % idle_name)
+			return
+		if mireling_body.sprite_frames.get_frame_count(hop_name) != 4:
+			_fail("Mireling %s must use a four-frame directional locomotion cycle." % hop_name)
+			return
+		if mireling_body.sprite_frames.get_frame_count(attack_name) != 4:
+			_fail("Mireling %s must use the remodeled four-frame body slam." % attack_name)
+			return
+		if mireling_body.sprite_frames.get_frame_count(dead_name) != 4:
+			_fail("Mireling %s must use the remodeled four-frame collapse." % dead_name)
+			return
+		if mireling_body.sprite_frames.get_animation_loop(attack_name) or mireling_body.sprite_frames.get_animation_loop(dead_name):
+			_fail("Mireling attack and death animations must not loop.")
+			return
+		if mireling_body.sprite_frames.get_animation_speed(dead_name) < 11.0:
+			_fail("Mireling collapse does not finish before gameplay cleanup.")
+			return
+		var idle_frame := mireling_body.sprite_frames.get_frame_texture(idle_name, 0) as AtlasTexture
+		var attack_frame := mireling_body.sprite_frames.get_frame_texture(attack_name, 0) as AtlasTexture
+		var dead_frame := mireling_body.sprite_frames.get_frame_texture(dead_name, 0) as AtlasTexture
+		if (
+			idle_frame == null
+			or attack_frame == null
+			or dead_frame == null
+			or idle_frame.atlas.resource_path != "res://assets/characters/enemies/mireling/mireling_walk_sheet_32x32.png"
+			or attack_frame.atlas.resource_path != "res://assets/characters/enemies/mireling/mireling_action_sheet_48x32.png"
+			or dead_frame.atlas != attack_frame.atlas
+			or attack_frame.region.size != Vector2(48.0, 32.0)
+		):
+			_fail("Mireling active animations mix remodeled and obsolete body sheets.")
+			return
+		var idle_height := idle_frame.get_image().get_used_rect().size.y
+		var attack_height := attack_frame.get_image().get_used_rect().size.y
+		if idle_height > 18 or absi(idle_height - attack_height) > 1:
+			_fail("Mireling remodeled actions do not preserve the smaller 18-pixel body scale.")
+			return
 	var player_health: HealthComponent = player.get_node("HealthComponent")
 	if mireling.state != Mireling.State.SPAWNING:
 		_fail("Mireling did not begin with materialization.")

@@ -10,6 +10,7 @@ var _direction := &"down"
 var _is_moving := false
 var _active_state := RootboundHusk.State.SPAWNING
 var _body_tween: Tween
+var _camera_tween: Tween
 var _telegraphed_directions: Array[Vector2] = []
 
 
@@ -56,12 +57,18 @@ func play_state(state: int, duration_seconds: float) -> void:
 		RootboundHusk.State.TRIAD_ACTIVE:
 			body.modulate = Color(1.16, 0.82, 1.18, 1.0)
 			_play_body(_directional_animation(&"root_attack_active"), duration_seconds)
+		RootboundHusk.State.BURST_WIND_UP:
+			body.modulate = Color(1.16, 0.74, 0.56, 1.0)
+			_play_body(_directional_animation(&"root_attack_wind_up"), duration_seconds)
+		RootboundHusk.State.BURST_ACTIVE:
+			body.modulate = Color(1.28, 0.94, 0.72, 1.0)
+			_play_body(_directional_animation(&"root_attack_active"), duration_seconds)
 		RootboundHusk.State.RECOVERY:
 			body.modulate = Color.WHITE
 			_play_body(_directional_animation(&"root_attack_recovery"), duration_seconds)
 		RootboundHusk.State.DEAD:
 			_stop_root_spears()
-			_play_body(_directional_animation(&"dead"))
+			_play_body(_directional_animation(&"dead"), duration_seconds)
 			_body_tween = create_tween()
 			_body_tween.tween_property(body, "modulate:a", 0.0, duration_seconds)
 
@@ -112,6 +119,28 @@ func play_root_attack(directions: Array[Vector2]) -> void:
 		vfx.speed_scale = 1.0
 		vfx.play(&"erupt")
 		vfx.show()
+	_pulse_camera(2.4 if directions.size() > 1 else 1.5)
+
+
+func show_root_burst_telegraph(duration_seconds: float) -> void:
+	_stop_root_spears()
+	var vfx := root_spear_vfx[0]
+	vfx.position = Vector2(0.0, ROOT_SPEAR_GROUND_HEIGHT)
+	vfx.rotation = 0.0
+	vfx.scale = Vector2(1.15, 1.15)
+	vfx.modulate = Color(1.0, 0.48, 0.2, 0.88)
+	vfx.speed_scale = _animation_speed_to_fit(vfx.sprite_frames, &"telegraph", duration_seconds)
+	vfx.play(&"telegraph")
+	vfx.show()
+
+
+func play_root_burst() -> void:
+	var vfx := root_spear_vfx[0]
+	vfx.modulate = Color.WHITE
+	vfx.speed_scale = 1.0
+	vfx.play(&"erupt")
+	vfx.show()
+	_pulse_camera(3.2)
 
 
 func _find_telegraphed_direction(direction: Vector2) -> int:
@@ -124,6 +153,7 @@ func _find_telegraphed_direction(direction: Vector2) -> int:
 func _set_vfx_direction(vfx: AnimatedSprite2D, direction: Vector2) -> void:
 	vfx.position = direction * ROOT_SPEAR_CENTER_DISTANCE + Vector2(0.0, ROOT_SPEAR_GROUND_HEIGHT)
 	vfx.rotation = 0.0
+	vfx.scale = Vector2.ONE
 
 
 func _play_chase_animation() -> void:
@@ -144,6 +174,10 @@ func _restore_state_animation() -> void:
 		RootboundHusk.State.SPEAR_WIND_UP, RootboundHusk.State.TRIAD_WIND_UP:
 			_play_body(_directional_animation(&"root_attack_wind_up"))
 		RootboundHusk.State.SPEAR_ACTIVE, RootboundHusk.State.TRIAD_ACTIVE:
+			_play_body(_directional_animation(&"root_attack_active"))
+		RootboundHusk.State.BURST_WIND_UP:
+			_play_body(_directional_animation(&"root_attack_wind_up"))
+		RootboundHusk.State.BURST_ACTIVE:
 			_play_body(_directional_animation(&"root_attack_active"))
 		RootboundHusk.State.RECOVERY:
 			_play_body(_directional_animation(&"root_attack_recovery"))
@@ -170,6 +204,20 @@ func _stop_root_spears() -> void:
 	for vfx in root_spear_vfx:
 		vfx.stop()
 		vfx.hide()
+		vfx.scale = Vector2.ONE
+
+
+func _pulse_camera(strength: float) -> void:
+	var camera := get_viewport().get_camera_2d()
+	if camera == null or DisplayServer.get_name() == "headless":
+		return
+	if _camera_tween != null and _camera_tween.is_valid():
+		_camera_tween.kill()
+	var base_offset := camera.offset
+	_camera_tween = create_tween()
+	_camera_tween.tween_property(camera, "offset", base_offset + Vector2(strength, -1.0), 0.025)
+	_camera_tween.tween_property(camera, "offset", base_offset + Vector2(-strength, 1.0), 0.04)
+	_camera_tween.tween_property(camera, "offset", base_offset, 0.05)
 
 
 func _on_root_spear_animation_finished(vfx: AnimatedSprite2D) -> void:

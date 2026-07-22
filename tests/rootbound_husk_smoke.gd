@@ -33,7 +33,7 @@ func _run() -> void:
 		attack_starts.append(true)
 	)
 	await create_timer(4.0).timeout
-	if husk.definition.display_name != "Rootbound Husk" or husk.definition.maximum_health != 160.0:
+	if husk.definition.display_name != "Rootbound Husk" or husk.definition.maximum_health != 280.0:
 		_fail("Rootbound Husk must use the compact first-mini-boss tuning.")
 		return
 	if husk.attack_profile == null:
@@ -42,6 +42,10 @@ func _run() -> void:
 	var root_spear_sfx := husk.get_node("ActionSfx/RootSpear") as AudioStreamPlayer2D
 	if root_spear_sfx == null or root_spear_sfx.stream == null or root_spear_sfx.bus != &"SFX":
 		_fail("Rootbound Husk root attacks must use their dedicated SFX-bus stream.")
+		return
+	var ground_rumble_sfx := husk.get_node("ActionSfx/GroundRumble") as AudioStreamPlayer2D
+	if ground_rumble_sfx == null or ground_rumble_sfx.stream == null or ground_rumble_sfx.pitch_scale >= 0.8:
+		_fail("Rootbound Husk attacks must layer a low ground-rumble cue.")
 		return
 	if husk.definition.crowd_control_tier != EnemyDefinition.CrowdControlTier.BOSS:
 		_fail("Rootbound Husk must use Boss crowd-control resistance.")
@@ -70,6 +74,10 @@ func _run() -> void:
 	if husk.definition.attack_range > 120.0:
 		_fail("Rootbound Husk begins rooted attacks beyond its authored spear reach.")
 		return
+	var burst_shape := husk.get_node("BurstHitbox/CollisionShape2D").shape as CircleShape2D
+	if burst_shape == null or burst_shape.radius < husk.attack_profile.burst_trigger_range:
+		_fail("Rootbound Husk point-blank burst does not cover its trigger range.")
+		return
 	var visual_husk := HuskScene.instantiate() as RootboundHusk
 	actors.add_child(visual_husk)
 	await process_frame
@@ -89,7 +97,7 @@ func _run() -> void:
 		&"root_attack_active": 2,
 		&"root_attack_recovery": 2,
 		&"hurt": 2,
-		&"dead": 1,
+		&"dead": 4,
 	}
 	if body.sprite_frames.get_animation_names().size() != expected_action_counts.size() * 4:
 		_fail("Rootbound Husk SpriteFrames contains stale or missing animation groups.")
@@ -155,6 +163,32 @@ func _run() -> void:
 		if down_active_frame == null or _alpha_symmetry_ratio(_frame_image(down_active_frame)) < 0.65:
 			_fail("Rootbound Husk root_attack_active_down frame %d turns into a side-facing pose." % frame_index)
 			return
+	for direction_name in [&"down", &"left", &"right", &"up"]:
+		var hurt_name := StringName("hurt_%s" % direction_name)
+		for frame_index in body.sprite_frames.get_frame_count(hurt_name):
+			var hurt_frame := body.sprite_frames.get_frame_texture(hurt_name, frame_index) as AtlasTexture
+			if (
+				hurt_frame == null
+				or hurt_frame.atlas.resource_path
+				!= "res://assets/characters/enemies/rootbound_husk/rootbound_husk_root_attack_body_sheet_96x64.png"
+				or hurt_frame.region.size != Vector2(96.0, 64.0)
+			):
+				_fail("Rootbound Husk %s must use the approved root-attack body sheet." % hurt_name)
+				return
+		var dead_name := StringName("dead_%s" % direction_name)
+		if body.sprite_frames.get_animation_loop(dead_name):
+			_fail("Rootbound Husk %s must stop on its collapsed final frame." % dead_name)
+			return
+		for frame_index in body.sprite_frames.get_frame_count(dead_name):
+			var dead_frame := body.sprite_frames.get_frame_texture(dead_name, frame_index) as AtlasTexture
+			if (
+				dead_frame == null
+				or dead_frame.atlas.resource_path
+				!= "res://assets/characters/enemies/rootbound_husk/rootbound_husk_reaction_sheet_64x64.png"
+				or dead_frame.region.size != Vector2(64.0, 64.0)
+			):
+				_fail("Rootbound Husk %s must use the authored four-frame death sheet." % dead_name)
+				return
 	for action_name in [&"walk", &"root_attack_wind_up", &"root_attack_active", &"root_attack_recovery", &"hurt", &"dead"]:
 		var left_animation := StringName("%s_left" % action_name)
 		var right_animation := StringName("%s_right" % action_name)
@@ -184,6 +218,10 @@ func _run() -> void:
 	visual.play_state(RootboundHusk.State.SPEAR_WIND_UP, 0.82)
 	if body.scale != Vector2.ONE or body.position != Vector2(0.0, -32.0):
 		_fail("Rootbound Husk wind-up changes body scale or loses its attack foot baseline.")
+		return
+	visual.play_state(RootboundHusk.State.DEAD, 0.6)
+	if body.animation != &"dead_down" or body.speed_scale < 6.0:
+		_fail("Rootbound Husk death does not fit all four authored frames into its cleanup window.")
 		return
 	var test_directions: Array[Vector2] = [Vector2.RIGHT]
 	visual.show_root_attack_telegraph(test_directions, 0.1)
@@ -215,6 +253,20 @@ func _run() -> void:
 	if left_vfx.animation != &"erupt" or right_vfx.animation != &"erupt":
 		_fail("Rootbound Husk staged side lanes do not enter their eruption animation.")
 		return
+	var close_target := CharacterBody2D.new()
+	close_target.global_position = Vector2(0.0, 18.0)
+	actors.add_child(close_target)
+	var close_husk := HuskScene.instantiate() as RootboundHusk
+	close_husk.target = close_target
+	var burst_telegraphs: Array[bool] = []
+	var burst_eruptions: Array[bool] = []
+	close_husk.root_burst_telegraphed.connect(func(_duration: float) -> void: burst_telegraphs.append(true))
+	close_husk.root_burst_erupted.connect(func() -> void: burst_eruptions.append(true))
+	actors.add_child(close_husk)
+	await create_timer(1.5).timeout
+	if burst_telegraphs.is_empty() or burst_eruptions.is_empty():
+		_fail("Rootbound Husk does not answer point-blank body overlap with its root burst.")
+		return
 	var phase_target := CharacterBody2D.new()
 	phase_target.global_position = Vector2(0.0, 120.0)
 	actors.add_child(phase_target)
@@ -235,7 +287,7 @@ func _run() -> void:
 	if phase_durations[0] >= phase_husk.attack_profile.triad_wind_up_seconds:
 		_fail("Rootbound Husk second phase does not apply its authored timing scale.")
 		return
-	print("Rootbound Husk boss behavior smoke test passed.")
+	print("Rootbound Husk mini-boss behavior smoke test passed.")
 	quit(0)
 
 

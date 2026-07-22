@@ -47,8 +47,9 @@ Do not introduce `final`, `new`, `fixed`, `better`, unexplained numbers, or cont
 | `char_forsaken_thrall_locomotion` | `assets/characters/enemies/forsaken_thrall/forsaken_thrall_locomotion_sheet_24x32.png` | Migrated | 96x128; 4x4 of 24x32 | `forsaken_thrall_sprite_frames.tres` |
 | `char_forsaken_thrall_claw_attack` | `assets/characters/enemies/forsaken_thrall/forsaken_thrall_claw_attack_sheet_64x48.png` | Migrated | 384x192; 6x4 of 64x48 | `forsaken_thrall_sprite_frames.tres` |
 | `char_forsaken_thrall_frames` | `assets/characters/enemies/forsaken_thrall/forsaken_thrall_sprite_frames.tres` | Migrated | Godot `SpriteFrames` | `forsaken_thrall.tscn` |
-| `char_mireling_actions` | `assets/characters/enemies/mireling/mireling_action_sheet_32x32.png` | Migrated | 128x128; 4x4 of 32x32 | `mireling_sprite_frames.tres` |
-| `char_mireling_frames` | `assets/characters/enemies/mireling/mireling_sprite_frames.tres` | Migrated | Godot `SpriteFrames` | `mireling.tscn` |
+| `char_mireling_actions` | `assets/characters/enemies/mireling/mireling_action_sheet_48x32.png` | Active | 384x128; four slam plus four collapse frames x direction rows `down/left/right/up`; 48x32 cells preserve fixed body scale | `mireling_sprite_frames.tres` |
+| `char_mireling_walk` | `assets/characters/enemies/mireling/mireling_walk_sheet_32x32.png` | Active | 128x128; four hop frames x direction rows `down/left/right/up`; 18-pixel body height | `mireling_sprite_frames.tres` |
+| `char_mireling_frames` | `assets/characters/enemies/mireling/mireling_sprite_frames.tres` | Active | External Godot `SpriteFrames`; exactly 16 directional idle/hop/slam/collapse animations | `mireling.tscn` |
 | `char_bramble_spitter_actions` | `assets/characters/enemies/bramble_spitter/bramble_spitter_action_sheet_32x32.png` | Migrated | 128x128; 4x4 of 32x32 | `bramble_spitter_sprite_frames.tres` |
 | `char_bramble_spitter_frames` | `assets/characters/enemies/bramble_spitter/bramble_spitter_sprite_frames.tres` | Migrated | Godot `SpriteFrames` | `bramble_spitter.tscn` |
 | `char_rootling_walk` | `assets/characters/enemies/rootling/rootling_walk_sheet_32x32.png` | Active | 128x128; 4x4 of 32x32, direction rows `down/left/right/up` | `rootling.tscn` / `RootlingVisual` |
@@ -64,7 +65,7 @@ Do not introduce `final`, `new`, `fixed`, `better`, unexplained numbers, or cont
 
 All active Opaw sheets use direction rows in canonical `down`, `left`, `right`, `up` order and animation frames as columns. `tools/process_opaw_compact_armless_assets.gd` isolates each padded generated cell, removes chroma, normalizes every direction reference to 18x27 on the shared foot baseline, and emits binary-alpha runtime sheets. Normal attack body columns map directly to wind-up, active, and recovery while the detached external weapon owns the visible blade arc. The complete previous Wayfarer model and former single 4x8 atlas have no active `SpriteFrames` references. Existing humanoid extended enemy attack sheets use directions as rows and six action phases as columns.
 
-Rootbound Husk runtime sheets are reproducibly emitted by `tools/assemble_rootbound_husk_redesign.gd`, `tools/process_rootbound_husk_assets.gd`, and `tools/build_rootbound_husk_sprite_frames.gd`. The assembler composes exact-grid v4 walk and root-attack sources from reviewed redesign components, uses a dedicated two-frame front-facing down-active strip, recovers complete up-facing crowns and boundary-crossing root-command poses through bounded connected-component overlap, and applies one scale per direction row. The processor chroma-cleans active boards, retains separated readable body components, removes sheet-specific debris, applies one standing-reference scale unchanged across each direction row, and byte-verifies exact mirrored side rows for walk, root attack, and reaction. Active sources are `rootbound_husk_walk_board_source_v4.png`, `rootbound_husk_root_attack_body_board_source_v4.png`, `rootbound_husk_reaction_board_source_v3.png`, and the preserved `rootbound_husk_root_ground_attack_board_source_v2.png` beside their clean intermediates. The active runtime folder contains only these four sheets and their two `SpriteFrames` resources. Retired Husk body packages were permanently deleted and have no rollback path.
+Rootbound Husk runtime sheets are reproducibly emitted by `tools/assemble_rootbound_husk_redesign.gd`, `tools/process_rootbound_husk_assets.gd`, and `tools/build_rootbound_husk_sprite_frames.gd`. The assembler composes exact-grid v4 walk and root-attack sources from reviewed redesign components, uses a dedicated two-frame front-facing down-active strip, recovers complete up-facing crowns and boundary-crossing root-command poses through bounded connected-component overlap, and applies one scale per direction row. The processor chroma-cleans active boards, retains separated readable body components, removes sheet-specific debris, applies one standing-reference scale unchanged across each direction row, and byte-verifies exact mirrored side rows for walk and root attack. Active body sources are `rootbound_husk_walk_board_source_v4.png` and `rootbound_husk_root_attack_body_board_source_v4.png`; the manually reviewed four-frame directional collapse sequence remains in `rootbound_husk_reaction_sheet_64x64.png`, and ground roots retain `rootbound_husk_root_ground_attack_board_source_v2.png`. The active runtime folder contains the walk, root-attack, reaction, and ground-VFX sheets plus their two `SpriteFrames` resources. Retired Husk body packages were permanently deleted and have no rollback path.
 
 ### Preserved Opaw Pipeline Material
 
@@ -117,9 +118,10 @@ These files are intentionally outside runtime imports under Godot-ignored `art_s
 
 | Related canonical ID | Preserved path | Status | Source dimensions |
 |---|---|---|---|
-| `char_mireling_actions` | `art_source/generated/characters/enemies/mireling/mireling_action_source.png` | `source` | 1254x1254 |
-| `char_mireling_actions` | `art_source/generated/characters/enemies/mireling/mireling_action_clean.png` | `intermediate` | 1254x1254 |
-| `char_mireling_actions` | `art_source/archive/characters/enemies/mireling/mireling_action_sheet_24x24_legacy.png` | `legacy` | 96x96; superseded 4x4 of 24x24 |
+| `char_mireling_actions` | `art_source/generated/characters/enemies/mireling/final/mireling_action_board_source_v2.png` | `source` | Approved 8x4 remodeled slam/collapse board |
+| `char_mireling_actions` | `art_source/generated/characters/enemies/mireling/final/mireling_action_board_clean_v2.png` | `intermediate` | Chroma-cleaned action board with cross-cell fragments isolated |
+| `char_mireling_walk` | `art_source/generated/characters/enemies/mireling/final/mireling_walk_board_source_v2.png` | `source` | Approved generated four-direction walk board |
+| `char_mireling_walk` | `art_source/generated/characters/enemies/mireling/final/mireling_walk_board_clean_v2.png` | `intermediate` | Chroma-cleaned source used by the Godot walk processor |
 
 ### Preserved Bramble Spitter Pipeline Material
 
@@ -136,7 +138,7 @@ These files are intentionally outside runtime imports under Godot-ignored `art_s
 | `char_rootling_reactions` | `art_source/generated/characters/enemies/rootling/final/rootling_reaction_board_clean.png` | `intermediate` | 1254x1254; sole approved four-direction reaction board |
 | `fx_rootling_root_jab` | `art_source/generated/characters/enemies/rootling/final/rootling_root_jab_vfx_board_clean.png` | `intermediate` | 1254x1254; sole approved four-direction root-jab VFX board |
 | `char_rootling_walk`, `char_rootling_reactions`, `fx_rootling_root_jab` | `art_source/archive/characters/enemies/rootling/superseded_generation/*` | `legacy` | Original generation sources, the rejected separate down-walk strip, and unused root-jab action board; no runtime or build references |
-| `char_rootbound_husk_action_package` | `art_source/generated/characters/enemies/rootbound_husk/rootbound_husk_walk_board_source_v4.png`, `rootbound_husk_root_attack_body_board_source_v4.png`, `rootbound_husk_reaction_board_source_v3.png`, ground-root v2 source, and matching clean boards | `source` / `intermediate` | Active redesigned Stage 3 Husk locomotion, v4 six-stage root attack, reactions/defeat, and preserved six-beat ground roots |
+| `char_rootbound_husk_action_package` | `art_source/generated/characters/enemies/rootbound_husk/rootbound_husk_walk_board_source_v4.png`, `rootbound_husk_root_attack_body_board_source_v4.png`, ground-root v2 source, and matching clean boards | `source` / `intermediate` | Active redesigned Stage 3 Husk locomotion, v4 six-stage root attack, and preserved six-beat ground roots; the approved runtime reaction sheet retains the manually reviewed directional collapse frames |
 
 ## Active Environment Art
 
@@ -305,7 +307,6 @@ These patterns are not approved runtime naming. Preserve them during migration, 
 | `assets/characters/prototype/` | `legacy` | Do not add new runtime references. |
 | `*_source.png` | `source` | Preserve original generation/download/handmade input. |
 | `*_clean.png` | `intermediate` | Preserve when required by a reproducible build script. |
-| `art_source/archive/characters/enemies/mireling/mireling_action_sheet_24x24_legacy.png` | `legacy` | Preserved superseded 24x24 sheet; never load at runtime. |
 | `assets/environment/prototype/dark_*` and unpolished ground/prop variants | `legacy` or `source` | Classify individually before moving; do not delete blindly. |
 | `assets/environment/prototype/bright_*_source.png` | `source` | Retain for provenance, outside runtime assets after migration. |
 | `art_source/generated/characters/awakened/` | `source` / `intermediate` | Preserved Awakened generation inputs; ignored by Godot and never loaded at runtime. |

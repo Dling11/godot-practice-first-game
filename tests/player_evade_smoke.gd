@@ -45,6 +45,11 @@ func _run() -> void:
 
 	while not evade_component.is_ready():
 		await physics_frame
+	if player.request_evade(Vector2.RIGHT):
+		_fail("Evade ignored its post-recovery cooldown.")
+		return
+	while not evade_component.is_evade_available():
+		await physics_frame
 
 	if not player.request_primary_attack():
 		_fail("Attack was not restored after evade recovery.")

@@ -27,8 +27,8 @@ func _initialize() -> void:
 		_add_animation(body_frames, &"root_attack_wind_up_%s" % direction, root_attack_texture, Vector2i(96, 64), row, [0, 1, 2, 3], 6.0, false)
 		_add_animation(body_frames, &"root_attack_active_%s" % direction, root_attack_texture, Vector2i(96, 64), row, [3, 4], 10.0, false)
 		_add_animation(body_frames, &"root_attack_recovery_%s" % direction, root_attack_texture, Vector2i(96, 64), row, [4, 5], 6.0, false)
-		_add_animation(body_frames, &"hurt_%s" % direction, reaction_texture, Vector2i(64, 64), row, [1, 2], 12.0, false)
-		_add_animation(body_frames, &"dead_%s" % direction, reaction_texture, Vector2i(64, 64), row, [3], 1.0, false)
+		_add_animation(body_frames, &"hurt_%s" % direction, root_attack_texture, Vector2i(96, 64), row, [0, 1], 12.0, false)
+		_add_animation(body_frames, &"dead_%s" % direction, reaction_texture, Vector2i(64, 64), row, [0, 1, 2, 3], 1.0, false)
 	var body_error := ResourceSaver.save(body_frames, BODY_OUTPUT)
 	if body_error != OK:
 		push_error("Unable to save Rootbound Husk body SpriteFrames.")

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bpyjwhfealhuy" path="res://entities/enemies/mireling/mireling.gd" id="1"]
 [ext_resource type="Resource" path="res://data/enemies/mireling.tres" id="2"]
 [ext_resource type="Script" uid="uid://c75hy86crniob" path="res://entities/enemies/mireling/mireling_visual.gd" id="4"]
-[ext_resource type="Texture2D" uid="uid://rp1jbqg6xer3" path="res://assets/characters/enemies/mireling/mireling_action_sheet_32x32.png" id="4_vr0u7"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/enemies/mireling/mireling_sprite_frames.tres" id="4_frames"]
 [ext_resource type="Script" uid="uid://1th6uujswp43" path="res://gameplay/combat/health_component.gd" id="5"]
 [ext_resource type="Script" uid="uid://edpqlhbhvhav" path="res://gameplay/combat/hurtbox_component.gd" id="6"]
 [ext_resource type="Script" uid="uid://6520tclsqofq" path="res://gameplay/combat/melee_hitbox.gd" id="7"]
@@ -15,201 +15,6 @@
 [ext_resource type="AudioStream" uid="uid://bdyx4gw1xauu8" path="res://assets/audio/sfx/mireling_leap.wav" id="13"]
 [ext_resource type="AudioStream" uid="uid://dypav1hx0ser1" path="res://assets/audio/sfx/mireling_land.wav" id="14"]
 [ext_resource type="Script" uid="uid://c482dvqfbxph8" path="res://gameplay/combat/stagger_component.gd" id="15_stagger"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w8vm8"]
-atlas = ExtResource("4_vr0u7")
-region = Rect2(0, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h0i5j"]
-atlas = ExtResource("4_vr0u7")
-region = Rect2(32, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8dbql"]
-atlas = ExtResource("4_vr0u7")
-region = Rect2(64, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_adrdj"]
-atlas = ExtResource("4_vr0u7")
-region = Rect2(96, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_smr2s"]
-atlas = ExtResource("4_vr0u7")
-region = Rect2(0, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q3ii2"]
-atlas = ExtResource("4_vr0u7")
-region = Rect2(32, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2pr5y"]
-atlas = ExtResource("4_vr0u7")
-region = Rect2(64, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u4568"]
-atlas = ExtResource("4_vr0u7")
-region = Rect2(96, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_urtr1"]
-atlas = ExtResource("4_vr0u7")
-region = Rect2(0, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o7g5m"]
-atlas = ExtResource("4_vr0u7")
-region = Rect2(32, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6wi00"]
-atlas = ExtResource("4_vr0u7")
-region = Rect2(64, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3pwbk"]
-atlas = ExtResource("4_vr0u7")
-region = Rect2(96, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dbepx"]
-atlas = ExtResource("4_vr0u7")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ysluu"]
-atlas = ExtResource("4_vr0u7")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8sgtp"]
-atlas = ExtResource("4_vr0u7")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_psm6s"]
-atlas = ExtResource("4_vr0u7")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_n1smy"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w8vm8")
-}],
-"loop": 0,
-"name": &"attack_down",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h0i5j")
-}],
-"loop": 0,
-"name": &"attack_left",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8dbql")
-}],
-"loop": 0,
-"name": &"attack_right",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_adrdj")
-}],
-"loop": 0,
-"name": &"attack_up",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_smr2s")
-}],
-"loop": 0,
-"name": &"dead_down",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q3ii2")
-}],
-"loop": 0,
-"name": &"dead_left",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2pr5y")
-}],
-"loop": 0,
-"name": &"dead_right",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u4568")
-}],
-"loop": 0,
-"name": &"dead_up",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_urtr1")
-}],
-"loop": 1,
-"name": &"hop_down",
-"speed": 4.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o7g5m")
-}],
-"loop": 1,
-"name": &"hop_left",
-"speed": 4.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6wi00")
-}],
-"loop": 1,
-"name": &"hop_right",
-"speed": 4.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3pwbk")
-}],
-"loop": 1,
-"name": &"hop_up",
-"speed": 4.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dbepx")
-}],
-"loop": 1,
-"name": &"idle_down",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ysluu")
-}],
-"loop": 1,
-"name": &"idle_left",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8sgtp")
-}],
-"loop": 1,
-"name": &"idle_right",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_psm6s")
-}],
-"loop": 1,
-"name": &"idle_up",
-"speed": 1.0
-}]
 
 [sub_resource type="CircleShape2D" id="foot"]
 radius = 6.0
@@ -237,8 +42,8 @@ landing_marker = NodePath("../LandingMarker")
 
 [node name="Body" type="AnimatedSprite2D" parent="Visual" unique_id=1348569313]
 position = Vector2(0, -16)
-sprite_frames = SubResource("SpriteFrames_n1smy")
-animation = &"attack_down"
+sprite_frames = ExtResource("4_frames")
+animation = &"idle_down"
 
 [node name="LandingMarker" type="Polygon2D" parent="." unique_id=975010209]
 z_index = -1
@@ -274,10 +79,12 @@ secondary_state = 4
 [node name="Leap" type="AudioStreamPlayer2D" parent="ActionSfx" unique_id=844897348]
 stream = ExtResource("13")
 volume_db = -11.0
+bus = &"SFX"
 
 [node name="Land" type="AudioStreamPlayer2D" parent="ActionSfx" unique_id=2061501666]
 stream = ExtResource("14")
 volume_db = -7.0
+bus = &"SFX"
 
 [node name="EnemyHealthBar" parent="." unique_id=1350063573 node_paths=PackedStringArray("health_component") instance=ExtResource("9")]
 health_component = NodePath("../HealthComponent")

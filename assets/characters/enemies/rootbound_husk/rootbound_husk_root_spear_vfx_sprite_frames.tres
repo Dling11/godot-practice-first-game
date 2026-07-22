@@ -1,6 +1,6 @@
-[gd_resource type="SpriteFrames" format=3]
+[gd_resource type="SpriteFrames" format=3 uid="uid://fyn2n0l3hq4v"]
 
-[ext_resource type="Texture2D" path="res://assets/characters/enemies/rootbound_husk/rootbound_husk_root_spear_vfx_sheet_128x64.png" id="1_w0cw2"]
+[ext_resource type="Texture2D" uid="uid://cvch8gyvrf75w" path="res://assets/characters/enemies/rootbound_husk/rootbound_husk_root_spear_vfx_sheet_128x64.png" id="1_w0cw2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_82lc7"]
 atlas = ExtResource("1_w0cw2")

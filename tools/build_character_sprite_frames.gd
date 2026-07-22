@@ -84,15 +84,19 @@ func _build_enemy_frames() -> Error:
 
 
 func _build_mireling_frames() -> Error:
-	var texture := load("res://assets/characters/enemies/mireling/mireling_action_sheet_32x32.png") as Texture2D
+	var walk_texture := load("res://assets/characters/enemies/mireling/mireling_walk_sheet_32x32.png") as Texture2D
+	var action_texture := load("res://assets/characters/enemies/mireling/mireling_action_sheet_48x32.png") as Texture2D
+	if walk_texture == null or action_texture == null:
+		push_error("Mireling walk and action sheets must be imported before building SpriteFrames.")
+		return ERR_CANT_OPEN
 	var frames := SpriteFrames.new()
 	frames.remove_animation("default")
-	for column in range(4):
-		var direction: String = DIRECTIONS[column]
-		_add_mireling_animation(frames, "idle_" + direction, texture, column, 0, 1.0, true)
-		_add_mireling_animation(frames, "hop_" + direction, texture, column, 1, 4.0, true)
-		_add_mireling_animation(frames, "attack_" + direction, texture, column, 2, 1.0, false)
-		_add_mireling_animation(frames, "dead_" + direction, texture, column, 3, 1.0, false)
+	for row in range(4):
+		var direction: String = DIRECTIONS[row]
+		_add_mireling_animation(frames, "idle_" + direction, walk_texture, row, 0, 1, Vector2i(32, 32), 1.0, true)
+		_add_mireling_animation(frames, "hop_" + direction, walk_texture, row, 0, 4, Vector2i(32, 32), 7.0, true)
+		_add_mireling_animation(frames, "attack_" + direction, action_texture, row, 0, 4, Vector2i(48, 32), 3.0, false)
+		_add_mireling_animation(frames, "dead_" + direction, action_texture, row, 4, 4, Vector2i(48, 32), 12.0, false)
 	return ResourceSaver.save(frames, "res://assets/characters/enemies/mireling/mireling_sprite_frames.tres")
 
 
@@ -119,14 +123,25 @@ func _build_bramble_spitter_frames() -> Error:
 	return ResourceSaver.save(frames, "res://assets/characters/enemies/bramble_spitter/bramble_spitter_sprite_frames.tres")
 
 
-func _add_mireling_animation(frames: SpriteFrames, name: String, texture: Texture2D, column: int, row: int, speed: float, loop: bool) -> void:
+func _add_mireling_animation(
+	frames: SpriteFrames,
+	name: String,
+	texture: Texture2D,
+	row: int,
+	first_column: int,
+	frame_count: int,
+	cell_size: Vector2i,
+	speed: float,
+	loop: bool
+) -> void:
 	frames.add_animation(name)
 	frames.set_animation_speed(name, speed)
 	frames.set_animation_loop(name, loop)
-	var atlas := AtlasTexture.new()
-	atlas.atlas = texture
-	atlas.region = Rect2i(column * 32, row * 32, 32, 32)
-	frames.add_frame(name, atlas)
+	for frame_index in frame_count:
+		var atlas := AtlasTexture.new()
+		atlas.atlas = texture
+		atlas.region = Rect2i(Vector2i((first_column + frame_index) * cell_size.x, row * cell_size.y), cell_size)
+		frames.add_frame(name, atlas)
 
 
 func _add_32px_animation(

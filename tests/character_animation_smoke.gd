@@ -36,7 +36,9 @@ func _run() -> void:
 		return
 	if not _validate_sheet("res://assets/characters/enemies/forsaken_thrall/forsaken_thrall_locomotion_sheet_24x32.png"):
 		return
-	if not _validate_creature_sheet("res://assets/characters/enemies/mireling/mireling_action_sheet_32x32.png", "Mireling"):
+	if not _validate_creature_sheet("res://assets/characters/enemies/mireling/mireling_walk_sheet_32x32.png", "Mireling walk"):
+		return
+	if not _validate_creature_sheet("res://assets/characters/enemies/mireling/mireling_action_sheet_48x32.png", "Mireling action", Vector2i(384, 128)):
 		return
 	if not _validate_creature_sheet("res://assets/characters/enemies/bramble_spitter/bramble_spitter_action_sheet_32x32.png", "Bramble Spitter"):
 		return
@@ -461,11 +463,11 @@ func _validate_attack_sheet(path: String, actor_name: String) -> bool:
 	return true
 
 
-func _validate_creature_sheet(path: String, actor_name: String) -> bool:
+func _validate_creature_sheet(path: String, actor_name: String, expected_size := Vector2i(128, 128)) -> bool:
 	var texture := load(path) as Texture2D
 	var image := texture.get_image() if texture != null else null
-	if image == null or image.get_size() != Vector2i(128, 128):
-		_fail("Invalid %s 32x32 action sheet dimensions." % actor_name)
+	if image == null or image.get_size() != expected_size:
+		_fail("Invalid %s sheet dimensions." % actor_name)
 		return false
 	for y in range(image.get_height()):
 		for x in range(image.get_width()):
