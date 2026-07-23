@@ -1,38 +1,39 @@
-[gd_scene load_steps=35 format=3]
+[gd_scene format=4 uid="uid://cyt2xiknp3b3b"]
 
-[ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="1_player"]
-[ext_resource type="PackedScene" path="res://entities/enemies/mireling/mireling.tscn" id="2_mireling"]
+[ext_resource type="PackedScene" uid="uid://7gpqrhm32t6x" path="res://entities/player/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://d0fi77o2m5rxa" path="res://entities/enemies/mireling/mireling.tscn" id="2_mireling"]
 [ext_resource type="PackedScene" path="res://entities/enemies/bramble_spitter/bramble_spitter.tscn" id="3_spitter"]
 [ext_resource type="PackedScene" path="res://ui/combat_hud.tscn" id="4_hud"]
-[ext_resource type="TileSet" path="res://assets/environment/prototype/bright_ground_tileset.tres" id="5_tileset"]
-[ext_resource type="Script" path="res://levels/test_arena/prototype_ground.gd" id="6_ground"]
-[ext_resource type="PackedScene" path="res://environment/props/ancient_tree/ancient_tree.tscn" id="7_tree"]
-[ext_resource type="PackedScene" path="res://environment/props/ruined_statue/ruined_statue.tscn" id="8_statue"]
-[ext_resource type="Script" path="res://levels/test_arena/arena_navigation.gd" id="9_navigation"]
-[ext_resource type="Script" path="res://gameplay/encounters/encounter_controller.gd" id="10_encounter"]
+[ext_resource type="TileSet" uid="uid://col7qmobfn6v1" path="res://assets/environment/forest/shared/tiles/verdant_forest_ground_tileset.tres" id="5_tileset"]
+[ext_resource type="Script" uid="uid://emak4h82atsj" path="res://environment/ground/authored_ground.gd" id="6_ground"]
+[ext_resource type="PackedScene" uid="uid://btb1xkj7mh3s1" path="res://environment/props/ancient_tree/ancient_tree.tscn" id="7_tree"]
+[ext_resource type="PackedScene" uid="uid://sd2qfhrb6ev1" path="res://environment/props/ruined_statue/ruined_statue.tscn" id="8_statue"]
+[ext_resource type="Script" uid="uid://b2heylfyyrv66" path="res://levels/test_arena/arena_navigation.gd" id="9_navigation"]
+[ext_resource type="Script" uid="uid://b8vrypoh7wkts" path="res://gameplay/encounters/encounter_controller.gd" id="10_encounter"]
 [ext_resource type="Resource" path="res://data/encounters/stage_2_wave_1.tres" id="11_wave1"]
 [ext_resource type="Resource" path="res://data/encounters/stage_2_wave_2.tres" id="12_wave2"]
 [ext_resource type="PackedScene" path="res://gameplay/encounters/stage_portal.tscn" id="13_portal"]
 [ext_resource type="PackedScene" path="res://gameplay/encounters/summon_effect.tscn" id="14_summon"]
-[ext_resource type="Script" path="res://levels/stage_2/stage_2_flow.gd" id="15_flow"]
-[ext_resource type="Script" path="res://gameplay/audio/stage_music.gd" id="16_music"]
-[ext_resource type="AudioStream" path="res://assets/audio/music/cathedral_in_the_forest.ogg" id="17_music_stream"]
-[ext_resource type="Script" path="res://gameplay/presentation/combat_feedback_presenter.gd" id="18_feedback"]
+[ext_resource type="Script" uid="uid://cixcrkudgatfu" path="res://levels/stage_2/stage_2_flow.gd" id="15_flow"]
+[ext_resource type="Script" uid="uid://ds6tx8vmvokpu" path="res://gameplay/audio/stage_music.gd" id="16_music"]
+[ext_resource type="AudioStream" uid="uid://c1vj618m4ysv1" path="res://assets/audio/music/cathedral_in_the_forest.ogg" id="17_music_stream"]
+[ext_resource type="Script" uid="uid://dsyd1dhvh33gq" path="res://gameplay/presentation/combat_feedback_presenter.gd" id="18_feedback"]
 [ext_resource type="PackedScene" path="res://ui/world/damage_number.tscn" id="19_damage_number"]
 [ext_resource type="PackedScene" path="res://gameplay/presentation/hit_burst.tscn" id="20_hit_burst"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/sword_hit.wav" id="21_sword_hit"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_hurt_impact.wav" id="22_player_hurt"]
+[ext_resource type="AudioStream" uid="uid://dnh16rb7y4tsb" path="res://assets/audio/sfx/sword_hit.wav" id="21_sword_hit"]
+[ext_resource type="AudioStream" uid="uid://b4crk1suxip10" path="res://assets/audio/sfx/opaw_hurt_impact.wav" id="22_player_hurt"]
 [ext_resource type="PackedScene" path="res://ui/character_menu.tscn" id="23_character_menu"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_piercing_rush_impact.ogg" id="24_pierce_impact"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_consecutive_thrust_final_hit.ogg" id="26_consecutive_final_hit"]
+[ext_resource type="AudioStream" uid="uid://bqvdad4ihsdhl" path="res://assets/audio/sfx/opaw_piercing_rush_impact.ogg" id="24_pierce_impact"]
 [ext_resource type="PackedScene" path="res://ui/pause_menu.tscn" id="25_pause_menu"]
-[ext_resource type="PackedScene" path="res://entities/enemies/forsaken_thrall/forsaken_thrall.tscn" id="27_thrall"]
+[ext_resource type="AudioStream" uid="uid://dummimfgacl8e" path="res://assets/audio/sfx/opaw_consecutive_thrust_final_hit.ogg" id="26_consecutive_final_hit"]
+[ext_resource type="PackedScene" uid="uid://maebhhj1ooeb" path="res://entities/enemies/forsaken_thrall/forsaken_thrall.tscn" id="27_thrall"]
 [ext_resource type="Resource" path="res://data/encounters/stage_2_wave_3.tres" id="28_wave3"]
-[ext_resource type="PackedScene" path="res://entities/enemies/rootling/rootling.tscn" id="29_rootling"]
+[ext_resource type="PackedScene" uid="uid://difdkorqc36xq" path="res://entities/enemies/rootling/rootling.tscn" id="29_rootling"]
 [ext_resource type="Resource" path="res://data/encounters/stage_2_wave_4.tres" id="30_wave4"]
 [ext_resource type="Resource" path="res://data/encounters/stage_2_wave_5.tres" id="31_wave5"]
 [ext_resource type="Resource" path="res://data/encounters/stage_2_wave_6.tres" id="32_wave6"]
 [ext_resource type="Resource" path="res://data/encounters/stage_2_wave_7.tres" id="33_wave7"]
+[ext_resource type="Resource" path="res://data/environment/layouts/stage_2_forest_ground.tres" id="34_layout"]
 
 [sub_resource type="LabelSettings" id="title_settings"]
 font_size = 15
@@ -40,103 +41,75 @@ font_color = Color(0.78, 0.84, 0.68, 1)
 outline_size = 3
 outline_color = Color(0.04, 0.06, 0.04, 1)
 
-[node name="Stage2" type="Node" node_paths=PackedStringArray("player", "combat_hud", "character_menu", "encounter_controller")]
+[node name="Stage2" type="Node" unique_id=367806056 node_paths=PackedStringArray("player", "combat_hud", "character_menu", "encounter_controller")]
 script = ExtResource("15_flow")
 player = NodePath("World/Actors/Player")
 combat_hud = NodePath("UI/CombatHUD")
 character_menu = NodePath("UI/CharacterMenu")
 encounter_controller = NodePath("GameplayServices/EncounterController")
 
-[node name="World" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="." unique_id=392566314]
 
-[node name="StageMusic" type="Node" parent="."]
-script = ExtResource("16_music")
-music_stream = ExtResource("17_music_stream")
+[node name="Level" type="Node2D" parent="World" unique_id=1597238223]
 
-[node name="Level" type="Node2D" parent="World"]
-
-[node name="Ground" type="TileMapLayer" parent="World/Level"]
+[node name="Ground" type="TileMapLayer" parent="World/Level" unique_id=79731234]
 z_index = -10
+tile_map_data = PackedByteArray("AAAAAAAAAAACAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAABAAAAAAAIAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAABAAAAAAALAAAAAAAAAAEAAAAMAAAAAAABAAEAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAARAAAAAAAAAAAAAAASAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAUAAAAAAABAAAAAAAVAAAAAAADAAAAAAAWAAAAAAAAAAAAAAAXAAAAAAACAAAAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAABAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAABAAAAAAAHAAEAAAAAAAAAAAAIAAEAAAAAAAAAAAAJAAEAAAAAAAAAAAAKAAEAAAAAAAAAAAALAAEAAAABAAEAAAAMAAEAAAAAAAEAAAANAAEAAAAAAAAAAAAOAAEAAAAAAAAAAAAPAAEAAAAAAAAAAAAQAAEAAAABAAAAAAARAAEAAAADAAAAAAASAAEAAAAAAAAAAAATAAEAAAACAAAAAAAUAAEAAAAAAAAAAAAVAAEAAAAAAAAAAAAWAAEAAAAAAAAAAAAXAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAAAAAAAAACAAIAAAABAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAAHAAIAAAAAAAAAAAAIAAIAAAAAAAAAAAAJAAIAAAAAAAAAAAAKAAIAAAAAAAAAAAALAAIAAAAAAAEAAAAMAAIAAAAAAAEAAAANAAIAAAADAAAAAAAOAAIAAAAAAAAAAAAPAAIAAAACAAAAAAAQAAIAAAAAAAAAAAARAAIAAAAAAAAAAAASAAIAAAAAAAAAAAATAAIAAAAAAAAAAAAUAAIAAAAAAAAAAAAVAAIAAAAAAAAAAAAWAAIAAAABAAAAAAAXAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAAIAAMAAAABAAAAAAAJAAMAAAADAAAAAAAKAAMAAAAAAAAAAAALAAMAAAAAAAEAAAAMAAMAAAABAAEAAAANAAMAAAAAAAAAAAAOAAMAAAAAAAAAAAAPAAMAAAAAAAAAAAAQAAMAAAAAAAAAAAARAAMAAAAAAAAAAAASAAMAAAABAAAAAAATAAMAAAAAAAAAAAAUAAMAAAAAAAAAAAAVAAMAAAABAAAAAAAWAAMAAAAAAAAAAAAXAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAABAAQAAAAAAAAAAAACAAQAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAMAAAAFAAQAAAADAAMAAAAGAAQAAAAAAAAAAAAHAAQAAAACAAAAAAAIAAQAAAACAAIAAAAJAAQAAAAAAAIAAAAKAAQAAAAAAAIAAAALAAQAAAAAAAIAAAAMAAQAAAACAAIAAAANAAQAAAAAAAIAAAAOAAQAAAAAAAIAAAAPAAQAAAAAAAIAAAAQAAQAAAAAAAAAAAARAAQAAAABAAAAAAASAAQAAAAAAAAAAAATAAQAAAADAAMAAAAUAAQAAAAAAAAAAAAVAAQAAAAAAAAAAAAWAAQAAAAAAAAAAAAXAAQAAAAAAAAAAAAAAAUAAAABAAAAAAABAAUAAAADAAAAAAACAAUAAAAAAAAAAAADAAUAAAAAAAMAAAAEAAUAAAADAAMAAAAFAAUAAAAAAAMAAAAGAAUAAAADAAMAAAAHAAUAAAAAAAAAAAAIAAUAAAAAAAIAAAAJAAUAAAAAAAIAAAAKAAUAAAAAAAIAAAALAAUAAAACAAIAAAAMAAUAAAAAAAIAAAANAAUAAAAAAAIAAAAOAAUAAAAAAAIAAAAPAAUAAAACAAIAAAAQAAUAAAAAAAAAAAARAAUAAAAAAAMAAAASAAUAAAADAAMAAAATAAUAAAAAAAMAAAAUAAUAAAADAAMAAAAVAAUAAAAAAAMAAAAWAAUAAAAAAAAAAAAXAAUAAAABAAAAAAAAAAYAAAAAAAAAAAABAAYAAAAAAAAAAAACAAYAAAAAAAMAAAADAAYAAAADAAMAAAAEAAYAAAAAAAMAAAAFAAYAAAADAAMAAAAGAAYAAAAAAAMAAAAHAAYAAAADAAMAAAAIAAYAAAAAAAIAAAAJAAYAAAAAAAIAAAAKAAYAAAACAAIAAAALAAYAAAABAAIAAAAMAAYAAAABAAIAAAANAAYAAAAAAAIAAAAOAAYAAAACAAIAAAAPAAYAAAAAAAIAAAAQAAYAAAAAAAAAAAARAAYAAAADAAMAAAASAAYAAAAAAAMAAAATAAYAAAADAAMAAAAUAAYAAAAAAAMAAAAVAAYAAAADAAMAAAAWAAYAAAACAAAAAAAXAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAABAAcAAAAAAAAAAAACAAcAAAADAAMAAAADAAcAAAAAAAMAAAAEAAcAAAADAAMAAAAFAAcAAAAAAAMAAAAGAAcAAAADAAMAAAAHAAcAAAAAAAMAAAAIAAcAAAAAAAIAAAAJAAcAAAACAAIAAAAKAAcAAAAAAAIAAAALAAcAAAABAAIAAAAMAAcAAAABAAIAAAANAAcAAAACAAIAAAAOAAcAAAAAAAIAAAAPAAcAAAAAAAIAAAAQAAcAAAADAAAAAAARAAcAAAAAAAMAAAASAAcAAAADAAMAAAATAAcAAAAAAAMAAAAUAAcAAAADAAMAAAAVAAcAAAAAAAMAAAAWAAcAAAAAAAAAAAAXAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAABAAgAAAABAAAAAAACAAgAAAAAAAAAAAADAAgAAAADAAMAAAAEAAgAAAAAAAMAAAAFAAgAAAADAAMAAAAGAAgAAAAAAAMAAAAHAAgAAAAAAAAAAAAIAAgAAAACAAIAAAAJAAgAAAAAAAIAAAAKAAgAAAAAAAIAAAALAAgAAAABAAIAAAAMAAgAAAABAAIAAAANAAgAAAAAAAIAAAAOAAgAAAAAAAIAAAAPAAgAAAAAAAIAAAAQAAgAAAAAAAAAAAARAAgAAAADAAMAAAASAAgAAAAAAAMAAAATAAgAAAADAAMAAAAUAAgAAAAAAAMAAAAVAAgAAAADAAMAAAAWAAgAAAAAAAAAAAAXAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAABAAkAAAAAAAAAAAACAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAkAAAADAAMAAAAFAAkAAAAAAAMAAAAGAAkAAAAAAAAAAAAHAAkAAAABAAAAAAAIAAkAAAADAAAAAAAJAAkAAAAAAAEAAAAKAAkAAAAAAAEAAAALAAkAAAAAAAEAAAAMAAkAAAABAAEAAAANAAkAAAAAAAEAAAAOAAkAAAAAAAEAAAAPAAkAAAAAAAAAAAAQAAkAAAAAAAAAAAARAAkAAAABAAAAAAASAAkAAAAAAAAAAAATAAkAAAAAAAMAAAAUAAkAAAABAAAAAAAVAAkAAAAAAAAAAAAWAAkAAAAAAAAAAAAXAAkAAAAAAAAAAAAAAAoAAAAAAAAAAAABAAoAAAAAAAAAAAACAAoAAAAAAAAAAAADAAoAAAABAAAAAAAEAAoAAAADAAAAAAAFAAoAAAAAAAAAAAAGAAoAAAACAAAAAAAHAAoAAAAAAAAAAAAIAAoAAAAAAAAAAAAJAAoAAAAAAAAAAAAKAAoAAAAAAAAAAAALAAoAAAABAAEAAAAMAAoAAAAAAAEAAAANAAoAAAABAAAAAAAOAAoAAAAAAAAAAAAPAAoAAAAAAAAAAAAQAAoAAAABAAAAAAARAAoAAAAAAAAAAAASAAoAAAAAAAAAAAATAAoAAAAAAAAAAAAUAAoAAAAAAAAAAAAVAAoAAAAAAAAAAAAWAAoAAAAAAAAAAAAXAAoAAAAAAAAAAAAAAAsAAAADAAAAAAABAAsAAAAAAAAAAAACAAsAAAACAAAAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAsAAAAAAAAAAAAGAAsAAAAAAAAAAAAHAAsAAAAAAAAAAAAIAAsAAAAAAAAAAAAJAAsAAAABAAAAAAAKAAsAAAAAAAAAAAALAAsAAAAAAAEAAAAMAAsAAAAAAAEAAAANAAsAAAAAAAAAAAAOAAsAAAAAAAAAAAAPAAsAAAAAAAAAAAAQAAsAAAAAAAAAAAARAAsAAAAAAAAAAAASAAsAAAAAAAAAAAATAAsAAAAAAAAAAAAUAAsAAAAAAAAAAAAVAAsAAAAAAAAAAAAWAAsAAAABAAAAAAAXAAsAAAADAAAAAAAAAAwAAAAAAAAAAAABAAwAAAAAAAAAAAACAAwAAAAAAAAAAAADAAwAAAAAAAAAAAAEAAwAAAAAAAAAAAAFAAwAAAABAAAAAAAGAAwAAAAAAAAAAAAHAAwAAAAAAAAAAAAIAAwAAAABAAAAAAAJAAwAAAAAAAAAAAALAAwAAAAAAAEAAAAMAAwAAAABAAEAAAANAAwAAAAAAAAAAAAOAAwAAAAAAAAAAAAPAAwAAAAAAAAAAAAQAAwAAAAAAAAAAAARAAwAAAAAAAAAAAASAAwAAAABAAAAAAATAAwAAAADAAAAAAAUAAwAAAAAAAAAAAAVAAwAAAACAAAAAAAWAAwAAAAAAAAAAAAXAAwAAAAAAAAAAAAAAA0AAAAAAAAAAAABAA0AAAABAAAAAAACAA0AAAAAAAAAAAADAA0AAAAAAAAAAAAEAA0AAAABAAAAAAAFAA0AAAAAAAAAAAAGAA0AAAAAAAAAAAAHAA0AAAAAAAAAAAAIAA0AAAAAAAAAAAAJAA0AAAAAAAAAAAAKAA0AAAAAAAAAAAALAA0AAAABAAEAAAAMAA0AAAAAAAEAAAANAA0AAAAAAAAAAAAOAA0AAAABAAAAAAAPAA0AAAADAAAAAAAQAA0AAAAAAAAAAAARAA0AAAACAAAAAAASAA0AAAAAAAAAAAATAA0AAAAAAAAAAAAUAA0AAAAAAAAAAAAVAA0AAAAAAAAAAAAWAA0AAAAAAAAAAAAXAA0AAAAAAAAAAAAKAAwAAAAAAAAAAAA=")
 tile_set = ExtResource("5_tileset")
 script = ExtResource("6_ground")
 map_size = Vector2i(24, 14)
+layout = ExtResource("34_layout")
 
-[node name="Actors" type="Node2D" parent="World"]
+[node name="Actors" type="Node2D" parent="World" unique_id=1991158369]
 y_sort_enabled = true
 
-[node name="Player" parent="World/Actors" instance=ExtResource("1_player")]
+[node name="Player" parent="World/Actors" unique_id=1485424033 instance=ExtResource("1_player")]
 position = Vector2(768, 760)
 movement_bounds = Rect2(56, 56, 1424, 772)
 
-[node name="Camera2D" type="Camera2D" parent="World/Actors/Player"]
+[node name="Camera2D" type="Camera2D" parent="World/Actors/Player" unique_id=1338112333]
 position = Vector2(0, -8)
-position_smoothing_enabled = false
 limit_left = 0
 limit_top = 0
 limit_right = 1536
 limit_bottom = 896
 
-[node name="EntryTreeWest" parent="World/Actors" instance=ExtResource("7_tree")]
+[node name="EntryTreeWest" parent="World/Actors" unique_id=1219942564 instance=ExtResource("7_tree")]
 position = Vector2(505, 690)
 
-[node name="EntryTreeEast" parent="World/Actors" instance=ExtResource("7_tree")]
+[node name="EntryTreeEast" parent="World/Actors" unique_id=1360679912 instance=ExtResource("7_tree")]
 position = Vector2(1030, 690)
 
-[node name="WestGrove" parent="World/Actors" instance=ExtResource("7_tree")]
+[node name="WestGrove" parent="World/Actors" unique_id=45091797 instance=ExtResource("7_tree")]
 position = Vector2(310, 420)
 
-[node name="EastGrove" parent="World/Actors" instance=ExtResource("7_tree")]
+[node name="EastGrove" parent="World/Actors" unique_id=1547633420 instance=ExtResource("7_tree")]
 position = Vector2(1230, 420)
 
-[node name="NorthGroveWest" parent="World/Actors" instance=ExtResource("7_tree")]
+[node name="NorthGroveWest" parent="World/Actors" unique_id=2101704990 instance=ExtResource("7_tree")]
 position = Vector2(570, 220)
 
-[node name="NorthGroveEast" parent="World/Actors" instance=ExtResource("7_tree")]
+[node name="NorthGroveEast" parent="World/Actors" unique_id=1051399121 instance=ExtResource("7_tree")]
 position = Vector2(960, 215)
 
-[node name="BrokenHeart" parent="World/Actors" instance=ExtResource("8_statue")]
+[node name="BrokenHeart" parent="World/Actors" unique_id=1980819236 instance=ExtResource("8_statue")]
 position = Vector2(768, 470)
 
-[node name="WestThornShrine" parent="World/Actors" instance=ExtResource("8_statue")]
-position = Vector2(525, 410)
-
-[node name="EastThornShrine" parent="World/Actors" instance=ExtResource("8_statue")]
-position = Vector2(1015, 410)
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="World"]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="World" unique_id=85678497]
 script = ExtResource("9_navigation")
 navigation_bounds = Rect2(48, 48, 1440, 800)
 
-[node name="Projectiles" type="Node2D" parent="World"]
+[node name="Projectiles" type="Node2D" parent="World" unique_id=582323311]
 
-[node name="Effects" type="Node2D" parent="World"]
+[node name="Effects" type="Node2D" parent="World" unique_id=611040722]
 
-[node name="GameplayServices" type="Node" parent="."]
+[node name="StageMusic" type="Node" parent="." unique_id=849320009]
+script = ExtResource("16_music")
+music_stream = ExtResource("17_music_stream")
 
-[node name="SpawnPoints" type="Node2D" parent="."]
+[node name="GameplayServices" type="Node" parent="." unique_id=805342169]
 
-[node name="West" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(165, 440)
-
-[node name="NorthWest" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(390, 175)
-
-[node name="NorthEast" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(1145, 175)
-
-[node name="East" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(1370, 440)
-
-[node name="SouthWest" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(335, 735)
-
-[node name="SouthEast" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(1195, 735)
-
-[node name="StageExit" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(768, 150)
-
-[node name="EncounterController" type="Node" parent="GameplayServices" node_paths=PackedStringArray("player", "actors", "spawn_points_root", "portal_parent", "portal_spawn_point", "effects_parent", "projectiles_parent")]
+[node name="EncounterController" type="Node" parent="GameplayServices" unique_id=538464796 node_paths=PackedStringArray("player", "actors", "spawn_points_root", "portal_parent", "portal_spawn_point", "effects_parent", "projectiles_parent")]
 script = ExtResource("10_encounter")
 player = NodePath("../../World/Actors/Player")
 actors = NodePath("../../World/Actors")
@@ -155,7 +128,7 @@ effects_parent = NodePath("../../World/Effects")
 projectiles_parent = NodePath("../../World/Projectiles")
 auto_start = false
 
-[node name="CombatFeedback" type="Node" parent="GameplayServices" node_paths=PackedStringArray("player", "effects_parent", "camera")]
+[node name="CombatFeedback" type="Node" parent="GameplayServices" unique_id=325602158 node_paths=PackedStringArray("player", "effects_parent", "camera")]
 script = ExtResource("18_feedback")
 player = NodePath("../../World/Actors/Player")
 effects_parent = NodePath("../../World/Effects")
@@ -167,16 +140,40 @@ ability_hit_sound = ExtResource("24_pierce_impact")
 consecutive_final_hit_sound = ExtResource("26_consecutive_final_hit")
 player_hurt_sound = ExtResource("22_player_hurt")
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=1322116098]
 
-[node name="CombatHUD" parent="UI" instance=ExtResource("4_hud")]
+[node name="West" type="Marker2D" parent="SpawnPoints" unique_id=256861445]
+position = Vector2(165, 440)
 
-[node name="CharacterMenu" parent="UI" node_paths=PackedStringArray("player") instance=ExtResource("23_character_menu")]
+[node name="NorthWest" type="Marker2D" parent="SpawnPoints" unique_id=207450240]
+position = Vector2(390, 175)
+
+[node name="NorthEast" type="Marker2D" parent="SpawnPoints" unique_id=390646622]
+position = Vector2(1145, 175)
+
+[node name="East" type="Marker2D" parent="SpawnPoints" unique_id=813991788]
+position = Vector2(1370, 440)
+
+[node name="SouthWest" type="Marker2D" parent="SpawnPoints" unique_id=1377407885]
+position = Vector2(335, 735)
+
+[node name="SouthEast" type="Marker2D" parent="SpawnPoints" unique_id=2110400452]
+position = Vector2(1195, 735)
+
+[node name="StageExit" type="Marker2D" parent="SpawnPoints" unique_id=1167899451]
+position = Vector2(768, 150)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1392352296]
+
+[node name="CombatHUD" parent="UI" unique_id=1826230670 instance=ExtResource("4_hud")]
+
+[node name="CharacterMenu" parent="UI" unique_id=1892810170 node_paths=PackedStringArray("player") instance=ExtResource("23_character_menu")]
 player = NodePath("../../World/Actors/Player")
 
-[node name="PauseMenu" parent="UI" instance=ExtResource("25_pause_menu")]
+[node name="PauseMenu" parent="UI" unique_id=1943473561 instance=ExtResource("25_pause_menu")]
 
-[node name="StageTitle" type="Label" parent="UI"]
+[node name="StageTitle" type="Label" parent="UI" unique_id=1561174800]
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -210.0
@@ -187,10 +184,10 @@ text = "STAGE 2  •  THORNS OF THE FORGOTTEN GROVE"
 label_settings = SubResource("title_settings")
 horizontal_alignment = 1
 
+[connection signal="enemy_spawned" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_spawn_direction"]
+[connection signal="portal_prompt_changed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_interaction_prompt"]
+[connection signal="portal_sealed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_portal_sealed"]
+[connection signal="reinforcement_announced" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_reinforcement_warning"]
+[connection signal="stage_cleared" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_stage_clear"]
 [connection signal="wave_changed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_wave"]
 [connection signal="wave_cleared" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_wave_clear"]
-[connection signal="reinforcement_announced" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_reinforcement_warning"]
-[connection signal="enemy_spawned" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_spawn_direction"]
-[connection signal="stage_cleared" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_stage_clear"]
-[connection signal="portal_sealed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_portal_sealed"]
-[connection signal="portal_prompt_changed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_interaction_prompt"]

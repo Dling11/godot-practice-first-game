@@ -59,6 +59,15 @@ func _run() -> void:
 	if ground.map_size != Vector2i(24, 14) or not actors.y_sort_enabled:
 		_fail("Stage 2 grove layout or Y-sorted actor ownership is not configured.")
 		return
+	if ground.layout == null or ground.layout.resource_path != "res://data/environment/layouts/stage_2_forest_ground.tres":
+		_fail("Stage 2 is not using its authored forest ground layout resource.")
+		return
+	if not stage.has_node("World/Actors/BrokenHeart"):
+		_fail("Stage 2's central Broken Heart landmark is missing.")
+		return
+	if stage.has_node("World/Actors/WestThornShrine") or stage.has_node("World/Actors/EastThornShrine"):
+		_fail("Stage 2 still contains the arbitrary duplicate side statues.")
+		return
 	for frame in range(3):
 		await physics_frame
 	if ground.get_used_cells().size() != 336:

@@ -80,6 +80,7 @@ Default world light travels from upper-left toward lower-right. Highlights, cast
 - Tall props use independent base/canopy or base/roof layers when the player can walk behind them.
 - Prop collision covers the traversability footprint, never the entire visible crown or silhouette.
 - Landmarks guide travel and combat spacing. Avoid random dense prop scattering.
+- Shared forest terrain stays bright and low-contrast; Rootbound Hollow shifts to maroon bark, muted plum-violet roots, bruised moss, and sparse toxic-lime fissures while keeping the arena center quiet enough for warnings and enemy silhouettes.
 - Sanctuary assets reuse the forest's lighting and palette while introducing maintained paths, inhabited structures, warm windows, cloth, and the central divine fountain.
 - Fountain visuals should separate base stone, water/glow animation, shadow, collision, and optional interaction marker.
 
@@ -139,6 +140,8 @@ concept -> source -> cleaned -> runtime -> archived
 - `archived`: rejected or superseded work retained for learning and history.
 
 Future non-runtime art belongs under `art_source/`, with a `.gdignore` at its root. This keeps source and mistakes safe without importing them into Godot. Runtime content belongs under `assets/` only.
+
+The active combat-stage environment follows that lifecycle: generated 4x4 forest and Rootbound source boards plus the chroma-clean arena seal are preserved under `art_source/generated/environment/forest/`; normalized 64px atlases and the fixed-canvas transparent seal are the only versions referenced at runtime. Camera captures used for visual review live under `art_source/review/environment/`.
 
 ## External and Generated Art
 

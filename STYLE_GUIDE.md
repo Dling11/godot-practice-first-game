@@ -179,6 +179,9 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - Keep decorative variation independent from gameplay collision whenever possible.
 - Reuse tile sources and terrain definitions across maps; do not duplicate a tileset solely to recolor or rearrange one level without a documented reason.
 - Validate seams, transition coverage, collision edges, navigation continuity, and pixel alignment before content-scale painting.
+- Save active combat-stage TileMap cells in the owning scene. Use `AuthoredGroundLayout` as the diffable composition source and `tools/bake_authored_ground.gd` when regenerating a whole map; ordinary local adjustments may then be painted and saved directly in Godot without runtime randomization.
+- Keep shared biome tiles under `assets/environment/<biome>/shared/`; keep genuinely region-specific tiles and props under `assets/environment/<biome>/<region>/`. Preserve generated source/clean boards under the matching `art_source/generated/environment/` hierarchy.
+- Organic tree placement may be asymmetric. Landmark props must align to a visible path, threshold, plaza, encounter boundary, or authored symmetry and must not be scattered through empty space merely for variation.
 - On even-width tilemaps, center a landmark between the paired middle columns only when its approach also uses both columns; snap single-cell service approaches to the owning doorway's exact tile center and preserve intentional terrain breaks around local aprons.
 - Prefer maintainable Godot 4.7 tilemap tooling over custom placement code unless profiling or authoring requirements prove it insufficient.
 

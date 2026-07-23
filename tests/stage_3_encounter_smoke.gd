@@ -11,6 +11,7 @@ func _run() -> void:
 	var stage := Stage3Scene.instantiate()
 	var controller: EncounterController = stage.get_node("GameplayServices/EncounterController")
 	root.add_child(stage)
+	var ground := stage.get_node("World/Level/Ground") as TileMapLayer
 	if controller.auto_start or controller.waves.size() != 2:
 		_fail("Stage 3 must wait for arrival lore and retain its authored two-wave structure.")
 		return
@@ -33,6 +34,19 @@ func _run() -> void:
 		return
 	if stage.get("dialogue_panel") == null or stage.get("rootbound_husk_portrait") == null:
 		_fail("Stage 3 lost its dialogue panel or Rootbound Husk portrait.")
+		return
+	if ground.layout == null or ground.layout.resource_path != "res://data/environment/layouts/stage_3_rootbound_ground.tres":
+		_fail("Stage 3 is not using its authored Rootbound Hollow ground layout.")
+		return
+	if ground.tile_set.resource_path != "res://assets/environment/forest/rootbound_hollow/tiles/rootbound_ground_tileset.tres":
+		_fail("Stage 3 is not using the organized Rootbound Hollow TileSet.")
+		return
+	if ground.get_used_cells().size() != 336:
+		_fail("Stage 3's 24x14 corrupted TileMap did not populate completely.")
+		return
+	var arena_seal := stage.get_node_or_null("World/Actors/RootboundArenaSeal") as StaticBody2D
+	if arena_seal == null or not arena_seal.has_node("NavigationCutout"):
+		_fail("Stage 3 lost its colliding, navigation-aware arena landmark.")
 		return
 	var dialogue := stage.get("dialogue_panel") as DialoguePanel
 	var skipped := [false]

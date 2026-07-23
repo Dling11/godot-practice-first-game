@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-07-23 - Authored Forest TileMaps and Rootbound Hollow Environment
+
+- Replaced the four-tile seeded-random combat ground with two organized sixteen-tile atlases: a shared bright-forest set for Stages I-II and a dedicated maroon/violet Rootbound Hollow set for Stage III.
+- Added `AuthoredGroundLayout`, editor-visible `authored_ground.gd`, and a bake tool that stores exact cells in each stage scene. Runtime now uses editable baked TileMaps and performs no random terrain fill.
+- Re-composed Stage I as a processional path into a paired shrine court, moved its path-blocking tree, and removed the former loose-statue arrangement.
+- Re-composed Stage II around one central Broken Heart plaza with a split approach, removing the duplicate west/east statues while keeping trees as organic grove structure.
+- Built Stage III's root-scarred approach and ritual arena, added four blighted edge trees, and introduced a dedicated transparent Rootbound arena seal with collision and navigation cutout ownership.
+- Organized active forest textures under shared and Rootbound Hollow runtime folders; preserved generated source/clean art and real-camera review captures outside Godot imports.
+- Expanded environment, Stage II, and Stage III smoke coverage for authored layout/TileSet ownership, exact cell counts, landmark identities, and navigation-aware props.
+
 ## 2026-07-23 - Rootbound Hollow Reveal and Enemy Portraits
 
 - Connected the playable forest sequence end-to-end: Stage 2's clear portal now advances directly into The Rootbound Hollow, while Stage 3 retains the post-mini-boss return portal to Sanctuary.

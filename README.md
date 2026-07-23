@@ -38,6 +38,8 @@ The prototype uses a 960x540 logical viewport displayed at 1920x1080 for exact 2
 
 The current main scene is `res://ui/screens/title/title_screen.tscn`. Stage 1 remains `res://levels/test_arena/test_arena.tscn`.
 
+Stages I-III use authored Godot `TileMapLayer` cells rather than runtime-random ground. Shared forest and Rootbound Hollow atlases live under `assets/environment/forest/`; diffable map layouts live under `data/environment/layouts/`. Edit baked cells directly in Godot for local adjustments, or update a layout resource and regenerate the owning scene with `tools/bake_authored_ground.gd` for a whole-map revision.
+
 ### Isolated 2D Asset Preview
 
 Supported Sanctuary prop and NPC scenes include an `EditorPreviewBackdrop` child. When one of those asset scenes is opened directly, Godot displays a subtle green checker behind transparent sprites and dark shadows. The backdrop automatically disappears when the asset is instanced in a level and never draws during F5/F6 or an exported game. Select the backdrop node to adjust its preview size, center, checker scale, or colors for that scene.

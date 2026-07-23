@@ -21,7 +21,13 @@ func _run() -> void:
 		await physics_frame
 
 	if ground.get_used_cells().size() != 540:
-		_fail("Expanded TileMapLayer did not populate the expected 540 cells.")
+		_fail("Authored Stage 1 TileMapLayer did not populate the expected 540 cells.")
+		return
+	if ground.layout == null or ground.layout.resource_path != "res://data/environment/layouts/stage_1_forest_ground.tres":
+		_fail("Stage 1 is not using its authored forest ground layout resource.")
+		return
+	if ground.tile_set.resource_path != "res://assets/environment/forest/shared/tiles/verdant_forest_ground_tileset.tres":
+		_fail("Stage 1 is not using the organized shared-forest TileSet.")
 		return
 	if not actors.y_sort_enabled:
 		_fail("Actors and environment props are not under a Y-sorted owner.")
@@ -35,8 +41,8 @@ func _run() -> void:
 	for attempt in range(30):
 		path = NavigationServer2D.map_get_path(
 			navigation_map,
-			Vector2(960.0, 120.0),
-			Vector2(960.0, 880.0),
+			Vector2(390.0, 660.0),
+			Vector2(390.0, 1010.0),
 			true,
 			1
 		)
@@ -44,21 +50,28 @@ func _run() -> void:
 			break
 		await physics_frame
 	if path.size() < 3:
-		_fail("Navigation path did not route around the central tree cutout.")
+		_fail("Navigation path did not route around the authored southwest tree cutout.")
 		return
-	var tree_cutout := Rect2(926.0, 573.0, 78.0, 40.0)
+	var tree_cutout := Rect2(352.0, 787.0, 77.0, 30.0)
 	var closest_lateral_clearance := INF
 	for point in path:
 		if tree_cutout.has_point(point):
 			_fail("Navigation path entered the tree cutout at %s." % point)
 			return
-		if point.y >= 565.0 and point.y <= 630.0:
-			closest_lateral_clearance = minf(closest_lateral_clearance, absf(point.x - 960.0))
+		if point.y >= 775.0 and point.y <= 835.0:
+			closest_lateral_clearance = minf(closest_lateral_clearance, absf(point.x - 390.0))
 	if closest_lateral_clearance < 28.0 or closest_lateral_clearance > 40.0:
 		_fail("Tree route does not match the authored multi-shape footprint; received %s px." % closest_lateral_clearance)
 		return
 
-	print("Environment/navigation smoke test passed. Path points: %d, tree clearance: %.1f px" % [path.size(), closest_lateral_clearance])
+	if not arena.has_node("World/Actors/WestGateShrine") or not arena.has_node("World/Actors/EastGateShrine"):
+		_fail("Stage 1's paired shrine-gate landmarks are missing.")
+		return
+	if arena.has_node("World/Actors/RuinedStatueNorth"):
+		_fail("Stage 1 still contains the old arbitrarily placed north statue.")
+		return
+
+	print("Environment/navigation smoke test passed. Authored path points: %d, tree clearance: %.1f px" % [path.size(), closest_lateral_clearance])
 	quit(0)
 
 

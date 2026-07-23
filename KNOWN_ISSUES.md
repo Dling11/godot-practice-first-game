@@ -16,8 +16,8 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 ### KI-010 - Expedition pacing still needs human controller playtesting
 
 - **Status:** Open
-- **Impact:** Automated coverage verifies the four-enemy cap, reinforcement warning/release order, queue completion, crowd spacing, Stage 3's ten-Rootling gated brood, and individual attack behavior, but cannot judge clear-time satisfaction, whether ten Rootlings overstay their narrative purpose, portrait readability at 960x540, damage pressure, camera readability, or skill feel with Ashwood and Iron.
-- **Planned resolution:** Record timed Stage 1, Stage 2, and Rootbound Hollow controller runs using normal and F9 test loadouts, then adjust authored cadence only if the evidence shows a material pacing issue.
+- **Impact:** Automated coverage verifies the four-enemy cap, reinforcement warning/release order, queue completion, crowd spacing, Stage 3's ten-Rootling gated brood, authored TileMap population, landmark navigation cutouts, and individual attack behavior, but cannot judge clear-time satisfaction, whether ten Rootlings overstay their narrative purpose, portrait readability, terrain repetition, landmark scale, damage pressure, camera readability, or skill feel at 960x540.
+- **Planned resolution:** Record timed Stage 1, Stage 2, and Rootbound Hollow controller runs using normal and F9 test loadouts, reviewing the new authored routes and corruption contrast alongside combat pacing; adjust authored cadence or environment composition only from observed evidence.
 - **Workaround:** Keep the current one-at-a-time warned reinforcements, existing low-health starter enemies, and four-enemy ceiling; do not compensate with health inflation or a larger crowd.
 
 ### KI-003 - Target platforms are undecided

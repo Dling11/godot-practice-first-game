@@ -1,7 +1,7 @@
-[gd_resource type="SpriteFrames" format=3]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bcaqm5jkyrivo"]
 
-[ext_resource type="Texture2D" path="res://assets/characters/enemies/mireling/mireling_action_sheet_48x32.png" id="1_w8vm8"]
-[ext_resource type="Texture2D" path="res://assets/characters/enemies/mireling/mireling_walk_sheet_32x32.png" id="2_h0i5j"]
+[ext_resource type="Texture2D" uid="uid://n7r3xf6wj84m" path="res://assets/characters/enemies/mireling/mireling_action_sheet_48x32.png" id="1_w8vm8"]
+[ext_resource type="Texture2D" uid="uid://ma6y5lmyh26e" path="res://assets/characters/enemies/mireling/mireling_walk_sheet_32x32.png" id="2_h0i5j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8dbql"]
 atlas = ExtResource("1_w8vm8")
@@ -84,20 +84,20 @@ atlas = ExtResource("1_w8vm8")
 region = Rect2(336, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nxl60"]
-atlas = ExtResource("1_w8vm8")
-region = Rect2(192, 32, 48, 32)
+atlas = ExtResource("2_h0i5j")
+region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5u7dj"]
-atlas = ExtResource("1_w8vm8")
-region = Rect2(240, 32, 48, 32)
+atlas = ExtResource("2_h0i5j")
+region = Rect2(32, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n4yme"]
-atlas = ExtResource("1_w8vm8")
-region = Rect2(288, 32, 48, 32)
+atlas = ExtResource("2_h0i5j")
+region = Rect2(64, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i6ncv"]
-atlas = ExtResource("1_w8vm8")
-region = Rect2(336, 32, 48, 32)
+atlas = ExtResource("2_h0i5j")
+region = Rect2(96, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hhoqn"]
 atlas = ExtResource("1_w8vm8")

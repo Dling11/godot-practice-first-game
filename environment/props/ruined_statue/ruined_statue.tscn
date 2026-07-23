@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://sd2qfhrb6ev1"]
 
-[ext_resource type="Texture2D" uid="uid://cgwcmb3688iow" path="res://assets/environment/prototype/polished_statue.png" id="1_statue"]
+[ext_resource type="Texture2D" path="res://assets/environment/forest/shared/props/ruined_shrine_statue.png" id="1_statue"]
 [ext_resource type="Script" uid="uid://bpvdh5hx5ke8i" path="res://gameplay/navigation/navigation_cutout.gd" id="2_cutout"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_footprint"]
