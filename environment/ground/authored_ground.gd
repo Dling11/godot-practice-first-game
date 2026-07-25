@@ -34,5 +34,12 @@ func rebuild_from_layout() -> void:
 		var row := layout.rows[y] if y < layout.rows.size() else ""
 		for x in range(map_size.x):
 			var key := row.substr(x, 1) if x < row.length() else ""
-			var atlas_coordinates: Vector2i = layout.tile_legend.get(key, layout.default_tile)
-			set_cell(Vector2i(x, y), 0, atlas_coordinates)
+			var tile_spec: Variant = layout.tile_legend.get(key, layout.default_tile)
+			var source_id := layout.default_source_id
+			var atlas_coordinates := layout.default_tile
+			if typeof(tile_spec) == TYPE_VECTOR3I:
+				source_id = tile_spec.z
+				atlas_coordinates = Vector2i(tile_spec.x, tile_spec.y)
+			elif typeof(tile_spec) == TYPE_VECTOR2I:
+				atlas_coordinates = tile_spec
+			set_cell(Vector2i(x, y), source_id, atlas_coordinates)

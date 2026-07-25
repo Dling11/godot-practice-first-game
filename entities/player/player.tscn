@@ -65,6 +65,7 @@ outline_color = Color(0.027, 0.02, 0.039, 1)
 collision_layer = 2
 script = ExtResource("1_player")
 skill_loadout = ExtResource("26_loadout")
+awakened_skill_loadout = ExtResource("38_debug_loadout")
 debug_test_skill_loadout = ExtResource("38_debug_loadout")
 weapon_catalog = ExtResource("27_weapon_catalog")
 
@@ -362,6 +363,7 @@ horizontal_alignment = 1
 [connection signal="strike_started" from="Ability2Component" to="VisualRoot/ConsecutiveThrustBodyVisual" method="play_strike"]
 [connection signal="strike_started" from="Ability2Component" to="AbilityPivot/ConsecutiveThrustVisual" method="play_strike"]
 [connection signal="strike_started" from="Ability2Component" to="PlayerActionSfx" method="play_ability_strike"]
+[connection signal="invulnerability_changed" from="Ability2Component" to="HealthComponent" method="set_invulnerable"]
 [connection signal="damage_blocked" from="HealthComponent" to="StateVisual" method="flash_blocked"]
 [connection signal="damaged" from="HealthComponent" to="VisualRoot/Body" method="play_hurt"]
 [connection signal="damaged" from="HealthComponent" to="StateVisual" method="flash_damaged"]

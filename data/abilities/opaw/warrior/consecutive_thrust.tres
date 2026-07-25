@@ -12,7 +12,8 @@ ability_id = &"consecutive_thrust"
 display_name = "Consecutive Thrust"
 hud_name = "RAPID THRUST"
 description = "Seven spirit-lance strikes
-128 px reach - 225% total weapon damage"
+128 px reach - 225% total weapon damage
+Invulnerable while casting - dash to cancel"
 icon = ExtResource("2_icon")
 presentation_style = 1
 hitbox_shape = SubResource("ConvexPolygonShape2D_consecutive_thrust")
@@ -26,3 +27,5 @@ wind_up_seconds = 0.16
 active_seconds = 0.88
 recovery_seconds = 0.3
 cooldown_seconds = 5.0
+grants_invulnerability = true
+dash_cancelable = true

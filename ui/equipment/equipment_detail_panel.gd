@@ -3,6 +3,8 @@ extends PanelContainer
 
 ## Detailed owned-item view with rarity-driven, tweened presentation.
 
+signal equip_requested(definition: EquipmentDefinition)
+
 @onready var aura_back: Panel = %AuraBack
 @onready var item_icon: TextureRect = %ItemIcon
 @onready var rarity_label: Label = %RarityLabel
@@ -12,6 +14,7 @@ extends PanelContainer
 @onready var synergy_title: Label = %SynergyTitle
 @onready var synergy_body: Label = %SynergyBody
 @onready var state_label: Label = %StateLabel
+@onready var equip_button: Button = %EquipButton
 
 var current_definition: EquipmentDefinition
 var _aura_tween: Tween
@@ -32,7 +35,7 @@ func configure(item: EquipmentDefinition, equipped: bool, class_compatible: bool
 	state_label.text = (
 		"EQUIPPED • ACTIVE COMBAT WEAPON"
 		if equipped
-		else ("OWNED • CLICK TO EQUIP" if class_compatible else "OWNED • WRONG CLASS")
+		else ("OWNED • READY TO EQUIP" if class_compatible else "OWNED • WRONG CLASS")
 	)
 	state_label.add_theme_color_override(
 		"font_color",
@@ -40,6 +43,13 @@ func configure(item: EquipmentDefinition, equipped: bool, class_compatible: bool
 	)
 	_apply_aura_style(rarity_color)
 	_start_aura(item.rarity)
+	equip_button.disabled = equipped or not class_compatible
+	equip_button.text = "EQUIPPED" if equipped else ("EQUIP WEAPON" if class_compatible else "CLASS LOCKED")
+
+
+func _on_equip_button_pressed() -> void:
+	if current_definition != null and not equip_button.disabled:
+		equip_requested.emit(current_definition)
 
 
 func _apply_aura_style(color: Color) -> void:

@@ -325,13 +325,14 @@ func _run() -> void:
 	):
 		_fail("The first available Sanctuary expedition is not Stage 1.")
 		return
-	if menu.route_buttons.size() != 3 or menu.first_expedition_button.disabled:
-		_fail("The expedition menu did not build one available and two sealed data-driven routes.")
+	if menu.route_buttons.size() != 4 or menu.first_expedition_button.disabled:
+		_fail("The expedition menu did not build one available and three sealed data-driven routes.")
 		return
 	if (
 		not menu.route_buttons[1].disabled
-		or not menu.route_buttons[1].tooltip_text.contains("BOSS: Thornbound Warden")
 		or not menu.route_buttons[2].disabled
+		or not menu.route_buttons[2].tooltip_text.contains("BOSS: Thornbound Warden")
+		or not menu.route_buttons[3].disabled
 	):
 		_fail("Future expedition buttons do not expose their authored access requirements.")
 		return

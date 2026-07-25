@@ -20,6 +20,8 @@ signal character_menu_requested
 @onready var experience_label: Label = %ExperienceLabel
 @onready var coin_label: Label = %CoinLabel
 @onready var character_menu_button: Button = %CharacterMenuButton
+@onready var options_button: Button = %OptionsButton
+@onready var dash_slot: DashBarSlot = %DashBarSlot
 
 var _blocked_tween: Tween
 var _player: Player
@@ -30,6 +32,8 @@ var _skill_slots: Array[SkillBarSlot] = []
 
 func _ready() -> void:
 	character_menu_button.pressed.connect(_on_character_menu_button_pressed)
+	options_button.pressed.connect(_on_options_button_pressed)
+	dash_slot.activation_requested.connect(_on_dash_activation_requested)
 
 
 func bind_player(player: Player) -> void:
@@ -37,6 +41,7 @@ func bind_player(player: Player) -> void:
 	var health: HealthComponent = player.health_component
 	health.health_changed.connect(_update_health)
 	health.damage_blocked.connect(_show_blocked)
+	dash_slot.bind_evade(player.evade_component)
 	_build_skill_bar(player)
 	_update_health(health.current_health, health.maximum_health)
 	var progression := player.progression_component
@@ -78,6 +83,15 @@ func _build_skill_bar(player: Player) -> void:
 func _on_skill_activation_requested(slot_number: int) -> void:
 	if is_instance_valid(_player):
 		_player.request_ability(slot_number)
+
+
+func _on_dash_activation_requested() -> void:
+	if not is_instance_valid(_player):
+		return
+	var direction := _player.input_source.get_move_direction()
+	if direction.is_zero_approx():
+		direction = _player.facing_direction
+	_player.request_evade(direction)
 
 
 func show_spawn_direction(global_position: Vector2) -> void:
@@ -125,7 +139,7 @@ func _update_progression(_level: int, _total_experience: int, _next_level_experi
 	if not is_instance_valid(_player):
 		return
 	var progression := _player.progression_component
-	level_label.text = "LV %d" % progression.level
+	level_label.text = "LEVEL %d" % progression.level
 	if progression.level >= progression.definition.maximum_level:
 		experience_bar.max_value = 1.0
 		experience_bar.value = 1.0
@@ -195,3 +209,9 @@ func _show_blocked(_info: DamageInfo) -> void:
 
 func _on_character_menu_button_pressed() -> void:
 	character_menu_requested.emit()
+
+
+func _on_options_button_pressed() -> void:
+	var pause_menu := get_tree().get_first_node_in_group("pause_menu") as PauseMenu
+	if pause_menu != null:
+		pause_menu.open_menu()

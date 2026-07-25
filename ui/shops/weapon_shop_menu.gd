@@ -35,6 +35,7 @@ func _ready() -> void:
 	var inventory := get_node_or_null("/root/WeaponInventory")
 	if inventory != null:
 		inventory.weapon_acquired.connect(_on_weapon_acquired)
+		inventory.weapon_equipped.connect(_on_weapon_equipped)
 	_build_stock()
 	hide()
 
@@ -142,6 +143,7 @@ func _refresh_shop() -> void:
 	if _selected_item == null:
 		return
 	var owned: bool = inventory != null and inventory.owns_weapon(_selected_item.item_id)
+	var equipped := player.get_equipped_weapon_item() == _selected_item
 	var compatible := _selected_item.is_compatible_with(player.character_class_id)
 	item_icon.texture = _selected_item.icon
 	item_name_label.text = _selected_item.display_name.to_upper()
@@ -154,10 +156,17 @@ func _refresh_shop() -> void:
 		roundi(_selected_item.weapon_definition.knockback_strength),
 	]
 	lore_label.text = _selected_item.lore
-	buy_button.disabled = owned or not compatible or player.progression_component.coins < _selected_item.purchase_price
-	if owned:
-		status_label.text = "OWNED • EQUIP FROM CHARACTER INVENTORY"
-		buy_button.text = "ALREADY OWNED"
+	buy_button.disabled = (
+		equipped
+		or not compatible
+		or (not owned and player.progression_component.coins < _selected_item.purchase_price)
+	)
+	if equipped:
+		status_label.text = "EQUIPPED • ACTIVE COMBAT WEAPON"
+		buy_button.text = "EQUIPPED"
+	elif owned:
+		status_label.text = "OWNED • READY TO EQUIP"
+		buy_button.text = "EQUIP WEAPON"
 	elif not compatible:
 		status_label.text = "YOUR CURRENT CLASS CANNOT USE THIS WEAPON"
 		buy_button.text = "WRONG CLASS"
@@ -177,6 +186,10 @@ func purchase_selected() -> bool:
 	var inventory := get_node_or_null("/root/WeaponInventory")
 	if inventory == null:
 		return false
+	if inventory.owns_weapon(_selected_item.item_id):
+		var equipped := player.equip_owned_weapon(_selected_item)
+		_refresh_shop()
+		return equipped
 	var purchased: bool = inventory.try_purchase_weapon(
 		_selected_item,
 		player.character_class_id,
@@ -191,4 +204,8 @@ func _on_coins_changed(_total_coins: int) -> void:
 
 
 func _on_weapon_acquired(_item_id: StringName) -> void:
+	_refresh_shop()
+
+
+func _on_weapon_equipped(_character_id: StringName, _item_id: StringName) -> void:
 	_refresh_shop()

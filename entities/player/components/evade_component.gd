@@ -7,6 +7,8 @@ signal evade_started(direction: Vector2)
 signal phase_changed(phase: Phase, duration_seconds: float)
 signal invulnerability_changed(is_invulnerable: bool)
 signal evade_finished
+signal cooldown_started(duration_seconds: float)
+signal cooldown_finished
 
 @export var definition: EvadeDefinition
 
@@ -30,6 +32,7 @@ func request_evade(direction: Vector2) -> bool:
 	evade_started.emit(dash_direction)
 	phase_changed.emit(phase, definition.dash_seconds)
 	invulnerability_changed.emit(true)
+	cooldown_started.emit(definition.cooldown_seconds)
 	set_physics_process(true)
 	return true
 
@@ -73,6 +76,7 @@ func cancel_recovery() -> bool:
 
 
 func cancel_evade() -> void:
+	var had_cooldown := _cooldown_time_remaining > 0.0
 	if phase == Phase.DASHING:
 		invulnerability_changed.emit(false)
 	phase = Phase.READY
@@ -80,10 +84,15 @@ func cancel_evade() -> void:
 	_cooldown_time_remaining = 0.0
 	set_physics_process(false)
 	evade_finished.emit()
+	if had_cooldown:
+		cooldown_finished.emit()
 
 
 func _physics_process(delta: float) -> void:
+	var previous_cooldown := _cooldown_time_remaining
 	_cooldown_time_remaining = maxf(_cooldown_time_remaining - delta, 0.0)
+	if previous_cooldown > 0.0 and _cooldown_time_remaining <= 0.0:
+		cooldown_finished.emit()
 	_phase_time_remaining -= delta
 	if _phase_time_remaining > 0.0:
 		return

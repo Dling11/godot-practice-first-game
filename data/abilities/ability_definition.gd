@@ -26,6 +26,8 @@ enum PresentationStyle { SWEEP, THRUST }
 @export_range(0.01, 2.0, 0.01, "suffix:s") var active_seconds := 0.1
 @export_range(0.0, 3.0, 0.01, "suffix:s") var recovery_seconds := 0.2
 @export_range(0.0, 30.0, 0.1, "suffix:s") var cooldown_seconds := 1.0
+@export var grants_invulnerability := false
+@export var dash_cancelable := false
 
 
 func resolve_damage(equipped_weapon_damage: float) -> float:

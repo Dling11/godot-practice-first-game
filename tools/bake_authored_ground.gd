@@ -23,7 +23,16 @@ func _bake() -> void:
 		push_error("Scene has no authored ground layer: %s" % input_path)
 		quit(1)
 		return
+	var encounter_controller := instance.get_node_or_null("GameplayServices/EncounterController")
+	var preserved_gated_waves := PackedInt32Array()
+	if encounter_controller != null:
+		preserved_gated_waves = encounter_controller.get("gated_wave_numbers").duplicate()
 	ground.rebuild_from_layout()
+	# Reassert encounter-owned scene overrides after the tool script touches the
+	# instantiated graph. Stage III's dialogue gate must never be normalized to
+	# the controller's empty default while baking presentation-only terrain.
+	if encounter_controller != null:
+		encounter_controller.set("gated_wave_numbers", preserved_gated_waves)
 	var packed := PackedScene.new()
 	var pack_error := packed.pack(instance)
 	if pack_error != OK:

@@ -32,7 +32,7 @@ func configure(item: EquipmentDefinition, equipped: bool, class_compatible: bool
 	status_label.text = (
 		"EQUIPPED"
 		if equipped
-		else ("CLICK TO EQUIP" if class_compatible else "CLASS LOCKED")
+		else ("SELECT" if class_compatible else "CLASS LOCKED")
 	)
 	status_label.add_theme_color_override(
 		"font_color",

@@ -16,6 +16,7 @@ var _owns_pause := false
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	add_to_group("pause_menu")
 	hide()
 	_refresh_audio_labels()
 

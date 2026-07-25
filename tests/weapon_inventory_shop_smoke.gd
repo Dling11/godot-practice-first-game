@@ -49,6 +49,12 @@ func _run() -> void:
 	if player.get_equipped_weapon_item() != ashwood:
 		_fail("Purchasing Iron Sword equipped it automatically instead of respecting inventory choice.")
 		return
+	if not shop.purchase_selected() or player.get_equipped_weapon_item() != IronItem:
+		_fail("Orren's owned-weapon action did not explicitly equip the Iron Sword.")
+		return
+	if not player.equip_owned_weapon(ashwood):
+		_fail("Could not restore Ashwood before validating Character inventory equip UX.")
+		return
 	shop.close_menu()
 
 	var character_menu := CharacterMenuScene.instantiate() as CharacterMenu
@@ -67,6 +73,10 @@ func _run() -> void:
 		_fail("Character inventory is missing the purchased Iron Sword card.")
 		return
 	iron_card.pressed.emit()
+	if player.get_equipped_weapon_item() != ashwood:
+		_fail("Selecting an inventory card equipped it without the explicit Equip button.")
+		return
+	character_menu.equipment_detail_panel.equip_button.pressed.emit()
 	if (
 		player.get_equipped_weapon_item() != IronItem
 		or player.attack_component.weapon != IronItem.weapon_definition

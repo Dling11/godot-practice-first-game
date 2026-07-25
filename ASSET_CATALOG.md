@@ -154,7 +154,7 @@ These files are intentionally outside runtime imports under Godot-ignored `art_s
 | `tile_forest_ground_verdant` | `assets/environment/forest/shared/tiles/verdant_forest_ground_atlas_4x4.png` | Active | 256x256; 4x4 of 64x64 | `verdant_forest_ground_tileset.tres`; Stage I-II |
 | `tile_forest_ground_verdant_resource` | `assets/environment/forest/shared/tiles/verdant_forest_ground_tileset.tres` | Active | Godot `TileSet`; 16 cells | Stage I-II authored ground layers |
 | `tile_rootbound_hollow_ground` | `assets/environment/forest/rootbound_hollow/tiles/rootbound_ground_atlas_4x4.png` | Active | 256x256; 4x4 of 64x64 | `rootbound_ground_tileset.tres`; Stage III |
-| `tile_rootbound_hollow_ground_resource` | `assets/environment/forest/rootbound_hollow/tiles/rootbound_ground_tileset.tres` | Active | Godot `TileSet`; 16 cells | Stage III authored ground layer |
+| `tile_rootbound_hollow_ground_resource` | `assets/environment/forest/rootbound_hollow/tiles/rootbound_ground_tileset.tres` | Active | Godot `TileSet`; 32 cells across Rootbound source 0 and shared-forest source 1 | Stage III mixed-decay ground layer |
 | `prop_forest_ancient_tree_base` | `assets/environment/forest/shared/props/ancient_tree_base.png` | Active | 94x112 | `ancient_tree.tscn` |
 | `prop_forest_ancient_tree_canopy` | `assets/environment/forest/shared/props/ancient_tree_canopy.png` | Active | 94x112 | `ancient_tree.tscn` |
 | `prop_forest_ruined_statue` | `assets/environment/forest/shared/props/ruined_shrine_statue.png` | Active | 81x104 | `ruined_statue.tscn` |

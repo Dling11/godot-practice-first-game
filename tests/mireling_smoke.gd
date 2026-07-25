@@ -56,7 +56,17 @@ func _run() -> void:
 			or dead_frame.atlas != attack_frame.atlas
 			or attack_frame.region.size != Vector2(48.0, 32.0)
 		):
-			_fail("Mireling active animations mix remodeled and obsolete body sheets.")
+			_fail(
+				"Mireling %s mixes sheets: idle=%s attack=%s dead=%s same_action_atlas=%s region=%s"
+				% [
+					direction_name,
+					idle_frame.atlas.resource_path if idle_frame != null else "<null>",
+					attack_frame.atlas.resource_path if attack_frame != null else "<null>",
+					dead_frame.atlas.resource_path if dead_frame != null else "<null>",
+					dead_frame.atlas == attack_frame.atlas if dead_frame != null and attack_frame != null else false,
+					attack_frame.region.size if attack_frame != null else Vector2.ZERO,
+				]
+			)
 			return
 		var idle_height := idle_frame.get_image().get_used_rect().size.y
 		var attack_height := attack_frame.get_image().get_used_rect().size.y

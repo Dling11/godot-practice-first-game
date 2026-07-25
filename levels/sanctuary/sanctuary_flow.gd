@@ -41,6 +41,7 @@ func _ready() -> void:
 	skillkeeper.dialogue_requested.connect(_on_npc_dialogue_requested.bind(skillkeeper, true, false))
 	weapon_merchant.dialogue_requested.connect(_on_npc_dialogue_requested.bind(weapon_merchant, false, true))
 	dialogue_panel.dialogue_closed.connect(_on_dialogue_closed)
+	character_menu.skill_awakened.connect(_on_skill_awakened)
 	weapon_shop_menu.menu_closed.connect(weapon_merchant.restore_prompt)
 	expedition_altar.selection_requested.connect(expedition_menu.open_menu)
 	expedition_menu.menu_closed.connect(expedition_altar.restore_prompt)
@@ -65,8 +66,12 @@ func _on_dialogue_closed(completed: bool) -> void:
 		_active_dialogue_npc.restore_prompt()
 	_active_dialogue_npc = null
 	if completed and _show_skill_information_after_dialogue:
-		character_menu.open_menu()
+		character_menu.open_skillkeeper_menu()
 	elif completed and _show_weapon_shop_after_dialogue:
 		weapon_shop_menu.open_menu()
 	_show_skill_information_after_dialogue = false
 	_show_weapon_shop_after_dialogue = false
+
+
+func _on_skill_awakened(skill_name: String) -> void:
+	combat_hud.show_story_message("%s AWAKENED  •  PRESS 2 TO CAST" % skill_name, 2.8)

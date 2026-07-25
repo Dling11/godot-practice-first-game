@@ -64,6 +64,7 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 054 | Make Rootling the compact Stage 1 rooted melee enemy | Rootling art, locked ground-jab authority, Stage 1 wave composition, or Rootbound escalation |
 | 055 | Gate authored reveals and give recurring characters reusable portraits | Pre-fight dialogue, encounter gates, character portraits, bestiary art, or expedition previews |
 | 056 | Bake combat-stage TileMaps from authored layout resources | Forest tiles, stage composition, landmark placement, terrain authoring, or environment folders |
+| 057 | Complete the pre-Stage-IV progression and control pass | XP curve, Eira awakening, Skill 2 invulnerability/cancel, explicit equip, HUD input, dash/options UI |
 
 ## New Decisions
 

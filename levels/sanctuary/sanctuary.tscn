@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" path="res://ui/shops/weapon_shop_menu.tscn" id="16_weapon_shop"]
 [ext_resource type="Script" uid="uid://ds6tx8vmvokpu" path="res://gameplay/audio/stage_music.gd" id="17_music_script"]
 [ext_resource type="AudioStream" uid="uid://c1vj618m4ysv1" path="res://assets/audio/music/cathedral_in_the_forest.ogg" id="18_music"]
+[ext_resource type="PackedScene" path="res://ui/pause_menu.tscn" id="19_pause"]
 
 [node name="Sanctuary" type="Node" unique_id=1171524165 node_paths=PackedStringArray("player", "combat_hud", "character_menu", "skillkeeper", "weapon_merchant", "expedition_altar", "dialogue_panel", "expedition_menu", "weapon_shop_menu")]
 script = ExtResource("1_flow")
@@ -112,3 +113,5 @@ player = NodePath("../../World/Actors/Player")
 
 [node name="WeaponShopMenu" parent="UI" node_paths=PackedStringArray("player") instance=ExtResource("16_weapon_shop")]
 player = NodePath("../../World/Actors/Player")
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("19_pause")]

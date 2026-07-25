@@ -340,7 +340,7 @@ size_flags_horizontal = 3
 
 [node name="ArmoryHint" type="Label" parent="Panel/Margin/Root/PageHost/GearPage/Armory/ArmoryHeader"]
 layout_mode = 2
-text = "CLICK TO EQUIP"
+text = "SELECT • THEN EQUIP"
 theme_override_colors/font_color = Color(0.45, 0.5, 0.42, 1)
 theme_override_font_sizes/font_size = 7
 
@@ -459,6 +459,14 @@ vertical_alignment = 1
 autowrap_mode = 2
 theme_override_colors/font_color = Color(0.68, 0.7, 0.76, 1)
 theme_override_font_sizes/font_size = 9
+
+[node name="AwakenButton" type="Button" parent="Panel/Margin/Root/PageHost/SkillsPage"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "AWAKEN SKILL  •  FREE"
 
 [node name="Footer" type="Label" parent="Panel/Margin/Root"]
 layout_mode = 2

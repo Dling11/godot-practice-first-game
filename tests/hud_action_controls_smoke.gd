@@ -1,0 +1,59 @@
+extends SceneTree
+
+const PlayerScene = preload("res://entities/player/player.tscn")
+const HudScene = preload("res://ui/combat_hud.tscn")
+const PauseMenuScene = preload("res://ui/pause_menu.tscn")
+
+
+func _initialize() -> void:
+	call_deferred("_run")
+
+
+func _run() -> void:
+	root.get_node("RunSession").reset_run()
+	var player := PlayerScene.instantiate() as Player
+	var hud := HudScene.instantiate() as CombatHUD
+	var pause_menu := PauseMenuScene.instantiate() as PauseMenu
+	root.add_child(player)
+	root.add_child(hud)
+	root.add_child(pause_menu)
+	hud.bind_player(player)
+	await process_frame
+
+	hud.options_button.pressed.emit()
+	if not pause_menu.visible or not paused:
+		_fail("The top-right Options button did not open the shared pause menu.")
+		return
+	pause_menu.close_menu()
+
+	hud.dash_slot.activation_button.pressed.emit()
+	if (
+		not player.evade_component.is_dashing()
+		or not hud.dash_slot.activation_button.disabled
+		or hud.dash_slot.state_label.text == "READY"
+	):
+		_fail("The clickable dash HUD control did not start dash and display its cooldown.")
+		return
+	player.evade_component.cancel_evade()
+	if hud.dash_slot.activation_button.disabled or hud.dash_slot.state_label.text != "READY":
+		_fail("The dash HUD control did not return to Ready after cancellation.")
+		return
+
+	var debug_event := InputEventAction.new()
+	debug_event.action = "debug_max_progression"
+	debug_event.pressed = true
+	player._unhandled_input(debug_event)
+	var skill_two := hud.get_skill_slot(2)
+	skill_two.activation_button.pressed.emit()
+	if not player.ability_2_component.is_casting() or player.attack_component.phase != MeleeAttackComponent.Phase.IDLE:
+		_fail("Clicking a skill HUD slot did not cast only the skill.")
+		return
+
+	print("HUD action controls smoke test passed.")
+	quit(0)
+
+
+func _fail(message: String) -> void:
+	paused = false
+	push_error(message)
+	quit(1)

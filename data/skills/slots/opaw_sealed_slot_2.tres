@@ -8,4 +8,6 @@ script = ExtResource("1_script")
 slot_number = 2
 input_action = &"player_skill_2"
 locked_icon = ExtResource("2_locked")
-unlock_hint = "LEVEL 3"
+locked_title = "Consecutive Thrust"
+locked_description = "Seven spirit-lance strikes. Become invulnerable during the technique, or dash to cancel it."
+unlock_hint = "LEVEL 3 - VISIT EIRA"

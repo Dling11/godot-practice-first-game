@@ -23,8 +23,10 @@ func _run() -> void:
 		or not is_equal_approx(ConsecutiveThrust.get_forward_lance_reach_pixels(), 128.0)
 		or not is_equal_approx(ConsecutiveThrust.get_forward_lance_half_width_pixels(), 13.0)
 		or ConsecutiveThrust.hitbox_shape == null
+		or not ConsecutiveThrust.grants_invulnerability
+		or not ConsecutiveThrust.dash_cancelable
 	):
-		_fail("Consecutive Thrust definition is missing its seven-strike 128x26 directional contract.")
+		_fail("Consecutive Thrust definition is missing its seven-strike, invulnerable, dash-cancel contract.")
 		return
 	var rapid_vfx_atlas := RapidVfxAtlas.get_image()
 	if rapid_vfx_atlas == null or rapid_vfx_atlas.is_empty():
@@ -85,8 +87,19 @@ func _run() -> void:
 		hit_staggers.append(info.stagger_seconds)
 	)
 	slot.activation_button.pressed.emit()
-	if not ability.is_casting() or player.request_primary_attack() or player.request_evade(Vector2.RIGHT):
-		_fail("Consecutive Thrust did not commit correctly against normal attack and evade input.")
+	if not ability.is_casting() or not player.health_component.is_invulnerable:
+		_fail("Consecutive Thrust did not grant invulnerability for its committed cast.")
+		return
+	if not player.request_evade(Vector2.RIGHT) or ability.is_casting() or not player.evade_component.is_dashing():
+		_fail("Dash did not cancel Consecutive Thrust into an evade.")
+		return
+	player.evade_component.cancel_evade()
+	if player.health_component.is_invulnerable:
+		_fail("Consecutive Thrust and dash cancellation left invulnerability stuck on.")
+		return
+	ability.cooldown_remaining = 0.0
+	if not player.request_ability(2) or player.request_primary_attack():
+		_fail("Consecutive Thrust could not restart cleanly after its dash-cancel test.")
 		return
 	for frame in range(105):
 		await physics_frame
@@ -95,6 +108,9 @@ func _run() -> void:
 			return
 	if ability.is_casting():
 		_fail("Consecutive Thrust did not complete within its authored action window.")
+		return
+	if player.health_component.is_invulnerable:
+		_fail("Consecutive Thrust did not release invulnerability after recovery.")
 		return
 	if observed_strikes != [0, 1, 2, 3, 4, 5, 6]:
 		_fail("Consecutive Thrust did not emit seven ordered strike windows.")

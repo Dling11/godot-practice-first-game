@@ -80,7 +80,7 @@ Default world light travels from upper-left toward lower-right. Highlights, cast
 - Tall props use independent base/canopy or base/roof layers when the player can walk behind them.
 - Prop collision covers the traversability footprint, never the entire visible crown or silhouette.
 - Landmarks guide travel and combat spacing. Avoid random dense prop scattering.
-- Shared forest terrain stays bright and low-contrast; Rootbound Hollow shifts to maroon bark, muted plum-violet roots, bruised moss, and sparse toxic-lime fissures while keeping the arena center quiet enough for warnings and enemy silhouettes.
+- Shared forest terrain stays bright and low-contrast. Rootbound Hollow must still read as that forest dying: retain roughly half living grass/moss around the approach, then transition through dirt blends and root scars into maroon bark, muted plum-violet roots, bruised moss, and sparse toxic-lime fissures. Keep the arena center quiet enough for warnings and enemy silhouettes.
 - Sanctuary assets reuse the forest's lighting and palette while introducing maintained paths, inhabited structures, warm windows, cloth, and the central divine fountain.
 - Fountain visuals should separate base stone, water/glow animation, shadow, collision, and optional interaction marker.
 

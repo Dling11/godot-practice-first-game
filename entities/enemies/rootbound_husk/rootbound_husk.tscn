@@ -12,8 +12,9 @@
 [ext_resource type="PackedScene" path="res://ui/world/enemy_health_bar.tscn" id="11_health_bar"]
 [ext_resource type="Script" uid="uid://c8rfkjxuqq0u8" path="res://gameplay/combat/knockback_component.gd" id="12_knockback"]
 [ext_resource type="Script" uid="uid://k00adtwpm5uh" path="res://entities/enemies/components/enemy_reward_component.gd" id="13_rewards"]
-[ext_resource type="Script" uid="uid://dyes4qkflxig2" path="res://gameplay/audio/actor_action_sfx.gd" id="14_sfx"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/enemies/rootbound_husk/rootbound_husk_root_spear.wav" id="15_root_spear"]
+[ext_resource type="Script" path="res://gameplay/audio/rootbound_husk_action_sfx.gd" id="14_sfx"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/enemies/rootbound_husk/rootbound_husk_root_eruption.wav" id="15_root_eruption"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/enemies/rootbound_husk/rootbound_husk_root_creak.wav" id="16_root_creak"]
 
 [sub_resource type="CircleShape2D" id="foot"]
 radius = 16.0
@@ -83,20 +84,26 @@ script = ExtResource("8_health")
 script = ExtResource("13_rewards")
 health_component = NodePath("../HealthComponent")
 
-[node name="ActionSfx" type="Node2D" parent="." unique_id=819672248 node_paths=PackedStringArray("primary_player", "secondary_player")]
+[node name="ActionSfx" type="Node2D" parent="." unique_id=819672248 node_paths=PackedStringArray("wind_up_player", "eruption_player", "earth_player")]
 script = ExtResource("14_sfx")
-primary_player = NodePath("RootSpear")
-secondary_player = NodePath("GroundRumble")
+wind_up_player = NodePath("RootCreak")
+eruption_player = NodePath("RootEruption")
+earth_player = NodePath("GroundRumble")
 
-[node name="RootSpear" type="AudioStreamPlayer2D" parent="ActionSfx" unique_id=1534854978]
-stream = ExtResource("15_root_spear")
-volume_db = -9.0
+[node name="RootCreak" type="AudioStreamPlayer2D" parent="ActionSfx"]
+stream = ExtResource("16_root_creak")
+volume_db = -11.0
+bus = &"SFX"
+
+[node name="RootEruption" type="AudioStreamPlayer2D" parent="ActionSfx" unique_id=1534854978]
+stream = ExtResource("15_root_eruption")
+volume_db = -8.0
 bus = &"SFX"
 
 [node name="GroundRumble" type="AudioStreamPlayer2D" parent="ActionSfx"]
-stream = ExtResource("15_root_spear")
-volume_db = -15.0
-pitch_scale = 0.68
+stream = ExtResource("15_root_eruption")
+volume_db = -16.0
+pitch_scale = 0.62
 bus = &"SFX"
 
 [node name="EnemyHealthBar" parent="." unique_id=303883607 node_paths=PackedStringArray("health_component") instance=ExtResource("11_health_bar")]
@@ -174,10 +181,11 @@ shape = SubResource("root_burst")
 [connection signal="facing_changed" from="." to="Visual" method="set_facing"]
 [connection signal="movement_changed" from="." to="Visual" method="set_moving"]
 [connection signal="root_attack_erupted" from="." to="Visual" method="play_root_attack"]
-[connection signal="root_attack_started" from="." to="ActionSfx" method="play_primary"]
-[connection signal="root_attack_started" from="." to="ActionSfx" method="play_secondary"]
+[connection signal="root_attack_started" from="." to="ActionSfx" method="play_eruption"]
+[connection signal="root_attack_telegraphed" from="." to="ActionSfx" method="play_wind_up"]
 [connection signal="root_attack_telegraphed" from="." to="Visual" method="show_root_attack_telegraph"]
 [connection signal="root_burst_erupted" from="." to="Visual" method="play_root_burst"]
+[connection signal="root_burst_telegraphed" from="." to="ActionSfx" method="play_wind_up"]
 [connection signal="root_burst_telegraphed" from="." to="Visual" method="show_root_burst_telegraph"]
 [connection signal="state_changed" from="." to="Visual" method="play_state"]
 [connection signal="damaged" from="HealthComponent" to="Visual" method="play_hurt"]

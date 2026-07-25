@@ -10,6 +10,7 @@ signal cooldown_started(duration_seconds: float)
 signal cooldown_finished
 signal strike_started(strike_index: int, strike_count: int, duration_seconds: float)
 signal hit_landed(target: HurtboxComponent, info: DamageInfo)
+signal invulnerability_changed(is_invulnerable: bool)
 
 @export var definition: AbilityDefinition
 @export var hitbox: MeleeHitbox
@@ -68,6 +69,8 @@ func request_cast(direction: Vector2, equipped_weapon_damage := 0.0) -> bool:
 	collision_shape.shape = definition.hitbox_shape
 	cooldown_remaining = definition.cooldown_seconds
 	ability_started.emit()
+	if definition.grants_invulnerability:
+		invulnerability_changed.emit(true)
 	cooldown_started.emit(definition.cooldown_seconds)
 	_enter_phase(Phase.WIND_UP, definition.wind_up_seconds)
 	set_physics_process(true)
@@ -94,6 +97,8 @@ func cancel_cast() -> void:
 	if phase != Phase.IDLE:
 		phase = Phase.IDLE
 		_phase_time_remaining = 0.0
+		if definition != null and definition.grants_invulnerability:
+			invulnerability_changed.emit(false)
 		ability_finished.emit()
 	_update_processing()
 
@@ -125,6 +130,8 @@ func _advance_phase() -> void:
 			_enter_phase(Phase.RECOVERY, definition.recovery_seconds)
 		Phase.RECOVERY:
 			phase = Phase.IDLE
+			if definition.grants_invulnerability:
+				invulnerability_changed.emit(false)
 			ability_finished.emit()
 
 

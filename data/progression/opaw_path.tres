@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1")
 maximum_level = 10
-total_experience_by_level = PackedInt32Array(0, 20, 50, 90, 140, 200, 270, 350, 440, 540)
+total_experience_by_level = PackedInt32Array(0, 100, 250, 450, 700, 1000, 1350, 1750, 2200, 2700)

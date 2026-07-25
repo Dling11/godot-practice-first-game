@@ -39,9 +39,18 @@ func _run() -> void:
 	if husk.attack_profile == null:
 		_fail("Rootbound Husk must use its dedicated attack profile.")
 		return
-	var root_spear_sfx := husk.get_node("ActionSfx/RootSpear") as AudioStreamPlayer2D
-	if root_spear_sfx == null or root_spear_sfx.stream == null or root_spear_sfx.bus != &"SFX":
-		_fail("Rootbound Husk root attacks must use their dedicated SFX-bus stream.")
+	var root_creak_sfx := husk.get_node("ActionSfx/RootCreak") as AudioStreamPlayer2D
+	var root_eruption_sfx := husk.get_node("ActionSfx/RootEruption") as AudioStreamPlayer2D
+	if (
+		root_creak_sfx == null
+		or root_creak_sfx.stream == null
+		or root_creak_sfx.bus != &"SFX"
+		or root_eruption_sfx == null
+		or root_eruption_sfx.stream == null
+		or root_eruption_sfx.bus != &"SFX"
+		or root_creak_sfx.stream == root_eruption_sfx.stream
+	):
+		_fail("Rootbound Husk attacks must separate woody telegraph and root-eruption SFX cues.")
 		return
 	var ground_rumble_sfx := husk.get_node("ActionSfx/GroundRumble") as AudioStreamPlayer2D
 	if ground_rumble_sfx == null or ground_rumble_sfx.stream == null or ground_rumble_sfx.pitch_scale >= 0.8:

@@ -42,7 +42,22 @@ func _run() -> void:
 		_fail("Stage 3 is not using the organized Rootbound Hollow TileSet.")
 		return
 	if ground.get_used_cells().size() != 336:
-		_fail("Stage 3's 24x14 corrupted TileMap did not populate completely.")
+		_fail("Stage 3's 24x14 decaying-forest TileMap did not populate completely.")
+		return
+	var corrupted_cells := 0
+	var living_cells := 0
+	for cell in ground.get_used_cells():
+		match ground.get_cell_source_id(cell):
+			0:
+				corrupted_cells += 1
+			1:
+				living_cells += 1
+	var corruption_ratio := float(corrupted_cells) / float(ground.get_used_cells().size())
+	if corruption_ratio < 0.4 or corruption_ratio > 0.5:
+		_fail("Stage 3 corruption must cover 40-50%% of the map; received %.2f%%." % (corruption_ratio * 100.0))
+		return
+	if living_cells + corrupted_cells != 336:
+		_fail("Stage 3 contains cells outside its living-forest and Rootbound terrain sources.")
 		return
 	var arena_seal := stage.get_node_or_null("World/Actors/RootboundArenaSeal") as StaticBody2D
 	if arena_seal == null or not arena_seal.has_node("NavigationCutout"):

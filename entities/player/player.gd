@@ -23,6 +23,7 @@ const AbilityComponentScript = preload("res://gameplay/abilities/ability_compone
 @export var character_id: StringName = &"opaw"
 @export var character_class_id: StringName = &"warrior"
 @export var skill_loadout: SkillLoadoutDefinition
+@export var awakened_skill_loadout: SkillLoadoutDefinition
 @export var debug_test_skill_loadout: SkillLoadoutDefinition
 @export var weapon_catalog: WeaponCatalogDefinition
 
@@ -41,6 +42,7 @@ var is_defeated := false
 var _was_moving := false
 var _buffered_action := BufferedAction.NONE
 var _buffered_action_direction := Vector2.DOWN
+var _pending_weapon_definition: WeaponDefinition
 
 
 func _ready() -> void:
@@ -49,11 +51,13 @@ func _ready() -> void:
 	attack_component.phase_changed.connect(_on_attack_phase_changed)
 	ability_1_component.ability_finished.connect(_restore_ability_presentation_facing)
 	ability_2_component.ability_finished.connect(_restore_ability_presentation_facing)
+	_apply_story_skill_loadout()
 	_apply_inventory_weapon()
 	facing_changed.emit(facing_direction)
 
 
 func _physics_process(delta: float) -> void:
+	_try_apply_pending_weapon()
 	var move_direction := input_source.get_move_direction()
 	if not move_direction.is_zero_approx():
 		_set_movement_facing_direction(move_direction)
@@ -89,11 +93,11 @@ func _physics_process(delta: float) -> void:
 		movement_bounds.end
 	)
 
-	if input_source.is_primary_attack_just_pressed():
-		request_primary_attack()
-
-
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("player_attack_primary"):
+		if request_primary_attack():
+			get_viewport().set_input_as_handled()
+		return
 	if not event.is_action_pressed("debug_max_progression"):
 		return
 	if progression_component.apply_debug_testing_preset():
@@ -127,12 +131,15 @@ func request_primary_attack() -> bool:
 
 
 func request_evade(direction: Vector2) -> bool:
-	if (
-		is_defeated
-		or attack_component.phase != attack_component.Phase.IDLE
-		or is_any_ability_casting()
-	):
+	if is_defeated or attack_component.phase != attack_component.Phase.IDLE:
 		return false
+	if direction.is_zero_approx() or not evade_component.is_evade_available():
+		return false
+	var active_ability := get_active_ability_component()
+	if active_ability != null:
+		if active_ability.definition == null or not active_ability.definition.dash_cancelable:
+			return false
+		active_ability.cancel_cast()
 	return evade_component.request_evade(direction)
 
 
@@ -213,15 +220,56 @@ func equip_owned_weapon(item: EquipmentDefinition) -> bool:
 	var inventory := get_node_or_null("/root/WeaponInventory")
 	if inventory == null or not inventory.owns_weapon(item.item_id):
 		return false
-	if not set_weapon_definition(item.weapon_definition):
+	if not inventory.equip_weapon(character_id, character_class_id, item):
 		return false
-	return inventory.equip_weapon(character_id, character_class_id, item)
+	if set_weapon_definition(item.weapon_definition):
+		_pending_weapon_definition = null
+	else:
+		_pending_weapon_definition = item.weapon_definition
+	return true
+
+
+func can_awaken_skill_2() -> bool:
+	var story_state := get_node_or_null("/root/StoryState")
+	return (
+		progression_component.level >= 3
+		and awakened_skill_loadout != null
+		and (story_state == null or not story_state.has_story_flag(&"opaw_consecutive_thrust_awakened"))
+	)
+
+
+func awaken_skill_2() -> bool:
+	if not can_awaken_skill_2():
+		return false
+	var story_state := get_node_or_null("/root/StoryState")
+	if story_state != null:
+		story_state.remember_story(&"opaw_consecutive_thrust_awakened")
+	skill_loadout = awakened_skill_loadout
+	skill_loadout_changed.emit()
+	return true
 
 
 func _apply_inventory_weapon() -> void:
 	var equipped_item := get_equipped_weapon_item()
 	if equipped_item == null or not set_weapon_definition(equipped_item.weapon_definition):
 		push_error("Player requires a valid equipped weapon from its weapon catalog.")
+
+
+func _try_apply_pending_weapon() -> void:
+	if _pending_weapon_definition == null:
+		return
+	if set_weapon_definition(_pending_weapon_definition):
+		_pending_weapon_definition = null
+
+
+func _apply_story_skill_loadout() -> void:
+	var story_state := get_node_or_null("/root/StoryState")
+	if (
+		story_state != null
+		and story_state.has_story_flag(&"opaw_consecutive_thrust_awakened")
+		and awakened_skill_loadout != null
+	):
+		skill_loadout = awakened_skill_loadout
 
 
 func face_toward(world_position: Vector2) -> void:
@@ -354,8 +402,8 @@ func _restore_ability_presentation_facing() -> void:
 
 
 func _enable_debug_test_loadout() -> void:
-	## F9 previews every fully authored test skill. The immutable normal loadout
-	## remains sealed until Eira's future awakening flow owns normal unlocks.
+	## F9 previews every fully authored test skill without writing Eira's normal
+	## session awakening flag.
 	if debug_test_skill_loadout == null or skill_loadout == debug_test_skill_loadout:
 		return
 	skill_loadout = debug_test_skill_loadout

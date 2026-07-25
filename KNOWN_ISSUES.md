@@ -16,7 +16,7 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 ### KI-010 - Expedition pacing still needs human controller playtesting
 
 - **Status:** Open
-- **Impact:** Automated coverage verifies the four-enemy cap, reinforcement warning/release order, queue completion, crowd spacing, Stage 3's ten-Rootling gated brood, authored TileMap population, landmark navigation cutouts, and individual attack behavior, but cannot judge clear-time satisfaction, whether ten Rootlings overstay their narrative purpose, portrait readability, terrain repetition, landmark scale, damage pressure, camera readability, or skill feel at 960x540.
+- **Impact:** Automated coverage verifies the four-enemy cap, reinforcement warning/release order, queue completion, crowd spacing, Stage 3's ten-Rootling gated brood, its 43.75% Rootbound/56.25% living-forest terrain contract, authored TileMap population, landmark navigation cutouts, and individual attack behavior, but cannot judge clear-time satisfaction, whether ten Rootlings overstay their narrative purpose, portrait readability, decay-transition repetition, landmark scale, damage pressure, camera readability, or skill feel at 960x540.
 - **Planned resolution:** Record timed Stage 1, Stage 2, and Rootbound Hollow controller runs using normal and F9 test loadouts, reviewing the new authored routes and corruption contrast alongside combat pacing; adjust authored cadence or environment composition only from observed evidence.
 - **Workaround:** Keep the current one-at-a-time warned reinforcements, existing low-health starter enemies, and four-enemy ceiling; do not compensate with health inflation or a larger crowd.
 
@@ -37,9 +37,9 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 ### KI-005 - Skill awakening, expanded equipment balance, and disk persistence remain incomplete
 
 - **Status:** Open
-- **Impact:** Ashwood/Iron ownership, one 18-coin Orren purchase, class-gated equip commands, and defeat/scene retention now work in memory, but closing the application loses them. Consecutive Thrust is complete only in F9's debug test loadout; normal Eira awakening, slots 3-4, drops, selling, armor/stat aggregation, higher tiers, and disk persistence remain incomplete.
-- **Planned resolution:** Implement Eira's free level-eligibility awakening for Consecutive Thrust next, then approve a versioned disk profile and expand acquisition/balance only with authored enemies and content.
-- **Workaround:** Treat Ashwood as the permanent fallback and Iron as the complete beginner shop slice. Do not expose legacy/high-tier previews, sell skills, or claim session ownership is a disk save.
+- **Impact:** Ashwood/Iron ownership, explicit equip, and Level-3 Eira awakening for Consecutive Thrust work across scene replacement in memory, but closing the application loses them. Slots 3-4, drops, selling, armor/stat aggregation, higher tiers, and disk persistence remain incomplete.
+- **Planned resolution:** Approve a versioned disk profile before expanding acquisition/balance, then author slots 3-4 only alongside content that supports their power.
+- **Workaround:** Treat Ashwood/Iron and Eira's Skill 2 awakening as the complete session-only beginner slice. Do not expose legacy/high-tier previews, sell skills, or claim session ownership is a disk save.
 
 ### KI-006 - Title audio settings are session-only
 
@@ -55,12 +55,12 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 - **Planned resolution:** Approve the first versioned disk-profile boundary, then author the Thornbound Warden and Cinder Sigil to open The Rootbound Hollow through normal progression before advancing to Stage IV.
 - **Workaround:** The implemented forest sequence remains playable continuously from Stage 1 through Stage 3; Sanctuary replay buttons still enforce their authored requirements, and unbuilt future routes remain sealed.
 
-### KI-009 - Ground targeting and normal Skill 2 awakening are not implemented
+### KI-009 - Ground targeting and later skill awakenings are not implemented
 
 - **Status:** Open
-- **Impact:** Piercing Rush and F9-only Consecutive Thrust prove immediate-direction keyboard/controller/click activation, weapon scaling, cast direction locking, dedicated combat audio, exaggerated effect-only presentation, and Light/Elite/Boss crowd-control resistance. Six authored Stage 1 waves and seven authored Stage 2 waves now provide the current mixed-role pacing slice through controlled reinforcements at a four-enemy cap. No ground-target cursor/preview exists; normal progression still seals Skill 2 until Eira's future ritual, and slots 3-4 remain unimplemented.
-- **Planned resolution:** Feel-test both authored techniques and the new encounter clear times, then measure skill uptime, crowd readability, and frame stability before any higher enemy cap. Build the reusable ground-target confirmation flow before the first skill that actually requires it, then return to Eira's free awakening authority.
-- **Workaround:** Use F9 in a debug build to compare Ashwood/Iron and both completed Warrior skills quickly. Treat ground targeting, normal Skill 2 awakening, later skills, and encounter sizes above four active enemies as unimplemented.
+- **Impact:** Piercing Rush and normally awakenable Consecutive Thrust prove immediate-direction keyboard/controller/click activation, weapon scaling, cast direction locking, dedicated combat audio, effect-only presentation, and control resistance. No ground-target cursor/preview exists, and slots 3-4 remain unimplemented.
+- **Planned resolution:** Feel-test both techniques and encounter clear times before any higher enemy cap. Build reusable target confirmation only before the first skill that actually requires it, then author later Eira awakenings.
+- **Workaround:** Use Eira at Level 3 for normal Skill 2 or F9 for rapid debug comparison. Treat ground targeting, later skills, and encounter sizes above four active enemies as unimplemented.
 
 ## Current Bugs
 

@@ -1,5 +1,24 @@
 # Changelog
 
+## 2026-07-26 - Pre-Stage-IV Progression, Equipment, and Combat-UI Pass
+
+- Rebalanced Opaw's cumulative level thresholds to `0/100/250/450/700/1000/1350/1750/2200/2700`; the authored 304 XP in Stage I now finishes near Level 3 instead of Level 7.
+- Added Eira's normal free Consecutive Thrust awakening at Level 3, clear `AWAKEN SKILL • FREE` UI wording, session-only story memory, and cross-scene loadout restoration.
+- Made Consecutive Thrust invulnerable for its full cast and explicitly cancelable into dash while retaining its seven hits, 225% total damage, 128x26 lane, and five-second cooldown.
+- Changed owned weapon cards to selection-only previews and added explicit Equip buttons in both Orren's shop and the Character detail panel. Valid swaps paused during a committed action now apply at the next safe idle frame.
+- Routed pointer-bound basic attack through unhandled input so native skill/dash/menu buttons consume clicks first; added a clickable dash cooldown slot, top-right Options button, larger vitality panel, clearer level wording, and slightly smaller skill slots.
+- Rebuilt the Rootbound Husk cue as separate woody telegraph/creak and snapping-root eruption WAVs with a low earth layer, driven by dedicated attack signals.
+- Rebuilt the canonical Mireling `SpriteFrames` resource after validation exposed `dead_left` pointing at locomotion art; every collapse direction now uses the authored action sheet again.
+- Added focused Eira-awakening and HUD-action smokes; expanded progression, weapon, Consecutive Thrust, Husk audio, and Sanctuary route coverage.
+
+## 2026-07-26 - Rootbound Hollow Living-Forest Decay Pass
+
+- Refactored Stage III from a nearly total wicked treatment into a dual-source dying forest: 147 of 336 cells (43.75%) use Rootbound terrain and 189 cells (56.25%) retain living forest.
+- Concentrated corruption around the ritual arena and Rootbound seal, then extended irregular tendrils into the southern approach through mossy dirt, grass/dirt blends, and root-scarred living tiles.
+- Extended `AuthoredGroundLayout` to support mixed TileSet sources through `Vector3i(x, y, source_id)` legend entries while preserving all existing `Vector2i` layouts.
+- Registered the shared verdant atlas as source 1 in Stage III's TileSet, rebaked the editable scene cells, and added focused ratio/source validation.
+- Hardened the ground bake tool so encounter-owned gated-wave overrides are reasserted before packing; restored and verified Stage III's Wave 2 dialogue gate.
+
 ## 2026-07-23 - Authored Forest TileMaps and Rootbound Hollow Environment
 
 - Replaced the four-tile seeded-random combat ground with two organized sixteen-tile atlases: a shared bright-forest set for Stages I-II and a dedicated maroon/violet Rootbound Hollow set for Stage III.

@@ -6,7 +6,7 @@ The setting centers on gods, demons, forgotten civilizations, and **The One Abov
 
 ## Current Status
 
-Pre-alpha title-to-Sanctuary-to-three-stage prototype. F5 opens a mouse/keyboard/gamepad-ready Battle of Gods title screen with session-audio settings; Begin the Awakening fades into a safe generated-pixel Sanctuary with a separate divine fountain, walk-in angel portal, Skillkeeper Eira, and Armskeeper Orren. The active mortal player is Opaw, a compact armless Novice Warrior whose stable-scale body uses a detached equippable sword; his complete previous Wayfarer model is preserved as a runtime backup. Stage 1 teaches Mireling, Rootling, and Thrall combat across six reinforcement-paced waves; Stage 2, `Thorns of the Forgotten Grove`, escalates those roles with the Bramble Spitter across seven waves and continues into Stage 3, `The Rootbound Hollow`. Defeating its Rootbound Husk mini-boss opens the return portal to Sanctuary. An in-memory level-10 XP/coin run, reusable four-slot skills, class-gated owned weapon inventory, Orren shop, and Ashwood/Iron switching are active. Disk saving, drops, armor bonuses, character switching, and additional skills are not yet implemented.
+Pre-alpha title-to-Sanctuary-to-three-stage prototype. F5 opens a mouse/keyboard/gamepad-ready Battle of Gods title screen with session-audio settings; Begin the Awakening fades into a safe generated-pixel Sanctuary with Skillkeeper Eira and Armskeeper Orren. Opaw is a compact armless Novice Warrior with a detached equippable sword. Stages I-III form one continuous forest arc ending with the Rootbound Husk mini-boss and a return portal to Sanctuary. The in-memory level-10 XP/coin run, Level-3 Eira awakening for Consecutive Thrust, reusable four-slot skills, explicit class-gated weapon equipping, Orren shop, dash cooldown HUD, and Ashwood/Iron switching are active. Disk saving, drops, armor bonuses, character switching, and skills 3-4 are not yet implemented.
 
 ## Intended Technology
 
@@ -149,17 +149,18 @@ The active prototype controls are:
 | Primary attack: equipped sword | Left mouse | Right trigger |
 | Dodge | Space | South face button |
 | Skill 1: Piercing Rush | 1, Q legacy fallback, or click its HUD slot | Left shoulder |
-| Skill 2: Consecutive Thrust | 2 or click its HUD slot after debug F9 | Reserved |
+| Skill 2: Consecutive Thrust | 2 or click its HUD slot after Level-3 Eira awakening | Reserved |
 | Skill slots 3-4 | 3 / 4 (reserved) | Reserved |
 | Open character / gear / skills | Tab or click the HUD satchel button | Not assigned |
 | Interact / enter portal | F | West face button |
 | Close / cancel modal | Escape or visible mouse button | UI Cancel |
+| Open Options | Escape/Start or top-right Options button | Start |
 | Rise after defeat | R | North face button |
 | Debug test loadout | F9 (debug builds: level 10, 999 coins, all authored skills and gear) | Not assigned |
 
-Movement, movement-owned facing, left-click primary attack, dash, Piercing Rush, Consecutive Thrust, portal interaction, and arena restart after defeat are active. Passive mouse motion no longer turns Opaw, and right mouse is currently unassigned. Pressing basic attack during dash movement queues one normal sword attack for the exact end of the dash; pressing it during dash recovery cancels that recovery into the same attack. Piercing Rush moves about 50 pixels along Opaw's facing, sends a 128x30 forward lance that deals 180% equipped-weapon damage, and can be cast with `1`, Q, left shoulder, or its ready HUD slot. Consecutive Thrust is a stationary 1.34-second rapid forward flurry through a 128x26 lane: seven lances deal 18%, 19%, 20%, 21%, 22%, 25%, then 100% weapon damage (225% total if every hit lands). Light enemies are briefly staggered by every lance, so their current attack is canceled for the flurry; only the final lance pushes targets and triggers heavy hit feedback. Elite enemies receive reduced control, while Boss enemies ignore knockback and stagger entirely. The audio is a quiet charge, three spaced steel-thrust beats, a strong final sword thrust, and a contact-only blade impact. Normal progression still leaves slot 2 sealed until Eira's future free awakening; F9 equips the two currently authored skills, grants all currently authored Warrior-compatible weapons to the test inventory, sets level 10 and 999 coins, refreshes HUD/menu cards, and creates no disk save.
+Movement, movement-owned facing, left-click primary attack, dash, Piercing Rush, Consecutive Thrust, portal interaction, and arena restart after defeat are active. Passive mouse motion no longer turns Opaw, and right mouse is unassigned. Pressing basic attack during dash movement queues one normal sword attack for dash completion; pressing it during vulnerable recovery cancels that recovery into the attack. Piercing Rush moves about 50 pixels along Opaw's facing, sends a 128x30 forward lance for 180% equipped-weapon damage, and grants no invulnerability. Consecutive Thrust is a stationary 1.34-second, seven-hit 128x26 flurry for 225% total weapon damage. It grants full-cast invulnerability and may be canceled into dash; only its final lance pushes targets and triggers heavy feedback. Level 3 creates eligibility and Eira awakens it free. F9 remains a debug shortcut that grants the authored skills/gear, level 10, and 999 coins without creating a disk save.
 
-In Sanctuary, approach Skillkeeper Eira or Armskeeper Orren and press F. To use the angel portal, walk around either side of the standalone fountain, cross the open courtyard, and ascend the portal's center stairs; its prompt appears only at the doorway threshold. The character surface opens from physical Tab or the clickable top-left satchel button. Dialogue and menu controls support mouse click or arrow-key focus plus Enter; Escape cancels the active modal, and the character surface also has a top-right close button. Its Gear tab lists owned weapons; clicking a compatible sword equips it immediately. Ashwood is Opaw's permanent fallback, while Orren sells the Warrior-only Iron Sword for 18 coins. Skills are never sold: future level-eligible skills will be awakened through Eira. The portal builds its routes from expedition data: Forgotten Grove opens after Sanctuary awakening, while later routes display real unmet level/story/boss/discovery/key-item requirements and remain sealed until their scenes exist.
+In Sanctuary, approach Skillkeeper Eira or Armskeeper Orren and press F. The character surface opens from Tab or the HUD satchel. Eira's Skill page shows `AWAKEN SKILL • FREE` when Consecutive Thrust is Level-3 eligible. Gear cards select a preview; use the explicit Equip button to commit the weapon. Orren sells Iron Sword for 18 coins, then his purchase action changes to Equip when it is owned. HUD buttons consume their own pointer clicks, so clicking dash or a skill never also triggers basic attack. The angel portal builds routes from expedition data and explains unmet requirements.
 
 ## Verification
 
@@ -192,6 +193,8 @@ Run the current headless movement smoke test with:
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/ui_theme_icon_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/title_screen_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/sanctuary_hub_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/skill_awakening_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/hud_action_controls_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/editor_preview_backdrop_smoke.gd'
 ```
 
