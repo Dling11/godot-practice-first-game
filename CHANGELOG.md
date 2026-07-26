@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-07-26 - Versioned Core Save-Profile Schema
+
+- Added `SaveService` as the profile-schema coordinator and registered it after the existing state authorities.
+- Added explicit version-1 snapshot validation/restoration for run XP, coins, current HP, weapon ownership, and per-character equipped weapon while composing the existing story snapshot.
+- Reserved extension seams for future material inventory, recipe discovery, stage claims, and regional progress without implementing those systems.
+- Added focused validation for full profile reconstruction, incompatible nested-version rejection, and prevention of partial live-state mutation.
+- Disk files, autosave, backup/recovery, migration, and title-screen Continue remain intentionally unimplemented for the next Segment 1 slice.
+
+## 2026-07-26 - Forest Loot, Crafting, and Regional Material Design Lock
+
+- Approved the long-term Forest loop as Fight -> Loot -> Craft -> Build -> Master -> Advance, keeping Stages 1-10 replayable through purposeful material acquisition and later Hunt contracts.
+- Defined ecology-linked drops for the current forest enemies and provisional Stage 4-10 enemy/material roles, including the Stage 10 regional signature core.
+- Locked deterministic crafting, non-empty stage-clear chests, a separate Rootweaver/Grove Artificer Sanctuary service, bounded regional Mastery, and Save/Continue as the required first implementation segment.
+- Established reusable material icon families across future regions: shared silhouettes and container templates may recur, but each distinct material receives its own flattened runtime art, data identity, name, contents/glyph, and gameplay purpose rather than `Leather++` recolors.
+- Added ADR 062 and the complete segmented design plan. No gameplay code, scene, save file, loot table, recipe, NPC, or runtime asset was added by this documentation-only change.
+
 ## 2026-07-26 - Early Progression and Iron Economy Retune
 
 - Stretched cumulative Level 1-10 thresholds to `0/150/400/750/1200/1750/2400/3150/4000/4950`, with each step costing 100 XP more than the previous step.

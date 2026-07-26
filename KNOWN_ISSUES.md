@@ -4,11 +4,19 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 
 ## Current Limitations
 
+### KI-013 - Approved Forest loot, crafting, and replay systems are not implemented
+
+- **Status:** Open
+- **Impact:** Stages 1-3 currently award only XP and coins and then advance. There is no material inventory, ecology-linked drop roll, stage-clear chest, deterministic recipe service, Rootweaver/Grove Artificer NPC, replayable Hunt contract, recipe discovery, or regional Mastery yet.
+- **Planned resolution:** Follow `docs/design/forest-loot-crafting-and-regional-material-plan.md` in order: Save/Continue, immutable content data, loot/chests, the Sanctuary crafting service, recipes/equipment, Hunts, then Stages 4-10 and the Stage 11 regional seam.
+- **Workaround:** Treat the current Stages 1-3 sequence as the combat/story prototype. Do not describe future materials, recipes, chests, Hunts, or Mastery as playable content.
+
 ### KI-012 - Application restart still erases progression
 
 - **Status:** Open
 - **Impact:** XP, coins, current HP, weapon ownership/equip choice, awakened skills, and story memory survive scene replacement but not closing the game. This makes longer progression and the 90-coin Iron milestone unsuitable for normal multi-session play.
-- **Planned resolution:** Add a versioned Save/Continue service using explicit dictionaries from the existing state authorities, stored beneath `user://`; autosave only at safe milestones such as Sanctuary, purchase/equip, awakening, and stage completion.
+- **Progress:** `SaveService` now composes and prevalidates one versioned core profile dictionary from `RunSession`, `StoryState`, and `WeaponInventory`, including future extension seams. A focused smoke test protects full reconstruction and prevents partial mutation on incompatible nested versions.
+- **Planned resolution:** Add a versioned Save/Continue service using explicit dictionaries from the existing state authorities, stored beneath `user://`; autosave only at safe milestones such as Sanctuary, purchase/equip, awakening, and stage completion. Reserve versioned snapshot sections for the approved future material inventory, recipe/blueprint discovery, chest claims, and regional progress without serializing scenes.
 - **Workaround:** Use F9 for rapid testing. Normal balance tests must currently remain in one application session.
 
 ### KI-011 - Combat responsiveness, audio distinction, and Husk presentation need a playtest repair pass

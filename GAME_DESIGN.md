@@ -18,20 +18,20 @@ Battle of Gods is a fast, skill-based 2D top-down pixel action game. Relentless 
 
 ## Core Gameplay Loop
 
-**Planned:**
+**Approved regional loop (planned; not implemented):**
 
-1. Enter and explore a hostile region.
-2. Fight pursuing enemies and survive escalating encounters.
-3. Earn resources, weapons, powers, or progression choices.
-4. Refine a build and overcome elite enemies or a multi-phase boss.
-5. Unlock new paths, knowledge, and challenges.
-6. Return with greater mastery or begin another run/expedition.
+1. Enter or replay an authored stage in the current region.
+2. Fight enemies whose ecology and combat role explain their material drops.
+3. Open a guaranteed non-empty stage-clear chest and return with materials.
+4. Use deterministic recipes at a Sanctuary craftsperson to build region equipment.
+5. Refine a build, complete optional Hunt conditions, and master the region.
+6. Defeat the regional boss and advance without making earlier stages disposable.
 
-The exact run structure, death penalty, checkpoint rules, and permanent progression model are undecided.
+Forest Stages 1-10 are the first planned region. First clears advance story and unlocks; replays become chosen Hunts with known reward families rather than random daily chores. The complete accepted rules, Stage 4-10 content matrix, and implementation order live in `docs/design/forest-loot-crafting-and-regional-material-plan.md`. Death penalties and exact checkpoint behavior remain open, but the regional loop, deterministic crafting, ecology-linked loot, and bounded Mastery direction are approved.
 
 **Implemented journey entry:** the game opens at the Battle of Gods title screen. `Begin the Awakening` starts a fresh in-memory run and fades into Sanctuary. Settings currently provide immediate session-only Music, Combat Sound, and Menu Sound toggles. Continue/profile selection does not exist yet.
 
-**Implemented Sanctuary loop:** Sanctuary is a safe expedition hub centered on two separate landmarks: a walk-around divine fountain in the courtyard and an animated angel portal farther north. A paired central cobblestone avenue aligns both landmarks on the hub's even-width grid; one-cell door approaches align Eira's violet spirit-study lodge and Orren's warm arms workshop to a restrained east-west connector, while a compact paved bay grounds Orren's cart without consuming the surrounding garden. The player walks around either side of the fountain, crosses a visible open gap, ascends the portal's broad center staircase, and reaches the contextual expedition prompt immediately before the portal surface; the authored threshold and rear footprints prevent walking through the monument. Orren's separate weapon cart has a complete prop-only silhouette with no merchant body baked into it. Eira and Orren use compact oversized-head/tiny-body proportions aligned with Opaw, plus two intentional detached role props each and restrained pixel-stepped breathing while collision and interaction footprints remain fixed. Opaw turns toward either speaker and holds the matching directional interaction pose while dialogue is active. Eira's dialogue opens her skill service, where level-eligible techniques are awakened free; Orren's dialogue opens his weapon shop, where Iron Sword costs 18 run coins and can be explicitly equipped after purchase. The portal currently offers implemented stages and sealed future routes according to their authored requirements. The active forest expedition flows Stage 1 to Stage 2 to Stage 3, then returns to Sanctuary after the Rootbound Husk.
+**Implemented Sanctuary loop:** Sanctuary is a safe expedition hub centered on two separate landmarks: a walk-around divine fountain in the courtyard and an animated angel portal farther north. A paired central cobblestone avenue aligns both landmarks on the hub's even-width grid; one-cell door approaches align Eira's violet spirit-study lodge and Orren's warm arms workshop to a restrained east-west connector, while a compact paved bay grounds Orren's cart without consuming the surrounding garden. The player walks around either side of the fountain, crosses a visible open gap, ascends the portal's broad center staircase, and reaches the contextual expedition prompt immediately before the portal surface; the authored threshold and rear footprints prevent walking through the monument. Orren's separate weapon cart has a complete prop-only silhouette with no merchant body baked into it. Eira and Orren use compact oversized-head/tiny-body proportions aligned with Opaw, plus two intentional detached role props each and restrained pixel-stepped breathing while collision and interaction footprints remain fixed. Opaw turns toward either speaker and holds the matching directional interaction pose while dialogue is active. Eira's dialogue opens her skill service, where level-eligible techniques are awakened free; Orren's dialogue opens his weapon shop, where Iron Sword costs 90 run coins and can be explicitly equipped after purchase. The portal currently offers implemented stages and sealed future routes according to their authored requirements. The active forest expedition flows Stage 1 to Stage 2 to Stage 3, then returns to Sanctuary after the Rootbound Husk.
 
 Future destination access should combine level, story flags, boss victories, discovered locations, and required key items. Level alone must not unlock every road, and completed early expeditions should remain replayable.
 
@@ -176,7 +176,11 @@ Debug builds provide F9 to set the current run to level 10 and 999 coins, then s
 
 The approved control budget is four equipable active skill slots on keys 1-4, in addition to normal attack and dash. One centered lower tray exposes dash followed by four fixed `52x48` icon-first controls; native GUI consumption prevents any HUD click from also becoming a basic attack. Normal play begins with Piercing Rush and may awaken Consecutive Thrust through Eira, while debug F9 remains a shortcut. The larger top-left vitality panel is prioritized over decoration, and a top-right `MENU [ESC]` button mirrors Escape. Physical Tab or the visible satchel/Character button opens the paused two-page character surface. `Gear & Armory` previews owned weapons, then equips through an explicit detail action. `Active Skills` presents four compact `128x68` title/status selectors while the selected skill alone fills the description panel; Eira's service adds the free awakening action when eligible. Slots 3-4 remain sealed; their displayed level 6/9 milestones are presentation scaffolding until authored abilities and unlock rules are approved. Skills are never purchased.
 
-Open decisions include which abilities occupy slots 3-4, their exact requirements and richer Eira ritual presentation, what persists through a profile save, future weapon/drop acquisition, armor/stat aggregation, selling policy beyond the current no-selling slice, and how bonuses scale without erasing combat mastery.
+**Approved future Forest economy:** enemy kills feed ecology-linked material pools, every completed stage produces a non-empty clear chest, and deterministic recipes provide visible goals. Current-enemy directions are Mire Resin/Membrane from Mirelings, Root Fiber/Young Heartwood from Rootlings, Forsaken Cloth/Weathered Fittings from Thralls, Barbed Seed/Thorn Sap from Bramble Spitters, and Husk Heartwood/Rootbound Core from the Rootbound Husk. Leather begins only when a future hide-bearing Stage 4 creature exists. A separate Rootweaver/Grove Artificer service owns crafting presentation; Orren remains the weapon merchant. Exact names and quantities may be tuned during content production, but drops must continue to match each creature's body, habitat, and combat behavior.
+
+Forest recipes should create useful but bounded leather/root/cloth/chitin/spirit/fungal equipment within two or three purposeful clears, with boss-specific guarantees for signature crafts. Progress must not depend on blind low-chance farming or a hard stat wall. Later regions reuse a visual material grammar and some universal components, but introduce real regional materials and mechanics rather than `Leather+` or `Leather++`. Regional level bands and a bounded Mastery layer may preserve replay value after a region's ordinary level curve, but infinite raw-stat scaling is rejected.
+
+Open decisions include which abilities occupy slots 3-4, exact recipe quantities and equipment stats, the craftsperson's final name/design, Hunt modifiers, exact save checkpoint/death rules, selling policy beyond the current no-selling slice, and how armor bonuses scale without erasing combat mastery.
 
 Progression must preserve skill-based combat. Numerical growth should not erase the need to dodge, read attacks, and position well.
 
@@ -206,7 +210,7 @@ Animation must remain readable at gameplay speed. Strong anticipation, action, a
 
 ## Replayability
 
-Potential sources include build variety, encounter variation, optional bosses, difficulty modifiers, branching routes, and mastery-based challenges. No roguelite structure should be assumed until formally selected.
+Completed Forest stages remain selectable. Their replays are planned as authored Hunts with a named stage, one clear objective/modifier, previewed reward families, and optional mastery goals. First clears own story/tutorial beats; Hunts own repeatable material acquisition and advanced tests. Build variety, elite variants, optional bosses, branching routes, and regional Mastery may expand this structure, but no daily loot-box treadmill, infinite raw-stat curve, or fully procedural roguelite loop is approved.
 
 ## Accessibility and UX
 

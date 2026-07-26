@@ -21,6 +21,7 @@ AudioDirector="*res://autoload/audio_director.gd"
 RunSession="*res://autoload/run_session.gd"
 StoryState="*res://autoload/story_state.gd"
 WeaponInventory="*res://autoload/weapon_inventory.gd"
+SaveService="*res://autoload/save_service.gd"
 
 [display]
 

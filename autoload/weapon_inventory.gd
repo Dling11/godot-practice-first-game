@@ -1,13 +1,14 @@
 extends Node
 
-## Application-session weapon ownership and per-character equipped choices.
-## Disk persistence is intentionally deferred; a new journey resets this state.
+## Weapon ownership and per-character equipped choices. SaveService may snapshot
+## this data, but WeaponInventory does not perform file I/O.
 
 signal weapon_acquired(item_id: StringName)
 signal weapon_equipped(character_id: StringName, item_id: StringName)
 signal inventory_reset
 
 const OpawCatalog: WeaponCatalogDefinition = preload("res://data/items/opaw_weapon_catalog.tres")
+const SNAPSHOT_VERSION := 1
 
 var _owned_weapon_ids: Dictionary = {}
 var _equipped_weapon_ids: Dictionary = {}
@@ -39,6 +40,73 @@ func acquire_weapon(item: EquipmentDefinition) -> bool:
 func get_equipped_weapon_id(character_id: StringName, fallback_item_id: StringName) -> StringName:
 	var item_id: StringName = _equipped_weapon_ids.get(character_id, fallback_item_id)
 	return item_id if owns_weapon(item_id) else fallback_item_id
+
+
+func create_snapshot() -> Dictionary:
+	var equipped_ids := {}
+	var character_ids: PackedStringArray = []
+	for raw_character_id: Variant in _equipped_weapon_ids:
+		character_ids.append(String(raw_character_id))
+	character_ids.sort()
+	for character_id: String in character_ids:
+		equipped_ids[character_id] = String(
+			_equipped_weapon_ids.get(StringName(character_id), &"")
+		)
+	return {
+		"version": SNAPSHOT_VERSION,
+		"owned_weapon_ids": _sorted_owned_ids(),
+		"equipped_weapon_ids": equipped_ids,
+	}
+
+
+func can_restore_snapshot(snapshot: Dictionary) -> bool:
+	if snapshot.get("version", -1) != SNAPSHOT_VERSION:
+		return false
+	var raw_owned: Variant = snapshot.get("owned_weapon_ids", [])
+	var raw_equipped: Variant = snapshot.get("equipped_weapon_ids", {})
+	if not (raw_owned is Array or raw_owned is PackedStringArray):
+		return false
+	if not (raw_equipped is Dictionary):
+		return false
+
+	var restored_owned := {}
+	for raw_item_id: Variant in raw_owned:
+		var item_id := StringName(String(raw_item_id))
+		if item_id.is_empty() or OpawCatalog.find_weapon(item_id) == null:
+			return false
+		restored_owned[item_id] = true
+	if not restored_owned.has(OpawCatalog.default_weapon.item_id):
+		return false
+
+	for raw_character_id: Variant in raw_equipped:
+		var character_id := StringName(String(raw_character_id))
+		var item_id := StringName(String(raw_equipped[raw_character_id]))
+		if character_id.is_empty() or not restored_owned.has(item_id):
+			return false
+		if OpawCatalog.find_weapon(item_id) == null:
+			return false
+	return true
+
+
+func restore_snapshot(snapshot: Dictionary) -> bool:
+	if not can_restore_snapshot(snapshot):
+		return false
+	_owned_weapon_ids.clear()
+	_equipped_weapon_ids.clear()
+	for raw_item_id: Variant in snapshot["owned_weapon_ids"]:
+		_owned_weapon_ids[StringName(String(raw_item_id))] = true
+	var raw_equipped: Dictionary = snapshot["equipped_weapon_ids"]
+	for raw_character_id: Variant in raw_equipped:
+		_equipped_weapon_ids[StringName(String(raw_character_id))] = StringName(
+			String(raw_equipped[raw_character_id])
+		)
+	inventory_reset.emit()
+	for raw_character_id: Variant in _equipped_weapon_ids:
+		weapon_equipped.emit(
+			StringName(String(raw_character_id)),
+			StringName(_equipped_weapon_ids[raw_character_id])
+		)
+	return true
 
 
 func try_purchase_weapon(
@@ -88,3 +156,11 @@ func _register_default(character_id: StringName, catalog: WeaponCatalogDefinitio
 		return
 	_owned_weapon_ids[catalog.default_weapon.item_id] = true
 	_equipped_weapon_ids[character_id] = catalog.default_weapon.item_id
+
+
+func _sorted_owned_ids() -> PackedStringArray:
+	var result := PackedStringArray()
+	for raw_item_id: Variant in _owned_weapon_ids:
+		result.append(String(raw_item_id))
+	result.sort()
+	return result

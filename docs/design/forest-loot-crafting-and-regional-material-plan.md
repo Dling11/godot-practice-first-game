@@ -1,0 +1,352 @@
+# Forest Loot, Crafting, Replay, and Regional Material Plan
+
+- **Status:** Approved design lock; implementation has not started
+- **Approved:** 2026-07-26
+- **Runtime coverage today:** Stages 1-3, five enemy identities, session-only progression/equipment
+- **Planned content covered here:** Forest Stages 1-10 and a reusable foundation for Stage 11 onward
+
+## Purpose
+
+Battle of Gods must provide a reason to revisit completed stages beyond repeating the same fights for larger numbers. The approved long-term loop is:
+
+```text
+Fight -> Loot -> Craft -> Build -> Master -> Advance
+```
+
+First clears advance story and unlock content. Replays provide controlled material goals, Hunt variants, and stage-clear chests. Sanctuary turns those rewards into deterministic equipment choices. Later regions reuse the same technical and visual grammar without collapsing into `Leather++` inventory clutter or cheap recolors.
+
+This plan is intentionally broader than the three implemented stages so save data, item identities, folder ownership, icon production, monster design, and crafting authority do not need destructive rewrites when Stages 4-20 arrive.
+
+## Approved Product Rules
+
+- Save/Continue is a prerequisite for loot and crafting. Grinding must never depend on keeping one application process open.
+- Crafting starts deterministic. A recipe produces one known item with known stats; random affixes are deferred.
+- Stage-clear chests never resolve empty.
+- First clears guarantee authored progression rewards such as a blueprint, discovery, or key material.
+- Replays target roughly two to three useful clears per ordinary equipment piece, not long identical-run grinds.
+- Bosses guarantee their unique crafting material.
+- Crafted equipment improves survivability, expression, and margin for error. A later stage must remain technically beatable through mastery without enforcing an opaque hard gear wall.
+- Difficulty must come from readable behaviors, combinations, armor-break opportunities, positioning, and elites rather than health inflation alone.
+- Earlier regions retain limited material relevance, but new-region recipes primarily use current-region materials.
+- Character level does not become an infinite raw-stat treadmill. Region caps may expand, while post-cap Mastery supplies bounded utility, crafting, cosmetic, title, or material benefits.
+- Nothing in this document claims loot, chests, crafting, armor stats, Hunts, Mastery, the Rootweaver, or Stages 4-20 are currently implemented.
+
+## First-Clear and Replay Loop
+
+### First clear
+
+1. Complete the authored encounter.
+2. Open a guaranteed stage-clear chest.
+3. Receive the stage's first-clear blueprint/discovery plus guaranteed materials.
+4. Record the clear in story/profile state.
+5. Unlock the next route and the cleared stage's replay/Hunt entry.
+
+### Replay clear
+
+1. Select a previously cleared stage or an authored Hunt variant from Sanctuary.
+2. Complete the normal or modified encounter.
+3. Receive guaranteed common material progress.
+4. Roll only the authored optional secondary/rare rewards.
+5. Apply bad-luck protection where rare material is required by a recipe.
+
+### Hunt variants
+
+Hunts reuse a stage deliberately rather than rerunning an identical campaign scene. Candidate modifiers include:
+
+- Elite enemy replacement
+- Rootstorm or other region hazard
+- Increased ranged pressure
+- Limited regeneration
+- Boss-remnant encounter
+- Bonus chest objective
+- Restricted recovery window
+
+No daily timer, advertisement loop, or real-money loot-box structure is approved.
+
+## Current Enemy Drop Direction
+
+Names remain provisional until the corresponding `MaterialDefinition` resources are approved. The identity and purpose are locked.
+
+| Implemented enemy | Material identity | Crafting direction |
+|---|---|---|
+| Mireling | Mire Resin; Mire Membrane | Regeneration, status resistance, flexible footwear |
+| Rootling | Root Fiber; Young Heartwood | Bindings, gloves, beginner protective pieces |
+| Forsaken Thrall | Forsaken Cloth; Weathered Fittings | Armor lining and weapon fittings |
+| Bramble Spitter | Barbed Seed; Thorn Sap | Thorn/critical identity and ranged-pressure resistance |
+| Rootbound Husk | Husk Heartwood; Rootbound Core | Reinforced Forest equipment and rare recipes |
+
+Leather must not be assigned arbitrarily to a creature without a visible hide identity. The first true leather recipes should follow the planned Stage 4 hide-bearing Forest beast. Stages 1-3 may instead support rootfiber wraps, cloth equipment, charms, and weapon components.
+
+## Provisional Forest Stage 4-10 Content Skeleton
+
+The roles and material purposes below are planning slots, not final names, art, exact encounter compositions, or implemented content.
+
+| Stage | New enemy/content role | Material purpose |
+|---|---|---|
+| 4 | Armored hide-bearing Forest beast | Hide and bark plates for leather armor |
+| 5 | Fast insect/swarm hunter | Chitin, venom, and speed-oriented equipment |
+| 6 | Forest caster/support | Spirit sap and rune fragments |
+| 7 | Heavy corrupted brute or mini-boss | Dense heartwood for axes and heavy armor |
+| 8 | Fungal area-control creature | Spores and mycelial thread for recovery/resistance |
+| 9 | Elite Forest warden/hunter | Refined fittings and advanced Forest recipes |
+| 10 | Major Forest boss | Guaranteed unique core for the region signature craft |
+
+Known enemies continue appearing in authored combinations. Aim for roughly one important new family every one or two stages, then remix existing roles. Do not replace the full roster every stage.
+
+### Forest crafting tiers
+
+- **Stages 1-3:** rootfiber wraps, Mire charm, basic weapon fittings
+- **Stages 4-6:** leather armor and first Forest weapon alternatives
+- **Stages 7-9:** reinforced armor, axe/greatsword components, upgraded accessories
+- **Stage 10:** signature Forest equipment using the guaranteed boss material
+
+Exact item names, recipes, stats, and Stage 4-10 enemy names remain open until their individual content contracts are approved.
+
+## Monster Content Contract
+
+Every new recurring monster requires an approved contract before bulk art or runtime implementation:
+
+1. Narrative and ecological identity
+2. Combat role, telegraph, and counterplay
+3. Stage introduction and later reuse
+4. Silhouette, pixel dimensions, palette, and lighting
+5. Animation list, direction rows, cell sizes, safe margins, and frame counts
+6. Movement collision, hurtbox, attack shape, navigation footprint, and occlusion needs
+7. Controller state ownership and reusable components
+8. Audio identity and legal provenance
+9. Common, secondary, rare, elite, or boss drops
+10. Recipes and stats supported by those drops
+11. Portrait/profile requirement
+12. Focused regression and performance coverage
+
+Visible biology must support loot identity. Bark-plate drops require visible armor-like bark; venom requires a readable gland, sac, sting, or attack; fungal thread requires fungal or mycelial anatomy. A material may not be attached after the fact merely to fill a recipe.
+
+## Material-Family Visual Grammar
+
+The project uses a small reusable visual language instead of creating every icon from zero or relabeling indistinguishable recolors.
+
+### Approved icon families
+
+- Vial: venom, acid, oil, holy water, liquid essence
+- Hide: ordinary hide, barkhide, scaled hide, frost hide
+- Fiber bundle: root fiber, silk, mycelial thread, spectral thread
+- Plate/chitin: bark plate, insect chitin, volcanic shell
+- Ore/fitting: iron scrap, warden fitting, divine alloy
+- Seed/crystal: barbed seed, frost seed, ember crystal
+- Core: Rootbound Core, later regional cores
+- Relic: unique boss and story materials
+
+### Reuse levels
+
+1. **Exact reuse:** a universal material remains the same item and ID across regions, such as Leather, Cloth, Iron Fittings, or Binding Thread.
+2. **Template reuse:** the approved silhouette/container is reused, but the substance, internal cluster, palette, glyph, and final texture differ. Mire Venom and future Corrosive Acid may share a vial family without becoming the same icon.
+3. **Original silhouette:** boss hearts, divine relics, story key items, and physically unique materials receive dedicated art.
+
+Text labels are data and are never painted into material icons. Rarity frames belong to UI presentation rather than the item bitmap. Important differences use silhouette, internal shape, glyph, or pattern and never depend on color alone.
+
+### Venom/acid example
+
+| Property | Forest venom | Future corrosive acid |
+|---|---|---|
+| Family | Vial | Vial |
+| Container | Shared approved silhouette | Shared approved silhouette |
+| Substance | Thick drops | Bubbling corrosive fluid |
+| Identity mark | Fang/leaf | Corrosion/hazard |
+| Tags | Poison, thorn, critical | Corrosion, armor break, resistance |
+| Final runtime file | Separate PNG | Separate PNG |
+| Display label | Resource data | Resource data |
+
+Templates support deterministic generation, but each approved material receives a flattened final runtime PNG and a separate data resource. Runtime shaders must not recolor one generic icon into every material.
+
+## Cross-Region Material Rules
+
+Stage 11 onward reuses the grammar and some universal materials, not the entire Forest economy.
+
+- Ordinary later-region recipes should use roughly 20-30% universal or older materials and 60-70% current-region materials, with an occasional elite/boss catalyst.
+- Old boss materials appear only in special cross-region upgrades, never every recipe.
+- Higher-region materials differ by function and ecology, not names such as `Leather+`, `Leather++`, `Strong Leather`, or `Super Leather`.
+- Examples of meaningful variants include Barkhide, Acid-Sealed Hide, Scaled Hide, and Spectral Hide.
+- A future region may reuse an enemy animation contract or technical behavior composition, but a regional creature variant requires distinct readable anatomy, attack behavior, telegraph/VFX, audio layer, drop profile, and `SpriteFrames` resource. Palette-only enemy swaps are insufficient.
+
+The Stage 11-20 region theme, exact acid/corrosion use, and final material roster remain open. The data/art grammar is locked now so that choice does not require new infrastructure.
+
+## Planned Data Contracts
+
+Names may change during implementation, but responsibility boundaries are approved.
+
+### `MaterialDefinition`
+
+- Stable `material_id`
+- Display name and description
+- Region ID
+- Material family
+- Grade/rarity metadata
+- 24x24 runtime icon
+- Crafting tags
+- Optional source-lore metadata
+
+### `DropProfileDefinition`
+
+- Guaranteed common material entries
+- Optional secondary entries
+- Rare entries
+- Quantity ranges
+- Elite/boss guarantees
+- Bad-luck-protection key where required
+
+Enemy controllers do not calculate or roll loot.
+
+### `LootTableDefinition`
+
+- Stage/region identity
+- First-clear guarantees
+- Replay guarantees
+- Optional rolls
+- Blueprint/discovery/key-material entries
+- Protection rules
+
+Stage UI and chest presentation do not roll rewards themselves.
+
+### `RecipeDefinition`
+
+- Stable recipe ID
+- Output equipment/material ID and quantity
+- Required material IDs and quantities
+- Unlock requirement
+- Region/tier metadata
+- Crafting category
+- Deterministic result
+
+### Runtime authorities
+
+- `MaterialInventory`: mutable material quantities
+- `CraftingService`: validates unlocks/costs and commits transactions
+- Existing equipment inventory/stat authorities: own crafted equipment and equip state
+- `SaveService`: serializes explicit snapshots from progression, story, equipment, materials, recipes, and safe-location state
+- UI: observes definitions/state and submits requests only
+
+## Rootweaver Sanctuary Role
+
+The approved crafting role is a separate Sanctuary artisan, provisionally titled **Rootweaver** or **Grove Artificer**. The final name, appearance, personality, and lore are open.
+
+The role must remain distinct from Orren:
+
+- Orren sells and equips ordinary authored weapons.
+- The Rootweaver transforms creature/region materials through deterministic recipes.
+
+Before generation, approve:
+
+- Character identity and narrative relationship
+- Workshop placement and traversable footprint
+- Opaw-scale sprite contract and named `AnimatedSprite2D` states
+- 96x96 portrait/profile asset
+- Dialogue and crafting interaction
+- Tool/idle sounds plus attribution
+- Crafting UI responsibilities
+
+## Level, Gear, and Mastery Direction
+
+- Current Forest development remains bounded by the authored Level 1-10 curve.
+- Later regions may expand the character cap in controlled bands rather than enabling infinite raw-stat scaling.
+- Post-cap Mastery may be uncapped only if rewards stay bounded: crafting efficiency, material bonuses, titles, cosmetics, discoveries, or small capped utility.
+- Stage 11 should be balanced around partial Forest equipment, not require a complete perfect set.
+- An expert player with incomplete gear should retain a viable path through readable mastery.
+
+Exact regional caps, final character cap, Mastery categories, and reward percentages remain open.
+
+## Asset and Folder Contract
+
+Planned organization:
+
+```text
+art_source/generated/items/materials/templates/
+assets/items/materials/common/
+assets/items/materials/forest/
+assets/items/materials/<future_region>/
+data/items/materials/common/
+data/items/materials/forest/
+data/items/materials/<future_region>/
+data/loot/forest/
+data/loot/<future_region>/
+data/crafting/recipes/forest/
+data/crafting/recipes/<future_region>/
+```
+
+- Material wallet/list icons use native 24x24 pixel art.
+- Detailed equipment portraits retain the approved 64x64 contract.
+- Generated assets retain source board, cleaned/intermediate material where needed, deterministic processor, final runtime PNG, and import metadata.
+- Character sheets follow `docs/design/character-animation-pixel-contract.md`.
+- Final recurring actors expose named `SpriteFrames` on `AnimatedSprite2D`.
+- Audio must be original, CC0, or clearly license-compatible; exact provenance belongs in `assets/audio/ATTRIBUTION.md`.
+- Never rip art/audio from another game or bulk-import an unreviewed pack.
+- Superseded runtime code/assets are reference-checked, then removed or preserved under Godot-ignored `art_source/archive/` only when they retain real source value.
+
+## Segmented Implementation Order
+
+### Segment 0 - Design lock
+
+- This document, ADR, sources of truth, folder contracts
+- No runtime feature claims
+
+### Segment 1 - Save/Continue
+
+- **Progress:** versioned core profile composition and prevalidated restoration are implemented; disk I/O and Continue remain open
+- Versioned profile schema
+- Continue/New Journey
+- Safe-point autosave, temporary write, backup/recovery
+- Snapshot/migration/corruption tests
+
+### Segment 2 - Material and crafting data
+
+- Material, drop, loot-table, recipe resources
+- Material inventory and explicit snapshots
+- No chest/Rootweaver art required yet
+
+### Segment 3 - Loot and stage-clear chest
+
+- Enemy drop-profile integration
+- Guaranteed first/replay/boss rewards
+- Chest authority and presentation
+- Protection and duplicate-grant tests
+
+### Segment 4 - Rootweaver production
+
+- Approved identity, portrait, sprite sheets, `SpriteFrames`, workshop, interaction, sound
+
+### Segment 5 - Crafting experience
+
+- Crafting service and deterministic transaction UI
+- First Forest recipes and equipment/stat integration
+
+### Segment 6 - Replay Hunts
+
+- Cleared-stage selection, authored modifiers, replay rewards
+
+### Segment 7 - Stage 4-10 content
+
+- Approve each monster content contract before art/runtime work
+- Stage 10 boss and signature Forest craft
+
+### Segment 8 - Stage 11 and next region
+
+- Approve region identity
+- Reuse material grammar with new ecology, variants, and recipes
+- Expand cap/Mastery only through a separate balance decision
+
+Each segment requires focused tests, full regression validation, relevant documentation updates, asset review, attribution, and removal/archive of superseded active-runtime material.
+
+## Intentionally Open Choices
+
+These are not blockers for Save/Continue, but must be approved before their owning segment:
+
+- Rootweaver's final name, design, personality, workshop, and lore
+- Final material names and exact drop quantities
+- Exact Forest recipes and equipment stats
+- Stage 4-10 monster names, visuals, behavior timing, and encounter composition
+- Stage 10 boss identity
+- Stage 11-20 biome/region theme
+- Exact regional level-cap expansion
+- Mastery categories and percentages
+- Hunt modifier list and reward multipliers
+
+Future work must not silently resolve these choices while implementing a lower segment.

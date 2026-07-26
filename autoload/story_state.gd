@@ -74,8 +74,26 @@ func create_snapshot() -> Dictionary:
 	}
 
 
-func restore_snapshot(snapshot: Dictionary) -> bool:
+func can_restore_snapshot(snapshot: Dictionary) -> bool:
 	if snapshot.get("version", -1) != SNAPSHOT_VERSION:
+		return false
+	for collection_name: String in [
+		"story_flags",
+		"boss_victories",
+		"discoveries",
+		"key_items",
+	]:
+		var entries: Variant = snapshot.get(collection_name)
+		if not (entries is Array or entries is PackedStringArray):
+			return false
+		for entry: Variant in entries:
+			if not (entry is String or entry is StringName) or String(entry).is_empty():
+				return false
+	return true
+
+
+func restore_snapshot(snapshot: Dictionary) -> bool:
+	if not can_restore_snapshot(snapshot):
 		return false
 	_story_flags = _dictionary_from_ids(snapshot.get("story_flags", []))
 	_boss_victories = _dictionary_from_ids(snapshot.get("boss_victories", []))

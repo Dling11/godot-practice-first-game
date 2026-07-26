@@ -4,6 +4,8 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 
 ## Completed
 
+- Began Forest production Segment 1 with a versioned core profile schema: `SaveService` composes prevalidated `RunSession`, `StoryState`, and `WeaponInventory` snapshots, rejects incompatible nested versions before mutating live state, and reserves extension sections for future materials, recipes, stage claims, and regional progress. Disk writes and Continue remain in progress.
+- **Design lock only:** approved the replayable Forest Stages 1-10 Fight -> Loot -> Craft -> Build -> Master -> Advance loop, ecology-linked drop direction, deterministic recipes, stage-clear chests, a separate Rootweaver/Grove Artificer service, Hunts, the Stage 4-10 enemy/material matrix, reusable cross-region material art grammar, and bounded regional Mastery. Runtime implementation has not started.
 - Slowed early progression and economy pacing: cumulative Level 1-10 thresholds are now `0/150/400/750/1200/1750/2400/3150/4000/4950`, placing Stage I at Level 2, cumulative Stage II at Level 3, and the complete current forest arc at Level 4; Iron Sword now costs 90 coins instead of 18.
 - Tightened the beginner-sword feel and reduced clustered-hit overhead: Balanced Slash is now a 58-reach by 96-wide data-owned fan with matching smaller trail, future weapon families retain independent shape/style ownership, the center-screen level banner is replaced by a small Opaw glow and overhead label, and normal cleaves share one 25-millisecond hitstop/camera/audio response per swing while keeping feedback on every enemy.
 - Aligned combat footprints and run attrition: Balanced Slash covers its visible side edges/tip; Stage III bakes 20-pixel seal clearance for the 16-pixel-radius Husk; dash has a clear gap before Skill 1; current HP survives stage/Sanctuary transitions; Opaw uses `140 + 12/level` health plus delayed 1 HP/s regeneration; and Mireling/Rootling/Thrall/Spitter/Husk damage is balanced to 8/10/18/12/18.
@@ -78,14 +80,14 @@ Detailed completion history remains in `CHANGELOG.md`.
 
 ## In Progress
 
-- **Persistence foundation:** implement versioned Save/Continue around explicit snapshots from `RunSession`, `WeaponInventory`, and `StoryState`; save at safe milestones rather than serializing scene trees or mid-attack state.
+- **Forest production Segment 1 - Persistence foundation:** the versioned core snapshot coordinator is implemented. Next add atomic temporary-file/backup/recovery storage under `user://`, safe-milestone autosave, corrupt-save handling, and title-screen Continue; never serialize scene trees or mid-attack state.
 - **Milestone B progress:** Opaw now has a distinct generated damage-impact cue and a curated CC0 light dash swoosh. Enemy action SFX remain separate; directional threat and hit-effect work remain open.
 - **Milestone A progress:** a latest-valid-input buffer carries normal attacks and immediate-directional skills across committed attacks/dashes. Consecutive Thrust now owns the approved defensive exception—full-cast invulnerability plus dash cancellation—while its damage, reach, and cooldown remain unchanged for feel testing.
 - **Milestone C progress:** Rootbound Husk now uses fixed-scale generated body sheets, readable planted side steps, native named animations, a constant foot baseline, an above-head health bar, six-beat ground-root VFX, and a skippable portrait introduction behind a reusable encounter gate. Its profiled quick spear and slower staged Root Fan retain snapshotted hitbox authority and gain a faster, fan-heavier second phase. Human timing/readability review remains open.
 - **Milestone A — Combat responsiveness:** feel-test the implemented attack/skill buffers, Skill 2 invulnerability and dash-cancel transition, dash cooldown visibility, and default/skill reach before further timing or range changes.
 - **Milestone B — Combat feedback and audio:** distinguish incoming-player damage from each enemy attack, lower/replace the repetitive dash cue, add directional threat/near-hit readability, and tune hitstop/camera response by impact tier without obscuring telegraphs.
 - **Milestone C — Rootbound Husk repair:** playtest the rebuilt walk/root-attack/hurt/defeat presentation and completed skippable introduction against its quick Root Spear, center-then-sides Root Fan, and Root Burst; tune timing only from observed evidence before adding more enemies.
-- **Milestone D — Forest campaign sequence:** retain Stage 1 introduction, Stage 2 escalation, and Stage 3 mini-boss as the first forest arc; design Stage 4 around one new player-facing system or item, then build Stage 5 as a separately designed medium boss. Do not build Stages 4-5 before Milestones A-C pass playtest.
+- **Milestone D — Forest campaign sequence:** retain Stage 1 introduction, Stage 2 escalation, and Stage 3 mini-boss as the first forest arc. Add Save/Continue, content data, loot/chests, crafting, and Hunts before Stage 4; then build Stages 4-10 one content-contract enemy at a time against the approved role/material matrix rather than improvising isolated stages.
 - Feel-test Piercing Rush's 128x40 central hit lane, roughly 50-pixel collision-limited movement, thrusting detached sword, oversized six-frame white/blue/gold plume and impact readability, 180% Ashwood/Iron scaling, dedicated charge/thrust/impact SFX, 3-second cooldown, and click/`1` activation at 960x540.
 - Feel-test Consecutive Thrust's Level-3 Eira awakening, full-cast invulnerability, dash cancellation, snapshotted direction, 128x44 lane and longer guide versus oversized rapid-flurry effects, 225% total weapon damage, control resistance, final feedback, 5-second cooldown, and crowd performance at 960x540.
 - Run a controller playtest of Stage 1 and Stage 2 with Ashwood and Iron; record clear time, damage taken, Piercing Rush/Consecutive Thrust use, late-wave readability, and frame stability after the one-at-a-time reinforcement pass.
@@ -106,51 +108,50 @@ Detailed completion history remains in `CHANGELOG.md`.
 - Feel-test combat cue selection, positional balance, repetition, and SFX-versus-music volume.
 - Feel-test the centered action tray's clear dash-to-Skill-1 gap, top-left character/satchel entry button, compact Active Skills/detail layout, and Tab character-menu readability at the 960x540 viewport.
 - Design abilities and free-awakening rules for sealed slots 3-4; reserve a richer ritual treatment for later ultimate-tier awakenings.
-- Feel-test Orren's 18-coin shop, explicit shop/detail Equip buttons, deferred idle-safe swapping, Ashwood/Iron portrait/world consistency, and insufficient-funds messaging.
-- Decide disk-persistent ownership, armor bonus sources beyond the implemented flat vitality seam, mana/potion rules, drop sources, selling policy, and enemy/elite/boss power bands before expanding beyond the active two-sword slice.
+- Feel-test Orren's 90-coin shop, explicit shop/detail Equip buttons, deferred idle-safe swapping, Ashwood/Iron portrait/world consistency, and insufficient-funds messaging.
+- Decide armor bonus sources beyond the implemented flat vitality seam, mana/potion rules, selling policy, and enemy/elite/boss power bands before expanding beyond the active two-sword slice. Drop sources and the no-blind-grind crafting direction are approved by the Forest design lock; exact quantities remain future balance work.
 - Feel-test the shared theme, named HUD icons, expanded skill-bar height, and portal-prompt placement at 960x540.
 - Feel-test the title-screen composition, restrained background motion, focus loop, audio toggles, and title-to-Stage-1 fade.
 - Feel-test Sanctuary navigation, the aligned paired avenue and compact service/cart approaches, separate fountain/portal scale and courtyard spacing, portal/water/NPC/building idle effects, both NPC interactions, expedition usability, and the transition loop on F5.
 - Feel-test compact Eira/Orren readability, detached book/wisp/hammer/sword props, new service-building collision, and the skill-versus-weapons visual distinction at gameplay scale.
 - Feel-test the generated expedition requirement copy, tooltip detail, disabled-state contrast, and mouse/keyboard/gamepad focus loop at 960x540.
 - Decide the first disk-persistent profile/story boundary and migration policy; the current versioned story snapshot performs no file I/O.
-- Design the Thornbound Warden encounter and Cinder Sigil acquisition before enabling normal-progression access to The Rootbound Hollow.
+- Reconcile the legacy Sanctuary-only Rootbound Hollow requirement preview with the implemented direct Stage 2 -> Stage 3 story route when save-backed route history and replay/Hunts are introduced; do not add a duplicate gate that blocks the continuous first-clear arc.
 - Design a confirmed `Abandon Expedition / Return to Sanctuary` pause-menu action, including combat restrictions and explicit XP/coin/run consequences.
 - After Opaw is visually accepted in motion, define reusable modular starter layers for future Warrior, Archer, and Mage presentations; migrate NPC bodies and environment/UI style only in separate reviewed passes.
 
 ## Planned
 
-### Phase 0 - Foundation
+### Approved Forest Production Sequence
 
-- Review release target priorities; desktop is the current development baseline.
-- Validate the 640x360 pixel rendering and camera policy with the first animated character.
-- Extend the validated prototype into terrain-transition and editor-authored map conventions before producing final environment assets.
-- Decide initial game/run structure and player fantasy.
-- Select automated test tooling when the first testable domain component is introduced.
+1. **Segment 1 - Save/Continue:** versioned profile, migrations, recovery, safe checkpoint writes, and Continue UX.
+2. **Segment 2 - Content data:** immutable material, drop-profile, loot-table, and recipe definitions plus stable IDs and validation.
+3. **Segment 3 - Loot and chests:** ecology-linked defeat rewards, guaranteed non-empty stage-clear chests, idempotent first-clear rewards, and readable reward presentation.
+4. **Segment 4 - Sanctuary craft service:** introduce the separate Rootweaver/Grove Artificer, dialogue portrait, interaction scene, and craft-menu shell.
+5. **Segment 5 - Forest crafting:** deterministic recipes, atomic material spending, crafted starter gear, equipment integration, and balance tests targeting two or three purposeful clears.
+6. **Segment 6 - Hunts:** selectable completed-stage replays with previewed reward families, authored modifiers/objectives, and optional mastery goals.
+7. **Segment 7 - Forest Stages 4-10:** build one content-contract enemy at a time against the approved role/material matrix, ending with the regional boss/signature core.
+8. **Segment 8 - Stage 11 seam:** introduce the next region's real mechanics/materials and bounded regional Mastery without `Leather++`, palette-only enemies, or infinite raw-stat growth.
 
-### Phase 1 - Combat Prototype
+The detailed acceptance rules and intentionally open choices live in `docs/design/forest-loot-crafting-and-regional-material-plan.md`. Later segments do not start merely because their data type exists; each prior segment must pass focused automated validation and gameplay-scale review.
 
-- Reusable health, hitbox, hurtbox, and damage components.
-- Combat feel pass and baseline performance measurements.
+### Vertical Slice Completion
 
-### Phase 2 - Vertical Slice
-
-- One polished playable region/arena.
-- A small but distinct weapon set.
+- Complete the Forest region through Stage 10 using the approved regional production sequence.
+- A small but distinct crafted weapon/armor set with honest, documented stat seams.
 - Divine and demonic abilities demonstrating build choice.
-- Multiple complementary enemy roles.
-- One multi-phase boss.
-- Audio, effects, accessibility settings, menus, and save/checkpoint flow needed for the slice.
+- Complementary enemy roles, one regional boss, and replayable Hunts.
+- Audio, effects, accessibility settings, menus, Save/Continue, and checkpoint flow needed for the slice.
 
-### Phase 3 - Production Systems
+### Production Systems
 
 - Scalable content authoring for weapons, abilities, enemies, bosses, and status effects.
-- Character progression, inventory, and equipment after design approval.
-- Exploration, NPC, and quest foundations if required by the approved game structure.
+- Material inventory, deterministic crafting, equipment aggregation, and bounded regional Mastery.
+- Exploration, NPC, and quest foundations required by the authored regional structure.
 - Save schema versioning and migration.
 - Broader performance budgets and profiling scenes.
 
-### Phase 4 - Content and Polish
+### Content and Polish
 
 - Additional regions, enemies, bosses, weapons, skills, and narrative content.
 - Balance, onboarding, accessibility, localization readiness, and controller polish.
@@ -170,9 +171,11 @@ None currently recorded.
 
 ## Next Decision Gate
 
-Before creating gameplay code, approve:
+The regional loop and material-reuse direction are approved. Before each implementation segment, settle only the choices that materially affect that segment:
 
-1. Desktop/web/mobile release priorities.
-2. First playable scope: arena survival, authored action-adventure slice, or another structure.
-3. Whether Mage and Archer first arrive as distinct playable souls, Opaw class paths, or both through a later roster/class system.
-4. Disk-persistent ownership, future drops/selling rules, and the first spirit-blue equipment tier after the Wood/Iron beginner pair is visually accepted.
+1. Segment 1: exact save checkpoints, defeat/abandon consequences, corrupt-save recovery UX, and whether one or multiple profiles are needed for the first release.
+2. Segment 4: the Rootweaver/Grove Artificer's final name, personality, visual contract, and Sanctuary location.
+3. Segment 5: exact recipe quantities, first crafted equipment stats, selling/salvage policy, and armor aggregation.
+4. Segment 6: the first Hunt modifiers, reward preview detail, and Mastery scoring.
+
+Desktop/web/mobile priority and future Mage/Archer roster/class structure remain important broader product decisions, but they no longer block documenting or building the approved desktop-first Forest foundation.
