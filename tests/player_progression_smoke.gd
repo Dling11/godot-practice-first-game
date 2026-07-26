@@ -23,8 +23,8 @@ func _run() -> void:
 		_fail("Player progression did not begin as a level-one, zero-coin, level-ten-cap session.")
 		return
 
-	progression.grant_rewards(99, 2)
-	if progression.level != 1 or progression.total_experience != 99 or progression.coins != 2:
+	progression.grant_rewards(149, 2)
+	if progression.level != 1 or progression.total_experience != 149 or progression.coins != 2:
 		_fail("XP or coin rewards did not update session state correctly.")
 		return
 	if hud.get_node("ProgressPanel/Margin/Stack/Header/LevelLabel").text != "LEVEL 1":
@@ -34,16 +34,30 @@ func _run() -> void:
 		_fail("Coin spending did not deduct valid purchases or reject insufficient funds.")
 		return
 	progression.grant_rewards(1, 0)
-	if progression.level != 2:
-		_fail("Crossing the first authored threshold did not level the player.")
+	var level_up_visual := player.get_node("LevelUpVisual") as PlayerLevelUpVisual
+	if (
+		progression.level != 2
+		or not is_equal_approx(player.health_component.maximum_health, 152.0)
+		or not level_up_visual.level_label.visible
+		or level_up_visual.level_label.text != "LEVEL 2"
+	):
+		_fail("Level 2 did not grant +12 maximum health and show compact overhead feedback.")
 		return
-	progression.grant_rewards(204, 0)
-	if progression.level != 3:
-		_fail("Stage I's authored 304 XP total should finish near Level 3, not Level 7.")
+	progression.grant_rewards(154, 0)
+	if (
+		progression.total_experience != 304
+		or progression.level != 2
+		or not is_equal_approx(player.health_component.maximum_health, 152.0)
+	):
+		_fail("Stage I's 304 XP should finish at Level 2 with 152 maximum health.")
+		return
+	progression.grant_rewards(96, 0)
+	if progression.level != 3 or not is_equal_approx(player.health_component.maximum_health, 164.0):
+		_fail("The 400-XP threshold did not unlock Level 3 and 164 maximum health.")
 		return
 	progression.grant_rewards(9999, 0)
-	if progression.level != 10:
-		_fail("Progression exceeded or failed to reach the level-ten cap.")
+	if progression.level != 10 or not is_equal_approx(player.health_component.maximum_health, 248.0):
+		_fail("Progression or level-scaled vitality failed to reach the Level-10 cap.")
 		return
 	if hud.get_node("ProgressPanel/Margin/Stack/ExperienceLabel").text != "MAX":
 		_fail("Progression HUD did not show maximum-level state.")

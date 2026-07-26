@@ -20,9 +20,28 @@ func _run() -> void:
 	hud.bind_player(player)
 	await process_frame
 
+	if hud.options_button.text != "MENU  [ESC]":
+		_fail("The top-right pause entry is not labeled as the compact Menu action.")
+		return
+	var tray := hud.get_node("ActionTray") as Control
+	var dash_rect := hud.dash_slot.get_global_rect()
+	var skill_rect := hud.get_skill_slot(1).get_global_rect()
+	var last_skill_rect := hud.get_skill_slot(4).get_global_rect()
+	var tray_rect := tray.get_global_rect()
+	if (
+		dash_rect.end.x > skill_rect.position.x
+		or skill_rect.position.x - dash_rect.end.x < 16.0
+		or not tray_rect.encloses(dash_rect)
+		or not tray_rect.encloses(skill_rect)
+		or not tray_rect.encloses(last_skill_rect)
+		or hud.dash_slot.size != Vector2(52.0, 48.0)
+	):
+		_fail("Dash is not visibly separated from Skill 1 or an action escapes the tray.")
+		return
+
 	hud.options_button.pressed.emit()
 	if not pause_menu.visible or not paused:
-		_fail("The top-right Options button did not open the shared pause menu.")
+		_fail("The top-right Menu button did not open the shared pause menu.")
 		return
 	pause_menu.close_menu()
 

@@ -1,5 +1,43 @@
 # Changelog
 
+## 2026-07-26 - Early Progression and Iron Economy Retune
+
+- Stretched cumulative Level 1-10 thresholds to `0/150/400/750/1200/1750/2400/3150/4000/4950`, with each step costing 100 XP more than the previous step.
+- Stage I's unchanged 304 XP now ends at Level 2, cumulative Stage II reaches Level 3 at 692 XP, and the complete current forest arc reaches Level 4 at 872 XP.
+- Raised Iron Sword from 18 to 90 coins. Stage I's 46 coins can no longer buy it; the complete implemented forest arc supplies 144 coins.
+- Preserved enemy rewards, the free Ashwood fallback, explicit non-auto-equip purchase behavior, Level-3 Eira awakening, and F9's definition-driven Level-10 shortcut.
+- Updated progression, skill-awakening, equipment-catalog, debug-preset, and shop transaction coverage.
+
+## 2026-07-26 - Starter Cleave, Overhead Level-Up, and Clustered-Hit Pass
+
+- Tightened Balanced Slash from 62x108 to a 58-pixel-forward, 96-pixel-wide beginner-sword fan and reduced its matching trail width while preserving center, visible-edge, and tip contact.
+- Confirmed the existing data contract already supports weapon-specific cleaves: each future short sword, greatsword, axe, scythe, or other family may supply an independent authoritative shape and presentation style without player-controller branching.
+- Removed the center-screen level/vitality banner. Level gain now produces only a small low-opacity glow around Opaw, a rising overhead `LEVEL N` label, and the existing restrained chime.
+- Coalesced normal-swing camera, impact audio, and light hitstop once per swing instead of once per contacted enemy; every target retains its own flash, damage number, and burst.
+- Shortened light hitstop to 25 milliseconds and retained a separate 40-millisecond heavy tier for Consecutive Thrust's finisher.
+- Added regression coverage for the tightened cleave, family-specific shape/style swapping, compact overhead level feedback, and four-target shared-feedback behavior.
+
+## 2026-07-26 - Combat Integrity, Run Vitality, and Stage III Routing
+
+- Expanded Balanced Slash into a convex 62-pixel-forward, 108-pixel-wide authority fan and made the visible trail read both reach and half-width; centered and side-edge contacts now receive the same single hit.
+- Added configurable navigation bake clearance, set Stage III to 20 pixels for the Rootbound Husk's 16-pixel body, and protected the central-seal route with full-footprint path sampling.
+- Inserted a 20-pixel effective semantic gap between dash and Skill 1 while retaining the compact fixed-size action controls.
+- Raised Opaw to `140 + 12 per gained level` maximum HP, reaching 248 at Level 10. Current health now survives stage and Sanctuary transitions and regenerates at 1 HP per second after five damage-free seconds.
+- Retuned enemy damage against the larger health curve: Mireling 8, Rootling 10, Forsaken Thrall 18, Bramble Spitter 12, and Rootbound Husk 18 before its authored burst multiplier.
+- Expanded melee, Stage III, HUD, scene-transition, run-session, vitality, and enemy-definition regression coverage.
+
+## 2026-07-26 - Compact UI, Vitality, and Combat-Reach Pass
+
+- Rebuilt the lower HUD as one centered themed action tray with five fixed `52x48` icon-first controls, preventing dash/skill overlap; renamed the visible top-right action to `MENU [ESC]`.
+- Reduced Active Skills cards to compact title/status selectors and retained full copy in one detail panel, eliminating Skillkeeper modal overflow. Added current/max vitality to the character header and aligned its front-view sword preview with the body-connected gameplay pose.
+- Corrected the down-facing detached sword pivot so the hilt visibly meets Opaw's left torso edge and the tip rises outward toward screen-left instead of leaning into his head or floating beside him.
+- Added `PlayerVitalityDefinition`/`PlayerVitalityComponent`: Opaw now has `100 + 8 per gained level` maximum HP, reaching 172 at Level 10 before future armor bonuses.
+- Added a world-space gold/spirit level aura, dedicated `LEVEL UP` vitality banner, and original deterministic UI chime.
+- Moved normal melee reach into `WeaponDefinition`; Balanced Slash now uses a reusable `52x36` cleave polygon with a matching longer inner trail and translucent white-blue outer slash band.
+- Raised and tightened the detached side grips and corrected the front-view sword hand. Future greatswords, axes, and scythes may supply distinct shapes and presentation through the same weapon contract.
+- Widened Piercing Rush from `128x30` to `128x40` and Consecutive Thrust from `128x26` to `128x44` without changing their damage, timings, cooldowns, or defensive rules.
+- Expanded progression, character-menu, HUD-layout, weapon-style, animation, and active-skill regression coverage.
+
 ## 2026-07-26 - Pre-Stage-IV Progression, Equipment, and Combat-UI Pass
 
 - Rebalanced Opaw's cumulative level thresholds to `0/100/250/450/700/1000/1350/1750/2200/2700`; the authored 304 XP in Stage I now finishes near Level 3 instead of Level 7.

@@ -3,12 +3,14 @@
 [ext_resource type="Script" path="res://data/weapons/weapon_definition.gd" id="1_script"]
 [ext_resource type="Texture2D" path="res://assets/items/weapons/world/iron_sword_16x24.png" id="2_world"]
 [ext_resource type="Resource" path="res://data/weapons/attack_styles/balanced_slash.tres" id="3_style"]
+[ext_resource type="Shape2D" path="res://data/weapons/hit_shapes/balanced_sword_cleave.tres" id="4_shape"]
 
 [resource]
 script = ExtResource("1_script")
 weapon_id = &"weapon_iron_sword"
 display_name = "Iron Sword"
 world_texture = ExtResource("2_world")
+melee_hitbox_shape = ExtResource("4_shape")
 attack_style = ExtResource("3_style")
 sprite_offset_from_grip = Vector2(0, -9)
 world_visual_scale = 1.1

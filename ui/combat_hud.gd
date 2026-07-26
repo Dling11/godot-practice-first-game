@@ -47,7 +47,6 @@ func bind_player(player: Player) -> void:
 	var progression := player.progression_component
 	progression.progression_changed.connect(_update_progression)
 	progression.coins_changed.connect(_update_coins)
-	progression.leveled_up.connect(_show_level_up)
 	player.testing_preset_applied.connect(_show_testing_preset)
 	player.skill_loadout_changed.connect(_on_skill_loadout_changed)
 	_update_progression(progression.level, progression.total_experience, 0)
@@ -153,10 +152,6 @@ func _update_progression(_level: int, _total_experience: int, _next_level_experi
 
 func _update_coins(total_coins: int) -> void:
 	coin_label.text = "COINS %d" % total_coins
-
-
-func _show_level_up(new_level: int) -> void:
-	_show_announcement("LEVEL %d  •  NEW PATHS AWAKEN" % new_level, 2.0)
 
 
 func _show_testing_preset(level: int, coins: int) -> void:

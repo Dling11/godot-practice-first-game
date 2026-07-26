@@ -92,6 +92,7 @@ position = Vector2(1160, 725)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="World" unique_id=836943319]
 script = ExtResource("13_navigation")
 navigation_bounds = Rect2(48, 48, 1440, 800)
+navigation_agent_radius = 20.0
 
 [node name="Projectiles" type="Node2D" parent="World" unique_id=2016419382]
 

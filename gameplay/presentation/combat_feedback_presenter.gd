@@ -7,7 +7,8 @@ const PLAYER_HIT_TINT := Color(1.0, 0.9, 0.42, 1.0)
 const PLAYER_DAMAGED_TINT := Color(1.0, 0.42, 0.42, 1.0)
 const HIT_FLASH_SHADER := preload("res://gameplay/presentation/hit_flash.gdshader")
 const HIT_FLASH_SECONDS := 0.1
-const HITSTOP_SECONDS := 0.045
+const LIGHT_HITSTOP_SECONDS := 0.025
+const HEAVY_HITSTOP_SECONDS := 0.04
 ## The dedicated final contact recording contains 125 ms of leading silence.
 ## Start at its metal impact so an accepted final hit does not arrive late.
 const CONSECUTIVE_FINAL_CONTACT_ONSET_SECONDS := 0.125
@@ -25,6 +26,7 @@ const CONSECUTIVE_FINAL_CONTACT_ONSET_SECONDS := 0.125
 var _camera_base_offset := Vector2.ZERO
 var _camera_tween: Tween
 var _hitstop_active := false
+var _melee_shared_feedback_consumed := false
 var _last_ability_impact_physics_frame := -1
 var _hit_flash_material: ShaderMaterial
 
@@ -42,16 +44,32 @@ func _ready() -> void:
 	_hit_flash_material.shader = HIT_FLASH_SHADER
 	_hit_flash_material.set_shader_parameter("flash_amount", 1.0)
 	player.attack_component.hit_landed.connect(_on_player_hit_landed)
+	player.attack_component.attack_started.connect(_on_player_attack_started)
 	player.ability_1_component.hit_landed.connect(_on_player_ability_hit_landed)
 	player.ability_2_component.hit_landed.connect(_on_player_ability_hit_landed)
 	player.health_component.damaged.connect(_on_player_damaged)
 
 
 func _on_player_hit_landed(target: HurtboxComponent, info: DamageInfo) -> void:
-	_show_hit(target.global_position + Vector2(0.0, -22.0), info, PLAYER_HIT_TINT, 1.5)
+	var owns_shared_feedback := not _melee_shared_feedback_consumed
+	_melee_shared_feedback_consumed = true
+	_show_hit(
+		target.global_position + Vector2(0.0, -22.0),
+		info,
+		PLAYER_HIT_TINT,
+		1.5 if owns_shared_feedback else 0.0
+	)
 	_flash_target(target)
-	_request_hitstop()
-	_play_sound_at(sword_hit_sound, target.global_position, 1.0)
+	if owns_shared_feedback:
+		_request_hitstop(LIGHT_HITSTOP_SECONDS)
+		_play_sound_at(sword_hit_sound, target.global_position, 1.0)
+
+
+func _on_player_attack_started() -> void:
+	## A broad cleave keeps local feedback on every struck target, while camera,
+	## hitstop, and impact audio run once for the complete swing. This prevents a
+	## clustered contact from feeling like several frame stalls stacked together.
+	_melee_shared_feedback_consumed = false
 
 
 func _on_player_ability_hit_landed(target: HurtboxComponent, info: DamageInfo) -> void:
@@ -85,7 +103,7 @@ func _on_player_ability_hit_landed(target: HurtboxComponent, info: DamageInfo) -
 	)
 	_flash_target(target)
 	if is_first_impact_this_frame and (not is_consecutive_thrust or is_final_consecutive_hit):
-		_request_hitstop()
+		_request_hitstop(HEAVY_HITSTOP_SECONDS if is_final_consecutive_hit else LIGHT_HITSTOP_SECONDS)
 		if is_final_consecutive_hit:
 			_play_sound_at(
 				consecutive_final_hit_sound,
@@ -149,12 +167,12 @@ func _flash_target(target: HurtboxComponent) -> void:
 	)
 
 
-func _request_hitstop() -> void:
+func _request_hitstop(duration_seconds: float) -> void:
 	if _hitstop_active or get_tree().paused:
 		return
 	_hitstop_active = true
 	get_tree().paused = true
-	var timer := get_tree().create_timer(HITSTOP_SECONDS, true, false, true)
+	var timer := get_tree().create_timer(maxf(duration_seconds, 0.001), true, false, true)
 	timer.timeout.connect(_finish_hitstop)
 
 

@@ -51,6 +51,20 @@ func _run() -> void:
 	if forward_portal.target_scene_path != "res://levels/stage_3/stage_3.tscn":
 		_fail("Cleared Stage 2 portal is not configured to continue into Stage 3.")
 		return
+	player.health_component.apply_damage(
+		DamageInfo.new(37.0, player, Vector2.LEFT)
+	)
+	var carried_health := player.health_component.current_health
+	var stage_three_result: bool = await transition_service.transition_to(
+		"res://levels/stage_3/stage_3.tscn"
+	)
+	if not stage_three_result:
+		_fail("SceneTransition rejected the valid Stage 3 destination.")
+		return
+	var stage_three_player := current_scene.get_node("World/Actors/Player") as Player
+	if not is_equal_approx(stage_three_player.health_component.current_health, carried_health):
+		_fail("Current HP was refilled instead of carrying from Stage 2 into Stage 3.")
+		return
 	print("Scene transition smoke test passed.")
 	quit(0)
 

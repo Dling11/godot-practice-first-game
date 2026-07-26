@@ -18,6 +18,9 @@ func _run() -> void:
 	mireling.global_position = Vector2(222, 200)
 	player.set_physics_process(false)
 	var mireling_body := mireling.get_node("Visual/Body") as AnimatedSprite2D
+	if not is_equal_approx(mireling.definition.attack_damage, 8.0):
+		_fail("Mireling must retain the balanced early-stage 8 damage.")
+		return
 	if mireling_body.sprite_frames.get_animation_names().size() != 16:
 		_fail("Mireling SpriteFrames contains obsolete or missing animation groups.")
 		return

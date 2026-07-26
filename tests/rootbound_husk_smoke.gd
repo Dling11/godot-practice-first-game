@@ -33,7 +33,11 @@ func _run() -> void:
 		attack_starts.append(true)
 	)
 	await create_timer(4.0).timeout
-	if husk.definition.display_name != "Rootbound Husk" or husk.definition.maximum_health != 280.0:
+	if (
+		husk.definition.display_name != "Rootbound Husk"
+		or husk.definition.maximum_health != 280.0
+		or not is_equal_approx(husk.definition.attack_damage, 18.0)
+	):
 		_fail("Rootbound Husk must use the compact first-mini-boss tuning.")
 		return
 	if husk.attack_profile == null:

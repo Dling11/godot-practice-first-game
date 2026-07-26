@@ -25,7 +25,11 @@ func _run() -> void:
 	)
 	rootling.root_jab_erupted.connect(func(_direction: Vector2) -> void: attack_record.erupted = true)
 	await create_timer(1.35).timeout
-	if rootling.definition.display_name != "Rootling" or rootling.definition.maximum_health != 35.0:
+	if (
+		rootling.definition.display_name != "Rootling"
+		or rootling.definition.maximum_health != 35.0
+		or not is_equal_approx(rootling.definition.attack_damage, 10.0)
+	):
 		_fail("Rootling must use its own compact Stage 1 definition.")
 		return
 	if (attack_record.direction as Vector2).is_zero_approx() or not attack_record.erupted:

@@ -89,11 +89,14 @@ func _run() -> void:
 	var projectile := spitter.projectile_scene.instantiate() as HostileProjectile
 	projectiles.add_child(projectile)
 	projectile.global_position = player.global_position - Vector2(45.0, 0.0)
-	projectile.launch(Vector2.RIGHT, 8.0, spitter)
+	projectile.launch(Vector2.RIGHT, spitter.definition.attack_damage, spitter)
 	for frame in range(35):
 		await physics_frame
-	if not is_equal_approx(player_health.current_health, player_health.maximum_health - 8.0):
-		_fail("Bramble seed projectile did not apply exactly 8 damage through the hurtbox contract.")
+	if not is_equal_approx(
+		player_health.current_health,
+		player_health.maximum_health - spitter.definition.attack_damage
+	):
+		_fail("Bramble seed projectile did not apply its balanced definition damage.")
 		return
 	if not impact_seen.value:
 		_fail("Bramble seed did not create its impact feedback.")

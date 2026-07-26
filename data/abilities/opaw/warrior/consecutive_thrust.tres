@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dtw80slu3cyml" path="res://assets/ui/icons/skills/icon_skill_consecutive_thrust_24x24.png" id="2_icon"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_consecutive_thrust"]
-points = PackedVector2Array(4, -13, 108, -13, 128, 0, 108, 13, 4, 13)
+points = PackedVector2Array(4, -22, 108, -22, 128, 0, 108, 22, 4, 22)
 
 [resource]
 script = ExtResource("1_script")
@@ -12,7 +12,7 @@ ability_id = &"consecutive_thrust"
 display_name = "Consecutive Thrust"
 hud_name = "RAPID THRUST"
 description = "Seven spirit-lance strikes
-128 px reach - 225% total weapon damage
+128 x 44 px lane - 225% total weapon damage
 Invulnerable while casting - dash to cancel"
 icon = ExtResource("2_icon")
 presentation_style = 1

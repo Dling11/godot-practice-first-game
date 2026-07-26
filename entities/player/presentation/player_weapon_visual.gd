@@ -7,6 +7,7 @@ extends Node2D
 @export var weapon: WeaponDefinition
 @export var weapon_sprite: Sprite2D
 @export var swing_trail: Line2D
+@export var swing_smoke: Line2D
 @export var ability_component: AbilityComponent
 @export var ability_2_component: AbilityComponent
 
@@ -55,6 +56,10 @@ func set_weapon_definition(next_weapon: WeaponDefinition) -> bool:
 		swing_trail.visible = false
 		swing_trail.width = style.trail_width
 		swing_trail.default_color = style.trail_color
+	if swing_smoke != null:
+		swing_smoke.visible = false
+		swing_smoke.width = style.trail_width + 5.0
+		swing_smoke.default_color = Color(0.82, 0.9, 1.0, 0.34)
 	if is_node_ready() and not _action_locked:
 		_apply_idle_pose()
 	return true
@@ -245,18 +250,22 @@ func _idle_transform(direction: StringName) -> Transform2D:
 			return Transform2D(1.72, _weapon_anchor(direction))
 		&"up":
 			return Transform2D(-0.35, _weapon_anchor(direction))
-	return Transform2D(0.4, _weapon_anchor(direction))
+	# The down-facing hilt begins against the torso while the blade rises
+	# outward toward screen-left, away from Opaw's head. This keeps the detached
+	# weapon visibly controlled without crossing the face.
+	return Transform2D(-0.45, _weapon_anchor(direction))
 
 
 func _weapon_anchor(direction: StringName) -> Vector2:
 	match direction:
 		&"left":
-			return Vector2(-11.0, -9.0)
+			return Vector2(-9.0, -11.0)
 		&"right":
-			return Vector2(11.0, -9.0)
+			return Vector2(9.0, -11.0)
 		&"up":
-			return Vector2(-12.0, -11.0)
-	return Vector2(12.0, -8.0)
+			return Vector2(10.0, -12.0)
+	# Place the hilt near the left torso edge; rotation sends the tip outward.
+	return Vector2(-6.0, -10.0)
 
 
 func _attack_anchor(direction: StringName, phase: int, is_ability: bool) -> Vector2:
@@ -266,12 +275,12 @@ func _attack_anchor(direction: StringName, phase: int, is_ability: bool) -> Vect
 	)
 	match direction:
 		&"left":
-			return Vector2(-12.0, -11.0) if phase == MeleeAttackComponent.Phase.WIND_UP else Vector2(-13.0 - active_extension, -7.0)
+			return Vector2(-10.0, -13.0) if phase == MeleeAttackComponent.Phase.WIND_UP else Vector2(-13.0 - active_extension, -8.0)
 		&"right":
-			return Vector2(12.0, -11.0) if phase == MeleeAttackComponent.Phase.WIND_UP else Vector2(13.0 + active_extension, -7.0)
+			return Vector2(10.0, -13.0) if phase == MeleeAttackComponent.Phase.WIND_UP else Vector2(13.0 + active_extension, -8.0)
 		&"up":
-			return Vector2(-9.0, -10.0) if phase == MeleeAttackComponent.Phase.WIND_UP else Vector2(-6.0, -16.0 - active_extension)
-	return Vector2(9.0, -10.0) if phase == MeleeAttackComponent.Phase.WIND_UP else Vector2(6.0, -5.0 + active_extension)
+			return Vector2(8.0, -12.0) if phase == MeleeAttackComponent.Phase.WIND_UP else Vector2(5.0, -17.0 - active_extension)
+	return Vector2(-8.0, -12.0) if phase == MeleeAttackComponent.Phase.WIND_UP else Vector2(-5.0, -5.0 + active_extension)
 
 
 func _attack_rotations(
@@ -330,16 +339,30 @@ func _show_swing_trail(
 	var style := _attack_style()
 	var points := PackedVector2Array()
 	var point_count := style.trail_point_count
+	var cleave_radius := maxf(
+		weapon.swing_visual_radius,
+		maxf(
+			weapon.get_melee_forward_reach_pixels() * 0.8,
+			weapon.get_melee_half_width_pixels() * 0.9
+		)
+	)
 	for point_index in range(point_count):
 		var weight := float(point_index) / float(point_count - 1)
 		var angle := lerp_angle(start_rotation, end_rotation, weight)
-		points.append(center + Vector2.UP.rotated(angle) * weapon.swing_visual_radius)
+		points.append(center + Vector2.UP.rotated(angle) * cleave_radius)
 	swing_trail.points = points
 	swing_trail.z_index = -1 if _action_direction == &"up" else 1
 	swing_trail.width = style.trail_width
 	swing_trail.default_color = style.trail_color
 	swing_trail.modulate.a = 0.95
 	swing_trail.visible = true
+	if swing_smoke != null:
+		swing_smoke.points = points
+		swing_smoke.z_index = -2 if _action_direction == &"up" else 0
+		swing_smoke.width = style.trail_width + 5.0
+		swing_smoke.default_color = Color(0.82, 0.9, 1.0, 0.34)
+		swing_smoke.modulate.a = 0.8
+		swing_smoke.visible = true
 	_trail_tween = create_tween().set_parallel(true)
 	_trail_tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	_trail_tween.tween_property(
@@ -354,7 +377,22 @@ func _show_swing_trail(
 		0.75,
 		maxf(duration_seconds + style.trail_fade_padding_seconds, 0.08)
 	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	if swing_smoke != null:
+		_trail_tween.tween_property(
+			swing_smoke,
+			"modulate:a",
+			0.0,
+			maxf(duration_seconds + style.trail_fade_padding_seconds + 0.04, 0.12)
+		).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		_trail_tween.tween_property(
+			swing_smoke,
+			"width",
+			2.0,
+			maxf(duration_seconds + style.trail_fade_padding_seconds + 0.04, 0.12)
+		).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	_trail_tween.chain().tween_callback(swing_trail.hide)
+	if swing_smoke != null:
+		_trail_tween.chain().tween_callback(swing_smoke.hide)
 
 
 func _play_strike_accent(duration_seconds: float) -> void:
@@ -384,12 +422,17 @@ func _play_strike_accent(duration_seconds: float) -> void:
 func _hide_swing_trail() -> void:
 	if _trail_tween != null and _trail_tween.is_valid():
 		_trail_tween.kill()
+	var style := _attack_style()
 	if swing_trail != null:
-		var style := _attack_style()
 		swing_trail.visible = false
 		swing_trail.width = style.trail_width
 		swing_trail.default_color = style.trail_color
 		swing_trail.modulate.a = 1.0
+	if swing_smoke != null:
+		swing_smoke.visible = false
+		swing_smoke.width = style.trail_width + 5.0
+		swing_smoke.default_color = Color(0.82, 0.9, 1.0, 0.34)
+		swing_smoke.modulate.a = 1.0
 
 
 func _kill_pose_tween() -> void:

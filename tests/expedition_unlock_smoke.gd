@@ -49,7 +49,7 @@ func _run() -> void:
 			_fail("The Rootbound Hollow omitted an authored requirement: %s" % expected)
 			return
 
-	run_session.update_progression(250, 0)
+	run_session.update_progression(400, 0)
 	var player_level := Progression.get_level_for_total_experience(run_session.total_experience)
 	story_state.remember_story(&"forgotten_grove_completed")
 	story_state.record_boss_victory(&"thornbound_warden")

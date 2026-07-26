@@ -10,6 +10,7 @@ signal hit_landed(target: HurtboxComponent, info: DamageInfo)
 
 @export var weapon: WeaponDefinition
 @export var hitbox: MeleeHitbox
+@export var collision_shape: CollisionShape2D
 
 var phase := Phase.IDLE
 var _phase_time_remaining: float
@@ -20,10 +21,30 @@ func _ready() -> void:
 	set_physics_process(false)
 	if hitbox != null:
 		hitbox.hit_landed.connect(_on_hit_landed)
+	if weapon != null and weapon.melee_hitbox_shape != null and collision_shape != null:
+		collision_shape.shape = weapon.melee_hitbox_shape
+
+
+func set_weapon_definition(next_weapon: WeaponDefinition) -> bool:
+	if (
+		next_weapon == null
+		or next_weapon.melee_hitbox_shape == null
+		or collision_shape == null
+	):
+		return false
+	weapon = next_weapon
+	collision_shape.shape = next_weapon.melee_hitbox_shape
+	return true
 
 
 func request_attack(direction: Vector2) -> bool:
-	if phase != Phase.IDLE or weapon == null or hitbox == null:
+	if (
+		phase != Phase.IDLE
+		or weapon == null
+		or weapon.melee_hitbox_shape == null
+		or hitbox == null
+		or collision_shape == null
+	):
 		return false
 	_attack_direction = direction.normalized() if not direction.is_zero_approx() else Vector2.RIGHT
 	attack_started.emit()

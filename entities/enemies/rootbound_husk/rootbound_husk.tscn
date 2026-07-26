@@ -73,6 +73,7 @@ shape = SubResource("foot")
 unique_name_in_owner = true
 path_desired_distance = 8.0
 target_desired_distance = 9.0
+radius = 16.0
 neighbor_distance = 64.0
 max_speed = 46.0
 

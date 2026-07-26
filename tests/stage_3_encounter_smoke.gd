@@ -12,6 +12,7 @@ func _run() -> void:
 	var controller: EncounterController = stage.get_node("GameplayServices/EncounterController")
 	root.add_child(stage)
 	var ground := stage.get_node("World/Level/Ground") as TileMapLayer
+	var navigation_region := stage.get_node("World/NavigationRegion2D") as NavigationRegion2D
 	if controller.auto_start or controller.waves.size() != 2:
 		_fail("Stage 3 must wait for arrival lore and retain its authored two-wave structure.")
 		return
@@ -63,6 +64,35 @@ func _run() -> void:
 	if arena_seal == null or not arena_seal.has_node("NavigationCutout"):
 		_fail("Stage 3 lost its colliding, navigation-aware arena landmark.")
 		return
+	if not is_equal_approx(navigation_region.navigation_agent_radius, 20.0):
+		_fail("Stage 3 navigation is not baked for the Rootbound Husk's large footprint.")
+		return
+	var navigation_map := navigation_region.get_world_2d().get_navigation_map()
+	var seal_route := PackedVector2Array()
+	for attempt in range(30):
+		seal_route = NavigationServer2D.map_get_path(
+			navigation_map,
+			Vector2(768.0, 150.0),
+			Vector2(768.0, 760.0),
+			true,
+			1
+		)
+		if seal_route.size() >= 3:
+			break
+		await physics_frame
+	if seal_route.size() < 3:
+		_fail("The Husk cannot obtain a route around the central Rootbound seal.")
+		return
+	var husk_clearance := Rect2(591.5, 202.0, 345.0, 88.0).grow(16.0)
+	for point_index in range(seal_route.size() - 1):
+		var start := seal_route[point_index]
+		var finish := seal_route[point_index + 1]
+		var sample_count := maxi(ceili(start.distance_to(finish) / 4.0), 1)
+		for sample_index in range(sample_count + 1):
+			var sample := start.lerp(finish, float(sample_index) / float(sample_count))
+			if husk_clearance.has_point(sample):
+				_fail("The Husk route clips its body into the central seal at %s." % sample)
+				return
 	var dialogue := stage.get("dialogue_panel") as DialoguePanel
 	var skipped := [false]
 	dialogue.dialogue_closed.connect(func(completed: bool) -> void: skipped[0] = not completed, CONNECT_ONE_SHOT)

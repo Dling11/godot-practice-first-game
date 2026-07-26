@@ -15,6 +15,7 @@ signal skill_awakened(skill_name: String)
 @export var player: Player
 
 @onready var level_label: Label = %LevelLabel
+@onready var vitality_label: Label = %VitalityLabel
 @onready var experience_bar: ProgressBar = %ExperienceBar
 @onready var experience_label: Label = %ExperienceLabel
 @onready var coin_label: Label = %CoinLabel
@@ -53,9 +54,14 @@ func _ready() -> void:
 	var progression := player.progression_component
 	progression.progression_changed.connect(_update_progression)
 	progression.coins_changed.connect(_update_coins)
+	player.health_component.health_changed.connect(_update_vitality)
 	player.skill_loadout_changed.connect(_on_skill_loadout_changed)
 	_update_progression(progression.level, progression.total_experience, 0)
 	_update_coins(progression.coins)
+	_update_vitality(
+		player.health_component.current_health,
+		player.health_component.maximum_health
+	)
 	_configure_tabs()
 	equipment_detail_panel.equip_requested.connect(_on_equipment_equip_requested)
 	awaken_button.pressed.connect(_on_awaken_button_pressed)
@@ -132,6 +138,10 @@ func _update_progression(_level: int, _total_experience: int, _next_level_experi
 
 func _update_coins(total_coins: int) -> void:
 	coin_label.text = "%d COINS" % total_coins
+
+
+func _update_vitality(current: float, maximum: float) -> void:
+	vitality_label.text = "HP %d/%d" % [ceili(current), ceili(maximum)]
 
 
 func _configure_tabs() -> void:

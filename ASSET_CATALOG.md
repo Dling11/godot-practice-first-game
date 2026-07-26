@@ -200,8 +200,9 @@ Current UI visuals combine the approved reusable base theme and named pixel icon
 
 | Canonical ID | Current path | Status | Purpose |
 |---|---|---|---|
-| `ui_combat_hud` | `ui/combat_hud.tscn` | `active_resource` | Vitality, progression, character/satchel entry, interaction prompt, and skills 1-4. |
+| `ui_combat_hud` | `ui/combat_hud.tscn` | `active_resource` | Vitality, progression, Menu entry, interaction prompt, and one compact action tray with dash visually separated from skills 1-4. |
 | `ui_character_menu` | `ui/character_menu.tscn` | `active_resource` | Paused owned Gear/Armory and Active Skills surface for Opaw. |
+| `ui_player_level_up_feedback` | `entities/player/presentation/player_level_up_visual.gd` | `active_resource` | Small actor glow and rising overhead level label; no center-screen panel. |
 | `ui_weapon_shop_menu` | `ui/shops/weapon_shop_menu.tscn` | `active_resource` | Orren's paused class-aware weapon purchase surface. |
 | `ui_equipment_item_card` | `ui/equipment/equipment_item_card.tscn` | `active_resource` | Focusable owned-item equip card. |
 | `ui_equipment_slot_card` | `ui/equipment/equipment_slot_card.tscn` | `active_resource` | Reusable equipped or empty slot presentation. |
@@ -214,6 +215,7 @@ Current UI visuals combine the approved reusable base theme and named pixel icon
 | `ui_damage_number` | `ui/world/damage_number.tscn` | `active_resource` | Short-lived accepted-hit values. |
 | `fx_summon` | `gameplay/encounters/summon_effect.tscn` | `active_resource` | Enemy materialization presentation. |
 | `fx_hit_burst` | `gameplay/presentation/hit_burst.tscn` | `active_resource` | Accepted-hit pixel burst. |
+| `fx_opaw_sword_cleave_smoke` | `entities/player/player.tscn` | `active_resource` | Code-native pale cleave band sized from the equipped weapon's authoritative melee shape. |
 | `fx_bramble_seed_impact` | `gameplay/projectiles/bramble_seed_impact.tscn` | `active_resource` | Seed collision presentation. |
 | `fx_opaw_piercing_rush` | `assets/skills/opaw/warrior/piercing_rush/opaw_piercing_rush_vfx_sheet_192x192.png` | `active_runtime` | Six 192x192 cells in a 3x2 atlas; right-facing charge, ignition, lance, peak plume, shock ring, and decay frames rotated by presentation. |
 | `fx_opaw_piercing_rush_source` | `art_source/generated/skills/opaw/piercing_rush/opaw_piercing_rush_vfx_source_v1.png` | `source` | 1536x1024 generated 3x2 chroma board preserved outside runtime loading. |
@@ -298,6 +300,7 @@ Backgrounds are replaceable presentation dependencies. Screen scripts and focus/
 | `audio_sfx_opaw_consecutive_thrust_final_hit` | `assets/audio/sfx/opaw_consecutive_thrust_final_hit.ogg` | `active_runtime` |
 | `audio_sfx_opaw_consecutive_thrust_v3` | `art_source/archive/skills/opaw/consecutive_thrust_v3_replaced/audio/` | `archived` | Replaced three-voice swish and final-whoosh runtime audio retained for provenance only. |
 | `audio_sfx_opaw_hurt_impact` | `assets/audio/sfx/opaw_hurt_impact.wav` | `active_runtime` |
+| `audio_ui_opaw_level_up_chime` | `assets/audio/sfx/ui/opaw_level_up_chime.wav` | `active_runtime` |
 | `audio_sfx_thrall_claw` | `assets/audio/sfx/thrall_claw.wav` | `active_runtime` |
 | `audio_sfx_mireling_leap` | `assets/audio/sfx/mireling_leap.wav` | `active_runtime` |
 | `audio_sfx_mireling_land` | `assets/audio/sfx/mireling_land.wav` | `active_runtime` |

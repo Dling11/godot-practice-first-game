@@ -52,6 +52,7 @@ func _run() -> void:
 	var weapon_visual: Node2D = player.get_node("VisualRoot/WeaponVisual")
 	var weapon_sprite: Sprite2D = player.get_node("VisualRoot/WeaponVisual/Weapon")
 	var swing_trail: Line2D = player.get_node("VisualRoot/SwordSwingTrail")
+	var swing_smoke: Line2D = player.get_node("VisualRoot/SwordCleaveSmoke")
 	var player_collision: CollisionShape2D = player.get_node("CollisionShape2D")
 	if player_shadow.position != Vector2(0.0, -2.0) or not player_collision.shape is CircleShape2D:
 		_fail("Player shadow/collision is not anchored to the foot plane.")
@@ -68,8 +69,11 @@ func _run() -> void:
 	):
 		_fail("Opaw's visible weapon does not use its data-driven grip offset and scale.")
 		return
-	if weapon_visual.position != Vector2(12.0, -8.0):
-		_fail("Opaw's down-facing Ashwood Blade is no longer clear of his armless body.")
+	if (
+		weapon_visual.position != Vector2(-6.0, -10.0)
+		or not is_equal_approx(weapon_visual.rotation, -0.45)
+	):
+		_fail("Opaw's down-facing hilt is not body-connected with its blade pointing outward.")
 		return
 	var right_rotations: Vector2 = weapon_visual.call("_attack_rotations", &"right", 1.15, 0.72)
 	var left_rotations: Vector2 = weapon_visual.call("_attack_rotations", &"left", 1.15, 0.72)
@@ -81,7 +85,7 @@ func _run() -> void:
 	):
 		_fail("Opaw's left sword swing is not a true mirror of the right swing.")
 		return
-	if right_wind_anchor.x < 12.0 or left_wind_anchor.x > -12.0:
+	if right_wind_anchor.x < 9.0 or left_wind_anchor.x > -9.0:
 		_fail("Opaw's side-facing sword wind-up can overlap his profile head.")
 		return
 
@@ -90,8 +94,8 @@ func _run() -> void:
 	if player_body.animation != &"walk_right":
 		_fail("Player did not select walk_right.")
 		return
-	if weapon_visual.position != Vector2(11.0, -9.0):
-		_fail("Opaw's right-facing Ashwood Blade is no longer clear of his armless body.")
+	if weapon_visual.position != Vector2(9.0, -11.0):
+		_fail("Opaw's right-facing blade is not raised close to his profile.")
 		return
 	var idle_weapon_position := weapon_visual.position
 	var idle_weapon_rotation := weapon_visual.rotation
@@ -104,6 +108,7 @@ func _run() -> void:
 			"animation": player_body.animation,
 			"frame": player_body.frame,
 			"trail_visible": swing_trail.visible,
+			"smoke_visible": swing_smoke.visible,
 			"body_scale": player_body.scale,
 		}, true)
 	)
@@ -139,6 +144,7 @@ func _run() -> void:
 		or active_snapshot.animation != &"attack_right"
 		or active_snapshot.frame != 1
 		or not active_snapshot.trail_visible
+		or not active_snapshot.smoke_visible
 		or active_snapshot.body_scale != idle_body_scale
 	):
 		_fail(

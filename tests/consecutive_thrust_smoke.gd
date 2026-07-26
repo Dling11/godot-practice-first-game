@@ -21,7 +21,7 @@ func _run() -> void:
 		or ConsecutiveThrust.strike_count() != 7
 		or not is_equal_approx(ConsecutiveThrust.weapon_damage_multiplier, 1.0)
 		or not is_equal_approx(ConsecutiveThrust.get_forward_lance_reach_pixels(), 128.0)
-		or not is_equal_approx(ConsecutiveThrust.get_forward_lance_half_width_pixels(), 13.0)
+		or not is_equal_approx(ConsecutiveThrust.get_forward_lance_half_width_pixels(), 22.0)
 		or ConsecutiveThrust.hitbox_shape == null
 		or not ConsecutiveThrust.grants_invulnerability
 		or not ConsecutiveThrust.dash_cancelable

@@ -35,6 +35,8 @@ const AbilityComponentScript = preload("res://gameplay/abilities/ability_compone
 @onready var ability_2_component: AbilityComponentScript = %Ability2Component
 @onready var health_component: HealthComponent = %HealthComponent
 @onready var progression_component: PlayerProgressionComponent = %ProgressionComponent
+@onready var vitality_component: PlayerVitalityComponent = %VitalityComponent
+@onready var health_regeneration_component: PlayerHealthRegenerationComponent = %HealthRegenerationComponent
 @onready var weapon_visual: PlayerWeaponVisual = $VisualRoot/WeaponVisual
 
 var facing_direction := Vector2.DOWN
@@ -46,6 +48,8 @@ var _pending_weapon_definition: WeaponDefinition
 
 
 func _ready() -> void:
+	_restore_run_health()
+	health_component.health_changed.connect(_sync_run_health)
 	health_component.died.connect(_on_died)
 	evade_component.phase_changed.connect(_on_evade_phase_changed)
 	attack_component.phase_changed.connect(_on_attack_phase_changed)
@@ -54,6 +58,28 @@ func _ready() -> void:
 	_apply_story_skill_loadout()
 	_apply_inventory_weapon()
 	facing_changed.emit(facing_direction)
+
+
+func _restore_run_health() -> void:
+	var run_session := get_node_or_null("/root/RunSession")
+	if run_session == null:
+		return
+	if run_session.has_player_health_state():
+		health_component.set_current_health(
+			clampf(
+				run_session.player_current_health,
+				1.0,
+				health_component.maximum_health
+			)
+		)
+	else:
+		run_session.update_player_health(health_component.current_health)
+
+
+func _sync_run_health(current: float, _maximum: float) -> void:
+	var run_session := get_node_or_null("/root/RunSession")
+	if run_session != null:
+		run_session.update_player_health(current)
 
 
 func _physics_process(delta: float) -> void:
@@ -184,6 +210,7 @@ func set_weapon_definition(next_weapon: WeaponDefinition) -> bool:
 	if (
 		next_weapon == null
 		or next_weapon.world_texture == null
+		or next_weapon.melee_hitbox_shape == null
 		or is_defeated
 		or attack_component.phase != attack_component.Phase.IDLE
 		or is_any_ability_casting()
@@ -192,8 +219,7 @@ func set_weapon_definition(next_weapon: WeaponDefinition) -> bool:
 		return false
 	if not weapon_visual.set_weapon_definition(next_weapon):
 		return false
-	attack_component.weapon = next_weapon
-	return true
+	return attack_component.set_weapon_definition(next_weapon)
 
 
 func get_equipped_weapon_item() -> EquipmentDefinition:

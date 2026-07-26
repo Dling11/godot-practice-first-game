@@ -65,6 +65,10 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 055 | Gate authored reveals and give recurring characters reusable portraits | Pre-fight dialogue, encounter gates, character portraits, bestiary art, or expedition previews |
 | 056 | Bake combat-stage TileMaps from authored layout resources | Forest tiles, stage composition, landmark placement, terrain authoring, or environment folders |
 | 057 | Complete the pre-Stage-IV progression and control pass | XP curve, Eira awakening, Skill 2 invulnerability/cancel, explicit equip, HUD input, dash/options UI |
+| 058 | Use compact action UI and data-owned combat scale | HUD/menu sizing, level vitality, level-up feedback, weapon shapes, sword grip, skill reach, future weapon families |
+| 059 | Align cleave, routing, and run vitality | Visible melee contacts, Stage III boss navigation, dash separation, current-health continuity, regeneration, enemy damage |
+| 060 | Tighten starter cleave and localize feedback | Beginner-sword reach, future weapon-family shapes, overhead level feedback, clustered-hit performance, or hitstop tiers |
+| 061 | Slow the first-forest progression curve | XP thresholds, stage-level pacing, Iron Sword price, early economy, or save reconstruction |
 
 ## New Decisions
 

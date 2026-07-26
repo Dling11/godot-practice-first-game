@@ -19,7 +19,7 @@ func _run() -> void:
 	if player.can_awaken_skill_2():
 		_fail("Consecutive Thrust became eligible below its Level 3 milestone.")
 		return
-	player.progression_component.grant_rewards(250, 0)
+	player.progression_component.grant_rewards(400, 0)
 	if player.progression_component.level != 3 or not player.can_awaken_skill_2():
 		_fail("Level 3 did not make Consecutive Thrust eligible for Eira awakening.")
 		return

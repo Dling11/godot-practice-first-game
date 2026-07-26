@@ -31,8 +31,18 @@ func _run() -> void:
 	player.set_physics_process(false)
 	var body: AnimatedSprite2D = player.get_node("VisualRoot/Body")
 	var shared_body_frames := body.sprite_frames
-	if player.weapon_visual.position != Vector2(12.0, -8.0):
-		_fail("The down-facing sword was not raised to its approved front-view anchor.")
+	if (
+		player.weapon_visual.position != Vector2(-6.0, -10.0)
+		or not is_equal_approx(player.weapon_visual.rotation, -0.45)
+	):
+		_fail("The down-facing sword does not connect at the body and point away from Opaw's head.")
+		return
+	if (
+		not is_equal_approx(AshwoodBlade.get_melee_forward_reach_pixels(), 58.0)
+		or not is_equal_approx(AshwoodBlade.get_melee_half_width_pixels(), 48.0)
+		or player.attack_component.collision_shape.shape != AshwoodBlade.melee_hitbox_shape
+	):
+		_fail("Balanced Slash is missing its authored 58-reach by 96-wide cleave fan.")
 		return
 	if BalancedSlash.normal_variant_count() != 3:
 		_fail("Balanced Slash must expose the approved three-swing visual sequence.")
@@ -92,6 +102,9 @@ func _run() -> void:
 	var heavy_weapon := AshwoodBlade.duplicate(true) as WeaponDefinition
 	heavy_weapon.weapon_id = &"test_heavy_blade"
 	heavy_weapon.attack_style = HeavyCleave
+	var heavy_shape := RectangleShape2D.new()
+	heavy_shape.size = Vector2(148.0, 88.0)
+	heavy_weapon.melee_hitbox_shape = heavy_shape
 	if not player.set_weapon_definition(swift_weapon):
 		_fail("Swift Slash could not be selected through weapon data.")
 		return
@@ -109,10 +122,12 @@ func _run() -> void:
 		return
 	if (
 		body.sprite_frames != shared_body_frames
+		or player.attack_component.collision_shape.shape != heavy_shape
+		or not is_equal_approx(heavy_weapon.get_melee_forward_reach_pixels(), 74.0)
 		or not is_equal_approx(player.weapon_visual.swing_trail.width, HeavyCleave.trail_width)
 		or player.weapon_visual.swing_trail.default_color != HeavyCleave.trail_color
 	):
-		_fail("Style swapping did not update presentation while preserving the body animation.")
+		_fail("Weapon-owned family shape/style swapping did not update combat and presentation together.")
 		return
 
 	if not player.request_primary_attack():

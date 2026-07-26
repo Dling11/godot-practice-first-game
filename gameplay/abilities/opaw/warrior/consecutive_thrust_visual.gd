@@ -10,7 +10,7 @@ const SPIRIT_WHITE := Color(1.0, 0.98, 0.82, 1.0)
 const RELIC_GOLD := Color(1.0, 0.72, 0.22, 1.0)
 ## Keep the guide compact: a long center thread makes the rapid VFX look like
 ## a strange spear rather than a tight flurry. Gameplay still owns 128 px reach.
-const VISIBLE_CORE_LENGTH_PIXELS := 72.0
+const VISIBLE_CORE_LENGTH_PIXELS := 112.0
 const GOLD_ORIGIN_FLARE_LENGTH_PIXELS := 24.0
 const ACTIVE_FLURRY_FRAMES := [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 const ACTIVE_FLURRY_ANGLES := [-0.14, 0.12, -0.10, 0.14, -0.11, 0.08, -0.08, 0.10, -0.05, 0.0]
@@ -184,8 +184,15 @@ func _draw() -> void:
 		GOLD_ORIGIN_FLARE_LENGTH_PIXELS * _core_length_scale
 	)
 	var gold_tip := Vector2(gold_flare_length, 0.0).rotated(_strike_angle)
+	var contact_half_width := _get_contact_half_width_pixels()
+	draw_line(
+		origin,
+		tip,
+		Color(0.58, 0.82, 1.0, 0.2 * _core_alpha),
+		maxf(contact_half_width * 0.72, 8.0)
+	)
 	draw_line(origin, gold_tip, Color(RELIC_GOLD, 0.48 * _core_alpha), 3.0)
-	draw_line(origin, tip, Color(SPIRIT_WHITE, 0.78 * _core_alpha), 2.0)
+	draw_line(origin, tip, Color(SPIRIT_WHITE, 0.9 * _core_alpha), 3.0)
 
 
 func _get_contact_reach_pixels() -> float:

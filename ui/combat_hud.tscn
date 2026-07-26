@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=12 format=3]
 
 [ext_resource type="Script" path="res://ui/combat_hud.gd" id="1"]
 [ext_resource type="Theme" path="res://assets/ui/themes/battle_of_gods_theme.tres" id="2_theme"]
@@ -29,6 +29,20 @@ corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_experience"]
 bg_color = Color(0.25, 0.62, 0.86, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_action_tray"]
+bg_color = Color(0.02, 0.027, 0.043, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.22, 0.19, 0.3, 0.92)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0.01, 0.01, 0.02, 0.55)
+shadow_size = 3
 
 [node name="CombatHUD" type="Control"]
 layout_mode = 3
@@ -181,8 +195,8 @@ grow_horizontal = 0
 mouse_filter = 0
 mouse_default_cursor_shape = 2
 focus_mode = 0
-tooltip_text = "Open Options (Esc)"
-text = "OPTIONS  [ESC]"
+tooltip_text = "Open Menu (Esc)"
+text = "MENU  [ESC]"
 theme_override_colors/font_color = Color(0.86, 0.84, 0.7, 1)
 theme_override_font_sizes/font_size = 9
 
@@ -265,30 +279,47 @@ vertical_alignment = 1
 theme_override_colors/font_color = Color(0.84, 0.76, 1, 1)
 theme_override_font_sizes/font_size = 11
 
-[node name="SkillBar" type="HBoxContainer" parent="."]
-unique_name_in_owner = true
+[node name="ActionTray" type="PanelContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -119.0
-offset_top = -74.0
-offset_right = 187.0
-offset_bottom = -16.0
+offset_left = -156.0
+offset_top = -68.0
+offset_right = 156.0
+offset_bottom = -10.0
 grow_horizontal = 2
-theme_override_constants/separation = 6
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_action_tray")
 
-[node name="DashBarSlot" parent="." instance=ExtResource("7_dash_slot")]
+[node name="Margin" type="MarginContainer" parent="ActionTray"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Actions" type="HBoxContainer" parent="ActionTray/Margin"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+theme_override_constants/separation = 4
+
+[node name="DashBarSlot" parent="ActionTray/Margin/Actions" instance=ExtResource("7_dash_slot")]
 unique_name_in_owner = true
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -199.0
-offset_top = -74.0
-offset_right = -127.0
-offset_bottom = -16.0
-grow_horizontal = 2
+layout_mode = 2
+
+[node name="DashSkillGap" type="Control" parent="ActionTray/Margin/Actions"]
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SkillBar" type="HBoxContainer" parent="ActionTray/Margin/Actions"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
 
 [node name="DefeatPanel" type="PanelContainer" parent="."]
 unique_name_in_owner = true

@@ -74,7 +74,7 @@ func _run() -> void:
 	if (
 		player.progression_component.level != 10
 		or player.progression_component.coins != 999
-		or run_session.total_experience != 2700
+		or run_session.total_experience != 4950
 		or run_session.coins != 999
 	):
 		_fail("F9 testing preset did not synchronize level 10 and 999 coins.")

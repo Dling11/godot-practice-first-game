@@ -1,5 +1,13 @@
 # Audio Attribution
 
+## Original Opaw Level-Up Chime
+
+- **Runtime file:** `sfx/ui/opaw_level_up_chime.wav`
+- **Source:** Original deterministic in-project synthesis via `tools/build_level_up_sfx.py`
+- **Created:** 2026-07-26
+
+The restrained rising spirit chime accompanies the compact level-up banner. It is routed through the UI bus and requires no external attribution.
+
 ## Original Opaw Action Cues
 
 - **Runtime file:** `sfx/opaw_hurt_impact.wav`

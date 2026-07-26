@@ -1,7 +1,7 @@
 # Opaw Combat Controls and Skills Proposal
 
 - **Date:** 2026-07-18
-- **Status:** Movement-facing, left-click basic attack, dash-to-attack chaining, F9 test loadouts, clickable immediate-direction activation, weapon scaling, Piercing Rush, and debug-test Consecutive Thrust are implemented. Ground targeting, normal Eira awakening, Skills 3-4, exact future balance, and encounter pacing remain proposals.
+- **Status:** Movement-facing, left-click basic attack, dash-to-attack chaining, F9 test loadouts, clickable immediate-direction activation, weapon scaling, Piercing Rush, and Eira-awakened Consecutive Thrust are implemented. Ground targeting, Skills 3-4, exact future balance, and encounter pacing remain proposals.
 
 ## Player Direction
 
@@ -32,13 +32,13 @@ While a ground-targeted skill is pending, gameplay continues and Opaw may move. 
 ### Skill 1 — Piercing Rush
 
 - **Implemented:** immediate directional thrust-dash using current facing, triggered by `1`, legacy Q, left shoulder, or the ready HUD slot.
-- Opaw commits about 50 collision-limited pixels behind the sword, damages each target once along the 128x30 bright central lane for 180% snapshotted equipped-weapon damage, and uses 112 pushback without invulnerability.
+- Opaw commits about 50 collision-limited pixels behind the sword, damages each target once along the 128x40 bright central lane for 180% snapshotted equipped-weapon damage, and uses 112 pushback without invulnerability.
 - The detached sword enters a forward thrust while a six-frame white-gold spirit blade, blue/gold streaks, sparks, and shared confirmed-hit feedback carry the presentation. Dedicated CC0 charge, thrust, and accepted-impact cues replace normal-swing reuse.
 
 ### Skill 2 — Consecutive Thrust
 
-- **Implemented for F9 testing:** immediate-directional stationary seven-thrust rapid-flurry technique on `2` or the refreshed HUD button; normal play remains sealed pending Eira.
-- A 128x26 lane reactivates once for each authored 18%, 19%, 20%, 21%, 22%, 25%, and 100% weapon-scaled strike during the 0.88-second active flurry. Small hits have no knockback, refresh 0.21 seconds of stagger, and use only alternating local number/flash feedback; the final thrust receives the strongest white flash, 150 pushback, 0.42 seconds stagger, sound, camera response, and hitstop. Its large flash begins on the same event as the final sword cue, then quickly contracts through three smaller faded frames instead of lingering in recovery. Light enemies are interrupted, Elites receive reduced control, and Bosses resist both effects.
+- **Implemented:** immediate-directional stationary seven-thrust rapid-flurry technique on `2` or the refreshed HUD button; Eira awakens it for normal play at Level 3, while F9 remains a test shortcut.
+- A 128x44 lane reactivates once for each authored 18%, 19%, 20%, 21%, 22%, 25%, and 100% weapon-scaled strike during the 0.88-second active flurry. Small hits have no knockback, refresh 0.21 seconds of stagger, and use only alternating local number/flash feedback; the final thrust receives the strongest white flash, 150 pushback, 0.42 seconds stagger, sound, camera response, and hitstop. Its large flash begins on the same event as the final sword cue, then quickly contracts through three smaller faded frames instead of lingering in recovery. Light enemies are interrupted, Elites receive reduced control, and Bosses resist both effects.
 - Multi-hit deduplication is explicit per strike window through `AbilityComponent` hitbox activation; it does not bypass the shared hurtbox contract. An approved-Opaw eight-beat body sheet, twelve-frame effect-only VFX atlas, shallow alternating sword extension, quiet charge/three-steel-thrust/final-blade cues, and a final contact-only blade impact are presentation observers only.
 
 ### Skill 3 — Provisional Ground-Targeted Leap

@@ -1,6 +1,7 @@
 extends NavigationRegion2D
 
 @export var navigation_bounds := Rect2(48.0, 48.0, 864.0, 444.0)
+@export_range(1.0, 64.0, 1.0, "suffix:px") var navigation_agent_radius := 6.0
 
 
 func _ready() -> void:
@@ -9,7 +10,7 @@ func _ready() -> void:
 
 func rebuild_navigation() -> void:
 	var polygon := NavigationPolygon.new()
-	polygon.agent_radius = 6.0
+	polygon.agent_radius = navigation_agent_radius
 	var source_geometry := NavigationMeshSourceGeometryData2D.new()
 	var outer := PackedVector2Array([
 		navigation_bounds.position,

@@ -40,10 +40,12 @@
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_consecutive_thrust_charge.wav" id="39_consecutive_charge"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_consecutive_thrust_flurry_thrust.ogg" id="40_consecutive_flurry"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_consecutive_thrust_final_thrust.ogg" id="41_consecutive_final"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sword"]
-radius = 8.0
-height = 24.0
+[ext_resource type="Script" path="res://entities/player/components/player_vitality_component.gd" id="42_vitality"]
+[ext_resource type="Resource" path="res://data/progression/opaw_vitality.tres" id="43_vitality_data"]
+[ext_resource type="Script" path="res://entities/player/presentation/player_level_up_visual.gd" id="44_level_visual"]
+[ext_resource type="Shape2D" path="res://data/weapons/hit_shapes/balanced_sword_cleave.tres" id="45_melee_shape"]
+[ext_resource type="Script" path="res://entities/player/components/player_health_regeneration_component.gd" id="46_health_regen"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/ui/opaw_level_up_chime.wav" id="47_level_chime"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_sweep"]
 points = PackedVector2Array(3, -9, 14, -28, 39, -24, 48, 0, 39, 24, 14, 28, 3, 9)
@@ -58,6 +60,12 @@ height = 24.0
 [sub_resource type="LabelSettings" id="LabelSettings_name"]
 font_size = 8
 font_color = Color(0.741, 0.69, 0.859, 1)
+outline_size = 2
+outline_color = Color(0.027, 0.02, 0.039, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_level_up"]
+font_size = 9
+font_color = Color(1, 0.86, 0.36, 1)
 outline_size = 2
 outline_color = Color(0.027, 0.02, 0.039, 1)
 
@@ -102,11 +110,21 @@ z_index = 1
 width = 2.0
 default_color = Color(0.94, 0.74, 0.32, 0.72)
 
-[node name="WeaponVisual" type="Node2D" parent="VisualRoot" unique_id=455917304 node_paths=PackedStringArray("weapon_sprite", "swing_trail", "ability_component", "ability_2_component")]
+[node name="SwordCleaveSmoke" type="Line2D" parent="VisualRoot"]
+visible = false
+z_index = 0
+width = 9.0
+default_color = Color(0.82, 0.9, 1, 0.34)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="WeaponVisual" type="Node2D" parent="VisualRoot" unique_id=455917304 node_paths=PackedStringArray("weapon_sprite", "swing_trail", "swing_smoke", "ability_component", "ability_2_component")]
 script = ExtResource("28_weapon_visual")
 weapon = ExtResource("7_sword_data")
 weapon_sprite = NodePath("Weapon")
 swing_trail = NodePath("../SwordSwingTrail")
+swing_smoke = NodePath("../SwordCleaveSmoke")
 ability_component = NodePath("../../Ability1Component")
 ability_2_component = NodePath("../../Ability2Component")
 
@@ -122,9 +140,7 @@ collision_mask = 16
 script = ExtResource("6_hitbox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordPivot/AttackHitbox" unique_id=1837141321]
-position = Vector2(18, 0)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_sword")
+shape = ExtResource("45_melee_shape")
 
 [node name="AbilityPivot" type="Node2D" parent="." unique_id=560028112 node_paths=PackedStringArray("ability_component", "ability_2_component")]
 position = Vector2(0, -16)
@@ -205,11 +221,12 @@ script = ExtResource("2_input")
 unique_name_in_owner = true
 script = ExtResource("3_movement")
 
-[node name="MeleeAttackComponent" type="Node" parent="." unique_id=2065298328 node_paths=PackedStringArray("hitbox")]
+[node name="MeleeAttackComponent" type="Node" parent="." unique_id=2065298328 node_paths=PackedStringArray("hitbox", "collision_shape")]
 unique_name_in_owner = true
 script = ExtResource("5_attack")
 weapon = ExtResource("7_sword_data")
 hitbox = NodePath("../SwordPivot/AttackHitbox")
+collision_shape = NodePath("../SwordPivot/AttackHitbox/CollisionShape2D")
 
 [node name="EvadeComponent" type="Node" parent="." unique_id=730348988]
 unique_name_in_owner = true
@@ -239,6 +256,27 @@ definition = ExtResource("21_progression_data")
 unique_name_in_owner = true
 script = ExtResource("11_health")
 
+[node name="VitalityComponent" type="Node" parent="." node_paths=PackedStringArray("progression_component", "health_component")]
+unique_name_in_owner = true
+script = ExtResource("42_vitality")
+definition = ExtResource("43_vitality_data")
+progression_component = NodePath("../ProgressionComponent")
+health_component = NodePath("../HealthComponent")
+
+[node name="HealthRegenerationComponent" type="Node" parent="." node_paths=PackedStringArray("health_component", "delay_timer", "tick_timer")]
+unique_name_in_owner = true
+script = ExtResource("46_health_regen")
+health_component = NodePath("../HealthComponent")
+vitality_definition = ExtResource("43_vitality_data")
+delay_timer = NodePath("RegenerationDelay")
+tick_timer = NodePath("RegenerationTick")
+
+[node name="RegenerationDelay" type="Timer" parent="HealthRegenerationComponent"]
+wait_time = 5.0
+one_shot = true
+
+[node name="RegenerationTick" type="Timer" parent="HealthRegenerationComponent"]
+
 [node name="Hurtbox" type="Area2D" parent="." unique_id=618577649 node_paths=PackedStringArray("health_component")]
 collision_layer = 64
 collision_mask = 32
@@ -256,6 +294,29 @@ body_visual = NodePath("../VisualRoot/Body")
 [node name="StateVisual" type="Node" parent="." unique_id=161641014 node_paths=PackedStringArray("visual_root")]
 script = ExtResource("14_state_visual")
 visual_root = NodePath("../VisualRoot")
+
+[node name="LevelUpVisual" type="Node2D" parent="." node_paths=PackedStringArray("progression_component")]
+position = Vector2(0, -14)
+z_index = 7
+script = ExtResource("44_level_visual")
+progression_component = NodePath("../ProgressionComponent")
+
+[node name="LevelLabel" type="Label" parent="LevelUpVisual"]
+unique_name_in_owner = true
+offset_left = -28.0
+offset_top = -6.0
+offset_right = 28.0
+offset_bottom = 7.0
+mouse_filter = 2
+text = "LEVEL 2"
+label_settings = SubResource("LabelSettings_level_up")
+horizontal_alignment = 1
+
+[node name="ChimePlayer" type="AudioStreamPlayer" parent="LevelUpVisual"]
+unique_name_in_owner = true
+stream = ExtResource("47_level_chime")
+volume_db = -7.0
+bus = &"UI"
 
 [node name="PlayerActionSfx" type="Node2D" parent="." unique_id=1478518642 node_paths=PackedStringArray("sword_swing_player", "ability_player", "dash_player", "ability_component", "ability_2_component", "piercing_charge_player", "piercing_thrust_player", "consecutive_charge_player", "consecutive_flurry_player", "consecutive_final_player")]
 script = ExtResource("22_player_sfx")

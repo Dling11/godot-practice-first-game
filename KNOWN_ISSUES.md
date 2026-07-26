@@ -4,11 +4,18 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 
 ## Current Limitations
 
+### KI-012 - Application restart still erases progression
+
+- **Status:** Open
+- **Impact:** XP, coins, current HP, weapon ownership/equip choice, awakened skills, and story memory survive scene replacement but not closing the game. This makes longer progression and the 90-coin Iron milestone unsuitable for normal multi-session play.
+- **Planned resolution:** Add a versioned Save/Continue service using explicit dictionaries from the existing state authorities, stored beneath `user://`; autosave only at safe milestones such as Sanctuary, purchase/equip, awakening, and stage completion.
+- **Workaround:** Use F9 for rapid testing. Normal balance tests must currently remain in one application session.
+
 ### KI-011 - Combat responsiveness, audio distinction, and Husk presentation need a playtest repair pass
 
 - **Status:** Open
 - **Audio progress:** Opaw's accepted-damage cue is now a distinct original cloth/body impact, and the dash uses a curated light CC0 swish; confirm their volume and clarity against every enemy attack in controller playtests.
-- **Progress:** A focused smoke-tested input buffer resolves the reported rejected attack-to-skill follow-up without interrupting live damage or dash invulnerability, and the dash now has a separate 0.85-second reuse cooldown. Rootbound Husk uses direct-preloaded attack-profile typing, a redesigned stump-guardian body, a true contact/passing `72x64` walk, final-model root-command frames, four manually reviewed directional collapse sequences, an above-crown health bar, six-beat ground-root VFX, layered enemy-specific root audio, and a profiled quick-spear/slow-fan/point-blank-burst kit. Its focused tune is 280 health and 12 damage. Mireling now uses one smaller remodeled body across all 16 idle/hop/slam/collapse animations. Automated coverage protects these contracts; human audio balance, Husk time-to-kill, burst readability, dash feel, and controller playtesting remain open.
+- **Progress:** A focused smoke-tested input buffer resolves the reported rejected attack-to-skill follow-up without interrupting live damage or dash invulnerability, and the dash now has a separate 0.85-second reuse cooldown plus a clear HUD gap before Skill 1. Balanced Slash uses a data-owned 58-reach by 96-wide beginner-sword fan whose center and visible side edge both pass contact tests; future weapon families retain independent shapes/styles, and clustered normal hits share one 25-millisecond light hitstop/camera/audio response per swing. Piercing Rush/Consecutive Thrust use 128x40/128x44 lanes. Opaw now scales from 140 to 248 maximum health across Levels 1-10, carries current HP across scenes, and regenerates 1 HP/s after five damage-free seconds; enemy damage is 8/10/18/12/18 by current archetype. Rootbound Husk retains its finalized art/attack/audio package, uses 280 health and 18 damage, and Stage III now bakes 20-pixel seal clearance around its 16-pixel body. Automated coverage protects these contracts; human balance of cleave feel, run attrition/regen, audio, Husk time-to-kill, burst readability, dash feel, and controller playtesting remain open.
 - **Impact:** Earlier playtesting reported rejected attack-to-skill follow-ups, repetitive dash/incoming-hit audio, unclear threat direction, and Rootbound Husk scale popping. The structural input and Husk animation causes are repaired, but only a controller playtest can approve their final feel.
 - **Planned resolution:** Complete the roadmap's responsiveness, feedback/audio, and Husk-repair milestones in that order; measure each change with focused smoke coverage and a controller playtest before changing encounter counts or adding Stage 4 content.
 - **Workaround:** Use F9 to test the completed skills and implemented routes; treat only Husk timing/readability and exact combat reach tuning as provisional, not its animation or attack-authority architecture.
@@ -37,9 +44,9 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 ### KI-005 - Skill awakening, expanded equipment balance, and disk persistence remain incomplete
 
 - **Status:** Open
-- **Impact:** Ashwood/Iron ownership, explicit equip, and Level-3 Eira awakening for Consecutive Thrust work across scene replacement in memory, but closing the application loses them. Slots 3-4, drops, selling, armor/stat aggregation, higher tiers, and disk persistence remain incomplete.
-- **Planned resolution:** Approve a versioned disk profile before expanding acquisition/balance, then author slots 3-4 only alongside content that supports their power.
-- **Workaround:** Treat Ashwood/Iron and Eira's Skill 2 awakening as the complete session-only beginner slice. Do not expose legacy/high-tier previews, sell skills, or claim session ownership is a disk save.
+- **Impact:** Ashwood/Iron ownership, explicit equip, Level-3 Eira awakening, and Opaw's base/level/flat-equipment vitality aggregation work across scene replacement in memory, but closing the application loses them. No armor item currently supplies the prepared flat bonus; slots 3-4, drops, selling, higher tiers, potions, mana, and disk persistence remain incomplete.
+- **Planned resolution:** Approve a versioned disk profile and authored armor/mana/potion rules before expanding acquisition/balance, then author slots 3-4 only alongside content that supports their power.
+- **Workaround:** Treat Ashwood/Iron, 140+12/level vitality, delayed baseline regeneration, and Eira's Skill 2 awakening as the complete session-only beginner slice. Do not expose legacy/high-tier previews, sell skills, or claim armor, lifesteal, critical, potion, or mana systems are implemented content.
 
 ### KI-006 - Title audio settings are session-only
 

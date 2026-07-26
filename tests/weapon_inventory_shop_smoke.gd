@@ -27,7 +27,7 @@ func _run() -> void:
 		_fail("Iron Sword should not be owned before purchase.")
 		return
 
-	player.progression_component.grant_rewards(0, 17)
+	player.progression_component.grant_rewards(0, 89)
 	var shop := ShopScene.instantiate() as WeaponShopMenu
 	shop.player = player
 	root.add_child(shop)
@@ -41,7 +41,7 @@ func _run() -> void:
 		return
 	player.progression_component.grant_rewards(0, 1)
 	if not shop.purchase_selected():
-		_fail("Orren did not sell the Iron Sword for its authored eighteen-coin price.")
+		_fail("Orren did not sell the Iron Sword for its authored ninety-coin price.")
 		return
 	if player.progression_component.coins != 0 or not inventory.owns_weapon(IronItem.item_id):
 		_fail("Iron Sword purchase did not deduct coins and store ownership atomically.")

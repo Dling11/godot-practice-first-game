@@ -4,15 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://c6s8gacqu1omc" path="res://assets/ui/icons/skills/icon_skill_piercing_rush_24x24.png" id="2_icon"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_thrust"]
-points = PackedVector2Array(5, -15, 112, -15, 128, 0, 112, 15, 5, 15)
+points = PackedVector2Array(5, -20, 112, -20, 128, 0, 112, 20, 5, 20)
 
 [resource]
 script = ExtResource("1_script")
 ability_id = &"piercing_rush"
 display_name = "Piercing Rush"
 hud_name = "PIERCE RUSH"
-description = "Extended spirit lance
-180% weapon damage - 128 px reach"
+description = "Broad spirit-lance rush
+180% weapon damage - 128 x 40 px lane"
 icon = ExtResource("2_icon")
 presentation_style = 1
 hitbox_shape = SubResource("ConvexPolygonShape2D_thrust")

@@ -54,6 +54,9 @@ func _run() -> void:
 	if identity_title.text != "OPAW":
 		_fail("Character menu does not present Opaw's approved mortal identity.")
 		return
+	if menu.vitality_label.text != "HP 140/140":
+		_fail("Character menu does not present Opaw's current level-scaled vitality.")
+		return
 	var preview_body := menu.get_node("Panel/Margin/Root/PageHost/GearPage/Loadout/Portrait/PortraitCanvas/Body") as AnimatedSprite2D
 	if preview_body.sprite_frames != CompactOpawFrames:
 		_fail("Character menu preview is not using Opaw's active compact armless model.")
@@ -82,12 +85,22 @@ func _run() -> void:
 	if menu.gear_page.visible or not menu.skills_page.visible or root.gui_get_focus_owner() != menu._skill_cards[0]:
 		_fail("Skills tab did not switch pages and focus the first reusable skill control.")
 		return
+	await process_frame
 	if menu.gear_tab_button.get_node_or_null(menu.gear_tab_button.focus_neighbor_bottom) != menu._skill_cards[0]:
 		_fail("Both tab controls must lead into the visible Active Skills page.")
 		return
 	if not menu.has_node("Panel/Margin/Root/PageHost/SkillsPage/Skills/Skill4") or not (menu._skill_cards[0] is SkillSlotCard):
 		_fail("Character menu did not present all four authored reusable skill slots.")
 		return
+	var skill_host := menu.get_node("Panel/Margin/Root/PageHost") as Control
+	var skill_host_rect: Rect2 = skill_host.get_global_rect()
+	for card: SkillSlotCard in menu._skill_cards:
+		if card.size.y > 72.0 or not skill_host_rect.encloses(card.get_global_rect()):
+			_fail(
+				"A compact Active Skills card overflowed the character-menu page "
+				+ "(card=%s host=%s)." % [card.get_global_rect(), skill_host_rect]
+			)
+			return
 	if player.skill_loadout == null or not player.skill_loadout.has_complete_layout():
 		_fail("Player does not expose the shared four-slot loadout definition.")
 		return
@@ -104,8 +117,9 @@ func _run() -> void:
 		or menu._skill_cards[1].slot_definition.ability != player.ability_2_component.definition
 		or not menu._skill_cards[1].text.contains("CONSECUTIVE THRUST")
 		or menu._equipment_cards.size() != player.weapon_catalog.weapons.size()
+		or menu.vitality_label.text != "HP 248/248"
 	):
-		_fail("F9 did not refresh the paused character menu with the complete test skills and gear.")
+		_fail("F9 did not refresh the menu with complete skills, gear, and Level-10 vitality.")
 		return
 	if menu._skill_cards[0].get_node_or_null(menu._skill_cards[0].focus_neighbor_right) != menu._skill_cards[1]:
 		_fail("Character skill cards do not provide explicit directional focus navigation.")

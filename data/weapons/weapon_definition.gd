@@ -6,8 +6,12 @@ extends Resource
 @export var weapon_id: StringName
 @export var display_name: String = "Weapon"
 @export var world_texture: Texture2D
-## Multiple sword grades may share one style/body animation, while a different
-## sword family can reference another style without changing player code.
+## Authoritative right-facing melee contact area. The player's combat pivot
+## rotates this shape for the other directions; VFX may read its bounds.
+@export var melee_hitbox_shape: Shape2D
+## Multiple sword grades may share one style/body animation. Short swords,
+## greatswords, axes, scythes, and other families can each reference their own
+## reviewed shape and style without changing player code.
 @export var attack_style: SwordAttackStyleDefinition
 ## Local Sprite2D offset that places the texture's authored grip on the
 ## WeaponVisual pivot. This keeps short swords and future greatswords on the
@@ -20,3 +24,29 @@ extends Resource
 @export_range(0.0, 2.0, 0.01, "suffix:s") var wind_up_seconds: float = 0.1
 @export_range(0.01, 2.0, 0.01, "suffix:s") var active_seconds: float = 0.1
 @export_range(0.0, 3.0, 0.01, "suffix:s") var recovery_seconds: float = 0.2
+
+
+func get_melee_forward_reach_pixels() -> float:
+	if melee_hitbox_shape is ConvexPolygonShape2D:
+		var reach := 0.0
+		for point: Vector2 in (melee_hitbox_shape as ConvexPolygonShape2D).points:
+			reach = maxf(reach, point.x)
+		return reach
+	if melee_hitbox_shape is RectangleShape2D:
+		return (melee_hitbox_shape as RectangleShape2D).size.x * 0.5
+	if melee_hitbox_shape is CapsuleShape2D:
+		return (melee_hitbox_shape as CapsuleShape2D).height * 0.5
+	return 0.0
+
+
+func get_melee_half_width_pixels() -> float:
+	if melee_hitbox_shape is ConvexPolygonShape2D:
+		var half_width := 0.0
+		for point: Vector2 in (melee_hitbox_shape as ConvexPolygonShape2D).points:
+			half_width = maxf(half_width, absf(point.y))
+		return half_width
+	if melee_hitbox_shape is RectangleShape2D:
+		return (melee_hitbox_shape as RectangleShape2D).size.y * 0.5
+	if melee_hitbox_shape is CapsuleShape2D:
+		return (melee_hitbox_shape as CapsuleShape2D).radius
+	return 0.0

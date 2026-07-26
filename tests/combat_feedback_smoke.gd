@@ -35,16 +35,30 @@ func _run() -> void:
 		effect.queue_free()
 	await process_frame
 
-	var mireling := MirelingScene.instantiate() as Mireling
-	root.add_child(mireling)
+	var mirelings: Array[Mireling] = []
+	for target_index in 4:
+		var target := MirelingScene.instantiate() as Mireling
+		target.position = Vector2(float(target_index * 20), 0.0)
+		root.add_child(target)
+		mirelings.append(target)
 	await process_frame
+	player.attack_component.attack_started.emit()
 	player.attack_component.hit_landed.emit(
-		mireling.get_node("Hurtbox") as HurtboxComponent,
+		mirelings[0].get_node("Hurtbox") as HurtboxComponent,
 		DamageInfo.new(25.0, player, Vector2.RIGHT)
 	)
-	var mireling_body := mireling.get_node("Visual/Body") as AnimatedSprite2D
+	var shared_camera_tween := feedback._camera_tween
+	for target_index in range(1, mirelings.size()):
+		player.attack_component.hit_landed.emit(
+			mirelings[target_index].get_node("Hurtbox") as HurtboxComponent,
+			DamageInfo.new(25.0, player, Vector2.RIGHT)
+		)
+	var mireling_body := mirelings[0].get_node("Visual/Body") as AnimatedSprite2D
 	if not mireling_body.material is ShaderMaterial:
 		_fail("Accepted player hit did not apply the reusable enemy hit-flash material.")
+		return
+	if feedback._camera_tween != shared_camera_tween:
+		_fail("One clustered sword swing rebuilt shared camera feedback for every target.")
 		return
 	if not paused:
 		_fail("Accepted player hit did not start hitstop.")
@@ -57,8 +71,8 @@ func _run() -> void:
 		_fail("Enemy hit flash did not restore the original material.")
 		return
 	await process_frame
-	if effects.get_child_count() != 2:
-		_fail("Accepted player hit did not create outgoing impact feedback.")
+	if effects.get_child_count() != 8:
+		_fail("Clustered sword hit did not preserve one number and burst per target.")
 		return
 	await create_timer(0.7).timeout
 	if effects.get_child_count() != 0:

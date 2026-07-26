@@ -21,10 +21,10 @@ func _run() -> void:
 			!= AbilityDefinition.PresentationStyle.THRUST
 		or not is_equal_approx(PiercingRushDefinition.weapon_damage_multiplier, 1.8)
 		or not is_equal_approx(PiercingRushDefinition.get_forward_lance_reach_pixels(), 128.0)
-		or not is_equal_approx(PiercingRushDefinition.get_forward_lance_half_width_pixels(), 15.0)
+		or not is_equal_approx(PiercingRushDefinition.get_forward_lance_half_width_pixels(), 20.0)
 		or PiercingRushDefinition.hitbox_shape == null
 	):
-		_fail("Piercing Rush definition is missing its directional, thrust, scaling, or 128x30 hitbox data.")
+		_fail("Piercing Rush definition is missing its directional, thrust, scaling, or 128x40 hitbox data.")
 		return
 
 	var player := PlayerScene.instantiate() as Player

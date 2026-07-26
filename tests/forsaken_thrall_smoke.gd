@@ -21,7 +21,10 @@ func _run() -> void:
 
 	var player_health = player.get_node("HealthComponent")
 	var enemy_health = enemy.get_node("HealthComponent")
-	if not is_equal_approx(enemy_health.maximum_health, 100.0):
+	if (
+		not is_equal_approx(enemy_health.maximum_health, 100.0)
+		or not is_equal_approx(enemy.definition.attack_damage, 18.0)
+	):
 		_fail("Forsaken Thrall durability must remain at the early-stage 100 HP baseline.")
 		return
 	if enemy.state != enemy.State.SPAWNING:

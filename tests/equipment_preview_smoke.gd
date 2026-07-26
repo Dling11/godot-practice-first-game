@@ -47,7 +47,7 @@ func _run() -> void:
 	if (
 		iron_item == null
 		or iron_item.weapon_definition != IronSword
-		or iron_item.purchase_price != 18
+		or iron_item.purchase_price != 90
 		or not iron_item.is_compatible_with(&"warrior")
 		or iron_item.is_compatible_with(&"mage")
 	):

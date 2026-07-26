@@ -1,6 +1,6 @@
 # Decision 057: Complete the Pre-Stage-IV Progression and Control Pass
 
-- **Status:** Accepted
+- **Status:** Accepted; XP thresholds superseded by Decision 061
 - **Date:** 2026-07-26
 
 ## Context
