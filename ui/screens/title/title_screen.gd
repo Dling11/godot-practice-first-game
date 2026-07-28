@@ -10,6 +10,8 @@ signal quit_requested
 @onready var content: Control = %Content
 @onready var main_menu_panel: PanelContainer = %MainMenuPanel
 @onready var settings_panel: PanelContainer = %SettingsPanel
+@onready var new_journey_confirmation: ConfirmationDialog = %NewJourneyConfirmation
+@onready var continue_button: Button = %ContinueButton
 @onready var start_button: Button = %StartButton
 @onready var settings_button: Button = %SettingsButton
 @onready var quit_button: Button = %QuitButton
@@ -25,10 +27,12 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	settings_panel.hide()
 	_refresh_audio_labels()
+	_refresh_continue_state()
 	content.modulate.a = 0.0
 	var reveal := create_tween()
 	reveal.tween_property(content, "modulate:a", 1.0, 0.55)
-	start_button.call_deferred("grab_focus")
+	var initial_focus := continue_button if not continue_button.disabled else start_button
+	initial_focus.call_deferred("grab_focus")
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -39,6 +43,23 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func begin_new_journey() -> void:
 	if _transitioning or new_journey_scene.is_empty() or not ResourceLoader.exists(new_journey_scene):
+		return
+	if _has_valid_profile():
+		new_journey_confirmation.popup_centered()
+		return
+	_commit_new_journey()
+
+
+func _commit_new_journey() -> void:
+	if _transitioning or new_journey_scene.is_empty() or not ResourceLoader.exists(new_journey_scene):
+		return
+	var transition_service := get_node_or_null("/root/SceneTransition")
+	if transition_service == null:
+		push_error("TitleScreen requires the SceneTransition autoload.")
+		return
+	var save_service := get_node_or_null("/root/SaveService")
+	if save_service != null and not save_service.delete_profile():
+		push_error("TitleScreen could not replace the existing autosave.")
 		return
 	_transitioning = true
 	_set_main_buttons_disabled(true)
@@ -52,15 +73,27 @@ func begin_new_journey() -> void:
 	var weapon_inventory := get_node_or_null("/root/WeaponInventory")
 	if weapon_inventory != null:
 		weapon_inventory.reset_inventory()
-	var transition_service := get_node_or_null("/root/SceneTransition")
-	if transition_service == null:
-		push_error("TitleScreen requires the SceneTransition autoload.")
-		_transitioning = false
-		_set_main_buttons_disabled(false)
-		return
 	# SceneTransition outlives this screen. Do not await from a scene that the
 	# transition itself will free before the service finishes fading back in.
 	transition_service.transition_to(new_journey_scene)
+
+
+func continue_journey() -> void:
+	if _transitioning:
+		return
+	var save_service := get_node_or_null("/root/SaveService")
+	var transition_service := get_node_or_null("/root/SceneTransition")
+	if save_service == null or transition_service == null:
+		push_error("TitleScreen requires SaveService and SceneTransition.")
+		return
+	var destination: String = save_service.load_profile()
+	if destination.is_empty():
+		_refresh_continue_state()
+		return
+	_transitioning = true
+	_set_main_buttons_disabled(true)
+	journey_requested.emit(destination)
+	transition_service.transition_to(destination)
 
 
 func open_settings() -> void:
@@ -121,6 +154,18 @@ func _bus_label(label: String, bus_name: String) -> String:
 
 
 func _set_main_buttons_disabled(is_disabled: bool) -> void:
+	continue_button.disabled = is_disabled or not _has_valid_profile()
 	start_button.disabled = is_disabled
 	settings_button.disabled = is_disabled
 	quit_button.disabled = is_disabled
+
+
+func _refresh_continue_state() -> void:
+	var has_profile := _has_valid_profile()
+	continue_button.disabled = not has_profile
+	continue_button.text = "CONTINUE" if has_profile else "CONTINUE  •  NO SAVE"
+
+
+func _has_valid_profile() -> bool:
+	var save_service := get_node_or_null("/root/SaveService")
+	return save_service != null and save_service.has_valid_profile()

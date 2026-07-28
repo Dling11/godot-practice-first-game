@@ -63,6 +63,9 @@ func _on_stage_cleared() -> void:
 		story_state.remember_story(&"rootbound_hollow_completed")
 		story_state.record_boss_victory(&"rootbound_husk")
 		story_state.record_discovery(&"rootbound_hollow")
+	var save_service := get_node_or_null("/root/SaveService")
+	if save_service != null:
+		save_service.save_profile()
 	combat_hud.show_story_message("THE HUSK WITHERS  •  THE VEIL YIELDS", 2.8)
 
 

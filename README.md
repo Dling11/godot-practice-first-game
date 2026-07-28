@@ -6,7 +6,7 @@ The setting centers on gods, demons, forgotten civilizations, and **The One Abov
 
 ## Current Status
 
-Pre-alpha title-to-Sanctuary-to-three-stage prototype. F5 opens a mouse/keyboard/gamepad-ready Battle of Gods title screen with session-audio settings; Begin the Awakening fades into a safe generated-pixel Sanctuary with Skillkeeper Eira and Armskeeper Orren. Opaw is a compact armless Novice Warrior with a detached equippable sword. Stages I-III form one continuous forest arc ending with the Rootbound Husk mini-boss and a return portal to Sanctuary. The in-memory level-10 XP/coin run, Level-3 Eira awakening for Consecutive Thrust, reusable four-slot skills, explicit class-gated weapon equipping, Orren shop, dash cooldown HUD, and Ashwood/Iron switching are active. Disk saving, drops, armor bonuses, character switching, and skills 3-4 are not yet implemented.
+Pre-alpha title-to-Sanctuary-to-three-stage prototype. F5 opens a mouse/keyboard/gamepad-ready Battle of Gods title screen with Continue, guarded New Journey, and session-audio settings. Opaw is a compact armless Novice Warrior with a detached equippable sword. Stages I-III form one continuous forest arc ending with the Rootbound Husk mini-boss and a return portal to Sanctuary. The level-10 XP/coin run, Level-3 Eira awakening for Consecutive Thrust, explicit class-gated weapon equipping, Orren shop, current HP, story memory, and Ashwood/Iron selection persist through one safe-point autosave. Drops, armor bonuses, character switching, and skills 3-4 are not yet implemented.
 
 ## Intended Technology
 
@@ -37,6 +37,8 @@ The prototype uses a 960x540 logical viewport displayed at 1920x1080 for exact 2
 3. Open the project and press **F6** for the current scene or **F5** for the project.
 
 The current main scene is `res://ui/screens/title/title_screen.tscn`. Stage 1 remains `res://levels/test_arena/test_arena.tscn`.
+
+The game maintains one autosave at `user://battle_of_gods_profile.json` with a `.bak` recovery copy. Continue always resumes in Sanctuary. Autosaves occur on Sanctuary entry, Sanctuary purchase/equip/awakening actions, and stage clear—not during active combat. The exact operating-system location of `user://` is shown by Godot's **Open User Data Folder** command.
 
 Stages I-III use authored Godot `TileMapLayer` cells rather than runtime-random ground. Shared forest and Rootbound Hollow atlases live under `assets/environment/forest/`; diffable map layouts live under `data/environment/layouts/`. Edit baked cells directly in Godot for local adjustments, or update a layout resource and regenerate the owning scene with `tools/bake_authored_ground.gd` for a whole-map revision.
 
@@ -185,6 +187,9 @@ Run the current headless movement smoke test with:
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/player_progression_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/run_session_progression_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/save_profile_snapshot_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/save_disk_persistence_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/safe_milestone_autosave_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/title_continue_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/expedition_unlock_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/character_menu_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/equipment_preview_smoke.gd'

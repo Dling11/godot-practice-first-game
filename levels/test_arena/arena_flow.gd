@@ -40,3 +40,6 @@ func _on_stage_cleared() -> void:
 	var story_state := get_node_or_null("/root/StoryState")
 	if story_state != null:
 		story_state.remember_story(&"forgotten_grove_stage_1_cleared")
+	var save_service := get_node_or_null("/root/SaveService")
+	if save_service != null:
+		save_service.save_profile()

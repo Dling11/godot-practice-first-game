@@ -17,6 +17,8 @@ The first forest arc awarded 304 XP in Stage I, but the original cumulative curv
 
 Choose option 3. Use cumulative XP thresholds `0, 100, 250, 450, 700, 1000, 1350, 1750, 2200, 2700`; Stage I's authored 304 XP now finishes near Level 3. Level 3 creates eligibility for Consecutive Thrust, and Eira's skill service presents one explicit `AWAKEN SKILL • FREE` action. `StoryState` remembers that awakening across scene replacement for the current application session.
 
+Persistence was subsequently expanded to the safe-point disk profile by Decision 063; the sentence above records the boundary at the time of this decision.
+
 Consecutive Thrust grants invulnerability for its full cast and is the first ability explicitly cancelable into dash. Its damage, strike windows, reach, and five-second cooldown remain unchanged. Ability data declares these exceptions; other skills remain committed unless their own definitions opt in.
 
 Weapon purchase and selection remain separate from equip. Orren and the character detail panel expose explicit Equip actions. `WeaponInventory` commits the selected owned item immediately, while `Player` applies the combat/presentation definition at the next safe idle boundary if the menu paused during another action.

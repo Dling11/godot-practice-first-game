@@ -74,7 +74,7 @@ theme_override_font_sizes/font_size = 11
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 348.0
-offset_top = 304.0
+offset_top = 258.0
 offset_right = 612.0
 offset_bottom = 478.0
 theme_override_styles/panel = SubResource("StyleBox_title_panel")
@@ -90,14 +90,24 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="StartButton" type="Button" parent="Content/MainMenuPanel/Margin/Buttons"]
+[node name="ContinueButton" type="Button" parent="Content/MainMenuPanel/Margin/Buttons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(228, 38)
 layout_mode = 2
 focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../StartButton")
+mouse_default_cursor_shape = 2
+text = "CONTINUE  •  NO SAVE"
+theme_override_font_sizes/font_size = 12
+
+[node name="StartButton" type="Button" parent="Content/MainMenuPanel/Margin/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(228, 38)
+layout_mode = 2
+focus_neighbor_top = NodePath("../ContinueButton")
 focus_neighbor_bottom = NodePath("../SettingsButton")
 mouse_default_cursor_shape = 2
-text = "BEGIN THE AWAKENING"
+text = "BEGIN NEW JOURNEY"
 theme_override_font_sizes/font_size = 12
 
 [node name="SettingsButton" type="Button" parent="Content/MainMenuPanel/Margin/Buttons"]
@@ -115,7 +125,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(228, 34)
 layout_mode = 2
 focus_neighbor_top = NodePath("../SettingsButton")
-focus_neighbor_bottom = NodePath("../StartButton")
+focus_neighbor_bottom = NodePath("../ContinueButton")
 mouse_default_cursor_shape = 2
 text = "QUIT TO DESKTOP"
 theme_override_font_sizes/font_size = 11
@@ -202,6 +212,15 @@ horizontal_alignment = 1
 theme_override_colors/font_color = Color(0.455, 0.502, 0.42, 0.9)
 theme_override_font_sizes/font_size = 8
 
+[node name="NewJourneyConfirmation" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+title = "BEGIN NEW JOURNEY"
+initial_position = 2
+size = Vector2i(430, 150)
+ok_button_text = "START NEW JOURNEY"
+dialog_text = "Begin a new journey?\nThe existing autosave will be replaced."
+
+[connection signal="pressed" from="Content/MainMenuPanel/Margin/Buttons/ContinueButton" to="." method="continue_journey"]
 [connection signal="pressed" from="Content/MainMenuPanel/Margin/Buttons/StartButton" to="." method="begin_new_journey"]
 [connection signal="pressed" from="Content/MainMenuPanel/Margin/Buttons/SettingsButton" to="." method="open_settings"]
 [connection signal="pressed" from="Content/MainMenuPanel/Margin/Buttons/QuitButton" to="." method="request_quit"]
@@ -209,3 +228,4 @@ theme_override_font_sizes/font_size = 8
 [connection signal="pressed" from="Content/SettingsPanel/Margin/Root/SfxButton" to="." method="toggle_sfx"]
 [connection signal="pressed" from="Content/SettingsPanel/Margin/Root/UiAudioButton" to="." method="toggle_ui_audio"]
 [connection signal="pressed" from="Content/SettingsPanel/Margin/Root/BackButton" to="." method="close_settings"]
+[connection signal="confirmed" from="NewJourneyConfirmation" to="." method="_commit_new_journey"]

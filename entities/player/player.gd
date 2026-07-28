@@ -127,6 +127,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_action_pressed("debug_max_progression"):
 		return
 	if progression_component.apply_debug_testing_preset():
+		var save_service := get_node_or_null("/root/SaveService")
+		if save_service != null:
+			save_service.suppress_autosave_for_debug_session()
 		_unlock_debug_test_equipment()
 		_enable_debug_test_loadout()
 		_unlock_debug_test_expeditions()

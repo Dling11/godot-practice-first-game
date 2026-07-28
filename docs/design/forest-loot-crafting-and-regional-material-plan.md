@@ -1,8 +1,8 @@
 # Forest Loot, Crafting, Replay, and Regional Material Plan
 
-- **Status:** Approved design lock; implementation has not started
+- **Status:** Approved design lock; Segment 1 Save/Continue implemented, Segments 2-8 pending
 - **Approved:** 2026-07-26
-- **Runtime coverage today:** Stages 1-3, five enemy identities, session-only progression/equipment
+- **Runtime coverage today:** Stages 1-3, five enemy identities, profile-backed core progression/equipment, no loot/crafting
 - **Planned content covered here:** Forest Stages 1-10 and a reusable foundation for Stage 11 onward
 
 ## Purpose
@@ -288,9 +288,9 @@ data/crafting/recipes/<future_region>/
 - This document, ADR, sources of truth, folder contracts
 - No runtime feature claims
 
-### Segment 1 - Save/Continue
+### Segment 1 - Save/Continue — implemented
 
-- **Progress:** versioned core profile composition and prevalidated restoration are implemented; disk I/O and Continue remain open
+- **Completed 2026-07-29:** one safe-point profile, atomic temporary writes, rotating backup/recovery, title Continue/New Journey protection, and isolated persistence tests
 - Versioned profile schema
 - Continue/New Journey
 - Safe-point autosave, temporary write, backup/recovery

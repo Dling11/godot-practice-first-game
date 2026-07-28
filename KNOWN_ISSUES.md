@@ -11,14 +11,6 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 - **Planned resolution:** Follow `docs/design/forest-loot-crafting-and-regional-material-plan.md` in order: Save/Continue, immutable content data, loot/chests, the Sanctuary crafting service, recipes/equipment, Hunts, then Stages 4-10 and the Stage 11 regional seam.
 - **Workaround:** Treat the current Stages 1-3 sequence as the combat/story prototype. Do not describe future materials, recipes, chests, Hunts, or Mastery as playable content.
 
-### KI-012 - Application restart still erases progression
-
-- **Status:** Open
-- **Impact:** XP, coins, current HP, weapon ownership/equip choice, awakened skills, and story memory survive scene replacement but not closing the game. This makes longer progression and the 90-coin Iron milestone unsuitable for normal multi-session play.
-- **Progress:** `SaveService` now composes and prevalidates one versioned core profile dictionary from `RunSession`, `StoryState`, and `WeaponInventory`, including future extension seams. A focused smoke test protects full reconstruction and prevents partial mutation on incompatible nested versions.
-- **Planned resolution:** Add a versioned Save/Continue service using explicit dictionaries from the existing state authorities, stored beneath `user://`; autosave only at safe milestones such as Sanctuary, purchase/equip, awakening, and stage completion. Reserve versioned snapshot sections for the approved future material inventory, recipe/blueprint discovery, chest claims, and regional progress without serializing scenes.
-- **Workaround:** Use F9 for rapid testing. Normal balance tests must currently remain in one application session.
-
 ### KI-011 - Combat responsiveness, audio distinction, and Husk presentation need a playtest repair pass
 
 - **Status:** Open
@@ -49,12 +41,12 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 - **Planned resolution:** Feel-test Opaw's gameplay scale, serious black-eye/scarf readability, four-frame locomotion, three-pose body/weapon synchronization in all directions, dash lean, hurt recovery, defeat fade, Eira/Orren scale and role props, service-building collision, and representative effects in Sanctuary and both stages.
 - **Workaround:** Treat 960x540 and the compact armless sheets as the active prototype baseline, not irreversible final assets; restore the archived Wayfarer `SpriteFrames` resource if a rollback is required.
 
-### KI-005 - Skill awakening, expanded equipment balance, and disk persistence remain incomplete
+### KI-005 - Expanded equipment and later skill balance remain incomplete
 
 - **Status:** Open
-- **Impact:** Ashwood/Iron ownership, explicit equip, Level-3 Eira awakening, and Opaw's base/level/flat-equipment vitality aggregation work across scene replacement in memory, but closing the application loses them. No armor item currently supplies the prepared flat bonus; slots 3-4, drops, selling, higher tiers, potions, mana, and disk persistence remain incomplete.
-- **Planned resolution:** Approve a versioned disk profile and authored armor/mana/potion rules before expanding acquisition/balance, then author slots 3-4 only alongside content that supports their power.
-- **Workaround:** Treat Ashwood/Iron, 140+12/level vitality, delayed baseline regeneration, and Eira's Skill 2 awakening as the complete session-only beginner slice. Do not expose legacy/high-tier previews, sell skills, or claim armor, lifesteal, critical, potion, or mana systems are implemented content.
+- **Impact:** Ashwood/Iron ownership, explicit equip, Level-3 Eira awakening, and Opaw's base/level/flat-equipment vitality aggregation now persist through the safe-point profile. No armor item currently supplies the prepared flat bonus; slots 3-4, drops, selling, higher tiers, potions, and mana remain incomplete.
+- **Planned resolution:** Complete the approved material/crafting data sequence and authored armor/mana/potion rules before expanding acquisition/balance, then author slots 3-4 only alongside content that supports their power.
+- **Workaround:** Treat Ashwood/Iron, 140+12/level vitality, delayed baseline regeneration, and Eira's Skill 2 awakening as the complete persisted beginner slice. Do not expose legacy/high-tier previews, sell skills, or claim armor, lifesteal, critical, potion, or mana systems are implemented content.
 
 ### KI-006 - Title audio settings are session-only
 
@@ -63,11 +55,11 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 - **Planned resolution:** Store audio preferences in the future versioned settings/profile system.
 - **Workaround:** The title screen applies all three toggles immediately for the current session.
 
-### KI-007 - Story memory is not persisted to disk and future expeditions have no content
+### KI-007 - Future expeditions have no content
 
 - **Status:** Open
-- **Impact:** The Sanctuary portal now evaluates data-driven level, story, boss, discovery, and narrative key-item requirements, but `StoryState` survives only for the current application session. The Rootbound Hollow is implemented and reachable through F9, yet its normal Thornbound Warden/Cinder Sigil requirements remain unobtainable; The Drowned Bells has no destination scene or obtainable requirements.
-- **Planned resolution:** Approve the first versioned disk-profile boundary, then author the Thornbound Warden and Cinder Sigil to open The Rootbound Hollow through normal progression before advancing to Stage IV.
+- **Impact:** The Sanctuary portal evaluates data-driven level, story, boss, discovery, and narrative key-item requirements, and those memories now persist. The Rootbound Hollow is implemented and reachable through the continuous Stage 2 route or F9, but its legacy Sanctuary-only Thornbound Warden/Cinder Sigil requirements remain unobtainable; The Drowned Bells has no destination scene or obtainable requirements.
+- **Planned resolution:** Reconcile the legacy Sanctuary-only Rootbound Hollow replay gate during the Hunt/route-history segment, and keep The Drowned Bells sealed until its region is authored.
 - **Workaround:** The implemented forest sequence remains playable continuously from Stage 1 through Stage 3; Sanctuary replay buttons still enforce their authored requirements, and unbuilt future routes remain sealed.
 
 ### KI-009 - Ground targeting and later skill awakenings are not implemented

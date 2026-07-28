@@ -4,8 +4,8 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 
 ## Completed
 
-- Began Forest production Segment 1 with a versioned core profile schema: `SaveService` composes prevalidated `RunSession`, `StoryState`, and `WeaponInventory` snapshots, rejects incompatible nested versions before mutating live state, and reserves extension sections for future materials, recipes, stage claims, and regional progress. Disk writes and Continue remain in progress.
-- **Design lock only:** approved the replayable Forest Stages 1-10 Fight -> Loot -> Craft -> Build -> Master -> Advance loop, ecology-linked drop direction, deterministic recipes, stage-clear chests, a separate Rootweaver/Grove Artificer service, Hunts, the Stage 4-10 enemy/material matrix, reusable cross-region material art grammar, and bounded regional Mastery. Runtime implementation has not started.
+- Completed Forest production Segment 1: one versioned JSON autosave under `user://`, validated temporary writes, rotating backup and corrupt-primary recovery, safe Sanctuary/stage-clear/service checkpoints, title-screen Continue, guarded New Journey replacement, isolated headless persistence tests, and Sanctuary-only resume without scene-tree serialization.
+- **Design lock only:** approved the replayable Forest Stages 1-10 Fight -> Loot -> Craft -> Build -> Master -> Advance loop, ecology-linked drop direction, deterministic recipes, stage-clear chests, a separate Rootweaver/Grove Artificer service, Hunts, the Stage 4-10 enemy/material matrix, reusable cross-region material art grammar, and bounded regional Mastery. Loot/crafting runtime implementation has not started.
 - Slowed early progression and economy pacing: cumulative Level 1-10 thresholds are now `0/150/400/750/1200/1750/2400/3150/4000/4950`, placing Stage I at Level 2, cumulative Stage II at Level 3, and the complete current forest arc at Level 4; Iron Sword now costs 90 coins instead of 18.
 - Tightened the beginner-sword feel and reduced clustered-hit overhead: Balanced Slash is now a 58-reach by 96-wide data-owned fan with matching smaller trail, future weapon families retain independent shape/style ownership, the center-screen level banner is replaced by a small Opaw glow and overhead label, and normal cleaves share one 25-millisecond hitstop/camera/audio response per swing while keeping feedback on every enemy.
 - Aligned combat footprints and run attrition: Balanced Slash covers its visible side edges/tip; Stage III bakes 20-pixel seal clearance for the 16-pixel-radius Husk; dash has a clear gap before Skill 1; current HP survives stage/Sanctuary transitions; Opaw uses `140 + 12/level` health plus delayed 1 HP/s regeneration; and Mireling/Rootling/Thrall/Spitter/Husk damage is balanced to 8/10/18/12/18.
@@ -80,7 +80,7 @@ Detailed completion history remains in `CHANGELOG.md`.
 
 ## In Progress
 
-- **Forest production Segment 1 - Persistence foundation:** the versioned core snapshot coordinator is implemented. Next add atomic temporary-file/backup/recovery storage under `user://`, safe-milestone autosave, corrupt-save handling, and title-screen Continue; never serialize scene trees or mid-attack state.
+- **Forest production Segment 2 - Content data:** author and validate immutable material, drop-profile, loot-table, and deterministic recipe definitions with stable IDs and reserved profile-extension ownership; do not add chest/Rootweaver presentation yet.
 - **Milestone B progress:** Opaw now has a distinct generated damage-impact cue and a curated CC0 light dash swoosh. Enemy action SFX remain separate; directional threat and hit-effect work remain open.
 - **Milestone A progress:** a latest-valid-input buffer carries normal attacks and immediate-directional skills across committed attacks/dashes. Consecutive Thrust now owns the approved defensive exception—full-cast invulnerability plus dash cancellation—while its damage, reach, and cooldown remain unchanged for feel testing.
 - **Milestone C progress:** Rootbound Husk now uses fixed-scale generated body sheets, readable planted side steps, native named animations, a constant foot baseline, an above-head health bar, six-beat ground-root VFX, and a skippable portrait introduction behind a reusable encounter gate. Its profiled quick spear and slower staged Root Fan retain snapshotted hitbox authority and gain a faster, fan-heavier second phase. Human timing/readability review remains open.
@@ -173,7 +173,7 @@ None currently recorded.
 
 The regional loop and material-reuse direction are approved. Before each implementation segment, settle only the choices that materially affect that segment:
 
-1. Segment 1: exact save checkpoints, defeat/abandon consequences, corrupt-save recovery UX, and whether one or multiple profiles are needed for the first release.
+1. Segment 2: final IDs/categories for the first Stages 1-3 materials and whether recipe discovery begins as story flags or its reserved dedicated profile extension.
 2. Segment 4: the Rootweaver/Grove Artificer's final name, personality, visual contract, and Sanctuary location.
 3. Segment 5: exact recipe quantities, first crafted equipment stats, selling/salvage policy, and armor aggregation.
 4. Segment 6: the first Hunt modifiers, reward preview detail, and Mastery scoring.

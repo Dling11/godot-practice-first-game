@@ -33,6 +33,10 @@ func _ready() -> void:
 	var story_state := get_node_or_null("/root/StoryState")
 	if story_state != null:
 		story_state.remember_story(&"awakened_in_sanctuary")
+	var weapon_inventory := get_node_or_null("/root/WeaponInventory")
+	if weapon_inventory != null:
+		weapon_inventory.weapon_acquired.connect(_on_safe_profile_changed)
+		weapon_inventory.weapon_equipped.connect(_on_safe_profile_changed)
 	combat_hud.bind_player(player)
 	combat_hud.character_menu_requested.connect(character_menu.open_menu)
 	skillkeeper.proximity_changed.connect(combat_hud.show_interaction_prompt)
@@ -46,6 +50,7 @@ func _ready() -> void:
 	expedition_altar.selection_requested.connect(expedition_menu.open_menu)
 	expedition_menu.menu_closed.connect(expedition_altar.restore_prompt)
 	combat_hud.show_story_message("SANCTUARY OF THE REMEMBERED VEIL", 2.8)
+	_save_profile_at_sanctuary()
 
 
 func _on_npc_dialogue_requested(
@@ -75,3 +80,14 @@ func _on_dialogue_closed(completed: bool) -> void:
 
 func _on_skill_awakened(skill_name: String) -> void:
 	combat_hud.show_story_message("%s AWAKENED  •  PRESS 2 TO CAST" % skill_name, 2.8)
+	_save_profile_at_sanctuary()
+
+
+func _on_safe_profile_changed(_first: Variant = null, _second: Variant = null) -> void:
+	_save_profile_at_sanctuary()
+
+
+func _save_profile_at_sanctuary() -> void:
+	var save_service := get_node_or_null("/root/SaveService")
+	if save_service != null:
+		save_service.save_profile()

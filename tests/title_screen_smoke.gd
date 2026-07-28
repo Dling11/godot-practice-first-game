@@ -3,6 +3,9 @@ extends SceneTree
 const TitleScene = preload("res://ui/screens/title/title_screen.tscn")
 const ThemeResource = preload("res://assets/ui/themes/battle_of_gods_theme.tres")
 const SANCTUARY := "res://levels/sanctuary/sanctuary.tscn"
+const TEST_PROFILE_PATH := "user://battle_of_gods_title_screen_smoke.json"
+
+var _save_service: Node
 
 
 func _initialize() -> void:
@@ -10,6 +13,11 @@ func _initialize() -> void:
 
 
 func _run() -> void:
+	_save_service = root.get_node("SaveService")
+	if not _save_service.configure_storage_path_for_testing(TEST_PROFILE_PATH):
+		_fail("SaveService refused the isolated title-screen test path.")
+		return
+	_save_service.delete_profile()
 	var title := TitleScene.instantiate() as TitleScreen
 	root.add_child(title)
 	current_scene = title
@@ -29,6 +37,9 @@ func _run() -> void:
 		return
 	if root.gui_get_focus_owner() != title.start_button:
 		_fail("Title screen did not give initial keyboard/gamepad focus to Start.")
+		return
+	if not title.continue_button.disabled:
+		_fail("Title Continue must be disabled when no valid profile exists.")
 		return
 	var transition_service := root.get_node("SceneTransition")
 	if transition_service.is_input_blocking():
@@ -94,10 +105,21 @@ func _run() -> void:
 	if weapon_inventory.owns_weapon(&"weapon_iron_sword"):
 		_fail("A new journey did not reset purchased weapon ownership.")
 		return
+	if not _save_service.has_valid_profile():
+		_fail("Entering Sanctuary did not create the new journey autosave.")
+		return
+	_cleanup()
 	print("Title screen smoke test passed.")
 	quit(0)
 
 
+func _cleanup() -> void:
+	if _save_service != null:
+		_save_service.delete_profile()
+		_save_service.reset_storage_path_after_testing()
+
+
 func _fail(message: String) -> void:
+	_cleanup()
 	push_error(message)
 	quit(1)

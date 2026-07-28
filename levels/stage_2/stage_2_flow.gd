@@ -39,6 +39,9 @@ func _on_stage_cleared() -> void:
 	if story_state != null:
 		story_state.remember_story(&"forgotten_grove_completed")
 		story_state.record_discovery(&"remembered_thorn_shrine")
+	var save_service := get_node_or_null("/root/SaveService")
+	if save_service != null:
+		save_service.save_profile()
 	combat_hud.show_story_message("THE GROVE RELENTS  •  THE HOLLOW OPENS", 2.8)
 
 

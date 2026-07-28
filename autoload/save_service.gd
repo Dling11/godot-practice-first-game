@@ -1,20 +1,27 @@
 extends Node
 
-## Versioned profile-schema coordinator. This first Segment 1 slice composes
-## validated snapshots only; disk writes and title-screen Continue follow later.
+## Versioned single-profile persistence. Gameplay authorities own their state;
+## this service validates, stores, recovers, and restores their snapshots.
 
+signal profile_saved(profile_path: String)
 signal profile_restored(safe_scene_path: String)
+signal profile_error(message: String)
 
 const PROFILE_VERSION := 1
 const DEFAULT_SAFE_SCENE := "res://levels/sanctuary/sanctuary.tscn"
+const DEFAULT_PROFILE_PATH := "user://battle_of_gods_profile.json"
+
+var _profile_path := DEFAULT_PROFILE_PATH
+var _testing_storage_override := false
+var _debug_autosave_suppressed := false
 
 
-func create_profile_snapshot(safe_scene_path := DEFAULT_SAFE_SCENE) -> Dictionary:
+func create_profile_snapshot(safe_scene_path: String = DEFAULT_SAFE_SCENE) -> Dictionary:
 	if not _has_core_authorities():
-		push_error("SaveService requires RunSession, StoryState, and WeaponInventory.")
+		_report_error("SaveService requires RunSession, StoryState, and WeaponInventory.")
 		return {}
-	if safe_scene_path.is_empty() or not ResourceLoader.exists(safe_scene_path):
-		push_error("SaveService requires an existing safe scene path.")
+	if safe_scene_path != DEFAULT_SAFE_SCENE or not ResourceLoader.exists(safe_scene_path):
+		_report_error("SaveService currently supports only the Sanctuary safe scene.")
 		return {}
 	return {
 		"version": PROFILE_VERSION,
@@ -31,6 +38,53 @@ func create_profile_snapshot(safe_scene_path := DEFAULT_SAFE_SCENE) -> Dictionar
 	}
 
 
+func save_profile(safe_scene_path: String = DEFAULT_SAFE_SCENE) -> bool:
+	if _disk_access_suppressed() or _debug_autosave_suppressed:
+		return true
+	var snapshot := create_profile_snapshot(safe_scene_path)
+	if snapshot.is_empty():
+		return false
+	return _commit_snapshot(snapshot, true)
+
+
+func has_valid_profile() -> bool:
+	if _disk_access_suppressed():
+		return false
+	return (
+		not _read_valid_snapshot(_profile_path).is_empty()
+		or not _read_valid_snapshot(_backup_path()).is_empty()
+	)
+
+
+func load_profile() -> String:
+	if _disk_access_suppressed():
+		return ""
+	_debug_autosave_suppressed = false
+	var snapshot := _read_valid_snapshot(_profile_path)
+	var recovered_from_backup := false
+	if snapshot.is_empty():
+		snapshot = _read_valid_snapshot(_backup_path())
+		recovered_from_backup = not snapshot.is_empty()
+	if snapshot.is_empty() or not restore_profile(snapshot):
+		_report_error("No compatible Battle of Gods profile could be loaded.")
+		return ""
+	if recovered_from_backup:
+		_repair_primary_from_snapshot(snapshot)
+	return String(snapshot["safe_scene_path"])
+
+
+func delete_profile() -> bool:
+	if _disk_access_suppressed():
+		return true
+	_debug_autosave_suppressed = false
+	var success := true
+	for path: String in [_profile_path, _temporary_path(), _backup_path()]:
+		if FileAccess.file_exists(path):
+			var error := DirAccess.remove_absolute(ProjectSettings.globalize_path(path))
+			success = success and error == OK
+	return success
+
+
 func can_restore_profile(snapshot: Dictionary) -> bool:
 	if not _has_core_authorities() or snapshot.get("version", -1) != PROFILE_VERSION:
 		return false
@@ -41,13 +95,12 @@ func can_restore_profile(snapshot: Dictionary) -> bool:
 	var extensions: Variant = snapshot.get("extensions", {})
 	return (
 		safe_scene_path is String
-		and not String(safe_scene_path).is_empty()
-		and String(safe_scene_path).ends_with(".tscn")
-		and ResourceLoader.exists(String(safe_scene_path))
+		and String(safe_scene_path) == DEFAULT_SAFE_SCENE
+		and ResourceLoader.exists(DEFAULT_SAFE_SCENE)
 		and run_snapshot is Dictionary
 		and story_snapshot is Dictionary
 		and weapon_snapshot is Dictionary
-		and extensions is Dictionary
+		and _has_valid_extensions(extensions)
 		and RunSession.can_restore_snapshot(run_snapshot)
 		and StoryState.can_restore_snapshot(story_snapshot)
 		and WeaponInventory.can_restore_snapshot(weapon_snapshot)
@@ -63,6 +116,131 @@ func restore_profile(snapshot: Dictionary) -> bool:
 	WeaponInventory.restore_snapshot(snapshot["weapon_inventory"])
 	var safe_scene_path := String(snapshot["safe_scene_path"])
 	profile_restored.emit(safe_scene_path)
+	return true
+
+
+func configure_storage_path_for_testing(profile_path: String) -> bool:
+	if not OS.is_debug_build() or not profile_path.begins_with("user://"):
+		return false
+	_profile_path = profile_path
+	_testing_storage_override = true
+	return true
+
+
+func reset_storage_path_after_testing() -> void:
+	_profile_path = DEFAULT_PROFILE_PATH
+	_testing_storage_override = false
+
+
+func get_profile_path() -> String:
+	return _profile_path
+
+
+func suppress_autosave_for_debug_session() -> void:
+	if OS.is_debug_build():
+		_debug_autosave_suppressed = true
+
+
+func is_autosave_suppressed_for_debug() -> bool:
+	return _debug_autosave_suppressed
+
+
+func _commit_snapshot(snapshot: Dictionary, rotate_backup: bool) -> bool:
+	if not can_restore_profile(snapshot):
+		_report_error("SaveService refused to write an invalid profile snapshot.")
+		return false
+	var temporary_path := _temporary_path()
+	if not _write_snapshot(temporary_path, snapshot):
+		_report_error("SaveService could not write a validated temporary profile.")
+		return false
+
+	var absolute_profile := ProjectSettings.globalize_path(_profile_path)
+	var absolute_temporary := ProjectSettings.globalize_path(temporary_path)
+	var absolute_backup := ProjectSettings.globalize_path(_backup_path())
+	if rotate_backup and not _read_valid_snapshot(_profile_path).is_empty():
+		if FileAccess.file_exists(_backup_path()):
+			DirAccess.remove_absolute(absolute_backup)
+		var backup_error := DirAccess.copy_absolute(absolute_profile, absolute_backup)
+		if backup_error != OK:
+			DirAccess.remove_absolute(absolute_temporary)
+			_report_error("SaveService could not rotate the profile backup.")
+			return false
+	if FileAccess.file_exists(_profile_path):
+		var remove_error := DirAccess.remove_absolute(absolute_profile)
+		if remove_error != OK:
+			DirAccess.remove_absolute(absolute_temporary)
+			_report_error("SaveService could not replace the existing profile.")
+			return false
+	var rename_error := DirAccess.rename_absolute(absolute_temporary, absolute_profile)
+	if rename_error != OK:
+		if FileAccess.file_exists(_backup_path()):
+			DirAccess.copy_absolute(absolute_backup, absolute_profile)
+		_report_error("SaveService could not commit the temporary profile.")
+		return false
+	profile_saved.emit(_profile_path)
+	return true
+
+
+func _repair_primary_from_snapshot(snapshot: Dictionary) -> bool:
+	return _commit_snapshot(snapshot, false)
+
+
+func _write_snapshot(path: String, snapshot: Dictionary) -> bool:
+	var file := FileAccess.open(path, FileAccess.WRITE)
+	if file == null:
+		return false
+	file.store_string(JSON.stringify(snapshot, "\t"))
+	file.flush()
+	file.close()
+	return not _read_valid_snapshot(path).is_empty()
+
+
+func _read_valid_snapshot(path: String) -> Dictionary:
+	if not FileAccess.file_exists(path):
+		return {}
+	var file := FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		return {}
+	var json := JSON.new()
+	var parse_error := json.parse(file.get_as_text())
+	file.close()
+	if parse_error != OK:
+		return {}
+	var parsed: Variant = json.data
+	if not (parsed is Dictionary):
+		return {}
+	var snapshot: Dictionary = parsed
+	return snapshot if can_restore_profile(snapshot) else {}
+
+
+func _temporary_path() -> String:
+	return "%s.tmp" % _profile_path
+
+
+func _backup_path() -> String:
+	return "%s.bak" % _profile_path
+
+
+func _report_error(message: String) -> void:
+	push_error(message)
+	profile_error.emit(message)
+
+
+func _disk_access_suppressed() -> bool:
+	return DisplayServer.get_name() == "headless" and not _testing_storage_override
+
+
+func _has_valid_extensions(extensions: Variant) -> bool:
+	if not (extensions is Dictionary):
+		return false
+	for section_name: String in [
+		"material_inventory",
+		"recipe_discovery",
+		"stage_claims",
+		"regional_progress",
+	]:
+		if not extensions.has(section_name) or not (extensions[section_name] is Dictionary):
+			return false
 	return true
 
 

@@ -52,11 +52,13 @@ func can_restore_snapshot(snapshot: Dictionary) -> bool:
 	var coin_value: Variant = snapshot.get("coins")
 	var health_value: Variant = snapshot.get("player_current_health")
 	return (
-		experience_value is int
-		and coin_value is int
+		(experience_value is int or experience_value is float)
+		and (coin_value is int or coin_value is float)
 		and (health_value is int or health_value is float)
-		and int(experience_value) >= 0
-		and int(coin_value) >= 0
+		and is_equal_approx(float(experience_value), roundf(float(experience_value)))
+		and is_equal_approx(float(coin_value), roundf(float(coin_value)))
+		and float(experience_value) >= 0.0
+		and float(coin_value) >= 0.0
 		and float(health_value) >= -1.0
 		and is_finite(float(health_value))
 	)

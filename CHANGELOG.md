@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-07-29 - Safe-Point Save and Continue
+
+- Completed the first single-profile persistence slice at `user://battle_of_gods_profile.json`, preserving XP, coins, current HP, story memory, awakened Skill 2, weapon ownership, and equipped weapon across application restarts.
+- Added validated temporary JSON writes, previous-primary backup rotation, corrupt-primary fallback, and automatic repair from the valid backup.
+- Added safe autosaves on Sanctuary entry, Sanctuary weapon purchase/equip, Eira awakening, and post-record stage clear. Continue always resumes in Sanctuary rather than serializing active combat.
+- Prevented the F9 testing preset from overwriting legitimate autosaves for the remainder of its debug session.
+- Added a compact title Continue action with valid-save focus, a disabled no-save state, and confirmation before New Journey replaces an existing autosave.
+- Suppressed production-path persistence during headless validation unless a test explicitly installs an isolated `user://` path.
+- Added disk, backup recovery, safe-milestone, title Continue, and New Journey protection coverage; recorded ADR 063.
+
 ## 2026-07-26 - Versioned Core Save-Profile Schema
 
 - Added `SaveService` as the profile-schema coordinator and registered it after the existing state authorities.

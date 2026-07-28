@@ -96,6 +96,8 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - Use assertions for developer invariants, not recoverable player-facing failures.
 - Fail visibly in development when required dependencies are missing.
 - Do not silently swallow invalid state.
+- Save authorities expose explicit versioned dictionaries and validate complete input before mutating live state. Disk writes use a validated temporary file plus recoverable backup; never serialize nodes, resources by instance identity, active attacks, or scene trees.
+- Autosave only at authored safe milestones. UI may request Continue/New Journey, but `SaveService` owns file validation, recovery, deletion, and restoration. Headless tests must use isolated `user://` paths or suppress production-path persistence.
 
 ## Assets and Pixel Art
 

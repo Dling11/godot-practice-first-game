@@ -70,6 +70,7 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 060 | Tighten starter cleave and localize feedback | Beginner-sword reach, future weapon-family shapes, overhead level feedback, clustered-hit performance, or hitstop tiers |
 | 061 | Slow the first-forest progression curve | XP thresholds, stage-level pacing, Iron Sword price, early economy, or save reconstruction |
 | 062 | Use regional crafting and a reusable material grammar | Loot/crafting, monster drops, chests, Hunts, Rootweaver, material icons, cross-region reuse, or regional Mastery |
+| 063 | Use one safe-point autosave profile | Save files, Continue, autosave checkpoints, backup recovery, New Journey replacement, or future migrations |
 
 ## New Decisions
 
