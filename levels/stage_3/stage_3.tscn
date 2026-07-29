@@ -123,6 +123,7 @@ portal_spawn_point = NodePath("../../SpawnPoints/StageExit")
 portal_target_scene = "res://levels/sanctuary/sanctuary.tscn"
 reward_chest_scene = ExtResource("35_reward_chest")
 stage_loot_table = ExtResource("36_stage_loot")
+reward_chest_tier = 1
 summon_effect_scene = ExtResource("18_summon")
 effects_parent = NodePath("../../World/Effects")
 projectiles_parent = NodePath("../../World/Projectiles")

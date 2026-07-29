@@ -10,21 +10,23 @@ script = ExtResource("2_entry")
 material = ExtResource("3_seed")
 minimum_quantity = 1
 maximum_quantity = 1
-chance = 1.0
+chance = 0.55
+bad_luck_protection_key = &"forest_barbed_seed_misses"
+guaranteed_after_misses = 3
 
 [sub_resource type="Resource" id="Drop_sap"]
 script = ExtResource("2_entry")
 material = ExtResource("4_sap")
 minimum_quantity = 1
 maximum_quantity = 1
-chance = 0.35
+chance = 0.28
 bad_luck_protection_key = &"forest_thorn_sap_misses"
-guaranteed_after_misses = 3
+guaranteed_after_misses = 5
 
 [resource]
 script = ExtResource("1_profile")
 profile_id = &"forest_bramble_spitter_drops"
 source_enemy_id = &"bramble_spitter"
 region_id = &"forest"
-guaranteed_common = Array[Resource]([SubResource("Drop_seed")])
+common_drops = Array[Resource]([SubResource("Drop_seed")])
 optional_secondary = Array[Resource]([SubResource("Drop_sap")])

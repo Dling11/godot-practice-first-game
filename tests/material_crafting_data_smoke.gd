@@ -69,12 +69,16 @@ func _run() -> void:
 		profile_ids[profile.profile_id] = true
 		enemy_ids[profile.source_enemy_id] = true
 	var husk_profile: DropProfileDefinition = drop_profiles[4]
+	var husk_guarantee_ids := {}
+	for entry: MaterialDropEntryDefinition in husk_profile.boss_guarantees:
+		husk_guarantee_ids[entry.material.material_id] = true
 	if (
 		not husk_profile.is_boss_profile
-		or husk_profile.boss_guarantees.size() != 1
-		or husk_profile.boss_guarantees[0].material.material_id != &"forest_rootbound_core"
+		or husk_profile.boss_guarantees.size() != 2
+		or not husk_guarantee_ids.has(&"forest_husk_heartwood")
+		or not husk_guarantee_ids.has(&"forest_rootbound_core")
 	):
-		_fail("The Rootbound Husk does not guarantee its authored boss core.")
+		_fail("The Rootbound Husk does not guarantee both authored boss materials.")
 		return
 
 	var loot_table_ids := {}

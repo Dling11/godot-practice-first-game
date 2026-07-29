@@ -9,22 +9,24 @@
 script = ExtResource("2_entry")
 material = ExtResource("3_fiber")
 minimum_quantity = 1
-maximum_quantity = 2
-chance = 1.0
+maximum_quantity = 1
+chance = 0.45
+bad_luck_protection_key = &"forest_root_fiber_misses"
+guaranteed_after_misses = 3
 
 [sub_resource type="Resource" id="Drop_heartwood"]
 script = ExtResource("2_entry")
 material = ExtResource("4_heartwood")
 minimum_quantity = 1
 maximum_quantity = 1
-chance = 0.25
+chance = 0.22
 bad_luck_protection_key = &"forest_young_heartwood_misses"
-guaranteed_after_misses = 4
+guaranteed_after_misses = 5
 
 [resource]
 script = ExtResource("1_profile")
 profile_id = &"forest_rootling_drops"
 source_enemy_id = &"rootling"
 region_id = &"forest"
-guaranteed_common = Array[Resource]([SubResource("Drop_fiber")])
+common_drops = Array[Resource]([SubResource("Drop_fiber")])
 optional_secondary = Array[Resource]([SubResource("Drop_heartwood")])

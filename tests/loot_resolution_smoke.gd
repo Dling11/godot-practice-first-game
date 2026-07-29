@@ -15,7 +15,11 @@ const Stage1Table: LootTableDefinition = preload(
 const Stage2Table: LootTableDefinition = preload(
 	"res://data/loot/forest/stages/stage_2_loot_table.tres"
 )
+const Stage3Table: LootTableDefinition = preload(
+	"res://data/loot/forest/stages/stage_3_loot_table.tres"
+)
 const ChestScene = preload("res://gameplay/loot/stage_reward_chest.tscn")
+const PickupScene = preload("res://gameplay/loot/material_pickup.tscn")
 const Stage1Scene = preload("res://levels/test_arena/test_arena.tscn")
 const Stage2Scene = preload("res://levels/stage_2/stage_2.tscn")
 const Stage3Scene = preload("res://levels/stage_3/stage_3.tscn")
@@ -69,8 +73,25 @@ func _run() -> void:
 		):
 			_fail("A playable Forest stage has no configured clear chest/table.")
 			return
+		if (
+			scene == Stage3Scene
+			and controller.reward_chest_tier
+				!= StageRewardChest.ChestTier.ROOTBOUND_RELIQUARY
+		):
+			_fail("Stage III must use the Rootbound mini-boss chest tier.")
+			return
 		stage.free()
 
+	if (
+		RootlingProfile.common_drops.size() != 1
+		or RootlingProfile.common_drops[0].chance >= 1.0
+		or RootlingProfile.common_drops[0].bad_luck_protection_key.is_empty()
+	):
+		_fail("Ordinary enemy common materials must be protected percentage rolls.")
+		return
+	loot_state.record_bad_luck_result(&"forest_root_fiber_misses", false)
+	loot_state.record_bad_luck_result(&"forest_root_fiber_misses", false)
+	loot_state.record_bad_luck_result(&"forest_young_heartwood_misses", false)
 	loot_state.record_bad_luck_result(&"forest_young_heartwood_misses", false)
 	loot_state.record_bad_luck_result(&"forest_young_heartwood_misses", false)
 	loot_state.record_bad_luck_result(&"forest_young_heartwood_misses", false)
@@ -83,12 +104,44 @@ func _run() -> void:
 		or _quantity_for(rootling_drops, &"forest_young_heartwood") != 1
 		or loot_state.get_bad_luck_misses(&"forest_young_heartwood_misses") != 0
 	):
-		_fail("Guaranteed Rootling loot or bad-luck protection did not resolve.")
+		_fail("Protected percentage Rootling loot did not resolve at its cap.")
 		return
 	var husk_drops: Array[Dictionary] = loot_service.resolve_enemy_drops(HuskProfile)
-	if _quantity_for(husk_drops, &"forest_rootbound_core") < 1:
-		_fail("The Rootbound Husk did not resolve its guaranteed boss core.")
+	if (
+		_quantity_for(husk_drops, &"forest_husk_heartwood") < 2
+		or _quantity_for(husk_drops, &"forest_rootbound_core") < 1
+	):
+		_fail("The Rootbound Husk did not resolve both guaranteed boss materials.")
 		return
+
+	var pickup_stage := Stage1Scene.instantiate()
+	var pickup_controller := pickup_stage.get_node(
+		"GameplayServices/EncounterController"
+	) as EncounterController
+	pickup_controller.auto_start = false
+	root.add_child(pickup_stage)
+	var pickup_player := pickup_controller.player
+	var pickup := PickupScene.instantiate() as MaterialPickup
+	pickup.auto_collect_delay = 0.01
+	pickup.configure(
+		MaterialCatalog.find_material(&"forest_root_fiber"),
+		1,
+		pickup_player
+	)
+	pickup_controller.actors.add_child(pickup)
+	pickup.global_position = pickup_player.global_position + Vector2(120.0, 0.0)
+	pickup.begin_pop(Vector2.UP)
+	var pickup_deadline := Time.get_ticks_msec() + 2000
+	while (
+		material_inventory.get_quantity(&"forest_root_fiber") == 0
+		and Time.get_ticks_msec() < pickup_deadline
+	):
+		await process_frame
+	if material_inventory.get_quantity(&"forest_root_fiber") != 1:
+		_fail("A visible enemy drop did not magnetically auto-collect.")
+		return
+	pickup_stage.queue_free()
+	await process_frame
 
 	_reset_loot_state()
 	material_inventory.add_material(&"forest_root_fiber", 5)
@@ -147,14 +200,40 @@ func _run() -> void:
 	chest.configure(Stage2Table)
 	root.add_child(chest)
 	await process_frame
+	await create_timer(0.4).timeout
+	if (
+		not chest.get_node("Footprint") is StaticBody2D
+		or chest.z_index != 0
+		or chest.chest_tier != StageRewardChest.ChestTier.FOREST_CACHE
+		or chest.physical_body.collision_layer != 1
+	):
+		_fail("The ordinary stage chest lacks its colliding Y-sorted footprint.")
+		return
 	var chest_result := chest.claim_for_testing()
+	await physics_frame
 	if (
 		not bool(chest_result.get("success", false))
 		or chest.chest_sprite.texture != chest.open_texture
+		or chest.physical_body.collision_layer != 0
 		or material_inventory.get_quantity(&"forest_barbed_seed") < 3
 	):
 		_fail("The stage-clear chest did not visibly open and grant its table.")
 		return
+
+	var reliquary := ChestScene.instantiate() as StageRewardChest
+	reliquary.configure(
+		Stage3Table,
+		StageRewardChest.ChestTier.ROOTBOUND_RELIQUARY
+	)
+	root.add_child(reliquary)
+	await process_frame
+	if (
+		reliquary.chest_sprite.texture != reliquary.rootbound_closed_texture
+		or reliquary.get_display_name() != "ROOTBOUND RELIQUARY"
+	):
+		_fail("The Rootbound mini-boss chest did not select its distinct tier art.")
+		return
+	reliquary.queue_free()
 
 	var loot_snapshot: Dictionary = loot_state.create_snapshot()
 	loot_state.reset_state()
@@ -165,7 +244,7 @@ func _run() -> void:
 		_fail("LootState did not persist and reconstruct stage claims.")
 		return
 
-	print("Loot resolution, pickup art, chest, rollback, and claim smoke test passed.")
+	print("Loot chances, magnetic pickups, chest tiers, rollback, and claim smoke test passed.")
 	quit(0)
 
 

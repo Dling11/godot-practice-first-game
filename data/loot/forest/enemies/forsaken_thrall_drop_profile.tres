@@ -10,21 +10,23 @@ script = ExtResource("2_entry")
 material = ExtResource("3_cloth")
 minimum_quantity = 1
 maximum_quantity = 1
-chance = 1.0
+chance = 0.5
+bad_luck_protection_key = &"forest_forsaken_cloth_misses"
+guaranteed_after_misses = 3
 
 [sub_resource type="Resource" id="Drop_fittings"]
 script = ExtResource("2_entry")
 material = ExtResource("4_fittings")
 minimum_quantity = 1
 maximum_quantity = 1
-chance = 0.3
+chance = 0.25
 bad_luck_protection_key = &"forest_weathered_fittings_misses"
-guaranteed_after_misses = 4
+guaranteed_after_misses = 5
 
 [resource]
 script = ExtResource("1_profile")
 profile_id = &"forest_forsaken_thrall_drops"
 source_enemy_id = &"forsaken_thrall"
 region_id = &"forest"
-guaranteed_common = Array[Resource]([SubResource("Drop_cloth")])
+common_drops = Array[Resource]([SubResource("Drop_cloth")])
 optional_secondary = Array[Resource]([SubResource("Drop_fittings")])

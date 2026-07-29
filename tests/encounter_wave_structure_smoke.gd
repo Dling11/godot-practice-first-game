@@ -50,16 +50,23 @@ func _run() -> void:
 	if clear_state.emitted:
 		_fail("Stage completion emitted before the reward chest was claimed.")
 		return
-	if arena.get_node("World/Effects").get_child_count() != 1:
-		_fail("Clearing the final wave did not create exactly one reward chest.")
+	if arena.get_node("World/Effects").get_child_count() != 0:
+		_fail("The stage chest incorrectly bypassed actor depth sorting.")
 		return
-	var chest := arena.get_node("World/Effects").get_child(0) as StageRewardChest
+	var chest: StageRewardChest
+	for actor in controller.actors.get_children():
+		if actor is StageRewardChest:
+			chest = actor
+			break
+	if chest == null:
+		_fail("Clearing the final wave did not create a Y-sorted reward chest.")
+		return
 	var reward: Dictionary = chest.claim_for_testing()
 	await process_frame
 	if not bool(reward.get("success", false)) or not clear_state.emitted:
 		_fail("Claiming the reward chest did not emit stage completion.")
 		return
-	if arena.get_node("World/Effects").get_child_count() != 2:
+	if arena.get_node("World/Effects").get_child_count() != 1:
 		_fail("A successful chest claim did not create the exit portal.")
 		return
 	print("Encounter wave structure smoke test passed.")

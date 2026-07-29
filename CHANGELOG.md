@@ -3,6 +3,10 @@
 ## 2026-07-29 - Forest Loot, Pickups, and Stage-Clear Chests
 
 - Completed Forest production Segment 3 by connecting all five current enemy scenes to their immutable ecology-linked drop profiles through centralized `LootService` resolution.
+- Rebalanced ordinary enemy materials from universal common drops to 20-55% profile-owned rolls with short persisted bad-luck caps. Mire Resin/Root Fiber are 45%, Forsaken Cloth 50%, Barbed Seed 55%, and optional secondaries 20-28%; the Husk still guarantees both Husk Heartwood and Rootbound Core.
+- Upgraded material pickups with a short launch hop, wobble/hover idle, half-second readability window, and accelerated magnetic auto-collection to the injected player recipient while retaining contact collection as a fallback.
+- Moved reward chests into the stage's Y-sorted Actors owner, added a small solid footprint plus accessible interaction range, and added a reusable presentation-only rune/spark arrival effect. Claiming releases the footprint before the portal opens.
+- Added the 72x64 closed/open Rootbound Reliquary tier for Stage III, with preserved generated/clean/review provenance; Stages I-II retain the ordinary 64x48 Forest Cache. Tier selection never owns reward contents.
 - Added world-space material pickups with pop/glow/quantity presentation, contact collection, upper-right HUD toasts, combined stacks, optional-drop bad-luck protection, and a guaranteed Rootbound Core from the Husk.
 - Added a reusable closed/open Forest reward chest to Stages I-III. The final wave now spawns the chest; explicit `F` claim grants a guaranteed non-empty first-clear or replay table and only then opens the existing portal.
 - Added `LootState` for versioned first-clear claim IDs and protection counters, activated the save profile's `stage_claims` extension with legacy-empty compatibility, and made New Journey reset it.
@@ -11,6 +15,7 @@
 - Added atomic material batch grants, first-clear blueprint/discovery delivery, replay reward selection, and readable chest/material reward summaries without activating crafting outputs.
 - Fixed pickup collection to defer `Area2D.monitoring` changes during physics overlap callbacks.
 - Added focused loot-resolution coverage and expanded material, stage, save-profile, disk-recovery, safe-milestone, Character & Bag, and HUD validation.
+- Recorded the finalized probability, pickup, boss-guarantee, collision, and chest-tier boundary in ADR 066.
 
 ## 2026-07-29 - Character and Bag Inventory Redesign
 

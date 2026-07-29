@@ -30,10 +30,10 @@ func _grant_rewards() -> void:
 	if definition == null or recipient == null or recipient.progression_component == null:
 		return
 	recipient.progression_component.grant_rewards(definition.experience_reward, definition.coin_reward)
-	_spawn_material_drops(enemy)
+	_spawn_material_drops(enemy, recipient)
 
 
-func _spawn_material_drops(enemy: Node2D) -> void:
+func _spawn_material_drops(enemy: Node2D, recipient: Player) -> void:
 	if drop_profile == null or not drop_profile.has_valid_layout():
 		return
 	var pickup_parent := enemy.get_parent() as Node2D
@@ -50,7 +50,7 @@ func _spawn_material_drops(enemy: Node2D) -> void:
 		if material == null or quantity <= 0:
 			continue
 		var pickup := MaterialPickupScene.instantiate() as MaterialPickup
-		pickup.configure(material, quantity)
+		pickup.configure(material, quantity, recipient)
 		pickup_parent.add_child(pickup)
 		pickup.global_position = enemy.global_position
 		var angle := -PI * 0.5

@@ -7,7 +7,7 @@ extends Resource
 @export var source_enemy_id: StringName
 @export var region_id: StringName
 @export var is_boss_profile := false
-@export var guaranteed_common: Array[MaterialDropEntryDefinition] = []
+@export var common_drops: Array[MaterialDropEntryDefinition] = []
 @export var optional_secondary: Array[MaterialDropEntryDefinition] = []
 @export var rare_drops: Array[MaterialDropEntryDefinition] = []
 @export var boss_guarantees: Array[MaterialDropEntryDefinition] = []
@@ -19,7 +19,7 @@ func has_valid_layout() -> bool:
 	if is_boss_profile != (not boss_guarantees.is_empty()):
 		return false
 	var seen_material_ids := {}
-	if not _validate_entries(guaranteed_common, true, seen_material_ids):
+	if not _validate_entries(common_drops, false, seen_material_ids):
 		return false
 	if not _validate_entries(optional_secondary, false, seen_material_ids):
 		return false
@@ -28,7 +28,7 @@ func has_valid_layout() -> bool:
 	if not _validate_entries(boss_guarantees, true, seen_material_ids):
 		return false
 	return not (
-		guaranteed_common.is_empty()
+		common_drops.is_empty()
 		and optional_secondary.is_empty()
 		and rare_drops.is_empty()
 		and boss_guarantees.is_empty()

@@ -28,6 +28,7 @@ signal stage_reward_claimed(result: Dictionary)
 @export_file("*.tscn") var portal_target_scene := ""
 @export var reward_chest_scene: PackedScene
 @export var stage_loot_table: LootTableDefinition
+@export_enum("Forest Cache", "Rootbound Reliquary") var reward_chest_tier := 0
 @export var reward_chest_offset := Vector2(0.0, 52.0)
 @export var summon_effect_scene: PackedScene
 @export var effects_parent: Node2D
@@ -218,7 +219,7 @@ func _spawn_stage_reward() -> void:
 		reward_chest_scene == null
 		or stage_loot_table == null
 		or not stage_loot_table.has_valid_layout()
-		or portal_parent == null
+		or actors == null
 		or portal_spawn_point == null
 	):
 		push_warning(
@@ -227,8 +228,8 @@ func _spawn_stage_reward() -> void:
 		_spawn_portal()
 		return
 	var chest := reward_chest_scene.instantiate() as StageRewardChest
-	chest.configure(stage_loot_table)
-	portal_parent.add_child(chest)
+	chest.configure(stage_loot_table, reward_chest_tier)
+	actors.add_child(chest)
 	chest.global_position = portal_spawn_point.global_position + reward_chest_offset
 	chest.proximity_changed.connect(
 		func(is_near: bool, prompt_text: String, prompt_icon: Texture2D) -> void:

@@ -187,7 +187,7 @@ The following immutable contracts and responsibility boundaries are implemented.
 
 ### `DropProfileDefinition`
 
-- Guaranteed common material entries
+- Percentage-based common material entries
 - Optional secondary entries
 - Rare entries
 - Quantity ranges
@@ -310,8 +310,9 @@ data/crafting/recipes/<future_region>/
 ### Segment 3 - Loot and stage-clear chest — implemented
 
 - **Completed 2026-07-29:** enemy drop-profile integration through centralized `LootService`, collectible world pickups, and compact HUD confirmation
-- Guaranteed first/replay/boss rewards, including Rootbound Core and authored bad-luck protection
-- Explicit `F` chest interaction with distinct closed/open art; a successful claim opens the portal
+- Ordinary common/secondary percentage rolls with short persisted protection caps; guaranteed first/replay/boss rewards include both Husk Heartwood and Rootbound Core
+- Hop/hover presentation plus delayed magnetic auto-collection, retaining contact as a fallback
+- Explicit `F` chest interaction with collision, Y-sorting, spawn reveal, and distinct Forest Cache/Rootbound Reliquary closed/open tiers; a successful claim opens the portal
 - Versioned idempotent first-clear claims plus expedition rollback before defeat/abandon and commit before stage-clear autosave
 - Ten distinct flattened 24x24 Forest icons with preserved source/clean/review boards
 - Focused protection, duplicate-grant, persistence, rollback, chest, stage-wiring, and icon tests

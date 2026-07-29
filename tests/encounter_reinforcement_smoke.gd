@@ -59,7 +59,7 @@ func _run() -> void:
 			if actor != controller.player and actor.get("target") == controller.player:
 				actor.queue_free()
 		if state.chest_spawned and not state.chest_claimed:
-			for child in controller.portal_parent.get_children():
+			for child in controller.actors.get_children():
 				if child is StageRewardChest:
 					var result: Dictionary = child.claim_for_testing()
 					state.chest_claimed = bool(result.get("success", false))

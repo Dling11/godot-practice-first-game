@@ -73,6 +73,7 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 063 | Use one safe-point autosave profile | Save files, Continue, autosave checkpoints, backup recovery, New Journey replacement, or future migrations |
 | 064 | Use stable crafting data and dedicated progress authorities | Material IDs, drop profiles, stage loot tables, recipe catalogs, material inventory, recipe discovery, or crafting save extensions |
 | 065 | Use one Character and Bag surface | Paper-doll equipment layout, 24-slot bag, material pouch, inventory filters, item details, or future stash/discard UX |
+| 066 | Use protected enemy drops and tiered clear chests | Enemy drop chances, bad-luck protection, auto-pickup, boss guarantees, chest collision, spawn presentation, or chest rarity |
 
 ## New Decisions
 

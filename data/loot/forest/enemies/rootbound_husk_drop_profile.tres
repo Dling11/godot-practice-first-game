@@ -25,5 +25,4 @@ profile_id = &"forest_rootbound_husk_drops"
 source_enemy_id = &"rootbound_husk"
 region_id = &"forest"
 is_boss_profile = true
-guaranteed_common = Array[Resource]([SubResource("Drop_heartwood")])
-boss_guarantees = Array[Resource]([SubResource("Drop_core")])
+boss_guarantees = Array[Resource]([SubResource("Drop_heartwood"), SubResource("Drop_core")])

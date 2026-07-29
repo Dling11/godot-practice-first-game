@@ -67,7 +67,7 @@ func resolve_enemy_drops(profile: DropProfileDefinition) -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
 	if profile == null or not profile.has_valid_layout():
 		return result
-	_append_resolved_entries(result, profile.guaranteed_common)
+	_append_resolved_entries(result, profile.common_drops)
 	_append_resolved_entries(result, profile.optional_secondary)
 	_append_resolved_entries(result, profile.rare_drops)
 	_append_resolved_entries(result, profile.boss_guarantees)
