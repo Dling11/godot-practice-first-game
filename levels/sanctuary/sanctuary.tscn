@@ -21,18 +21,23 @@
 [ext_resource type="Script" uid="uid://ds6tx8vmvokpu" path="res://gameplay/audio/stage_music.gd" id="17_music_script"]
 [ext_resource type="AudioStream" uid="uid://c1vj618m4ysv1" path="res://assets/audio/music/cathedral_in_the_forest.ogg" id="18_music"]
 [ext_resource type="PackedScene" path="res://ui/pause_menu.tscn" id="19_pause"]
+[ext_resource type="PackedScene" path="res://environment/props/sanctuary/rootweaver_living_rootforge/rootweaver_living_rootforge.tscn" id="20_rootforge"]
+[ext_resource type="PackedScene" path="res://entities/npcs/rootweaver/rootweaver_nema.tscn" id="21_rootweaver"]
+[ext_resource type="PackedScene" path="res://ui/crafting/rootforge_menu.tscn" id="22_rootforge_menu"]
 
-[node name="Sanctuary" type="Node" unique_id=1171524165 node_paths=PackedStringArray("player", "combat_hud", "character_menu", "skillkeeper", "weapon_merchant", "expedition_altar", "dialogue_panel", "expedition_menu", "weapon_shop_menu")]
+[node name="Sanctuary" type="Node" unique_id=1171524165 node_paths=PackedStringArray("player", "combat_hud", "character_menu", "skillkeeper", "weapon_merchant", "rootweaver", "expedition_altar", "dialogue_panel", "expedition_menu", "weapon_shop_menu", "rootforge_menu")]
 script = ExtResource("1_flow")
 player = NodePath("World/Actors/Player")
 combat_hud = NodePath("UI/CombatHUD")
 character_menu = NodePath("UI/CharacterMenu")
 skillkeeper = NodePath("World/Actors/Skillkeeper")
 weapon_merchant = NodePath("World/Actors/WeaponMerchant")
+rootweaver = NodePath("World/Actors/Rootweaver")
 expedition_altar = NodePath("World/Actors/ExpeditionAltar")
 dialogue_panel = NodePath("UI/DialoguePanel")
 expedition_menu = NodePath("UI/ExpeditionMenu")
 weapon_shop_menu = NodePath("UI/WeaponShopMenu")
+rootforge_menu = NodePath("UI/RootforgeMenu")
 
 [node name="StageMusic" type="Node" parent="." unique_id=2133377204]
 script = ExtResource("17_music_script")
@@ -58,6 +63,9 @@ position = Vector2(928, 390)
 
 [node name="ArmskeeperCart" parent="World/Actors" unique_id=590228413 instance=ExtResource("7_stall")]
 position = Vector2(832, 566)
+
+[node name="LivingRootforge" parent="World/Actors" instance=ExtResource("20_rootforge")]
+position = Vector2(352, 704)
 
 [node name="TreeNorthWest" parent="World/Actors" unique_id=944688965 instance=ExtResource("8_tree_broad")]
 position = Vector2(112, 154)
@@ -89,6 +97,9 @@ position = Vector2(360, 520)
 [node name="WeaponMerchant" parent="World/Actors" unique_id=70869700 instance=ExtResource("11_merchant")]
 position = Vector2(916, 580)
 
+[node name="Rootweaver" parent="World/Actors" instance=ExtResource("21_rootweaver")]
+position = Vector2(458, 690)
+
 [node name="Player" parent="World/Actors" unique_id=1654953230 instance=ExtResource("2_player")]
 position = Vector2(576, 676)
 movement_bounds = Rect2(56, 56, 1040, 656)
@@ -113,5 +124,7 @@ player = NodePath("../../World/Actors/Player")
 
 [node name="WeaponShopMenu" parent="UI" node_paths=PackedStringArray("player") instance=ExtResource("16_weapon_shop")]
 player = NodePath("../../World/Actors/Player")
+
+[node name="RootforgeMenu" parent="UI" instance=ExtResource("22_rootforge_menu")]
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("19_pause")]

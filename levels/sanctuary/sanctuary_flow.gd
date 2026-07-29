@@ -6,14 +6,17 @@ extends Node
 @export var character_menu: CharacterMenu
 @export var skillkeeper: DialogueNpc
 @export var weapon_merchant: DialogueNpc
+@export var rootweaver: DialogueNpc
 @export var expedition_altar: ExpeditionAltar
 @export var dialogue_panel: DialoguePanel
 @export var expedition_menu: ExpeditionMenu
 @export var weapon_shop_menu: WeaponShopMenu
+@export var rootforge_menu: RootforgeMenu
 
 var _active_dialogue_npc: DialogueNpc
 var _show_skill_information_after_dialogue := false
 var _show_weapon_shop_after_dialogue := false
+var _show_rootforge_after_dialogue := false
 
 
 func _ready() -> void:
@@ -23,10 +26,12 @@ func _ready() -> void:
 		or character_menu == null
 		or skillkeeper == null
 		or weapon_merchant == null
+		or rootweaver == null
 		or expedition_altar == null
 		or dialogue_panel == null
 		or expedition_menu == null
 		or weapon_shop_menu == null
+		or rootforge_menu == null
 	):
 		push_error("SanctuaryFlow is missing a required hub dependency.")
 		return
@@ -46,12 +51,15 @@ func _ready() -> void:
 	combat_hud.character_menu_requested.connect(character_menu.open_menu)
 	skillkeeper.proximity_changed.connect(combat_hud.show_interaction_prompt)
 	weapon_merchant.proximity_changed.connect(combat_hud.show_interaction_prompt)
+	rootweaver.proximity_changed.connect(combat_hud.show_interaction_prompt)
 	expedition_altar.proximity_changed.connect(combat_hud.show_interaction_prompt)
-	skillkeeper.dialogue_requested.connect(_on_npc_dialogue_requested.bind(skillkeeper, true, false))
-	weapon_merchant.dialogue_requested.connect(_on_npc_dialogue_requested.bind(weapon_merchant, false, true))
+	skillkeeper.dialogue_requested.connect(_on_npc_dialogue_requested.bind(skillkeeper, true, false, false))
+	weapon_merchant.dialogue_requested.connect(_on_npc_dialogue_requested.bind(weapon_merchant, false, true, false))
+	rootweaver.dialogue_requested.connect(_on_npc_dialogue_requested.bind(rootweaver, false, false, true))
 	dialogue_panel.dialogue_closed.connect(_on_dialogue_closed)
 	character_menu.skill_awakened.connect(_on_skill_awakened)
 	weapon_shop_menu.menu_closed.connect(weapon_merchant.restore_prompt)
+	rootforge_menu.menu_closed.connect(rootweaver.restore_prompt)
 	expedition_altar.selection_requested.connect(expedition_menu.open_menu)
 	expedition_menu.menu_closed.connect(expedition_altar.restore_prompt)
 	combat_hud.show_story_message("SANCTUARY OF THE REMEMBERED VEIL", 2.8)
@@ -61,26 +69,38 @@ func _ready() -> void:
 func _on_npc_dialogue_requested(
 	speaker: String,
 	lines: Array[String],
+	portrait: Texture2D,
 	npc: DialogueNpc,
 	show_skill_information: bool,
-	show_weapon_shop: bool
+	show_weapon_shop: bool,
+	show_rootforge: bool
 ) -> void:
 	_active_dialogue_npc = npc
 	_show_skill_information_after_dialogue = show_skill_information
 	_show_weapon_shop_after_dialogue = show_weapon_shop
-	dialogue_panel.show_dialogue(speaker, lines)
+	_show_rootforge_after_dialogue = show_rootforge
+	dialogue_panel.show_dialogue(speaker, lines, portrait)
 
 
 func _on_dialogue_closed(completed: bool) -> void:
-	if is_instance_valid(_active_dialogue_npc) and not (completed and _show_weapon_shop_after_dialogue):
+	if (
+		is_instance_valid(_active_dialogue_npc)
+		and not (
+			completed
+			and (_show_weapon_shop_after_dialogue or _show_rootforge_after_dialogue)
+		)
+	):
 		_active_dialogue_npc.restore_prompt()
 	_active_dialogue_npc = null
 	if completed and _show_skill_information_after_dialogue:
 		character_menu.open_skillkeeper_menu()
 	elif completed and _show_weapon_shop_after_dialogue:
 		weapon_shop_menu.open_menu()
+	elif completed and _show_rootforge_after_dialogue:
+		rootforge_menu.open_menu()
 	_show_skill_information_after_dialogue = false
 	_show_weapon_shop_after_dialogue = false
+	_show_rootforge_after_dialogue = false
 
 
 func _on_skill_awakened(skill_name: String) -> void:

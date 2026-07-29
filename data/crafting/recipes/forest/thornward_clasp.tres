@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="RecipeDefinition" load_steps=9 format=3]
+[gd_resource type="Resource" script_class="RecipeDefinition" format=3 uid="uid://d3feax13bmejb"]
 
-[ext_resource type="Script" path="res://data/crafting/recipes/recipe_definition.gd" id="1_recipe"]
-[ext_resource type="Script" path="res://data/items/materials/material_stack_definition.gd" id="2_stack"]
-[ext_resource type="Resource" path="res://data/items/materials/forest/barbed_seed.tres" id="3_seed"]
-[ext_resource type="Resource" path="res://data/items/materials/forest/thorn_sap.tres" id="4_sap"]
-[ext_resource type="Resource" path="res://data/items/materials/forest/weathered_fittings.tres" id="5_fittings"]
+[ext_resource type="Script" uid="uid://ddkkkbe8622gd" path="res://data/crafting/recipes/recipe_definition.gd" id="1_recipe"]
+[ext_resource type="Script" uid="uid://bll3k2id0v40j" path="res://data/items/materials/material_stack_definition.gd" id="2_stack"]
+[ext_resource type="Resource" uid="uid://elkww58s4uf3" path="res://data/items/materials/forest/barbed_seed.tres" id="3_seed"]
+[ext_resource type="Resource" uid="uid://32r3ksqif6tb" path="res://data/items/materials/forest/thorn_sap.tres" id="4_sap"]
+[ext_resource type="Resource" uid="uid://dbinq5oclqkgp" path="res://data/items/materials/forest/weathered_fittings.tres" id="5_fittings"]
 
 [sub_resource type="Resource" id="Cost_seed"]
 script = ExtResource("2_stack")
@@ -27,10 +27,7 @@ recipe_id = &"forest_thornward_clasp"
 display_name = "Thornward Clasp"
 description = "A reinforced clasp concept that turns Bramble materials toward pressure resistance."
 region_id = &"forest"
-tier = 1
 category = 2
-output_kind = 0
 output_id = &"forest_thornward_clasp"
-output_quantity = 1
-ingredients = Array[Resource]([SubResource("Cost_seed"), SubResource("Cost_sap"), SubResource("Cost_fittings")])
+ingredients = Array[ExtResource("2_stack")]([SubResource("Cost_seed"), SubResource("Cost_sap"), SubResource("Cost_fittings")])
 unlock_id = &"forest_thornward_clasp"

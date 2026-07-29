@@ -1,5 +1,28 @@
 # Changelog
 
+## 2026-07-29 - Rootweaver Nema and the Living Rootforge
+
+- Clarified that the Rootweaver is a friendly Sanctuary crafting artisan, while the Stage IV monster remains a separate unnamed armored hide-bearing Forest beast.
+- Initially explored `Rootweaver Nema` as an elderly human craftswoman before owner review redirected the identity toward a more charismatic blacksmith fantasy.
+- Generated and preserved non-runtime character/portrait/workshop concept boards through the built-in image workflow; the proposal records each exact prompt and runtime simplification boundary.
+- Rejected the first Rootweaver board after owner review found its anatomy and workshop too realistic for Sanctuary, then generated and cataloged a compact v2 using Eira and Orren's actual 48x48 sheets as proportion/style references.
+- Replaced the elderly v2 with the approved attractive adult female grove-smith v3: auburn side braid, moss forge apron, root hammer and gold-thread tongs, plus an organic anvil-and-brazier Living Rootforge distinct from Orren's ordinary steel shop.
+- Generated an eight-frame actor source board, then added a deterministic processor that exports Nema's binary-alpha 192x96 idle/work sheet, reusable 96x96 portrait, and 176x144 Rootforge from preserved sources.
+- Added Nema's colliding dialogue scene, optional reusable `DialogueNpc` portrait metadata, timer/signal-driven forge-work presentation, and an original deterministic wood/stone/root strike cue.
+- Placed the colliding, Y-sorted Living Rootforge and Nema on the southwest Sanctuary lawn while preserving the central avenue and front approach.
+- Added `RootforgeMenu`, a paused filterable preview of all four current recipes, discovery state, milestone seals, and exact owned/required ingredients. Its action remains disabled and it cannot consume materials, discover recipes, fabricate outputs, or save state.
+- Recorded Nema's visible integrated arms/tools as a work-animation-specific NPC exception without changing Opaw's armless contract; ADR 068 protects the service and authority boundary.
+- Added dedicated art/scene/menu/no-mutation regression coverage plus world/menu review captures. Crafting transactions, recipe outputs, and seal progression remain Segment 5.
+
+## 2026-07-29 - Sparse Loot and Milestone Reward Cadence
+
+- Reduced ordinary Forest materials to 15-25% common and 5-10% secondary rolls, with bad-luck protection on the sixth and twelfth unresolved attempts respectively; Rootbound Husk boss guarantees remain unchanged.
+- Added explicit direct-portal versus stage-chest completion modes to `EncounterController`. Stages I-II now commit collected expedition loot and open their portals directly, with obsolete Stage I-II clear tables and chest wiring removed.
+- Retuned the Stage III Rootbound Reliquary to a modest guaranteed pool of ordinary Stages I-III materials on first clear/replay. It grants no blueprint or crafting-category unlock; Husk Heartwood and Rootbound Core remain separate guaranteed enemy-profile drops.
+- Approved the III/V/VIII/X milestone cadence: Stage III regular-material payout, Stage V permanent weapon/armor crafting seal plus repeatable catalyst, Stage VIII accessory-material mini-boss payout, and Stage X permanent accessory/relic seal plus repeatable signature catalyst. Later milestones remain planned.
+- Reassigned Rootfiber Wraps/Huskbound Guard to the planned Stage V milestone and Mireward Charm/Thornward Clasp to Stage X; recorded permanent seals versus consumable repeatable catalysts in ADR 067.
+- Updated focused loot, stage configuration, direct-banking, chest-tier, rollback, and encounter regressions.
+
 ## 2026-07-29 - Forest Loot, Pickups, and Stage-Clear Chests
 
 - Completed Forest production Segment 3 by connecting all five current enemy scenes to their immutable ecology-linked drop profiles through centralized `LootService` resolution.

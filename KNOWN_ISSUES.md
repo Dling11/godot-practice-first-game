@@ -4,13 +4,13 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 
 ## Current Limitations
 
-### KI-013 - Forest crafting and replay gameplay is not implemented
+### KI-013 - Forest crafting transactions and replay Hunts are not implemented
 
 - **Status:** Open
-- **Progress:** Segments 1-3 now provide safe-point Save/Continue, ten illustrated materials, five live enemy drop profiles, collectible world pickups, saved bad-luck protection, guaranteed interactive Stage I-III clear chests, idempotent first-clear recipe/material grants, expedition rollback/commit behavior, and Character & Bag inspection.
-- **Impact:** Players can now earn and retain Forest materials and discover the four starter blueprints, but cannot spend those materials or produce/equip the blueprint outputs. No Rootweaver/Grove Artificer, crafting transaction UI, Hunt selector, or regional Mastery exists. Ordinary stage replay is possible only through the existing route/debug seams, not the approved Hunt presentation.
-- **Planned resolution:** Follow `docs/design/forest-loot-crafting-and-regional-material-plan.md` in order: Segment 4 Sanctuary craft service, Segment 5 recipes/equipment, Hunts, then Stages 4-10 and the Stage 11 regional seam.
-- **Workaround:** Play Stages I-III normally to collect materials and first-clear blueprints, then inspect them in Character & Bag. Treat them as saved preparation inventory until the Rootweaver and crafting transaction path are implemented; F9 samples remain debug-only and non-saving.
+- **Progress:** Segments 1-4 now provide safe-point Save/Continue, ten illustrated materials, five live sparse/protected enemy drop profiles, collectible world pickups, direct Stage I-II banking, the guaranteed Stage III Rootbound Reliquary payout, expedition rollback/commit behavior, Character & Bag inspection, and the implemented Rootweaver Nema/Living Rootforge service. Nema's paused menu safely previews the four data recipes, discovery state, required seals, and live owned/required material quantities without mutating anything.
+- **Impact:** Players can earn, retain, and inspect Forest materials and recipe costs, but cannot spend them or discover/produce/equip the four data-only outputs through normal play. No `CraftingService`, output equipment, Hunt selector, Stage V/VIII/X reward implementation, or regional Mastery exists. Ordinary stage replay is possible only through the existing route/debug seams, not the approved Hunt presentation.
+- **Planned resolution:** Follow `docs/design/forest-loot-crafting-and-regional-material-plan.md` in order: Segment 5 recipes/equipment and atomic transactions, Hunts, then Stages 4-10 and the Stage 11 regional seam.
+- **Workaround:** Play Stages I-III normally to collect materials, then inspect them in Character & Bag or Nema's Living Rootforge. Treat them as saved preparation inventory until crafting transactions and milestone blueprint/seal unlocks are implemented; F9 samples remain debug-only and non-saving.
 
 ### KI-011 - Combat responsiveness, audio distinction, and Husk presentation need a playtest repair pass
 

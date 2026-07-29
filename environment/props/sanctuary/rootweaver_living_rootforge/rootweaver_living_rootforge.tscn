@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://environment/props/sanctuary/sanctuary_building_idle.gd" id="1_idle"]
+[ext_resource type="Texture2D" path="res://assets/environment/sanctuary/services/rootweaver/rootweaver_living_rootforge_176x144.png" id="2_texture"]
+[ext_resource type="PackedScene" path="res://tools/editor/editor_preview_backdrop.tscn" id="99_preview"]
+
+[node name="RootweaverLivingRootforge" type="StaticBody2D" node_paths=PackedStringArray("window_glow")]
+script = ExtResource("1_idle")
+window_glow = NodePath("EmberGlow")
+
+[node name="EditorPreviewBackdrop" parent="." instance=ExtResource("99_preview")]
+
+[node name="Shadow" type="Polygon2D" parent="."]
+position = Vector2(0, -7)
+polygon = PackedVector2Array(-78, -25, 78, -25, 84, -4, 70, 8, -70, 8, -84, -4)
+color = Color(0.02, 0.03, 0.03, 0.4)
+z_index = -2
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -72)
+texture = ExtResource("2_texture")
+
+[node name="EmberGlow" type="Node2D" parent="."]
+
+[node name="ForgeEmber" type="Polygon2D" parent="EmberGlow"]
+position = Vector2(61, -50)
+polygon = PackedVector2Array(0, -9, 7, -6, 10, 0, 7, 6, 0, 9, -7, 6, -10, 0, -7, -6)
+color = Color(1, 0.56, 0.18, 0.18)
+
+[node name="LanternEmber" type="Polygon2D" parent="EmberGlow"]
+position = Vector2(-67, -67)
+polygon = PackedVector2Array(0, -7, 5, -4, 7, 0, 5, 4, 0, 7, -5, 4, -7, 0, -5, -4)
+color = Color(1, 0.68, 0.24, 0.14)
+
+[node name="RearCollision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-76, -62, 76, -62, 78, -49, 68, -42, -68, -42, -78, -49)
+
+[node name="AnvilCollision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-43, -43, 43, -43, 47, -18, 36, -10, -36, -10, -47, -18)

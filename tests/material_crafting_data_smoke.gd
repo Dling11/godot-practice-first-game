@@ -84,8 +84,6 @@ func _run() -> void:
 	var loot_table_ids := {}
 	var stage_ids := {}
 	var loot_tables: Array[LootTableDefinition] = [
-		preload("res://data/loot/forest/stages/stage_1_loot_table.tres"),
-		preload("res://data/loot/forest/stages/stage_2_loot_table.tres"),
 		preload("res://data/loot/forest/stages/stage_3_loot_table.tres"),
 	]
 	for loot_table: LootTableDefinition in loot_tables:
@@ -102,6 +100,9 @@ func _run() -> void:
 			if not ForestRecipes.has_recipe(StringName(raw_recipe_id)):
 				_fail("A stage loot table references an unknown recipe ID.")
 				return
+	if not loot_tables[0].first_clear_recipe_ids.is_empty():
+		_fail("Stage 3's material-payout Reliquary must not unlock crafting recipes.")
+		return
 
 	var duplicate_material_catalog := MaterialCatalogDefinition.new()
 	duplicate_material_catalog.materials.append(ForestMaterials.materials[0])

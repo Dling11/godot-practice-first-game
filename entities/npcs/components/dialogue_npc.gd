@@ -2,9 +2,10 @@ class_name DialogueNpc
 extends Area2D
 
 signal proximity_changed(is_near: bool, prompt_text: String, prompt_icon: Texture2D)
-signal dialogue_requested(speaker: String, lines: Array[String])
+signal dialogue_requested(speaker: String, lines: Array[String], portrait: Texture2D)
 
 @export var interaction_icon: Texture2D
+@export var dialogue_portrait: Texture2D
 @export var prompt_text := "PRESS F TO SPEAK"
 @export var speaker_name := "TRAVELER"
 @export_multiline var dialogue_lines: Array[String] = []
@@ -33,7 +34,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if is_instance_valid(_nearby_player):
 		_nearby_player.begin_interaction(global_position)
 	proximity_changed.emit(false, "", null)
-	dialogue_requested.emit(speaker_name, dialogue_lines)
+	dialogue_requested.emit(speaker_name, dialogue_lines, dialogue_portrait)
 
 
 func restore_prompt() -> void:

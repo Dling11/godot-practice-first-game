@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="MaterialDefinition" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="MaterialDefinition" format=3 uid="uid://b1iggmtrfklf0"]
 
-[ext_resource type="Script" path="res://data/items/materials/material_definition.gd" id="1"]
-[ext_resource type="Texture2D" path="res://assets/items/materials/forest/mire_membrane_24x24.png" id="2_icon"]
+[ext_resource type="Script" uid="uid://cxhyqe5l2yvh1" path="res://data/items/materials/material_definition.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bnvwawxodcccy" path="res://assets/items/materials/forest/mire_membrane_24x24.png" id="2_icon"]
 
 [resource]
 script = ExtResource("1")
@@ -9,7 +9,6 @@ material_id = &"forest_mire_membrane"
 display_name = "Mire Membrane"
 description = "A flexible, water-resistant membrane suited to light protective layers."
 region_id = &"forest"
-material_family = 8
 rarity = 1
 icon = ExtResource("2_icon")
 crafting_tags = PackedStringArray("mire", "membrane", "flexible", "resistance")

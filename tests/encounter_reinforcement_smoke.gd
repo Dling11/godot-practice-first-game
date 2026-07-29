@@ -26,8 +26,6 @@ func _run() -> void:
 		"spawned": 0,
 		"max_active": 0,
 		"cleared": false,
-		"chest_spawned": false,
-		"chest_claimed": false,
 		"reinforcements": 0,
 		"waiting_for_reinforcement": false,
 		"announced_at_msec": 0,
@@ -45,9 +43,6 @@ func _run() -> void:
 		state.waiting_for_reinforcement = true
 		state.announced_at_msec = Time.get_ticks_msec()
 	)
-	controller.reward_chest_spawned.connect(func(_position: Vector2) -> void:
-		state.chest_spawned = true
-	)
 	controller.stage_cleared.connect(func() -> void: state.cleared = true)
 	root.add_child(arena)
 	controller.start_encounter()
@@ -58,17 +53,8 @@ func _run() -> void:
 		for actor in controller.actors.get_children():
 			if actor != controller.player and actor.get("target") == controller.player:
 				actor.queue_free()
-		if state.chest_spawned and not state.chest_claimed:
-			for child in controller.actors.get_children():
-				if child is StageRewardChest:
-					var result: Dictionary = child.claim_for_testing()
-					state.chest_claimed = bool(result.get("success", false))
-					break
 	if not state.cleared:
-		_fail("Queued reinforcement encounter did not reach its claimed chest and exit portal in time.")
-		return
-	if not state.chest_spawned or not state.chest_claimed:
-		_fail("The final reinforcement wave must require a successful chest claim before the portal.")
+		_fail("Queued reinforcement encounter did not reach its direct exit portal in time.")
 		return
 	if state.spawned != expected_spawns:
 		_fail("Reinforcement queue spawned %d enemies, expected %d." % [state.spawned, expected_spawns])

@@ -1,8 +1,8 @@
 # Forest Loot, Crafting, Replay, and Regional Material Plan
 
-- **Status:** Approved design lock; Segments 1-3 plus Character & Bag preparation implemented, Segments 4-8 pending
+- **Status:** Approved design lock; Segments 1-4 plus Character & Bag preparation implemented, Segments 5-8 pending
 - **Approved:** 2026-07-26
-- **Runtime coverage today:** Stages 1-3, five enemy drop profiles, ten illustrated materials, collectible pickups, profile-backed core/material/recipe/claim state, guaranteed first-clear/replay chests, and no crafting transactions/outputs
+- **Runtime coverage today:** Stages 1-3, five sparse/protected enemy drop profiles, ten illustrated materials, collectible pickups, profile-backed core/material/recipe/claim state, direct clear banking on Stages I-II, one guaranteed Stage III milestone Reliquary, and Rootweaver Nema's read-only recipe/material preview; no crafting transactions/outputs
 - **Planned content covered here:** Forest Stages 1-10 and a reusable foundation for Stage 11 onward
 
 ## Purpose
@@ -13,7 +13,7 @@ Battle of Gods must provide a reason to revisit completed stages beyond repeatin
 Fight -> Loot -> Craft -> Build -> Master -> Advance
 ```
 
-First clears advance story and unlock content. Replays provide controlled material goals, Hunt variants, and stage-clear chests. Sanctuary turns those rewards into deterministic equipment choices. Later regions reuse the same technical and visual grammar without collapsing into `Leather++` inventory clutter or cheap recolors.
+First clears advance story and unlock content. Replays provide controlled material goals, Hunt variants, and milestone rewards. Sanctuary turns those rewards into deterministic equipment choices. Later regions reuse the same technical and visual grammar without collapsing into `Leather++` inventory clutter or cheap recolors.
 
 This plan is intentionally broader than the three implemented stages so save data, item identities, folder ownership, icon production, monster design, and crafting authority do not need destructive rewrites when Stages 4-20 arrive.
 
@@ -21,23 +21,23 @@ This plan is intentionally broader than the three implemented stages so save dat
 
 - Save/Continue is a prerequisite for loot and crafting. Grinding must never depend on keeping one application process open.
 - Crafting starts deterministic. A recipe produces one known item with known stats; random affixes are deferred.
-- Stage-clear chests never resolve empty.
-- First clears guarantee authored progression rewards such as a blueprint, discovery, or key material.
+- Authored milestone chests never resolve empty; ordinary stages may bank collected enemy drops without a chest.
+- First-clear progression rewards belong to authored milestones rather than every stage.
 - Replays target roughly two to three useful clears per ordinary equipment piece, not long identical-run grinds.
 - Bosses guarantee their unique crafting material.
 - Crafted equipment improves survivability, expression, and margin for error. A later stage must remain technically beatable through mastery without enforcing an opaque hard gear wall.
 - Difficulty must come from readable behaviors, combinations, armor-break opportunities, positioning, and elites rather than health inflation alone.
 - Earlier regions retain limited material relevance, but new-region recipes primarily use current-region materials.
 - Character level does not become an infinite raw-stat treadmill. Region caps may expand, while post-cap Mastery supplies bounded utility, crafting, cosmetic, title, or material benefits.
-- Reward resolution and Stage I-III chests are implemented. Nothing in this document claims crafting transactions, armor stats, Hunts, Mastery, the Rootweaver, or Stages 4-20 are currently implemented.
+- Reward resolution, direct Stage I-II banking, the Stage III Reliquary, and Rootweaver Nema's no-mutation Sanctuary preview are implemented. Nothing in this document claims crafting transactions, armor stats, Hunts, Mastery, or Stages 4-20 are currently implemented.
 
 ## First-Clear and Replay Loop
 
 ### First clear
 
 1. Complete the authored encounter.
-2. Open a guaranteed stage-clear chest.
-3. Receive the stage's first-clear blueprint/discovery plus guaranteed materials.
+2. Bank collected drops directly on an ordinary stage or open its authored milestone chest.
+3. Receive any milestone-specific permanent seal, discovery, catalyst, or guaranteed material payout.
 4. Record the clear in story/profile state.
 5. Unlock the next route and the cleared stage's replay/Hunt entry.
 
@@ -45,9 +45,9 @@ This plan is intentionally broader than the three implemented stages so save dat
 
 1. Select a previously cleared stage or an authored Hunt variant from Sanctuary.
 2. Complete the normal or modified encounter.
-3. Receive guaranteed common material progress.
+3. Retain collected protected enemy drops and any repeatable milestone payout.
 4. Roll only the authored optional secondary/rare rewards.
-5. Apply bad-luck protection where rare material is required by a recipe.
+5. Apply bad-luck protection where a material is required by a recipe.
 
 ### Hunt variants
 
@@ -84,21 +84,26 @@ The roles and material purposes below are planning slots, not final names, art, 
 | Stage | New enemy/content role | Material purpose |
 |---|---|---|
 | 4 | Armored hide-bearing Forest beast | Hide and bark plates for leather armor |
-| 5 | Fast insect/swarm hunter | Chitin, venom, and speed-oriented equipment |
+| 5 | Medium boss milestone, potentially extending the insect/swarm role | Permanent weapon/armor crafting seal plus repeatable catalyst |
 | 6 | Forest caster/support | Spirit sap and rune fragments |
 | 7 | Heavy corrupted brute or mini-boss | Dense heartwood for axes and heavy armor |
-| 8 | Fungal area-control creature | Spores and mycelial thread for recovery/resistance |
+| 8 | Fungal/spirit mini-boss milestone | Accessory-material payout: spores, mycelial thread, spirit/binding components |
 | 9 | Elite Forest warden/hunter | Refined fittings and advanced Forest recipes |
-| 10 | Major Forest boss | Guaranteed unique core for the region signature craft |
+| 10 | Major Forest boss | Permanent accessory/relic crafting seal plus repeatable unique catalyst |
 
 Known enemies continue appearing in authored combinations. Aim for roughly one important new family every one or two stages, then remix existing roles. Do not replace the full roster every stage.
 
 ### Forest crafting tiers
 
-- **Stages 1-3:** rootfiber wraps, Mire charm, basic weapon fittings
-- **Stages 4-6:** leather armor and first Forest weapon alternatives
-- **Stages 7-9:** reinforced armor, axe/greatsword components, upgraded accessories
-- **Stage 10:** signature Forest equipment using the guaranteed boss material
+- **Stages 1-3:** collect and inspect root, mire, cloth, thorn, and Husk preparation materials; no recipe unlock is granted yet
+- **Stage 4:** introduce real hide-bearing ecology and its materials
+- **Stage 5:** permanently unlock weapon/armor crafting; consume a repeatable boss catalyst in relevant recipes
+- **Stages 6-7:** expand spirit, reinforced armor, and axe/greatsword components
+- **Stage 8:** award accessory-focused fungal/spirit/binding materials without granting the final category unlock
+- **Stage 9:** refine Forest fittings and advanced preparation
+- **Stage 10:** permanently unlock accessory/relic crafting and supply the repeatable signature catalyst
+
+A crafting seal is permanent progression and is never consumed. A catalyst is repeatable inventory material and may be consumed by deterministic recipes. Rootfiber Wraps and Huskbound Guard belong to the Stage V milestone; Mireward Charm and Thornward Clasp belong to Stage X. Stage V also needs at least one authored crafted weapon recipe.
 
 Exact item names, recipes, stats, and Stage 4-10 enemy names remain open until their individual content contracts are approved.
 
@@ -230,14 +235,14 @@ Stage UI and chest presentation do not roll rewards themselves.
 
 ## Rootweaver Sanctuary Role
 
-The approved crafting role is a separate Sanctuary artisan, provisionally titled **Rootweaver** or **Grove Artificer**. The final name, appearance, personality, and lore are open.
+The approved crafting role is now implemented as **Rootweaver Nema**, an attractive adult female grove smith with a southwest open-air Living Rootforge. Her compact actor follows Eira and Orren's Sanctuary proportions while the portrait, auburn braid, forge apron, root hammer, gold-thread tongs, and approved visible-arm work silhouette carry the adult character identity. Earlier realistic and elderly boards are archived. `docs/design/rootweaver-nema-sanctuary-service-proposal.md` records the accepted identity, runtime package, dialogue, placement, and read-only menu contract.
 
 The role must remain distinct from Orren:
 
 - Orren sells and equips ordinary authored weapons.
 - The Rootweaver transforms creature/region materials through deterministic recipes.
 
-Before generation, approve:
+Segment 4 delivers:
 
 - Character identity and narrative relationship
 - Workshop placement and traversable footprint
@@ -246,6 +251,8 @@ Before generation, approve:
 - Dialogue and crafting interaction
 - Tool/idle sounds plus attribution
 - Crafting UI responsibilities
+
+The current `RootforgeMenu` observes recipe discovery and material readiness, but its action is disabled and it cannot mutate inventory, discovery, equipment, or save state. Segment 5 must add an atomic `CraftingService` and real output definitions before this boundary changes.
 
 ## Level, Gear, and Mastery Direction
 
@@ -302,18 +309,18 @@ data/crafting/recipes/<future_region>/
 ### Segment 2 - Material and crafting data — implemented
 
 - **Completed 2026-07-29:** stable material, material-stack, drop-entry, drop-profile, loot-table, and recipe Resources plus validated global catalogs
-- Authored ten current-enemy materials, five enemy profiles, three Stage I-III stage tables, and four deterministic starter recipe blueprints
+- Authored ten current-enemy materials, five enemy profiles, the retained Stage III milestone table, and four deterministic starter recipe blueprints; superseded Stage I-II tables were removed when those stages adopted direct banking
 - Added versioned `MaterialInventory` and `RecipeDiscovery` snapshots through the reserved profile extensions, including legacy-empty compatibility
 - At Segment 2 completion, added no reward resolution, chest/Rootweaver art, or crafting output; Segment 3 subsequently consumes these definitions.
 - **Character & Bag preparation completed 2026-07-29:** real nonzero material stacks are inspectable through a capacity-free material pouch in the shared 24-slot inventory presentation; Segment 3 now supplies final current icons and the normal acquisition path.
 
-### Segment 3 - Loot and stage-clear chest — implemented
+### Segment 3 - Loot and milestone rewards — implemented
 
 - **Completed 2026-07-29:** enemy drop-profile integration through centralized `LootService`, collectible world pickups, and compact HUD confirmation
-- Ordinary common/secondary percentage rolls with short persisted protection caps; guaranteed first/replay/boss rewards include both Husk Heartwood and Rootbound Core
+- Sparse ordinary common/secondary percentage rolls with sixth/twelfth-attempt protection caps; guaranteed boss rewards include both Husk Heartwood and Rootbound Core
 - Hop/hover presentation plus delayed magnetic auto-collection, retaining contact as a fallback
-- Explicit `F` chest interaction with collision, Y-sorting, spawn reveal, and distinct Forest Cache/Rootbound Reliquary closed/open tiers; a successful claim opens the portal
-- Versioned idempotent first-clear claims plus expedition rollback before defeat/abandon and commit before stage-clear autosave
+- Direct clear banking and portal creation for Stages I-II; explicit `F` interaction, collision, Y-sorting, spawn reveal, and Rootbound Reliquary presentation for the Stage III milestone
+- Versioned idempotent first-clear claims plus expedition rollback before defeat/abandon and commit before stage-clear autosave in both completion modes
 - Ten distinct flattened 24x24 Forest icons with preserved source/clean/review boards
 - Focused protection, duplicate-grant, persistence, rollback, chest, stage-wiring, and icon tests
 
@@ -333,6 +340,7 @@ data/crafting/recipes/<future_region>/
 ### Segment 7 - Stage 4-10 content
 
 - Approve each monster content contract before art/runtime work
+- Preserve the Stage V weapon/armor seal, Stage VIII accessory-material payout, and Stage X accessory/relic seal cadence
 - Stage 10 boss and signature Forest craft
 
 ### Segment 8 - Stage 11 and next region
@@ -348,8 +356,8 @@ Each segment requires focused tests, full regression validation, relevant docume
 These are not blockers for Save/Continue, but must be approved before their owning segment:
 
 - Rootweaver's final name, design, personality, workshop, and lore
-- Stage 3 reward collection/presentation timing and first-clear claim implementation details
-- Final starter-equipment stats and recipe quantity tuning after rewards become playable
+- Final starter-equipment stats and recipe quantity tuning after crafting becomes playable
+- Exact Stage V/VIII/X boss identities, permanent seal/catalyst names and IDs, quantities, and first-clear presentation
 - Stage 4-10 monster names, visuals, behavior timing, and encounter composition
 - Stage 10 boss identity
 - Stage 11-20 biome/region theme

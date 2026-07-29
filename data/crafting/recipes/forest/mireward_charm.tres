@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="RecipeDefinition" load_steps=9 format=3]
+[gd_resource type="Resource" script_class="RecipeDefinition" format=3 uid="uid://d1dqube14tpo"]
 
-[ext_resource type="Script" path="res://data/crafting/recipes/recipe_definition.gd" id="1_recipe"]
-[ext_resource type="Script" path="res://data/items/materials/material_stack_definition.gd" id="2_stack"]
-[ext_resource type="Resource" path="res://data/items/materials/forest/mire_resin.tres" id="3_resin"]
-[ext_resource type="Resource" path="res://data/items/materials/forest/mire_membrane.tres" id="4_membrane"]
-[ext_resource type="Resource" path="res://data/items/materials/forest/root_fiber.tres" id="5_fiber"]
+[ext_resource type="Script" uid="uid://ddkkkbe8622gd" path="res://data/crafting/recipes/recipe_definition.gd" id="1_recipe"]
+[ext_resource type="Script" uid="uid://bll3k2id0v40j" path="res://data/items/materials/material_stack_definition.gd" id="2_stack"]
+[ext_resource type="Resource" uid="uid://cdc505wvdfcn4" path="res://data/items/materials/forest/mire_resin.tres" id="3_resin"]
+[ext_resource type="Resource" uid="uid://b1iggmtrfklf0" path="res://data/items/materials/forest/mire_membrane.tres" id="4_membrane"]
+[ext_resource type="Resource" uid="uid://co68leshraied" path="res://data/items/materials/forest/root_fiber.tres" id="5_fiber"]
 
 [sub_resource type="Resource" id="Cost_resin"]
 script = ExtResource("2_stack")
@@ -27,10 +27,7 @@ recipe_id = &"forest_mireward_charm"
 display_name = "Mireward Charm"
 description = "A flexible charm concept built around recovery and resistance materials."
 region_id = &"forest"
-tier = 1
 category = 2
-output_kind = 0
 output_id = &"forest_mireward_charm"
-output_quantity = 1
-ingredients = Array[Resource]([SubResource("Cost_resin"), SubResource("Cost_membrane"), SubResource("Cost_fiber")])
+ingredients = Array[ExtResource("2_stack")]([SubResource("Cost_resin"), SubResource("Cost_membrane"), SubResource("Cost_fiber")])
 unlock_id = &"forest_mireward_charm"

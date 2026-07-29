@@ -1,6 +1,6 @@
 # Decision 062: Use Regional Crafting and a Reusable Material Grammar
 
-- **Status:** Accepted; Segments 1-3 implemented, Segments 4-8 pending
+- **Status:** Accepted; Segments 1-4 implemented, Segments 5-8 pending
 - **Date:** 2026-07-26
 
 ## Context
@@ -36,4 +36,4 @@ Character levels expand by controlled regional decisions rather than infinite ra
 - Region 2 can reuse icon/animation/system grammar without cheap recolors or duplicate infrastructure.
 - Save schema and folder structure can anticipate materials, recipes, blueprints, and boss catalysts.
 - Stages I-III now provide illustrated enemy drops, protected optional rolls, guaranteed first-clear/replay chests, saved idempotent claims, and rollback of uncommitted expedition rewards.
-- Crafting, Rootweaver, Hunts, Mastery, and Stages 4-20 remain planned until their segments pass implementation and validation.
+- Crafting transactions/output equipment, Hunts, Mastery, and Stages 4-20 remain planned until their segments pass implementation and validation; the read-only Rootweaver presentation service is implemented.

@@ -9,12 +9,6 @@ const RootlingProfile: DropProfileDefinition = preload(
 const HuskProfile: DropProfileDefinition = preload(
 	"res://data/loot/forest/enemies/rootbound_husk_drop_profile.tres"
 )
-const Stage1Table: LootTableDefinition = preload(
-	"res://data/loot/forest/stages/stage_1_loot_table.tres"
-)
-const Stage2Table: LootTableDefinition = preload(
-	"res://data/loot/forest/stages/stage_2_loot_table.tres"
-)
 const Stage3Table: LootTableDefinition = preload(
 	"res://data/loot/forest/stages/stage_3_loot_table.tres"
 )
@@ -61,26 +55,36 @@ func _run() -> void:
 			return
 		enemy.free()
 
-	for scene: PackedScene in [Stage1Scene, Stage2Scene, Stage3Scene]:
+	for scene: PackedScene in [Stage1Scene, Stage2Scene]:
 		var stage := scene.instantiate()
 		var controller := stage.get_node(
 			"GameplayServices/EncounterController"
 		) as EncounterController
 		if (
-			controller.reward_chest_scene == null
-			or controller.stage_loot_table == null
-			or not controller.stage_loot_table.has_valid_layout()
+			controller.completion_reward_mode
+				!= EncounterController.CompletionRewardMode.DIRECT_PORTAL
+			or controller.reward_chest_scene != null
+			or controller.stage_loot_table != null
 		):
-			_fail("A playable Forest stage has no configured clear chest/table.")
-			return
-		if (
-			scene == Stage3Scene
-			and controller.reward_chest_tier
-				!= StageRewardChest.ChestTier.ROOTBOUND_RELIQUARY
-		):
-			_fail("Stage III must use the Rootbound mini-boss chest tier.")
+			_fail("Stage I and II must bank clear loot without spawning chests.")
 			return
 		stage.free()
+	var stage_3 := Stage3Scene.instantiate()
+	var stage_3_controller := stage_3.get_node(
+		"GameplayServices/EncounterController"
+	) as EncounterController
+	if (
+		stage_3_controller.completion_reward_mode
+			!= EncounterController.CompletionRewardMode.STAGE_CHEST
+		or stage_3_controller.reward_chest_scene == null
+		or stage_3_controller.stage_loot_table != Stage3Table
+		or not Stage3Table.has_valid_layout()
+		or stage_3_controller.reward_chest_tier
+			!= StageRewardChest.ChestTier.ROOTBOUND_RELIQUARY
+	):
+		_fail("Stage III must use its authored Rootbound Reliquary payout.")
+		return
+	stage_3.free()
 
 	if (
 		RootlingProfile.common_drops.size() != 1
@@ -89,12 +93,13 @@ func _run() -> void:
 	):
 		_fail("Ordinary enemy common materials must be protected percentage rolls.")
 		return
-	loot_state.record_bad_luck_result(&"forest_root_fiber_misses", false)
-	loot_state.record_bad_luck_result(&"forest_root_fiber_misses", false)
-	loot_state.record_bad_luck_result(&"forest_young_heartwood_misses", false)
-	loot_state.record_bad_luck_result(&"forest_young_heartwood_misses", false)
-	loot_state.record_bad_luck_result(&"forest_young_heartwood_misses", false)
-	loot_state.record_bad_luck_result(&"forest_young_heartwood_misses", false)
+	for miss in range(5):
+		loot_state.record_bad_luck_result(&"forest_root_fiber_misses", false)
+	for miss in range(11):
+		loot_state.record_bad_luck_result(
+			&"forest_young_heartwood_misses",
+			false
+		)
 	loot_service.configure_seed_for_testing(20260729)
 	var rootling_drops: Array[Dictionary] = loot_service.resolve_enemy_drops(
 		RootlingProfile
@@ -166,38 +171,48 @@ func _run() -> void:
 	_reset_loot_state()
 	loot_service.begin_expedition()
 	loot_service.configure_seed_for_testing(91)
-	var first_clear: Dictionary = loot_service.claim_stage_reward(Stage1Table)
+	var first_clear: Dictionary = loot_service.claim_stage_reward(Stage3Table)
 	if (
 		not bool(first_clear.get("success", false))
 		or not bool(first_clear.get("first_clear", false))
-		or material_inventory.get_quantity(&"forest_root_fiber") < 4
+		or material_inventory.get_quantity(&"forest_root_fiber") < 3
 		or material_inventory.get_quantity(&"forest_mire_resin") < 3
 		or material_inventory.get_quantity(&"forest_forsaken_cloth") < 2
-		or not recipe_discovery.is_recipe_discovered(&"forest_rootfiber_wraps")
-		or not recipe_discovery.is_recipe_discovered(&"forest_mireward_charm")
-		or not loot_state.has_first_clear_claim(Stage1Table.first_clear_claim_id)
+		or material_inventory.get_quantity(&"forest_barbed_seed") < 2
+		or material_inventory.get_quantity(&"forest_weathered_fittings") < 1
+		or not (
+			first_clear.get("recipe_ids", PackedStringArray())
+				as PackedStringArray
+		).is_empty()
+		or not (
+			recipe_discovery.create_snapshot().get(
+				"discovered_recipe_ids",
+				PackedStringArray()
+			) as PackedStringArray
+		).is_empty()
+		or not loot_state.has_first_clear_claim(Stage3Table.first_clear_claim_id)
 		or loot_service.has_active_expedition()
 	):
-		_fail("Stage I first-clear rewards did not commit materials, recipes, and claim.")
+		_fail("Stage III first-clear payout did not commit only its authored materials.")
 		return
 
 	var fiber_before_replay: int = material_inventory.get_quantity(&"forest_root_fiber")
 	loot_service.begin_expedition()
 	loot_service.configure_seed_for_testing(92)
-	var replay: Dictionary = loot_service.claim_stage_reward(Stage1Table)
+	var replay: Dictionary = loot_service.claim_stage_reward(Stage3Table)
 	if (
 		not bool(replay.get("success", false))
 		or bool(replay.get("first_clear", true))
 		or material_inventory.get_quantity(&"forest_root_fiber") < fiber_before_replay + 2
 		or not (replay.get("recipe_ids", PackedStringArray()) as PackedStringArray).is_empty()
 	):
-		_fail("A replay chest repeated first-clear rewards or omitted replay guarantees.")
+		_fail("The Stage III replay payout repeated first-clear rewards or omitted guarantees.")
 		return
 
 	_reset_loot_state()
 	loot_service.begin_expedition()
 	var chest := ChestScene.instantiate() as StageRewardChest
-	chest.configure(Stage2Table)
+	chest.configure(Stage3Table)
 	root.add_child(chest)
 	await process_frame
 	await create_timer(0.4).timeout
@@ -215,9 +230,9 @@ func _run() -> void:
 		not bool(chest_result.get("success", false))
 		or chest.chest_sprite.texture != chest.open_texture
 		or chest.physical_body.collision_layer != 0
-		or material_inventory.get_quantity(&"forest_barbed_seed") < 3
+		or material_inventory.get_quantity(&"forest_barbed_seed") < 2
 	):
-		_fail("The stage-clear chest did not visibly open and grant its table.")
+		_fail("The reusable Forest Cache tier did not visibly open and grant its table.")
 		return
 
 	var reliquary := ChestScene.instantiate() as StageRewardChest
@@ -239,7 +254,7 @@ func _run() -> void:
 	loot_state.reset_state()
 	if (
 		not loot_state.restore_snapshot(loot_snapshot)
-		or not loot_state.has_first_clear_claim(Stage2Table.first_clear_claim_id)
+		or not loot_state.has_first_clear_claim(Stage3Table.first_clear_claim_id)
 	):
 		_fail("LootState did not persist and reconstruct stage claims.")
 		return

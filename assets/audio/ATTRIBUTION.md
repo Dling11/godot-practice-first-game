@@ -93,3 +93,11 @@ The quiet charge, three spaced steel-thrust beats, strong final sword thrust, an
 - **Created:** 2026-07-19
 
 This 0.31-second mono cue layers a low wooden ground push with three filtered crack bursts and a short snap. It is used only by Rootling's authoritative eruption signal and does not reuse sword, Mireling, or Bramble attack audio.
+
+## Rootweaver Living Rootforge Strike
+
+- **Runtime file:** `sfx/npcs/rootweaver/rootweaver_rootforge_strike.wav`
+- **Source:** Original deterministic in-project synthesis via `tools/build_rootweaver_forge_sfx.py`
+- **Created:** 2026-07-29
+
+This 0.34-second mono presentation cue combines a restrained wooden knock, stone body, root creak, and short transient. Nema's timer-driven work animation plays it once at the hammer-contact frame; it has no crafting or gameplay authority.

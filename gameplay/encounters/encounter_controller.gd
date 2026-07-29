@@ -13,6 +13,11 @@ signal inter_wave_gate_released
 signal reward_chest_spawned(global_position: Vector2)
 signal stage_reward_claimed(result: Dictionary)
 
+enum CompletionRewardMode {
+	DIRECT_PORTAL,
+	STAGE_CHEST,
+}
+
 @export var player: Player
 @export var actors: Node2D
 @export var spawn_points_root: Node2D
@@ -26,6 +31,9 @@ signal stage_reward_claimed(result: Dictionary)
 @export var portal_parent: Node2D
 @export var portal_spawn_point: Marker2D
 @export_file("*.tscn") var portal_target_scene := ""
+@export_enum("Direct Portal", "Stage Chest") var completion_reward_mode: int = (
+	CompletionRewardMode.DIRECT_PORTAL
+)
 @export var reward_chest_scene: PackedScene
 @export var stage_loot_table: LootTableDefinition
 @export_enum("Forest Cache", "Rootbound Reliquary") var reward_chest_tier := 0
@@ -85,7 +93,7 @@ func _start_encounter() -> void:
 func _advance_wave() -> void:
 	wave_index += 1
 	if wave_index >= waves.size():
-		_spawn_stage_reward()
+		_complete_encounter()
 		return
 	var wave := waves[wave_index] as EncounterWaveDefinition
 	_current_wave = wave
@@ -209,6 +217,19 @@ func _spawn_portal() -> void:
 		portal_prompt_changed.emit(is_near, prompt_text, prompt_icon)
 	)
 	stage_cleared.emit()
+
+
+func _complete_encounter() -> void:
+	if _completion_spawned:
+		return
+	if completion_reward_mode == CompletionRewardMode.STAGE_CHEST:
+		_spawn_stage_reward()
+		return
+	_completion_spawned = true
+	var loot_service := get_node_or_null("/root/LootService")
+	if loot_service != null:
+		loot_service.commit_expedition_rewards()
+	_spawn_portal()
 
 
 func _spawn_stage_reward() -> void:

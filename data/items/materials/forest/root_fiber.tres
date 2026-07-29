@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="MaterialDefinition" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="MaterialDefinition" format=3 uid="uid://co68leshraied"]
 
-[ext_resource type="Script" path="res://data/items/materials/material_definition.gd" id="1"]
-[ext_resource type="Texture2D" path="res://assets/items/materials/forest/root_fiber_24x24.png" id="2_icon"]
+[ext_resource type="Script" uid="uid://cxhyqe5l2yvh1" path="res://data/items/materials/material_definition.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://dgu5ydrsqq3dh" path="res://assets/items/materials/forest/root_fiber_24x24.png" id="2_icon"]
 
 [resource]
 script = ExtResource("1")
@@ -10,7 +10,6 @@ display_name = "Root Fiber"
 description = "Tough young strands that twist into reliable bindings and protective wraps."
 region_id = &"forest"
 material_family = 2
-rarity = 0
 icon = ExtResource("2_icon")
 crafting_tags = PackedStringArray("root", "fiber", "binding", "armor")
 source_lore = "Rootlings knot these fibers around their bodies before driving roots through the soil."

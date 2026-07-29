@@ -1,0 +1,72 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://7k8600b05tom"]
+
+[ext_resource type="Texture2D" uid="uid://bjcqil0n67ol3" path="res://assets/characters/npcs/rootweaver/rootweaver_nema_service_sheet_48x48.png" id="1_sheet"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4ef6"]
+atlas = ExtResource("1_sheet")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_347y7"]
+atlas = ExtResource("1_sheet")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krycf"]
+atlas = ExtResource("1_sheet")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyqsc"]
+atlas = ExtResource("1_sheet")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urhry"]
+atlas = ExtResource("1_sheet")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ywrg"]
+atlas = ExtResource("1_sheet")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emcei"]
+atlas = ExtResource("1_sheet")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_312ce"]
+atlas = ExtResource("1_sheet")
+region = Rect2(144, 48, 48, 48)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4ef6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_347y7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krycf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yyqsc")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 2.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urhry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ywrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emcei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_312ce")
+}],
+"loop": 0,
+"name": &"work",
+"speed": 5.0
+}]

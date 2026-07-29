@@ -74,6 +74,8 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 064 | Use stable crafting data and dedicated progress authorities | Material IDs, drop profiles, stage loot tables, recipe catalogs, material inventory, recipe discovery, or crafting save extensions |
 | 065 | Use one Character and Bag surface | Paper-doll equipment layout, 24-slot bag, material pouch, inventory filters, item details, or future stash/discard UX |
 | 066 | Use protected enemy drops and tiered clear chests | Enemy drop chances, bad-luck protection, auto-pickup, boss guarantees, chest collision, spawn presentation, or chest rarity |
+| 067 | Use milestone boss rewards and crafting seals | Sparse loot, ordinary-stage completion, Stage III/V/VIII/X rewards, crafting-category unlocks, or repeatable boss catalysts |
+| 068 | Introduce Rootweaver Nema through a read-only Rootforge | Nema, visible-arm NPC work animation, Sanctuary crafting presentation, portrait dialogue, or pre-transaction recipe inspection |
 
 ## New Decisions
 

@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" format=3 uid="uid://cmhucyxgrc3x0"]
 
 [ext_resource type="Texture2D" uid="uid://b6iugc6mjld6o" path="res://assets/environment/forest/rootbound_hollow/tiles/rootbound_ground_atlas_4x4.png" id="1_atlas"]
-[ext_resource type="Texture2D" path="res://assets/environment/forest/shared/tiles/verdant_forest_ground_atlas_4x4.png" id="2_forest_atlas"]
+[ext_resource type="Texture2D" uid="uid://cwxy4v8ucdssh" path="res://assets/environment/forest/shared/tiles/verdant_forest_ground_atlas_4x4.png" id="2_forest_atlas"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rootbound"]
 texture = ExtResource("1_atlas")

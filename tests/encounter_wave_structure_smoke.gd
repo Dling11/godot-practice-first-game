@@ -45,29 +45,26 @@ func _run() -> void:
 		return
 	var clear_state := {"emitted": false}
 	controller.stage_cleared.connect(func() -> void: clear_state.emitted = true)
-	controller._spawn_stage_reward()
+	var loot_service := root.get_node("LootService")
+	var material_inventory := root.get_node("MaterialInventory")
+	material_inventory.reset_inventory()
+	loot_service.reset_expedition_tracking()
+	loot_service.begin_expedition()
+	material_inventory.add_material(&"forest_root_fiber", 1)
+	controller._complete_encounter()
 	await process_frame
-	if clear_state.emitted:
-		_fail("Stage completion emitted before the reward chest was claimed.")
+	if not clear_state.emitted:
+		_fail("Stage 1 did not open its portal immediately after banking clear loot.")
 		return
-	if arena.get_node("World/Effects").get_child_count() != 0:
-		_fail("The stage chest incorrectly bypassed actor depth sorting.")
+	if loot_service.has_active_expedition():
+		_fail("Stage 1 direct completion did not bank its expedition rewards.")
 		return
-	var chest: StageRewardChest
 	for actor in controller.actors.get_children():
 		if actor is StageRewardChest:
-			chest = actor
-			break
-	if chest == null:
-		_fail("Clearing the final wave did not create a Y-sorted reward chest.")
-		return
-	var reward: Dictionary = chest.claim_for_testing()
-	await process_frame
-	if not bool(reward.get("success", false)) or not clear_state.emitted:
-		_fail("Claiming the reward chest did not emit stage completion.")
-		return
+			_fail("Stage 1 unexpectedly spawned a reward chest.")
+			return
 	if arena.get_node("World/Effects").get_child_count() != 1:
-		_fail("A successful chest claim did not create the exit portal.")
+		_fail("Stage 1 direct completion did not create exactly one exit portal.")
 		return
 	print("Encounter wave structure smoke test passed.")
 	quit(0)

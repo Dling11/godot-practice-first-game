@@ -1,7 +1,7 @@
 class_name LootTableDefinition
 extends Resource
 
-## Immutable stage-clear reward plan. It does not roll or grant rewards.
+## Immutable authored milestone-reward plan. It does not roll or grant rewards.
 
 @export var loot_table_id: StringName
 @export var stage_id: StringName

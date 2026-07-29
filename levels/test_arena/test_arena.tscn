@@ -33,8 +33,6 @@
 [ext_resource type="Resource" path="res://data/encounters/wave_5.tres" id="32_wave5"]
 [ext_resource type="Resource" path="res://data/encounters/wave_6.tres" id="33_wave6"]
 [ext_resource type="Resource" path="res://data/environment/layouts/stage_1_forest_ground.tres" id="34_layout"]
-[ext_resource type="PackedScene" path="res://gameplay/loot/stage_reward_chest.tscn" id="35_reward_chest"]
-[ext_resource type="Resource" path="res://data/loot/forest/stages/stage_1_loot_table.tres" id="36_stage_loot"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.035, 0.043, 0.063, 0.96)
@@ -134,8 +132,6 @@ portal_scene = ExtResource("16_portal")
 portal_parent = NodePath("../../World/Effects")
 portal_spawn_point = NodePath("../../SpawnPoints/StageExit")
 portal_target_scene = "res://levels/stage_2/stage_2.tscn"
-reward_chest_scene = ExtResource("35_reward_chest")
-stage_loot_table = ExtResource("36_stage_loot")
 summon_effect_scene = ExtResource("17_summon")
 effects_parent = NodePath("../../World/Effects")
 projectiles_parent = NodePath("../../World/Projectiles")
@@ -222,7 +218,6 @@ label_settings = SubResource("LabelSettings_body")
 [connection signal="portal_prompt_changed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_interaction_prompt"]
 [connection signal="portal_sealed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_portal_sealed"]
 [connection signal="reinforcement_announced" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_reinforcement_warning"]
-[connection signal="reward_chest_spawned" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_reward_chest_ready"]
 [connection signal="stage_cleared" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_stage_clear"]
 [connection signal="wave_changed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_wave"]
 [connection signal="wave_cleared" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_wave_clear"]
