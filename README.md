@@ -6,7 +6,7 @@ The setting centers on gods, demons, forgotten civilizations, and **The One Abov
 
 ## Current Status
 
-Pre-alpha title-to-Sanctuary-to-three-stage prototype. F5 opens a mouse/keyboard/gamepad-ready Battle of Gods title screen with Continue, guarded New Journey, and session-audio settings. Opaw is a compact armless Novice Warrior with a detached equippable sword. Stages I-III form one continuous forest arc ending with the Rootbound Husk mini-boss and a return portal to Sanctuary. The level-10 XP/coin run, Level-3 Eira awakening for Consecutive Thrust, explicit class-gated weapon equipping, Orren shop, current HP, story memory, and Ashwood/Iron selection persist through one safe-point autosave. Drops, armor bonuses, character switching, and skills 3-4 are not yet implemented.
+Pre-alpha title-to-Sanctuary-to-three-stage prototype. F5 opens a mouse/keyboard/gamepad-ready Battle of Gods title screen with Continue, guarded New Journey, and session-audio settings. Opaw is a compact armless Novice Warrior with a detached equippable sword. Stages I-III form one continuous forest arc ending with the Rootbound Husk mini-boss and a return portal to Sanctuary. The level-10 XP/coin run, Level-3 Eira awakening for Consecutive Thrust, explicit class-gated weapon equipping, Orren shop, current HP, story memory, Ashwood/Iron selection, material quantities, and recipe discoveries persist through one safe-point autosave. Forest materials, current-enemy drop profiles, stage reward tables, and starter recipe blueprints now exist as validated data, but drops, chests, crafting, armor bonuses, character switching, and skills 3-4 are not yet playable.
 
 ## Intended Technology
 
@@ -38,7 +38,7 @@ The prototype uses a 960x540 logical viewport displayed at 1920x1080 for exact 2
 
 The current main scene is `res://ui/screens/title/title_screen.tscn`. Stage 1 remains `res://levels/test_arena/test_arena.tscn`.
 
-The game maintains one autosave at `user://battle_of_gods_profile.json` with a `.bak` recovery copy. Continue always resumes in Sanctuary. Autosaves occur on Sanctuary entry, Sanctuary purchase/equip/awakening actions, and stage clear—not during active combat. The exact operating-system location of `user://` is shown by Godot's **Open User Data Folder** command.
+The game maintains one autosave at `user://battle_of_gods_profile.json` with a `.bak` recovery copy. Continue always resumes in Sanctuary. Autosaves occur on Sanctuary entry, Sanctuary purchase/equip/awakening actions, and stage clear—not during active combat. The profile includes versioned material quantities and recipe discoveries; older version-1 saves whose reserved crafting sections are empty remain compatible. The exact operating-system location of `user://` is shown by Godot's **Open User Data Folder** command.
 
 Stages I-III use authored Godot `TileMapLayer` cells rather than runtime-random ground. Shared forest and Rootbound Hollow atlases live under `assets/environment/forest/`; diffable map layouts live under `data/environment/layouts/`. Edit baked cells directly in Godot for local adjustments, or update a layout resource and regenerate the owning scene with `tools/bake_authored_ground.gd` for a whole-map revision.
 
@@ -70,9 +70,10 @@ res://
       sanctuary.tscn
   ui/
     equipment/
-      equipment_item_card.tscn
       equipment_slot_card.tscn
       equipment_detail_panel.tscn
+    inventory/
+      inventory_slot_button.tscn
     skills/
       skill_bar_slot.tscn
       skill_slot_card.tscn
@@ -85,6 +86,16 @@ res://
       drowned_bells.tres
     items/
       opaw_weapon_catalog.tres
+      materials/
+        material_catalog.tres
+        forest/
+    loot/
+      forest/
+        enemies/
+        stages/
+    crafting/recipes/
+      recipe_catalog.tres
+      forest/
     skills/
       opaw_starting_loadout.tres
     weapons/
@@ -115,6 +126,9 @@ res://
     run_session.gd
     story_state.gd
     weapon_inventory.gd
+    material_inventory.gd
+    recipe_discovery.gd
+    save_service.gd
   project.godot
 ```
 
@@ -163,7 +177,7 @@ The active prototype controls are:
 
 Movement, movement-owned facing, left-click primary attack, dash, Piercing Rush, Consecutive Thrust, portal interaction, and arena restart after defeat are active. Passive mouse motion no longer turns Opaw, and right mouse is unassigned. Pressing basic attack during dash movement queues one normal sword attack for dash completion; pressing it during vulnerable recovery cancels that recovery into the attack. Balanced Slash uses a data-owned beginner-sword fan reaching 58 pixels forward and 48 pixels to either side, so its smaller visible cleave edge and tip remain damaging. Future greatswords, axes, and other families can supply different shapes/styles through their weapon data. Piercing Rush moves about 50 pixels along Opaw's facing, sends a 128x40 forward lance for 180% equipped-weapon damage, and grants no invulnerability. Consecutive Thrust is a stationary 1.34-second, seven-hit 128x44 flurry for 225% total weapon damage. It grants full-cast invulnerability and may be canceled into dash; only its final lance pushes targets and triggers heavy feedback. Opaw begins at 140 maximum health, gains 12 per level, and reaches 248 at Level 10 before equipment bonuses. Current health survives stage and Sanctuary transitions, then regenerates at 1 HP per second after five damage-free seconds; a new journey or defeat restart resets the run. Normal level gain creates only a small glow, overhead level label, and chime. Level 3 creates Skill 2 eligibility and Eira awakens it free. F9 remains a debug shortcut that grants the authored skills/gear, level 10, and 999 coins without creating a disk save.
 
-In Sanctuary, approach Skillkeeper Eira or Armskeeper Orren and press F. The character surface opens from Tab or the HUD satchel. Eira's Skill page shows `AWAKEN SKILL • FREE` when Consecutive Thrust is Level-3 eligible. Gear cards select a preview; use the explicit Equip button to commit the weapon. Orren sells Iron Sword for 90 coins, then his purchase action changes to Equip when it is owned. The action tray visually separates dash from Skill 1, and HUD buttons consume their own pointer clicks, so clicking dash or a skill never also triggers basic attack. The angel portal builds routes from expedition data and explains unmet requirements.
+In Sanctuary, approach Skillkeeper Eira or Armskeeper Orren and press F. The character surface opens from Tab or the HUD satchel. Its Character & Bag page surrounds the live Opaw preview with seven equipment positions and shows a compact 24-slot filtered grid. Owned weapons consume displayed bag space; saved material stacks appear in a capacity-free material pouch. Select a weapon and use the explicit Equip button to commit it; material details are read-only. Eira's Skill page shows `AWAKEN SKILL • FREE` when Consecutive Thrust is Level-3 eligible. Orren sells Iron Sword for 90 coins, then his purchase action changes to Equip when it is owned. The action tray visually separates dash from Skill 1, and HUD buttons consume their own pointer clicks, so clicking dash or a skill never also triggers basic attack. The angel portal builds routes from expedition data and explains unmet requirements.
 
 ## Verification
 

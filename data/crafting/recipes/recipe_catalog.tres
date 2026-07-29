@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RecipeCatalogDefinition" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://data/crafting/recipes/recipe_catalog_definition.gd" id="1_catalog"]
+[ext_resource type="Resource" path="res://data/crafting/recipes/forest/rootfiber_wraps.tres" id="2_wraps"]
+[ext_resource type="Resource" path="res://data/crafting/recipes/forest/mireward_charm.tres" id="3_charm"]
+[ext_resource type="Resource" path="res://data/crafting/recipes/forest/thornward_clasp.tres" id="4_clasp"]
+[ext_resource type="Resource" path="res://data/crafting/recipes/forest/huskbound_guard.tres" id="5_guard"]
+
+[resource]
+script = ExtResource("1_catalog")
+recipes = Array[Resource]([ExtResource("2_wraps"), ExtResource("3_charm"), ExtResource("4_clasp"), ExtResource("5_guard")])

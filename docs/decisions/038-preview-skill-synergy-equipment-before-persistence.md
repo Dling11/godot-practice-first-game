@@ -1,7 +1,7 @@
 # Decision 038: Preview Skill-Synergy Equipment Before Persistence
 
 - **Date:** 2026-07-15
-- **Status:** Amended by Decision 039; presentation-only authority boundary remains accepted
+- **Status:** Amended by Decisions 039 and 065; authority boundary remains accepted, exact layout superseded
 
 ## Context
 
@@ -16,7 +16,7 @@ Equipment can make progression and Sanctuary services meaningful, but a numerica
 
 ## Decision
 
-The character surface has two authored pages: `Gear & Armory` and `Active Skills`. Gear presents five eventual slots—Weapon, Armor, Gloves, Boots, and Accessory—around an animated character preview. Armor and accessories may remain icon-and-stat equipment in the first playable version; they do not require layered world sprites.
+At acceptance, the character surface used `Gear & Armory` and `Active Skills`, with five eventual slots around an animated preview. Decision 065 supersedes that exact Gear layout with `Character & Bag`, seven paper-doll positions, and a compact shared inventory presentation. The rule that UI observes equipment authority rather than owning it remains unchanged. Armor and accessories may remain icon-and-stat equipment in the first playable version; they do not require layered world sprites.
 
 The original preview explored `A Grade`, `S Grade`, `Legendary`, and `Mythic` through Wayfarer's Iron, Gloamfang, Sunroot Oath, and Veilrender. Decision 039 supersedes that vocabulary for the active beginner surface: Opaw now shows only the Wood-rank Ashwood Blade, and the former four concepts remain preserved legacy material. The read-only presentation boundary in this decision still applies.
 

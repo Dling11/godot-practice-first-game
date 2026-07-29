@@ -1,5 +1,24 @@
 # Changelog
 
+## 2026-07-29 - Character and Bag Inventory Redesign
+
+- Replaced the oversized Gear/Armory card layout with a themed `CHARACTER & BAG` page built around Opaw's canonical live sprite and detached weapon pose.
+- Added seven paper-doll equipment positions, a compact 12-by-2 bag grid, five item filters, disabled empty slots, equipment state badges, material quantities, and mouse/controller tooltips.
+- Connected the grid only to real `WeaponInventory` ownership and nonzero `MaterialInventory` quantities. Equipment counts toward the displayed 24-slot capacity; crafting materials remain in a capacity-free pouch.
+- Extended the shared detail panel with read-only material family, rarity, quantity, source, and description presentation while preserving explicit safe weapon equip through `Player`.
+- Added family-glyph fallbacks for materials whose approved runtime icons have not been produced, retained honest empty future categories, and documented Sanctuary stash/discard/final icon work as pending.
+- Removed the unreferenced oversized `EquipmentItemCard` scene/script after the compact slot replaced it, and kept design mockups outside Godot imports.
+- Updated character-menu and weapon-shop regression coverage, validated 960x540 modal bounds, and recorded ADR 065.
+
+## 2026-07-29 - Forest Material and Crafting Data Foundation
+
+- Finalized ten stable ecology-linked Forest materials for Mireling, Rootling, Forsaken Thrall, Bramble Spitter, and Rootbound Husk sources.
+- Added validated immutable material, material-stack, enemy drop-profile, stage loot-table, and deterministic recipe Resources plus global material/recipe catalogs.
+- Authored five current-enemy drop profiles, three Stage I-III clear-reward tables, and four starter Forest recipe blueprints without activating reward rolls, chests, crafting, or equipment outputs.
+- Added profile-backed `MaterialInventory` and dedicated `RecipeDiscovery` authorities; New Journey resets both while safe-point Continue and backup recovery reconstruct them.
+- Preserved existing version-1 profiles by treating their previously reserved empty crafting extensions as valid empty state.
+- Added focused validation for stable IDs, duplicate rejection, invalid quantities/costs, boss guarantees, recipe references, inventory mutations, snapshot reconstruction, disk rotation/recovery, and atomic invalid-profile rejection; recorded ADR 064.
+
 ## 2026-07-29 - Safe-Point Save and Continue
 
 - Completed the first single-profile persistence slice at `user://battle_of_gods_profile.json`, preserving XP, coins, current HP, story memory, awakened Skill 2, weapon ownership, and equipped weapon across application restarts.

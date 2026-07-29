@@ -18,7 +18,7 @@ var _debug_autosave_suppressed := false
 
 func create_profile_snapshot(safe_scene_path: String = DEFAULT_SAFE_SCENE) -> Dictionary:
 	if not _has_core_authorities():
-		_report_error("SaveService requires RunSession, StoryState, and WeaponInventory.")
+		_report_error("SaveService requires every profile-backed progression authority.")
 		return {}
 	if safe_scene_path != DEFAULT_SAFE_SCENE or not ResourceLoader.exists(safe_scene_path):
 		_report_error("SaveService currently supports only the Sanctuary safe scene.")
@@ -30,8 +30,8 @@ func create_profile_snapshot(safe_scene_path: String = DEFAULT_SAFE_SCENE) -> Di
 		"story_state": StoryState.create_snapshot(),
 		"weapon_inventory": WeaponInventory.create_snapshot(),
 		"extensions": {
-			"material_inventory": {},
-			"recipe_discovery": {},
+			"material_inventory": MaterialInventory.create_snapshot(),
+			"recipe_discovery": RecipeDiscovery.create_snapshot(),
 			"stage_claims": {},
 			"regional_progress": {},
 		},
@@ -93,6 +93,12 @@ func can_restore_profile(snapshot: Dictionary) -> bool:
 	var story_snapshot: Variant = snapshot.get("story_state")
 	var weapon_snapshot: Variant = snapshot.get("weapon_inventory")
 	var extensions: Variant = snapshot.get("extensions", {})
+	var material_snapshot: Variant = (
+		extensions.get("material_inventory", {}) if extensions is Dictionary else {}
+	)
+	var recipe_snapshot: Variant = (
+		extensions.get("recipe_discovery", {}) if extensions is Dictionary else {}
+	)
 	return (
 		safe_scene_path is String
 		and String(safe_scene_path) == DEFAULT_SAFE_SCENE
@@ -104,6 +110,8 @@ func can_restore_profile(snapshot: Dictionary) -> bool:
 		and RunSession.can_restore_snapshot(run_snapshot)
 		and StoryState.can_restore_snapshot(story_snapshot)
 		and WeaponInventory.can_restore_snapshot(weapon_snapshot)
+		and _can_restore_material_extension(material_snapshot)
+		and _can_restore_recipe_extension(recipe_snapshot)
 	)
 
 
@@ -114,6 +122,17 @@ func restore_profile(snapshot: Dictionary) -> bool:
 	RunSession.restore_snapshot(snapshot["run_session"])
 	StoryState.restore_snapshot(snapshot["story_state"])
 	WeaponInventory.restore_snapshot(snapshot["weapon_inventory"])
+	var extensions: Dictionary = snapshot["extensions"]
+	var material_snapshot: Dictionary = extensions["material_inventory"]
+	var recipe_snapshot: Dictionary = extensions["recipe_discovery"]
+	if material_snapshot.is_empty():
+		MaterialInventory.reset_inventory()
+	else:
+		MaterialInventory.restore_snapshot(material_snapshot)
+	if recipe_snapshot.is_empty():
+		RecipeDiscovery.reset_discoveries()
+	else:
+		RecipeDiscovery.restore_snapshot(recipe_snapshot)
 	var safe_scene_path := String(snapshot["safe_scene_path"])
 	profile_restored.emit(safe_scene_path)
 	return true
@@ -249,4 +268,20 @@ func _has_core_authorities() -> bool:
 		get_node_or_null("/root/RunSession") != null
 		and get_node_or_null("/root/StoryState") != null
 		and get_node_or_null("/root/WeaponInventory") != null
+		and get_node_or_null("/root/MaterialInventory") != null
+		and get_node_or_null("/root/RecipeDiscovery") != null
+	)
+
+
+func _can_restore_material_extension(snapshot: Variant) -> bool:
+	return (
+		snapshot is Dictionary
+		and (snapshot.is_empty() or MaterialInventory.can_restore_snapshot(snapshot))
+	)
+
+
+func _can_restore_recipe_extension(snapshot: Variant) -> bool:
+	return (
+		snapshot is Dictionary
+		and (snapshot.is_empty() or RecipeDiscovery.can_restore_snapshot(snapshot))
 	)

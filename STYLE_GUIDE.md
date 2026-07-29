@@ -69,6 +69,7 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - Avoid distant absolute node paths.
 - Keep collisions, visuals, audio, and gameplay components clearly named.
 - Prefer instantiable entity scenes over duplicating node trees in levels.
+- Inventory grids use compact reusable focusable slots and explicit disabled placeholders. Present equipment and materials through their owning authorities; never create a UI-owned item dictionary. Capacity labels must state which categories consume space, and destructive discard must require a separate confirmed command rather than slot-click side effects.
 
 ## Formatting and Documentation
 
@@ -98,6 +99,9 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - Do not silently swallow invalid state.
 - Save authorities expose explicit versioned dictionaries and validate complete input before mutating live state. Disk writes use a validated temporary file plus recoverable backup; never serialize nodes, resources by instance identity, active attacks, or scene trees.
 - Autosave only at authored safe milestones. UI may request Continue/New Journey, but `SaveService` owns file validation, recovery, deletion, and restoration. Headless tests must use isolated `user://` paths or suppress production-path persistence.
+- Activate a reserved profile extension through its own versioned authority. Preserve explicitly supported legacy-empty sections as clean default state, validate every extension before any authority mutates, and add disk reconstruction plus corruption coverage in the same change.
+- Immutable content Resources own stable IDs and authored quantities; global catalogs reject invalid definitions and duplicate IDs. Mutable inventories store only known IDs and plain values, never `Resource` instances or display labels. Recipe discovery remains separate from story flags unless a recipe is itself a narrative key item.
+- Enemy controllers, stage scenes, chest UI, and crafting UI may reference definitions or submit requests, but they must not roll rewards, edit material dictionaries, consume recipe costs, or write profiles directly.
 
 ## Assets and Pixel Art
 

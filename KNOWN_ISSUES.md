@@ -4,12 +4,13 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 
 ## Current Limitations
 
-### KI-013 - Approved Forest loot, crafting, and replay systems are not implemented
+### KI-013 - Forest reward, crafting, and replay gameplay is not implemented
 
 - **Status:** Open
-- **Impact:** Stages 1-3 currently award only XP and coins and then advance. There is no material inventory, ecology-linked drop roll, stage-clear chest, deterministic recipe service, Rootweaver/Grove Artificer NPC, replayable Hunt contract, recipe discovery, or regional Mastery yet.
-- **Planned resolution:** Follow `docs/design/forest-loot-crafting-and-regional-material-plan.md` in order: Save/Continue, immutable content data, loot/chests, the Sanctuary crafting service, recipes/equipment, Hunts, then Stages 4-10 and the Stage 11 regional seam.
-- **Workaround:** Treat the current Stages 1-3 sequence as the combat/story prototype. Do not describe future materials, recipes, chests, Hunts, or Mastery as playable content.
+- **Progress:** Segments 1-2 now provide safe-point Save/Continue, ten stable current-enemy materials, five drop profiles, three Stage I-III loot tables, four recipe blueprints, a versioned `MaterialInventory`, dedicated saved recipe discovery, and Character & Bag inspection for any nonzero saved material stacks.
+- **Impact:** Stages 1-3 still award only XP and coins and then advance. Nothing resolves the authored drops, spawns or opens a clear chest, grants a blueprint, crafts an output, provides the Rootweaver/Grove Artificer, selects Hunts, or records regional Mastery. Material slots therefore remain empty in ordinary play until Segment 3 adds an acquisition path.
+- **Planned resolution:** Follow `docs/design/forest-loot-crafting-and-regional-material-plan.md` in order: Segment 3 loot/chests, the Sanctuary craft service, recipes/equipment, Hunts, then Stages 4-10 and the Stage 11 regional seam.
+- **Workaround:** Treat the current definitions and saved authorities as infrastructure only. Do not describe materials, recipe blueprints, chests, crafted equipment, Hunts, or Mastery as obtainable/playable content yet.
 
 ### KI-011 - Combat responsiveness, audio distinction, and Husk presentation need a playtest repair pass
 
@@ -44,8 +45,8 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 ### KI-005 - Expanded equipment and later skill balance remain incomplete
 
 - **Status:** Open
-- **Impact:** Ashwood/Iron ownership, explicit equip, Level-3 Eira awakening, and Opaw's base/level/flat-equipment vitality aggregation now persist through the safe-point profile. No armor item currently supplies the prepared flat bonus; slots 3-4, drops, selling, higher tiers, potions, and mana remain incomplete.
-- **Planned resolution:** Complete the approved material/crafting data sequence and authored armor/mana/potion rules before expanding acquisition/balance, then author slots 3-4 only alongside content that supports their power.
+- **Impact:** Ashwood/Iron ownership, explicit equip, Level-3 Eira awakening, Opaw's base/level/flat-equipment vitality aggregation, material quantities, and recipe discoveries now persist through the safe-point profile. No armor item currently supplies the prepared flat bonus; authored recipe outputs are data-only, while drops, selling, higher tiers, potions, and mana remain incomplete.
+- **Planned resolution:** Complete the approved loot/chest and crafting/equipment sequence plus authored armor/mana/potion rules before expanding acquisition/balance, then author slots 3-4 only alongside content that supports their power.
 - **Workaround:** Treat Ashwood/Iron, 140+12/level vitality, delayed baseline regeneration, and Eira's Skill 2 awakening as the complete persisted beginner slice. Do not expose legacy/high-tier previews, sell skills, or claim armor, lifesteal, critical, potion, or mana systems are implemented content.
 
 ### KI-006 - Title audio settings are session-only

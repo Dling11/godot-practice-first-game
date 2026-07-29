@@ -1,13 +1,36 @@
 class_name CharacterMenu
 extends Control
 
-## Paused character inventory/equipment and skill-information surface. Runtime
-## ownership stays in WeaponInventory; the Player owns safe combat swapping.
+## Paused Character & Bag surface. WeaponInventory and MaterialInventory own
+## mutable state; this menu only selects, presents, and requests safe equips.
 
 const SkillSlotCardScene = preload("res://ui/skills/skill_slot_card.tscn")
-const EquipmentItemCardScene = preload("res://ui/equipment/equipment_item_card.tscn")
+const InventorySlotButtonScene = preload("res://ui/inventory/inventory_slot_button.tscn")
 const EquipmentSlotCardScene = preload("res://ui/equipment/equipment_slot_card.tscn")
 const EmptySlotIcon = preload("res://assets/ui/icons/states/icon_slot_locked_16x16.png")
+const MaterialCatalog: MaterialCatalogDefinition = preload(
+	"res://data/items/materials/material_catalog.tres"
+)
+const BAG_CAPACITY := 24
+const BAG_COLUMNS := 12
+const EQUIPMENT_SLOT_NAMES := [
+	"Weapon",
+	"Chest Armor",
+	"Boots",
+	"Head",
+	"Gloves",
+	"Accessory I",
+	"Accessory II",
+]
+const EQUIPMENT_SLOT_POSITIONS := [
+	Vector2(2, 18),
+	Vector2(2, 67),
+	Vector2(2, 116),
+	Vector2(241, 0),
+	Vector2(480, 18),
+	Vector2(480, 67),
+	Vector2(480, 116),
+]
 
 signal menu_closed
 signal skill_awakened(skill_name: String)
@@ -24,9 +47,16 @@ signal skill_awakened(skill_name: String)
 @onready var skills_tab_button: Button = %SkillsTabButton
 @onready var gear_page: Control = %GearPage
 @onready var skills_page: Control = %SkillsPage
-@onready var equipment_slots: VBoxContainer = %EquipmentSlots
+@onready var equipment_slots: Control = %EquipmentSlots
 @onready var inventory_grid: GridContainer = %InventoryGrid
 @onready var equipment_detail_panel: EquipmentDetailPanel = %EquipmentDetailPanel
+@onready var bag_capacity_label: Label = %BagCapacityLabel
+@onready var bag_empty_label: Label = %BagEmptyLabel
+@onready var all_filter_button: Button = %AllFilterButton
+@onready var equipment_filter_button: Button = %EquipmentFilterButton
+@onready var materials_filter_button: Button = %MaterialsFilterButton
+@onready var consumables_filter_button: Button = %ConsumablesFilterButton
+@onready var key_filter_button: Button = %KeyFilterButton
 @onready var skills_container: HBoxContainer = %Skills
 @onready var skill_detail_label: Label = %SkillDetailLabel
 @onready var awaken_button: Button = %AwakenButton
@@ -35,14 +65,18 @@ signal skill_awakened(skill_name: String)
 @onready var attack_label: Label = %AttackLabel
 
 var _owns_pause := false
-var _equipment_cards: Array[EquipmentItemCard] = []
+var _inventory_slots: Array[InventorySlotButton] = []
+var _selectable_inventory_slots: Array[InventorySlotButton] = []
+var _equipment_cards: Array[InventorySlotButton] = []
+var _material_cards: Array[InventorySlotButton] = []
 var _equipment_slot_cards: Array[EquipmentSlotCard] = []
 var _skill_cards: Array[SkillSlotCard] = []
 var _active_page := &"gear"
+var _active_inventory_filter := &"all"
 var _portrait_rotation_tween: Tween
 var _portrait_pulse_tween: Tween
 var _selected_equipment: EquipmentDefinition
-var _selected_skill: SkillSlotDefinition
+var _selected_material: MaterialDefinition
 var _skillkeeper_service_active := false
 
 
@@ -56,6 +90,10 @@ func _ready() -> void:
 	progression.coins_changed.connect(_update_coins)
 	player.health_component.health_changed.connect(_update_vitality)
 	player.skill_loadout_changed.connect(_on_skill_loadout_changed)
+	var material_inventory := get_node_or_null("/root/MaterialInventory")
+	if material_inventory != null:
+		material_inventory.material_quantity_changed.connect(_on_material_quantity_changed)
+		material_inventory.inventory_reset.connect(_on_material_inventory_reset)
 	_update_progression(progression.level, progression.total_experience, 0)
 	_update_coins(progression.coins)
 	_update_vitality(
@@ -63,9 +101,10 @@ func _ready() -> void:
 		player.health_component.maximum_health
 	)
 	_configure_tabs()
+	_configure_inventory_filters()
 	equipment_detail_panel.equip_requested.connect(_on_equipment_equip_requested)
 	awaken_button.pressed.connect(_on_awaken_button_pressed)
-	_build_equipment_inventory()
+	_build_character_bag()
 	_build_skill_cards()
 	_show_page(&"gear", false)
 	_start_portrait_aura()
@@ -86,7 +125,7 @@ func _input(event: InputEvent) -> void:
 func open_menu() -> void:
 	if visible or get_tree().paused:
 		return
-	_build_equipment_inventory()
+	_build_character_bag()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	show()
 	_owns_pause = not get_tree().paused
@@ -158,6 +197,22 @@ func _configure_tabs() -> void:
 	close_button.focus_neighbor_bottom = close_button.get_path_to(gear_tab_button)
 
 
+func _configure_inventory_filters() -> void:
+	var filter_group := ButtonGroup.new()
+	filter_group.allow_unpress = false
+	var filters := {
+		all_filter_button: &"all",
+		equipment_filter_button: &"equipment",
+		materials_filter_button: &"materials",
+		consumables_filter_button: &"consumables",
+		key_filter_button: &"key",
+	}
+	for button: Button in filters:
+		button.button_group = filter_group
+		button.pressed.connect(_set_inventory_filter.bind(filters[button]))
+	all_filter_button.set_pressed_no_signal(true)
+
+
 func _show_page(page: StringName, focus_content: bool = true) -> void:
 	_active_page = page
 	var showing_gear := page == &"gear"
@@ -170,12 +225,21 @@ func _show_page(page: StringName, focus_content: bool = true) -> void:
 		_focus_default_control()
 
 
+func _set_inventory_filter(filter_name: StringName) -> void:
+	if _active_inventory_filter == filter_name:
+		return
+	_active_inventory_filter = filter_name
+	_build_inventory_grid()
+	if visible and _active_page == &"gear":
+		_focus_default_control()
+
+
 func _refresh_page_focus_links() -> void:
 	var first_control: Control
 	var last_control: Control
-	if _active_page == &"gear" and not _equipment_cards.is_empty():
-		first_control = _equipment_cards[0]
-		last_control = _equipment_cards[-1]
+	if _active_page == &"gear" and not _selectable_inventory_slots.is_empty():
+		first_control = _selectable_inventory_slots[0]
+		last_control = _selectable_inventory_slots[-1]
 	elif not _skill_cards.is_empty():
 		first_control = _skill_cards[0]
 		last_control = _skill_cards[-1]
@@ -186,77 +250,175 @@ func _refresh_page_focus_links() -> void:
 	close_button.focus_neighbor_top = close_button.get_path_to(last_control)
 
 
-func _build_equipment_inventory() -> void:
+func _build_character_bag() -> void:
+	_build_equipment_slots()
+	_build_inventory_grid()
+
+
+func _build_equipment_slots() -> void:
 	_clear_children(equipment_slots)
-	_clear_children(inventory_grid)
-	_equipment_cards.clear()
 	_equipment_slot_cards.clear()
 	if player.weapon_catalog == null or not player.weapon_catalog.has_valid_layout():
 		push_error("CharacterMenu requires a valid weapon catalog definition.")
 		return
 	var equipped_weapon := player.get_equipped_weapon_item()
-	for slot_name in ["Weapon", "Armor", "Gloves", "Boots", "Accessory"]:
+	for index in EQUIPMENT_SLOT_NAMES.size():
 		var slot_card := EquipmentSlotCardScene.instantiate() as EquipmentSlotCard
 		equipment_slots.add_child(slot_card)
-		slot_card.configure(slot_name, equipped_weapon if slot_name == "Weapon" else null, EmptySlotIcon)
+		slot_card.position = EQUIPMENT_SLOT_POSITIONS[index]
+		slot_card.size = Vector2(118, 42)
+		slot_card.configure(
+			EQUIPMENT_SLOT_NAMES[index],
+			equipped_weapon if index == 0 else null,
+			EmptySlotIcon
+		)
 		_equipment_slot_cards.append(slot_card)
 
-	var item_group := ButtonGroup.new()
-	item_group.allow_unpress = false
-	var inventory := get_node_or_null("/root/WeaponInventory")
-	var selected_card: EquipmentItemCard
-	for item: EquipmentDefinition in player.weapon_catalog.weapons:
-		if inventory != null and not inventory.owns_weapon(item.item_id):
-			continue
-		var card := EquipmentItemCardScene.instantiate() as EquipmentItemCard
-		inventory_grid.add_child(card)
-		var equipped := item == equipped_weapon
-		card.configure(item, equipped, item.is_compatible_with(player.character_class_id))
-		card.button_group = item_group
-		card.item_selected.connect(_on_equipment_selected)
-		_equipment_cards.append(card)
-		if equipped:
-			selected_card = card
-	_configure_equipment_focus()
-	if not _equipment_cards.is_empty():
-		if selected_card == null:
-			selected_card = _equipment_cards[0]
-		selected_card.set_pressed_no_signal(true)
-		_refresh_equipment_presentation(selected_card.definition)
+
+func _build_inventory_grid() -> void:
+	_clear_children(inventory_grid)
+	_inventory_slots.clear()
+	_selectable_inventory_slots.clear()
+	_equipment_cards.clear()
+	_material_cards.clear()
+	if player.weapon_catalog == null or not player.weapon_catalog.has_valid_layout():
+		return
+	var button_group := ButtonGroup.new()
+	button_group.allow_unpress = false
+	var weapon_inventory := get_node_or_null("/root/WeaponInventory")
+	var material_inventory := get_node_or_null("/root/MaterialInventory")
+	var equipped_weapon := player.get_equipped_weapon_item()
+	var selected_slot: InventorySlotButton
+	var owned_weapon_count := 0
+	if weapon_inventory != null:
+		for item: EquipmentDefinition in player.weapon_catalog.weapons:
+			if weapon_inventory.owns_weapon(item.item_id):
+				owned_weapon_count += 1
+
+	if _active_inventory_filter in [&"all", &"equipment"]:
+		for item: EquipmentDefinition in player.weapon_catalog.weapons:
+			if weapon_inventory != null and not weapon_inventory.owns_weapon(item.item_id):
+				continue
+			var slot := _create_inventory_slot(button_group)
+			var equipped := item == equipped_weapon
+			slot.configure_equipment(
+				item,
+				equipped,
+				item.is_compatible_with(player.character_class_id)
+			)
+			slot.equipment_selected.connect(_on_equipment_selected)
+			_equipment_cards.append(slot)
+			if item == _selected_equipment or (
+				_selected_equipment == null and equipped
+			):
+				selected_slot = slot
+
+	if _active_inventory_filter in [&"all", &"materials"] and material_inventory != null:
+		for material: MaterialDefinition in MaterialCatalog.materials:
+			var quantity: int = int(material_inventory.get_quantity(material.material_id))
+			if quantity <= 0:
+				continue
+			var slot := _create_inventory_slot(button_group)
+			slot.configure_material(material, quantity)
+			slot.material_selected.connect(_on_material_selected)
+			_material_cards.append(slot)
+			if material == _selected_material:
+				selected_slot = slot
+
+	var visible_item_count := _selectable_inventory_slots.size()
+	for _index in range(visible_item_count, BAG_CAPACITY):
+		var empty_slot := InventorySlotButtonScene.instantiate() as InventorySlotButton
+		inventory_grid.add_child(empty_slot)
+		empty_slot.configure_empty()
+		_inventory_slots.append(empty_slot)
+
+	bag_capacity_label.text = "BAG  %d / %d" % [owned_weapon_count, BAG_CAPACITY]
+	bag_empty_label.visible = visible_item_count == 0
+	bag_empty_label.text = _get_empty_filter_message()
+	if selected_slot == null and not _selectable_inventory_slots.is_empty():
+		selected_slot = _selectable_inventory_slots[0]
+	if selected_slot != null:
+		selected_slot.set_pressed_no_signal(true)
+		if selected_slot.kind == InventorySlotButton.Kind.EQUIPMENT:
+			_on_equipment_selected(selected_slot.equipment_definition)
+		elif selected_slot.kind == InventorySlotButton.Kind.MATERIAL:
+			_on_material_selected(selected_slot.material_definition)
+	elif equipped_weapon != null:
+		_refresh_equipment_detail(equipped_weapon)
+	_configure_inventory_focus()
+	_refresh_page_focus_links()
 
 
-func _configure_equipment_focus() -> void:
-	for index in _equipment_cards.size():
-		var card := _equipment_cards[index]
-		var row := index / 2
-		var row_start := row * 2
-		var row_count := mini(2, _equipment_cards.size() - row_start)
+func _create_inventory_slot(button_group: ButtonGroup) -> InventorySlotButton:
+	var slot := InventorySlotButtonScene.instantiate() as InventorySlotButton
+	inventory_grid.add_child(slot)
+	slot.button_group = button_group
+	_inventory_slots.append(slot)
+	_selectable_inventory_slots.append(slot)
+	return slot
+
+
+func _get_empty_filter_message() -> String:
+	match _active_inventory_filter:
+		&"materials":
+			return "NO MATERIALS COLLECTED • MONSTER DROPS ARRIVE WITH STAGE LOOT"
+		&"consumables":
+			return "CONSUMABLE POUCH NOT YET UNLOCKED"
+		&"key":
+			return "NO KEY ITEMS"
+	return "NO ITEMS IN THIS VIEW"
+
+
+func _configure_inventory_focus() -> void:
+	if _selectable_inventory_slots.is_empty():
+		return
+	for index in _selectable_inventory_slots.size():
+		var slot := _selectable_inventory_slots[index]
+		var row := index / BAG_COLUMNS
+		var row_start := row * BAG_COLUMNS
+		var row_count := mini(
+			BAG_COLUMNS,
+			_selectable_inventory_slots.size() - row_start
+		)
 		var column := index - row_start
 		var left_index := row_start + posmod(column - 1, row_count)
 		var right_index := row_start + ((column + 1) % row_count)
-		var up_index := index - 2
-		var down_index := index + 2
-		card.focus_neighbor_left = card.get_path_to(_equipment_cards[left_index])
-		card.focus_neighbor_right = card.get_path_to(_equipment_cards[right_index])
-		card.focus_neighbor_top = (
-			card.get_path_to(_equipment_cards[up_index])
+		var up_index := index - BAG_COLUMNS
+		var down_index := index + BAG_COLUMNS
+		slot.focus_neighbor_left = slot.get_path_to(_selectable_inventory_slots[left_index])
+		slot.focus_neighbor_right = slot.get_path_to(_selectable_inventory_slots[right_index])
+		slot.focus_neighbor_top = (
+			slot.get_path_to(_selectable_inventory_slots[up_index])
 			if up_index >= 0
-			else card.get_path_to(gear_tab_button)
+			else slot.get_path_to(all_filter_button)
 		)
-		card.focus_neighbor_bottom = (
-			card.get_path_to(_equipment_cards[down_index])
-			if down_index < _equipment_cards.size()
-			else card.get_path_to(close_button)
+		slot.focus_neighbor_bottom = (
+			slot.get_path_to(_selectable_inventory_slots[down_index])
+			if down_index < _selectable_inventory_slots.size()
+			else slot.get_path_to(close_button)
 		)
-	gear_tab_button.focus_neighbor_bottom = gear_tab_button.get_path_to(_equipment_cards[0])
-	skills_tab_button.focus_neighbor_bottom = skills_tab_button.get_path_to(_equipment_cards[0])
 
 
 func _on_equipment_selected(definition: EquipmentDefinition) -> void:
 	if definition == null or player.weapon_catalog == null:
 		return
 	_selected_equipment = definition
-	_refresh_equipment_presentation(definition)
+	_selected_material = null
+	_refresh_equipment_detail(definition)
+
+
+func _on_material_selected(definition: MaterialDefinition) -> void:
+	if definition == null:
+		return
+	var material_inventory := get_node_or_null("/root/MaterialInventory")
+	if material_inventory == null:
+		return
+	_selected_material = definition
+	_selected_equipment = null
+	equipment_detail_panel.configure_material(
+		definition,
+		material_inventory.get_quantity(definition.material_id)
+	)
 
 
 func _on_equipment_equip_requested(definition: EquipmentDefinition) -> void:
@@ -264,6 +426,8 @@ func _on_equipment_equip_requested(definition: EquipmentDefinition) -> void:
 		return
 	if player.equip_owned_weapon(definition):
 		_selected_equipment = definition
+		_selected_material = null
+		_build_equipment_slots()
 		_refresh_equipment_presentation(definition)
 
 
@@ -271,14 +435,25 @@ func _refresh_equipment_presentation(selected: EquipmentDefinition) -> void:
 	var equipped := player.get_equipped_weapon_item()
 	if equipped == null:
 		return
-	for card: EquipmentItemCard in _equipment_cards:
-		card.configure(
-			card.definition,
-			card.definition == equipped,
-			card.definition.is_compatible_with(player.character_class_id)
+	for card: InventorySlotButton in _equipment_cards:
+		card.configure_equipment(
+			card.equipment_definition,
+			card.equipment_definition == equipped,
+			card.equipment_definition.is_compatible_with(player.character_class_id)
 		)
+		card.set_pressed_no_signal(card.equipment_definition == selected)
 	if not _equipment_slot_cards.is_empty():
 		_equipment_slot_cards[0].configure("Weapon", equipped, EmptySlotIcon)
+	weapon_preview.texture = equipped.weapon_definition.world_texture
+	weapon_preview.position = equipped.weapon_definition.sprite_offset_from_grip
+	attack_label.text = "MOUSE: %s" % equipped.display_name.to_upper()
+	_refresh_equipment_detail(selected)
+
+
+func _refresh_equipment_detail(selected: EquipmentDefinition) -> void:
+	var equipped := player.get_equipped_weapon_item()
+	if equipped == null or selected == null:
+		return
 	weapon_preview.texture = equipped.weapon_definition.world_texture
 	weapon_preview.position = equipped.weapon_definition.sprite_offset_from_grip
 	attack_label.text = "MOUSE: %s" % equipped.display_name.to_upper()
@@ -287,6 +462,20 @@ func _refresh_equipment_presentation(selected: EquipmentDefinition) -> void:
 		selected == equipped,
 		selected.is_compatible_with(player.character_class_id)
 	)
+
+
+func _on_material_quantity_changed(
+	_material_id: StringName,
+	_quantity: int
+) -> void:
+	if visible:
+		_build_inventory_grid()
+
+
+func _on_material_inventory_reset() -> void:
+	_selected_material = null
+	if visible:
+		_build_inventory_grid()
 
 
 func _build_skill_cards() -> void:
@@ -311,7 +500,7 @@ func _build_skill_cards() -> void:
 
 
 func _on_skill_loadout_changed() -> void:
-	_build_equipment_inventory()
+	_build_character_bag()
 	_build_skill_cards()
 	if visible:
 		_refresh_page_focus_links()
@@ -333,8 +522,8 @@ func _configure_skill_focus() -> void:
 
 
 func _focus_default_control() -> void:
-	if _active_page == &"gear" and not _equipment_cards.is_empty():
-		_equipment_cards[0].grab_focus()
+	if _active_page == &"gear" and not _selectable_inventory_slots.is_empty():
+		_selectable_inventory_slots[0].grab_focus()
 	elif not _skill_cards.is_empty():
 		_skill_cards[0].grab_focus()
 	else:
@@ -358,6 +547,9 @@ func _on_skill_slot_selected(definition: SkillSlotDefinition) -> void:
 			definition.unlock_hint,
 		]
 	_refresh_awaken_button()
+
+
+var _selected_skill: SkillSlotDefinition
 
 
 func _refresh_awaken_button() -> void:

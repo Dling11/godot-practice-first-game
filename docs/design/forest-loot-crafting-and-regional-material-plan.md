@@ -1,8 +1,8 @@
 # Forest Loot, Crafting, Replay, and Regional Material Plan
 
-- **Status:** Approved design lock; Segment 1 Save/Continue implemented, Segments 2-8 pending
+- **Status:** Approved design lock; Segments 1-2 plus Character & Bag preparation implemented, Segments 3-8 pending
 - **Approved:** 2026-07-26
-- **Runtime coverage today:** Stages 1-3, five enemy identities, profile-backed core progression/equipment, no loot/crafting
+- **Runtime coverage today:** Stages 1-3, five enemy identities, profile-backed core/material/recipe-discovery state, immutable loot/crafting content data, no reward resolution/chests/crafting
 - **Planned content covered here:** Forest Stages 1-10 and a reusable foundation for Stage 11 onward
 
 ## Purpose
@@ -29,7 +29,7 @@ This plan is intentionally broader than the three implemented stages so save dat
 - Difficulty must come from readable behaviors, combinations, armor-break opportunities, positioning, and elites rather than health inflation alone.
 - Earlier regions retain limited material relevance, but new-region recipes primarily use current-region materials.
 - Character level does not become an infinite raw-stat treadmill. Region caps may expand, while post-cap Mastery supplies bounded utility, crafting, cosmetic, title, or material benefits.
-- Nothing in this document claims loot, chests, crafting, armor stats, Hunts, Mastery, the Rootweaver, or Stages 4-20 are currently implemented.
+- Nothing in this document claims reward resolution, chests, crafting transactions, armor stats, Hunts, Mastery, the Rootweaver, or Stages 4-20 are currently implemented.
 
 ## First-Clear and Replay Loop
 
@@ -65,7 +65,7 @@ No daily timer, advertisement loop, or real-money loot-box structure is approved
 
 ## Current Enemy Drop Direction
 
-Names remain provisional until the corresponding `MaterialDefinition` resources are approved. The identity and purpose are locked.
+These names and region-prefixed stable IDs are now approved through their `MaterialDefinition` resources. Initial quantities remain balance-tunable until reward and crafting playtests, but their identity and purpose are locked.
 
 | Implemented enemy | Material identity | Crafting direction |
 |---|---|---|
@@ -170,9 +170,9 @@ Stage 11 onward reuses the grammar and some universal materials, not the entire 
 
 The Stage 11-20 region theme, exact acid/corrosion use, and final material roster remain open. The data/art grammar is locked now so that choice does not require new infrastructure.
 
-## Planned Data Contracts
+## Implemented Segment 2 Data Contracts
 
-Names may change during implementation, but responsibility boundaries are approved.
+The following immutable contracts and responsibility boundaries are implemented. They define content but do not grant rewards or craft outputs.
 
 ### `MaterialDefinition`
 
@@ -219,8 +219,9 @@ Stage UI and chest presentation do not roll rewards themselves.
 
 ### Runtime authorities
 
-- `MaterialInventory`: mutable material quantities
-- `CraftingService`: validates unlocks/costs and commits transactions
+- `MaterialInventory`: implemented mutable known-material quantities with a versioned snapshot
+- `RecipeDiscovery`: implemented known-recipe IDs in a dedicated versioned snapshot, separate from `StoryState`
+- `CraftingService`: planned validation of unlocks/costs and atomic transactions
 - Existing equipment inventory/stat authorities: own crafted equipment and equip state
 - `SaveService`: serializes explicit snapshots from progression, story, equipment, materials, recipes, and safe-location state
 - UI: observes definitions/state and submits requests only
@@ -296,11 +297,13 @@ data/crafting/recipes/<future_region>/
 - Safe-point autosave, temporary write, backup/recovery
 - Snapshot/migration/corruption tests
 
-### Segment 2 - Material and crafting data
+### Segment 2 - Material and crafting data — implemented
 
-- Material, drop, loot-table, recipe resources
-- Material inventory and explicit snapshots
-- No chest/Rootweaver art required yet
+- **Completed 2026-07-29:** stable material, material-stack, drop-entry, drop-profile, loot-table, and recipe Resources plus validated global catalogs
+- Authored ten current-enemy materials, five enemy profiles, three Stage I-III stage tables, and four deterministic starter recipe blueprints
+- Added versioned `MaterialInventory` and `RecipeDiscovery` snapshots through the reserved profile extensions, including legacy-empty compatibility
+- Added no reward resolution, chest/Rootweaver art, or crafting output
+- **Character & Bag preparation completed 2026-07-29:** real nonzero material stacks are inspectable through a capacity-free material pouch in the shared 24-slot inventory presentation; final material icons and every acquisition path remain pending
 
 ### Segment 3 - Loot and stage-clear chest
 
@@ -340,8 +343,8 @@ Each segment requires focused tests, full regression validation, relevant docume
 These are not blockers for Save/Continue, but must be approved before their owning segment:
 
 - Rootweaver's final name, design, personality, workshop, and lore
-- Final material names and exact drop quantities
-- Exact Forest recipes and equipment stats
+- Stage 3 reward collection/presentation timing and first-clear claim implementation details
+- Final starter-equipment stats and recipe quantity tuning after rewards become playable
 - Stage 4-10 monster names, visuals, behavior timing, and encounter composition
 - Stage 10 boss identity
 - Stage 11-20 biome/region theme

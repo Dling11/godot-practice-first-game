@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="LootTableDefinition" load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://data/loot/loot_table_definition.gd" id="1_table"]
+[ext_resource type="Script" path="res://data/items/materials/material_stack_definition.gd" id="2_stack"]
+[ext_resource type="Script" path="res://data/loot/material_drop_entry_definition.gd" id="3_drop"]
+[ext_resource type="Resource" path="res://data/items/materials/forest/root_fiber.tres" id="4_fiber"]
+[ext_resource type="Resource" path="res://data/items/materials/forest/mire_resin.tres" id="5_resin"]
+[ext_resource type="Resource" path="res://data/items/materials/forest/forsaken_cloth.tres" id="6_cloth"]
+[ext_resource type="Resource" path="res://data/items/materials/forest/young_heartwood.tres" id="7_heartwood"]
+
+[sub_resource type="Resource" id="First_fiber"]
+script = ExtResource("2_stack")
+material = ExtResource("4_fiber")
+quantity = 4
+
+[sub_resource type="Resource" id="First_resin"]
+script = ExtResource("2_stack")
+material = ExtResource("5_resin")
+quantity = 3
+
+[sub_resource type="Resource" id="First_cloth"]
+script = ExtResource("2_stack")
+material = ExtResource("6_cloth")
+quantity = 2
+
+[sub_resource type="Resource" id="Replay_fiber"]
+script = ExtResource("2_stack")
+material = ExtResource("4_fiber")
+quantity = 2
+
+[sub_resource type="Resource" id="Replay_resin"]
+script = ExtResource("2_stack")
+material = ExtResource("5_resin")
+quantity = 2
+
+[sub_resource type="Resource" id="Replay_cloth"]
+script = ExtResource("2_stack")
+material = ExtResource("6_cloth")
+quantity = 1
+
+[sub_resource type="Resource" id="Optional_heartwood"]
+script = ExtResource("3_drop")
+material = ExtResource("7_heartwood")
+minimum_quantity = 1
+maximum_quantity = 1
+chance = 0.35
+bad_luck_protection_key = &"forest_stage_1_young_heartwood_misses"
+guaranteed_after_misses = 3
+
+[resource]
+script = ExtResource("1_table")
+loot_table_id = &"forest_stage_1_clear"
+stage_id = &"forgotten_grove_stage_1"
+region_id = &"forest"
+first_clear_claim_id = &"forest_stage_1_first_clear_claim"
+first_clear_guarantees = Array[Resource]([SubResource("First_fiber"), SubResource("First_resin"), SubResource("First_cloth")])
+replay_guarantees = Array[Resource]([SubResource("Replay_fiber"), SubResource("Replay_resin"), SubResource("Replay_cloth")])
+optional_rewards = Array[Resource]([SubResource("Optional_heartwood")])
+first_clear_recipe_ids = PackedStringArray("forest_rootfiber_wraps", "forest_mireward_charm")

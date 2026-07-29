@@ -13,6 +13,7 @@ func _initialize() -> void:
 func _run() -> void:
 	root.get_node("RunSession").reset_run()
 	root.get_node("WeaponInventory").reset_inventory()
+	root.get_node("MaterialInventory").reset_inventory()
 	for action_name in ["player_skill_1", "player_skill_2", "player_skill_3", "player_skill_4", "player_character_menu"]:
 		if not InputMap.has_action(action_name):
 			_fail("Missing input action: %s" % action_name)
@@ -57,12 +58,22 @@ func _run() -> void:
 	if menu.vitality_label.text != "HP 140/140":
 		_fail("Character menu does not present Opaw's current level-scaled vitality.")
 		return
-	var preview_body := menu.get_node("Panel/Margin/Root/PageHost/GearPage/Loadout/Portrait/PortraitCanvas/Body") as AnimatedSprite2D
+	var preview_body := menu.get_node(
+		"Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/"
+		+ "PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas/Body"
+	) as AnimatedSprite2D
 	if preview_body.sprite_frames != CompactOpawFrames:
 		_fail("Character menu preview is not using Opaw's active compact armless model.")
 		return
-	if menu._equipment_slot_cards.size() != 5 or not menu.gear_page.visible or menu.skills_page.visible:
-		_fail("Character menu did not open on the five-slot Gear page.")
+	if menu._equipment_slot_cards.size() != 7 or not menu.gear_page.visible or menu.skills_page.visible:
+		_fail("Character menu did not open on the seven-position Character & Bag page.")
+		return
+	if (
+		menu._inventory_slots.size() != CharacterMenu.BAG_CAPACITY
+		or menu.inventory_grid.columns != CharacterMenu.BAG_COLUMNS
+		or menu.bag_capacity_label.text != "BAG  1 / 24"
+	):
+		_fail("Character menu did not build the compact 24-slot bag contract.")
 		return
 	if player.weapon_catalog == null or not player.weapon_catalog.has_valid_layout():
 		_fail("Player does not expose a valid authored weapon catalog.")
@@ -81,6 +92,39 @@ func _run() -> void:
 	):
 		_fail("Selecting the Ashwood Blade did not update the active equipment detail surface.")
 		return
+	if not root.get_node("MaterialInventory").add_material(&"forest_mire_resin", 3):
+		_fail("Could not seed a real saved material quantity for Character & Bag validation.")
+		return
+	if menu._material_cards.size() != 1 or menu._inventory_slots.size() != CharacterMenu.BAG_CAPACITY:
+		_fail("Owned materials did not appear in the shared bag presentation.")
+		return
+	menu.materials_filter_button.pressed.emit()
+	if (
+		menu._equipment_cards.size() != 0
+		or menu._material_cards.size() != 1
+		or menu.bag_capacity_label.text != "BAG  1 / 24"
+	):
+		_fail("Materials filter did not isolate the capacity-free material pouch.")
+		return
+	menu._material_cards[0].pressed.emit()
+	if (
+		menu.equipment_detail_panel.current_material_definition == null
+		or menu.equipment_detail_panel.current_material_definition.material_id != &"forest_mire_resin"
+		or menu.equipment_detail_panel.equip_button.visible
+	):
+		_fail("Selecting a material did not open the read-only material detail view.")
+		return
+	await process_frame
+	var viewport_rect := root.get_viewport().get_visible_rect()
+	var panel_rect: Rect2 = (menu.get_node("Panel") as Control).get_global_rect()
+	var page_host_rect: Rect2 = (menu.get_node("Panel/Margin/Root/PageHost") as Control).get_global_rect()
+	if (
+		not viewport_rect.encloses(panel_rect)
+		or not page_host_rect.encloses(menu.gear_page.get_global_rect())
+	):
+		_fail("Character & Bag overflowed its 960x540 modal bounds while showing material details.")
+		return
+	menu.all_filter_button.pressed.emit()
 	menu.skills_tab_button.pressed.emit()
 	if menu.gear_page.visible or not menu.skills_page.visible or root.gui_get_focus_owner() != menu._skill_cards[0]:
 		_fail("Skills tab did not switch pages and focus the first reusable skill control.")

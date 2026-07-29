@@ -1,12 +1,15 @@
 class_name EquipmentDetailPanel
 extends PanelContainer
 
-## Detailed owned-item view with rarity-driven, tweened presentation.
+## Shared inspection surface for owned equipment and crafting materials.
+## Equipment actions are forwarded to CharacterMenu; material inspection is
+## read-only because MaterialInventory remains the ownership authority.
 
 signal equip_requested(definition: EquipmentDefinition)
 
 @onready var aura_back: Panel = %AuraBack
 @onready var item_icon: TextureRect = %ItemIcon
+@onready var fallback_glyph: Label = %FallbackGlyph
 @onready var rarity_label: Label = %RarityLabel
 @onready var name_label: Label = %NameLabel
 @onready var power_label: Label = %PowerLabel
@@ -17,17 +20,27 @@ signal equip_requested(definition: EquipmentDefinition)
 @onready var equip_button: Button = %EquipButton
 
 var current_definition: EquipmentDefinition
+var current_material_definition: MaterialDefinition
 var _aura_tween: Tween
 
 
 func configure(item: EquipmentDefinition, equipped: bool, class_compatible: bool = true) -> void:
 	current_definition = item
+	current_material_definition = null
 	var rarity_color := item.get_rarity_color()
 	item_icon.texture = item.icon
+	item_icon.visible = item.icon != null
+	fallback_glyph.visible = item.icon == null
+	fallback_glyph.text = item.display_name.left(1).to_upper()
+	fallback_glyph.add_theme_color_override("font_color", rarity_color)
 	rarity_label.text = "%s  •  %s" % [item.get_rarity_name(), item.get_slot_name().to_upper()]
 	rarity_label.add_theme_color_override("font_color", rarity_color)
 	name_label.text = item.display_name.to_upper()
-	power_label.text = "ATTACK POWER  %d" % roundi(item.weapon_definition.damage)
+	power_label.text = (
+		"ATTACK POWER  %d" % roundi(item.weapon_definition.damage)
+		if item.weapon_definition != null
+		else "EQUIPMENT"
+	)
 	lore_label.text = item.lore
 	synergy_title.text = item.synergy_name.to_upper()
 	synergy_title.add_theme_color_override("font_color", rarity_color)
@@ -42,9 +55,37 @@ func configure(item: EquipmentDefinition, equipped: bool, class_compatible: bool
 		Color("d6c171") if equipped else (Color("9ab85d") if class_compatible else Color("c45b50"))
 	)
 	_apply_aura_style(rarity_color)
-	_start_aura(item.rarity)
+	_start_equipment_aura(item.rarity)
+	equip_button.visible = true
 	equip_button.disabled = equipped or not class_compatible
 	equip_button.text = "EQUIPPED" if equipped else ("EQUIP WEAPON" if class_compatible else "CLASS LOCKED")
+
+
+func configure_material(item: MaterialDefinition, quantity: int) -> void:
+	current_definition = null
+	current_material_definition = item
+	var rarity_color := item.get_rarity_color()
+	item_icon.texture = item.icon
+	item_icon.visible = item.icon != null
+	fallback_glyph.visible = item.icon == null
+	fallback_glyph.text = item.get_family_glyph()
+	fallback_glyph.add_theme_color_override("font_color", rarity_color)
+	rarity_label.text = "%s  •  %s" % [
+		item.get_rarity_name().to_upper(),
+		item.get_family_name().to_upper(),
+	]
+	rarity_label.add_theme_color_override("font_color", rarity_color)
+	name_label.text = item.display_name.to_upper()
+	power_label.text = "CRAFTING MATERIAL  ×%d" % quantity
+	lore_label.text = item.description
+	synergy_title.text = "KNOWN SOURCE"
+	synergy_title.add_theme_color_override("font_color", rarity_color)
+	synergy_body.text = item.source_lore
+	state_label.text = "MATERIAL POUCH • NO BAG SPACE USED"
+	state_label.add_theme_color_override("font_color", Color("8fb37b"))
+	_apply_aura_style(rarity_color)
+	_start_material_aura(item.rarity)
+	equip_button.visible = false
 
 
 func _on_equip_button_pressed() -> void:
@@ -61,18 +102,26 @@ func _apply_aura_style(color: Color) -> void:
 	aura_back.add_theme_stylebox_override("panel", aura_style)
 
 
-func _start_aura(rarity: EquipmentDefinition.Rarity) -> void:
-	if _aura_tween != null:
-		_aura_tween.kill()
-	aura_back.scale = Vector2.ONE
+func _start_equipment_aura(rarity: EquipmentDefinition.Rarity) -> void:
 	var is_high_rarity := rarity in [
 		EquipmentDefinition.Rarity.LEGENDARY,
 		EquipmentDefinition.Rarity.MYTHIC,
 	]
-	aura_back.modulate.a = 0.9 if is_high_rarity else 0.58
-	var scale_amount := 1.075 if is_high_rarity else 1.035
+	_start_aura(0.9 if is_high_rarity else 0.58, 1.075 if is_high_rarity else 1.035)
+
+
+func _start_material_aura(rarity: MaterialDefinition.MaterialRarity) -> void:
+	var is_high_rarity := rarity >= MaterialDefinition.MaterialRarity.RARE
+	_start_aura(0.82 if is_high_rarity else 0.52, 1.055 if is_high_rarity else 1.025)
+
+
+func _start_aura(maximum_alpha: float, scale_amount: float) -> void:
+	if _aura_tween != null:
+		_aura_tween.kill()
+	aura_back.scale = Vector2.ONE
+	aura_back.modulate.a = maximum_alpha
 	_aura_tween = create_tween().set_loops()
-	_aura_tween.tween_property(aura_back, "scale", Vector2.ONE * scale_amount, 0.8).set_trans(Tween.TRANS_SINE)
-	_aura_tween.parallel().tween_property(aura_back, "modulate:a", 0.25, 0.8).set_trans(Tween.TRANS_SINE)
-	_aura_tween.tween_property(aura_back, "scale", Vector2.ONE, 1.0).set_trans(Tween.TRANS_SINE)
-	_aura_tween.parallel().tween_property(aura_back, "modulate:a", 0.9, 1.0).set_trans(Tween.TRANS_SINE)
+	_aura_tween.tween_property(aura_back, "scale", Vector2.ONE * scale_amount, 0.9).set_trans(Tween.TRANS_SINE)
+	_aura_tween.parallel().tween_property(aura_back, "modulate:a", 0.25, 0.9).set_trans(Tween.TRANS_SINE)
+	_aura_tween.tween_property(aura_back, "scale", Vector2.ONE, 1.1).set_trans(Tween.TRANS_SINE)
+	_aura_tween.parallel().tween_property(aura_back, "modulate:a", maximum_alpha, 1.1).set_trans(Tween.TRANS_SINE)

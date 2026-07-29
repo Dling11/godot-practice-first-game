@@ -73,6 +73,12 @@ func _commit_new_journey() -> void:
 	var weapon_inventory := get_node_or_null("/root/WeaponInventory")
 	if weapon_inventory != null:
 		weapon_inventory.reset_inventory()
+	var material_inventory := get_node_or_null("/root/MaterialInventory")
+	if material_inventory != null:
+		material_inventory.reset_inventory()
+	var recipe_discovery := get_node_or_null("/root/RecipeDiscovery")
+	if recipe_discovery != null:
+		recipe_discovery.reset_discoveries()
 	# SceneTransition outlives this screen. Do not await from a scene that the
 	# transition itself will free before the service finishes fading back in.
 	transition_service.transition_to(new_journey_scene)

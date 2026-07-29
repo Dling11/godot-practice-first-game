@@ -24,14 +24,20 @@ func _run() -> void:
 	var run_session := root.get_node("RunSession")
 	var story_state := root.get_node("StoryState")
 	var weapon_inventory := root.get_node("WeaponInventory")
+	var material_inventory := root.get_node("MaterialInventory")
+	var recipe_discovery := root.get_node("RecipeDiscovery")
 	run_session.reset_run()
 	story_state.reset_story()
 	weapon_inventory.reset_inventory()
+	material_inventory.reset_inventory()
+	recipe_discovery.reset_discoveries()
 	run_session.update_progression(725, 113)
 	run_session.update_player_health(92.0)
 	story_state.remember_story(&"forgotten_grove_completed")
 	weapon_inventory.acquire_weapon(IronSword)
 	weapon_inventory.equip_weapon(&"opaw", &"warrior", IronSword)
+	material_inventory.add_material(&"forest_mire_resin", 6)
+	recipe_discovery.discover_recipe(&"forest_mireward_charm")
 	if not _save_service.save_profile():
 		_fail("The title Continue fixture could not save its profile.")
 		return
@@ -39,6 +45,8 @@ func _run() -> void:
 	run_session.reset_run()
 	story_state.reset_story()
 	weapon_inventory.reset_inventory()
+	material_inventory.reset_inventory()
+	recipe_discovery.reset_discoveries()
 	var title := TitleScene.instantiate() as TitleScreen
 	root.add_child(title)
 	current_scene = title
@@ -99,6 +107,8 @@ func _run() -> void:
 		or run_session.coins != 113
 		or not story_state.has_story_flag(&"forgotten_grove_completed")
 		or not weapon_inventory.owns_weapon(IronSword.item_id)
+		or material_inventory.get_quantity(&"forest_mire_resin") != 6
+		or not recipe_discovery.is_recipe_discovered(&"forest_mireward_charm")
 	):
 		_fail("Continue transitioned without restoring the saved profile.")
 		return

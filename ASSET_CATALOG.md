@@ -201,10 +201,10 @@ Current UI visuals combine the approved reusable base theme and named pixel icon
 | Canonical ID | Current path | Status | Purpose |
 |---|---|---|---|
 | `ui_combat_hud` | `ui/combat_hud.tscn` | `active_resource` | Vitality, progression, Menu entry, interaction prompt, and one compact action tray with dash visually separated from skills 1-4. |
-| `ui_character_menu` | `ui/character_menu.tscn` | `active_resource` | Paused owned Gear/Armory and Active Skills surface for Opaw. |
+| `ui_character_menu` | `ui/character_menu.tscn` | `active_resource` | Paused Character & Bag and Active Skills surface for Opaw. |
 | `ui_player_level_up_feedback` | `entities/player/presentation/player_level_up_visual.gd` | `active_resource` | Small actor glow and rising overhead level label; no center-screen panel. |
 | `ui_weapon_shop_menu` | `ui/shops/weapon_shop_menu.tscn` | `active_resource` | Orren's paused class-aware weapon purchase surface. |
-| `ui_equipment_item_card` | `ui/equipment/equipment_item_card.tscn` | `active_resource` | Focusable owned-item equip card. |
+| `ui_inventory_slot_button` | `ui/inventory/inventory_slot_button.tscn` | `active_resource` | Compact focusable equipment/material/empty bag slot. |
 | `ui_equipment_slot_card` | `ui/equipment/equipment_slot_card.tscn` | `active_resource` | Reusable equipped or empty slot presentation. |
 | `ui_equipment_detail_panel` | `ui/equipment/equipment_detail_panel.tscn` | `active_resource` | Lore, authoritative weapon power, ownership/equip state, and restrained aura presentation. |
 | `ui_title_screen` | `ui/screens/title/title_screen.tscn` | `active_resource` | Main navigation, session-audio settings, and new-journey entry. |

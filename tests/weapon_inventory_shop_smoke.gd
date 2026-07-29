@@ -64,9 +64,9 @@ func _run() -> void:
 	if character_menu._equipment_cards.size() != 2:
 		_fail("Character inventory did not reveal both owned swords after purchase.")
 		return
-	var iron_card: EquipmentItemCard
-	for card: EquipmentItemCard in character_menu._equipment_cards:
-		if card.definition == IronItem:
+	var iron_card: InventorySlotButton
+	for card: InventorySlotButton in character_menu._equipment_cards:
+		if card.equipment_definition == IronItem:
 			iron_card = card
 			break
 	if iron_card == null:

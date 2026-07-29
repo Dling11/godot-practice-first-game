@@ -4,8 +4,10 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 
 ## Completed
 
+- Rebuilt the paused equipment surface as `CHARACTER & BAG`: seven paper-doll positions surround Opaw's canonical live sprite/weapon pose, one compact 24-slot grid presents real owned weapons and capacity-free saved material stacks, five filters prepare later item categories, and one detail panel supports explicit weapon equip or read-only material inspection. Sanctuary stash transfer, discard, final material icons, and non-weapon equipment remain planned.
+- Completed Forest production Segment 2: ten stable Forest material definitions, global duplicate-safe catalogs, five current-enemy drop profiles, three Stage I-III clear-reward tables, four deterministic starter recipe blueprints, profile-backed `MaterialInventory`, dedicated `RecipeDiscovery`, legacy-empty-extension compatibility, and focused data/snapshot/disk validation. No rewards, chest presentation, or crafting is active yet.
 - Completed Forest production Segment 1: one versioned JSON autosave under `user://`, validated temporary writes, rotating backup and corrupt-primary recovery, safe Sanctuary/stage-clear/service checkpoints, title-screen Continue, guarded New Journey replacement, isolated headless persistence tests, and Sanctuary-only resume without scene-tree serialization.
-- **Design lock only:** approved the replayable Forest Stages 1-10 Fight -> Loot -> Craft -> Build -> Master -> Advance loop, ecology-linked drop direction, deterministic recipes, stage-clear chests, a separate Rootweaver/Grove Artificer service, Hunts, the Stage 4-10 enemy/material matrix, reusable cross-region material art grammar, and bounded regional Mastery. Loot/crafting runtime implementation has not started.
+- Approved the replayable Forest Stages 1-10 Fight -> Loot -> Craft -> Build -> Master -> Advance loop, ecology-linked drop direction, deterministic recipes, stage-clear chests, a separate Rootweaver/Grove Artificer service, Hunts, the Stage 4-10 enemy/material matrix, reusable cross-region material art grammar, and bounded regional Mastery. Segments 1-2 now implement persistence and immutable content data; later gameplay segments remain pending.
 - Slowed early progression and economy pacing: cumulative Level 1-10 thresholds are now `0/150/400/750/1200/1750/2400/3150/4000/4950`, placing Stage I at Level 2, cumulative Stage II at Level 3, and the complete current forest arc at Level 4; Iron Sword now costs 90 coins instead of 18.
 - Tightened the beginner-sword feel and reduced clustered-hit overhead: Balanced Slash is now a 58-reach by 96-wide data-owned fan with matching smaller trail, future weapon families retain independent shape/style ownership, the center-screen level banner is replaced by a small Opaw glow and overhead label, and normal cleaves share one 25-millisecond hitstop/camera/audio response per swing while keeping feedback on every enemy.
 - Aligned combat footprints and run attrition: Balanced Slash covers its visible side edges/tip; Stage III bakes 20-pixel seal clearance for the 16-pixel-radius Husk; dash has a clear gap before Skill 1; current HP survives stage/Sanctuary transitions; Opaw uses `140 + 12/level` health plus delayed 1 HP/s regeneration; and Mireling/Rootling/Thrall/Spitter/Husk damage is balanced to 8/10/18/12/18.
@@ -80,7 +82,7 @@ Detailed completion history remains in `CHANGELOG.md`.
 
 ## In Progress
 
-- **Forest production Segment 2 - Content data:** author and validate immutable material, drop-profile, loot-table, and deterministic recipe definitions with stable IDs and reserved profile-extension ownership; do not add chest/Rootweaver presentation yet.
+- **Forest production Segment 3 - Loot and chests:** resolve authored enemy drops outside controllers, aggregate a guaranteed non-empty stage-clear chest, commit first-clear recipes/materials exactly once, save mutable reward state at the safe checkpoint, and present rewards readably without beginning crafting or Rootweaver production.
 - **Milestone B progress:** Opaw now has a distinct generated damage-impact cue and a curated CC0 light dash swoosh. Enemy action SFX remain separate; directional threat and hit-effect work remain open.
 - **Milestone A progress:** a latest-valid-input buffer carries normal attacks and immediate-directional skills across committed attacks/dashes. Consecutive Thrust now owns the approved defensive exception—full-cast invulnerability plus dash cancellation—while its damage, reach, and cooldown remain unchanged for feel testing.
 - **Milestone C progress:** Rootbound Husk now uses fixed-scale generated body sheets, readable planted side steps, native named animations, a constant foot baseline, an above-head health bar, six-beat ground-root VFX, and a skippable portrait introduction behind a reusable encounter gate. Its profiled quick spear and slower staged Root Fan retain snapshotted hitbox authority and gain a faster, fan-heavier second phase. Human timing/readability review remains open.
@@ -124,8 +126,8 @@ Detailed completion history remains in `CHANGELOG.md`.
 
 ### Approved Forest Production Sequence
 
-1. **Segment 1 - Save/Continue:** versioned profile, migrations, recovery, safe checkpoint writes, and Continue UX.
-2. **Segment 2 - Content data:** immutable material, drop-profile, loot-table, and recipe definitions plus stable IDs and validation.
+1. **Segment 1 - Save/Continue — implemented:** versioned profile, recovery, safe checkpoint writes, and Continue UX.
+2. **Segment 2 - Content data — implemented:** immutable material, drop-profile, loot-table, and recipe definitions plus stable IDs, dedicated mutable ownership, save reconstruction, and validation.
 3. **Segment 3 - Loot and chests:** ecology-linked defeat rewards, guaranteed non-empty stage-clear chests, idempotent first-clear rewards, and readable reward presentation.
 4. **Segment 4 - Sanctuary craft service:** introduce the separate Rootweaver/Grove Artificer, dialogue portrait, interaction scene, and craft-menu shell.
 5. **Segment 5 - Forest crafting:** deterministic recipes, atomic material spending, crafted starter gear, equipment integration, and balance tests targeting two or three purposeful clears.
@@ -146,7 +148,7 @@ The detailed acceptance rules and intentionally open choices live in `docs/desig
 ### Production Systems
 
 - Scalable content authoring for weapons, abilities, enemies, bosses, and status effects.
-- Material inventory, deterministic crafting, equipment aggregation, and bounded regional Mastery.
+- Loot resolution, deterministic crafting, equipment aggregation, and bounded regional Mastery.
 - Exploration, NPC, and quest foundations required by the authored regional structure.
 - Save schema versioning and migration.
 - Broader performance budgets and profiling scenes.
@@ -173,9 +175,9 @@ None currently recorded.
 
 The regional loop and material-reuse direction are approved. Before each implementation segment, settle only the choices that materially affect that segment:
 
-1. Segment 2: final IDs/categories for the first Stages 1-3 materials and whether recipe discovery begins as story flags or its reserved dedicated profile extension.
+1. Segment 3: defeat-drop collection timing, chest interaction flow, first-clear claim identity, and the exact reward-summary information shown before Sanctuary return.
 2. Segment 4: the Rootweaver/Grove Artificer's final name, personality, visual contract, and Sanctuary location.
-3. Segment 5: exact recipe quantities, first crafted equipment stats, selling/salvage policy, and armor aggregation.
+3. Segment 5: first crafted equipment stats, recipe balance tuning, selling/salvage policy, and armor aggregation.
 4. Segment 6: the first Hunt modifiers, reward preview detail, and Mastery scoring.
 
 Desktop/web/mobile priority and future Mage/Archer roster/class structure remain important broader product decisions, but they no longer block documenting or building the approved desktop-first Forest foundation.

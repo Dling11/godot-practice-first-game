@@ -21,7 +21,7 @@ Choose option 3 for the first playable region.
 
 `SaveService` stores one versioned JSON profile at `user://battle_of_gods_profile.json`. Every write goes to a validated temporary file first. A previously valid primary rotates to `.bak`, and a corrupt primary is recovered from that backup and repaired. All nested snapshot versions validate before live state changes.
 
-The profile contains `RunSession`, `StoryState`, and `WeaponInventory` data plus reserved extension seams for future material inventory, recipe discovery, stage claims, and regional progress. Settings remain separate.
+The profile contains `RunSession`, `StoryState`, and `WeaponInventory` data plus extension seams for material inventory, recipe discovery, stage claims, and regional progress. Decision 064 later activated the material and recipe sections through dedicated versioned authorities while preserving empty legacy sections; stage claims and regional progress remain reserved. Settings remain separate.
 
 Autosaves occur:
 
@@ -38,7 +38,7 @@ The title screen exposes Continue only when the primary or backup is valid. A va
 
 ## Consequences
 
-- XP, coins, current HP, story memory, awakened Skill 2, weapon ownership, and equipped weapon now survive application restart.
+- XP, coins, current HP, story memory, awakened Skill 2, weapon ownership, equipped weapon, and the later Decision-064 material/recipe state survive application restart.
 - Corrupt or interrupted writes retain a recoverable previous checkpoint.
 - Continue never reconstructs unstable mid-combat state.
 - One autosave slot keeps the first implementation understandable; multiple profiles and manual saves remain deferred product choices.

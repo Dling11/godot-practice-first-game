@@ -70,9 +70,13 @@ func _run() -> void:
 	var run_session := root.get_node("RunSession")
 	var story_state := root.get_node("StoryState")
 	var weapon_inventory := root.get_node("WeaponInventory")
+	var material_inventory := root.get_node("MaterialInventory")
+	var recipe_discovery := root.get_node("RecipeDiscovery")
 	run_session.update_progression(80, 12)
 	story_state.remember_story(&"forgotten_grove_completed")
 	weapon_inventory.acquire_weapon(preload("res://data/items/equipment/iron_sword.tres"))
+	material_inventory.add_material(&"forest_root_fiber", 3)
+	recipe_discovery.discover_recipe(&"forest_rootfiber_wraps")
 	var transition_state := {"requested": "", "started": false, "finished": false}
 	title.journey_requested.connect(func(destination: String) -> void: transition_state.requested = destination)
 	transition_service.transition_started.connect(func(_destination: String) -> void:
@@ -104,6 +108,12 @@ func _run() -> void:
 		return
 	if weapon_inventory.owns_weapon(&"weapon_iron_sword"):
 		_fail("A new journey did not reset purchased weapon ownership.")
+		return
+	if (
+		material_inventory.get_quantity(&"forest_root_fiber") != 0
+		or recipe_discovery.is_recipe_discovered(&"forest_rootfiber_wraps")
+	):
+		_fail("A new journey did not reset material and recipe progress.")
 		return
 	if not _save_service.has_valid_profile():
 		_fail("Entering Sanctuary did not create the new journey autosave.")

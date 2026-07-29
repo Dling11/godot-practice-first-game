@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="DropProfileDefinition" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://data/loot/drop_profile_definition.gd" id="1_profile"]
+[ext_resource type="Script" path="res://data/loot/material_drop_entry_definition.gd" id="2_entry"]
+[ext_resource type="Resource" path="res://data/items/materials/forest/root_fiber.tres" id="3_fiber"]
+[ext_resource type="Resource" path="res://data/items/materials/forest/young_heartwood.tres" id="4_heartwood"]
+
+[sub_resource type="Resource" id="Drop_fiber"]
+script = ExtResource("2_entry")
+material = ExtResource("3_fiber")
+minimum_quantity = 1
+maximum_quantity = 2
+chance = 1.0
+
+[sub_resource type="Resource" id="Drop_heartwood"]
+script = ExtResource("2_entry")
+material = ExtResource("4_heartwood")
+minimum_quantity = 1
+maximum_quantity = 1
+chance = 0.25
+bad_luck_protection_key = &"forest_young_heartwood_misses"
+guaranteed_after_misses = 4
+
+[resource]
+script = ExtResource("1_profile")
+profile_id = &"forest_rootling_drops"
+source_enemy_id = &"rootling"
+region_id = &"forest"
+guaranteed_common = Array[Resource]([SubResource("Drop_fiber")])
+optional_secondary = Array[Resource]([SubResource("Drop_heartwood")])

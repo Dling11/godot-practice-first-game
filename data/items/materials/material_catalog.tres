@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MaterialCatalogDefinition" load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://data/items/materials/material_catalog_definition.gd" id="1_catalog"]
+[ext_resource type="Resource" path="res://data/items/materials/forest/mire_resin.tres" id="2_resin"]
+[ext_resource type="Resource" path="res://data/items/materials/forest/mire_membrane.tres" id="3_membrane"]
+[ext_resource type="Resource" path="res://data/items/materials/forest/root_fiber.tres" id="4_fiber"]
+[ext_resource type="Resource" path="res://data/items/materials/forest/young_heartwood.tres" id="5_young"]
+[ext_resource type="Resource" path="res://data/items/materials/forest/forsaken_cloth.tres" id="6_cloth"]
+[ext_resource type="Resource" path="res://data/items/materials/forest/weathered_fittings.tres" id="7_fittings"]
+[ext_resource type="Resource" path="res://data/items/materials/forest/barbed_seed.tres" id="8_seed"]
+[ext_resource type="Resource" path="res://data/items/materials/forest/thorn_sap.tres" id="9_sap"]
+[ext_resource type="Resource" path="res://data/items/materials/forest/husk_heartwood.tres" id="10_husk"]
+[ext_resource type="Resource" path="res://data/items/materials/forest/rootbound_core.tres" id="11_core"]
+
+[resource]
+script = ExtResource("1_catalog")
+materials = Array[Resource]([ExtResource("2_resin"), ExtResource("3_membrane"), ExtResource("4_fiber"), ExtResource("5_young"), ExtResource("6_cloth"), ExtResource("7_fittings"), ExtResource("8_seed"), ExtResource("9_sap"), ExtResource("10_husk"), ExtResource("11_core")])
