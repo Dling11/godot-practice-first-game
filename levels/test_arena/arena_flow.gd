@@ -12,6 +12,9 @@ func _ready() -> void:
 	if player == null or combat_hud == null or character_menu == null or encounter_controller == null:
 		push_error("ArenaFlow requires a Player, CombatHUD, CharacterMenu, and EncounterController.")
 		return
+	var loot_service := get_node_or_null("/root/LootService")
+	if loot_service != null:
+		loot_service.begin_expedition()
 	combat_hud.bind_player(player)
 	combat_hud.character_menu_requested.connect(character_menu.open_menu)
 	player.defeated.connect(_on_player_defeated)
@@ -24,6 +27,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func restart_arena() -> void:
+	var loot_service := get_node_or_null("/root/LootService")
+	if loot_service != null:
+		loot_service.abort_expedition_rewards()
 	var run_session := get_node_or_null("/root/RunSession")
 	if run_session != null:
 		run_session.reset_run()

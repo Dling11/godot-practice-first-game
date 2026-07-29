@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://k00adtwpm5uh" path="res://entities/enemies/components/enemy_reward_component.gd" id="13_rewards"]
 [ext_resource type="Script" uid="uid://dyes4qkflxig2" path="res://gameplay/audio/actor_action_sfx.gd" id="14_action_sfx"]
 [ext_resource type="AudioStream" uid="uid://lktn827r8x60" path="res://assets/audio/sfx/rootling_root_jab.wav" id="15_root_jab"]
+[ext_resource type="Resource" path="res://data/loot/forest/enemies/rootling_drop_profile.tres" id="16_drop"]
 
 [sub_resource type="CircleShape2D" id="foot"]
 radius = 6.0
@@ -74,6 +75,7 @@ script = ExtResource("7_health")
 [node name="EnemyRewardComponent" type="Node" parent="." unique_id=1002899902 node_paths=PackedStringArray("health_component")]
 script = ExtResource("13_rewards")
 health_component = NodePath("../HealthComponent")
+drop_profile = ExtResource("16_drop")
 
 [node name="ActionSfx" type="Node2D" parent="." unique_id=965408664 node_paths=PackedStringArray("primary_player")]
 script = ExtResource("14_action_sfx")

@@ -79,6 +79,12 @@ func _commit_new_journey() -> void:
 	var recipe_discovery := get_node_or_null("/root/RecipeDiscovery")
 	if recipe_discovery != null:
 		recipe_discovery.reset_discoveries()
+	var loot_state := get_node_or_null("/root/LootState")
+	if loot_state != null:
+		loot_state.reset_state()
+	var loot_service := get_node_or_null("/root/LootService")
+	if loot_service != null:
+		loot_service.reset_expedition_tracking()
 	# SceneTransition outlives this screen. Do not await from a scene that the
 	# transition itself will free before the service finishes fading back in.
 	transition_service.transition_to(new_journey_scene)

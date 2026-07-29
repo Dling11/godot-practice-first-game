@@ -27,7 +27,7 @@ Choose option 3.
 - real nonzero material stacks from `MaterialInventory`;
 - one shared detail panel that permits explicit weapon equip requests and read-only material inspection.
 
-Only ordinary equipment counts toward the 24-slot bag display. Materials remain in a capacity-free material pouch even when the All filter presents them in the shared grid. Empty, consumable, key-item, and future equipment positions are honest presentation states, not fabricated items. Missing material art uses a family glyph and rarity color until approved flattened icons exist.
+Only ordinary equipment counts toward the 24-slot bag display. Materials remain in a capacity-free material pouch even when the All filter presents them in the shared grid. Empty, consumable, key-item, and future equipment positions are honest presentation states, not fabricated items. Every current Forest material now uses its approved flattened 24x24 icon; the family glyph remains a defensive fallback only for future definitions whose art is not yet produced.
 
 The UI never mutates ownership dictionaries, resolves drops, crafts items, or writes save files. Weapon equip still routes through `Player`; material quantity changes still route through `MaterialInventory`.
 
@@ -36,5 +36,6 @@ The UI never mutates ownership dictionaries, resolves drops, crafts items, or wr
 - The UI is ready to show Segment 3 chest rewards without inventing a second inventory model.
 - Weapon purchase/equip behavior and save reconstruction remain unchanged.
 - The material pouch can scale independently from ordinary bag capacity.
-- Sanctuary stash transfer, overflow handling, discard confirmation, consumable/key-item authorities, armor stats, and final material sprites remain later work.
+- F9 can populate absent material IDs with non-saving samples for isolated presentation tests, while ordinary play now earns real materials through Segment 3.
+- Sanctuary stash transfer, overflow handling, discard confirmation, consumable/key-item authorities, and armor stats remain later work.
 - The seven-slot paper doll is forward-compatible presentation; only the weapon slot currently has an equippable runtime item.

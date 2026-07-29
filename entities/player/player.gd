@@ -131,6 +131,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if save_service != null:
 			save_service.suppress_autosave_for_debug_session()
 		_unlock_debug_test_equipment()
+		_unlock_debug_test_materials()
 		_enable_debug_test_loadout()
 		_unlock_debug_test_expeditions()
 		get_viewport().set_input_as_handled()
@@ -450,6 +451,14 @@ func _unlock_debug_test_equipment() -> void:
 	for item: EquipmentDefinition in weapon_catalog.weapons:
 		if item != null and item.is_compatible_with(character_class_id):
 			inventory.acquire_weapon(item)
+
+
+func _unlock_debug_test_materials() -> void:
+	## Normal enemies and chests still grant no materials. This only exposes
+	## the existing catalog/inventory UI for fast local inspection.
+	var material_inventory := get_node_or_null("/root/MaterialInventory")
+	if material_inventory != null:
+		material_inventory.apply_debug_testing_preset()
 
 
 func _unlock_debug_test_expeditions() -> void:

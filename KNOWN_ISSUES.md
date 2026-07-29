@@ -4,13 +4,13 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 
 ## Current Limitations
 
-### KI-013 - Forest reward, crafting, and replay gameplay is not implemented
+### KI-013 - Forest crafting and replay gameplay is not implemented
 
 - **Status:** Open
-- **Progress:** Segments 1-2 now provide safe-point Save/Continue, ten stable current-enemy materials, five drop profiles, three Stage I-III loot tables, four recipe blueprints, a versioned `MaterialInventory`, dedicated saved recipe discovery, and Character & Bag inspection for any nonzero saved material stacks.
-- **Impact:** Stages 1-3 still award only XP and coins and then advance. Nothing resolves the authored drops, spawns or opens a clear chest, grants a blueprint, crafts an output, provides the Rootweaver/Grove Artificer, selects Hunts, or records regional Mastery. Material slots therefore remain empty in ordinary play until Segment 3 adds an acquisition path.
-- **Planned resolution:** Follow `docs/design/forest-loot-crafting-and-regional-material-plan.md` in order: Segment 3 loot/chests, the Sanctuary craft service, recipes/equipment, Hunts, then Stages 4-10 and the Stage 11 regional seam.
-- **Workaround:** Treat the current definitions and saved authorities as infrastructure only. Do not describe materials, recipe blueprints, chests, crafted equipment, Hunts, or Mastery as obtainable/playable content yet.
+- **Progress:** Segments 1-3 now provide safe-point Save/Continue, ten illustrated materials, five live enemy drop profiles, collectible world pickups, saved bad-luck protection, guaranteed interactive Stage I-III clear chests, idempotent first-clear recipe/material grants, expedition rollback/commit behavior, and Character & Bag inspection.
+- **Impact:** Players can now earn and retain Forest materials and discover the four starter blueprints, but cannot spend those materials or produce/equip the blueprint outputs. No Rootweaver/Grove Artificer, crafting transaction UI, Hunt selector, or regional Mastery exists. Ordinary stage replay is possible only through the existing route/debug seams, not the approved Hunt presentation.
+- **Planned resolution:** Follow `docs/design/forest-loot-crafting-and-regional-material-plan.md` in order: Segment 4 Sanctuary craft service, Segment 5 recipes/equipment, Hunts, then Stages 4-10 and the Stage 11 regional seam.
+- **Workaround:** Play Stages I-III normally to collect materials and first-clear blueprints, then inspect them in Character & Bag. Treat them as saved preparation inventory until the Rootweaver and crafting transaction path are implemented; F9 samples remain debug-only and non-saving.
 
 ### KI-011 - Combat responsiveness, audio distinction, and Husk presentation need a playtest repair pass
 
@@ -45,7 +45,7 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 ### KI-005 - Expanded equipment and later skill balance remain incomplete
 
 - **Status:** Open
-- **Impact:** Ashwood/Iron ownership, explicit equip, Level-3 Eira awakening, Opaw's base/level/flat-equipment vitality aggregation, material quantities, and recipe discoveries now persist through the safe-point profile. No armor item currently supplies the prepared flat bonus; authored recipe outputs are data-only, while drops, selling, higher tiers, potions, and mana remain incomplete.
+- **Impact:** Ashwood/Iron ownership, explicit equip, Level-3 Eira awakening, Opaw's base/level/flat-equipment vitality aggregation, earned material quantities, first-clear claims, and recipe discoveries now persist through the safe-point profile. No armor item currently supplies the prepared flat bonus; authored recipe outputs are data-only, while crafting, selling, higher tiers, potions, and mana remain incomplete.
 - **Planned resolution:** Complete the approved loot/chest and crafting/equipment sequence plus authored armor/mana/potion rules before expanding acquisition/balance, then author slots 3-4 only alongside content that supports their power.
 - **Workaround:** Treat Ashwood/Iron, 140+12/level vitality, delayed baseline regeneration, and Eira's Skill 2 awakening as the complete persisted beginner slice. Do not expose legacy/high-tier previews, sell skills, or claim armor, lifesteal, critical, potion, or mana systems are implemented content.
 

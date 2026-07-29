@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://gameplay/audio/rootbound_husk_action_sfx.gd" id="14_sfx"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/enemies/rootbound_husk/rootbound_husk_root_eruption.wav" id="15_root_eruption"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/enemies/rootbound_husk/rootbound_husk_root_creak.wav" id="16_root_creak"]
+[ext_resource type="Resource" path="res://data/loot/forest/enemies/rootbound_husk_drop_profile.tres" id="17_drop"]
 
 [sub_resource type="CircleShape2D" id="foot"]
 radius = 16.0
@@ -84,6 +85,7 @@ script = ExtResource("8_health")
 [node name="EnemyRewardComponent" type="Node" parent="." unique_id=1523299580 node_paths=PackedStringArray("health_component")]
 script = ExtResource("13_rewards")
 health_component = NodePath("../HealthComponent")
+drop_profile = ExtResource("17_drop")
 
 [node name="ActionSfx" type="Node2D" parent="." unique_id=819672248 node_paths=PackedStringArray("wind_up_player", "eruption_player", "earth_player")]
 script = ExtResource("14_sfx")

@@ -30,6 +30,11 @@ func _ready() -> void:
 	):
 		push_error("SanctuaryFlow is missing a required hub dependency.")
 		return
+	var loot_service := get_node_or_null("/root/LootService")
+	if loot_service != null:
+		# Defensive rollback for any expedition transition that bypassed the
+		# authored chest commit or explicit Abandon flow.
+		loot_service.abort_expedition_rewards()
 	var story_state := get_node_or_null("/root/StoryState")
 	if story_state != null:
 		story_state.remember_story(&"awakened_in_sanctuary")

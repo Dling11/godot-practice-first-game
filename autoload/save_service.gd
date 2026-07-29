@@ -23,6 +23,7 @@ func create_profile_snapshot(safe_scene_path: String = DEFAULT_SAFE_SCENE) -> Di
 	if safe_scene_path != DEFAULT_SAFE_SCENE or not ResourceLoader.exists(safe_scene_path):
 		_report_error("SaveService currently supports only the Sanctuary safe scene.")
 		return {}
+	var loot_state := get_node("/root/LootState")
 	return {
 		"version": PROFILE_VERSION,
 		"safe_scene_path": safe_scene_path,
@@ -32,7 +33,7 @@ func create_profile_snapshot(safe_scene_path: String = DEFAULT_SAFE_SCENE) -> Di
 		"extensions": {
 			"material_inventory": MaterialInventory.create_snapshot(),
 			"recipe_discovery": RecipeDiscovery.create_snapshot(),
-			"stage_claims": {},
+			"stage_claims": loot_state.create_snapshot(),
 			"regional_progress": {},
 		},
 	}
@@ -99,6 +100,9 @@ func can_restore_profile(snapshot: Dictionary) -> bool:
 	var recipe_snapshot: Variant = (
 		extensions.get("recipe_discovery", {}) if extensions is Dictionary else {}
 	)
+	var stage_claim_snapshot: Variant = (
+		extensions.get("stage_claims", {}) if extensions is Dictionary else {}
+	)
 	return (
 		safe_scene_path is String
 		and String(safe_scene_path) == DEFAULT_SAFE_SCENE
@@ -112,6 +116,7 @@ func can_restore_profile(snapshot: Dictionary) -> bool:
 		and WeaponInventory.can_restore_snapshot(weapon_snapshot)
 		and _can_restore_material_extension(material_snapshot)
 		and _can_restore_recipe_extension(recipe_snapshot)
+		and _can_restore_stage_claim_extension(stage_claim_snapshot)
 	)
 
 
@@ -125,6 +130,8 @@ func restore_profile(snapshot: Dictionary) -> bool:
 	var extensions: Dictionary = snapshot["extensions"]
 	var material_snapshot: Dictionary = extensions["material_inventory"]
 	var recipe_snapshot: Dictionary = extensions["recipe_discovery"]
+	var stage_claim_snapshot: Dictionary = extensions["stage_claims"]
+	var loot_state := get_node("/root/LootState")
 	if material_snapshot.is_empty():
 		MaterialInventory.reset_inventory()
 	else:
@@ -133,6 +140,13 @@ func restore_profile(snapshot: Dictionary) -> bool:
 		RecipeDiscovery.reset_discoveries()
 	else:
 		RecipeDiscovery.restore_snapshot(recipe_snapshot)
+	if stage_claim_snapshot.is_empty():
+		loot_state.reset_state()
+	else:
+		loot_state.restore_snapshot(stage_claim_snapshot)
+	var loot_service := get_node_or_null("/root/LootService")
+	if loot_service != null:
+		loot_service.reset_expedition_tracking()
 	var safe_scene_path := String(snapshot["safe_scene_path"])
 	profile_restored.emit(safe_scene_path)
 	return true
@@ -270,6 +284,7 @@ func _has_core_authorities() -> bool:
 		and get_node_or_null("/root/WeaponInventory") != null
 		and get_node_or_null("/root/MaterialInventory") != null
 		and get_node_or_null("/root/RecipeDiscovery") != null
+		and get_node_or_null("/root/LootState") != null
 	)
 
 
@@ -284,4 +299,13 @@ func _can_restore_recipe_extension(snapshot: Variant) -> bool:
 	return (
 		snapshot is Dictionary
 		and (snapshot.is_empty() or RecipeDiscovery.can_restore_snapshot(snapshot))
+	)
+
+
+func _can_restore_stage_claim_extension(snapshot: Variant) -> bool:
+	var loot_state := get_node_or_null("/root/LootState")
+	return (
+		snapshot is Dictionary
+		and loot_state != null
+		and (snapshot.is_empty() or loot_state.can_restore_snapshot(snapshot))
 	)

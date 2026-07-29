@@ -30,6 +30,9 @@ func _run() -> void:
 	if controller.portal_target_scene != "res://levels/sanctuary/sanctuary.tscn":
 		_fail("Stage 3's post-mini-boss portal must return to Sanctuary.")
 		return
+	if controller.reward_chest_scene == null or controller.stage_loot_table == null:
+		_fail("Stage 3 must gate its return portal behind the authored clear chest.")
+		return
 	if 2 not in controller.gated_wave_numbers:
 		_fail("Stage 3 must gate the solo Husk until its skippable introduction closes.")
 		return

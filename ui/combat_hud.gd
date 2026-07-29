@@ -2,6 +2,10 @@ class_name CombatHUD
 extends Control
 
 const SkillBarSlotScene = preload("res://ui/skills/skill_bar_slot.tscn")
+const StageChestIcon = preload(
+	"res://assets/gameplay/loot/stage_clear_chest/"
+	+ "forest_stage_clear_chest_closed_64x48.png"
+)
 
 signal character_menu_requested
 
@@ -22,12 +26,18 @@ signal character_menu_requested
 @onready var character_menu_button: Button = %CharacterMenuButton
 @onready var options_button: Button = %OptionsButton
 @onready var dash_slot: DashBarSlot = %DashBarSlot
+@onready var loot_toast_panel: PanelContainer = %LootToastPanel
+@onready var loot_toast_icon: TextureRect = %LootToastIcon
+@onready var loot_toast_label: Label = %LootToastLabel
+@onready var loot_toast_source_label: Label = %LootToastSourceLabel
 
 var _blocked_tween: Tween
 var _player: Player
 var _spawn_tween: Tween
 var ability_panel: SkillBarSlot
 var _skill_slots: Array[SkillBarSlot] = []
+var _loot_notifications: Array[Dictionary] = []
+var _loot_toast_busy := false
 
 
 func _ready() -> void:
@@ -49,6 +59,19 @@ func bind_player(player: Player) -> void:
 	progression.coins_changed.connect(_update_coins)
 	player.testing_preset_applied.connect(_show_testing_preset)
 	player.skill_loadout_changed.connect(_on_skill_loadout_changed)
+	var loot_service := get_node_or_null("/root/LootService")
+	if (
+		loot_service != null
+		and not loot_service.material_granted.is_connected(_on_material_granted)
+	):
+		loot_service.material_granted.connect(_on_material_granted)
+	if (
+		loot_service != null
+		and not loot_service.stage_reward_granted.is_connected(
+			_on_stage_reward_granted
+		)
+	):
+		loot_service.stage_reward_granted.connect(_on_stage_reward_granted)
 	_update_progression(progression.level, progression.total_experience, 0)
 	_update_coins(progression.coins)
 
@@ -128,6 +151,10 @@ func show_reinforcement_warning(_delay_seconds: float) -> void:
 
 func show_stage_clear() -> void:
 	_show_announcement("STAGE CLEAR  •  PORTAL OPEN", 2.4)
+
+
+func show_reward_chest_ready(_global_position: Vector2) -> void:
+	_show_announcement("STAGE CLEAR  •  CLAIM THE FOREST CHEST", 2.2)
 
 
 func show_story_message(message: String, hold_seconds := 3.0) -> void:
@@ -210,3 +237,72 @@ func _on_options_button_pressed() -> void:
 	var pause_menu := get_tree().get_first_node_in_group("pause_menu") as PauseMenu
 	if pause_menu != null:
 		pause_menu.open_menu()
+
+
+func _on_material_granted(
+	material: MaterialDefinition,
+	quantity: int,
+	source_kind: StringName
+) -> void:
+	var source_text := "ENEMY DROP"
+	if source_kind == &"stage_chest":
+		source_text = "STAGE CHEST"
+	_queue_loot_notification(
+		material.icon,
+		"%s  ×%d" % [material.display_name.to_upper(), quantity],
+		source_text
+	)
+
+
+func _on_stage_reward_granted(result: Dictionary) -> void:
+	var materials: Array = result.get("materials", [])
+	var total_quantity := 0
+	for stack: Dictionary in materials:
+		total_quantity += int(stack.get("quantity", 0))
+	var recipe_ids: PackedStringArray = result.get(
+		"recipe_ids",
+		PackedStringArray()
+	)
+	var title := "%d MATERIALS" % total_quantity
+	if not recipe_ids.is_empty():
+		title += "  •  %d BLUEPRINTS" % recipe_ids.size()
+	_queue_loot_notification(
+		StageChestIcon,
+		title,
+		"FIRST CLEAR" if bool(result.get("first_clear", false)) else "REPLAY CHEST"
+	)
+
+
+func _queue_loot_notification(
+	icon: Texture2D,
+	title: String,
+	source_text: String
+) -> void:
+	_loot_notifications.append({
+		"icon": icon,
+		"title": title,
+		"source": source_text,
+	})
+	_play_next_loot_notification()
+
+
+func _play_next_loot_notification() -> void:
+	if _loot_toast_busy or _loot_notifications.is_empty() or not is_inside_tree():
+		return
+	_loot_toast_busy = true
+	var notification: Dictionary = _loot_notifications.pop_front()
+	loot_toast_icon.texture = notification.get("icon") as Texture2D
+	loot_toast_icon.visible = loot_toast_icon.texture != null
+	loot_toast_label.text = String(notification.get("title", "MATERIAL ACQUIRED"))
+	loot_toast_source_label.text = String(notification.get("source", "LOOT"))
+	loot_toast_panel.modulate.a = 0.0
+	loot_toast_panel.show()
+	var toast := create_tween()
+	toast.tween_property(loot_toast_panel, "modulate:a", 1.0, 0.12)
+	toast.tween_interval(1.05)
+	toast.tween_property(loot_toast_panel, "modulate:a", 0.0, 0.2)
+	await toast.finished
+	if is_instance_valid(loot_toast_panel):
+		loot_toast_panel.hide()
+	_loot_toast_busy = false
+	_play_next_loot_notification()

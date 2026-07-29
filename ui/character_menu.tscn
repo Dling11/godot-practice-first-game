@@ -362,8 +362,8 @@ sprite_frames = ExtResource("7_frames")
 animation = &"idle_down"
 
 [node name="WeaponGrip" type="Node2D" parent="Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas"]
-position = Vector2(77, 85)
-rotation = -0.45
+position = Vector2(53, 91)
+rotation = -0.42
 scale = Vector2(3.5, 3.5)
 
 [node name="WeaponPreview" type="Sprite2D" parent="Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas/WeaponGrip"]

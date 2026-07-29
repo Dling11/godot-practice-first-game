@@ -25,6 +25,13 @@ func _run() -> void:
 		if material_ids.has(material.material_id):
 			_fail("The Forest material catalog contains a duplicate stable ID.")
 			return
+		if (
+			material.icon == null
+			or material.icon.get_width() != 24
+			or material.icon.get_height() != 24
+		):
+			_fail("%s is missing its approved 24x24 icon." % material.display_name)
+			return
 		material_ids[material.material_id] = true
 	for expected_id: StringName in [
 		&"forest_mire_resin",

@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://bdyx4gw1xauu8" path="res://assets/audio/sfx/mireling_leap.wav" id="13"]
 [ext_resource type="AudioStream" uid="uid://dypav1hx0ser1" path="res://assets/audio/sfx/mireling_land.wav" id="14"]
 [ext_resource type="Script" uid="uid://c482dvqfbxph8" path="res://gameplay/combat/stagger_component.gd" id="15_stagger"]
+[ext_resource type="Resource" path="res://data/loot/forest/enemies/mireling_drop_profile.tres" id="16_drop"]
 
 [sub_resource type="CircleShape2D" id="foot"]
 radius = 6.0
@@ -68,6 +69,7 @@ script = ExtResource("5")
 [node name="EnemyRewardComponent" type="Node" parent="." unique_id=1768923426 node_paths=PackedStringArray("health_component")]
 script = ExtResource("11")
 health_component = NodePath("../HealthComponent")
+drop_profile = ExtResource("16_drop")
 
 [node name="ActionSfx" type="Node2D" parent="." unique_id=1993078642 node_paths=PackedStringArray("primary_player", "secondary_player")]
 script = ExtResource("12")

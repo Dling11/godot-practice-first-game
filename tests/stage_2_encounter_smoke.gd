@@ -26,6 +26,9 @@ func _run() -> void:
 	if controller.portal_target_scene != "res://levels/stage_3/stage_3.tscn":
 		_fail("Stage 2's clear portal must continue directly into Stage 3.")
 		return
+	if controller.reward_chest_scene == null or controller.stage_loot_table == null:
+		_fail("Stage 2 must gate its portal behind the authored clear chest.")
+		return
 	var first_wave := controller.waves[0] as EncounterWaveDefinition
 	var second_wave := controller.waves[1] as EncounterWaveDefinition
 	var rootling_lesson := controller.waves[2] as EncounterWaveDefinition

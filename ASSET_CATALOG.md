@@ -200,7 +200,7 @@ Current UI visuals combine the approved reusable base theme and named pixel icon
 
 | Canonical ID | Current path | Status | Purpose |
 |---|---|---|---|
-| `ui_combat_hud` | `ui/combat_hud.tscn` | `active_resource` | Vitality, progression, Menu entry, interaction prompt, and one compact action tray with dash visually separated from skills 1-4. |
+| `ui_combat_hud` | `ui/combat_hud.tscn` | `active_resource` | Vitality, progression, Menu entry, interaction prompt, compact action tray, and upper-right material/chest reward toast. |
 | `ui_character_menu` | `ui/character_menu.tscn` | `active_resource` | Paused Character & Bag and Active Skills surface for Opaw. |
 | `ui_player_level_up_feedback` | `entities/player/presentation/player_level_up_visual.gd` | `active_resource` | Small actor glow and rising overhead level label; no center-screen panel. |
 | `ui_weapon_shop_menu` | `ui/shops/weapon_shop_menu.tscn` | `active_resource` | Orren's paused class-aware weapon purchase surface. |
@@ -262,6 +262,27 @@ The icons are reproducibly built by `tools/build_ui_icon_kit.gd` from the approv
 The Ashwood Blade originates at `art_source/generated/items/weapons/ashwood_blade/ashwood_blade_source.png`; its cleaned intermediate is preserved beside it. `tools/process_opaw_modular_assets.gd` produces both the 16x24 world texture and the 64x64 inventory icon with binary alpha and compact palettes. Iron Sword follows the same runtime contract: its generated chroma-key source and cleaned intermediate live under `art_source/generated/items/weapons/iron_sword/`, and `tools/process_iron_sword.gd` deterministically emits both active textures. Rarity borders, labels, and aura animation are not baked into item art.
 
 The four legacy portraits originate from `art_source/generated/items/weapons/equipment_weapon_atlas_source.png`; the chroma-cleaned board and `tools/process_equipment_weapon_atlas.gd` remain preserved for provenance but must not restore active player-facing references without a new equipment decision.
+
+### Active Forest Loot and Material Art
+
+| Canonical ID | Runtime path | Status | Contract and owner |
+|---|---|---|---|
+| `material_forest_mire_resin` | `assets/items/materials/forest/mire_resin_24x24.png` | `active_runtime` | Distinct 24x24 Mireling resin icon referenced by `mire_resin.tres`. |
+| `material_forest_mire_membrane` | `assets/items/materials/forest/mire_membrane_24x24.png` | `active_runtime` | Distinct 24x24 Mireling membrane icon referenced by `mire_membrane.tres`. |
+| `material_forest_root_fiber` | `assets/items/materials/forest/root_fiber_24x24.png` | `active_runtime` | Distinct 24x24 Rootling fiber bundle referenced by `root_fiber.tres`. |
+| `material_forest_young_heartwood` | `assets/items/materials/forest/young_heartwood_24x24.png` | `active_runtime` | Distinct 24x24 young heartwood icon referenced by `young_heartwood.tres`. |
+| `material_forest_forsaken_cloth` | `assets/items/materials/forest/forsaken_cloth_24x24.png` | `active_runtime` | Distinct 24x24 Thrall cloth icon referenced by `forsaken_cloth.tres`. |
+| `material_forest_weathered_fittings` | `assets/items/materials/forest/weathered_fittings_24x24.png` | `active_runtime` | Distinct 24x24 fittings icon referenced by `weathered_fittings.tres`. |
+| `material_forest_barbed_seed` | `assets/items/materials/forest/barbed_seed_24x24.png` | `active_runtime` | Distinct 24x24 Bramble seed icon referenced by `barbed_seed.tres`. |
+| `material_forest_thorn_sap` | `assets/items/materials/forest/thorn_sap_24x24.png` | `active_runtime` | Distinct 24x24 thorn-sap vial icon referenced by `thorn_sap.tres`. |
+| `material_forest_husk_heartwood` | `assets/items/materials/forest/husk_heartwood_24x24.png` | `active_runtime` | Distinct 24x24 Husk heartwood icon referenced by `husk_heartwood.tres`. |
+| `material_forest_rootbound_core` | `assets/items/materials/forest/rootbound_core_24x24.png` | `active_runtime` | Original-signature 24x24 boss core icon referenced by `rootbound_core.tres`. |
+| `prop_forest_stage_clear_chest_closed` | `assets/gameplay/loot/stage_clear_chest/forest_stage_clear_chest_closed_64x48.png` | `active_runtime` | Closed 64x48 Forest reward chest used by `StageRewardChest` and its HUD prompt. |
+| `prop_forest_stage_clear_chest_open` | `assets/gameplay/loot/stage_clear_chest/forest_stage_clear_chest_open_64x48.png` | `active_runtime` | Open 64x48 claim-success state used by `StageRewardChest`. |
+| `gameplay_material_pickup` | `gameplay/loot/material_pickup.tscn` | `active_resource` | World-space pop/glow/quantity/contact presentation for an already-resolved stack. |
+| `gameplay_stage_reward_chest` | `gameplay/loot/stage_reward_chest.tscn` | `active_resource` | Explicit interaction and closed/open presentation for one authoritative stage-table claim. |
+
+The ten icons originate from the built-in image generation source board at `art_source/generated/items/materials/forest/forest_material_icon_board_chroma_source.png`. The chroma-clean intermediate is retained at `art_source/cleaned/items/materials/forest/forest_material_icon_board_transparent.png`, and the accepted 5x2 native-scale review sheet is `art_source/review/items/materials/forest/forest_material_icons_5x2_24x24.png`. The Forest chest follows the same preserved pipeline under `art_source/generated/gameplay/loot/stage_clear_chest/` and `art_source/cleaned/gameplay/loot/stage_clear_chest/`. All runtime textures use nearest-neighbor normalization and binary alpha; labels, quantities, rarity colors, and reward rules remain data/UI responsibilities.
 
 ## Planned Reusable UI Kit
 

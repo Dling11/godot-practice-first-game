@@ -65,6 +65,9 @@ func return_to_sanctuary() -> void:
 	if transition_service == null:
 		push_error("PauseMenu requires the SceneTransition autoload.")
 		return
+	var loot_service := get_node_or_null("/root/LootService")
+	if loot_service != null:
+		loot_service.abort_expedition_rewards()
 	transition_service.transition_to(sanctuary_scene)
 
 

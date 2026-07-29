@@ -105,6 +105,8 @@ func _set_profile_a() -> void:
 	root.get_node("StoryState").remember_story(&"profile_a")
 	root.get_node("MaterialInventory").add_material(&"forest_root_fiber", 2)
 	root.get_node("RecipeDiscovery").discover_recipe(&"forest_rootfiber_wraps")
+	root.get_node("LootState").claim_first_clear(&"forest_stage_1_first_clear_claim")
+	root.get_node("LootState").record_bad_luck_result(&"profile_a_misses", false)
 
 
 func _set_profile_b() -> void:
@@ -117,6 +119,7 @@ func _set_profile_b() -> void:
 	weapon_inventory.equip_weapon(&"opaw", &"warrior", IronSword)
 	root.get_node("MaterialInventory").add_material(&"forest_thorn_sap", 4)
 	root.get_node("RecipeDiscovery").discover_recipe(&"forest_thornward_clasp")
+	root.get_node("LootState").claim_first_clear(&"forest_stage_2_first_clear_claim")
 
 
 func _matches_profile_a() -> bool:
@@ -130,6 +133,10 @@ func _matches_profile_a() -> bool:
 		and root.get_node("MaterialInventory").get_quantity(&"forest_thorn_sap") == 0
 		and root.get_node("RecipeDiscovery").is_recipe_discovered(&"forest_rootfiber_wraps")
 		and not root.get_node("RecipeDiscovery").is_recipe_discovered(&"forest_thornward_clasp")
+		and root.get_node("LootState").has_first_clear_claim(
+			&"forest_stage_1_first_clear_claim"
+		)
+		and root.get_node("LootState").get_bad_luck_misses(&"profile_a_misses") == 1
 	)
 
 
@@ -146,6 +153,12 @@ func _matches_profile_b() -> bool:
 		and root.get_node("MaterialInventory").get_quantity(&"forest_root_fiber") == 0
 		and root.get_node("RecipeDiscovery").is_recipe_discovered(&"forest_thornward_clasp")
 		and not root.get_node("RecipeDiscovery").is_recipe_discovered(&"forest_rootfiber_wraps")
+		and root.get_node("LootState").has_first_clear_claim(
+			&"forest_stage_2_first_clear_claim"
+		)
+		and not root.get_node("LootState").has_first_clear_claim(
+			&"forest_stage_1_first_clear_claim"
+		)
 	)
 
 
@@ -155,6 +168,8 @@ func _reset_live_state() -> void:
 	root.get_node("WeaponInventory").reset_inventory()
 	root.get_node("MaterialInventory").reset_inventory()
 	root.get_node("RecipeDiscovery").reset_discoveries()
+	root.get_node("LootState").reset_state()
+	root.get_node("LootService").reset_expedition_tracking()
 
 
 func _cleanup() -> void:

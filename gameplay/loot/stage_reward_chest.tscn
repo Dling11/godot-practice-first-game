@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://gameplay/loot/stage_reward_chest.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/gameplay/loot/stage_clear_chest/forest_stage_clear_chest_closed_64x48.png" id="2_closed"]
+[ext_resource type="Texture2D" path="res://assets/gameplay/loot/stage_clear_chest/forest_stage_clear_chest_open_64x48.png" id="3_open"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chest"]
+size = Vector2(52, 30)
+
+[node name="StageRewardChest" type="Area2D" node_paths=PackedStringArray("chest_sprite", "glow")]
+z_index = 4
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_script")
+chest_sprite = NodePath("Chest")
+closed_texture = ExtResource("2_closed")
+open_texture = ExtResource("3_open")
+glow = NodePath("Glow")
+
+[node name="Glow" type="Polygon2D" parent="."]
+position = Vector2(0, -10)
+polygon = PackedVector2Array(0, -28, 30, -18, 38, 0, 30, 18, 0, 28, -30, 18, -38, 0, -30, -18)
+color = Color(0.84, 0.68, 0.26, 0.26)
+
+[node name="Chest" type="Sprite2D" parent="."]
+position = Vector2(0, -20)
+texture = ExtResource("2_closed")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_chest")

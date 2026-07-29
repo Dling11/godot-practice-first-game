@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="MaterialDefinition" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="MaterialDefinition" load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://data/items/materials/material_definition.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/items/materials/forest/mire_membrane_24x24.png" id="2_icon"]
 
 [resource]
 script = ExtResource("1")
@@ -10,5 +11,6 @@ description = "A flexible, water-resistant membrane suited to light protective l
 region_id = &"forest"
 material_family = 8
 rarity = 1
+icon = ExtResource("2_icon")
 crafting_tags = PackedStringArray("mire", "membrane", "flexible", "resistance")
 source_lore = "The membrane lets Mirelings compress before their sudden body-slam."

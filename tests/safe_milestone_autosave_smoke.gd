@@ -19,6 +19,10 @@ func _run() -> void:
 	root.get_node("RunSession").reset_run()
 	root.get_node("StoryState").reset_story()
 	root.get_node("WeaponInventory").reset_inventory()
+	root.get_node("MaterialInventory").reset_inventory()
+	root.get_node("RecipeDiscovery").reset_discoveries()
+	root.get_node("LootState").reset_state()
+	root.get_node("LootService").reset_expedition_tracking()
 
 	var stage := Stage1Scene.instantiate()
 	root.add_child(stage)

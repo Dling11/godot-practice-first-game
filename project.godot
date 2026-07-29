@@ -23,6 +23,8 @@ StoryState="*res://autoload/story_state.gd"
 WeaponInventory="*res://autoload/weapon_inventory.gd"
 MaterialInventory="*res://autoload/material_inventory.gd"
 RecipeDiscovery="*res://autoload/recipe_discovery.gd"
+LootState="*res://autoload/loot_state.gd"
+LootService="*res://autoload/loot_service.gd"
 SaveService="*res://autoload/save_service.gd"
 
 [display]

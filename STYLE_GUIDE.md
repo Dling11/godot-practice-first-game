@@ -86,6 +86,7 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - Use `_process()` only for frame-dependent presentation or logic that truly needs it.
 - Prefer signals, timers, animation callbacks, and explicit state transitions over permanent polling.
 - Make delta usage explicit and avoid frame-rate-dependent gameplay behavior.
+- When an `Area2D` collection/overlap callback needs to change `monitoring` or `monitorable`, use `set_deferred()`; the physics server blocks direct changes while flushing enter/exit signals. Keep a synchronous logical guard so a deferred disable cannot double-grant the interaction.
 - Keep action buffers actor-owned, non-stacking, and bounded to explicit state transitions. Snapshot any required direction/target when input is accepted, expose phase-specific cancel methods instead of broadly resetting a state machine, and regression-test that damage and invulnerability never overlap unintentionally.
 - Ability data may declare activation mode, presentation style, authoritative shape, flat/weapon scaling, and phase movement. Snapshot resolved combat values at cast acceptance; actor controllers consume movement, hitboxes consume contacts/damage, and skill visuals/HUD/audio only observe those states.
 - Aggregate character/level/equipment maximum-health inputs in a player stat component, then apply the result through `HealthComponent`. Cross-scene current-health memory may live in the narrow run-session service, but every restore, heal, regeneration tick, and damage event must still pass through `HealthComponent`. Prefer damage-reset timers plus discrete healing ticks over per-frame regeneration. Armor UI, level banners, and potion presentation must not become health authority. Keep future mana in a separate resource/component unless an approved shared-stat contract proves necessary.
@@ -102,6 +103,7 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - Activate a reserved profile extension through its own versioned authority. Preserve explicitly supported legacy-empty sections as clean default state, validate every extension before any authority mutates, and add disk reconstruction plus corruption coverage in the same change.
 - Immutable content Resources own stable IDs and authored quantities; global catalogs reject invalid definitions and duplicate IDs. Mutable inventories store only known IDs and plain values, never `Resource` instances or display labels. Recipe discovery remains separate from story flags unless a recipe is itself a narrative key item.
 - Enemy controllers, stage scenes, chest UI, and crafting UI may reference definitions or submit requests, but they must not roll rewards, edit material dictionaries, consume recipe costs, or write profiles directly.
+- Resolve enemy/stage reward definitions through one gameplay authority, combine repeated material stacks before presentation, and grant only through the owning inventory authority. World pickups present and collect an already-resolved stack; a stage chest requests one idempotent table claim; HUD toasts only observe successful grants.
 
 ## Assets and Pixel Art
 

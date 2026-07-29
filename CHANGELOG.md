@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-07-29 - Forest Loot, Pickups, and Stage-Clear Chests
+
+- Completed Forest production Segment 3 by connecting all five current enemy scenes to their immutable ecology-linked drop profiles through centralized `LootService` resolution.
+- Added world-space material pickups with pop/glow/quantity presentation, contact collection, upper-right HUD toasts, combined stacks, optional-drop bad-luck protection, and a guaranteed Rootbound Core from the Husk.
+- Added a reusable closed/open Forest reward chest to Stages I-III. The final wave now spawns the chest; explicit `F` claim grants a guaranteed non-empty first-clear or replay table and only then opens the existing portal.
+- Added `LootState` for versioned first-clear claim IDs and protection counters, activated the save profile's `stage_claims` extension with legacy-empty compatibility, and made New Journey reset it.
+- Added expedition reward baselines: material/recipe/claim deltas commit at successful chest claim and roll back on defeat, restart, Return to Sanctuary, or a defensive unclaimed Sanctuary return.
+- Produced ten distinct binary-alpha 24x24 Forest material icons and a 64x48 closed/open Forest chest pair from preserved built-in image-generation source boards; connected every material definition to its runtime texture.
+- Added atomic material batch grants, first-clear blueprint/discovery delivery, replay reward selection, and readable chest/material reward summaries without activating crafting outputs.
+- Fixed pickup collection to defer `Area2D.monitoring` changes during physics overlap callbacks.
+- Added focused loot-resolution coverage and expanded material, stage, save-profile, disk-recovery, safe-milestone, Character & Bag, and HUD validation.
+
 ## 2026-07-29 - Character and Bag Inventory Redesign
 
 - Replaced the oversized Gear/Armory card layout with a themed `CHARACTER & BAG` page built around Opaw's canonical live sprite and detached weapon pose.
@@ -7,6 +19,8 @@
 - Connected the grid only to real `WeaponInventory` ownership and nonzero `MaterialInventory` quantities. Equipment counts toward the displayed 24-slot capacity; crafting materials remain in a capacity-free pouch.
 - Extended the shared detail panel with read-only material family, rarity, quantity, source, and description presentation while preserving explicit safe weapon equip through `Player`.
 - Added family-glyph fallbacks for materials whose approved runtime icons have not been produced, retained honest empty future categories, and documented Sanctuary stash/discard/final icon work as pending.
+- Moved the live Character & Bag preview grip left so the sword tip stays outside Opaw's face without changing gameplay weapon anchors.
+- Added non-saving F9 material samples through `MaterialInventory` so every current material/filter/detail state can be tested before normal loot acquisition exists.
 - Removed the unreferenced oversized `EquipmentItemCard` scene/script after the compact slot replaced it, and kept design mockups outside Godot imports.
 - Updated character-menu and weapon-shop regression coverage, validated 960x540 modal bounds, and recorded ADR 065.
 

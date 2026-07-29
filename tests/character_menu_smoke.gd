@@ -65,6 +65,13 @@ func _run() -> void:
 	if preview_body.sprite_frames != CompactOpawFrames:
 		_fail("Character menu preview is not using Opaw's active compact armless model.")
 		return
+	var preview_grip := menu.get_node(
+		"Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/"
+		+ "PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas/WeaponGrip"
+	) as Node2D
+	if preview_grip.position.x > 55.0 or preview_grip.rotation > -0.35:
+		_fail("Character preview sword no longer keeps its hilt left of Opaw with the tip outward.")
+		return
 	if menu._equipment_slot_cards.size() != 7 or not menu.gear_page.visible or menu.skills_page.visible:
 		_fail("Character menu did not open on the seven-position Character & Bag page.")
 		return
@@ -161,9 +168,10 @@ func _run() -> void:
 		or menu._skill_cards[1].slot_definition.ability != player.ability_2_component.definition
 		or not menu._skill_cards[1].text.contains("CONSECUTIVE THRUST")
 		or menu._equipment_cards.size() != player.weapon_catalog.weapons.size()
+		or menu._material_cards.size() != MaterialInventory.MaterialCatalog.materials.size()
 		or menu.vitality_label.text != "HP 248/248"
 	):
-		_fail("F9 did not refresh the menu with complete skills, gear, and Level-10 vitality.")
+		_fail("F9 did not refresh complete skills, gear, material samples, and Level-10 vitality.")
 		return
 	if menu._skill_cards[0].get_node_or_null(menu._skill_cards[0].focus_neighbor_right) != menu._skill_cards[1]:
 		_fail("Character skill cards do not provide explicit directional focus navigation.")

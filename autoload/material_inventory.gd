@@ -20,6 +20,20 @@ func reset_inventory() -> void:
 	inventory_reset.emit()
 
 
+func apply_debug_testing_preset() -> void:
+	## F9 makes the saved-material UI testable before normal loot resolution
+	## exists. Autosave is suppressed by Player before this mutation.
+	var changed := false
+	for index in MaterialCatalog.materials.size():
+		var material: MaterialDefinition = MaterialCatalog.materials[index]
+		if get_quantity(material.material_id) > 0:
+			continue
+		_quantities[material.material_id] = 3 + index
+		changed = true
+	if changed:
+		inventory_reset.emit()
+
+
 func get_quantity(material_id: StringName) -> int:
 	return int(_quantities.get(material_id, 0))
 
@@ -38,6 +52,38 @@ func add_material(material_id: StringName, quantity: int) -> bool:
 	var updated_quantity := get_quantity(material_id) + quantity
 	_quantities[material_id] = updated_quantity
 	material_quantity_changed.emit(material_id, updated_quantity)
+	return true
+
+
+func can_add_material_batch(quantities: Dictionary) -> bool:
+	if quantities.is_empty():
+		return false
+	for raw_material_id: Variant in quantities:
+		if not (raw_material_id is String or raw_material_id is StringName):
+			return false
+		var material_id := StringName(String(raw_material_id))
+		var raw_quantity: Variant = quantities[raw_material_id]
+		if (
+			not _is_positive_integer(raw_quantity)
+			or not MaterialCatalog.has_material(material_id)
+			or get_quantity(material_id) > MAX_MATERIAL_QUANTITY - int(raw_quantity)
+		):
+			return false
+	return true
+
+
+func add_material_batch(quantities: Dictionary) -> bool:
+	if not can_add_material_batch(quantities):
+		return false
+	var material_ids := PackedStringArray()
+	for raw_material_id: Variant in quantities:
+		material_ids.append(String(raw_material_id))
+	material_ids.sort()
+	for raw_material_id: String in material_ids:
+		var material_id := StringName(raw_material_id)
+		var updated_quantity := get_quantity(material_id) + int(quantities[raw_material_id])
+		_quantities[material_id] = updated_quantity
+		material_quantity_changed.emit(material_id, updated_quantity)
 	return true
 
 

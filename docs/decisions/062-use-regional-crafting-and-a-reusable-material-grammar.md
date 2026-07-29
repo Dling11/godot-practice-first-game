@@ -1,6 +1,6 @@
 # Decision 062: Use Regional Crafting and a Reusable Material Grammar
 
-- **Status:** Accepted design; runtime implementation pending
+- **Status:** Accepted; Segments 1-3 implemented, Segments 4-8 pending
 - **Date:** 2026-07-26
 
 ## Context
@@ -25,7 +25,7 @@ Each monster's visible ecology, combat behavior, drops, and recipes are designed
 
 Material art uses exact reuse for universal items, template reuse for shared physical families, and original silhouettes for unique/boss/story items. Labels and rarity frames remain UI data. Material icons use 24x24 runtime art; equipment portraits remain 64x64. Later regions primarily use new-region materials while retaining limited universal/older inputs. Palette-only enemy variants and `Leather+` naming are rejected.
 
-Save/Continue precedes loot implementation. Planned mutable authorities are `MaterialInventory`, `CraftingService`, existing progression/story/equipment services, and a versioned `SaveService`; UI and chest presentation only submit intent and observe results. A separate Sanctuary Rootweaver/Grove Artificer handles crafting while Orren retains ordinary weapon merchant/equip responsibility.
+Save/Continue precedes loot implementation. Implemented mutable authorities are `MaterialInventory`, `RecipeDiscovery`, `LootState`, existing progression/story/equipment services, and a versioned `SaveService`; centralized `LootService` resolves immutable enemy/stage tables while UI, pickups, and chest presentation only submit intent and observe results. A separate Sanctuary Rootweaver/Grove Artificer will handle crafting while Orren retains ordinary weapon merchant/equip responsibility.
 
 Character levels expand by controlled regional decisions rather than infinite raw-stat scaling. Optional post-cap Mastery must use bounded utility/crafting/cosmetic rewards. Later stages may expect partial crafted gear but cannot become opaque mandatory stat walls.
 
@@ -35,4 +35,5 @@ Character levels expand by controlled regional decisions rather than infinite ra
 - Future monsters and materials must satisfy a complete content contract before generation.
 - Region 2 can reuse icon/animation/system grammar without cheap recolors or duplicate infrastructure.
 - Save schema and folder structure can anticipate materials, recipes, blueprints, and boss catalysts.
-- Loot, crafting, chests, Rootweaver, Hunts, Mastery, and Stages 4-20 remain planned until their segments pass implementation and validation.
+- Stages I-III now provide illustrated enemy drops, protected optional rolls, guaranteed first-clear/replay chests, saved idempotent claims, and rollback of uncommitted expedition rewards.
+- Crafting, Rootweaver, Hunts, Mastery, and Stages 4-20 remain planned until their segments pass implementation and validation.

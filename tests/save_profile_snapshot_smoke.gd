@@ -13,17 +13,20 @@ func _run() -> void:
 	var run_session := root.get_node("RunSession")
 	var story_state := root.get_node("StoryState")
 	var weapon_inventory := root.get_node("WeaponInventory")
+	var loot_state := root.get_node("LootState")
 	var save_service := root.get_node("SaveService")
 
 	run_session.reset_run()
 	story_state.reset_story()
 	weapon_inventory.reset_inventory()
+	loot_state.reset_state()
 	run_session.update_progression(725, 113)
 	run_session.update_player_health(92.0)
 	story_state.remember_story(&"forgotten_grove_completed")
 	story_state.record_boss_victory(&"rootbound_husk")
 	weapon_inventory.acquire_weapon(IronSword)
 	weapon_inventory.equip_weapon(&"opaw", &"warrior", IronSword)
+	loot_state.claim_first_clear(&"forest_stage_3_first_clear_claim")
 
 	var snapshot: Dictionary = save_service.create_profile_snapshot()
 	if snapshot.get("version", -1) != save_service.PROFILE_VERSION:
@@ -43,6 +46,7 @@ func _run() -> void:
 	run_session.reset_run()
 	story_state.reset_story()
 	weapon_inventory.reset_inventory()
+	loot_state.reset_state()
 	if not save_service.restore_profile(snapshot):
 		_fail("A valid core profile snapshot could not be restored.")
 		return
@@ -64,6 +68,9 @@ func _run() -> void:
 		or weapon_inventory.get_equipped_weapon_id(&"opaw", &"") != IronSword.item_id
 	):
 		_fail("WeaponInventory did not restore ownership and equipped state.")
+		return
+	if not loot_state.has_first_clear_claim(&"forest_stage_3_first_clear_claim"):
+		_fail("LootState did not restore first-clear reward ownership.")
 		return
 
 	var invalid_snapshot := snapshot.duplicate(true)

@@ -10,6 +10,8 @@ signal enemy_spawned(global_position: Vector2)
 signal reinforcement_announced(delay_seconds: float)
 signal inter_wave_gate_requested(next_wave_number: int)
 signal inter_wave_gate_released
+signal reward_chest_spawned(global_position: Vector2)
+signal stage_reward_claimed(result: Dictionary)
 
 @export var player: Player
 @export var actors: Node2D
@@ -24,6 +26,9 @@ signal inter_wave_gate_released
 @export var portal_parent: Node2D
 @export var portal_spawn_point: Marker2D
 @export_file("*.tscn") var portal_target_scene := ""
+@export var reward_chest_scene: PackedScene
+@export var stage_loot_table: LootTableDefinition
+@export var reward_chest_offset := Vector2(0.0, 52.0)
 @export var summon_effect_scene: PackedScene
 @export var effects_parent: Node2D
 @export var projectiles_parent: Node2D
@@ -43,6 +48,7 @@ var _current_wave: EncounterWaveDefinition
 var _initial_batch_active := false
 var _reinforcement_pending := false
 var _inter_wave_gate_active := false
+var _completion_spawned := false
 
 
 func _ready() -> void:
@@ -78,7 +84,7 @@ func _start_encounter() -> void:
 func _advance_wave() -> void:
 	wave_index += 1
 	if wave_index >= waves.size():
-		_spawn_portal()
+		_spawn_stage_reward()
 		return
 	var wave := waves[wave_index] as EncounterWaveDefinition
 	_current_wave = wave
@@ -202,3 +208,36 @@ func _spawn_portal() -> void:
 		portal_prompt_changed.emit(is_near, prompt_text, prompt_icon)
 	)
 	stage_cleared.emit()
+
+
+func _spawn_stage_reward() -> void:
+	if _completion_spawned:
+		return
+	_completion_spawned = true
+	if (
+		reward_chest_scene == null
+		or stage_loot_table == null
+		or not stage_loot_table.has_valid_layout()
+		or portal_parent == null
+		or portal_spawn_point == null
+	):
+		push_warning(
+			"EncounterController has no valid stage reward chest; opening the portal directly."
+		)
+		_spawn_portal()
+		return
+	var chest := reward_chest_scene.instantiate() as StageRewardChest
+	chest.configure(stage_loot_table)
+	portal_parent.add_child(chest)
+	chest.global_position = portal_spawn_point.global_position + reward_chest_offset
+	chest.proximity_changed.connect(
+		func(is_near: bool, prompt_text: String, prompt_icon: Texture2D) -> void:
+			portal_prompt_changed.emit(is_near, prompt_text, prompt_icon)
+	)
+	chest.reward_claimed.connect(_on_stage_reward_claimed)
+	reward_chest_spawned.emit(chest.global_position)
+
+
+func _on_stage_reward_claimed(result: Dictionary) -> void:
+	stage_reward_claimed.emit(result)
+	_spawn_portal()
