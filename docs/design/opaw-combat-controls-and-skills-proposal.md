@@ -1,13 +1,14 @@
 # Opaw Combat Controls and Skills Proposal
 
 - **Date:** 2026-07-18
-- **Status:** Movement-facing, left-click basic attack, dash-to-attack chaining, F9 test loadouts, clickable immediate-direction activation, weapon scaling, Piercing Rush, and Eira-awakened Consecutive Thrust are implemented. Ground targeting, Skills 3-4, exact future balance, and encounter pacing remain proposals.
+- **Status:** Implemented Opaw migration baseline. Movement-facing, left-click basic attack, direction-locked contact, dash-to-attack chaining, F9 test loadouts, clickable immediate-direction activation, weapon scaling, Piercing Rush, and Eira-awakened Consecutive Thrust work today. Decision 071 supersedes future Opaw kit expansion with King's character-owned real combo, skills, cinematic ultimate, and essence equipment; Ground targeting remains a reusable future proposal.
 
 ## Player Direction
 
 - WASD/left-stick movement becomes Opaw's combat-facing authority.
 - Moving diagonally remains allowed, but four-direction art resolves facing from the dominant movement axis and retains the last non-zero cardinal direction while standing.
 - Ordinary mouse motion no longer rotates Opaw or redirects basic attacks.
+- Once a basic attack is accepted, later movement input cannot rotate its body/weapon/hitbox pivot; the newest facing applies after recovery.
 - Left mouse remains basic attack. The current three-swing outward/reverse/finish sequence remains the basic sword chain; right mouse is unassigned for a future reviewed action.
 - Mouse input remains fully available for UI, clickable HUD skills, and explicit ground-targeting modes.
 
@@ -28,6 +29,7 @@ While a ground-targeted skill is pending, gameplay continues and Opaw may move. 
 - Left-click.
 - Current three visual variants remain: outward slash, reverse return, extended finish.
 - Equipped sword owns authoritative base damage and knockback.
+- This is presentation variety, not a damage combo. King's planned attack-chain data replaces it only after the migration gates pass.
 
 ### Skill 1 — Piercing Rush
 

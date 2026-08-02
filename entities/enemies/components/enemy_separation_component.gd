@@ -5,6 +5,17 @@ extends Area2D
 @export_range(1.0, 100.0, 1.0, "suffix:px") var separation_radius := 30.0
 
 
+func configure_radius(value: float) -> void:
+	separation_radius = maxf(value, 1.0)
+	var detection_shape := get_node_or_null("DetectionShape") as CollisionShape2D
+	if detection_shape == null or not detection_shape.shape is CircleShape2D:
+		push_error("EnemySeparationComponent requires a circular DetectionShape.")
+		return
+	var runtime_shape := detection_shape.shape.duplicate() as CircleShape2D
+	runtime_shape.radius = separation_radius
+	detection_shape.shape = runtime_shape
+
+
 func blend_direction(actor: CharacterBody2D, desired_direction: Vector2) -> Vector2:
 	var repulsion := Vector2.ZERO
 	for body in get_overlapping_bodies():

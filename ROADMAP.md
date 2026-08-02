@@ -4,13 +4,17 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 
 ## Completed
 
-- Completed Forest production Segment 4: Rootweaver Nema now occupies a collision-reviewed southwest Living Rootforge with an approved compact eight-frame actor, reusable 96x96 portrait, original timed forge strike, three-line dialogue, and a paused read-only recipe/material preview. The shell exposes all four current recipes and exact owned/required quantities while keeping blueprint, seal, output, inventory, and save mutations impossible.
+- Locked accepted basic attacks to their snapshotted cardinal direction: changing movement during wind-up/active/recovery no longer rotates `SwordPivot` or the authoritative melee hit shape, and the latest facing is applied only after the attack finishes. Focused combat, dash, ability-buffer, sword-style, Piercing Rush, and Consecutive Thrust tests pass.
+- Accepted Decisions 071-072: Battle of Gods moves toward character-owned visible combat, real data-driven combos, cinematic character ultimates, and essence/relic equipment while preserving Opaw, his current skills, and his regression-tested presentation as supported roster content.
+- Completed the Rootweaver presentation/layout correction: Nema's compact eight-frame actor now faces screen-left toward her work with complete boots, connected tools, binary alpha, and four-pixel lower safety margins; Nema and the Living Rootforge moved from the bottom edge into the collision-reviewed west-mid garden while the central avenue and already-northern expedition portal remain clear.
+- Centralized the five current enemy movement footprints: `EnemyDefinition` now owns physical/navigation and crowd-separation radii, `EnemyFootprintSystem` applies them per instance, and focused coverage protects 6-pixel small, 7-pixel medium, and 16-pixel Husk archetypes without changing hurtboxes or attack shapes.
+- Completed Forest production Segment 4: Rootweaver Nema now occupies a collision-reviewed west-mid Living Rootforge with an approved compact eight-frame actor, reusable 96x96 portrait, original timed forge strike, three-line dialogue, and a paused read-only recipe/material preview. The shell exposes all four current recipes and exact owned/required quantities while keeping blueprint, seal, output, inventory, and save mutations impossible.
 - Retuned the implemented Forest reward loop around milestone value: ordinary common/secondary materials now use sparse 15-25%/5-10% protected rolls, pickups hop, hover, and magnetically auto-collect, Stages I-II bank collected loot and open their portals without chests, and Stage III awards a distinct Rootbound Reliquary of regular pooled materials alongside guaranteed Husk boss drops.
 - Completed Forest production Segment 3: the five current enemies resolve authored drops through centralized `LootService`, world pickups use ten distinct 24x24 Forest icons, and bad-luck counters/idempotent claims persist through `LootState`. Compact HUD toasts show grants; uncommitted expedition loot rolls back on defeat or abandon. Direct ordinary-stage clear or a successful milestone-chest claim commits rewards before the existing stage-clear autosave.
 - Rebuilt the paused equipment surface as `CHARACTER & BAG`: seven equipment positions surround Opaw's canonical live sprite and corrected outward-facing weapon pose; one compact 24-slot grid presents real owned weapons and capacity-free saved material stacks; five filters prepare later categories; and one detail panel supports explicit weapon equip or read-only material inspection. F9 still supplies non-saving material samples for isolated UI tests, while ordinary play now supplies real drops. Sanctuary stash transfer, discard, and non-weapon equipment remain planned.
 - Completed Forest production Segment 2: ten stable Forest material definitions, global duplicate-safe catalogs, five current-enemy drop profiles, one current Stage III milestone-reward table, four deterministic starter recipe blueprints, profile-backed `MaterialInventory`, dedicated `RecipeDiscovery`, legacy-empty-extension compatibility, and focused data/snapshot/disk validation. Segment 3 now consumes these contracts; crafting remains inactive.
 - Completed Forest production Segment 1: one versioned JSON autosave under `user://`, validated temporary writes, rotating backup and corrupt-primary recovery, safe Sanctuary/stage-clear/service checkpoints, title-screen Continue, guarded New Journey replacement, isolated headless persistence tests, and Sanctuary-only resume without scene-tree serialization.
-- Approved the replayable Forest Stages 1-10 Fight -> Loot -> Craft -> Build -> Master -> Advance loop, ecology-linked drop direction, deterministic recipes, milestone boss rewards, a separate Rootweaver/Grove Artificer service, Hunts, the Stage 4-10 enemy/material matrix, reusable cross-region material art grammar, and bounded regional Mastery. Stage V will unlock weapon/armor crafting, Stage VIII will be the accessory-material mini-boss payout, and Stage X will unlock accessory/relic crafting; these later milestones are planned, not implemented.
+- Approved the replayable Forest Stages 1-10 Fight -> Loot -> Craft -> Build -> Master -> Advance loop, ecology-linked drop direction, deterministic recipes, milestone boss rewards, a separate Rootweaver/Grove Artificer service, Hunts, the Stage 4-10 enemy/material matrix, reusable cross-region material art grammar, and bounded regional Mastery. Stage V will unlock weapons/chest/gloves-or-bracers/boots, Stages VI-VII introduce accessory preparation, Stage VIII unlocks standard accessories, and Stage X unlocks relic/signature crafting; these later milestones are planned, not implemented.
 - Slowed early progression and economy pacing: cumulative Level 1-10 thresholds are now `0/150/400/750/1200/1750/2400/3150/4000/4950`, placing Stage I at Level 2, cumulative Stage II at Level 3, and the complete current forest arc at Level 4; Iron Sword now costs 90 coins instead of 18.
 - Tightened the beginner-sword feel and reduced clustered-hit overhead: Balanced Slash is now a 58-reach by 96-wide data-owned fan with matching smaller trail, future weapon families retain independent shape/style ownership, the center-screen level banner is replaced by a small Opaw glow and overhead label, and normal cleaves share one 25-millisecond hitstop/camera/audio response per swing while keeping feedback on every enemy.
 - Aligned combat footprints and run attrition: Balanced Slash covers its visible side edges/tip; Stage III bakes 20-pixel seal clearance for the 16-pixel-radius Husk; dash has a clear gap before Skill 1; current HP survives stage/Sanctuary transitions; Opaw uses `140 + 12/level` health plus delayed 1 HP/s regeneration; and Mireling/Rootling/Thrall/Spitter/Husk damage is balanced to 8/10/18/12/18.
@@ -85,8 +89,10 @@ Detailed completion history remains in `CHANGELOG.md`.
 
 ## In Progress
 
-- **Forest production Segment 5 contract:** define the first real output equipment, Stage V weapon/armor seal and catalyst IDs, blueprint acquisition, inventory/equip integration, and atomic `CraftingService` transaction before enabling Nema's disabled action. The existing Rootforge screen is inspection-only and must stay that way until all validation/save contracts exist.
-- **Forest milestone reward cadence:** preserve Stage III as a regular-material mini-boss payout; plan Stage V as the permanent weapon/armor seal plus repeatable catalyst, Stage VIII as the accessory-material preparation mini-boss, and Stage X as the permanent accessory/relic seal plus repeatable regional catalyst. Exact bosses, seal/catalyst IDs, recipes, quantities, and art remain content-contract work.
+- **King additive Gate 1:** approve the young-prime four-direction turnaround, integrated Veil Edge silhouette, hard-pixel chibi proportions, visible-arm/hand contract, navy/charcoal/crimson palette, and right-facing `PRE_ATTACK -> Opening Cut -> Reversal Cut` strip at 1x and 960x540.
+- **King additive Gates 2-4:** introduce `PlayableCharacterDefinition`, roster state, press/release attack intent, and authoritative tap/hold chain data; build King's core actions plus Crescent Sever; then extend per-character save/UI ownership without changing or archiving Opaw.
+- **Forest production Segment 5 contract—paused behind King equipment migration:** define the first real essence/relic outputs, Stage V core-gear seal and catalyst IDs, blueprint acquisition, inventory/equip integration, and atomic `CraftingService` transaction before enabling Nema's disabled action. The Rootforge remains inspection-only until those validation/save contracts exist.
+- **Forest milestone reward cadence:** preserve Stage III as a regular-material mini-boss payout; plan Stage V as the permanent core-gear seal plus repeatable catalyst, Stages VI-VII as accessory-component/blueprint preparation, Stage VIII as the standard-accessory seal plus repeatable catalyst, and Stage X as the permanent relic/signature seal plus regional catalyst. Exact bosses, seal/catalyst IDs, recipes, quantities, and art remain content-contract work.
 - **Milestone B progress:** Opaw now has a distinct generated damage-impact cue and a curated CC0 light dash swoosh. Enemy action SFX remain separate; directional threat and hit-effect work remain open.
 - **Milestone A progress:** a latest-valid-input buffer carries normal attacks and immediate-directional skills across committed attacks/dashes. Consecutive Thrust now owns the approved defensive exception—full-cast invulnerability plus dash cancellation—while its damage, reach, and cooldown remain unchanged for feel testing.
 - **Milestone C progress:** Rootbound Husk now uses fixed-scale generated body sheets, readable planted side steps, native named animations, a constant foot baseline, an above-head health bar, six-beat ground-root VFX, and a skippable portrait introduction behind a reusable encounter gate. Its profiled quick spear and slower staged Root Fan retain snapshotted hitbox authority and gain a faster, fan-heavier second phase. Human timing/readability review remains open.
@@ -99,12 +105,12 @@ Detailed completion history remains in `CHANGELOG.md`.
 - Run a controller playtest of Stage 1 and Stage 2 with Ashwood and Iron; record clear time, damage taken, Piercing Rush/Consecutive Thrust use, late-wave readability, and frame stability after the one-at-a-time reinforcement pass.
 - Feel-test the Ashwood Blade's wider anticipation-to-impact arc, faster committed sweep, forward extension, denser white-gold trail, 0.10-second enemy flash, and white-hot impact core.
 
-- Decide the exact reveal of Opaw's former-life death, the first full story-act structure, and release platform priorities.
+- Decide the exact reveal of King and his family's former-life deaths, the first full story-act structure, and release platform priorities.
 - Feel-test and tune the Ashwood Blade's timing, reach, phase-driven swing, and anchor placement.
 - Feel-test dash distance, duration, recovery, and afterimage readability.
 - Feel-test the Forsaken Thrall's spawn readability, obstacle approach, claw telegraph, range, damage, and recovery.
 - Feel-test `140 + 12/level` vitality, cross-stage current HP, delayed 1 HP/s regeneration, and the 8/10/18/12/18 enemy damage curve through Stages I-III alongside the compact overhead glow/label/chime, current/max character header, defeat delay, and restart controls.
-- Feel-test the 960x540 zoom, smaller HUD, Opaw's compact armless silhouette and stable action-owned body scale, serious eyes/scarf, tiny-foot grounding, four-frame walk, attack/dash timing, detached weapon orbit, corrected shadows/collision, canopy occlusion, and 16-pixel Thrall clearance.
+- Use the current Opaw runtime to preserve 960x540 combat/collision coverage while reviewing King's chibi visible-arm silhouette, stable action-owned body scale, hand/signature-weapon contact, true walk poses, combo timing, corrected shadows/collision, canopy occlusion, and 16-pixel Thrall clearance.
 - Feel-test Mireling pressure, stage counts, spawn pacing, camera travel, and landmark layout.
 - Feel-test Rootling's compact silhouette, 0.58-second crack telegraph, lateral dodge window, 40x16 locked jab lane, sound level, and its expanded Stage 1/Stage 2 placement alongside the distinct Stage 3 Rootbound Husk escalation.
 - Keep preserved Sweeping Cut's 20 damage, wide arc, 90 pushback, phases, and cooldown regression-safe while it remains unequipped.
@@ -124,7 +130,7 @@ Detailed completion history remains in `CHANGELOG.md`.
 - Decide the first disk-persistent profile/story boundary and migration policy; the current versioned story snapshot performs no file I/O.
 - Reconcile the legacy Sanctuary-only Rootbound Hollow requirement preview with the implemented direct Stage 2 -> Stage 3 story route when save-backed route history and replay/Hunts are introduced; do not add a duplicate gate that blocks the continuous first-clear arc.
 - Design a confirmed `Abandon Expedition / Return to Sanctuary` pause-menu action, including combat restrictions and explicit XP/coin/run consequences.
-- After Opaw is visually accepted in motion, define reusable modular starter layers for future Warrior, Archer, and Mage presentations; migrate NPC bodies and environment/UI style only in separate reviewed passes.
+- After King's proof is visually accepted in motion, define only the reusable technical seams shared by future characters; keep body frames, signature weapons, skills, and cinematics character-owned. Migrate NPC bodies or environment/UI style only in separate reviewed passes.
 
 ## Planned
 
@@ -133,8 +139,8 @@ Detailed completion history remains in `CHANGELOG.md`.
 1. **Segment 1 - Save/Continue — implemented:** versioned profile, recovery, safe checkpoint writes, and Continue UX.
 2. **Segment 2 - Content data — implemented:** immutable material, drop-profile, loot-table, and recipe definitions plus stable IDs, dedicated mutable ownership, save reconstruction, and validation.
 3. **Segment 3 - Loot and milestone rewards — implemented:** ecology-linked sparse/protected drops, hop/hover/magnetic pickup presentation, guaranteed boss materials, direct Stage I-II banking, the non-empty Stage III Reliquary, idempotent first-clear claims, expedition rollback/commit semantics, distinct 24x24 material art, and reusable Y-sorted colliding chest tiers.
-4. **Segment 4 - Sanctuary craft service:** introduce the separate Rootweaver/Grove Artificer, dialogue portrait, interaction scene, and craft-menu shell.
-5. **Segment 5 - Forest crafting:** deterministic recipes, atomic material spending, crafted starter gear, equipment integration, and balance tests targeting two or three purposeful clears.
+4. **Segment 4 - Sanctuary craft service — implemented:** Rootweaver Nema, portrait dialogue, Living Rootforge interaction, and a read-only recipe/material shell.
+5. **Segment 5 - Forest crafting — blocked on Decision 071 migration:** deterministic recipes, atomic material spending, crafted starter essences/relics, equipment integration, and balance tests targeting two or three purposeful clears.
 6. **Segment 6 - Hunts:** selectable completed-stage replays with previewed reward families, authored modifiers/objectives, and optional mastery goals.
 7. **Segment 7 - Forest Stages 4-10:** build one content-contract enemy at a time against the approved role/material matrix, ending with the regional boss/signature core.
 8. **Segment 8 - Stage 11 seam:** introduce the next region's real mechanics/materials and bounded regional Mastery without `Leather++`, palette-only enemies, or infinite raw-stat growth.
@@ -168,7 +174,7 @@ The detailed acceptance rules and intentionally open choices live in `docs/desig
 - Multiplayer expansion
 - Challenge modes and difficulty modifiers
 - Branching routes or alternate realms
-- Additional playable characters
+- Additional playable characters after King establishes the roster contract
 - Community or mod-friendly data pipelines
 
 ## Technical Debt
@@ -177,10 +183,13 @@ None currently recorded.
 
 ## Next Decision Gate
 
-The regional loop and material-reuse direction are approved. Before each implementation segment, settle only the choices that materially affect that segment:
+The immediate decision gate is King's visual/combat proof, not full production:
 
-1. Segment 4: the Rootweaver/Grove Artificer's final name, personality, visual contract, and Sanctuary location.
-2. Segment 5: first crafted equipment stats, recipe balance tuning, selling/salvage policy, and armor aggregation.
-3. Segment 6: the first Hunt modifiers, reward preview detail, and Mastery scoring.
+1. Approve the provisional Veil Edge silhouette and young-prime navy/charcoal/crimson turnaround direction.
+2. Approve rapid tap buffering plus the 0.16-second hold-to-charge branch and the proposed three-step/charged contact scale.
+3. Approve the four identities: Crescent Sever, Riftstep Cross, Blade Dominion, and Worldsplitter: Last Horizon.
+4. Then build temporary debug shapes/state logic before generating the complete action library.
+5. Extend the version-1 profile additively so Opaw stays valid and King receives separate progression/loadout records.
+6. After the two-character seam passes, settle Forest essence/relic stats, crafting, Hunts, and Mastery.
 
-Desktop/web/mobile priority and future Mage/Archer roster/class structure remain important broader product decisions, but they no longer block documenting or building the approved desktop-first Forest foundation.
+Desktop/web/mobile priority remains important but does not block the desktop-first King proof. Do not begin Stage IV enemy production or archive active Opaw content; only rejected/superseded experiments belong outside runtime.

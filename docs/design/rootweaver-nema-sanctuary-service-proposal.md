@@ -1,6 +1,6 @@
 # Rootweaver Nema Sanctuary Service Proposal
 
-- **Status:** Owner-approved and implemented through the read-only Segment 4 service; crafting transactions/output equipment remain Segment 5
+- **Status:** Owner-approved and implemented through the read-only Segment 4 service; Decision 071 redirects future outputs to essences/relics before Segment 5 transactions
 - **Prepared:** 2026-07-29
 - **Owning production segment:** Forest Segment 4
 - **Current concept source:** `art_source/generated/characters/npcs/rootweaver/rootweaver_nema_grove_smith_concept_v3_source.png`
@@ -9,7 +9,7 @@
 
 ## Product Clarification
 
-The Rootweaver is a friendly Sanctuary artisan, not a monster. She transforms collected creature and regional materials into deterministic equipment.
+The Rootweaver is a friendly Sanctuary artisan, not a monster. She transforms collected creature and regional materials into deterministic essences and relics that strengthen a character without replacing their signature visible combat identity.
 
 The separate future Stage IV monster remains an unnamed armored, hide-bearing Forest beast. Its visible hide and bark plating will justify the first leather and bark-plate materials.
 
@@ -30,15 +30,15 @@ The separate future Stage IV monster remains an unnamed armored, hide-bearing Fo
 
 **Service separation:**
 
-- Eira awakens abilities already carried by Opaw's spirit.
-- Orren sells and equips ordinary forged weapons.
-- Nema grove-forges deterministic weapons, armor, and later accessories from earned organic and monster materials.
+- Eira awakens abilities already carried by a playable soul.
+- Orren currently sells ordinary forged weapons and may later temper simple mortal essences.
+- Nema grove-forges deterministic Weapon Essences, Body/Hand/Foot Relics, and later accessories from earned organic and monster materials.
 
 ## Narrative Relationship
 
-Nema recognizes that Opaw returns carrying materials marked by unusual pressure: Mire flexibility, Rootling tension, Thrall wear, Bramble resistance, and the Husk's corrupted endurance. She does not grant power freely. She teaches Opaw to preserve what a material survived, then combines root tension, controlled heat, hammer pressure, and living thread to bind it into a useful form.
+Nema recognizes that a returning mortal carries materials marked by unusual pressure: Mire flexibility, Rootling tension, Thrall wear, Bramble resistance, and the Husk's corrupted endurance. She does not grant power freely. She teaches the player to preserve what a material survived, then combines root tension, controlled heat, hammer pressure, and living thread to bind it into a useful relic. Current Opaw dialogue may remain until King's story migration is implemented.
 
-Her first service appearance may occur immediately in Sanctuary, but the menu must honestly show that weapon/armor crafting remains sealed until the planned Stage V milestone. Stage VIII supplies accessory-preparation materials; Stage X permanently unlocks accessory/relic crafting.
+Her first service appearance may occur immediately in Sanctuary, but the menu must honestly show that core-gear crafting remains sealed until the planned Stage V milestone. Stages VI-VII supply accessory-preparation materials and blueprints, Stage VIII permanently unlocks standard accessories, and Stage X permanently unlocks relic/signature crafting.
 
 ## Visual Contract
 
@@ -73,7 +73,8 @@ art_source/generated/characters/npcs/rootweaver/
   rootweaver_nema_service_concept_source.png        # rejected realistic first pass
   rootweaver_nema_service_concept_v2_source.png     # superseded elderly compact proposal
   rootweaver_nema_grove_smith_concept_v3_source.png # current female grove-smith proposal
-  rootweaver_nema_service_source.png
+  rootweaver_nema_service_source.png              # superseded front-facing board
+  rootweaver_nema_service_side_source.png         # current magenta side-facing source
   rootweaver_nema_service_clean.png
   rootweaver_nema_portrait_source.png
   rootweaver_nema_portrait_clean.png
@@ -82,7 +83,8 @@ art_source/generated/characters/npcs/rootweaver/
 - Runtime service sheet: `192x96`, eight `48x48` cells
 - Row 0: four-frame `idle`
 - Row 1: four-frame `work`
-- Front-facing stationary Sanctuary service presentation; no fake four-direction locomotion
+- Screen-left three-quarter stationary Sanctuary service presentation; no fake four-direction locomotion
+- Every frame retains at least four transparent pixels below the complete boots and nine pixels of horizontal safety margin
 - One stable bottom-center foot origin matching Eira and Orren
 - `AnimatedSprite2D` exposes named `idle` and `work` animations
 - Idle: restrained one-pixel breath, braid shift, stable feet
@@ -123,7 +125,8 @@ art_source/generated/environment/sanctuary/services/rootweaver/
 - Navigation footprint follows collision rather than the visible canopy
 - Y-sorted with Sanctuary actors and buildings
 - Lantern/forge glow and idle presentation are separate from the static texture
-- Implemented placement: southwest Sanctuary lawn at `(352, 704)`, west of the southbound central avenue
+- Implemented placement: west-mid Sanctuary garden at `(240, 610)`, west of the southbound central avenue
+- Nema stands at `(342, 630)` on the screen-right side of the Rootforge and faces screen-left toward the work surface
 - Preserve the central route, the fountain/portal sightline, the existing west service approach, and a broad player turning circle
 - Real-camera review confirms the central avenue, player turning room, and front approach remain clear
 
@@ -139,7 +142,7 @@ art_source/generated/environment/sanctuary/services/rootweaver/
 2. `Bring me what the forest leaves behind. Heat, pressure, and patience will teach it a second purpose.`
 3. `Orren sells honest steel. I forge what honest steel cannot become.`
 
-Before the Stage V seal, the service remains honest through the disabled `WEAPON & ARMOR SEAL REQUIRED` action and the explicit `OUTPUT EQUIPMENT IS NOT YET IMPLEMENTED` status.
+Before the Stage V seal, the service remains honest through the disabled `STAGE V CORE GEAR SEAL REQUIRED` action and the explicit `OUTPUT EQUIPMENT IS NOT YET IMPLEMENTED` status.
 
 `DialogueNpc` continues to own proximity and dialogue intent. `SanctuaryFlow` decides whether completed dialogue opens the crafting surface. Nema's actor scene owns no recipe balance, inventory mutation, seal rule, or save operation.
 
@@ -160,8 +163,8 @@ The Segment 4 shell is a paused, theme-backed presentation with:
 
 Examples of honest disabled states:
 
-- `WEAPON & ARMOR SEAL REQUIRED`
-- `ACCESSORY & RELIC SEAL REQUIRED`
+- `STAGE V CORE GEAR SEAL REQUIRED`
+- `STAGE VIII ACCESSORY SEAL REQUIRED`
 - `BLUEPRINT NOT REMEMBERED`
 - `MISSING MATERIALS`
 - `OUTPUT EQUIPMENT NOT YET IMPLEMENTED`
@@ -190,13 +193,36 @@ The owner accepted:
 1. `Rootweaver Nema` as the final name
 2. attractive adult human woman and grove-blacksmith identity
 3. auburn side braid, moss forge apron, root hammer, and gold-thread tongs silhouette
-4. southwest open-air Living Rootforge placement
+4. west-mid open-air Living Rootforge placement with Nema working from its screen-right side
 5. proposed dialogue voice
 6. crafting-menu hierarchy
 
 Segment 4 now delivers the cleaned/runtime actor, portrait, workshop, dialogue integration, read-only menu shell, asset catalog entries, editor/runtime validation, and focused Sanctuary regression without activating crafting transactions. `tests/rootweaver_service_smoke.gd` verifies the no-mutation boundary.
 
 ## Concept Generation Record
+
+### 2026-08-01 side-facing actor correction
+
+- **Mode:** built-in image generation edit
+- **Use case:** `precise-object-edit`
+- **Generated source dimensions:** `1744x902`
+- **Project source:** `art_source/generated/characters/npcs/rootweaver/rootweaver_nema_service_side_source.png`
+- **Cleaned intermediate:** `art_source/cleaned/characters/npcs/rootweaver/rootweaver_nema_service_side_transparent.png`
+- **Edit target:** former front-facing runtime sheet
+
+Final accepted prompt:
+
+```text
+Use case: precise-object-edit
+Asset type: source board for an 8-frame Godot pixel-art NPC sprite atlas
+Edit target: the provided Rootweaver Nema sprite sheet.
+Primary request: preserve Nema's compact chibi proportions, dark olive blacksmith apron, auburn hair, small hammer and tongs, and established color palette. Repose her as a readable three-quarter view facing SCREEN-LEFT. Arrange exactly eight isolated full-body character-only sprites in a strict 4-column by 2-row board: top row four subtle idle frames; bottom row four hammer-working frames. In every frame show both boots completely and keep every hand/tool completely attached and visible.
+Scene/backdrop: perfectly flat solid #ff00ff chroma-key background, one uniform color with no checkerboard, shadows, gradients, floor, texture, grid lines, cell dividers, or lighting variation. Do not use #ff00ff in the subject.
+Style: crisp retro pixel art matching the reference, compact 32-to-48-pixel gameplay sprite density, hard square pixels, no antialiasing, no blur.
+Constraints: character and handheld tools only. Absolutely no anvil, forge, sparks, molten metal, workstation, furniture, text, watermark, extra character, or background object. Generous equal padding around every sprite. Stable foot baseline within each row. Do not crop anything.
+```
+
+The built-in image result was chroma-removed with the image-generation skill's standard helper, then processed through `tools/process_rootweaver_service_assets.gd`. The processor keeps one scale across the eight connected actors, hardens binary alpha, adds the project outline, fits content within a `40x40` limit, and aligns the complete boots to a 44-pixel baseline inside every `48x48` cell.
 
 ### Runtime actor board
 

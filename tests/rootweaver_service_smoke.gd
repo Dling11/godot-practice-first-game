@@ -27,12 +27,16 @@ func _run() -> void:
 			))
 			var used_rect := frame.get_used_rect()
 			if (
-				used_rect.position.x < 1
-				or used_rect.end.x > 47
+				used_rect.position.x < 4
+				or used_rect.end.x > 44
+				or used_rect.end.y != 44
 				or used_rect.size.y < 32
-				or used_rect.size.y > 45
+				or used_rect.size.y > 41
 			):
-				_fail("Rootweaver actor frame lost its compact safe-margin contract.")
+				_fail(
+					"Rootweaver actor frame %d/%d lost its complete-boots or safe-margin contract: %s."
+					% [row, column, used_rect]
+				)
 				return
 
 	var frames := load(
@@ -70,8 +74,18 @@ func _run() -> void:
 	):
 		_fail("Nema's Sanctuary identity or service wiring is incomplete.")
 		return
-	if rootforge.position != Vector2(352, 704) or rootweaver.position != Vector2(458, 690):
-		_fail("Nema or the Living Rootforge drifted from the approved southwest workshop bay.")
+	if rootforge.position != Vector2(240, 610) or rootweaver.position != Vector2(342, 630):
+		_fail("Nema or the Living Rootforge drifted from the approved west-mid service bay.")
+		return
+	if (
+		rootweaver.position.x <= rootforge.position.x
+		or absf(rootweaver.position.y - rootforge.position.y) > 32.0
+	):
+		_fail("Nema is no longer working from the Rootforge's screen-right side.")
+		return
+	var expedition_altar := sanctuary.get_node("World/Actors/ExpeditionAltar") as Node2D
+	if expedition_altar.position.y >= rootforge.position.y:
+		_fail("The expedition portal is no longer the north/top Sanctuary landmark.")
 		return
 	if (
 		rootforge.get_node_or_null("RearCollision") == null
@@ -144,7 +158,7 @@ func _run() -> void:
 	for button: Button in menu.recipe_buttons:
 		if button.visible:
 			visible_recipe_count += 1
-	if visible_recipe_count != 2 or not menu.primary_action_button.text.contains("ACCESSORY & RELIC SEAL"):
+	if visible_recipe_count != 2 or not menu.primary_action_button.text.contains("STAGE VIII ACCESSORY SEAL"):
 		_fail("The Rootforge accessory filter or milestone label is incorrect.")
 		return
 	if (

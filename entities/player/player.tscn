@@ -130,9 +130,11 @@ ability_2_component = NodePath("../../Ability2Component")
 
 [node name="Weapon" type="Sprite2D" parent="VisualRoot/WeaponVisual" unique_id=995404015]
 
-[node name="SwordPivot" type="Node2D" parent="." unique_id=14777553]
+[node name="SwordPivot" type="Node2D" parent="." unique_id=14777553 node_paths=PackedStringArray("attack_component")]
 position = Vector2(0, -16)
 script = ExtResource("4_aim")
+attack_component = NodePath("../MeleeAttackComponent")
+lock_during_attack = true
 
 [node name="AttackHitbox" type="Area2D" parent="SwordPivot" unique_id=996490997]
 collision_layer = 8

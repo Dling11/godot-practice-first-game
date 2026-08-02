@@ -11,6 +11,10 @@ enum CrowdControlTier { LIGHT, ELITE, BOSS }
 @export_range(1.0, 99999.0, 1.0) var maximum_health: float = 100.0
 @export_range(1.0, 1000.0, 1.0, "suffix:px/s") var move_speed: float = 60.0
 @export_range(1.0, 5000.0, 1.0, "suffix:px/s^2") var acceleration: float = 500.0
+@export_group("Movement Footprint")
+@export_range(2.0, 32.0, 0.5, "suffix:px") var movement_footprint_radius := 6.0
+@export_range(8.0, 96.0, 1.0, "suffix:px") var crowd_separation_radius := 30.0
+@export_group("")
 @export_range(1.0, 200.0, 1.0, "suffix:px") var attack_range: float = 34.0
 @export_range(0.0, 9999.0, 1.0) var attack_damage: float = 15.0
 @export_range(0.01, 3.0, 0.01, "suffix:s") var wind_up_seconds: float = 0.45

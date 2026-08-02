@@ -1,6 +1,6 @@
 # Decision 067: Use Milestone Boss Rewards and Crafting Seals
 
-- **Status:** Accepted; Stages I-III boundary implemented, later milestones planned
+- **Status:** Accepted; Stages I-III boundary implemented, later category cadence amended by Decision 069
 - **Date:** 2026-07-29
 
 ## Context
@@ -30,12 +30,12 @@ The planned later Forest cadence is:
 | Stage | Encounter reward role | First-clear progression | Repeatable value |
 |---|---|---|---|
 | V | Medium boss | Permanent weapon-and-armor crafting seal | Boss catalyst consumed by weapon/armor recipes |
-| VIII | Mini-boss | Accessory-material preparation payout | Fungal, spirit, binding, and relic-setting materials |
-| X | Major regional boss | Permanent accessory-and-relic crafting seal | Unique boss catalyst consumed by accessory/signature recipes |
+| VIII | Mini-boss | First permanent standard-accessory crafting seal | Accessory materials plus a repeatable binding/setting catalyst |
+| X | Major regional boss | Permanent relic/signature-accessory crafting seal | Unique boss catalyst consumed by relic/signature recipes |
 
 A crafting seal is a permanent unlock recorded once and never consumed. A boss catalyst is a repeatable material and may be consumed by recipes. Their exact names, stable IDs, art, boss identities, and quantities remain open until the relevant stage content contracts are approved.
 
-The existing recipe directions are reassigned: Rootfiber Wraps and Huskbound Guard belong to the Stage V weapon/armor milestone; Mireward Charm and Thornward Clasp belong to the Stage X accessory milestone. Stage V also requires at least one authored crafted weapon recipe before its implementation can be considered complete.
+The existing recipe directions are reassigned: Rootfiber Wraps and Huskbound Guard belong to the Stage V core-gear milestone. Mireward Charm and Thornward Clasp now belong to the Stage VIII standard-accessory milestone. Stage V also requires at least one authored crafted weapon recipe before its implementation can be considered complete. Decision 069 owns the detailed Stage VI-X accessory-family and stat direction.
 
 ## Consequences
 
@@ -43,6 +43,6 @@ The existing recipe directions are reassigned: Rootfiber Wraps and Huskbound Gua
 - Stages I-II finish promptly without presenting an ordinary chest as a major event.
 - Stage III teaches the mini-boss payout language without unlocking an unfinished craft service.
 - The III/V/VIII/X rhythm separates material preparation from permanent category unlocks.
-- Stage VIII can support accessory preparation while Stage X retains the decisive regional-boss payoff.
+- Stage VIII opens the first standard accessories, while Stage X retains a decisive relic/signature payoff instead of delaying the whole accessory system until the region is over.
 - Future stage implementations must not describe planned seals, catalysts, recipes, or bosses as playable until their data, art, runtime authority, save behavior, and tests exist.
 - Decision 066 remains authoritative for pickup movement, boss guarantees, chest collision, spawn presentation, and tier separation, but this decision supersedes its exact ordinary drop rates and its requirement that Stages I-II spawn clear chests.

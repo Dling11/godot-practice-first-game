@@ -9,6 +9,7 @@ signal shot_telegraphed(global_target: Vector2, duration_seconds: float)
 signal shot_fired(direction: Vector2)
 
 const SeparationComponentScene = preload("res://entities/enemies/components/enemy_separation_component.tscn")
+const EnemyFootprint = preload("res://entities/enemies/components/enemy_footprint_system.gd")
 
 @export var definition: EnemyDefinition
 @export var target: CharacterBody2D
@@ -17,6 +18,7 @@ const SeparationComponentScene = preload("res://entities/enemies/components/enem
 
 @onready var health_component: HealthComponent = %HealthComponent
 @onready var navigation_agent: NavigationAgent2D = %NavigationAgent2D
+@onready var body_collision: CollisionShape2D = $BodyCollision
 @onready var knockback_component: KnockbackComponent = %KnockbackComponent
 @onready var stagger_component: StaggerComponent = %StaggerComponent
 
@@ -32,9 +34,14 @@ var _applied_knockback_velocity := Vector2.ZERO
 
 
 func _ready() -> void:
-	separation_component = _ensure_separation_component()
 	if definition == null or projectile_scene == null:
 		push_error("BrambleSpitter requires an EnemyDefinition and projectile scene.")
+		set_physics_process(false)
+		return
+	separation_component = _ensure_separation_component()
+	if not EnemyFootprint.configure(
+		definition, body_collision, navigation_agent, separation_component
+	):
 		set_physics_process(false)
 		return
 	health_component.maximum_health = definition.maximum_health

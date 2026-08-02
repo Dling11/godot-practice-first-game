@@ -6,6 +6,8 @@ This contract applies to generated, downloaded, and hand-authored character anim
 
 | Actor or effect | Runtime cell | Direction and frame contract |
 |---|---:|---|
+| King compact actions (provisional) | 48x48 | Young-prime `down/left/right/up` rows; roughly 30-34 px upright target; exact height/baseline freeze after turnaround approval; visible arms and Veil Edge remain connected |
+| King extended weapon actions (provisional) | 64x48 or 80x64 | Preserve the approved body scale; use canvas width/height for integrated signature-sword reach and exaggerated combo silhouettes |
 | Opaw idle/walk/hurt | 32x32 | `down/left/right/up` rows; action frames across columns; 18x27 upright body |
 | Opaw extended actions | 48x32 | Preserve the same 18x27 body; use width for reach rather than shrinking |
 | Opaw defeat | 64x32 | Preserve body scale while allowing horizontal collapse |
@@ -24,6 +26,8 @@ Runtime PNG dimensions must equal `cell width * columns` by `cell height * rows`
 - Prefer source dimensions exactly divisible by the requested grid. A 6x4 board may use 1536x1024 for 256x256 source cells; a 4x4 board may use 1024x1024 for 256x256 source cells.
 - Leave at least 12.5% of a source cell as clear safety margin around the actor. Long limbs, antlers, weapons, and collapse poses must not touch or cross an ideal cell boundary.
 - Keep one character identity, palette, lighting direction, body proportion, pivot, and foot baseline across the complete board.
+- For King and later visible-limbed characters, require readable shoulder-to-forearm-to-hand continuity and one stable hand-to-signature-weapon grip. Reject changing limb count/length, disconnected hands, changing weapon length, or a face/costume that drifts between actions.
+- Do not request a complete production sheet before approving one four-direction turnaround and one short side attack strip at gameplay scale. Generate action-owned boards after that proof so a failed identity does not contaminate every action.
 - For a bilaterally symmetrical actor, author one approved side cycle and derive the opposite direction by exact horizontal mirroring after normalization. Do not independently generate left and right when equipment or anatomy does not require asymmetry.
 - Inspect feet separately from torso motion at nearest-neighbor scale. A valid four-frame side walk must show contact, passing, opposite contact, and opposite passing; body sway alone does not count as a gait.
 - If a multi-frame generation repeats one stance, approve contact and passing poses individually and assemble the source board at one shared row scale. Do not simulate locomotion later by shifting or lifting otherwise unchanged feet.
@@ -55,3 +59,4 @@ Runtime PNG dimensions must equal `cell width * columns` by `cell height * rows`
 5. Confirm visible VFX matches but does not define the authoritative contact lane.
 6. Archive rejected source boards and superseded runtime derivatives outside Godot imports after active references are removed.
 7. For branch, horn, or antler crowns, confirm the first occupied scanline tapers to deliberate tips rather than a broad flat crop.
+8. For visible-limbed playable characters, inspect every attack contact frame for connected arms, stable hand choice, coherent grip, and a highlighted VFX edge/tip contained by the authoritative contact shape.

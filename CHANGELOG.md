@@ -1,5 +1,25 @@
 # Changelog
 
+## 2026-08-02 - Attack Direction Integrity and King Redesign Contract
+
+- Fixed the reported opposite-movement attack failure by locking `SwordPivot` to `MeleeAttackComponent`'s accepted direction for the whole attack. Later movement facing is cached and applied after `attack_finished`, so body/weapon presentation and the authoritative hit shape cannot diverge mid-swing.
+- Extended `melee_combat_smoke.gd` with the exact down-attack/up-movement regression: center and visible-edge targets in the accepted lane take damage, the opposite target does not, and the pivot adopts the queued facing only after recovery.
+- Verified the repair alongside player controls, dash-to-attack buffering, ability buffering, sword styles, Piercing Rush, and Consecutive Thrust under Godot 4.7.
+- Accepted Decision 071: King becomes the planned protagonist and first character-owned combat baseline; visible signature weapons belong to characters, while equippable essences/relics carry stats and traits.
+- Added the King/roster/real-combo/cinematic-ultimate/essence migration contract and updated the story canon around King's family and the gods' hunger for emotional resonance.
+- Accepted Decision 072 after owner review: Opaw and his current skills remain supported playable roster content rather than an archive target. King is additive, young-prime, sword-based, and mechanically distinct.
+- Proposed King's immediate pre-attack, rapid tap-buffered three-step chain, hold-to-charge Falling Divide, tiered recoil/shake, and four-skill kit: Crescent Sever, Riftstep Cross, Blade Dominion, and Worldsplitter: Last Horizon.
+- Paused Forest crafting Segment 5 output work until its crafted equipment conforms to the essence/relic contract. No King art, roster code, save-schema change, item relabel, or active Opaw deletion is claimed in this slice.
+
+## 2026-08-01 - Rootweaver Layout, Forest Equipment Phases, and Enemy Footprints
+
+- Replaced Nema's cramped front-facing service board with a preserved/generated screen-left three-quarter source, chroma-clean intermediate, and deterministic binary-alpha `192x96` runtime sheet. Every `48x48` frame now keeps complete boots, connected handheld tools, at least four transparent pixels below the feet, and safe horizontal margins.
+- Moved the Living Rootforge from `(352, 704)` to the west-mid garden at `(240, 610)`, moved Nema to its screen-right work side at `(342, 630)`, and shifted the southwest tree away from the service silhouette. The central avenue remains clear and the expedition portal remains the northern/top landmark.
+- Changed the read-only Rootforge's planned seal wording to `STAGE V CORE GEAR SEAL REQUIRED` and `STAGE VIII ACCESSORY SEAL REQUIRED`; no crafting transaction or later-stage unlock authority was activated.
+- Approved the Forest category cadence: Stage V unlocks weapons/chest/gloves-or-bracers/boots, Stages VI-VII introduce accessory components/blueprints, Stage VIII unlocks standard accessories, and Stage X unlocks relic/signature crafting. Two generic accessory slots accept jewelry families; bracers remain a gloves-family item.
+- Added data-owned movement and crowd-separation radii to `EnemyDefinition` plus `EnemyFootprintSystem`, synchronizing per-instance circular movement collision, navigation radius, and optional separation detection for Rootling, Mireling, Thrall, Bramble Spitter, and Rootbound Husk while preserving independent hurtboxes and attack shapes.
+- Added `enemy_footprint_smoke.gd`, updated Rootweaver service coverage/visual capture, and recorded Decisions 069-070.
+
 ## 2026-07-29 - Rootweaver Nema and the Living Rootforge
 
 - Clarified that the Rootweaver is a friendly Sanctuary crafting artisan, while the Stage IV monster remains a separate unnamed armored hide-bearing Forest beast.

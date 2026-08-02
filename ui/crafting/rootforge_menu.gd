@@ -282,8 +282,8 @@ func _category_name(category: int) -> String:
 
 func _required_seal_text(category: int) -> String:
 	if category == RecipeDefinition.CraftingCategory.ACCESSORY:
-		return "ACCESSORY & RELIC SEAL REQUIRED"
-	return "WEAPON & ARMOR SEAL REQUIRED"
+		return "STAGE VIII ACCESSORY SEAL REQUIRED"
+	return "STAGE V CORE GEAR SEAL REQUIRED"
 
 
 func _on_material_quantity_changed(_material_id: StringName, _quantity: int) -> void:

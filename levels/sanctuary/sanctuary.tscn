@@ -65,7 +65,7 @@ position = Vector2(928, 390)
 position = Vector2(832, 566)
 
 [node name="LivingRootforge" parent="World/Actors" instance=ExtResource("20_rootforge")]
-position = Vector2(352, 704)
+position = Vector2(240, 610)
 
 [node name="TreeNorthWest" parent="World/Actors" unique_id=944688965 instance=ExtResource("8_tree_broad")]
 position = Vector2(112, 154)
@@ -80,7 +80,7 @@ position = Vector2(80, 464)
 position = Vector2(1070, 478)
 
 [node name="TreeSouthWest" parent="World/Actors" unique_id=1680711405 instance=ExtResource("8_tree_broad")]
-position = Vector2(126, 718)
+position = Vector2(96, 728)
 
 [node name="TreeSouthEast" parent="World/Actors" unique_id=2072765598 instance=ExtResource("9_tree_tall")]
 position = Vector2(1026, 718)
@@ -98,7 +98,7 @@ position = Vector2(360, 520)
 position = Vector2(916, 580)
 
 [node name="Rootweaver" parent="World/Actors" instance=ExtResource("21_rootweaver")]
-position = Vector2(458, 690)
+position = Vector2(342, 630)
 
 [node name="Player" parent="World/Actors" unique_id=1654953230 instance=ExtResource("2_player")]
 position = Vector2(576, 676)

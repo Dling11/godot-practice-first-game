@@ -68,6 +68,21 @@ Do not introduce `final`, `new`, `fixed`, `better`, unexplained numbers, or cont
 | `portrait_enemy_forsaken_thrall` | `assets/characters/enemies/portraits/forsaken_thrall_portrait_96x96.png` | Active | 96x96 transparent pixel portrait | Dialogue, bestiary, and preview presentation |
 | `portrait_enemy_bramble_spitter` | `assets/characters/enemies/portraits/bramble_spitter_portrait_96x96.png` | Active | 96x96 transparent pixel portrait | Dialogue, bestiary, and preview presentation |
 
+### Planned King Character Art
+
+No King raster has been generated or approved. These IDs reserve the Decision 071 proof sequence without claiming runtime assets:
+
+| Canonical ID | Current path | Target path/name | Provisional contract | Status |
+|---|---|---|---|---|
+| `char_king_turnaround` | None | `art_source/generated/characters/playable/king/king_turnaround_source.png` | Young-prime four directions; navy/charcoal/crimson identity, visible arms, integrated Veil Edge | `planned` |
+| `char_king_attack_side_proof` | None | `art_source/generated/characters/playable/king/king_basic_attack_side_proof_source.png` | Right-facing pre-attack, Opening Cut, and Reversal Cut reviewed before full production | `planned` |
+| `char_king_frames` | None | `assets/characters/playable/king/king_sprite_frames.tres` | Named `AnimatedSprite2D` actions after proof approval | `planned` |
+| `portrait_king` | None | `assets/characters/playable/king/king_portrait_96x96.png` | 96x96 transparent portrait derived after gameplay identity approval | `planned` |
+| `weapon_king_veil_edge` | None | Integrated through King's approved body/action sheets | Silver-white straight signature sword with broken-halo guard and crimson memory cord | `planned` |
+| `fx_king_crescent_sever` | None | `assets/skills/king/crescent_sever/king_crescent_sever_vfx_sheet.png` | Large white/cold-blue crescent whose opaque edge/tip remains inside contact authority | `planned` |
+
+Opaw remains `active_runtime` permanently as a separate supported roster character. Do not change the Opaw rows to legacy or move their files merely because King is added.
+
 The five portrait sources and chroma-clean intermediates live under `art_source/generated/characters/enemies/portraits/`. They were generated from each approved runtime model as an identity reference, cleaned from a blue chroma backdrop, and nearest-neighbor normalized to the shared 96x96 transparent runtime contract. Portraits are presentation-only and may be reused by dialogue, expedition descriptions, and future bestiary surfaces.
 
 All active Opaw sheets use direction rows in canonical `down`, `left`, `right`, `up` order and animation frames as columns. `tools/process_opaw_compact_armless_assets.gd` isolates each padded generated cell, removes chroma, normalizes every direction reference to 18x27 on the shared foot baseline, and emits binary-alpha runtime sheets. Normal attack body columns map directly to wind-up, active, and recovery while the detached external weapon owns the visible blade arc. The complete previous Wayfarer model and former single 4x8 atlas have no active `SpriteFrames` references. Existing humanoid extended enemy attack sheets use directions as rows and six action phases as columns.
@@ -171,7 +186,7 @@ These files are intentionally outside runtime imports under Godot-ignored `art_s
 | `prop_sanctuary_tree_tall` | `assets/environment/sanctuary/props/sanctuary_tree_tall_96x120.png` | Active | 96x120; footprint origin at bottom center | `sanctuary_tree_tall.tscn` |
 | `char_npc_skillkeeper_idle` | `assets/characters/npcs/skillkeeper/skillkeeper_idle_sheet_48x48.png` | Active | 192x48; 4x1 compact Eira with detached book/wisp | `skillkeeper.tscn` |
 | `char_npc_armskeeper_idle` | `assets/characters/npcs/armskeeper/armskeeper_idle_sheet_48x48.png` | Active | 192x48; 4x1 compact Orren with detached hammer/sword | `armskeeper.tscn` |
-| `char_npc_rootweaver_nema_service` | `assets/characters/npcs/rootweaver/rootweaver_nema_service_sheet_48x48.png` | Active | 192x96; 4x2 compact Nema idle/work board with approved integrated arms/tools | `rootweaver_nema.tscn` |
+| `char_npc_rootweaver_nema_service` | `assets/characters/npcs/rootweaver/rootweaver_nema_service_sheet_48x48.png` | Active | 192x96; 4x2 compact screen-left three-quarter Nema idle/work board with approved integrated arms/tools, complete boots, and safe frame margins | `rootweaver_nema.tscn` |
 | `portrait_npc_rootweaver_nema` | `assets/characters/npcs/rootweaver/rootweaver_nema_portrait_96x96.png` | Active | 96x96; reusable dialogue and service portrait | `rootweaver_nema.tscn` / `DialoguePanel` |
 | `service_sanctuary_living_rootforge` | `assets/environment/sanctuary/services/rootweaver/rootweaver_living_rootforge_176x144.png` | Active | 176x144; open grove forge with bottom-center origin | `rootweaver_living_rootforge.tscn` |
 
@@ -194,8 +209,10 @@ These source and intermediate images remain outside Godot runtime imports:
 | `concept_npc_rootweaver_nema_service_v1` | `art_source/generated/characters/npcs/rootweaver/rootweaver_nema_service_concept_source.png` | `archived` | 1672x941; rejected first pass with overly realistic anatomy and excessive workshop detail; generation history only |
 | `concept_npc_rootweaver_nema_service_v2` | `art_source/generated/characters/npcs/rootweaver/rootweaver_nema_service_concept_v2_source.png` | `archived` | 1672x941; compact elderly revision superseded by owner-directed female grove-smith identity; generation history only |
 | `concept_npc_rootweaver_nema_grove_smith_v3` | `art_source/generated/characters/npcs/rootweaver/rootweaver_nema_grove_smith_concept_v3_source.png` | `approved_source` | 1672x941; accepted female grove-smith identity, portrait, and Living Rootforge source |
-| `char_npc_rootweaver_nema_service` | `art_source/generated/characters/npcs/rootweaver/rootweaver_nema_service_source.png` | `source` | 1672x941; generated 4x2 idle/work source board on cyan |
-| `char_npc_rootweaver_nema_service` | `art_source/generated/characters/npcs/rootweaver/rootweaver_nema_service_clean.png` | `intermediate` | 1672x941; binary-alpha clean board |
+| `char_npc_rootweaver_nema_service_front` | `art_source/generated/characters/npcs/rootweaver/rootweaver_nema_service_source.png` | `superseded_source` | 1672x941; former front-facing 4x2 idle/work source board on cyan; retained for provenance |
+| `char_npc_rootweaver_nema_service` | `art_source/generated/characters/npcs/rootweaver/rootweaver_nema_service_side_source.png` | `source` | 1744x902; current generated screen-left three-quarter 4x2 idle/work source board on flat magenta |
+| `char_npc_rootweaver_nema_service` | `art_source/cleaned/characters/npcs/rootweaver/rootweaver_nema_service_side_transparent.png` | `intermediate` | 1744x902; chroma-removed alpha source consumed by the deterministic processor |
+| `char_npc_rootweaver_nema_service` | `art_source/generated/characters/npcs/rootweaver/rootweaver_nema_service_clean.png` | `intermediate` | 1744x902; binary-alpha component board emitted before native normalization |
 | `portrait_npc_rootweaver_nema` | `art_source/generated/characters/npcs/rootweaver/rootweaver_nema_portrait_source.png` | `source_crop` | 312x332; approved concept portrait crop |
 | `portrait_npc_rootweaver_nema` | `art_source/generated/characters/npcs/rootweaver/rootweaver_nema_portrait_clean.png` | `intermediate` | 312x332; border-cleaned portrait |
 | `service_sanctuary_living_rootforge` | `art_source/generated/environment/sanctuary/services/rootweaver/rootweaver_living_rootforge_source.png` | `source_crop` | 654x664; approved concept Rootforge crop |

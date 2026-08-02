@@ -28,6 +28,9 @@ func _capture() -> void:
 	await process_frame
 	if not _save_viewport("res://art_source/review/rootforge_menu_review.png"):
 		return
+	menu.close_menu()
+	sanctuary.queue_free()
+	await process_frame
 	print("Saved Rootweaver Sanctuary and Rootforge menu review captures.")
 	quit(0)
 

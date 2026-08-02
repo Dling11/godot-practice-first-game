@@ -76,6 +76,10 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 066 | Use protected enemy drops and tiered clear chests | Enemy drop chances, bad-luck protection, auto-pickup, boss guarantees, chest collision, spawn presentation, or chest rarity |
 | 067 | Use milestone boss rewards and crafting seals | Sparse loot, ordinary-stage completion, Stage III/V/VIII/X rewards, crafting-category unlocks, or repeatable boss catalysts |
 | 068 | Introduce Rootweaver Nema through a read-only Rootforge | Nema, visible-arm NPC work animation, Sanctuary crafting presentation, portrait dialogue, or pre-transaction recipe inspection |
+| 069 | Phase Forest core gear, accessories, and relics across Stages V-X | Equipment categories, accessory slots/stats, crafting seals, or Stage VI-X reward pacing |
+| 070 | Centralize enemy movement footprints without flattening combat shapes | Enemy collision size, navigation radius, crowd separation, selection rings, or new enemy contracts |
+| 071 | Use character-owned combat and equipment essences | King, playable roster architecture, real combos, signature weapons, essence/relic equipment, or cinematic ultimates |
+| 072 | Preserve Opaw and build King as a distinct sword character | Opaw roster support, King tap/hold combo, young-prime art, four skills, impact tiers, or additive save migration |
 
 ## New Decisions
 

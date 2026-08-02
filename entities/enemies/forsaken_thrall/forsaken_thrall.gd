@@ -8,6 +8,7 @@ signal facing_changed(direction: Vector2)
 
 const EnemyMovementComponentScript = preload("res://entities/enemies/components/enemy_movement_component.gd")
 const SeparationComponentScene = preload("res://entities/enemies/components/enemy_separation_component.tscn")
+const EnemyFootprint = preload("res://entities/enemies/components/enemy_footprint_system.gd")
 
 @export var definition: EnemyDefinition
 @export var target: CharacterBody2D
@@ -16,6 +17,7 @@ const SeparationComponentScene = preload("res://entities/enemies/components/enem
 @onready var attack_hitbox: MeleeHitbox = %AttackHitbox
 @onready var health_component: HealthComponent = %HealthComponent
 @onready var navigation_agent: NavigationAgent2D = %NavigationAgent2D
+@onready var body_collision: CollisionShape2D = $BodyCollision
 @onready var knockback_component: KnockbackComponent = %KnockbackComponent
 @onready var stagger_component: StaggerComponent = %StaggerComponent
 var separation_component: EnemySeparationComponent
@@ -28,9 +30,14 @@ var _applied_knockback_velocity := Vector2.ZERO
 
 
 func _ready() -> void:
-	separation_component = _ensure_separation_component()
 	if definition == null:
 		push_error("ForsakenThrall requires an EnemyDefinition.")
+		set_physics_process(false)
+		return
+	separation_component = _ensure_separation_component()
+	if not EnemyFootprint.configure(
+		definition, body_collision, navigation_agent, separation_component
+	):
 		set_physics_process(false)
 		return
 	health_component.maximum_health = definition.maximum_health

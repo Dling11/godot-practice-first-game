@@ -53,6 +53,11 @@ func request_attack(direction: Vector2) -> bool:
 	return true
 
 
+func get_attack_direction() -> Vector2:
+	## The accepted direction remains immutable until this attack finishes.
+	return _attack_direction
+
+
 func cancel_attack() -> void:
 	if hitbox != null:
 		hitbox.deactivate()

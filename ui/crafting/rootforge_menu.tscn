@@ -234,7 +234,7 @@ theme_override_constants/separation = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
-text = "WEAPON & ARMOR SEAL REQUIRED\nOUTPUT EQUIPMENT IS NOT YET IMPLEMENTED"
+text = "STAGE V CORE GEAR SEAL REQUIRED\nOUTPUT EQUIPMENT IS NOT YET IMPLEMENTED"
 horizontal_alignment = 1
 autowrap_mode = 2
 theme_override_colors/font_color = Color(0.78, 0.55, 0.34, 1)
@@ -244,7 +244,7 @@ theme_override_font_sizes/font_size = 8
 unique_name_in_owner = true
 layout_mode = 2
 disabled = true
-text = "WEAPON & ARMOR SEAL REQUIRED"
+text = "STAGE V CORE GEAR SEAL REQUIRED"
 
 [node name="Footer" type="Label" parent="Panel/Margin/Root"]
 layout_mode = 2

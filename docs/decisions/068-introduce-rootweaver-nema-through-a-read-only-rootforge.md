@@ -21,7 +21,7 @@ Choose option 3.
 
 Rootweaver Nema is an adult human female grove smith with a compact oversized-head Sanctuary silhouette, auburn side braid, moss forge apron, root hammer, and gold-thread tongs. Visible arms are a deliberate action-specific NPC exception because her identity and four-frame work loop depend on readable tool handling. This does not change Opaw's compact armless presentation contract.
 
-Nema and her colliding, Y-sorted Living Rootforge occupy the southwest Sanctuary lawn at `(458, 690)` and `(352, 704)`. The Rootforge uses separate rear-rack and anvil footprints so the open front remains approachable and the central avenue remains clear.
+Nema and her colliding, Y-sorted Living Rootforge occupy the west-mid Sanctuary garden at `(342, 630)` and `(240, 610)`. Nema stands to the screen-right of the forge in a three-quarter pose facing screen-left toward her work. The Rootforge uses separate rear-rack and anvil footprints so the open front remains approachable and the central avenue remains clear.
 
 `DialogueNpc` now supplies an optional portrait with dialogue intent. `SanctuaryFlow` remains the composition owner: completing Nema's three-line dialogue opens `RootforgeMenu`, while canceling dialogue or closing the menu restores the shared interaction prompt.
 
@@ -32,8 +32,8 @@ Nema's intermittent forge animation and strike sound are presentation-only and t
 ## Consequences
 
 - Players can understand earned materials and future recipes without losing inventory or receiving fabricated equipment.
-- Stage V and Stage X retain their permanent crafting-seal meaning.
+- Stage V retains the core-gear seal, Stage VIII opens standard accessories, and Stage X retains the later relic/signature seal defined by Decision 069.
 - Segment 5 must add output equipment and an atomic `CraftingService` before enabling any craft action.
 - The reusable portrait signal can support future named NPC dialogue without special-case flow code.
 - Nema's visible arms are scoped to her integrated work silhouette and do not reopen Opaw's approved armless model decision.
-- The dedicated Rootweaver asset processor and smoke test protect exact image sizes, binary alpha, animation names, placement, collision, modal behavior, and the no-mutation boundary.
+- The dedicated Rootweaver asset processor and smoke test protect exact image sizes, binary alpha, side-facing safe margins, animation names, placement, collision, modal behavior, and the no-mutation boundary.

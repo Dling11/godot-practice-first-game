@@ -7,7 +7,7 @@ extends SceneTree
 const CLEAR := Color(0, 0, 0, 0)
 const VOID_INK := Color("090b10")
 
-const ACTOR_SOURCE := "res://art_source/generated/characters/npcs/rootweaver/rootweaver_nema_service_source.png"
+const ACTOR_SOURCE := "res://art_source/cleaned/characters/npcs/rootweaver/rootweaver_nema_service_side_transparent.png"
 const ACTOR_CLEAN := "res://art_source/generated/characters/npcs/rootweaver/rootweaver_nema_service_clean.png"
 const ACTOR_RUNTIME := "res://assets/characters/npcs/rootweaver/rootweaver_nema_service_sheet_48x48.png"
 
@@ -37,7 +37,6 @@ func _build_actor_sheet() -> bool:
 	if source == null:
 		return false
 	var clean := source.duplicate()
-	_remove_cyan_background(clean)
 	_harden_runtime_pixels(clean)
 	if not _save(clean, ACTOR_CLEAN):
 		return false
@@ -58,7 +57,10 @@ func _build_actor_sheet() -> bool:
 		largest_used.x = maxi(largest_used.x, used_rect.size.x)
 		largest_used.y = maxi(largest_used.y, used_rect.size.y)
 
-	var scale_factor := minf(44.0 / float(largest_used.x), 43.0 / float(largest_used.y))
+	# Reserve a deliberate four-pixel safety gutter around the side-facing
+	# silhouette. The previous 44x43 fit made raised tools and boots read as if
+	# they were clipped even though the atlas cells technically had padding.
+	var scale_factor := minf(40.0 / float(largest_used.x), 40.0 / float(largest_used.y))
 	var sheet := _new_image(Vector2i(192, 96))
 	for frame_index in frames.size():
 		var used_rect: Rect2i = used_rects[frame_index]
@@ -73,7 +75,7 @@ func _build_actor_sheet() -> bool:
 		var frame_canvas := _new_image(Vector2i(48, 48))
 		var destination := Vector2i(
 			(48 - scaled_size.x) / 2,
-			46 - scaled_size.y
+			44 - scaled_size.y
 		)
 		frame_canvas.blit_rect(
 			trimmed,
@@ -190,19 +192,6 @@ func _load_rgba(path: String) -> Image:
 		return null
 	image.convert(Image.FORMAT_RGBA8)
 	return image
-
-
-func _remove_cyan_background(image: Image) -> void:
-	for y in image.get_height():
-		for x in image.get_width():
-			var color := image.get_pixel(x, y)
-			var cyan_floor := minf(color.g, color.b)
-			if (
-				cyan_floor > 0.48
-				and cyan_floor - color.r > 0.20
-				and absf(color.g - color.b) < 0.30
-			):
-				image.set_pixel(x, y, CLEAR)
 
 
 func _remove_dark_border_background(image: Image) -> void:

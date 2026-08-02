@@ -2,6 +2,7 @@ class_name RootboundHusk
 extends CharacterBody2D
 
 const AttackProfile = preload("res://data/enemies/rootbound_husk_attack_profile.gd")
+const EnemyFootprint = preload("res://entities/enemies/components/enemy_footprint_system.gd")
 
 enum State { SPAWNING, CHASE, SPEAR_WIND_UP, SPEAR_ACTIVE, TRIAD_WIND_UP, TRIAD_ACTIVE, BURST_WIND_UP, BURST_ACTIVE, RECOVERY, DEAD }
 
@@ -20,6 +21,7 @@ signal root_burst_erupted
 
 @onready var health_component: HealthComponent = %HealthComponent
 @onready var navigation_agent: NavigationAgent2D = %NavigationAgent2D
+@onready var body_collision: CollisionShape2D = $BodyCollision
 @onready var knockback_component: KnockbackComponent = %KnockbackComponent
 @onready var center_hitbox: MeleeHitbox = %CenterHitbox
 @onready var left_hitbox: MeleeHitbox = %LeftHitbox
@@ -50,6 +52,9 @@ func _ready() -> void:
 		return
 	if attack_profile == null:
 		push_error("RootboundHusk requires a RootboundHuskAttackProfile.")
+		set_physics_process(false)
+		return
+	if not EnemyFootprint.configure(definition, body_collision, navigation_agent):
 		set_physics_process(false)
 		return
 	health_component.maximum_health = definition.maximum_health

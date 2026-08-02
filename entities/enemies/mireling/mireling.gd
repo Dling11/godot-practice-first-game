@@ -2,6 +2,7 @@ class_name Mireling
 extends CharacterBody2D
 
 const SeparationComponentScene = preload("res://entities/enemies/components/enemy_separation_component.tscn")
+const EnemyFootprint = preload("res://entities/enemies/components/enemy_footprint_system.gd")
 
 enum State { SPAWNING, CHASE, WIND_UP, LEAP, ACTIVE, RECOVERY, STAGGER, DEAD }
 
@@ -15,6 +16,7 @@ signal leap_targeted(global_target: Vector2, duration_seconds: float)
 @onready var health_component: HealthComponent = %HealthComponent
 @onready var attack_hitbox: MeleeHitbox = %AttackHitbox
 @onready var navigation_agent: NavigationAgent2D = %NavigationAgent2D
+@onready var body_collision: CollisionShape2D = $BodyCollision
 @onready var knockback_component: KnockbackComponent = %KnockbackComponent
 @onready var stagger_component: StaggerComponent = %StaggerComponent
 var separation_component: EnemySeparationComponent
@@ -32,7 +34,16 @@ var _applied_knockback_velocity := Vector2.ZERO
 
 
 func _ready() -> void:
+	if definition == null:
+		push_error("Mireling requires an EnemyDefinition.")
+		set_physics_process(false)
+		return
 	separation_component = _ensure_separation_component()
+	if not EnemyFootprint.configure(
+		definition, body_collision, navigation_agent, separation_component
+	):
+		set_physics_process(false)
+		return
 	health_component.maximum_health = definition.maximum_health
 	health_component.current_health = definition.maximum_health
 	health_component.died.connect(_die)

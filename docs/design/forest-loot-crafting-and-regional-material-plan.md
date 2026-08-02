@@ -1,6 +1,6 @@
 # Forest Loot, Crafting, Replay, and Regional Material Plan
 
-- **Status:** Approved design lock; Segments 1-4 plus Character & Bag preparation implemented, Segments 5-8 pending
+- **Status:** Approved regional/economy design lock; Segments 1-4 plus Character & Bag preparation implemented, Segments 5-8 pending. Decision 071 supersedes physical visible-weapon outputs with character-owned combat plus essence/relic equipment.
 - **Approved:** 2026-07-26
 - **Runtime coverage today:** Stages 1-3, five sparse/protected enemy drop profiles, ten illustrated materials, collectible pickups, profile-backed core/material/recipe/claim state, direct clear banking on Stages I-II, one guaranteed Stage III milestone Reliquary, and Rootweaver Nema's read-only recipe/material preview; no crafting transactions/outputs
 - **Planned content covered here:** Forest Stages 1-10 and a reusable foundation for Stage 11 onward
@@ -17,6 +17,10 @@ First clears advance story and unlock content. Replays provide controlled materi
 
 This plan is intentionally broader than the three implemented stages so save data, item identities, folder ownership, icon production, monster design, and crafting authority do not need destructive rewrites when Stages 4-20 arrive.
 
+## Decision 071 Equipment Overlay
+
+The fight/loot/craft/replay structure and Stage III/V/VIII/X reward cadence remain approved. Segment 5 output definitions must now be essences/relics: Weapon Essence, Body Relic, Hand Relic, Foot Relic, and two generic accessories. These items modify a playable character's stats or authored traits without automatically replacing the character's visible signature weapon. Existing physical Ashwood/Iron runtime items remain migration dependencies until explicit aliases or a save conversion exist. `docs/design/king-character-roster-and-essence-redesign.md` owns that migration.
+
 ## Approved Product Rules
 
 - Save/Continue is a prerequisite for loot and crafting. Grinding must never depend on keeping one application process open.
@@ -25,7 +29,7 @@ This plan is intentionally broader than the three implemented stages so save dat
 - First-clear progression rewards belong to authored milestones rather than every stage.
 - Replays target roughly two to three useful clears per ordinary equipment piece, not long identical-run grinds.
 - Bosses guarantee their unique crafting material.
-- Crafted equipment improves survivability, expression, and margin for error. A later stage must remain technically beatable through mastery without enforcing an opaque hard gear wall.
+- Crafted essences/relics improve survivability, expression, and margin for error. A later stage must remain technically beatable through mastery without enforcing an opaque hard gear wall.
 - Difficulty must come from readable behaviors, combinations, armor-break opportunities, positioning, and elites rather than health inflation alone.
 - Earlier regions retain limited material relevance, but new-region recipes primarily use current-region materials.
 - Character level does not become an infinite raw-stat treadmill. Region caps may expand, while post-cap Mastery supplies bounded utility, crafting, cosmetic, title, or material benefits.
@@ -84,12 +88,12 @@ The roles and material purposes below are planning slots, not final names, art, 
 | Stage | New enemy/content role | Material purpose |
 |---|---|---|
 | 4 | Armored hide-bearing Forest beast | Hide and bark plates for leather armor |
-| 5 | Medium boss milestone, potentially extending the insect/swarm role | Permanent weapon/armor crafting seal plus repeatable catalyst |
-| 6 | Forest caster/support | Spirit sap and rune fragments |
-| 7 | Heavy corrupted brute or mini-boss | Dense heartwood for axes and heavy armor |
-| 8 | Fungal/spirit mini-boss milestone | Accessory-material payout: spores, mycelial thread, spirit/binding components |
+| 5 | Medium boss milestone, potentially extending the insect/swarm role | Permanent core-gear crafting seal plus repeatable catalyst |
+| 6 | Forest caster/support | Spirit sap, rune fragments, and first accessory components/blueprints |
+| 7 | Heavy corrupted brute or mini-boss | Dense heartwood plus binding/setting components for heavy gear and accessories |
+| 8 | Fungal/spirit mini-boss milestone | Permanent standard-accessory seal plus repeatable fungal/spirit catalyst |
 | 9 | Elite Forest warden/hunter | Refined fittings and advanced Forest recipes |
-| 10 | Major Forest boss | Permanent accessory/relic crafting seal plus repeatable unique catalyst |
+| 10 | Major Forest boss | Permanent relic/signature-accessory crafting seal plus repeatable unique catalyst |
 
 Known enemies continue appearing in authored combinations. Aim for roughly one important new family every one or two stages, then remix existing roles. Do not replace the full roster every stage.
 
@@ -97,13 +101,13 @@ Known enemies continue appearing in authored combinations. Aim for roughly one i
 
 - **Stages 1-3:** collect and inspect root, mire, cloth, thorn, and Husk preparation materials; no recipe unlock is granted yet
 - **Stage 4:** introduce real hide-bearing ecology and its materials
-- **Stage 5:** permanently unlock weapon/armor crafting; consume a repeatable boss catalyst in relevant recipes
-- **Stages 6-7:** expand spirit, reinforced armor, and axe/greatsword components
-- **Stage 8:** award accessory-focused fungal/spirit/binding materials without granting the final category unlock
+- **Stage 5:** permanently unlock core-relic crafting for Weapon Essence, Body Relic, Hand Relic/bracer, and Foot Relic slots; consume a repeatable boss catalyst in relevant recipes
+- **Stages 6-7:** expand spirit, reinforced armor, axe/greatsword, and standard-accessory components/blueprints
+- **Stage 8:** permanently unlock standard accessories and award a repeatable fungal/spirit/binding catalyst
 - **Stage 9:** refine Forest fittings and advanced preparation
-- **Stage 10:** permanently unlock accessory/relic crafting and supply the repeatable signature catalyst
+- **Stage 10:** permanently unlock relic/signature-accessory crafting and supply the repeatable signature catalyst
 
-A crafting seal is permanent progression and is never consumed. A catalyst is repeatable inventory material and may be consumed by deterministic recipes. Rootfiber Wraps and Huskbound Guard belong to the Stage V milestone; Mireward Charm and Thornward Clasp belong to Stage X. Stage V also needs at least one authored crafted weapon recipe.
+A crafting seal is permanent progression and is never consumed. A catalyst is repeatable inventory material and may be consumed by deterministic recipes. Rootfiber Wraps and Huskbound Guard belong to the Stage V milestone; Mireward Charm and Thornward Clasp belong to Stage VIII. Stage V also needs at least one authored crafted Weapon Essence recipe. Two generic accessory slots accept pendant/amulet, earring, ring/charm, and later relic families; bracers remain a Hand Relic/gloves-family item rather than a separate slot.
 
 Exact item names, recipes, stats, and Stage 4-10 enemy names remain open until their individual content contracts are approved.
 
@@ -235,11 +239,11 @@ Stage UI and chest presentation do not roll rewards themselves.
 
 ## Rootweaver Sanctuary Role
 
-The approved crafting role is now implemented as **Rootweaver Nema**, an attractive adult female grove smith with a southwest open-air Living Rootforge. Her compact actor follows Eira and Orren's Sanctuary proportions while the portrait, auburn braid, forge apron, root hammer, gold-thread tongs, and approved visible-arm work silhouette carry the adult character identity. Earlier realistic and elderly boards are archived. `docs/design/rootweaver-nema-sanctuary-service-proposal.md` records the accepted identity, runtime package, dialogue, placement, and read-only menu contract.
+The approved crafting role is now implemented as **Rootweaver Nema**, an attractive adult female grove smith with a west-mid open-air Living Rootforge. Her compact screen-left three-quarter actor follows Eira and Orren's Sanctuary proportions while the portrait, auburn hair, forge apron, root hammer, tongs, and approved visible-arm work silhouette carry the adult character identity. Earlier realistic, elderly, and front-facing boards remain provenance only. `docs/design/rootweaver-nema-sanctuary-service-proposal.md` records the accepted identity, runtime package, dialogue, placement, and read-only menu contract.
 
 The role must remain distinct from Orren:
 
-- Orren sells and equips ordinary authored weapons.
+- Orren currently sells/equips ordinary authored weapons and may later sell or temper simple mortal essences after migration.
 - The Rootweaver transforms creature/region materials through deterministic recipes.
 
 Segment 4 delivers:
@@ -252,7 +256,7 @@ Segment 4 delivers:
 - Tool/idle sounds plus attribution
 - Crafting UI responsibilities
 
-The current `RootforgeMenu` observes recipe discovery and material readiness, but its action is disabled and it cannot mutate inventory, discovery, equipment, or save state. Segment 5 must add an atomic `CraftingService` and real output definitions before this boundary changes.
+The current `RootforgeMenu` observes recipe discovery and material readiness, but its action is disabled and it cannot mutate inventory, discovery, equipment, or save state. Segment 5 must add an atomic `CraftingService`, real essence/relic output definitions, and the King/roster equipment-save boundary before this changes.
 
 ## Level, Gear, and Mastery Direction
 
@@ -340,7 +344,7 @@ data/crafting/recipes/<future_region>/
 ### Segment 7 - Stage 4-10 content
 
 - Approve each monster content contract before art/runtime work
-- Preserve the Stage V weapon/armor seal, Stage VIII accessory-material payout, and Stage X accessory/relic seal cadence
+- Preserve the Stage V core-gear seal, Stage VIII standard-accessory seal, and Stage X relic/signature seal cadence
 - Stage 10 boss and signature Forest craft
 
 ### Segment 8 - Stage 11 and next region
