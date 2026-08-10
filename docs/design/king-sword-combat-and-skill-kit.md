@@ -2,7 +2,7 @@
 
 ## Status
 
-Owner-directed combat proposal for review before implementation or image generation. Decision 072 already locks King as a separate young-prime sword character and preserves Opaw. Names, exact timings, damage, and ranges below are recommended starting values, not implemented balance.
+Owner-directed combat proposal for review before implementation. Decision 076 supersedes the former detailed greatsword art clauses with a simple black-haired, crimson-scarf swordsman and one short broad rigid signature sword while preserving Opaw and character-owned combat. Old names, timings, damage, ranges, and detailed animation descriptions below remain proposals unless explicitly updated; no playable King or targeting runtime exists.
 
 ## Combat Identity
 
@@ -17,6 +17,7 @@ King keeps normal movement, dash, left-click/right-trigger basic attack, and fou
 
 ## Young-Prime Visual Direction
 
+- **Approved identity reference:** `art_source/generated/characters/playable/king/king_turnaround_direction_reference_approved.png`. This is the owner-approved design direction, not an exact-grid runtime sheet.
 - Apparent age: late twenties, lean and athletic; energetic posture, clean-shaven or extremely light stubble, no heavy beard or weary “father” silhouette.
 - Proportions: hard-pixel chibi with an oversized head, compact torso, short legs, visible simplified arms, and small readable hands.
 - Hair: dark, active silhouette with one restrained pale memory streak; avoid a crown-shaped hairstyle.
@@ -24,19 +25,35 @@ King keeps normal movement, dash, left-click/right-trigger basic attack, and fou
 - Lighting/palette: warm skin and bone highlights under the project's upper-left light, deep navy/charcoal body mass, crimson memory accent, silver-white sword, and white-to-cold-blue attack effects. This separates him from Opaw's green/rust/gold palette.
 - Expression: focused and angry when committed, but not permanently grim or old. His grief belongs in story and ultimate moments rather than every idle frame.
 - Working title: `KING • MORTAL RIFT SWORDSMAN`. “King” is his name/display identity, not a requirement for a literal crown.
+- Runtime density: approximately 28-32 visible body pixels tall inside a `64x64` armed-idle cell, one-pixel outline, roughly 12-16 character colors, and only two or three flat shade steps. The larger cell protects the greatsword silhouette; it does not authorize scaling King's body up. Reject realistic/anime portrait detail, gradients, antialiasing, individual hair strands, eyelashes, and rendered armor micro-detail.
 
-## Signature Sword
+### Directional perspective
 
-King begins with one character-owned straight sword, provisionally called the **Veil Edge**:
+- Battle of Gods uses a cardinal top-down three-quarter RPG view, not a pure frontal portrait and not a side-view platformer.
+- `idle_down` faces unmistakably toward the bottom attack lane while the torso/shoulders turn roughly 10-15 degrees, the sword-side shoulder sits slightly behind, and the feet use a shallow diagonal stagger.
+- `idle_up` mirrors that readable three-quarter staging from the back. Side directions retain a small visible top shoulder/back plane rather than becoming perfectly flat profiles.
+- Locomotion changes the pose and direction row, not the camera language: walking down continues using the down-facing three-quarter identity, and stopping returns to the last movement direction's idle.
+- A slightly angled pose may never rotate the authoritative cardinal attack lane or make the player misread which direction King will strike.
 
-- silver-white single straight blade, readable at gameplay scale;
-- dark compact grip with a small broken-halo guard;
-- crimson memory cord near the pommel;
-- long enough to support exaggerated cleaves without becoming a greatsword;
-- integrated with King's body action frames so hand-to-hilt contact cannot drift;
-- essence equipment may change stats, runes, aura, or trail accents but does not swap the sword silhouette by default.
+## Signature Greatsword
 
-The final weapon name and silhouette require owner approval with the turnaround.
+King begins with one character-owned heavy greatsword, provisionally called the **Veil Edge**:
+
+- broad silver-white straight blade with a dark steel spine/core and a heavy angular tip, readable at gameplay scale;
+- dark compact grip, restrained broken-halo guard, and crimson memory cord near the pommel;
+- large enough to read as a true two-handed heavy weapon without becoming a screen-filling slab;
+- rests on King's weapon-side shoulder during idle: the hand and hilt remain close to the body while the blade angles upward and outward, never through or toward his head and never sheathed on his back;
+- integrated with King's body action frames so hand-to-hilt contact, shoulder weight, and blade pivot cannot drift;
+- essence equipment may change stats, runes, aura, or trail accents but does not swap the greatsword silhouette by default.
+
+The owner approved the greatsword/shoulder-carry direction in Decision 074. The final weapon name still requires approval.
+
+### Weapon-bound crescent language
+
+- Normal and skill attacks overcharge the physical blade: the blade edge brightens first, then the crescent grows directly from its authored swing path.
+- The active slash is a thick white-hot melee silhouette with a cold-blue inner edge and restrained pale-violet fragments. It is not a thin wind line or a detached projectile.
+- Peak contact may wrap around King at roughly two to two-and-a-half body widths, provided its opaque damaging edge and tip remain inside the authoritative contact shape.
+- Runtime body/weapon frames and VFX remain separate `AnimatedSprite2D` layers. A combined review proof may show both only to validate timing, pivot, recoil, and visual ownership.
 
 ## Basic Attack Input Contract
 
@@ -100,25 +117,28 @@ King should feel heavier than Opaw without causing multi-enemy lag or constant c
 - Visual: dense white core, cold-blue inner edge, sparse gold/crimson fragments, then rapid dissolution. The visible core remains inside contact authority.
 - Proposed cooldown: 4 seconds.
 
-### Skill 2 — Riftstep Cross
+### Skill 2 — Riftfall Judgment
 
-**Role:** mobility, repositioning, and delayed burst.
+**Role:** ground-target mobility, impact damage, and delayed radial area denial.
 
-- King dashes up to roughly 125 pixels through a collision-limited lane with invulnerability only during the authored movement.
-- Two crossed cut traces remain on the traversed lane and detonate 0.12 seconds after King exits.
-- Proposed two contacts: 80% on pass and 145% on cross detonation. A target may receive both only when it occupies the real lane at both windows.
-- Visual: thin white travel line, dark-blue afterimage, then one large white X with a screen-space directional kick.
-- Proposed cooldown: 6 seconds.
+- Activation opens a live ground reticle rather than firing toward the last movement direction. Mouse aims directly; controller uses the right stick; a future mobile control drags outward from the skill button. Confirming snapshots one valid landing point, while canceling spends no cooldown.
+- Proposed target range is 180 pixels. World collision and navigation clamp the landing point before commitment; King may cross enemy footprints but never pass through walls, sealed portals, or invalid terrain.
+- A readable 0.20-second crouch remains vulnerable. King is invulnerable only during the roughly 0.24-second airborne travel, then becomes vulnerable on landing/recovery.
+- The sword-first impact hits a roughly 52-pixel core for proposed 190% sword power. After 0.15 seconds, a cracked outer ring expands to roughly 96 pixels for 85%; a target still inside both real shapes may receive both contacts.
+- Light enemies may receive authored upward/outward control; Elites and Bosses continue using the existing crowd-control resistance authority.
+- Visual and audio: compressed launch dust, a short white descent line, heavy stone/blade impact, then a separately animated branching ground crack. Body, target marker, landing burst, and crack remain separate assets.
+- Proposed cooldown: 8 seconds.
 
-### Skill 3 — Blade Dominion
+### Skill 3 — Sovereign Pursuit
 
-**Role:** close-range crowd control and sustained area pressure.
+**Role:** enemy-target dueling burst and deliberate pursuit.
 
-- King plants his stance and performs three escalating circular cuts around himself: low ring, reverse ring, then a larger rising finish.
-- He may steer slowly at roughly 35-40% movement speed but cannot dash-cancel before the second contact. No full-cast invulnerability; proposed 35% damage reduction keeps the choice risky but usable.
-- Proposed strike scaling: 55% + 65% + 150% sword power in roughly a 120/135/165-pixel radius sequence.
-- Visual: white rings with separated gaps so enemy telegraphs remain visible, followed by a short vertical recoil and outward debris.
-- Proposed cooldown: 9 seconds.
+- Activation selects one living enemy beneath the pointer or inside the aim cone, up to roughly 220 pixels with valid world line of sight. An invalid target produces clear feedback and spends no cooldown.
+- King performs two short collision-validated crossings around the selected enemy, then one broad finishing cross at its current/last-valid position. The proposed contacts are 65% + 75% + 170% sword power.
+- Invulnerability exists only during the two brief traversal windows. The visible holds between cuts and the final recovery remain vulnerable, so target selection does not become a free escape.
+- If the target dies or becomes invalid mid-sequence, King completes safely at the last valid position instead of teleporting through world collision. Bosses remain immune to forced displacement and stagger unless their data explicitly permits it.
+- Visual: restrained navy afterimages attached to the traversals, two thin white cuts, then a larger cold-white X with a crimson center spark. Body, afterimages, cuts, and final X remain separate assets.
+- Proposed cooldown: 11 seconds.
 
 ### Skill 4 — Worldsplitter: Last Horizon
 
@@ -137,40 +157,84 @@ King should feel heavier than Opaw without causing multi-enemy lag or constant c
 
 ### Body/action structure
 
-- Use one `AnimatedSprite2D` with action-owned `SpriteFrames` for King's body and integrated Veil Edge.
-- Use separate `AnimatedSprite2D` atlases for crescents, crosses, rings, and fractures.
+- Use one `AnimatedSprite2D` with action-owned `SpriteFrames` for King's body and integrated Veil Edge greatsword.
+- Use separate `AnimatedSprite2D` atlases for crescents, target markers, landing cracks, pursuit cuts, and ultimate fractures.
 - Keep a symmetric costume so left can be reviewed and then exactly mirrored for right; do not independently generate both unless a real asymmetry is approved.
-- Provisional compact cell: 48x48 with a roughly 30-34 pixel upright actor. Extended combo/skill bodies may use 64x48 or 80x64 rather than shrinking King.
+- Provisional armed idle/locomotion cell: `64x64` with a roughly 28-32-pixel upright body. Extended combo/skill bodies may use `96x80` or `128x96` rather than shrinking King or clipping the greatsword.
 - Stable foot baseline and body scale across every direction and action.
+- The rejected rear-view proof must not be copied: a lowered sword-side hand makes the blade read as mounted across King's back. In every up/back shoulder-carry frame, bend the sword-side arm and show the hand visibly gripping the hilt at shoulder height; keep the guard just outside the shoulder, attach the crimson cord to the pommel beside that grip, and let only the off-hand hang down.
+
+### Sheet geometry contract
+
+- Produce one exact-grid PNG per action family rather than one very long horizontal strip or one giant all-action atlas. Examples: `king_idle`, `king_walk`, `king_basic_combo`, `king_dash`, and one body sheet per skill. Effect art uses separate action-owned sheets.
+- Each body sheet stores canonical direction rows `down`, `left`, `right`, `up`; time advances across columns. This keeps the complete action together and makes Godot `AnimatedSprite2D` slicing and manual inspection predictable.
+- Every cell in a sheet has one fixed size and pivot contract. Runtime PNG dimensions must equal `cell_width * columns` by `cell_height * rows`; a visually horizontal generated board is not sufficient.
+- Generated review boards with irregular dimensions are source proofs only. They must be normalized into exact cells, binary alpha, stable foot/pivot anchors, and nearest-neighbor pixels before Godot imports or slices them.
+- Record per-frame occupied bounds during processing and fail when actor height, foot baseline, shoulder grip, weapon length, or cell-center offset drifts outside the approved tolerance. Never independently center or scale each frame.
+- A direction may use a deliberately shorter animation through `SpriteFrames` metadata; do not duplicate meaningless art merely to fill columns.
 
 ### Minimum key poses, not filler
 
 | Action | Key art target |
 |---|---:|
-| Idle | 4 frames per direction |
-| Walk | 6 true contact/passing frames per direction |
-| Pre-attack/charge | 3 pre-attack + 3 charge-intensity frames per direction |
-| Combo Step 1 | 5 frames per direction |
-| Combo Step 2 | 5 frames per direction |
-| Combo Step 3 | 6 frames per direction |
-| Charged cleave | 7 frames per direction |
-| Dash | 4 frames per direction |
-| Hurt | 3 frames per direction |
-| Interact | 3 frames per direction |
-| Defeat | 6 frames per direction |
+| Idle | 3-4 purposeful loop frames per direction |
+| Walk | 4 core gait frames per direction; use 6 only when extra recoil/reach poses materially improve motion |
+| Pre-attack | 3-4 immediate button-down anticipation frames per direction |
+| Charge hold | 4-6 escalating/loopable tension frames per direction |
+| Combo Step 1 — Opening Cut | 8-10 frames per direction |
+| Combo Step 2 — Reversal Cut | 8-10 frames per direction |
+| Combo Step 3 — Horizon Break | 10-12 frames per direction |
+| Charged Falling Divide release | 12-14 frames per direction |
+| Dash | 4-6 frames per direction |
+| Hurt | 3-4 frames per direction |
+| Interact | 4-6 frames per direction |
+| Defeat | 8-12 frames per direction |
+| Skill 1 body | 8-12 frames per direction plus separate VFX |
+| Skill 2 body | 14-20 launch/air/descent/impact/recovery frames per direction plus target/crack VFX |
+| Skill 3 body | 14-20 pursuit/strike/finish/recovery frames per direction plus cut VFX |
+| Skill 4 body | 18-24 tell/cross/hold/return frames per direction plus cinematic VFX |
 
-Each attack needs anticipation, contact, follow-through, and recovery, but gameplay timers control their real duration. The contact pose may display for only one or two render frames while the named animation remains easy to preview in Godot.
+These are purposeful ranges, not quotas. A complete four-frame walk with contact, passing, opposite contact, and opposite passing is better than eight duplicated or misaligned cells. Idle uses slower playback; attacks and skills receive more poses because anticipation, contact, recoil, follow-through, and recovery need them. Gameplay timers still control authoritative phase duration, and one animation frame never grants damage by itself.
+
+### Generated direction proofs awaiting runtime normalization
+
+Decision 074 adds two direction references under `art_source/generated/characters/playable/king/greatsword_proofs/`:
+
+- `king_greatsword_turnaround_reference_v1.png`: approved body/weapon design direction for down and side views, but its up/back pose is rejected because the sword-side hand hangs below the hilt and makes the weapon read as back-mounted;
+- `king_greatsword_opening_cut_vfx_reference_v1.png`: owner-approved eight-beat combined motion/VFX proof showing blade charge, thick weapon-bound crescent, recoil, fragmentation, and recovery.
+
+These wide dark-background images are review references, not runtime sheets. The attack proof intentionally combines body and effect to approve composition; production must separate those layers.
+
+### Current simple-reboot checkpoint
+
+- `simple_reboot/king_simple_identity_reference_v1.png` is the approved identity reference.
+- `simple_reboot/king_simple_walk_source_v1.png` is a source-only 4x4 walking board with `down/left/right/up` direction rows and four contact/passing poses.
+- The rejected detailed greatsword sheets, VFX strips, `SpriteFrames`, preview, processors, tests, and reviews are archive-only under `rejected_detailed_package_2026-08-11/`.
+- No active King runtime art or gameplay exists. Normalize and motion-review the walk before producing one simple attack proof.
+- Narrow directional attacks/skills require aim-preview confirmation; jump-smash/ground AOE uses a movable valid-range marker; instant activation is reserved for self-AOE, aura, buff, defense, or naturally broad waves.
+
+### Superseded modest-sword source proofs
+
+The first source pass is preserved under `art_source/generated/characters/playable/king/motion_proofs/`:
+
+- eight-frame down-facing three-quarter idle;
+- eight-frame right-facing walk with alternating contacts and passing poses;
+- ten-frame right-facing `PRE_ATTACK -> Opening Cut` body strip;
+- ten-frame right-facing Reversal Cut body strip.
+
+Each action has a raw `*_source_v1.png` chroma board and a binary-alpha `*_clean_v2.png` intermediate. Decision 074 supersedes their modest-sword silhouette. They remain provenance inputs only while the greatsword direction is reviewed; do not normalize or reference them from Godot. After the replacement production strips pass review, move these obsolete proofs to the Godot-ignored archive.
 
 ### Production order
 
-1. Young-prime four-direction turnaround with sword carried low and arms visible.
-2. One right-facing pre-attack -> Opening Cut -> Reversal Cut strip.
+1. **Attack/effect direction approved:** preserve the owner-approved coarse King identity, heavy greatsword design, and white-hot weapon-bound crescent.
+2. **Correct and normalize the armed turnaround:** replace the rejected up/back pose with a visibly bent sword-side arm and hand-on-hilt shoulder grip, then produce one exact `64x64` four-row binary-alpha idle sheet with unchanged 28-32-pixel body scale and one stable baseline.
 3. Gameplay-scale approval against one Rootling, one Thrall, and Rootbound Husk.
-4. Exact mirrored left strip and independently authored front/back cuts.
-5. Full locomotion and reactions.
-6. Combo finisher and charged cleave.
-7. Skill 1 body/VFX proof, then Skills 2-4 one at a time.
-8. Portrait only after the gameplay identity is stable.
+4. Produce an exact-cell right-facing Opening Cut with separate body/weapon and crescent VFX strips; validate that every opaque damaging edge fits contact authority.
+5. Exact mirrored left strip and independently authored front/back cuts.
+6. Full locomotion and reactions.
+7. Combo finisher and charged cleave.
+8. Skill 1 body/VFX proof, then Skills 2-4 one at a time.
+9. Portrait only after the gameplay identity is stable.
 
 Do not generate one giant board containing every action. It increases anatomy drift, bad crops, repeated poses, and repair time—the main causes of Opaw's slower art iteration.
 
@@ -187,8 +251,8 @@ Do not generate one giant board containing every action. It increases anatomy dr
 
 ## Approval Questions Still Open
 
-- Final signature sword name and exact silhouette.
+- Final signature greatsword name; `Veil Edge` remains provisional.
 - Whether King's third light attack should launch/lightly stagger or remain pure knockback.
 - Whether fully charged Falling Divide may move King forward or remain planted.
-- Whether Riftstep Cross can pass through Boss bodies or stops at their movement footprint.
+- Final targeting controls and balance for Riftfall Judgment and Sovereign Pursuit after temporary-shape mouse/controller feel tests.
 - Final skill names and balance after the first temporary-shape feel test.

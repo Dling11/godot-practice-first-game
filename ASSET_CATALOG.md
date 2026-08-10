@@ -68,20 +68,23 @@ Do not introduce `final`, `new`, `fixed`, `better`, unexplained numbers, or cont
 | `portrait_enemy_forsaken_thrall` | `assets/characters/enemies/portraits/forsaken_thrall_portrait_96x96.png` | Active | 96x96 transparent pixel portrait | Dialogue, bestiary, and preview presentation |
 | `portrait_enemy_bramble_spitter` | `assets/characters/enemies/portraits/bramble_spitter_portrait_96x96.png` | Active | 96x96 transparent pixel portrait | Dialogue, bestiary, and preview presentation |
 
-### Planned King Character Art
+### Approved King Simple-Reboot Sources
 
-No King raster has been generated or approved. These IDs reserve the Decision 071 proof sequence without claiming runtime assets:
+Decision 076 supersedes the detailed Decision 073-074 visual package. Decision 075 still governs action-owned exact-grid production. The simple locomotion proof is active only as an isolated review asset, not as a playable character:
 
 | Canonical ID | Current path | Target path/name | Provisional contract | Status |
 |---|---|---|---|---|
-| `char_king_turnaround` | None | `art_source/generated/characters/playable/king/king_turnaround_source.png` | Young-prime four directions; navy/charcoal/crimson identity, visible arms, integrated Veil Edge | `planned` |
-| `char_king_attack_side_proof` | None | `art_source/generated/characters/playable/king/king_basic_attack_side_proof_source.png` | Right-facing pre-attack, Opening Cut, and Reversal Cut reviewed before full production | `planned` |
-| `char_king_frames` | None | `assets/characters/playable/king/king_sprite_frames.tres` | Named `AnimatedSprite2D` actions after proof approval | `planned` |
+| `char_king_simple_identity_v1` | `art_source/generated/characters/playable/king/simple_reboot/king_simple_identity_reference_v1.png` | Same until exact-cell extraction | Owner-approved plain-face black-haired swordsman with crimson scarf, compact body, mitten hands, tiny feet, and short broad straight signature sword | `approved_reference` |
+| `char_king_simple_walk_v1` | `art_source/generated/characters/playable/king/simple_reboot/king_simple_walk_source_v1.png` | `assets/characters/playable/king/simple_reboot/king_simple_locomotion_sheet_48x32.png` | Approved 4x4 `down/left/right/up` contact/passing board; deterministic processor emits exact binary-alpha cells with one scale and foot anchor | `active_review_runtime` |
+| `char_king_detailed_package_rejected` | `art_source/archive/characters/playable/king/rejected_detailed_package_2026-08-11/` | None | Former detailed greatsword runtime sheets, previews, processors, tests, generated/cleaned sources, and reviews; never restore to active imports | `rejected_archive` |
+| `char_king_frames` | `assets/characters/playable/king/simple_reboot/king_simple_sprite_frames.tres` | Same | Directional one-frame idles plus four-frame walks; consumed only by `king_simple_locomotion_preview.tscn` and focused smoke coverage | `active_review_runtime` |
 | `portrait_king` | None | `assets/characters/playable/king/king_portrait_96x96.png` | 96x96 transparent portrait derived after gameplay identity approval | `planned` |
-| `weapon_king_veil_edge` | None | Integrated through King's approved body/action sheets | Silver-white straight signature sword with broken-halo guard and crimson memory cord | `planned` |
+| `weapon_king_signature_sword` | `king_simple_identity_reference_v1.png` | Character-owned rigid sword presentation | Short broad straight silver sword; equipment essences modify stats/traits rather than swapping its visible sprite | `approved_reference` |
 | `fx_king_crescent_sever` | None | `assets/skills/king/crescent_sever/king_crescent_sever_vfx_sheet.png` | Large white/cold-blue crescent whose opaque edge/tip remains inside contact authority | `planned` |
 
 Opaw remains `active_runtime` permanently as a separate supported roster character. Do not change the Opaw rows to legacy or move their files merely because King is added.
+
+Decision 075 makes action-owned exact-grid sheets the runtime production unit. Small horizontal single-direction strips are permitted as review sources, not runtime atlases. Approve each integrated direction/action source before normalization or multiplication. Deterministic processing must reject per-frame scale/center/baseline/grip drift and source-matte residue before catalog status may become `active_runtime`.
 
 The five portrait sources and chroma-clean intermediates live under `art_source/generated/characters/enemies/portraits/`. They were generated from each approved runtime model as an identity reference, cleaned from a blue chroma backdrop, and nearest-neighbor normalized to the shared 96x96 transparent runtime contract. Portraits are presentation-only and may be reused by dialogue, expedition descriptions, and future bestiary surfaces.
 
@@ -376,7 +379,7 @@ These patterns are not approved runtime naming. Preserve them during migration, 
 
 | Current pattern/path | Status | Rule |
 |---|---|---|
-| `assets/characters/prototype/` | `legacy` | Do not add new runtime references. |
+| `art_source/archive/characters/legacy_runtime_cleanup_2026-08-11/` | `archived` | Former zero-reference character prototypes plus the broken legacy `sprites_24x32` Thrall resource; Godot-ignored and recoverable. |
 | `*_source.png` | `source` | Preserve original generation/download/handmade input. |
 | `*_clean.png` | `intermediate` | Preserve when required by a reproducible build script. |
 | `assets/environment/prototype/dark_*` and unpolished ground/prop variants | `legacy` or `source` | Classify individually before moving; do not delete blindly. |

@@ -1,0 +1,234 @@
+{
+  "source": "art_source/cleaned/characters/playable/king/idle/king_idle_body_only_transparent_v1.png",
+  "runtime": "assets/characters/playable/king/king_idle_body_only_64x64_review.png",
+  "directions": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "columns": 4,
+  "cell_size": [
+    64,
+    64
+  ],
+  "sheet_size": [
+    256,
+    256
+  ],
+  "body_target_height": 32,
+  "foot_pixel_y": 57,
+  "foot_center_x": 31.5,
+  "opaque_palette_colors": 20,
+  "right_row_derived_from": "exact horizontal mirror of left",
+  "frames": [
+    {
+      "direction": "down",
+      "column": 0,
+      "bounds": [
+        23,
+        27,
+        40,
+        58
+      ],
+      "opaque_pixels": 384,
+      "foot_center_x": 31.5,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "down",
+      "column": 1,
+      "bounds": [
+        24,
+        27,
+        41,
+        58
+      ],
+      "opaque_pixels": 384,
+      "foot_center_x": 32.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "down",
+      "column": 2,
+      "bounds": [
+        23,
+        27,
+        40,
+        58
+      ],
+      "opaque_pixels": 385,
+      "foot_center_x": 31.5,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "down",
+      "column": 3,
+      "bounds": [
+        22,
+        27,
+        40,
+        58
+      ],
+      "opaque_pixels": 405,
+      "foot_center_x": 31.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "left",
+      "column": 0,
+      "bounds": [
+        24,
+        23,
+        42,
+        58
+      ],
+      "opaque_pixels": 383,
+      "foot_center_x": 31.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "left",
+      "column": 1,
+      "bounds": [
+        24,
+        23,
+        42,
+        58
+      ],
+      "opaque_pixels": 377,
+      "foot_center_x": 31.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "left",
+      "column": 2,
+      "bounds": [
+        24,
+        23,
+        42,
+        58
+      ],
+      "opaque_pixels": 379,
+      "foot_center_x": 31.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "left",
+      "column": 3,
+      "bounds": [
+        24,
+        23,
+        42,
+        58
+      ],
+      "opaque_pixels": 378,
+      "foot_center_x": 31.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "right",
+      "column": 0,
+      "bounds": [
+        22,
+        23,
+        40,
+        58
+      ],
+      "opaque_pixels": 383,
+      "foot_center_x": 32.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "right",
+      "column": 1,
+      "bounds": [
+        22,
+        23,
+        40,
+        58
+      ],
+      "opaque_pixels": 377,
+      "foot_center_x": 32.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "right",
+      "column": 2,
+      "bounds": [
+        22,
+        23,
+        40,
+        58
+      ],
+      "opaque_pixels": 379,
+      "foot_center_x": 32.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "right",
+      "column": 3,
+      "bounds": [
+        22,
+        23,
+        40,
+        58
+      ],
+      "opaque_pixels": 378,
+      "foot_center_x": 32.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "up",
+      "column": 0,
+      "bounds": [
+        22,
+        17,
+        43,
+        58
+      ],
+      "opaque_pixels": 639,
+      "foot_center_x": 32.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "up",
+      "column": 1,
+      "bounds": [
+        22,
+        18,
+        42,
+        58
+      ],
+      "opaque_pixels": 606,
+      "foot_center_x": 32.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "up",
+      "column": 2,
+      "bounds": [
+        21,
+        18,
+        42,
+        58
+      ],
+      "opaque_pixels": 625,
+      "foot_center_x": 31.5,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "up",
+      "column": 3,
+      "bounds": [
+        22,
+        18,
+        42,
+        58
+      ],
+      "opaque_pixels": 617,
+      "foot_center_x": 32.0,
+      "largest_component_ratio": 1.0
+    }
+  ]
+}

@@ -157,6 +157,8 @@ Decisions 071-072 add a planned character layer without replacing `Player` as th
 
 Character scenes may compose shared movement, evade, health, damage, input, ability, and interaction components, but body/hand anchors, signature weapon presentation, combo animation mapping, and cinematic presentation belong to the character. Do not rename generic systems to King or fork the whole `Player` controller for each roster member.
 
+King's first active presentation seam is intentionally isolated from gameplay. `tools/process_king_simple_locomotion.py` identifies the approved board's sixteen connected silhouettes, applies one nearest-neighbor scale, anchors every frame at its feet, and writes one exact `192x128` atlas of `48x32` cells plus directional idle/walk `SpriteFrames`. `entities/player/king/king_simple_locomotion_preview.tscn` is review-only and does not replace Opaw or own movement/combat. Decision 076 keeps the rejected detailed package under `art_source/archive/characters/playable/king/rejected_detailed_package_2026-08-11/`. Character-owned sword presentation remains separate from equipment stat ownership, while any future target-preview controller must produce validated target intent for gameplay authority rather than allowing animation or HUD to calculate damage, range, collision, cooldown, or cost.
+
 ### Combat
 
 Combat should model attack intent/data separately from visual effects. Hitboxes produce explicit hit information; hurtboxes validate and forward it to a damage receiver. Damage authority belongs to gameplay logic, not animation callbacks alone.

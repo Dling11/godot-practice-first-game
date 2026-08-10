@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="SpriteFrames" path="res://assets/characters/playable/king/simple_reboot/king_simple_sprite_frames.tres" id="1_frames"]
+
+[node name="KingSimpleLocomotionPreview" type="Node2D"]
+
+[node name="Backdrop" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, 0, 960, 0, 960, 540, 0, 540)
+color = Color(0.025, 0.03, 0.045, 1)
+
+[node name="Title" type="Label" parent="."]
+offset_left = 310.0
+offset_top = 92.0
+offset_right = 650.0
+offset_bottom = 124.0
+theme_override_colors/font_color = Color(0.86, 0.78, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "KING — SIMPLE LOCOMOTION PROOF"
+horizontal_alignment = 1
+
+[node name="Down" type="AnimatedSprite2D" parent="."]
+position = Vector2(300, 260)
+scale = Vector2(4, 4)
+sprite_frames = ExtResource("1_frames")
+animation = &"walk_down"
+autoplay = "walk_down"
+
+[node name="Left" type="AnimatedSprite2D" parent="."]
+position = Vector2(420, 260)
+scale = Vector2(4, 4)
+sprite_frames = ExtResource("1_frames")
+animation = &"walk_left"
+autoplay = "walk_left"
+
+[node name="Right" type="AnimatedSprite2D" parent="."]
+position = Vector2(540, 260)
+scale = Vector2(4, 4)
+sprite_frames = ExtResource("1_frames")
+animation = &"walk_right"
+autoplay = "walk_right"
+
+[node name="Up" type="AnimatedSprite2D" parent="."]
+position = Vector2(660, 260)
+scale = Vector2(4, 4)
+sprite_frames = ExtResource("1_frames")
+animation = &"walk_up"
+autoplay = "walk_up"
+
+[node name="Directions" type="Label" parent="."]
+offset_left = 232.0
+offset_top = 342.0
+offset_right = 728.0
+offset_bottom = 372.0
+theme_override_colors/font_color = Color(0.58, 0.62, 0.7, 1)
+theme_override_font_sizes/font_size = 15
+text = "DOWN                 LEFT                 RIGHT                  UP"
+horizontal_alignment = 1
+

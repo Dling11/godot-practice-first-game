@@ -99,28 +99,32 @@ Do not reinterpret a version-1 Opaw save in place without validation. Add a prof
 
 ## King Pixel and Animation Proof
 
-Do not generate the production sheet as one giant board. First approve one four-direction turnaround and one short side attack strip at gameplay scale. King's style should remain deliberately chibi and hard-pixel:
+Decision 076 supersedes the former detailed visible-arm/shoulder-greatsword identity. Do not restore its runtime package or use it as the active production target. King's approved replacement remains deliberately simple and hard-pixel:
 
-- oversized head, compact torso, short legs, simple visible arms or rounded forearms;
-- readable hand-to-hilt contact without realistic anatomy or excessive finger detail;
+- oversized chunky black hair, plain two-eye face, compact torso, short legs, and mitten-block hands;
+- crimson scarf/sash as the only strong costume accent;
 - one signature-weapon silhouette and one stable costume/palette;
 - upper-left lighting, binary alpha, nearest-neighbor import, fixed foot baseline;
 - no frame-by-frame body resizing, changing face, disappearing arms, changing weapon length, or disconnected hands;
+- one short broad rigid straight signature sword with fixed dimensions; no detailed grip anatomy;
+- one exact-grid sheet per action family with `down/left/right/up` rows, stable pivots, and no source-background residue;
 - 96x96 reusable portrait derived only after the gameplay identity is approved.
 
-The provisional runtime cell contract is 48x48 for idle/walk/hurt/interact and 64x48 for committed attacks/dash when the weapon or arms need width. Exact visible height and baseline are approved from the turnaround proof, then frozen across every action. A wider cell is always preferred over shrinking King to fit a pose.
+The provisional runtime cell target is `32x32` for idle/walk/hurt/interact, expanding an action cell only when attack reach genuinely needs it. Exact visible height and baseline freeze after the first normalized walking review. Keep body motion restrained and let rigid weapon/VFX presentation provide attack scale. Gameplay contact remains data-owned.
+
+Current art gate: `simple_reboot/king_simple_identity_reference_v1.png` is owner-approved and `king_simple_walk_source_v1.png` is an approved source-only 4x4 directional contact/passing board. No active King runtime PNG, `SpriteFrames`, processor, preview, test, roster integration, or gameplay exists. Next clean only this walk board, normalize exact cells, and review motion at native scale and 960x540 before generating attacks.
 
 Minimum first-pass animation coverage:
 
 | Action | Initial frame target | Review purpose |
 |---|---:|---|
-| Idle | 4 per direction | identity, breathing, stable anatomy |
-| Walk | 6 per direction | true contacts/passing poses and arm counter-motion |
-| Basic combo | 4 per step/direction | anticipation, contact, follow-through, recovery |
-| Dash | 4 per direction | readable lean and recovery without scale change |
-| Hurt | 3 per direction | impact and return readability |
-| Interact | 3 per direction | NPC-facing body language |
-| Defeat | 6 per direction | authored collapse before runtime fade |
+| Idle | 3-4 per direction | identity, breathing, stable anatomy |
+| Walk | 4 core poses; up to 6 when useful | contact/passing/opposite contact/opposite passing plus optional real recoil/reach |
+| Basic combo | 8-12 per step/direction | anticipation, acceleration, contact, recoil, follow-through, recovery |
+| Dash | 4-6 per direction | readable lean and recovery without scale change |
+| Hurt | 3-4 per direction | impact and return readability |
+| Interact | 4-6 per direction | NPC-facing body language |
+| Defeat | 8-12 per direction | authored collapse before runtime fade |
 
 These are targets, not a license to invent duplicate filler frames. If a direction cannot pass a 1x gameplay review, regenerate or repair that action before producing later skills.
 

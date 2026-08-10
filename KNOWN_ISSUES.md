@@ -7,9 +7,9 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 ### KI-014 - King and additive character-roster combat are designed but not implemented
 
 - **Status:** Open
-- **Progress:** Decisions 071-072 plus the King redesign/skill-kit documents define King's story foundation, young-prime visible-arm proof, tap/hold real combo, four distinct skills, impact tiers, cinematic boundary, essence/relic equipment, and additive roster/save ownership. Opaw and his current skills are now explicitly preserved. The opposite-movement attack bug remains repaired.
-- **Impact:** The live game still instantiates only Opaw. King art/gameplay, roster selection, press/release attack intent, real combo damage, cinematic ultimate presentation, essence equipment, and per-character save records do not exist yet.
-- **Planned resolution:** Pass the additive gates in order: turnaround/two-hit side proof, character/roster/attack-chain data, King's temporary-shape tap/hold combat, core art and Crescent Sever, remaining skills, roster UI/save extension, then full two-character Stages I-III validation.
+- **Progress:** Decision 076 replaced the rejected detailed King with an approved Opaw-complexity identity. His simple four-direction board now builds into a tested exact-cell locomotion atlas, `SpriteFrames`, and isolated preview; the old detailed package remains archive-only. Character-owned signature weapon and essence/relic direction remain approved; explicit aim-preview and ground-target activation replace narrow blind immediate-direction casting for King's future skills.
+- **Impact:** The live game still instantiates only Opaw. King has locomotion presentation but no playable actor, roster selection, targeting controller, authoritative combo/contact data, attack/skill animations, essence equipment, or per-character save record.
+- **Planned resolution:** Owner-review the locomotion preview, then prove one simple body attack with rigid weapon/VFX presentation, implement reusable line/wedge/ground target preview and confirm/cancel authority, and only afterward add roster/attack-chain data, King skills, save extension, and two-character Stages I-III validation.
 - **Workaround:** Continue using Opaw normally. Preserve his active assets, skills, catalog compatibility, progression, story IDs, audio, and tests; archive only rejected or genuinely superseded experiments.
 
 ### KI-013 - Forest crafting transactions and replay Hunts are not implemented
@@ -46,8 +46,8 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 ### KI-004 - Pixel rendering baseline is not art-validated
 
 - **Status:** Open
-- **Impact:** The 960x540 baseline mechanically validates Opaw's compact armless runtime and Sanctuary service corner, but the owner has rejected that limb/animation direction for future playable characters. King's visible-arm chibi scale, anatomy, signature grip, frame continuity, and effects have no approved gameplay proof yet.
-- **Planned resolution:** Approve King's four-direction turnaround and one side-attack strip at 1x/960x540 before generating full idle, walk, combo, dash, hurt, interaction, defeat, skill, or portrait assets. Then feel-test all directions and contacts in Sanctuary and Stages I-III.
+- **Impact:** The 960x540 baseline mechanically validates Opaw and now has exact-grid King idle/walk plus side-combo body/VFX assets, but the new processed motion has not received owner approval in the running game. Front/back attacks, dash, hurt, interaction, defeat, skills, and portrait remain absent.
+- **Planned resolution:** Approve the processed King core preview at 1x/960x540, then bind it to temporary-shape combat for contact-alignment review. Author front/back attacks and later action families only after the current side motion passes; keep gameplay authority independent from animation frames.
 - **Workaround:** Treat Opaw as a complete supported character whose compact style does not dictate King's body. The Wayfarer resource remains Opaw's additional visual rollback, not King's destination art style.
 
 ### KI-005 - Expanded equipment and later skill balance remain incomplete

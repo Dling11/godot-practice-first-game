@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="SpriteFrames" path="res://assets/characters/playable/king/king_core_sprite_frames.tres" id="1_body"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/playable/king/king_attack_vfx_sprite_frames.tres" id="2_vfx"]
+
+[node name="KingCoreAnimationPreview" type="Node2D"]
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -26)
+texture_filter = 1
+sprite_frames = ExtResource("1_body")
+animation = &"idle_down"
+autoplay = "idle_down"
+
+[node name="AttackVFX" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -48)
+texture_filter = 1
+sprite_frames = ExtResource("2_vfx")
+animation = &"opening_cut_right"

@@ -4,6 +4,14 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 
 ## Completed
 
+- Accepted Decision 076 and removed the owner-rejected detailed King package from every active runtime/source-review path. Its greatsword sheets, body/VFX strips, previews, processors, and focused tests are recoverably archived under `rejected_detailed_package_2026-08-11`; Opaw is untouched.
+- Completed the approved simple King locomotion proof without changing the live player: the generated 4x4 board now builds reproducibly into exact `48x32` down/left/right/up cells, one shared scale and foot baseline, binary alpha, four-frame walks, one-frame directional idles, an isolated preview, and a focused Godot smoke test. King remains non-playable pending attack and targeting gates.
+- Audited active Sanctuary NPC presentation ownership and preserved all three live packages. Archived the zero-reference legacy `assets/characters/prototype/` and broken `assets/characters/sprites_24x32/` package under `art_source/archive/characters/legacy_runtime_cleanup_2026-08-11/`; the runtime-boundary test prevents either path from returning.
+- Retired the owner-rejected layered King idle package from active Godot imports while preserving it in the source archive as a failed experiment. Its programmer-constructed sword, processor, `SpriteFrames`, preview, and test are not production assets.
+- Accepted Decision 075: future character production uses one exact-grid sheet per action family with canonical direction rows, purposeful frame ranges instead of universal eight-frame quotas, stable scale/foot/pivot metadata, binary alpha, and explicit source-matte residue rejection. King's attack/VFX proof is approved, while the v1 turnaround's back-view grip is rejected and cannot enter production.
+- Accepted Decision 074 and preserved two new non-runtime direction proofs: King's broad signature greatsword resting on his weapon-side shoulder in four directions, and an eight-beat Opening Cut whose physical blade charges into a thick white-hot/cold-blue crescent. The review boards are not exact-cell sheets; production must separate body/weapon from VFX.
+- Approved and preserved King's coarse four-direction gameplay-sprite identity under Decision 073, then superseded only its modest-sword clause under Decision 074. The body remains chunky, compact, visible-limbed, navy/charcoal/crimson, and young-prime while the armed production target becomes exact `64x64` cells without enlarging the 28-32-pixel body.
+- Preserved King's earlier modest-sword idle/walk/Opening/Reversal boards as superseded provenance. Do not spend production time normalizing them; archive them after replacement exact-cell greatsword strips pass review.
 - Locked accepted basic attacks to their snapshotted cardinal direction: changing movement during wind-up/active/recovery no longer rotates `SwordPivot` or the authoritative melee hit shape, and the latest facing is applied only after the attack finishes. Focused combat, dash, ability-buffer, sword-style, Piercing Rush, and Consecutive Thrust tests pass.
 - Accepted Decisions 071-072: Battle of Gods moves toward character-owned visible combat, real data-driven combos, cinematic character ultimates, and essence/relic equipment while preserving Opaw, his current skills, and his regression-tested presentation as supported roster content.
 - Completed the Rootweaver presentation/layout correction: Nema's compact eight-frame actor now faces screen-left toward her work with complete boots, connected tools, binary alpha, and four-pixel lower safety margins; Nema and the Living Rootforge moved from the bottom edge into the collision-reviewed west-mid garden while the central avenue and already-northern expedition portal remain clear.
@@ -89,7 +97,8 @@ Detailed completion history remains in `CHANGELOG.md`.
 
 ## In Progress
 
-- **King additive Gate 1:** approve the young-prime four-direction turnaround, integrated Veil Edge silhouette, hard-pixel chibi proportions, visible-arm/hand contract, navy/charcoal/crimson palette, and right-facing `PRE_ATTACK -> Opening Cut -> Reversal Cut` strip at 1x and 960x540.
+- **King simple-walk owner review:** inspect `entities/player/king/king_simple_locomotion_preview.tscn` at native gameplay scale. The exact atlas and automated contract are complete; owner approval of gait/readability is the remaining gate before one simple attack sheet is produced.
+- **King targeting design gate:** prototype an aim-preview state for line/wedge/cone skills and a movable valid-range ground circle for jump-smash/AOE skills. Confirm commits the snapshot and starts cost/cooldown; cancel spends neither. Reserve instant activation for self-AOE, aura, buff, defense, or naturally broad waves.
 - **King additive Gates 2-4:** introduce `PlayableCharacterDefinition`, roster state, press/release attack intent, and authoritative tap/hold chain data; build King's core actions plus Crescent Sever; then extend per-character save/UI ownership without changing or archiving Opaw.
 - **Forest production Segment 5 contract—paused behind King equipment migration:** define the first real essence/relic outputs, Stage V core-gear seal and catalyst IDs, blueprint acquisition, inventory/equip integration, and atomic `CraftingService` transaction before enabling Nema's disabled action. The Rootforge remains inspection-only until those validation/save contracts exist.
 - **Forest milestone reward cadence:** preserve Stage III as a regular-material mini-boss payout; plan Stage V as the permanent core-gear seal plus repeatable catalyst, Stages VI-VII as accessory-component/blueprint preparation, Stage VIII as the standard-accessory seal plus repeatable catalyst, and Stage X as the permanent relic/signature seal plus regional catalyst. Exact bosses, seal/catalyst IDs, recipes, quantities, and art remain content-contract work.
@@ -183,11 +192,11 @@ None currently recorded.
 
 ## Next Decision Gate
 
-The immediate decision gate is King's visual/combat proof, not full production:
+King's coarse visual-direction gate has passed; the immediate gate is exact gameplay-scale normalization and combat proof, not full production:
 
-1. Approve the provisional Veil Edge silhouette and young-prime navy/charcoal/crimson turnaround direction.
+1. **Idle production gate:** preserve the Decision 073 young-prime body plus Decision 074 greatsword/attack direction. The normalized `idle_down` strip is complete; review its motion, then generate and process each remaining direction separately before assembling a complete exact-grid idle resource.
 2. Approve rapid tap buffering plus the 0.16-second hold-to-charge branch and the proposed three-step/charged contact scale.
-3. Approve the four identities: Crescent Sever, Riftstep Cross, Blade Dominion, and Worldsplitter: Last Horizon.
+3. Feel-test the four targeting identities with temporary shapes: immediate-direction Crescent Sever, ground-targeted Riftfall Judgment, enemy-targeted Sovereign Pursuit, and forward-line Worldsplitter: Last Horizon.
 4. Then build temporary debug shapes/state logic before generating the complete action library.
 5. Extend the version-1 profile additively so Opaw stays valid and King receives separate progression/loadout records.
 6. After the two-character seam passes, settle Forest essence/relic stats, crafting, Hunts, and Mastery.

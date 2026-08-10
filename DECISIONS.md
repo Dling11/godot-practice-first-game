@@ -80,6 +80,10 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 070 | Centralize enemy movement footprints without flattening combat shapes | Enemy collision size, navigation radius, crowd separation, selection rings, or new enemy contracts |
 | 071 | Use character-owned combat and equipment essences | King, playable roster architecture, real combos, signature weapons, essence/relic equipment, or cinematic ultimates |
 | 072 | Preserve Opaw and build King as a distinct sword character | Opaw roster support, King tap/hold combo, young-prime art, four skills, impact tiers, or additive save migration |
+| 073 | Lock King's coarse gameplay-sprite body direction (weapon/cell clauses superseded by 074) | King pixel density, approved turnaround identity, palette, costume, or visual-drift rejection |
+| 074 | Give King a shoulder greatsword and weapon-bound crescents | King greatsword silhouette, shoulder carry, exact sheet geometry, white-hot crescent VFX, or superseded modest-sword proofs |
+| 075 | Use action-owned exact-grid sheets and purposeful frame budgets | Character sheet layout, directional rows, frame counts, stable pivots/scale, chroma cleanup, or King rear shoulder grip |
+| 076 | Reboot King with simple art and explicit skill targeting | Simple King identity, archived detailed package, character-owned fixed sword, aim preview, ground targeting, or instant-skill limits |
 
 ## New Decisions
 

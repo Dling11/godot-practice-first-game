@@ -1,0 +1,52 @@
+{
+  "direction_rows": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "locomotion_cell": [
+    64,
+    64
+  ],
+  "attack_cells": {
+    "opening_cut": [
+      128,
+      96
+    ],
+    "reversal_cut": [
+      128,
+      96
+    ],
+    "horizon_break": [
+      128,
+      96
+    ],
+    "falling_divide": [
+      128,
+      128
+    ]
+  },
+  "vfx_cell": [
+    192,
+    128
+  ],
+  "attacks": {
+    "opening_cut": {
+      "frames": 8,
+      "body_direction": "right authored, left exact mirror"
+    },
+    "reversal_cut": {
+      "frames": 8,
+      "body_direction": "right authored, left exact mirror"
+    },
+    "horizon_break": {
+      "frames": 10,
+      "body_direction": "right authored, left exact mirror"
+    },
+    "falling_divide": {
+      "frames": 12,
+      "body_direction": "right authored, left exact mirror"
+    }
+  }
+}

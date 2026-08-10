@@ -1,0 +1,124 @@
+{
+  "source": "art_source/cleaned/characters/playable/king/idle_down/king_idle_down_integrated_transparent_v1.png",
+  "runtime": "assets/characters/playable/king/idle/king_idle_down_sheet_64x64.png",
+  "cell_size": [
+    64,
+    64
+  ],
+  "frame_count": 4,
+  "target_full_height": 36,
+  "foot_baseline_y": 58,
+  "foot_center_x": 31.5,
+  "shared_scale": 0.09090909090909091,
+  "palette_limit": 48,
+  "frames": [
+    {
+      "frame": 0,
+      "runtime_bounds": [
+        18,
+        23,
+        51,
+        59
+      ],
+      "foot_midpoint_x": 32.0,
+      "opaque_pixels": 592,
+      "sha256": "89186f1f70409e812ba2b38254ea3807c1c1f17c26a48d2892341db03452b118",
+      "source_bbox": [
+        109,
+        191,
+        468,
+        587
+      ],
+      "source_component_area": 70893,
+      "resized_size": [
+        33,
+        36
+      ],
+      "destination": [
+        18,
+        23
+      ]
+    },
+    {
+      "frame": 1,
+      "runtime_bounds": [
+        18,
+        23,
+        51,
+        59
+      ],
+      "foot_midpoint_x": 31.0,
+      "opaque_pixels": 533,
+      "sha256": "604cb089338f01d8871b0d4914e8959e28ccc22b090f41358f9fc9d459b8b6ab",
+      "source_bbox": [
+        531,
+        191,
+        892,
+        586
+      ],
+      "source_component_area": 64369,
+      "resized_size": [
+        33,
+        36
+      ],
+      "destination": [
+        18,
+        23
+      ]
+    },
+    {
+      "frame": 2,
+      "runtime_bounds": [
+        19,
+        23,
+        52,
+        59
+      ],
+      "foot_midpoint_x": 31.5,
+      "opaque_pixels": 541,
+      "sha256": "f6e91c26530f062982ec3f8cd3f1067f130f186ac93a2303c3b53d718050c725",
+      "source_bbox": [
+        959,
+        191,
+        1323,
+        587
+      ],
+      "source_component_area": 65958,
+      "resized_size": [
+        33,
+        36
+      ],
+      "destination": [
+        19,
+        23
+      ]
+    },
+    {
+      "frame": 3,
+      "runtime_bounds": [
+        18,
+        23,
+        52,
+        59
+      ],
+      "foot_midpoint_x": 31.0,
+      "opaque_pixels": 549,
+      "sha256": "caf3eb40be2d83eb547a3a8d6e789971a150c0130c185938ecb66aa7dee9697b",
+      "source_bbox": [
+        1376,
+        191,
+        1749,
+        586
+      ],
+      "source_component_area": 67123,
+      "resized_size": [
+        34,
+        36
+      ],
+      "destination": [
+        18,
+        23
+      ]
+    }
+  ]
+}

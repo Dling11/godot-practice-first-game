@@ -1,0 +1,621 @@
+{
+  "source": "art_source/cleaned/characters/playable/king/idle/king_idle_body_only_transparent_v1.png",
+  "runtime": "assets/characters/playable/king/king_idle_sheet_64x64.png",
+  "directions": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "columns": 4,
+  "cell_size": [
+    64,
+    64
+  ],
+  "sheet_size": [
+    256,
+    256
+  ],
+  "body_target_height": 32,
+  "foot_pixel_y": 57,
+  "foot_center_x": 31.5,
+  "opaque_palette_colors": 20,
+  "right_row_derived_from": "exact horizontal mirror of left",
+  "sword_construction": "single deterministic 45-degree tip-to-pommel axis",
+  "sword_frames": [
+    {
+      "direction": "down",
+      "column": 0,
+      "guard": [
+        41,
+        38
+      ],
+      "blade_tip": [
+        57,
+        22
+      ],
+      "hand": [
+        37,
+        42
+      ],
+      "pommel": [
+        34,
+        45
+      ],
+      "axis": [
+        1,
+        -1
+      ]
+    },
+    {
+      "direction": "down",
+      "column": 1,
+      "guard": [
+        42,
+        38
+      ],
+      "blade_tip": [
+        58,
+        22
+      ],
+      "hand": [
+        38,
+        42
+      ],
+      "pommel": [
+        35,
+        45
+      ],
+      "axis": [
+        1,
+        -1
+      ]
+    },
+    {
+      "direction": "down",
+      "column": 2,
+      "guard": [
+        41,
+        38
+      ],
+      "blade_tip": [
+        57,
+        22
+      ],
+      "hand": [
+        37,
+        42
+      ],
+      "pommel": [
+        34,
+        45
+      ],
+      "axis": [
+        1,
+        -1
+      ]
+    },
+    {
+      "direction": "down",
+      "column": 3,
+      "guard": [
+        41,
+        38
+      ],
+      "blade_tip": [
+        57,
+        22
+      ],
+      "hand": [
+        37,
+        42
+      ],
+      "pommel": [
+        34,
+        45
+      ],
+      "axis": [
+        1,
+        -1
+      ]
+    },
+    {
+      "direction": "left",
+      "column": 0,
+      "guard": [
+        43,
+        37
+      ],
+      "blade_tip": [
+        59,
+        21
+      ],
+      "hand": [
+        39,
+        41
+      ],
+      "pommel": [
+        36,
+        44
+      ],
+      "axis": [
+        1,
+        -1
+      ]
+    },
+    {
+      "direction": "left",
+      "column": 1,
+      "guard": [
+        43,
+        37
+      ],
+      "blade_tip": [
+        59,
+        21
+      ],
+      "hand": [
+        39,
+        41
+      ],
+      "pommel": [
+        36,
+        44
+      ],
+      "axis": [
+        1,
+        -1
+      ]
+    },
+    {
+      "direction": "left",
+      "column": 2,
+      "guard": [
+        43,
+        37
+      ],
+      "blade_tip": [
+        59,
+        21
+      ],
+      "hand": [
+        39,
+        41
+      ],
+      "pommel": [
+        36,
+        44
+      ],
+      "axis": [
+        1,
+        -1
+      ]
+    },
+    {
+      "direction": "left",
+      "column": 3,
+      "guard": [
+        43,
+        37
+      ],
+      "blade_tip": [
+        59,
+        21
+      ],
+      "hand": [
+        39,
+        41
+      ],
+      "pommel": [
+        36,
+        44
+      ],
+      "axis": [
+        1,
+        -1
+      ]
+    },
+    {
+      "direction": "right",
+      "column": 0,
+      "guard": [
+        20,
+        37
+      ],
+      "blade_tip": [
+        4,
+        21
+      ],
+      "hand": [
+        24,
+        41
+      ],
+      "pommel": [
+        27,
+        44
+      ],
+      "axis": [
+        -1,
+        -1
+      ]
+    },
+    {
+      "direction": "right",
+      "column": 1,
+      "guard": [
+        20,
+        37
+      ],
+      "blade_tip": [
+        4,
+        21
+      ],
+      "hand": [
+        24,
+        41
+      ],
+      "pommel": [
+        27,
+        44
+      ],
+      "axis": [
+        -1,
+        -1
+      ]
+    },
+    {
+      "direction": "right",
+      "column": 2,
+      "guard": [
+        20,
+        37
+      ],
+      "blade_tip": [
+        4,
+        21
+      ],
+      "hand": [
+        24,
+        41
+      ],
+      "pommel": [
+        27,
+        44
+      ],
+      "axis": [
+        -1,
+        -1
+      ]
+    },
+    {
+      "direction": "right",
+      "column": 3,
+      "guard": [
+        20,
+        37
+      ],
+      "blade_tip": [
+        4,
+        21
+      ],
+      "hand": [
+        24,
+        41
+      ],
+      "pommel": [
+        27,
+        44
+      ],
+      "axis": [
+        -1,
+        -1
+      ]
+    },
+    {
+      "direction": "up",
+      "column": 0,
+      "guard": [
+        43,
+        35
+      ],
+      "blade_tip": [
+        59,
+        19
+      ],
+      "hand": [
+        39,
+        39
+      ],
+      "pommel": [
+        36,
+        42
+      ],
+      "axis": [
+        1,
+        -1
+      ]
+    },
+    {
+      "direction": "up",
+      "column": 1,
+      "guard": [
+        42,
+        36
+      ],
+      "blade_tip": [
+        58,
+        20
+      ],
+      "hand": [
+        38,
+        40
+      ],
+      "pommel": [
+        35,
+        43
+      ],
+      "axis": [
+        1,
+        -1
+      ]
+    },
+    {
+      "direction": "up",
+      "column": 2,
+      "guard": [
+        42,
+        36
+      ],
+      "blade_tip": [
+        58,
+        20
+      ],
+      "hand": [
+        38,
+        40
+      ],
+      "pommel": [
+        35,
+        43
+      ],
+      "axis": [
+        1,
+        -1
+      ]
+    },
+    {
+      "direction": "up",
+      "column": 3,
+      "guard": [
+        42,
+        36
+      ],
+      "blade_tip": [
+        58,
+        20
+      ],
+      "hand": [
+        38,
+        40
+      ],
+      "pommel": [
+        35,
+        43
+      ],
+      "axis": [
+        1,
+        -1
+      ]
+    }
+  ],
+  "frames": [
+    {
+      "direction": "down",
+      "column": 0,
+      "bounds": [
+        23,
+        20,
+        60,
+        58
+      ],
+      "opaque_pixels": 560,
+      "foot_center_x": 31.5,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "down",
+      "column": 1,
+      "bounds": [
+        24,
+        20,
+        61,
+        58
+      ],
+      "opaque_pixels": 561,
+      "foot_center_x": 32.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "down",
+      "column": 2,
+      "bounds": [
+        23,
+        20,
+        60,
+        58
+      ],
+      "opaque_pixels": 562,
+      "foot_center_x": 31.5,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "down",
+      "column": 3,
+      "bounds": [
+        22,
+        20,
+        60,
+        58
+      ],
+      "opaque_pixels": 582,
+      "foot_center_x": 31.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "left",
+      "column": 0,
+      "bounds": [
+        24,
+        19,
+        62,
+        58
+      ],
+      "opaque_pixels": 580,
+      "foot_center_x": 31.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "left",
+      "column": 1,
+      "bounds": [
+        24,
+        19,
+        62,
+        58
+      ],
+      "opaque_pixels": 578,
+      "foot_center_x": 31.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "left",
+      "column": 2,
+      "bounds": [
+        24,
+        19,
+        62,
+        58
+      ],
+      "opaque_pixels": 578,
+      "foot_center_x": 31.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "left",
+      "column": 3,
+      "bounds": [
+        24,
+        19,
+        62,
+        58
+      ],
+      "opaque_pixels": 577,
+      "foot_center_x": 31.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "right",
+      "column": 0,
+      "bounds": [
+        2,
+        19,
+        40,
+        58
+      ],
+      "opaque_pixels": 580,
+      "foot_center_x": 32.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "right",
+      "column": 1,
+      "bounds": [
+        2,
+        19,
+        40,
+        58
+      ],
+      "opaque_pixels": 578,
+      "foot_center_x": 32.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "right",
+      "column": 2,
+      "bounds": [
+        2,
+        19,
+        40,
+        58
+      ],
+      "opaque_pixels": 578,
+      "foot_center_x": 32.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "right",
+      "column": 3,
+      "bounds": [
+        2,
+        19,
+        40,
+        58
+      ],
+      "opaque_pixels": 577,
+      "foot_center_x": 32.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "up",
+      "column": 0,
+      "bounds": [
+        22,
+        17,
+        62,
+        58
+      ],
+      "opaque_pixels": 810,
+      "foot_center_x": 32.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "up",
+      "column": 1,
+      "bounds": [
+        22,
+        18,
+        61,
+        58
+      ],
+      "opaque_pixels": 775,
+      "foot_center_x": 32.0,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "up",
+      "column": 2,
+      "bounds": [
+        21,
+        18,
+        61,
+        58
+      ],
+      "opaque_pixels": 793,
+      "foot_center_x": 31.5,
+      "largest_component_ratio": 1.0
+    },
+    {
+      "direction": "up",
+      "column": 3,
+      "bounds": [
+        22,
+        18,
+        61,
+        58
+      ],
+      "opaque_pixels": 782,
+      "foot_center_x": 32.0,
+      "largest_component_ratio": 1.0
+    }
+  ]
+}

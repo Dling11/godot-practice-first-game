@@ -3,6 +3,7 @@ extends SceneTree
 const ACTIVE_PATHS := [
 	"res://assets/characters/playable/opaw/compact_armless/opaw_compact_armless_sprite_frames.tres",
 	"res://assets/characters/playable/opaw/variants/wayfarer_original/opaw_wayfarer_original_sprite_frames.tres",
+	"res://assets/characters/playable/king/simple_reboot/king_simple_sprite_frames.tres",
 	"res://assets/characters/enemies/rootbound_husk/rootbound_husk_sprite_frames.tres",
 	"res://assets/characters/enemies/rootbound_husk/rootbound_husk_root_spear_vfx_sprite_frames.tres",
 	"res://assets/characters/npcs/skillkeeper/skillkeeper_idle_sheet_48x48.png",
@@ -14,6 +15,8 @@ const ACTIVE_PATHS := [
 
 const RETIRED_RUNTIME_PATHS := [
 	"res://assets/characters/awakened",
+	"res://assets/characters/prototype",
+	"res://assets/characters/sprites_24x32",
 	"res://assets/characters/playable/opaw/variants/handless",
 	"res://assets/characters/playable/opaw/variants/armless",
 	"res://assets/characters/playable/opaw/variants/armless_small_feet",
