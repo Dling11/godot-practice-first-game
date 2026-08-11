@@ -9,6 +9,7 @@ const RapidVfxAtlas = preload(
 	+ "opaw_consecutive_thrust_rapid_vfx_sheet_192x192.png"
 )
 const RAPID_VFX_FRAME_SIZE := Vector2i(192, 192)
+const OpawTest = preload("res://tests/support/opaw_test_configuration.gd")
 
 
 func _initialize() -> void:
@@ -37,6 +38,7 @@ func _run() -> void:
 		return
 
 	var player := PlayerScene.instantiate() as Player
+	OpawTest.apply(player)
 	var target := TargetScene.instantiate()
 	var hud := HudScene.instantiate() as CombatHUD
 	root.add_child(player)

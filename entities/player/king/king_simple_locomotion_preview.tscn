@@ -1,58 +1,45 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://dvs82kybl4g2g"]
 
-[ext_resource type="SpriteFrames" path="res://assets/characters/playable/king/simple_reboot/king_simple_sprite_frames.tres" id="1_frames"]
+[ext_resource type="Script" uid="uid://02jxdk6pal4g" path="res://entities/player/king/king_simple_locomotion_preview.gd" id="1_script"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/playable/king/simple_reboot/king_simple_sprite_frames.tres" id="2_frames"]
 
-[node name="KingSimpleLocomotionPreview" type="Node2D"]
+[node name="KingSimpleLocomotionPreview" type="Node2D" unique_id=1871912619]
+script = ExtResource("1_script")
 
-[node name="Backdrop" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(0, 0, 960, 0, 960, 540, 0, 540)
+[node name="Backdrop" type="Polygon2D" parent="." unique_id=1119309433]
 color = Color(0.025, 0.03, 0.045, 1)
+polygon = PackedVector2Array(0, 0, 960, 0, 960, 540, 0, 540)
 
-[node name="Title" type="Label" parent="."]
-offset_left = 310.0
-offset_top = 92.0
-offset_right = 650.0
-offset_bottom = 124.0
+[node name="Title" type="Label" parent="." unique_id=1982374211]
+offset_left = 270.0
+offset_top = 78.0
+offset_right = 690.0
+offset_bottom = 110.0
 theme_override_colors/font_color = Color(0.86, 0.78, 1, 1)
 theme_override_font_sizes/font_size = 22
-text = "KING — SIMPLE LOCOMOTION PROOF"
+text = "KING — SINGLE BODY ANIMATION PROOF"
 horizontal_alignment = 1
 
-[node name="Down" type="AnimatedSprite2D" parent="."]
-position = Vector2(300, 260)
-scale = Vector2(4, 4)
-sprite_frames = ExtResource("1_frames")
-animation = &"walk_down"
-autoplay = "walk_down"
+[node name="Body" type="AnimatedSprite2D" parent="." unique_id=1495412384]
+texture_filter = 1
+position = Vector2(480, 270)
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("2_frames")
+animation = &"attack_right"
+frame = 5
+frame_progress = 1.0
 
-[node name="Left" type="AnimatedSprite2D" parent="."]
-position = Vector2(420, 260)
-scale = Vector2(4, 4)
-sprite_frames = ExtResource("1_frames")
-animation = &"walk_left"
-autoplay = "walk_left"
-
-[node name="Right" type="AnimatedSprite2D" parent="."]
-position = Vector2(540, 260)
-scale = Vector2(4, 4)
-sprite_frames = ExtResource("1_frames")
-animation = &"walk_right"
-autoplay = "walk_right"
-
-[node name="Up" type="AnimatedSprite2D" parent="."]
-position = Vector2(660, 260)
-scale = Vector2(4, 4)
-sprite_frames = ExtResource("1_frames")
-animation = &"walk_up"
-autoplay = "walk_up"
-
-[node name="Directions" type="Label" parent="."]
-offset_left = 232.0
-offset_top = 342.0
-offset_right = 728.0
-offset_bottom = 372.0
-theme_override_colors/font_color = Color(0.58, 0.62, 0.7, 1)
-theme_override_font_sizes/font_size = 15
-text = "DOWN                 LEFT                 RIGHT                  UP"
+[node name="CurrentAnimation" type="Label" parent="." unique_id=58580402]
+offset_left = 360.0
+offset_top = 370.0
+offset_right = 600.0
+offset_bottom = 400.0
+theme_override_colors/font_color = Color(0.72, 0.78, 0.9, 1)
+theme_override_font_sizes/font_size = 17
 horizontal_alignment = 1
 
+[node name="CycleTimer" type="Timer" parent="." unique_id=1536211171]
+wait_time = 1.5
+autostart = true
+
+[connection signal="timeout" from="CycleTimer" to="." method="_on_cycle_timer_timeout"]

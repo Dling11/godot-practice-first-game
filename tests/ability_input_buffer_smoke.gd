@@ -1,6 +1,7 @@
 extends SceneTree
 
 const PlayerScene = preload("res://entities/player/player.tscn")
+const OpawTest = preload("res://tests/support/opaw_test_configuration.gd")
 
 
 func _initialize() -> void:
@@ -9,6 +10,7 @@ func _initialize() -> void:
 
 func _run() -> void:
 	var player := PlayerScene.instantiate() as Player
+	OpawTest.apply(player)
 	root.add_child(player)
 	var attack := player.attack_component
 	var ability := player.ability_1_component

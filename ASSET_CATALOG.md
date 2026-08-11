@@ -70,14 +70,16 @@ Do not introduce `final`, `new`, `fixed`, `better`, unexplained numbers, or cont
 
 ### Approved King Simple-Reboot Sources
 
-Decision 076 supersedes the detailed Decision 073-074 visual package. Decision 075 still governs action-owned exact-grid production. The simple locomotion proof is active only as an isolated review asset, not as a playable character:
+Decision 076 supersedes the detailed Decision 073-074 visual package. Decision 075 still governs action-owned exact-grid production. Decision 077 temporarily makes the simple package the live playable proof while preserving Opaw:
 
 | Canonical ID | Current path | Target path/name | Provisional contract | Status |
 |---|---|---|---|---|
 | `char_king_simple_identity_v1` | `art_source/generated/characters/playable/king/simple_reboot/king_simple_identity_reference_v1.png` | Same until exact-cell extraction | Owner-approved plain-face black-haired swordsman with crimson scarf, compact body, mitten hands, tiny feet, and short broad straight signature sword | `approved_reference` |
 | `char_king_simple_walk_v1` | `art_source/generated/characters/playable/king/simple_reboot/king_simple_walk_source_v1.png` | `assets/characters/playable/king/simple_reboot/king_simple_locomotion_sheet_48x32.png` | Approved 4x4 `down/left/right/up` contact/passing board; deterministic processor emits exact binary-alpha cells with one scale and foot anchor | `active_review_runtime` |
 | `char_king_detailed_package_rejected` | `art_source/archive/characters/playable/king/rejected_detailed_package_2026-08-11/` | None | Former detailed greatsword runtime sheets, previews, processors, tests, generated/cleaned sources, and reviews; never restore to active imports | `rejected_archive` |
-| `char_king_frames` | `assets/characters/playable/king/simple_reboot/king_simple_sprite_frames.tres` | Same | Directional one-frame idles plus four-frame walks; consumed only by `king_simple_locomotion_preview.tscn` and focused smoke coverage | `active_review_runtime` |
+| `char_king_frames` | `assets/characters/playable/king/simple_reboot/king_simple_sprite_frames.tres` | Same | Directional idle/walk/basic slash plus required dash/interact/hurt/defeat compatibility animations; every family is requested by `PlayerAnimation` and covered by the active player/preview tests | `active_runtime_proof` |
+| `char_king_simple_basic_slash_v2` | `art_source/generated/characters/playable/king/simple_reboot/king_simple_attack_{down,right,up}_source_v2.png` | `assets/characters/playable/king/simple_reboot/king_simple_basic_slash_sheet_64x32.png` | Six chronological poses x canonical four direction rows; left is an exact right mirror; per-direction 28-pixel scale and y=30 baseline | `active_runtime_proof` |
+| `char_king_simple_basic_slash_v1_rejected` | `art_source/archive/characters/playable/king/rejected_simple_basic_slash_v1_2026-08-11/` | None | Owner-rejected weak four-pose/all-direction source and cleaned derivative; excluded from active imports | `rejected_archive` |
 | `portrait_king` | None | `assets/characters/playable/king/king_portrait_96x96.png` | 96x96 transparent portrait derived after gameplay identity approval | `planned` |
 | `weapon_king_signature_sword` | `king_simple_identity_reference_v1.png` | Character-owned rigid sword presentation | Short broad straight silver sword; equipment essences modify stats/traits rather than swapping its visible sprite | `approved_reference` |
 | `fx_king_crescent_sever` | None | `assets/skills/king/crescent_sever/king_crescent_sever_vfx_sheet.png` | Large white/cold-blue crescent whose opaque edge/tip remains inside contact authority | `planned` |

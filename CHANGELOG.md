@@ -2,6 +2,15 @@
 
 ## 2026-08-11 - Simple King Reboot and Targeted-Skill Direction
 
+- Removed the zero-reference rejected `king_core_sprite_frames.tres`, an unused atlas-anchor constant, and dead attack-direction/pivot branches after the centered slash correction. Retained all seven simple King animation families because live `PlayerAnimation` requests each one.
+- Replaced King's owner-rejected weak four-pose slash with separate six-pose down/right/up strips, exact right-to-left mirroring, corrected chronological atlas packing, stable per-direction scale/baseline normalization, and two readable presentation frames per authoritative combat phase.
+- Corrected the remaining idle-to-attack pop: attack art now uses an 88% weapon-aware scale, boot-only horizontal anchoring, a fixed body-node pivot, and midpoint frame selection so the second pose of every phase is actually visible instead of flashing for one instant.
+- Rebuilt the isolated King review scene around exactly one cycling `AnimatedSprite2D`, matching the live player's one-body scene structure, and archived the rejected v1 source/cleaned pair outside active imports.
+- Accepted Decision 077 and temporarily benched Opaw as the default presentation while preserving his complete compact/Wayfarer art, abilities, data, and regression coverage.
+- Generated one focused simple King basic-slash board with the built-in image workflow, chroma-cleaned it, and extended the deterministic processor to emit a binary-alpha `256x128` atlas of `64x32` cells sharing locomotion's scale and foot baseline.
+- Made King the active `player.tscn` identity with real idle/walk/basic-attack animations, safe locomotion-derived action aliases, hidden detached equipment sword art, retained cleave/contact authority, and a matching Character & Bag preview.
+- Added a complete King development loadout whose four named skills remain honestly unequipped. F9 preserves those sealed slots, and Eira's Opaw awakening path now rejects non-Opaw characters.
+- Added active-King, King-asset, benched-Opaw, character-animation, menu, melee, dash-buffer, sword-style, combat-feedback, audio, Sanctuary, archive-boundary, and startup regression coverage.
 - Accepted Decision 076: replaced the unstable detailed visible-arm/shoulder-greatsword King with an owner-approved Opaw-complexity identity using chunky black hair, plain two-eye face, crimson scarf, compact navy/charcoal body, mitten hands, tiny feet, and one short broad straight signature sword.
 - Preserved the approved identity and first source-only four-direction four-pose walking board under `art_source/generated/characters/playable/king/simple_reboot/`.
 - Removed the rejected detailed King runtime sheets, previews, processors, tests, generated/cleaned sources, and review assets from active Godot paths. They remain recoverable under `art_source/archive/characters/playable/king/rejected_detailed_package_2026-08-11/`; Opaw was not changed.

@@ -84,6 +84,7 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 074 | Give King a shoulder greatsword and weapon-bound crescents | King greatsword silhouette, shoulder carry, exact sheet geometry, white-hot crescent VFX, or superseded modest-sword proofs |
 | 075 | Use action-owned exact-grid sheets and purposeful frame budgets | Character sheet layout, directional rows, frame counts, stable pivots/scale, chroma cleanup, or King rear shoulder grip |
 | 076 | Reboot King with simple art and explicit skill targeting | Simple King identity, archived detailed package, character-owned fixed sword, aim preview, ground targeting, or instant-skill limits |
+| 077 | Bench Opaw and run King as the active combat proof | Temporary active player, King basic slash, sealed King skills, integrated sword presentation, or explicit Opaw regression setup |
 
 ## New Decisions
 

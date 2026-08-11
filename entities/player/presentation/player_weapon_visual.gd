@@ -10,6 +10,7 @@ extends Node2D
 @export var swing_smoke: Line2D
 @export var ability_component: AbilityComponent
 @export var ability_2_component: AbilityComponent
+@export var show_weapon_sprite := true
 
 var _direction := &"down"
 var _action_direction := &"down"
@@ -46,6 +47,7 @@ func set_weapon_definition(next_weapon: WeaponDefinition) -> bool:
 	_normal_swing_sequence_index = -1
 	_normal_swing_variant_index = 0
 	visible = true
+	weapon_sprite.visible = show_weapon_sprite
 	weapon_sprite.texture = weapon.world_texture
 	weapon_sprite.position = weapon.sprite_offset_from_grip
 	_base_weapon_scale = Vector2.ONE * weapon.world_visual_scale

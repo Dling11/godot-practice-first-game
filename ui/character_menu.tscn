@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" path="res://assets/ui/icons/economy/icon_currency_coin_16x16.png" id="4_coin"]
 [ext_resource type="Texture2D" path="res://assets/ui/icons/actions/icon_action_primary_attack_24x24.png" id="5_attack"]
 [ext_resource type="Texture2D" path="res://assets/ui/icons/actions/icon_action_dash_24x24.png" id="6_dash"]
-[ext_resource type="SpriteFrames" path="res://assets/characters/playable/opaw/compact_armless/opaw_compact_armless_sprite_frames.tres" id="7_frames"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/playable/king/simple_reboot/king_simple_sprite_frames.tres" id="7_frames"]
 [ext_resource type="PackedScene" path="res://ui/equipment/equipment_detail_panel.tscn" id="8_detail"]
 [ext_resource type="Script" path="res://entities/npcs/presentation/npc_idle_breath.gd" id="9_breath"]
 [ext_resource type="Texture2D" path="res://assets/items/weapons/world/ashwood_blade_16x24.png" id="10_ashwood_world"]
@@ -159,13 +159,13 @@ theme_override_constants/separation = 1
 
 [node name="Title" type="Label" parent="Panel/Margin/Root/Header/Identity"]
 layout_mode = 2
-text = "OPAW"
+text = "KING"
 theme_override_colors/font_color = Color(0.84, 0.76, 1, 1)
 theme_override_font_sizes/font_size = 20
 
 [node name="Subtitle" type="Label" parent="Panel/Margin/Root/Header/Identity"]
 layout_mode = 2
-text = "MORTAL WAYFARER  •  NOVICE WARRIOR"
+text = "MORTAL RIFTSWORD  •  COMBAT PROOF"
 theme_override_colors/font_color = Color(0.45, 0.5, 0.42, 1)
 theme_override_font_sizes/font_size = 8
 
@@ -362,6 +362,7 @@ sprite_frames = ExtResource("7_frames")
 animation = &"idle_down"
 
 [node name="WeaponGrip" type="Node2D" parent="Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas"]
+visible = false
 position = Vector2(53, 91)
 rotation = -0.42
 scale = Vector2(3.5, 3.5)

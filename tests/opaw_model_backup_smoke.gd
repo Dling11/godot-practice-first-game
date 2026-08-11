@@ -3,6 +3,7 @@ extends SceneTree
 const PlayerScene = preload("res://entities/player/player.tscn")
 const CompactFrames = preload("res://assets/characters/playable/opaw/compact_armless/opaw_compact_armless_sprite_frames.tres")
 const WayfarerBackupFrames = preload("res://assets/characters/playable/opaw/variants/wayfarer_original/opaw_wayfarer_original_sprite_frames.tres")
+const KingFrames = preload("res://assets/characters/playable/king/simple_reboot/king_simple_sprite_frames.tres")
 
 
 func _initialize() -> void:
@@ -14,11 +15,8 @@ func _run() -> void:
 	root.add_child(player)
 	await process_frame
 	var body := player.get_node("VisualRoot/Body") as AnimatedSprite2D
-	if body.sprite_frames != CompactFrames:
-		_fail("Playable Opaw is not using the compact armless model.")
-		return
-	if body.sprite_frames == WayfarerBackupFrames:
-		_fail("Playable Opaw still points at the archived Wayfarer model.")
+	if player.character_id != &"king" or body.sprite_frames != KingFrames:
+		_fail("The temporary active player is not King's simple combat proof.")
 		return
 	for animation_name: StringName in CompactFrames.get_animation_names():
 		if not WayfarerBackupFrames.has_animation(animation_name):
@@ -32,7 +30,7 @@ func _run() -> void:
 	if backup_frame == null or active_frame == null or backup_frame.atlas == active_frame.atlas:
 		_fail("Opaw's active and archived models do not have independent textures.")
 		return
-	print("Opaw compact model and complete Wayfarer backup smoke test passed.")
+	print("King active model plus benched Opaw compact/Wayfarer resources smoke test passed.")
 	quit(0)
 
 

@@ -3,6 +3,7 @@ extends SceneTree
 const PlayerScene = preload("res://entities/player/player.tscn")
 const CharacterMenuScene = preload("res://ui/character_menu.tscn")
 const ConsecutiveThrust = preload("res://data/abilities/opaw/warrior/consecutive_thrust.tres")
+const OpawTest = preload("res://tests/support/opaw_test_configuration.gd")
 
 
 func _initialize() -> void:
@@ -13,6 +14,7 @@ func _run() -> void:
 	root.get_node("RunSession").reset_run()
 	root.get_node("StoryState").reset_story()
 	var player := PlayerScene.instantiate() as Player
+	OpawTest.apply(player)
 	root.add_child(player)
 	player.set_physics_process(false)
 	await process_frame
@@ -51,6 +53,7 @@ func _run() -> void:
 	menu.close_menu()
 
 	var replacement := PlayerScene.instantiate() as Player
+	OpawTest.apply(replacement)
 	root.add_child(replacement)
 	replacement.set_physics_process(false)
 	await process_frame

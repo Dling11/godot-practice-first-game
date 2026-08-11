@@ -112,7 +112,7 @@ Decision 076 supersedes the former detailed visible-arm/shoulder-greatsword iden
 
 The provisional runtime cell target is `32x32` for idle/walk/hurt/interact, expanding an action cell only when attack reach genuinely needs it. Exact visible height and baseline freeze after the first normalized walking review. Keep body motion restrained and let rigid weapon/VFX presentation provide attack scale. Gameplay contact remains data-owned.
 
-Current art gate: `simple_reboot/king_simple_identity_reference_v1.png` is owner-approved and `king_simple_walk_source_v1.png` is an approved source-only 4x4 directional contact/passing board. No active King runtime PNG, `SpriteFrames`, processor, preview, test, roster integration, or gameplay exists. Next clean only this walk board, normalize exact cells, and review motion at native scale and 960x540 before generating attacks.
+Current proof gate: Decision 077 temporarily makes King the active `Player` presentation using exact processed locomotion/basic-slash atlases, shared `SpriteFrames`, an isolated preview, and focused tests. This is not roster integration: Opaw remains preserved, selection/per-character save state are absent, and King's skills plus dedicated reactions remain unimplemented. Review the normal game at native scale and 960x540 before adding the next action family.
 
 Minimum first-pass animation coverage:
 

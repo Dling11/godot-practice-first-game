@@ -45,6 +45,12 @@ func _run() -> void:
 	if not _validate_attack_sheet("res://assets/characters/enemies/forsaken_thrall/forsaken_thrall_claw_attack_sheet_64x48.png", "Forsaken Thrall"):
 		return
 	var player := PlayerScene.instantiate()
+	player.character_id = &"opaw"
+	player.get_node("VisualRoot/Body").sprite_frames = load(
+		"res://assets/characters/playable/opaw/compact_armless/opaw_compact_armless_sprite_frames.tres"
+	)
+	player.get_node("VisualRoot/WeaponVisual").visible = true
+	player.get_node("VisualRoot/WeaponVisual").show_weapon_sprite = true
 	root.add_child(player)
 	player.set_physics_process(false)
 	var player_body: AnimatedSprite2D = player.get_node("VisualRoot/Body")

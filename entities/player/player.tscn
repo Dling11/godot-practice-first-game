@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://edpqlhbhvhav" path="res://gameplay/combat/hurtbox_component.gd" id="12_hurtbox"]
 [ext_resource type="Script" uid="uid://c6tnb2d6x4r3l" path="res://entities/player/presentation/dash_visual.gd" id="13_dash_visual"]
 [ext_resource type="Script" uid="uid://bfftqao8u5k1s" path="res://entities/player/presentation/player_state_visual.gd" id="14_state_visual"]
-[ext_resource type="SpriteFrames" uid="uid://ckpod1suerfxq" path="res://assets/characters/playable/opaw/compact_armless/opaw_compact_armless_sprite_frames.tres" id="15_player_frames"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/playable/king/simple_reboot/king_simple_sprite_frames.tres" id="15_player_frames"]
 [ext_resource type="Script" uid="uid://q76dk4eb6285" path="res://entities/player/presentation/player_animation.gd" id="16_player_animation"]
 [ext_resource type="Script" uid="uid://cn8r3l6ef5evh" path="res://gameplay/abilities/ability_component.gd" id="17_ability"]
 [ext_resource type="Resource" path="res://data/abilities/opaw/warrior/piercing_rush.tres" id="18_ability_data"]
@@ -31,8 +31,8 @@
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_dash_light_swoosh.wav" id="25_dash"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_piercing_rush_charge.wav" id="31_pierce_charge"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_piercing_rush_thrust.ogg" id="32_pierce_thrust"]
-[ext_resource type="Resource" path="res://data/skills/opaw_starting_loadout.tres" id="26_loadout"]
-[ext_resource type="Resource" path="res://data/skills/opaw_debug_test_loadout.tres" id="38_debug_loadout"]
+[ext_resource type="Resource" path="res://data/skills/king_starting_loadout.tres" id="26_loadout"]
+[ext_resource type="Resource" path="res://data/skills/king_starting_loadout.tres" id="38_debug_loadout"]
 [ext_resource type="Resource" path="res://data/items/opaw_weapon_catalog.tres" id="27_weapon_catalog"]
 [ext_resource type="Script" uid="uid://bdrcc6co0unfp" path="res://entities/player/presentation/player_weapon_visual.gd" id="28_weapon_visual"]
 [ext_resource type="Script" uid="uid://dluv63hfr7xdh" path="res://entities/player/presentation/sweeping_cut_visual.gd" id="29_sweep_visual"]
@@ -72,6 +72,7 @@ outline_color = Color(0.027, 0.02, 0.039, 1)
 [node name="Player" type="CharacterBody2D" unique_id=442018439]
 collision_layer = 2
 script = ExtResource("1_player")
+character_id = &"king"
 skill_loadout = ExtResource("26_loadout")
 awakened_skill_loadout = ExtResource("38_debug_loadout")
 debug_test_skill_loadout = ExtResource("38_debug_loadout")
@@ -127,6 +128,7 @@ swing_trail = NodePath("../SwordSwingTrail")
 swing_smoke = NodePath("../SwordCleaveSmoke")
 ability_component = NodePath("../../Ability1Component")
 ability_2_component = NodePath("../../Ability2Component")
+show_weapon_sprite = false
 
 [node name="Weapon" type="Sprite2D" parent="VisualRoot/WeaponVisual" unique_id=995404015]
 
@@ -379,7 +381,7 @@ offset_left = -18.0
 offset_top = 14.0
 offset_right = 18.0
 offset_bottom = 25.0
-text = "OPAW"
+text = "KING"
 label_settings = SubResource("LabelSettings_name")
 horizontal_alignment = 1
 

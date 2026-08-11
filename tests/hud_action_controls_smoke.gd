@@ -3,6 +3,7 @@ extends SceneTree
 const PlayerScene = preload("res://entities/player/player.tscn")
 const HudScene = preload("res://ui/combat_hud.tscn")
 const PauseMenuScene = preload("res://ui/pause_menu.tscn")
+const OpawTest = preload("res://tests/support/opaw_test_configuration.gd")
 
 
 func _initialize() -> void:
@@ -12,6 +13,7 @@ func _initialize() -> void:
 func _run() -> void:
 	root.get_node("RunSession").reset_run()
 	var player := PlayerScene.instantiate() as Player
+	OpawTest.apply(player)
 	var hud := HudScene.instantiate() as CombatHUD
 	var pause_menu := PauseMenuScene.instantiate() as PauseMenu
 	root.add_child(player)

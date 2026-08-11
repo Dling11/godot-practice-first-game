@@ -28,4 +28,4 @@ The previous detailed King runtime sheets, previews, processors, tests, generate
 - Decision 075 remains active for action-owned exact-grid sheets and purposeful frame budgets.
 - Decisions 073-074 are historical and superseded for King's active visual silhouette, greatsword, shoulder carry, and old crescent package.
 - The four-direction walk board now has a deterministic exact-cell runtime review atlas, isolated Godot preview, and focused smoke test; owner motion approval still gates attack production.
-- No playable King, targeting controller, skill, roster state, or save migration is implemented by this decision.
+- This decision alone implemented no playable King. Decision 077 later activates the simple locomotion/basic-slash proof while targeting, skills, roster state, and save migration remain absent.

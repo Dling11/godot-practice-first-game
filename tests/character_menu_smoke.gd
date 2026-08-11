@@ -3,7 +3,7 @@ extends SceneTree
 const PlayerScene = preload("res://entities/player/player.tscn")
 const CharacterMenuScene = preload("res://ui/character_menu.tscn")
 const HudScene = preload("res://ui/combat_hud.tscn")
-const CompactOpawFrames = preload("res://assets/characters/playable/opaw/compact_armless/opaw_compact_armless_sprite_frames.tres")
+const KingFrames = preload("res://assets/characters/playable/king/simple_reboot/king_simple_sprite_frames.tres")
 
 
 func _initialize() -> void:
@@ -52,8 +52,8 @@ func _run() -> void:
 		_fail("Character menu did not build and focus Opaw's starter armory item.")
 		return
 	var identity_title: Label = menu.get_node("Panel/Margin/Root/Header/Identity/Title")
-	if identity_title.text != "OPAW":
-		_fail("Character menu does not present Opaw's approved mortal identity.")
+	if identity_title.text != "KING":
+		_fail("Character menu does not present the active King combat proof.")
 		return
 	if menu.vitality_label.text != "HP 140/140":
 		_fail("Character menu does not present Opaw's current level-scaled vitality.")
@@ -62,15 +62,15 @@ func _run() -> void:
 		"Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/"
 		+ "PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas/Body"
 	) as AnimatedSprite2D
-	if preview_body.sprite_frames != CompactOpawFrames:
-		_fail("Character menu preview is not using Opaw's active compact armless model.")
+	if preview_body.sprite_frames != KingFrames:
+		_fail("Character menu preview is not using King's active simple model.")
 		return
 	var preview_grip := menu.get_node(
 		"Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/"
 		+ "PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas/WeaponGrip"
 	) as Node2D
-	if preview_grip.position.x > 55.0 or preview_grip.rotation > -0.35:
-		_fail("Character preview sword no longer keeps its hilt left of Opaw with the tip outward.")
+	if preview_grip.visible:
+		_fail("Character preview duplicates a detached equipment sword over King's integrated sword.")
 		return
 	if menu._equipment_slot_cards.size() != 7 or not menu.gear_page.visible or menu.skills_page.visible:
 		_fail("Character menu did not open on the seven-position Character & Bag page.")
@@ -155,8 +155,8 @@ func _run() -> void:
 	if player.skill_loadout == null or not player.skill_loadout.has_complete_layout():
 		_fail("Player does not expose the shared four-slot loadout definition.")
 		return
-	if player.skill_loadout.get_slot(1).ability != player.ability_1_component.definition:
-		_fail("Piercing Rush gameplay and skill presentation do not share one definition.")
+	if player.skill_loadout.get_slot(1).ability != null:
+		_fail("King's unimplemented Crescent Sever is presented as an equipped ability.")
 		return
 	var f9_event := InputEventAction.new()
 	f9_event.action = "debug_max_progression"
@@ -164,14 +164,14 @@ func _run() -> void:
 	player._unhandled_input(f9_event)
 	await process_frame
 	if (
-		player.skill_loadout.get_slot(2).ability != player.ability_2_component.definition
-		or menu._skill_cards[1].slot_definition.ability != player.ability_2_component.definition
-		or not menu._skill_cards[1].text.contains("CONSECUTIVE THRUST")
+		player.skill_loadout.get_slot(2).ability != null
+		or menu._skill_cards[1].slot_definition.ability != null
+		or not menu._skill_cards[1].text.contains("RIFTFALL JUDGMENT")
 		or menu._equipment_cards.size() != player.weapon_catalog.weapons.size()
 		or menu._material_cards.size() != MaterialInventory.MaterialCatalog.materials.size()
 		or menu.vitality_label.text != "HP 248/248"
 	):
-		_fail("F9 did not refresh complete skills, gear, material samples, and Level-10 vitality.")
+		_fail("F9 did not preserve King's sealed skills while refreshing gear, materials, and Level-10 vitality.")
 		return
 	if menu._skill_cards[0].get_node_or_null(menu._skill_cards[0].focus_neighbor_right) != menu._skill_cards[1]:
 		_fail("Character skill cards do not provide explicit directional focus navigation.")

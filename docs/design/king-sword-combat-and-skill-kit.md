@@ -2,7 +2,7 @@
 
 ## Status
 
-Owner-directed combat proposal for review before implementation. Decision 076 supersedes the former detailed greatsword art clauses with a simple black-haired, crimson-scarf swordsman and one short broad rigid signature sword while preserving Opaw and character-owned combat. Old names, timings, damage, ranges, and detailed animation descriptions below remain proposals unless explicitly updated; no playable King or targeting runtime exists.
+Owner-directed combat proposal under active proof. Decisions 076-077 supersede the former detailed greatsword art clauses with a simple black-haired, crimson-scarf swordsman and one short broad rigid signature sword while preserving benched Opaw. King now runs in the normal player scene with locomotion and one shared-authority basic slash; old combo names, timings, damage, ranges, skill descriptions, and targeting remain proposals unless explicitly updated.
 
 ## Combat Identity
 
@@ -210,7 +210,7 @@ These wide dark-background images are review references, not runtime sheets. The
 - `simple_reboot/king_simple_identity_reference_v1.png` is the approved identity reference.
 - `simple_reboot/king_simple_walk_source_v1.png` is a source-only 4x4 walking board with `down/left/right/up` direction rows and four contact/passing poses.
 - The rejected detailed greatsword sheets, VFX strips, `SpriteFrames`, preview, processors, tests, and reviews are archive-only under `rejected_detailed_package_2026-08-11/`.
-- No active King runtime art or gameplay exists. Normalize and motion-review the walk before producing one simple attack proof.
+- Active runtime proof: exact `48x32` locomotion and `64x32` basic-slash atlases share one scale/baseline and drive the temporary live King. Dedicated dash/reaction sheets, tap/hold combo authority, and skills do not exist yet.
 - Narrow directional attacks/skills require aim-preview confirmation; jump-smash/ground AOE uses a movable valid-range marker; instant activation is reserved for self-AOE, aura, buff, defense, or naturally broad waves.
 
 ### Superseded modest-sword source proofs

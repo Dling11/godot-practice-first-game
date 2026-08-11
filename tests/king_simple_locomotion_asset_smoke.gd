@@ -1,6 +1,7 @@
 extends SceneTree
 
 const SHEET_PATH := "res://assets/characters/playable/king/simple_reboot/king_simple_locomotion_sheet_48x32.png"
+const ATTACK_SHEET_PATH := "res://assets/characters/playable/king/simple_reboot/king_simple_basic_slash_sheet_64x32.png"
 const FRAMES_PATH := "res://assets/characters/playable/king/simple_reboot/king_simple_sprite_frames.tres"
 const PREVIEW_PATH := "res://entities/player/king/king_simple_locomotion_preview.tscn"
 const DIRECTIONS := [&"down", &"left", &"right", &"up"]
@@ -22,6 +23,31 @@ func _run() -> void:
 			if alpha != 0.0 and alpha != 1.0:
 				_fail("King's runtime sheet contains non-binary alpha at %s,%s." % [x, y])
 				return
+	var attack_texture := load(ATTACK_SHEET_PATH) as Texture2D
+	var attack_image := attack_texture.get_image() if attack_texture != null else null
+	if attack_image == null or attack_image.get_size() != Vector2i(384, 128):
+		_fail("King's basic slash sheet is not an exact 6x4 atlas of 64x32 cells.")
+		return
+	for y in range(attack_image.get_height()):
+		for x in range(attack_image.get_width()):
+			var alpha := attack_image.get_pixel(x, y).a
+			if alpha != 0.0 and alpha != 1.0:
+				_fail("King's basic slash sheet contains non-binary alpha at %s,%s." % [x, y])
+				return
+	for row in range(4):
+		for column in range(6):
+			var cell := attack_image.get_region(Rect2i(column * 64, row * 32, 64, 32))
+			var used_rect := cell.get_used_rect()
+			if used_rect.end.y != 30 or used_rect.size.y < 23 or used_rect.size.y > 25:
+				_fail("King attack frame %d:%d drifted from the calibrated body scale/baseline: %s." % [row, column, used_rect])
+				return
+	var exact_attack_image := Image.load_from_file(ProjectSettings.globalize_path(ATTACK_SHEET_PATH))
+	for column in range(6):
+		var left_frame := exact_attack_image.get_region(Rect2i(column * 64, 32, 64, 32))
+		var right_frame := exact_attack_image.get_region(Rect2i(column * 64, 64, 64, 32))
+		if not _images_are_horizontal_mirrors(left_frame, right_frame):
+			_fail("King's side attack frame %d is not an exact mirror." % column)
+			return
 
 	var frames := load(FRAMES_PATH) as SpriteFrames
 	if frames == null:
@@ -30,6 +56,7 @@ func _run() -> void:
 	for direction in DIRECTIONS:
 		var idle_name := StringName("idle_%s" % direction)
 		var walk_name := StringName("walk_%s" % direction)
+		var attack_name := StringName("attack_%s" % direction)
 		if not frames.has_animation(idle_name) or frames.get_frame_count(idle_name) != 1:
 			_fail("King is missing exact one-frame %s." % idle_name)
 			return
@@ -39,6 +66,13 @@ func _run() -> void:
 		if not is_equal_approx(frames.get_animation_speed(walk_name), 8.0):
 			_fail("King's %s playback speed drifted from 8 FPS." % walk_name)
 			return
+		if not frames.has_animation(attack_name) or frames.get_frame_count(attack_name) != 6:
+			_fail("King is missing exact six-frame %s." % attack_name)
+			return
+		for fallback_prefix in [&"dash", &"interact", &"hurt", &"defeat"]:
+			if not frames.has_animation(StringName("%s_%s" % [fallback_prefix, direction])):
+				_fail("King is missing safe %s presentation for %s." % [fallback_prefix, direction])
+				return
 
 	var preview_scene := load(PREVIEW_PATH) as PackedScene
 	var preview := preview_scene.instantiate() if preview_scene != null else null
@@ -47,11 +81,14 @@ func _run() -> void:
 		return
 	root.add_child(preview)
 	await process_frame
-	for node_name in [&"Down", &"Left", &"Right", &"Up"]:
-		var sprite := preview.get_node_or_null(NodePath(String(node_name))) as AnimatedSprite2D
-		if sprite == null or not sprite.is_playing():
-			_fail("King preview direction %s is absent or not animating." % node_name)
-			return
+	var preview_sprites := preview.find_children("*", "AnimatedSprite2D", true, false)
+	if preview_sprites.size() != 1:
+		_fail("King preview must contain exactly one AnimatedSprite2D body, found %d." % preview_sprites.size())
+		return
+	var sprite := preview_sprites[0] as AnimatedSprite2D
+	if not sprite.is_playing():
+		_fail("King's single preview body is not animating.")
+		return
 	preview.queue_free()
 	print("King simple locomotion asset smoke test passed.")
 	quit(0)
@@ -60,3 +97,13 @@ func _run() -> void:
 func _fail(message: String) -> void:
 	push_error(message)
 	quit(1)
+
+
+func _images_are_horizontal_mirrors(first: Image, second: Image) -> bool:
+	if first.get_size() != second.get_size():
+		return false
+	for y in range(first.get_height()):
+		for x in range(first.get_width()):
+			if first.get_pixel(x, y) != second.get_pixel(second.get_width() - 1 - x, y):
+				return false
+	return true

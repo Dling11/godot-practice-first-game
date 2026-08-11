@@ -4,13 +4,13 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 
 ## Current Limitations
 
-### KI-014 - King and additive character-roster combat are designed but not implemented
+### KI-014 - King is the temporary active proof; roster combat is incomplete
 
 - **Status:** Open
-- **Progress:** Decision 076 replaced the rejected detailed King with an approved Opaw-complexity identity. His simple four-direction board now builds into a tested exact-cell locomotion atlas, `SpriteFrames`, and isolated preview; the old detailed package remains archive-only. Character-owned signature weapon and essence/relic direction remain approved; explicit aim-preview and ground-target activation replace narrow blind immediate-direction casting for King's future skills.
-- **Impact:** The live game still instantiates only Opaw. King has locomotion presentation but no playable actor, roster selection, targeting controller, authoritative combo/contact data, attack/skill animations, essence equipment, or per-character save record.
-- **Planned resolution:** Owner-review the locomotion preview, then prove one simple body attack with rigid weapon/VFX presentation, implement reusable line/wedge/ground target preview and confirm/cancel authority, and only afterward add roster/attack-chain data, King skills, save extension, and two-character Stages I-III validation.
-- **Workaround:** Continue using Opaw normally. Preserve his active assets, skills, catalog compatibility, progression, story IDs, audio, and tests; archive only rejected or genuinely superseded experiments.
+- **Progress:** Decision 077 temporarily makes King the live player with tested locomotion and a corrected six-frame-per-direction basic slash, integrated-sword presentation, existing melee authority, Character & Bag identity, and four honest sealed skill slots. The live and isolated preview structures now each use one body `AnimatedSprite2D`; Opaw remains a complete explicitly tested bench package.
+- **Impact:** King still lacks a real tap/hold combo authority, dedicated dash/hurt/interact/defeat sheets, target-preview controller, implemented skills, essence equipment, roster selection, and per-character save/progression. Current aliases prevent broken animation names but are not final art.
+- **Planned resolution:** Owner-playtest the live proof, then implement one gate at a time: dedicated reactions or Crescent Sever aim-preview, authoritative King combo data, remaining skills, and finally roster/save migration.
+- **Workaround:** Use King for normal movement/basic-attack testing. Treat every sealed skill and locomotion-derived reaction as intentionally unavailable/provisional; Opaw remains recoverable through his preserved resources and explicit regression setup.
 
 ### KI-013 - Forest crafting transactions and replay Hunts are not implemented
 

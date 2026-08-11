@@ -260,6 +260,8 @@ func equip_owned_weapon(item: EquipmentDefinition) -> bool:
 
 
 func can_awaken_skill_2() -> bool:
+	if character_id != &"opaw":
+		return false
 	var story_state := get_node_or_null("/root/StoryState")
 	return (
 		progression_component.level >= 3

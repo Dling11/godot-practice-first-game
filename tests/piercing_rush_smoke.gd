@@ -6,6 +6,7 @@ const HudScene = preload("res://ui/combat_hud.tscn")
 const PiercingRushDefinition = preload("res://data/abilities/opaw/warrior/piercing_rush.tres")
 const SweepingCutDefinition = preload("res://data/abilities/sweeping_cut.tres")
 const IronSword = preload("res://data/weapons/iron_sword.tres")
+const OpawTest = preload("res://tests/support/opaw_test_configuration.gd")
 
 
 func _initialize() -> void:
@@ -28,6 +29,7 @@ func _run() -> void:
 		return
 
 	var player := PlayerScene.instantiate() as Player
+	OpawTest.apply(player)
 	root.add_child(player)
 	player.global_position = Vector2(100.0, 100.0)
 	player._set_facing_direction(Vector2.RIGHT)
@@ -115,6 +117,7 @@ func _run() -> void:
 
 func _test_click_and_hit() -> bool:
 	var player := PlayerScene.instantiate() as Player
+	OpawTest.apply(player)
 	var target := TargetScene.instantiate()
 	var hud := HudScene.instantiate() as CombatHUD
 	root.add_child(player)
@@ -157,6 +160,7 @@ func _test_click_and_hit() -> bool:
 
 func _test_cast_facing_lock() -> bool:
 	var player := PlayerScene.instantiate() as Player
+	OpawTest.apply(player)
 	var up_target := TargetScene.instantiate()
 	var left_target := TargetScene.instantiate()
 	var right_target := TargetScene.instantiate()
