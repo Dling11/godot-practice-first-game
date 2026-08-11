@@ -1,7 +1,73 @@
-[gd_resource type="SpriteFrames" format=3 uid="uid://cs8s0nrqeipnb"]
+[gd_resource type="SpriteFrames" load_steps=93 format=3]
 
-[ext_resource type="Texture2D" uid="uid://d1accyhn0g700" path="res://assets/characters/playable/king/simple_reboot/king_simple_locomotion_sheet_48x32.png" id="1_locomotion"]
-[ext_resource type="Texture2D" uid="uid://dman7076fva5e" path="res://assets/characters/playable/king/simple_reboot/king_simple_basic_slash_sheet_64x32.png" id="2_attack"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/simple_reboot/king_simple_locomotion_sheet_48x32.png" id="1_locomotion"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/simple_reboot/king_simple_basic_slash_sheet_64x32.png" id="2_attack"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/simple_reboot/king_riftbreak_body_sheet_64x32.png" id="3_riftbreak"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/simple_reboot/king_sovereign_pursuit_body_sheet_64x32.png" id="4_pursuit"]
+
+[sub_resource type="AtlasTexture" id="LocomotionAtlas_0_0"]
+atlas = ExtResource("1_locomotion")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="LocomotionAtlas_0_1"]
+atlas = ExtResource("1_locomotion")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="LocomotionAtlas_0_2"]
+atlas = ExtResource("1_locomotion")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="LocomotionAtlas_0_3"]
+atlas = ExtResource("1_locomotion")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="LocomotionAtlas_1_0"]
+atlas = ExtResource("1_locomotion")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="LocomotionAtlas_1_1"]
+atlas = ExtResource("1_locomotion")
+region = Rect2(48, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="LocomotionAtlas_1_2"]
+atlas = ExtResource("1_locomotion")
+region = Rect2(96, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="LocomotionAtlas_1_3"]
+atlas = ExtResource("1_locomotion")
+region = Rect2(144, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="LocomotionAtlas_2_0"]
+atlas = ExtResource("1_locomotion")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="LocomotionAtlas_2_1"]
+atlas = ExtResource("1_locomotion")
+region = Rect2(48, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="LocomotionAtlas_2_2"]
+atlas = ExtResource("1_locomotion")
+region = Rect2(96, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="LocomotionAtlas_2_3"]
+atlas = ExtResource("1_locomotion")
+region = Rect2(144, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="LocomotionAtlas_3_0"]
+atlas = ExtResource("1_locomotion")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="LocomotionAtlas_3_1"]
+atlas = ExtResource("1_locomotion")
+region = Rect2(48, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="LocomotionAtlas_3_2"]
+atlas = ExtResource("1_locomotion")
+region = Rect2(96, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="LocomotionAtlas_3_3"]
+atlas = ExtResource("1_locomotion")
+region = Rect2(144, 96, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AttackAtlas_0_0"]
 atlas = ExtResource("2_attack")
@@ -99,461 +165,377 @@ region = Rect2(256, 96, 64, 32)
 atlas = ExtResource("2_attack")
 region = Rect2(320, 96, 64, 32)
 
-[sub_resource type="AtlasTexture" id="LocomotionAtlas_0_1"]
-atlas = ExtResource("1_locomotion")
-region = Rect2(48, 0, 48, 32)
+[sub_resource type="AtlasTexture" id="PursuitAtlas_0_0"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(0, 0, 64, 32)
 
-[sub_resource type="AtlasTexture" id="LocomotionAtlas_0_2"]
-atlas = ExtResource("1_locomotion")
-region = Rect2(96, 0, 48, 32)
+[sub_resource type="AtlasTexture" id="PursuitAtlas_0_1"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(64, 0, 64, 32)
 
-[sub_resource type="AtlasTexture" id="LocomotionAtlas_0_3"]
-atlas = ExtResource("1_locomotion")
-region = Rect2(144, 0, 48, 32)
+[sub_resource type="AtlasTexture" id="PursuitAtlas_0_2"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(128, 0, 64, 32)
 
-[sub_resource type="AtlasTexture" id="LocomotionAtlas_1_1"]
-atlas = ExtResource("1_locomotion")
-region = Rect2(48, 32, 48, 32)
+[sub_resource type="AtlasTexture" id="PursuitAtlas_0_3"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(192, 0, 64, 32)
 
-[sub_resource type="AtlasTexture" id="LocomotionAtlas_1_2"]
-atlas = ExtResource("1_locomotion")
-region = Rect2(96, 32, 48, 32)
+[sub_resource type="AtlasTexture" id="PursuitAtlas_0_4"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(256, 0, 64, 32)
 
-[sub_resource type="AtlasTexture" id="LocomotionAtlas_1_3"]
-atlas = ExtResource("1_locomotion")
-region = Rect2(144, 32, 48, 32)
+[sub_resource type="AtlasTexture" id="PursuitAtlas_0_5"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(320, 0, 64, 32)
 
-[sub_resource type="AtlasTexture" id="LocomotionAtlas_2_1"]
-atlas = ExtResource("1_locomotion")
-region = Rect2(48, 64, 48, 32)
+[sub_resource type="AtlasTexture" id="PursuitAtlas_1_0"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(0, 32, 64, 32)
 
-[sub_resource type="AtlasTexture" id="LocomotionAtlas_2_2"]
-atlas = ExtResource("1_locomotion")
-region = Rect2(96, 64, 48, 32)
+[sub_resource type="AtlasTexture" id="PursuitAtlas_1_1"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(64, 32, 64, 32)
 
-[sub_resource type="AtlasTexture" id="LocomotionAtlas_2_3"]
-atlas = ExtResource("1_locomotion")
-region = Rect2(144, 64, 48, 32)
+[sub_resource type="AtlasTexture" id="PursuitAtlas_1_2"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(128, 32, 64, 32)
 
-[sub_resource type="AtlasTexture" id="LocomotionAtlas_3_1"]
-atlas = ExtResource("1_locomotion")
-region = Rect2(48, 96, 48, 32)
+[sub_resource type="AtlasTexture" id="PursuitAtlas_1_3"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(192, 32, 64, 32)
 
-[sub_resource type="AtlasTexture" id="LocomotionAtlas_3_2"]
-atlas = ExtResource("1_locomotion")
-region = Rect2(96, 96, 48, 32)
+[sub_resource type="AtlasTexture" id="PursuitAtlas_1_4"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(256, 32, 64, 32)
 
-[sub_resource type="AtlasTexture" id="LocomotionAtlas_3_3"]
-atlas = ExtResource("1_locomotion")
-region = Rect2(144, 96, 48, 32)
+[sub_resource type="AtlasTexture" id="PursuitAtlas_1_5"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(320, 32, 64, 32)
 
-[sub_resource type="AtlasTexture" id="LocomotionAtlas_0_0"]
-atlas = ExtResource("1_locomotion")
-region = Rect2(0, 0, 48, 32)
+[sub_resource type="AtlasTexture" id="PursuitAtlas_2_0"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(0, 64, 64, 32)
 
-[sub_resource type="AtlasTexture" id="LocomotionAtlas_1_0"]
-atlas = ExtResource("1_locomotion")
-region = Rect2(0, 32, 48, 32)
+[sub_resource type="AtlasTexture" id="PursuitAtlas_2_1"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(64, 64, 64, 32)
 
-[sub_resource type="AtlasTexture" id="LocomotionAtlas_2_0"]
-atlas = ExtResource("1_locomotion")
-region = Rect2(0, 64, 48, 32)
+[sub_resource type="AtlasTexture" id="PursuitAtlas_2_2"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(128, 64, 64, 32)
 
-[sub_resource type="AtlasTexture" id="LocomotionAtlas_3_0"]
-atlas = ExtResource("1_locomotion")
-region = Rect2(0, 96, 48, 32)
+[sub_resource type="AtlasTexture" id="PursuitAtlas_2_3"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(192, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="PursuitAtlas_2_4"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(256, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="PursuitAtlas_2_5"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(320, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="PursuitAtlas_3_0"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(0, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="PursuitAtlas_3_1"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(64, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="PursuitAtlas_3_2"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(128, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="PursuitAtlas_3_3"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(192, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="PursuitAtlas_3_4"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(256, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="PursuitAtlas_3_5"]
+atlas = ExtResource("4_pursuit")
+region = Rect2(320, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_0_0"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_0_1"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_0_2"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_0_3"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(192, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_0_4"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(256, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_0_5"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(320, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_1_0"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_1_1"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(64, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_1_2"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(128, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_1_3"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(192, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_1_4"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(256, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_1_5"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(320, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_2_0"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(0, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_2_1"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(64, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_2_2"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(128, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_2_3"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(192, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_2_4"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(256, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_2_5"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(320, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_3_0"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(0, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_3_1"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(64, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_3_2"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(128, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_3_3"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(192, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_3_4"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(256, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_3_5"]
+atlas = ExtResource("3_riftbreak")
+region = Rect2(320, 96, 64, 32)
 
 [resource]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_0_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_0_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_0_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_0_3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_0_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_0_5")
-}],
-"loop": 0,
-"name": &"attack_down",
-"speed": 15.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_1_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_1_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_1_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_1_3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_1_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_1_5")
-}],
-"loop": 0,
-"name": &"attack_left",
-"speed": 15.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_2_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_2_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_2_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_2_3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_2_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_2_5")
-}],
-"loop": 0,
-"name": &"attack_right",
-"speed": 15.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_3_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_3_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_3_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_3_3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_3_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_3_5")
-}],
-"loop": 0,
-"name": &"attack_up",
-"speed": 15.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_0_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_0_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_0_3")
-}],
-"loop": 0,
-"name": &"dash_down",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_1_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_1_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_1_3")
-}],
-"loop": 0,
-"name": &"dash_left",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_2_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_2_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_2_3")
-}],
-"loop": 0,
-"name": &"dash_right",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_3_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_3_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_3_3")
-}],
-"loop": 0,
-"name": &"dash_up",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_0_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_0_5")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_0_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_0_0")
-}],
-"loop": 0,
-"name": &"defeat_down",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_1_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_1_5")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_1_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_1_0")
-}],
-"loop": 0,
-"name": &"defeat_left",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_2_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_2_5")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_2_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_2_0")
-}],
-"loop": 0,
-"name": &"defeat_right",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_3_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_3_5")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_3_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_3_0")
-}],
-"loop": 0,
-"name": &"defeat_up",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_0_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_0_0")
-}],
-"loop": 0,
-"name": &"hurt_down",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_1_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_1_0")
-}],
-"loop": 0,
-"name": &"hurt_left",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_2_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_2_0")
-}],
-"loop": 0,
-"name": &"hurt_right",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AttackAtlas_3_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_3_0")
-}],
-"loop": 0,
-"name": &"hurt_up",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_0_0")
-}],
-"loop": 1,
+"frames": [{"duration": 1.0, "texture": SubResource("LocomotionAtlas_0_0")}],
+"loop": true,
 "name": &"idle_down",
 "speed": 1.0
 }, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_1_0")
-}],
-"loop": 1,
-"name": &"idle_left",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_2_0")
-}],
-"loop": 1,
-"name": &"idle_right",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_3_0")
-}],
-"loop": 1,
-"name": &"idle_up",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_0_0")
-}],
-"loop": 0,
-"name": &"interact_down",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_1_0")
-}],
-"loop": 0,
-"name": &"interact_left",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_2_0")
-}],
-"loop": 0,
-"name": &"interact_right",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_3_0")
-}],
-"loop": 0,
-"name": &"interact_up",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_0_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_0_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_0_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_0_3")
-}],
-"loop": 1,
+"frames": [{"duration": 1.0, "texture": SubResource("LocomotionAtlas_0_0")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_0_1")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_0_2")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_0_3")}],
+"loop": true,
 "name": &"walk_down",
 "speed": 8.0
 }, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_1_0")
+"frames": [{"duration": 1.0, "texture": SubResource("AttackAtlas_0_0")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_0_1")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_0_2")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_0_3")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_0_4")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_0_5")}],
+"loop": false,
+"name": &"attack_down",
+"speed": 15.0
 }, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_1_1")
+"frames": [{"duration": 1.0, "texture": SubResource("RiftbreakAtlas_0_0")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_0_1")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_0_2")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_0_3")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_0_4")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_0_5")}],
+"loop": false,
+"name": &"riftbreak_down",
+"speed": 15.0
 }, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_1_2")
+"frames": [{"duration": 1.0, "texture": SubResource("PursuitAtlas_0_0")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_0_1")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_0_2")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_0_3")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_0_4")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_0_5")}],
+"loop": false,
+"name": &"sovereign_pursuit_down",
+"speed": 15.0
 }, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_1_3")
-}],
-"loop": 1,
+"frames": [{"duration": 1.0, "texture": SubResource("LocomotionAtlas_0_1")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_0_2")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_0_3")}],
+"loop": false,
+"name": &"dash_down",
+"speed": 12.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("LocomotionAtlas_0_0")}],
+"loop": false,
+"name": &"interact_down",
+"speed": 1.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AttackAtlas_0_4")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_0_0")}],
+"loop": false,
+"name": &"hurt_down",
+"speed": 10.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AttackAtlas_0_4")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_0_5")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_0_0")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_0_0")}],
+"loop": false,
+"name": &"defeat_down",
+"speed": 7.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("LocomotionAtlas_1_0")}],
+"loop": true,
+"name": &"idle_left",
+"speed": 1.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("LocomotionAtlas_1_0")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_1_1")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_1_2")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_1_3")}],
+"loop": true,
 "name": &"walk_left",
 "speed": 8.0
 }, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_2_0")
+"frames": [{"duration": 1.0, "texture": SubResource("AttackAtlas_1_0")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_1_1")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_1_2")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_1_3")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_1_4")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_1_5")}],
+"loop": false,
+"name": &"attack_left",
+"speed": 15.0
 }, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_2_1")
+"frames": [{"duration": 1.0, "texture": SubResource("RiftbreakAtlas_1_0")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_1_1")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_1_2")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_1_3")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_1_4")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_1_5")}],
+"loop": false,
+"name": &"riftbreak_left",
+"speed": 15.0
 }, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_2_2")
+"frames": [{"duration": 1.0, "texture": SubResource("PursuitAtlas_1_0")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_1_1")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_1_2")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_1_3")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_1_4")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_1_5")}],
+"loop": false,
+"name": &"sovereign_pursuit_left",
+"speed": 15.0
 }, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_2_3")
-}],
-"loop": 1,
+"frames": [{"duration": 1.0, "texture": SubResource("LocomotionAtlas_1_1")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_1_2")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_1_3")}],
+"loop": false,
+"name": &"dash_left",
+"speed": 12.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("LocomotionAtlas_1_0")}],
+"loop": false,
+"name": &"interact_left",
+"speed": 1.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AttackAtlas_1_4")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_1_0")}],
+"loop": false,
+"name": &"hurt_left",
+"speed": 10.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AttackAtlas_1_4")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_1_5")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_1_0")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_1_0")}],
+"loop": false,
+"name": &"defeat_left",
+"speed": 7.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("LocomotionAtlas_2_0")}],
+"loop": true,
+"name": &"idle_right",
+"speed": 1.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("LocomotionAtlas_2_0")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_2_1")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_2_2")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_2_3")}],
+"loop": true,
 "name": &"walk_right",
 "speed": 8.0
 }, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_3_0")
+"frames": [{"duration": 1.0, "texture": SubResource("AttackAtlas_2_0")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_2_1")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_2_2")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_2_3")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_2_4")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_2_5")}],
+"loop": false,
+"name": &"attack_right",
+"speed": 15.0
 }, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_3_1")
+"frames": [{"duration": 1.0, "texture": SubResource("RiftbreakAtlas_2_0")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_2_1")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_2_2")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_2_3")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_2_4")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_2_5")}],
+"loop": false,
+"name": &"riftbreak_right",
+"speed": 15.0
 }, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_3_2")
+"frames": [{"duration": 1.0, "texture": SubResource("PursuitAtlas_2_0")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_2_1")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_2_2")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_2_3")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_2_4")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_2_5")}],
+"loop": false,
+"name": &"sovereign_pursuit_right",
+"speed": 15.0
 }, {
-"duration": 1.0,
-"texture": SubResource("LocomotionAtlas_3_3")
-}],
-"loop": 1,
+"frames": [{"duration": 1.0, "texture": SubResource("LocomotionAtlas_2_1")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_2_2")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_2_3")}],
+"loop": false,
+"name": &"dash_right",
+"speed": 12.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("LocomotionAtlas_2_0")}],
+"loop": false,
+"name": &"interact_right",
+"speed": 1.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AttackAtlas_2_4")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_2_0")}],
+"loop": false,
+"name": &"hurt_right",
+"speed": 10.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AttackAtlas_2_4")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_2_5")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_2_0")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_2_0")}],
+"loop": false,
+"name": &"defeat_right",
+"speed": 7.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("LocomotionAtlas_3_0")}],
+"loop": true,
+"name": &"idle_up",
+"speed": 1.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("LocomotionAtlas_3_0")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_3_1")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_3_2")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_3_3")}],
+"loop": true,
 "name": &"walk_up",
 "speed": 8.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AttackAtlas_3_0")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_3_1")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_3_2")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_3_3")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_3_4")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_3_5")}],
+"loop": false,
+"name": &"attack_up",
+"speed": 15.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("RiftbreakAtlas_3_0")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_3_1")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_3_2")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_3_3")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_3_4")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_3_5")}],
+"loop": false,
+"name": &"riftbreak_up",
+"speed": 15.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("PursuitAtlas_3_0")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_3_1")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_3_2")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_3_3")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_3_4")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_3_5")}],
+"loop": false,
+"name": &"sovereign_pursuit_up",
+"speed": 15.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("LocomotionAtlas_3_1")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_3_2")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_3_3")}],
+"loop": false,
+"name": &"dash_up",
+"speed": 12.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("LocomotionAtlas_3_0")}],
+"loop": false,
+"name": &"interact_up",
+"speed": 1.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AttackAtlas_3_4")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_3_0")}],
+"loop": false,
+"name": &"hurt_up",
+"speed": 10.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AttackAtlas_3_4")}, {"duration": 1.0, "texture": SubResource("AttackAtlas_3_5")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_3_0")}, {"duration": 1.0, "texture": SubResource("LocomotionAtlas_3_0")}],
+"loop": false,
+"name": &"defeat_up",
+"speed": 7.0
 }]

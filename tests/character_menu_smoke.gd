@@ -155,8 +155,12 @@ func _run() -> void:
 	if player.skill_loadout == null or not player.skill_loadout.has_complete_layout():
 		_fail("Player does not expose the shared four-slot loadout definition.")
 		return
-	if player.skill_loadout.get_slot(1).ability != null:
-		_fail("King's unimplemented Crescent Sever is presented as an equipped ability.")
+	if (
+		player.skill_loadout.get_slot(1).ability == null
+		or player.skill_loadout.get_slot(1).ability.ability_id != &"echoing_sever"
+		or not menu._skill_cards[0].text.contains("ECHOING SEVER")
+	):
+		_fail("King's implemented Echoing Sever is not presented as equipped Skill 1.")
 		return
 	var f9_event := InputEventAction.new()
 	f9_event.action = "debug_max_progression"
@@ -164,14 +168,15 @@ func _run() -> void:
 	player._unhandled_input(f9_event)
 	await process_frame
 	if (
-		player.skill_loadout.get_slot(2).ability != null
-		or menu._skill_cards[1].slot_definition.ability != null
-		or not menu._skill_cards[1].text.contains("RIFTFALL JUDGMENT")
+		player.skill_loadout.get_slot(2).ability == null
+		or player.skill_loadout.get_slot(2).ability.ability_id != &"riftbreak"
+		or menu._skill_cards[1].slot_definition.ability == null
+		or not menu._skill_cards[1].text.contains("RIFTBREAK")
 		or menu._equipment_cards.size() != player.weapon_catalog.weapons.size()
 		or menu._material_cards.size() != MaterialInventory.MaterialCatalog.materials.size()
 		or menu.vitality_label.text != "HP 248/248"
 	):
-		_fail("F9 did not preserve King's sealed skills while refreshing gear, materials, and Level-10 vitality.")
+		_fail("F9 did not preserve King's two implemented skills while refreshing gear, materials, and Level-10 vitality.")
 		return
 	if menu._skill_cards[0].get_node_or_null(menu._skill_cards[0].focus_neighbor_right) != menu._skill_cards[1]:
 		_fail("Character skill cards do not provide explicit directional focus navigation.")

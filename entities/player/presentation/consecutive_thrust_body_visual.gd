@@ -20,7 +20,8 @@ func _ready() -> void:
 
 
 func play_phase(phase: AbilityComponent.Phase, _duration_seconds: float) -> void:
-	if ability_component == null:
+	if not _is_consecutive_thrust():
+		hide_visual()
 		return
 	if phase == AbilityComponent.Phase.WIND_UP:
 		_direction = ability_component.get_cast_direction()
@@ -35,6 +36,8 @@ func play_phase(phase: AbilityComponent.Phase, _duration_seconds: float) -> void
 
 
 func play_strike(strike_index: int, _strike_count: int, _duration_seconds: float) -> void:
+	if not _is_consecutive_thrust():
+		return
 	var frame_index := clampi(strike_index, 0, STRIKE_COLUMNS.size() - 1)
 	_show_pose(
 		STRIKE_COLUMNS[frame_index],
@@ -63,3 +66,11 @@ func _direction_row() -> int:
 	if absf(_direction.x) > absf(_direction.y):
 		return 2 if _direction.x > 0.0 else 1
 	return 0 if _direction.y > 0.0 else 3
+
+
+func _is_consecutive_thrust() -> bool:
+	return (
+		ability_component != null
+		and ability_component.definition != null
+		and ability_component.definition.ability_id == &"consecutive_thrust"
+	)

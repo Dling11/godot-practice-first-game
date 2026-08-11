@@ -107,38 +107,35 @@ King should feel heavier than Opaw without causing multi-enemy lag or constant c
 
 ## Four-Skill Kit
 
-### Skill 1 — Crescent Sever
+### Skill 1 — Echoing Sever (implemented gameplay proof)
 
-**Role:** immediate-direction ranged cleave and crowd opener.
+**Role:** explicitly aimed broad cleave with a delayed positional echo.
 
-- King steps 18-24 pixels into a wide cut and releases one huge white crescent up to roughly 190 pixels forward.
-- Contact is a broad tapered fan/wave, not a thin projectile. Each target is hit once for a proposed 175% sword power.
-- No invulnerability. A short recovery keeps ranged clearing from becoming free.
-- Visual: dense white core, cold-blue inner edge, sparse gold/crimson fragments, then rapid dissolution. The visible core remains inside contact authority.
-- Proposed cooldown: 4 seconds.
+- Pressing Skill 1 enters a 130-pixel, 100-degree directional wedge preview instead of attacking immediately.
+- Pointer or right stick aims smoothly through 360 degrees; left-click/right-trigger confirms; repeating Skill 1 is ignored; right-click/Esc cancels without cooldown. Walking preserves aim and dash cancels it. King's body uses the nearest cardinal animation while the wedge, hitbox, and VFX preserve the exact angle.
+- Confirmation freezes the wedge and deals 110% weapon damage, then the identical rift deals 75% once after a 0.30-second inactive delay.
+- No invulnerability and no dash cancellation. Recovery and a 5-second cooldown preserve commitment.
+- Current owner-approved presentation uses an exact-angle pixel target guide, sword-point hardware cursor, separately authored exact-grid white/cold-blue primary-cleave/delayed-rift VFX, an original fracture cue, and a restrained primary recoil. The accepted six-frame basic-slash body is intentionally reused; a unique Skill 1 body sheet is deferred to the shared character-polish pass.
 
-### Skill 2 — Riftfall Judgment
+### Skill 2 — Riftbreak (implemented gameplay proof)
 
-**Role:** ground-target mobility, impact damage, and delayed radial area denial.
+**Role:** immediate self-centered space clearing that naturally follows a future gap closer.
 
-- Activation opens a live ground reticle rather than firing toward the last movement direction. Mouse aims directly; controller uses the right stick; a future mobile control drags outward from the skill button. Confirming snapshots one valid landing point, while canceling spends no cooldown.
-- Proposed target range is 180 pixels. World collision and navigation clamp the landing point before commitment; King may cross enemy footprints but never pass through walls, sealed portals, or invalid terrain.
-- A readable 0.20-second crouch remains vulnerable. King is invulnerable only during the roughly 0.24-second airborne travel, then becomes vulnerable on landing/recovery.
-- The sword-first impact hits a roughly 52-pixel core for proposed 190% sword power. After 0.15 seconds, a cracked outer ring expands to roughly 96 pixels for 85%; a target still inside both real shapes may receive both contacts.
-- Light enemies may receive authored upward/outward control; Elites and Bosses continue using the existing crowd-control resistance authority.
-- Visual and audio: compressed launch dust, a short white descent line, heavy stone/blade impact, then a separately animated branching ground crack. Body, target marker, landing burst, and crack remain separate assets.
-- Proposed cooldown: 8 seconds.
+- Pressing Skill 2 immediately commits one grounded sword slam; there is no targeting mode, pointer dependency, jump, lift, teleport, or invulnerability.
+- After a 0.16-second wind-up, one 84-pixel-radius circle centered at King's feet deals 150% sword power. Every accepted target receives knockback directed independently away from the circle center; Elite/Boss resistance continues through the existing crowd-control authority.
+- The active contact lasts 0.10 seconds, recovery lasts 0.22 seconds, and cooldown is 6.5 seconds. Riftbreak remains useful alone when surrounded, while a future Skill 3 jump can naturally place King inside a group before Skill 2 without any hidden combo state, bonus, timer, or cooldown reset.
+- The current proof uses a minimal code-drawn white/cold-blue expanding fracture ring and reuses King's stable grounded slash body. Final slam body art, sound, dust/crack pixels, and heavy feedback remain a later owner-review pass.
 
 ### Skill 3 — Sovereign Pursuit
 
-**Role:** enemy-target dueling burst and deliberate pursuit.
+**Role:** aimed gap closer and compact landing burst that naturally precedes Riftbreak. This proof is implemented.
 
-- Activation selects one living enemy beneath the pointer or inside the aim cone, up to roughly 220 pixels with valid world line of sight. An invalid target produces clear feedback and spends no cooldown.
-- King performs two short collision-validated crossings around the selected enemy, then one broad finishing cross at its current/last-valid position. The proposed contacts are 65% + 75% + 170% sword power.
-- Invulnerability exists only during the two brief traversal windows. The visible holds between cuts and the final recovery remain vulnerable, so target selection does not become a free escape.
-- If the target dies or becomes invalid mid-sequence, King completes safely at the last valid position instead of teleporting through world collision. Bosses remain immune to forced displacement and stagger unless their data explicitly permits it.
-- Visual: restrained navy afterimages attached to the traversals, two thin white cuts, then a larger cold-white X with a crimson center spark. Body, afterimages, cuts, and final X remain separate assets.
-- Proposed cooldown: 11 seconds.
+- Pressing Skill 3 opens a smooth ground-point reticle up to 220 pixels. Pointer/right stick aims, left-click/right trigger confirms, and right-click/Esc cancels without spending cooldown.
+- King commits to a 0.14-second launch, traverses for 0.28 seconds, and recovers for 0.24 seconds. Normal player collision remains authoritative, so blockers produce a safe last-reachable landing instead of a teleport.
+- Invulnerability exists only during traversal. Launch and recovery remain vulnerable.
+- Landing resolves one 52-pixel circle for 125% sword power, 90-pixel outward knockback, and 0.28 seconds of authored stagger before enemy resistance.
+- Dedicated six-pose cardinal body art, a separate six-frame white/cold-blue royal cross impact, and an original landing cue observe gameplay signals. Cooldown is 8.5 seconds.
+- Riftbreak works before or after it, but there is no hidden combo state, damage bonus, timer, or cooldown reset.
 
 ### Skill 4 — Worldsplitter: Last Horizon
 
@@ -190,7 +187,7 @@ King should feel heavier than Opaw without causing multi-enemy lag or constant c
 | Interact | 4-6 frames per direction |
 | Defeat | 8-12 frames per direction |
 | Skill 1 body | 8-12 frames per direction plus separate VFX |
-| Skill 2 body | 14-20 launch/air/descent/impact/recovery frames per direction plus target/crack VFX |
+| Skill 2 body | 6-8 grounded anticipation/slam/recovery frames per direction plus one radial crack VFX |
 | Skill 3 body | 14-20 pursuit/strike/finish/recovery frames per direction plus cut VFX |
 | Skill 4 body | 18-24 tell/cross/hold/return frames per direction plus cinematic VFX |
 
@@ -254,5 +251,5 @@ Do not generate one giant board containing every action. It increases anatomy dr
 - Final signature greatsword name; `Veil Edge` remains provisional.
 - Whether King's third light attack should launch/lightly stagger or remain pure knockback.
 - Whether fully charged Falling Divide may move King forward or remain planted.
-- Final targeting controls and balance for Riftfall Judgment and Sovereign Pursuit after temporary-shape mouse/controller feel tests.
+- Final presentation and balance for Riftbreak plus targeting controls for the future jumping Skill 3 after temporary-shape feel tests.
 - Final skill names and balance after the first temporary-shape feel test.

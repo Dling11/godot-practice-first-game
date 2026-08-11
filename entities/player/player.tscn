@@ -15,8 +15,8 @@
 [ext_resource type="Script" uid="uid://bfftqao8u5k1s" path="res://entities/player/presentation/player_state_visual.gd" id="14_state_visual"]
 [ext_resource type="SpriteFrames" path="res://assets/characters/playable/king/simple_reboot/king_simple_sprite_frames.tres" id="15_player_frames"]
 [ext_resource type="Script" uid="uid://q76dk4eb6285" path="res://entities/player/presentation/player_animation.gd" id="16_player_animation"]
-[ext_resource type="Script" uid="uid://cn8r3l6ef5evh" path="res://gameplay/abilities/ability_component.gd" id="17_ability"]
-[ext_resource type="Resource" path="res://data/abilities/opaw/warrior/piercing_rush.tres" id="18_ability_data"]
+[ext_resource type="Script" path="res://gameplay/abilities/king/echoing_sever_component.gd" id="17_ability"]
+[ext_resource type="Resource" path="res://data/abilities/king/echoing_sever.tres" id="18_ability_data"]
 [ext_resource type="Script" path="res://gameplay/abilities/opaw/warrior/piercing_rush_visual.gd" id="19_ability_visual"]
 [ext_resource type="Resource" path="res://data/abilities/opaw/warrior/consecutive_thrust.tres" id="33_consecutive_data"]
 [ext_resource type="Script" path="res://gameplay/abilities/opaw/warrior/consecutive_thrust_visual.gd" id="34_consecutive_visual"]
@@ -46,6 +46,22 @@
 [ext_resource type="Shape2D" path="res://data/weapons/hit_shapes/balanced_sword_cleave.tres" id="45_melee_shape"]
 [ext_resource type="Script" path="res://entities/player/components/player_health_regeneration_component.gd" id="46_health_regen"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/ui/opaw_level_up_chime.wav" id="47_level_chime"]
+[ext_resource type="Script" path="res://gameplay/abilities/targeting/directional_wedge_targeting.gd" id="48_cardinal_targeting"]
+[ext_resource type="Script" path="res://gameplay/abilities/king/echoing_sever_visual.gd" id="49_echo_visual"]
+[ext_resource type="Script" path="res://gameplay/abilities/ability_component.gd" id="50_generic_ability"]
+[ext_resource type="SpriteFrames" path="res://assets/vfx/abilities/king/echoing_sever_vfx_frames.tres" id="51_echo_frames"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/abilities/king/echoing_sever_echo_fracture.wav" id="52_echo_fracture"]
+[ext_resource type="Script" path="res://gameplay/abilities/king/riftbreak_component.gd" id="53_riftbreak_component"]
+[ext_resource type="Resource" path="res://data/abilities/king/riftbreak.tres" id="54_riftbreak_data"]
+[ext_resource type="Script" path="res://gameplay/abilities/king/riftbreak_visual.gd" id="56_riftbreak_visual"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/abilities/king/riftbreak_ground_slam.wav" id="57_riftbreak_slam"]
+[ext_resource type="SpriteFrames" path="res://assets/vfx/abilities/king/riftbreak_vfx_frames.tres" id="58_riftbreak_frames"]
+[ext_resource type="Script" path="res://gameplay/abilities/targeting/ground_point_targeting.gd" id="59_ground_targeting"]
+[ext_resource type="Script" path="res://gameplay/abilities/king/sovereign_pursuit_component.gd" id="60_pursuit_component"]
+[ext_resource type="Resource" path="res://data/abilities/king/sovereign_pursuit.tres" id="61_pursuit_data"]
+[ext_resource type="Script" path="res://gameplay/abilities/king/sovereign_pursuit_visual.gd" id="62_pursuit_visual"]
+[ext_resource type="SpriteFrames" path="res://assets/vfx/abilities/king/sovereign_pursuit_vfx_frames.tres" id="63_pursuit_frames"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/abilities/king/sovereign_pursuit_landing.wav" id="64_pursuit_landing"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_sweep"]
 points = PackedVector2Array(3, -9, 14, -28, 39, -24, 48, 0, 39, 24, 14, 28, 3, 9)
@@ -86,12 +102,15 @@ position = Vector2(0, -2)
 color = Color(0.035, 0.06, 0.035, 0.36)
 polygon = PackedVector2Array(-7, 0, -4, -2, 4, -2, 7, 0, 4, 2, -4, 2)
 
-[node name="Body" type="AnimatedSprite2D" parent="VisualRoot" unique_id=924091774]
+[node name="Body" type="AnimatedSprite2D" parent="VisualRoot" unique_id=924091774 node_paths=PackedStringArray("ability_component", "ability_2_component", "ability_3_component")]
 unique_name_in_owner = true
 position = Vector2(0, -16)
 sprite_frames = ExtResource("15_player_frames")
 animation = &"attack_down"
 script = ExtResource("16_player_animation")
+ability_component = NodePath("../../Ability1Component")
+ability_2_component = NodePath("../../Ability2Component")
+ability_3_component = NodePath("../../Ability3Component")
 
 [node name="ConsecutiveThrustBodyVisual" type="Sprite2D" parent="VisualRoot" node_paths=PackedStringArray("ability_component", "body_visual")]
 visible = false
@@ -120,7 +139,7 @@ joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="WeaponVisual" type="Node2D" parent="VisualRoot" unique_id=455917304 node_paths=PackedStringArray("weapon_sprite", "swing_trail", "swing_smoke", "ability_component", "ability_2_component")]
+[node name="WeaponVisual" type="Node2D" parent="VisualRoot" unique_id=455917304 node_paths=PackedStringArray("weapon_sprite", "swing_trail", "swing_smoke", "ability_component", "ability_2_component", "ability_3_component")]
 script = ExtResource("28_weapon_visual")
 weapon = ExtResource("7_sword_data")
 weapon_sprite = NodePath("Weapon")
@@ -128,6 +147,7 @@ swing_trail = NodePath("../SwordSwingTrail")
 swing_smoke = NodePath("../SwordCleaveSmoke")
 ability_component = NodePath("../../Ability1Component")
 ability_2_component = NodePath("../../Ability2Component")
+ability_3_component = NodePath("../../Ability3Component")
 show_weapon_sprite = false
 
 [node name="Weapon" type="Sprite2D" parent="VisualRoot/WeaponVisual" unique_id=995404015]
@@ -146,12 +166,25 @@ script = ExtResource("6_hitbox")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordPivot/AttackHitbox" unique_id=1837141321]
 shape = ExtResource("45_melee_shape")
 
-[node name="AbilityPivot" type="Node2D" parent="." unique_id=560028112 node_paths=PackedStringArray("ability_component", "ability_2_component")]
+[node name="AbilityPivot" type="Node2D" parent="." unique_id=560028112 node_paths=PackedStringArray("ability_component", "ability_2_component", "ability_3_component")]
 position = Vector2(0, -16)
 script = ExtResource("4_aim")
 ability_component = NodePath("../Ability1Component")
 ability_2_component = NodePath("../Ability2Component")
+ability_3_component = NodePath("../Ability3Component")
 lock_during_ability_cast = true
+
+[node name="DirectionalWedgeTargeting" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -16)
+z_index = 6
+script = ExtResource("48_cardinal_targeting")
+
+[node name="GroundPointTargeting" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -16)
+z_index = 6
+script = ExtResource("59_ground_targeting")
 
 [node name="AbilityHitbox" type="Area2D" parent="AbilityPivot" unique_id=299637553]
 collision_layer = 8
@@ -168,6 +201,13 @@ script = ExtResource("6_hitbox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AbilityPivot/Ability2Hitbox"]
 shape = SubResource("ConvexPolygonShape2D_sweep")
+
+[node name="Ability3Hitbox" type="Area2D" parent="AbilityPivot"]
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("6_hitbox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AbilityPivot/Ability3Hitbox"]
 
 [node name="PiercingRushVisual" type="Node2D" parent="AbilityPivot" unique_id=242255085 node_paths=PackedStringArray("ability_component", "effect_sprite")]
 visible = false
@@ -213,6 +253,45 @@ end_cap_mode = 2
 script = ExtResource("29_sweep_visual")
 ability_component = NodePath("../../Ability1Component")
 
+[node name="EchoingSeverVisual" type="Node2D" parent="AbilityPivot" node_paths=PackedStringArray("ability_component", "effect_sprite")]
+visible = false
+z_index = 8
+script = ExtResource("49_echo_visual")
+ability_component = NodePath("../../Ability1Component")
+effect_sprite = NodePath("EffectSprite")
+
+[node name="EffectSprite" type="AnimatedSprite2D" parent="AbilityPivot/EchoingSeverVisual"]
+texture_filter = 1
+position = Vector2(64, 0)
+sprite_frames = ExtResource("51_echo_frames")
+animation = &"wind_up"
+
+[node name="RiftbreakVisual" type="Node2D" parent="AbilityPivot" node_paths=PackedStringArray("ability_component", "effect_sprite")]
+visible = false
+z_index = -1
+script = ExtResource("56_riftbreak_visual")
+ability_component = NodePath("../../Ability2Component")
+effect_sprite = NodePath("EffectSprite")
+
+[node name="EffectSprite" type="AnimatedSprite2D" parent="AbilityPivot/RiftbreakVisual"]
+texture_filter = 1
+position = Vector2(0, 16)
+sprite_frames = ExtResource("58_riftbreak_frames")
+animation = &"wind_up"
+
+[node name="SovereignPursuitVisual" type="Node2D" parent="AbilityPivot" node_paths=PackedStringArray("ability_component", "effect_sprite")]
+visible = false
+z_index = 8
+script = ExtResource("62_pursuit_visual")
+ability_component = NodePath("../../Ability3Component")
+effect_sprite = NodePath("EffectSprite")
+
+[node name="EffectSprite" type="AnimatedSprite2D" parent="AbilityPivot/SovereignPursuitVisual"]
+texture_filter = 1
+position = Vector2(0, 16)
+sprite_frames = ExtResource("63_pursuit_frames")
+animation = &"descent"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=256904912]
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_player_footprint")
@@ -246,10 +325,17 @@ collision_shape = NodePath("../AbilityPivot/AbilityHitbox/CollisionShape2D")
 
 [node name="Ability2Component" type="Node" parent="." unique_id=481704885 node_paths=PackedStringArray("hitbox", "collision_shape")]
 unique_name_in_owner = true
-script = ExtResource("17_ability")
-definition = ExtResource("33_consecutive_data")
+script = ExtResource("53_riftbreak_component")
+definition = ExtResource("54_riftbreak_data")
 hitbox = NodePath("../AbilityPivot/Ability2Hitbox")
 collision_shape = NodePath("../AbilityPivot/Ability2Hitbox/CollisionShape2D")
+
+[node name="Ability3Component" type="Node" parent="." node_paths=PackedStringArray("hitbox", "collision_shape")]
+unique_name_in_owner = true
+script = ExtResource("60_pursuit_component")
+definition = ExtResource("61_pursuit_data")
+hitbox = NodePath("../AbilityPivot/Ability3Hitbox")
+collision_shape = NodePath("../AbilityPivot/Ability3Hitbox/CollisionShape2D")
 
 [node name="ProgressionComponent" type="Node" parent="." unique_id=611931721]
 unique_name_in_owner = true
@@ -322,18 +408,22 @@ stream = ExtResource("47_level_chime")
 volume_db = -7.0
 bus = &"UI"
 
-[node name="PlayerActionSfx" type="Node2D" parent="." unique_id=1478518642 node_paths=PackedStringArray("sword_swing_player", "ability_player", "dash_player", "ability_component", "ability_2_component", "piercing_charge_player", "piercing_thrust_player", "consecutive_charge_player", "consecutive_flurry_player", "consecutive_final_player")]
+[node name="PlayerActionSfx" type="Node2D" parent="." unique_id=1478518642 node_paths=PackedStringArray("sword_swing_player", "ability_player", "dash_player", "ability_component", "ability_2_component", "ability_3_component", "piercing_charge_player", "piercing_thrust_player", "consecutive_charge_player", "consecutive_flurry_player", "consecutive_final_player", "echoing_sever_fracture_player", "riftbreak_ground_slam_player", "sovereign_pursuit_landing_player")]
 script = ExtResource("22_player_sfx")
 sword_swing_player = NodePath("SwordSwing")
 ability_player = NodePath("WeaponTechnique")
 dash_player = NodePath("Dash")
 ability_component = NodePath("../Ability1Component")
 ability_2_component = NodePath("../Ability2Component")
+ability_3_component = NodePath("../Ability3Component")
 piercing_charge_player = NodePath("PiercingRushCharge")
 piercing_thrust_player = NodePath("PiercingRushThrust")
 consecutive_charge_player = NodePath("ConsecutiveThrustCharge")
 consecutive_flurry_player = NodePath("ConsecutiveThrustFlurry")
 consecutive_final_player = NodePath("ConsecutiveThrustFinal")
+echoing_sever_fracture_player = NodePath("EchoingSeverEchoFracture")
+riftbreak_ground_slam_player = NodePath("RiftbreakGroundSlam")
+sovereign_pursuit_landing_player = NodePath("SovereignPursuitLanding")
 
 [node name="SwordSwing" type="AudioStreamPlayer2D" parent="PlayerActionSfx" unique_id=1524140265]
 stream = ExtResource("23_sword_swing")
@@ -375,6 +465,21 @@ stream = ExtResource("41_consecutive_final")
 volume_db = -6.0
 bus = &"SFX"
 
+[node name="EchoingSeverEchoFracture" type="AudioStreamPlayer2D" parent="PlayerActionSfx"]
+stream = ExtResource("52_echo_fracture")
+volume_db = -5.5
+bus = &"SFX"
+
+[node name="RiftbreakGroundSlam" type="AudioStreamPlayer2D" parent="PlayerActionSfx"]
+stream = ExtResource("57_riftbreak_slam")
+volume_db = -4.5
+bus = &"SFX"
+
+[node name="SovereignPursuitLanding" type="AudioStreamPlayer2D" parent="PlayerActionSfx"]
+stream = ExtResource("64_pursuit_landing")
+volume_db = -4.0
+bus = &"SFX"
+
 [node name="Name" type="Label" parent="." unique_id=336850558]
 visible = false
 offset_left = -18.0
@@ -410,25 +515,42 @@ horizontal_alignment = 1
 [connection signal="ability_finished" from="Ability1Component" to="VisualRoot/WeaponVisual" method="resume_locomotion"]
 [connection signal="ability_finished" from="Ability1Component" to="AbilityPivot/PiercingRushVisual" method="hide_visual"]
 [connection signal="ability_finished" from="Ability1Component" to="AbilityPivot/SweepingCutVisual" method="hide_visual"]
+[connection signal="ability_finished" from="Ability1Component" to="AbilityPivot/EchoingSeverVisual" method="hide_visual"]
 [connection signal="phase_changed" from="Ability1Component" to="VisualRoot/Body" method="play_ability_phase"]
+[connection signal="strike_started" from="Ability1Component" to="VisualRoot/Body" method="play_ability_strike"]
 [connection signal="phase_changed" from="Ability1Component" to="VisualRoot/WeaponVisual" method="play_ability_phase"]
 [connection signal="phase_changed" from="Ability1Component" to="AbilityPivot/PiercingRushVisual" method="play_phase"]
 [connection signal="phase_changed" from="Ability1Component" to="AbilityPivot/SweepingCutVisual" method="play_phase"]
+[connection signal="phase_changed" from="Ability1Component" to="AbilityPivot/EchoingSeverVisual" method="play_phase"]
 [connection signal="phase_changed" from="Ability1Component" to="PlayerActionSfx" method="play_ability_phase"]
+[connection signal="strike_started" from="Ability1Component" to="AbilityPivot/EchoingSeverVisual" method="play_strike"]
+[connection signal="strike_started" from="Ability1Component" to="PlayerActionSfx" method="play_ability_strike"]
 [connection signal="ability_finished" from="Ability2Component" to="VisualRoot/Body" method="resume_locomotion"]
 [connection signal="ability_finished" from="Ability2Component" to="VisualRoot/WeaponVisual" method="resume_locomotion"]
 [connection signal="ability_finished" from="Ability2Component" to="VisualRoot/ConsecutiveThrustBodyVisual" method="hide_visual"]
 [connection signal="ability_finished" from="Ability2Component" to="AbilityPivot/ConsecutiveThrustVisual" method="hide_visual"]
+[connection signal="ability_finished" from="Ability2Component" to="AbilityPivot/RiftbreakVisual" method="hide_visual"]
 [connection signal="phase_changed" from="Ability2Component" to="VisualRoot/Body" method="play_ability_phase"]
 [connection signal="phase_changed" from="Ability2Component" to="VisualRoot/WeaponVisual" method="play_ability_phase"]
 [connection signal="phase_changed" from="Ability2Component" to="VisualRoot/ConsecutiveThrustBodyVisual" method="play_phase"]
 [connection signal="phase_changed" from="Ability2Component" to="AbilityPivot/ConsecutiveThrustVisual" method="play_phase"]
+[connection signal="phase_changed" from="Ability2Component" to="AbilityPivot/RiftbreakVisual" method="play_phase"]
 [connection signal="phase_changed" from="Ability2Component" to="PlayerActionSfx" method="play_ability_phase"]
 [connection signal="strike_started" from="Ability2Component" to="VisualRoot/WeaponVisual" method="play_ability_strike"]
 [connection signal="strike_started" from="Ability2Component" to="VisualRoot/ConsecutiveThrustBodyVisual" method="play_strike"]
 [connection signal="strike_started" from="Ability2Component" to="AbilityPivot/ConsecutiveThrustVisual" method="play_strike"]
+[connection signal="strike_started" from="Ability2Component" to="AbilityPivot/RiftbreakVisual" method="play_strike"]
 [connection signal="strike_started" from="Ability2Component" to="PlayerActionSfx" method="play_ability_strike"]
 [connection signal="invulnerability_changed" from="Ability2Component" to="HealthComponent" method="set_invulnerable"]
+[connection signal="ability_finished" from="Ability3Component" to="VisualRoot/Body" method="resume_locomotion"]
+[connection signal="ability_finished" from="Ability3Component" to="VisualRoot/WeaponVisual" method="resume_locomotion"]
+[connection signal="ability_finished" from="Ability3Component" to="AbilityPivot/SovereignPursuitVisual" method="hide_visual"]
+[connection signal="phase_changed" from="Ability3Component" to="VisualRoot/Body" method="play_ability_phase"]
+[connection signal="phase_changed" from="Ability3Component" to="VisualRoot/WeaponVisual" method="play_ability_phase"]
+[connection signal="phase_changed" from="Ability3Component" to="AbilityPivot/SovereignPursuitVisual" method="play_phase"]
+[connection signal="strike_started" from="Ability3Component" to="AbilityPivot/SovereignPursuitVisual" method="play_strike"]
+[connection signal="strike_started" from="Ability3Component" to="PlayerActionSfx" method="play_ability_strike"]
+[connection signal="invulnerability_changed" from="Ability3Component" to="HealthComponent" method="set_invulnerable"]
 [connection signal="damage_blocked" from="HealthComponent" to="StateVisual" method="flash_blocked"]
 [connection signal="damaged" from="HealthComponent" to="VisualRoot/Body" method="play_hurt"]
 [connection signal="damaged" from="HealthComponent" to="StateVisual" method="flash_damaged"]

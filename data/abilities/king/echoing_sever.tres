@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="EchoingSeverDefinition" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://data/abilities/king/echoing_sever_definition.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/skills/icon_skill_echoing_sever.svg" id="2_icon"]
+[ext_resource type="Shape2D" path="res://data/abilities/king/hit_shapes/echoing_sever_wedge.tres" id="3_shape"]
+
+[resource]
+script = ExtResource("1_script")
+ability_id = &"echoing_sever"
+display_name = "Echoing Sever"
+hud_name = "ECHO SEVER"
+description = "Aim a broad cleave through any angle. The cut tears open once, then the same rift strikes again after a short delay.\n110% + 75% weapon damage - 130 px / 100 degree wedge"
+icon = ExtResource("2_icon")
+activation_mode = 3
+presentation_style = 2
+hitbox_shape = ExtResource("3_shape")
+weapon_damage_multiplier = 1.0
+knockback_strength = 78.0
+strike_damage_multipliers = PackedFloat32Array(1.1, 0.75)
+non_final_knockback_multiplier = 0.2
+stagger_seconds = 0.24
+non_final_stagger_multiplier = 0.35
+wind_up_seconds = 0.16
+active_seconds = 0.46
+recovery_seconds = 0.18
+cooldown_seconds = 5.0
+strike_window_seconds = 0.08
+echo_delay_seconds = 0.3
+targeting_reach_pixels = 130.0
+targeting_half_angle_degrees = 50.0

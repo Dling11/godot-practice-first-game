@@ -3,8 +3,8 @@ extends Resource
 
 ## Immutable tuning shared by ability runtime instances.
 
-enum ActivationMode { IMMEDIATE_DIRECTIONAL, GROUND_TARGETED, SELF_AREA }
-enum PresentationStyle { SWEEP, THRUST }
+enum ActivationMode { IMMEDIATE_DIRECTIONAL, GROUND_TARGETED, SELF_AREA, DIRECTIONAL_WEDGE_TARGETED }
+enum PresentationStyle { SWEEP, THRUST, ECHOING_SEVER }
 
 @export var ability_id: StringName
 @export var display_name := "Ability"

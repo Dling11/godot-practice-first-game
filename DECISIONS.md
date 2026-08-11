@@ -85,6 +85,9 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 075 | Use action-owned exact-grid sheets and purposeful frame budgets | Character sheet layout, directional rows, frame counts, stable pivots/scale, chroma cleanup, or King rear shoulder grip |
 | 076 | Reboot King with simple art and explicit skill targeting | Simple King identity, archived detailed package, character-owned fixed sword, aim preview, ground targeting, or instant-skill limits |
 | 077 | Bench Opaw and run King as the active combat proof | Temporary active player, King basic slash, sealed King skills, integrated sword presentation, or explicit Opaw regression setup |
+| 078 | Make Echoing Sever the first explicit-targeting skill proof | King Skill 1, smooth directional wedge targeting, cardinal body fallback, confirm/cancel input, delayed echo contacts, or proof VFX |
+| 079 | Make Skill 2 a self-centered Riftbreak | King Skill 2, radial self-AOE, outward knockback, natural Skill 3 sequencing, or reserving jump/lift for later skills |
+| 080 | Make Skill 3 a ground-targeted Sovereign Pursuit leap | King Skill 3, ground targeting, collision-safe traversal, active-only invulnerability, landing AOE, or natural Riftbreak sequencing |
 
 ## New Decisions
 

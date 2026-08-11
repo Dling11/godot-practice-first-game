@@ -1,5 +1,7 @@
 # Known Issues
 
+- Sovereign Pursuit is mechanically complete but awaits owner feel-testing in crowded authored stages; its 220-pixel range, 0.28-second travel, 52-pixel landing radius, and active-only invulnerability may need tuning. It intentionally has no hidden combo bonus with Riftbreak.
+
 This file tracks confirmed limitations, unresolved risks, and decisions blocking implementation. Remove resolved entries and record their resolution in `CHANGELOG.md` or `DECISIONS.md` as appropriate.
 
 ## Current Limitations
@@ -7,10 +9,10 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 ### KI-014 - King is the temporary active proof; roster combat is incomplete
 
 - **Status:** Open
-- **Progress:** Decision 077 temporarily makes King the live player with tested locomotion and a corrected six-frame-per-direction basic slash, integrated-sword presentation, existing melee authority, Character & Bag identity, and four honest sealed skill slots. The live and isolated preview structures now each use one body `AnimatedSprite2D`; Opaw remains a complete explicitly tested bench package.
-- **Impact:** King still lacks a real tap/hold combo authority, dedicated dash/hurt/interact/defeat sheets, target-preview controller, implemented skills, essence equipment, roster selection, and per-character save/progression. Current aliases prevent broken animation names but are not final art.
-- **Planned resolution:** Owner-playtest the live proof, then implement one gate at a time: dedicated reactions or Crescent Sever aim-preview, authoritative King combo data, remaining skills, and finally roster/save migration.
-- **Workaround:** Use King for normal movement/basic-attack testing. Treat every sealed skill and locomotion-derived reaction as intentionally unavailable/provisional; Opaw remains recoverable through his preserved resources and explicit regression setup.
+- **Progress:** Decisions 077-079 temporarily make King the live player with tested locomotion, a corrected six-frame-per-direction basic slash, the owner-approved Echoing Sever vertical slice, and Riftbreak's playable self-centered radial damage/knockback proof. The live and isolated preview structures each use one body `AnimatedSprite2D`; Opaw remains a complete explicitly tested bench package.
+- **Impact:** King still lacks real tap/hold combo authority, dedicated dash/hurt/interact/defeat sheets, Skills 3-4, essence equipment, roster selection, and per-character save/progression. A unique Skill 1 body sheet and heavier Riftbreak camera/hitstop treatment remain optional polish rather than active blockers.
+- **Planned resolution:** Owner-feel-test Riftbreak's completed body/generated-VFX/audio pass together with its 84-pixel radius, 150% damage, outward knockback, and timing; then design the future jump Skill 3.
+- **Workaround:** Use the current generated six-frame ground rupture while judging mechanics; Opaw remains recoverable through preserved resources and explicit regression setup.
 
 ### KI-013 - Forest crafting transactions and replay Hunts are not implemented
 

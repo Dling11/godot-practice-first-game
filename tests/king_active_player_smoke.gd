@@ -25,10 +25,18 @@ func _run() -> void:
 	if player.skill_loadout == null or not player.skill_loadout.has_complete_layout():
 		_fail("King does not expose an honest four-slot development loadout.")
 		return
+	var equipped_skill_count := 0
 	for slot: SkillSlotDefinition in player.skill_loadout.get_ordered_slots():
 		if slot.is_equipped():
-			_fail("An unimplemented King skill is presented as equipped: %s" % slot.get_display_name())
-			return
+			equipped_skill_count += 1
+	if (
+		equipped_skill_count != 3
+		or player.skill_loadout.get_slot(1).ability.ability_id != &"echoing_sever"
+		or player.skill_loadout.get_slot(2).ability.ability_id != &"riftbreak"
+		or player.skill_loadout.get_slot(3).ability.ability_id != &"sovereign_pursuit"
+	):
+		_fail("King's loadout must expose the implemented Skills 1-3 proofs.")
+		return
 
 	player._set_facing_direction(Vector2.RIGHT)
 	player.movement_changed.emit(Vector2.RIGHT, true)
@@ -64,9 +72,17 @@ func _run() -> void:
 		_fail("King's safe locomotion-derived dash presentation is unavailable.")
 		return
 	player.evade_component.cancel_evade()
-	if player.request_ability(1):
-		_fail("King activated an unimplemented skill from a sealed slot.")
+	if not player.request_ability(1) or not player.directional_wedge_targeting.is_targeting():
+		_fail("King's implemented Skill 1 did not enter its explicit targeting state.")
 		return
+	if player.ability_1_component.is_casting():
+		_fail("Echoing Sever cast before the player confirmed its preview.")
+		return
+	player.directional_wedge_targeting.cancel_targeting()
+	if not player.request_ability(2) or not player.ability_2_component.is_casting():
+		_fail("King's implemented Skill 2 did not begin its self-area cast.")
+		return
+	player.ability_2_component.cancel_cast()
 	print("King temporary active-player smoke test passed.")
 	quit(0)
 

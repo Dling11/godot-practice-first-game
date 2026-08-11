@@ -13,6 +13,15 @@ func get_move_direction() -> Vector2:
 	)
 
 
+func get_aim_direction() -> Vector2:
+	return Input.get_vector(
+		"player_aim_left",
+		"player_aim_right",
+		"player_aim_up",
+		"player_aim_down"
+	)
+
+
 func resolve_cardinal_facing(move_direction: Vector2, current_facing: Vector2) -> Vector2:
 	## Combat facing follows movement intent, never passive pointer position.
 	## Exact diagonal ties retain the matching current axis to avoid flicker.
@@ -51,3 +60,7 @@ func is_ability_2_just_pressed() -> bool:
 		Input.is_action_just_pressed("player_skill_2")
 		or Input.is_action_just_pressed("player_ability_2")
 	)
+
+
+func is_ability_3_just_pressed() -> bool:
+	return Input.is_action_just_pressed("player_skill_3")

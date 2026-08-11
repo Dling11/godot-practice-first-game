@@ -19,7 +19,7 @@ King's approved simple identity now has stable four-direction locomotion and a f
 - `entities/player/player.tscn` temporarily instantiates King as `character_id = king` and uses King's simple `SpriteFrames`.
 - Opaw's compact and Wayfarer resources, abilities, data, scripts, and focused tests remain active supported project content; they are benched, not archived or deleted.
 - King's integrated signature sword hides only the detached equipment weapon sprite. Existing presentation-only cleave trails and authoritative weapon data/contact shape remain reusable during the proof.
-- King receives four honest named but unequipped skill slots. F9 does not silently equip Opaw's skills on King, and Eira cannot awaken Opaw's Skill 2 for a non-Opaw character.
+- King initially received four honest named but unequipped skill slots. Decision 078 now equips only the implemented Echoing Sever proof in Slot 1; Slots 2-4 remain sealed. F9 does not silently equip Opaw's skills on King, and Eira cannot awaken Opaw's Skill 2 for a non-Opaw character.
 - King's authored locomotion and basic slash are production review assets. Locomotion-derived dash and temporary reaction aliases prevent missing animation calls but are not final King action art.
 - Owner review rejected the first four-pose slash. The replacement uses six chronological poses per direction, exact mirrored side rows, one stable body scale/baseline per direction, and two presentation frames for each authoritative combat phase. The isolated preview must mirror the real one-body node structure and cycle animations rather than displaying four `AnimatedSprite2D` bodies simultaneously.
 - Shared progression, vitality, inventory, and weapon-stat authorities remain in place for this proof. Their current Opaw-named data is compatibility scaffolding, not final per-character progression.
@@ -27,7 +27,7 @@ King's approved simple identity now has stable four-direction locomotion and a f
 ## Consequences
 
 - Normal game launch, Sanctuary, and Stages I-III now provide gameplay-scale King movement/basic-attack review.
-- King skills remain unavailable until their target-preview and gameplay authority exist; the UI says so explicitly.
+- King Skill 1 is available under Decision 078; Skills 2-4 remain unavailable until their own targeting and gameplay authority exist.
 - Opaw-specific tests must configure Opaw deliberately instead of assuming the default player scene is Opaw.
-- The next production gate is one King mechanic at a time: approve locomotion/basic slash, then author dedicated dash/reactions or implement Crescent Sever's aim-preview proof. Do not generate all four skills at once.
+- The next production gate remains one King mechanic at a time: approve Echoing Sever's targeting/contact proof, then author its dedicated action-owned body/VFX sheets or proceed to dedicated reactions. Do not generate all four skills at once.
 - A later roster selection system supersedes this temporary default swap without discarding either character.

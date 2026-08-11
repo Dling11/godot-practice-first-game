@@ -10,6 +10,7 @@ extends Node2D
 @export var swing_smoke: Line2D
 @export var ability_component: AbilityComponent
 @export var ability_2_component: AbilityComponent
+@export var ability_3_component: AbilityComponent
 @export var show_weapon_sprite := true
 
 var _direction := &"down"
@@ -82,12 +83,33 @@ func play_ability_phase(phase: int, duration_seconds: float) -> void:
 	if (
 		active_ability != null
 		and active_ability.definition != null
+		and active_ability.definition.ability_id in [&"echoing_sever", &"riftbreak", &"sovereign_pursuit"]
+	):
+		_play_integrated_weapon_ability_phase(phase)
+		return
+	if (
+		active_ability != null
+		and active_ability.definition != null
 		and active_ability.definition.presentation_style
 			== AbilityDefinition.PresentationStyle.THRUST
 	):
 		_play_thrust_phase(phase, duration_seconds)
 		return
 	_play_action_phase(phase, duration_seconds, true)
+
+
+func _play_integrated_weapon_ability_phase(phase: int) -> void:
+	## King carries his sword inside the body atlas and Echoing Sever owns a
+	## dedicated VFX sprite. The shared detached-weapon trail is Opaw presentation
+	## and would otherwise create a second normal slash behind King's skill.
+	if phase == AbilityComponent.Phase.WIND_UP:
+		_action_locked = true
+		_action_direction = _direction
+	_kill_pose_tween()
+	_kill_accent_tween()
+	_hide_swing_trail()
+	if weapon_sprite != null:
+		weapon_sprite.visible = false
 
 
 func play_ability_strike(strike_index: int, strike_count: int, duration_seconds: float) -> void:
@@ -114,7 +136,7 @@ func play_ability_strike(strike_index: int, strike_count: int, duration_seconds:
 
 
 func _get_casting_ability() -> AbilityComponent:
-	for component in [ability_component, ability_2_component]:
+	for component in [ability_component, ability_2_component, ability_3_component]:
 		if component != null and component.is_casting():
 			return component
 	return null

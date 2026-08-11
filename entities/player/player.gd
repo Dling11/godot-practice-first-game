@@ -18,6 +18,8 @@ const PlayerMovementComponentScript = preload("res://entities/player/components/
 const MeleeAttackComponentScript = preload("res://entities/player/components/melee_attack_component.gd")
 const EvadeComponentScript = preload("res://entities/player/components/evade_component.gd")
 const AbilityComponentScript = preload("res://gameplay/abilities/ability_component.gd")
+const DirectionalWedgeTargetingScript = preload("res://gameplay/abilities/targeting/directional_wedge_targeting.gd")
+const GroundPointTargetingScript = preload("res://gameplay/abilities/targeting/ground_point_targeting.gd")
 
 @export var movement_bounds := Rect2(56.0, 56.0, 528.0, 248.0)
 @export var character_id: StringName = &"opaw"
@@ -33,6 +35,9 @@ const AbilityComponentScript = preload("res://gameplay/abilities/ability_compone
 @onready var evade_component: EvadeComponentScript = %EvadeComponent
 @onready var ability_1_component: AbilityComponentScript = %Ability1Component
 @onready var ability_2_component: AbilityComponentScript = %Ability2Component
+@onready var ability_3_component: AbilityComponentScript = %Ability3Component
+@onready var directional_wedge_targeting: DirectionalWedgeTargetingScript = %DirectionalWedgeTargeting
+@onready var ground_point_targeting: GroundPointTargetingScript = %GroundPointTargeting
 @onready var health_component: HealthComponent = %HealthComponent
 @onready var progression_component: PlayerProgressionComponent = %ProgressionComponent
 @onready var vitality_component: PlayerVitalityComponent = %VitalityComponent
@@ -55,6 +60,9 @@ func _ready() -> void:
 	attack_component.phase_changed.connect(_on_attack_phase_changed)
 	ability_1_component.ability_finished.connect(_restore_ability_presentation_facing)
 	ability_2_component.ability_finished.connect(_restore_ability_presentation_facing)
+	ability_3_component.ability_finished.connect(_restore_ability_presentation_facing)
+	directional_wedge_targeting.targeting_confirmed.connect(_on_directional_targeting_confirmed)
+	ground_point_targeting.targeting_confirmed.connect(_on_ground_targeting_confirmed)
 	_apply_story_skill_loadout()
 	_apply_inventory_weapon()
 	facing_changed.emit(facing_direction)
@@ -85,6 +93,13 @@ func _sync_run_health(current: float, _maximum: float) -> void:
 func _physics_process(delta: float) -> void:
 	_try_apply_pending_weapon()
 	var move_direction := input_source.get_move_direction()
+	if directional_wedge_targeting.is_targeting():
+		directional_wedge_targeting.update_aim(
+			get_global_mouse_position() - directional_wedge_targeting.global_position,
+			input_source.get_aim_direction()
+		)
+	if ground_point_targeting.is_targeting():
+		ground_point_targeting.update_aim(get_global_mouse_position(), input_source.get_aim_direction())
 	if not move_direction.is_zero_approx():
 		_set_movement_facing_direction(move_direction)
 	if input_source.is_evade_just_pressed():
@@ -94,6 +109,8 @@ func _physics_process(delta: float) -> void:
 		request_ability_1()
 	if input_source.is_ability_2_just_pressed():
 		request_ability(2)
+	if input_source.is_ability_3_just_pressed():
+		request_ability(3)
 
 	if evade_component.is_dashing():
 		velocity = evade_component.get_dash_velocity()
@@ -120,6 +137,21 @@ func _physics_process(delta: float) -> void:
 	)
 
 func _unhandled_input(event: InputEvent) -> void:
+	if _is_targeting_any_ability():
+		if event.is_action_pressed("player_attack_primary"):
+			if directional_wedge_targeting.is_targeting():
+				directional_wedge_targeting.confirm_targeting()
+			else:
+				ground_point_targeting.confirm_targeting()
+			get_viewport().set_input_as_handled()
+			return
+		if (
+			event.is_action_pressed("ui_cancel")
+			or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed)
+		):
+			_cancel_all_targeting()
+			get_viewport().set_input_as_handled()
+			return
 	if event.is_action_pressed("player_attack_primary"):
 		if request_primary_attack():
 			get_viewport().set_input_as_handled()
@@ -144,6 +176,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func request_primary_attack() -> bool:
 	if (
 		is_defeated
+		or _is_targeting_any_ability()
 		or is_any_ability_casting()
 		or attack_component.phase != attack_component.Phase.IDLE
 	):
@@ -165,6 +198,7 @@ func request_evade(direction: Vector2) -> bool:
 		return false
 	if direction.is_zero_approx() or not evade_component.is_evade_available():
 		return false
+	_cancel_all_targeting()
 	var active_ability := get_active_ability_component()
 	if active_ability != null:
 		if active_ability.definition == null or not active_ability.definition.dash_cancelable:
@@ -179,6 +213,10 @@ func request_ability_1() -> bool:
 
 func request_ability(slot_number: int) -> bool:
 	var component := get_ability_component_for_slot(slot_number)
+	if _is_targeting_any_ability():
+		## Repeating the skill key is intentionally consumed but never confirms.
+		## Confirmation belongs only to primary attack/right trigger.
+		return directional_wedge_targeting.get_target_component() == component or ground_point_targeting.get_target_component() == component
 	if (
 		component == null
 		or is_defeated
@@ -186,7 +224,22 @@ func request_ability(slot_number: int) -> bool:
 		or not component.is_ready()
 	):
 		return false
-	if component.definition.activation_mode != AbilityDefinition.ActivationMode.IMMEDIATE_DIRECTIONAL:
+	if component.definition.activation_mode == AbilityDefinition.ActivationMode.DIRECTIONAL_WEDGE_TARGETED:
+		if (
+			attack_component.phase != attack_component.Phase.IDLE
+			or evade_component.is_dashing()
+			or not evade_component.is_ready()
+		):
+			return false
+		return directional_wedge_targeting.begin_targeting(component, facing_direction)
+	if component.definition.activation_mode == AbilityDefinition.ActivationMode.GROUND_TARGETED:
+		if attack_component.phase != attack_component.Phase.IDLE or evade_component.is_dashing() or not evade_component.is_ready():
+			return false
+		return ground_point_targeting.begin_targeting(component as SovereignPursuitComponent, facing_direction)
+	if component.definition.activation_mode not in [
+		AbilityDefinition.ActivationMode.IMMEDIATE_DIRECTIONAL,
+		AbilityDefinition.ActivationMode.SELF_AREA,
+	]:
 		return false
 	var action := (
 		BufferedAction.ABILITY_1
@@ -218,6 +271,7 @@ func set_weapon_definition(next_weapon: WeaponDefinition) -> bool:
 		or is_defeated
 		or attack_component.phase != attack_component.Phase.IDLE
 		or is_any_ability_casting()
+		or _is_targeting_any_ability()
 		or evade_component.is_dashing()
 	):
 		return false
@@ -313,6 +367,7 @@ func face_toward(world_position: Vector2) -> void:
 func begin_interaction(world_position: Vector2) -> void:
 	if is_defeated:
 		return
+	_cancel_all_targeting()
 	face_toward(world_position)
 	interaction_started.emit()
 
@@ -337,7 +392,7 @@ func get_ability_component_for_slot(slot_number: int) -> AbilityComponent:
 
 
 func get_active_ability_component() -> AbilityComponent:
-	for component in [ability_1_component, ability_2_component]:
+	for component in [ability_1_component, ability_2_component, ability_3_component]:
 		if component != null and component.is_casting():
 			return component
 	return null
@@ -427,6 +482,36 @@ func _start_ability(component: AbilityComponent, direction: Vector2) -> bool:
 	return component.request_cast(direction, weapon_damage)
 
 
+func _on_directional_targeting_confirmed(component: AbilityComponent, direction: Vector2) -> void:
+	if component == null or is_defeated or is_any_ability_casting():
+		return
+	## The hitbox/VFX preserve the exact 360-degree aim. King's current body art
+	## deliberately chooses the nearest cardinal animation until diagonal sheets
+	## are ever approved, and ordinary post-cast combat facing stays cardinal.
+	_set_facing_direction(
+		input_source.resolve_cardinal_facing(direction, facing_direction)
+	)
+	_start_ability(component, direction)
+
+
+func _on_ground_targeting_confirmed(component: SovereignPursuitComponent, target_global_position: Vector2) -> void:
+	if component == null or is_defeated or is_any_ability_casting():
+		return
+	var direction := target_global_position - global_position
+	_set_facing_direction(input_source.resolve_cardinal_facing(direction, facing_direction))
+	var weapon_damage := attack_component.weapon.damage if attack_component.weapon != null else 0.0
+	component.request_cast_at(target_global_position, weapon_damage)
+
+
+func _is_targeting_any_ability() -> bool:
+	return directional_wedge_targeting.is_targeting() or ground_point_targeting.is_targeting()
+
+
+func _cancel_all_targeting() -> void:
+	directional_wedge_targeting.cancel_targeting()
+	ground_point_targeting.cancel_targeting()
+
+
 func _restore_ability_presentation_facing() -> void:
 	## Ability pivots deliberately ignore movement-facing changes while casting.
 	## Refresh them once the lock is released so idle presentation is current.
@@ -474,10 +559,12 @@ func _on_died() -> void:
 		return
 	is_defeated = true
 	_buffered_action = BufferedAction.NONE
+	_cancel_all_targeting()
 	velocity = Vector2.ZERO
 	attack_component.cancel_attack()
 	evade_component.cancel_evade()
 	ability_1_component.cancel_cast()
 	ability_2_component.cancel_cast()
+	ability_3_component.cancel_cast()
 	set_physics_process(false)
 	defeated.emit()

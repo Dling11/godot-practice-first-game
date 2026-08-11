@@ -32,11 +32,13 @@ func _run() -> void:
 		or not _valid_sfx_player(player_sfx.consecutive_charge_player)
 		or not _valid_sfx_player(player_sfx.consecutive_flurry_player)
 		or not _valid_sfx_player(player_sfx.consecutive_final_player)
+		or not _valid_sfx_player(player_sfx.echoing_sever_fracture_player)
 		or player_sfx.piercing_thrust_player.stream == player_sfx.sword_swing_player.stream
 		or player_sfx.consecutive_flurry_player.stream == player_sfx.sword_swing_player.stream
 		or player_sfx.consecutive_final_player.stream == player_sfx.consecutive_flurry_player.stream
+		or player_sfx.echoing_sever_fracture_player.stream == player_sfx.sword_swing_player.stream
 	):
-		_fail("Player action, Piercing Rush, and Consecutive Thrust SFX are not fully assigned to the SFX bus.")
+		_fail("Player action, Echoing Sever, Piercing Rush, and Consecutive Thrust SFX are not fully assigned to the SFX bus.")
 		return
 	if not is_equal_approx(PlayerActionSfx.CONSECUTIVE_FINAL_THRUST_ONSET_SECONDS, 0.50):
 		_fail("Consecutive Thrust final sword playback is not skipping its delayed source lead-in.")

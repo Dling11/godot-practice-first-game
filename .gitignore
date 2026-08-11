@@ -17,3 +17,6 @@ desktop.ini
 *.tmp
 *.bak
 
+# Python asset-tool caches are derived and never belong to runtime content
+__pycache__/
+*.py[cod]

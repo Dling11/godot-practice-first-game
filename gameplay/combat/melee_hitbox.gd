@@ -10,6 +10,8 @@ var _knockback_strength := 0.0
 var _stagger_seconds := 0.0
 var _hit_targets: Dictionary = {}
 var _enabled := false
+var _uses_radial_direction := false
+var _radial_origin := Vector2.ZERO
 
 
 func _ready() -> void:
@@ -37,6 +39,26 @@ func activate(
 	_direction = direction.normalized()
 	_knockback_strength = maxf(knockback_strength, 0.0)
 	_stagger_seconds = maxf(stagger_seconds, 0.0)
+	_uses_radial_direction = false
+	_hit_targets.clear()
+	_set_enabled(true)
+	set_physics_process(true)
+
+
+func activate_radial(
+	damage: float,
+	source: Node,
+	origin: Vector2,
+	knockback_strength := 0.0,
+	stagger_seconds := 0.0
+) -> void:
+	_damage = damage
+	_source = source
+	_direction = Vector2.DOWN
+	_knockback_strength = maxf(knockback_strength, 0.0)
+	_stagger_seconds = maxf(stagger_seconds, 0.0)
+	_uses_radial_direction = true
+	_radial_origin = origin
 	_hit_targets.clear()
 	_set_enabled(true)
 	set_physics_process(true)
@@ -66,10 +88,15 @@ func _try_hit(area: Area2D) -> void:
 	if _hit_targets.has(hurtbox):
 		return
 	_hit_targets[hurtbox] = true
+	var hit_direction := _direction
+	if _uses_radial_direction:
+		hit_direction = (hurtbox.global_position - _radial_origin).normalized()
+		if hit_direction.is_zero_approx():
+			hit_direction = Vector2.DOWN
 	var info := DamageInfo.new(
 		_damage,
 		_source,
-		_direction,
+		hit_direction,
 		_knockback_strength,
 		_stagger_seconds
 	)

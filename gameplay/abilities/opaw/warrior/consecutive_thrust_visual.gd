@@ -51,6 +51,9 @@ func _ready() -> void:
 
 
 func play_phase(phase: AbilityComponent.Phase, _duration_seconds: float) -> void:
+	if not _is_consecutive_thrust():
+		hide_visual()
+		return
 	match phase:
 		AbilityComponent.Phase.WIND_UP:
 			_stop_final_decay()
@@ -75,6 +78,8 @@ func play_phase(phase: AbilityComponent.Phase, _duration_seconds: float) -> void
 
 
 func play_strike(strike_index: int, strike_count: int, _duration_seconds: float) -> void:
+	if not _is_consecutive_thrust():
+		return
 	_final_strike = strike_index >= strike_count - 1
 	_core_alpha = 1.0
 	var frame_index := clampi(strike_index, 0, STRIKE_FRAMES.size() - 1)
@@ -205,3 +210,11 @@ func _get_contact_half_width_pixels() -> float:
 	if ability_component == null or ability_component.definition == null:
 		return 0.0
 	return ability_component.definition.get_forward_lance_half_width_pixels()
+
+
+func _is_consecutive_thrust() -> bool:
+	return (
+		ability_component != null
+		and ability_component.definition != null
+		and ability_component.definition.ability_id == &"consecutive_thrust"
+	)

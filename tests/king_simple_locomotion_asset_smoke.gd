@@ -2,6 +2,8 @@ extends SceneTree
 
 const SHEET_PATH := "res://assets/characters/playable/king/simple_reboot/king_simple_locomotion_sheet_48x32.png"
 const ATTACK_SHEET_PATH := "res://assets/characters/playable/king/simple_reboot/king_simple_basic_slash_sheet_64x32.png"
+const RIFTBREAK_SHEET_PATH := "res://assets/characters/playable/king/simple_reboot/king_riftbreak_body_sheet_64x32.png"
+const PURSUIT_SHEET_PATH := "res://assets/characters/playable/king/simple_reboot/king_sovereign_pursuit_body_sheet_64x32.png"
 const FRAMES_PATH := "res://assets/characters/playable/king/simple_reboot/king_simple_sprite_frames.tres"
 const PREVIEW_PATH := "res://entities/player/king/king_simple_locomotion_preview.tscn"
 const DIRECTIONS := [&"down", &"left", &"right", &"up"]
@@ -48,6 +50,30 @@ func _run() -> void:
 		if not _images_are_horizontal_mirrors(left_frame, right_frame):
 			_fail("King's side attack frame %d is not an exact mirror." % column)
 			return
+	var riftbreak_texture := load(RIFTBREAK_SHEET_PATH) as Texture2D
+	var riftbreak_image := riftbreak_texture.get_image() if riftbreak_texture != null else null
+	if riftbreak_image == null or riftbreak_image.get_size() != Vector2i(384, 128):
+		_fail("King's Riftbreak body sheet is not an exact 6x4 atlas of 64x32 cells.")
+		return
+	for row in range(4):
+		for column in range(6):
+			var cell := riftbreak_image.get_region(Rect2i(column * 64, row * 32, 64, 32))
+			var used_rect := cell.get_used_rect()
+			if used_rect.end.y != 30 or used_rect.size.y < 22 or used_rect.size.y > 30:
+				_fail("King Riftbreak frame %d:%d drifted from its fixed baseline/scale: %s." % [row, column, used_rect])
+				return
+			for y in range(cell.get_height()):
+				for x in range(cell.get_width()):
+					var alpha := cell.get_pixel(x, y).a
+					if alpha != 0.0 and alpha != 1.0:
+						_fail("King Riftbreak frame %d:%d contains non-binary alpha." % [row, column])
+						return
+		for endpoint_column in [0, 5]:
+			var endpoint := riftbreak_image.get_region(Rect2i(endpoint_column * 64 + 8, row * 32, 48, 32))
+			var idle := image.get_region(Rect2i(0, row * 32, 48, 32))
+			if not _images_are_equal(endpoint, idle):
+				_fail("Riftbreak %s endpoint does not exactly match King's idle pixels." % DIRECTIONS[row])
+				return
 
 	var frames := load(FRAMES_PATH) as SpriteFrames
 	if frames == null:
@@ -57,6 +83,8 @@ func _run() -> void:
 		var idle_name := StringName("idle_%s" % direction)
 		var walk_name := StringName("walk_%s" % direction)
 		var attack_name := StringName("attack_%s" % direction)
+		var riftbreak_name := StringName("riftbreak_%s" % direction)
+		var pursuit_name := StringName("sovereign_pursuit_%s" % direction)
 		if not frames.has_animation(idle_name) or frames.get_frame_count(idle_name) != 1:
 			_fail("King is missing exact one-frame %s." % idle_name)
 			return
@@ -68,6 +96,12 @@ func _run() -> void:
 			return
 		if not frames.has_animation(attack_name) or frames.get_frame_count(attack_name) != 6:
 			_fail("King is missing exact six-frame %s." % attack_name)
+			return
+		if not frames.has_animation(riftbreak_name) or frames.get_frame_count(riftbreak_name) != 6:
+			_fail("King is missing exact six-frame %s." % riftbreak_name)
+			return
+		if not frames.has_animation(pursuit_name) or frames.get_frame_count(pursuit_name) != 6:
+			_fail("King is missing exact six-frame %s." % pursuit_name)
 			return
 		for fallback_prefix in [&"dash", &"interact", &"hurt", &"defeat"]:
 			if not frames.has_animation(StringName("%s_%s" % [fallback_prefix, direction])):
@@ -105,5 +139,15 @@ func _images_are_horizontal_mirrors(first: Image, second: Image) -> bool:
 	for y in range(first.get_height()):
 		for x in range(first.get_width()):
 			if first.get_pixel(x, y) != second.get_pixel(second.get_width() - 1 - x, y):
+				return false
+	return true
+
+
+func _images_are_equal(first: Image, second: Image) -> bool:
+	if first.get_size() != second.get_size():
+		return false
+	for y in range(first.get_height()):
+		for x in range(first.get_width()):
+			if first.get_pixel(x, y) != second.get_pixel(x, y):
 				return false
 	return true
