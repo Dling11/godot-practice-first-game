@@ -3,9 +3,10 @@
 ## King Skill 3 — Sovereign Pursuit
 
 - Active body atlas: `res://assets/characters/playable/king/simple_reboot/king_sovereign_pursuit_body_sheet_64x32.png` — 6x4, down/left/right/up rows, y=30 baseline, binary alpha.
-- Active VFX atlas/resource: `res://assets/vfx/abilities/king/sovereign_pursuit_vfx_sheet_192.png` and `sovereign_pursuit_vfx_frames.tres` — 3x2 generated landing sequence.
-- Active icon/audio: `res://assets/ui/icons/skills/icon_skill_sovereign_pursuit.svg` and `res://assets/audio/sfx/abilities/king/sovereign_pursuit_landing.wav`.
-- Preserved generated/clean/review sources live under `art_source/.../simple_reboot/sovereign_pursuit/`; deterministic processors are `tools/process_king_simple_locomotion.py`, `tools/process_sovereign_pursuit_vfx.py`, and `tools/generate_sovereign_pursuit_sfx.py`.
+- Active ground VFX atlas/resource: `res://assets/vfx/abilities/king/sovereign_pursuit_vfx_sheet_192.png` and `sovereign_pursuit_vfx_frames.tres` — v2 generated 3x2 launch, landing shatter, debris, and crater sequence.
+- Active travel VFX atlas/resource: `res://assets/vfx/abilities/king/sovereign_pursuit_travel_vfx_sheet_128.png` and `sovereign_pursuit_travel_vfx_frames.tres` — generated 3x1 open-center white/cold-blue power sheath that follows King only during traversal.
+- Active icon/audio: `res://assets/ui/icons/skills/icon_skill_sovereign_pursuit.svg`, `res://assets/audio/sfx/abilities/king/sovereign_pursuit_launch.wav`, and `res://assets/audio/sfx/abilities/king/sovereign_pursuit_landing.wav`.
+- Preserved generated/clean/review sources live under `art_source/.../simple_reboot/sovereign_pursuit/`; deterministic processors are `tools/process_king_simple_locomotion.py`, `tools/process_sovereign_pursuit_vfx.py`, `tools/process_sovereign_pursuit_travel_vfx.py`, and `tools/generate_sovereign_pursuit_sfx.py`.
 
 This catalog is the canonical registry for approved and transitional Battle of Gods assets. Runtime code and scenes remain the final truth; correct this file whenever a path, status, or usage changes.
 

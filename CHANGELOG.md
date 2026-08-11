@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-08-12 - Skill 2/3 Ground-Impact Presentation
+
+- Accepted Decision 081 and generalized the narrow attack/dash buffer into one 0.8-second latest-intent combat rule for normal attack, dash, and equipped skills. `Sovereign Pursuit -> Riftbreak` now executes at the ability-finished boundary; stale input expires, cooldown-blocked input is rejected, targeting is never guessed, and committed contacts remain uninterrupted.
+- Re-centered every Sovereign Pursuit ground frame horizontally as well as vertically, correcting the final crater's roughly seven-pixel left drift from King's foot position.
+- Added Sovereign Pursuit's missing second VFX layer: a separate generated three-frame white/cold-blue power sheath follows King only during traversal, stays behind the body through an open center, and releases before the world-space landing effect. The hop and ground shatter now read as one powered action without coupling presentation to movement authority.
+- Corrected owner-playtest regressions: Riftbreak now detaches from King at cast start so its residual crater stays in world space, and Sovereign Pursuit's six generated frames are normalized to one foot-contact baseline instead of jumping vertically between launch, impact, and crater poses.
+- Added a brief presentation-only white/cold-blue landing shockwave to Sovereign Pursuit so the confirmed impact reads as a powered skill before the authored debris and crater decay. Damage, radius, traversal, invulnerability, and approved jump body frames remain unchanged.
+- Preserved Sovereign Pursuit's owner-approved jump body frames while correcting effect chronology: launch now leaves a small fixed dust/pressure mark at takeoff, bright sword contact appears only at the actual landing, earth chunks throw outward, and a generated dark crater remains after recovery before fading.
+- Rebuilt Pursuit into separate non-tonal launch and rock-impact cues and removed the generic technique sound from its travel phase. Reworked Riftbreak's cue toward earth/rubble noise and allowed its residual ground fracture to persist and fade instead of being cut off at recovery.
+- Extended focused regression coverage for fixed launch position, landing-only impact, world-locked Skill 2/3 residue, shared ground anchoring, crater/residual lifetime and cleanup, separate audio wiring, damage, collision-safe traversal, and existing Skill 2 authority.
+
 ## 2026-08-11 - Simple King Reboot and Targeted-Skill Direction
 
 - Implemented King Skill 3 `Sovereign Pursuit`: Skill `3` opens a 220-pixel ground-point reticle, primary attack confirms, right-click/Esc cancels freely, and King performs a collision-safe leap with invulnerability restricted to traversal. Landing resolves one 52-pixel 125% radial sword contact with outward knockback; the skill naturally sets up Riftbreak without hidden combo state.

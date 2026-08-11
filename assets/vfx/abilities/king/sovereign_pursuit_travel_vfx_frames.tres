@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/vfx/abilities/king/sovereign_pursuit_travel_vfx_sheet_128.png" id="1_vfx"]
+
+[sub_resource type="AtlasTexture" id="TravelAtlas_0"]
+atlas = ExtResource("1_vfx")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="TravelAtlas_1"]
+atlas = ExtResource("1_vfx")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="TravelAtlas_2"]
+atlas = ExtResource("1_vfx")
+region = Rect2(256, 0, 128, 128)
+
+[resource]
+animations = [{"frames": [{"duration": 1.0, "texture": SubResource("TravelAtlas_0")}, {"duration": 1.0, "texture": SubResource("TravelAtlas_1")}, {"duration": 1.0, "texture": SubResource("TravelAtlas_2")}], "loop": false, "name": &"travel", "speed": 12.0}]

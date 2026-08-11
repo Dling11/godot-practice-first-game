@@ -88,6 +88,7 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 078 | Make Echoing Sever the first explicit-targeting skill proof | King Skill 1, smooth directional wedge targeting, cardinal body fallback, confirm/cancel input, delayed echo contacts, or proof VFX |
 | 079 | Make Skill 2 a self-centered Riftbreak | King Skill 2, radial self-AOE, outward knockback, natural Skill 3 sequencing, or reserving jump/lift for later skills |
 | 080 | Make Skill 3 a ground-targeted Sovereign Pursuit leap | King Skill 3, ground targeting, collision-safe traversal, active-only invulnerability, landing AOE, or natural Riftbreak sequencing |
+| 081 | Use a short latest-intent combat buffer | Attack, dash, skill chaining, Sovereign Pursuit into Riftbreak, input expiry, or safe execution boundaries |
 
 ## New Decisions
 

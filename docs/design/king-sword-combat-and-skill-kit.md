@@ -134,8 +134,8 @@ King should feel heavier than Opaw without causing multi-enemy lag or constant c
 - King commits to a 0.14-second launch, traverses for 0.28 seconds, and recovers for 0.24 seconds. Normal player collision remains authoritative, so blockers produce a safe last-reachable landing instead of a teleport.
 - Invulnerability exists only during traversal. Launch and recovery remain vulnerable.
 - Landing resolves one 52-pixel circle for 125% sword power, 90-pixel outward knockback, and 0.28 seconds of authored stagger before enemy resistance.
-- Dedicated six-pose cardinal body art, a separate six-frame white/cold-blue royal cross impact, and an original landing cue observe gameplay signals. Cooldown is 8.5 seconds.
-- Riftbreak works before or after it, but there is no hidden combo state, damage bonus, timer, or cooldown reset.
+- Dedicated six-pose cardinal body art remains owner-approved. A separate three-frame open-center white/cold-blue power sheath follows King only during traversal, giving the hop a readable powered-movement layer without obscuring the body. Ground VFX v2 aligns every generated frame to one foot-contact baseline and separates muted fixed takeoff dust from a brief landing shockwave, landing-only cross, thrown ground chunks, and persistent dark crater; the crater stays world-locked, holds 0.65 seconds, then fades over 0.85 seconds. Separate non-tonal air/cloth launch and rock-impact cues replace the former combined arcade-like sound. Cooldown is 8.5 seconds.
+- Riftbreak works before or after it. Decision 081's shared 0.8-second latest-intent buffer lets an immediate `3 -> 2` input cast Riftbreak when Pursuit finishes, but there is no King-only combo state, damage bonus, or cooldown reset.
 
 ### Skill 4 — Worldsplitter: Last Horizon
 

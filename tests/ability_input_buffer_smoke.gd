@@ -58,10 +58,63 @@ func _run() -> void:
 		_fail("Dash-buffered skill did not begin at the safe vulnerable boundary.")
 		return
 	if player.request_evade(Vector2.RIGHT):
-		_fail("Dash input canceled an active skill instead of respecting its commitment.")
+		_fail("Buffer accepted a dash that was still unavailable on cooldown.")
+		return
+	ability.cancel_cast()
+	player.queue_free()
+	await process_frame
+
+	var king := PlayerScene.instantiate() as Player
+	root.add_child(king)
+	king.global_position = Vector2(200.0, 200.0)
+	await physics_frame
+	var pursuit := king.ability_3_component as SovereignPursuitComponent
+	var riftbreak := king.ability_2_component as RiftbreakComponent
+	if not pursuit.request_cast_at(Vector2(300.0, 200.0), 25.0):
+		_fail("Sovereign Pursuit did not start for the Skill 3-to-2 buffer proof.")
+		return
+	if not king.request_ability(2):
+		_fail("Riftbreak was not retained while Sovereign Pursuit was committed.")
+		return
+	if riftbreak.is_casting():
+		_fail("Buffered Riftbreak overlapped Sovereign Pursuit.")
+		return
+	while pursuit.is_casting():
+		await physics_frame
+	if not riftbreak.is_casting():
+		_fail("Buffered Riftbreak did not execute when Sovereign Pursuit finished.")
+		return
+	riftbreak.cancel_cast()
+	king.queue_free()
+	await process_frame
+
+	var expiry_king := PlayerScene.instantiate() as Player
+	root.add_child(expiry_king)
+	await physics_frame
+	var long_pursuit := expiry_king.ability_3_component as SovereignPursuitComponent
+	long_pursuit.definition = long_pursuit.definition.duplicate(true)
+	long_pursuit.definition.wind_up_seconds = 0.1
+	long_pursuit.definition.active_seconds = 1.0
+	long_pursuit.definition.recovery_seconds = 0.4
+	if not long_pursuit.request_cast_at(Vector2(100.0, 0.0), 25.0):
+		_fail("Long pursuit did not start for buffer-expiry coverage.")
+		return
+	if not expiry_king.request_primary_attack():
+		_fail("Attack intent was not accepted for short-buffer expiry coverage.")
+		return
+	for frame_index in range(55):
+		await physics_frame
+	if expiry_king.attack_component.phase != MeleeAttackComponent.Phase.IDLE:
+		_fail("Buffered attack began before the long committed ability ended.")
+		return
+	while long_pursuit.is_casting():
+		await physics_frame
+	await physics_frame
+	if expiry_king.attack_component.phase != MeleeAttackComponent.Phase.IDLE:
+		_fail("Expired action lingered and executed after its 0.8-second window.")
 		return
 
-	print("Ability input buffer smoke test passed.")
+	print("Short latest-intent combat buffer smoke test passed.")
 	quit(0)
 
 

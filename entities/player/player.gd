@@ -11,7 +11,9 @@ signal defeated
 signal testing_preset_applied(level: int, coins: int)
 signal skill_loadout_changed
 
-enum BufferedAction { NONE, PRIMARY_ATTACK, ABILITY_1, ABILITY_2 }
+enum BufferedAction { NONE, PRIMARY_ATTACK, EVADE, ABILITY }
+
+const ACTION_BUFFER_WINDOW_SECONDS := 0.8
 
 const PlayerInputSourceScript = preload("res://entities/player/components/player_input_source.gd")
 const PlayerMovementComponentScript = preload("res://entities/player/components/player_movement_component.gd")
@@ -43,12 +45,14 @@ const GroundPointTargetingScript = preload("res://gameplay/abilities/targeting/g
 @onready var vitality_component: PlayerVitalityComponent = %VitalityComponent
 @onready var health_regeneration_component: PlayerHealthRegenerationComponent = %HealthRegenerationComponent
 @onready var weapon_visual: PlayerWeaponVisual = $VisualRoot/WeaponVisual
+@onready var action_buffer_timer: Timer = %ActionBufferTimer
 
 var facing_direction := Vector2.DOWN
 var is_defeated := false
 var _was_moving := false
 var _buffered_action := BufferedAction.NONE
 var _buffered_action_direction := Vector2.DOWN
+var _buffered_ability_slot := 0
 var _pending_weapon_definition: WeaponDefinition
 
 
@@ -58,9 +62,10 @@ func _ready() -> void:
 	health_component.died.connect(_on_died)
 	evade_component.phase_changed.connect(_on_evade_phase_changed)
 	attack_component.phase_changed.connect(_on_attack_phase_changed)
-	ability_1_component.ability_finished.connect(_restore_ability_presentation_facing)
-	ability_2_component.ability_finished.connect(_restore_ability_presentation_facing)
-	ability_3_component.ability_finished.connect(_restore_ability_presentation_facing)
+	ability_1_component.ability_finished.connect(_on_ability_finished)
+	ability_2_component.ability_finished.connect(_on_ability_finished)
+	ability_3_component.ability_finished.connect(_on_ability_finished)
+	action_buffer_timer.timeout.connect(_clear_buffered_action)
 	directional_wedge_targeting.targeting_confirmed.connect(_on_directional_targeting_confirmed)
 	ground_point_targeting.targeting_confirmed.connect(_on_ground_targeting_confirmed)
 	_apply_story_skill_loadout()
@@ -174,13 +179,15 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func request_primary_attack() -> bool:
-	if (
-		is_defeated
-		or _is_targeting_any_ability()
-		or is_any_ability_casting()
-		or attack_component.phase != attack_component.Phase.IDLE
-	):
+	if is_defeated or _is_targeting_any_ability():
 		return false
+	if is_any_ability_casting():
+		return _buffer_action(BufferedAction.PRIMARY_ATTACK, facing_direction)
+	if attack_component.phase != attack_component.Phase.IDLE:
+		_buffer_action(BufferedAction.PRIMARY_ATTACK, facing_direction)
+		if attack_component.phase == attack_component.Phase.RECOVERY:
+			return _try_execute_buffered_action()
+		return true
 	if evade_component.is_dashing():
 		return _buffer_action(BufferedAction.PRIMARY_ATTACK, facing_direction)
 	if evade_component.is_recovering():
@@ -194,16 +201,28 @@ func request_primary_attack() -> bool:
 
 
 func request_evade(direction: Vector2) -> bool:
-	if is_defeated or attack_component.phase != attack_component.Phase.IDLE:
+	if is_defeated:
 		return false
-	if direction.is_zero_approx() or not evade_component.is_evade_available():
+	if direction.is_zero_approx():
 		return false
 	_cancel_all_targeting()
 	var active_ability := get_active_ability_component()
 	if active_ability != null:
-		if active_ability.definition == null or not active_ability.definition.dash_cancelable:
+		if not evade_component.is_evade_available():
 			return false
-		active_ability.cancel_cast()
+		if active_ability.definition != null and active_ability.definition.dash_cancelable:
+			active_ability.cancel_cast()
+		else:
+			return _buffer_action(BufferedAction.EVADE, direction)
+	if attack_component.phase != attack_component.Phase.IDLE:
+		if not evade_component.is_evade_available():
+			return false
+		_buffer_action(BufferedAction.EVADE, direction)
+		if attack_component.phase == attack_component.Phase.RECOVERY:
+			return _try_execute_buffered_action()
+		return true
+	if not evade_component.is_evade_available():
+		return false
 	return evade_component.request_evade(direction)
 
 
@@ -220,45 +239,24 @@ func request_ability(slot_number: int) -> bool:
 	if (
 		component == null
 		or is_defeated
-		or is_any_ability_casting()
 		or not component.is_ready()
 	):
 		return false
-	if component.definition.activation_mode == AbilityDefinition.ActivationMode.DIRECTIONAL_WEDGE_TARGETED:
-		if (
-			attack_component.phase != attack_component.Phase.IDLE
-			or evade_component.is_dashing()
-			or not evade_component.is_ready()
-		):
-			return false
-		return directional_wedge_targeting.begin_targeting(component, facing_direction)
-	if component.definition.activation_mode == AbilityDefinition.ActivationMode.GROUND_TARGETED:
-		if attack_component.phase != attack_component.Phase.IDLE or evade_component.is_dashing() or not evade_component.is_ready():
-			return false
-		return ground_point_targeting.begin_targeting(component as SovereignPursuitComponent, facing_direction)
-	if component.definition.activation_mode not in [
-		AbilityDefinition.ActivationMode.IMMEDIATE_DIRECTIONAL,
-		AbilityDefinition.ActivationMode.SELF_AREA,
-	]:
-		return false
-	var action := (
-		BufferedAction.ABILITY_1
-		if slot_number == 1
-		else BufferedAction.ABILITY_2
-	)
+	if is_any_ability_casting():
+		return _buffer_action(BufferedAction.ABILITY, facing_direction, slot_number)
 	if attack_component.phase != attack_component.Phase.IDLE:
-		_buffer_action(action, facing_direction)
+		_buffer_action(BufferedAction.ABILITY, facing_direction, slot_number)
 		if attack_component.phase == attack_component.Phase.RECOVERY:
 			return _try_execute_buffered_action()
 		return true
 	if evade_component.is_dashing():
-		return _buffer_action(action, facing_direction)
+		return _buffer_action(BufferedAction.ABILITY, facing_direction, slot_number)
 	if evade_component.is_recovering():
-		_buffer_action(action, facing_direction)
+		_buffer_action(BufferedAction.ABILITY, facing_direction, slot_number)
 		return _try_execute_buffered_action()
 	if not evade_component.is_ready():
 		return false
-	return _start_ability(component, facing_direction)
+	return _begin_ability_input(component, facing_direction)
 
 
 func set_weapon_definition(next_weapon: WeaponDefinition) -> bool:
@@ -433,15 +431,17 @@ func _on_attack_phase_changed(phase: int, _duration_seconds: float) -> void:
 		_try_execute_buffered_action()
 
 
-func _buffer_action(action: BufferedAction, direction: Vector2) -> bool:
-	## One intent is retained until the current committed action reaches its
-	## explicit safe boundary. A later valid input intentionally replaces it.
+func _buffer_action(action: BufferedAction, direction: Vector2, ability_slot := 0) -> bool:
+	## One latest intent survives only a short responsiveness window. It never
+	## waits through a long cooldown or stacks a sequence of future actions.
 	_buffered_action = action
+	_buffered_ability_slot = ability_slot
 	_buffered_action_direction = (
 		direction.normalized()
 		if not direction.is_zero_approx()
 		else facing_direction
 	)
+	action_buffer_timer.start(ACTION_BUFFER_WINDOW_SECONDS)
 	return true
 
 
@@ -460,17 +460,38 @@ func _try_execute_buffered_action() -> bool:
 		return false
 	var action := _buffered_action
 	var action_direction := _buffered_action_direction
-	_buffered_action = BufferedAction.NONE
+	var ability_slot := _buffered_ability_slot
+	_clear_buffered_action()
 	if action == BufferedAction.PRIMARY_ATTACK:
 		_set_facing_direction(action_direction)
 		return attack_component.request_attack(action_direction)
-	var component := get_ability_component_for_slot(
-		1 if action == BufferedAction.ABILITY_1 else 2
-	)
+	if action == BufferedAction.EVADE:
+		return evade_component.request_evade(action_direction)
+	var component := get_ability_component_for_slot(ability_slot)
 	if component == null:
 		return false
 	_set_facing_direction(action_direction)
-	return _start_ability(component, action_direction)
+	return _begin_ability_input(component, action_direction)
+
+
+func _clear_buffered_action() -> void:
+	_buffered_action = BufferedAction.NONE
+	_buffered_ability_slot = 0
+	if not action_buffer_timer.is_stopped():
+		action_buffer_timer.stop()
+
+
+func _begin_ability_input(component: AbilityComponent, direction: Vector2) -> bool:
+	if component == null or component.definition == null or not component.is_ready():
+		return false
+	match component.definition.activation_mode:
+		AbilityDefinition.ActivationMode.DIRECTIONAL_WEDGE_TARGETED:
+			return directional_wedge_targeting.begin_targeting(component, direction)
+		AbilityDefinition.ActivationMode.GROUND_TARGETED:
+			return ground_point_targeting.begin_targeting(component as SovereignPursuitComponent, direction)
+		AbilityDefinition.ActivationMode.IMMEDIATE_DIRECTIONAL, AbilityDefinition.ActivationMode.SELF_AREA:
+			return _start_ability(component, direction)
+	return false
 
 
 func _start_ability(component: AbilityComponent, direction: Vector2) -> bool:
@@ -518,6 +539,11 @@ func _restore_ability_presentation_facing() -> void:
 	facing_changed.emit(facing_direction)
 
 
+func _on_ability_finished() -> void:
+	_restore_ability_presentation_facing()
+	_try_execute_buffered_action()
+
+
 func _enable_debug_test_loadout() -> void:
 	## F9 previews every fully authored test skill without writing Eira's normal
 	## session awakening flag.
@@ -558,7 +584,7 @@ func _on_died() -> void:
 	if is_defeated:
 		return
 	is_defeated = true
-	_buffered_action = BufferedAction.NONE
+	_clear_buffered_action()
 	_cancel_all_targeting()
 	velocity = Vector2.ZERO
 	attack_component.cancel_attack()

@@ -1,6 +1,6 @@
 # Known Issues
 
-- Sovereign Pursuit is mechanically complete but awaits owner feel-testing in crowded authored stages; its 220-pixel range, 0.28-second travel, 52-pixel landing radius, and active-only invulnerability may need tuning. It intentionally has no hidden combo bonus with Riftbreak.
+- Sovereign Pursuit's jump motion is owner-approved. Owner playtesting found and resolved a moving Riftbreak crater, inconsistent Pursuit ground anchoring, and a visually weak travel phase. Both residues are world-locked; Pursuit's ground frames share one foot-contact baseline; a separate open-center power sheath follows King during the hop; and landing adds a brief shockwave before the debris/crater. The revised scale and feel still await owner approval; authority values remain unchanged.
 
 This file tracks confirmed limitations, unresolved risks, and decisions blocking implementation. Remove resolved entries and record their resolution in `CHANGELOG.md` or `DECISIONS.md` as appropriate.
 
@@ -9,9 +9,9 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 ### KI-014 - King is the temporary active proof; roster combat is incomplete
 
 - **Status:** Open
-- **Progress:** Decisions 077-079 temporarily make King the live player with tested locomotion, a corrected six-frame-per-direction basic slash, the owner-approved Echoing Sever vertical slice, and Riftbreak's playable self-centered radial damage/knockback proof. The live and isolated preview structures each use one body `AnimatedSprite2D`; Opaw remains a complete explicitly tested bench package.
-- **Impact:** King still lacks real tap/hold combo authority, dedicated dash/hurt/interact/defeat sheets, Skills 3-4, essence equipment, roster selection, and per-character save/progression. A unique Skill 1 body sheet and heavier Riftbreak camera/hitstop treatment remain optional polish rather than active blockers.
-- **Planned resolution:** Owner-feel-test Riftbreak's completed body/generated-VFX/audio pass together with its 84-pixel radius, 150% damage, outward knockback, and timing; then design the future jump Skill 3.
+- **Progress:** Decisions 077-080 temporarily make King the live player with tested locomotion, basic slash, Echoing Sever, Riftbreak, and the owner-approved Sovereign Pursuit jump. Skill 3 now has dedicated body/VFX/audio and correct launch-to-landing sequencing. The live and isolated preview structures each use one body `AnimatedSprite2D`; Opaw remains a complete explicitly tested bench package.
+- **Impact:** King still lacks real tap/hold combo authority, dedicated dash/hurt/interact/defeat sheets, Skill 4, essence equipment, roster selection, and per-character save/progression. A unique Skill 1 body sheet and heavier camera/hitstop treatment remain optional polish rather than active blockers.
+- **Planned resolution:** Feel-test the revised Skill 2/3 debris, crater persistence, and non-tonal audio, then brainstorm Skill 4 before implementation.
 - **Workaround:** Use the current generated six-frame ground rupture while judging mechanics; Opaw remains recoverable through preserved resources and explicit regression setup.
 
 ### KI-013 - Forest crafting transactions and replay Hunts are not implemented
@@ -26,7 +26,7 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 
 - **Status:** Open
 - **Audio progress:** Opaw's accepted-damage cue is now a distinct original cloth/body impact, and the dash uses a curated light CC0 swish; confirm their volume and clarity against every enemy attack in controller playtests.
-- **Progress:** A focused smoke-tested input buffer resolves the reported rejected attack-to-skill follow-up without interrupting live damage or dash invulnerability, and the dash now has a separate 0.85-second reuse cooldown plus a clear HUD gap before Skill 1. Basic attack direction and `SwordPivot` are locked for the accepted attack, so pressing the opposite movement direction during the swing no longer redirects the authoritative contact. Balanced Slash uses a data-owned 58-reach by 96-wide beginner-sword fan whose center and visible side edge both pass contact tests; future weapon families retain independent shapes/styles, and clustered normal hits share one 25-millisecond light hitstop/camera/audio response per swing. Piercing Rush/Consecutive Thrust use 128x40/128x44 lanes. Opaw now scales from 140 to 248 maximum health across Levels 1-10, carries current HP across scenes, and regenerates 1 HP/s after five damage-free seconds; enemy damage is 8/10/18/12/18 by current archetype. Rootbound Husk retains its finalized art/attack/audio package, uses 280 health and 18 damage, and Stage III now bakes 20-pixel seal clearance around its 16-pixel body. Automated coverage protects these contracts; human balance of cleave feel, run attrition/regen, audio, Husk time-to-kill, burst readability, dash feel, and controller playtesting remain open.
+- **Progress:** Decision 081 generalizes the focused smoke-tested input buffer: one latest valid attack, dash, or equipped skill survives for at most 0.8 seconds and executes only at a recovery/ability-finished boundary. It resolves attack-to-skill and `Sovereign Pursuit -> Riftbreak` follow-ups without interrupting live damage or dash invulnerability, rejects cooldown waiting, and reopens targeted-skill previews. Dash retains a separate 0.85-second reuse cooldown plus a clear HUD gap before Skill 1. Basic attack direction and `SwordPivot` remain locked for the accepted attack. Balanced Slash uses a data-owned 58-reach by 96-wide beginner-sword fan whose center and visible side edge both pass contact tests; future weapon families retain independent shapes/styles, and clustered normal hits share one 25-millisecond light hitstop/camera/audio response per swing. Piercing Rush/Consecutive Thrust use 128x40/128x44 lanes. Opaw now scales from 140 to 248 maximum health across Levels 1-10, carries current HP across scenes, and regenerates 1 HP/s after five damage-free seconds; enemy damage is 8/10/18/12/18 by current archetype. Rootbound Husk retains its finalized art/attack/audio package, uses 280 health and 18 damage, and Stage III now bakes 20-pixel seal clearance around its 16-pixel body. Automated coverage protects these contracts; human balance of buffer feel, cleave feel, run attrition/regen, audio, Husk time-to-kill, burst readability, dash feel, and controller playtesting remain open.
 - **Impact:** Earlier playtesting reported rejected attack-to-skill follow-ups, repetitive dash/incoming-hit audio, unclear threat direction, and Rootbound Husk scale popping. The structural input and Husk animation causes are repaired, but only a controller playtest can approve their final feel.
 - **Planned resolution:** Complete the roadmap's responsiveness, feedback/audio, and Husk-repair milestones in that order; measure each change with focused smoke coverage and a controller playtest before changing encounter counts or adding Stage 4 content.
 - **Workaround:** Use F9 to test the completed skills and implemented routes; treat only Husk timing/readability and exact combat reach tuning as provisional, not its animation or attack-authority architecture.
@@ -73,12 +73,12 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 - **Planned resolution:** Reconcile the legacy Sanctuary-only Rootbound Hollow replay gate during the Hunt/route-history segment, and keep The Drowned Bells sealed until its region is authored.
 - **Workaround:** The implemented forest sequence remains playable continuously from Stage 1 through Stage 3; Sanctuary replay buttons still enforce their authored requirements, and unbuilt future routes remain sealed.
 
-### KI-009 - Ground targeting and later skill awakenings are not implemented
+### KI-009 - Later skill awakenings and Skill 4 are not implemented
 
 - **Status:** Open
-- **Impact:** Piercing Rush and normally awakenable Consecutive Thrust prove immediate-direction keyboard/controller/click activation, weapon scaling, cast direction locking, dedicated combat audio, effect-only presentation, and control resistance. No ground-target cursor/preview exists, and slots 3-4 remain unimplemented.
-- **Planned resolution:** Feel-test both techniques and encounter clear times before any higher enemy cap. Build reusable target confirmation only before the first skill that actually requires it, then author later Eira awakenings.
-- **Workaround:** Use Eira at Level 3 for normal Skill 2 or F9 for rapid debug comparison. Treat ground targeting, later skills, and encounter sizes above four active enemies as unimplemented.
+- **Impact:** King now proves reusable directional-wedge and ground-point targeting through Skills 1 and 3, but Skill 4 and later normal-play awakening/progression rules are not authored. Encounter sizes above four active enemies remain unprofiled.
+- **Planned resolution:** Feel-test King's first three skills and encounter clear times, then design Skill 4 and later awakening rules before exposing them through normal progression.
+- **Workaround:** Use King's implemented Skills 1-3 normally and Eira at Level 3 for Opaw's normal Skill 2. Treat Skill 4 and higher encounter caps as unimplemented.
 
 ## Current Bugs
 

@@ -8,7 +8,7 @@ from PIL import Image
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "art_source/cleaned/characters/playable/king/simple_reboot/sovereign_pursuit/sovereign_pursuit_vfx_clean_v1.png"
+SOURCE = ROOT / "art_source/cleaned/characters/playable/king/simple_reboot/sovereign_pursuit/sovereign_pursuit_vfx_clean_v2.png"
 RUNTIME_DIR = ROOT / "assets/vfx/abilities/king"
 REVIEW_DIR = ROOT / "art_source/review/characters/playable/king/simple_reboot/sovereign_pursuit"
 SHEET = RUNTIME_DIR / "sovereign_pursuit_vfx_sheet_192.png"
@@ -22,6 +22,15 @@ SOURCE_CELL = 512
 RUNTIME_CELL = 192
 ALPHA_THRESHOLD = 88
 PALETTE_COLORS = 32
+# Generated cells used different internal ground lines. These reviewed anchors
+# identify King's foot-contact point in each source frame; runtime packing moves
+# every one to the cell center so launch, impact, and crater cannot jump vertically.
+GROUND_ANCHOR_Y = (150, 146, 159, 96, 96, 96)
+RUNTIME_GROUND_Y = 96
+# Generated content also wandered horizontally. These reviewed contact centers
+# keep the takeoff marks, sword impact, debris, and final crater under one foot.
+CONTACT_ANCHOR_X = (103, 90, 85, 99, 92, 89)
+RUNTIME_CONTACT_X = 96
 
 
 def _atlas_resource(frame_index: int) -> str:
@@ -65,8 +74,15 @@ def main() -> None:
             raise RuntimeError(f"Sovereign Pursuit frame {frame_index} is empty")
         quantized = cell.quantize(colors=PALETTE_COLORS, method=Image.Quantize.FASTOCTREE).convert("RGBA")
         quantized.putalpha(binary_alpha)
-        bounds.append(bbox)
-        atlas.alpha_composite(quantized, (column * RUNTIME_CELL, row * RUNTIME_CELL))
+        ground_shift_y = RUNTIME_GROUND_Y - GROUND_ANCHOR_Y[frame_index]
+        ground_shift_x = RUNTIME_CONTACT_X - CONTACT_ANCHOR_X[frame_index]
+        aligned = Image.new("RGBA", (RUNTIME_CELL, RUNTIME_CELL), (0, 0, 0, 0))
+        aligned.alpha_composite(quantized, (ground_shift_x, ground_shift_y))
+        aligned_bbox = aligned.getchannel("A").getbbox()
+        if aligned_bbox is None:
+            raise RuntimeError(f"Sovereign Pursuit frame {frame_index} was lost during ground alignment")
+        bounds.append(aligned_bbox)
+        atlas.alpha_composite(aligned, (column * RUNTIME_CELL, row * RUNTIME_CELL))
 
     RUNTIME_DIR.mkdir(parents=True, exist_ok=True)
     REVIEW_DIR.mkdir(parents=True, exist_ok=True)
@@ -84,9 +100,9 @@ def main() -> None:
     for frame_index in range(FRAME_COUNT):
         lines.append(_atlas_resource(frame_index))
     animations = [
-        _animation("descent", [0, 1], 14.0, False),
+        _animation("launch", [0, 1], 14.0, False),
         _animation("impact", [2, 3, 4], 18.0, False),
-        _animation("residual", [5], 1.0, True),
+        _animation("crater", [5], 1.0, True),
     ]
     lines.extend(["[resource]", "animations = [" + ", ".join(animations) + "]", ""])
     FRAMES.write_text("\n".join(lines), encoding="utf-8")

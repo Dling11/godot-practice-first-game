@@ -17,6 +17,7 @@ extends Node2D
 @export var echoing_sever_fracture_player: AudioStreamPlayer2D
 @export var riftbreak_ground_slam_player: AudioStreamPlayer2D
 @export var sovereign_pursuit_landing_player: AudioStreamPlayer2D
+@export var sovereign_pursuit_launch_player: AudioStreamPlayer2D
 
 ## StarNinjas sword.9 is intentionally a long build-up recording: its decisive
 ## metal burst starts at roughly 0.51 seconds. Skill 2 needs that burst on the
@@ -36,6 +37,10 @@ func play_ability_phase(phase: int, _duration_seconds: float) -> void:
 	if _is_echoing_sever(active_ability):
 		return
 	if _is_riftbreak(active_ability):
+		return
+	if _is_sovereign_pursuit(active_ability):
+		if phase == AbilityComponent.Phase.ACTIVE:
+			_play(sovereign_pursuit_launch_player, 1.0)
 		return
 	if _is_piercing_rush(active_ability):
 		if phase == AbilityComponent.Phase.WIND_UP:

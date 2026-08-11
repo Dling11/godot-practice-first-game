@@ -127,8 +127,19 @@ func _run() -> void:
 	if hitbox.position != Vector2.ZERO or ability.is_casting():
 		_fail("Riftbreak did not restore its hitbox and return to idle cleanly.")
 		return
+	if not visual.visible or effect_sprite.animation != &"residual":
+		_fail("Riftbreak did not preserve its residual ground fracture after recovery.")
+		return
+	var residual_origin := visual.global_position
+	player.global_position += Vector2(48.0, 0.0)
+	await physics_frame
+	if visual.global_position.distance_to(residual_origin) > 0.1:
+		_fail("Riftbreak residual followed King instead of remaining at the cast point.")
+		return
+	for frame_index in range(90):
+		await physics_frame
 	if visual.visible:
-		_fail("Riftbreak presentation did not cleanly release after the cast.")
+		_fail("Riftbreak residual did not fade and clean itself up.")
 		return
 	print("Riftbreak self-AOE, radial knockback, and presentation smoke test passed.")
 	quit(0)

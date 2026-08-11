@@ -62,6 +62,9 @@
 [ext_resource type="Script" path="res://gameplay/abilities/king/sovereign_pursuit_visual.gd" id="62_pursuit_visual"]
 [ext_resource type="SpriteFrames" path="res://assets/vfx/abilities/king/sovereign_pursuit_vfx_frames.tres" id="63_pursuit_frames"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/abilities/king/sovereign_pursuit_landing.wav" id="64_pursuit_landing"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/abilities/king/sovereign_pursuit_launch.wav" id="65_pursuit_launch"]
+[ext_resource type="Script" path="res://gameplay/abilities/king/sovereign_pursuit_travel_visual.gd" id="66_pursuit_travel_visual"]
+[ext_resource type="SpriteFrames" path="res://assets/vfx/abilities/king/sovereign_pursuit_travel_vfx_frames.tres" id="67_pursuit_travel_frames"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_sweep"]
 points = PackedVector2Array(3, -9, 14, -28, 39, -24, 48, 0, 39, 24, 14, 28, 3, 9)
@@ -101,6 +104,19 @@ z_index = -2
 position = Vector2(0, -2)
 color = Color(0.035, 0.06, 0.035, 0.36)
 polygon = PackedVector2Array(-7, 0, -4, -2, 4, -2, 7, 0, 4, 2, -4, 2)
+
+[node name="SovereignPursuitTravelVisual" type="Node2D" parent="VisualRoot" node_paths=PackedStringArray("ability_component", "effect_sprite")]
+visible = false
+z_index = -1
+position = Vector2(0, -16)
+script = ExtResource("66_pursuit_travel_visual")
+ability_component = NodePath("../../Ability3Component")
+effect_sprite = NodePath("EffectSprite")
+
+[node name="EffectSprite" type="AnimatedSprite2D" parent="VisualRoot/SovereignPursuitTravelVisual"]
+texture_filter = 1
+sprite_frames = ExtResource("67_pursuit_travel_frames")
+animation = &"travel"
 
 [node name="Body" type="AnimatedSprite2D" parent="VisualRoot" unique_id=924091774 node_paths=PackedStringArray("ability_component", "ability_2_component", "ability_3_component")]
 unique_name_in_owner = true
@@ -290,7 +306,7 @@ effect_sprite = NodePath("EffectSprite")
 texture_filter = 1
 position = Vector2(0, 16)
 sprite_frames = ExtResource("63_pursuit_frames")
-animation = &"descent"
+animation = &"launch"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=256904912]
 position = Vector2(0, -4)
@@ -299,6 +315,11 @@ shape = SubResource("CircleShape2D_player_footprint")
 [node name="InputSource" type="Node" parent="." unique_id=889070660]
 unique_name_in_owner = true
 script = ExtResource("2_input")
+
+[node name="ActionBufferTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.8
+one_shot = true
 
 [node name="MovementComponent" type="Node" parent="." unique_id=2013263965]
 unique_name_in_owner = true
@@ -408,7 +429,7 @@ stream = ExtResource("47_level_chime")
 volume_db = -7.0
 bus = &"UI"
 
-[node name="PlayerActionSfx" type="Node2D" parent="." unique_id=1478518642 node_paths=PackedStringArray("sword_swing_player", "ability_player", "dash_player", "ability_component", "ability_2_component", "ability_3_component", "piercing_charge_player", "piercing_thrust_player", "consecutive_charge_player", "consecutive_flurry_player", "consecutive_final_player", "echoing_sever_fracture_player", "riftbreak_ground_slam_player", "sovereign_pursuit_landing_player")]
+[node name="PlayerActionSfx" type="Node2D" parent="." unique_id=1478518642 node_paths=PackedStringArray("sword_swing_player", "ability_player", "dash_player", "ability_component", "ability_2_component", "ability_3_component", "piercing_charge_player", "piercing_thrust_player", "consecutive_charge_player", "consecutive_flurry_player", "consecutive_final_player", "echoing_sever_fracture_player", "riftbreak_ground_slam_player", "sovereign_pursuit_landing_player", "sovereign_pursuit_launch_player")]
 script = ExtResource("22_player_sfx")
 sword_swing_player = NodePath("SwordSwing")
 ability_player = NodePath("WeaponTechnique")
@@ -424,6 +445,7 @@ consecutive_final_player = NodePath("ConsecutiveThrustFinal")
 echoing_sever_fracture_player = NodePath("EchoingSeverEchoFracture")
 riftbreak_ground_slam_player = NodePath("RiftbreakGroundSlam")
 sovereign_pursuit_landing_player = NodePath("SovereignPursuitLanding")
+sovereign_pursuit_launch_player = NodePath("SovereignPursuitLaunch")
 
 [node name="SwordSwing" type="AudioStreamPlayer2D" parent="PlayerActionSfx" unique_id=1524140265]
 stream = ExtResource("23_sword_swing")
@@ -478,6 +500,11 @@ bus = &"SFX"
 [node name="SovereignPursuitLanding" type="AudioStreamPlayer2D" parent="PlayerActionSfx"]
 stream = ExtResource("64_pursuit_landing")
 volume_db = -4.0
+bus = &"SFX"
+
+[node name="SovereignPursuitLaunch" type="AudioStreamPlayer2D" parent="PlayerActionSfx"]
+stream = ExtResource("65_pursuit_launch")
+volume_db = -7.0
 bus = &"SFX"
 
 [node name="Name" type="Label" parent="." unique_id=336850558]
@@ -544,9 +571,11 @@ horizontal_alignment = 1
 [connection signal="invulnerability_changed" from="Ability2Component" to="HealthComponent" method="set_invulnerable"]
 [connection signal="ability_finished" from="Ability3Component" to="VisualRoot/Body" method="resume_locomotion"]
 [connection signal="ability_finished" from="Ability3Component" to="VisualRoot/WeaponVisual" method="resume_locomotion"]
+[connection signal="ability_finished" from="Ability3Component" to="VisualRoot/SovereignPursuitTravelVisual" method="hide_visual"]
 [connection signal="ability_finished" from="Ability3Component" to="AbilityPivot/SovereignPursuitVisual" method="hide_visual"]
 [connection signal="phase_changed" from="Ability3Component" to="VisualRoot/Body" method="play_ability_phase"]
 [connection signal="phase_changed" from="Ability3Component" to="VisualRoot/WeaponVisual" method="play_ability_phase"]
+[connection signal="phase_changed" from="Ability3Component" to="VisualRoot/SovereignPursuitTravelVisual" method="play_phase"]
 [connection signal="phase_changed" from="Ability3Component" to="AbilityPivot/SovereignPursuitVisual" method="play_phase"]
 [connection signal="strike_started" from="Ability3Component" to="AbilityPivot/SovereignPursuitVisual" method="play_strike"]
 [connection signal="strike_started" from="Ability3Component" to="PlayerActionSfx" method="play_ability_strike"]

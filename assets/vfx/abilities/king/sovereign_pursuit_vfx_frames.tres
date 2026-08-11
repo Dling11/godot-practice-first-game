@@ -30,7 +30,7 @@ region = Rect2(384, 192, 192, 192)
 animations = [{
 "frames": [{"duration": 1.0, "texture": SubResource("PursuitAtlas_0")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_1")}],
 "loop": false,
-"name": &"descent",
+"name": &"launch",
 "speed": 14.0
 }, {
 "frames": [{"duration": 1.0, "texture": SubResource("PursuitAtlas_2")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_3")}, {"duration": 1.0, "texture": SubResource("PursuitAtlas_4")}],
@@ -40,6 +40,6 @@ animations = [{
 }, {
 "frames": [{"duration": 1.0, "texture": SubResource("PursuitAtlas_5")}],
 "loop": true,
-"name": &"residual",
+"name": &"crater",
 "speed": 1.0
 }]

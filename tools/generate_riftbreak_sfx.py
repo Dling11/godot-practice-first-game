@@ -16,7 +16,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "assets/audio/sfx/abilities/king/riftbreak_ground_slam.wav"
 SAMPLE_RATE = 44_100
-DURATION_SECONDS = 0.38
+DURATION_SECONDS = 0.52
 RANDOM_SEED = 0xB17B4EA
 
 
@@ -49,17 +49,17 @@ def main() -> None:
             * _envelope(time_seconds, 0.001, 0.075)
             * 0.82
         )
-        steel_bite = (
-            math.sin(math.tau * (760.0 - 390.0 * time_seconds) * time_seconds)
-            * _envelope(time_seconds, 0.001, 0.055)
-            * 0.24
-        )
         rubble_tail = (
             coarse
-            * _envelope(time_seconds - 0.045, 0.006, 0.13)
-            * 0.26
+            * _envelope(time_seconds - 0.045, 0.006, 0.21)
+            * 0.42
         )
-        samples.append(ground_thump + stone_crack + steel_bite + rubble_tail)
+        secondary_break = (
+            (grit - coarse)
+            * _envelope(time_seconds - 0.095, 0.002, 0.085)
+            * 0.30
+        )
+        samples.append(ground_thump + stone_crack + rubble_tail + secondary_break)
 
     peak = max(abs(sample) for sample in samples)
     gain = 0.90 / max(peak, 0.0001)
