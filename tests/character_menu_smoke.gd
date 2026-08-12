@@ -143,6 +143,17 @@ func _run() -> void:
 	if not menu.has_node("Panel/Margin/Root/PageHost/SkillsPage/Skills/Skill4") or not (menu._skill_cards[0] is SkillSlotCard):
 		_fail("Character menu did not present all four authored reusable skill slots.")
 		return
+	if (
+		menu._future_skill_cards.size() != 2
+		or not menu.has_node("Panel/Margin/Root/PageHost/SkillsPage/Skills/UltimateSlot")
+		or not menu.has_node("Panel/Margin/Root/PageHost/SkillsPage/Skills/RealityBreakingSlot")
+		or not menu._future_skill_cards[0].disabled
+		or not menu._future_skill_cards[1].disabled
+		or not menu._future_skill_cards[0].text.contains("ULTIMATE")
+		or not menu._future_skill_cards[1].text.contains("REALITY BREAKING")
+	):
+		_fail("Character menu lost the locked Ultimate and Reality Breaking future-tier previews.")
+		return
 	var skill_host := menu.get_node("Panel/Margin/Root/PageHost") as Control
 	var skill_host_rect: Rect2 = skill_host.get_global_rect()
 	for card: SkillSlotCard in menu._skill_cards:
@@ -151,6 +162,10 @@ func _run() -> void:
 				"A compact Active Skills card overflowed the character-menu page "
 				+ "(card=%s host=%s)." % [card.get_global_rect(), skill_host_rect]
 			)
+			return
+	for card: SkillSlotCard in menu._future_skill_cards:
+		if card.size.y > 72.0 or not skill_host_rect.encloses(card.get_global_rect()):
+			_fail("A locked future-tier card overflowed the character-menu page.")
 			return
 	if player.skill_loadout == null or not player.skill_loadout.has_complete_layout():
 		_fail("Player does not expose the shared four-slot loadout definition.")

@@ -99,8 +99,10 @@ func _run() -> void:
 	if player.health_component.is_invulnerable:
 		_fail("Consecutive Thrust and dash cancellation left invulnerability stuck on.")
 		return
-	ability.cooldown_remaining = 0.0
-	if not player.request_ability(2) or player.request_primary_attack():
+	if ability.cooldown_remaining > 0.0:
+		_fail("F9 did not clear Consecutive Thrust's cooldown after dash cancellation.")
+		return
+	if not player.request_ability(2):
 		_fail("Consecutive Thrust could not restart cleanly after its dash-cancel test.")
 		return
 	for frame in range(105):

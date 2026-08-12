@@ -65,6 +65,24 @@ func _run() -> void:
 	if not is_equal_approx(stage_three_player.health_component.current_health, carried_health):
 		_fail("Current HP was refilled instead of carrying from Stage 2 into Stage 3.")
 		return
+	var stage_three_controller := current_scene.get_node("GameplayServices/EncounterController") as EncounterController
+	if stage_three_controller.portal_target_scene != "res://levels/stage_4/stage_4.tscn":
+		_fail("Stage 3 no longer continues into Stage 4.")
+		return
+	var stage_four_result: bool = await transition_service.transition_to(
+		"res://levels/stage_4/stage_4.tscn"
+	)
+	if not stage_four_result:
+		_fail("SceneTransition rejected the valid Stage 4 destination.")
+		return
+	var stage_four_player := current_scene.get_node("World/Actors/Player") as Player
+	if not is_equal_approx(stage_four_player.health_component.current_health, carried_health):
+		_fail("Current HP was refilled instead of carrying from Stage 3 into Stage 4.")
+		return
+	var stage_four_controller := current_scene.get_node("GameplayServices/EncounterController") as EncounterController
+	if stage_four_controller.max_active_enemies != 8:
+		_fail("Stage 4 did not install its eight-enemy active cap.")
+		return
 	print("Scene transition smoke test passed.")
 	quit(0)
 

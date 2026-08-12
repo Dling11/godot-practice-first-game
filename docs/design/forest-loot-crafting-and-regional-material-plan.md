@@ -83,7 +83,7 @@ Leather must not be assigned arbitrarily to a creature without a visible hide id
 
 ## Provisional Forest Stage 4-10 Content Skeleton
 
-The roles and material purposes below are planning slots, not final names, art, exact encounter compositions, or implemented content.
+The roles and material purposes below are planning slots, not final names or approved enemy art. Stage 4's eastern-decay level and existing-roster 6/8/10/12/14-enemy pressure sequence are now implemented, but its hide-bearing beast, materials, and recipes remain behind the individual content-contract gate.
 
 | Stage | New enemy/content role | Material purpose |
 |---|---|---|
@@ -100,7 +100,7 @@ Known enemies continue appearing in authored combinations. Aim for roughly one i
 ### Forest crafting tiers
 
 - **Stages 1-3:** collect and inspect root, mire, cloth, thorn, and Husk preparation materials; no recipe unlock is granted yet
-- **Stage 4:** introduce real hide-bearing ecology and its materials
+- **Stage 4:** implemented environment/crowd-pressure route; next introduce the approved real hide-bearing ecology and its materials
 - **Stage 5:** permanently unlock core-relic crafting for Weapon Essence, Body Relic, Hand Relic/bracer, and Foot Relic slots; consume a repeatable boss catalyst in relevant recipes
 - **Stages 6-7:** expand spirit, reinforced armor, axe/greatsword, and standard-accessory components/blueprints
 - **Stage 8:** permanently unlock standard accessories and award a repeatable fungal/spirit/binding catalyst

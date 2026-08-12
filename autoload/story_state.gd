@@ -45,6 +45,9 @@ func apply_debug_expedition_unlocks() -> bool:
 	remember_story(&"forgotten_grove_completed")
 	record_boss_victory(&"thornbound_warden")
 	grant_key_item(&"cinder_sigil")
+	remember_story(&"rootbound_hollow_completed")
+	record_boss_victory(&"rootbound_husk")
+	record_discovery(&"rootbound_hollow")
 	return true
 
 

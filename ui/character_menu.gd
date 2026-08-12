@@ -31,6 +31,18 @@ const EQUIPMENT_SLOT_POSITIONS := [
 	Vector2(480, 67),
 	Vector2(480, 116),
 ]
+const FUTURE_SKILL_TIERS := [
+	{
+		"node_name": "UltimateSlot",
+		"display_name": "Ultimate",
+		"description": "A future high-power skill tier. No ability or input is assigned yet.",
+	},
+	{
+		"node_name": "RealityBreakingSlot",
+		"display_name": "Reality Breaking",
+		"description": "A future finisher tier beyond Ultimate. No ability or input is assigned yet.",
+	},
+]
 
 signal menu_closed
 signal skill_awakened(skill_name: String)
@@ -71,6 +83,7 @@ var _equipment_cards: Array[InventorySlotButton] = []
 var _material_cards: Array[InventorySlotButton] = []
 var _equipment_slot_cards: Array[EquipmentSlotCard] = []
 var _skill_cards: Array[SkillSlotCard] = []
+var _future_skill_cards: Array[SkillSlotCard] = []
 var _active_page := &"gear"
 var _active_inventory_filter := &"all"
 var _portrait_rotation_tween: Tween
@@ -481,6 +494,7 @@ func _on_material_inventory_reset() -> void:
 func _build_skill_cards() -> void:
 	_clear_children(skills_container)
 	_skill_cards.clear()
+	_future_skill_cards.clear()
 	if player.skill_loadout == null or not player.skill_loadout.has_complete_layout():
 		push_error("CharacterMenu requires a complete four-slot skill loadout.")
 		return
@@ -493,6 +507,15 @@ func _build_skill_cards() -> void:
 		card.button_group = button_group
 		card.slot_selected.connect(_on_skill_slot_selected)
 		_skill_cards.append(card)
+	for tier: Dictionary in FUTURE_SKILL_TIERS:
+		var preview := SkillSlotCardScene.instantiate() as SkillSlotCard
+		skills_container.add_child(preview)
+		preview.configure_locked_preview(
+			tier["node_name"],
+			tier["display_name"],
+			tier["description"]
+		)
+		_future_skill_cards.append(preview)
 	_configure_skill_focus()
 	if not _skill_cards.is_empty():
 		_skill_cards[0].set_pressed_no_signal(true)

@@ -38,6 +38,7 @@ const GroundPointTargetingScript = preload("res://gameplay/abilities/targeting/g
 @onready var ability_1_component: AbilityComponentScript = %Ability1Component
 @onready var ability_2_component: AbilityComponentScript = %Ability2Component
 @onready var ability_3_component: AbilityComponentScript = %Ability3Component
+@onready var ability_4_component: AbilityComponentScript = %Ability4Component
 @onready var directional_wedge_targeting: DirectionalWedgeTargetingScript = %DirectionalWedgeTargeting
 @onready var ground_point_targeting: GroundPointTargetingScript = %GroundPointTargeting
 @onready var health_component: HealthComponent = %HealthComponent
@@ -54,6 +55,7 @@ var _buffered_action := BufferedAction.NONE
 var _buffered_action_direction := Vector2.DOWN
 var _buffered_ability_slot := 0
 var _pending_weapon_definition: WeaponDefinition
+var _debug_unlimited_skills := false
 
 
 func _ready() -> void:
@@ -62,9 +64,11 @@ func _ready() -> void:
 	health_component.died.connect(_on_died)
 	evade_component.phase_changed.connect(_on_evade_phase_changed)
 	attack_component.phase_changed.connect(_on_attack_phase_changed)
+	attack_component.attack_finished.connect(_on_attack_finished)
 	ability_1_component.ability_finished.connect(_on_ability_finished)
 	ability_2_component.ability_finished.connect(_on_ability_finished)
 	ability_3_component.ability_finished.connect(_on_ability_finished)
+	ability_4_component.ability_finished.connect(_on_ability_finished)
 	action_buffer_timer.timeout.connect(_clear_buffered_action)
 	directional_wedge_targeting.targeting_confirmed.connect(_on_directional_targeting_confirmed)
 	ground_point_targeting.targeting_confirmed.connect(_on_ground_targeting_confirmed)
@@ -116,6 +120,8 @@ func _physics_process(delta: float) -> void:
 		request_ability(2)
 	if input_source.is_ability_3_just_pressed():
 		request_ability(3)
+	if input_source.is_ability_4_just_pressed():
+		request_ability(4)
 
 	if evade_component.is_dashing():
 		velocity = evade_component.get_dash_velocity()
@@ -163,19 +169,20 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if not event.is_action_pressed("debug_max_progression"):
 		return
-	if progression_component.apply_debug_testing_preset():
-		var save_service := get_node_or_null("/root/SaveService")
-		if save_service != null:
-			save_service.suppress_autosave_for_debug_session()
-		_unlock_debug_test_equipment()
-		_unlock_debug_test_materials()
-		_enable_debug_test_loadout()
-		_unlock_debug_test_expeditions()
-		get_viewport().set_input_as_handled()
-		testing_preset_applied.emit(
-			progression_component.level,
-			progression_component.coins
-		)
+	progression_component.apply_debug_testing_preset()
+	var save_service := get_node_or_null("/root/SaveService")
+	if save_service != null:
+		save_service.suppress_autosave_for_debug_session()
+	_unlock_debug_test_equipment()
+	_unlock_debug_test_materials()
+	_enable_debug_test_loadout()
+	_enable_debug_unlimited_skills()
+	_unlock_debug_test_expeditions()
+	get_viewport().set_input_as_handled()
+	testing_preset_applied.emit(
+		progression_component.level,
+		progression_component.coins
+	)
 
 
 func request_primary_attack() -> bool:
@@ -185,8 +192,6 @@ func request_primary_attack() -> bool:
 		return _buffer_action(BufferedAction.PRIMARY_ATTACK, facing_direction)
 	if attack_component.phase != attack_component.Phase.IDLE:
 		_buffer_action(BufferedAction.PRIMARY_ATTACK, facing_direction)
-		if attack_component.phase == attack_component.Phase.RECOVERY:
-			return _try_execute_buffered_action()
 		return true
 	if evade_component.is_dashing():
 		return _buffer_action(BufferedAction.PRIMARY_ATTACK, facing_direction)
@@ -390,7 +395,7 @@ func get_ability_component_for_slot(slot_number: int) -> AbilityComponent:
 
 
 func get_active_ability_component() -> AbilityComponent:
-	for component in [ability_1_component, ability_2_component, ability_3_component]:
+	for component in [ability_1_component, ability_2_component, ability_3_component, ability_4_component]:
 		if component != null and component.is_casting():
 			return component
 	return null
@@ -427,7 +432,17 @@ func _on_evade_phase_changed(phase: int, _duration_seconds: float) -> void:
 func _on_attack_phase_changed(phase: int, _duration_seconds: float) -> void:
 	## A buffered technique never interrupts a live sword hit. It may replace only
 	## the normal attack's recovery, matching the existing dash-recovery rule.
-	if phase == MeleeAttackComponent.Phase.RECOVERY:
+	## A repeated primary attack waits for the full recovery so button mashing
+	## cannot erase the weapon's authored cadence.
+	if (
+		phase == MeleeAttackComponent.Phase.RECOVERY
+		and _buffered_action != BufferedAction.PRIMARY_ATTACK
+	):
+		_try_execute_buffered_action()
+
+
+func _on_attack_finished() -> void:
+	if _buffered_action == BufferedAction.PRIMARY_ATTACK:
 		_try_execute_buffered_action()
 
 
@@ -488,7 +503,7 @@ func _begin_ability_input(component: AbilityComponent, direction: Vector2) -> bo
 		AbilityDefinition.ActivationMode.DIRECTIONAL_WEDGE_TARGETED:
 			return directional_wedge_targeting.begin_targeting(component, direction)
 		AbilityDefinition.ActivationMode.GROUND_TARGETED:
-			return ground_point_targeting.begin_targeting(component as SovereignPursuitComponent, direction)
+			return ground_point_targeting.begin_targeting(component, direction)
 		AbilityDefinition.ActivationMode.IMMEDIATE_DIRECTIONAL, AbilityDefinition.ActivationMode.SELF_AREA:
 			return _start_ability(component, direction)
 	return false
@@ -515,7 +530,7 @@ func _on_directional_targeting_confirmed(component: AbilityComponent, direction:
 	_start_ability(component, direction)
 
 
-func _on_ground_targeting_confirmed(component: SovereignPursuitComponent, target_global_position: Vector2) -> void:
+func _on_ground_targeting_confirmed(component: AbilityComponent, target_global_position: Vector2) -> void:
 	if component == null or is_defeated or is_any_ability_casting():
 		return
 	var direction := target_global_position - global_position
@@ -540,6 +555,8 @@ func _restore_ability_presentation_facing() -> void:
 
 
 func _on_ability_finished() -> void:
+	if _debug_unlimited_skills:
+		_clear_all_ability_cooldowns()
 	_restore_ability_presentation_facing()
 	_try_execute_buffered_action()
 
@@ -551,6 +568,17 @@ func _enable_debug_test_loadout() -> void:
 		return
 	skill_loadout = debug_test_skill_loadout
 	skill_loadout_changed.emit()
+
+
+func _enable_debug_unlimited_skills() -> void:
+	_debug_unlimited_skills = true
+	_clear_all_ability_cooldowns()
+
+
+func _clear_all_ability_cooldowns() -> void:
+	for component in [ability_1_component, ability_2_component, ability_3_component, ability_4_component]:
+		if component != null:
+			component.clear_cooldown()
 
 
 func _unlock_debug_test_equipment() -> void:
@@ -592,5 +620,6 @@ func _on_died() -> void:
 	ability_1_component.cancel_cast()
 	ability_2_component.cancel_cast()
 	ability_3_component.cancel_cast()
+	ability_4_component.cancel_cast()
 	set_physics_process(false)
 	defeated.emit()

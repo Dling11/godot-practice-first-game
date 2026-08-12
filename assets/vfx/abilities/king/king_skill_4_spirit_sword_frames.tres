@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/vfx/abilities/king/king_skill_4_spirit_sword_sheet_144x192.png" id="1_sword"]
+
+[sub_resource type="AtlasTexture" id="Skill4Sword_0"]
+atlas = ExtResource("1_sword")
+region = Rect2(0, 0, 144, 192)
+
+[sub_resource type="AtlasTexture" id="Skill4Sword_1"]
+atlas = ExtResource("1_sword")
+region = Rect2(144, 0, 144, 192)
+
+[sub_resource type="AtlasTexture" id="Skill4Sword_2"]
+atlas = ExtResource("1_sword")
+region = Rect2(288, 0, 144, 192)
+
+[sub_resource type="AtlasTexture" id="Skill4Sword_3"]
+atlas = ExtResource("1_sword")
+region = Rect2(432, 0, 144, 192)
+
+[sub_resource type="AtlasTexture" id="Skill4Sword_4"]
+atlas = ExtResource("1_sword")
+region = Rect2(0, 192, 144, 192)
+
+[sub_resource type="AtlasTexture" id="Skill4Sword_5"]
+atlas = ExtResource("1_sword")
+region = Rect2(144, 192, 144, 192)
+
+[sub_resource type="AtlasTexture" id="Skill4Sword_6"]
+atlas = ExtResource("1_sword")
+region = Rect2(288, 192, 144, 192)
+
+[sub_resource type="AtlasTexture" id="Skill4Sword_7"]
+atlas = ExtResource("1_sword")
+region = Rect2(432, 192, 144, 192)
+
+[resource]
+animations = [{
+"frames": [{"duration": 1.0, "texture": SubResource("Skill4Sword_0")}, {"duration": 1.0, "texture": SubResource("Skill4Sword_1")}, {"duration": 1.0, "texture": SubResource("Skill4Sword_2")}],
+"loop": false,
+"name": &"formation",
+"speed": 6.25
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("Skill4Sword_3")}, {"duration": 1.0, "texture": SubResource("Skill4Sword_4")}, {"duration": 1.0, "texture": SubResource("Skill4Sword_5")}, {"duration": 1.0, "texture": SubResource("Skill4Sword_6")}],
+"loop": false,
+"name": &"embedded",
+"speed": 10.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("Skill4Sword_7")}],
+"loop": false,
+"name": &"dissolve",
+"speed": 1.0
+}]

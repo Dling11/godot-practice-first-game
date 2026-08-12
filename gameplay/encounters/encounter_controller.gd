@@ -43,7 +43,7 @@ enum CompletionRewardMode {
 @export var projectiles_parent: Node2D
 @export var auto_start := true
 @export_range(0.5, 10.0, 0.25, "suffix:s") var inter_wave_delay := 2.25
-@export_range(1, 4, 1) var max_active_enemies := 4
+@export_range(1, 20, 1) var max_active_enemies := 4
 @export var gated_wave_numbers: PackedInt32Array = []
 
 var wave_index := -1

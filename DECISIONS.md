@@ -89,6 +89,8 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 079 | Make Skill 2 a self-centered Riftbreak | King Skill 2, radial self-AOE, outward knockback, natural Skill 3 sequencing, or reserving jump/lift for later skills |
 | 080 | Make Skill 3 a ground-targeted Sovereign Pursuit leap | King Skill 3, ground targeting, collision-safe traversal, active-only invulnerability, landing AOE, or natural Riftbreak sequencing |
 | 081 | Use a short latest-intent combat buffer | Attack, dash, skill chaining, Sovereign Pursuit into Riftbreak, input expiry, or safe execution boundaries |
+| 082 | Make Skill 4 a two-stage targeted spirit-sword strike | King Skill 4, giant spirit sword, second drive, delayed AOE, rigid generated VFX, or boss damage |
+| 083 | Scale live enemy pressure after Stage Three | Stage-specific enemy ceilings, Stage 4 eight-enemy pressure, later horde profiling, or AOE encounter value |
 
 ## New Decisions
 

@@ -1,0 +1,70 @@
+extends SceneTree
+
+const Stage1Scene = preload("res://levels/test_arena/test_arena.tscn")
+const Stage2Scene = preload("res://levels/stage_2/stage_2.tscn")
+const Stage3Scene = preload("res://levels/stage_3/stage_3.tscn")
+const Stage4Scene = preload("res://levels/stage_4/stage_4.tscn")
+
+
+func _initialize() -> void:
+	call_deferred("_run")
+
+
+func _run() -> void:
+	for early_scene: PackedScene in [Stage1Scene, Stage2Scene, Stage3Scene]:
+		var early_stage := early_scene.instantiate()
+		var early_controller := early_stage.get_node("GameplayServices/EncounterController") as EncounterController
+		if early_controller.max_active_enemies != 4:
+			_fail("Stages 1-3 must retain their four-enemy readability cap.")
+			return
+		early_stage.free()
+
+	var stage := Stage4Scene.instantiate()
+	root.add_child(stage)
+	var controller := stage.get_node("GameplayServices/EncounterController") as EncounterController
+	var ground := stage.get_node("World/Level/Ground") as TileMapLayer
+	if controller.auto_start or controller.waves.size() != 5:
+		_fail("Stage 4 must wait for arrival presentation and contain five authored waves.")
+		return
+	if controller.max_active_enemies != 8:
+		_fail("Stage 4 must raise the live-enemy ceiling to eight.")
+		return
+	var expected_totals := [6, 8, 10, 12, 14]
+	for index in controller.waves.size():
+		var wave := controller.waves[index] as EncounterWaveDefinition
+		if wave.total_enemy_count() != expected_totals[index]:
+			_fail("Stage 4 wave %d has %d enemies instead of %d." % [index + 1, wave.total_enemy_count(), expected_totals[index]])
+			return
+	if controller.portal_target_scene != "res://levels/sanctuary/sanctuary.tscn":
+		_fail("Stage 4 must bank its clear and return to Sanctuary while Stage 5 remains unbuilt.")
+		return
+	if ground.layout == null or ground.layout.resource_path != "res://data/environment/layouts/stage_4_eastern_rot_ground.tres":
+		_fail("Stage 4 is not using its authored eastern-rot layout.")
+		return
+	if ground.get_used_cells().size() != 336:
+		_fail("Stage 4's 24x14 authored TileMap did not populate completely.")
+		return
+	var source_counts := {0: 0, 1: 0, 2: 0, 3: 0}
+	for cell in ground.get_used_cells():
+		var source_id := ground.get_cell_source_id(cell)
+		if source_id not in source_counts:
+			_fail("Stage 4 contains an unexpected terrain source %d." % source_id)
+			return
+		source_counts[source_id] += 1
+		if source_id in [0, 3] and cell.x < 14:
+			_fail("Stage 4 decay escaped the authored eastern edge at %s." % cell)
+			return
+	if source_counts[0] != 110 or source_counts[1] != 212 or source_counts[2] != 0 or source_counts[3] != 14:
+		_fail("Stage 4 terrain mix changed: %s." % source_counts)
+		return
+	for required_node in ["RottedTreeSouthEast", "RottedTreeEast", "RottedTreeNorthEast", "EastRuin"]:
+		if stage.get_node_or_null("World/Actors/" + required_node) == null:
+			_fail("Stage 4 lost eastern landmark %s." % required_node)
+			return
+	print("Stage 4 encounter smoke test passed.")
+	quit(0)
+
+
+func _fail(message: String) -> void:
+	push_error(message)
+	quit(1)

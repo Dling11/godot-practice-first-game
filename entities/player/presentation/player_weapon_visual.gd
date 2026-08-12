@@ -11,6 +11,7 @@ extends Node2D
 @export var ability_component: AbilityComponent
 @export var ability_2_component: AbilityComponent
 @export var ability_3_component: AbilityComponent
+@export var ability_4_component: AbilityComponent
 @export var show_weapon_sprite := true
 
 var _direction := &"down"
@@ -83,7 +84,7 @@ func play_ability_phase(phase: int, duration_seconds: float) -> void:
 	if (
 		active_ability != null
 		and active_ability.definition != null
-		and active_ability.definition.ability_id in [&"echoing_sever", &"riftbreak", &"sovereign_pursuit"]
+		and active_ability.definition.ability_id in [&"echoing_sever", &"riftbreak", &"sovereign_pursuit", &"king_skill_4"]
 	):
 		_play_integrated_weapon_ability_phase(phase)
 		return
@@ -136,7 +137,7 @@ func play_ability_strike(strike_index: int, strike_count: int, duration_seconds:
 
 
 func _get_casting_ability() -> AbilityComponent:
-	for component in [ability_component, ability_2_component, ability_3_component]:
+	for component in [ability_component, ability_2_component, ability_3_component, ability_4_component]:
 		if component != null and component.is_casting():
 			return component
 	return null

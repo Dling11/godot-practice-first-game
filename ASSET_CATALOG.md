@@ -1,5 +1,19 @@
 # Asset Catalog
 
+## Stage 3 West-Decay Transition
+
+- Active runtime atlas: `res://assets/environment/forest/rootbound_hollow/tiles/stage_3_west_decay_transition_atlas_3x4.png` — twelve generated 64x64 west-Rootbound/east-verdant transition variations used as a single ragged boundary column across the fourteen map rows.
+- Stage 4 runtime derivative: `res://assets/environment/forest/rootbound_hollow/tiles/stage_4_east_decay_transition_atlas_3x4.png` — deterministic horizontal mirror of the approved mixed atlas, used as source 3 for the eastern/right-side decay boundary.
+- Generated source: `art_source/generated/environment/stage_3/stage_3_west_decay_transition_source_v1.png`; deterministic normalization: `tools/process_stage_3_transition_tiles.py`; review outputs live under `art_source/review/environment/stage_3/`.
+- The existing Rootbound and verdant 4x4 atlases remain active sources 0 and 1. This transition atlas is source 2 and does not replace either baseline family.
+
+## King Skill 4
+
+- Active sword VFX atlas/resource: `res://assets/vfx/abilities/king/king_skill_4_spirit_sword_sheet_144x192.png` plus `king_skill_4_spirit_sword_frames.tres` own one generated 4x2 sequence: three formation poses, four embedded resistance/second-drive poses, and one dissolve pose. All eight normalized cells keep the point fixed at local y=188; Godot owns physical descent/rebound while the sink shader clips the accelerated 20-pixel burial against the fixed ground plane.
+- Active ground VFX atlas/resource: `res://assets/vfx/abilities/king/king_skill_4_ground_vfx_sheet_256.png` plus `king_skill_4_ground_vfx_frames.tres` own one generated 4x2 sequence: compact contact, spreading cracks, split plates, resistance ring, compression, deep drive, explosion, and crater. All eight frames use one reviewed contact anchor and play in order.
+- Active icon/audio: `res://assets/ui/icons/skills/icon_skill_4.svg`, `res://assets/audio/sfx/abilities/king/king_skill_4_formation.wav`, `king_skill_4_first_impact.wav`, and `king_skill_4_explosion.wav`.
+- Active generated/clean/review sources live under `art_source/.../simple_reboot/skill_4/`; deterministic rebuild tools are `tools/process_king_skill_4_vfx.py` and `tools/generate_king_skill_4_sfx.py`. The rejected former 6-frame ground source, 4-frame overlay, retired static sword, obsolete runtime resources, and stale captures are recoverably isolated under `art_source/archive/skill_4_rejected_ground_vfx_2026-08-12/` and receive no Godot imports.
+
 ## King Skill 3 — Sovereign Pursuit
 
 - Active body atlas: `res://assets/characters/playable/king/simple_reboot/king_sovereign_pursuit_body_sheet_64x32.png` — 6x4, down/left/right/up rows, y=30 baseline, binary alpha.
@@ -190,7 +204,7 @@ These files are intentionally outside runtime imports under Godot-ignored `art_s
 | `tile_forest_ground_verdant` | `assets/environment/forest/shared/tiles/verdant_forest_ground_atlas_4x4.png` | Active | 256x256; 4x4 of 64x64 | `verdant_forest_ground_tileset.tres`; Stage I-II |
 | `tile_forest_ground_verdant_resource` | `assets/environment/forest/shared/tiles/verdant_forest_ground_tileset.tres` | Active | Godot `TileSet`; 16 cells | Stage I-II authored ground layers |
 | `tile_rootbound_hollow_ground` | `assets/environment/forest/rootbound_hollow/tiles/rootbound_ground_atlas_4x4.png` | Active | 256x256; 4x4 of 64x64 | `rootbound_ground_tileset.tres`; Stage III |
-| `tile_rootbound_hollow_ground_resource` | `assets/environment/forest/rootbound_hollow/tiles/rootbound_ground_tileset.tres` | Active | Godot `TileSet`; 32 cells across Rootbound source 0 and shared-forest source 1 | Stage III mixed-decay ground layer |
+| `tile_rootbound_hollow_ground_resource` | `assets/environment/forest/rootbound_hollow/tiles/rootbound_ground_tileset.tres` | Active | Godot `TileSet`; 56 cells across Rootbound, verdant, west-transition, and east-transition sources | Stage III-IV mixed-decay ground layers |
 | `prop_forest_ancient_tree_base` | `assets/environment/forest/shared/props/ancient_tree_base.png` | Active | 94x112 | `ancient_tree.tscn` |
 | `prop_forest_ancient_tree_canopy` | `assets/environment/forest/shared/props/ancient_tree_canopy.png` | Active | 94x112 | `ancient_tree.tscn` |
 | `prop_forest_ruined_statue` | `assets/environment/forest/shared/props/ruined_shrine_statue.png` | Active | 81x104 | `ruined_statue.tscn` |

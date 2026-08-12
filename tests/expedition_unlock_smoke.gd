@@ -3,6 +3,7 @@ extends SceneTree
 const ForgottenGrove = preload("res://data/expeditions/forgotten_grove.tres")
 const GroveThorns = preload("res://data/expeditions/thorns_of_the_forgotten_grove.tres")
 const RootboundHollow = preload("res://data/expeditions/rootbound_hollow.tres")
+const EasternRot = preload("res://data/expeditions/eastern_rot.tres")
 const DrownedBells = preload("res://data/expeditions/drowned_bells.tres")
 const Progression = preload("res://data/progression/opaw_path.tres")
 
@@ -17,7 +18,7 @@ func _run() -> void:
 	story_state.reset_story()
 	run_session.reset_run()
 
-	for definition: ExpeditionDefinition in [ForgottenGrove, GroveThorns, RootboundHollow, DrownedBells]:
+	for definition: ExpeditionDefinition in [ForgottenGrove, GroveThorns, RootboundHollow, EasternRot, DrownedBells]:
 		if not definition.is_valid_definition():
 			_fail("An expedition definition is missing its stable identity or display metadata.")
 			return
@@ -59,6 +60,17 @@ func _run() -> void:
 		return
 	if not RootboundHollow.is_available(story_state, player_level):
 		_fail("Stage 3 did not open after its authored requirements were met.")
+		return
+	if EasternRot.is_available(story_state, player_level):
+		_fail("Stage 4 opened before the Rootbound Husk was defeated and its hollow discovered.")
+		return
+	run_session.update_progression(750, 0)
+	player_level = Progression.get_level_for_total_experience(run_session.total_experience)
+	story_state.remember_story(&"rootbound_hollow_completed")
+	story_state.record_boss_victory(&"rootbound_husk")
+	story_state.record_discovery(&"rootbound_hollow")
+	if player_level != 4 or not EasternRot.is_available(story_state, player_level):
+		_fail("Stage 4 did not open at Level 4 after the Rootbound Hollow clear memories were recorded.")
 		return
 
 	story_state.record_discovery(&"remembered_thorn_shrine")

@@ -1,13 +1,14 @@
 class_name GroundPointTargeting
 extends Node2D
 
-signal targeting_started(component: SovereignPursuitComponent)
+signal targeting_started(component: AbilityComponent)
 signal targeting_cancelled
-signal targeting_confirmed(component: SovereignPursuitComponent, target_global_position: Vector2)
+signal targeting_confirmed(component: AbilityComponent, target_global_position: Vector2)
 
-var _component: SovereignPursuitComponent
+var _component: AbilityComponent
 var _target_local := Vector2.DOWN * 80.0
 var _range := 220.0
+var _radius := 52.0
 
 
 func _ready() -> void:
@@ -22,16 +23,16 @@ func is_targeting() -> bool:
 	return _component != null
 
 
-func get_target_component() -> SovereignPursuitComponent:
+func get_target_component() -> AbilityComponent:
 	return _component
 
 
-func begin_targeting(component: SovereignPursuitComponent, initial_direction: Vector2) -> bool:
-	var pursuit := component.definition as SovereignPursuitDefinition if component != null else null
-	if component == null or pursuit == null or not component.is_ready():
+func begin_targeting(component: AbilityComponent, initial_direction: Vector2) -> bool:
+	if component == null or not component.supports_ground_targeting() or not component.is_ready():
 		return false
 	_component = component
-	_range = pursuit.target_range_pixels
+	_range = component.get_target_range_pixels()
+	_radius = component.get_target_radius_pixels()
 	_target_local = (initial_direction.normalized() if not initial_direction.is_zero_approx() else Vector2.DOWN) * minf(96.0, _range)
 	visible = true
 	_set_cursor_targeting(true)
@@ -82,8 +83,8 @@ func _draw() -> void:
 		return
 	draw_dashed_line(Vector2.ZERO, _target_local, Color(0.42, 0.74, 0.96, 0.72), 1.0, 8.0, false)
 	draw_arc(Vector2.ZERO, _range, 0.0, TAU, 64, Color(0.22, 0.45, 0.68, 0.32), 1.0, false)
-	draw_circle(_target_local, 52.0, Color(0.05, 0.19, 0.31, 0.18))
-	draw_arc(_target_local, 52.0, 0.0, TAU, 32, Color(0.75, 0.91, 1.0, 0.88), 2.0, false)
+	draw_circle(_target_local, _radius, Color(0.05, 0.19, 0.31, 0.18))
+	draw_arc(_target_local, _radius, 0.0, TAU, 48, Color(0.75, 0.91, 1.0, 0.88), 2.0, false)
 	draw_line(_target_local + Vector2(-10, 0), _target_local + Vector2(10, 0), Color(1.0, 0.78, 0.31, 0.95), 2.0)
 	draw_line(_target_local + Vector2(0, -10), _target_local + Vector2(0, 10), Color(1.0, 0.78, 0.31, 0.95), 2.0)
 
@@ -92,4 +93,3 @@ func _set_cursor_targeting(active: bool) -> void:
 	var cursor_service := get_node_or_null("/root/CursorService")
 	if cursor_service != null:
 		cursor_service.set_targeting_active(active)
-

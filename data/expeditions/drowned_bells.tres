@@ -14,7 +14,7 @@ required_key_items = PackedStringArray("tideglass_chime")
 [resource]
 script = ExtResource("1_definition")
 expedition_id = &"drowned_bells"
-route_label = "STAGE IV"
+route_label = "FUTURE REGION"
 display_name = "THE DROWNED BELLS"
 difficulty_label = "FORBIDDEN DEPTHS"
 description = "A sunken sanctuary whose bells still call to gods that abandoned it."

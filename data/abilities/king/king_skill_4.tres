@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="KingSkill4Definition" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://data/abilities/king/king_skill_4_definition.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/skills/icon_skill_4.svg" id="2_icon"]
+[ext_resource type="Shape2D" path="res://data/abilities/king/hit_shapes/king_skill_4_impact_circle.tres" id="3_impact"]
+[ext_resource type="Shape2D" path="res://data/abilities/king/hit_shapes/king_skill_4_explosion_circle.tres" id="4_explosion"]
+
+[resource]
+script = ExtResource("1_script")
+ability_id = &"king_skill_4"
+display_name = "Skill 4"
+hud_name = "SKILL 4"
+description = "Call down a giant spirit sword. Its first crash deals concentrated damage; after the blade forces itself deeper, a second strike detonates a much larger area.\n220% + 300% center damage - 260 px range - 104 px final radius"
+icon = ExtResource("2_icon")
+activation_mode = 1
+hitbox_shape = ExtResource("3_impact")
+weapon_damage_multiplier = 1.0
+knockback_strength = 160.0
+strike_damage_multipliers = PackedFloat32Array(2.2, 3.0)
+non_final_knockback_multiplier = 0.0
+stagger_seconds = 0.45
+non_final_stagger_multiplier = 0.5
+wind_up_seconds = 0.48
+active_seconds = 0.8
+recovery_seconds = 0.35
+cooldown_seconds = 20.0
+target_range_pixels = 260.0
+first_impact_radius_pixels = 58.0
+explosion_radius_pixels = 104.0
+explosion_hitbox_shape = ExtResource("4_explosion")
+ground_center_offset_y = 0.0

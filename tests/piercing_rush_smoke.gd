@@ -77,9 +77,13 @@ func _run() -> void:
 	if not is_equal_approx(ability.get_resolved_damage(), 45.0):
 		_fail("Ashwood Piercing Rush did not snapshot 180% weapon damage.")
 		return
-	if player.request_primary_attack() or player.request_evade(Vector2.RIGHT):
-		_fail("Normal attack or evade was accepted during Piercing Rush commitment.")
+	if not player.request_primary_attack():
+		_fail("Primary attack was not retained by the shared short input buffer during Piercing Rush.")
 		return
+	if player.attack_component.phase != player.attack_component.Phase.IDLE:
+		_fail("Buffered primary attack interrupted Piercing Rush instead of waiting for its finish boundary.")
+		return
+	player._clear_buffered_action()
 	while ability.is_casting():
 		if player.health_component.is_invulnerable:
 			_fail("Piercing Rush incorrectly granted dash invulnerability.")

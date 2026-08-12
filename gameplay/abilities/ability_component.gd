@@ -40,6 +40,14 @@ func is_casting() -> bool:
 	return phase != Phase.IDLE
 
 
+func clear_cooldown() -> void:
+	var had_cooldown := cooldown_remaining > 0.0
+	cooldown_remaining = 0.0
+	if had_cooldown:
+		cooldown_finished.emit()
+	_update_processing()
+
+
 func get_cast_direction() -> Vector2:
 	## The cast direction is immutable from wind-up through recovery. Presentation
 	## pivots use this instead of live movement-facing input during a technique.
@@ -89,6 +97,22 @@ func has_active_movement() -> bool:
 
 func get_resolved_damage() -> float:
 	return _resolved_damage
+
+
+func supports_ground_targeting() -> bool:
+	return false
+
+
+func get_target_range_pixels() -> float:
+	return 0.0
+
+
+func get_target_radius_pixels() -> float:
+	return 0.0
+
+
+func request_cast_at(_target_global_position: Vector2, _equipped_weapon_damage := 0.0) -> bool:
+	return false
 
 
 func cancel_cast() -> void:

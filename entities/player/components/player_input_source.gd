@@ -64,3 +64,7 @@ func is_ability_2_just_pressed() -> bool:
 
 func is_ability_3_just_pressed() -> bool:
 	return Input.is_action_just_pressed("player_skill_3")
+
+
+func is_ability_4_just_pressed() -> bool:
+	return Input.is_action_just_pressed("player_skill_4")

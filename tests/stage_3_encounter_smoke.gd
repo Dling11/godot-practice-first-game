@@ -27,8 +27,8 @@ func _run() -> void:
 	if controller.rootbound_husk_scene == null or controller.max_active_enemies != 4:
 		_fail("Stage 3 lost its Husk scene or the shared four-enemy cap.")
 		return
-	if controller.portal_target_scene != "res://levels/sanctuary/sanctuary.tscn":
-		_fail("Stage 3's post-mini-boss portal must return to Sanctuary.")
+	if controller.portal_target_scene != "res://levels/stage_4/stage_4.tscn":
+		_fail("Stage 3's post-mini-boss portal must continue into Stage 4.")
 		return
 	if (
 		controller.completion_reward_mode
@@ -57,18 +57,36 @@ func _run() -> void:
 		return
 	var corrupted_cells := 0
 	var living_cells := 0
+	var transition_cells := 0
 	for cell in ground.get_used_cells():
 		match ground.get_cell_source_id(cell):
 			0:
 				corrupted_cells += 1
 			1:
 				living_cells += 1
-	var corruption_ratio := float(corrupted_cells) / float(ground.get_used_cells().size())
-	if corruption_ratio < 0.4 or corruption_ratio > 0.5:
-		_fail("Stage 3 corruption must cover 40-50%% of the map; received %.2f%%." % (corruption_ratio * 100.0))
+			2:
+				transition_cells += 1
+	var affected_ratio := float(corrupted_cells + transition_cells) / float(ground.get_used_cells().size())
+	if affected_ratio < 0.24 or affected_ratio > 0.3 or transition_cells != 14:
+		_fail("Stage 3 decay must remain a restrained 24-30%% incursion with one transition tile per row; received %.2f%%." % (affected_ratio * 100.0))
 		return
-	if living_cells + corrupted_cells != 336:
-		_fail("Stage 3 contains cells outside its living-forest and Rootbound terrain sources.")
+	if living_cells + corrupted_cells + transition_cells != 336:
+		_fail("Stage 3 contains cells outside its living, Rootbound, and transition terrain sources.")
+		return
+	var left_corruption := 0
+	var center_corruption := 0
+	var right_corruption := 0
+	for cell in ground.get_used_cells():
+		if ground.get_cell_source_id(cell) not in [0, 2]:
+			continue
+		if cell.x < 8:
+			left_corruption += 1
+		elif cell.x < 16:
+			center_corruption += 1
+		else:
+			right_corruption += 1
+	if left_corruption < 80 or center_corruption > 8 or right_corruption > 0:
+		_fail("Stage 3 decay must enter from the west and taper before overtaking the living center/east.")
 		return
 	var arena_seal := stage.get_node_or_null("World/Actors/RootboundArenaSeal") as StaticBody2D
 	if arena_seal == null or not arena_seal.has_node("NavigationCutout"):

@@ -6,13 +6,20 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 
 ## Current Limitations
 
+### KI-015 - Ultimate and Reality Breaking are reserved presentation tiers only
+
+- **Status:** Planned.
+- **Progress:** The Character menu names and visibly locks both tiers after the four active skills.
+- **Impact:** Neither tier currently has gameplay authority, input, animation, balance, unlock, or persistence. Reality Breaking is reserved as a stronger finisher tier beyond Ultimate, not a synonym.
+- **Planned resolution:** Design each tier separately after Stage 4 direction and King's core four-skill feel are stable.
+
 ### KI-014 - King is the temporary active proof; roster combat is incomplete
 
 - **Status:** Open
-- **Progress:** Decisions 077-080 temporarily make King the live player with tested locomotion, basic slash, Echoing Sever, Riftbreak, and the owner-approved Sovereign Pursuit jump. Skill 3 now has dedicated body/VFX/audio and correct launch-to-landing sequencing. The live and isolated preview structures each use one body `AnimatedSprite2D`; Opaw remains a complete explicitly tested bench package.
-- **Impact:** King still lacks real tap/hold combo authority, dedicated dash/hurt/interact/defeat sheets, Skill 4, essence equipment, roster selection, and per-character save/progression. A unique Skill 1 body sheet and heavier camera/hitstop treatment remain optional polish rather than active blockers.
-- **Planned resolution:** Feel-test the revised Skill 2/3 debris, crater persistence, and non-tonal audio, then brainstorm Skill 4 before implementation.
-- **Workaround:** Use the current generated six-frame ground rupture while judging mechanics; Opaw remains recoverable through preserved resources and explicit regression setup.
+- **Progress:** Decisions 077-082 temporarily make King the live player with tested locomotion, basic slash, and four playable skills. Skill 4 now proves separate eight-frame generated sword and ground sequences, two authoritative radii/damage windows, original audio, corrected shared impact anchoring, and world-locked residue. The live and isolated preview structures each use one body `AnimatedSprite2D`; Opaw remains a complete explicitly tested bench package.
+- **Impact:** King still lacks real tap/hold combo authority, dedicated dash/hurt/interact/defeat sheets, essence equipment, roster selection, and per-character save/progression. A unique Skill 1/4 body sheet and heavier camera/hitstop treatment remain optional polish rather than active blockers.
+- **Planned resolution:** Feel-test Skill 4 against normal waves and the Rootbound Husk, then tune its commitment, damage, and cooldown before expanding King's combo/roster systems.
+- **Workaround:** Use the current exact-grid eight-frame sword and eight-frame ground sequences while judging mechanics; Opaw remains recoverable through preserved resources and explicit regression setup.
 
 ### KI-013 - Forest crafting transactions and replay Hunts are not implemented
 
@@ -26,7 +33,7 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 
 - **Status:** Open
 - **Audio progress:** Opaw's accepted-damage cue is now a distinct original cloth/body impact, and the dash uses a curated light CC0 swish; confirm their volume and clarity against every enemy attack in controller playtests.
-- **Progress:** Decision 081 generalizes the focused smoke-tested input buffer: one latest valid attack, dash, or equipped skill survives for at most 0.8 seconds and executes only at a recovery/ability-finished boundary. It resolves attack-to-skill and `Sovereign Pursuit -> Riftbreak` follow-ups without interrupting live damage or dash invulnerability, rejects cooldown waiting, and reopens targeted-skill previews. Dash retains a separate 0.85-second reuse cooldown plus a clear HUD gap before Skill 1. Basic attack direction and `SwordPivot` remain locked for the accepted attack. Balanced Slash uses a data-owned 58-reach by 96-wide beginner-sword fan whose center and visible side edge both pass contact tests; future weapon families retain independent shapes/styles, and clustered normal hits share one 25-millisecond light hitstop/camera/audio response per swing. Piercing Rush/Consecutive Thrust use 128x40/128x44 lanes. Opaw now scales from 140 to 248 maximum health across Levels 1-10, carries current HP across scenes, and regenerates 1 HP/s after five damage-free seconds; enemy damage is 8/10/18/12/18 by current archetype. Rootbound Husk retains its finalized art/attack/audio package, uses 280 health and 18 damage, and Stage III now bakes 20-pixel seal clearance around its 16-pixel body. Automated coverage protects these contracts; human balance of buffer feel, cleave feel, run attrition/regen, audio, Husk time-to-kill, burst readability, dash feel, and controller playtesting remain open.
+- **Progress:** Decision 081 generalizes the focused smoke-tested input buffer: one latest valid attack, dash, or equipped skill survives for at most 0.8 seconds and executes only at a recovery/ability-finished boundary. It resolves attack-to-skill and `Sovereign Pursuit -> Riftbreak` follow-ups without interrupting live damage or dash invulnerability, rejects cooldown waiting, and reopens targeted-skill previews. Repeated primary attacks now wait for the complete attack and no longer cancel the authored 0.21-second recovery; dash/skill recovery seams remain responsive. Dash retains a separate 0.85-second reuse cooldown plus a clear HUD gap before Skill 1. Basic attack direction and `SwordPivot` remain locked for the accepted attack. Balanced Slash uses a data-owned 58-reach by 96-wide beginner-sword fan whose center and visible side edge both pass contact tests; future weapon families retain independent shapes/styles, and clustered normal hits share one 25-millisecond light hitstop/camera/audio response per swing. Piercing Rush/Consecutive Thrust use 128x40/128x44 lanes. Opaw now scales from 140 to 248 maximum health across Levels 1-10, carries current HP across scenes, and regenerates 1 HP/s after five damage-free seconds; enemy damage is 8/10/18/12/18 by current archetype. Rootbound Husk retains its finalized art/attack/audio package, uses 280 health and 18 damage, and Stage III now bakes 20-pixel seal clearance around its 16-pixel body. Automated coverage protects these contracts; human balance of buffer feel, cleave feel, run attrition/regen, audio, Husk time-to-kill, burst readability, dash feel, and controller playtesting remain open.
 - **Impact:** Earlier playtesting reported rejected attack-to-skill follow-ups, repetitive dash/incoming-hit audio, unclear threat direction, and Rootbound Husk scale popping. The structural input and Husk animation causes are repaired, but only a controller playtest can approve their final feel.
 - **Planned resolution:** Complete the roadmap's responsiveness, feedback/audio, and Husk-repair milestones in that order; measure each change with focused smoke coverage and a controller playtest before changing encounter counts or adding Stage 4 content.
 - **Workaround:** Use F9 to test the completed skills and implemented routes; treat only Husk timing/readability and exact combat reach tuning as provisional, not its animation or attack-authority architecture.
@@ -34,9 +41,9 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 ### KI-010 - Expedition pacing still needs human controller playtesting
 
 - **Status:** Open
-- **Impact:** Automated coverage verifies the four-enemy cap, reinforcement warning/release order, queue completion, crowd spacing, Stage 3's ten-Rootling gated brood, its 43.75% Rootbound/56.25% living-forest terrain contract, authored TileMap population, landmark navigation cutouts, and individual attack behavior, but cannot judge clear-time satisfaction, whether ten Rootlings overstay their narrative purpose, portrait readability, decay-transition repetition, landmark scale, damage pressure, camera readability, or skill feel at 960x540.
-- **Planned resolution:** Record timed Stage 1, Stage 2, and Rootbound Hollow controller runs using normal and F9 test loadouts, reviewing the new authored routes and corruption contrast alongside combat pacing; adjust authored cadence or environment composition only from observed evidence.
-- **Workaround:** Keep the current one-at-a-time warned reinforcements, existing low-health starter enemies, and four-enemy ceiling; do not compensate with health inflation or a larger crowd.
+- **Impact:** Automated coverage verifies the Stage 1-3 four-enemy caps, Stage 4's eight-enemy ceiling and 6/8/10/12/14 totals, reinforcement order, crowd spacing, authored terrain population, and individual attack behavior, but cannot judge whether eight simultaneous threats remain readable, whether AOE now feels worthwhile, frame-time stability, clear-time satisfaction, or controller feel at 960x540.
+- **Planned resolution:** Record timed Stage 1-4 controller runs using normal and F9 test loadouts, then profile Stage 4's peak eight-enemy field before authoring the larger Stage 6 horde ceiling.
+- **Workaround:** Keep Stages 1-3 at four and Stage 4 at eight; adjust authored cadence before health inflation or any further cap increase.
 
 ### KI-003 - Target platforms are undecided
 
@@ -73,17 +80,10 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 - **Planned resolution:** Reconcile the legacy Sanctuary-only Rootbound Hollow replay gate during the Hunt/route-history segment, and keep The Drowned Bells sealed until its region is authored.
 - **Workaround:** The implemented forest sequence remains playable continuously from Stage 1 through Stage 3; Sanctuary replay buttons still enforce their authored requirements, and unbuilt future routes remain sealed.
 
-### KI-009 - Later skill awakenings and Skill 4 are not implemented
-
-- **Status:** Open
-- **Impact:** King now proves reusable directional-wedge and ground-point targeting through Skills 1 and 3, but Skill 4 and later normal-play awakening/progression rules are not authored. Encounter sizes above four active enemies remain unprofiled.
-- **Planned resolution:** Feel-test King's first three skills and encounter clear times, then design Skill 4 and later awakening rules before exposing them through normal progression.
-- **Workaround:** Use King's implemented Skills 1-3 normally and Eira at Level 3 for Opaw's normal Skill 2. Treat Skill 4 and higher encounter caps as unimplemented.
-
 ## Current Bugs
 
 None currently. The project and main scene pass headless editor import and runtime loading under Godot 4.7 stable.
 
 ## Technical Limitations
 
-No active crowd-separation limitation at the current four-enemy wave scale. Larger hordes still require profiling before increasing encounter caps.
+Stage 4's eight-active-enemy field passes structural smoke coverage but still requires gameplay-scale frame-time, navigation, separation, and threat-readability profiling. Do not choose the Stage 6 horde ceiling until that evidence exists.

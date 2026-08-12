@@ -7,6 +7,7 @@ extends Node2D
 @export var ability_component: AbilityComponent
 @export var ability_2_component: AbilityComponent
 @export var ability_3_component: AbilityComponent
+@export var ability_4_component: AbilityComponent
 @export var lock_during_attack := false
 @export var lock_during_ability_cast := false
 
@@ -22,7 +23,7 @@ func _ready() -> void:
 			attack_component.attack_started.connect(_lock_attack_facing)
 			attack_component.attack_finished.connect(_release_action_facing)
 	if lock_during_ability_cast:
-		for component in [ability_component, ability_2_component, ability_3_component]:
+		for component in [ability_component, ability_2_component, ability_3_component, ability_4_component]:
 			if component == null:
 				continue
 			component.ability_started.connect(_lock_cast_facing.bind(component))

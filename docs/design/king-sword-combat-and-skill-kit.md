@@ -137,16 +137,16 @@ King should feel heavier than Opaw without causing multi-enemy lag or constant c
 - Dedicated six-pose cardinal body art remains owner-approved. A separate three-frame open-center white/cold-blue power sheath follows King only during traversal, giving the hop a readable powered-movement layer without obscuring the body. Ground VFX v2 aligns every generated frame to one foot-contact baseline and separates muted fixed takeoff dust from a brief landing shockwave, landing-only cross, thrown ground chunks, and persistent dark crater; the crater stays world-locked, holds 0.65 seconds, then fades over 0.85 seconds. Separate non-tonal air/cloth launch and rock-impact cues replace the former combined arcade-like sound. Cooldown is 8.5 seconds.
 - Riftbreak works before or after it. Decision 081's shared 0.8-second latest-intent buffer lets an immediate `3 -> 2` input cast Riftbreak when Pursuit finishes, but there is no King-only combo state, damage bonus, or cooldown reset.
 
-### Skill 4 — Worldsplitter: Last Horizon
+### Skill 4 (implemented gameplay/presentation proof)
 
-**Role:** cinematic ultimate and King's largest authored moment.
+**Role:** King's long-cooldown targeted boss-damage and large-area culmination.
 
-- A 0.35-second readable tell narrows the soundscape and marks one enormous forward wedge/cross lane. King remains committed and vulnerable until the actual cut unless later balance explicitly grants protection.
-- King crosses the lane in one high-speed slash. Confirmed targets receive the authoritative strike; 0.18 seconds later the marked space fractures and resolves the second authored damage window.
-- Proposed damage: 240% initial cut + 360% fracture. Boss control resistance still applies; the skill never bypasses encounter authority.
-- Presentation may use a very short black-frame cut, letterbox, desaturated arena, white screen crack, silhouette hold, and sound return. The full interruption should remain well under one second outside the cast itself.
-- Every overlay, camera override, shader, and audio duck must release on completion, cancel, defeat, pause, scene transition, or node teardown.
-- Initial proof may use a long cooldown such as 24 seconds; a separate ultimate resource/gauge is deferred.
+- Pressing Skill 4 opens a 260-pixel ground-point reticle with a 104-pixel final radius. Confirmation commits King for the full cast; he receives no transformation, movement, invulnerability, second-press branch, or cinematic overlay.
+- One giant non-physical spiritual sword forms above the target and falls during a 0.48-second wind-up. Its first crash resolves a concentrated 58-pixel contact for 220% weapon damage and stagger without knockback, keeping ordinary targets inside the promised follow-up.
+- The embedded sword rebounds, visibly resists, and drives twenty visual pixels deeper. After 0.4 seconds the automatic second contact deals 300% weapon damage in a 104-pixel circle with 160 outward knockback and 0.45 seconds of stagger before enemy resistance. A center boss can therefore receive 520% total weapon damage; outer enemies receive only the explosion.
+- Cooldown is 20 seconds. King remains vulnerable and committed through 0.48 seconds of wind-up, 0.8 seconds of active pressure/explosion time, and 0.35 seconds of recovery.
+- One generated eight-frame 4x2 sword sheet owns three formation, four embedded resistance/drive, and one dissolve pose. Every normalized cell retains the same local y=188 point baseline; Godot owns only the manifestation's physical descent, rebound, wobble offset, second-drive burial, and ground clipping. A separate generated eight-frame 4x2 ground sheet owns the complete contact, crack, resistance, compression, drive, explosion, and world-locked fading-crater sequence. The rejected former 6+4 layered ground package and retired static sword are not loaded. Ordinary orange lava is intentionally absent.
+- Formation, first impact, and final explosion use separate original non-tonal cues. Presentation observes phase/strike events and never owns target selection, damage, radius, cooldown, or control resistance.
 
 ## Animation Production for Faster, Cleaner Frames
 

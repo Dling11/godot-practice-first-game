@@ -9,6 +9,7 @@ extends Node2D
 @export var ability_component: AbilityComponent
 @export var ability_2_component: AbilityComponent
 @export var ability_3_component: AbilityComponent
+@export var ability_4_component: AbilityComponent
 @export var piercing_charge_player: AudioStreamPlayer2D
 @export var piercing_thrust_player: AudioStreamPlayer2D
 @export var consecutive_charge_player: AudioStreamPlayer2D
@@ -18,6 +19,9 @@ extends Node2D
 @export var riftbreak_ground_slam_player: AudioStreamPlayer2D
 @export var sovereign_pursuit_landing_player: AudioStreamPlayer2D
 @export var sovereign_pursuit_launch_player: AudioStreamPlayer2D
+@export var skill_4_formation_player: AudioStreamPlayer2D
+@export var skill_4_first_impact_player: AudioStreamPlayer2D
+@export var skill_4_explosion_player: AudioStreamPlayer2D
 
 ## StarNinjas sword.9 is intentionally a long build-up recording: its decisive
 ## metal burst starts at roughly 0.51 seconds. Skill 2 needs that burst on the
@@ -42,6 +46,10 @@ func play_ability_phase(phase: int, _duration_seconds: float) -> void:
 		if phase == AbilityComponent.Phase.ACTIVE:
 			_play(sovereign_pursuit_launch_player, 1.0)
 		return
+	if _is_skill_4(active_ability):
+		if phase == AbilityComponent.Phase.WIND_UP:
+			_play(skill_4_formation_player, 0.96)
+		return
 	if _is_piercing_rush(active_ability):
 		if phase == AbilityComponent.Phase.WIND_UP:
 			_play(piercing_charge_player, 0.92)
@@ -63,6 +71,9 @@ func play_ability_strike(strike_index: int, strike_count: int, _duration_seconds
 		return
 	if _is_sovereign_pursuit(_get_casting_ability()):
 		_play(sovereign_pursuit_landing_player, 1.0)
+		return
+	if _is_skill_4(_get_casting_ability()):
+		_play(skill_4_explosion_player if strike_index >= strike_count - 1 else skill_4_first_impact_player, 0.96)
 		return
 	if _is_echoing_sever(_get_casting_ability()):
 		if strike_index >= strike_count - 1:
@@ -96,7 +107,7 @@ func _play(player: AudioStreamPlayer2D, pitch: float, from_position_seconds: flo
 
 
 func _get_casting_ability() -> AbilityComponent:
-	for component in [ability_component, ability_2_component, ability_3_component]:
+	for component in [ability_component, ability_2_component, ability_3_component, ability_4_component]:
 		if component != null and component.is_casting():
 			return component
 	return null
@@ -120,3 +131,7 @@ func _is_riftbreak(component: AbilityComponent) -> bool:
 
 func _is_sovereign_pursuit(component: AbilityComponent) -> bool:
 	return component != null and component.definition != null and component.definition.ability_id == &"sovereign_pursuit"
+
+
+func _is_skill_4(component: AbilityComponent) -> bool:
+	return component != null and component.definition != null and component.definition.ability_id == &"king_skill_4"

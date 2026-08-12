@@ -54,9 +54,13 @@ func _run() -> void:
 	):
 		_fail("Preserved Sweeping Cut did not select only its sweep presentation.")
 		return
-	if player.request_primary_attack() or player.request_evade(Vector2.RIGHT):
-		_fail("Attack or evade was accepted during preserved Sweeping Cut.")
+	if not player.request_primary_attack():
+		_fail("Primary attack was not retained by the shared short input buffer during Sweeping Cut.")
 		return
+	if player.attack_component.phase != player.attack_component.Phase.IDLE:
+		_fail("Buffered primary attack interrupted Sweeping Cut instead of waiting for its finish boundary.")
+		return
+	player._clear_buffered_action()
 
 	for frame in range(45):
 		await physics_frame

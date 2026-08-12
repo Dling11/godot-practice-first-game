@@ -22,6 +22,20 @@ func request_cast_at(target_global_position: Vector2, equipped_weapon_damage := 
 	return request_cast(offset, equipped_weapon_damage)
 
 
+func supports_ground_targeting() -> bool:
+	return true
+
+
+func get_target_range_pixels() -> float:
+	var pursuit := definition as SovereignPursuitDefinition
+	return pursuit.target_range_pixels if pursuit != null else 0.0
+
+
+func get_target_radius_pixels() -> float:
+	var pursuit := definition as SovereignPursuitDefinition
+	return pursuit.landing_radius_pixels if pursuit != null else 0.0
+
+
 func get_active_velocity() -> Vector2:
 	if phase != Phase.ACTIVE or owner == null:
 		return Vector2.ZERO

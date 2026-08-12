@@ -30,12 +30,13 @@ func _run() -> void:
 		if slot.is_equipped():
 			equipped_skill_count += 1
 	if (
-		equipped_skill_count != 3
+		equipped_skill_count != 4
 		or player.skill_loadout.get_slot(1).ability.ability_id != &"echoing_sever"
 		or player.skill_loadout.get_slot(2).ability.ability_id != &"riftbreak"
 		or player.skill_loadout.get_slot(3).ability.ability_id != &"sovereign_pursuit"
+		or player.skill_loadout.get_slot(4).ability.ability_id != &"king_skill_4"
 	):
-		_fail("King's loadout must expose the implemented Skills 1-3 proofs.")
+		_fail("King's loadout must expose all four implemented skill proofs.")
 		return
 
 	player._set_facing_direction(Vector2.RIGHT)
@@ -83,6 +84,10 @@ func _run() -> void:
 		_fail("King's implemented Skill 2 did not begin its self-area cast.")
 		return
 	player.ability_2_component.cancel_cast()
+	if not player.request_ability(4) or not player.ground_point_targeting.is_targeting():
+		_fail("King's implemented Skill 4 did not enter its ground-targeting state.")
+		return
+	player.ground_point_targeting.cancel_targeting()
 	print("King temporary active-player smoke test passed.")
 	quit(0)
 
