@@ -25,11 +25,61 @@ func _run() -> void:
 	root.add_child(effects)
 	root.add_child(feedback)
 	await process_frame
+	if (
+		not is_equal_approx(
+			feedback._resolve_ability_hitstop(player.ability_1_component, false),
+			CombatFeedbackPresenter.MEDIUM_HITSTOP_SECONDS
+		)
+		or not is_equal_approx(
+			feedback._resolve_ability_hitstop(player.ability_2_component, false),
+			CombatFeedbackPresenter.HEAVY_HITSTOP_SECONDS
+		)
+		or not is_equal_approx(
+			feedback._resolve_ability_hitstop(player.ability_3_component, false),
+			CombatFeedbackPresenter.MEDIUM_HITSTOP_SECONDS
+		)
+	):
+		_fail("Ability impact weights did not resolve to their authored hitstop tiers.")
+		return
+	player.ability_4_component._current_strike_index = 1
+	if not is_equal_approx(
+		feedback._resolve_ability_hitstop(player.ability_4_component, false),
+		CombatFeedbackPresenter.DEVASTATING_HITSTOP_SECONDS
+	):
+		_fail("King Skill 4's final strike did not resolve the devastating hitstop tier.")
+		return
+	player.ability_4_component._current_strike_index = 0
+	if (
+		not is_equal_approx(
+			feedback._resolve_incoming_hitstop(8.0),
+			CombatFeedbackPresenter.LIGHT_HITSTOP_SECONDS
+		)
+		or not is_equal_approx(
+			feedback._resolve_incoming_hitstop(12.0),
+			CombatFeedbackPresenter.MEDIUM_HITSTOP_SECONDS
+		)
+		or not is_equal_approx(
+			feedback._resolve_incoming_hitstop(22.0),
+			CombatFeedbackPresenter.HEAVY_HITSTOP_SECONDS
+		)
+		or not is_equal_approx(
+			feedback._resolve_incoming_hitstop(30.0),
+			CombatFeedbackPresenter.DEVASTATING_HITSTOP_SECONDS
+		)
+	):
+		_fail("Incoming damage did not resolve to the authored player-hitstop tiers.")
+		return
 
 	player.health_component.apply_damage(DamageInfo.new(7.0, null, Vector2.LEFT))
-	await process_frame
 	if effects.get_child_count() != 2:
 		_fail("Accepted player damage did not create a number and hit burst.")
+		return
+	if not paused:
+		_fail("Accepted player damage did not start incoming hitstop.")
+		return
+	await create_timer(0.08, true, false, true).timeout
+	if paused:
+		_fail("Incoming hitstop did not restore gameplay after its real-time window.")
 		return
 	for effect in effects.get_children():
 		effect.queue_free()

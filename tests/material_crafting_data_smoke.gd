@@ -13,8 +13,8 @@ func _initialize() -> void:
 
 
 func _run() -> void:
-	if not ForestMaterials.has_valid_layout() or ForestMaterials.materials.size() != 10:
-		_fail("The Forest material catalog did not expose ten valid stable definitions.")
+	if not ForestMaterials.has_valid_layout() or ForestMaterials.materials.size() != 12:
+		_fail("The Forest material catalog did not expose twelve valid stable definitions.")
 		return
 	if not ForestRecipes.has_valid_layout() or ForestRecipes.recipes.size() != 4:
 		_fail("The Forest recipe catalog did not expose four deterministic recipes.")
@@ -44,6 +44,8 @@ func _run() -> void:
 		&"forest_thorn_sap",
 		&"forest_husk_heartwood",
 		&"forest_rootbound_core",
+		&"forest_armored_hog_hide",
+		&"forest_living_bark_plate",
 	]:
 		if not material_ids.has(expected_id):
 			_fail("The Forest material catalog omitted %s." % expected_id)
@@ -57,6 +59,7 @@ func _run() -> void:
 		preload("res://data/loot/forest/enemies/forsaken_thrall_drop_profile.tres"),
 		preload("res://data/loot/forest/enemies/bramble_spitter_drop_profile.tres"),
 		preload("res://data/loot/forest/enemies/rootbound_husk_drop_profile.tres"),
+		preload("res://data/loot/forest/enemies/armored_hog_drop_profile.tres"),
 	]
 	for profile: DropProfileDefinition in drop_profiles:
 		if (

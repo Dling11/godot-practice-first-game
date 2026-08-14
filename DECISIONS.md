@@ -91,6 +91,12 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 081 | Use a short latest-intent combat buffer | Attack, dash, skill chaining, Sovereign Pursuit into Riftbreak, input expiry, or safe execution boundaries |
 | 082 | Make Skill 4 a two-stage targeted spirit-sword strike | King Skill 4, giant spirit sword, second drive, delayed AOE, rigid generated VFX, or boss damage |
 | 083 | Scale live enemy pressure after Stage Three | Stage-specific enemy ceilings, Stage 4 eight-enemy pressure, later horde profiling, or AOE encounter value |
+| 084 | Make the Stage 4 Armored Hog a committed-lane charger | Armored Hog telegraph, charge/daze counterplay, frontal guard, Stage 4 placement, protected drops, or action art/audio |
+| 085 | Lock the Stage 5 boss identity below colossal scale | Stage 5 boss anatomy, relative size, armor-break silhouette, concept boundary, or preserving Stage 10 colossal escalation |
+| 086 | Prove the Stage 5 boss in an isolated playable arena | Stage 5 boss runtime, root-arm sweep, target-locked jump, world crater, F8 feel-test, or provisional tuning |
+| 087 | Gate a reusable Combat Lab behind debug Admin Mode | Admin tooling, F7/F10, enemy simulator, rewardless spawning, AI pause, invincibility, or test workflow |
+| 088 | Separate the boss lunge from a real overhead slap | Stage 5 boss melee readability, lunge naming, overhead slap, attack alternation, directional slap frames, or camera response |
+| 089 | Make the buried-hand root execution an active escape check | Stage 5 root prison, skill lockout, dash struggle, mobile tapping, 300 damage, world-locked VFX, or failure execution |
 
 ## New Decisions
 

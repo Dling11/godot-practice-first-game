@@ -1,5 +1,60 @@
 # Changelog
 
+## 2026-08-14 - Root Execution Visual and Prompt Correction
+
+- Replaced equal-strip execution extraction with complete-component assignment around eight real frame anchors, removing the visible left/right fragments imported from neighboring eruptions.
+- Reduced the prison effect from boss-effect scale to a 64x44 content envelope around King's real 48x32 body while retaining the 128x112 stable atlas contract and open foot center.
+- Looped the two intact capture poses so the restraining roots flex instead of becoming a static ring; progressive struggle inputs still select the authored fracture/break stages.
+- Added `MASH DASH / TAP` and `0/5` progress above the prison, plus a highlighted clickable Dash slot that changes to `TAP` / `BREAK n/5` and restores normal Dash UI on release. Left-click is intentionally not shown because the shared Dash action is the actual keyboard/controller/mobile authority.
+- Corrected final-zero restraint release ownership so the fifth HUD tap always emits release and restores the Dash indicator. Focused visual, HUD, boss, input-buffer, and lab tests protect the correction.
+
+## 2026-08-14 - Stage 5 Boss Root Prison Execution
+
+- Added the fourth boss-proof action after each jump: planted-hand wind-up, foot-tracking warning, world lock, 34-pixel capture, 2.2-second channel, execution, and punishable recovery.
+- Added reusable player restraint authority. Capture cancels buffered/current attacks, dash, targeting, and all skills; freezes movement; rejects skill/attack requests; and converts keyboard/controller/mobile dash activation into five struggle points. Ability invulnerability cannot bypass capture.
+- Added separate eight-frame root-prison and eight-frame 300-damage execution atlases, progressive break presentation, HUD struggle counter, world-locked broken remains, and an execution camera shake stronger than slap/jump feedback.
+- Added focused coverage for automatic post-jump cadence, active movement-skill cancellation, frame ranges, exact five-input escape, escaped damage immunity, fixed effect ownership, release, and exact 300 failed-escape damage.
+
+## 2026-08-14 - Stage 5 Boss Lunge and Overhead Slap
+
+- Corrected the existing basic attack's runtime language from “sweep” to “lunge”; its authored frames are a forward physical root-arm extension, not a lateral arc or root summon.
+- Added a separate 32-frame, four-direction overhead root-hand slap sheet with eight chronological poses per direction. Deterministic processing extracts every complete actor globally, normalizes a shared ground baseline, preserves binary alpha, and consumes every generated frame.
+- Added independent lunge and slap state families/hitboxes. The boss alternates quick lunge and slower 42-damage slap before its jump threshold; slap contact emits a smaller presentation-only camera kick while jump landing retains the stronger shake.
+- Expanded focused boss coverage from 44 to 56 directional runtime animations and verified the lunge, slap, locked jump, landing damage, crater/spike ownership, and camera restoration paths.
+
+## 2026-08-14 - Debug Admin Mode and Combat Lab
+
+- Added session-only debug Admin Mode. F10 reveals a Sanctuary-side Combat Lab entrance; F7 enters/exits the lab, while the existing F8 Stage 5 focused arena remains available only to an enabled admin session. Release builds reject the tooling and no admin state is saved.
+- Added a reusable 960x540 Combat Lab using the real King, navigation, projectiles, feedback, and all seven current enemy scenes. Controls spawn 1/4/8 of the selected actor, pause/resume enemy targets, toggle King invincibility, enable the authored unlimited-skill test kit, clear, reset, and return to Sanctuary. The current Stage 5 boss is selected and spawned on entry for immediate review.
+- Lab actors have `EnemyRewardComponent` removed before entering the tree, and entering suppresses debug-session autosaves. Focused tests verify F7/F10 bindings, complete roster, reward stripping, AI control, x1/x4/x8 counts, invincibility, clear, and Sanctuary panel visibility.
+
+## 2026-08-14 - Playable Stage 5 Boss Combat Proof
+
+- Added an isolated F8-accessible arena using the real King and a provisional Stage 5 boss controller. The boss now chases, performs a readable root-arm sweep, snapshots a visible jump target, travels through an actor-root arc, lands one controller-owned radial hit, and leaves a world-owned crater that survives recovery and fades independently.
+- Installed all six current exact-grid boss texture families as runtime assets. A signal-driven visual builds 44 directional animation ranges without moving damage into animation; focused coverage verifies those ranges, sweep phases, locked targeting, exactly one landing hit, and world effect ownership.
+- Corrected the basic sweep atlas processor after live review exposed amputated root-arm ends. It now recovers each complete connected actor before assigning it to its authored source-grid position, preserving long wind-up/contact silhouettes that cross artificial parent-sheet boundaries without generating or discarding frames.
+- Corrected the jump-impact processor after live review exposed neighboring crater fragments at the final frame edges. Complete debris/components now follow their nearest authored impact center, the crater's ground center aligns exactly with the boss's feet, a new six-frame open-center root-spike layer rises and retracts independently, and a short landing camera shake plays even on a successful dodge. Damage and hit radius are unchanged.
+- This is a visible combat/scale proof, not Stage 5 completion. Final name, balance, audio, additional skills/phases, dialogue, rewards, and the real encounter remain open.
+
+## 2026-08-14 - Stage 5 Boss Identity Approval
+
+- Approved the Stage 5 major-boss concept: a massive hunched humanoid forest guardian with enormous asymmetric root arms, split dead-bark torso armor, a luminous hollow core, heavy mobile legs, and a natural armor-break phase silhouette. Locked its future scale above the Rootbound Husk but below colossal Stage 10 scale. The concept remains source-only; mechanics, name, standing normalization, animation, runtime authority, audio, reward, and Stage 5 are not implemented.
+- Approved its exact-grid four-direction standing and six-frame-per-direction walking checkpoints at approximately 1.4x Husk height. Added a separate review-only 32-frame hurt/defeat family assembled from two 4x4 parent sheets: three hurt/recovery poses flow into buckle, collapse, grounded defeat, and final settle in every direction. Wider 144x112 cells preserve the approved body scale and contact anchor; all 32 frames remain retained and distinct.
+- Reserved `Lord` as the eventual display-title pattern rather than the creature's entire name. The stable production identifier remains `stage_5_boss` until its lore and combat domain are approved.
+- Added a review-only 32-frame basic-melee candidate for the Stage 5 boss. Its asymmetric root-arm sweep uses authored down/left/right/up views, three staged anticipation poses, a separate release, one clear contact, overshoot, and two recovery poses. The deterministic assembler preserves all generated frames in fixed-scale 144x112 cells with the existing action-family ground anchor and no baked VFX or gameplay authority.
+- Added review-only Stage 5 boss jump assets: 32 fixed-scale directional body frames covering compression through rebound, plus a separate centered eight-frame forest-earth impact with lime core contact, stone/root shockwave, settling debris, and persistent crater. The animated body review previews integer arc offsets while the exact atlas remains origin-stable for future actor-root travel. Two direction-drifted right-profile landing cells are deterministically derived from their approved left-profile counterparts; no rejected replacement creature was retained.
+
+## 2026-08-14 - Incoming Player Hitstop
+
+- Added non-stacking hitstop when King accepts enemy damage. Incoming blows resolve the existing light/medium/heavy/devastating 18/30/45/65 ms presentation tiers from damage amount, so ordinary contacts stay quick while Armored Hog and future boss impacts read heavier. Red damage numbers, hurt bursts, camera feedback, sound, health authority, invulnerability, and damage values remain unchanged.
+
+## 2026-08-13 - Stage 4 Armored Hog and Strength-Scaled Hitstop
+
+- Added the approved stylized Armored Hog to all five Stage 4 waves without changing their 6/8/10/12/14 totals or eight-live cap. Its readable brace snapshots a straight charge, living-bark forehead reduces frontal damage while committed, side/rear hits remain full strength, and a completed or blocked charge creates a punishable daze.
+- Completed coherent four-direction locomotion, brace/charge/crash, hurt/daze, collapse, and death art with one shared scale/baseline and every generated frame used. Added original hoof/brace/crash sounds plus an attributed CC0 boar vocal layer; the rejected realistic draft is recoverably archived and runtime-inaccessible.
+- Added protected Armored Hog Hide (20%, sixth-miss cap) and Living Bark Plate (8%, twelfth-miss cap), distinct 24x24 icons, stable catalog IDs, pickups, persistence compatibility, and drop regression. No current recipe consumes them yet.
+- Generalized outgoing hitstop into data-owned light/medium/heavy/devastating tiers (18/30/45/65 ms). Each hit callback is bound to its real emitting ability, same-frame crowd contacts remain coalesced, white hurt flash stays independent, and King Skill 4's final explosion receives the devastating tier.
+
 ## 2026-08-12 - King Skill 4 and Ground-Impact Presentation
 
 - Added playable Stage 4 `Eastern Rot`: five existing-roster waves total 6/8/10/12/14 enemies under an eight-active stage ceiling, while Stages 1-3 retain four. Stage 3 now advances into Stage 4 after its Reliquary, Stage 4 banks and returns to Sanctuary, and a Level-4 expedition entry evaluates the Rootbound Hollow story/boss/discovery memories. Decision 083 reserves later explicit cap increases and a profile-backed Stage 6 horde step instead of a dangerous global no-cap rule.

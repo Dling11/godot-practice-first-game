@@ -1,26 +1,34 @@
-# Stage 4 Armored Forest Beast Content Contract
+# Stage 4 Armored Hog Content Contract
 
 ## Status
 
-Review proposal only. This enemy has no final name, approved art, runtime scene, stats, drops, or encounter placement. Stage 4 currently uses the established Forest roster so the level can be played and balanced before a new animation package is approved.
+Implemented and structurally verified. The approved stylized Armored Hog now joins every Stage 4 wave while the stage totals remain `6/8/10/12/14` and the live cap remains eight.
 
-## Purpose
+## Combat identity
 
-Stage 4 needs a hide-bearing Forest beast whose anatomy makes its future material drops believable. Its job is to change how a large crowd is approached, not merely add another high-health pursuer.
+- A squat reddish Forest hog carries one oversized wedge of living bark across its forehead and shoulders. Short root horns, amber eyes, large hooves, a pale rear scar, and a curled tail preserve the approved toy-like enemy language instead of realistic animal anatomy.
+- A fixed `0.62 s` scrape-and-brace warning snapshots one straight 210-pixel charge lane. Moving after commitment dodges it; the hog does not retarget.
+- The braced/charging front cone takes 35% damage. The exposed side and scarred rear take full damage.
+- Completing or colliding during the charge produces a crash and `1.15 s` daze, creating the punish window.
+- The enemy is Elite crowd-control tier and uses a 9-pixel movement footprint plus 40-pixel separation radius for Stage 4 crowds.
 
-## Working combat read
+## Runtime art
 
-- A broad quadruped with layered hide and bark-like natural plates over its shoulders and front line.
-- A low scrape-and-brace telegraph commits it to a straight charge lane.
-- Its front is resistant while braced; the side and rear remain the clear punish angles.
-- Missing or striking a landmark ends the charge in a short vulnerable recovery.
-- The silhouette, wind-up, lane, collision footprint, and defeat pose must remain readable among eight active enemies at 960x540.
-- Crowd separation and navigation clearance must be profiled with the Stage 4 cap before release.
+- Approved identity: `art_source/generated/characters/enemies/stage_4_armored_hog/armored_hog_identity_approved.png`
+- Locomotion: `assets/characters/enemies/stage_4_armored_hog/armored_hog_locomotion_sheet_64x48.png`
+- Charge: `assets/characters/enemies/stage_4_armored_hog/armored_hog_charge_sheet_64x48.png`
+- Reaction: `assets/characters/enemies/stage_4_armored_hog/armored_hog_reaction_sheet_64x48.png`
+- Runtime frames: `assets/characters/enemies/stage_4_armored_hog/armored_hog_sprite_frames.tres`
 
-## Future material role
+Each family uses one shared scale, 64x48 cells, a common ground baseline, and four rows in `down/left/right/up` order. All authored frames are consumed by 32 named animations; none are silently discarded. The rejected realistic draft is recoverably archived under `art_source/archive/stage_4_rejected_realistic_hog_2026-08-13/` and is not runtime-loadable.
 
-The beast is the planned Stage 4 source for hide and bark-plate materials. Exact item names, stable IDs, drop rates, recipes, and icons remain unapproved and must follow the regional material plan before implementation.
+## Materials and audio
 
-## Approval gate
+- `Armored Hog Hide`: 20% common roll, protected after six misses.
+- `Living Bark Plate`: 8% secondary roll, protected after twelve misses.
+- Both own distinct 24x24 icons and stable Forest material IDs. They are collectible/saveable crafting inputs; no recipe currently consumes them.
+- Hoofbeats, brace scrape, and crash are original deterministic project sounds. The brace also layers a pitch-lowered CC0 boar vocal for a natural warning without copying another game's audio.
 
-Approve the anatomy, scale, palette, directional coverage, charge frames, hit/recovery frames, and collapse frames as one coherent content package before adding runtime authority. Do not ship a recolor or reuse only a small subset of an inconsistent generated sheet.
+## Verification
+
+`tests/armored_hog_smoke.gd`, `tests/stage_4_encounter_smoke.gd`, `tests/material_crafting_data_smoke.gd`, and `tests/loot_resolution_smoke.gd` protect the runtime scene, all animation families, guard angle, committed charge/daze, sound resources, encounter counts, icons, and protected drops.

@@ -6,8 +6,9 @@
 script = ExtResource("1")
 title = "Eight at Once"
 mireling_count = 2
-rootling_count = 3
-thrall_count = 3
+rootling_count = 2
+thrall_count = 2
 bramble_spitter_count = 2
+armored_hog_count = 2
 spawn_interval = 0.34
 reinforcement_delay = 0.45

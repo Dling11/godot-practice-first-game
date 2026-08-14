@@ -30,11 +30,18 @@ func _run() -> void:
 		_fail("Stage 4 must raise the live-enemy ceiling to eight.")
 		return
 	var expected_totals := [6, 8, 10, 12, 14]
+	var expected_hogs := [1, 1, 2, 2, 2]
 	for index in controller.waves.size():
 		var wave := controller.waves[index] as EncounterWaveDefinition
 		if wave.total_enemy_count() != expected_totals[index]:
 			_fail("Stage 4 wave %d has %d enemies instead of %d." % [index + 1, wave.total_enemy_count(), expected_totals[index]])
 			return
+		if wave.armored_hog_count != expected_hogs[index]:
+			_fail("Stage 4 wave %d lost its authored Armored Hog pressure." % [index + 1])
+			return
+	if controller.armored_hog_scene == null:
+		_fail("Stage 4 did not wire the Armored Hog runtime scene.")
+		return
 	if controller.portal_target_scene != "res://levels/sanctuary/sanctuary.tscn":
 		_fail("Stage 4 must bank its clear and return to Sanctuary while Stage 5 remains unbuilt.")
 		return

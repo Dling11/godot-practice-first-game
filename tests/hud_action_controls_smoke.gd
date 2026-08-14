@@ -60,6 +60,20 @@ func _run() -> void:
 		_fail("The dash HUD control did not return to Ready after cancellation.")
 		return
 
+	var restraint_source := Node.new()
+	root.add_child(restraint_source)
+	if not player.try_begin_root_restraint(restraint_source, 5):
+		_fail("HUD test could not begin the reusable root restraint.")
+		return
+	if hud.dash_slot.key_label.text != "TAP" or hud.dash_slot.state_label.text != "BREAK 0/5":
+		_fail("Root restraint did not convert the visible Dash slot into its tap indicator.")
+		return
+	for press in range(5):
+		hud.dash_slot.activation_button.pressed.emit()
+	if player.is_restrained() or hud.dash_slot.key_label.text != "SPC" or hud.dash_slot.state_label.text != "READY":
+		_fail("Five visible Dash-slot taps did not restore UI: restrained=%s key=%s state=%s" % [player.is_restrained(), hud.dash_slot.key_label.text, hud.dash_slot.state_label.text])
+		return
+
 	var debug_event := InputEventAction.new()
 	debug_event.action = "debug_max_progression"
 	debug_event.pressed = true

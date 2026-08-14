@@ -12,6 +12,7 @@ hud_name = "RIFTBREAK"
 description = "Drive the sword into the ground and fracture the space around King. Enemies inside the circle take one heavy hit and are pushed outward.\n150% weapon damage - 84 px radius"
 icon = ExtResource("2_icon")
 activation_mode = 2
+impact_weight = 2
 hitbox_shape = ExtResource("3_shape")
 weapon_damage_multiplier = 1.0
 knockback_strength = 112.0

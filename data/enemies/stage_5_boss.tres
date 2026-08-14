@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/enemies/enemy_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+display_name = "Stage 5 Boss Proof"
+maximum_health = 900.0
+move_speed = 42.0
+acceleration = 320.0
+movement_footprint_radius = 18.0
+crowd_separation_radius = 54.0
+attack_range = 82.0
+attack_damage = 28.0
+wind_up_seconds = 0.82
+active_seconds = 0.14
+recovery_seconds = 0.9
+spawn_seconds = 0.6
+experience_reward = 0
+coin_reward = 0
+crowd_control_tier = 2

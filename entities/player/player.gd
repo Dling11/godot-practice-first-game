@@ -10,6 +10,9 @@ signal interaction_finished
 signal defeated
 signal testing_preset_applied(level: int, coins: int)
 signal skill_loadout_changed
+signal restraint_started(source: Node, total_break_points: int)
+signal restraint_progress(source: Node, remaining_break_points: int, total_break_points: int)
+signal restraint_ended(source: Node, escaped: bool)
 
 enum BufferedAction { NONE, PRIMARY_ATTACK, EVADE, ABILITY }
 
@@ -56,6 +59,9 @@ var _buffered_action_direction := Vector2.DOWN
 var _buffered_ability_slot := 0
 var _pending_weapon_definition: WeaponDefinition
 var _debug_unlimited_skills := false
+var _restraint_source: Node
+var _restraint_break_points := 0
+var _restraint_total_break_points := 0
 
 
 func _ready() -> void:
@@ -109,7 +115,7 @@ func _physics_process(delta: float) -> void:
 		)
 	if ground_point_targeting.is_targeting():
 		ground_point_targeting.update_aim(get_global_mouse_position(), input_source.get_aim_direction())
-	if not move_direction.is_zero_approx():
+	if not move_direction.is_zero_approx() and not is_restrained():
 		_set_movement_facing_direction(move_direction)
 	if input_source.is_evade_just_pressed():
 		var evade_direction := move_direction if not move_direction.is_zero_approx() else facing_direction
@@ -123,7 +129,9 @@ func _physics_process(delta: float) -> void:
 	if input_source.is_ability_4_just_pressed():
 		request_ability(4)
 
-	if evade_component.is_dashing():
+	if is_restrained():
+		velocity = movement_component.calculate_velocity(velocity, Vector2.ZERO, delta)
+	elif evade_component.is_dashing():
 		velocity = evade_component.get_dash_velocity()
 	elif is_any_ability_casting():
 		var active_ability := get_active_ability_component()
@@ -135,6 +143,7 @@ func _physics_process(delta: float) -> void:
 		velocity = movement_component.calculate_velocity(velocity, move_direction, delta)
 	var is_moving := (
 		not move_direction.is_zero_approx()
+		and not is_restrained()
 		and not evade_component.is_dashing()
 		and not is_any_ability_casting()
 	)
@@ -169,6 +178,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if not event.is_action_pressed("debug_max_progression"):
 		return
+	apply_debug_testing_preset()
+	get_viewport().set_input_as_handled()
+
+
+func apply_debug_testing_preset() -> void:
+	if not OS.is_debug_build():
+		return
 	progression_component.apply_debug_testing_preset()
 	var save_service := get_node_or_null("/root/SaveService")
 	if save_service != null:
@@ -178,15 +194,83 @@ func _unhandled_input(event: InputEvent) -> void:
 	_enable_debug_test_loadout()
 	_enable_debug_unlimited_skills()
 	_unlock_debug_test_expeditions()
-	get_viewport().set_input_as_handled()
 	testing_preset_applied.emit(
 		progression_component.level,
 		progression_component.coins
 	)
 
 
+func enable_debug_combat_tools() -> void:
+	if not OS.is_debug_build():
+		return
+	var save_service := get_node_or_null("/root/SaveService")
+	if save_service != null:
+		save_service.suppress_autosave_for_debug_session()
+	_enable_debug_test_loadout()
+	_enable_debug_unlimited_skills()
+
+
+func try_begin_root_restraint(source: Node, break_points: int) -> bool:
+	if source == null or break_points <= 0 or is_defeated or is_restrained():
+		return false
+	## Only the real movement dodge avoids the capture boundary. Ability-granted
+	## invulnerability is deliberately cancelled and cannot bypass this mechanic.
+	if evade_component.is_dashing():
+		return false
+	_clear_buffered_action()
+	_cancel_all_targeting()
+	attack_component.cancel_attack()
+	evade_component.cancel_evade()
+	ability_1_component.cancel_cast()
+	ability_2_component.cancel_cast()
+	ability_3_component.cancel_cast()
+	ability_4_component.cancel_cast()
+	_restraint_source = source
+	_restraint_break_points = break_points
+	_restraint_total_break_points = break_points
+	velocity = Vector2.ZERO
+	if _was_moving:
+		_was_moving = false
+		movement_changed.emit(Vector2.ZERO, false)
+	restraint_started.emit(source, break_points)
+	restraint_progress.emit(source, break_points, break_points)
+	return true
+
+
+func is_restrained() -> bool:
+	return is_instance_valid(_restraint_source) and _restraint_break_points > 0
+
+
+func is_restrained_by(source: Node) -> bool:
+	return is_restrained() and _restraint_source == source
+
+
+func release_root_restraint(source: Node, escaped: bool) -> bool:
+	## The final struggle press reaches zero before this release call. Ownership,
+	## not remaining points, decides whether the source may end its restraint.
+	if not is_instance_valid(source) or _restraint_source != source:
+		return false
+	var previous_source := _restraint_source
+	_restraint_source = null
+	_restraint_break_points = 0
+	_restraint_total_break_points = 0
+	restraint_ended.emit(previous_source, escaped)
+	return true
+
+
+func _struggle_against_restraint() -> bool:
+	if not is_restrained():
+		return false
+	_restraint_break_points = maxi(_restraint_break_points - 1, 0)
+	var source := _restraint_source
+	restraint_progress.emit(source, _restraint_break_points, _restraint_total_break_points)
+	if _restraint_break_points <= 0:
+		release_root_restraint(source, true)
+	return true
+
+
 func request_primary_attack() -> bool:
-	if is_defeated or _is_targeting_any_ability():
+	if is_defeated or is_restrained() or _is_targeting_any_ability():
 		return false
 	if is_any_ability_casting():
 		return _buffer_action(BufferedAction.PRIMARY_ATTACK, facing_direction)
@@ -208,6 +292,8 @@ func request_primary_attack() -> bool:
 func request_evade(direction: Vector2) -> bool:
 	if is_defeated:
 		return false
+	if is_restrained():
+		return _struggle_against_restraint()
 	if direction.is_zero_approx():
 		return false
 	_cancel_all_targeting()
@@ -237,6 +323,8 @@ func request_ability_1() -> bool:
 
 func request_ability(slot_number: int) -> bool:
 	var component := get_ability_component_for_slot(slot_number)
+	if is_restrained():
+		return false
 	if _is_targeting_any_ability():
 		## Repeating the skill key is intentionally consumed but never confirms.
 		## Confirmation belongs only to primary attack/right trigger.
@@ -461,7 +549,7 @@ func _buffer_action(action: BufferedAction, direction: Vector2, ability_slot := 
 
 
 func _try_execute_buffered_action() -> bool:
-	if _buffered_action == BufferedAction.NONE or is_defeated or is_any_ability_casting():
+	if _buffered_action == BufferedAction.NONE or is_defeated or is_restrained() or is_any_ability_casting():
 		return false
 	if attack_component.phase != attack_component.Phase.IDLE:
 		if attack_component.phase != attack_component.Phase.RECOVERY:
@@ -612,6 +700,8 @@ func _on_died() -> void:
 	if is_defeated:
 		return
 	is_defeated = true
+	if is_restrained():
+		release_root_restraint(_restraint_source, false)
 	_clear_buffered_action()
 	_cancel_all_targeting()
 	velocity = Vector2.ZERO

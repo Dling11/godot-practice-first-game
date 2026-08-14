@@ -79,11 +79,11 @@ These names and region-prefixed stable IDs are now approved through their `Mater
 | Bramble Spitter | Barbed Seed; Thorn Sap | Thorn/critical identity and ranged-pressure resistance |
 | Rootbound Husk | Husk Heartwood; Rootbound Core | Reinforced Forest equipment and rare recipes |
 
-Leather must not be assigned arbitrarily to a creature without a visible hide identity. The first true leather recipes should follow the planned Stage 4 hide-bearing Forest beast. Stages 1-3 may instead support rootfiber wraps, cloth equipment, charms, and weapon components.
+Leather is not assigned arbitrarily to a creature without a visible hide identity. The implemented Stage 4 Armored Hog now supplies the first true hide and bark-plate inputs. Stages 1-3 instead support rootfiber wraps, cloth equipment, charms, and weapon components.
 
 ## Provisional Forest Stage 4-10 Content Skeleton
 
-The roles and material purposes below are planning slots, not final names or approved enemy art. Stage 4's eastern-decay level and existing-roster 6/8/10/12/14-enemy pressure sequence are now implemented, but its hide-bearing beast, materials, and recipes remain behind the individual content-contract gate.
+The later roles and material purposes below remain planning slots rather than final names or approved enemy art. Stage 4's eastern-decay level, 6/8/10/12/14-enemy pressure sequence, Armored Hog, Hide, and Living Bark Plate are implemented; recipes consuming those two materials remain future work.
 
 | Stage | New enemy/content role | Material purpose |
 |---|---|---|
@@ -100,7 +100,7 @@ Known enemies continue appearing in authored combinations. Aim for roughly one i
 ### Forest crafting tiers
 
 - **Stages 1-3:** collect and inspect root, mire, cloth, thorn, and Husk preparation materials; no recipe unlock is granted yet
-- **Stage 4:** implemented environment/crowd-pressure route; next introduce the approved real hide-bearing ecology and its materials
+- **Stage 4:** implemented environment/crowd-pressure route plus Armored Hog hide-bearing ecology and protected materials; leather recipes remain future work
 - **Stage 5:** permanently unlock core-relic crafting for Weapon Essence, Body Relic, Hand Relic/bracer, and Foot Relic slots; consume a repeatable boss catalyst in relevant recipes
 - **Stages 6-7:** expand spirit, reinforced armor, axe/greatsword, and standard-accessory components/blueprints
 - **Stage 8:** permanently unlock standard accessories and award a repeatable fungal/spirit/binding catalyst
@@ -109,7 +109,7 @@ Known enemies continue appearing in authored combinations. Aim for roughly one i
 
 A crafting seal is permanent progression and is never consumed. A catalyst is repeatable inventory material and may be consumed by deterministic recipes. Rootfiber Wraps and Huskbound Guard belong to the Stage V milestone; Mireward Charm and Thornward Clasp belong to Stage VIII. Stage V also needs at least one authored crafted Weapon Essence recipe. Two generic accessory slots accept pendant/amulet, earring, ring/charm, and later relic families; bracers remain a Hand Relic/gloves-family item rather than a separate slot.
 
-Exact item names, recipes, stats, and Stage 4-10 enemy names remain open until their individual content contracts are approved.
+Exact recipes and Stage 5-10 enemy/item names remain open until their individual content contracts are approved. Stage 4's Armored Hog, Hide, Living Bark Plate, stats, and drop rates are locked by its implemented contract.
 
 ## Monster Content Contract
 

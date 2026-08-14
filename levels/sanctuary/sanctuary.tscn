@@ -25,7 +25,7 @@
 [ext_resource type="PackedScene" path="res://entities/npcs/rootweaver/rootweaver_nema.tscn" id="21_rootweaver"]
 [ext_resource type="PackedScene" path="res://ui/crafting/rootforge_menu.tscn" id="22_rootforge_menu"]
 
-[node name="Sanctuary" type="Node" unique_id=1171524165 node_paths=PackedStringArray("player", "combat_hud", "character_menu", "skillkeeper", "weapon_merchant", "rootweaver", "expedition_altar", "dialogue_panel", "expedition_menu", "weapon_shop_menu", "rootforge_menu")]
+[node name="Sanctuary" type="Node" unique_id=1171524165 node_paths=PackedStringArray("player", "combat_hud", "character_menu", "skillkeeper", "weapon_merchant", "rootweaver", "expedition_altar", "dialogue_panel", "expedition_menu", "weapon_shop_menu", "rootforge_menu", "admin_panel", "admin_lab_button")]
 script = ExtResource("1_flow")
 player = NodePath("World/Actors/Player")
 combat_hud = NodePath("UI/CombatHUD")
@@ -38,6 +38,8 @@ dialogue_panel = NodePath("UI/DialoguePanel")
 expedition_menu = NodePath("UI/ExpeditionMenu")
 weapon_shop_menu = NodePath("UI/WeaponShopMenu")
 rootforge_menu = NodePath("UI/RootforgeMenu")
+admin_panel = NodePath("UI/AdminPanel")
+admin_lab_button = NodePath("UI/AdminPanel/Margin/Stack/OpenLab")
 
 [node name="StageMusic" type="Node" parent="." unique_id=2133377204]
 script = ExtResource("17_music_script")
@@ -114,6 +116,37 @@ limit_bottom = 768
 [node name="UI" type="CanvasLayer" parent="." unique_id=545047153]
 
 [node name="CombatHUD" parent="UI" unique_id=914588911 instance=ExtResource("13_hud")]
+
+[node name="AdminPanel" type="PanelContainer" parent="UI"]
+visible = false
+offset_left = 744.0
+offset_top = 96.0
+offset_right = 944.0
+offset_bottom = 174.0
+
+[node name="Margin" type="MarginContainer" parent="UI/AdminPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="Stack" type="VBoxContainer" parent="UI/AdminPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Title" type="Label" parent="UI/AdminPanel/Margin/Stack"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.82, 0.9, 0.62, 1)
+theme_override_font_sizes/font_size = 11
+text = "ADMIN TOOLS"
+horizontal_alignment = 1
+
+[node name="OpenLab" type="Button" parent="UI/AdminPanel/Margin/Stack"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "COMBAT LAB  [F7]"
 
 [node name="CharacterMenu" parent="UI" unique_id=603162087 node_paths=PackedStringArray("player") instance=ExtResource("14_character")]
 player = NodePath("../../World/Actors/Player")

@@ -38,6 +38,7 @@ var ability_panel: SkillBarSlot
 var _skill_slots: Array[SkillBarSlot] = []
 var _loot_notifications: Array[Dictionary] = []
 var _loot_toast_busy := false
+var _announcement_tween: Tween
 
 
 func _ready() -> void:
@@ -59,6 +60,9 @@ func bind_player(player: Player) -> void:
 	progression.coins_changed.connect(_update_coins)
 	player.testing_preset_applied.connect(_show_testing_preset)
 	player.skill_loadout_changed.connect(_on_skill_loadout_changed)
+	player.restraint_started.connect(_on_restraint_started)
+	player.restraint_progress.connect(_on_restraint_progress)
+	player.restraint_ended.connect(_on_restraint_ended)
 	var loot_service := get_node_or_null("/root/LootService")
 	if (
 		loot_service != null
@@ -202,14 +206,39 @@ func show_interaction_prompt(is_visible: bool, prompt_text: String, prompt_icon:
 
 
 func _show_announcement(message: String, hold_seconds: float) -> void:
+	if _announcement_tween != null and _announcement_tween.is_valid():
+		_announcement_tween.kill()
 	stage_label.text = message
 	stage_label.modulate.a = 0.0
 	stage_label.show()
-	var tween := create_tween()
-	tween.tween_property(stage_label, "modulate:a", 1.0, 0.2)
-	tween.tween_interval(hold_seconds)
-	tween.tween_property(stage_label, "modulate:a", 0.0, 0.3)
-	tween.tween_callback(stage_label.hide)
+	_announcement_tween = create_tween()
+	_announcement_tween.tween_property(stage_label, "modulate:a", 1.0, 0.2)
+	_announcement_tween.tween_interval(hold_seconds)
+	_announcement_tween.tween_property(stage_label, "modulate:a", 0.0, 0.3)
+	_announcement_tween.tween_callback(stage_label.hide)
+
+
+func _on_restraint_started(_source: Node, total: int) -> void:
+	dash_slot.show_restraint_progress(total, total)
+	_show_restraint_message("ROOTED  •  MASH DASH / TAP  •  0/%d" % total)
+
+
+func _on_restraint_progress(_source: Node, remaining: int, total: int) -> void:
+	dash_slot.show_restraint_progress(remaining, total)
+	_show_restraint_message("ROOTED  •  MASH DASH / TAP  •  %d/%d" % [total - remaining, total])
+
+
+func _on_restraint_ended(_source: Node, escaped: bool) -> void:
+	dash_slot.clear_restraint_progress()
+	_show_announcement("ROOT PRISON BROKEN  •  MOVE!" if escaped else "ROOT EXECUTION", 0.8)
+
+
+func _show_restraint_message(message: String) -> void:
+	if _announcement_tween != null and _announcement_tween.is_valid():
+		_announcement_tween.kill()
+	stage_label.text = message
+	stage_label.modulate.a = 1.0
+	stage_label.show()
 
 
 func _update_health(current: float, maximum: float) -> void:

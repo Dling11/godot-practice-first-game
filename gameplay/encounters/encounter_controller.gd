@@ -26,6 +26,7 @@ enum CompletionRewardMode {
 @export var rootling_scene: PackedScene
 @export var thrall_scene: PackedScene
 @export var bramble_spitter_scene: PackedScene
+@export var armored_hog_scene: PackedScene
 @export var rootbound_husk_scene: PackedScene
 @export var portal_scene: PackedScene
 @export var portal_parent: Node2D
@@ -104,6 +105,7 @@ func _advance_wave() -> void:
 	for count in range(wave.rootling_count): _pending_enemies.append(rootling_scene)
 	for count in range(wave.thrall_count): _pending_enemies.append(thrall_scene)
 	for count in range(wave.bramble_spitter_count): _pending_enemies.append(bramble_spitter_scene)
+	for count in range(wave.armored_hog_count): _pending_enemies.append(armored_hog_scene)
 	for count in range(wave.rootbound_husk_count): _pending_enemies.append(rootbound_husk_scene)
 	_initial_batch_active = true
 	await _spawn_initial_batch()

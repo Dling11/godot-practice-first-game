@@ -13,6 +13,7 @@ hud_name = "SKILL 4"
 description = "Call down a giant spirit sword. Its first crash deals concentrated damage; after the blade forces itself deeper, a second strike detonates a much larger area.\n220% + 300% center damage - 260 px range - 104 px final radius"
 icon = ExtResource("2_icon")
 activation_mode = 1
+impact_weight = 2
 hitbox_shape = ExtResource("3_impact")
 weapon_damage_multiplier = 1.0
 knockback_strength = 160.0

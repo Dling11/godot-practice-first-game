@@ -101,3 +101,16 @@ This 0.31-second mono cue layers a low wooden ground push with three filtered cr
 - **Created:** 2026-07-29
 
 This 0.34-second mono presentation cue combines a restrained wooden knock, stone body, root creak, and short transient. Nema's timer-driven work animation plays it once at the hammer-contact frame; it has no crafting or gameplay authority.
+
+## Armored Hog Action Suite
+
+- **Hoof, brace, and crash runtime files:** `sfx/enemies/armored_hog/armored_hog_hoof.wav`, `armored_hog_brace.wav`, and `armored_hog_crash.wav`
+- **Source:** Original deterministic in-project synthesis via `tools/generate_armored_hog_sfx.py`
+- **Created:** 2026-08-13
+- **Vocal runtime file:** `sfx/enemies/armored_hog/armored_hog_snort.ogg`
+- **Vocal source:** `Boar` by fvcalderan
+- **License:** CC0 1.0 / Public Domain dedication
+- **Source page:** https://opengameart.org/content/boar-0
+- **Downloaded:** 2026-08-13
+
+The pitch-lowered vocal layers only on the authoritative brace warning. Original short hoof transients accelerate during the committed charge, and the original crash cue marks entry into the punishable daze. The source OGG and one evaluated CC0 horse-trot candidate are preserved under `art_source/archive/audio/stage_4_armored_hog_cc0_sources/`; the horse recording is not used at runtime.

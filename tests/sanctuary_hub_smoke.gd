@@ -83,6 +83,21 @@ func _run() -> void:
 	var merchant := sanctuary.get_node("World/Actors/WeaponMerchant") as DialogueNpc
 	var altar := sanctuary.get_node("World/Actors/ExpeditionAltar") as ExpeditionAltar
 	var fountain := sanctuary.get_node("World/Actors/DivineFountain") as DivineFountain
+	var admin_panel := sanctuary.get_node("UI/AdminPanel") as Control
+	var admin_state := root.get_node_or_null("DebugAdminState")
+	if admin_state == null or admin_panel.visible:
+		_fail("Sanctuary Admin tools must begin hidden behind the debug session toggle.")
+		return
+	admin_state.call("set_enabled", true)
+	await process_frame
+	if not admin_panel.visible:
+		_fail("Enabling debug Admin Mode did not reveal the Sanctuary Combat Lab entrance.")
+		return
+	admin_state.call("set_enabled", false)
+	await process_frame
+	if admin_panel.visible:
+		_fail("Disabling debug Admin Mode did not hide the Sanctuary Combat Lab entrance.")
+		return
 	var dialogue := sanctuary.get_node("UI/DialoguePanel") as DialoguePanel
 	var menu := sanctuary.get_node("UI/ExpeditionMenu") as ExpeditionMenu
 	var weapon_shop := sanctuary.get_node("UI/WeaponShopMenu") as WeaponShopMenu

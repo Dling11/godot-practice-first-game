@@ -32,6 +32,7 @@
 [ext_resource type="Resource" path="res://data/encounters/stage_4_wave_4.tres" id="30_wave4"]
 [ext_resource type="Resource" path="res://data/encounters/stage_4_wave_5.tres" id="31_wave5"]
 [ext_resource type="Resource" path="res://data/environment/layouts/stage_4_eastern_rot_ground.tres" id="34_layout"]
+[ext_resource type="PackedScene" path="res://entities/enemies/armored_hog/armored_hog.tscn" id="35_hog"]
 
 [sub_resource type="LabelSettings" id="title_settings"]
 font_size = 15
@@ -121,6 +122,7 @@ mireling_scene = ExtResource("2_mireling")
 rootling_scene = ExtResource("29_rootling")
 thrall_scene = ExtResource("27_thrall")
 bramble_spitter_scene = ExtResource("3_spitter")
+armored_hog_scene = ExtResource("35_hog")
 portal_scene = ExtResource("13_portal")
 portal_parent = NodePath("../../World/Effects")
 portal_spawn_point = NodePath("../../SpawnPoints/StageExit")

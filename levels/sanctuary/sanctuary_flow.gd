@@ -12,11 +12,37 @@ extends Node
 @export var expedition_menu: ExpeditionMenu
 @export var weapon_shop_menu: WeaponShopMenu
 @export var rootforge_menu: RootforgeMenu
+@export var admin_panel: Control
+@export var admin_lab_button: Button
 
 var _active_dialogue_npc: DialogueNpc
 var _show_skill_information_after_dialogue := false
 var _show_weapon_shop_after_dialogue := false
 var _show_rootforge_after_dialogue := false
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not OS.is_debug_build():
+		return
+	if event.is_action_pressed("debug_toggle_admin"):
+		var admin_state := get_node_or_null("/root/DebugAdminState")
+		if admin_state != null:
+			var enabled := bool(admin_state.call("toggle"))
+			_update_admin_visibility(enabled)
+			combat_hud.show_story_message(
+				"ADMIN MODE ON  |  COMBAT LAB [F7]" if enabled else "ADMIN MODE OFF",
+				2.0
+			)
+		get_viewport().set_input_as_handled()
+		return
+	if not _is_admin_enabled():
+		return
+	if event.is_action_pressed("debug_combat_lab"):
+		get_viewport().set_input_as_handled()
+		_transition_to("res://levels/combat_lab/combat_lab.tscn")
+	elif event.is_action_pressed("debug_stage_5_boss_arena"):
+		get_viewport().set_input_as_handled()
+		_transition_to("res://levels/stage_5_boss_test/stage_5_boss_test.tscn")
 
 
 func _ready() -> void:
@@ -32,6 +58,8 @@ func _ready() -> void:
 		or expedition_menu == null
 		or weapon_shop_menu == null
 		or rootforge_menu == null
+		or admin_panel == null
+		or admin_lab_button == null
 	):
 		push_error("SanctuaryFlow is missing a required hub dependency.")
 		return
@@ -60,10 +88,35 @@ func _ready() -> void:
 	character_menu.skill_awakened.connect(_on_skill_awakened)
 	weapon_shop_menu.menu_closed.connect(weapon_merchant.restore_prompt)
 	rootforge_menu.menu_closed.connect(rootweaver.restore_prompt)
+	admin_lab_button.pressed.connect(_open_combat_lab)
+	var admin_state := get_node_or_null("/root/DebugAdminState")
+	if admin_state != null:
+		admin_state.connect("enabled_changed", _update_admin_visibility)
+	_update_admin_visibility(_is_admin_enabled())
 	expedition_altar.selection_requested.connect(expedition_menu.open_menu)
 	expedition_menu.menu_closed.connect(expedition_altar.restore_prompt)
 	combat_hud.show_story_message("SANCTUARY OF THE REMEMBERED VEIL", 2.8)
 	_save_profile_at_sanctuary()
+
+
+func _is_admin_enabled() -> bool:
+	var admin_state := get_node_or_null("/root/DebugAdminState")
+	return OS.is_debug_build() and admin_state != null and bool(admin_state.get("enabled"))
+
+
+func _update_admin_visibility(enabled: bool) -> void:
+	admin_panel.visible = OS.is_debug_build() and enabled
+
+
+func _open_combat_lab() -> void:
+	if _is_admin_enabled():
+		_transition_to("res://levels/combat_lab/combat_lab.tscn")
+
+
+func _transition_to(scene_path: String) -> void:
+	var transition := get_node_or_null("/root/SceneTransition")
+	if transition != null:
+		transition.call("transition_to", scene_path)
 
 
 func _on_npc_dialogue_requested(

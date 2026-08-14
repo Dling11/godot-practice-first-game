@@ -6,7 +6,7 @@ The setting centers on gods, demons, forgotten civilizations, and **The One Abov
 
 ## Current Status
 
-Pre-alpha title-to-Sanctuary-to-four-stage prototype. F5 opens a mouse/keyboard/gamepad-ready Battle of Gods title screen with Continue, guarded New Journey, and session-audio settings. King is temporarily the active combat proof with simple four-direction locomotion, an integrated signature sword, one directional basic slash, and four playable skills; Ultimate and Reality Breaking remain locked future tiers. Opaw's complete compact character and skills remain preserved as benched supported content. Stages I-IV form one continuous forest route: Stage III ends with the Rootbound Husk and Reliquary, then Stage IV `Eastern Rot` raises its own live-enemy ceiling to eight across five reinforcement-heavy waves before returning to Sanctuary. The five current enemies roll sparse illustrated Forest materials as hopping, hovering, magnetic world pickups. In Sanctuary, Rootweaver Nema's Living Rootforge previews the four current recipes and owned/required materials without consuming anything. Crafting transactions/outputs, Hunts, roster switching, the planned Stage 4 beast, and per-character saves are not yet playable.
+Pre-alpha title-to-Sanctuary-to-four-stage prototype. F5 opens a mouse/keyboard/gamepad-ready Battle of Gods title screen with Continue, guarded New Journey, and session-audio settings. King is temporarily the active combat proof with simple four-direction locomotion, an integrated signature sword, one directional basic slash, and four playable skills; Ultimate and Reality Breaking remain locked future tiers. Opaw's complete compact character and skills remain preserved as benched supported content. Stages I-IV form one continuous forest route: Stage III ends with the Rootbound Husk and Reliquary, then Stage IV `Eastern Rot` raises its own live-enemy ceiling to eight across five reinforcement-heavy waves and introduces the committed-lane Armored Hog before returning to Sanctuary. The six current enemies roll sparse illustrated Forest materials as hopping, hovering, magnetic world pickups. In Sanctuary, Rootweaver Nema's Living Rootforge previews the four current recipes and owned/required materials without consuming anything. Crafting transactions/outputs, Hunts, roster switching, and per-character saves are not yet playable.
 
 ## Intended Technology
 
@@ -177,6 +177,7 @@ The active prototype controls are:
 | Combat facing | W/A/S/D movement direction; last direction is retained while standing | Left stick movement direction |
 | Primary attack: equipped sword | Left mouse | Right trigger |
 | Dodge | Space | South face button |
+| Break Stage 5 root prison | Tap Space five times; skills/attacks are locked | Tap South face button five times; mobile uses the visible Dash slot |
 | Skill 1: Echoing Sever targeting | 1 or click its HUD slot | Left shoulder |
 | Confirm Echoing Sever | Left mouse | Right trigger |
 | Cancel Echoing Sever | Right mouse or Escape | UI Cancel |
@@ -189,6 +190,11 @@ The active prototype controls are:
 | Open Menu | Escape/Start or top-right Menu button | Start |
 | Rise after defeat | R | North face button |
 | Debug test loadout | F9 (debug builds: level 10, 999 coins, unlimited skill cooldowns, authored skills/gear, material UI samples) | Not assigned |
+| Toggle Admin Mode | F10 (debug builds only; reveals Sanctuary Admin Tools) | Not assigned |
+| Open/close Combat Lab | F7 while Admin Mode is enabled | Not assigned |
+| Stage 5 boss feel-test | F8 while Admin Mode is enabled; F8 returns from the isolated arena | Not assigned |
+
+In a debug build, press F10 in Sanctuary to reveal the right-side Admin Tools panel, then use its button or F7 to enter the Combat Lab. The lab selects the Stage 5 boss proof by default and can spawn 1/4/8 of any current mob, Elite, mini-boss, or boss; pause enemy AI; toggle King invincibility; enable unlimited authored skills; clear; or reset. The boss's fourth proof action follows the lunge/slap/jump cycle: its root warning tracks King's feet, then locks and converts Dash into five `BREAK FREE` presses. Skills cannot escape it; failure resolves the provisional 300-damage execution. The lab removes enemy reward components before spawning and suppresses autosave, so lab combat cannot grant XP, coins, materials, story progress, or stage claims. For agent-driven visual review, launch `res://levels/combat_lab/combat_lab.tscn` directly.
 
 Movement, movement-owned facing, left-click primary attack, dash, portal interaction, and arena restart after defeat are active for the temporary King proof. One latest valid attack, dash, or equipped skill input is retained for at most 0.8 seconds and executes only at the first legal recovery or ability-finished boundary; it never waits through a cooldown. Balanced Slash currently supplies the tested 58-pixel-forward by 96-pixel-wide contact fan, while King's integrated sword and white-blue trail present the hit. Echoing Sever is active in Skill 1: press `1`, aim its smooth exact-angle wedge while continuing to move, then left-click/right-trigger to commit; repeating `1` does not cast, right-click/Esc cancels freely, and dash cancels the preview before moving. Riftbreak is active in Skill 2: press `2` to immediately slam one 84-pixel circle around King's feet for 150% weapon damage and outward knockback. Sovereign Pursuit is active in Skill 3: press `3`, aim the ground marker, then confirm to leap and land one 52-pixel radial hit; pressing `2` immediately after confirmation buffers Riftbreak until Pursuit finishes. Skill 4 is active: press `4`, aim its 104-pixel final radius, and confirm to call a giant spirit sword for a concentrated 220% crash followed by an automatic delayed 300% AOE explosion. Opaw's preserved Piercing Rush and Consecutive Thrust are not silently attached to King. The shared proof vitality still begins at 140, gains 12 per level, retains health across stages, and regenerates 1 HP/s after five damage-free seconds. F9 grants level, coins, gear, material samples, and session-only unlimited skill cooldowns without changing King's normal balance data or skill loadout.
 
@@ -235,6 +241,8 @@ Run the current headless movement smoke test with:
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/hud_action_controls_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/editor_preview_backdrop_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/loot_resolution_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/stage_5_boss_smoke.gd'
+& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/combat_lab_smoke.gd'
 ```
 
 ## Build and Export

@@ -9,6 +9,9 @@ const RootlingProfile: DropProfileDefinition = preload(
 const HuskProfile: DropProfileDefinition = preload(
 	"res://data/loot/forest/enemies/rootbound_husk_drop_profile.tres"
 )
+const HogProfile: DropProfileDefinition = preload(
+	"res://data/loot/forest/enemies/armored_hog_drop_profile.tres"
+)
 const Stage3Table: LootTableDefinition = preload(
 	"res://data/loot/forest/stages/stage_3_loot_table.tres"
 )
@@ -45,6 +48,7 @@ func _run() -> void:
 		"res://entities/enemies/forsaken_thrall/forsaken_thrall.tscn",
 		"res://entities/enemies/bramble_spitter/bramble_spitter.tscn",
 		"res://entities/enemies/rootbound_husk/rootbound_husk.tscn",
+		"res://entities/enemies/armored_hog/armored_hog.tscn",
 	]
 	for scene_path: String in enemy_scene_paths:
 		var packed_enemy_scene := load(scene_path) as PackedScene
@@ -117,6 +121,17 @@ func _run() -> void:
 		or _quantity_for(husk_drops, &"forest_rootbound_core") < 1
 	):
 		_fail("The Rootbound Husk did not resolve both guaranteed boss materials.")
+		return
+	for miss in range(5):
+		loot_state.record_bad_luck_result(&"forest_armored_hog_hide_misses", false)
+	for miss in range(11):
+		loot_state.record_bad_luck_result(&"forest_living_bark_plate_misses", false)
+	var hog_drops: Array[Dictionary] = loot_service.resolve_enemy_drops(HogProfile)
+	if (
+		_quantity_for(hog_drops, &"forest_armored_hog_hide") < 1
+		or _quantity_for(hog_drops, &"forest_living_bark_plate") < 1
+	):
+		_fail("The Armored Hog's protected hide and bark-plate drops did not resolve at their caps.")
 		return
 
 	var pickup_stage := Stage1Scene.instantiate()

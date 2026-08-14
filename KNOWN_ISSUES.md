@@ -6,6 +6,20 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 
 ## Current Limitations
 
+### KI-017 - Stage 5 boss combat remains an isolated feel-test
+
+- **Status:** Open.
+- **Progress:** Admin F7 and focused F8 expose four actions: lunge, overhead slap, target-locked jump, and the buried-hand root execution. The corrected character-scale prison flexes, cracks with five shared-Dash inputs, and exposes repeated-input progress both above King and in the Dash slot. The execution processor assigns debris/root components to real frame anchors, eliminating left/right neighboring-frame fragments. Focused headless coverage passes.
+- **Impact:** Final name, action cadence, damage/radius, audio, camera response, additional skills/phases, arena ecology, dialogue, rewards, and Stage 5 progression are not authored. The present values must not be treated as final balance.
+- **Planned resolution:** Owner-playtest the visible arena first, correct feel/readability, then lock the complete boss kit before integrating the actual Stage 5 encounter.
+
+### KI-016 - Armored Hog crowd feel needs owner playtesting
+
+- **Status:** Open.
+- **Progress:** Structural tests validate the committed charge lane, frontal guard, rear full damage, daze, all animation families, audio resources, protected drops, and one/two-Hog Stage 4 composition.
+- **Impact:** Headless verification cannot judge final warning visibility, boar-vocal volume, hoof rhythm, collision feel, or whether two simultaneous lanes remain comfortable in a full eight-enemy field.
+- **Planned resolution:** Play Stage 4 with sound enabled and tune presentation volumes/timings or Hog count only from observed gameplay; keep the approved anatomy and dodge/punish authority intact unless the mechanic itself fails.
+
 ### KI-015 - Ultimate and Reality Breaking are reserved presentation tiers only
 
 - **Status:** Planned.

@@ -5,6 +5,7 @@ extends Resource
 
 enum ActivationMode { IMMEDIATE_DIRECTIONAL, GROUND_TARGETED, SELF_AREA, DIRECTIONAL_WEDGE_TARGETED }
 enum PresentationStyle { SWEEP, THRUST, ECHOING_SEVER }
+enum ImpactWeight { LIGHT, MEDIUM, HEAVY, DEVASTATING }
 
 @export var ability_id: StringName
 @export var display_name := "Ability"
@@ -13,6 +14,7 @@ enum PresentationStyle { SWEEP, THRUST, ECHOING_SEVER }
 @export var icon: Texture2D
 @export var activation_mode := ActivationMode.IMMEDIATE_DIRECTIONAL
 @export var presentation_style := PresentationStyle.SWEEP
+@export var impact_weight := ImpactWeight.MEDIUM
 @export var hitbox_shape: Shape2D
 @export_range(0.0, 9999.0, 1.0) var damage := 0.0
 @export_range(0.0, 10.0, 0.05) var weapon_damage_multiplier := 0.0

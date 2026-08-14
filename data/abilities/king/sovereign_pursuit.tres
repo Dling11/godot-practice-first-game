@@ -12,6 +12,7 @@ hud_name = "PURSUIT"
 description = "Aim a landing point, leap through danger, and drive the greatsword down in a royal cross impact. Naturally closes distance for Riftbreak.\n125% weapon damage - 220 px range - 52 px landing radius"
 icon = ExtResource("2_icon")
 activation_mode = 1
+impact_weight = 1
 hitbox_shape = ExtResource("3_shape")
 weapon_damage_multiplier = 1.0
 knockback_strength = 90.0
@@ -24,4 +25,3 @@ cooldown_seconds = 8.5
 target_range_pixels = 220.0
 landing_radius_pixels = 52.0
 ground_center_offset_y = 16.0
-

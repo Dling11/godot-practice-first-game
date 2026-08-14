@@ -7,8 +7,10 @@ const PLAYER_HIT_TINT := Color(1.0, 0.9, 0.42, 1.0)
 const PLAYER_DAMAGED_TINT := Color(1.0, 0.42, 0.42, 1.0)
 const HIT_FLASH_SHADER := preload("res://gameplay/presentation/hit_flash.gdshader")
 const HIT_FLASH_SECONDS := 0.1
-const LIGHT_HITSTOP_SECONDS := 0.025
-const HEAVY_HITSTOP_SECONDS := 0.04
+const LIGHT_HITSTOP_SECONDS := 0.018
+const MEDIUM_HITSTOP_SECONDS := 0.03
+const HEAVY_HITSTOP_SECONDS := 0.045
+const DEVASTATING_HITSTOP_SECONDS := 0.065
 ## The dedicated final contact recording contains 125 ms of leading silence.
 ## Start at its metal impact so an accepted final hit does not arrive late.
 const CONSECUTIVE_FINAL_CONTACT_ONSET_SECONDS := 0.125
@@ -45,8 +47,18 @@ func _ready() -> void:
 	_hit_flash_material.set_shader_parameter("flash_amount", 1.0)
 	player.attack_component.hit_landed.connect(_on_player_hit_landed)
 	player.attack_component.attack_started.connect(_on_player_attack_started)
-	player.ability_1_component.hit_landed.connect(_on_player_ability_hit_landed)
-	player.ability_2_component.hit_landed.connect(_on_player_ability_hit_landed)
+	player.ability_1_component.hit_landed.connect(
+		_on_player_ability_hit_landed.bind(player.ability_1_component)
+	)
+	player.ability_2_component.hit_landed.connect(
+		_on_player_ability_hit_landed.bind(player.ability_2_component)
+	)
+	player.ability_3_component.hit_landed.connect(
+		_on_player_ability_hit_landed.bind(player.ability_3_component)
+	)
+	player.ability_4_component.hit_landed.connect(
+		_on_player_ability_hit_landed.bind(player.ability_4_component)
+	)
 	player.health_component.damaged.connect(_on_player_damaged)
 
 
@@ -72,8 +84,11 @@ func _on_player_attack_started() -> void:
 	_melee_shared_feedback_consumed = false
 
 
-func _on_player_ability_hit_landed(target: HurtboxComponent, info: DamageInfo) -> void:
-	var active_ability := player.get_active_ability_component()
+func _on_player_ability_hit_landed(
+	target: HurtboxComponent,
+	info: DamageInfo,
+	active_ability: AbilityComponent
+) -> void:
 	var is_consecutive_thrust := (
 		active_ability != null
 		and active_ability.definition != null
@@ -103,7 +118,7 @@ func _on_player_ability_hit_landed(target: HurtboxComponent, info: DamageInfo) -
 	)
 	_flash_target(target)
 	if is_first_impact_this_frame and (not is_consecutive_thrust or is_final_consecutive_hit):
-		_request_hitstop(HEAVY_HITSTOP_SECONDS if is_final_consecutive_hit else LIGHT_HITSTOP_SECONDS)
+		_request_hitstop(_resolve_ability_hitstop(active_ability, is_final_consecutive_hit))
 		if is_final_consecutive_hit:
 			_play_sound_at(
 				consecutive_final_hit_sound,
@@ -115,9 +130,43 @@ func _on_player_ability_hit_landed(target: HurtboxComponent, info: DamageInfo) -
 			_play_sound_at(ability_hit_sound if ability_hit_sound != null else sword_hit_sound, target.global_position, 0.96)
 
 
+func _resolve_ability_hitstop(component: AbilityComponent, is_final_consecutive_hit: bool) -> float:
+	if is_final_consecutive_hit:
+		return HEAVY_HITSTOP_SECONDS
+	if component == null or component.definition == null:
+		return MEDIUM_HITSTOP_SECONDS
+	if (
+		component.definition.ability_id == &"king_skill_4"
+		and component.is_current_strike_final()
+	):
+		return DEVASTATING_HITSTOP_SECONDS
+	match component.definition.impact_weight:
+		AbilityDefinition.ImpactWeight.LIGHT:
+			return LIGHT_HITSTOP_SECONDS
+		AbilityDefinition.ImpactWeight.HEAVY:
+			return HEAVY_HITSTOP_SECONDS
+		AbilityDefinition.ImpactWeight.DEVASTATING:
+			return DEVASTATING_HITSTOP_SECONDS
+	return MEDIUM_HITSTOP_SECONDS
+
+
 func _on_player_damaged(info: DamageInfo) -> void:
 	_show_hit(player.global_position + Vector2(0.0, -26.0), info, PLAYER_DAMAGED_TINT, 2.0)
+	_request_hitstop(_resolve_incoming_hitstop(info.amount))
 	_play_sound_at(player_hurt_sound, player.global_position, 1.0)
+
+
+func _resolve_incoming_hitstop(damage_amount: float) -> float:
+	## Incoming enemy definitions currently span 8-22 damage. Keep ordinary
+	## contacts brief, let heavy enemies read clearly, and reserve the longest
+	## tier for future boss-scale blows without coupling feedback to enemy types.
+	if damage_amount >= 30.0:
+		return DEVASTATING_HITSTOP_SECONDS
+	if damage_amount >= 18.0:
+		return HEAVY_HITSTOP_SECONDS
+	if damage_amount >= 12.0:
+		return MEDIUM_HITSTOP_SECONDS
+	return LIGHT_HITSTOP_SECONDS
 
 
 func _show_hit(position: Vector2, info: DamageInfo, tint: Color, camera_strength: float) -> void:

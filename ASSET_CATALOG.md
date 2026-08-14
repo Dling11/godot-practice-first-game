@@ -1,5 +1,31 @@
 # Asset Catalog
 
+## Stage 5 Boss - Approved Identity and Locomotion
+
+- Approved identity source: `art_source/generated/characters/enemies/stage_5_boss/stage_5_boss_identity_approved.png`.
+- Status: `runtime_proof`; identity, idle, and walk are owner-approved, while the current reactions and attacks remain feel-test candidates. Canonical runtime copies live under `assets/characters/enemies/stage_5_boss/` and drive the isolated F8 arena. No final name, audio, phase contract, reward, or Stage 5 encounter exists yet.
+- Locked identity: massive hunched humanoid guardian, asymmetric root arms, split dead-bark chest shell, hollow luminous core, heavy planted legs, and removable/broken armor language.
+- Scale contract: clearly larger than the Rootbound Husk at roughly 1.35-1.5x its standing height, but fully visible and mobile. Stage 10 reserves colossal scale.
+- The generated crowned scale figure is not King and is explicitly excluded from all runtime use. A future normalized proof must use the real King and Husk sprites.
+- Phase 1 review candidate: the generated/clean standing sources and deterministic processor produce `art_source/review/characters/enemies/stage_5_boss/stage_5_boss_idle_sheet_112x96_candidate.png`, an exact 4x4 `down/left/right/up` board with 112x96 cells, shared y=90 foot contact, binary alpha, and all sixteen poses retained. `stage_5_boss_real_scale_comparison_4x.png` uses the actual King/Husk textures and places the boss at the approved approximately 1.4x Husk height. This remains review-only until owner approval.
+- Phase 2 walking candidate: `stage_5_boss_walk_sheet_112x96_candidate.png` retains six meaningful gait poses for all four directions—24 non-empty, unique frames—with the same 112x96/y=90 contract and fixed approved stature per view. The generated/clean sources, `tools/process_stage_5_boss_walk.py`, static 2x review, and animated all-direction GIF remain review artifacts until owner approval.
+- The owner approved both idle and walking source checkpoints on 2026-08-14.
+- Phase 3 reaction candidate: two exact 4x4 parent sheets assemble into `stage_5_boss_reaction_sheet_144x112_candidate.png`, retaining 32 non-empty, unique frames across hurt, recovery, buckle, collapse, and settle. The wider cell preserves body scale and the y=98 baseline preserves the same world-space foot offset. It remains review-only pending owner approval.
+- Phase 4 quick-lunge candidate: two exact 4x4 parent sheets assemble into `stage_5_boss_basic_attack_sheet_144x112_candidate.png`, retaining 32 non-empty, unique forward root-arm extension frames. Runtime correctly names it lunge rather than sweep. It uses the 144x112/y=98 action contract and contains no baked VFX or hitbox authority; global component extraction prevents root-arm clipping.
+- Phase 4b heavy-slap runtime: built-in generation produced one strict 8x4 magenta-key board. `tools/process_stage_5_boss_slap.py` globally extracts all 32 unique actors into `stage_5_boss_slap_sheet_144x112.png` with binary alpha and y=101 ground contact. Every direction preserves lift, high cock, held apex, downward release, planted hand, compression, and recovery; no impact VFX or damage authority is baked into the body.
+- Phase 5 jump candidate: two 4x4 body parents assemble into `stage_5_boss_jump_body_sheet_144x112_candidate.png`, preserving 32 unique compression/launch/airborne/descent/landing/rebound frames. A corrected eight-frame `stage_5_boss_jump_impact_sheet_192x112_candidate.png` owns the centered pressure mark, debris burst, shockwave, fracture, and persistent crater without adjacent-frame leakage. The generated `stage_5_boss_jump_spikes_source_v1.png` and deterministic processor add a separate six-frame `stage_5_boss_jump_spikes_sheet_192x112.png` open-center eruption. Runtime aligns both layers to one boss-foot anchor, moves the actor root, resolves one landing contact, and world-locks the residual effect.
+- Phase 6 root-execution VFX: `stage_5_boss_root_prison_sheet_128x112.png` owns eight warning/capture/crack/break frames on y=99, with content constrained to 64x44 so its open center and height match King's 48x32 gameplay body. Its intact two-frame capture range loops as living root motion. `stage_5_boss_root_execution_sheet_192x192.png` owns eight charge/eruption/retraction/residue frames on y=178. `tools/process_stage_5_boss_root_prison.py` removes the baked checker, finds the eight largest real execution anchors, assigns every loose root/rock/spark component to its nearest anchor before normalization, and prevents neighboring-frame edge leakage. All sixteen frames retain binary alpha and stable world centers/baselines.
+- Naming direction reserves `Lord` as a title in `<name>, Lord of <domain>` form; `stage_5_boss` remains the production identifier until lore and mechanics justify a final display name.
+
+## Stage 4 Armored Hog
+
+- Approved identity source: `art_source/generated/characters/enemies/stage_4_armored_hog/armored_hog_identity_approved.png`.
+- Active runtime sheets: `res://assets/characters/enemies/stage_4_armored_hog/armored_hog_locomotion_sheet_64x48.png`, `armored_hog_charge_sheet_64x48.png`, and `armored_hog_reaction_sheet_64x48.png`; the `armored_hog_sprite_frames.tres` resource consumes every approved cell across 32 named directional animations.
+- Each sheet uses 64x48 cells, shared body scale/baseline, nearest filtering, and binary alpha. Direction rows are `down/left/right/up`; locomotion uses four columns and charge/reaction use six.
+- Active item icons: `res://assets/items/materials/forest/armored_hog_hide_24x24.png` and `living_bark_plate_24x24.png`.
+- Active action audio: original deterministic `armored_hog_hoof.wav`, `armored_hog_brace.wav`, and `armored_hog_crash.wav`, plus the CC0 `armored_hog_snort.ogg` layer.
+- Generated, clean, and review boards remain under matching `art_source/.../stage_4_armored_hog/` paths. The rejected realistic package is archive-only under `art_source/archive/stage_4_rejected_realistic_hog_2026-08-13/`.
+
 ## Stage 3 West-Decay Transition
 
 - Active runtime atlas: `res://assets/environment/forest/rootbound_hollow/tiles/stage_3_west_decay_transition_atlas_3x4.png` — twelve generated 64x64 west-Rootbound/east-verdant transition variations used as a single ragged boundary column across the fourteen map rows.
