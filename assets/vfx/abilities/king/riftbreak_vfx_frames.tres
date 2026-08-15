@@ -1,14 +1,6 @@
-[gd_resource type="SpriteFrames" load_steps=8 format=3]
+[gd_resource type="SpriteFrames" format=3 uid="uid://50hx0l5fk6jy"]
 
-[ext_resource type="Texture2D" path="res://assets/vfx/abilities/king/riftbreak_vfx_sheet_192.png" id="1_vfx"]
-
-[sub_resource type="AtlasTexture" id="RiftbreakAtlas_0"]
-atlas = ExtResource("1_vfx")
-region = Rect2(0, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="RiftbreakAtlas_1"]
-atlas = ExtResource("1_vfx")
-region = Rect2(192, 0, 192, 192)
+[ext_resource type="Texture2D" uid="uid://c05tr5k4aqvbw" path="res://assets/vfx/abilities/king/riftbreak_vfx_sheet_192.png" id="1_vfx"]
 
 [sub_resource type="AtlasTexture" id="RiftbreakAtlas_2"]
 atlas = ExtResource("1_vfx")
@@ -26,20 +18,46 @@ region = Rect2(192, 192, 192, 192)
 atlas = ExtResource("1_vfx")
 region = Rect2(384, 192, 192, 192)
 
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_0"]
+atlas = ExtResource("1_vfx")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="RiftbreakAtlas_1"]
+atlas = ExtResource("1_vfx")
+region = Rect2(192, 0, 192, 192)
+
 [resource]
 animations = [{
-"frames": [{"duration": 1.0, "texture": SubResource("RiftbreakAtlas_0")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_1")}],
-"loop": false,
-"name": &"wind_up",
-"speed": 12.0
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("RiftbreakAtlas_2")
 }, {
-"frames": [{"duration": 1.0, "texture": SubResource("RiftbreakAtlas_2")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_3")}, {"duration": 1.0, "texture": SubResource("RiftbreakAtlas_4")}],
-"loop": false,
+"duration": 1.0,
+"texture": SubResource("RiftbreakAtlas_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("RiftbreakAtlas_4")
+}],
+"loop": 0,
 "name": &"impact",
 "speed": 18.0
 }, {
-"frames": [{"duration": 1.0, "texture": SubResource("RiftbreakAtlas_5")}],
-"loop": true,
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("RiftbreakAtlas_5")
+}],
+"loop": 1,
 "name": &"residual",
 "speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("RiftbreakAtlas_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("RiftbreakAtlas_1")
+}],
+"loop": 0,
+"name": &"wind_up",
+"speed": 12.0
 }]

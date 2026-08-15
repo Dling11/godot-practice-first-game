@@ -9,6 +9,7 @@ enum CrowdControlTier { LIGHT, ELITE, BOSS }
 
 @export var display_name: String = "Enemy"
 @export_range(1.0, 99999.0, 1.0) var maximum_health: float = 100.0
+@export_range(0.0, 9999.0, 1.0) var armor_rating: float = 0.0
 @export_range(1.0, 1000.0, 1.0, "suffix:px/s") var move_speed: float = 60.0
 @export_range(1.0, 5000.0, 1.0, "suffix:px/s^2") var acceleration: float = 500.0
 @export_group("Movement Footprint")

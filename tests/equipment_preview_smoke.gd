@@ -1,8 +1,10 @@
 extends SceneTree
 
 const Catalog = preload("res://data/items/opaw_weapon_catalog.tres")
+const KingCatalog = preload("res://data/items/king_weapon_catalog.tres")
 const AshwoodBlade = preload("res://data/weapons/ashwood_blade.tres")
 const IronSword = preload("res://data/weapons/iron_sword.tres")
+const KingSword = preload("res://data/weapons/king_signature_sword.tres")
 
 
 func _initialize() -> void:
@@ -33,7 +35,7 @@ func _run() -> void:
 		_fail("Ashwood Blade is missing its reusable sword attack style.")
 		return
 	if AshwoodBlade.attack_style.style_id != &"balanced_slash":
-		_fail("Ashwood Blade no longer uses the approved Balanced Slash profile.")
+		_fail("Ashwood Blade lost Opaw's Balanced Slash form.")
 		return
 	if not _validate_binary_icon(item.icon):
 		return
@@ -41,7 +43,10 @@ func _run() -> void:
 		_fail("The Ashwood Blade must remain Opaw's free permanent fallback.")
 		return
 	if not is_equal_approx(AshwoodBlade.damage, 25.0):
-		_fail("The presentation migration unexpectedly changed authoritative sword tuning.")
+		_fail("Ashwood skill power unexpectedly changed during normal-attack balancing.")
+		return
+	if not is_zero_approx(AshwoodBlade.basic_damage_minimum) or not is_zero_approx(AshwoodBlade.basic_damage_maximum):
+		_fail("Opaw's legacy Ashwood attack must continue falling back to its 25 damage.")
 		return
 	var iron_item := Catalog.find_weapon(&"weapon_iron_sword")
 	if (
@@ -56,8 +61,24 @@ func _run() -> void:
 	if IronSword.world_texture.get_size() != Vector2(16, 24) or iron_item.icon.get_size() != Vector2(64, 64):
 		_fail("Iron Sword runtime assets do not match the approved icon/world sizes.")
 		return
-	if IronSword.attack_style != AshwoodBlade.attack_style or not is_equal_approx(IronSword.damage, 32.0):
-		_fail("Iron Sword must reuse Balanced Slash while providing its authored damage upgrade.")
+	if (
+		IronSword.attack_style != AshwoodBlade.attack_style
+		or not is_equal_approx(IronSword.damage, 32.0)
+	):
+		_fail("Iron Sword must retain Opaw's Balanced Slash and authored damage upgrade.")
+		return
+	if (
+		not KingCatalog.has_valid_layout()
+		or KingCatalog.weapons.size() != 1
+		or KingCatalog.default_weapon.weapon_definition != KingSword
+		or KingSword.weapon_id != &"weapon_king_signature_sword"
+		or not KingSword.uses_integrated_visual
+		or KingSword.world_texture != null
+		or KingSword.attack_style.style_id != &"king_sword_form"
+		or not is_equal_approx(KingSword.basic_damage_minimum, 10.0)
+		or not is_equal_approx(KingSword.basic_damage_maximum, 12.0)
+	):
+		_fail("King's signature sword identity, integrated presentation, or 10-12 normal damage is invalid.")
 		return
 	print("Equipment catalog smoke test passed.")
 	quit(0)

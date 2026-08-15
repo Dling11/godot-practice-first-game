@@ -1,9 +1,9 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://cmhucyxgrc3x0"]
+[gd_resource type="TileSet" format=3 uid="uid://cmhucyxgrc3x0"]
 
 [ext_resource type="Texture2D" uid="uid://b6iugc6mjld6o" path="res://assets/environment/forest/rootbound_hollow/tiles/rootbound_ground_atlas_4x4.png" id="1_atlas"]
 [ext_resource type="Texture2D" uid="uid://cwxy4v8ucdssh" path="res://assets/environment/forest/shared/tiles/verdant_forest_ground_atlas_4x4.png" id="2_forest_atlas"]
-[ext_resource type="Texture2D" path="res://assets/environment/forest/rootbound_hollow/tiles/stage_3_west_decay_transition_atlas_3x4.png" id="3_transition_atlas"]
-[ext_resource type="Texture2D" path="res://assets/environment/forest/rootbound_hollow/tiles/stage_4_east_decay_transition_atlas_3x4.png" id="4_east_transition_atlas"]
+[ext_resource type="Texture2D" uid="uid://c8ir48qm22exk" path="res://assets/environment/forest/rootbound_hollow/tiles/stage_3_west_decay_transition_atlas_3x4.png" id="3_transition_atlas"]
+[ext_resource type="Texture2D" uid="uid://b4kpl6x5kjgov" path="res://assets/environment/forest/rootbound_hollow/tiles/stage_4_east_decay_transition_atlas_3x4.png" id="4_east_transition_atlas"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rootbound"]
 texture = ExtResource("1_atlas")

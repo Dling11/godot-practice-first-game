@@ -103,6 +103,9 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 093 | Author Stage 5 around a dormant broken shrine | Stage 5 terrain, dead trees, boss basin, broken shrine, Stage 4 portal, or future godlike event seam |
 | 094 | Move Stage 5 into a scrolling dead-forest route | Production Stage 5, edge thickets, dead animal, animated flies, rejected stump deletion, gateway route, or gated boss basin |
 | 095 | Introduce Varkuun through an aerial entrance and real-recording audio suite | Stage 5 boss name, entrance, dialogue input, boss music, action audio, jump air cue, or root-prison sound |
+| 096 | Give cooldown-blocked player actions one shared denied cue | Dash or skill cooldown spam, invalid-action audio, tappable cooldown HUD, controller, or touch parity |
+| 097 | Make Varkuun's Chest the Stage Five milestone claim | Stage V reward chest, Varkuun Core, core-gear seal, King/Varkuun dialogue, mouse Skip, or post-boss save order |
+| 098 | Separate normal-hit power and use armor for boss durability | King basic attack damage/reach, weapon skill power, armor mitigation, Varkuun anti-kiting, or Stage II live pressure |
 
 ## New Decisions
 

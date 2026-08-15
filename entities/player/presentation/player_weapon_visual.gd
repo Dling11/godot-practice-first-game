@@ -40,7 +40,11 @@ func _ready() -> void:
 func set_weapon_definition(next_weapon: WeaponDefinition) -> bool:
 	## Changes only the detached weapon presentation. Player coordinates this
 	## with MeleeAttackComponent so gameplay and art always use the same data.
-	if next_weapon == null or next_weapon.world_texture == null or weapon_sprite == null:
+	if (
+		next_weapon == null
+		or weapon_sprite == null
+		or (next_weapon.world_texture == null and not next_weapon.uses_integrated_visual)
+	):
 		return false
 	_kill_pose_tween()
 	_kill_accent_tween()
@@ -49,7 +53,7 @@ func set_weapon_definition(next_weapon: WeaponDefinition) -> bool:
 	_normal_swing_sequence_index = -1
 	_normal_swing_variant_index = 0
 	visible = true
-	weapon_sprite.visible = show_weapon_sprite
+	weapon_sprite.visible = show_weapon_sprite and not weapon.uses_integrated_visual
 	weapon_sprite.texture = weapon.world_texture
 	weapon_sprite.position = weapon.sprite_offset_from_grip
 	_base_weapon_scale = Vector2.ONE * weapon.world_visual_scale

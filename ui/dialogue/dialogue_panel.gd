@@ -6,9 +6,10 @@ signal dialogue_closed(completed: bool)
 @onready var speaker_label: Label = %SpeakerLabel
 @onready var body_label: Label = %BodyLabel
 @onready var continue_button: Button = %ContinueButton
+@onready var skip_button: Button = %SkipButton
 @onready var portrait: TextureRect = %Portrait
 
-var _lines: Array[String] = []
+var _entries: Array[Dictionary] = []
 var _line_index := 0
 var _owns_pause := false
 var _accept_input := false
@@ -38,12 +39,22 @@ func _unhandled_input(event: InputEvent) -> void:
 func show_dialogue(speaker: String, lines: Array[String], portrait_texture: Texture2D = null) -> void:
 	if lines.is_empty():
 		return
+	var entries: Array[Dictionary] = []
+	for line: String in lines:
+		entries.append({
+			"speaker": speaker,
+			"text": line,
+			"portrait": portrait_texture,
+		})
+	show_conversation(entries)
+
+
+func show_conversation(entries: Array[Dictionary]) -> void:
+	if entries.is_empty():
+		return
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	_lines = lines.duplicate()
+	_entries = entries.duplicate(true)
 	_line_index = 0
-	speaker_label.text = speaker
-	portrait.texture = portrait_texture
-	portrait.visible = portrait_texture != null
 	_owns_pause = not get_tree().paused
 	if _owns_pause:
 		get_tree().paused = true
@@ -58,7 +69,7 @@ func advance() -> void:
 	if not visible:
 		return
 	_line_index += 1
-	if _line_index >= _lines.size():
+	if _line_index >= _entries.size():
 		close_dialogue(true)
 		return
 	_show_current_line()
@@ -76,8 +87,12 @@ func close_dialogue(completed := false) -> void:
 
 
 func _show_current_line() -> void:
-	body_label.text = _lines[_line_index]
-	continue_button.text = "F / ENTER / SPACE  •  %s" % ("CLOSE" if _line_index == _lines.size() - 1 else "CONTINUE")
+	var entry: Dictionary = _entries[_line_index]
+	speaker_label.text = String(entry.get("speaker", ""))
+	body_label.text = String(entry.get("text", ""))
+	portrait.texture = entry.get("portrait") as Texture2D
+	portrait.visible = portrait.texture != null
+	continue_button.text = "F / ENTER / SPACE  •  %s" % ("CLOSE" if _line_index == _entries.size() - 1 else "CONTINUE")
 
 
 func _enable_input() -> void:

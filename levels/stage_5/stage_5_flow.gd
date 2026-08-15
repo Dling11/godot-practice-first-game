@@ -1,6 +1,7 @@
 extends Node
 
 const PortalScene = preload("res://gameplay/encounters/stage_portal.tscn")
+const RewardChestScene = preload("res://gameplay/loot/stage_reward_chest.tscn")
 
 @export var player: Player
 @export var boss: Stage5Boss
@@ -10,14 +11,18 @@ const PortalScene = preload("res://gameplay/encounters/stage_portal.tscn")
 @export var boss_trigger: Area2D
 @export var portal_parent: Node2D
 @export var portal_spawn_point: Marker2D
+@export var reward_parent: Node2D
+@export var stage_loot_table: LootTableDefinition
 @export var dialogue_panel: DialoguePanel
 @export var boss_portrait: Texture2D
+@export var king_portrait: Texture2D
 @export var boss_music: AudioStream
 @export var entrance_descent: AudioStreamPlayer
 @export var entrance_landing: AudioStreamPlayer
 
 var _boss_started := false
 var _restart_enabled := false
+var _boss_defeat_position := Vector2.ZERO
 
 
 func _ready() -> void:
@@ -30,6 +35,12 @@ func _ready() -> void:
 		or boss_trigger == null
 		or portal_parent == null
 		or portal_spawn_point == null
+		or reward_parent == null
+		or stage_loot_table == null
+		or not stage_loot_table.has_valid_layout()
+		or dialogue_panel == null
+		or boss_portrait == null
+		or king_portrait == null
 	):
 		push_error("Stage5Flow is missing a required dependency.")
 		return
@@ -73,14 +84,39 @@ func _run_boss_entrance() -> void:
 	boss.play_entrance_landing()
 	await get_tree().create_timer(0.22).timeout
 	dialogue_panel.dialogue_closed.connect(_on_boss_dialogue_closed, CONNECT_ONE_SHOT)
-	dialogue_panel.show_dialogue(
-		"VARKUUN, LORD OF THE WITHERED GROVE",
+	dialogue_panel.show_conversation(
 		[
-			"You crossed the grave of my grove and called its silence victory.",
-			"These roots fed your roads before your blood learned fear.",
-			"Kneel, wanderer. Let the dead forest remember your name.",
-		],
-		boss_portrait
+			{
+				"speaker": "VARKUUN, LORD OF THE WITHERED GROVE",
+				"text": "Do you feel it, mortal? The grove is holding its breath. It knows its lord.",
+				"portrait": boss_portrait,
+			},
+			{
+				"speaker": "KING",
+				"text": "A lord does not butcher what he swore to protect.",
+				"portrait": king_portrait,
+			},
+			{
+				"speaker": "VARKUUN, LORD OF THE WITHERED GROVE",
+				"text": "I was crown and claw before your bloodline learned fear. Every root beneath you already closes around your grave.",
+				"portrait": boss_portrait,
+			},
+			{
+				"speaker": "KING",
+				"text": "Then you are not its lord. You are its last disease.",
+				"portrait": king_portrait,
+			},
+			{
+				"speaker": "VARKUUN, LORD OF THE WITHERED GROVE",
+				"text": "Fear me, little king. Kneel before Varkuun—or be rooted beneath my throne.",
+				"portrait": boss_portrait,
+			},
+			{
+				"speaker": "KING",
+				"text": "Good. I was getting tired of chasing gods.",
+				"portrait": king_portrait,
+			},
+		]
 	)
 	if DisplayServer.get_name() == "headless":
 		dialogue_panel.close_dialogue(true)
@@ -97,9 +133,53 @@ func _on_boss_dialogue_closed(_completed: bool) -> void:
 
 
 func _on_boss_died() -> void:
-	var loot_service := get_node_or_null("/root/LootService")
-	if loot_service != null:
-		loot_service.commit_expedition_rewards()
+	_boss_defeat_position = boss.global_position
+	combat_hud.show_story_message("THE LORD REFUSES TO FALL", 1.6)
+	dialogue_panel.dialogue_closed.connect(
+		_on_boss_defeat_dialogue_closed,
+		CONNECT_ONE_SHOT
+	)
+	dialogue_panel.show_conversation([
+		{
+			"speaker": "VARKUUN, LORD OF THE WITHERED GROVE",
+			"text": "Impossible... I am the grove's root. Its crown.",
+			"portrait": boss_portrait,
+		},
+		{
+			"speaker": "VARKUUN, LORD OF THE WITHERED GROVE",
+			"text": "If I fall... what will answer the hunger beneath?",
+			"portrait": boss_portrait,
+		},
+		{
+			"speaker": "KING",
+			"text": "Then let the forest breathe—and face whatever comes next.",
+			"portrait": king_portrait,
+		},
+	])
+
+
+func _on_boss_defeat_dialogue_closed(_completed: bool) -> void:
+	_finish_boss_defeat_presentation()
+
+
+func _finish_boss_defeat_presentation() -> void:
+	# Let Varkuun's complete collapse, corpse hold, and synchronized fade resolve
+	# before the reward replaces his silhouette at the same world position.
+	await get_tree().create_timer(2.2).timeout
+	combat_hud.show_story_message("VARKUUN FALLS  •  CLAIM THE LORD'S HOARD", 3.0)
+	_spawn_reward_chest()
+
+
+func _spawn_reward_chest() -> void:
+	var chest := RewardChestScene.instantiate() as StageRewardChest
+	chest.configure(stage_loot_table, StageRewardChest.ChestTier.VARKUUN_CHEST)
+	reward_parent.add_child(chest)
+	chest.global_position = _boss_defeat_position
+	chest.proximity_changed.connect(combat_hud.show_interaction_prompt)
+	chest.reward_claimed.connect(_on_reward_claimed, CONNECT_ONE_SHOT)
+
+
+func _on_reward_claimed(_result: Dictionary) -> void:
 	var story_state := get_node_or_null("/root/StoryState")
 	if story_state != null:
 		story_state.remember_story(&"forest_stage_5_cleared")
@@ -108,7 +188,7 @@ func _on_boss_died() -> void:
 	var save_service := get_node_or_null("/root/SaveService")
 	if save_service != null:
 		save_service.save_profile()
-	combat_hud.show_story_message("THE DEAD FOREST FALLS SILENT", 3.0)
+	combat_hud.show_story_message("THE LORD'S SEAL IS YOURS  •  THE DEAD FOREST FALLS SILENT", 3.2)
 	_spawn_return_portal()
 
 
@@ -116,7 +196,7 @@ func _spawn_return_portal() -> void:
 	var portal := PortalScene.instantiate() as StagePortal
 	portal.target_scene_path = "res://levels/sanctuary/sanctuary.tscn"
 	portal_parent.add_child(portal)
-	portal.global_position = portal_spawn_point.global_position
+	portal.global_position = _boss_defeat_position
 	portal.proximity_changed.connect(combat_hud.show_interaction_prompt)
 
 

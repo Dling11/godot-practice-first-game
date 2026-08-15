@@ -15,11 +15,15 @@ const HogProfile: DropProfileDefinition = preload(
 const Stage3Table: LootTableDefinition = preload(
 	"res://data/loot/forest/stages/stage_3_loot_table.tres"
 )
+const Stage5Table: LootTableDefinition = preload(
+	"res://data/loot/forest/stages/stage_5_loot_table.tres"
+)
 const ChestScene = preload("res://gameplay/loot/stage_reward_chest.tscn")
 const PickupScene = preload("res://gameplay/loot/material_pickup.tscn")
 const Stage1Scene = preload("res://levels/test_arena/test_arena.tscn")
 const Stage2Scene = preload("res://levels/stage_2/stage_2.tscn")
 const Stage3Scene = preload("res://levels/stage_3/stage_3.tscn")
+const Stage5Scene = preload("res://levels/stage_5/stage_5.tscn")
 
 
 func _initialize() -> void:
@@ -89,6 +93,15 @@ func _run() -> void:
 		_fail("Stage III must use its authored Rootbound Reliquary payout.")
 		return
 	stage_3.free()
+	var stage_5 := Stage5Scene.instantiate()
+	if (
+		stage_5.get("stage_loot_table") != Stage5Table
+		or stage_5.get("king_portrait") == null
+		or stage_5.get("reward_parent") == null
+	):
+		_fail("Stage V did not bind its reward table, King portrait, and Y-sorted chest owner.")
+		return
+	stage_5.free()
 
 	if (
 		RootlingProfile.common_drops.size() != 1
@@ -185,6 +198,29 @@ func _run() -> void:
 
 	_reset_loot_state()
 	loot_service.begin_expedition()
+	var stage_5_first: Dictionary = loot_service.claim_stage_reward(Stage5Table)
+	if (
+		not bool(stage_5_first.get("success", false))
+		or not bool(stage_5_first.get("first_clear", false))
+		or material_inventory.get_quantity(&"forest_varkuun_core") != 2
+		or not root.get_node("StoryState").has_key_item(&"forest_core_gear_seal")
+		or not root.get_node("StoryState").has_discovery(&"forest_core_gear_crafting")
+	):
+		_fail("Stage V first clear did not grant two Varkuun Cores and the permanent gear seal.")
+		return
+	loot_service.begin_expedition()
+	var stage_5_replay: Dictionary = loot_service.claim_stage_reward(Stage5Table)
+	if (
+		not bool(stage_5_replay.get("success", false))
+		or bool(stage_5_replay.get("first_clear", true))
+		or material_inventory.get_quantity(&"forest_varkuun_core") != 3
+		or not (stage_5_replay.get("key_item_ids", PackedStringArray()) as PackedStringArray).is_empty()
+	):
+		_fail("Stage V replay did not grant exactly one repeat catalyst without repeating the seal.")
+		return
+
+	_reset_loot_state()
+	loot_service.begin_expedition()
 	loot_service.configure_seed_for_testing(91)
 	var first_clear: Dictionary = loot_service.claim_stage_reward(Stage3Table)
 	if (
@@ -264,6 +300,24 @@ func _run() -> void:
 		_fail("The Rootbound mini-boss chest did not select its distinct tier art.")
 		return
 	reliquary.queue_free()
+
+	var varkuun_chest := ChestScene.instantiate() as StageRewardChest
+	varkuun_chest.configure(
+		Stage5Table,
+		StageRewardChest.ChestTier.VARKUUN_CHEST
+	)
+	root.add_child(varkuun_chest)
+	await process_frame
+	if (
+		varkuun_chest.chest_sprite.texture != varkuun_chest.varkuun_closed_texture
+		or varkuun_chest.get_display_name() != "VARKUUN'S CHEST"
+		or varkuun_chest.interaction_text != "PRESS F TO OPEN VARKUUN'S CHEST"
+		or varkuun_chest.varkuun_closed_texture.get_size() != Vector2(74.0, 66.0)
+		or varkuun_chest.varkuun_open_texture.get_size() != Vector2(74.0, 66.0)
+	):
+		_fail("The Stage V major-boss chest did not select its distinct Varkuun tier.")
+		return
+	varkuun_chest.queue_free()
 
 	var loot_snapshot: Dictionary = loot_state.create_snapshot()
 	loot_state.reset_state()

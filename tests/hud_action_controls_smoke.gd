@@ -50,10 +50,16 @@ func _run() -> void:
 	hud.dash_slot.activation_button.pressed.emit()
 	if (
 		not player.evade_component.is_dashing()
-		or not hud.dash_slot.activation_button.disabled
+		or hud.dash_slot.activation_button.disabled
 		or hud.dash_slot.state_label.text == "READY"
 	):
 		_fail("The clickable dash HUD control did not start dash and display its cooldown.")
+		return
+	var denied_actions: Array[StringName] = []
+	player.action_denied.connect(func(action: StringName) -> void: denied_actions.append(action))
+	hud.dash_slot.activation_button.pressed.emit()
+	if denied_actions != [&"dash_cooldown"]:
+		_fail("A cooldown Dash tap did not reach the shared denied-action feedback.")
 		return
 	player.evade_component.cancel_evade()
 	if hud.dash_slot.activation_button.disabled or hud.dash_slot.state_label.text != "READY":
@@ -76,7 +82,7 @@ func _run() -> void:
 	player.evade_component._cooldown_time_remaining = 0.6
 	hud.dash_slot.show_restraint_progress(5, 5)
 	hud.dash_slot.clear_restraint_progress()
-	if not hud.dash_slot.activation_button.disabled or hud.dash_slot.state_label.text == "READY":
+	if hud.dash_slot.activation_button.disabled or hud.dash_slot.state_label.text == "READY":
 		_fail("Clearing restraint presentation discarded the Dash action's real cooldown state.")
 		return
 	player.evade_component.cancel_evade()

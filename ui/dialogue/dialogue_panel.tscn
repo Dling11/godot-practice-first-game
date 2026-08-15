@@ -45,12 +45,24 @@ texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 7
-[node name="SpeakerLabel" type="Label" parent="Panel/Margin/Root/Text"]
+[node name="Header" type="HBoxContainer" parent="Panel/Margin/Root/Text"]
+layout_mode = 2
+
+[node name="SpeakerLabel" type="Label" parent="Panel/Margin/Root/Text/Header"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 text = "VEILKEEPER"
 theme_override_colors/font_color = Color(0.839, 0.757, 0.443, 1)
 theme_override_font_sizes/font_size = 14
+
+[node name="SkipButton" type="Button" parent="Panel/Margin/Root/Text/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+text = "SKIP"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 8
 [node name="BodyLabel" type="Label" parent="Panel/Margin/Root/Text"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 48)
@@ -67,3 +79,4 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 8
 
 [connection signal="pressed" from="Panel/Margin/Root/Text/ContinueButton" to="." method="advance"]
+[connection signal="pressed" from="Panel/Margin/Root/Text/Header/SkipButton" to="." method="close_dialogue"]

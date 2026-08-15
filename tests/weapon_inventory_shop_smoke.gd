@@ -4,6 +4,7 @@ const PlayerScene = preload("res://entities/player/player.tscn")
 const ShopScene = preload("res://ui/shops/weapon_shop_menu.tscn")
 const CharacterMenuScene = preload("res://ui/character_menu.tscn")
 const IronItem: EquipmentDefinition = preload("res://data/items/equipment/iron_sword.tres")
+const OpawCatalog: WeaponCatalogDefinition = preload("res://data/items/opaw_weapon_catalog.tres")
 
 
 func _initialize() -> void:
@@ -16,6 +17,8 @@ func _run() -> void:
 	inventory.reset_inventory()
 
 	var player := PlayerScene.instantiate() as Player
+	player.character_id = &"opaw"
+	player.weapon_catalog = OpawCatalog
 	root.add_child(player)
 	player.set_physics_process(false)
 	await process_frame
@@ -85,6 +88,8 @@ func _run() -> void:
 		_fail("Clicking Iron Sword did not switch both gameplay and detached weapon presentation.")
 		return
 	var replacement := PlayerScene.instantiate() as Player
+	replacement.character_id = &"opaw"
+	replacement.weapon_catalog = OpawCatalog
 	root.add_child(replacement)
 	replacement.set_physics_process(false)
 	await process_frame

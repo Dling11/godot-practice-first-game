@@ -1,6 +1,6 @@
-[gd_resource type="SpriteFrames" load_steps=10 format=3]
+[gd_resource type="SpriteFrames" format=3 uid="uid://c5h0sls5pwrim"]
 
-[ext_resource type="Texture2D" path="res://assets/vfx/abilities/king/king_skill_4_ground_vfx_sheet_256.png" id="1_ground"]
+[ext_resource type="Texture2D" uid="uid://dv8uqxaobowm1" path="res://assets/vfx/abilities/king/king_skill_4_ground_vfx_sheet_256.png" id="1_ground"]
 
 [sub_resource type="AtlasTexture" id="Skill4Ground_0"]
 atlas = ExtResource("1_ground")
@@ -26,28 +26,52 @@ region = Rect2(0, 256, 256, 256)
 atlas = ExtResource("1_ground")
 region = Rect2(256, 256, 256, 256)
 
-[sub_resource type="AtlasTexture" id="Skill4Ground_6"]
-atlas = ExtResource("1_ground")
-region = Rect2(512, 256, 256, 256)
-
 [sub_resource type="AtlasTexture" id="Skill4Ground_7"]
 atlas = ExtResource("1_ground")
 region = Rect2(768, 256, 256, 256)
 
+[sub_resource type="AtlasTexture" id="Skill4Ground_6"]
+atlas = ExtResource("1_ground")
+region = Rect2(512, 256, 256, 256)
+
 [resource]
 animations = [{
-"frames": [{"duration": 1.0, "texture": SubResource("Skill4Ground_0")}, {"duration": 1.0, "texture": SubResource("Skill4Ground_1")}, {"duration": 1.0, "texture": SubResource("Skill4Ground_2")}, {"duration": 1.0, "texture": SubResource("Skill4Ground_3")}, {"duration": 1.0, "texture": SubResource("Skill4Ground_4")}, {"duration": 1.0, "texture": SubResource("Skill4Ground_5")}],
-"loop": false,
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Skill4Ground_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("Skill4Ground_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("Skill4Ground_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("Skill4Ground_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("Skill4Ground_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("Skill4Ground_5")
+}],
+"loop": 0,
 "name": &"build_up",
 "speed": 15.0
 }, {
-"frames": [{"duration": 1.0, "texture": SubResource("Skill4Ground_6")}],
-"loop": false,
-"name": &"explosion",
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Skill4Ground_7")
+}],
+"loop": 1,
+"name": &"crater",
 "speed": 1.0
 }, {
-"frames": [{"duration": 1.0, "texture": SubResource("Skill4Ground_7")}],
-"loop": true,
-"name": &"crater",
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Skill4Ground_6")
+}],
+"loop": 0,
+"name": &"explosion",
 "speed": 1.0
 }]

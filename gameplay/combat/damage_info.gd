@@ -2,6 +2,7 @@ class_name DamageInfo
 extends RefCounted
 
 var amount: float
+var raw_amount: float
 var source: Node
 var direction: Vector2
 var knockback_strength: float
@@ -16,6 +17,7 @@ func _init(
 	new_stagger_seconds := 0.0
 ) -> void:
 	amount = new_amount
+	raw_amount = new_amount
 	source = new_source
 	direction = new_direction.normalized()
 	knockback_strength = maxf(new_knockback_strength, 0.0)

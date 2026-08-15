@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://4l3spvpulsnw" path="res://entities/player/presentation/player_aim_visual.gd" id="4_aim"]
 [ext_resource type="Script" uid="uid://bewr0rcrltrhq" path="res://entities/player/components/melee_attack_component.gd" id="5_attack"]
 [ext_resource type="Script" uid="uid://6520tclsqofq" path="res://gameplay/combat/melee_hitbox.gd" id="6_hitbox"]
-[ext_resource type="Resource" uid="uid://bjhgo0si3p63v" path="res://data/weapons/ashwood_blade.tres" id="7_sword_data"]
+[ext_resource type="Resource" path="res://data/weapons/king_signature_sword.tres" id="7_sword_data"]
 [ext_resource type="Script" uid="uid://cciyoum4pr3f7" path="res://entities/player/components/evade_component.gd" id="9_evade"]
 [ext_resource type="Resource" path="res://data/evade/player_dash.tres" id="10_dash_data"]
 [ext_resource type="Script" uid="uid://1th6uujswp43" path="res://gameplay/combat/health_component.gd" id="11_health"]
@@ -33,7 +33,7 @@
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_piercing_rush_thrust.ogg" id="32_pierce_thrust"]
 [ext_resource type="Resource" path="res://data/skills/king_starting_loadout.tres" id="26_loadout"]
 [ext_resource type="Resource" path="res://data/skills/king_starting_loadout.tres" id="38_debug_loadout"]
-[ext_resource type="Resource" path="res://data/items/opaw_weapon_catalog.tres" id="27_weapon_catalog"]
+[ext_resource type="Resource" path="res://data/items/king_weapon_catalog.tres" id="27_weapon_catalog"]
 [ext_resource type="Script" uid="uid://bdrcc6co0unfp" path="res://entities/player/presentation/player_weapon_visual.gd" id="28_weapon_visual"]
 [ext_resource type="Script" uid="uid://dluv63hfr7xdh" path="res://entities/player/presentation/sweeping_cut_visual.gd" id="29_sweep_visual"]
 [ext_resource type="Texture2D" path="res://assets/skills/opaw/warrior/piercing_rush/opaw_piercing_rush_vfx_sheet_192x192.png" id="30_pierce_vfx"]
@@ -74,6 +74,7 @@
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/abilities/king/king_skill_4_first_impact.wav" id="74_skill_4_impact"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/abilities/king/king_skill_4_explosion.wav" id="75_skill_4_explosion"]
 [ext_resource type="Shader" path="res://assets/vfx/abilities/king/king_skill_4_sword_sink.gdshader" id="76_skill_4_sink"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/ui/player_action_denied.mp3" id="77_action_denied"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_sweep"]
 points = PackedVector2Array(3, -9, 14, -28, 39, -24, 48, 0, 39, 24, 14, 28, 3, 9)
@@ -480,7 +481,7 @@ stream = ExtResource("47_level_chime")
 volume_db = -7.0
 bus = &"UI"
 
-[node name="PlayerActionSfx" type="Node2D" parent="." unique_id=1478518642 node_paths=PackedStringArray("sword_swing_player", "ability_player", "dash_player", "ability_component", "ability_2_component", "ability_3_component", "ability_4_component", "piercing_charge_player", "piercing_thrust_player", "consecutive_charge_player", "consecutive_flurry_player", "consecutive_final_player", "echoing_sever_fracture_player", "riftbreak_ground_slam_player", "sovereign_pursuit_landing_player", "sovereign_pursuit_launch_player", "skill_4_formation_player", "skill_4_first_impact_player", "skill_4_explosion_player")]
+[node name="PlayerActionSfx" type="Node2D" parent="." unique_id=1478518642 node_paths=PackedStringArray("sword_swing_player", "ability_player", "dash_player", "ability_component", "ability_2_component", "ability_3_component", "ability_4_component", "piercing_charge_player", "piercing_thrust_player", "consecutive_charge_player", "consecutive_flurry_player", "consecutive_final_player", "echoing_sever_fracture_player", "riftbreak_ground_slam_player", "sovereign_pursuit_landing_player", "sovereign_pursuit_launch_player", "skill_4_formation_player", "skill_4_first_impact_player", "skill_4_explosion_player", "action_denied_player")]
 script = ExtResource("22_player_sfx")
 sword_swing_player = NodePath("SwordSwing")
 ability_player = NodePath("WeaponTechnique")
@@ -501,6 +502,7 @@ sovereign_pursuit_launch_player = NodePath("SovereignPursuitLaunch")
 skill_4_formation_player = NodePath("Skill4Formation")
 skill_4_first_impact_player = NodePath("Skill4FirstImpact")
 skill_4_explosion_player = NodePath("Skill4Explosion")
+action_denied_player = NodePath("ActionDenied")
 
 [node name="SwordSwing" type="AudioStreamPlayer2D" parent="PlayerActionSfx" unique_id=1524140265]
 stream = ExtResource("23_sword_swing")
@@ -577,6 +579,12 @@ stream = ExtResource("75_skill_4_explosion")
 volume_db = -1.5
 bus = &"SFX"
 
+[node name="ActionDenied" type="AudioStreamPlayer2D" parent="PlayerActionSfx"]
+stream = ExtResource("77_action_denied")
+volume_db = -8.0
+pitch_scale = 0.94
+bus = &"SFX"
+
 [node name="Name" type="Label" parent="." unique_id=336850558]
 visible = false
 offset_left = -18.0
@@ -597,6 +605,7 @@ horizontal_alignment = 1
 [connection signal="interaction_finished" from="." to="VisualRoot/Body" method="resume_locomotion"]
 [connection signal="interaction_started" from="." to="VisualRoot/Body" method="play_interaction"]
 [connection signal="movement_changed" from="." to="VisualRoot/Body" method="set_movement"]
+[connection signal="action_denied" from="." to="PlayerActionSfx" method="play_action_denied"]
 [connection signal="attack_finished" from="MeleeAttackComponent" to="VisualRoot/Body" method="resume_locomotion"]
 [connection signal="attack_finished" from="MeleeAttackComponent" to="VisualRoot/WeaponVisual" method="resume_locomotion"]
 [connection signal="phase_changed" from="MeleeAttackComponent" to="VisualRoot/Body" method="play_attack_phase"]

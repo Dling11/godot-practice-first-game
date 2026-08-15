@@ -3,6 +3,7 @@ extends SceneTree
 const PlayerScene = preload("res://entities/player/player.tscn")
 const EnemyScene = preload("res://entities/enemies/forsaken_thrall/forsaken_thrall.tscn")
 const DamageInfoScript = preload("res://gameplay/combat/damage_info.gd")
+const OpawCatalog = preload("res://data/items/opaw_weapon_catalog.tres")
 
 
 func _initialize() -> void:
@@ -46,6 +47,7 @@ func _run() -> void:
 		return
 	var player := PlayerScene.instantiate()
 	player.character_id = &"opaw"
+	player.weapon_catalog = OpawCatalog
 	player.get_node("VisualRoot/Body").sprite_frames = load(
 		"res://assets/characters/playable/opaw/compact_armless/opaw_compact_armless_sprite_frames.tres"
 	)

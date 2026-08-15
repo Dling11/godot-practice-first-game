@@ -2,6 +2,7 @@ extends SceneTree
 
 const PlayerScene = preload("res://entities/player/player.tscn")
 const KingFrames = preload("res://assets/characters/playable/king/simple_reboot/king_simple_sprite_frames.tres")
+const KingSword = preload("res://data/weapons/king_signature_sword.tres")
 
 
 func _initialize() -> void:
@@ -18,6 +19,14 @@ func _run() -> void:
 	var weapon_sprite := player.get_node("VisualRoot/WeaponVisual/Weapon") as Sprite2D
 	if player.character_id != &"king" or body.sprite_frames != KingFrames:
 		_fail("King is not the temporary active player presentation.")
+		return
+	if (
+		player.attack_component.weapon != KingSword
+		or player.weapon_visual.weapon != KingSword
+		or player.get_equipped_weapon_item() == null
+		or player.get_equipped_weapon_item().item_id != KingSword.weapon_id
+	):
+		_fail("King is still loading an Opaw weapon instead of his signature sword.")
 		return
 	if weapon_sprite.visible:
 		_fail("King's integrated sword is being duplicated by Opaw's detached weapon presentation.")

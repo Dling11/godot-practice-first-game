@@ -7,6 +7,7 @@ signal proximity_changed(is_near: bool, prompt_text: String, prompt_icon: Textur
 enum ChestTier {
 	FOREST_CACHE,
 	ROOTBOUND_RELIQUARY,
+	VARKUUN_CHEST,
 }
 
 @export var loot_table: LootTableDefinition
@@ -15,13 +16,15 @@ enum ChestTier {
 @export var open_texture: Texture2D
 @export var rootbound_closed_texture: Texture2D
 @export var rootbound_open_texture: Texture2D
+@export var varkuun_closed_texture: Texture2D
+@export var varkuun_open_texture: Texture2D
 @export var glow: Polygon2D
 @export var visual_root: Node2D
 @export var interaction_shape: CollisionShape2D
 @export var physical_body: StaticBody2D
 @export var physical_shape: CollisionShape2D
 @export var spawn_effect: ChestSpawnEffect
-@export_enum("Forest Cache", "Rootbound Reliquary") var chest_tier: int = (
+@export_enum("Forest Cache", "Rootbound Reliquary", "Varkuun Chest") var chest_tier: int = (
 	ChestTier.FOREST_CACHE
 )
 @export var interaction_text := "PRESS F TO CLAIM REWARD"
@@ -48,6 +51,8 @@ func _ready() -> void:
 		or open_texture == null
 		or rootbound_closed_texture == null
 		or rootbound_open_texture == null
+		or varkuun_closed_texture == null
+		or varkuun_open_texture == null
 		or glow == null
 		or visual_root == null
 		or interaction_shape == null
@@ -73,7 +78,7 @@ func _ready() -> void:
 	).set_ease(Tween.EASE_OUT)
 	spawn_effect.play(
 		get_tier_accent(),
-		chest_tier == ChestTier.ROOTBOUND_RELIQUARY
+		chest_tier != ChestTier.FOREST_CACHE
 	)
 	get_tree().create_timer(0.32).timeout.connect(
 		_arm_physical_footprint,
@@ -126,12 +131,16 @@ func _claim_reward() -> Dictionary:
 
 
 func get_tier_accent() -> Color:
+	if chest_tier == ChestTier.VARKUUN_CHEST:
+		return Color(0.58, 0.84, 0.18, 1.0)
 	if chest_tier == ChestTier.ROOTBOUND_RELIQUARY:
 		return Color(0.67, 0.42, 0.86, 1.0)
 	return Color(0.84, 0.68, 0.26, 1.0)
 
 
 func get_display_name() -> String:
+	if chest_tier == ChestTier.VARKUUN_CHEST:
+		return "VARKUUN'S CHEST"
 	if chest_tier == ChestTier.ROOTBOUND_RELIQUARY:
 		return "ROOTBOUND RELIQUARY"
 	return "FOREST CACHE"
@@ -140,7 +149,16 @@ func get_display_name() -> String:
 func _apply_tier_presentation() -> void:
 	var footprint := physical_shape.shape.duplicate() as RectangleShape2D
 	var interaction := interaction_shape.shape.duplicate() as RectangleShape2D
-	if chest_tier == ChestTier.ROOTBOUND_RELIQUARY:
+	if chest_tier == ChestTier.VARKUUN_CHEST:
+		closed_texture = varkuun_closed_texture
+		open_texture = varkuun_open_texture
+		chest_sprite.position.y = -31.0
+		glow.position.y = -16.0
+		glow.scale = Vector2(1.18, 1.16)
+		footprint.size = Vector2(52.0, 16.0)
+		interaction.size = Vector2(86.0, 56.0)
+		interaction_text = "PRESS F TO OPEN VARKUUN'S CHEST"
+	elif chest_tier == ChestTier.ROOTBOUND_RELIQUARY:
 		closed_texture = rootbound_closed_texture
 		open_texture = rootbound_open_texture
 		chest_sprite.position.y = -30.0

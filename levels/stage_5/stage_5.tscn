@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3]
+[gd_scene load_steps=37 format=3]
 
 [ext_resource type="Script" path="res://levels/stage_5/stage_5_flow.gd" id="1_flow"]
 [ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="2_player"]
@@ -32,11 +32,13 @@
 [ext_resource type="AudioStream" path="res://assets/audio/music/boss/varkuun_battle_rpg_theme_loop.ogg" id="30_boss_music"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/enemies/varkuun/varkuun_descent.wav" id="31_descent"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/enemies/varkuun/varkuun_landing.wav" id="32_landing"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/portraits/king_portrait_96x96.png" id="33_king_portrait"]
+[ext_resource type="Resource" path="res://data/loot/forest/stages/stage_5_loot_table.tres" id="34_loot_table"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_boss_trigger"]
 size = Vector2(900, 84)
 
-[node name="DeadForest" type="Node" node_paths=PackedStringArray("player", "boss", "combat_hud", "character_menu", "boss_hud", "boss_trigger", "portal_parent", "portal_spawn_point", "dialogue_panel", "entrance_descent", "entrance_landing")]
+[node name="DeadForest" type="Node" node_paths=PackedStringArray("player", "boss", "combat_hud", "character_menu", "boss_hud", "boss_trigger", "portal_parent", "portal_spawn_point", "reward_parent", "dialogue_panel", "entrance_descent", "entrance_landing")]
 script = ExtResource("1_flow")
 player = NodePath("World/Actors/Player")
 boss = NodePath("World/Actors/Stage5Boss")
@@ -46,8 +48,11 @@ boss_hud = NodePath("UI/BossHealthHUD")
 boss_trigger = NodePath("World/BossArenaTrigger")
 portal_parent = NodePath("World/Effects")
 portal_spawn_point = NodePath("SpawnPoints/ReturnPortal")
+reward_parent = NodePath("World/Actors")
+stage_loot_table = ExtResource("34_loot_table")
 dialogue_panel = NodePath("UI/DialoguePanel")
 boss_portrait = ExtResource("29_portrait")
+king_portrait = ExtResource("33_king_portrait")
 boss_music = ExtResource("30_boss_music")
 entrance_descent = NodePath("Services/EntranceDescent")
 entrance_landing = NodePath("Services/EntranceLanding")

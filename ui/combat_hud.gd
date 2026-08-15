@@ -295,10 +295,20 @@ func _on_stage_reward_granted(result: Dictionary) -> void:
 	var title := "%d MATERIALS" % total_quantity
 	if not recipe_ids.is_empty():
 		title += "  •  %d BLUEPRINTS" % recipe_ids.size()
+	var key_item_ids: PackedStringArray = result.get(
+		"key_item_ids",
+		PackedStringArray()
+	)
+	if key_item_ids.has("forest_core_gear_seal"):
+		title += "  •  GEAR CRAFTING UNLOCKED"
 	_queue_loot_notification(
 		StageChestIcon,
 		title,
-		"FIRST CLEAR" if bool(result.get("first_clear", false)) else "REPLAY CHEST"
+		(
+			"FIRST CLEAR  •  FOREST CORE SEAL"
+			if key_item_ids.has("forest_core_gear_seal")
+			else ("FIRST CLEAR" if bool(result.get("first_clear", false)) else "REPLAY CHEST")
+		)
 	)
 
 

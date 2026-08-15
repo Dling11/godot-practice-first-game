@@ -66,7 +66,9 @@ func _show_cooldown(duration_seconds: float) -> void:
 	if _cooldown_tween != null and _cooldown_tween.is_valid():
 		_cooldown_tween.kill()
 	modulate = Color(0.58, 0.58, 0.58, 1.0)
-	activation_button.disabled = true
+	# Cooldown remains an actionable rejected state so keyboard, controller,
+	# mouse, and future touch input all reach the shared denied-action feedback.
+	activation_button.disabled = false
 	state_label.text = "%.1f" % duration_seconds
 	state_label.add_theme_color_override("font_color", Color(0.94, 0.72, 0.38, 1))
 	cooldown_bar.max_value = duration_seconds

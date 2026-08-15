@@ -22,6 +22,7 @@ extends Node2D
 @export var skill_4_formation_player: AudioStreamPlayer2D
 @export var skill_4_first_impact_player: AudioStreamPlayer2D
 @export var skill_4_explosion_player: AudioStreamPlayer2D
+@export var action_denied_player: AudioStreamPlayer2D
 
 ## StarNinjas sword.9 is intentionally a long build-up recording: its decisive
 ## metal burst starts at roughly 0.51 seconds. Skill 2 needs that burst on the
@@ -97,6 +98,10 @@ func play_ability_strike(strike_index: int, strike_count: int, _duration_seconds
 
 func play_dash(_direction: Vector2) -> void:
 	_play(dash_player, 0.96)
+
+
+func play_action_denied(_action: StringName) -> void:
+	_play(action_denied_player, 0.94)
 
 
 func _play(player: AudioStreamPlayer2D, pitch: float, from_position_seconds: float = 0.0) -> void:

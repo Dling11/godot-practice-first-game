@@ -144,8 +144,8 @@ func _test_click_and_hit() -> bool:
 		hit.knockback = info.knockback_strength
 	)
 	slot.activation_button.pressed.emit()
-	if not player.ability_1_component.is_casting() or not slot.activation_button.disabled:
-		_fail("Clicking slot 1 did not request Piercing Rush and lock its cooldown button.")
+	if not player.ability_1_component.is_casting() or slot.activation_button.disabled:
+		_fail("Clicking slot 1 did not request Piercing Rush while keeping its cooldown feedback tappable.")
 		return false
 	for frame in range(45):
 		await physics_frame

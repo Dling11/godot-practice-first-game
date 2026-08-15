@@ -1,5 +1,17 @@
 # Audio Attribution
 
+## Player Cooldown-Denied Feedback
+
+- **Runtime file:** `sfx/ui/player_action_denied.mp3`
+- **Selected recording:** `Menu Error.mp3`
+- **Pack:** `7 Assorted Sound Effects (Menu, Level Up)`
+- **Author:** Joth
+- **License:** CC0 / public domain
+- **Source:** https://opengameart.org/content/7-assorted-sound-effects-menu-level-up
+- **Downloaded:** 2026-08-15
+
+The short denied-action recording plays only when a player requests Dash or an equipped skill while that specific action still has cooldown remaining. The full source ZIP is preserved under `art_source/archive/audio/player_invalid_action_cc0_source/`.
+
 ## Varkuun, Lord of the Withered Grove
 
 - **Boss loop:** `music/boss/varkuun_battle_rpg_theme_loop.ogg`
@@ -17,6 +29,8 @@
 - **Phase cue:** `Magic Spell SFX` by JaggedStone, CC0 — https://opengameart.org/content/magic-spell-sfx
 
 The louder fantasy/JRPG orchestral loop begins only after Varkuun's entrance dialogue closes. The previously evaluated `Determined Pursuit` WAV is inactive and preserved under `art_source/archive/audio/varkuun_cc0_sources/`. Combat jump audio is three-part: a short recorded launch, the longer air-rush throughout travel, and a separate recorded ground impact on landing. The complete downloaded monster pack is preserved in the same archive; only selected runtime files are imported.
+
+The root-prison presentation reuses only Varkuun's attributed CC0 suite: the earth-spell recording is pitched separately for warning, lock, and execution rumble, while the attributed landing/impact recording supplies the final heavy execution transient. These layers observe `root_locked` and `root_executed`; they do not decide capture or damage.
 
 ## Original Opaw Level-Up Chime
 

@@ -7,6 +7,10 @@ signal damage_blocked(info: DamageInfo)
 signal died
 
 @export_range(1.0, 999999.0, 1.0) var maximum_health: float = 100.0
+## Positive armor uses diminishing returns: 100 armor halves accepted damage.
+## Keeping mitigation here makes the same rule available to enemies, players,
+## and future equipment without coupling damage sources to armor ownership.
+@export_range(0.0, 9999.0, 1.0) var armor_rating: float = 0.0
 
 var current_health: float
 var is_invulnerable := false
@@ -48,6 +52,8 @@ func apply_damage(info: DamageInfo) -> bool:
 		damage_blocked.emit(info)
 		return false
 
+	info.raw_amount = info.amount
+	info.amount = resolve_damage(info.amount)
 	current_health = maxf(current_health - info.amount, 0.0)
 	damaged.emit(info)
 	health_changed.emit(current_health, maximum_health)
@@ -58,3 +64,13 @@ func apply_damage(info: DamageInfo) -> bool:
 
 func set_invulnerable(value: bool) -> void:
 	is_invulnerable = value
+
+
+func resolve_damage(raw_damage: float) -> float:
+	if raw_damage <= 0.0:
+		return 0.0
+	return raw_damage * 100.0 / (100.0 + maxf(armor_rating, 0.0))
+
+
+func get_armor_reduction_ratio() -> float:
+	return 1.0 - 100.0 / (100.0 + maxf(armor_rating, 0.0))

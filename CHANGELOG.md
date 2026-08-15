@@ -1,5 +1,33 @@
 # Changelog
 
+## 2026-08-15 - King, Varkuun, and Stage II Balance Pass
+
+- Closed Varkuun's final-phase kite loophole: at 30% health or lower, sustained long range can start a ready 3/4/5-jump pursuit without requiring the boss to land a melee attack first. Full-map bounds, committed landing markers, prison sequencing, and cooldowns remain unchanged.
+- Added reusable diminishing-return armor to `HealthComponent` and enemy armor data to `EnemyDefinition`. Varkuun now has 30 armor, preserving raw and accepted damage values for accurate feedback and future player equipment integration.
+- Separated normal-hit damage from weapon skill power. King's own signature sword retains 25 skill power but rolls 10-12 per normal swing.
+- Added a distinct King weapon/catalog identity with integrated visual support and version-1 save migration. Opaw's Ashwood/Iron catalog retains its original fixed 25/32 damage and Balanced Slash presentation instead of leaking into King.
+- Replaced King's inherited 58x96 Balanced Slash authority with his dedicated 48x56 sword form and matching restrained presentation profile.
+- Raised only Stage II's active-enemy ceiling from four to six, preserving its authored reinforcement queue and every other stage-specific ceiling.
+- Added and updated focused regression coverage for armor, boss anti-kiting, variable basic damage, tightened edge contact, equipment separation, sword style, and Stage II pressure.
+
+## 2026-08-15 - Varkuun Conversation and Stage V Milestone Chest
+
+- Added a three-line defeat exchange beginning with Varkuun's `Impossible...` and ending on King's answer, establishing a reusable dramatic final-quote pattern for later bosses.
+- Delayed chest manifestation until 2.2 seconds after the defeat dialogue closes, allowing Varkuun's complete collapse, corpse hold, and fade to finish before the reward occupies his death position.
+- Split the root-prison sound sequence into warning, lock, low execution rumble, and a separate heavy impact layered on the 300-damage eruption.
+- Corrected the owner-tested chest scale from an oversized 112x96 presentation to 74x66, exactly two pixels larger per axis than Stage III's Reliquary, and tightened its glow, interaction, and physical footprint accordingly.
+- Reworked the chest palette around restrained oxblood/crimson and royal plum panels, aged gold hardware, dark petrified structure, and the existing small green core so its boss tier is noticeable without becoming oversaturated.
+- Expanded the entrance into a six-line Varkuun/King exchange with per-line 96x96 portrait switching, a new identity-matched King portrait, and a visible mouse-operated Skip control.
+- Added Varkuun's Chest as a third, larger major-boss chest tier with distinct petrified-wood/root closed and open art instead of reusing Stage III's Rootbound Reliquary.
+- Added the 24x24 Varkuun Core boss material and a Stage V loot table: first clear grants two cores plus the permanent Forest core-gear seal/discovery, while replays grant one core without repeating the seal.
+- Changed Stage V completion so the chest appears at Varkuun's actual death position and the return portal/story/save finalize only after a successful claim.
+
+## 2026-08-15 - Shared Cooldown-Denied Feedback
+
+- Added a dedicated real CC0 error/denied recording for repeated Dash and equipped-skill requests while their cooldown remains active.
+- Routed keyboard, controller, mouse, and future touch attempts through one `Player.action_denied` presentation signal without buffering or changing cooldown authority.
+- Kept grey countdown controls tappable for feedback while preserving sealed and unavailable controls as disabled.
+
 ## 2026-08-15 - Varkuun Entrance and Boss Audio
 
 - Named the Stage 5 guardian Varkuun, Lord of the Withered Grove.

@@ -27,6 +27,8 @@ func _run() -> void:
 	boss.desperation_final_recovery_seconds = 0.04
 	boss.desperation_root_wind_up_seconds = 0.12
 	boss.desperation_root_tracking_seconds = 0.08
+	boss.desperation_anti_kite_distance = 190.0
+	boss.desperation_anti_kite_hold_seconds = 0.05
 	root.add_child(boss)
 	await process_frame
 	await physics_frame
@@ -89,8 +91,8 @@ func _run() -> void:
 		_fail("Low-health pursuit did not hand off into the faster prison.")
 		return
 
-	# Bypass the prison duration only inside the test. The next legal selection
-	# must continue with four jumps instead of treating the burst as one-use.
+	# Bypass the prison duration only inside the test. A far-away target must
+	# trigger the next chain without first donating a melee contact to the boss.
 	locks.clear()
 	target_positions.clear()
 	landing_strengths.clear()
@@ -99,10 +101,12 @@ func _run() -> void:
 	boss.state = Stage5Boss.State.CHASE
 	boss._root_ready = false
 	boss._jump_cooldown = 0.0
-	boss._attacks_since_jump = 1
+	boss._attacks_since_jump = 0
+	boss.global_position = Vector2(120.0, 120.0)
+	target.global_position = Vector2(720.0, 420.0)
 	await _wait_for_root_handoff(root_wind_up_durations, 1)
 	if desperation_events[0] != 2 or locks.size() != 4:
-		_fail("Low-health pursuit did not recur as the next four-jump chain (events=%d locks=%d)." % [desperation_events[0], locks.size()])
+		_fail("Low-health anti-kite pursuit did not recur without a melee gate (events=%d locks=%d)." % [desperation_events[0], locks.size()])
 		return
 	if boss._next_jump_chain_count(Stage5Boss.JumpTier.DESPERATION) != 5:
 		_fail("Low-health pursuit cycle did not advance from 3/4 into 5 jumps.")

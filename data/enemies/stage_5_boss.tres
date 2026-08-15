@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="EnemyDefinition" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="EnemyDefinition" format=3 uid="uid://hqely2c0vqjl"]
 
-[ext_resource type="Script" path="res://data/enemies/enemy_definition.gd" id="1"]
+[ext_resource type="Script" uid="uid://c5yp0kfbjt25e" path="res://data/enemies/enemy_definition.gd" id="1"]
 
 [resource]
 script = ExtResource("1")
 display_name = "Varkuun, Lord of the Withered Grove"
 maximum_health = 900.0
+armor_rating = 30.0
 move_speed = 58.0
 acceleration = 480.0
 movement_footprint_radius = 18.0
@@ -13,9 +14,7 @@ crowd_separation_radius = 54.0
 attack_range = 82.0
 attack_damage = 28.0
 wind_up_seconds = 0.62
-active_seconds = 0.12
 recovery_seconds = 0.66
 spawn_seconds = 0.6
 experience_reward = 0
-coin_reward = 0
 crowd_control_tier = 2

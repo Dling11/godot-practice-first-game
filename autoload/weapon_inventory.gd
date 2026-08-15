@@ -8,6 +8,7 @@ signal weapon_equipped(character_id: StringName, item_id: StringName)
 signal inventory_reset
 
 const OpawCatalog: WeaponCatalogDefinition = preload("res://data/items/opaw_weapon_catalog.tres")
+const KingCatalog: WeaponCatalogDefinition = preload("res://data/items/king_weapon_catalog.tres")
 const SNAPSHOT_VERSION := 1
 
 var _owned_weapon_ids: Dictionary = {}
@@ -22,6 +23,7 @@ func reset_inventory() -> void:
 	_owned_weapon_ids.clear()
 	_equipped_weapon_ids.clear()
 	_register_default(&"opaw", OpawCatalog)
+	_register_default(&"king", KingCatalog)
 	inventory_reset.emit()
 
 
@@ -72,7 +74,7 @@ func can_restore_snapshot(snapshot: Dictionary) -> bool:
 	var restored_owned := {}
 	for raw_item_id: Variant in raw_owned:
 		var item_id := StringName(String(raw_item_id))
-		if item_id.is_empty() or OpawCatalog.find_weapon(item_id) == null:
+		if item_id.is_empty() or _find_weapon(item_id) == null:
 			return false
 		restored_owned[item_id] = true
 	if not restored_owned.has(OpawCatalog.default_weapon.item_id):
@@ -83,7 +85,7 @@ func can_restore_snapshot(snapshot: Dictionary) -> bool:
 		var item_id := StringName(String(raw_equipped[raw_character_id]))
 		if character_id.is_empty() or not restored_owned.has(item_id):
 			return false
-		if OpawCatalog.find_weapon(item_id) == null:
+		if _find_weapon(item_id) == null:
 			return false
 	return true
 
@@ -95,11 +97,16 @@ func restore_snapshot(snapshot: Dictionary) -> bool:
 	_equipped_weapon_ids.clear()
 	for raw_item_id: Variant in snapshot["owned_weapon_ids"]:
 		_owned_weapon_ids[StringName(String(raw_item_id))] = true
+	# Version-1 saves predate King's independent signature-weapon identity.
+	if not _owned_weapon_ids.has(KingCatalog.default_weapon.item_id):
+		_owned_weapon_ids[KingCatalog.default_weapon.item_id] = true
 	var raw_equipped: Dictionary = snapshot["equipped_weapon_ids"]
 	for raw_character_id: Variant in raw_equipped:
 		_equipped_weapon_ids[StringName(String(raw_character_id))] = StringName(
 			String(raw_equipped[raw_character_id])
 		)
+	if not _equipped_weapon_ids.has(&"king"):
+		_equipped_weapon_ids[&"king"] = KingCatalog.default_weapon.item_id
 	inventory_reset.emit()
 	for raw_character_id: Variant in _equipped_weapon_ids:
 		weapon_equipped.emit(
@@ -164,3 +171,8 @@ func _sorted_owned_ids() -> PackedStringArray:
 		result.append(String(raw_item_id))
 	result.sort()
 	return result
+
+
+func _find_weapon(item_id: StringName) -> EquipmentDefinition:
+	var opaw_weapon := OpawCatalog.find_weapon(item_id)
+	return opaw_weapon if opaw_weapon != null else KingCatalog.find_weapon(item_id)

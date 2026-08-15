@@ -9,6 +9,9 @@ extends Node
 @export var jump_air: AudioStreamPlayer
 @export var jump_impact: AudioStreamPlayer
 @export var prison: AudioStreamPlayer
+@export var prison_lock: AudioStreamPlayer
+@export var execution_rumble: AudioStreamPlayer
+@export var execution_impact: AudioStreamPlayer
 @export var hurt: AudioStreamPlayer
 @export var phase: AudioStreamPlayer
 @export var defeat: AudioStreamPlayer
@@ -23,6 +26,8 @@ func _ready() -> void:
 	boss.state_changed.connect(_on_state_changed)
 	boss.slap_landed.connect(func(_p): slap.play())
 	boss.landed.connect(_on_landed)
+	boss.root_locked.connect(_on_root_locked)
+	boss.root_executed.connect(_on_root_executed)
 	var health := boss.get_node_or_null("HealthComponent") as HealthComponent
 	if health != null:
 		health.damaged.connect(_on_health_damaged)
@@ -43,6 +48,15 @@ func _on_state_changed(state: Stage5Boss.State, _duration: float) -> void:
 func _on_landed(_position: Vector2) -> void:
 	jump_air.stop()
 	jump_impact.play()
+
+
+func _on_root_locked(_position: Vector2, _captured_player: bool) -> void:
+	prison_lock.play()
+
+
+func _on_root_executed(_position: Vector2, _hit_player: bool) -> void:
+	execution_rumble.play()
+	execution_impact.play()
 
 
 func _on_health_damaged(_info: DamageInfo) -> void:

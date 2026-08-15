@@ -2,6 +2,8 @@ extends SceneTree
 
 const PlayerScene = preload("res://entities/player/player.tscn")
 const AshwoodBlade = preload("res://data/weapons/ashwood_blade.tres")
+const KingSword = preload("res://data/weapons/king_signature_sword.tres")
+const KingSwordForm = preload("res://data/weapons/attack_styles/king_sword_form.tres")
 const BalancedSlash = preload("res://data/weapons/attack_styles/balanced_slash.tres")
 const SwiftSlash = preload("res://data/weapons/attack_styles/swift_slash.tres")
 const HeavyCleave = preload("res://data/weapons/attack_styles/heavy_cleave.tres")
@@ -12,7 +14,7 @@ func _initialize() -> void:
 
 
 func _run() -> void:
-	var styles: Array[SwordAttackStyleDefinition] = [BalancedSlash, SwiftSlash, HeavyCleave]
+	var styles: Array[SwordAttackStyleDefinition] = [KingSwordForm, BalancedSlash, SwiftSlash, HeavyCleave]
 	var style_ids: Dictionary = {}
 	for style in styles:
 		if not style.is_valid_style():
@@ -22,8 +24,8 @@ func _run() -> void:
 	if style_ids.size() != styles.size():
 		_fail("Sword attack style IDs must be unique.")
 		return
-	if AshwoodBlade.attack_style != BalancedSlash:
-		_fail("Ashwood Blade must use the Balanced Slash style.")
+	if AshwoodBlade.attack_style != BalancedSlash or KingSword.attack_style != KingSwordForm:
+		_fail("Opaw's Balanced Slash and King's dedicated sword form are not separated.")
 		return
 
 	var player := PlayerScene.instantiate() as Player
@@ -38,32 +40,32 @@ func _run() -> void:
 		_fail("The down-facing sword does not connect at the body and point away from Opaw's head.")
 		return
 	if (
-		not is_equal_approx(AshwoodBlade.get_melee_forward_reach_pixels(), 58.0)
-		or not is_equal_approx(AshwoodBlade.get_melee_half_width_pixels(), 48.0)
-		or player.attack_component.collision_shape.shape != AshwoodBlade.melee_hitbox_shape
+		not is_equal_approx(KingSword.get_melee_forward_reach_pixels(), 48.0)
+		or not is_equal_approx(KingSword.get_melee_half_width_pixels(), 28.0)
+		or player.attack_component.collision_shape.shape != KingSword.melee_hitbox_shape
 	):
-		_fail("Balanced Slash is missing its authored 58-reach by 96-wide cleave fan.")
+		_fail("King's sword form is missing its tightened 48-reach by 56-wide contact fan.")
 		return
-	if BalancedSlash.normal_variant_count() != 3:
-		_fail("Balanced Slash must expose the approved three-swing visual sequence.")
+	if KingSwordForm.normal_variant_count() != 3:
+		_fail("King's sword form must expose the approved three-swing visual sequence.")
 		return
 	var opening_rotations := player.weapon_visual._attack_rotations(
 		&"right",
-		BalancedSlash.normal_variant_wind_up_arc(0),
-		BalancedSlash.normal_variant_strike_arc(0),
-		BalancedSlash.normal_variant_direction(0)
+		KingSwordForm.normal_variant_wind_up_arc(0),
+		KingSwordForm.normal_variant_strike_arc(0),
+		KingSwordForm.normal_variant_direction(0)
 	)
 	var return_rotations := player.weapon_visual._attack_rotations(
 		&"right",
-		BalancedSlash.normal_variant_wind_up_arc(1),
-		BalancedSlash.normal_variant_strike_arc(1),
-		BalancedSlash.normal_variant_direction(1)
+		KingSwordForm.normal_variant_wind_up_arc(1),
+		KingSwordForm.normal_variant_strike_arc(1),
+		KingSwordForm.normal_variant_direction(1)
 	)
 	if (
 		opening_rotations.x >= opening_rotations.y
 		or return_rotations.x <= return_rotations.y
-		or BalancedSlash.normal_variant_active_extension(2)
-		<= BalancedSlash.normal_variant_active_extension(0)
+		or KingSwordForm.normal_variant_active_extension(2)
+		<= KingSwordForm.normal_variant_active_extension(0)
 	):
 		_fail("The three-swing sequence lacks an opening, reverse return, or extended finish.")
 		return
@@ -76,12 +78,12 @@ func _run() -> void:
 		_fail("Normal attacks did not cycle through all three swing variants: %s" % [observed_variants])
 		return
 
-	var upgraded_weapon := AshwoodBlade.duplicate(true) as WeaponDefinition
+	var upgraded_weapon := KingSword.duplicate(true) as WeaponDefinition
 	upgraded_weapon.weapon_id = &"test_upgraded_blade"
 	upgraded_weapon.display_name = "Test Upgraded Blade"
 	upgraded_weapon.damage = 40.0
 	upgraded_weapon.world_visual_scale = 1.2
-	upgraded_weapon.attack_style = BalancedSlash
+	upgraded_weapon.attack_style = KingSwordForm
 	if not player.set_weapon_definition(upgraded_weapon):
 		_fail("An idle higher-grade sword could not reuse Opaw's weapon rig.")
 		return
@@ -96,10 +98,10 @@ func _run() -> void:
 		_fail("Weapon-specific world scale was not applied during the swap.")
 		return
 
-	var swift_weapon := AshwoodBlade.duplicate(true) as WeaponDefinition
+	var swift_weapon := KingSword.duplicate(true) as WeaponDefinition
 	swift_weapon.weapon_id = &"test_swift_blade"
 	swift_weapon.attack_style = SwiftSlash
-	var heavy_weapon := AshwoodBlade.duplicate(true) as WeaponDefinition
+	var heavy_weapon := KingSword.duplicate(true) as WeaponDefinition
 	heavy_weapon.weapon_id = &"test_heavy_blade"
 	heavy_weapon.attack_style = HeavyCleave
 	var heavy_shape := RectangleShape2D.new()

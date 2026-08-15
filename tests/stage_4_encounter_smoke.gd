@@ -11,11 +11,13 @@ func _initialize() -> void:
 
 
 func _run() -> void:
-	for early_scene: PackedScene in [Stage1Scene, Stage2Scene, Stage3Scene]:
-		var early_stage := early_scene.instantiate()
+	var expected_early_caps := [4, 6, 4]
+	var early_scenes: Array[PackedScene] = [Stage1Scene, Stage2Scene, Stage3Scene]
+	for scene_index in early_scenes.size():
+		var early_stage := early_scenes[scene_index].instantiate()
 		var early_controller := early_stage.get_node("GameplayServices/EncounterController") as EncounterController
-		if early_controller.max_active_enemies != 4:
-			_fail("Stages 1-3 must retain their four-enemy readability cap.")
+		if early_controller.max_active_enemies != expected_early_caps[scene_index]:
+			_fail("Stage %d lost its authored live-enemy cap of %d." % [scene_index + 1, expected_early_caps[scene_index]])
 			return
 		early_stage.free()
 

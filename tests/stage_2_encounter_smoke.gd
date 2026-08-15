@@ -20,8 +20,8 @@ func _run() -> void:
 	if controller.waves.size() != 7:
 		_fail("Stage 2 must use seven authored Grove waves.")
 		return
-	if controller.max_active_enemies != 4:
-		_fail("Stage 2 must retain the validated four-enemy active cap.")
+	if controller.max_active_enemies != 6:
+		_fail("Stage 2 must allow up to six active enemies for controlled horde pressure.")
 		return
 	if controller.portal_target_scene != "res://levels/stage_3/stage_3.tscn":
 		_fail("Stage 2's clear portal must continue directly into Stage 3.")

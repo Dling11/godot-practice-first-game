@@ -21,4 +21,3 @@ func _ready() -> void:
 		tween.tween_interval(index * 0.07)
 		for offset: Vector2 in routes[index]:
 			tween.tween_property(fly, "position", origin + offset, 0.22 + index * 0.015)
-

@@ -16,6 +16,7 @@ signal jump_height_changed(height_pixels: float)
 signal jump_target_locked(target_position: Vector2)
 signal landed(position: Vector2)
 signal slap_landed(position: Vector2)
+signal root_locked(position: Vector2, captured_player: bool)
 signal root_executed(position: Vector2, hit_player: bool)
 signal desperation_started
 
@@ -61,6 +62,8 @@ signal desperation_started
 @export_range(0.1, 10.0, 0.1) var single_jump_reuse_seconds := 4.6
 @export_range(0.1, 10.0, 0.1) var multi_jump_reuse_seconds := 3.8
 @export_range(0.1, 10.0, 0.1) var desperation_jump_reuse_seconds := 2.6
+@export_range(96.0, 600.0, 1.0, "suffix:px") var desperation_anti_kite_distance := 190.0
+@export_range(0.1, 2.0, 0.05, "suffix:s") var desperation_anti_kite_hold_seconds := 0.55
 
 @onready var health_component: HealthComponent = %HealthComponent
 @onready var body_collision: CollisionShape2D = $BodyCollision
@@ -101,6 +104,7 @@ var _active_jump_damage := 36.0
 var _active_root_wind_up_seconds := 0.72
 var _active_root_tracking_seconds := 0.55
 var _landing_feedback_strength := 5.0
+var _desperation_kite_elapsed := 0.0
 
 
 func _ready() -> void:
@@ -113,6 +117,7 @@ func _ready() -> void:
 		return
 	health_component.maximum_health = definition.maximum_health
 	health_component.current_health = definition.maximum_health
+	health_component.armor_rating = definition.armor_rating
 	health_component.died.connect(_die)
 	health_component.health_changed.connect(_on_health_changed)
 	knockback_component.configure(definition)
@@ -138,18 +143,33 @@ func _physics_process(delta: float) -> void:
 
 func _process_chase(delta: float) -> void:
 	var offset := target.global_position - global_position
+	var distance := offset.length()
 	if _root_ready:
+		_desperation_kite_elapsed = 0.0
 		_begin_root_prison(offset)
 		return
 	if _low_phase_pending:
 		_low_phase_pending = false
+		_desperation_kite_elapsed = 0.0
 		_begin_jump_sequence(offset)
 		return
-	var attacks_before_jump := 1 if _jump_tier() == JumpTier.DESPERATION else 2
-	if _jump_cooldown <= 0.0 and _attacks_since_jump >= attacks_before_jump:
+	var jump_tier := _jump_tier()
+	if jump_tier == JumpTier.DESPERATION and distance >= desperation_anti_kite_distance:
+		_desperation_kite_elapsed += delta
+	else:
+		_desperation_kite_elapsed = 0.0
+	var attacks_before_jump := 1 if jump_tier == JumpTier.DESPERATION else 2
+	var anti_kite_jump_ready := (
+		jump_tier == JumpTier.DESPERATION
+		and _desperation_kite_elapsed >= desperation_anti_kite_hold_seconds
+	)
+	if _jump_cooldown <= 0.0 and (
+		_attacks_since_jump >= attacks_before_jump or anti_kite_jump_ready
+	):
+		_desperation_kite_elapsed = 0.0
 		_begin_jump_sequence(offset)
 		return
-	if offset.length() <= definition.attack_range:
+	if distance <= definition.attack_range:
 		_begin_melee(offset)
 		return
 	_set_facing(offset)
@@ -458,6 +478,7 @@ func _lock_root_prison() -> void:
 			_root_effect.bind_restraint(player, self)
 			player.health_component.apply_damage(DamageInfo.new(root_capture_damage, self, facing_direction, 0.0, 0.0))
 	_root_effect.lock_target(captured, root_break_points)
+	root_locked.emit(_root_target_position, captured)
 
 
 func _execute_root_prison() -> void:

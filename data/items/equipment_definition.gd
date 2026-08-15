@@ -103,7 +103,10 @@ func is_equippable_weapon() -> bool:
 		and not compatible_classes.is_empty()
 		and weapon_definition != null
 		and weapon_definition.weapon_id == item_id
-		and weapon_definition.world_texture != null
+		and (
+			weapon_definition.world_texture != null
+			or weapon_definition.uses_integrated_visual
+		)
 	)
 
 

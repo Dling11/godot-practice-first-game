@@ -126,6 +126,7 @@ portal_target_scene = "res://levels/stage_3/stage_3.tscn"
 summon_effect_scene = ExtResource("14_summon")
 effects_parent = NodePath("../../World/Effects")
 projectiles_parent = NodePath("../../World/Projectiles")
+max_active_enemies = 6
 auto_start = false
 
 [node name="CombatFeedback" type="Node" parent="GameplayServices" unique_id=325602158 node_paths=PackedStringArray("player", "effects_parent", "camera")]

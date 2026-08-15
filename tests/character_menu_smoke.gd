@@ -49,7 +49,7 @@ func _run() -> void:
 		_fail("The live physical Tab event did not open the character menu and pause gameplay.")
 		return
 	if menu._equipment_cards.size() != 1 or root.gui_get_focus_owner() != menu._equipment_cards[0]:
-		_fail("Character menu did not build and focus Opaw's starter armory item.")
+		_fail("Character menu did not build and focus King's signature sword.")
 		return
 	var identity_title: Label = menu.get_node("Panel/Margin/Root/Header/Identity/Title")
 	if identity_title.text != "KING":
@@ -94,10 +94,10 @@ func _run() -> void:
 	menu._equipment_cards[0].pressed.emit()
 	if (
 		menu.equipment_detail_panel.current_definition == null
-		or menu.equipment_detail_panel.current_definition.rarity != EquipmentDefinition.Rarity.WOOD
+		or menu.equipment_detail_panel.current_definition.item_id != &"weapon_king_signature_sword"
 		or not menu.equipment_detail_panel.state_label.text.contains("ACTIVE COMBAT")
 	):
-		_fail("Selecting the Ashwood Blade did not update the active equipment detail surface.")
+		_fail("Selecting King's Sword did not update the active equipment detail surface.")
 		return
 	if not root.get_node("MaterialInventory").add_material(&"forest_mire_resin", 3):
 		_fail("Could not seed a real saved material quantity for Character & Bag validation.")

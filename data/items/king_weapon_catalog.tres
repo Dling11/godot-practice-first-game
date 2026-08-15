@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="WeaponCatalogDefinition" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://data/items/weapon_catalog_definition.gd" id="1_script"]
+[ext_resource type="Resource" path="res://data/items/equipment/king_signature_sword.tres" id="2_sword"]
+
+[resource]
+script = ExtResource("1_script")
+default_weapon = ExtResource("2_sword")
+weapons = Array[Resource]([ExtResource("2_sword")])

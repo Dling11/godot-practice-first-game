@@ -8,6 +8,7 @@ const ImpactScene = preload("res://gameplay/projectiles/bramble_seed_impact.tscn
 const ArenaScene = preload("res://levels/test_arena/test_arena.tscn")
 const OpawDashLightSwoosh = preload("res://assets/audio/sfx/opaw_dash_light_swoosh.wav")
 const OpawHurtImpact = preload("res://assets/audio/sfx/opaw_hurt_impact.wav")
+const PlayerActionDenied = preload("res://assets/audio/sfx/ui/player_action_denied.mp3")
 
 
 func _initialize() -> void:
@@ -33,6 +34,7 @@ func _run() -> void:
 		or not _valid_sfx_player(player_sfx.consecutive_flurry_player)
 		or not _valid_sfx_player(player_sfx.consecutive_final_player)
 		or not _valid_sfx_player(player_sfx.echoing_sever_fracture_player)
+		or not _valid_sfx_player(player_sfx.action_denied_player)
 		or player_sfx.piercing_thrust_player.stream == player_sfx.sword_swing_player.stream
 		or player_sfx.consecutive_flurry_player.stream == player_sfx.sword_swing_player.stream
 		or player_sfx.consecutive_final_player.stream == player_sfx.consecutive_flurry_player.stream
@@ -46,6 +48,20 @@ func _run() -> void:
 	if player_sfx.dash_player.stream != OpawDashLightSwoosh or player_sfx.dash_player.volume_db > -12.0:
 		_fail("Opaw's dash does not use the dedicated light swoosh at a safe volume.")
 		return
+	if player_sfx.action_denied_player.stream != PlayerActionDenied:
+		_fail("Cooldown rejection does not use the dedicated real CC0 denied-action recording.")
+		return
+	var denied_actions: Array[StringName] = []
+	player.action_denied.connect(func(action: StringName) -> void: denied_actions.append(action))
+	if not player.request_ability(2) or player.request_ability(2) or denied_actions != [&"skill_cooldown"]:
+		_fail("Repeated skill input did not emit exactly one shared cooldown-denied request.")
+		return
+	player.ability_2_component.cancel_cast()
+	player.ability_2_component.clear_cooldown()
+	if not player.request_evade(Vector2.RIGHT) or player.request_evade(Vector2.RIGHT) or denied_actions != [&"skill_cooldown", &"dash_cooldown"]:
+		_fail("Repeated Dash input did not emit the shared cooldown-denied request.")
+		return
+	player.evade_component.cancel_evade()
 
 	var thrall := ThrallScene.instantiate() as ForsakenThrall
 	var mireling := MirelingScene.instantiate() as Mireling

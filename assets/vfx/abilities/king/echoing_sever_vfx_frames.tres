@@ -1,15 +1,23 @@
-[gd_resource type="SpriteFrames" load_steps=15 format=3]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bgohwla5wyxp4"]
 
-[ext_resource type="Texture2D" path="res://assets/vfx/abilities/king/echoing_sever_primary_vfx_sheet_160.png" id="1_primary"]
-[ext_resource type="Texture2D" path="res://assets/vfx/abilities/king/echoing_sever_echo_vfx_sheet_160.png" id="2_echo"]
+[ext_resource type="Texture2D" uid="uid://dei8rbv38jvn8" path="res://assets/vfx/abilities/king/echoing_sever_primary_vfx_sheet_160.png" id="1_primary"]
+[ext_resource type="Texture2D" uid="uid://b7271uipxib3d" path="res://assets/vfx/abilities/king/echoing_sever_echo_vfx_sheet_160.png" id="2_echo"]
 
-[sub_resource type="AtlasTexture" id="PrimaryAtlas_0"]
-atlas = ExtResource("1_primary")
-region = Rect2(0, 0, 160, 160)
+[sub_resource type="AtlasTexture" id="EchoAtlas_2"]
+atlas = ExtResource("2_echo")
+region = Rect2(320, 0, 160, 160)
 
-[sub_resource type="AtlasTexture" id="PrimaryAtlas_1"]
-atlas = ExtResource("1_primary")
-region = Rect2(160, 0, 160, 160)
+[sub_resource type="AtlasTexture" id="EchoAtlas_3"]
+atlas = ExtResource("2_echo")
+region = Rect2(0, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="EchoAtlas_4"]
+atlas = ExtResource("2_echo")
+region = Rect2(160, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="EchoAtlas_5"]
+atlas = ExtResource("2_echo")
+region = Rect2(320, 160, 160, 160)
 
 [sub_resource type="AtlasTexture" id="PrimaryAtlas_2"]
 atlas = ExtResource("1_primary")
@@ -35,41 +43,69 @@ region = Rect2(0, 0, 160, 160)
 atlas = ExtResource("2_echo")
 region = Rect2(160, 0, 160, 160)
 
-[sub_resource type="AtlasTexture" id="EchoAtlas_2"]
-atlas = ExtResource("2_echo")
-region = Rect2(320, 0, 160, 160)
+[sub_resource type="AtlasTexture" id="PrimaryAtlas_0"]
+atlas = ExtResource("1_primary")
+region = Rect2(0, 0, 160, 160)
 
-[sub_resource type="AtlasTexture" id="EchoAtlas_3"]
-atlas = ExtResource("2_echo")
-region = Rect2(0, 160, 160, 160)
-
-[sub_resource type="AtlasTexture" id="EchoAtlas_4"]
-atlas = ExtResource("2_echo")
-region = Rect2(160, 160, 160, 160)
-
-[sub_resource type="AtlasTexture" id="EchoAtlas_5"]
-atlas = ExtResource("2_echo")
-region = Rect2(320, 160, 160, 160)
+[sub_resource type="AtlasTexture" id="PrimaryAtlas_1"]
+atlas = ExtResource("1_primary")
+region = Rect2(160, 0, 160, 160)
 
 [resource]
 animations = [{
-"frames": [{"duration": 1.0, "texture": SubResource("PrimaryAtlas_0")}, {"duration": 1.0, "texture": SubResource("PrimaryAtlas_1")}],
-"loop": false,
-"name": &"wind_up",
-"speed": 12.0
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("EchoAtlas_2")
 }, {
-"frames": [{"duration": 1.0, "texture": SubResource("PrimaryAtlas_2")}, {"duration": 1.0, "texture": SubResource("PrimaryAtlas_3")}, {"duration": 1.0, "texture": SubResource("PrimaryAtlas_4")}, {"duration": 1.0, "texture": SubResource("PrimaryAtlas_5")}],
-"loop": false,
+"duration": 1.0,
+"texture": SubResource("EchoAtlas_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("EchoAtlas_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("EchoAtlas_5")
+}],
+"loop": 0,
+"name": &"echo",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("PrimaryAtlas_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("PrimaryAtlas_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("PrimaryAtlas_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("PrimaryAtlas_5")
+}],
+"loop": 0,
 "name": &"primary",
 "speed": 24.0
 }, {
-"frames": [{"duration": 1.0, "texture": SubResource("EchoAtlas_0")}, {"duration": 1.0, "texture": SubResource("EchoAtlas_1")}],
-"loop": true,
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("EchoAtlas_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("EchoAtlas_1")
+}],
+"loop": 1,
 "name": &"rift_hold",
 "speed": 4.0
 }, {
-"frames": [{"duration": 1.0, "texture": SubResource("EchoAtlas_2")}, {"duration": 1.0, "texture": SubResource("EchoAtlas_3")}, {"duration": 1.0, "texture": SubResource("EchoAtlas_4")}, {"duration": 1.0, "texture": SubResource("EchoAtlas_5")}],
-"loop": false,
-"name": &"echo",
-"speed": 24.0
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("PrimaryAtlas_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("PrimaryAtlas_1")
+}],
+"loop": 0,
+"name": &"wind_up",
+"speed": 12.0
 }]

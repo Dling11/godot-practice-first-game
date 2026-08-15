@@ -13,8 +13,8 @@ func _initialize() -> void:
 
 
 func _run() -> void:
-	if not ForestMaterials.has_valid_layout() or ForestMaterials.materials.size() != 12:
-		_fail("The Forest material catalog did not expose twelve valid stable definitions.")
+	if not ForestMaterials.has_valid_layout() or ForestMaterials.materials.size() != 13:
+		_fail("The Forest material catalog did not expose thirteen valid stable definitions.")
 		return
 	if not ForestRecipes.has_valid_layout() or ForestRecipes.recipes.size() != 4:
 		_fail("The Forest recipe catalog did not expose four deterministic recipes.")
@@ -46,6 +46,7 @@ func _run() -> void:
 		&"forest_rootbound_core",
 		&"forest_armored_hog_hide",
 		&"forest_living_bark_plate",
+		&"forest_varkuun_core",
 	]:
 		if not material_ids.has(expected_id):
 			_fail("The Forest material catalog omitted %s." % expected_id)

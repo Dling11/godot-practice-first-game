@@ -13,6 +13,7 @@ signal skill_loadout_changed
 signal restraint_started(source: Node, total_break_points: int)
 signal restraint_progress(source: Node, remaining_break_points: int, total_break_points: int)
 signal restraint_ended(source: Node, escaped: bool)
+signal action_denied(action: StringName)
 
 enum BufferedAction { NONE, PRIMARY_ATTACK, EVADE, ABILITY }
 
@@ -297,6 +298,9 @@ func request_evade(direction: Vector2) -> bool:
 	if direction.is_zero_approx():
 		return false
 	_cancel_all_targeting()
+	if evade_component.get_cooldown_remaining() > 0.0:
+		action_denied.emit(&"dash_cooldown")
+		return false
 	var active_ability := get_active_ability_component()
 	if active_ability != null:
 		if not evade_component.is_evade_available():
@@ -329,6 +333,9 @@ func request_ability(slot_number: int) -> bool:
 		## Repeating the skill key is intentionally consumed but never confirms.
 		## Confirmation belongs only to primary attack/right trigger.
 		return directional_wedge_targeting.get_target_component() == component or ground_point_targeting.get_target_component() == component
+	if component != null and component.cooldown_remaining > 0.0:
+		action_denied.emit(&"skill_cooldown")
+		return false
 	if (
 		component == null
 		or is_defeated
@@ -353,11 +360,11 @@ func request_ability(slot_number: int) -> bool:
 
 
 func set_weapon_definition(next_weapon: WeaponDefinition) -> bool:
-	## Swapping is intentionally idle-only and never changes the shared Opaw
+	## Swapping is intentionally idle-only and never changes character-owned
 	## body SpriteFrames. Ownership is validated by equip_owned_weapon().
 	if (
 		next_weapon == null
-		or next_weapon.world_texture == null
+		or (next_weapon.world_texture == null and not next_weapon.uses_integrated_visual)
 		or next_weapon.melee_hitbox_shape == null
 		or is_defeated
 		or attack_component.phase != attack_component.Phase.IDLE

@@ -1,6 +1,6 @@
-[gd_resource type="TileSet" load_steps=3 format=3]
+[gd_resource type="TileSet" format=3 uid="uid://b0nmc61el1mj3"]
 
-[ext_resource type="Texture2D" path="res://assets/environment/forest/stage_5/tiles/stage_5_decay_ground_atlas_4x4.png" id="1_atlas"]
+[ext_resource type="Texture2D" uid="uid://e7y4yeg8hdyp" path="res://assets/environment/forest/stage_5/tiles/stage_5_decay_ground_atlas_4x4.png" id="1_atlas"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_stage_5"]
 texture = ExtResource("1_atlas")

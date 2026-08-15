@@ -15,9 +15,11 @@ signal hit_landed(target: HurtboxComponent, info: DamageInfo)
 var phase := Phase.IDLE
 var _phase_time_remaining: float
 var _attack_direction := Vector2.RIGHT
+var _random := RandomNumberGenerator.new()
 
 
 func _ready() -> void:
+	_random.randomize()
 	set_physics_process(false)
 	if hitbox != null:
 		hitbox.hit_landed.connect(_on_hit_landed)
@@ -80,7 +82,7 @@ func _advance_phase() -> void:
 		Phase.WIND_UP:
 			_enter_phase(Phase.ACTIVE, weapon.active_seconds)
 			hitbox.activate(
-				weapon.damage,
+				weapon.roll_basic_damage(_random),
 				owner,
 				_attack_direction,
 				weapon.knockback_strength
@@ -102,3 +104,7 @@ func _enter_phase(next_phase: Phase, duration_seconds: float) -> void:
 
 func _on_hit_landed(target: HurtboxComponent, info: DamageInfo) -> void:
 	hit_landed.emit(target, info)
+
+
+func configure_random_seed_for_testing(seed: int) -> void:
+	_random.seed = seed

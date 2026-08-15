@@ -124,7 +124,7 @@ script = ExtResource("6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="JumpHitbox"]
 shape = SubResource("jump")
 
-[node name="BossAudio" type="Node" parent="." node_paths=PackedStringArray("boss", "step", "lunge", "slap", "jump_launch", "jump_air", "jump_impact", "prison", "hurt", "phase", "defeat")]
+[node name="BossAudio" type="Node" parent="." node_paths=PackedStringArray("boss", "step", "lunge", "slap", "jump_launch", "jump_air", "jump_impact", "prison", "prison_lock", "execution_rumble", "execution_impact", "hurt", "phase", "defeat")]
 script = ExtResource("8_audio")
 boss = NodePath("..")
 step = NodePath("Step")
@@ -134,6 +134,9 @@ jump_launch = NodePath("JumpLaunch")
 jump_air = NodePath("JumpAir")
 jump_impact = NodePath("JumpImpact")
 prison = NodePath("RootPrison")
+prison_lock = NodePath("RootLock")
+execution_rumble = NodePath("RootExecutionRumble")
+execution_impact = NodePath("RootExecutionImpact")
 hurt = NodePath("Hurt")
 phase = NodePath("Phase")
 defeat = NodePath("Defeat")
@@ -166,8 +169,23 @@ pitch_scale = 0.8
 bus = &"SFX"
 [node name="RootPrison" type="AudioStreamPlayer" parent="BossAudio"]
 stream = ExtResource("13_prison")
-volume_db = 1.0
-pitch_scale = 0.78
+volume_db = 4.0
+pitch_scale = 0.86
+bus = &"SFX"
+[node name="RootLock" type="AudioStreamPlayer" parent="BossAudio"]
+stream = ExtResource("13_prison")
+volume_db = 3.0
+pitch_scale = 0.64
+bus = &"SFX"
+[node name="RootExecutionRumble" type="AudioStreamPlayer" parent="BossAudio"]
+stream = ExtResource("13_prison")
+volume_db = 4.0
+pitch_scale = 0.48
+bus = &"SFX"
+[node name="RootExecutionImpact" type="AudioStreamPlayer" parent="BossAudio"]
+stream = ExtResource("18_jump_impact")
+volume_db = 5.0
+pitch_scale = 0.58
 bus = &"SFX"
 [node name="Hurt" type="AudioStreamPlayer" parent="BossAudio"]
 stream = ExtResource("14_hurt")

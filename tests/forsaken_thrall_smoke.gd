@@ -44,7 +44,7 @@ func _run() -> void:
 	enemy.set_physics_process(false)
 	enemy.global_position = Vector2(230.0, 200.0)
 	player._set_facing_direction(Vector2.RIGHT)
-	enemy_health.current_health = 25.0
+	enemy_health.current_health = 10.0
 	var death_result := {"died": false, "health": enemy_health.current_health}
 	enemy_health.health_changed.connect(func(current: float, _maximum: float) -> void:
 		death_result.health = current
@@ -60,8 +60,9 @@ func _run() -> void:
 		return
 	for frame in range(40):
 		await physics_frame
-	if not is_equal_approx(death_result.health, health_before_sword - 25.0):
-		_fail("Player sword did not deal exactly 25 damage to the enemy.")
+	var dealt_damage: float = health_before_sword - death_result.health
+	if dealt_damage < 10.0 or dealt_damage > 12.0:
+		_fail("King's Ashwood basic attack left its authored 10-12 damage range: %s." % [dealt_damage])
 		return
 	if not death_result.died:
 		_fail("Sword lethal damage did not enter the enemy death state.")

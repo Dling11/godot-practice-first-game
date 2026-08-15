@@ -88,12 +88,14 @@ func _run() -> void:
 	mireling.global_position = Vector2(225, 200)
 	player._set_facing_direction(Vector2.RIGHT)
 	var mireling_health: HealthComponent = mireling.get_node("HealthComponent")
+	var health_before_sword := mireling_health.current_health
 	if not player.request_primary_attack():
 		_fail("Player attack request was rejected against Mireling.")
 		return
 	for frame in range(40): await physics_frame
-	if mireling_health.current_health > 5.0:
-		_fail("Player sword did not deal 25 damage to the 30-health Mireling.")
+	var dealt_damage := health_before_sword - mireling_health.current_health
+	if dealt_damage < 10.0 or dealt_damage > 12.0:
+		_fail("King's Ashwood basic attack left its authored 10-12 damage range: %s." % [dealt_damage])
 		return
 	print("Mireling smoke test passed.")
 	quit(0)
