@@ -1,7 +1,15 @@
 # Changelog
 
+## 2026-08-15 - King Front-Face Readability and Forest Core-Gear Concept
+
+- Corrected only the upper pixel of King's two down-facing eyes across all four locomotion frames, separating each retained one-pixel dark eye from the black fringe without changing atlas dimensions, alpha bounds, foot baseline, animation timing, side/up views, collision, or skill authority. Riftbreak and Sovereign Pursuit endpoint frames inherit the corrected exact idle pixels.
+- Added a focused regression that protects the warm separation pixel and remaining dark eye in every down-facing locomotion frame.
+- Generated and cleaned a non-runtime four-item Forest core-gear concept board for the Sanctuary Rootforge direction: Weapon Essence, Body Relic, Hand Relic, and an unmistakable boot-shaped Foot Relic share Varkuun-core green, petrified root, blackened iron, restrained violet seams, and forge-gold accents. Runtime icons, item definitions, stats, crafting, and equipping remain deliberately unimplemented pending visual approval.
+
 ## 2026-08-15 - King, Varkuun, and Stage II Balance Pass
 
+- Corrected Varkuun becoming permanently wedged against Stage V's solid carrion and dead-forest props. Chase now consumes his `NavigationAgent2D` path, applies a short collision-derived side detour when a static footprint still blocks him, and validates every committed jump landing against both navigation and his physical boss footprint.
+- Added a production Stage V regression that places King and Varkuun on opposite sides of the carrion landmark, requires a real lateral detour and forward progress, and rejects a jump target overlapping that prop.
 - Closed Varkuun's final-phase kite loophole: at 30% health or lower, sustained long range can start a ready 3/4/5-jump pursuit without requiring the boss to land a melee attack first. Full-map bounds, committed landing markers, prison sequencing, and cooldowns remain unchanged.
 - Added reusable diminishing-return armor to `HealthComponent` and enemy armor data to `EnemyDefinition`. Varkuun now has 30 armor, preserving raw and accepted damage values for accurate feedback and future player equipment integration.
 - Separated normal-hit damage from weapon skill power. King's own signature sword retains 25 skill power but rolls 10-12 per normal swing.

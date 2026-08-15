@@ -64,6 +64,8 @@ signal desperation_started
 @export_range(0.1, 10.0, 0.1) var desperation_jump_reuse_seconds := 2.6
 @export_range(96.0, 600.0, 1.0, "suffix:px") var desperation_anti_kite_distance := 190.0
 @export_range(0.1, 2.0, 0.05, "suffix:s") var desperation_anti_kite_hold_seconds := 0.55
+@export_range(0.05, 1.0, 0.05, "suffix:s") var navigation_repath_seconds := 0.20
+@export_range(0.2, 1.5, 0.05, "suffix:s") var obstacle_detour_seconds := 0.75
 
 @onready var health_component: HealthComponent = %HealthComponent
 @onready var body_collision: CollisionShape2D = $BodyCollision
@@ -105,6 +107,9 @@ var _active_root_wind_up_seconds := 0.72
 var _active_root_tracking_seconds := 0.55
 var _landing_feedback_strength := 5.0
 var _desperation_kite_elapsed := 0.0
+var _navigation_repath_remaining := 0.0
+var _obstacle_detour_remaining := 0.0
+var _obstacle_detour_direction := Vector2.ZERO
 
 
 func _ready() -> void:
@@ -172,9 +177,11 @@ func _process_chase(delta: float) -> void:
 	if distance <= definition.attack_range:
 		_begin_melee(offset)
 		return
-	_set_facing(offset)
-	velocity = velocity.move_toward(offset.normalized() * definition.move_speed, definition.acceleration * delta)
+	var chase_direction := _navigation_chase_direction(delta, offset)
+	_set_facing(chase_direction)
+	velocity = velocity.move_toward(chase_direction.normalized() * definition.move_speed, definition.acceleration * delta)
 	move_and_slide()
+	_capture_obstacle_detour()
 	global_position = global_position.clamp(arena_bounds.position, arena_bounds.end)
 	_set_moving(not velocity.is_zero_approx())
 
@@ -215,6 +222,7 @@ func _begin_jump(offset: Vector2, rapid_jump := false) -> void:
 		_rapid_jump_index = -1
 		_jump_target = target.global_position
 	_jump_target = _jump_target.clamp(arena_bounds.position + Vector2(24.0, 24.0), arena_bounds.end - Vector2(24.0, 24.0))
+	_jump_target = resolve_navigation_safe_position(_jump_target)
 	_jump_elapsed = 0.0
 	_attacks_since_jump = 0
 	var is_low_health_chain := _active_jump_tier == JumpTier.DESPERATION
@@ -404,6 +412,91 @@ func _pursuit_target(jump_index: int, is_final: bool) -> Vector2:
 			var side := Vector2(lane.y, -lane.x)
 			target_position += lane * 18.0 + side * 48.0
 	return target_position
+
+
+func _navigation_chase_direction(delta: float, direct_offset: Vector2) -> Vector2:
+	_obstacle_detour_remaining = maxf(_obstacle_detour_remaining - delta, 0.0)
+	if _obstacle_detour_remaining > 0.0 and not _obstacle_detour_direction.is_zero_approx():
+		return _obstacle_detour_direction
+	_navigation_repath_remaining -= delta
+	if _navigation_repath_remaining <= 0.0:
+		navigation_agent.target_position = target.global_position
+		_navigation_repath_remaining = navigation_repath_seconds
+	var next_path_position := navigation_agent.get_next_path_position()
+	if not navigation_agent.is_navigation_finished() and not next_path_position.is_zero_approx():
+		var path_offset := next_path_position - global_position
+		if not path_offset.is_zero_approx():
+			return path_offset
+	return direct_offset
+
+
+func _capture_obstacle_detour() -> void:
+	if get_slide_collision_count() == 0:
+		return
+	var collision := get_slide_collision(0)
+	if collision == null or not collision.get_collider() is StaticBody2D:
+		return
+	var normal := collision.get_normal().normalized()
+	if normal.is_zero_approx():
+		return
+	var tangent := Vector2(-normal.y, normal.x)
+	var alternate := -tangent
+	var probe_distance := definition.movement_footprint_radius * 3.0
+	var tangent_probe := global_position + tangent * probe_distance
+	var alternate_probe := global_position + alternate * probe_distance
+	if alternate_probe.distance_squared_to(target.global_position) < tangent_probe.distance_squared_to(target.global_position):
+		tangent = alternate
+	_obstacle_detour_direction = (tangent + normal * 0.12).normalized()
+	_obstacle_detour_remaining = obstacle_detour_seconds
+
+
+func resolve_navigation_safe_position(requested_position: Vector2) -> Vector2:
+	var navigation_map := navigation_agent.get_navigation_map()
+	var has_navigation := (
+		navigation_map.is_valid()
+		and NavigationServer2D.map_get_iteration_id(navigation_map) > 0
+	)
+	var candidate := (
+		NavigationServer2D.map_get_closest_point(navigation_map, requested_position)
+		if has_navigation else requested_position
+	)
+	if candidate.is_zero_approx():
+		candidate = requested_position
+	if _is_landing_position_clear(candidate):
+		return candidate
+	# A projected navigation cutout can still return its boundary for a point
+	# requested inside solid scenery. Search the smallest nearby boss-sized ring
+	# and re-project each option so a committed leap never reenables collision
+	# while overlapping a prop.
+	for radius in range(24, 105, 8):
+		for angle_index in 16:
+			var option := requested_position + Vector2.RIGHT.rotated(
+				TAU * float(angle_index) / 16.0
+			) * float(radius)
+			option = option.clamp(
+				arena_bounds.position + Vector2(24.0, 24.0),
+				arena_bounds.end - Vector2(24.0, 24.0)
+			)
+			if has_navigation:
+				var projected := NavigationServer2D.map_get_closest_point(navigation_map, option)
+				if not projected.is_zero_approx():
+					option = projected
+			if _is_landing_position_clear(option):
+				return option
+	return candidate
+
+
+func _is_landing_position_clear(position: Vector2) -> bool:
+	var circle := CircleShape2D.new()
+	circle.radius = definition.movement_footprint_radius + 2.0
+	var query := PhysicsShapeQueryParameters2D.new()
+	query.shape = circle
+	query.transform = Transform2D(0.0, position)
+	query.collision_mask = 1
+	query.collide_with_areas = false
+	query.collide_with_bodies = true
+	query.exclude = [get_rid()]
+	return get_world_2d().direct_space_state.intersect_shape(query, 1).is_empty()
 
 
 func _jump_tier() -> JumpTier:

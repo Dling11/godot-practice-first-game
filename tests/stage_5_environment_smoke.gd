@@ -166,6 +166,37 @@ func _run() -> void:
 	if not is_equal_approx(audio_director.music_player.volume_db, -7.0):
 		_fail("Varkuun's boss loop did not receive its dedicated audible encounter level.")
 		return
+
+	# Reproduce the reported production wedge: King and Varkuun stand on
+	# opposite sides of the carrion landmark. The boss must route around its
+	# solid footprint instead of walking directly into it forever.
+	var production_carcass := stage_5.get_node("World/Actors/DeadAnimalLandmark") as Node2D
+	var unsafe_landing := production_carcass.global_position
+	var safe_landing := production_boss.resolve_navigation_safe_position(unsafe_landing)
+	if safe_landing.distance_to(unsafe_landing) < 18.0:
+		_fail("Varkuun's committed landing resolver still accepts the carcass collision cutout.")
+		return
+	production_player.global_position = Vector2(600.0, 650.0)
+	production_boss.global_position = Vector2(600.0, 820.0)
+	production_boss.state = Stage5Boss.State.CHASE
+	production_boss._root_ready = false
+	production_boss._jump_cooldown = 999.0
+	production_boss._attacks_since_jump = 0
+	var initial_boss_distance := production_boss.global_position.distance_to(production_player.global_position)
+	var largest_lateral_detour := 0.0
+	for tick in 210:
+		await physics_frame
+		largest_lateral_detour = maxf(
+			largest_lateral_detour,
+			absf(production_boss.global_position.x - 600.0)
+		)
+	var final_boss_distance := production_boss.global_position.distance_to(production_player.global_position)
+	if largest_lateral_detour < 12.0 or final_boss_distance > initial_boss_distance - 55.0:
+		_fail(
+			"Varkuun remained wedged on the carrion landmark (detour=%.1f distance %.1f -> %.1f)."
+			% [largest_lateral_detour, initial_boss_distance, final_boss_distance]
+		)
+		return
 	stage_5.queue_free()
 	await process_frame
 

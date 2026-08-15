@@ -199,6 +199,7 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - Split tall objects into lower and upper visuals when correct player occlusion requires separate draw ordering.
 - Place collision around the traversability footprint, not the full visible canopy, roof, or decorative silhouette.
 - Keep navigation obstacles/regions consistent with collision unless a documented gameplay rule requires different behavior. Bake obstacle clearance for at least the largest movement radius expected to use that map, and verify routes around large blockers with that actor's physical footprint; do not mask a wedged route with teleport correction.
+- A controller that owns a `NavigationAgent2D` must consume its next path position during active pursuit instead of moving on direct target bearing. Committed leaps or teleports must separately validate the destination against both navigation and the actor's physical footprint; collision-derived steering fallback may escape local prop contact but must not silently move an announced landing marker after commitment.
 - Keep shadows presentation-only; shadows must not determine collision or damage.
 - Use `Polygon2D` for an editable visual shadow and `CollisionPolygon2D` for an irregular static physics footprint. Never expect a visual polygon to participate in collision.
 - Use Y-sorting within controlled world/prop boundaries and reserve fixed canvas layers or `z_index` bands for genuinely separate visual planes.

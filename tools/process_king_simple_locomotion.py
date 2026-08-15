@@ -46,6 +46,18 @@ ALPHA_THRESHOLD = 128
 MIN_COMPONENT_PIXELS = 500
 DIRECTIONS = ("down", "left", "right", "up")
 
+# The generated down-facing fringe originally continued directly through the
+# upper pixel of both eyes. At native scale that joined each two-pixel eye to
+# the hair and read as a black facial stripe. These are exact atlas-local
+# corrections: replace only the upper eye pixel with neighboring face color,
+# retaining the lower dark pixel as the eye and preserving every alpha bound.
+DOWN_EYE_SEPARATION = (
+    ((26, 13, 27, 13), (31, 13, 30, 13)),
+    ((26, 13, 27, 13), (31, 13, 30, 13)),
+    ((26, 13, 27, 13), (31, 13, 30, 13)),
+    ((27, 13, 28, 13), (32, 13, 31, 13)),
+)
+
 
 def _components(image: Image.Image, expected_count: int | None) -> list[tuple[int, int, int, int]]:
     alpha = image.getchannel("A")
@@ -250,6 +262,20 @@ def _pack_locomotion(source: Image.Image, boxes: list[tuple[int, int, int, int]]
     return sheet
 
 
+def _separate_down_facing_eyes(sheet: Image.Image) -> None:
+    """Break the hair-to-eye connection without changing King's silhouette."""
+    for frame, corrections in enumerate(DOWN_EYE_SEPARATION):
+        cell_left = frame * CELL_W
+        for eye_x, eye_y, donor_x, donor_y in corrections:
+            donor = sheet.getpixel((cell_left + donor_x, donor_y))
+            if donor[3] != 255 or donor[0] < 120 or donor[1] < 55:
+                raise RuntimeError(
+                    f"King down-eye donor drifted in frame {frame}: "
+                    f"{donor_x},{donor_y}={donor}"
+                )
+            sheet.putpixel((cell_left + eye_x, eye_y), donor)
+
+
 def _prepare_attack_frames(source_path: Path) -> list[Image.Image]:
     source = Image.open(source_path).convert("RGBA")
     boxes = _components(source, ATTACK_COLS)
@@ -367,6 +393,7 @@ def main() -> None:
     max_height = max(bottom - top for left, top, right, bottom in boxes)
     scale = 28.0 / max_height
     sheet = _pack_locomotion(locomotion_source, locomotion_boxes, scale)
+    _separate_down_facing_eyes(sheet)
     attack_sheet = _pack_attack()
     riftbreak_sheet = _pack_action_board(sheet, RIFTBREAK_SOURCE, "Riftbreak")
     pursuit_sheet = _pack_action_board(sheet, SOVEREIGN_PURSUIT_SOURCE, "Sovereign Pursuit")
@@ -381,12 +408,16 @@ def main() -> None:
     attack_sheet.resize((attack_sheet.width * 4, attack_sheet.height * 4), Image.Resampling.NEAREST).save(ATTACK_REVIEW)
     riftbreak_sheet.resize((riftbreak_sheet.width * 4, riftbreak_sheet.height * 4), Image.Resampling.NEAREST).save(RIFTBREAK_REVIEW)
     pursuit_sheet.resize((pursuit_sheet.width * 4, pursuit_sheet.height * 4), Image.Resampling.NEAREST).save(SOVEREIGN_PURSUIT_REVIEW)
-    FRAMES.write_text(_build_resource(), encoding="utf-8")
+    # The checked-in SpriteFrames resource owns stable Godot UIDs and editor
+    # serialization. Rebuild it only for a genuinely missing checkout; routine
+    # atlas corrections must not churn that configuration file.
+    if not FRAMES.exists():
+        FRAMES.write_text(_build_resource(), encoding="utf-8")
     print(f"Wrote {SHEET.relative_to(ROOT)}")
     print(f"Wrote {ATTACK_SHEET.relative_to(ROOT)}")
     print(f"Wrote {RIFTBREAK_SHEET.relative_to(ROOT)}")
     print(f"Wrote {SOVEREIGN_PURSUIT_SHEET.relative_to(ROOT)}")
-    print(f"Wrote {FRAMES.relative_to(ROOT)}")
+    print(f"Kept {FRAMES.relative_to(ROOT)}")
     print(f"Wrote {REVIEW.relative_to(ROOT)}")
     print(f"Wrote {ATTACK_REVIEW.relative_to(ROOT)}")
     print(f"Wrote {RIFTBREAK_REVIEW.relative_to(ROOT)}")

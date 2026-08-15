@@ -25,6 +25,17 @@ func _run() -> void:
 			if alpha != 0.0 and alpha != 1.0:
 				_fail("King's runtime sheet contains non-binary alpha at %s,%s." % [x, y])
 				return
+	var down_eye_columns := [[26, 31], [26, 31], [26, 31], [27, 32]]
+	for frame_index in range(4):
+		for eye_x in down_eye_columns[frame_index]:
+			var upper_pixel := image.get_pixel(frame_index * 48 + eye_x, 13)
+			var eye_pixel := image.get_pixel(frame_index * 48 + eye_x, 14)
+			if upper_pixel.r < 0.45 or upper_pixel.g < 0.20:
+				_fail("King's down-facing eye still connects to the hair in frame %d." % frame_index)
+				return
+			if eye_pixel.r > 0.08 or eye_pixel.g > 0.08 or eye_pixel.b > 0.08:
+				_fail("King's corrected one-pixel eye is missing in down frame %d." % frame_index)
+				return
 	var attack_texture := load(ATTACK_SHEET_PATH) as Texture2D
 	var attack_image := attack_texture.get_image() if attack_texture != null else null
 	if attack_image == null or attack_image.get_size() != Vector2i(384, 128):
