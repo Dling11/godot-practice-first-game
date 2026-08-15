@@ -111,6 +111,7 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 101 | Complete Stage V armor and enable equipment authority | Leggings, five armor slots, GearInventory, live equipment stats, sorting, drag-to-equip, F9 crafting readiness, or save migration |
 | 102 | Add single-target assisted combat | Click targeting, auto-approach, auto-attack, target HUD/marker, Attack button, manual override, or hitstop-versus-stagger |
 | 103 | Clarify King combat control and target UX | Click-to-move, selected-target flow, basic flinch/stun, circular enemy cards, target marker, or combat cursor |
+| 104 | Refine numbered click combat and footprint auras | Attack key 1, Skills 2-5, air swings, double-click auto attack, actor foot auras, simple target chevron, or top-right enemy roster |
 
 ## New Decisions
 

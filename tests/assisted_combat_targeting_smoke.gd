@@ -39,7 +39,7 @@ func _run() -> void:
 		_fail("The left target panel did not present the selected enemy name and health.")
 		return
 	if not hud.target_portrait.visible or not hud.enemy_roster_panel.visible:
-		_fail("Selected-target portrait or bottom-right enemy roster did not appear.")
+		_fail("Selected-target portrait or top-right enemy roster did not appear.")
 		return
 	hud.attack_button.pressed.emit()
 	if not player.combat_targeting.auto_attack_enabled:
@@ -79,13 +79,37 @@ func _run() -> void:
 		_fail("An empty left-click destination did not produce Dota-style movement intent.")
 		return
 
-	if hud.attack_button.size != Vector2(54.0, 48.0) or hud.attack_button.text != "BASIC\nATTACK":
-		_fail("The compact BASIC ATTACK control does not retain its authored footprint or label.")
+	if hud.attack_button.size != Vector2(54.0, 48.0) or hud.attack_button.text != "1\nATTACK":
+		_fail("The compact numbered Attack control does not retain its authored footprint or label.")
 		return
+	player.attack_component.cancel_attack()
 	hud.attack_button.pressed.emit()
 	await physics_frame
-	if player.combat_targeting.target_actor != first:
-		_fail("Attack with no selection did not acquire the nearest enemy within assist range.")
+	if player.combat_targeting.has_valid_target() or player.attack_component.phase == MeleeAttackComponent.Phase.IDLE:
+		_fail("Attack with no selection did not swing freely without auto-acquiring an enemy.")
+		return
+
+	player.attack_component.cancel_attack()
+	first.global_position = Vector2(600.0, 100.0)
+	if not player.combat_targeting.select_hurtbox(first.get_node("Hurtbox") as HurtboxComponent):
+		_fail("The distant target could not be selected for the assist-radius check.")
+		return
+	hud.attack_button.pressed.emit()
+	if player.combat_targeting.auto_attack_enabled or player.attack_component.phase == MeleeAttackComponent.Phase.IDLE:
+		_fail("A distant selected enemy forced pathing instead of allowing a free swing.")
+		return
+
+	player.attack_component.cancel_attack()
+	first.global_position = Vector2(240.0, 100.0)
+	if not player.combat_targeting.select_at_world_position(first.global_position, true):
+		_fail("Double-click-style selection could not engage an enemy.")
+		return
+	if not player.combat_targeting.auto_attack_enabled:
+		_fail("Double-click-style selection did not enable auto-attack pursuit.")
+		return
+	player.combat_targeting.request_click_move(Vector2(320.0, 100.0))
+	if player.combat_targeting.has_valid_target() or player.combat_targeting.auto_attack_enabled:
+		_fail("Ground clicking did not clear selection and auto attack.")
 		return
 
 	print("Assisted combat targeting smoke test passed.")

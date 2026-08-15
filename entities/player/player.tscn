@@ -78,6 +78,7 @@
 [ext_resource type="Script" path="res://entities/player/components/player_combat_targeting_component.gd" id="78_targeting"]
 [ext_resource type="Script" path="res://entities/player/presentation/combat_target_marker.gd" id="79_target_marker"]
 [ext_resource type="Script" path="res://entities/player/presentation/click_move_marker.gd" id="80_click_move_marker"]
+[ext_resource type="Script" path="res://entities/shared/presentation/combat_foot_aura.gd" id="81_foot_aura"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_sweep"]
 points = PackedVector2Array(3, -9, 14, -28, 39, -24, 48, 0, 39, 24, 14, 28, 3, 9)
@@ -112,6 +113,10 @@ skill_loadout = ExtResource("26_loadout")
 awakened_skill_loadout = ExtResource("38_debug_loadout")
 debug_test_skill_loadout = ExtResource("38_debug_loadout")
 weapon_catalog = ExtResource("27_weapon_catalog")
+
+[node name="CombatFootAura" type="Node2D" parent="."]
+script = ExtResource("81_foot_aura")
+player_aura = true
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=1303120843]
 

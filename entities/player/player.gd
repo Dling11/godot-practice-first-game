@@ -188,10 +188,6 @@ func _unhandled_input(event: InputEvent) -> void:
 				ground_point_targeting.confirm_targeting()
 			get_viewport().set_input_as_handled()
 			return
-	if event.is_action_pressed("ui_cancel") and combat_targeting.has_valid_target():
-		combat_targeting.clear_target()
-		get_viewport().set_input_as_handled()
-		return
 		if (
 			event.is_action_pressed("ui_cancel")
 			or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed)
@@ -199,11 +195,19 @@ func _unhandled_input(event: InputEvent) -> void:
 			_cancel_all_targeting()
 			get_viewport().set_input_as_handled()
 			return
+	if event.is_action_pressed("ui_cancel") and combat_targeting.has_valid_target():
+		combat_targeting.clear_target()
+		get_viewport().set_input_as_handled()
+		return
 	if event.is_action_pressed("player_attack_primary"):
-		if event is InputEventMouseButton and combat_targeting.select_at_world_position(get_global_mouse_position()):
-			get_viewport().set_input_as_handled()
-			return
 		if event is InputEventMouseButton:
+			var mouse_event := event as InputEventMouseButton
+			if combat_targeting.select_at_world_position(
+				get_global_mouse_position(),
+				mouse_event.double_click
+			):
+				get_viewport().set_input_as_handled()
+				return
 			combat_targeting.request_click_move(get_global_mouse_position())
 			get_viewport().set_input_as_handled()
 			return
@@ -328,6 +332,11 @@ func request_primary_attack() -> bool:
 
 
 func request_assisted_primary_attack() -> bool:
+	## The numbered Basic Attack remains a normal free swing unless the player
+	## has explicitly selected an enemy close enough to reasonably approach.
+	if not combat_targeting.is_target_within_assist_radius():
+		combat_targeting.suspend_auto_attack()
+		return request_primary_attack()
 	if not combat_targeting.resume_auto_attack():
 		return request_primary_attack()
 	if combat_targeting.is_target_in_attack_range():

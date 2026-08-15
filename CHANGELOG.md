@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-08-15 - Numbered Click Combat and Footprint Aura Refinement
+
+- Accepted Decision 104: reordered the action tray and keyboard to `1` Attack followed by Skills `2`-`5`; Basic Attack now swings freely when no target is selected or the selection is outside its 260-pixel assist radius instead of auto-acquiring or forcing a long pursuit.
+- Single enemy click now selects, double-click explicitly engages auto attack, and ground click clears target/auto attack before moving. Fixed an unreachable ability-cancel input branch discovered during the correction.
+- Replaced the oversized red underfoot selection circle with a small animated overhead chevron. Added subtle animated oval footprint auras to King and every live enemy scene, sized by movement footprint with richer Elite/Boss arcs while leaving all physics authority unchanged.
+- Moved the live enemy roster beneath the top-right Menu button, increased its height without widening it, enlarged threat rows, and added a slim translucent scrollbar. Added focused control, assisted-combat, HUD-order, and aura regression coverage.
+
 ## 2026-08-15 - King Combat Control and Target UX
 
 - Accepted Decision 103: empty left-click now creates a navigation-aware blue movement destination, while clicking an enemy selects it without beginning combat. `BASIC ATTACK` or a bottom-right enemy card starts approach-and-repeat attacks; Escape, right-click, and the selected-target × stop it.

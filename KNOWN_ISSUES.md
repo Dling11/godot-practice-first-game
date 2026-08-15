@@ -6,6 +6,13 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 
 ## Current Limitations
 
+### KI-017 - Refined click-combat and footprint auras need owner feel approval
+
+- **Status:** Open.
+- **Progress:** Decision 104 structurally verifies free Basic Attack swings, the 260-pixel selected-target assist boundary, double-click auto engagement, ground-click cancellation, `1` Attack plus Skills `2`-`5`, restrained target chevrons, tier-aware oval auras, and the taller top-right roster.
+- **Impact:** Headless tests cannot decide whether the aura opacity/motion, roster density, chevron scale, or practical double-click timing feels best in a full Stage 4 crowd.
+- **Planned resolution:** Owner-play the normal D: project at 960x540 and tune presentation values only from observed readability; preserve the separated selection, explicit engagement, and free-swing authority unless the controls themselves fail.
+
 ### KI-016 - Armored Hog crowd feel needs owner playtesting
 
 - **Status:** Open.

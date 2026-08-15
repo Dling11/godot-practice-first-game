@@ -35,6 +35,7 @@ signal character_menu_requested
 @onready var target_portrait: TextureRect = %TargetPortrait
 @onready var target_close_button: Button = %TargetCloseButton
 @onready var enemy_roster_panel: PanelContainer = %EnemyRosterPanel
+@onready var enemy_roster_scroll: ScrollContainer = %EnemyRosterScroll
 @onready var enemy_roster_rows: VBoxContainer = %EnemyRosterRows
 @onready var loot_toast_panel: PanelContainer = %LootToastPanel
 @onready var loot_toast_icon: TextureRect = %LootToastIcon
@@ -60,6 +61,22 @@ func _ready() -> void:
 	target_close_button.pressed.connect(_on_target_close_button_pressed)
 	target_panel.hide()
 	enemy_roster_panel.hide()
+	_style_enemy_roster_scrollbar()
+
+
+func _style_enemy_roster_scrollbar() -> void:
+	var scroll_bar := enemy_roster_scroll.get_v_scroll_bar()
+	scroll_bar.custom_minimum_size.x = 4.0
+	scroll_bar.add_theme_stylebox_override("scroll", StyleBoxEmpty.new())
+	scroll_bar.add_theme_stylebox_override("scroll_focus", StyleBoxEmpty.new())
+	var grabber := StyleBoxFlat.new()
+	grabber.bg_color = Color(0.92, 0.42, 0.24, 0.34)
+	grabber.set_corner_radius_all(2)
+	scroll_bar.add_theme_stylebox_override("grabber", grabber)
+	var highlighted := grabber.duplicate() as StyleBoxFlat
+	highlighted.bg_color = Color(1.0, 0.58, 0.30, 0.6)
+	scroll_bar.add_theme_stylebox_override("grabber_highlight", highlighted)
+	scroll_bar.add_theme_stylebox_override("grabber_pressed", highlighted)
 
 
 func bind_player(player: Player) -> void:
@@ -192,10 +209,10 @@ func _build_enemy_roster_row(target: Dictionary) -> Button:
 	var health := target.get("health") as HealthComponent
 	var definition: Variant = target.get("definition")
 	var row := Button.new()
-	row.custom_minimum_size = Vector2(208.0, 34.0)
+	row.custom_minimum_size = Vector2(190.0, 42.0)
 	row.focus_mode = Control.FOCUS_NONE
 	row.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	row.tooltip_text = "Select and approach this enemy with BASIC ATTACK"
+	row.tooltip_text = "Select and engage this enemy"
 	row.add_theme_font_size_override("font_size", 8)
 	var content := HBoxContainer.new()
 	content.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -203,14 +220,14 @@ func _build_enemy_roster_row(target: Dictionary) -> Button:
 	content.add_theme_constant_override("separation", 4)
 	row.add_child(content)
 	var portrait_frame := Panel.new()
-	portrait_frame.custom_minimum_size = Vector2(28.0, 28.0)
+	portrait_frame.custom_minimum_size = Vector2(34.0, 34.0)
 	portrait_frame.clip_contents = true
 	portrait_frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var portrait_style := StyleBoxFlat.new()
 	portrait_style.bg_color = Color(0.18, 0.08, 0.08, 1.0)
 	portrait_style.border_color = Color(0.9, 0.22, 0.18, 0.95)
 	portrait_style.set_border_width_all(1)
-	portrait_style.set_corner_radius_all(14)
+	portrait_style.set_corner_radius_all(17)
 	portrait_frame.add_theme_stylebox_override("panel", portrait_style)
 	content.add_child(portrait_frame)
 	var portrait := TextureRect.new()
@@ -245,6 +262,14 @@ func _build_enemy_roster_row(target: Dictionary) -> Button:
 	bar.value = health.current_health
 	bar.show_percentage = false
 	bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var bar_background := StyleBoxFlat.new()
+	bar_background.bg_color = Color(0.08, 0.035, 0.035, 0.9)
+	bar_background.set_corner_radius_all(2)
+	bar.add_theme_stylebox_override("background", bar_background)
+	var bar_fill := StyleBoxFlat.new()
+	bar_fill.bg_color = _enemy_roster_color(definition).darkened(0.18)
+	bar_fill.set_corner_radius_all(2)
+	bar.add_theme_stylebox_override("fill", bar_fill)
 	details.add_child(bar)
 	if actor == _player.combat_targeting.target_actor:
 		row.add_theme_color_override("font_color", Color(1.0, 0.3, 0.24, 1.0))

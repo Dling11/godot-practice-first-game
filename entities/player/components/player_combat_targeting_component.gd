@@ -30,7 +30,7 @@ func _ready() -> void:
 		push_error("PlayerCombatTargetingComponent requires Player and NavigationAgent2D references.")
 
 
-func select_at_world_position(world_position: Vector2) -> bool:
+func select_at_world_position(world_position: Vector2, enable_assistance := false) -> bool:
 	if player == null or not player.is_inside_tree():
 		return false
 	## An eight-pixel pick radius keeps small pixel enemies comfortable to click
@@ -56,7 +56,7 @@ func select_at_world_position(world_position: Vector2) -> bool:
 			best_hurtbox = hurtbox
 	if best_hurtbox == null:
 		return false
-	return select_hurtbox(best_hurtbox)
+	return select_hurtbox(best_hurtbox, enable_assistance)
 
 
 func select_hurtbox(hurtbox: HurtboxComponent, enable_assistance := false) -> bool:
@@ -199,12 +199,20 @@ func is_target_in_attack_range() -> bool:
 	return player.global_position.distance_to(target_actor.global_position) <= reach + ATTACK_DISTANCE_PADDING
 
 
+func is_target_within_assist_radius() -> bool:
+	return (
+		has_valid_target()
+		and player.global_position.distance_to(target_actor.global_position)
+		<= attack_button_assist_radius
+	)
+
+
 func suspend_auto_attack() -> void:
 	auto_attack_enabled = false
 
 
 func resume_auto_attack() -> bool:
-	if not has_valid_target() and not select_nearest_target():
+	if not has_valid_target():
 		return false
 	cancel_click_move()
 	auto_attack_enabled = true

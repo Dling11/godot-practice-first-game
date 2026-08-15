@@ -377,15 +377,12 @@ theme_override_font_sizes/font_size = 15
 unique_name_in_owner = true
 visible = false
 anchor_left = 1.0
-anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -224.0
-offset_top = -188.0
+offset_left = -212.0
+offset_top = 56.0
 offset_right = -12.0
-offset_bottom = -74.0
+offset_bottom = 272.0
 grow_horizontal = 0
-grow_vertical = 0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
@@ -404,14 +401,16 @@ theme_override_constants/separation = 2
 layout_mode = 2
 text = "ENEMIES  •  CLICK TO ENGAGE"
 theme_override_colors/font_color = Color(1, 0.65, 0.34, 1)
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 9
 
-[node name="Scroll" type="ScrollContainer" parent="EnemyRosterPanel/Margin/Stack"]
-custom_minimum_size = Vector2(0, 82)
+[node name="EnemyRosterScroll" type="ScrollContainer" parent="EnemyRosterPanel/Margin/Stack"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 190)
 layout_mode = 2
 horizontal_scroll_mode = 0
+metadata/_edit_group_ = true
 
-[node name="EnemyRosterRows" type="VBoxContainer" parent="EnemyRosterPanel/Margin/Stack/Scroll"]
+[node name="EnemyRosterRows" type="VBoxContainer" parent="EnemyRosterPanel/Margin/Stack/EnemyRosterScroll"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -504,28 +503,28 @@ custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="SkillBar" type="HBoxContainer" parent="ActionTray/Margin/Actions"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/separation = 4
-
-[node name="AttackGap" type="Control" parent="ActionTray/Margin/Actions"]
-custom_minimum_size = Vector2(12, 0)
-layout_mode = 2
-mouse_filter = 2
-
 [node name="AttackButton" type="Button" parent="ActionTray/Margin/Actions"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(54, 48)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 focus_mode = 0
-tooltip_text = "Approach and basic-attack the selected enemy • Select nearest if none • Esc or right-click stops"
-text = "BASIC\nATTACK"
+tooltip_text = "1 • Swing freely, or approach a nearby selected enemy • Double-click an enemy for auto-attack"
+text = "1\nATTACK"
 theme_override_colors/font_color = Color(1, 0.82, 0.42, 1)
 theme_override_colors/font_hover_color = Color(1, 0.94, 0.68, 1)
 theme_override_font_sizes/font_size = 9
+
+[node name="AttackSkillGap" type="Control" parent="ActionTray/Margin/Actions"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SkillBar" type="HBoxContainer" parent="ActionTray/Margin/Actions"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
 
 [node name="DefeatPanel" type="PanelContainer" parent="."]
 unique_name_in_owner = true

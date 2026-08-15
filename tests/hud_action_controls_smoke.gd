@@ -32,8 +32,9 @@ func _run() -> void:
 	var attack_rect := hud.attack_button.get_global_rect()
 	var tray_rect := tray.get_global_rect()
 	if (
-		dash_rect.end.x > skill_rect.position.x
-		or skill_rect.position.x - dash_rect.end.x < 16.0
+		dash_rect.end.x > attack_rect.position.x
+		or attack_rect.end.x > skill_rect.position.x
+		or skill_rect.position.x - attack_rect.end.x < 8.0
 		or not tray_rect.encloses(dash_rect)
 		or not tray_rect.encloses(skill_rect)
 		or not tray_rect.encloses(last_skill_rect)
@@ -41,7 +42,10 @@ func _run() -> void:
 		or hud.dash_slot.size != Vector2(52.0, 48.0)
 		or hud.attack_button.size != Vector2(54.0, 48.0)
 	):
-		_fail("Dash/Attack separation or an action-tray boundary is incorrect.")
+		_fail("The Dash, 1 Attack, then 2-5 Skill ordering or tray boundary is incorrect.")
+		return
+	if hud.attack_button.text != "1\nATTACK" or hud.get_skill_slot(1).key_label.text != "2" or hud.get_skill_slot(4).key_label.text != "5":
+		_fail("HUD action numbering does not show Attack 1 followed by Skills 2-5.")
 		return
 
 	hud.options_button.pressed.emit()

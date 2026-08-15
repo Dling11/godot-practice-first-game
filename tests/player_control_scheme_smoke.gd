@@ -30,6 +30,22 @@ func _run() -> void:
 	if not has_left_click or has_right_click:
 		_fail("Basic attack must use left-click without retaining right-click attack.")
 		return
+	var expected_number_keys := {
+		"player_attack_primary": KEY_1,
+		"player_skill_1": KEY_2,
+		"player_skill_2": KEY_3,
+		"player_skill_3": KEY_4,
+		"player_skill_4": KEY_5,
+	}
+	for action: String in expected_number_keys:
+		var found_key := false
+		for event: InputEvent in InputMap.action_get_events(action):
+			if event is InputEventKey and event.physical_keycode == expected_number_keys[action]:
+				found_key = true
+				break
+		if not found_key:
+			_fail("%s is not bound to its intended numbered action key." % action)
+			return
 
 	root.get_node("RunSession").reset_run()
 	var player := PlayerScene.instantiate() as Player

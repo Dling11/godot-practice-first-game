@@ -1,6 +1,6 @@
 # Decision 103: Clarify King Combat Control and Target UX
 
-- **Status:** Accepted and implemented; owner feel test pending
+- **Status:** Accepted; targeting presentation and Attack engagement refined by Decision 104
 - **Date:** 2026-08-15
 
 ## Context

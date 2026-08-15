@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://4rplkrov6cka" path="res://assets/characters/enemies/rootling/rootling_walk_sheet_32x32.png" id="4_walk"]
 [ext_resource type="Texture2D" uid="uid://ile1an15igc" path="res://assets/characters/enemies/rootling/rootling_reaction_sheet_32x32.png" id="5_reaction"]
 [ext_resource type="Texture2D" uid="uid://b3j4opls5tqrx" path="res://assets/characters/enemies/rootling/rootling_root_jab_vfx_sheet_48x48.png" id="6_vfx"]
+[ext_resource type="Script" path="res://entities/shared/presentation/combat_foot_aura.gd" id="99_foot_aura"]
 [ext_resource type="Script" uid="uid://1th6uujswp43" path="res://gameplay/combat/health_component.gd" id="7_health"]
 [ext_resource type="Script" uid="uid://edpqlhbhvhav" path="res://gameplay/combat/hurtbox_component.gd" id="8_hurtbox"]
 [ext_resource type="Script" uid="uid://6520tclsqofq" path="res://gameplay/combat/melee_hitbox.gd" id="9_hitbox"]
@@ -30,6 +31,9 @@ size = Vector2(40, 16)
 collision_layer = 4
 script = ExtResource("1_rootling")
 definition = ExtResource("2_definition")
+
+[node name="CombatFootAura" type="Node2D" parent="."]
+script = ExtResource("99_foot_aura")
 
 [node name="Shadow" type="Polygon2D" parent="." unique_id=379990287]
 position = Vector2(0, -4)

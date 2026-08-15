@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://df2url3l4sbfp" path="res://entities/enemies/rootbound_husk/rootbound_husk_visual.gd" id="3_visual"]
 [ext_resource type="SpriteFrames" path="res://assets/characters/enemies/rootbound_husk/rootbound_husk_sprite_frames.tres" id="4_body_frames"]
 [ext_resource type="SpriteFrames" path="res://assets/characters/enemies/rootbound_husk/rootbound_husk_root_spear_vfx_sprite_frames.tres" id="5_vfx_frames"]
+[ext_resource type="Script" path="res://entities/shared/presentation/combat_foot_aura.gd" id="99_foot_aura"]
 [ext_resource type="Script" uid="uid://1th6uujswp43" path="res://gameplay/combat/health_component.gd" id="8_health"]
 [ext_resource type="Script" uid="uid://edpqlhbhvhav" path="res://gameplay/combat/hurtbox_component.gd" id="9_hurtbox"]
 [ext_resource type="Script" uid="uid://6520tclsqofq" path="res://gameplay/combat/melee_hitbox.gd" id="10_hitbox"]
@@ -34,6 +35,9 @@ collision_layer = 4
 script = ExtResource("1_controller")
 definition = ExtResource("2_definition")
 attack_profile = ExtResource("2_attack_profile")
+
+[node name="CombatFootAura" type="Node2D" parent="."]
+script = ExtResource("99_foot_aura")
 
 [node name="Shadow" type="Polygon2D" parent="." unique_id=1524944218]
 z_index = -2

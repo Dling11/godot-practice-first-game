@@ -27,7 +27,7 @@ func _ready() -> void:
 func configure(definition: SkillSlotDefinition) -> void:
 	slot_definition = definition
 	name = "Skill%d" % definition.slot_number
-	key_label.text = str(definition.slot_number)
+	key_label.text = str(definition.slot_number + 1)
 	ability_icon.texture = definition.get_icon()
 	tooltip_text = "%s — %s" % [definition.get_display_name(), definition.get_status_text()]
 	activation_button.tooltip_text = tooltip_text

@@ -26,27 +26,25 @@ func _process(delta: float) -> void:
 		set_process(false)
 		return
 	_pulse_time += delta
-	global_position = targeting_component.target_actor.global_position + Vector2(0.0, -3.0)
+	global_position = targeting_component.target_actor.global_position + Vector2(0.0, -30.0)
 	queue_redraw()
 
 
 func _draw() -> void:
-	var pulse := 1.0 + sin(_pulse_time * 6.0) * 0.08
-	var definition: Variant = targeting_component.target_actor.get("definition")
-	var footprint: float = (definition as EnemyDefinition).movement_footprint_radius if definition is EnemyDefinition else 8.0
-	var tier: int = (definition as EnemyDefinition).crowd_control_tier if definition is EnemyDefinition else EnemyDefinition.CrowdControlTier.LIGHT
-	var radius: float = (footprint + 8.0) * pulse
-	var color := Color(1.0, 0.22, 0.2, 0.96)
-	if tier == EnemyDefinition.CrowdControlTier.BOSS:
-		color = Color(1.0, 0.36, 0.12, 0.98)
-	draw_arc(Vector2.ZERO, radius + 1.0, 0.0, TAU, 24, Color(0.12, 0.01, 0.01, 0.8), 3.0)
-	draw_arc(Vector2.ZERO, radius, 0.0, TAU, 24, color, 2.0)
-	if tier == EnemyDefinition.CrowdControlTier.BOSS:
-		draw_arc(Vector2.ZERO, radius + 5.0, 0.0, TAU, 24, color.darkened(0.18), 1.0)
-	draw_polyline(
-		PackedVector2Array([Vector2(-5, -25), Vector2(0, -20), Vector2(5, -25)]),
-		color,
-		2.0
+	## A restrained overhead chevron keeps selection readable without painting a
+	## second red footprint ring beneath every selected enemy.
+	var bob := sin(_pulse_time * 5.0) * 1.5
+	var color := Color(1.0, 0.34, 0.24, 0.96)
+	draw_colored_polygon(
+		PackedVector2Array([
+			Vector2(-6.0, -3.0 + bob),
+			Vector2(0.0, 4.0 + bob),
+			Vector2(6.0, -3.0 + bob),
+			Vector2(4.0, -6.0 + bob),
+			Vector2(0.0, -1.0 + bob),
+			Vector2(-4.0, -6.0 + bob),
+		]),
+		color
 	)
 
 
@@ -54,6 +52,6 @@ func _on_target_changed(actor: Node2D, _health: HealthComponent, _display_name: 
 	visible = actor != null
 	set_process(actor != null)
 	if actor != null:
-		global_position = actor.global_position + Vector2(0.0, -3.0)
+		global_position = actor.global_position + Vector2(0.0, -30.0)
 		_pulse_time = 0.0
 		queue_redraw()
