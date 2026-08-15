@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/environment/forest/stage_5/props/stage_5_broken_shrine_320x192.png" id="1_shrine"]
+[ext_resource type="Script" path="res://gameplay/navigation/navigation_cutout.gd" id="2_cutout"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_left"]
+size = Vector2(78, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_right"]
+size = Vector2(78, 50)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_left"]
+polygon = PackedVector2Array(-150, -12, -150, -118, -95, -177, -56, -126, -56, -22)
+
+[node name="Stage5BrokenShrine" type="StaticBody2D"]
+collision_mask = 6
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0.025, 0.012, 0.025, 0.3)
+z_index = -2
+position = Vector2(0, -10)
+scale = Vector2(0.92, 0.18)
+texture = ExtResource("1_shrine")
+
+[node name="Shrine" type="Sprite2D" parent="."]
+position = Vector2(0, -96)
+texture = ExtResource("1_shrine")
+
+[node name="LeftMass" type="CollisionShape2D" parent="."]
+position = Vector2(-104, -25)
+shape = SubResource("RectangleShape2D_left")
+
+[node name="RightMass" type="CollisionShape2D" parent="."]
+position = Vector2(104, -25)
+shape = SubResource("RectangleShape2D_right")
+
+[node name="LeftOccluder" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_left")
+
+[node name="RightOccluder" type="LightOccluder2D" parent="."]
+scale = Vector2(-1, 1)
+occluder = SubResource("OccluderPolygon2D_left")
+
+[node name="NavigationCutout" type="Node" parent="." groups=["navigation_cutout"]]
+script = ExtResource("2_cutout")
+derive_from_collision_shapes = true

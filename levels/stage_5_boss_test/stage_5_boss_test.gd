@@ -3,22 +3,20 @@ extends Node
 @export var player: Player
 @export var boss: Stage5Boss
 @export var combat_hud: CombatHUD
-@export var boss_bar: ProgressBar
-@export var boss_health_label: Label
+@export var boss_hud: BossHealthHUD
 @export var state_label: Label
 
 
 func _ready() -> void:
-	if player == null or boss == null or combat_hud == null or boss_bar == null or boss_health_label == null or state_label == null:
+	if player == null or boss == null or combat_hud == null or boss_hud == null or state_label == null:
 		push_error("Stage5BossTest is missing a required dependency.")
 		return
 	combat_hud.bind_player(player)
 	boss.target = player
-	boss.health_component.health_changed.connect(_update_boss_health)
+	boss_hud.bind_boss(boss.health_component, "STAGE 5 BOSS", "COMBAT PROOF")
 	boss.health_component.died.connect(_on_boss_died)
 	boss.state_changed.connect(_on_boss_state_changed)
 	player.defeated.connect(_on_player_defeated)
-	_update_boss_health(boss.health_component.current_health, boss.health_component.maximum_health)
 	_on_boss_state_changed(boss.state, 0.0)
 	combat_hud.show_story_message("STAGE 5 BOSS PROOF  |  F9 SKILLS  |  R RESTART  |  F8 EXIT", 4.0)
 
@@ -32,12 +30,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		var transition := get_node_or_null("/root/SceneTransition")
 		if transition != null:
 			transition.call("transition_to", "res://levels/sanctuary/sanctuary.tscn")
-
-
-func _update_boss_health(current: float, maximum: float) -> void:
-	boss_bar.max_value = maximum
-	boss_bar.value = current
-	boss_health_label.text = "%d / %d" % [roundi(current), roundi(maximum)]
 
 
 func _on_boss_state_changed(state: Stage5Boss.State, _duration_seconds: float) -> void:

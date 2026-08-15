@@ -13,11 +13,26 @@ SOURCE_B = Path(
     "stage_5_boss_reaction_defeat_clean_v1.png"
 )
 OUTPUT_DIR = Path("art_source/review/characters/enemies/stage_5_boss")
+RUNTIME_OUTPUT = Path(
+    "assets/characters/enemies/stage_5_boss/"
+    "stage_5_boss_reaction_sheet_144x112.png"
+)
 CELL_SIZE = (144, 112)
 # The approved 112x96 sheets place contact 42 pixels below their center.
 # This wider family preserves that same world-space foot/root pivot.
 FOOT_BASELINE_Y = 98
 TARGET_UPRIGHT_HEIGHTS = (78, 73, 72, 72)
+# Hurt poses may extend their roots, but their visible silhouette must not make
+# the boss appear to change scale when swapping from locomotion. Collapse poses
+# may spread horizontally, but each direction still owns a bounded envelope so
+# the generated defeat source cannot make the boss appear to inflate.
+HURT_MAX_WIDTHS = (88, 68, 72, 90)
+DEATH_MAX_WIDTHS = (
+    (82, 90, 96, 100, 96),
+    (72, 82, 90, 96, 92),
+    (76, 84, 92, 98, 94),
+    (90, 94, 98, 100, 96),
+)
 
 
 def largest_component(image: Image.Image) -> Image.Image:
@@ -56,9 +71,19 @@ def largest_component(image: Image.Image) -> Image.Image:
     return cleaned.crop(bounds)
 
 
-def normalize_actor(actor: Image.Image, scale: float) -> Image.Image:
+def normalize_actor(
+    actor: Image.Image,
+    scale: float,
+    max_width: int | None = None,
+    preserve_aspect_for_width: bool = False,
+) -> Image.Image:
     size = (max(1, round(actor.width * scale)), max(1, round(actor.height * scale)))
     actor = actor.resize(size, Image.Resampling.NEAREST)
+    if max_width is not None and actor.width > max_width:
+        height = actor.height
+        if preserve_aspect_for_width:
+            height = max(1, round(actor.height * max_width / actor.width))
+        actor = actor.resize((max_width, height), Image.Resampling.NEAREST)
     actor.putalpha(actor.getchannel("A").point(lambda value: 255 if value >= 128 else 0))
     canvas = Image.new("RGBA", CELL_SIZE, (0, 0, 0, 0))
     x = round((CELL_SIZE[0] - actor.width) / 2)
@@ -97,9 +122,22 @@ def main() -> None:
     frame_hashes: set[bytes] = set()
     for row, actors in enumerate(rows):
         for column, actor in enumerate(actors):
-            normalized = normalize_actor(actor, row_scales[row])
+            normalized = normalize_actor(
+                actor,
+                row_scales[row],
+                HURT_MAX_WIDTHS[row] if column < 3 else DEATH_MAX_WIDTHS[row][column - 3],
+                column >= 3,
+            )
             if normalized.getchannel("A").getbbox() is None:
                 raise RuntimeError(f"Reaction cell {row},{column} is empty.")
+            if column < 3:
+                bounds = normalized.getchannel("A").getbbox()
+                if bounds is None or bounds[2] - bounds[0] > HURT_MAX_WIDTHS[row]:
+                    raise RuntimeError(f"Reaction hurt cell {row},{column} exceeds its width envelope.")
+            else:
+                bounds = normalized.getchannel("A").getbbox()
+                if bounds is None or bounds[2] - bounds[0] > DEATH_MAX_WIDTHS[row][column - 3]:
+                    raise RuntimeError(f"Reaction death cell {row},{column} exceeds its width envelope.")
             frame_hashes.add(normalized.tobytes())
             sheet.alpha_composite(normalized, (column * CELL_SIZE[0], row * CELL_SIZE[1]))
 
@@ -111,6 +149,8 @@ def main() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     output = OUTPUT_DIR / "stage_5_boss_reaction_sheet_144x112_candidate.png"
     sheet.save(output)
+    RUNTIME_OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    sheet.save(RUNTIME_OUTPUT)
     sheet.resize((sheet.width * 2, sheet.height * 2), Image.Resampling.NEAREST).save(
         OUTPUT_DIR / "stage_5_boss_reaction_sheet_2x_review.png"
     )

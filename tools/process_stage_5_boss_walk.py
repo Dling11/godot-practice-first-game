@@ -9,6 +9,9 @@ SOURCE = Path(
     "stage_5_boss_walk_clean_v1.png"
 )
 OUTPUT_DIR = Path("art_source/review/characters/enemies/stage_5_boss")
+RUNTIME_OUTPUT = Path(
+    "assets/characters/enemies/stage_5_boss/stage_5_boss_walk_sheet_112x96.png"
+)
 CELL_SIZE = (112, 96)
 SOURCE_CELL = (256, 256)
 FOOT_BASELINE_Y = 90
@@ -17,7 +20,7 @@ FOOT_BASELINE_Y = 90
 TARGET_ROW_HEIGHTS = (78, 73, 72, 72)
 
 
-def largest_component(image: Image.Image) -> Image.Image:
+def connected_components(image: Image.Image) -> list[set[tuple[int, int]]]:
     alpha = image.getchannel("A")
     occupied = {
         (x, y)
@@ -38,9 +41,10 @@ def largest_component(image: Image.Image) -> Image.Image:
                     component.add(neighbor)
                     pending.append(neighbor)
         components.append(component)
-    if not components:
-        raise RuntimeError("Generated Stage 5 boss walk cell is empty.")
-    keep = max(components, key=len)
+    return components
+
+
+def crop_component(image: Image.Image, keep: set[tuple[int, int]]) -> Image.Image:
     mask = Image.new("L", image.size, 0)
     pixels = mask.load()
     for x, y in keep:
@@ -49,7 +53,7 @@ def largest_component(image: Image.Image) -> Image.Image:
     cleaned.putalpha(mask)
     bounds = mask.getbbox()
     if bounds is None:
-        raise RuntimeError("Largest walk component unexpectedly has no bounds.")
+        raise RuntimeError("Stage 5 boss walk component unexpectedly has no bounds.")
     return cleaned.crop(bounds)
 
 
@@ -74,23 +78,34 @@ def main() -> None:
     source = Image.open(SOURCE).convert("RGBA")
     if source.size != (1536, 1024):
         raise RuntimeError(f"Unexpected walk source size: {source.size}")
+
+    # Several generated actors cross their nominal 256px cells. Most visibly,
+    # every up-facing crown begins 22-24px above the fourth row. Extracting
+    # inside cells amputates those heads, so recover the 24 real actors from
+    # the complete board first and order them by their actual centers.
+    components = sorted(connected_components(source), key=len, reverse=True)
+    if len(components) < 24 or len(components[23]) < 1000:
+        raise RuntimeError("Walk source does not expose 24 complete actor components.")
+    actor_components = components[:24]
+    centered_components: list[tuple[float, float, set[tuple[int, int]]]] = []
+    for component in actor_components:
+        center_x = sum(point[0] for point in component) / len(component)
+        center_y = sum(point[1] for point in component) / len(component)
+        centered_components.append((center_x, center_y, component))
+    centered_components.sort(key=lambda entry: entry[1])
+
     raw_rows: list[list[Image.Image]] = []
     row_scales: list[float] = []
     for row in range(4):
         actors: list[Image.Image] = []
         maximum_height = 0
-        for column in range(6):
-            cell = source.crop(
-                (
-                    column * SOURCE_CELL[0],
-                    row * SOURCE_CELL[1],
-                    (column + 1) * SOURCE_CELL[0],
-                    (row + 1) * SOURCE_CELL[1],
-                )
-            )
-            actor = largest_component(cell)
+        row_components = sorted(centered_components[row * 6 : (row + 1) * 6])
+        for _center_x, _center_y, component in row_components:
+            actor = crop_component(source, component)
             actors.append(actor)
             maximum_height = max(maximum_height, actor.height)
+        if row == 3 and any(actor.height < 190 for actor in actors):
+            raise RuntimeError("Up-facing walk recovery lost a boundary-crossing crown.")
         raw_rows.append(actors)
         row_scales.append(TARGET_ROW_HEIGHTS[row] / maximum_height)
 
@@ -131,6 +146,8 @@ def main() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     output = OUTPUT_DIR / "stage_5_boss_walk_sheet_112x96_candidate.png"
     sheet.save(output)
+    RUNTIME_OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    sheet.save(RUNTIME_OUTPUT)
     sheet.resize((sheet.width * 2, sheet.height * 2), Image.Resampling.NEAREST).save(
         OUTPUT_DIR / "stage_5_boss_walk_sheet_2x_review.png"
     )

@@ -18,6 +18,7 @@ const ARENA_BOUNDS := Rect2(40.0, 92.0, 650.0, 390.0)
 @export var effects: Node2D
 @export var camera: Camera2D
 @export var combat_hud: CombatHUD
+@export var boss_hud: BossHealthHUD
 @export var enemy_selector: OptionButton
 @export var spawn_one_button: Button
 @export var spawn_four_button: Button
@@ -81,6 +82,7 @@ func spawn_selected(count: int) -> void:
 
 
 func clear_simulation() -> void:
+	boss_hud.clear_boss()
 	for enemy in _active_enemies.duplicate():
 		if is_instance_valid(enemy):
 			enemy.queue_free()
@@ -144,6 +146,7 @@ func _spawn_enemy(scene: PackedScene, index: int, requested_count: int) -> void:
 		health.died.connect(_on_enemy_died.bind(enemy))
 		health.health_changed.connect(_on_enemy_health_changed.bind(enemy))
 	if enemy is Stage5Boss:
+		boss_hud.bind_boss(enemy.health_component, "STAGE 5 BOSS", "COMBAT LAB")
 		var feedback := LandingFeedback.new()
 		feedback.boss = enemy
 		feedback.camera = camera
@@ -162,6 +165,22 @@ func _spawn_position(index: int, requested_count: int) -> Vector2:
 
 
 func _bind_controls() -> void:
+	## These are mouse/touch administration controls, not gameplay actions.
+	## Prevent a clicked control from retaining keyboard focus and consuming the
+	## shared UI-accept key (Space), which belongs to Dash/root struggle in play.
+	for control: Control in [
+		enemy_selector,
+		spawn_one_button,
+		spawn_four_button,
+		spawn_eight_button,
+		ai_toggle,
+		invincible_toggle,
+		combat_tools_button,
+		clear_button,
+		reset_button,
+		exit_button,
+	]:
+		control.focus_mode = Control.FOCUS_NONE
 	spawn_one_button.pressed.connect(spawn_selected.bind(1))
 	spawn_four_button.pressed.connect(spawn_selected.bind(4))
 	spawn_eight_button.pressed.connect(spawn_selected.bind(8))
@@ -185,8 +204,19 @@ func _on_enemy_died(_enemy: Node2D) -> void:
 
 func _on_enemy_exited(enemy: Node2D) -> void:
 	_active_enemies.erase(enemy)
+	if enemy is Stage5Boss:
+		call_deferred("_refresh_boss_hud")
 	_update_latest_label()
 	_update_status()
+
+
+func _refresh_boss_hud() -> void:
+	for index in range(_active_enemies.size() - 1, -1, -1):
+		var enemy := _active_enemies[index]
+		if is_instance_valid(enemy) and enemy is Stage5Boss and enemy.health_component.current_health > 0.0:
+			boss_hud.bind_boss(enemy.health_component, "STAGE 5 BOSS", "COMBAT LAB")
+			return
+	boss_hud.clear_boss()
 
 
 func _latest_valid_enemy() -> Node2D:
@@ -234,6 +264,7 @@ func _has_required_dependencies() -> bool:
 		and effects != null
 		and camera != null
 		and combat_hud != null
+		and boss_hud != null
 		and enemy_selector != null
 		and spawn_one_button != null
 		and spawn_four_button != null

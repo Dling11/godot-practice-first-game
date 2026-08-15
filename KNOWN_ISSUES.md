@@ -6,12 +6,12 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 
 ## Current Limitations
 
-### KI-017 - Stage 5 boss combat remains an isolated feel-test
+### KI-017 - Stage 5 milestone reward and post-boss handoff remain incomplete
 
 - **Status:** Open.
-- **Progress:** Admin F7 and focused F8 expose four actions: lunge, overhead slap, target-locked jump, and the buried-hand root execution. The corrected character-scale prison flexes, cracks with five shared-Dash inputs, and exposes repeated-input progress both above King and in the Dash slot. The execution processor assigns debris/root components to real frame anchors, eliminating left/right neighboring-frame fragments. Focused headless coverage passes.
-- **Impact:** Final name, action cadence, damage/radius, audio, camera response, additional skills/phases, arena ecology, dialogue, rewards, and Stage 5 progression are not authored. The present values must not be treated as final balance.
-- **Planned resolution:** Owner-playtest the visible arena first, correct feel/readability, then lock the complete boss kit before integrating the actual Stage 5 encounter.
+- **Progress:** Decisions 094-095 move the approved boss/environment into a real Stage 4-connected 24x18 route and finalize Varkuun's production presentation: aerial entrance, crater landing, portrait dialogue, top-screen named HUD, dedicated looping battle music, and real CC0 action recordings. Four actions, repeatable health-scaled jumps, positional root execution, grounded props, bounded collapse, corpse fade, completion persistence, and return portal retain focused coverage.
+- **Impact:** Stage V completion still grants no new boss-specific material, core-gear crafting seal, or authored post-boss anonymous-power event.
+- **Planned resolution:** Owner-playtest the completed encounter package, then author the milestone reward before deciding the later narrative handoff.
 
 ### KI-016 - Armored Hog crowd feel needs owner playtesting
 

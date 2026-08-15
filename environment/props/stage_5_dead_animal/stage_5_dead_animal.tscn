@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/environment/forest/stage_5/props/stage_5_tiny_carrion_remains_48x32.png" id="1_carcass"]
+[ext_resource type="Script" path="res://environment/props/stage_5_dead_animal/stage_5_dead_animal.gd" id="2_script"]
+[ext_resource type="Script" path="res://gameplay/navigation/navigation_cutout.gd" id="3_cutout"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_carcass"]
+radius = 7.0
+height = 28.0
+
+[node name="Stage5DeadAnimal" type="StaticBody2D" node_paths=PackedStringArray("flies_root")]
+collision_mask = 6
+script = ExtResource("2_script")
+flies_root = NodePath("Flies")
+
+[node name="Shadow" type="Polygon2D" parent="."]
+z_index = -2
+position = Vector2(0, -3)
+color = Color(0.022, 0.01, 0.018, 0.48)
+polygon = PackedVector2Array(-22, -3, -15, -6, 17, -6, 24, -3, 17, 3, -15, 3)
+
+[node name="Carcass" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("1_carcass")
+
+[node name="Footprint" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_carcass")
+
+[node name="Flies" type="Node2D" parent="."]
+position = Vector2(0, -20)
+
+[node name="FlyA" type="Polygon2D" parent="Flies"]
+position = Vector2(-8, 0)
+color = Color(0.015, 0.012, 0.018, 0.95)
+polygon = PackedVector2Array(0, -2, 2, 0, 0, 2, -2, 0)
+
+[node name="FlyB" type="Polygon2D" parent="Flies"]
+position = Vector2(3, -3)
+color = Color(0.03, 0.025, 0.035, 0.95)
+polygon = PackedVector2Array(0, -2, 2, 0, 0, 2, -2, 0)
+
+[node name="FlyC" type="Polygon2D" parent="Flies"]
+position = Vector2(10, 1)
+color = Color(0.015, 0.012, 0.018, 0.95)
+polygon = PackedVector2Array(0, -2, 2, 0, 0, 2, -2, 0)
+
+[node name="FlyD" type="Polygon2D" parent="Flies"]
+position = Vector2(-1, 5)
+color = Color(0.03, 0.025, 0.035, 0.95)
+polygon = PackedVector2Array(0, -2, 2, 0, 0, 2, -2, 0)
+
+[node name="NavigationCutout" type="Node" parent="." groups=["navigation_cutout"]]
+script = ExtResource("3_cutout")
+derive_from_collision_shapes = true

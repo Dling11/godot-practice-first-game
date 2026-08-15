@@ -1,5 +1,85 @@
 # Changelog
 
+## 2026-08-15 - Varkuun Entrance and Boss Audio
+
+- Named the Stage 5 guardian Varkuun, Lord of the Withered Grove.
+- Added the production threshold sequence: hidden approach, aerial drop, crater landing, portrait dialogue, then boss HUD/combat and dedicated music.
+- Replaced the rejected procedural cues with curated real CC0 recordings for the entrance, footsteps, lunge, slap, three-part combat jump, root prison, phase escalation, hurt, and defeat; retained a CC0 orchestral boss loop with complete provenance.
+- Corrected owner-tested production behavior: awakening still begins in the northern basin, but Varkuun can now pursue across the whole traversable map. Replaced the effectively inaudible boss track with Cleyton Kauffman's CC0 fantasy/JRPG `Boss Battle Theme` OGG and raised only boss playback from -13 dB to -7 dB.
+- Removed duplicate `ui_accept` handling from `DialoguePanel`; its focused native button now exclusively owns Space/Enter while F remains the explicit shortcut, preventing one key press from advancing twice.
+
+## 2026-08-15 - Stage 5 Boundary and Carrion Readability Correction
+
+- Replaced the oversized realistic Stage 5 animal runtime detail with a handmade 48x32 stylized pixel carrion asset and retained fly presentation as four independent tweens.
+- Moved all eighteen repeated dead-tree thickets so each is rooted at or partly outside an actual map boundary, preserving their branch-tree silhouette while clearing the interior read.
+
+## 2026-08-14 - Production Stage 5 Dead Forest Route
+
+- Added a real 24x18 scrolling Stage 5 scene connected directly from Stage 4's eastern gateway.
+- Authored a southern arrival, traversable decayed approach, and separately triggered northern boss basin; the boss remains targetless and physics-disabled until King crosses the basin threshold.
+- Added one reusable three-tree edge-thicket asset and placed eighteen deliberate scale/mirror variants around the map boundary instead of randomly scattering interior trees.
+- Added a non-graphic corrupted forest-animal carcass landmark with four separately tweened flies, plus individual approved tall tree, snag, fallen-log, and uprooted-log variation.
+- Deleted the owner-rejected standalone stump generated source, cleaned source, runtime texture/import, review image, scene, processor references, and live/test references.
+- Added production boss HUD/combat feedback, stage completion persistence, expedition commit, and a Sanctuary return ring while leaving entrance dialogue, dedicated audio/music, and milestone reward explicit future work.
+
+## 2026-08-14 - Stage 5 Grounding, Movement, and Boss Death Correction
+
+- Reduced the tall bare tree and snapped snag in the F8 composition while retaining their approved source/runtime textures.
+- Replaced flattened full-texture prop shadows with tight contact polygons for the tall tree, snag, fallen trunks, uprooted trunk, and older root-stump so their ground contact no longer reads as floating.
+- Added an automated movement assertion proving King traverses the F8 arena; documented that the 960x540 fixed-camera room is an isolated boss proof rather than the future full Stage 5 map.
+- Reprocessed all twenty directional boss defeat frames through proportional collapse envelopes, retaining all five frames without the generated body-width inflation.
+- Added a 0.2-second corpse hold followed by a 0.65-second synchronized body/shadow fade after the 1.25-second collapse.
+
+## 2026-08-14 - Authored Stage 5 Boss Basin Environment
+
+- Replaced the focused F8 boss proof's flat arena with a deterministic 15x9 TileMap basin backed by a new full-decay 4x4 terrain family.
+- Expanded the scenery from repeated root-stumps into an unmistakable dead-forest set: one tall bare ancient tree, one snapped hollow snag, two horizontal fallen trunks, one uprooted diagonal trunk, and one retained older root-stump. Each obstacle has authored collision/navigation behavior and deliberate perimeter placement.
+- Added a dormant broken shrine landmark at the north edge with two colliding side masses and an open center; it is explicitly not a portal or implemented story trigger.
+- Replaced Stage 4's unrelated eastern statue with the same broken-gateway architecture and moved its post-clear ring anchor inside that ruin, establishing one ancient route family while preserving the current Sanctuary destination.
+- Left the real Stage 5 route, entrance, rewards, and possible later godlike manifestation unimplemented.
+- Added a reproducible environment processor, visual review exports, and a focused smoke test for asset dimensions, authored layout, props, navigation, and portal separation.
+
+## 2026-08-14 - Stage 5 Boss Portrait
+
+- Generated an identity-matched head-and-shoulders portrait from the approved Stage 5 boss concept, preserving its dead-bark crown, broken armor, plum heartwood, luminous eyes, and exposed core.
+- Added a reproducible cleanup/normalization path that removes the generated chroma field, crops the connected boss silhouette, and emits a transparent 96x96 dialogue/bestiary asset plus a 4x review image.
+- Cataloged the portrait as presentation-only; the production ID remains `stage_5_boss` until its final lore name and real Stage 5 encounter are approved.
+
+## 2026-08-14 - Reusable Boss Health HUD
+
+- Added one reusable top-screen boss health scene with exact HP, delayed damage trail, 80%/30% threshold marks, and Phase I/II/III status.
+- Replaced the F8 arena's duplicated proof panel and bound the shared HUD directly to the real Stage 5 boss health authority.
+- Made Combat Lab bind the newest spawned Stage 5 boss, clear the HUD with the simulation, and restore another valid boss binding when necessary.
+- Removed the Stage 5 actor's competing world-space enemy bar and added focused coverage for phase boundaries, easing, defeat, F8 binding, lab lifecycle, and local-bar suppression.
+
+## 2026-08-14 - Stage 5 Health-Scaled Jump Pursuits
+
+- Scaled repeatable jump chains by current boss health: one jump at 80-100%, alternating two/three below 80%, and cycling three/four/five at 30% or lower.
+- Varied pursuit targets through direct tracking, velocity prediction, and alternating escape-lane cutoffs while keeping every shown marker committed and dodgeable.
+- Added 120% mid-health and 150% low-health finishing slams with escalating impact presentation; prison begins only after the final landing.
+- Started explicit 4.6/3.8/2.6-second tier cooldowns after prison recovery and kept a one-melee low-health gate so rapid chains recur without becoming continuous.
+- Expanded focused coverage for tier boundaries, deterministic counts, recurring low-health chains, final damage, and fast-prison handoff.
+
+## 2026-08-14 - Faster Stage 5 Boss and Positional Root Execution
+
+- Raised the boss proof from 42 to 58 px/s, acceleration from 320 to 480, and walk playback from 7.5 to 9 fps.
+- Tightened lunge from 0.82/0.14/0.90 seconds to 0.62/0.12/0.66 and slap from 0.78/0.14/0.72 to 0.60/0.12/0.54 while retaining their damage, reach, order, and readable committed phases.
+- Changed the delayed root execution from restraint-status damage to a fixed 34-pixel location check. Dash-avoiding capture or breaking free now enables escape movement but still receives the provisional 300 physical damage when King remains inside the locked ground core.
+- Added Decision 090 and focused tests for exact tempo, outside-zone miss, ordinary failed escape, and dash-avoided in-zone execution.
+
+## 2026-08-14 - Stage 5 Up-Walk and Combat Lab Focus Correction
+
+- Replaced cell-first Stage 5 boss walk extraction with full-board connected-actor recovery. All six up-facing bodies crossed 22-24 source pixels into the preceding row; recovering the 24 complete actors restores their crowns while preserving six unique frames per direction, fixed stature, binary alpha, and the y=90 foot baseline.
+- Made every Combat Lab administration control mouse/touch-only for keyboard focus. Clicking Spawn x1/x4/x8, selector, toggles, test kit, Clear, Reset, or Exit can no longer retain UI-accept focus and reinterpret Space/Dash as another administration click.
+- Added focused crown-edge and complete admin-control focus regression checks.
+
+## 2026-08-14 - Stage 5 Boss Hurt Stability Correction
+
+- Rebuilt the active directional reaction atlas with per-view hurt-width envelopes while preserving the approved action-family height and y=98 foot baseline, removing the visible scale pop when hits swap from idle/walk into reaction poses.
+- Made chase hurt playback presentation-exclusive and priority-safe: facing/movement updates cannot cut its three frames short, repeated contacts do not restart it, and committed lunge/slap/jump/root states retain their authored body animation while shared hit flash still confirms damage.
+- Restored the Dash HUD from restraint using the evade component's real cooldown state rather than unconditionally displaying `READY`.
+- Added focused silhouette-width, hurt-completion, committed-attack, and Dash cooldown regression coverage; the Stage 5 boss, root prison, HUD, Combat Lab, combat-feedback, control, buffer, and King asset smoke tests pass.
+
 ## 2026-08-14 - Root Execution Visual and Prompt Correction
 
 - Replaced equal-strip execution extraction with complete-component assignment around eight real frame anchors, removing the visible left/right fragments imported from neighboring eruptions.

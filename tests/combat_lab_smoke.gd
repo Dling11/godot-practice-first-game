@@ -27,6 +27,25 @@ func _run() -> void:
 	if lab.enemy_selector.selected != 6 or lab.get_live_enemy_count() != 1:
 		_fail("Combat Lab did not open on one visible Stage 5 boss proof.")
 		return
+	if not lab.boss_hud.visible or lab.boss_hud.health_component == null:
+		_fail("Combat Lab did not bind its top-screen HUD to the opening Stage 5 boss.")
+		return
+	var admin_controls: Array[Control] = [
+		lab.enemy_selector,
+		lab.spawn_one_button,
+		lab.spawn_four_button,
+		lab.spawn_eight_button,
+		lab.ai_toggle,
+		lab.invincible_toggle,
+		lab.combat_tools_button,
+		lab.clear_button,
+		lab.reset_button,
+		lab.exit_button,
+	]
+	for control: Control in admin_controls:
+		if control.focus_mode != Control.FOCUS_NONE:
+			_fail("Combat Lab control %s can retain Space/accept focus during gameplay." % control.name)
+			return
 	if not _enemies_are_rewardless(lab):
 		_fail("Combat Lab enemy retained production reward authority.")
 		return
@@ -47,6 +66,9 @@ func _run() -> void:
 	if lab.get_live_enemy_count() != 0:
 		_fail("Combat Lab clear did not remove the active simulation.")
 		return
+	if lab.boss_hud.visible or lab.boss_hud.health_component != null:
+		_fail("Combat Lab clear did not remove the active boss HUD binding.")
+		return
 
 	for roster_index in range(7):
 		lab.enemy_selector.select(roster_index)
@@ -54,6 +76,9 @@ func _run() -> void:
 		await physics_frame
 		if lab.get_live_enemy_count() != 1 or not _enemies_are_rewardless(lab):
 			_fail("Combat Lab could not safely instantiate roster entry %d." % roster_index)
+			return
+		if roster_index == 6 and not lab.boss_hud.visible:
+			_fail("Combat Lab did not restore boss presentation when respawning the Stage 5 boss.")
 			return
 		lab.clear_simulation()
 		await process_frame

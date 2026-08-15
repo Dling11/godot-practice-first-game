@@ -2,13 +2,12 @@
 
 ## Status
 
-Identity, standing/idle, and walking checkpoints were owner-approved on 2026-08-14. The current reaction, basic-melee, and jump families now drive an isolated playable combat proof reachable with F8 from Sanctuary. This proof is deliberately not the Stage 5 encounter: final display name, tuning, audio, phase rules, dialogue, rewards, and Stage 5 itself remain unimplemented.
+Identity, standing/idle, walking, reaction, melee, jump, and root-prison families now drive both the F8 proof and the production Stage 5 encounter. Varkuun's display name, health-tier jump rules, entrance, portrait dialogue, named boss HUD, dedicated music, and real-recording action audio are implemented. The Stage V milestone reward remains unimplemented.
 
 ## Naming direction
 
-- `Lord` is reserved as the boss's title, not its complete identity.
-- The eventual boss-bar form is `<personal name>, Lord of <domain>` after its lore and combat domain are approved.
-- Production paths retain the stable `stage_5_boss` identifier; no placeholder fantasy name is promoted into runtime content.
+- The approved boss-bar identity is `Varkuun, Lord of the Withered Grove`.
+- Production paths retain the stable `stage_5_boss` identifier; display lore does not churn technical asset paths.
 
 ## Approved identity
 
@@ -100,4 +99,6 @@ The separate eight-frame impact uses 192x112 cells and one stable center: pressu
 
 ## Isolated runtime proof
 
-`res://levels/stage_5_boss_test/stage_5_boss_test.tscn` and the Admin Combat Lab place the real King against the provisional four-action controller. Lunge, slap, and jump remain as documented. After jump recovery the boss plants its root hand and begins a tracked foot warning. At 0.55 seconds the warning world-locks; a target within 34 pixels is restrained for 2.2 seconds. Five shared dash inputs break it. Skills cannot dodge or operate during capture. Escape leaves the broken effect at its locked point and the execution misses; failure applies one 300 physical-damage controller event as the separate eight-frame column erupts. The channel/recovery deliberately exposes the boss to punishment. Values remain provisional until owner playtesting.
+`res://levels/stage_5_boss_test/stage_5_boss_test.tscn` and the Admin Combat Lab place real King against the provisional four-action controller. The aggressive feel-test uses 58 px/s movement, 480 acceleration, a 9 fps walk, a 0.62/0.12/0.66-second lunge, and a 0.60/0.12/0.54-second slap. Jump count is current-health-driven and repeatable: exact 80-100% uses one; below 80% alternates two/three; exact 30% or lower cycles three/four/five. Multi-jumps reuse approved body/impact families with direct, 46-pixel velocity lead, 28+42-pixel perpendicular cutoff, opposite-side cutoff when a fifth jump exists, and direct final targeting. Warnings remain fixed once shown. Mid-health chains use 0.58-second travel, 0.18 intermediate recovery, and a 120% final slam. Low health uses 0.42 travel, 0.10 recovery, a 150% final slam, and 0.45/0.35 root warning/tracking. Prison begins only after the finisher and retains its 2.2-second five-Dash escape plus positional 300 damage. Prison recovery starts the tier's reuse cooldown. Values remain provisional.
+
+Both review arenas and production Stage 5 use `res://ui/boss/boss_health_hud.tscn`. It binds the real boss `HealthComponent`, displays Varkuun's approved title/context, exact HP, an immediate crimson value with delayed orange loss, and Phase I/II/III at the authoritative 80/30 boundaries. The 30% and 80% ticks communicate those thresholds without calculating them. The boss actor has no local `EnemyHealthBar`; a scene must own the one active top-screen binding.

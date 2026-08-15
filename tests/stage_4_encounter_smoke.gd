@@ -42,8 +42,8 @@ func _run() -> void:
 	if controller.armored_hog_scene == null:
 		_fail("Stage 4 did not wire the Armored Hog runtime scene.")
 		return
-	if controller.portal_target_scene != "res://levels/sanctuary/sanctuary.tscn":
-		_fail("Stage 4 must bank its clear and return to Sanctuary while Stage 5 remains unbuilt.")
+	if controller.portal_target_scene != "res://levels/stage_5/stage_5.tscn":
+		_fail("Stage 4 must advance through its eastern gateway into the production Stage 5 route.")
 		return
 	if ground.layout == null or ground.layout.resource_path != "res://data/environment/layouts/stage_4_eastern_rot_ground.tres":
 		_fail("Stage 4 is not using its authored eastern-rot layout.")

@@ -80,7 +80,7 @@ Default world light travels from upper-left toward lower-right. Highlights, cast
 - Tall props use independent base/canopy or base/roof layers when the player can walk behind them.
 - Prop collision covers the traversability footprint, never the entire visible crown or silhouette.
 - Landmarks guide travel and combat spacing. Avoid random dense prop scattering.
-- Shared forest terrain stays bright and low-contrast. Rootbound Hollow must still read as that forest dying: retain roughly half living grass/moss around the approach, then transition through dirt blends and root scars into maroon bark, muted plum-violet roots, bruised moss, and sparse toxic-lime fissures. Keep the arena center quiet enough for warnings and enemy silhouettes.
+- Shared forest terrain stays bright and low-contrast. Rootbound Hollow must still read as that forest dying: retain roughly half living grass/moss around the approach, then transition through dirt blends and root scars into maroon bark, muted plum-violet roots, bruised moss, and sparse toxic-lime fissures. Stage 4 confines stronger rot to its eastern edge and foreshadows the route with a reduced broken gateway. Production Stage 5 is the deliberate fully decayed endpoint: charcoal soil, gray stone lanes, plum-black roots, sparse lime fissures, and dense grouped dead-tree silhouettes rooted at or partly beyond every outer map edge. Individual bare trees/snags/fallen trunks/uprooted remains may sit inside only where they frame a route rather than fill it. A single tiny, stylized pixel carrion detail with separately moving flies supplies environmental consequence without gore or realistic anatomy. Keep traversal and the boss center quiet enough for warnings and silhouettes; never substitute random interior scattering, unrelated stump art, or one repeated tree without scale/mirror variation.
 - Sanctuary assets reuse the forest's lighting and palette while introducing maintained paths, inhabited structures, warm windows, cloth, and the central divine fountain.
 - Fountain visuals should separate base stone, water/glow animation, shadow, collision, and optional interaction marker.
 
@@ -141,7 +141,7 @@ concept -> source -> cleaned -> runtime -> archived
 
 Future non-runtime art belongs under `art_source/`, with a `.gdignore` at its root. This keeps source and mistakes safe without importing them into Godot. Runtime content belongs under `assets/` only.
 
-The active combat-stage environment follows that lifecycle: generated 4x4 forest and Rootbound source boards plus the chroma-clean arena seal are preserved under `art_source/generated/environment/forest/`; normalized 64px atlases and the fixed-canvas transparent seal are the only versions referenced at runtime. Camera captures used for visual review live under `art_source/review/environment/`.
+The active combat-stage environment follows that lifecycle: generated 4x4 forest and Rootbound source boards plus the chroma-clean arena seal are preserved under `art_source/generated/environment/forest/`; normalized 64px atlases and the fixed-canvas transparent seal are the only versions referenced at runtime. Stage 5 follows the same separation under `art_source/generated/environment/stage_5/`, with cleaned chroma props under the matching cleaned path and only normalized terrain/tree/shrine outputs under runtime `assets/`. Camera captures used for visual review live under `art_source/review/environment/`.
 
 ## External and Generated Art
 

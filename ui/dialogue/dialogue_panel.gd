@@ -22,11 +22,15 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not visible or not _accept_input:
 		return
+	if event is InputEventKey and (event as InputEventKey).echo:
+		return
 	if event.is_action_pressed("ui_cancel"):
 		get_viewport().set_input_as_handled()
 		close_dialogue(false)
 		return
-	if event.is_action_pressed("player_interact") or event.is_action_pressed("ui_accept"):
+	# Enter/Space are owned by the focused native button. Handling ui_accept here
+	# as well would advance twice from one press.
+	if event.is_action_pressed("player_interact"):
 		get_viewport().set_input_as_handled()
 		advance()
 
@@ -73,7 +77,7 @@ func close_dialogue(completed := false) -> void:
 
 func _show_current_line() -> void:
 	body_label.text = _lines[_line_index]
-	continue_button.text = "F / ENTER  •  %s" % ("CLOSE" if _line_index == _lines.size() - 1 else "CONTINUE")
+	continue_button.text = "F / ENTER / SPACE  •  %s" % ("CLOSE" if _line_index == _lines.size() - 1 else "CONTINUE")
 
 
 func _enable_input() -> void:

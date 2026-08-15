@@ -17,6 +17,8 @@ var _base_body_position := Vector2(0.0, -42.0)
 var _tween: Tween
 var _hurt_pending := false
 
+const DEATH_FADE_SECONDS := 0.65
+
 
 func _ready() -> void:
 	body.sprite_frames = _build_frames()
@@ -42,6 +44,8 @@ func set_jump_height(height_pixels: float) -> void:
 
 
 func play_state(state: Stage5Boss.State, duration_seconds: float) -> void:
+	if _hurt_pending and state != Stage5Boss.State.CHASE:
+		_cancel_hurt()
 	_state = state
 	if _tween != null and _tween.is_valid():
 		_tween.kill()
@@ -86,16 +90,38 @@ func play_state(state: Stage5Boss.State, duration_seconds: float) -> void:
 			_play_fit("slap_recovery_" + _direction, duration_seconds)
 		Stage5Boss.State.DEAD:
 			body.position = _base_body_position
+			body.visible = true
+			shadow.visible = true
+			shadow.scale = Vector2.ONE
+			shadow.modulate = Color.WHITE
 			_play_fit("dead_" + _direction, duration_seconds)
+			_tween = create_tween()
+			_tween.tween_interval(maxf(duration_seconds, 0.0) + 0.2)
+			_tween.tween_property(body, "modulate:a", 0.0, DEATH_FADE_SECONDS)
+			_tween.parallel().tween_property(shadow, "modulate:a", 0.0, DEATH_FADE_SECONDS)
+			_tween.tween_callback(_finish_death_fade)
 
 
 func play_hurt(_info: DamageInfo) -> void:
-	if _state in [Stage5Boss.State.DEAD, Stage5Boss.State.JUMP_TRAVEL]:
+	## Boss attacks are committed. Their local hit flash still confirms damage,
+	## but replacing an authored attack pose with a reaction corrupts readability.
+	if _state != Stage5Boss.State.CHASE or _hurt_pending:
 		return
+	_hurt_pending = true
+	body.speed_scale = 1.0
 	body.play("hurt_" + _direction)
-	if not _hurt_pending:
-		_hurt_pending = true
+	if not body.animation_finished.is_connected(_on_hurt_finished):
 		body.animation_finished.connect(_on_hurt_finished, CONNECT_ONE_SHOT)
+
+
+func play_desperation() -> void:
+	if _tween != null and _tween.is_valid():
+		_tween.kill()
+	body.modulate = Color.WHITE
+	_tween = create_tween()
+	for pulse in range(3):
+		_tween.tween_property(body, "modulate", Color(0.72, 1.0, 0.48, 1.0), 0.055)
+		_tween.tween_property(body, "modulate", Color.WHITE, 0.055)
 
 
 func _on_hurt_finished() -> void:
@@ -103,7 +129,20 @@ func _on_hurt_finished() -> void:
 	_restore()
 
 
+func _cancel_hurt() -> void:
+	if body.animation_finished.is_connected(_on_hurt_finished):
+		body.animation_finished.disconnect(_on_hurt_finished)
+	_hurt_pending = false
+
+
+func _finish_death_fade() -> void:
+	body.visible = false
+	shadow.visible = false
+
+
 func _restore() -> void:
+	if _hurt_pending:
+		return
 	if _state == Stage5Boss.State.CHASE:
 		body.play(("walk_" if _moving else "idle_") + _direction)
 
@@ -131,7 +170,7 @@ func _build_frames() -> SpriteFrames:
 	for row in range(4):
 		var direction: String = directions[row]
 		_add_range(frames, "idle_" + direction, IdleTexture, Vector2i(112, 96), row, 0, 4, 3.2, true)
-		_add_range(frames, "walk_" + direction, WalkTexture, Vector2i(112, 96), row, 0, 6, 7.5, true)
+		_add_range(frames, "walk_" + direction, WalkTexture, Vector2i(112, 96), row, 0, 6, 9.0, true)
 		_add_range(frames, "hurt_" + direction, ReactionTexture, Vector2i(144, 112), row, 0, 3, 10.0, false)
 		_add_range(frames, "dead_" + direction, ReactionTexture, Vector2i(144, 112), row, 3, 8, 5.0, false)
 		_add_range(frames, "lunge_wind_up_" + direction, AttackTexture, Vector2i(144, 112), row, 0, 4, 5.0, false)

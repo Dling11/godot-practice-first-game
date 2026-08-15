@@ -117,7 +117,30 @@ func _run() -> void:
 		_fail("Execution did not release the restraint or report its hit.")
 		return
 
-	print("Stage 5 root warning, capture, skill lock, struggle escape, world lock, and 300-damage execution passed.")
+	# Avoiding the capture through the real dash state is not immunity to the
+	# delayed world-locked eruption. Remaining inside its ground core still hits.
+	player.health_component.set_current_health(600.0)
+	player.global_position = Vector2(360.0, 260.0)
+	boss._spawn_root_prison()
+	await process_frame
+	if not player.evade_component.request_evade(Vector2.RIGHT):
+		_fail("Root location-hazard test could not enter the real dash state.")
+		return
+	boss._lock_root_prison()
+	if player.is_restrained_by(boss):
+		_fail("Real dash state did not avoid the root's restraint boundary.")
+		return
+	player.evade_component.cancel_evade()
+	var before_location_execution := player.health_component.current_health
+	boss._execute_root_prison()
+	if not is_equal_approx(before_location_execution - player.health_component.current_health, boss.root_execution_damage):
+		_fail("Dash-avoided player remained in the locked root zone but escaped its 300-damage eruption.")
+		return
+	if execution_events != [false, true, true]:
+		_fail("Root location hazard did not report the dash-avoided in-zone execution hit.")
+		return
+
+	print("Stage 5 root warning, capture, skill lock, struggle escape, world lock, and in-zone 300-damage execution passed.")
 	quit(0)
 
 

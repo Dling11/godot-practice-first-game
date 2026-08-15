@@ -97,6 +97,12 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 087 | Gate a reusable Combat Lab behind debug Admin Mode | Admin tooling, F7/F10, enemy simulator, rewardless spawning, AI pause, invincibility, or test workflow |
 | 088 | Separate the boss lunge from a real overhead slap | Stage 5 boss melee readability, lunge naming, overhead slap, attack alternation, directional slap frames, or camera response |
 | 089 | Make the buried-hand root execution an active escape check | Stage 5 root prison, skill lockout, dash struggle, mobile tapping, 300 damage, world-locked VFX, or failure execution |
+| 090 | Tighten the Stage 5 boss tempo and keep root execution positional | Stage 5 boss chase speed, lunge/slap cadence, escaped root execution, locked ground hazard, or 300 damage |
+| 091 | Scale repeatable jump pursuits with boss health | Stage 5 boss health tiers, multi-jumps, 2/3 or 3/4/5 cadence, prediction, cooldown, or final slam |
+| 092 | Give major bosses one reusable top-screen health HUD | Boss health UI, delayed damage, phase thresholds, local bar suppression, F8, or Combat Lab binding |
+| 093 | Author Stage 5 around a dormant broken shrine | Stage 5 terrain, dead trees, boss basin, broken shrine, Stage 4 portal, or future godlike event seam |
+| 094 | Move Stage 5 into a scrolling dead-forest route | Production Stage 5, edge thickets, dead animal, animated flies, rejected stump deletion, gateway route, or gated boss basin |
+| 095 | Introduce Varkuun through an aerial entrance and real-recording audio suite | Stage 5 boss name, entrance, dialogue input, boss music, action audio, jump air cue, or root-prison sound |
 
 ## New Decisions
 

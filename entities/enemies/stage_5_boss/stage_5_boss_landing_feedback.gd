@@ -23,7 +23,7 @@ func _ready() -> void:
 
 func _on_boss_landed(_position: Vector2) -> void:
 	shake_started.emit()
-	_play_shake(5.0)
+	_play_shake(boss.get_landing_feedback_strength())
 
 
 func _on_boss_slapped(_position: Vector2) -> void:

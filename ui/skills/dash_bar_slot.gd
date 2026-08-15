@@ -78,7 +78,10 @@ func clear_restraint_progress() -> void:
 	_restraint_active = false
 	key_label.text = "SPC"
 	activation_button.tooltip_text = "Dash (Space)"
-	_show_ready()
+	if is_instance_valid(evade_component) and evade_component.get_cooldown_remaining() > 0.0:
+		_show_cooldown(evade_component.get_cooldown_remaining())
+	else:
+		_show_ready()
 
 
 func _on_cooldown_tick() -> void:

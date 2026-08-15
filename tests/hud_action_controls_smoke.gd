@@ -73,6 +73,13 @@ func _run() -> void:
 	if player.is_restrained() or hud.dash_slot.key_label.text != "SPC" or hud.dash_slot.state_label.text != "READY":
 		_fail("Five visible Dash-slot taps did not restore UI: restrained=%s key=%s state=%s" % [player.is_restrained(), hud.dash_slot.key_label.text, hud.dash_slot.state_label.text])
 		return
+	player.evade_component._cooldown_time_remaining = 0.6
+	hud.dash_slot.show_restraint_progress(5, 5)
+	hud.dash_slot.clear_restraint_progress()
+	if not hud.dash_slot.activation_button.disabled or hud.dash_slot.state_label.text == "READY":
+		_fail("Clearing restraint presentation discarded the Dash action's real cooldown state.")
+		return
+	player.evade_component.cancel_evade()
 
 	var debug_event := InputEventAction.new()
 	debug_event.action = "debug_max_progression"

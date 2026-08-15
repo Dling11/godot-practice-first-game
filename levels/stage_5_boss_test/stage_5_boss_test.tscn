@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=22 format=3]
 
 [ext_resource type="Script" path="res://levels/stage_5_boss_test/stage_5_boss_test.gd" id="1"]
 [ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="2"]
@@ -11,60 +11,42 @@
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_hurt_impact.wav" id="9"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_piercing_rush_impact.ogg" id="10"]
 [ext_resource type="Script" path="res://entities/enemies/stage_5_boss/stage_5_boss_landing_feedback.gd" id="11"]
+[ext_resource type="PackedScene" path="res://ui/boss/boss_health_hud.tscn" id="12"]
+[ext_resource type="TileSet" path="res://assets/environment/forest/stage_5/tiles/stage_5_decay_ground_tileset.tres" id="13_tileset"]
+[ext_resource type="Script" path="res://environment/ground/authored_ground.gd" id="14_ground"]
+[ext_resource type="Resource" path="res://data/environment/layouts/stage_5_boss_basin_ground.tres" id="15_layout"]
+[ext_resource type="PackedScene" path="res://environment/props/stage_5_broken_shrine/stage_5_broken_shrine.tscn" id="17_shrine"]
+[ext_resource type="Script" path="res://levels/test_arena/arena_navigation.gd" id="18_navigation"]
+[ext_resource type="PackedScene" path="res://environment/props/stage_5_tall_dead_tree/stage_5_tall_dead_tree.tscn" id="19_tall_tree"]
+[ext_resource type="PackedScene" path="res://environment/props/stage_5_dead_tree_snag/stage_5_dead_tree_snag.tscn" id="20_snag"]
+[ext_resource type="PackedScene" path="res://environment/props/stage_5_fallen_log/stage_5_fallen_log.tscn" id="21_fallen_log"]
+[ext_resource type="PackedScene" path="res://environment/props/stage_5_uprooted_log/stage_5_uprooted_log.tscn" id="22_uprooted_log"]
 
-[sub_resource type="StyleBoxFlat" id="boss_panel"]
-bg_color = Color(0.025, 0.02, 0.032, 0.94)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.42, 0.28, 0.26, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="boss_fill"]
-bg_color = Color(0.48, 0.12, 0.16, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[node name="Stage5BossTest" type="Node" node_paths=PackedStringArray("player", "boss", "combat_hud", "boss_bar", "boss_health_label", "state_label")]
+[node name="Stage5BossTest" type="Node" node_paths=PackedStringArray("player", "boss", "combat_hud", "boss_hud", "state_label")]
 script = ExtResource("1")
 player = NodePath("World/Actors/Player")
 boss = NodePath("World/Actors/Stage5Boss")
 combat_hud = NodePath("UI/CombatHUD")
-boss_bar = NodePath("UI/BossPanel/Margin/Stack/BossBar")
-boss_health_label = NodePath("UI/BossPanel/Margin/Stack/Header/Health")
+boss_hud = NodePath("UI/BossHealthHUD")
 state_label = NodePath("UI/StateLabel")
 
 [node name="World" type="Node2D" parent="."]
 
-[node name="Ground" type="Polygon2D" parent="World"]
+[node name="Level" type="Node2D" parent="World"]
+
+[node name="Ground" type="TileMapLayer" parent="World/Level"]
 z_index = -10
-color = Color(0.075, 0.105, 0.075, 1)
-polygon = PackedVector2Array(0, 0, 960, 0, 960, 540, 0, 540)
-
-[node name="RotPatchWest" type="Polygon2D" parent="World"]
-z_index = -9
-color = Color(0.115, 0.068, 0.09, 1)
-polygon = PackedVector2Array(0, 0, 360, 0, 300, 540, 0, 540)
-
-[node name="ArenaRing" type="Line2D" parent="World"]
-z_index = -8
-width = 3.0
-default_color = Color(0.34, 0.26, 0.22, 0.8)
-closed = true
-points = PackedVector2Array(64, 80, 896, 80, 896, 480, 64, 480)
+tile_set = ExtResource("13_tileset")
+script = ExtResource("14_ground")
+map_size = Vector2i(15, 9)
+layout = ExtResource("15_layout")
 
 [node name="Actors" type="Node2D" parent="World"]
 y_sort_enabled = true
 
 [node name="Player" parent="World/Actors" instance=ExtResource("2")]
 position = Vector2(250, 355)
-movement_bounds = Rect2(72, 88, 816, 384)
+movement_bounds = Rect2(48, 72, 864, 416)
 
 [node name="Camera2D" type="Camera2D" parent="World/Actors/Player"]
 position = Vector2(0, -8)
@@ -75,7 +57,35 @@ limit_bottom = 540
 
 [node name="Stage5Boss" parent="World/Actors" instance=ExtResource("3")]
 position = Vector2(690, 270)
-arena_bounds = Rect2(72, 88, 816, 384)
+arena_bounds = Rect2(48, 72, 864, 416)
+
+[node name="BrokenShrineNorth" parent="World/Actors" instance=ExtResource("17_shrine")]
+position = Vector2(480, 185)
+
+[node name="TallDeadTreeNorthWest" parent="World/Actors" instance=ExtResource("19_tall_tree")]
+position = Vector2(104, 226)
+scale = Vector2(0.76, 0.76)
+
+[node name="DeadTreeSnagNorthEast" parent="World/Actors" instance=ExtResource("20_snag")]
+position = Vector2(856, 215)
+scale = Vector2(-0.78, 0.78)
+
+[node name="FallenLogNorthWest" parent="World/Actors" instance=ExtResource("21_fallen_log")]
+position = Vector2(262, 166)
+scale = Vector2(0.72, 0.72)
+
+[node name="FallenLogSouthEast" parent="World/Actors" instance=ExtResource("21_fallen_log")]
+position = Vector2(696, 498)
+scale = Vector2(-0.72, 0.72)
+
+[node name="UprootedLogWest" parent="World/Actors" instance=ExtResource("22_uprooted_log")]
+position = Vector2(132, 492)
+scale = Vector2(0.64, 0.64)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="World"]
+script = ExtResource("18_navigation")
+navigation_bounds = Rect2(48, 72, 864, 416)
+navigation_agent_radius = 18.0
 
 [node name="Effects" type="Node2D" parent="World" groups=["boss_effects"]]
 
@@ -102,46 +112,7 @@ camera = NodePath("../../World/Actors/Player/Camera2D")
 
 [node name="CombatHUD" parent="UI" instance=ExtResource("4")]
 
-[node name="BossPanel" type="PanelContainer" parent="UI"]
-offset_left = 270.0
-offset_top = 14.0
-offset_right = 690.0
-offset_bottom = 72.0
-theme_override_styles/panel = SubResource("boss_panel")
-
-[node name="Margin" type="MarginContainer" parent="UI/BossPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 6
-
-[node name="Stack" type="VBoxContainer" parent="UI/BossPanel/Margin"]
-layout_mode = 2
-theme_override_constants/separation = 3
-
-[node name="Header" type="HBoxContainer" parent="UI/BossPanel/Margin/Stack"]
-layout_mode = 2
-
-[node name="Name" type="Label" parent="UI/BossPanel/Margin/Stack/Header"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.83, 0.76, 0.64, 1)
-theme_override_font_sizes/font_size = 12
-text = "STAGE 5 LORD | COMBAT PROOF"
-
-[node name="Health" type="Label" parent="UI/BossPanel/Margin/Stack/Header"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 10
-text = "900 / 900"
-
-[node name="BossBar" type="ProgressBar" parent="UI/BossPanel/Margin/Stack"]
-custom_minimum_size = Vector2(0, 13)
-layout_mode = 2
-max_value = 900.0
-value = 900.0
-show_percentage = false
-theme_override_styles/fill = SubResource("boss_fill")
+[node name="BossHealthHUD" parent="UI" instance=ExtResource("12")]
 
 [node name="StateLabel" type="Label" parent="UI"]
 offset_left = 310.0

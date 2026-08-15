@@ -56,7 +56,7 @@ func _on_stage_cleared() -> void:
 	if save_service != null:
 		save_service.save_profile()
 	combat_hud.show_story_message(
-		"THE EASTERN ROT RECEDES  •  THE DEEP FOREST REMAINS SEALED",
+		"THE EASTERN GATE AWAKENS  •  THE DEAD FOREST OPENS",
 		3.0
 	)
 

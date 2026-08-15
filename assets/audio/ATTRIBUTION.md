@@ -1,5 +1,23 @@
 # Audio Attribution
 
+## Varkuun, Lord of the Withered Grove
+
+- **Boss loop:** `music/boss/varkuun_battle_rpg_theme_loop.ogg`
+- **Track:** `Boss Battle Theme` (`CleytonRX - Battle RPG Theme Var.ogg`)
+- **Author:** Cleyton Kauffman
+- **License:** CC0 / public domain
+- **Source:** https://opengameart.org/content/boss-battle-theme
+- **Downloaded:** 2026-08-15
+- **Air descent/travel:** `Air whoosh` by pyranostudios, CC0 — https://opengameart.org/content/air-whoosh
+- **Landing/slap/jump impacts:** `Jump Landing` by Dan Knoflicek, CC0 — https://opengameart.org/content/jump-landing
+- **Root prison:** `Earth Element Magic Spell` by qubodup, CC0 — https://opengameart.org/content/earth-element-magic-spell
+- **Footstep:** `Footsteps` by GboxMikeFozzy, CC0 — https://opengameart.org/content/footsteps-0
+- **Lunge/jump launch:** `Swishes Sound Pack` by artisticdude, CC0 — https://opengameart.org/content/swishes-sound-pack
+- **Hurt/defeat vocals:** `Monster Sound Effects Pack` by Ogrebane, CC0 — https://opengameart.org/content/monster-sound-effects-pack
+- **Phase cue:** `Magic Spell SFX` by JaggedStone, CC0 — https://opengameart.org/content/magic-spell-sfx
+
+The louder fantasy/JRPG orchestral loop begins only after Varkuun's entrance dialogue closes. The previously evaluated `Determined Pursuit` WAV is inactive and preserved under `art_source/archive/audio/varkuun_cc0_sources/`. Combat jump audio is three-part: a short recorded launch, the longer air-rush throughout travel, and a separate recorded ground impact on landing. The complete downloaded monster pack is preserved in the same archive; only selected runtime files are imported.
+
 ## Original Opaw Level-Up Chime
 
 - **Runtime file:** `sfx/ui/opaw_level_up_chime.wav`

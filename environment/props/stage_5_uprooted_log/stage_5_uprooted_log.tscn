@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/environment/forest/stage_5/props/stage_5_uprooted_log_192x128.png" id="1_log"]
+[ext_resource type="Script" path="res://gameplay/navigation/navigation_cutout.gd" id="2_cutout"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_log"]
+points = PackedVector2Array(-77, -25, -52, -45, 62, -43, 83, -22, 72, 4, -60, 7, -85, -8)
+
+[node name="Stage5UprootedLog" type="StaticBody2D"]
+collision_mask = 6
+
+[node name="Shadow" type="Polygon2D" parent="."]
+z_index = -2
+position = Vector2(0, -13)
+color = Color(0.025, 0.012, 0.022, 0.44)
+polygon = PackedVector2Array(-84, -5, -62, -20, 56, -21, 84, -9, 70, 7, -66, 8)
+
+[node name="Log" type="Sprite2D" parent="."]
+position = Vector2(0, -64)
+texture = ExtResource("1_log")
+
+[node name="Footprint" type="CollisionShape2D" parent="."]
+shape = SubResource("ConvexPolygonShape2D_log")
+
+[node name="NavigationCutout" type="Node" parent="." groups=["navigation_cutout"]]
+script = ExtResource("2_cutout")
+derive_from_collision_shapes = true
