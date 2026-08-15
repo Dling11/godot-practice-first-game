@@ -8,6 +8,7 @@ const INTERACT_CURSOR = preload("res://assets/ui/cursors/cursor_interact_24.svg"
 const TARGET_CURSOR = preload("res://assets/ui/cursors/cursor_target_confirm_24.svg")
 
 var targeting_active := false
+var combat_target_selected := false
 
 
 func _ready() -> void:
@@ -19,6 +20,13 @@ func set_targeting_active(active: bool) -> void:
 	if targeting_active == active:
 		return
 	targeting_active = active
+	_apply_arrow_cursor()
+
+
+func set_combat_target_selected(selected: bool) -> void:
+	if combat_target_selected == selected:
+		return
+	combat_target_selected = selected
 	_apply_arrow_cursor()
 
 
@@ -35,7 +43,7 @@ func _install_cursor_vocabulary() -> void:
 func _apply_arrow_cursor() -> void:
 	if DisplayServer.get_name() == "headless":
 		return
-	if targeting_active:
+	if targeting_active or combat_target_selected:
 		Input.set_custom_mouse_cursor(
 			TARGET_CURSOR,
 			Input.CURSOR_ARROW,

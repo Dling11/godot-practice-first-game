@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="EnemyDefinition" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="EnemyDefinition" load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://data/enemies/enemy_definition.gd" id="1_definition"]
+[ext_resource type="Texture2D" path="res://assets/characters/enemies/portraits/rootling_portrait_96x96.png" id="2_portrait"]
 
 [resource]
 script = ExtResource("1_definition")
 display_name = "Rootling"
+portrait = ExtResource("2_portrait")
 maximum_health = 35.0
 move_speed = 52.0
 acceleration = 460.0

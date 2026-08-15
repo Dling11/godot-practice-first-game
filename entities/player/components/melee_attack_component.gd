@@ -83,11 +83,12 @@ func _advance_phase() -> void:
 		Phase.WIND_UP:
 			_enter_phase(Phase.ACTIVE, _scaled_duration(weapon.active_seconds))
 			hitbox.activate(
-				weapon.roll_basic_damage(_random),
-				owner,
-				_attack_direction,
-				weapon.knockback_strength
-			)
+			weapon.roll_basic_damage(_random),
+			owner,
+			_attack_direction,
+			weapon.knockback_strength,
+			weapon.basic_stagger_seconds
+		)
 		Phase.ACTIVE:
 			hitbox.deactivate()
 			_enter_phase(Phase.RECOVERY, _scaled_duration(weapon.recovery_seconds))

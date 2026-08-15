@@ -29,6 +29,7 @@ func _run() -> void:
 	var dash_rect := hud.dash_slot.get_global_rect()
 	var skill_rect := hud.get_skill_slot(1).get_global_rect()
 	var last_skill_rect := hud.get_skill_slot(4).get_global_rect()
+	var attack_rect := hud.attack_button.get_global_rect()
 	var tray_rect := tray.get_global_rect()
 	if (
 		dash_rect.end.x > skill_rect.position.x
@@ -36,9 +37,11 @@ func _run() -> void:
 		or not tray_rect.encloses(dash_rect)
 		or not tray_rect.encloses(skill_rect)
 		or not tray_rect.encloses(last_skill_rect)
+		or not tray_rect.encloses(attack_rect)
 		or hud.dash_slot.size != Vector2(52.0, 48.0)
+		or hud.attack_button.size != Vector2(54.0, 48.0)
 	):
-		_fail("Dash is not visibly separated from Skill 1 or an action escapes the tray.")
+		_fail("Dash/Attack separation or an action-tray boundary is incorrect.")
 		return
 
 	hud.options_button.pressed.emit()

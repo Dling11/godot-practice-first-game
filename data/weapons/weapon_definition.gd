@@ -28,6 +28,8 @@ extends Resource
 @export_range(0.0, 9999.0, 1.0) var basic_damage_minimum: float = 0.0
 @export_range(0.0, 9999.0, 1.0) var basic_damage_maximum: float = 0.0
 @export_range(0.0, 500.0, 1.0, "suffix:px/s") var knockback_strength: float = 0.0
+## A normal sword hit is a brief flinch, never a long crowd-control lock.
+@export_range(0.0, 1.0, 0.01, "suffix:s") var basic_stagger_seconds: float = 0.0
 @export_range(0.0, 2.0, 0.01, "suffix:s") var wind_up_seconds: float = 0.1
 @export_range(0.01, 2.0, 0.01, "suffix:s") var active_seconds: float = 0.1
 @export_range(0.0, 3.0, 0.01, "suffix:s") var recovery_seconds: float = 0.2

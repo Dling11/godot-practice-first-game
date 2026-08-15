@@ -93,4 +93,6 @@ None currently. The project and main scene pass headless editor import and runti
 
 ## Technical Limitations
 
+Assisted combat is implemented and structurally tested, but obstacle-by-obstacle pursuit, Stage 4 eight-enemy click selection, and touch ergonomics still need owner feel testing at 960x540. Direct WASD and all existing action controls remain the fallback if a route feels poor.
+
 Stage 4's eight-active-enemy field passes structural smoke coverage but still requires gameplay-scale frame-time, navigation, separation, and threat-readability profiling. Do not choose the Stage 6 horde ceiling until that evidence exists.

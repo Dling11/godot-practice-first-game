@@ -27,6 +27,7 @@ const EvadeComponentScript = preload("res://entities/player/components/evade_com
 const AbilityComponentScript = preload("res://gameplay/abilities/ability_component.gd")
 const DirectionalWedgeTargetingScript = preload("res://gameplay/abilities/targeting/directional_wedge_targeting.gd")
 const GroundPointTargetingScript = preload("res://gameplay/abilities/targeting/ground_point_targeting.gd")
+const CombatTargetingScript = preload("res://entities/player/components/player_combat_targeting_component.gd")
 @export var movement_bounds := Rect2(56.0, 56.0, 528.0, 248.0)
 @export var character_id: StringName = &"opaw"
 @export var character_class_id: StringName = &"warrior"
@@ -45,6 +46,7 @@ const GroundPointTargetingScript = preload("res://gameplay/abilities/targeting/g
 @onready var ability_4_component: AbilityComponentScript = %Ability4Component
 @onready var directional_wedge_targeting: DirectionalWedgeTargetingScript = %DirectionalWedgeTargeting
 @onready var ground_point_targeting: GroundPointTargetingScript = %GroundPointTargeting
+@onready var combat_targeting: CombatTargetingScript = %CombatTargetingComponent
 @onready var health_component: HealthComponent = %HealthComponent
 @onready var progression_component: PlayerProgressionComponent = %ProgressionComponent
 @onready var vitality_component: PlayerVitalityComponent = %VitalityComponent
@@ -113,7 +115,17 @@ func _sync_run_health(current: float, _maximum: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	_try_apply_pending_weapon()
-	var move_direction := input_source.get_move_direction()
+	var manual_move_direction := input_source.get_move_direction()
+	var move_direction := manual_move_direction
+	if (
+		move_direction.is_zero_approx()
+		and not is_restrained()
+		and not evade_component.is_dashing()
+		and not is_any_ability_casting()
+	):
+		move_direction = combat_targeting.get_assisted_move_direction(delta)
+		if move_direction.is_zero_approx():
+			move_direction = combat_targeting.get_click_move_direction(delta)
 	if directional_wedge_targeting.is_targeting():
 		directional_wedge_targeting.update_aim(
 			get_global_mouse_position() - directional_wedge_targeting.global_position,
@@ -121,10 +133,14 @@ func _physics_process(delta: float) -> void:
 		)
 	if ground_point_targeting.is_targeting():
 		ground_point_targeting.update_aim(get_global_mouse_position(), input_source.get_aim_direction())
-	if not move_direction.is_zero_approx() and not is_restrained():
+	if not manual_move_direction.is_zero_approx() and not is_restrained():
+		combat_targeting.cancel_click_move()
 		_set_movement_facing_direction(move_direction)
+	elif combat_targeting.has_valid_target() and not is_restrained():
+		_set_movement_facing_direction(combat_targeting.get_direction_to_target())
 	if input_source.is_evade_just_pressed():
-		var evade_direction := move_direction if not move_direction.is_zero_approx() else facing_direction
+		## A stationary dodge is a defensive backstep, not an accidental forward lunge.
+		var evade_direction := move_direction if not move_direction.is_zero_approx() else -facing_direction
 		request_evade(evade_direction)
 	if input_source.is_ability_1_just_pressed():
 		request_ability_1()
@@ -134,6 +150,7 @@ func _physics_process(delta: float) -> void:
 		request_ability(3)
 	if input_source.is_ability_4_just_pressed():
 		request_ability(4)
+	_try_assisted_primary_attack()
 
 	if is_restrained():
 		velocity = movement_component.calculate_velocity(velocity, Vector2.ZERO, delta)
@@ -171,6 +188,10 @@ func _unhandled_input(event: InputEvent) -> void:
 				ground_point_targeting.confirm_targeting()
 			get_viewport().set_input_as_handled()
 			return
+	if event.is_action_pressed("ui_cancel") and combat_targeting.has_valid_target():
+		combat_targeting.clear_target()
+		get_viewport().set_input_as_handled()
+		return
 		if (
 			event.is_action_pressed("ui_cancel")
 			or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed)
@@ -179,8 +200,19 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 			return
 	if event.is_action_pressed("player_attack_primary"):
+		if event is InputEventMouseButton and combat_targeting.select_at_world_position(get_global_mouse_position()):
+			get_viewport().set_input_as_handled()
+			return
+		if event is InputEventMouseButton:
+			combat_targeting.request_click_move(get_global_mouse_position())
+			get_viewport().set_input_as_handled()
+			return
 		if request_primary_attack():
 			get_viewport().set_input_as_handled()
+		return
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		combat_targeting.clear_target()
+		get_viewport().set_input_as_handled()
 		return
 	if not event.is_action_pressed("debug_max_progression"):
 		return
@@ -293,6 +325,31 @@ func request_primary_attack() -> bool:
 	if not evade_component.is_ready():
 		return false
 	return attack_component.request_attack(facing_direction)
+
+
+func request_assisted_primary_attack() -> bool:
+	if not combat_targeting.resume_auto_attack():
+		return request_primary_attack()
+	if combat_targeting.is_target_in_attack_range():
+		_set_movement_facing_direction(combat_targeting.get_direction_to_target())
+		if attack_component.phase == attack_component.Phase.IDLE:
+			return request_primary_attack()
+	return true
+
+
+func _try_assisted_primary_attack() -> void:
+	if (
+		not combat_targeting.auto_attack_enabled
+		or not combat_targeting.is_target_in_attack_range()
+		or attack_component.phase != attack_component.Phase.IDLE
+		or evade_component.is_dashing()
+		or is_any_ability_casting()
+		or is_restrained()
+		or is_defeated
+	):
+		return
+	_set_movement_facing_direction(combat_targeting.get_direction_to_target())
+	request_primary_attack()
 
 
 func request_evade(direction: Vector2) -> bool:

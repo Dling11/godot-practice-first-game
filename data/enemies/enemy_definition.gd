@@ -8,6 +8,8 @@ extends Resource
 enum CrowdControlTier { LIGHT, ELITE, BOSS }
 
 @export var display_name: String = "Enemy"
+## Presentation-only portrait for target cards, dialogue, and future bestiary UI.
+@export var portrait: Texture2D
 @export_range(1.0, 99999.0, 1.0) var maximum_health: float = 100.0
 @export_range(0.0, 9999.0, 1.0) var armor_rating: float = 0.0
 @export_range(1.0, 1000.0, 1.0, "suffix:px/s") var move_speed: float = 60.0

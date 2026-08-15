@@ -44,6 +44,18 @@ corner_radius_bottom_left = 4
 shadow_color = Color(0.01, 0.01, 0.02, 0.55)
 shadow_size = 3
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_target_portrait"]
+bg_color = Color(0.16, 0.055, 0.06, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.92, 0.22, 0.18, 0.95)
+corner_radius_top_left = 19
+corner_radius_top_right = 19
+corner_radius_bottom_right = 19
+corner_radius_bottom_left = 19
+
 [node name="CombatHUD" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -278,6 +290,133 @@ horizontal_alignment = 1
 theme_override_colors/font_color = Color(0.88, 0.9, 0.72, 1)
 theme_override_font_sizes/font_size = 12
 
+[node name="TargetPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = 12.0
+offset_top = 145.0
+offset_right = 192.0
+offset_bottom = 195.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Margin" type="MarginContainer" parent="TargetPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 3
+
+[node name="Content" type="HBoxContainer" parent="TargetPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="PortraitFrame" type="Panel" parent="TargetPanel/Margin/Content"]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+clip_contents = true
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_target_portrait")
+
+[node name="TargetPortrait" type="TextureRect" parent="TargetPanel/Margin/Content/PortraitFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Stack" type="VBoxContainer" parent="TargetPanel/Margin/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 1
+
+[node name="Header" type="HBoxContainer" parent="TargetPanel/Margin/Content/Stack"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TargetNameLabel" type="Label" parent="TargetPanel/Margin/Content/Stack/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "TARGET"
+theme_override_colors/font_color = Color(1, 0.78, 0.34, 1)
+theme_override_font_sizes/font_size = 9
+
+[node name="TargetHealthLabel" type="Label" parent="TargetPanel/Margin/Content/Stack/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "100 / 100"
+theme_override_colors/font_color = Color(0.9, 0.86, 0.78, 1)
+theme_override_font_sizes/font_size = 8
+
+[node name="TargetHealthBar" type="ProgressBar" parent="TargetPanel/Margin/Content/Stack"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+show_percentage = false
+theme_override_styles/fill = SubResource("StyleBoxFlat_health")
+
+[node name="TargetCloseButton" type="Button" parent="TargetPanel/Margin/Content"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(18, 26)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+focus_mode = 0
+tooltip_text = "Stop targeting (Esc / Right-click)"
+text = "×"
+theme_override_colors/font_color = Color(1, 0.55, 0.48, 1)
+theme_override_font_sizes/font_size = 15
+
+[node name="EnemyRosterPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -224.0
+offset_top = -188.0
+offset_right = -12.0
+offset_bottom = -74.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Margin" type="MarginContainer" parent="EnemyRosterPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 3
+
+[node name="Stack" type="VBoxContainer" parent="EnemyRosterPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Title" type="Label" parent="EnemyRosterPanel/Margin/Stack"]
+layout_mode = 2
+text = "ENEMIES  •  CLICK TO ENGAGE"
+theme_override_colors/font_color = Color(1, 0.65, 0.34, 1)
+theme_override_font_sizes/font_size = 8
+
+[node name="Scroll" type="ScrollContainer" parent="EnemyRosterPanel/Margin/Stack"]
+custom_minimum_size = Vector2(0, 82)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="EnemyRosterRows" type="VBoxContainer" parent="EnemyRosterPanel/Margin/Stack/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
 [node name="SpawnIndicator" type="Label" parent="."]
 unique_name_in_owner = true
 visible = false
@@ -334,9 +473,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -156.0
+offset_left = -194.0
 offset_top = -68.0
-offset_right = 156.0
+offset_right = 194.0
 offset_bottom = -10.0
 grow_horizontal = 2
 mouse_filter = 2
@@ -361,7 +500,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="DashSkillGap" type="Control" parent="ActionTray/Margin/Actions"]
-custom_minimum_size = Vector2(12, 0)
+custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 mouse_filter = 2
 
@@ -370,6 +509,23 @@ unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 4
+
+[node name="AttackGap" type="Control" parent="ActionTray/Margin/Actions"]
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="AttackButton" type="Button" parent="ActionTray/Margin/Actions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(54, 48)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+focus_mode = 0
+tooltip_text = "Approach and basic-attack the selected enemy • Select nearest if none • Esc or right-click stops"
+text = "BASIC\nATTACK"
+theme_override_colors/font_color = Color(1, 0.82, 0.42, 1)
+theme_override_colors/font_hover_color = Color(1, 0.94, 0.68, 1)
+theme_override_font_sizes/font_size = 9
 
 [node name="DefeatPanel" type="PanelContainer" parent="."]
 unique_name_in_owner = true

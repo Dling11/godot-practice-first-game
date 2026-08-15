@@ -7,7 +7,7 @@ const PLAYER_HIT_TINT := Color(1.0, 0.9, 0.42, 1.0)
 const PLAYER_DAMAGED_TINT := Color(1.0, 0.42, 0.42, 1.0)
 const HIT_FLASH_SHADER := preload("res://gameplay/presentation/hit_flash.gdshader")
 const HIT_FLASH_SECONDS := 0.1
-const LIGHT_HITSTOP_SECONDS := 0.018
+const LIGHT_HITSTOP_SECONDS := 0.024
 const MEDIUM_HITSTOP_SECONDS := 0.03
 const HEAVY_HITSTOP_SECONDS := 0.045
 const DEVASTATING_HITSTOP_SECONDS := 0.065
@@ -73,8 +73,14 @@ func _on_player_hit_landed(target: HurtboxComponent, info: DamageInfo) -> void:
 	)
 	_flash_target(target)
 	if owns_shared_feedback:
-		_request_hitstop(LIGHT_HITSTOP_SECONDS)
+		_request_hitstop(_resolve_basic_hitstop(info.amount))
 		_play_sound_at(sword_hit_sound, target.global_position, 1.0)
+
+
+func _resolve_basic_hitstop(accepted_damage: float) -> float:
+	## Basic attacks feel heavier as their accepted damage rises, but remain well
+	## below ability tiers. This is presentation only and cannot reset enemy AI.
+	return clampf(0.018 + accepted_damage * 0.0008, LIGHT_HITSTOP_SECONDS, 0.034)
 
 
 func _on_player_attack_started() -> void:

@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-08-15 - King Combat Control and Target UX
+
+- Accepted Decision 103: empty left-click now creates a navigation-aware blue movement destination, while clicking an enemy selects it without beginning combat. `BASIC ATTACK` or a bottom-right enemy card starts approach-and-repeat attacks; Escape, right-click, and the selected-target × stop it.
+- Added readable control without changing enemy tiers: King's basic sword hit now causes a 0.11-second Light flinch, Skills 1/2 apply stronger interruption, and Skill 3 applies a 0.78-second stun-like interruption. Elite reduction and Boss immunity remain intact.
+- Slowed King's basic sword cycle to 0.59 seconds and renamed/compacted the action-tray control from `ATTACK / AUTO` to `BASIC ATTACK`.
+- Moved the selected enemy health card into the left status column with a circular portrait, added a scrollable bottom-right live enemy roster with circular portraits/health/Boss-or-Elite labels, and changed the world selection mark to a red footprint-sized circle.
+
+## 2026-08-15 - Single-Target Assisted Combat
+
+- Accepted Decision 102 and added optional click-to-target combat without removing WASD, manual attacks, dash, skills, or the shared action buffer.
+- Added navigation-aware approach, automatic legal-boundary normal attacks, nearest-target Attack-button assistance, right-click clearing, one gold world marker, and a top target name/health panel. Decision 103 supersedes its automatic click-to-attack behavior and presentation.
+- Increased basic-attack hitstop from a fixed 0.018 seconds to accepted-damage scaling between 0.024 and 0.034 seconds. It remains presentation-only; normal attacks still carry no stagger and cannot permanently interrupt enemies.
+- Added focused regression coverage for click picking, one-target replacement, manual movement priority, automatic facing/attack, death cleanup, nearest acquisition, HUD layout, and hitstop capping.
+
 ## 2026-08-15 - Complete Stage V Armor and Live Equipment Authority
 
 - Accepted Decision 101, added Mirebound Leggings, and finalized one Weapon Essence, five armor positions, and four accessory positions without expanding the compact Character & Bag footprint.

@@ -6,6 +6,7 @@ const StageChestIcon = preload(
 	"res://assets/gameplay/loot/stage_clear_chest/"
 	+ "forest_stage_clear_chest_closed_64x48.png"
 )
+const ROSTER_REFRESH_SECONDS := 0.25
 
 signal character_menu_requested
 
@@ -26,6 +27,15 @@ signal character_menu_requested
 @onready var character_menu_button: Button = %CharacterMenuButton
 @onready var options_button: Button = %OptionsButton
 @onready var dash_slot: DashBarSlot = %DashBarSlot
+@onready var attack_button: Button = %AttackButton
+@onready var target_panel: PanelContainer = %TargetPanel
+@onready var target_name_label: Label = %TargetNameLabel
+@onready var target_health_bar: ProgressBar = %TargetHealthBar
+@onready var target_health_label: Label = %TargetHealthLabel
+@onready var target_portrait: TextureRect = %TargetPortrait
+@onready var target_close_button: Button = %TargetCloseButton
+@onready var enemy_roster_panel: PanelContainer = %EnemyRosterPanel
+@onready var enemy_roster_rows: VBoxContainer = %EnemyRosterRows
 @onready var loot_toast_panel: PanelContainer = %LootToastPanel
 @onready var loot_toast_icon: TextureRect = %LootToastIcon
 @onready var loot_toast_label: Label = %LootToastLabel
@@ -39,12 +49,17 @@ var _skill_slots: Array[SkillBarSlot] = []
 var _loot_notifications: Array[Dictionary] = []
 var _loot_toast_busy := false
 var _announcement_tween: Tween
+var _roster_refresh_timer: Timer
 
 
 func _ready() -> void:
 	character_menu_button.pressed.connect(_on_character_menu_button_pressed)
 	options_button.pressed.connect(_on_options_button_pressed)
 	dash_slot.activation_requested.connect(_on_dash_activation_requested)
+	attack_button.pressed.connect(_on_attack_button_pressed)
+	target_close_button.pressed.connect(_on_target_close_button_pressed)
+	target_panel.hide()
+	enemy_roster_panel.hide()
 
 
 func bind_player(player: Player) -> void:
@@ -53,6 +68,8 @@ func bind_player(player: Player) -> void:
 	health.health_changed.connect(_update_health)
 	health.damage_blocked.connect(_show_blocked)
 	dash_slot.bind_evade(player.evade_component)
+	player.combat_targeting.target_changed.connect(_on_combat_target_changed)
+	player.combat_targeting.target_health_changed.connect(_on_combat_target_health_changed)
 	_build_skill_bar(player)
 	_update_health(health.current_health, health.maximum_health)
 	var progression := player.progression_component
@@ -78,6 +95,12 @@ func bind_player(player: Player) -> void:
 		loot_service.stage_reward_granted.connect(_on_stage_reward_granted)
 	_update_progression(progression.level, progression.total_experience, 0)
 	_update_coins(progression.coins)
+	_roster_refresh_timer = Timer.new()
+	_roster_refresh_timer.wait_time = ROSTER_REFRESH_SECONDS
+	_roster_refresh_timer.timeout.connect(_refresh_enemy_roster)
+	add_child(_roster_refresh_timer)
+	_roster_refresh_timer.start()
+	_refresh_enemy_roster()
 
 func get_skill_slot(slot_number: int) -> SkillBarSlot:
 	for slot: SkillBarSlot in _skill_slots:
@@ -118,6 +141,138 @@ func _on_dash_activation_requested() -> void:
 	if direction.is_zero_approx():
 		direction = _player.facing_direction
 	_player.request_evade(direction)
+
+
+func _on_attack_button_pressed() -> void:
+	if is_instance_valid(_player):
+		_player.request_assisted_primary_attack()
+
+
+func _on_combat_target_changed(
+	actor: Node2D,
+	health: HealthComponent,
+	display_name: String
+) -> void:
+	target_panel.visible = actor != null and health != null
+	if not target_panel.visible:
+		return
+	target_name_label.text = display_name.to_upper()
+	var definition: Variant = actor.get("definition")
+	target_portrait.texture = definition.portrait if definition is EnemyDefinition else null
+	target_portrait.visible = target_portrait.texture != null
+	_on_combat_target_health_changed(health.current_health, health.maximum_health)
+
+
+func _on_combat_target_health_changed(current: float, maximum: float) -> void:
+	target_health_bar.max_value = maximum
+	target_health_bar.value = current
+	target_health_label.text = "%d / %d" % [ceili(current), ceili(maximum)]
+
+
+func _on_target_close_button_pressed() -> void:
+	if is_instance_valid(_player):
+		_player.combat_targeting.clear_target()
+
+
+func _refresh_enemy_roster() -> void:
+	if not is_instance_valid(_player):
+		return
+	var targets := _player.combat_targeting.get_selectable_targets()
+	enemy_roster_panel.visible = not targets.is_empty()
+	for child: Node in enemy_roster_rows.get_children():
+		enemy_roster_rows.remove_child(child)
+		child.queue_free()
+	for target: Dictionary in targets:
+		enemy_roster_rows.add_child(_build_enemy_roster_row(target))
+
+
+func _build_enemy_roster_row(target: Dictionary) -> Button:
+	var actor := target.get("actor") as Node2D
+	var hurtbox := target.get("hurtbox") as HurtboxComponent
+	var health := target.get("health") as HealthComponent
+	var definition: Variant = target.get("definition")
+	var row := Button.new()
+	row.custom_minimum_size = Vector2(208.0, 34.0)
+	row.focus_mode = Control.FOCUS_NONE
+	row.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	row.tooltip_text = "Select and approach this enemy with BASIC ATTACK"
+	row.add_theme_font_size_override("font_size", 8)
+	var content := HBoxContainer.new()
+	content.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	content.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	content.add_theme_constant_override("separation", 4)
+	row.add_child(content)
+	var portrait_frame := Panel.new()
+	portrait_frame.custom_minimum_size = Vector2(28.0, 28.0)
+	portrait_frame.clip_contents = true
+	portrait_frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var portrait_style := StyleBoxFlat.new()
+	portrait_style.bg_color = Color(0.18, 0.08, 0.08, 1.0)
+	portrait_style.border_color = Color(0.9, 0.22, 0.18, 0.95)
+	portrait_style.set_border_width_all(1)
+	portrait_style.set_corner_radius_all(14)
+	portrait_frame.add_theme_stylebox_override("panel", portrait_style)
+	content.add_child(portrait_frame)
+	var portrait := TextureRect.new()
+	portrait.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	portrait.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	portrait.texture = definition.portrait if definition is EnemyDefinition else null
+	portrait_frame.add_child(portrait)
+	var details := VBoxContainer.new()
+	details.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	details.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	content.add_child(details)
+	var header := HBoxContainer.new()
+	header.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	details.add_child(header)
+	var name_label := Label.new()
+	name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	name_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	name_label.text = _enemy_roster_name(definition, actor)
+	name_label.add_theme_font_size_override("font_size", 8)
+	name_label.add_theme_color_override("font_color", _enemy_roster_color(definition))
+	header.add_child(name_label)
+	var health_label := Label.new()
+	health_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	health_label.text = "%d/%d" % [ceili(health.current_health), ceili(health.maximum_health)]
+	health_label.add_theme_font_size_override("font_size", 7)
+	header.add_child(health_label)
+	var bar := ProgressBar.new()
+	bar.custom_minimum_size = Vector2(0.0, 6.0)
+	bar.max_value = health.maximum_health
+	bar.value = health.current_health
+	bar.show_percentage = false
+	bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	details.add_child(bar)
+	if actor == _player.combat_targeting.target_actor:
+		row.add_theme_color_override("font_color", Color(1.0, 0.3, 0.24, 1.0))
+	row.pressed.connect(func() -> void:
+		if is_instance_valid(hurtbox) and _player.combat_targeting.select_hurtbox(hurtbox, true):
+			_player.request_assisted_primary_attack()
+	)
+	return row
+
+
+func _enemy_roster_name(definition: Variant, actor: Node2D) -> String:
+	var name_text: String = (definition as EnemyDefinition).display_name if definition is EnemyDefinition else actor.name.capitalize()
+	if definition is EnemyDefinition:
+		match definition.crowd_control_tier:
+			EnemyDefinition.CrowdControlTier.BOSS:
+				return "BOSS  •  %s" % name_text.to_upper()
+			EnemyDefinition.CrowdControlTier.ELITE:
+				return "ELITE  •  %s" % name_text.to_upper()
+	return name_text.to_upper()
+
+
+func _enemy_roster_color(definition: Variant) -> Color:
+	if definition is EnemyDefinition:
+		if definition.crowd_control_tier == EnemyDefinition.CrowdControlTier.BOSS:
+			return Color(1.0, 0.44, 0.2, 1.0)
+		if definition.crowd_control_tier == EnemyDefinition.CrowdControlTier.ELITE:
+			return Color(1.0, 0.78, 0.32, 1.0)
+	return Color(0.94, 0.87, 0.76, 1.0)
 
 
 func show_spawn_direction(global_position: Vector2) -> void:

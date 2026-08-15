@@ -6,6 +6,10 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 
 ## Completed
 
+- Accepted Decision 103 and clarified optional mouse combat: empty left-click creates a visible navigation destination; enemy click selects only; BASIC ATTACK or the compact enemy roster starts approach-and-repeat attacks; Escape/right-click/× stops them. Added brief normal flinch, stronger Skill 1/2 interruption, Skill 3 stun, red footprint-sized target circles, circular portrait status/roster cards, and a slower King basic-sword cadence while preserving Elite reduction and Boss control immunity.
+
+- Accepted Decision 102 and added optional single-target assisted combat: click an enemy to select or replace it, follow navigation into sword reach, face and auto-attack it, override pursuit immediately with WASD, clear with right-click, or acquire the nearest target from the dedicated Attack HUD control. Added target name/health and a world marker; strengthened basic hitstop with a 0.034-second presentation cap without giving normal attacks stagger authority.
+
 - Corrected King's down-facing idle without redesigning him: both approved pixels in each eye remain, while the single hair pixel that extended into the left eye is replaced by warm face color. Every atlas/anchor contract remains intact. Produced a first review-only Forest core-gear concept board aligned to Varkuun and Nema's Living Rootforge; runtime equipment and crafting still belong to Segment 5.
 - Corrected Varkuun's production Stage V prop routing: he now follows navigation during chase, physically detours around blocking scenery, and relocates committed landings to the nearest boss-sized collision-free point. The reported carrion wedge is covered by an exact full-scene regression.
 - Accepted Decision 098 and completed the first post-Stage-V balance pass: Varkuun's 30%-health phase now breaks long-range kite loops with cooldown-respecting map-wide pursuit, Varkuun has 30 reusable armor, King's own integrated signature sword rolls 10-12 through a dedicated 48x56 form while retaining 25 skill power, Opaw's Ashwood/Iron identities remain separate, and Stage II now permits up to six live enemies without changing Stage I/III or Stage IV.
@@ -136,6 +140,8 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 Detailed completion history remains in `CHANGELOG.md`.
 
 ## In Progress
+
+- **Assisted-combat owner feel gate:** verify target picking in eight-enemy Stage 4 crowds, pursuit around every authored obstacle, Attack-button nearest selection, target HUD placement beneath the boss HUD, and the 0.024-0.034-second basic hitstop range at 960x540 before tuning reach or assist radius.
 
 - **Stage 5 boss preproduction:** Decisions 085-092 provide the approved guardian boundary, playable four-action proof, repeatable health-scaled jump chains, and reusable top-screen boss health presentation. Final balance, audio, final boss name/title, rewards, arena ecology, dialogue, and the actual Stage 5 encounter remain open.
 - **Riftbreak owner feel gate:** Skill 2 now has an immediate grounded self-AOE, one 84-pixel 150% contact, per-target outward knockback, a dedicated normalized six-pose slam body family, a separate generated six-frame ground-rupture VFX atlas, icon, and original impact cue. Review radius/timing/control/readability before any optional heavy camera/hitstop polish.

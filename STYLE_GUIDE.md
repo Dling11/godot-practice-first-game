@@ -36,6 +36,9 @@ Use static typing for public APIs, exported data, signals, return values, and no
 
 ## Script Responsibilities
 
+- Assisted controls may produce movement or action intent, but `Player` remains the only body/action authority. Manual input has explicit priority, selection identifies one actor, and target UI/markers remain observers.
+- Hitstop is presentation-only. Enemy interruption requires explicit `DamageInfo.stagger_seconds` plus the target's crowd-control policy; never infer stagger from pause duration or repeated input.
+
 - A script should have one clear reason to change.
 - Prefer components and collaborators over deep inheritance trees.
 - Avoid giant actor controllers; extract coherent capabilities once boundaries are understood.

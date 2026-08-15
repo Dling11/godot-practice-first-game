@@ -109,6 +109,8 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 099 | Finalize nine explicit equipment slots | One weapon, Head/Plate/Gloves/Boots, Bracer/Amulet/Ring/Talisman, Character menu layout, or future equipment authority |
 | 100 | Lock the Stage V core set before enabling crafting | Varkuun Edge, four Forest armor pieces, exact recipes/stats/icons, Rootforge preview, or Segment 5 transaction boundary |
 | 101 | Complete Stage V armor and enable equipment authority | Leggings, five armor slots, GearInventory, live equipment stats, sorting, drag-to-equip, F9 crafting readiness, or save migration |
+| 102 | Add single-target assisted combat | Click targeting, auto-approach, auto-attack, target HUD/marker, Attack button, manual override, or hitstop-versus-stagger |
+| 103 | Clarify King combat control and target UX | Click-to-move, selected-target flow, basic flinch/stun, circular enemy cards, target marker, or combat cursor |
 
 ## New Decisions
 

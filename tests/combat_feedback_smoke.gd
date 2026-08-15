@@ -26,7 +26,9 @@ func _run() -> void:
 	root.add_child(feedback)
 	await process_frame
 	if (
-		not is_equal_approx(
+		not is_equal_approx(feedback._resolve_basic_hitstop(10.0), 0.026)
+		or not is_equal_approx(feedback._resolve_basic_hitstop(999.0), 0.034)
+		or not is_equal_approx(
 			feedback._resolve_ability_hitstop(player.ability_1_component, false),
 			CombatFeedbackPresenter.MEDIUM_HITSTOP_SECONDS
 		)

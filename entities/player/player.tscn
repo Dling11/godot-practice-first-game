@@ -75,6 +75,9 @@
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/abilities/king/king_skill_4_explosion.wav" id="75_skill_4_explosion"]
 [ext_resource type="Shader" path="res://assets/vfx/abilities/king/king_skill_4_sword_sink.gdshader" id="76_skill_4_sink"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/ui/player_action_denied.mp3" id="77_action_denied"]
+[ext_resource type="Script" path="res://entities/player/components/player_combat_targeting_component.gd" id="78_targeting"]
+[ext_resource type="Script" path="res://entities/player/presentation/combat_target_marker.gd" id="79_target_marker"]
+[ext_resource type="Script" path="res://entities/player/presentation/click_move_marker.gd" id="80_click_move_marker"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_sweep"]
 points = PackedVector2Array(3, -9, 14, -28, 39, -24, 48, 0, 39, 24, 14, 28, 3, 9)
@@ -370,6 +373,28 @@ one_shot = true
 unique_name_in_owner = true
 script = ExtResource("3_movement")
 max_speed = 110.0
+
+[node name="CombatNavigationAgent" type="NavigationAgent2D" parent="."]
+unique_name_in_owner = true
+path_desired_distance = 8.0
+target_desired_distance = 38.0
+radius = 6.0
+neighbor_distance = 40.0
+avoidance_enabled = false
+
+[node name="CombatTargetingComponent" type="Node" parent="." node_paths=PackedStringArray("player", "navigation_agent")]
+unique_name_in_owner = true
+script = ExtResource("78_targeting")
+player = NodePath("..")
+navigation_agent = NodePath("../CombatNavigationAgent")
+
+[node name="CombatTargetMarker" type="Node2D" parent="." node_paths=PackedStringArray("targeting_component")]
+script = ExtResource("79_target_marker")
+targeting_component = NodePath("../CombatTargetingComponent")
+
+[node name="ClickMoveMarker" type="Node2D" parent="." node_paths=PackedStringArray("targeting_component")]
+script = ExtResource("80_click_move_marker")
+targeting_component = NodePath("../CombatTargetingComponent")
 
 [node name="MeleeAttackComponent" type="Node" parent="." unique_id=2065298328 node_paths=PackedStringArray("hitbox", "collision_shape")]
 unique_name_in_owner = true
