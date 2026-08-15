@@ -6,10 +6,15 @@ extends Resource
 
 enum Slot {
 	WEAPON,
-	ARMOR,
+	HEAD,
+	PLATE,
 	GLOVES,
+	LEGGINGS,
 	BOOTS,
-	ACCESSORY,
+	BRACER,
+	AMULET,
+	RING,
+	TALISMAN,
 }
 
 enum Rarity {
@@ -32,6 +37,12 @@ enum Rarity {
 @export_range(0, 9999, 1, "suffix: coins") var purchase_price := 0
 @export var weapon_definition: WeaponDefinition
 @export_range(0, 999, 1) var preview_power := 0
+@export_range(0.0, 9999.0, 1.0) var flat_health_bonus := 0.0
+@export_range(0.0, 9999.0, 1.0) var armor_bonus := 0.0
+@export_range(0.0, 99.0, 0.05, "suffix:/s") var regeneration_bonus := 0.0
+@export_range(0.0, 0.75, 0.01, "suffix:%") var ward_reduction_ratio := 0.0
+@export_range(0.0, 2.0, 0.01, "suffix:%") var attack_speed_bonus_ratio := 0.0
+@export_range(0.0, 2.0, 0.01, "suffix:%") var movement_speed_bonus_ratio := 0.0
 @export_multiline var lore := ""
 @export var synergy_name := "Skill Synergy"
 @export_multiline var synergy_description := ""
@@ -83,6 +94,29 @@ func get_rarity_color() -> Color:
 	return Color.WHITE
 
 
+func get_stat_summary() -> String:
+	if weapon_definition != null:
+		return "NORMAL DAMAGE %d-%d  •  SKILL DAMAGE %d" % [
+			roundi(weapon_definition.basic_damage_minimum),
+			roundi(weapon_definition.basic_damage_maximum),
+			roundi(weapon_definition.damage),
+		]
+	var parts := PackedStringArray()
+	if flat_health_bonus > 0.0:
+		parts.append("HP +%d" % roundi(flat_health_bonus))
+	if armor_bonus > 0.0:
+		parts.append("ARMOR +%d" % roundi(armor_bonus))
+	if regeneration_bonus > 0.0:
+		parts.append("REGEN +%.2f/s" % regeneration_bonus)
+	if ward_reduction_ratio > 0.0:
+		parts.append("WARD +%d%%" % roundi(ward_reduction_ratio * 100.0))
+	if attack_speed_bonus_ratio > 0.0:
+		parts.append("ATTACK SPEED +%d%%" % roundi(attack_speed_bonus_ratio * 100.0))
+	if movement_speed_bonus_ratio > 0.0:
+		parts.append("MOVE SPEED +%d%%" % roundi(movement_speed_bonus_ratio * 100.0))
+	return "  •  ".join(parts) if not parts.is_empty() else "NO ACTIVE STATS"
+
+
 func is_compatible_with(character_class_id: StringName) -> bool:
 	return compatible_classes.has(String(character_class_id))
 
@@ -107,6 +141,15 @@ func is_equippable_weapon() -> bool:
 			weapon_definition.world_texture != null
 			or weapon_definition.uses_integrated_visual
 		)
+	)
+
+
+func is_equippable_gear() -> bool:
+	return (
+		is_valid_definition()
+		and slot != Slot.WEAPON
+		and not compatible_classes.is_empty()
+		and weapon_definition == null
 	)
 
 

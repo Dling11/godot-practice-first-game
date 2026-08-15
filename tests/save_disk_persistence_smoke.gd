@@ -104,7 +104,7 @@ func _set_profile_a() -> void:
 	root.get_node("RunSession").update_player_health(101.0)
 	root.get_node("StoryState").remember_story(&"profile_a")
 	root.get_node("MaterialInventory").add_material(&"forest_root_fiber", 2)
-	root.get_node("RecipeDiscovery").discover_recipe(&"forest_rootfiber_wraps")
+	root.get_node("RecipeDiscovery").discover_recipe(&"forest_stage_5_rootfiber_gloves")
 	root.get_node("LootState").claim_first_clear(&"forest_stage_1_first_clear_claim")
 	root.get_node("LootState").record_bad_luck_result(&"profile_a_misses", false)
 
@@ -131,7 +131,9 @@ func _matches_profile_a() -> bool:
 		and not root.get_node("WeaponInventory").owns_weapon(IronSword.item_id)
 		and root.get_node("MaterialInventory").get_quantity(&"forest_root_fiber") == 2
 		and root.get_node("MaterialInventory").get_quantity(&"forest_thorn_sap") == 0
-		and root.get_node("RecipeDiscovery").is_recipe_discovered(&"forest_rootfiber_wraps")
+		and root.get_node("RecipeDiscovery").is_recipe_discovered(
+			&"forest_stage_5_rootfiber_gloves"
+		)
 		and not root.get_node("RecipeDiscovery").is_recipe_discovered(&"forest_thornward_clasp")
 		and root.get_node("LootState").has_first_clear_claim(
 			&"forest_stage_1_first_clear_claim"
@@ -152,7 +154,9 @@ func _matches_profile_b() -> bool:
 		and root.get_node("MaterialInventory").get_quantity(&"forest_thorn_sap") == 4
 		and root.get_node("MaterialInventory").get_quantity(&"forest_root_fiber") == 0
 		and root.get_node("RecipeDiscovery").is_recipe_discovered(&"forest_thornward_clasp")
-		and not root.get_node("RecipeDiscovery").is_recipe_discovered(&"forest_rootfiber_wraps")
+		and not root.get_node("RecipeDiscovery").is_recipe_discovered(
+			&"forest_stage_5_rootfiber_gloves"
+		)
 		and root.get_node("LootState").has_first_clear_claim(
 			&"forest_stage_2_first_clear_claim"
 		)
@@ -166,6 +170,7 @@ func _reset_live_state() -> void:
 	root.get_node("RunSession").reset_run()
 	root.get_node("StoryState").reset_story()
 	root.get_node("WeaponInventory").reset_inventory()
+	root.get_node("GearInventory").reset_inventory()
 	root.get_node("MaterialInventory").reset_inventory()
 	root.get_node("RecipeDiscovery").reset_discoveries()
 	root.get_node("LootState").reset_state()

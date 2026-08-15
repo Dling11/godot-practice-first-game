@@ -31,6 +31,7 @@ func create_profile_snapshot(safe_scene_path: String = DEFAULT_SAFE_SCENE) -> Di
 		"story_state": StoryState.create_snapshot(),
 		"weapon_inventory": WeaponInventory.create_snapshot(),
 		"extensions": {
+			"gear_inventory": GearInventory.create_snapshot(),
 			"material_inventory": MaterialInventory.create_snapshot(),
 			"recipe_discovery": RecipeDiscovery.create_snapshot(),
 			"stage_claims": loot_state.create_snapshot(),
@@ -97,6 +98,9 @@ func can_restore_profile(snapshot: Dictionary) -> bool:
 	var material_snapshot: Variant = (
 		extensions.get("material_inventory", {}) if extensions is Dictionary else {}
 	)
+	var gear_snapshot: Variant = (
+		extensions.get("gear_inventory", {}) if extensions is Dictionary else {}
+	)
 	var recipe_snapshot: Variant = (
 		extensions.get("recipe_discovery", {}) if extensions is Dictionary else {}
 	)
@@ -114,6 +118,7 @@ func can_restore_profile(snapshot: Dictionary) -> bool:
 		and RunSession.can_restore_snapshot(run_snapshot)
 		and StoryState.can_restore_snapshot(story_snapshot)
 		and WeaponInventory.can_restore_snapshot(weapon_snapshot)
+		and _can_restore_gear_extension(gear_snapshot)
 		and _can_restore_material_extension(material_snapshot)
 		and _can_restore_recipe_extension(recipe_snapshot)
 		and _can_restore_stage_claim_extension(stage_claim_snapshot)
@@ -124,14 +129,21 @@ func restore_profile(snapshot: Dictionary) -> bool:
 	if not can_restore_profile(snapshot):
 		return false
 	# All sections validate before mutation, preventing partial restoration.
-	RunSession.restore_snapshot(snapshot["run_session"])
 	StoryState.restore_snapshot(snapshot["story_state"])
 	WeaponInventory.restore_snapshot(snapshot["weapon_inventory"])
 	var extensions: Dictionary = snapshot["extensions"]
+	var gear_snapshot: Dictionary = extensions.get("gear_inventory", {})
 	var material_snapshot: Dictionary = extensions["material_inventory"]
 	var recipe_snapshot: Dictionary = extensions["recipe_discovery"]
 	var stage_claim_snapshot: Dictionary = extensions["stage_claims"]
 	var loot_state := get_node("/root/LootState")
+	if gear_snapshot.is_empty():
+		GearInventory.reset_inventory()
+	else:
+		GearInventory.restore_snapshot(gear_snapshot)
+	# Gear signals may refresh the still-live player's vitality. Restore the
+	# authoritative run snapshot afterward so saved XP, coins, and HP win last.
+	RunSession.restore_snapshot(snapshot["run_session"])
 	if material_snapshot.is_empty():
 		MaterialInventory.reset_inventory()
 	else:
@@ -282,6 +294,7 @@ func _has_core_authorities() -> bool:
 		get_node_or_null("/root/RunSession") != null
 		and get_node_or_null("/root/StoryState") != null
 		and get_node_or_null("/root/WeaponInventory") != null
+		and get_node_or_null("/root/GearInventory") != null
 		and get_node_or_null("/root/MaterialInventory") != null
 		and get_node_or_null("/root/RecipeDiscovery") != null
 		and get_node_or_null("/root/LootState") != null
@@ -292,6 +305,13 @@ func _can_restore_material_extension(snapshot: Variant) -> bool:
 	return (
 		snapshot is Dictionary
 		and (snapshot.is_empty() or MaterialInventory.can_restore_snapshot(snapshot))
+	)
+
+
+func _can_restore_gear_extension(snapshot: Variant) -> bool:
+	return (
+		snapshot is Dictionary
+		and (snapshot.is_empty() or GearInventory.can_restore_snapshot(snapshot))
 	)
 
 

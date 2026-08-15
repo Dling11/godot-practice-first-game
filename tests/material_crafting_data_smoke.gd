@@ -6,6 +6,9 @@ const ForestMaterials: MaterialCatalogDefinition = preload(
 const ForestRecipes: RecipeCatalogDefinition = preload(
 	"res://data/crafting/recipes/recipe_catalog.tres"
 )
+const Stage5CoreEquipment: EquipmentCatalogDefinition = preload(
+	"res://data/items/equipment/forest/stage_5_core_catalog.tres"
+)
 
 
 func _initialize() -> void:
@@ -16,8 +19,64 @@ func _run() -> void:
 	if not ForestMaterials.has_valid_layout() or ForestMaterials.materials.size() != 13:
 		_fail("The Forest material catalog did not expose thirteen valid stable definitions.")
 		return
-	if not ForestRecipes.has_valid_layout() or ForestRecipes.recipes.size() != 4:
-		_fail("The Forest recipe catalog did not expose four deterministic recipes.")
+	if not ForestRecipes.has_valid_layout() or ForestRecipes.recipes.size() != 8:
+		_fail("The Forest recipe catalog did not expose six Stage V and two future accessory recipes.")
+		return
+	if not Stage5CoreEquipment.has_valid_layout() or Stage5CoreEquipment.items.size() != 6:
+		_fail("The Stage V core-equipment catalog did not expose six valid unique-slot outputs.")
+		return
+	var expected_core_slots := [
+		EquipmentDefinition.Slot.WEAPON,
+		EquipmentDefinition.Slot.HEAD,
+		EquipmentDefinition.Slot.PLATE,
+		EquipmentDefinition.Slot.GLOVES,
+		EquipmentDefinition.Slot.LEGGINGS,
+		EquipmentDefinition.Slot.BOOTS,
+	]
+	for slot: int in expected_core_slots:
+		var item := Stage5CoreEquipment.find_slot(slot)
+		if item == null or item.icon.get_size() != Vector2(64, 64):
+			_fail("A Stage V core slot is missing its valid 64x64 item definition.")
+			return
+		var image := item.icon.get_image()
+		for y in image.get_height():
+			for x in image.get_width():
+				var alpha := image.get_pixel(x, y).a
+				if alpha > 0.001 and alpha < 0.999:
+					_fail("A Stage V core icon contains soft alpha.")
+					return
+	var plate := Stage5CoreEquipment.find_slot(EquipmentDefinition.Slot.PLATE)
+	var head := Stage5CoreEquipment.find_slot(EquipmentDefinition.Slot.HEAD)
+	var gloves := Stage5CoreEquipment.find_slot(EquipmentDefinition.Slot.GLOVES)
+	var leggings := Stage5CoreEquipment.find_slot(EquipmentDefinition.Slot.LEGGINGS)
+	var boots := Stage5CoreEquipment.find_slot(EquipmentDefinition.Slot.BOOTS)
+	if (
+		plate.flat_health_bonus != 20.0
+		or plate.armor_bonus != 8.0
+		or head.ward_reduction_ratio != 0.04
+		or gloves.attack_speed_bonus_ratio != 0.12
+		or leggings.flat_health_bonus != 12.0
+		or leggings.armor_bonus != 5.0
+		or boots.movement_speed_bonus_ratio != 0.15
+	):
+		_fail("The Stage V defensive stat budget drifted from its approved first-pass values.")
+		return
+	var stage5_recipe_count := 0
+	var accessory_recipe_count := 0
+	var total_varkuun_cores := 0
+	for recipe: RecipeDefinition in ForestRecipes.recipes:
+		if recipe.unlock_id == &"forest_core_gear_crafting":
+			stage5_recipe_count += 1
+			if Stage5CoreEquipment.find_item(recipe.output_id) == null:
+				_fail("A Stage V recipe output is absent from the core-equipment catalog.")
+				return
+			for ingredient: MaterialStackDefinition in recipe.ingredients:
+				if ingredient.material.material_id == &"forest_varkuun_core":
+					total_varkuun_cores += ingredient.quantity
+		elif recipe.category == RecipeDefinition.CraftingCategory.ACCESSORY:
+			accessory_recipe_count += 1
+	if stage5_recipe_count != 6 or accessory_recipe_count != 2 or total_varkuun_cores != 5:
+		_fail("Stage V recipe count, future accessory count, or five-core full-set budget is invalid.")
 		return
 
 	var material_ids := {}

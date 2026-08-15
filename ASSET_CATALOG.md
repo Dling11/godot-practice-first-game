@@ -1,5 +1,13 @@
 # Asset Catalog
 
+## Stage V Core Equipment
+
+- Active runtime icons: `assets/items/equipment/forest/stage_5_core/` contains the 64x64 binary-alpha Varkuun Edge, Old Bark Helm, Heartwood Plate, Rootfiber Gloves, Mirebound Leggings, and Mirehide Boots icons loaded by immutable equipment resources.
+- The approved four-item source board remains at `art_source/cleaned/items/equipment/forest/forest_varkuun_core_gear_concept_clean_v1.png` and supplies Weapon Essence, Plate, Gloves, and Boots. It remains used rather than being superseded.
+- The only new generated source is `art_source/generated/items/equipment/forest/stage_5_core/old_bark_helm_source_v1.png`. Matching clean crops live under `art_source/cleaned/items/equipment/forest/stage_5_core/`; the five-icon 4x review is `art_source/review/items/equipment/forest/stage_5_core_set_preview_4x.png`.
+- `tools/process_forest_core_equipment_icons.py` deterministically extracts the four approved concept objects, incorporates the helm, limits each icon to a 54x54 content box on a 64x64 canvas, quantizes to 24 colors, and hardens alpha.
+- Runtime item/stat definitions live under `data/items/equipment/forest/stage_5_core/`; the set catalog is `data/items/equipment/forest/stage_5_core_catalog.tres`. All five armor positions have live equip/stat authority; normal crafting transactions remain separate.
+
 ## Stage 5 Boss Basin Environment
 
 - Generated terrain source: `art_source/generated/environment/stage_5/stage_5_decay_ground_source_v1.png`; deterministic `tools/process_stage_5_environment.py` extracts its exact 4x4 board into `assets/environment/forest/stage_5/tiles/stage_5_decay_ground_atlas_4x4.png` with 64x64 cells and the reusable `stage_5_decay_ground_tileset.tres` resource.
@@ -136,7 +144,7 @@ Decision 076 supersedes the detailed Decision 073-074 visual package. Decision 0
 | Canonical ID | Current path | Target path/name | Provisional contract | Status |
 |---|---|---|---|---|
 | `char_king_simple_identity_v1` | `art_source/generated/characters/playable/king/simple_reboot/king_simple_identity_reference_v1.png` | Same until exact-cell extraction | Owner-approved plain-face black-haired swordsman with crimson scarf, compact body, mitten hands, tiny feet, and short broad straight signature sword | `approved_reference` |
-| `char_king_simple_walk_v1` | `art_source/generated/characters/playable/king/simple_reboot/king_simple_walk_source_v1.png` | `assets/characters/playable/king/simple_reboot/king_simple_locomotion_sheet_48x32.png` | Approved 4x4 `down/left/right/up` contact/passing board; deterministic processor emits exact binary-alpha cells with one scale and foot anchor, then separates the retained one-pixel down-facing eyes from the fringe without changing silhouette | `active_review_runtime` |
+| `char_king_simple_walk_v1` | `art_source/generated/characters/playable/king/simple_reboot/king_simple_walk_source_v1.png` | `assets/characters/playable/king/simple_reboot/king_simple_locomotion_sheet_48x32.png` | Approved 4x4 `down/left/right/up` contact/passing board; deterministic processor emits exact binary-alpha cells with one scale and foot anchor, preserves both pixels of every down-facing eye, and corrects only the idle fringe pixel that extended into the left eye | `active_review_runtime` |
 | `concept_forest_varkuun_core_gear_v1` | `art_source/generated/items/equipment/forest/forest_varkuun_core_gear_concept_source_v1.png` | `art_source/cleaned/items/equipment/forest/forest_varkuun_core_gear_concept_clean_v1.png` | Review-only 2x2 Weapon Essence, Body Relic, Hand Relic, and Foot Relic board tied to Varkuun and the Living Rootforge; no runtime icons, data, stats, crafting, or equip authority yet | `concept_review` |
 | `char_king_detailed_package_rejected` | `art_source/archive/characters/playable/king/rejected_detailed_package_2026-08-11/` | None | Former detailed greatsword runtime sheets, previews, processors, tests, generated/cleaned sources, and reviews; never restore to active imports | `rejected_archive` |
 | `char_king_frames` | `assets/characters/playable/king/simple_reboot/king_simple_sprite_frames.tres` | Same | Directional idle/walk/basic slash plus required dash/interact/hurt/defeat compatibility animations; every family is requested by `PlayerAnimation` and covered by the active player/preview tests | `active_runtime_proof` |

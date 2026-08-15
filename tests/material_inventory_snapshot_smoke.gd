@@ -37,8 +37,8 @@ func _run() -> void:
 		return
 
 	if (
-		not recipe_discovery.discover_recipe(&"forest_rootfiber_wraps")
-		or recipe_discovery.discover_recipe(&"forest_rootfiber_wraps")
+		not recipe_discovery.discover_recipe(&"forest_stage_5_rootfiber_gloves")
+		or recipe_discovery.discover_recipe(&"forest_stage_5_rootfiber_gloves")
 		or recipe_discovery.discover_recipe(&"unknown_recipe")
 	):
 		_fail("RecipeDiscovery did not enforce known, unique recipe IDs.")
@@ -52,7 +52,7 @@ func _run() -> void:
 		not material_inventory.restore_snapshot(material_snapshot)
 		or not recipe_discovery.restore_snapshot(recipe_snapshot)
 		or material_inventory.get_quantity(&"forest_root_fiber") != 5
-		or not recipe_discovery.is_recipe_discovered(&"forest_rootfiber_wraps")
+		or not recipe_discovery.is_recipe_discovered(&"forest_stage_5_rootfiber_gloves")
 	):
 		_fail("Material or recipe discovery snapshot reconstruction lost state.")
 		return
@@ -71,7 +71,10 @@ func _run() -> void:
 		return
 	if recipe_discovery.can_restore_snapshot({
 		"version": recipe_discovery.SNAPSHOT_VERSION,
-		"discovered_recipe_ids": ["forest_rootfiber_wraps", "forest_rootfiber_wraps"],
+		"discovered_recipe_ids": [
+			"forest_stage_5_rootfiber_gloves",
+			"forest_stage_5_rootfiber_gloves",
+		],
 	}):
 		_fail("RecipeDiscovery accepted duplicate saved recipe IDs.")
 		return
@@ -92,7 +95,7 @@ func _run() -> void:
 	if (
 		not save_service.restore_profile(profile_snapshot)
 		or material_inventory.get_quantity(&"forest_root_fiber") != 5
-		or not recipe_discovery.is_recipe_discovered(&"forest_rootfiber_wraps")
+		or not recipe_discovery.is_recipe_discovered(&"forest_stage_5_rootfiber_gloves")
 	):
 		_fail("SaveService did not reconstruct crafting progress.")
 		return
@@ -105,7 +108,7 @@ func _run() -> void:
 		return
 	if (
 		material_inventory.get_quantity(&"forest_root_fiber") != 0
-		or recipe_discovery.is_recipe_discovered(&"forest_rootfiber_wraps")
+		or recipe_discovery.is_recipe_discovered(&"forest_stage_5_rootfiber_gloves")
 	):
 		_fail("A legacy empty extension did not restore clean empty crafting state.")
 		return

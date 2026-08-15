@@ -16,6 +16,7 @@ var phase := Phase.IDLE
 var _phase_time_remaining: float
 var _attack_direction := Vector2.RIGHT
 var _random := RandomNumberGenerator.new()
+var _attack_speed_bonus_ratio := 0.0
 
 
 func _ready() -> void:
@@ -50,7 +51,7 @@ func request_attack(direction: Vector2) -> bool:
 		return false
 	_attack_direction = direction.normalized() if not direction.is_zero_approx() else Vector2.RIGHT
 	attack_started.emit()
-	_enter_phase(Phase.WIND_UP, weapon.wind_up_seconds)
+	_enter_phase(Phase.WIND_UP, _scaled_duration(weapon.wind_up_seconds))
 	set_physics_process(true)
 	return true
 
@@ -80,7 +81,7 @@ func _physics_process(delta: float) -> void:
 func _advance_phase() -> void:
 	match phase:
 		Phase.WIND_UP:
-			_enter_phase(Phase.ACTIVE, weapon.active_seconds)
+			_enter_phase(Phase.ACTIVE, _scaled_duration(weapon.active_seconds))
 			hitbox.activate(
 				weapon.roll_basic_damage(_random),
 				owner,
@@ -89,7 +90,7 @@ func _advance_phase() -> void:
 			)
 		Phase.ACTIVE:
 			hitbox.deactivate()
-			_enter_phase(Phase.RECOVERY, weapon.recovery_seconds)
+			_enter_phase(Phase.RECOVERY, _scaled_duration(weapon.recovery_seconds))
 		Phase.RECOVERY:
 			phase = Phase.IDLE
 			set_physics_process(false)
@@ -108,3 +109,11 @@ func _on_hit_landed(target: HurtboxComponent, info: DamageInfo) -> void:
 
 func configure_random_seed_for_testing(seed: int) -> void:
 	_random.seed = seed
+
+
+func set_equipment_attack_speed_bonus(bonus_ratio: float) -> void:
+	_attack_speed_bonus_ratio = maxf(bonus_ratio, 0.0)
+
+
+func _scaled_duration(base_duration: float) -> float:
+	return base_duration / (1.0 + _attack_speed_bonus_ratio)

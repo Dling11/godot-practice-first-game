@@ -35,6 +35,17 @@ func _run() -> void:
 	if not is_equal_approx(plain_hit.amount, 12.0) or not is_equal_approx(unarmored.current_health, 188.0):
 		_fail("Zero armor changed legacy damage behavior.")
 		return
+	var warded := HealthComponent.new()
+	warded.maximum_health = 200.0
+	warded.armor_rating = 25.0
+	warded.ward_reduction_ratio = 0.10
+	root.add_child(warded)
+	await process_frame
+	var warded_hit := DamageInfo.new(100.0, null, Vector2.ZERO)
+	warded.apply_damage(warded_hit)
+	if not is_equal_approx(warded_hit.amount, 72.0):
+		_fail("Armor followed by Ward did not reduce 100 raw damage to 72 accepted damage.")
+		return
 	print("Reusable armor mitigation and Varkuun armor smoke test passed.")
 	quit(0)
 

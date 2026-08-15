@@ -109,8 +109,8 @@ func _run() -> void:
 		_fail("Nema's work presentation did not return to idle.")
 		return
 
-	if menu.catalog == null or menu.recipe_buttons.size() != 4:
-		_fail("The Rootforge preview did not build the four authored Forest recipes.")
+	if menu.catalog == null or menu.recipe_buttons.size() != 8:
+		_fail("The Rootforge preview did not build six Stage V and two future accessory recipes.")
 		return
 	var material_inventory: Node = root.get_node_or_null("MaterialInventory")
 	var recipe_discovery: Node = root.get_node_or_null("RecipeDiscovery")
@@ -146,12 +146,27 @@ func _run() -> void:
 		or not paused
 		or menu.primary_action_button == null
 		or not menu.primary_action_button.disabled
-		or not menu.milestone_label.text.contains("OUTPUT EQUIPMENT IS NOT YET IMPLEMENTED")
+		or not menu.milestone_label.text.contains("CRAFTING TRANSACTION NOT YET ENABLED")
 	):
 		_fail("Completing Nema's dialogue did not open the honest read-only Rootforge preview.")
 		return
 	if menu.ingredient_list.get_child_count() < 2:
 		_fail("The Rootforge preview does not expose recipe ingredient readiness.")
+		return
+	if (
+		not menu.output_preview.visible
+		or menu.output_icon.texture == null
+		or not menu.output_stats_label.text.contains("SKILL DAMAGE 28")
+	):
+		_fail("The Rootforge did not present the selected Stage V output icon and real stat preview.")
+		return
+	menu.set_category_filter(RecipeDefinition.CraftingCategory.ARMOR)
+	var visible_armor_count := 0
+	for button: Button in menu.recipe_buttons:
+		if button.visible:
+			visible_armor_count += 1
+	if visible_armor_count != 5:
+		_fail("The Rootforge did not expose all five Stage V armor recipes.")
 		return
 	menu.set_category_filter(RecipeDefinition.CraftingCategory.ACCESSORY)
 	var visible_recipe_count := 0
@@ -177,6 +192,16 @@ func _run() -> void:
 	if menu.visible or paused or not hud.interaction_panel.visible:
 		_fail("Closing the Rootforge preview did not restore Sanctuary control and Nema's prompt.")
 		return
+	player.apply_debug_testing_preset()
+	menu.open_menu()
+	if (
+		not menu.milestone_label.text.contains("F9 TEST READY")
+		or not menu.primary_action_button.text.contains("ITEM GRANTED")
+		or not root.get_node("StoryState").has_key_item(&"forest_core_gear_seal")
+	):
+		_fail("F9 did not satisfy the Stage V Rootforge preview gates for debug testing.")
+		return
+	menu.close_menu()
 
 	print("Rootweaver Sanctuary service smoke test passed.")
 	quit(0)

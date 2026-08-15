@@ -9,6 +9,7 @@ signal interaction_started
 signal interaction_finished
 signal defeated
 signal testing_preset_applied(level: int, coins: int)
+signal equipment_stats_changed
 signal skill_loadout_changed
 signal restraint_started(source: Node, total_break_points: int)
 signal restraint_progress(source: Node, remaining_break_points: int, total_break_points: int)
@@ -26,7 +27,6 @@ const EvadeComponentScript = preload("res://entities/player/components/evade_com
 const AbilityComponentScript = preload("res://gameplay/abilities/ability_component.gd")
 const DirectionalWedgeTargetingScript = preload("res://gameplay/abilities/targeting/directional_wedge_targeting.gd")
 const GroundPointTargetingScript = preload("res://gameplay/abilities/targeting/ground_point_targeting.gd")
-
 @export var movement_bounds := Rect2(56.0, 56.0, 528.0, 248.0)
 @export var character_id: StringName = &"opaw"
 @export var character_class_id: StringName = &"warrior"
@@ -81,6 +81,11 @@ func _ready() -> void:
 	ground_point_targeting.targeting_confirmed.connect(_on_ground_targeting_confirmed)
 	_apply_story_skill_loadout()
 	_apply_inventory_weapon()
+	var gear_inventory := get_node_or_null("/root/GearInventory")
+	if gear_inventory != null:
+		gear_inventory.gear_equipped.connect(_on_gear_equipped)
+		gear_inventory.inventory_reset.connect(_apply_equipment_stats)
+	_apply_equipment_stats()
 	facing_changed.emit(facing_direction)
 
 
@@ -411,6 +416,67 @@ func equip_owned_weapon(item: EquipmentDefinition) -> bool:
 	return true
 
 
+func get_equipped_gear(slot: EquipmentDefinition.Slot) -> EquipmentDefinition:
+	var inventory := get_node_or_null("/root/GearInventory")
+	return inventory.get_equipped_item(character_id, slot) if inventory != null else null
+
+
+func equip_owned_equipment(item: EquipmentDefinition) -> bool:
+	if item == null:
+		return false
+	if item.slot == EquipmentDefinition.Slot.WEAPON:
+		return equip_owned_weapon(item)
+	var inventory := get_node_or_null("/root/GearInventory")
+	return (
+		inventory != null
+		and inventory.equip_item(character_id, character_class_id, item)
+	)
+
+
+func _on_gear_equipped(
+	equipped_character_id: StringName,
+	_slot: int,
+	_item_id: StringName
+) -> void:
+	if equipped_character_id == character_id:
+		_apply_equipment_stats()
+
+
+func _apply_equipment_stats() -> void:
+	var health_bonus := 0.0
+	var armor_bonus := 0.0
+	var regeneration_bonus := 0.0
+	var ward_bonus := 0.0
+	var attack_speed_bonus := 0.0
+	var movement_speed_bonus := 0.0
+	for slot: EquipmentDefinition.Slot in [
+		EquipmentDefinition.Slot.HEAD,
+		EquipmentDefinition.Slot.PLATE,
+		EquipmentDefinition.Slot.GLOVES,
+		EquipmentDefinition.Slot.LEGGINGS,
+		EquipmentDefinition.Slot.BOOTS,
+		EquipmentDefinition.Slot.BRACER,
+		EquipmentDefinition.Slot.AMULET,
+		EquipmentDefinition.Slot.RING,
+		EquipmentDefinition.Slot.TALISMAN,
+	]:
+		var item := get_equipped_gear(slot)
+		if item == null:
+			continue
+		health_bonus += item.flat_health_bonus
+		armor_bonus += item.armor_bonus
+		regeneration_bonus += item.regeneration_bonus
+		ward_bonus += item.ward_reduction_ratio
+		attack_speed_bonus += item.attack_speed_bonus_ratio
+		movement_speed_bonus += item.movement_speed_bonus_ratio
+	vitality_component.set_equipment_health_bonus(health_bonus)
+	health_component.set_equipment_defenses(armor_bonus, ward_bonus)
+	health_regeneration_component.set_flat_regeneration_bonus(regeneration_bonus)
+	attack_component.set_equipment_attack_speed_bonus(attack_speed_bonus)
+	movement_component.set_equipment_speed_bonus(movement_speed_bonus)
+	equipment_stats_changed.emit()
+
+
 func can_awaken_skill_2() -> bool:
 	if character_id != &"opaw":
 		return false
@@ -677,8 +743,7 @@ func _clear_all_ability_cooldowns() -> void:
 
 
 func _unlock_debug_test_equipment() -> void:
-	## Debug F9 makes every already-authored compatible weapon testable without
-	## pretending that normal Orren purchases or future loot were completed.
+	## Debug F9 grants every authored Stage V item and its preview gates without saving.
 	if weapon_catalog == null or not weapon_catalog.has_valid_layout():
 		return
 	var inventory := get_node_or_null("/root/WeaponInventory")
@@ -687,6 +752,23 @@ func _unlock_debug_test_equipment() -> void:
 	for item: EquipmentDefinition in weapon_catalog.weapons:
 		if item != null and item.is_compatible_with(character_class_id):
 			inventory.acquire_weapon(item)
+	var gear_inventory := get_node_or_null("/root/GearInventory")
+	if gear_inventory != null:
+		gear_inventory.apply_debug_testing_preset()
+	var recipe_discovery := get_node_or_null("/root/RecipeDiscovery")
+	if recipe_discovery != null:
+		for recipe_id: StringName in [
+			&"forest_stage_5_varkuun_edge",
+			&"forest_stage_5_old_bark_helm",
+			&"forest_stage_5_heartwood_plate",
+			&"forest_stage_5_rootfiber_gloves",
+			&"forest_stage_5_mirebound_leggings",
+			&"forest_stage_5_mirehide_boots",
+		]:
+			recipe_discovery.discover_recipe(recipe_id)
+	var story_state := get_node_or_null("/root/StoryState")
+	if story_state != null:
+		story_state.grant_key_item(&"forest_core_gear_seal")
 
 
 func _unlock_debug_test_materials() -> void:

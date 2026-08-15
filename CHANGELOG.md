@@ -1,9 +1,34 @@
 # Changelog
 
+## 2026-08-15 - Complete Stage V Armor and Live Equipment Authority
+
+- Accepted Decision 101, added Mirebound Leggings, and finalized one Weapon Essence, five armor positions, and four accessory positions without expanding the compact Character & Bag footprint.
+- Added profile-backed `GearInventory`, live HP/armor/Ward/attack-speed/movement-speed aggregation, generic detail stat copy, matching-slot drag-to-equip, and slot/name/rarity/quantity inventory sorting.
+- Retuned King's unequipped baseline to 110 px/s movement and a 0.46-second normal-attack cycle. The complete Stage V armor set provides +32 HP, +16 armor, +4% Ward, +12% normal-attack speed, and +15% grounded movement.
+- Expanded Nema to six Stage V recipes plus two future accessory previews. F9 grants the full set, discoveries, Stage V seal, and maximum materials without saving, so the preview reports test readiness while normal atomic crafting remains disabled.
+- Replaced the unclear Varkuun Core material icon with a cracked living seed-heart held by roots and added the matching 64x64 Mirebound Leggings icon. Both use deterministic binary-alpha processing and preserved source/review assets.
+
+## 2026-08-15 - Stage V Core Equipment Data and Art Lock
+
+- Accepted Decision 100 and finalized Varkuun Edge, Old Bark Helm, Heartwood Plate, Rootfiber Gloves, and Mirehide Boots before enabling material spending or non-weapon equipping.
+- Preserved all four approved objects from the existing Forest/Varkuun concept board and generated only the missing helmet. A deterministic processor emits five matching 64x64 binary-alpha runtime icons plus clean and 4x review artifacts.
+- Added one immutable five-item equipment catalog and implemented stat data: Varkuun Edge 11-13 basic/28 skill power; the armor set totals +20 maximum health, +17 armor, and +0.25 HP/s regeneration. Only Varkuun Edge currently has live equip authority through the existing weapon path.
+- Replaced the two provisional Stage V recipe previews with five exact Tier-2 recipes while retaining two sealed Stage VIII accessory previews. The complete set costs four Varkuun Cores, matching first clear plus two replay claims.
+- Nema's read-only Rootforge now shows each Stage V output icon and stat summary, compacts seven recipe buttons safely, and still cannot consume materials or grant output. F9 provides maximum materials and Varkuun Edge for non-saving tests.
+
+## 2026-08-15 - Final Nine-Slot Character Loadout
+
+- Accepted Decision 099 and finalized one Weapon Essence, four armor positions (Head, Plate, Gloves, Boots), and four accessory positions (Bracer, Amulet, Ring, Talisman), superseding broad Body/Hand/Foot Relics and generic Accessory I-II labels.
+- Preserved the compact two-page Character surface while fitting all nine positions around King. Character & Bag keeps the loadout upper left, selected-item information upper right, and the 24-position filtered inventory underneath; Active Skills remains separate.
+- Tightened the RPG loadout presentation again: Head leads the left armor column, Weapon Essence sits above King, both slot columns move inward beside the portrait, inventory cells shrink from 46x46 to 38x38, and King's body/feet center over the portrait shadow independently of his integrated sword's visual weight.
+- Expanded `EquipmentDefinition.Slot` to the finalized identities while preserving Weapon at ordinal zero for existing resources. Only Weapon has runtime equip authority; armor/accessory items, stats, crafting, and persistence remain deliberately unimplemented.
+- Changed debug F9 from small material samples to the supported maximum of every authored material for repeated future crafting simulations; compact cells display `MAX` while tooltips retain exact quantities. Added the Divine weapon versus declared-God immunity concept as future design direction only, with no current combat authority.
+- Added focused regression coverage for the exact slot schema, weapon placement, page focus/visibility, modal bounds, and non-overlapping loadout cards.
+
 ## 2026-08-15 - King Front-Face Readability and Forest Core-Gear Concept
 
-- Corrected only the upper pixel of King's two down-facing eyes across all four locomotion frames, separating each retained one-pixel dark eye from the black fringe without changing atlas dimensions, alpha bounds, foot baseline, animation timing, side/up views, collision, or skill authority. Riftbreak and Sovereign Pursuit endpoint frames inherit the corrected exact idle pixels.
-- Added a focused regression that protects the warm separation pixel and remaining dark eye in every down-facing locomotion frame.
+- Corrected only the down-idle hair pixel that extended into King's left eye, preserving both approved dark pixels in each eye without changing atlas dimensions, alpha bounds, foot baseline, animation timing, side/up views, collision, or skill authority. Riftbreak and Sovereign Pursuit endpoint frames inherit the corrected exact idle pixels.
+- Added a focused regression that protects both pixels of every down-facing eye and the warm separation pixel beneath the repaired idle fringe.
 - Generated and cleaned a non-runtime four-item Forest core-gear concept board for the Sanctuary Rootforge direction: Weapon Essence, Body Relic, Hand Relic, and an unmistakable boot-shaped Foot Relic share Varkuun-core green, petrified root, blackened iron, restrained violet seams, and forge-gold accents. Runtime icons, item definitions, stats, crafting, and equipping remain deliberately unimplemented pending visual approval.
 
 ## 2026-08-15 - King, Varkuun, and Stage II Balance Pass

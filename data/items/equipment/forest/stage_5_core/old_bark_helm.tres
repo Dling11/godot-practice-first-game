@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EquipmentDefinition" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://data/items/equipment_definition.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/items/equipment/forest/stage_5_core/old_bark_helm_64x64.png" id="2_icon"]
+
+[resource]
+script = ExtResource("1_script")
+item_id = &"forest_old_bark_helm"
+display_name = "Old Bark Helm"
+slot = 1
+rarity = 7
+icon = ExtResource("2_icon")
+compatible_classes = PackedStringArray("warrior")
+armor_bonus = 3.0
+ward_reduction_ratio = 0.04
+lore = "Old-growth bark and reclaimed fittings turn a direct blow without sealing the wearer's sight."
+synergy_name = "Rooted Ward"
+synergy_description = "Its living grain softens every accepted hit by 4% after armor is resolved."

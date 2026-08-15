@@ -203,6 +203,39 @@ text = "FOREST  •  TIER 1  •  ARMOR"
 theme_override_colors/font_color = Color(0.54, 0.72, 0.84, 1)
 theme_override_font_sizes/font_size = 9
 
+[node name="OutputPreview" type="HBoxContainer" parent="Panel/Margin/Root/Body/DetailPanel/DetailMargin/Detail"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="OutputIcon" type="TextureRect" parent="Panel/Margin/Root/Body/DetailPanel/DetailMargin/Detail/OutputPreview"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_filter = 1
+expand_mode = 1
+stretch_mode = 5
+
+[node name="OutputCopy" type="VBoxContainer" parent="Panel/Margin/Root/Body/DetailPanel/DetailMargin/Detail/OutputPreview"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+theme_override_constants/separation = 2
+
+[node name="OutputSlotLabel" type="Label" parent="Panel/Margin/Root/Body/DetailPanel/DetailMargin/Detail/OutputPreview/OutputCopy"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "WEAPON  •  RARE"
+theme_override_colors/font_color = Color(0.54, 0.72, 0.84, 1)
+theme_override_font_sizes/font_size = 8
+
+[node name="OutputStatsLabel" type="Label" parent="Panel/Margin/Root/Body/DetailPanel/DetailMargin/Detail/OutputPreview/OutputCopy"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "ATTACK 11-13  •  SKILL POWER 28"
+theme_override_colors/font_color = Color(0.82, 0.84, 0.76, 1)
+theme_override_font_sizes/font_size = 9
+
 [node name="RecipeDescriptionLabel" type="Label" parent="Panel/Margin/Root/Body/DetailPanel/DetailMargin/Detail"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 42)

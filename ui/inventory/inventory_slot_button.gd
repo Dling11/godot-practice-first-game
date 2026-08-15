@@ -48,12 +48,13 @@ func configure_equipment(
 		"font_color",
 		Color("e6ce73") if equipped else Color("d06459")
 	)
-	tooltip_text = "%s\n%s • %s" % [
+	tooltip_text = "%s\n%s • %s\n%s" % [
 		item.display_name,
 		item.get_rarity_name(),
 		"EQUIPPED" if equipped else (
 			"READY TO EQUIP" if class_compatible else "CLASS LOCKED"
 		),
+		item.get_stat_summary(),
 	]
 	_apply_slot_style(item.get_rarity_color(), equipped)
 
@@ -71,11 +72,12 @@ func configure_material(item: MaterialDefinition, owned_quantity: int) -> void:
 	fallback_glyph.text = item.get_family_glyph()
 	fallback_glyph.add_theme_color_override("font_color", item.get_rarity_color())
 	quantity_label.visible = true
-	quantity_label.text = "×%d" % owned_quantity
-	tooltip_text = "%s\n%s • %s\n%s" % [
+	quantity_label.text = "MAX" if owned_quantity >= 9999 else "×%d" % owned_quantity
+	tooltip_text = "%s\n%s • %s\nOWNED %d\n%s" % [
 		item.display_name,
 		item.get_rarity_name(),
 		item.get_family_name(),
+		owned_quantity,
 		item.description,
 	]
 	_apply_slot_style(item.get_rarity_color(), false)
@@ -138,3 +140,15 @@ func _on_pressed() -> void:
 		Kind.MATERIAL:
 			material_selected.emit(material_definition)
 
+
+func _get_drag_data(_at_position: Vector2) -> Variant:
+	if kind != Kind.EQUIPMENT or equipment_definition == null:
+		return null
+	var preview := TextureRect.new()
+	preview.custom_minimum_size = Vector2(48, 48)
+	preview.texture = equipment_definition.icon
+	preview.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	preview.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	preview.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	set_drag_preview(preview)
+	return {"equipment": equipment_definition}

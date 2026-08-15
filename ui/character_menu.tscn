@@ -271,7 +271,7 @@ theme_override_styles/pressed = SubResource("tab_pressed")
 [node name="PreviewNotice" type="Label" parent="Panel/Margin/Root/Tabs"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "SELECT AN ITEM FOR DETAILS  •  EQUIP WEAPONS EXPLICITLY"
+text = "SELECT FOR DETAILS  •  DRAG EQUIPMENT TO A MATCHING SLOT"
 horizontal_alignment = 2
 vertical_alignment = 1
 theme_override_colors/font_color = Color(0.45, 0.5, 0.42, 1)
@@ -318,7 +318,7 @@ theme_override_constants/separation = 2
 
 [node name="LoadoutTitle" type="Label" parent="Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/PaperDollMargin/PaperDollRoot"]
 layout_mode = 2
-text = "EQUIPPED LOADOUT"
+text = "EQUIPPED LOADOUT  •  1 WEAPON  •  5 ARMOR  •  4 ACCESSORIES"
 theme_override_colors/font_color = Color(0.84, 0.76, 1, 1)
 theme_override_font_sizes/font_size = 9
 
@@ -330,7 +330,7 @@ layout_mode = 2
 layout_mode = 1
 anchors_preset = 0
 offset_left = 215.0
-offset_top = 24.0
+offset_top = 40.0
 offset_right = 385.0
 offset_bottom = 172.0
 theme_override_styles/panel = SubResource("portrait_panel")
@@ -356,7 +356,7 @@ polygon = PackedVector2Array(-25, 0, -15, -5, 15, -5, 25, 0, 15, 5, -15, 5)
 color = Color(0.01, 0.015, 0.025, 0.68)
 
 [node name="Body" type="AnimatedSprite2D" parent="Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas"]
-position = Vector2(85, 77)
+position = Vector2(64, 77)
 scale = Vector2(3.5, 3.5)
 sprite_frames = ExtResource("7_frames")
 animation = &"idle_down"
@@ -467,6 +467,14 @@ text = "KEY"
 theme_override_font_sizes/font_size = 7
 theme_override_styles/pressed = SubResource("filter_pressed")
 
+[node name="SortButton" type="Button" parent="Panel/Margin/Root/PageHost/GearPage/BagPanel/BagMargin/BagRoot/BagHeader"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(78, 20)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "SORT: SLOT"
+theme_override_font_sizes/font_size = 7
+
 [node name="BagHeaderSpacer" type="Control" parent="Panel/Margin/Root/PageHost/GearPage/BagPanel/BagMargin/BagRoot/BagHeader"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -483,8 +491,8 @@ theme_override_font_sizes/font_size = 8
 unique_name_in_owner = true
 layout_mode = 2
 columns = 12
-theme_override_constants/h_separation = 4
-theme_override_constants/v_separation = 4
+theme_override_constants/h_separation = 3
+theme_override_constants/v_separation = 3
 
 [node name="BagEmptyLabel" type="Label" parent="Panel/Margin/Root/PageHost/GearPage/BagPanel/BagMargin/BagRoot"]
 unique_name_in_owner = true
@@ -496,7 +504,7 @@ theme_override_font_sizes/font_size = 7
 
 [node name="BagFooter" type="Label" parent="Panel/Margin/Root/PageHost/GearPage/BagPanel/BagMargin/BagRoot"]
 layout_mode = 2
-text = "MATERIAL POUCH DOES NOT USE BAG SPACE  •  HOVER OR FOCUS FOR QUICK DETAILS"
+text = "MATERIALS USE NO BAG SPACE  •  DRAG OR SELECT + EQUIP ITEMS"
 theme_override_colors/font_color = Color(0.45, 0.5, 0.42, 1)
 theme_override_font_sizes/font_size = 7
 

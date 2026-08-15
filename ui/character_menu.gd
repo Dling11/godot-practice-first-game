@@ -1,8 +1,9 @@
 class_name CharacterMenu
 extends Control
 
-## Paused Character & Bag surface. WeaponInventory and MaterialInventory own
-## mutable state; this menu only selects, presents, and requests safe equips.
+## Paused Character & Bag and Skills surface. WeaponInventory and
+## MaterialInventory own mutable state; this menu only selects, presents, and
+## requests safe equips.
 
 const SkillSlotCardScene = preload("res://ui/skills/skill_slot_card.tscn")
 const InventorySlotButtonScene = preload("res://ui/inventory/inventory_slot_button.tscn")
@@ -11,26 +12,48 @@ const EmptySlotIcon = preload("res://assets/ui/icons/states/icon_slot_locked_16x
 const MaterialCatalog: MaterialCatalogDefinition = preload(
 	"res://data/items/materials/material_catalog.tres"
 )
+const Stage5CoreEquipment: EquipmentCatalogDefinition = preload(
+	"res://data/items/equipment/forest/stage_5_core_catalog.tres"
+)
 const BAG_CAPACITY := 24
 const BAG_COLUMNS := 12
 const EQUIPMENT_SLOT_NAMES := [
-	"Weapon",
-	"Chest Armor",
-	"Boots",
 	"Head",
+	"Weapon Essence",
+	"Plate",
 	"Gloves",
-	"Accessory I",
-	"Accessory II",
+	"Leggings",
+	"Boots",
+	"Bracer",
+	"Amulet",
+	"Ring",
+	"Talisman",
 ]
 const EQUIPMENT_SLOT_POSITIONS := [
-	Vector2(2, 18),
-	Vector2(2, 67),
-	Vector2(2, 116),
-	Vector2(241, 0),
-	Vector2(480, 18),
-	Vector2(480, 67),
-	Vector2(480, 116),
+	Vector2(93, 0),
+	Vector2(245, 0),
+	Vector2(93, 34),
+	Vector2(93, 68),
+	Vector2(93, 102),
+	Vector2(93, 136),
+	Vector2(397, 0),
+	Vector2(397, 42),
+	Vector2(397, 84),
+	Vector2(397, 126),
 ]
+const EQUIPMENT_SLOT_TYPES := [
+	EquipmentDefinition.Slot.HEAD,
+	EquipmentDefinition.Slot.WEAPON,
+	EquipmentDefinition.Slot.PLATE,
+	EquipmentDefinition.Slot.GLOVES,
+	EquipmentDefinition.Slot.LEGGINGS,
+	EquipmentDefinition.Slot.BOOTS,
+	EquipmentDefinition.Slot.BRACER,
+	EquipmentDefinition.Slot.AMULET,
+	EquipmentDefinition.Slot.RING,
+	EquipmentDefinition.Slot.TALISMAN,
+]
+const WEAPON_ESSENCE_SLOT_INDEX := 1
 const FUTURE_SKILL_TIERS := [
 	{
 		"node_name": "UltimateSlot",
@@ -69,6 +92,7 @@ signal skill_awakened(skill_name: String)
 @onready var materials_filter_button: Button = %MaterialsFilterButton
 @onready var consumables_filter_button: Button = %ConsumablesFilterButton
 @onready var key_filter_button: Button = %KeyFilterButton
+@onready var sort_button: Button = %SortButton
 @onready var skills_container: HBoxContainer = %Skills
 @onready var skill_detail_label: Label = %SkillDetailLabel
 @onready var awaken_button: Button = %AwakenButton
@@ -86,6 +110,7 @@ var _skill_cards: Array[SkillSlotCard] = []
 var _future_skill_cards: Array[SkillSlotCard] = []
 var _active_page := &"gear"
 var _active_inventory_filter := &"all"
+var _inventory_sort_mode := &"slot"
 var _portrait_rotation_tween: Tween
 var _portrait_pulse_tween: Tween
 var _selected_equipment: EquipmentDefinition
@@ -107,6 +132,11 @@ func _ready() -> void:
 	if material_inventory != null:
 		material_inventory.material_quantity_changed.connect(_on_material_quantity_changed)
 		material_inventory.inventory_reset.connect(_on_material_inventory_reset)
+	var gear_inventory := get_node_or_null("/root/GearInventory")
+	if gear_inventory != null:
+		gear_inventory.gear_acquired.connect(_on_gear_inventory_changed.unbind(1))
+		gear_inventory.gear_equipped.connect(_on_gear_inventory_changed.unbind(3))
+		gear_inventory.inventory_reset.connect(_on_gear_inventory_changed)
 	_update_progression(progression.level, progression.total_experience, 0)
 	_update_coins(progression.coins)
 	_update_vitality(
@@ -115,6 +145,7 @@ func _ready() -> void:
 	)
 	_configure_tabs()
 	_configure_inventory_filters()
+	sort_button.pressed.connect(_cycle_inventory_sort)
 	equipment_detail_panel.equip_requested.connect(_on_equipment_equip_requested)
 	awaken_button.pressed.connect(_on_awaken_button_pressed)
 	_build_character_bag()
@@ -276,15 +307,23 @@ func _build_equipment_slots() -> void:
 		return
 	var equipped_weapon := player.get_equipped_weapon_item()
 	for index in EQUIPMENT_SLOT_NAMES.size():
+		var slot_type: EquipmentDefinition.Slot = EQUIPMENT_SLOT_TYPES[index]
+		var equipped_item := (
+			equipped_weapon
+			if slot_type == EquipmentDefinition.Slot.WEAPON
+			else player.get_equipped_gear(slot_type)
+		)
 		var slot_card := EquipmentSlotCardScene.instantiate() as EquipmentSlotCard
 		equipment_slots.add_child(slot_card)
 		slot_card.position = EQUIPMENT_SLOT_POSITIONS[index]
-		slot_card.size = Vector2(118, 42)
+		slot_card.size = Vector2(110, 31)
 		slot_card.configure(
 			EQUIPMENT_SLOT_NAMES[index],
-			equipped_weapon if index == 0 else null,
+			slot_type,
+			equipped_item,
 			EmptySlotIcon
 		)
+		slot_card.equipment_dropped.connect(_on_equipment_equip_requested)
 		_equipment_slot_cards.append(slot_card)
 
 
@@ -300,20 +339,13 @@ func _build_inventory_grid() -> void:
 	button_group.allow_unpress = false
 	var weapon_inventory := get_node_or_null("/root/WeaponInventory")
 	var material_inventory := get_node_or_null("/root/MaterialInventory")
-	var equipped_weapon := player.get_equipped_weapon_item()
 	var selected_slot: InventorySlotButton
-	var owned_weapon_count := 0
-	if weapon_inventory != null:
-		for item: EquipmentDefinition in player.weapon_catalog.weapons:
-			if weapon_inventory.owns_weapon(item.item_id):
-				owned_weapon_count += 1
+	var owned_equipment := _get_sorted_owned_equipment(weapon_inventory)
 
 	if _active_inventory_filter in [&"all", &"equipment"]:
-		for item: EquipmentDefinition in player.weapon_catalog.weapons:
-			if weapon_inventory != null and not weapon_inventory.owns_weapon(item.item_id):
-				continue
+		for item: EquipmentDefinition in owned_equipment:
 			var slot := _create_inventory_slot(button_group)
-			var equipped := item == equipped_weapon
+			var equipped := _is_equipment_equipped(item)
 			slot.configure_equipment(
 				item,
 				equipped,
@@ -327,7 +359,8 @@ func _build_inventory_grid() -> void:
 				selected_slot = slot
 
 	if _active_inventory_filter in [&"all", &"materials"] and material_inventory != null:
-		for material: MaterialDefinition in MaterialCatalog.materials:
+		var sorted_materials := _get_sorted_owned_materials(material_inventory)
+		for material: MaterialDefinition in sorted_materials:
 			var quantity: int = int(material_inventory.get_quantity(material.material_id))
 			if quantity <= 0:
 				continue
@@ -345,7 +378,7 @@ func _build_inventory_grid() -> void:
 		empty_slot.configure_empty()
 		_inventory_slots.append(empty_slot)
 
-	bag_capacity_label.text = "BAG  %d / %d" % [owned_weapon_count, BAG_CAPACITY]
+	bag_capacity_label.text = "BAG  %d / %d" % [owned_equipment.size(), BAG_CAPACITY]
 	bag_empty_label.visible = visible_item_count == 0
 	bag_empty_label.text = _get_empty_filter_message()
 	if selected_slot == null and not _selectable_inventory_slots.is_empty():
@@ -356,8 +389,8 @@ func _build_inventory_grid() -> void:
 			_on_equipment_selected(selected_slot.equipment_definition)
 		elif selected_slot.kind == InventorySlotButton.Kind.MATERIAL:
 			_on_material_selected(selected_slot.material_definition)
-	elif equipped_weapon != null:
-		_refresh_equipment_detail(equipped_weapon)
+	elif player.get_equipped_weapon_item() != null:
+		_refresh_equipment_detail(player.get_equipped_weapon_item())
 	_configure_inventory_focus()
 	_refresh_page_focus_links()
 
@@ -369,6 +402,74 @@ func _create_inventory_slot(button_group: ButtonGroup) -> InventorySlotButton:
 	_inventory_slots.append(slot)
 	_selectable_inventory_slots.append(slot)
 	return slot
+
+
+func _get_sorted_owned_equipment(weapon_inventory: Node) -> Array[EquipmentDefinition]:
+	var result: Array[EquipmentDefinition] = []
+	if weapon_inventory != null:
+		for item: EquipmentDefinition in player.weapon_catalog.weapons:
+			if weapon_inventory.owns_weapon(item.item_id):
+				result.append(item)
+	var gear_inventory := get_node_or_null("/root/GearInventory")
+	if gear_inventory != null:
+		result.append_array(gear_inventory.get_owned_items())
+	result.sort_custom(_equipment_sort_less)
+	return result
+
+
+func _get_sorted_owned_materials(material_inventory: Node) -> Array[MaterialDefinition]:
+	var result: Array[MaterialDefinition] = []
+	for material: MaterialDefinition in MaterialCatalog.materials:
+		if material_inventory.get_quantity(material.material_id) > 0:
+			result.append(material)
+	result.sort_custom(_material_sort_less.bind(material_inventory))
+	return result
+
+
+func _equipment_sort_less(a: EquipmentDefinition, b: EquipmentDefinition) -> bool:
+	match _inventory_sort_mode:
+		&"name":
+			return a.display_name.naturalnocasecmp_to(b.display_name) < 0
+		&"rarity":
+			if a.rarity != b.rarity:
+				return a.rarity > b.rarity
+		&"quantity":
+			pass
+	if a.slot != b.slot:
+		return a.slot < b.slot
+	return a.display_name.naturalnocasecmp_to(b.display_name) < 0
+
+
+func _material_sort_less(a: MaterialDefinition, b: MaterialDefinition, inventory: Node) -> bool:
+	match _inventory_sort_mode:
+		&"name":
+			return a.display_name.naturalnocasecmp_to(b.display_name) < 0
+		&"rarity":
+			if a.rarity != b.rarity:
+				return a.rarity > b.rarity
+		&"quantity":
+			var a_quantity: int = inventory.get_quantity(a.material_id)
+			var b_quantity: int = inventory.get_quantity(b.material_id)
+			if a_quantity != b_quantity:
+				return a_quantity > b_quantity
+	if a.material_family != b.material_family:
+		return a.material_family < b.material_family
+	return a.display_name.naturalnocasecmp_to(b.display_name) < 0
+
+
+func _cycle_inventory_sort() -> void:
+	var modes: Array[StringName] = [&"slot", &"name", &"rarity", &"quantity"]
+	_inventory_sort_mode = modes[(modes.find(_inventory_sort_mode) + 1) % modes.size()]
+	sort_button.text = "SORT: %s" % String(_inventory_sort_mode).to_upper()
+	_build_inventory_grid()
+
+
+func _is_equipment_equipped(item: EquipmentDefinition) -> bool:
+	if item == null:
+		return false
+	if item.slot == EquipmentDefinition.Slot.WEAPON:
+		return player.get_equipped_weapon_item() == item
+	return player.get_equipped_gear(item.slot) == item
 
 
 func _get_empty_filter_message() -> String:
@@ -437,11 +538,11 @@ func _on_material_selected(definition: MaterialDefinition) -> void:
 func _on_equipment_equip_requested(definition: EquipmentDefinition) -> void:
 	if definition == null or not definition.is_compatible_with(player.character_class_id):
 		return
-	if player.equip_owned_weapon(definition):
+	if player.equip_owned_equipment(definition):
 		_selected_equipment = definition
 		_selected_material = null
 		_build_equipment_slots()
-		_refresh_equipment_presentation(definition)
+		_build_inventory_grid()
 
 
 func _refresh_equipment_presentation(selected: EquipmentDefinition) -> void:
@@ -451,12 +552,17 @@ func _refresh_equipment_presentation(selected: EquipmentDefinition) -> void:
 	for card: InventorySlotButton in _equipment_cards:
 		card.configure_equipment(
 			card.equipment_definition,
-			card.equipment_definition == equipped,
+			_is_equipment_equipped(card.equipment_definition),
 			card.equipment_definition.is_compatible_with(player.character_class_id)
 		)
 		card.set_pressed_no_signal(card.equipment_definition == selected)
-	if not _equipment_slot_cards.is_empty():
-		_equipment_slot_cards[0].configure("Weapon", equipped, EmptySlotIcon)
+	if _equipment_slot_cards.size() > WEAPON_ESSENCE_SLOT_INDEX:
+		_equipment_slot_cards[WEAPON_ESSENCE_SLOT_INDEX].configure(
+			"Weapon Essence",
+			EquipmentDefinition.Slot.WEAPON,
+			equipped,
+			EmptySlotIcon
+		)
 	weapon_preview.texture = equipped.weapon_definition.world_texture
 	weapon_preview.position = equipped.weapon_definition.sprite_offset_from_grip
 	attack_label.text = "MOUSE: %s" % equipped.display_name.to_upper()
@@ -472,7 +578,7 @@ func _refresh_equipment_detail(selected: EquipmentDefinition) -> void:
 	attack_label.text = "MOUSE: %s" % equipped.display_name.to_upper()
 	equipment_detail_panel.configure(
 		selected,
-		selected == equipped,
+		_is_equipment_equipped(selected),
 		selected.is_compatible_with(player.character_class_id)
 	)
 
@@ -489,6 +595,11 @@ func _on_material_inventory_reset() -> void:
 	_selected_material = null
 	if visible:
 		_build_inventory_grid()
+
+
+func _on_gear_inventory_changed() -> void:
+	if visible:
+		_build_character_bag()
 
 
 func _build_skill_cards() -> void:

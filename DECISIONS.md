@@ -106,6 +106,9 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 096 | Give cooldown-blocked player actions one shared denied cue | Dash or skill cooldown spam, invalid-action audio, tappable cooldown HUD, controller, or touch parity |
 | 097 | Make Varkuun's Chest the Stage Five milestone claim | Stage V reward chest, Varkuun Core, core-gear seal, King/Varkuun dialogue, mouse Skip, or post-boss save order |
 | 098 | Separate normal-hit power and use armor for boss durability | King basic attack damage/reach, weapon skill power, armor mitigation, Varkuun anti-kiting, or Stage II live pressure |
+| 099 | Finalize nine explicit equipment slots | One weapon, Head/Plate/Gloves/Boots, Bracer/Amulet/Ring/Talisman, Character menu layout, or future equipment authority |
+| 100 | Lock the Stage V core set before enabling crafting | Varkuun Edge, four Forest armor pieces, exact recipes/stats/icons, Rootforge preview, or Segment 5 transaction boundary |
+| 101 | Complete Stage V armor and enable equipment authority | Leggings, five armor slots, GearInventory, live equipment stats, sorting, drag-to-equip, F9 crafting readiness, or save migration |
 
 ## New Decisions
 

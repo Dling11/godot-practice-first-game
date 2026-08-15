@@ -3,6 +3,9 @@ extends SceneTree
 const IronSword: EquipmentDefinition = preload(
 	"res://data/items/equipment/iron_sword.tres"
 )
+const OldBarkHelm: EquipmentDefinition = preload(
+	"res://data/items/equipment/forest/stage_5_core/old_bark_helm.tres"
+)
 
 
 func _initialize() -> void:
@@ -13,12 +16,14 @@ func _run() -> void:
 	var run_session := root.get_node("RunSession")
 	var story_state := root.get_node("StoryState")
 	var weapon_inventory := root.get_node("WeaponInventory")
+	var gear_inventory := root.get_node("GearInventory")
 	var loot_state := root.get_node("LootState")
 	var save_service := root.get_node("SaveService")
 
 	run_session.reset_run()
 	story_state.reset_story()
 	weapon_inventory.reset_inventory()
+	gear_inventory.reset_inventory()
 	loot_state.reset_state()
 	run_session.update_progression(725, 113)
 	run_session.update_player_health(92.0)
@@ -26,6 +31,8 @@ func _run() -> void:
 	story_state.record_boss_victory(&"rootbound_husk")
 	weapon_inventory.acquire_weapon(IronSword)
 	weapon_inventory.equip_weapon(&"opaw", &"warrior", IronSword)
+	gear_inventory.acquire_item(OldBarkHelm)
+	gear_inventory.equip_item(&"king", &"warrior", OldBarkHelm)
 	loot_state.claim_first_clear(&"forest_stage_3_first_clear_claim")
 
 	var snapshot: Dictionary = save_service.create_profile_snapshot()
@@ -34,6 +41,7 @@ func _run() -> void:
 		return
 	var extensions: Dictionary = snapshot.get("extensions", {})
 	for reserved_section: String in [
+		"gear_inventory",
 		"material_inventory",
 		"recipe_discovery",
 		"stage_claims",
@@ -46,6 +54,7 @@ func _run() -> void:
 	run_session.reset_run()
 	story_state.reset_story()
 	weapon_inventory.reset_inventory()
+	gear_inventory.reset_inventory()
 	loot_state.reset_state()
 	if not save_service.restore_profile(snapshot):
 		_fail("A valid core profile snapshot could not be restored.")
@@ -68,6 +77,15 @@ func _run() -> void:
 		or weapon_inventory.get_equipped_weapon_id(&"opaw", &"") != IronSword.item_id
 	):
 		_fail("WeaponInventory did not restore ownership and equipped state.")
+		return
+	if (
+		not gear_inventory.owns_item(OldBarkHelm.item_id)
+		or gear_inventory.get_equipped_item(
+			&"king",
+			EquipmentDefinition.Slot.HEAD
+		) != OldBarkHelm
+	):
+		_fail("GearInventory did not restore owned and equipped armor state.")
 		return
 	if not loot_state.has_first_clear_claim(&"forest_stage_3_first_clear_claim"):
 		_fail("LootState did not restore first-clear reward ownership.")

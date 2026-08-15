@@ -1,6 +1,6 @@
 # Decision 069: Phase Forest Core Gear, Accessories, and Relics Across Stages V-X
 
-- **Status:** Accepted; progression contract planned, later-stage content not implemented
+- **Status:** Accepted for progression cadence; slot model superseded by Decision 099
 - **Date:** 2026-08-01
 
 ## Context
@@ -21,7 +21,7 @@ Stage V permanently unlocks the Forest core-gear category: weapons, chest armor,
 
 Stages VI-VII introduce spirit, rune, binding, and setting components plus discoverable standard-accessory blueprints, but do not fabricate an equipable accessory before its seal exists. Stage VIII's mini-boss grants the first permanent standard-accessory seal and a repeatable catalyst. Mireward Charm and Thornward Clasp move to this milestone. Stage X grants the permanent relic/signature-accessory seal and the Forest's unique repeatable catalyst.
 
-The paper doll retains two generic accessory positions. Pendant/amulet, earring, ring/charm, and similar standard families may occupy either position unless a future build-system decision requires explicit left/right restrictions. Relics use the same positions but remain Stage X content; the UI must not grow a separate slot for every jewelry noun.
+Decision 099 supersedes the original two-generic-accessory presentation with four explicit Bracer, Amulet, Ring, and Talisman positions. It also separates Bracer from Gloves. The Stage V/VIII/X unlock cadence in this decision remains authoritative.
 
 Initial standard-accessory stats may use only implemented or explicitly added stat authorities: capped maximum vitality, regeneration modifiers, dash recovery, skill cooldown, or resistance after a resistance system exists. Earrings may support mana efficiency only after mana authority exists. Critical chance, lifesteal, mana, status application, and loot bonuses must not be faked in item copy before their systems exist. Relics should eventually favor bounded conditional passives over unbounded raw damage.
 
@@ -30,6 +30,6 @@ Initial standard-accessory stats may use only implemented or explicitly added st
 - Stages I-V establish the visible core equipment fantasy without overloading the first crafting milestone.
 - Stages VI-VIII introduce a new build objective before the Forest ends.
 - Stage X remains meaningful through relics and signature effects rather than withholding all accessories.
-- Two generic accessory slots keep Character & Bag readable and prevent paper-doll bloat.
+- Decision 099 keeps the expanded paper doll readable through compact symmetric cards while preserving the combined Character & Bag page.
 - Segment 5 must still implement atomic crafting and real core-gear outputs first; this decision does not claim Stage VI-X content is playable.
 - Decision 067 remains authoritative for sparse drops, Stage III, permanent seals, and repeatable catalysts; this decision supersedes its former Stage X first-accessory unlock.

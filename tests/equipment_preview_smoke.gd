@@ -12,6 +12,21 @@ func _initialize() -> void:
 
 
 func _run() -> void:
+	var expected_slots := PackedStringArray([
+		"WEAPON",
+		"HEAD",
+		"PLATE",
+		"GLOVES",
+		"LEGGINGS",
+		"BOOTS",
+		"BRACER",
+		"AMULET",
+		"RING",
+		"TALISMAN",
+	])
+	if PackedStringArray(EquipmentDefinition.Slot.keys()) != expected_slots:
+		_fail("EquipmentDefinition lost the finalized one-weapon, five-armor, four-accessory slot contract.")
+		return
 	if not Catalog.has_valid_layout() or Catalog.weapons.size() != 2:
 		_fail("Opaw's catalog must expose the two approved early-game swords.")
 		return
@@ -69,7 +84,7 @@ func _run() -> void:
 		return
 	if (
 		not KingCatalog.has_valid_layout()
-		or KingCatalog.weapons.size() != 1
+		or KingCatalog.weapons.size() != 2
 		or KingCatalog.default_weapon.weapon_definition != KingSword
 		or KingSword.weapon_id != &"weapon_king_signature_sword"
 		or not KingSword.uses_integrated_visual
@@ -79,6 +94,17 @@ func _run() -> void:
 		or not is_equal_approx(KingSword.basic_damage_maximum, 12.0)
 	):
 		_fail("King's signature sword identity, integrated presentation, or 10-12 normal damage is invalid.")
+		return
+	var varkuun_edge := KingCatalog.find_weapon(&"weapon_varkuun_edge_essence")
+	if (
+		varkuun_edge == null
+		or not varkuun_edge.is_equippable_weapon()
+		or not varkuun_edge.weapon_definition.uses_integrated_visual
+		or not is_equal_approx(varkuun_edge.weapon_definition.damage, 28.0)
+		or not is_equal_approx(varkuun_edge.weapon_definition.basic_damage_minimum, 11.0)
+		or not is_equal_approx(varkuun_edge.weapon_definition.basic_damage_maximum, 13.0)
+	):
+		_fail("Varkuun Edge lost its testable integrated 11-13 / 28-power contract.")
 		return
 	print("Equipment catalog smoke test passed.")
 	quit(0)

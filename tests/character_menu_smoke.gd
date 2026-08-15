@@ -13,6 +13,7 @@ func _initialize() -> void:
 func _run() -> void:
 	root.get_node("RunSession").reset_run()
 	root.get_node("WeaponInventory").reset_inventory()
+	root.get_node("GearInventory").reset_inventory()
 	root.get_node("MaterialInventory").reset_inventory()
 	for action_name in ["player_skill_1", "player_skill_2", "player_skill_3", "player_skill_4", "player_character_menu"]:
 		if not InputMap.has_action(action_name):
@@ -49,7 +50,7 @@ func _run() -> void:
 		_fail("The live physical Tab event did not open the character menu and pause gameplay.")
 		return
 	if menu._equipment_cards.size() != 1 or root.gui_get_focus_owner() != menu._equipment_cards[0]:
-		_fail("Character menu did not build and focus King's signature sword.")
+		_fail("Character menu did not build and focus King's signature sword in the combined page.")
 		return
 	var identity_title: Label = menu.get_node("Panel/Margin/Root/Header/Identity/Title")
 	if identity_title.text != "KING":
@@ -62,8 +63,8 @@ func _run() -> void:
 		"Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/"
 		+ "PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas/Body"
 	) as AnimatedSprite2D
-	if preview_body.sprite_frames != KingFrames:
-		_fail("Character menu preview is not using King's active simple model.")
+	if preview_body.sprite_frames != KingFrames or preview_body.position != Vector2(64, 77):
+		_fail("Character menu preview is not using King's body-centered active model.")
 		return
 	var preview_grip := menu.get_node(
 		"Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/"
@@ -72,13 +73,47 @@ func _run() -> void:
 	if preview_grip.visible:
 		_fail("Character preview duplicates a detached equipment sword over King's integrated sword.")
 		return
-	if menu._equipment_slot_cards.size() != 7 or not menu.gear_page.visible or menu.skills_page.visible:
-		_fail("Character menu did not open on the seven-position Character & Bag page.")
+	if (
+		menu._equipment_slot_cards.size() != 10
+		or not menu.gear_page.visible
+		or menu.skills_page.visible
+	):
+		_fail("Character menu did not open on the compact ten-position Character & Bag page.")
+		return
+	var expected_slots := [
+		"HEAD",
+		"WEAPON ESSENCE",
+		"PLATE",
+		"GLOVES",
+		"LEGGINGS",
+		"BOOTS",
+		"BRACER",
+		"AMULET",
+		"RING",
+		"TALISMAN",
+	]
+	for index in expected_slots.size():
+		if menu._equipment_slot_cards[index].slot_label.text != expected_slots[index]:
+			_fail("Character menu equipment slot %d did not match the finalized model." % index)
+			return
+	if (
+		menu._equipment_slot_cards[0].position != Vector2(93, 0)
+		or menu._equipment_slot_cards[CharacterMenu.WEAPON_ESSENCE_SLOT_INDEX].position
+		!= Vector2(245, 0)
+	):
+		_fail("Head and Weapon Essence did not use the compact armor/upper-body placement.")
+		return
+	if (
+		menu._equipment_slot_cards[CharacterMenu.WEAPON_ESSENCE_SLOT_INDEX].item_label.text
+		!= "KING'S SWORD"
+	):
+		_fail("King's current weapon did not occupy the Weapon Essence migration slot.")
 		return
 	if (
 		menu._inventory_slots.size() != CharacterMenu.BAG_CAPACITY
 		or menu.inventory_grid.columns != CharacterMenu.BAG_COLUMNS
 		or menu.bag_capacity_label.text != "BAG  1 / 24"
+		or menu._inventory_slots[0].custom_minimum_size != Vector2(38, 38)
 	):
 		_fail("Character menu did not build the compact 24-slot bag contract.")
 		return
@@ -89,13 +124,29 @@ func _run() -> void:
 		_fail("Character menu did not initially inspect the equipped weapon.")
 		return
 	if menu.skills_tab_button.get_node_or_null(menu.skills_tab_button.focus_neighbor_bottom) != menu._equipment_cards[0]:
-		_fail("Both tab controls must lead into the visible Gear page.")
+		_fail("Both tabs must lead into the visible Character & Bag inventory.")
 		return
+	await process_frame
+	var gear_panel := menu.get_node(
+		"Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel"
+	) as Control
+	var gear_panel_rect := gear_panel.get_global_rect()
+	for card_index in menu._equipment_slot_cards.size():
+		var slot_card: Control = menu._equipment_slot_cards[card_index]
+		if not gear_panel_rect.encloses(slot_card.get_global_rect()):
+			_fail("Equipment slot %d overflowed the finalized Gear panel." % card_index)
+			return
+		for other_index in range(card_index + 1, menu._equipment_slot_cards.size()):
+			if slot_card.get_global_rect().intersects(
+				menu._equipment_slot_cards[other_index].get_global_rect()
+			):
+				_fail("Finalized equipment slots %d and %d overlap." % [card_index, other_index])
+				return
 	menu._equipment_cards[0].pressed.emit()
 	if (
 		menu.equipment_detail_panel.current_definition == null
 		or menu.equipment_detail_panel.current_definition.item_id != &"weapon_king_signature_sword"
-		or not menu.equipment_detail_panel.state_label.text.contains("ACTIVE COMBAT")
+		or not menu.equipment_detail_panel.state_label.text.contains("ACTIVE EFFECTS")
 	):
 		_fail("Selecting King's Sword did not update the active equipment detail surface.")
 		return
@@ -128,8 +179,9 @@ func _run() -> void:
 	if (
 		not viewport_rect.encloses(panel_rect)
 		or not page_host_rect.encloses(menu.gear_page.get_global_rect())
+		or not page_host_rect.encloses(menu.equipment_detail_panel.get_global_rect())
 	):
-		_fail("Character & Bag overflowed its 960x540 modal bounds while showing material details.")
+		_fail("Combined Character & Bag page overflowed its 960x540 modal bounds.")
 		return
 	menu.all_filter_button.pressed.emit()
 	menu.skills_tab_button.pressed.emit()
@@ -137,8 +189,10 @@ func _run() -> void:
 		_fail("Skills tab did not switch pages and focus the first reusable skill control.")
 		return
 	await process_frame
-	if menu.gear_tab_button.get_node_or_null(menu.gear_tab_button.focus_neighbor_bottom) != menu._skill_cards[0]:
-		_fail("Both tab controls must lead into the visible Active Skills page.")
+	if (
+		menu.gear_tab_button.get_node_or_null(menu.gear_tab_button.focus_neighbor_bottom) != menu._skill_cards[0]
+	):
+		_fail("Character and Skills tabs must lead into the visible Skills page.")
 		return
 	if not menu.has_node("Panel/Margin/Root/PageHost/SkillsPage/Skills/Skill4") or not (menu._skill_cards[0] is SkillSlotCard):
 		_fail("Character menu did not present all four authored reusable skill slots.")
@@ -182,16 +236,54 @@ func _run() -> void:
 	f9_event.pressed = true
 	player._unhandled_input(f9_event)
 	await process_frame
+	var material_inventory := root.get_node("MaterialInventory")
+	for material: MaterialDefinition in MaterialInventory.MaterialCatalog.materials:
+		if material_inventory.get_quantity(material.material_id) != material_inventory.MAX_MATERIAL_QUANTITY:
+			_fail("F9 did not maximize every authored material for crafting simulation.")
+			return
 	if (
 		player.skill_loadout.get_slot(2).ability == null
 		or player.skill_loadout.get_slot(2).ability.ability_id != &"riftbreak"
 		or menu._skill_cards[1].slot_definition.ability == null
 		or not menu._skill_cards[1].text.contains("RIFTBREAK")
-		or menu._equipment_cards.size() != player.weapon_catalog.weapons.size()
+		or menu._equipment_cards.size() != player.weapon_catalog.weapons.size() + 5
 		or menu._material_cards.size() != MaterialInventory.MaterialCatalog.materials.size()
+		or menu._material_cards[0].quantity_label.text != "MAX"
 		or menu.vitality_label.text != "HP 248/248"
 	):
 		_fail("F9 did not preserve King's two implemented skills while refreshing gear, materials, and Level-10 vitality.")
+		return
+	menu.gear_tab_button.pressed.emit()
+	var gloves: EquipmentDefinition
+	for card: InventorySlotButton in menu._equipment_cards:
+		if card.equipment_definition.slot == EquipmentDefinition.Slot.GLOVES:
+			gloves = card.equipment_definition
+			break
+	if gloves == null:
+		_fail("F9 did not grant the Stage V gloves for equipment testing.")
+		return
+	var glove_drop := {"equipment": gloves}
+	var glove_slot: EquipmentSlotCard = menu._equipment_slot_cards[3]
+	if not glove_slot._can_drop_data(Vector2.ZERO, glove_drop):
+		_fail("The Gloves loadout card rejected matching drag data.")
+		return
+	glove_slot._drop_data(Vector2.ZERO, glove_drop)
+	for card: InventorySlotButton in menu._equipment_cards.duplicate():
+		var item := card.equipment_definition
+		if item != null and item.slot not in [EquipmentDefinition.Slot.WEAPON, EquipmentDefinition.Slot.GLOVES]:
+			menu._on_equipment_equip_requested(item)
+	if (
+		not is_equal_approx(player.health_component.maximum_health, 280.0)
+		or not is_equal_approx(player.health_component.armor_rating, 16.0)
+		or not is_equal_approx(player.health_component.ward_reduction_ratio, 0.04)
+		or not is_equal_approx(player.attack_component._attack_speed_bonus_ratio, 0.12)
+		or not is_equal_approx(player.movement_component.max_speed, 126.5)
+	):
+		_fail("Equipping the complete Stage V armor set did not apply its real reusable stats.")
+		return
+	menu.sort_button.pressed.emit()
+	if menu.sort_button.text != "SORT: NAME":
+		_fail("The inventory sort control did not cycle from slot order to name order.")
 		return
 	if menu._skill_cards[0].get_node_or_null(menu._skill_cards[0].focus_neighbor_right) != menu._skill_cards[1]:
 		_fail("Character skill cards do not provide explicit directional focus navigation.")

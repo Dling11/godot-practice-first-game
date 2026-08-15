@@ -2,7 +2,7 @@
 
 - **Status:** Approved regional/economy design lock; Segments 1-4 plus Character & Bag preparation implemented, Segments 5-8 pending. Decision 071 supersedes physical visible-weapon outputs with character-owned combat plus essence/relic equipment.
 - **Approved:** 2026-07-26
-- **Runtime coverage today:** Stages 1-3, five sparse/protected enemy drop profiles, ten illustrated materials, collectible pickups, profile-backed core/material/recipe/claim state, direct clear banking on Stages I-II, one guaranteed Stage III milestone Reliquary, and Rootweaver Nema's read-only recipe/material preview; no crafting transactions/outputs
+- **Runtime coverage today:** Stages 1-5, six sparse/protected enemy profiles, thirteen illustrated materials, collectible pickups, profile-backed weapon/gear/material/recipe/claim state, Stage III and V milestone chests, six finalized Stage V equipment definitions/icons/recipes with live equip/stat authority, and Rootweaver Nema's read-only output/stat/material preview; no normal crafting transaction
 - **Planned content covered here:** Forest Stages 1-10 and a reusable foundation for Stage 11 onward
 
 ## Purpose
@@ -19,7 +19,7 @@ This plan is intentionally broader than the three implemented stages so save dat
 
 ## Decision 071 Equipment Overlay
 
-The fight/loot/craft/replay structure and Stage III/V/VIII/X reward cadence remain approved. Segment 5 output definitions must now be essences/relics: Weapon Essence, Body Relic, Hand Relic, Foot Relic, and two generic accessories. These items modify a playable character's stats or authored traits without automatically replacing the character's visible signature weapon. Existing physical Ashwood/Iron runtime items remain migration dependencies until explicit aliases or a save conversion exist. `docs/design/king-character-roster-and-essence-redesign.md` owns that migration.
+The fight/loot/craft/replay structure and Stage III/V/VIII/X reward cadence remain approved. Decision 099 finalizes nine positions: Weapon Essence; Head, Plate, Gloves, and Boots armor; plus Bracer, Amulet, Ring, and Talisman accessories. These items modify a playable character's stats or authored traits without automatically replacing the character's visible signature weapon. Existing physical Ashwood/Iron runtime items remain migration dependencies until explicit aliases or a save conversion exist. `docs/design/king-character-roster-and-essence-redesign.md` owns that migration.
 
 ## Approved Product Rules
 
@@ -101,15 +101,15 @@ Known enemies continue appearing in authored combinations. Aim for roughly one i
 
 - **Stages 1-3:** collect and inspect root, mire, cloth, thorn, and Husk preparation materials; no recipe unlock is granted yet
 - **Stage 4:** implemented environment/crowd-pressure route plus Armored Hog hide-bearing ecology and protected materials; leather recipes remain future work
-- **Stage 5:** permanently unlock core-relic crafting for Weapon Essence, Body Relic, Hand Relic/bracer, and Foot Relic slots; consume a repeatable boss catalyst in relevant recipes
+- **Stage 5:** permanently unlock core crafting for Weapon Essence plus Head, Plate, Gloves, and Boots; consume a repeatable boss catalyst in relevant recipes
 - **Stages 6-7:** expand spirit, reinforced armor, axe/greatsword, and standard-accessory components/blueprints
 - **Stage 8:** permanently unlock standard accessories and award a repeatable fungal/spirit/binding catalyst
 - **Stage 9:** refine Forest fittings and advanced preparation
 - **Stage 10:** permanently unlock relic/signature-accessory crafting and supply the repeatable signature catalyst
 
-A crafting seal is permanent progression and is never consumed. A catalyst is repeatable inventory material and may be consumed by deterministic recipes. Rootfiber Wraps and Huskbound Guard belong to the Stage V milestone; Mireward Charm and Thornward Clasp belong to Stage VIII. Stage V also needs at least one authored crafted Weapon Essence recipe. Two generic accessory slots accept pendant/amulet, earring, ring/charm, and later relic families; bracers remain a Hand Relic/gloves-family item rather than a separate slot.
+A crafting seal is permanent progression and is never consumed. A catalyst is repeatable inventory material and may be consumed by deterministic recipes. Decision 101 locks Stage V to Varkuun Edge, Old Bark Helm, Heartwood Plate, Rootfiber Gloves, Mirebound Leggings, and Mirehide Boots; their exact costs and stat budgets live in `docs/design/stage-5-core-equipment-set.md`. Mireward Charm and Thornward Clasp remain Stage VIII previews. Decision 101 preserves later accessories as Bracer, Amulet, Ring, and Talisman; their final mappings and stat budgets remain unimplemented.
 
-Exact recipes and Stage 5-10 enemy/item names remain open until their individual content contracts are approved. Stage 4's Armored Hog, Hide, Living Bark Plate, stats, and drop rates are locked by its implemented contract.
+Stage V's five recipes and item names are locked by Decision 100. Stage 6-10 enemy/item names remain open until their individual content contracts are approved. Stage 4's Armored Hog, Hide, Living Bark Plate, stats, and drop rates remain locked by its implemented contract.
 
 ## Monster Content Contract
 

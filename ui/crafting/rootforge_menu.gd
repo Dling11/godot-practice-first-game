@@ -8,6 +8,9 @@ extends Control
 signal menu_closed
 
 const ALL_CATEGORIES := -1
+const Stage5CoreEquipment: EquipmentCatalogDefinition = preload(
+	"res://data/items/equipment/forest/stage_5_core_catalog.tres"
+)
 
 @export var catalog: RecipeCatalogDefinition
 
@@ -15,6 +18,10 @@ const ALL_CATEGORIES := -1
 @onready var recipe_list: VBoxContainer = %RecipeList
 @onready var recipe_name_label: Label = %RecipeNameLabel
 @onready var recipe_meta_label: Label = %RecipeMetaLabel
+@onready var output_preview: Control = %OutputPreview
+@onready var output_icon: TextureRect = %OutputIcon
+@onready var output_slot_label: Label = %OutputSlotLabel
+@onready var output_stats_label: Label = %OutputStatsLabel
 @onready var recipe_description_label: Label = %RecipeDescriptionLabel
 @onready var recipe_state_label: Label = %RecipeStateLabel
 @onready var ingredient_list: VBoxContainer = %IngredientList
@@ -117,7 +124,7 @@ func _build_recipe_list() -> void:
 	for recipe: RecipeDefinition in catalog.recipes:
 		var button := Button.new()
 		button.name = "%sRecipeButton" % String(recipe.recipe_id).to_pascal_case()
-		button.custom_minimum_size = Vector2(0, 58)
+		button.custom_minimum_size = Vector2(0, 42)
 		button.toggle_mode = true
 		button.button_group = group
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
@@ -194,6 +201,15 @@ func _refresh_recipe_detail() -> void:
 		selected_recipe.tier,
 		_category_name(selected_recipe.category),
 	]
+	var output := Stage5CoreEquipment.find_item(selected_recipe.output_id)
+	output_preview.visible = output != null
+	if output != null:
+		output_icon.texture = output.icon
+		output_slot_label.text = "%s  •  %s" % [
+			output.get_slot_name().to_upper(),
+			output.get_rarity_name(),
+		]
+		output_stats_label.text = output.get_stat_summary()
 	recipe_description_label.text = selected_recipe.description
 	var recipe_discovery := get_node_or_null("/root/RecipeDiscovery")
 	var remembered: bool = (
@@ -211,8 +227,12 @@ func _refresh_recipe_detail() -> void:
 	)
 	_rebuild_ingredient_rows()
 	var seal_text := _required_seal_text(selected_recipe.category)
-	milestone_label.text = "%s\nOUTPUT EQUIPMENT IS NOT YET IMPLEMENTED" % seal_text
-	primary_action_button.text = seal_text
+	if _is_debug_crafting_preset_active():
+		milestone_label.text = "F9 TEST READY\nMATERIALS • BLUEPRINT • SEAL SATISFIED"
+		primary_action_button.text = "DEBUG READY • ITEM GRANTED"
+	else:
+		milestone_label.text = "%s\nCRAFTING TRANSACTION NOT YET ENABLED" % seal_text
+		primary_action_button.text = seal_text
 	primary_action_button.disabled = true
 
 
@@ -284,6 +304,19 @@ func _required_seal_text(category: int) -> String:
 	if category == RecipeDefinition.CraftingCategory.ACCESSORY:
 		return "STAGE VIII ACCESSORY SEAL REQUIRED"
 	return "STAGE V CORE GEAR SEAL REQUIRED"
+
+
+func _is_debug_crafting_preset_active() -> bool:
+	if not OS.is_debug_build():
+		return false
+	var save_service := get_node_or_null("/root/SaveService")
+	var story_state := get_node_or_null("/root/StoryState")
+	return (
+		save_service != null
+		and save_service.is_autosave_suppressed_for_debug()
+		and story_state != null
+		and story_state.has_key_item(&"forest_core_gear_seal")
+	)
 
 
 func _on_material_quantity_changed(_material_id: StringName, _quantity: int) -> void:

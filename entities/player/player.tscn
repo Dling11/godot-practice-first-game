@@ -369,6 +369,7 @@ one_shot = true
 [node name="MovementComponent" type="Node" parent="." unique_id=2013263965]
 unique_name_in_owner = true
 script = ExtResource("3_movement")
+max_speed = 110.0
 
 [node name="MeleeAttackComponent" type="Node" parent="." unique_id=2065298328 node_paths=PackedStringArray("hitbox", "collision_shape")]
 unique_name_in_owner = true

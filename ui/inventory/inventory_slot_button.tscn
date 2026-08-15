@@ -4,7 +4,7 @@
 [ext_resource type="Theme" path="res://assets/ui/themes/battle_of_gods_theme.tres" id="2_theme"]
 
 [node name="InventorySlotButton" type="Button"]
-custom_minimum_size = Vector2(46, 46)
+custom_minimum_size = Vector2(38, 38)
 layout_mode = 2
 theme = ExtResource("2_theme")
 toggle_mode = true
@@ -18,10 +18,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = -5.0
-offset_bottom = -5.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
@@ -41,7 +41,7 @@ text = "M"
 horizontal_alignment = 1
 vertical_alignment = 1
 theme_override_colors/font_color = Color(0.66, 0.78, 0.58, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 14
 
 [node name="StateLabel" type="Label" parent="."]
 unique_name_in_owner = true
@@ -68,8 +68,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -31.0
-offset_top = -14.0
+offset_left = -29.0
+offset_top = -13.0
 offset_right = -3.0
 offset_bottom = -2.0
 grow_horizontal = 0
@@ -80,4 +80,4 @@ vertical_alignment = 2
 theme_override_colors/font_color = Color(0.94, 0.9, 0.78, 1)
 theme_override_colors/font_outline_color = Color(0.02, 0.025, 0.035, 1)
 theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 7

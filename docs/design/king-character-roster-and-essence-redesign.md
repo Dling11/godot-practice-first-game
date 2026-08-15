@@ -69,10 +69,14 @@ The current visible Ashwood and Iron swords are a migration-era system. The appr
 | Loadout slot | Presentation | Primary design space |
 |---|---|---|
 | Weapon Essence | blade-shaped stone, soul edge, or weapon-memory relic | attack power, basic-chain trait, skill scaling |
-| Body Relic | ward plate, seal, mantle token | health, defense, resistance |
-| Hand Relic | bracer, gauntlet seal, grip rune | attack speed, stagger, cooldown or status interaction |
-| Foot Relic | greave rune, stride charm | movement, dash, recovery, hazard resistance |
-| Accessory I-II | pendant, earring, charm, ring, or divine fragment | conditional build effects and utility |
+| Head | crown, helm, circlet, or ward mask | defense, resistance, situational protection |
+| Plate | armor plate, mantle seal, or body ward | health, armor, broad survivability |
+| Gloves | gauntlets, wraps, or grip seals | attack handling, recovery, close-combat utility |
+| Boots | boots, greaves, or stride seals | movement, dash recovery, hazard protection |
+| Bracer | wrist ward or combat binding | stagger, offensive handling, modest skill tempo |
+| Amulet | pendant, charm, or heart ward | vitality, regeneration, resistance |
+| Ring | rune ring or compact divine fragment | cooldown, skill power, bounded conditional effects |
+| Talisman | carried ward, token, or spirit seal | mobility, hazards, status utility |
 
 Equipping an essence changes stats and authored modifiers; it does not replace King's signature weapon sprite. A modifier may deliberately change aura, trail color, runes, or a named technique when the character definition supports it, but there must be one clear presentation owner.
 
@@ -80,9 +84,9 @@ Existing items should migrate rather than silently disappear. Provisional mappin
 
 The Forest milestone cadence remains useful:
 
-- Stage V: core relic families (Weapon Essence, Body, Hand, Foot);
+- Stage V: Weapon Essence plus Head, Plate, Gloves, and Boots core gear;
 - Stages VI-VII: accessory components and blueprint preparation;
-- Stage VIII: standard Accessory I-II crafting;
+- Stage VIII: standard Bracer, Amulet, Ring, and Talisman crafting;
 - Stage X: signature/relic-tier crafting and the regional catalyst.
 
 Nema remains the organic relic/essence crafter. Orren can sell or temper simple mortal essences. Neither NPC needs to disappear because the visible weapon is character-owned.

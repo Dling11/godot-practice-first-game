@@ -36,6 +36,6 @@ The UI never mutates ownership dictionaries, resolves drops, crafts items, or wr
 - The UI is ready to show Segment 3 chest rewards without inventing a second inventory model.
 - Weapon purchase/equip behavior and save reconstruction remain unchanged.
 - The material pouch can scale independently from ordinary bag capacity.
-- F9 can populate absent material IDs with non-saving samples for isolated presentation tests, while ordinary play now earns real materials through Segment 3.
+- Decision 099's later compact pass makes F9 raise every authored material to the non-saving maximum for repeated crafting simulation; ordinary play still earns real materials through Segment 3.
 - Sanctuary stash transfer, overflow handling, discard confirmation, consumable/key-item authorities, and armor stats remain later work.
 - The seven-slot paper doll is forward-compatible presentation; only the weapon slot currently has an equippable runtime item.

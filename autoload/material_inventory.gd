@@ -21,17 +21,11 @@ func reset_inventory() -> void:
 
 
 func apply_debug_testing_preset() -> void:
-	## F9 makes the saved-material UI testable before normal loot resolution
-	## exists. Autosave is suppressed by Player before this mutation.
-	var changed := false
-	for index in MaterialCatalog.materials.size():
-		var material: MaterialDefinition = MaterialCatalog.materials[index]
-		if get_quantity(material.material_id) > 0:
-			continue
-		_quantities[material.material_id] = 3 + index
-		changed = true
-	if changed:
-		inventory_reset.emit()
+	## F9 is a non-saving crafting sandbox: every currently authored material
+	## is raised to the supported maximum for repeated recipe simulation.
+	for material: MaterialDefinition in MaterialCatalog.materials:
+		_quantities[material.material_id] = MAX_MATERIAL_QUANTITY
+	inventory_reset.emit()
 
 
 func get_quantity(material_id: StringName) -> int:

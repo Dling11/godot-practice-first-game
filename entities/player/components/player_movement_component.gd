@@ -7,6 +7,16 @@ extends Node
 @export_range(1.0, 5000.0, 1.0, "suffix:px/s^2") var acceleration: float = 900.0
 @export_range(1.0, 5000.0, 1.0, "suffix:px/s^2") var deceleration: float = 1100.0
 
+var _base_max_speed: float
+
+
+func _ready() -> void:
+	_base_max_speed = max_speed
+
+
+func set_equipment_speed_bonus(bonus_ratio: float) -> void:
+	max_speed = _base_max_speed * (1.0 + maxf(bonus_ratio, 0.0))
+
 
 func calculate_velocity(
 	current_velocity: Vector2,
