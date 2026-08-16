@@ -1,7 +1,6 @@
 extends SceneTree
 
 const PlayerScene = preload("res://entities/player/player.tscn")
-const OpawTest = preload("res://tests/support/opaw_test_configuration.gd")
 
 
 func _initialize() -> void:
@@ -10,10 +9,9 @@ func _initialize() -> void:
 
 func _run() -> void:
 	var player := PlayerScene.instantiate() as Player
-	OpawTest.apply(player)
 	root.add_child(player)
 	var attack := player.attack_component
-	var ability := player.ability_1_component
+	var ability := player.ability_2_component
 	var observed := {"unsafe_overlap": false}
 	attack.phase_changed.connect(func(phase: int, _duration_seconds: float) -> void:
 		if phase == MeleeAttackComponent.Phase.ACTIVE and ability.is_casting():
@@ -23,7 +21,7 @@ func _run() -> void:
 	if not player.request_primary_attack():
 		_fail("The normal attack needed for ability-buffer coverage was rejected.")
 		return
-	if not player.request_ability_1():
+	if not player.request_ability(2):
 		_fail("A ready skill was not buffered during a normal attack.")
 		return
 	if ability.is_casting():
@@ -37,16 +35,13 @@ func _run() -> void:
 	if attack.phase != MeleeAttackComponent.Phase.IDLE:
 		_fail("Buffered skill did not replace only the normal attack recovery.")
 		return
-	if ability.get_cast_direction() != Vector2.DOWN:
-		_fail("Buffered skill did not preserve the facing captured at input time.")
-		return
 	ability.cancel_cast()
 	ability._physics_process(ability.cooldown_remaining + 0.1)
 
 	if not player.request_evade(Vector2.RIGHT):
 		_fail("Ready player rejected the dash needed for ability-buffer coverage.")
 		return
-	if not player.request_ability_1():
+	if not player.request_ability(2):
 		_fail("A ready skill was not buffered during the active dash.")
 		return
 	if ability.is_casting():

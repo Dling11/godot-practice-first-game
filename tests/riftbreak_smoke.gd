@@ -29,8 +29,6 @@ func _run() -> void:
 	var visual := player.get_node("AbilityPivot/RiftbreakVisual") as RiftbreakVisual
 	var effect_sprite := player.get_node("AbilityPivot/RiftbreakVisual/EffectSprite") as AnimatedSprite2D
 	var body_visual := player.get_node("VisualRoot/Body") as AnimatedSprite2D
-	var opaw_body_visual := player.get_node("VisualRoot/ConsecutiveThrustBodyVisual") as ConsecutiveThrustBodyVisual
-	var opaw_skill_visual := player.get_node("AbilityPivot/ConsecutiveThrustVisual") as ConsecutiveThrustVisual
 	var hitbox := player.get_node("AbilityPivot/Ability2Hitbox") as MeleeHitbox
 	var slam_audio := player.get_node("PlayerActionSfx/RiftbreakGroundSlam") as AudioStreamPlayer2D
 	var collision_shape := player.get_node("AbilityPivot/Ability2Hitbox/CollisionShape2D") as CollisionShape2D
@@ -110,10 +108,10 @@ func _run() -> void:
 		_fail("Riftbreak authority does not use its authored 84-pixel circle.")
 		return
 	if not is_equal_approx(left_target.get_node("HealthComponent").current_health, 62.5):
-		_fail("Riftbreak did not deal 150% Ashwood damage inside its left edge.")
+		_fail("Riftbreak did not deal its authored damage inside the left edge.")
 		return
 	if not is_equal_approx(right_target.get_node("HealthComponent").current_health, 62.5):
-		_fail("Riftbreak did not deal 150% Ashwood damage inside its right edge.")
+		_fail("Riftbreak did not deal its authored damage inside the right edge.")
 		return
 	if not is_equal_approx(far_target.get_node("HealthComponent").current_health, 100.0):
 		_fail("Riftbreak damaged a target outside its circle.")
@@ -121,8 +119,8 @@ func _run() -> void:
 	if observed_directions.left.x >= -0.9 or observed_directions.right.x <= 0.9:
 		_fail("Riftbreak did not push targets outward from King's feet.")
 		return
-	if not body_visual.visible or opaw_body_visual.visible or opaw_skill_visual.visible:
-		_fail("Riftbreak leaked Opaw's Consecutive Thrust presentation.")
+	if not body_visual.visible:
+		_fail("Riftbreak hid King's body presentation.")
 		return
 	if hitbox.position != Vector2.ZERO or ability.is_casting():
 		_fail("Riftbreak did not restore its hitbox and return to idle cleanly.")

@@ -1,7 +1,7 @@
 class_name PlayerWeaponVisual
 extends Node2D
 
-## Presentation-only detached weapon orbit for Opaw's armless silhouette. It
+## Presentation-only detached weapon orbit for characters that use modular weapons. It
 ## observes authoritative combat phases; SwordPivot/MeleeHitbox own reach/damage.
 
 @export var weapon: WeaponDefinition
@@ -24,10 +24,6 @@ var _base_weapon_scale := Vector2.ONE
 var _fallback_attack_style := SwordAttackStyleDefinition.new()
 var _normal_swing_sequence_index := -1
 var _normal_swing_variant_index := 0
-
-const CONSECUTIVE_THRUST_ANGLE_OFFSETS := [-0.14, 0.12, -0.10, 0.14, -0.11, 0.08, 0.0]
-const CONSECUTIVE_THRUST_EXTENSIONS := [2.0, 4.0, 3.0, 5.0, 4.0, 6.0, 12.0]
-
 
 func _ready() -> void:
 	if not set_weapon_definition(weapon):
@@ -105,7 +101,7 @@ func play_ability_phase(phase: int, duration_seconds: float) -> void:
 
 func _play_integrated_weapon_ability_phase(phase: int) -> void:
 	## King carries his sword inside the body atlas and Echoing Sever owns a
-	## dedicated VFX sprite. The shared detached-weapon trail is Opaw presentation
+	## dedicated VFX sprite. The shared detached-weapon trail is modular presentation
 	## and would otherwise create a second normal slash behind King's skill.
 	if phase == AbilityComponent.Phase.WIND_UP:
 		_action_locked = true
@@ -115,29 +111,6 @@ func _play_integrated_weapon_ability_phase(phase: int) -> void:
 	_hide_swing_trail()
 	if weapon_sprite != null:
 		weapon_sprite.visible = false
-
-
-func play_ability_strike(strike_index: int, strike_count: int, duration_seconds: float) -> void:
-	var active_ability := _get_casting_ability()
-	if (
-		active_ability == null
-		or active_ability.definition == null
-		or active_ability.definition.ability_id != &"consecutive_thrust"
-	):
-		return
-	var forward_rotation := Vector2.UP.angle_to(_direction_vector(_action_direction))
-	var flurry_index := clampi(strike_index, 0, CONSECUTIVE_THRUST_EXTENSIONS.size() - 1)
-	var extension: float = CONSECUTIVE_THRUST_EXTENSIONS[flurry_index]
-	var target: Vector2 = _thrust_anchor(_action_direction, true) + _direction_vector(_action_direction) * extension
-	_tween_pose(
-		target,
-		forward_rotation + float(CONSECUTIVE_THRUST_ANGLE_OFFSETS[flurry_index]),
-		duration_seconds,
-		true
-	)
-	_play_strike_accent(duration_seconds)
-	if strike_index >= strike_count - 1:
-		weapon_sprite.modulate = Color(1.0, 0.91, 0.58, 1.0)
 
 
 func _get_casting_ability() -> AbilityComponent:
@@ -280,7 +253,7 @@ func _idle_transform(direction: StringName) -> Transform2D:
 		&"up":
 			return Transform2D(-0.35, _weapon_anchor(direction))
 	# The down-facing hilt begins against the torso while the blade rises
-	# outward toward screen-left, away from Opaw's head. This keeps the detached
+	# outward toward screen-left, away from the character's head. This keeps the detached
 	# weapon visibly controlled without crossing the face.
 	return Transform2D(-0.45, _weapon_anchor(direction))
 

@@ -9,8 +9,8 @@ This file tracks confirmed limitations, unresolved risks, and decisions blocking
 ### KI-017 - Refined click-combat and footprint auras need owner feel approval
 
 - **Status:** Open.
-- **Progress:** Decision 104 structurally verifies free Basic Attack swings, the 260-pixel selected-target assist boundary, double-click auto engagement, ground-click cancellation, `1` Attack plus Skills `2`-`5`, restrained target chevrons, tier-aware oval auras, and the taller top-right roster.
-- **Impact:** Headless tests cannot decide whether the aura opacity/motion, roster density, chevron scale, or practical double-click timing feels best in a full Stage 4 crowd.
+- **Progress:** Decisions 105-110 structurally verify pointer-direction left-click attacks, contextual right-click ground movement/enemy engagement, navigation-direction facing, right-click/`Esc` skill cancellation, a far-right icon-backed Attack after Skills `1`-`4`, optional roster-wide Auto/Auto Skill, restrained target chevrons, four-arrow move feedback, tier-aware oval auras, B+C native 24x24 King skill icons, and the taller top-right roster. Decision 109's realistic skill art is rejected; its generated cursor experiment remains installed but unapproved.
+- **Impact:** Headless tests cannot decide whether the aura opacity/motion, roster density, B+C skill silhouettes, generated cursor detail at runtime scale, chevron scale, contextual right-click behavior, or far-right Attack placement feels best in a full Stage 4 crowd.
 - **Planned resolution:** Owner-play the normal D: project at 960x540 and tune presentation values only from observed readability; preserve the separated selection, explicit engagement, and free-swing authority unless the controls themselves fail.
 
 ### KI-016 - Armored Hog crowd feel needs owner playtesting

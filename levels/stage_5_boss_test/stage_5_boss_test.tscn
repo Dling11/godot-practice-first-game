@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" path="res://ui/world/damage_number.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://gameplay/presentation/hit_burst.tscn" id="7"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/sword_hit.wav" id="8"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_hurt_impact.wav" id="9"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_piercing_rush_impact.ogg" id="10"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/player_hurt_impact.wav" id="9"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/player_ability_hit.ogg" id="10"]
 [ext_resource type="Script" path="res://entities/enemies/stage_5_boss/stage_5_boss_landing_feedback.gd" id="11"]
 [ext_resource type="PackedScene" path="res://ui/boss/boss_health_hud.tscn" id="12"]
 [ext_resource type="TileSet" path="res://assets/environment/forest/stage_5/tiles/stage_5_decay_ground_tileset.tres" id="13_tileset"]
@@ -100,7 +100,6 @@ damage_number_scene = ExtResource("6")
 hit_burst_scene = ExtResource("7")
 sword_hit_sound = ExtResource("8")
 ability_hit_sound = ExtResource("10")
-consecutive_final_hit_sound = ExtResource("10")
 player_hurt_sound = ExtResource("9")
 
 [node name="BossLandingFeedback" type="Node" parent="Services" node_paths=PackedStringArray("boss", "camera")]

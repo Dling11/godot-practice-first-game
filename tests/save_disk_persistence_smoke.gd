@@ -1,7 +1,7 @@
 extends SceneTree
 
-const IronSword: EquipmentDefinition = preload(
-	"res://data/items/equipment/iron_sword.tres"
+const VarkuunEdge: EquipmentDefinition = preload(
+	"res://data/items/equipment/forest/stage_5_core/varkuun_edge_essence.tres"
 )
 const TEST_PROFILE_PATH := "user://battle_of_gods_save_disk_smoke.json"
 
@@ -115,8 +115,8 @@ func _set_profile_b() -> void:
 	root.get_node("RunSession").update_player_health(92.0)
 	root.get_node("StoryState").remember_story(&"profile_b")
 	var weapon_inventory := root.get_node("WeaponInventory")
-	weapon_inventory.acquire_weapon(IronSword)
-	weapon_inventory.equip_weapon(&"opaw", &"warrior", IronSword)
+	weapon_inventory.acquire_weapon(VarkuunEdge)
+	weapon_inventory.equip_weapon(&"king", &"warrior", VarkuunEdge)
 	root.get_node("MaterialInventory").add_material(&"forest_thorn_sap", 4)
 	root.get_node("RecipeDiscovery").discover_recipe(&"forest_thornward_clasp")
 	root.get_node("LootState").claim_first_clear(&"forest_stage_2_first_clear_claim")
@@ -128,7 +128,7 @@ func _matches_profile_a() -> bool:
 		and root.get_node("RunSession").coins == 14
 		and is_equal_approx(root.get_node("RunSession").player_current_health, 101.0)
 		and root.get_node("StoryState").has_story_flag(&"profile_a")
-		and not root.get_node("WeaponInventory").owns_weapon(IronSword.item_id)
+		and not root.get_node("WeaponInventory").owns_weapon(VarkuunEdge.item_id)
 		and root.get_node("MaterialInventory").get_quantity(&"forest_root_fiber") == 2
 		and root.get_node("MaterialInventory").get_quantity(&"forest_thorn_sap") == 0
 		and root.get_node("RecipeDiscovery").is_recipe_discovered(
@@ -148,9 +148,9 @@ func _matches_profile_b() -> bool:
 		and root.get_node("RunSession").coins == 113
 		and is_equal_approx(root.get_node("RunSession").player_current_health, 92.0)
 		and root.get_node("StoryState").has_story_flag(&"profile_b")
-		and root.get_node("WeaponInventory").owns_weapon(IronSword.item_id)
-		and root.get_node("WeaponInventory").get_equipped_weapon_id(&"opaw", &"")
-		== IronSword.item_id
+		and root.get_node("WeaponInventory").owns_weapon(VarkuunEdge.item_id)
+		and root.get_node("WeaponInventory").get_equipped_weapon_id(&"king", &"")
+		== VarkuunEdge.item_id
 		and root.get_node("MaterialInventory").get_quantity(&"forest_thorn_sap") == 4
 		and root.get_node("MaterialInventory").get_quantity(&"forest_root_fiber") == 0
 		and root.get_node("RecipeDiscovery").is_recipe_discovered(&"forest_thornward_clasp")

@@ -1,12 +1,17 @@
 class_name ClickMoveMarker
 extends Node2D
 
-## Presentation-only Dota-style destination mark. Navigation and movement stay
+## Presentation-only four-arrow destination mark. Navigation and movement stay
 ## in PlayerCombatTargetingComponent and Player respectively.
 
 @export var targeting_component: PlayerCombatTargetingComponent
 
+const MoveFrame1 = preload("res://assets/ui/icons/actions/icon_action_move_arrows_1_24.svg")
+const MoveFrame2 = preload("res://assets/ui/icons/actions/icon_action_move_arrows_2_24.svg")
+const MARKER_SIZE := Vector2(20.0, 20.0)
+
 var _pulse_time := 0.0
+var _frame_index := 0
 
 
 func _ready() -> void:
@@ -22,15 +27,19 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	_pulse_time += delta
+	_frame_index = int(_pulse_time / 0.13) % 2
 	queue_redraw()
 
 
 func _draw() -> void:
-	var radius := 10.0 + sin(_pulse_time * 7.0) * 1.2
-	var color := Color(0.5, 0.86, 1.0, 0.9)
-	draw_arc(Vector2.ZERO, radius + 1.0, 0.0, TAU, 20, Color(0.03, 0.08, 0.12, 0.75), 3.0)
-	draw_arc(Vector2.ZERO, radius, 0.0, TAU, 20, color, 1.5)
-	draw_colored_polygon(PackedVector2Array([Vector2(0, -7), Vector2(-4, 1), Vector2(4, 1)]), color)
+	var texture: Texture2D = MoveFrame1 if _frame_index == 0 else MoveFrame2
+	var alpha := 0.88 + sin(_pulse_time * 7.0) * 0.08
+	draw_texture_rect(
+		texture,
+		Rect2(-MARKER_SIZE * 0.5, MARKER_SIZE),
+		false,
+		Color(1.0, 1.0, 1.0, alpha)
+	)
 
 
 func _on_click_move_changed(world_position: Vector2, active: bool) -> void:
@@ -39,4 +48,5 @@ func _on_click_move_changed(world_position: Vector2, active: bool) -> void:
 	if active:
 		global_position = world_position
 		_pulse_time = 0.0
+		_frame_index = 0
 		queue_redraw()

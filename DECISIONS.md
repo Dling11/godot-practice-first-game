@@ -112,6 +112,13 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 102 | Add single-target assisted combat | Click targeting, auto-approach, auto-attack, target HUD/marker, Attack button, manual override, or hitstop-versus-stagger |
 | 103 | Clarify King combat control and target UX | Click-to-move, selected-target flow, basic flinch/stun, circular enemy cards, target marker, or combat cursor |
 | 104 | Refine numbered click combat and footprint auras | Attack key 1, Skills 2-5, air swings, double-click auto attack, actor foot auras, simple target chevron, or top-right enemy roster |
+| 105 | Use contextual right click and restore skill keys | Right-click move/engage, Skills 1-4, unnumbered Attack fallback, Escape-only skill cancellation, or modal targeting |
+| 106 | Restore left-click attack and right-click cancel | Manual left-click swing, contextual right-click world command, right-click/Escape skill cancellation, or far-right Attack button |
+| 107 | Add directional click attacks and opt-in auto combat | Pointer-side manual attack, Auto All roster cycle, Auto Skill, initial move feedback, or matching action icons |
+| 108 | Polish move, skill, and cursor feedback (art portion superseded by 109) | Four-arrow move marker, aim/cancel slot feedback, or HUD accent borders |
+| 109 | Use generated raster art for skills and cursors | Generated King Skill 1-4 icons, royal hand/sword cursors, full-resolution UI sources, or runtime downscaling |
+| 110 | Adopt B+C hard-pixel King skill icons | Native 24x24 King skill icons, B/C silhouette contract, fixed palette, binary alpha, or superseding painted skill art |
+| 111 | Retire Opaw and consolidate combat icons | King-only runtime, Opaw archive, weapon/awakening cleanup, six-cell action atlas, or unused-image audit |
 
 ## New Decisions
 

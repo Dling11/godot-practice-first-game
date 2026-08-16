@@ -10,10 +10,6 @@ const SPIRIT_BLUE := Color("66a4d8")
 const DANGER_RED := Color("d65c50")
 
 const ICONS := {
-	"res://assets/ui/icons/actions/icon_action_primary_attack_24x24.png": [24, "sword"],
-	"res://assets/ui/icons/actions/icon_action_dash_24x24.png": [24, "dash"],
-	"res://assets/ui/icons/skills/icon_skill_sweeping_cut_24x24.png": [24, "sweep"],
-	"res://assets/ui/icons/skills/icon_skill_piercing_rush_24x24.png": [24, "piercing_rush"],
 	"res://assets/ui/icons/economy/icon_currency_coin_16x16.png": [16, "coin"],
 	"res://assets/ui/icons/status/icon_status_health_16x16.png": [16, "health"],
 	"res://assets/ui/icons/status/icon_status_experience_16x16.png": [16, "experience"],
@@ -43,10 +39,6 @@ func _initialize() -> void:
 
 func _draw_icon(image: Image, icon_name: String) -> void:
 	match icon_name:
-		"sword": _draw_sword(image)
-		"dash": _draw_dash(image)
-		"sweep": _draw_sweep(image)
-		"piercing_rush": _draw_piercing_rush(image)
 		"coin": _draw_coin(image)
 		"health": _draw_health(image)
 		"experience": _draw_experience(image)
@@ -54,39 +46,6 @@ func _draw_icon(image: Image, icon_name: String) -> void:
 		"talk": _draw_talk(image)
 		"locked": _draw_locked(image)
 		"bag": _draw_bag(image)
-
-
-func _draw_sword(image: Image) -> void:
-	_draw_line(image, Vector2i(6, 18), Vector2i(17, 7), BONE_TEXT, 2)
-	_fill_rect(image, Rect2i(16, 5, 3, 4), BONE_TEXT)
-	_draw_line(image, Vector2i(5, 15), Vector2i(9, 19), RELIC_GOLD, 2)
-	_fill_rect(image, Rect2i(3, 19, 4, 3), MUTED_MOSS)
-
-
-func _draw_dash(image: Image) -> void:
-	for offset in [0, 5, 10]:
-		_draw_line(image, Vector2i(4 + offset, 7), Vector2i(9 + offset, 12), SPIRIT_BLUE, 2)
-		_draw_line(image, Vector2i(9 + offset, 12), Vector2i(4 + offset, 17), SPIRIT_BLUE, 2)
-	_fill_rect(image, Rect2i(2, 10, 10, 4), DIVINE_VIOLET)
-
-
-func _draw_sweep(image: Image) -> void:
-	for point in [Vector2i(3, 15), Vector2i(4, 11), Vector2i(7, 7), Vector2i(11, 5), Vector2i(16, 5), Vector2i(20, 8)]:
-		_fill_rect(image, Rect2i(point, Vector2i(2, 2)), RELIC_GOLD)
-	_draw_line(image, Vector2i(8, 19), Vector2i(17, 10), BONE_TEXT, 2)
-	_fill_rect(image, Rect2i(6, 18, 4, 3), MUTED_MOSS)
-
-
-func _draw_piercing_rush(image: Image) -> void:
-	# Narrow white spirit blade with gold rim and blue-gold speed fragments.
-	_draw_line(image, Vector2i(4, 12), Vector2i(19, 12), RELIC_GOLD, 4)
-	_draw_line(image, Vector2i(5, 12), Vector2i(20, 12), BONE_TEXT, 2)
-	_fill_rect(image, Rect2i(19, 10, 3, 5), BONE_TEXT)
-	_fill_rect(image, Rect2i(2, 10, 4, 5), MUTED_MOSS)
-	_draw_line(image, Vector2i(3, 6), Vector2i(11, 8), SPIRIT_BLUE, 1)
-	_draw_line(image, Vector2i(3, 18), Vector2i(11, 16), SPIRIT_BLUE, 1)
-	_fill_rect(image, Rect2i(14, 6, 2, 2), RELIC_GOLD)
-	_fill_rect(image, Rect2i(15, 17, 2, 2), RELIC_GOLD)
 
 
 func _draw_coin(image: Image) -> void:

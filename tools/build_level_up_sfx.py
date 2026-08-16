@@ -1,4 +1,4 @@
-"""Build the original deterministic Opaw level-up chime."""
+"""Build the original deterministic player level-up chime."""
 
 from __future__ import annotations
 
@@ -16,7 +16,7 @@ OUTPUT = (
     / "audio"
     / "sfx"
     / "ui"
-    / "opaw_level_up_chime.wav"
+    / "player_level_up_chime.wav"
 )
 
 

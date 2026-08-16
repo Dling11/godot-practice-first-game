@@ -1,7 +1,7 @@
 extends SceneTree
 
-const IronSword: EquipmentDefinition = preload(
-	"res://data/items/equipment/iron_sword.tres"
+const VarkuunEdge: EquipmentDefinition = preload(
+	"res://data/items/equipment/forest/stage_5_core/varkuun_edge_essence.tres"
 )
 const OldBarkHelm: EquipmentDefinition = preload(
 	"res://data/items/equipment/forest/stage_5_core/old_bark_helm.tres"
@@ -29,8 +29,8 @@ func _run() -> void:
 	run_session.update_player_health(92.0)
 	story_state.remember_story(&"forgotten_grove_completed")
 	story_state.record_boss_victory(&"rootbound_husk")
-	weapon_inventory.acquire_weapon(IronSword)
-	weapon_inventory.equip_weapon(&"opaw", &"warrior", IronSword)
+	weapon_inventory.acquire_weapon(VarkuunEdge)
+	weapon_inventory.equip_weapon(&"king", &"warrior", VarkuunEdge)
 	gear_inventory.acquire_item(OldBarkHelm)
 	gear_inventory.equip_item(&"king", &"warrior", OldBarkHelm)
 	loot_state.claim_first_clear(&"forest_stage_3_first_clear_claim")
@@ -73,8 +73,8 @@ func _run() -> void:
 		_fail("StoryState did not restore its profile section.")
 		return
 	if (
-		not weapon_inventory.owns_weapon(IronSword.item_id)
-		or weapon_inventory.get_equipped_weapon_id(&"opaw", &"") != IronSword.item_id
+		not weapon_inventory.owns_weapon(VarkuunEdge.item_id)
+		or weapon_inventory.get_equipped_weapon_id(&"king", &"") != VarkuunEdge.item_id
 	):
 		_fail("WeaponInventory did not restore ownership and equipped state.")
 		return

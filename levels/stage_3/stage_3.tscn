@@ -26,9 +26,8 @@
 [ext_resource type="PackedScene" path="res://ui/world/damage_number.tscn" id="24_number"]
 [ext_resource type="PackedScene" path="res://gameplay/presentation/hit_burst.tscn" id="25_burst"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/sword_hit.wav" id="26_sword_hit"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_hurt_impact.wav" id="27_player_hurt"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_piercing_rush_impact.ogg" id="28_piercing_impact"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_consecutive_thrust_final_hit.ogg" id="29_consecutive_impact"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/player_hurt_impact.wav" id="27_player_hurt"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/player_ability_hit.ogg" id="28_piercing_impact"]
 [ext_resource type="PackedScene" path="res://ui/dialogue/dialogue_panel.tscn" id="30_dialogue"]
 [ext_resource type="Texture2D" path="res://assets/characters/enemies/portraits/rootbound_husk_portrait_96x96.png" id="31_husk_portrait"]
 [ext_resource type="Resource" path="res://data/environment/layouts/stage_3_rootbound_ground.tres" id="32_layout"]
@@ -143,7 +142,6 @@ damage_number_scene = ExtResource("24_number")
 hit_burst_scene = ExtResource("25_burst")
 sword_hit_sound = ExtResource("26_sword_hit")
 ability_hit_sound = ExtResource("28_piercing_impact")
-consecutive_final_hit_sound = ExtResource("29_consecutive_impact")
 player_hurt_sound = ExtResource("27_player_hurt")
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=336055299]

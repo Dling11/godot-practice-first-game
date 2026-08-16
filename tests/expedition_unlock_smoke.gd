@@ -5,7 +5,7 @@ const GroveThorns = preload("res://data/expeditions/thorns_of_the_forgotten_grov
 const RootboundHollow = preload("res://data/expeditions/rootbound_hollow.tres")
 const EasternRot = preload("res://data/expeditions/eastern_rot.tres")
 const DrownedBells = preload("res://data/expeditions/drowned_bells.tres")
-const Progression = preload("res://data/progression/opaw_path.tres")
+const Progression = preload("res://data/progression/king_path.tres")
 
 
 func _initialize() -> void:

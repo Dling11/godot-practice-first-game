@@ -346,6 +346,17 @@ Current UI visuals combine the approved reusable base theme and named pixel icon
 | `theme_battle_of_gods` | `assets/ui/themes/battle_of_gods_theme.tres` | `active_resource` | Shared panels, labels, buttons, progress bars, focus, disabled, separators, and tooltips. |
 | `icon_action_primary_attack` | `assets/ui/icons/actions/icon_action_primary_attack_24x24.png` | `active_runtime` | Primary melee/Ashwood Blade action symbol. |
 | `icon_action_dash` | `assets/ui/icons/actions/icon_action_dash_24x24.png` | `active_runtime` | Supernatural dash symbol. |
+| `icon_action_auto_all` | `assets/ui/icons/actions/icon_action_auto_all_24.svg` | `active_runtime` | Optional roster-wide auto-engagement toggle. |
+| `icon_action_auto_skill` | `assets/ui/icons/actions/icon_action_auto_skill_24.svg` | `active_runtime` | Optional ready-skill automation toggle. |
+| `icon_action_move_arrows_1` | `assets/ui/icons/actions/icon_action_move_arrows_1_24.svg` | `active_runtime` | Outer frame of the small four-arrow click-move destination mark. |
+| `icon_action_move_arrows_2` | `assets/ui/icons/actions/icon_action_move_arrows_2_24.svg` | `active_runtime` | Inward convergence frame of the small four-arrow click-move destination mark. |
+| `icon_skill_echoing_sever_bc` | `assets/ui/icons/skills/generated/icon_skill_echoing_sever_bc_24.png` | `active_runtime` | B+C hard-pixel paired-cleave icon for King Skill 1. |
+| `icon_skill_riftbreak_bc` | `assets/ui/icons/skills/generated/icon_skill_riftbreak_bc_24.png` | `active_runtime` | B+C hard-pixel planted radial-rupture icon for King Skill 2. |
+| `icon_skill_sovereign_pursuit_bc` | `assets/ui/icons/skills/generated/icon_skill_sovereign_pursuit_bc_24.png` | `active_runtime` | B+C hard-pixel diagonal landing-strike icon for King Skill 3. |
+| `icon_skill_worldsplitter_bc` | `assets/ui/icons/skills/generated/icon_skill_worldsplitter_bc_24.png` | `active_runtime` | B+C hard-pixel oversized spectral-blade icon for King Skill 4. |
+| `cursor_royal_pointer_generated` | `assets/ui/cursors/generated/cursor_royal_pointer_generated_32.png` | `active_runtime` | Generated royal pointing-gauntlet hardware cursor. |
+| `cursor_royal_interact_generated` | `assets/ui/cursors/generated/cursor_royal_interact_generated_32.png` | `active_runtime` | Generated open-gauntlet hardware interaction cursor. |
+| `cursor_royal_target_generated` | `assets/ui/cursors/generated/cursor_royal_target_generated_32.png` | `active_runtime` | Generated cyan-edged sword hardware targeting cursor. |
 | `icon_skill_sweeping_cut` | `assets/ui/icons/skills/icon_skill_sweeping_cut_24x24.png` | `active_runtime` | Wide sword-arc skill symbol. |
 | `icon_skill_piercing_rush` | `assets/ui/icons/skills/icon_skill_piercing_rush_24x24.png` | `active_runtime` | White spirit-thrust symbol for Opaw's equipped Skill 1. |
 | `icon_skill_consecutive_thrust` | `assets/ui/icons/skills/icon_skill_consecutive_thrust_24x24.png` | `active_runtime` | Rapid spirit-lance symbol for debug-test Skill 2. |
@@ -357,7 +368,9 @@ Current UI visuals combine the approved reusable base theme and named pixel icon
 | `icon_slot_locked` | `assets/ui/icons/states/icon_slot_locked_16x16.png` | `active_runtime` | Sealed skill or unavailable-feature state. |
 | `icon_inventory_bag` | `assets/ui/icons/inventory/icon_inventory_bag_24x24.png` | `active_runtime` | Visible Character/Gear menu entry on the combat HUD. |
 
-The icons are reproducibly built by `tools/build_ui_icon_kit.gd` from the approved palette. They use binary alpha and remain independently replaceable at their stable paths.
+The baseline compact icons are reproducibly built by `tools/build_ui_icon_kit.gd` from the approved palette and use binary alpha. Decision 110's King skill family preserves coarse B+C generated sources under `art_source/generated/ui/king_skill_icons_bc_hybrid/`; `tools/prepare_generated_combat_ui.gd` chroma-cleans where required, normalizes through a 48-pixel logical grid, maps to the fixed 14-color King palette, and emits native 24x24 binary-alpha PNGs. Decision 109's cursor sources remain separately preserved under `art_source/generated/ui/king_combat_ui/` pending owner review.
+
+The B+C source family was produced with the built-in image-generation mode, using concept B for compact impact/crack grouping, concept C for primary silhouette and limited shading, and King's 96x96 portrait for palette/pixel-density identity only. The shared prompt required coarse 48x48 logical pixel art, one symbol plus one effect, top-left lighting, transparent or removable magenta background, void/navy charcoal, muted steel, bone-white, restrained spirit blue/violet, and only a tiny dark-crimson physical-hilt accent; it explicitly rejected characters, frames, text, ribbons, ornate gold, realism, 3D rendering, gradients, fog, and noisy particles. The rejected 64x64 painted runtime derivatives are preserved outside runtime import at `art_source/archive/ui/king_skill_icons_realistic_rejected_2026-08-16/`.
 
 ### Active Equipment Presentation
 

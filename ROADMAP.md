@@ -6,6 +6,16 @@ This roadmap records status, not promises or fixed dates. Move items only when t
 
 ## Completed
 
+- Accepted Decision 110 after owner review rejected Decision 109's realistic painted skill pass. King Skills 1-4 now use a distinct B+C hybrid family with coarse generated sources, native 24x24 binary-alpha runtime icons, fixed 14-color normalization, and reproducible processing. The generated cursor experiment remains a separate unapproved visual follow-up.
+
+- Accepted Decision 108 and replaced the rejected walking marker with a small original four-arrow convergence animation, normalized King Skill 1-4 icons, added targeted-skill aim/cancel feedback, refined semantic cursors, and tightened local HUD accents.
+
+- Accepted Decision 107 and added pointer-direction manual attacks, opt-in roster-wide Auto All, opt-in Auto Skill through normal combat authority, matching custom Auto/skill/sword icons, and the initial move-feedback proof later superseded by Decision 108.
+
+- Accepted Decision 106 and restored the established left-click manual sword attack, right-click/`Esc` targeted-skill cancellation, and a far-right unnumbered Attack HUD fallback after Skills `1`-`4` while retaining contextual right-click world movement/engagement.
+
+- Accepted Decision 105 and consolidated mouse combat into contextual right click: ground moves and clears combat, enemy clicks immediately auto-engage, Skills return to `1`-`4`, Attack becomes an unnumbered fallback, and `Esc` alone cancels modal targeted-skill previews.
+
 - Accepted Decision 104 and refined mouse combat after owner review: `1` is Attack and Skills are `2`-`5`; Attack swings freely without a target or against a too-distant selection; double-click/card selection explicitly engages auto attack; ground click clears it. Replaced the large red target circle with one overhead chevron, added subtle animated oval actor-foot auras with Elite/Boss tier treatment, and moved the taller narrow enemy roster beneath the top-right Menu button.
 
 - Accepted Decision 103 and clarified optional mouse combat: empty left-click creates a visible navigation destination; enemy click selects only; BASIC ATTACK or the compact enemy roster starts approach-and-repeat attacks; Escape/right-click/× stops them. Added brief normal flinch, stronger Skill 1/2 interruption, Skill 3 stun, red footprint-sized target circles, circular portrait status/roster cards, and a slower King basic-sword cadence while preserving Elite reduction and Boss control immunity.
@@ -143,7 +153,7 @@ Detailed completion history remains in `CHANGELOG.md`.
 
 ## In Progress
 
-- **Assisted-combat owner feel gate:** verify single-click selection/double-click engagement in eight-enemy Stage 4 crowds, pursuit around every authored obstacle, free air swings and the 260-pixel Attack assist boundary, subtle actor-foot auras, top-right roster readability, and the 0.024-0.034-second basic hitstop range at 960x540 before tuning reach or assist radius.
+- **Assisted-combat owner feel gate:** verify contextual right-click ground movement/enemy engagement in eight-enemy Stage 4 crowds, pursuit around every authored obstacle, modal `Esc`-only skill cancellation, subtle actor-foot auras, top-right roster readability, and the 0.024-0.034-second basic hitstop range at 960x540 before tuning reach or navigation behavior.
 
 - **Stage 5 boss preproduction:** Decisions 085-092 provide the approved guardian boundary, playable four-action proof, repeatable health-scaled jump chains, and reusable top-screen boss health presentation. Final balance, audio, final boss name/title, rewards, arena ecology, dialogue, and the actual Stage 5 encounter remain open.
 - **Riftbreak owner feel gate:** Skill 2 now has an immediate grounded self-AOE, one 84-pixel 150% contact, per-target outward knockback, a dedicated normalized six-pose slam body family, a separate generated six-frame ground-rupture VFX atlas, icon, and original impact cue. Review radius/timing/control/readability before any optional heavy camera/hitstop polish.
@@ -192,6 +202,8 @@ Detailed completion history remains in `CHANGELOG.md`.
 - After King's proof is visually accepted in motion, define only the reusable technical seams shared by future characters; keep body frames, signature weapons, skills, and cinematics character-owned. Migrate NPC bodies or environment/UI style only in separate reviewed passes.
 
 ## Planned
+
+- Audit unused code and images with reference, import, and reachability reports before proposing any deletion. Remove only individually verified dead assets in a dedicated reversible cleanup change; do not bulk-delete runtime, source-art, archive, or test dependencies.
 
 - Design the future Divine weapon category and declared-God immunity contract, including readable rejection feedback, acquisition/crafting routes, anti-softlock guarantees, balance, and persistence. No current enemy or boss uses this immunity.
 

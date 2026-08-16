@@ -4,17 +4,11 @@ extends Node2D
 ## Presents local player action sounds; combat components remain authoritative.
 
 @export var sword_swing_player: AudioStreamPlayer2D
-@export var ability_player: AudioStreamPlayer2D
 @export var dash_player: AudioStreamPlayer2D
 @export var ability_component: AbilityComponent
 @export var ability_2_component: AbilityComponent
 @export var ability_3_component: AbilityComponent
 @export var ability_4_component: AbilityComponent
-@export var piercing_charge_player: AudioStreamPlayer2D
-@export var piercing_thrust_player: AudioStreamPlayer2D
-@export var consecutive_charge_player: AudioStreamPlayer2D
-@export var consecutive_flurry_player: AudioStreamPlayer2D
-@export var consecutive_final_player: AudioStreamPlayer2D
 @export var echoing_sever_fracture_player: AudioStreamPlayer2D
 @export var riftbreak_ground_slam_player: AudioStreamPlayer2D
 @export var sovereign_pursuit_landing_player: AudioStreamPlayer2D
@@ -23,14 +17,6 @@ extends Node2D
 @export var skill_4_first_impact_player: AudioStreamPlayer2D
 @export var skill_4_explosion_player: AudioStreamPlayer2D
 @export var action_denied_player: AudioStreamPlayer2D
-
-## StarNinjas sword.9 is intentionally a long build-up recording: its decisive
-## metal burst starts at roughly 0.51 seconds. Skill 2 needs that burst on the
-## final strike, not half a second after it.
-const CONSECUTIVE_FINAL_THRUST_ONSET_SECONDS := 0.50
-
-var _consecutive_flurry_index := 0
-
 
 func play_attack_phase(phase: int, _duration_seconds: float) -> void:
 	if phase == MeleeAttackComponent.Phase.ACTIVE:
@@ -51,19 +37,6 @@ func play_ability_phase(phase: int, _duration_seconds: float) -> void:
 		if phase == AbilityComponent.Phase.WIND_UP:
 			_play(skill_4_formation_player, 0.96)
 		return
-	if _is_piercing_rush(active_ability):
-		if phase == AbilityComponent.Phase.WIND_UP:
-			_play(piercing_charge_player, 0.92)
-		elif phase == AbilityComponent.Phase.ACTIVE:
-			_play(piercing_thrust_player, 0.98)
-		return
-	if _is_consecutive_thrust(active_ability):
-		if phase == AbilityComponent.Phase.WIND_UP:
-			_consecutive_flurry_index = 0
-			_play(consecutive_charge_player, 0.96)
-		return
-	if phase == AbilityComponent.Phase.ACTIVE:
-		_play(ability_player, 1.08)
 
 
 func play_ability_strike(strike_index: int, strike_count: int, _duration_seconds: float) -> void:
@@ -82,18 +55,6 @@ func play_ability_strike(strike_index: int, strike_count: int, _duration_seconds
 		else:
 			_play(sword_swing_player, 0.90)
 		return
-	if not _is_consecutive_thrust(_get_casting_ability()):
-		return
-	if strike_index >= strike_count - 1:
-		_play(consecutive_final_player, 0.96, CONSECUTIVE_FINAL_THRUST_ONSET_SECONDS)
-		return
-	## Three evenly spaced steel-thrust beats communicate the rapid flurry without
-	## restarting a short clip on every one of the seven damage contacts.
-	if strike_index % 2 != 0:
-		return
-	var flurry_pitch: float = [1.03, 0.98, 1.06][_consecutive_flurry_index % 3]
-	_consecutive_flurry_index += 1
-	_play(consecutive_flurry_player, flurry_pitch)
 
 
 func play_dash(_direction: Vector2) -> void:
@@ -116,14 +77,6 @@ func _get_casting_ability() -> AbilityComponent:
 		if component != null and component.is_casting():
 			return component
 	return null
-
-
-func _is_piercing_rush(component: AbilityComponent) -> bool:
-	return component != null and component.definition != null and component.definition.ability_id == &"piercing_rush"
-
-
-func _is_consecutive_thrust(component: AbilityComponent) -> bool:
-	return component != null and component.definition != null and component.definition.ability_id == &"consecutive_thrust"
 
 
 func _is_echoing_sever(component: AbilityComponent) -> bool:

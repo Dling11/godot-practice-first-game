@@ -57,7 +57,7 @@ func _run() -> void:
 		_fail("Character menu does not present the active King combat proof.")
 		return
 	if menu.vitality_label.text != "HP 140/140":
-		_fail("Character menu does not present Opaw's current level-scaled vitality.")
+		_fail("Character menu does not present King's current level-scaled vitality.")
 		return
 	var preview_body := menu.get_node(
 		"Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/"

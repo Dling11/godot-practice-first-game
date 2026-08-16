@@ -91,6 +91,8 @@ The active Sanctuary establishes inhabited fantasy through a generated-and-norma
 
 UI should resemble ancient crafted interfaces without sacrificing clarity:
 
+King's approved skill-icon family follows the B+C hybrid contract: C's simple silhouette and limited shading with B's compact impact grouping. Each native 24x24 icon uses one symbol plus one effect, a maximum 14-color King palette, binary alpha, top-left light, and generous transparent padding. Tiny dark crimson is reserved for a physical hilt accent; spirit blue/violet carries ability energy. Realistic materials, ornate gold, ribbons, fog, and particle clutter are rejected.
+
 - Dark flat panels with one-pixel or two-pixel borders.
 - Relic-gold focus/equipped states and violet sealed/divine states.
 - Strong rectangular silhouettes and restrained corner ornament.

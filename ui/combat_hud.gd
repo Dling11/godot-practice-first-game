@@ -37,6 +37,8 @@ signal character_menu_requested
 @onready var enemy_roster_panel: PanelContainer = %EnemyRosterPanel
 @onready var enemy_roster_scroll: ScrollContainer = %EnemyRosterScroll
 @onready var enemy_roster_rows: VBoxContainer = %EnemyRosterRows
+@onready var auto_farm_button: Button = %AutoFarmButton
+@onready var auto_skill_button: Button = %AutoSkillButton
 @onready var loot_toast_panel: PanelContainer = %LootToastPanel
 @onready var loot_toast_icon: TextureRect = %LootToastIcon
 @onready var loot_toast_label: Label = %LootToastLabel
@@ -58,6 +60,8 @@ func _ready() -> void:
 	options_button.pressed.connect(_on_options_button_pressed)
 	dash_slot.activation_requested.connect(_on_dash_activation_requested)
 	attack_button.pressed.connect(_on_attack_button_pressed)
+	auto_farm_button.pressed.connect(_on_auto_farm_button_pressed)
+	auto_skill_button.pressed.connect(_on_auto_skill_button_pressed)
 	target_close_button.pressed.connect(_on_target_close_button_pressed)
 	target_panel.hide()
 	enemy_roster_panel.hide()
@@ -87,6 +91,19 @@ func bind_player(player: Player) -> void:
 	dash_slot.bind_evade(player.evade_component)
 	player.combat_targeting.target_changed.connect(_on_combat_target_changed)
 	player.combat_targeting.target_health_changed.connect(_on_combat_target_health_changed)
+	player.auto_combat_changed.connect(_on_auto_combat_changed)
+	player.directional_wedge_targeting.targeting_started.connect(_on_skill_targeting_started)
+	player.directional_wedge_targeting.targeting_cancelled.connect(_on_skill_targeting_ended)
+	player.directional_wedge_targeting.targeting_confirmed.connect(
+		func(_component: AbilityComponent, _direction: Vector2) -> void:
+			_on_skill_targeting_ended()
+	)
+	player.ground_point_targeting.targeting_started.connect(_on_skill_targeting_started)
+	player.ground_point_targeting.targeting_cancelled.connect(_on_skill_targeting_ended)
+	player.ground_point_targeting.targeting_confirmed.connect(
+		func(_component: AbilityComponent, _position: Vector2) -> void:
+			_on_skill_targeting_ended()
+	)
 	_build_skill_bar(player)
 	_update_health(health.current_health, health.maximum_health)
 	var progression := player.progression_component
@@ -118,6 +135,7 @@ func bind_player(player: Player) -> void:
 	add_child(_roster_refresh_timer)
 	_roster_refresh_timer.start()
 	_refresh_enemy_roster()
+	_on_auto_combat_changed(player.auto_combat.auto_farm_enabled, player.auto_combat.auto_skills_enabled)
 
 func get_skill_slot(slot_number: int) -> SkillBarSlot:
 	for slot: SkillBarSlot in _skill_slots:
@@ -151,6 +169,19 @@ func _on_skill_activation_requested(slot_number: int) -> void:
 		_player.request_ability(slot_number)
 
 
+func _on_skill_targeting_started(component: AbilityComponent) -> void:
+	for slot: SkillBarSlot in _skill_slots:
+		if slot.ability_component == component:
+			slot.show_targeting()
+		else:
+			slot.clear_targeting_presentation()
+
+
+func _on_skill_targeting_ended() -> void:
+	for slot: SkillBarSlot in _skill_slots:
+		slot.clear_targeting_presentation()
+
+
 func _on_dash_activation_requested() -> void:
 	if not is_instance_valid(_player):
 		return
@@ -163,6 +194,40 @@ func _on_dash_activation_requested() -> void:
 func _on_attack_button_pressed() -> void:
 	if is_instance_valid(_player):
 		_player.request_assisted_primary_attack()
+
+
+func _on_auto_farm_button_pressed() -> void:
+	if is_instance_valid(_player):
+		_player.set_auto_farm_enabled(not _player.auto_combat.auto_farm_enabled)
+
+
+func _on_auto_skill_button_pressed() -> void:
+	if is_instance_valid(_player):
+		_player.set_auto_skills_enabled(not _player.auto_combat.auto_skills_enabled)
+
+
+func _on_auto_combat_changed(auto_farm_enabled: bool, auto_skills_enabled: bool) -> void:
+	auto_farm_button.text = "AUTO ON" if auto_farm_enabled else "AUTO ALL"
+	auto_skill_button.text = "SKILL ON" if auto_skills_enabled else "AUTO SKILL"
+	_style_auto_button(auto_farm_button, auto_farm_enabled, Color(0.35, 0.88, 0.64, 1.0))
+	_style_auto_button(auto_skill_button, auto_skills_enabled, Color(0.65, 0.58, 1.0, 1.0))
+	if auto_farm_enabled:
+		enemy_roster_panel.show()
+
+
+func _style_auto_button(button: Button, enabled: bool, accent: Color) -> void:
+	button.modulate = Color.WHITE
+	if not enabled:
+		button.remove_theme_stylebox_override("normal")
+		button.remove_theme_color_override("font_color")
+		return
+	var active_style := StyleBoxFlat.new()
+	active_style.bg_color = Color(accent.r * 0.12, accent.g * 0.12, accent.b * 0.12, 0.98)
+	active_style.border_color = accent
+	active_style.set_border_width_all(1)
+	active_style.set_corner_radius_all(2)
+	button.add_theme_stylebox_override("normal", active_style)
+	button.add_theme_color_override("font_color", accent.lightened(0.28))
 
 
 func _on_combat_target_changed(
@@ -195,7 +260,7 @@ func _refresh_enemy_roster() -> void:
 	if not is_instance_valid(_player):
 		return
 	var targets := _player.combat_targeting.get_selectable_targets()
-	enemy_roster_panel.visible = not targets.is_empty()
+	enemy_roster_panel.visible = not targets.is_empty() or _player.auto_combat.auto_farm_enabled
 	for child: Node in enemy_roster_rows.get_children():
 		enemy_roster_rows.remove_child(child)
 		child.queue_free()
@@ -272,7 +337,12 @@ func _build_enemy_roster_row(target: Dictionary) -> Button:
 	bar.add_theme_stylebox_override("fill", bar_fill)
 	details.add_child(bar)
 	if actor == _player.combat_targeting.target_actor:
-		row.add_theme_color_override("font_color", Color(1.0, 0.3, 0.24, 1.0))
+		var selected_style := StyleBoxFlat.new()
+		selected_style.bg_color = Color(0.22, 0.055, 0.055, 0.96)
+		selected_style.border_color = Color(1.0, 0.34, 0.24, 0.96)
+		selected_style.set_border_width_all(1)
+		selected_style.set_corner_radius_all(2)
+		row.add_theme_stylebox_override("normal", selected_style)
 	row.pressed.connect(func() -> void:
 		if is_instance_valid(hurtbox) and _player.combat_targeting.select_hurtbox(hurtbox, true):
 			_player.request_assisted_primary_attack()

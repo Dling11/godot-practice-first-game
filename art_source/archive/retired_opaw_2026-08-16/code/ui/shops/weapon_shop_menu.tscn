@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/shops/weapon_shop_menu.gd" id="1_script"]
 [ext_resource type="Theme" path="res://assets/ui/themes/battle_of_gods_theme.tres" id="2_theme"]
-[ext_resource type="Resource" path="res://data/items/opaw_weapon_catalog.tres" id="3_catalog"]
+[ext_resource type="Resource" path="res://data/items/king_weapon_catalog.tres" id="3_catalog"]
 
 [node name="WeaponShopMenu" type="Control"]
 visible = false

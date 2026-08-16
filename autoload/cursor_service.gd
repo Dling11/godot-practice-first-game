@@ -3,9 +3,15 @@ extends Node
 ## Owns the project's hardware cursor vocabulary. Gameplay systems request a
 ## semantic cursor state; no world Sprite2D follows the pointer with added lag.
 
-const DEFAULT_CURSOR = preload("res://assets/ui/cursors/cursor_wayfarer_24.svg")
-const INTERACT_CURSOR = preload("res://assets/ui/cursors/cursor_interact_24.svg")
-const TARGET_CURSOR = preload("res://assets/ui/cursors/cursor_target_confirm_24.svg")
+const DEFAULT_CURSOR = preload(
+	"res://assets/ui/cursors/generated/cursor_royal_pointer_generated_32.png"
+)
+const INTERACT_CURSOR = preload(
+	"res://assets/ui/cursors/generated/cursor_royal_interact_generated_32.png"
+)
+const TARGET_CURSOR = preload(
+	"res://assets/ui/cursors/generated/cursor_royal_target_generated_32.png"
+)
 
 var targeting_active := false
 var combat_target_selected := false
@@ -36,7 +42,7 @@ func _install_cursor_vocabulary() -> void:
 	Input.set_custom_mouse_cursor(
 		INTERACT_CURSOR,
 		Input.CURSOR_POINTING_HAND,
-		Vector2(7.0, 4.0)
+		Vector2(12.0, 10.0)
 	)
 
 
@@ -47,11 +53,11 @@ func _apply_arrow_cursor() -> void:
 		Input.set_custom_mouse_cursor(
 			TARGET_CURSOR,
 			Input.CURSOR_ARROW,
-			Vector2(3.0, 3.0)
+			Vector2(2.0, 2.0)
 		)
 		return
 	Input.set_custom_mouse_cursor(
 		DEFAULT_CURSOR,
 		Input.CURSOR_ARROW,
-		Vector2(3.0, 3.0)
+		Vector2(2.0, 2.0)
 	)

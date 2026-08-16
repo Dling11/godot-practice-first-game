@@ -3,16 +3,18 @@
 [ext_resource type="Script" path="res://ui/skills/skill_bar_slot.gd" id="1_script"]
 
 [sub_resource type="StyleBoxFlat" id="slot_panel"]
-bg_color = Color(0.035, 0.043, 0.063, 0.96)
+bg_color = Color(0.025, 0.035, 0.055, 0.97)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.31, 0.25, 0.42, 1)
+border_color = Color(0.18, 0.28, 0.39, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
+shadow_color = Color(0.005, 0.01, 0.02, 0.65)
+shadow_size = 2
 
 [sub_resource type="StyleBoxFlat" id="cooldown_fill"]
 bg_color = Color(0.82, 0.67, 0.3, 0.96)
@@ -33,9 +35,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -12.0
-offset_top = -17.0
+offset_top = -18.0
 offset_right = 12.0
-offset_bottom = 7.0
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2

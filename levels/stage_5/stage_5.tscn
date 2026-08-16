@@ -22,8 +22,8 @@
 [ext_resource type="PackedScene" path="res://ui/world/damage_number.tscn" id="20_number"]
 [ext_resource type="PackedScene" path="res://gameplay/presentation/hit_burst.tscn" id="21_burst"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/sword_hit.wav" id="22_sword_hit"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_hurt_impact.wav" id="23_hurt"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_piercing_rush_impact.ogg" id="24_ability_hit"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/player_hurt_impact.wav" id="23_hurt"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/player_ability_hit.ogg" id="24_ability_hit"]
 [ext_resource type="Script" path="res://entities/enemies/stage_5_boss/stage_5_boss_landing_feedback.gd" id="25_landing"]
 [ext_resource type="Script" path="res://gameplay/audio/stage_music.gd" id="26_music"]
 [ext_resource type="AudioStream" path="res://assets/audio/music/cathedral_in_the_forest.ogg" id="27_music_stream"]
@@ -218,7 +218,6 @@ damage_number_scene = ExtResource("20_number")
 hit_burst_scene = ExtResource("21_burst")
 sword_hit_sound = ExtResource("22_sword_hit")
 ability_hit_sound = ExtResource("24_ability_hit")
-consecutive_final_hit_sound = ExtResource("24_ability_hit")
 player_hurt_sound = ExtResource("23_hurt")
 
 [node name="BossLandingFeedback" type="Node" parent="Services" node_paths=PackedStringArray("boss", "camera")]

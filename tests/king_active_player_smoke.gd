@@ -26,10 +26,10 @@ func _run() -> void:
 		or player.get_equipped_weapon_item() == null
 		or player.get_equipped_weapon_item().item_id != KingSword.weapon_id
 	):
-		_fail("King is still loading an Opaw weapon instead of his signature sword.")
+		_fail("King is not loading his signature sword.")
 		return
 	if weapon_sprite.visible:
-		_fail("King's integrated sword is being duplicated by Opaw's detached weapon presentation.")
+		_fail("King's integrated sword is being duplicated by detached weapon presentation.")
 		return
 	if player.skill_loadout == null or not player.skill_loadout.has_complete_layout():
 		_fail("King does not expose an honest four-slot development loadout.")

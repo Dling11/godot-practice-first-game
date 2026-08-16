@@ -28,14 +28,13 @@ func _run() -> void:
 			has_right_click = has_right_click or event.button_index == MOUSE_BUTTON_RIGHT
 			has_left_click = has_left_click or event.button_index == MOUSE_BUTTON_LEFT
 	if not has_left_click or has_right_click:
-		_fail("Basic attack must use left-click without retaining right-click attack.")
+		_fail("Manual primary attack must use left-click without binding right-click to the attack action.")
 		return
 	var expected_number_keys := {
-		"player_attack_primary": KEY_1,
-		"player_skill_1": KEY_2,
-		"player_skill_2": KEY_3,
-		"player_skill_3": KEY_4,
-		"player_skill_4": KEY_5,
+		"player_skill_1": KEY_1,
+		"player_skill_2": KEY_2,
+		"player_skill_3": KEY_3,
+		"player_skill_4": KEY_4,
 	}
 	for action: String in expected_number_keys:
 		var found_key := false
@@ -54,6 +53,21 @@ func _run() -> void:
 	root.add_child(hud)
 	hud.bind_player(player)
 	await process_frame
+	player.global_position = Vector2(100.0, 100.0)
+	if not player.request_directional_primary_attack(Vector2(20.0, 100.0)):
+		_fail("Directional left-click attack request was rejected while idle.")
+		return
+	if player.facing_direction != Vector2.LEFT:
+		_fail("Clicking left of King did not face the manual sword attack left.")
+		return
+	player.attack_component.cancel_attack()
+	if not player.request_directional_primary_attack(Vector2(100.0, 180.0)):
+		_fail("Second directional click attack request was rejected while idle.")
+		return
+	if player.facing_direction != Vector2.DOWN:
+		_fail("Clicking below King did not face the manual sword attack down.")
+		return
+	player.attack_component.cancel_attack()
 
 	var input_source := player.input_source
 	if input_source.resolve_cardinal_facing(Vector2.RIGHT, Vector2.DOWN) != Vector2.RIGHT:

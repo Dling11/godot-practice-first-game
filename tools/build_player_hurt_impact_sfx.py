@@ -1,4 +1,4 @@
-"""Build Opaw's original short hurt-impact combat cue."""
+"""Build the player's original short hurt-impact combat cue."""
 
 from __future__ import annotations
 
@@ -51,4 +51,4 @@ def build_hurt_impact(output_path: Path) -> None:
 
 
 if __name__ == "__main__":
-	build_hurt_impact(Path("assets/audio/sfx/opaw_hurt_impact.wav"))
+	build_hurt_impact(Path("assets/audio/sfx/player_hurt_impact.wav"))

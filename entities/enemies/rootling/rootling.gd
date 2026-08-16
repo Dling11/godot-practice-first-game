@@ -118,7 +118,7 @@ func _tick_attack(delta: float) -> void:
 	match state:
 		State.WIND_UP:
 			# Direction is deliberately snapshotted during the warning. Movement,
-			# target motion, and knockback cannot rotate this attack behind Opaw.
+			# target motion, and knockback cannot rotate this attack behind the player.
 			root_jab_erupted.emit(_locked_jab_direction)
 			attack_hitbox.activate(definition.attack_damage, self, _locked_jab_direction)
 			_enter(State.ACTIVE, definition.active_seconds)

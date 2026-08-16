@@ -55,7 +55,7 @@ script = ExtResource("1_script")
 interaction_icon = ExtResource("3_icon")
 prompt_text = "PRESS F TO DISCUSS SKILLS"
 speaker_name = "SKILLKEEPER EIRA"
-dialogue_lines = Array[String](["The veil seals power until its bearer can survive the truth behind it.", "Your first technique is awake. Three paths remain bound to victories not yet won.", "I can show what your spirit currently remembers."])
+dialogue_lines = Array[String](["The veil answers a sovereign who can survive the truth behind power.", "Your four combat techniques are awake: Sever, Riftbreak, Pursuit, and Worldsplitter.", "I can show what your spirit currently remembers."])
 idle_aura = NodePath("IdleAura")
 
 [node name="EditorPreviewBackdrop" parent="." unique_id=724842116 instance=ExtResource("99_preview")]

@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" path="res://ui/world/damage_number.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://gameplay/presentation/hit_burst.tscn" id="7"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/sword_hit.wav" id="8"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_hurt_impact.wav" id="9"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/opaw_piercing_rush_impact.ogg" id="10"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/player_hurt_impact.wav" id="9"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/player_ability_hit.ogg" id="10"]
 [ext_resource type="PackedScene" path="res://ui/boss/boss_health_hud.tscn" id="11"]
 
 [sub_resource type="StyleBoxFlat" id="panel"]
@@ -108,7 +108,6 @@ damage_number_scene = ExtResource("6")
 hit_burst_scene = ExtResource("7")
 sword_hit_sound = ExtResource("8")
 ability_hit_sound = ExtResource("10")
-consecutive_final_hit_sound = ExtResource("10")
 player_hurt_sound = ExtResource("9")
 
 [node name="UI" type="CanvasLayer" parent="."]

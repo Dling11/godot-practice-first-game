@@ -15,6 +15,7 @@ signal restraint_started(source: Node, total_break_points: int)
 signal restraint_progress(source: Node, remaining_break_points: int, total_break_points: int)
 signal restraint_ended(source: Node, escaped: bool)
 signal action_denied(action: StringName)
+signal auto_combat_changed(auto_farm_enabled: bool, auto_skills_enabled: bool)
 
 enum BufferedAction { NONE, PRIMARY_ATTACK, EVADE, ABILITY }
 
@@ -29,10 +30,9 @@ const DirectionalWedgeTargetingScript = preload("res://gameplay/abilities/target
 const GroundPointTargetingScript = preload("res://gameplay/abilities/targeting/ground_point_targeting.gd")
 const CombatTargetingScript = preload("res://entities/player/components/player_combat_targeting_component.gd")
 @export var movement_bounds := Rect2(56.0, 56.0, 528.0, 248.0)
-@export var character_id: StringName = &"opaw"
+@export var character_id: StringName = &"king"
 @export var character_class_id: StringName = &"warrior"
 @export var skill_loadout: SkillLoadoutDefinition
-@export var awakened_skill_loadout: SkillLoadoutDefinition
 @export var debug_test_skill_loadout: SkillLoadoutDefinition
 @export var weapon_catalog: WeaponCatalogDefinition
 
@@ -47,6 +47,7 @@ const CombatTargetingScript = preload("res://entities/player/components/player_c
 @onready var directional_wedge_targeting: DirectionalWedgeTargetingScript = %DirectionalWedgeTargeting
 @onready var ground_point_targeting: GroundPointTargetingScript = %GroundPointTargeting
 @onready var combat_targeting: CombatTargetingScript = %CombatTargetingComponent
+@onready var auto_combat: PlayerAutoCombatComponent = %AutoCombatComponent
 @onready var health_component: HealthComponent = %HealthComponent
 @onready var progression_component: PlayerProgressionComponent = %ProgressionComponent
 @onready var vitality_component: PlayerVitalityComponent = %VitalityComponent
@@ -79,9 +80,9 @@ func _ready() -> void:
 	ability_3_component.ability_finished.connect(_on_ability_finished)
 	ability_4_component.ability_finished.connect(_on_ability_finished)
 	action_buffer_timer.timeout.connect(_clear_buffered_action)
+	auto_combat.mode_changed.connect(_on_auto_combat_mode_changed)
 	directional_wedge_targeting.targeting_confirmed.connect(_on_directional_targeting_confirmed)
 	ground_point_targeting.targeting_confirmed.connect(_on_ground_targeting_confirmed)
-	_apply_story_skill_loadout()
 	_apply_inventory_weapon()
 	var gear_inventory := get_node_or_null("/root/GearInventory")
 	if gear_inventory != null:
@@ -115,6 +116,7 @@ func _sync_run_health(current: float, _maximum: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	_try_apply_pending_weapon()
+	auto_combat.update_auto_combat(delta)
 	var manual_move_direction := input_source.get_move_direction()
 	var move_direction := manual_move_direction
 	if (
@@ -135,6 +137,7 @@ func _physics_process(delta: float) -> void:
 		ground_point_targeting.update_aim(get_global_mouse_position(), input_source.get_aim_direction())
 	if not manual_move_direction.is_zero_approx() and not is_restrained():
 		combat_targeting.cancel_click_move()
+	if not move_direction.is_zero_approx() and not is_restrained():
 		_set_movement_facing_direction(move_direction)
 	elif combat_targeting.has_valid_target() and not is_restrained():
 		_set_movement_facing_direction(combat_targeting.get_direction_to_target())
@@ -181,7 +184,16 @@ func _physics_process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if _is_targeting_any_ability():
-		if event.is_action_pressed("player_attack_primary"):
+		var is_left_mouse_confirm: bool = (
+			event is InputEventMouseButton
+			and event.button_index == MOUSE_BUTTON_LEFT
+			and event.pressed
+		)
+		var is_non_mouse_confirm: bool = (
+			not (event is InputEventMouseButton)
+			and event.is_action_pressed("player_attack_primary")
+		)
+		if is_left_mouse_confirm or is_non_mouse_confirm:
 			if directional_wedge_targeting.is_targeting():
 				directional_wedge_targeting.confirm_targeting()
 			else:
@@ -196,27 +208,24 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 			return
 	if event.is_action_pressed("ui_cancel") and combat_targeting.has_valid_target():
+		auto_combat.set_auto_farm_enabled(false)
 		combat_targeting.clear_target()
+		get_viewport().set_input_as_handled()
+		return
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		if not combat_targeting.select_at_world_position(get_global_mouse_position(), true):
+			auto_combat.set_auto_farm_enabled(false)
+			combat_targeting.request_click_move(get_global_mouse_position())
 		get_viewport().set_input_as_handled()
 		return
 	if event.is_action_pressed("player_attack_primary"):
+		var attack_requested := false
 		if event is InputEventMouseButton:
-			var mouse_event := event as InputEventMouseButton
-			if combat_targeting.select_at_world_position(
-				get_global_mouse_position(),
-				mouse_event.double_click
-			):
-				get_viewport().set_input_as_handled()
-				return
-			combat_targeting.request_click_move(get_global_mouse_position())
+			attack_requested = request_directional_primary_attack(get_global_mouse_position())
+		else:
+			attack_requested = request_primary_attack()
+		if attack_requested:
 			get_viewport().set_input_as_handled()
-			return
-		if request_primary_attack():
-			get_viewport().set_input_as_handled()
-		return
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-		combat_targeting.clear_target()
-		get_viewport().set_input_as_handled()
 		return
 	if not event.is_action_pressed("debug_max_progression"):
 		return
@@ -331,8 +340,15 @@ func request_primary_attack() -> bool:
 	return attack_component.request_attack(facing_direction)
 
 
+func request_directional_primary_attack(world_position: Vector2) -> bool:
+	var attack_direction := world_position - global_position
+	if not attack_direction.is_zero_approx():
+		_set_movement_facing_direction(attack_direction)
+	return request_primary_attack()
+
+
 func request_assisted_primary_attack() -> bool:
-	## The numbered Basic Attack remains a normal free swing unless the player
+	## The HUD/controller Basic Attack remains a normal free swing unless the player
 	## has explicitly selected an enemy close enough to reasonably approach.
 	if not combat_targeting.is_target_within_assist_radius():
 		combat_targeting.suspend_auto_attack()
@@ -428,6 +444,22 @@ func request_ability(slot_number: int) -> bool:
 	if not evade_component.is_ready():
 		return false
 	return _begin_ability_input(component, facing_direction)
+
+
+func set_auto_farm_enabled(enabled: bool) -> void:
+	auto_combat.set_auto_farm_enabled(enabled)
+
+
+func set_auto_skills_enabled(enabled: bool) -> void:
+	auto_combat.set_auto_skills_enabled(enabled)
+
+
+func is_targeting_any_ability() -> bool:
+	return _is_targeting_any_ability()
+
+
+func _on_auto_combat_mode_changed(auto_farm_enabled: bool, auto_skills_enabled: bool) -> void:
+	auto_combat_changed.emit(auto_farm_enabled, auto_skills_enabled)
 
 
 func set_weapon_definition(next_weapon: WeaponDefinition) -> bool:
@@ -543,28 +575,6 @@ func _apply_equipment_stats() -> void:
 	equipment_stats_changed.emit()
 
 
-func can_awaken_skill_2() -> bool:
-	if character_id != &"opaw":
-		return false
-	var story_state := get_node_or_null("/root/StoryState")
-	return (
-		progression_component.level >= 3
-		and awakened_skill_loadout != null
-		and (story_state == null or not story_state.has_story_flag(&"opaw_consecutive_thrust_awakened"))
-	)
-
-
-func awaken_skill_2() -> bool:
-	if not can_awaken_skill_2():
-		return false
-	var story_state := get_node_or_null("/root/StoryState")
-	if story_state != null:
-		story_state.remember_story(&"opaw_consecutive_thrust_awakened")
-	skill_loadout = awakened_skill_loadout
-	skill_loadout_changed.emit()
-	return true
-
-
 func _apply_inventory_weapon() -> void:
 	var equipped_item := get_equipped_weapon_item()
 	if equipped_item == null or not set_weapon_definition(equipped_item.weapon_definition):
@@ -576,16 +586,6 @@ func _try_apply_pending_weapon() -> void:
 		return
 	if set_weapon_definition(_pending_weapon_definition):
 		_pending_weapon_definition = null
-
-
-func _apply_story_skill_loadout() -> void:
-	var story_state := get_node_or_null("/root/StoryState")
-	if (
-		story_state != null
-		and story_state.has_story_flag(&"opaw_consecutive_thrust_awakened")
-		and awakened_skill_loadout != null
-	):
-		skill_loadout = awakened_skill_loadout
 
 
 func face_toward(world_position: Vector2) -> void:

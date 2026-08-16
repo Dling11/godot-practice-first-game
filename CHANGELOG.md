@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-08-16 - Rapid Engage and Navigation Facing Correction
+
+- Accepted Decision 110 after owner review rejected Decision 109's realistic painted skill icons: generated and installed a B+C hybrid family for King Skills 1-4, normalized every runtime icon to native 24x24, binary alpha, and one fixed 14-color palette, and added native-size regression checks. The cursor experiment remains a separate pending visual review; the accepted four-arrow move marker remains.
+- Accepted Decision 108: replaced the walking-foot click marker with a small original two-frame four-arrow convergence indicator, normalized all four King skill icons, added animated targeted-skill cancel feedback, refined the themed hand/sword cursor silhouettes, and tightened action-tray/enemy-roster accents.
+- Accepted Decision 107: manual left-click attacks now face toward the clicked cardinal side; the enemy roster adds explicit Auto All and Auto Skill toggles that reuse normal targets, navigation, casts, cooldowns, and damage; and the move marker received its initial two-frame proof, later superseded by Decision 108. Added matching cyan/gold/navy Auto icons and reused the authored sword icon on the far-right Attack fallback.
+- Accepted Decision 106: restored left-click immediate manual sword attacks, made right click or `Esc` cancel targeted-skill previews without leaking movement, and moved the unnumbered Attack HUD fallback to the far-right end after Skills `1`-`4`.
+- Accepted Decision 105 and replaced the interim number-`1` Attack/double-click scheme: right-clicking ground now clears combat and moves, right-clicking an enemy immediately selects and auto-engages, Skills return to `1`-`4`, and the HUD Attack fallback is unnumbered. Targeted skills confirm with left click/controller and use `Esc` as their only cancel input; right click is safely consumed while a preview is active.
+- Corrected owner-reported engagement/facing gaps: same-enemy rapid clicks now provide a 420-millisecond fallback to the native double-click flag, and assisted/click-to-move locomotion faces along its actual navigation steering direction.
+
 ## 2026-08-15 - Numbered Click Combat and Footprint Aura Refinement
 
 - Accepted Decision 104: reordered the action tray and keyboard to `1` Attack followed by Skills `2`-`5`; Basic Attack now swings freely when no target is selected or the selection is outside its 260-pixel assist radius instead of auto-acquiring or forcing a long pursuit.

@@ -1,7 +1,6 @@
 extends SceneTree
 
 const PlayerScene = preload("res://entities/player/player.tscn")
-const AshwoodBlade = preload("res://data/weapons/ashwood_blade.tres")
 const KingSword = preload("res://data/weapons/king_signature_sword.tres")
 const KingSwordForm = preload("res://data/weapons/attack_styles/king_sword_form.tres")
 const BalancedSlash = preload("res://data/weapons/attack_styles/balanced_slash.tres")
@@ -24,8 +23,8 @@ func _run() -> void:
 	if style_ids.size() != styles.size():
 		_fail("Sword attack style IDs must be unique.")
 		return
-	if AshwoodBlade.attack_style != BalancedSlash or KingSword.attack_style != KingSwordForm:
-		_fail("Opaw's Balanced Slash and King's dedicated sword form are not separated.")
+	if KingSword.attack_style != KingSwordForm:
+		_fail("King's signature sword is not using its dedicated sword form.")
 		return
 
 	var player := PlayerScene.instantiate() as Player
@@ -37,7 +36,7 @@ func _run() -> void:
 		player.weapon_visual.position != Vector2(-6.0, -10.0)
 		or not is_equal_approx(player.weapon_visual.rotation, -0.45)
 	):
-		_fail("The down-facing sword does not connect at the body and point away from Opaw's head.")
+		_fail("The down-facing sword does not connect at the body and point away from the player's head.")
 		return
 	if (
 		not is_equal_approx(KingSword.get_melee_forward_reach_pixels(), 48.0)
@@ -85,7 +84,7 @@ func _run() -> void:
 	upgraded_weapon.world_visual_scale = 1.2
 	upgraded_weapon.attack_style = KingSwordForm
 	if not player.set_weapon_definition(upgraded_weapon):
-		_fail("An idle higher-grade sword could not reuse Opaw's weapon rig.")
+		_fail("An idle higher-grade sword could not reuse the modular weapon rig.")
 		return
 	if (
 		player.attack_component.weapon != upgraded_weapon

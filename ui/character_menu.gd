@@ -68,7 +68,6 @@ const FUTURE_SKILL_TIERS := [
 ]
 
 signal menu_closed
-signal skill_awakened(skill_name: String)
 
 @export var player: Player
 
@@ -95,7 +94,6 @@ signal skill_awakened(skill_name: String)
 @onready var sort_button: Button = %SortButton
 @onready var skills_container: HBoxContainer = %Skills
 @onready var skill_detail_label: Label = %SkillDetailLabel
-@onready var awaken_button: Button = %AwakenButton
 @onready var portrait_aura: Polygon2D = %PortraitAura
 @onready var weapon_preview: Sprite2D = %WeaponPreview
 @onready var attack_label: Label = %AttackLabel
@@ -115,7 +113,6 @@ var _portrait_rotation_tween: Tween
 var _portrait_pulse_tween: Tween
 var _selected_equipment: EquipmentDefinition
 var _selected_material: MaterialDefinition
-var _skillkeeper_service_active := false
 
 
 func _ready() -> void:
@@ -147,7 +144,6 @@ func _ready() -> void:
 	_configure_inventory_filters()
 	sort_button.pressed.connect(_cycle_inventory_sort)
 	equipment_detail_panel.equip_requested.connect(_on_equipment_equip_requested)
-	awaken_button.pressed.connect(_on_awaken_button_pressed)
 	_build_character_bag()
 	_build_skill_cards()
 	_show_page(&"gear", false)
@@ -181,7 +177,6 @@ func open_menu() -> void:
 func open_skillkeeper_menu() -> void:
 	if visible or get_tree().paused:
 		return
-	_skillkeeper_service_active = true
 	_show_page(&"skills", false)
 	open_menu()
 
@@ -193,8 +188,6 @@ func close_menu() -> void:
 	if _owns_pause:
 		get_tree().paused = false
 	_owns_pause = false
-	_skillkeeper_service_active = false
-	awaken_button.hide()
 	menu_closed.emit()
 
 
@@ -680,41 +673,9 @@ func _on_skill_slot_selected(definition: SkillSlotDefinition) -> void:
 			definition.slot_number,
 			definition.unlock_hint,
 		]
-	_refresh_awaken_button()
 
 
 var _selected_skill: SkillSlotDefinition
-
-
-func _refresh_awaken_button() -> void:
-	awaken_button.visible = _skillkeeper_service_active
-	if not awaken_button.visible or _selected_skill == null:
-		return
-	if _selected_skill.is_equipped():
-		awaken_button.disabled = true
-		awaken_button.text = "SKILL AWAKENED"
-	elif _selected_skill.slot_number != 2:
-		awaken_button.disabled = true
-		awaken_button.text = "PATH NOT YET AUTHORED"
-	elif player.progression_component.level < 3:
-		awaken_button.disabled = true
-		awaken_button.text = "REQUIRES LEVEL 3"
-	else:
-		awaken_button.disabled = false
-		awaken_button.text = "AWAKEN SKILL  •  FREE"
-
-
-func _on_awaken_button_pressed() -> void:
-	if _selected_skill == null or _selected_skill.slot_number != 2:
-		return
-	if not player.awaken_skill_2():
-		return
-	for card: SkillSlotCard in _skill_cards:
-		if card.slot_definition.slot_number == 2:
-			card.set_pressed_no_signal(true)
-			_on_skill_slot_selected(card.slot_definition)
-			break
-	skill_awakened.emit("CONSECUTIVE THRUST")
 
 
 func _start_portrait_aura() -> void:

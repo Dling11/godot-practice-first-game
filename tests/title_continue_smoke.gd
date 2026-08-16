@@ -1,8 +1,8 @@
 extends SceneTree
 
 const TitleScene = preload("res://ui/screens/title/title_screen.tscn")
-const IronSword: EquipmentDefinition = preload(
-	"res://data/items/equipment/iron_sword.tres"
+const VarkuunEdge: EquipmentDefinition = preload(
+	"res://data/items/equipment/forest/stage_5_core/varkuun_edge_essence.tres"
 )
 const SANCTUARY := "res://levels/sanctuary/sanctuary.tscn"
 const TEST_PROFILE_PATH := "user://battle_of_gods_title_continue_smoke.json"
@@ -34,8 +34,8 @@ func _run() -> void:
 	run_session.update_progression(725, 113)
 	run_session.update_player_health(92.0)
 	story_state.remember_story(&"forgotten_grove_completed")
-	weapon_inventory.acquire_weapon(IronSword)
-	weapon_inventory.equip_weapon(&"opaw", &"warrior", IronSword)
+	weapon_inventory.acquire_weapon(VarkuunEdge)
+	weapon_inventory.equip_weapon(&"king", &"warrior", VarkuunEdge)
 	material_inventory.add_material(&"forest_mire_resin", 6)
 	recipe_discovery.discover_recipe(&"forest_mireward_charm")
 	if not _save_service.save_profile():
@@ -106,7 +106,7 @@ func _run() -> void:
 		run_session.total_experience != 725
 		or run_session.coins != 113
 		or not story_state.has_story_flag(&"forgotten_grove_completed")
-		or not weapon_inventory.owns_weapon(IronSword.item_id)
+		or not weapon_inventory.owns_weapon(VarkuunEdge.item_id)
 		or material_inventory.get_quantity(&"forest_mire_resin") != 6
 		or not recipe_discovery.is_recipe_discovered(&"forest_mireward_charm")
 	):

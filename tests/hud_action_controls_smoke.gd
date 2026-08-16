@@ -3,7 +3,6 @@ extends SceneTree
 const PlayerScene = preload("res://entities/player/player.tscn")
 const HudScene = preload("res://ui/combat_hud.tscn")
 const PauseMenuScene = preload("res://ui/pause_menu.tscn")
-const OpawTest = preload("res://tests/support/opaw_test_configuration.gd")
 
 
 func _initialize() -> void:
@@ -13,7 +12,6 @@ func _initialize() -> void:
 func _run() -> void:
 	root.get_node("RunSession").reset_run()
 	var player := PlayerScene.instantiate() as Player
-	OpawTest.apply(player)
 	var hud := HudScene.instantiate() as CombatHUD
 	var pause_menu := PauseMenuScene.instantiate() as PauseMenu
 	root.add_child(player)
@@ -32,9 +30,9 @@ func _run() -> void:
 	var attack_rect := hud.attack_button.get_global_rect()
 	var tray_rect := tray.get_global_rect()
 	if (
-		dash_rect.end.x > attack_rect.position.x
-		or attack_rect.end.x > skill_rect.position.x
-		or skill_rect.position.x - attack_rect.end.x < 8.0
+		dash_rect.end.x > skill_rect.position.x
+		or last_skill_rect.end.x > attack_rect.position.x
+		or attack_rect.position.x - last_skill_rect.end.x < 8.0
 		or not tray_rect.encloses(dash_rect)
 		or not tray_rect.encloses(skill_rect)
 		or not tray_rect.encloses(last_skill_rect)
@@ -42,10 +40,19 @@ func _run() -> void:
 		or hud.dash_slot.size != Vector2(52.0, 48.0)
 		or hud.attack_button.size != Vector2(54.0, 48.0)
 	):
-		_fail("The Dash, 1 Attack, then 2-5 Skill ordering or tray boundary is incorrect.")
+		_fail("The Dash, Skill 1-4, then far-right Attack ordering or tray boundary is incorrect.")
 		return
-	if hud.attack_button.text != "1\nATTACK" or hud.get_skill_slot(1).key_label.text != "2" or hud.get_skill_slot(4).key_label.text != "5":
-		_fail("HUD action numbering does not show Attack 1 followed by Skills 2-5.")
+	if hud.attack_button.text != "ATK" or hud.attack_button.icon == null or hud.get_skill_slot(1).key_label.text != "1" or hud.get_skill_slot(4).key_label.text != "4":
+		_fail("HUD action numbering does not show unnumbered Attack followed by Skills 1-4.")
+		return
+	var skill_one := hud.get_skill_slot(1)
+	hud._on_skill_targeting_started(skill_one.ability_component)
+	if skill_one.state_label.text != "AIM  RMB":
+		_fail("A targeted skill does not expose its compact right-click cancel hint.")
+		return
+	hud._on_skill_targeting_ended()
+	if skill_one.state_label.text != "READY":
+		_fail("Cancelling targeted-skill presentation did not restore its ready state.")
 		return
 
 	hud.options_button.pressed.emit()

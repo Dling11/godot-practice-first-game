@@ -68,7 +68,7 @@ func _run() -> void:
 					_fail("Sanctuary NPC silhouette touches a frame edge: %s" % path)
 					return
 				if used_rect.size.y < 24 or used_rect.size.y > 42:
-					_fail("Compact Sanctuary NPC no longer matches Opaw's body-scale language: %s" % path)
+					_fail("Compact Sanctuary NPC no longer matches the shared body-scale language: %s" % path)
 					return
 	var sanctuary := SanctuaryScene.instantiate()
 	root.add_child(sanctuary)
@@ -100,7 +100,6 @@ func _run() -> void:
 		return
 	var dialogue := sanctuary.get_node("UI/DialoguePanel") as DialoguePanel
 	var menu := sanctuary.get_node("UI/ExpeditionMenu") as ExpeditionMenu
-	var weapon_shop := sanctuary.get_node("UI/WeaponShopMenu") as WeaponShopMenu
 	var ground := sanctuary.get_node("World/Level/Ground") as SanctuaryGround
 	for building_name in ["SkillkeeperLodge", "ArmskeeperWorkshop"]:
 		var building_collision := sanctuary.get_node("World/Actors/%s/Collision" % building_name) as CollisionPolygon2D
@@ -271,7 +270,7 @@ func _run() -> void:
 		player.facing_direction.dot(eira_direction) < 0.999
 		or not String(player_body.animation).begins_with("interact_")
 	):
-		_fail("Opaw did not face Eira and enter the directional interaction pose.")
+		_fail("King did not face Eira and enter the directional interaction pose.")
 		return
 	await process_frame
 	var escape := InputEventAction.new()
@@ -282,7 +281,7 @@ func _run() -> void:
 		_fail("Esc did not cancel Eira's dialogue without opening another modal.")
 		return
 	if not String(player_body.animation).begins_with("idle_"):
-		_fail("Opaw did not resume directional locomotion after dialogue closed.")
+		_fail("King did not resume directional locomotion after dialogue closed.")
 		return
 	skillkeeper._unhandled_input(interact)
 	if not dialogue.visible or not paused:
@@ -295,7 +294,7 @@ func _run() -> void:
 		_fail("Completing Eira's dialogue did not open the existing skill-information menu.")
 		return
 	if not character_menu.has_node("CloseButton"):
-		_fail("Opaw's character menu has no top-right mouse close button.")
+		_fail("King's character menu has no top-right mouse close button.")
 		return
 	character_menu.close_menu()
 	if character_menu.visible or paused:
@@ -304,8 +303,8 @@ func _run() -> void:
 	skillkeeper._on_body_exited(player)
 
 	merchant._on_body_entered(player)
-	if not hud.interaction_label.text.contains("WEAPONS"):
-		_fail("Approaching Orren did not show the shared weapon-browsing prompt.")
+	if not hud.interaction_label.text.contains("TALK"):
+		_fail("Approaching Orren did not show the shared talk prompt.")
 		return
 	merchant._unhandled_input(interact)
 	if not dialogue.visible or not paused:
@@ -314,15 +313,8 @@ func _run() -> void:
 	dialogue.advance()
 	dialogue.advance()
 	dialogue.advance()
-	if dialogue.visible or not weapon_shop.visible or not paused:
-		_fail("Completing Orren's dialogue did not open the paused weapon shop.")
-		return
-	if weapon_shop.stock_buttons.size() != 1 or weapon_shop.catalog.find_weapon(&"weapon_iron_sword") == null:
-		_fail("Orren's shop does not expose the authored Iron Sword stock.")
-		return
-	weapon_shop.close_button.pressed.emit()
-	if weapon_shop.visible or paused:
-		_fail("Closing Orren's shop did not restore Sanctuary control.")
+	if dialogue.visible or paused:
+		_fail("Completing Orren's lore dialogue did not restore Sanctuary control.")
 		return
 	merchant._on_body_exited(player)
 

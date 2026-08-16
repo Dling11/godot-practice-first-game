@@ -78,9 +78,13 @@ func _run() -> void:
 	if player.combat_targeting.get_click_move_direction(0.2).dot(Vector2.RIGHT) < 0.9:
 		_fail("An empty left-click destination did not produce Dota-style movement intent.")
 		return
+	await physics_frame
+	if player.facing_direction != Vector2.RIGHT:
+		_fail("Click-to-move did not face King along the actual ground path direction.")
+		return
 
-	if hud.attack_button.size != Vector2(54.0, 48.0) or hud.attack_button.text != "1\nATTACK":
-		_fail("The compact numbered Attack control does not retain its authored footprint or label.")
+	if hud.attack_button.size != Vector2(54.0, 48.0) or hud.attack_button.text != "ATK" or hud.attack_button.icon == null:
+		_fail("The compact unnumbered Attack fallback does not retain its authored footprint or label.")
 		return
 	player.attack_component.cancel_attack()
 	hud.attack_button.pressed.emit()
@@ -101,11 +105,12 @@ func _run() -> void:
 
 	player.attack_component.cancel_attack()
 	first.global_position = Vector2(240.0, 100.0)
+	player.combat_targeting.clear_target()
 	if not player.combat_targeting.select_at_world_position(first.global_position, true):
-		_fail("Double-click-style selection could not engage an enemy.")
+		_fail("Contextual enemy-click engagement could not select the enemy.")
 		return
 	if not player.combat_targeting.auto_attack_enabled:
-		_fail("Double-click-style selection did not enable auto-attack pursuit.")
+		_fail("One contextual enemy click did not enable auto-attack pursuit.")
 		return
 	player.combat_targeting.request_click_move(Vector2(320.0, 100.0))
 	if player.combat_targeting.has_valid_target() or player.combat_targeting.auto_attack_enabled:

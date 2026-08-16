@@ -54,8 +54,12 @@ func _run() -> void:
 	if not root.get_node("CursorService").targeting_active:
 		_fail("Entering target mode did not request the targeting hardware cursor.")
 		return
-	if not targeting.cancel_targeting() or ability.cooldown_remaining > 0.0:
-		_fail("Cancelling the preview spent Echoing Sever's cooldown.")
+	var right_click_cancel := InputEventMouseButton.new()
+	right_click_cancel.button_index = MOUSE_BUTTON_RIGHT
+	right_click_cancel.pressed = true
+	player._unhandled_input(right_click_cancel)
+	if targeting.is_targeting() or ability.cooldown_remaining > 0.0:
+		_fail("Right-click cancellation failed or spent Echoing Sever's cooldown.")
 		return
 	if root.get_node("CursorService").targeting_active:
 		_fail("Cancelling target mode did not restore the gameplay cursor.")

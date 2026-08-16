@@ -74,7 +74,7 @@ func _run() -> void:
 	var recipe_discovery := root.get_node("RecipeDiscovery")
 	run_session.update_progression(80, 12)
 	story_state.remember_story(&"forgotten_grove_completed")
-	weapon_inventory.acquire_weapon(preload("res://data/items/equipment/iron_sword.tres"))
+	weapon_inventory.acquire_weapon(preload("res://data/items/equipment/forest/stage_5_core/varkuun_edge_essence.tres"))
 	material_inventory.add_material(&"forest_root_fiber", 3)
 	recipe_discovery.discover_recipe(&"forest_rootfiber_wraps")
 	var transition_state := {"requested": "", "started": false, "finished": false}
@@ -106,7 +106,7 @@ func _run() -> void:
 	if story_state.has_story_flag(&"forgotten_grove_completed"):
 		_fail("A new journey did not reset the in-memory story state.")
 		return
-	if weapon_inventory.owns_weapon(&"weapon_iron_sword"):
+	if weapon_inventory.owns_weapon(&"weapon_varkuun_edge_essence"):
 		_fail("A new journey did not reset purchased weapon ownership.")
 		return
 	if (

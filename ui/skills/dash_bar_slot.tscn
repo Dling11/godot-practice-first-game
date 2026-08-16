@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://ui/skills/dash_bar_slot.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://assets/ui/icons/actions/icon_action_dash_24x24.png" id="2_icon"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/combat/dodge_dash_icon.tres" id="2_icon"]
 
 [sub_resource type="StyleBoxFlat" id="slot_panel"]
 bg_color = Color(0.035, 0.052, 0.075, 0.97)

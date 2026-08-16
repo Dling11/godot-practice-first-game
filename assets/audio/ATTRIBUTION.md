@@ -34,7 +34,7 @@ The root-prison presentation reuses only Varkuun's attributed CC0 suite: the ear
 
 ## Original Opaw Level-Up Chime
 
-- **Runtime file:** `sfx/ui/opaw_level_up_chime.wav`
+- **Runtime file:** `sfx/ui/player_level_up_chime.wav`
 - **Source:** Original deterministic in-project synthesis via `tools/build_level_up_sfx.py`
 - **Created:** 2026-07-26
 
@@ -42,8 +42,8 @@ The restrained rising spirit chime accompanies the compact level-up banner. It i
 
 ## Original Opaw Action Cues
 
-- **Runtime file:** `sfx/opaw_hurt_impact.wav`
-- **Source:** Original deterministic in-project synthesis via `tools/build_opaw_hurt_impact_sfx.py`
+- **Runtime file:** `sfx/player_hurt_impact.wav`
+- **Source:** Original deterministic in-project synthesis via `tools/build_player_hurt_impact_sfx.py`
 - **Created:** 2026-07-19
 
 The hurt cue is a restrained cloth/body impact reserved for accepted player damage. It does not reuse enemy attack audio.
@@ -53,7 +53,7 @@ The hurt cue is a restrained cloth/body impact reserved for accepted player dama
 - **Author:** artisticdude
 - **License:** CC0 1.0 / Public Domain dedication
 - **Source:** https://opengameart.org/content/swishes-sound-pack
-- **Runtime file:** `sfx/opaw_dash_light_swoosh.wav`
+- **Runtime file:** `sfx/player_dash_light_swoosh.wav`
 - **Selected source clip:** `swish-4.wav`
 - **Source pack downloaded:** 2026-07-18; curated for dash: 2026-07-19
 

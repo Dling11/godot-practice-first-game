@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EchoingSeverDefinition" load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://data/abilities/king/echoing_sever_definition.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://assets/ui/icons/skills/icon_skill_echoing_sever.svg" id="2_icon"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/combat/king_skill_1_icon.tres" id="2_icon"]
 [ext_resource type="Shape2D" path="res://data/abilities/king/hit_shapes/echoing_sever_wedge.tres" id="3_shape"]
 
 [resource]

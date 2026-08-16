@@ -17,7 +17,6 @@
 [ext_resource type="PackedScene" path="res://ui/character_menu.tscn" id="14_character"]
 [ext_resource type="PackedScene" path="res://ui/dialogue/dialogue_panel.tscn" id="15_dialogue"]
 [ext_resource type="PackedScene" path="res://ui/expeditions/expedition_menu.tscn" id="16_expedition"]
-[ext_resource type="PackedScene" path="res://ui/shops/weapon_shop_menu.tscn" id="16_weapon_shop"]
 [ext_resource type="Script" uid="uid://ds6tx8vmvokpu" path="res://gameplay/audio/stage_music.gd" id="17_music_script"]
 [ext_resource type="AudioStream" uid="uid://c1vj618m4ysv1" path="res://assets/audio/music/cathedral_in_the_forest.ogg" id="18_music"]
 [ext_resource type="PackedScene" path="res://ui/pause_menu.tscn" id="19_pause"]
@@ -25,7 +24,7 @@
 [ext_resource type="PackedScene" path="res://entities/npcs/rootweaver/rootweaver_nema.tscn" id="21_rootweaver"]
 [ext_resource type="PackedScene" path="res://ui/crafting/rootforge_menu.tscn" id="22_rootforge_menu"]
 
-[node name="Sanctuary" type="Node" unique_id=1171524165 node_paths=PackedStringArray("player", "combat_hud", "character_menu", "skillkeeper", "weapon_merchant", "rootweaver", "expedition_altar", "dialogue_panel", "expedition_menu", "weapon_shop_menu", "rootforge_menu", "admin_panel", "admin_lab_button")]
+[node name="Sanctuary" type="Node" unique_id=1171524165 node_paths=PackedStringArray("player", "combat_hud", "character_menu", "skillkeeper", "weapon_merchant", "rootweaver", "expedition_altar", "dialogue_panel", "expedition_menu", "rootforge_menu", "admin_panel", "admin_lab_button")]
 script = ExtResource("1_flow")
 player = NodePath("World/Actors/Player")
 combat_hud = NodePath("UI/CombatHUD")
@@ -36,7 +35,6 @@ rootweaver = NodePath("World/Actors/Rootweaver")
 expedition_altar = NodePath("World/Actors/ExpeditionAltar")
 dialogue_panel = NodePath("UI/DialoguePanel")
 expedition_menu = NodePath("UI/ExpeditionMenu")
-weapon_shop_menu = NodePath("UI/WeaponShopMenu")
 rootforge_menu = NodePath("UI/RootforgeMenu")
 admin_panel = NodePath("UI/AdminPanel")
 admin_lab_button = NodePath("UI/AdminPanel/Margin/Stack/OpenLab")
@@ -154,9 +152,6 @@ player = NodePath("../../World/Actors/Player")
 [node name="DialoguePanel" parent="UI" unique_id=1063779937 instance=ExtResource("15_dialogue")]
 
 [node name="ExpeditionMenu" parent="UI" unique_id=385825578 instance=ExtResource("16_expedition")]
-
-[node name="WeaponShopMenu" parent="UI" node_paths=PackedStringArray("player") instance=ExtResource("16_weapon_shop")]
-player = NodePath("../../World/Actors/Player")
 
 [node name="RootforgeMenu" parent="UI" instance=ExtResource("22_rootforge_menu")]
 

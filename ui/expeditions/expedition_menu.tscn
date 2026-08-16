@@ -7,7 +7,7 @@
 [ext_resource type="Resource" path="res://data/expeditions/rootbound_hollow.tres" id="4_hollow"]
 [ext_resource type="Resource" path="res://data/expeditions/eastern_rot.tres" id="4_stage_4"]
 [ext_resource type="Resource" path="res://data/expeditions/drowned_bells.tres" id="5_bells"]
-[ext_resource type="Resource" path="res://data/progression/opaw_path.tres" id="6_progression"]
+[ext_resource type="Resource" path="res://data/progression/king_path.tres" id="6_progression"]
 
 [node name="ExpeditionMenu" type="Control"]
 visible = false

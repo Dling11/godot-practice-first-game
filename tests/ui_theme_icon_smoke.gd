@@ -6,10 +6,8 @@ const PortalScene = preload("res://gameplay/encounters/stage_portal.tscn")
 const ThemeResource = preload("res://assets/ui/themes/battle_of_gods_theme.tres")
 
 const ICON_SIZES := {
-	"res://assets/ui/icons/actions/icon_action_primary_attack_24x24.png": Vector2i(24, 24),
-	"res://assets/ui/icons/actions/icon_action_dash_24x24.png": Vector2i(24, 24),
-	"res://assets/ui/icons/skills/icon_skill_sweeping_cut_24x24.png": Vector2i(24, 24),
-	"res://assets/ui/icons/skills/icon_skill_piercing_rush_24x24.png": Vector2i(24, 24),
+	"res://assets/ui/icons/actions/icon_action_move_arrows_1_24.svg": Vector2i(24, 24),
+	"res://assets/ui/icons/actions/icon_action_move_arrows_2_24.svg": Vector2i(24, 24),
 	"res://assets/ui/icons/economy/icon_currency_coin_16x16.png": Vector2i(16, 16),
 	"res://assets/ui/icons/status/icon_status_health_16x16.png": Vector2i(16, 16),
 	"res://assets/ui/icons/status/icon_status_experience_16x16.png": Vector2i(16, 16),
@@ -17,6 +15,22 @@ const ICON_SIZES := {
 	"res://assets/ui/icons/interactions/icon_interaction_talk_16x16.png": Vector2i(16, 16),
 	"res://assets/ui/icons/states/icon_slot_locked_16x16.png": Vector2i(16, 16),
 	"res://assets/ui/icons/inventory/icon_inventory_bag_24x24.png": Vector2i(24, 24),
+}
+
+const GENERATED_ICON_SIZES := {
+	"res://assets/ui/icons/combat/combat_action_atlas_bc_6x1_24.png": Vector2i(144, 24),
+	"res://assets/ui/cursors/generated/cursor_royal_pointer_generated_32.png": Vector2i(32, 32),
+	"res://assets/ui/cursors/generated/cursor_royal_interact_generated_32.png": Vector2i(32, 32),
+	"res://assets/ui/cursors/generated/cursor_royal_target_generated_32.png": Vector2i(32, 32),
+}
+
+const ACTION_ICON_REGIONS := {
+	"res://assets/ui/icons/combat/king_skill_1_icon.tres": 0,
+	"res://assets/ui/icons/combat/king_skill_2_icon.tres": 1,
+	"res://assets/ui/icons/combat/king_skill_3_icon.tres": 2,
+	"res://assets/ui/icons/combat/king_skill_4_icon.tres": 3,
+	"res://assets/ui/icons/combat/basic_attack_icon.tres": 4,
+	"res://assets/ui/icons/combat/dodge_dash_icon.tres": 5,
 }
 
 
@@ -36,6 +50,10 @@ func _run() -> void:
 		if texture == null or texture.get_size() != Vector2(ICON_SIZES[path]):
 			_fail("UI icon has an invalid texture or size: %s" % path)
 			return
+		# SVG sources are rasterized by Godot with edge antialiasing even when the
+		# authored geometry uses crisp integer steps. PNG pixel icons remain strict.
+		if path.ends_with(".svg"):
+			continue
 		var image := texture.get_image()
 		for y in image.get_height():
 			for x in image.get_width():
@@ -43,6 +61,48 @@ func _run() -> void:
 				if alpha > 0.001 and alpha < 0.999:
 					_fail("UI icon contains soft alpha instead of hard pixels: %s" % path)
 					return
+	for path: String in GENERATED_ICON_SIZES:
+		var texture := load(path) as Texture2D
+		if texture == null or texture.get_size() != Vector2(GENERATED_ICON_SIZES[path]):
+			_fail("Generated UI asset has an invalid texture or size: %s" % path)
+			return
+		var image := texture.get_image()
+		var has_transparency := false
+		for y in image.get_height():
+			for x in image.get_width():
+				if image.get_pixel(x, y).a < 0.01:
+					has_transparency = true
+					break
+			if has_transparency:
+				break
+		if not has_transparency:
+			_fail("Generated UI asset lost its transparent background: %s" % path)
+			return
+		if path.ends_with("combat_action_atlas_bc_6x1_24.png"):
+			for cell_index in range(6):
+				var cell := image.get_region(Rect2i(cell_index * 24, 0, 24, 24))
+				var colors := {}
+				for y in cell.get_height():
+					for x in cell.get_width():
+						var pixel := cell.get_pixel(x, y)
+						if pixel.a > 0.001 and pixel.a < 0.999:
+							_fail("Generated action atlas contains soft alpha in cell %d." % cell_index)
+							return
+						if pixel.a >= 0.999:
+							colors[pixel.to_html(false)] = true
+				if colors.size() > 14:
+					_fail("Generated action atlas cell %d exceeds the approved 14-color palette." % cell_index)
+					return
+	for path: String in ACTION_ICON_REGIONS:
+		var region_texture := load(path) as AtlasTexture
+		var expected_x: int = ACTION_ICON_REGIONS[path] * 24
+		if (
+			region_texture == null
+			or region_texture.get_size() != Vector2(24, 24)
+			or region_texture.region != Rect2(expected_x, 0, 24, 24)
+		):
+			_fail("Combat action resource does not map to its fixed atlas cell: %s" % path)
+			return
 	var hud := HudScene.instantiate() as CombatHUD
 	root.add_child(hud)
 	if hud.theme != ThemeResource:

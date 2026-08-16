@@ -11,6 +11,7 @@ signal click_move_changed(world_position: Vector2, active: bool)
 const ENEMY_HURTBOX_MASK := 1 << 4
 const ATTACK_DISTANCE_PADDING := 4.0
 const TARGET_REPATH_SECONDS := 0.12
+const RAPID_ENGAGE_WINDOW_MSEC := 420
 
 @export var player: Player
 @export var navigation_agent: NavigationAgent2D
@@ -23,6 +24,8 @@ var _target_hurtbox: HurtboxComponent
 var _repath_remaining := 0.0
 var _click_move_target := Vector2.ZERO
 var _click_move_active := false
+var _last_world_selected_actor: Node2D
+var _last_world_selection_msec := -RAPID_ENGAGE_WINDOW_MSEC
 
 
 func _ready() -> void:
@@ -56,7 +59,15 @@ func select_at_world_position(world_position: Vector2, enable_assistance := fals
 			best_hurtbox = hurtbox
 	if best_hurtbox == null:
 		return false
-	return select_hurtbox(best_hurtbox, enable_assistance)
+	var selected_actor := best_hurtbox.get_parent() as Node2D
+	var selection_msec := Time.get_ticks_msec()
+	var rapid_reselection := (
+		selected_actor == _last_world_selected_actor
+		and selection_msec - _last_world_selection_msec <= RAPID_ENGAGE_WINDOW_MSEC
+	)
+	_last_world_selected_actor = selected_actor
+	_last_world_selection_msec = selection_msec
+	return select_hurtbox(best_hurtbox, enable_assistance or rapid_reselection)
 
 
 func select_hurtbox(hurtbox: HurtboxComponent, enable_assistance := false) -> bool:
@@ -149,7 +160,17 @@ func select_nearest_target() -> bool:
 	return select_hurtbox(best_hurtbox) if best_hurtbox != null else false
 
 
+func engage_next_roster_target() -> bool:
+	for target: Dictionary in get_selectable_targets():
+		var hurtbox := target.get("hurtbox") as HurtboxComponent
+		if select_hurtbox(hurtbox, true):
+			return true
+	return false
+
+
 func clear_target() -> void:
+	_last_world_selected_actor = null
+	_last_world_selection_msec = -RAPID_ENGAGE_WINDOW_MSEC
 	if target_actor == null and target_health == null:
 		return
 	_disconnect_target()
