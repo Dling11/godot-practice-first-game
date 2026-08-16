@@ -57,6 +57,9 @@ func _run() -> void:
 	if not is_equal_approx(before - hog.health_component.current_health, 14.0):
 		_fail("The living-bark forehead did not reduce a frontal hit to 35 percent.")
 		return
+	if hog.state != ArmoredHog.State.BRACE:
+		_fail("A normal hit canceled the Hog's committed charge warning.")
+		return
 	hog.health_component.current_health = before
 	source.position = Vector2.LEFT * 100.0
 	hurtbox.receive_hit(DamageInfo.new(40.0, source, Vector2.RIGHT))

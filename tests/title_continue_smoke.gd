@@ -102,6 +102,19 @@ func _run() -> void:
 	if current_scene == null or current_scene.scene_file_path != SANCTUARY:
 		_fail("Continue did not enter the saved Sanctuary scene.")
 		return
+	var sanctuary_player := current_scene.get_node("World/Actors/Player") as Player
+	if (
+		not is_equal_approx(
+			sanctuary_player.health_component.current_health,
+			sanctuary_player.health_component.maximum_health
+		)
+		or not is_equal_approx(
+			run_session.player_current_health,
+			sanctuary_player.health_component.maximum_health
+		)
+	):
+		_fail("Continue did not restore full health at the Sanctuary recovery checkpoint.")
+		return
 	if (
 		run_session.total_experience != 725
 		or run_session.coins != 113

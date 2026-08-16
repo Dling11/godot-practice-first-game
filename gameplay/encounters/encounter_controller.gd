@@ -32,6 +32,7 @@ enum CompletionRewardMode {
 @export var portal_parent: Node2D
 @export var portal_spawn_point: Marker2D
 @export_file("*.tscn") var portal_target_scene := ""
+@export_enum("Normal", "Mini Boss", "Boss", "God", "Transcendent") var portal_tier := 0
 @export_enum("Direct Portal", "Stage Chest") var completion_reward_mode: int = (
 	CompletionRewardMode.DIRECT_PORTAL
 )
@@ -210,6 +211,7 @@ func _spawn_portal() -> void:
 		return
 	var portal := portal_scene.instantiate() as StagePortal
 	portal.target_scene_path = portal_target_scene
+	portal.portal_tier = portal_tier as StagePortal.PortalTier
 	portal_parent.add_child(portal)
 	portal.global_position = portal_spawn_point.global_position
 	portal.player_entered.connect(func() -> void:

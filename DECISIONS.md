@@ -120,6 +120,10 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 110 | Adopt B+C hard-pixel King skill icons | Native 24x24 King skill icons, B/C silhouette contract, fixed palette, binary alpha, or superseding painted skill art |
 | 111 | Retire Opaw and consolidate combat icons | King-only runtime, Opaw archive, weapon/awakening cleanup, six-cell action atlas, or unused-image audit |
 | 112 | Make left click manual selection authority | Cancel move on attack, single-click selection, double-click engage, foot-circle picking, or size-aware assisted approach |
+| 113 | Make Sanctuary a full-health recovery checkpoint | Continue health, Sanctuary entry, expedition attrition, or safe-point saves |
+| 114 | Make movement cancel combat intent | Right-click movement, repeated left-click engagement, WASD cancellation, roster disclosure, or marquee labels |
+| 115 | Return to Sanctuary on expedition defeat | Defeat consequences, progression preservation, utility-item boundary, Stage V approach music, or portal travel presentation |
+| 116 | Separate fixed Sanctuary architecture from tiered stage vortices | Static angel gate, isolated energy animation, eight-frame stage vortex, superiority tiers, or off-screen portal guidance |
 
 ## New Decisions
 

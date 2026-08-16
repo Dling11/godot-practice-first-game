@@ -7,6 +7,9 @@ const StageChestIcon = preload(
 	+ "forest_stage_clear_chest_closed_64x48.png"
 )
 const ROSTER_REFRESH_SECONDS := 0.25
+const ROSTER_REVEAL_DISTANCE := 300.0
+const ROSTER_REPEAT_CLICK_WINDOW_MSEC := 520
+const MarqueeLabelScript = preload("res://ui/components/marquee_label.gd")
 
 signal character_menu_requested
 
@@ -53,6 +56,10 @@ var _loot_notifications: Array[Dictionary] = []
 var _loot_toast_busy := false
 var _announcement_tween: Tween
 var _roster_refresh_timer: Timer
+var _revealed_enemy_ids: Dictionary = {}
+var _last_roster_target_id := 0
+var _last_roster_click_msec := -ROSTER_REPEAT_CLICK_WINDOW_MSEC
+var _roster_signature := ""
 
 
 func _ready() -> void:
@@ -259,13 +266,54 @@ func _on_target_close_button_pressed() -> void:
 func _refresh_enemy_roster() -> void:
 	if not is_instance_valid(_player):
 		return
-	var targets := _player.combat_targeting.get_selectable_targets()
+	var targets := _get_revealed_roster_targets()
 	enemy_roster_panel.visible = not targets.is_empty() or _player.auto_combat.auto_farm_enabled
+	var next_signature := _build_roster_signature(targets)
+	if next_signature == _roster_signature:
+		return
+	_roster_signature = next_signature
 	for child: Node in enemy_roster_rows.get_children():
 		enemy_roster_rows.remove_child(child)
 		child.queue_free()
 	for target: Dictionary in targets:
 		enemy_roster_rows.add_child(_build_enemy_roster_row(target))
+
+
+func _get_revealed_roster_targets() -> Array[Dictionary]:
+	var revealed: Array[Dictionary] = []
+	var living_ids: Dictionary = {}
+	for target: Dictionary in _player.combat_targeting.get_selectable_targets():
+		var actor := target.get("actor") as Node2D
+		if not is_instance_valid(actor) or not actor.is_visible_in_tree():
+			continue
+		var actor_id := actor.get_instance_id()
+		living_ids[actor_id] = true
+		if (
+			_revealed_enemy_ids.has(actor_id)
+			or actor.global_position.distance_to(_player.global_position) <= ROSTER_REVEAL_DISTANCE
+		):
+			_revealed_enemy_ids[actor_id] = true
+			revealed.append(target)
+	for actor_id: int in _revealed_enemy_ids.keys():
+		if not living_ids.has(actor_id):
+			_revealed_enemy_ids.erase(actor_id)
+	return revealed
+
+
+func _build_roster_signature(targets: Array[Dictionary]) -> String:
+	var parts: PackedStringArray = []
+	for target: Dictionary in targets:
+		var actor := target.get("actor") as Node2D
+		var health := target.get("health") as HealthComponent
+		if not is_instance_valid(actor) or not is_instance_valid(health):
+			continue
+		parts.append("%d:%d:%d:%d" % [
+			actor.get_instance_id(),
+			ceili(health.current_health),
+			ceili(health.maximum_health),
+			1 if actor == _player.combat_targeting.target_actor else 0,
+		])
+	return "|".join(parts)
 
 
 func _build_enemy_roster_row(target: Dictionary) -> Button:
@@ -277,7 +325,7 @@ func _build_enemy_roster_row(target: Dictionary) -> Button:
 	row.custom_minimum_size = Vector2(190.0, 42.0)
 	row.focus_mode = Control.FOCUS_NONE
 	row.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	row.tooltip_text = "Select and engage this enemy"
+	row.tooltip_text = "Left-click to target • double-click to engage"
 	row.add_theme_font_size_override("font_size", 8)
 	var content := HBoxContainer.new()
 	content.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -309,13 +357,15 @@ func _build_enemy_roster_row(target: Dictionary) -> Button:
 	var header := HBoxContainer.new()
 	header.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	details.add_child(header)
-	var name_label := Label.new()
+	var name_label := MarqueeLabelScript.new() as MarqueeLabel
+	name_label.custom_minimum_size = Vector2(0.0, 14.0)
 	name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	name_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	name_label.text = _enemy_roster_name(definition, actor)
-	name_label.add_theme_font_size_override("font_size", 8)
-	name_label.add_theme_color_override("font_color", _enemy_roster_color(definition))
 	header.add_child(name_label)
+	name_label.configure(
+		_enemy_roster_name(definition, actor),
+		_enemy_roster_color(definition),
+		8
+	)
 	var health_label := Label.new()
 	health_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	health_label.text = "%d/%d" % [ceili(health.current_health), ceili(health.maximum_health)]
@@ -343,11 +393,37 @@ func _build_enemy_roster_row(target: Dictionary) -> Button:
 		selected_style.set_border_width_all(1)
 		selected_style.set_corner_radius_all(2)
 		row.add_theme_stylebox_override("normal", selected_style)
-	row.pressed.connect(func() -> void:
-		if is_instance_valid(hurtbox) and _player.combat_targeting.select_hurtbox(hurtbox, true):
-			_player.request_assisted_primary_attack()
-	)
+	row.gui_input.connect(_on_enemy_roster_row_input.bind(actor, hurtbox))
 	return row
+
+
+func _on_enemy_roster_row_input(
+	event: InputEvent,
+	actor: Node2D,
+	hurtbox: HurtboxComponent
+) -> void:
+	if (
+		not event is InputEventMouseButton
+		or event.button_index != MOUSE_BUTTON_LEFT
+		or not event.pressed
+		or not is_instance_valid(_player)
+		or not is_instance_valid(actor)
+		or not is_instance_valid(hurtbox)
+	):
+		return
+	var actor_id := actor.get_instance_id()
+	var now_msec := Time.get_ticks_msec()
+	var engage: bool = (
+		event.double_click
+		or (
+			actor_id == _last_roster_target_id
+			and now_msec - _last_roster_click_msec <= ROSTER_REPEAT_CLICK_WINDOW_MSEC
+		)
+	)
+	_last_roster_target_id = actor_id
+	_last_roster_click_msec = now_msec
+	_player.request_roster_target(hurtbox, engage)
+	accept_event()
 
 
 func _enemy_roster_name(definition: Variant, actor: Node2D) -> String:

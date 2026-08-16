@@ -4,17 +4,24 @@ This file tracks current limitations only. Resolved and retired systems belong i
 
 ## Current Limitations
 
-### KI-017 - Click combat and footprint approach need owner feel approval
+### KI-018 - Portal presentation needs final owner-scale approval
 
 - **Status:** Open.
-- **Verified:** Automated coverage proves right-click movement/engagement, left-click movement cancellation, single-click enemy selection, double-click engagement, physical foot-circle picking, size-aware approach, a real landed melee hit, manual WASD override, target cleanup, and optional auto-skill/target cycling.
-- **Risk:** Headless tests cannot judge double-click comfort, dense-crowd selection, obstacle pursuit, moving-target jitter, aura prominence, or whether the eight-pixel combat gap feels too close for every enemy tier.
+- **Verified:** Sanctuary architecture is one fixed raster with an isolated energy animation. Stage exits structurally pass eight-frame vortex, five-tier styling, local guidance, and distant screen-edge pointer checks.
+- **Risk:** Headless checks cannot judge the final vortex size, tier-color distinction, loop cadence, or pointer comfort during a complete moving-camera playthrough.
+- **Next:** Review Sanctuary plus Normal/Mini Boss/Boss exits at 960x540; tune presentation data only unless collision or transition behavior actually fails.
+
+### KI-017 - Repeated-click combat and footprint approach need owner feel approval
+
+- **Status:** Open.
+- **Verified:** Automated coverage proves right-click/WASD combat cancellation, single-click enemy selection, repeated same-target engagement, physical foot-circle picking, size-aware approach, a real landed melee hit, target cleanup, and optional auto-skill/target cycling.
+- **Risk:** Headless tests cannot judge the 520-millisecond repeat window, dense-crowd selection, obstacle pursuit, moving-target jitter, discovery-gated roster timing, marquee comfort, aura prominence, or whether the eight-pixel combat gap feels too close for every enemy tier.
 - **Next:** Play Stages IV/V at 960x540 against normal, Elite, and Boss targets. Tune the one approach-padding/navigation contract from observed failures; do not add another movement authority.
 
 ### KI-016 - Armored Hog and eight-enemy crowd feel need owner playtesting
 
 - **Status:** Open.
-- **Verified:** Charge lane, frontal guard, rear damage, daze, animation/audio resources, protected drops, and Stage IV composition pass structural tests.
+- **Verified:** Charge lane, frontal guard, rear damage, daze, animation/audio resources, protected drops, and Stage IV composition pass structural tests. Once BRACE begins, repeated normal-hit stagger no longer cancels the committed charge.
 - **Risk:** Warning visibility, simultaneous charge readability, collision feel, and peak frame time remain human/performance questions.
 
 ### KI-015 - Ultimate and Reality Breaking are reserved UI tiers only

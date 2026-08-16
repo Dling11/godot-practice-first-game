@@ -3,7 +3,8 @@ extends SceneTree
 const SanctuaryScene = preload("res://levels/sanctuary/sanctuary.tscn")
 
 const RUNTIME_SPRITES := {
-	"res://assets/environment/sanctuary/landmarks/angel_expedition_portal_192x192.png": Vector2i(192, 192),
+	"res://assets/environment/sanctuary/landmarks/generated/angel_expedition_portal_static_192x256.png": Vector2i(192, 256),
+	"res://assets/environment/sanctuary/landmarks/generated/sanctuary_portal_energy_4x_44x112.png": Vector2i(176, 112),
 	"res://assets/environment/sanctuary/landmarks/angel_expedition_portal_ground_192x192.png": Vector2i(192, 192),
 	"res://assets/environment/sanctuary/landmarks/divine_fountain_112x96.png": Vector2i(112, 96),
 	"res://assets/environment/sanctuary/buildings/skillkeeper_lodge_128x192.png": Vector2i(128, 192),
@@ -17,7 +18,8 @@ const RUNTIME_SPRITES := {
 }
 
 const MINIMUM_OPAQUE_PIXELS := {
-	"res://assets/environment/sanctuary/landmarks/angel_expedition_portal_192x192.png": 7000,
+	"res://assets/environment/sanctuary/landmarks/generated/angel_expedition_portal_static_192x256.png": 7000,
+	"res://assets/environment/sanctuary/landmarks/generated/sanctuary_portal_energy_4x_44x112.png": 10000,
 	"res://assets/environment/sanctuary/landmarks/angel_expedition_portal_ground_192x192.png": 900,
 	"res://assets/environment/sanctuary/landmarks/divine_fountain_112x96.png": 3500,
 	"res://assets/environment/sanctuary/buildings/skillkeeper_lodge_128x192.png": 6000,
@@ -155,13 +157,14 @@ func _run() -> void:
 		if npc_collision.position != starting_collision_position:
 			_fail("Sanctuary NPC idle presentation moved gameplay collision: %s" % npc.name)
 			return
-	if altar.rune_orbit == null or altar.portal_glow == null:
-		_fail("The angel portal is missing its portal or rune idle presentation.")
-		return
 	var portal_ground := altar.get_node_or_null("GroundSprite") as Sprite2D
 	var portal_structure := altar.get_node_or_null("Sprite") as Sprite2D
-	if portal_ground == null or portal_structure == null:
-		_fail("The portal is missing its separate ground and Y-sorted structure layers.")
+	var portal_energy := altar.get_node_or_null("Sprite/Energy") as AnimatedSprite2D
+	if portal_ground == null or portal_structure == null or portal_energy == null:
+		_fail("The portal is missing its fixed structure, isolated energy animation, or ground layer.")
+		return
+	if not portal_energy.is_playing() or portal_energy.sprite_frames.get_frame_count("active") != 4:
+		_fail("The Sanctuary portal energy is not playing independently of its fixed angels.")
 		return
 	if portal_ground.z_index >= portal_structure.z_index or portal_structure.z_index != 0:
 		_fail("Portal stairs are not behind the player or the structure is not participating in Y-sort.")

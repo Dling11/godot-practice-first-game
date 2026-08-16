@@ -72,6 +72,7 @@ func _ready() -> void:
 	if weapon_inventory != null:
 		weapon_inventory.weapon_acquired.connect(_on_safe_profile_changed)
 		weapon_inventory.weapon_equipped.connect(_on_safe_profile_changed)
+	_restore_player_at_sanctuary()
 	combat_hud.bind_player(player)
 	combat_hud.character_menu_requested.connect(character_menu.open_menu)
 	skillkeeper.proximity_changed.connect(combat_hud.show_interaction_prompt)
@@ -92,6 +93,12 @@ func _ready() -> void:
 	expedition_menu.menu_closed.connect(expedition_altar.restore_prompt)
 	combat_hud.show_story_message("SANCTUARY OF THE REMEMBERED VEIL", 2.8)
 	_save_profile_at_sanctuary()
+
+
+func _restore_player_at_sanctuary() -> void:
+	## Sanctuary is a recovery checkpoint, including Continue. Heal before the
+	## safe-point write so a prior expedition's attrition is not re-saved on boot.
+	player.health_component.set_current_health(player.health_component.maximum_health)
 
 
 func _is_admin_enabled() -> bool:

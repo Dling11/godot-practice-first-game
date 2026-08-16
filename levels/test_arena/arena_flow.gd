@@ -1,5 +1,9 @@
 extends Node
 
+const ExpeditionDefeatReturnScript = preload(
+	"res://gameplay/expeditions/expedition_defeat_return.gd"
+)
+
 @export var player: Player
 @export var combat_hud: CombatHUD
 @export var character_menu: CharacterMenu
@@ -27,13 +31,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func restart_arena() -> void:
-	var loot_service := get_node_or_null("/root/LootService")
-	if loot_service != null:
-		loot_service.abort_expedition_rewards()
-	var run_session := get_node_or_null("/root/RunSession")
-	if run_session != null:
-		run_session.reset_run()
-	get_tree().reload_current_scene()
+	ExpeditionDefeatReturnScript.request(self)
 
 
 func _on_player_defeated() -> void:

@@ -13,18 +13,18 @@ This document records current production ownership. Detailed historical migratio
 
 - `PlayerInputSource` converts keyboard, mouse, and controller events into intent.
 - `PlayerCombatTargetingComponent` owns an optional living target, selection query, target signals, pursuit intent, and size-aware approach distance. It does not move or attack.
-- Right-click ground starts navigation movement and clears combat. Right-click enemy selects and engages.
-- A world left click first cancels navigation movement and optional automation. Single enemy click selects only; double click engages; empty ground requests a directional air swing.
+- Right click always starts navigation movement and clears target, pursuit, optional automation, and repeated-click state. WASD clears the same combat intent.
+- A world left click first cancels navigation movement and optional automation. One enemy click selects only; a repeated same-actor click inside the bounded time/position window engages; empty ground requests a directional air swing.
 - Selection queries enemy hurtboxes first, then the physical enemy `CharacterBody2D` footprint with an eight-pixel `CircleShape2D` assist.
 - Assisted approach stops at `player footprint + EnemyDefinition.movement_footprint_radius + padding`; the real `MeleeHitbox` remains the only normal-attack contact authority.
-- Held WASD overrides pursuit. Dash, restraints, targeted previews, and active/recovery commitments retain priority.
+- Held WASD cancels pursuit and selection. Dash, restraints, targeted previews, and active/recovery commitments retain priority.
 - `AutoCombatComponent` cycles living enemies and requests ordinary attacks/skills through the same Player APIs and cooldown rules. Manual world left-click or right-click ground disables it.
 
 ## Combat
 
 - `MeleeAttackComponent` owns wind-up, active, recovery, attack buffering boundary, and hitbox activation.
 - `AbilityComponent` and narrow King-specific subclasses own cast phases, target snapshots, movement requests, strike windows, invulnerability requests, and cooldowns.
-- `HealthComponent` accepts `DamageInfo`, resolves armor/control profile, and emits accepted results.
+- `HealthComponent` accepts `DamageInfo`, resolves armor/control profile, and emits accepted results. Long-lived projectiles validate their stored source before constructing damage so an already-freed shooter becomes `null` rather than an invalid typed Object.
 - `KnockbackComponent` and enemy controllers cooperate so each enemy remains its own movement authority. Light enemies flinch; abilities may stagger/stun; Elite/Boss resistance is data-owned.
 - `CombatFeedbackPresenter` observes accepted hits for flash, numbers, sparks, camera response, sound, and presentation-only hitstop.
 - King loads `data/weapons/king_signature_sword.tres` and `data/skills/king_starting_loadout.tres`: Echoing Sever, Riftbreak, Sovereign Pursuit, and Worldsplitter.
@@ -39,7 +39,7 @@ This document records current production ownership. Detailed historical migratio
 ## UI and Presentation
 
 - `CombatHUD` binds to player health/progression/actions and observes the current target. It owns no gameplay mutation beyond forwarding explicit button requests.
-- The enemy roster forwards target/auto requests and displays health/tier information.
+- The enemy roster forwards target/auto requests and displays health/tier information only after visible actors enter discovery range. `MarqueeLabel` clips/pads every name and animates only real overflow; a roster signature prevents quarter-second row reconstruction from restarting that presentation.
 - `CombatTargetMarker` uses the small selected chevron; `CombatFootAura` communicates footprint/tier.
 - `CursorService` owns normal, interactive, attack-target, and skill-confirm cursor presentation.
 - The six `AtlasTexture` action icons share `assets/ui/icons/combat/combat_action_atlas_bc_6x1_24.png` in fixed Skills 1-4, Basic Attack, Dodge/Dash order.
@@ -47,7 +47,7 @@ This document records current production ownership. Detailed historical migratio
 
 ## Sanctuary and Stages
 
-- `SanctuaryFlow` composes dialogue, expedition selection, Character & Bag, Eira's skill information, Orren dialogue, and Nema's read-only Rootforge.
+- `SanctuaryFlow` composes dialogue, expedition selection, Character & Bag, Eira's skill information, Orren dialogue, and Nema's read-only Rootforge. It restores King to current maximum health before writing the Sanctuary safe point.
 - The retired weapon shop and skill-awakening transaction are not runtime dependencies.
 - Stage flows own dialogue gates, wave completion, reward/chest milestones, and transitions. They delegate reward calculation to loot services and persistence to save authorities.
 - Authored `TileMapLayer` data and environment scenes own collision/navigation/occlusion; runtime-random terrain generation is not production authority.
@@ -69,7 +69,9 @@ This document records current production ownership. Detailed historical migratio
 ## Verification
 
 - Active `tests/*_smoke.gd` scripts are the executable structural contract.
-- `assisted_combat_targeting_smoke.gd` covers movement cancellation, single selection, double-click engagement, footprint picking, size-aware approach, a landed melee hit, and manual override.
+- `assisted_combat_targeting_smoke.gd` covers movement cancellation, single selection, repeated-click engagement, footprint picking, size-aware approach, a landed melee hit, and manual override.
+- `ExpeditionDefeatReturn` owns production defeat exit: abort uncommitted loot, preserve `RunSession`, and request Sanctuary through `SceneTransition`; `expedition_defeat_return_smoke.gd` verifies the real transition and progression boundary.
+- `StagePortal` owns proximity, generated eight-frame vortex presentation, tier styling, local and screen-edge guidance, travel audio, and player pull/fade before delegating scene replacement to `SceneTransition`. The transition autoload owns the blocking vortex-backed loading veil.
 - `auto_combat_smoke.gd` covers target cycling and real skill/cooldown use.
 - `runtime_archive_boundary_smoke.gd` guards the archive/runtime boundary.
 - Run all active smoke scripts after cross-system cleanup; do not retain documentation references to tests moved into an archive.

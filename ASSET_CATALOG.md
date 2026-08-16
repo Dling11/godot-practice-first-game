@@ -31,6 +31,8 @@ This catalog records active asset families and lifecycle boundaries. Exact runti
 - Authored layouts: `data/environment/layouts/`.
 - Sanctuary structures/NPC presentation: `assets/environment/sanctuary/` and `assets/characters/npcs/`.
 - Stage V decay terrain and props: `assets/environment/forest/stage_5/`.
+- Generated Sanctuary gate: fixed `assets/environment/sanctuary/landmarks/generated/angel_expedition_portal_static_192x256.png` plus isolated `sanctuary_portal_energy_4x_44x112.png` (`4x1`, 44x112 cells).
+- Generated stage-exit vortex: `assets/environment/portals/generated/stage_vortex_portal_8x_128x96.png` (`8x1`, 128x96 cells); runtime tier data supplies superiority tint, scale, and speed.
 - Environment scenes must pair presentation with authored collision, navigation, depth, and occlusion where applicable.
 
 ## Items and Loot

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3]
+[gd_scene load_steps=36 format=3]
 
 [ext_resource type="Script" path="res://levels/stage_5/stage_5_flow.gd" id="1_flow"]
 [ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="2_player"]
@@ -26,7 +26,6 @@
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/player_ability_hit.ogg" id="24_ability_hit"]
 [ext_resource type="Script" path="res://entities/enemies/stage_5_boss/stage_5_boss_landing_feedback.gd" id="25_landing"]
 [ext_resource type="Script" path="res://gameplay/audio/stage_music.gd" id="26_music"]
-[ext_resource type="AudioStream" path="res://assets/audio/music/cathedral_in_the_forest.ogg" id="27_music_stream"]
 [ext_resource type="PackedScene" path="res://ui/dialogue/dialogue_panel.tscn" id="28_dialogue"]
 [ext_resource type="Texture2D" path="res://assets/characters/enemies/portraits/stage_5_boss_portrait_96x96.png" id="29_portrait"]
 [ext_resource type="AudioStream" path="res://assets/audio/music/boss/varkuun_battle_rpg_theme_loop.ogg" id="30_boss_music"]
@@ -205,7 +204,6 @@ navigation_agent_radius = 18.0
 
 [node name="StageMusic" type="Node" parent="."]
 script = ExtResource("26_music")
-music_stream = ExtResource("27_music_stream")
 
 [node name="Services" type="Node" parent="."]
 

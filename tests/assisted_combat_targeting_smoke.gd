@@ -57,6 +57,12 @@ func _run() -> void:
 	if player.velocity.x >= 0.0:
 		_fail("Manual WASD did not override assisted pursuit while held.")
 		return
+	if player.combat_targeting.has_valid_target() or player.combat_targeting.auto_attack_enabled:
+		_fail("Manual WASD did not cancel selection and assisted combat intent.")
+		return
+	if not player.combat_targeting.select_hurtbox(first_hurtbox, true):
+		_fail("The first target could not be re-engaged after manual movement.")
+		return
 
 	player.global_position = Vector2(220.0, 100.0)
 	player.velocity = Vector2.ZERO
@@ -126,8 +132,8 @@ func _run() -> void:
 	if player.combat_targeting.target_actor != first or player.combat_targeting.auto_attack_enabled:
 		_fail("A single enemy left click did not remain selected-but-idle.")
 		return
-	if not player.request_world_primary_click(footprint_pick, true):
-		_fail("A double left click could not engage the selected enemy.")
+	if not player.request_world_primary_click(footprint_pick):
+		_fail("A repeated left click could not engage the selected enemy.")
 		return
 	if not player.combat_targeting.auto_attack_enabled:
 		_fail("A double enemy left click did not enable approach-and-attack.")

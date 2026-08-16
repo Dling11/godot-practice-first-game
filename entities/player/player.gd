@@ -20,6 +20,8 @@ signal auto_combat_changed(auto_farm_enabled: bool, auto_skills_enabled: bool)
 enum BufferedAction { NONE, PRIMARY_ATTACK, EVADE, ABILITY }
 
 const ACTION_BUFFER_WINDOW_SECONDS := 0.8
+const PRIMARY_CLICK_ENGAGE_WINDOW_MSEC := 520
+const PRIMARY_CLICK_REPEAT_RADIUS := 14.0
 
 const PlayerInputSourceScript = preload("res://entities/player/components/player_input_source.gd")
 const PlayerMovementComponentScript = preload("res://entities/player/components/player_movement_component.gd")
@@ -66,6 +68,9 @@ var _debug_unlimited_skills := false
 var _restraint_source: Node
 var _restraint_break_points := 0
 var _restraint_total_break_points := 0
+var _last_primary_target_id := 0
+var _last_primary_click_msec := -PRIMARY_CLICK_ENGAGE_WINDOW_MSEC
+var _last_primary_click_world_position := Vector2.ZERO
 
 
 func _ready() -> void:
@@ -136,7 +141,7 @@ func _physics_process(delta: float) -> void:
 	if ground_point_targeting.is_targeting():
 		ground_point_targeting.update_aim(get_global_mouse_position(), input_source.get_aim_direction())
 	if not manual_move_direction.is_zero_approx() and not is_restrained():
-		combat_targeting.cancel_click_move()
+		_cancel_combat_intent_for_manual_movement()
 	if not move_direction.is_zero_approx() and not is_restrained():
 		_set_movement_facing_direction(move_direction)
 	elif combat_targeting.has_valid_target() and not is_restrained():
@@ -213,9 +218,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-		if not combat_targeting.select_at_world_position(get_global_mouse_position(), true):
-			auto_combat.set_auto_farm_enabled(false)
-			combat_targeting.request_click_move(get_global_mouse_position())
+		auto_combat.set_auto_farm_enabled(false)
+		_clear_primary_click_sequence()
+		combat_targeting.request_click_move(get_global_mouse_position())
 		get_viewport().set_input_as_handled()
 		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -351,16 +356,60 @@ func request_directional_primary_attack(world_position: Vector2) -> bool:
 	return request_primary_attack()
 
 
-func request_world_primary_click(world_position: Vector2, engage_target := false) -> bool:
+func request_world_primary_click(world_position: Vector2, native_multi_click := false) -> bool:
 	## World left click is manual authority. End both ground movement and
 	## assisted pursuit before either selecting an enemy or swinging at air.
-	## One enemy click selects only; a double click explicitly engages it.
+	## One enemy click selects only; repeated clicks on that same enemy engage.
 	auto_combat.set_auto_farm_enabled(false)
 	combat_targeting.cancel_click_move()
 	combat_targeting.suspend_auto_attack()
-	if combat_targeting.select_at_world_position(world_position, engage_target):
+	if combat_targeting.select_at_world_position(world_position, false):
+		var selected_actor := combat_targeting.target_actor
+		var selected_id := selected_actor.get_instance_id() if is_instance_valid(selected_actor) else 0
+		var now_msec := Time.get_ticks_msec()
+		var is_repeated_target_click := (
+			selected_id != 0
+			and selected_id == _last_primary_target_id
+			and now_msec - _last_primary_click_msec <= PRIMARY_CLICK_ENGAGE_WINDOW_MSEC
+			and world_position.distance_to(_last_primary_click_world_position)
+			<= PRIMARY_CLICK_REPEAT_RADIUS
+		)
+		_last_primary_target_id = selected_id
+		_last_primary_click_msec = now_msec
+		_last_primary_click_world_position = world_position
+		if native_multi_click or is_repeated_target_click:
+			combat_targeting.resume_auto_attack()
 		return true
+	_clear_primary_click_sequence()
 	return request_directional_primary_attack(world_position)
+
+
+func request_roster_target(hurtbox: HurtboxComponent, engage := false) -> bool:
+	## Roster interaction follows the same select-first, engage-on-repeat rule as
+	## world clicks without pretending the UI click has a world-space position.
+	auto_combat.set_auto_farm_enabled(false)
+	combat_targeting.cancel_click_move()
+	combat_targeting.suspend_auto_attack()
+	if not combat_targeting.select_hurtbox(hurtbox, false):
+		return false
+	if engage:
+		return combat_targeting.resume_auto_attack()
+	return true
+
+
+func _cancel_combat_intent_for_manual_movement() -> void:
+	## WASD and right-click movement are explicit authority changes. Selection,
+	## pursuit, and automation must not survive behind that movement command.
+	auto_combat.set_auto_farm_enabled(false)
+	combat_targeting.cancel_click_move()
+	combat_targeting.clear_target()
+	_clear_primary_click_sequence()
+
+
+func _clear_primary_click_sequence() -> void:
+	_last_primary_target_id = 0
+	_last_primary_click_msec = -PRIMARY_CLICK_ENGAGE_WINDOW_MSEC
+	_last_primary_click_world_position = Vector2.ZERO
 
 
 func request_assisted_primary_attack() -> bool:

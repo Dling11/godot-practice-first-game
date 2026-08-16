@@ -101,6 +101,22 @@ func _run() -> void:
 	if not impact_seen.value:
 		_fail("Bramble seed did not create its impact feedback.")
 		return
+
+	# A fired seed must remain valid after Skill 4 or another attack frees its
+	# shooter. The impact becomes source-less instead of passing a freed Object
+	# into DamageInfo's typed constructor.
+	var freed_source := Node2D.new()
+	root.add_child(freed_source)
+	var orphaned_projectile := spitter.projectile_scene.instantiate() as HostileProjectile
+	projectiles.add_child(orphaned_projectile)
+	orphaned_projectile.launch(Vector2.RIGHT, 3.0, freed_source)
+	freed_source.queue_free()
+	await process_frame
+	var health_before_orphaned_hit := player_health.current_health
+	orphaned_projectile._on_area_entered(player.get_node("Hurtbox") as HurtboxComponent)
+	if not is_equal_approx(player_health.current_health, health_before_orphaned_hit - 3.0):
+		_fail("A projectile whose shooter was freed did not resolve safely.")
+		return
 	print("Bramble Spitter smoke test passed.")
 	quit(0)
 

@@ -118,6 +118,7 @@ portal_scene = ExtResource("17_portal")
 portal_parent = NodePath("../../World/Effects")
 portal_spawn_point = NodePath("../../SpawnPoints/StageExit")
 portal_target_scene = "res://levels/stage_4/stage_4.tscn"
+portal_tier = 1
 completion_reward_mode = 1
 reward_chest_scene = ExtResource("35_reward_chest")
 stage_loot_table = ExtResource("36_stage_loot")

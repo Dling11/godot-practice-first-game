@@ -1,37 +1,105 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=15 format=3]
 
-[ext_resource type="Script" path="res://gameplay/encounters/stage_portal.gd" id="1"]
+[ext_resource type="Script" path="res://gameplay/encounters/stage_portal.gd" id="1_script"]
 [ext_resource type="Texture2D" path="res://assets/ui/icons/interactions/icon_interaction_portal_16x16.png" id="2_portal_icon"]
+[ext_resource type="Texture2D" path="res://assets/environment/portals/generated/stage_vortex_portal_8x_128x96.png" id="3_sheet"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/abilities/king/sovereign_pursuit_launch.wav" id="4_travel_sound"]
 
-[sub_resource type="CircleShape2D" id="trigger"]
+[sub_resource type="AtlasTexture" id="Frame1"]
+atlas = ExtResource("3_sheet")
+region = Rect2(0, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="Frame2"]
+atlas = ExtResource("3_sheet")
+region = Rect2(128, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="Frame3"]
+atlas = ExtResource("3_sheet")
+region = Rect2(256, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="Frame4"]
+atlas = ExtResource("3_sheet")
+region = Rect2(384, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="Frame5"]
+atlas = ExtResource("3_sheet")
+region = Rect2(512, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="Frame6"]
+atlas = ExtResource("3_sheet")
+region = Rect2(640, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="Frame7"]
+atlas = ExtResource("3_sheet")
+region = Rect2(768, 0, 128, 96)
+
+[sub_resource type="AtlasTexture" id="Frame8"]
+atlas = ExtResource("3_sheet")
+region = Rect2(896, 0, 128, 96)
+
+[sub_resource type="SpriteFrames" id="PortalFrames"]
+animations = [{
+"frames": [{"duration": 1.0, "texture": SubResource("Frame1")}, {"duration": 1.0, "texture": SubResource("Frame2")}, {"duration": 1.0, "texture": SubResource("Frame3")}, {"duration": 1.0, "texture": SubResource("Frame4")}, {"duration": 1.0, "texture": SubResource("Frame5")}, {"duration": 1.0, "texture": SubResource("Frame6")}, {"duration": 1.0, "texture": SubResource("Frame7")}, {"duration": 1.0, "texture": SubResource("Frame8")}],
+"loop": true,
+"name": &"active",
+"speed": 7.0
+}]
+
+[sub_resource type="CircleShape2D" id="TriggerShape"]
 radius = 52.0
 
-[node name="StagePortal" type="Area2D" node_paths=PackedStringArray("rings", "ground_glow")]
+[node name="StagePortal" type="Area2D" node_paths=PackedStringArray("portal_visual", "guidance_arrow", "offscreen_guide", "travel_sound")]
 collision_layer = 0
 collision_mask = 2
 monitoring = true
-script = ExtResource("1")
-rings = NodePath("Rings")
-ground_glow = NodePath("GroundGlow")
+script = ExtResource("1_script")
+portal_visual = NodePath("PortalVisual")
+guidance_arrow = NodePath("GuidanceArrow")
+offscreen_guide = NodePath("PortalGuideLayer/OffscreenGuide")
+travel_sound = NodePath("TravelSound")
 interaction_icon = ExtResource("2_portal_icon")
 
-[node name="GroundGlow" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-22, 0, -16, -10, 0, -14, 16, -10, 22, 0, 16, 10, 0, 14, -16, 10)
-color = Color(0.24, 0.12, 0.5, 0.42)
-z_index = -1
+[node name="PortalVisual" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -24)
+sprite_frames = SubResource("PortalFrames")
+animation = &"active"
+autoplay = "active"
 
-[node name="Rings" type="Node2D" parent="."]
+[node name="GuidanceArrow" type="Label" parent="."]
+z_index = 2
+offset_left = -10.0
+offset_top = -105.0
+offset_right = 10.0
+offset_bottom = -81.0
+text = "▼"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.95, 0.8, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.12, 0.02, 0.2, 0.9)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 18
 
-[node name="Outer" type="Line2D" parent="Rings"]
-points = PackedVector2Array(20, 0, 14, 14, 0, 20, -14, 14, -20, 0, -14, -14, 0, -20, 14, -14, 20, 0)
-width = 3.0
-default_color = Color(0.62, 0.36, 0.92, 0.9)
+[node name="PortalGuideLayer" type="CanvasLayer" parent="."]
+layer = 12
 
-[node name="Inner" type="Line2D" parent="Rings"]
-rotation = 0.392699
-points = PackedVector2Array(12, 0, 8, 8, 0, 12, -8, 8, -12, 0, -8, -8, 0, -12, 8, -8, 12, 0)
-width = 2.0
-default_color = Color(0.75, 0.65, 1, 0.9)
+[node name="OffscreenGuide" type="Label" parent="PortalGuideLayer"]
+visible = false
+offset_right = 28.0
+offset_bottom = 28.0
+text = "➤"
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_colors/font_color = Color(0.72, 0.66, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.05, 0.01, 0.12, 0.95)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 22
+
+[node name="TravelSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_travel_sound")
+volume_db = -8.0
+bus = &"SFX"
 
 [node name="Trigger" type="CollisionShape2D" parent="."]
-shape = SubResource("trigger")
+position = Vector2(0, -18)
+shape = SubResource("TriggerShape")

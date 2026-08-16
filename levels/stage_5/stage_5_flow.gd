@@ -2,6 +2,9 @@ extends Node
 
 const PortalScene = preload("res://gameplay/encounters/stage_portal.tscn")
 const RewardChestScene = preload("res://gameplay/loot/stage_reward_chest.tscn")
+const ExpeditionDefeatReturnScript = preload(
+	"res://gameplay/expeditions/expedition_defeat_return.gd"
+)
 
 @export var player: Player
 @export var boss: Stage5Boss
@@ -195,6 +198,7 @@ func _on_reward_claimed(_result: Dictionary) -> void:
 func _spawn_return_portal() -> void:
 	var portal := PortalScene.instantiate() as StagePortal
 	portal.target_scene_path = "res://levels/sanctuary/sanctuary.tscn"
+	portal.portal_tier = StagePortal.PortalTier.BOSS
 	portal_parent.add_child(portal)
 	portal.global_position = _boss_defeat_position
 	portal.proximity_changed.connect(combat_hud.show_interaction_prompt)
@@ -203,13 +207,7 @@ func _spawn_return_portal() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not _restart_enabled or not event.is_action_pressed("arena_restart"):
 		return
-	var loot_service := get_node_or_null("/root/LootService")
-	if loot_service != null:
-		loot_service.abort_expedition_rewards()
-	var run_session := get_node_or_null("/root/RunSession")
-	if run_session != null:
-		run_session.reset_run()
-	get_tree().reload_current_scene()
+	ExpeditionDefeatReturnScript.request(self)
 
 
 func _on_player_defeated() -> void:

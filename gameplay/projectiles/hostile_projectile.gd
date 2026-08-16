@@ -43,7 +43,11 @@ func _on_area_entered(area: Area2D) -> void:
 	if not area is HurtboxComponent:
 		return
 	var hurtbox := area as HurtboxComponent
-	if hurtbox.receive_hit(DamageInfo.new(_damage, _source, _direction, knockback_strength)):
+	## A ranged attacker may die while its already-fired projectile remains in
+	## flight. Never pass that previously-freed Object through DamageInfo's typed
+	## source parameter; the hit remains valid but becomes source-less.
+	var valid_source: Node = _source if is_instance_valid(_source) else null
+	if hurtbox.receive_hit(DamageInfo.new(_damage, valid_source, _direction, knockback_strength)):
 		_resolve_impact()
 
 

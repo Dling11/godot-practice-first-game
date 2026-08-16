@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-08-16 - Movement Authority, Concealed Roster, and Portal Return
+
+- Accepted Decisions 114-115: right-click/WASD movement now clears combat intent; one left click selects, a repeated same-enemy click engages, and empty-world left click remains a directional basic attack. Roster rows follow the same mouse contract.
+- Concealed invisible/distant roster entries until discovery, added stable signature-based refresh, and introduced a clipped padded marquee that animates only overflowing enemy names. Removed all remaining right-click-to-engage wording.
+- Corrected portal presentation after owner review: Sanctuary now keeps one generated angel/masonry frame absolutely fixed and animates only a cropped inner-energy layer. Stage exits are architecture-free eight-frame ground vortices with Normal, Mini Boss, Boss, God, and Transcendent presentation tiers, a local arrow, a screen-edge direction pointer when distant, travel sound, King pull/fade, and a vortex-backed loading veil.
+- Changed production defeat confirmation to abort uncommitted expedition loot and return to Sanctuary without resetting XP or coins. Stage V's approach is now silent until Varkuun's dedicated music begins. Recorded healing potions, buffs, and a possible rare revive as future utility-item design only.
+- Added/updated focused coverage for repeated-click engagement, movement cancellation, generated portal presentation, real defeat-to-Sanctuary progression preservation, Sanctuary animation, and the existing projectile/Hog/recovery fixes.
+
+## 2026-08-16 - Sanctuary Recovery and Combat Lifetime Safety
+
+- Accepted Decision 113: entering Sanctuary, including through Continue, restores King to his current maximum health before the safe-point save. The reported profile was verified at 81.7 HP, confirming the old behavior was restoration rather than unexplained startup damage.
+- Fixed Bramble Spitter seeds retaining a freed shooter after Skill 4 or another kill: projectile impact now validates the stored source and safely creates source-less damage when that actor no longer exists.
+- Preserved Armored Hog threat under repeated basic attacks: once BRACE begins, basic-hit stagger can no longer cancel the committed warning/charge. Frontal mitigation, damage feedback, and the post-crash DAZED punish window remain intact.
+- Added focused regressions for Sanctuary/Continue full recovery, a projectile impacting after its shooter is freed, committed Hog charge under incoming normal stagger, Skill 4, loot resolution, and combat feedback.
+
 ## 2026-08-16 - Manual Left-Click Authority and Runtime Cleanup Verification
 
 - Accepted Decision 112: any world left click now cancels right-click navigation and optional automation before resolving combat intent. A single enemy click selects/highlights without pursuit, a native double click engages, and empty ground performs a directional air swing.

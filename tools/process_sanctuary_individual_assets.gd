@@ -7,15 +7,6 @@ const CLEAR := Color(0, 0, 0, 0)
 const VOID_INK := Color("090b10")
 
 const ASSET_SPECS := {
-	"portal": {
-		"source": "res://art_source/generated/environment/sanctuary/portal/angel_expedition_portal_source.png",
-		"clean": "res://art_source/generated/environment/sanctuary/portal/angel_expedition_portal_clean.png",
-		"runtime": "res://assets/environment/sanctuary/landmarks/angel_expedition_portal_192x192.png",
-		"ground_runtime": "res://assets/environment/sanctuary/landmarks/angel_expedition_portal_ground_192x192.png",
-		"canvas": Vector2i(192, 192),
-		"content": Vector2i(186, 186),
-		"bottom_margin": 2,
-	},
 	"fountain": {
 		"source": "res://art_source/generated/environment/sanctuary/fountain/divine_fountain_source.png",
 		"clean": "res://art_source/generated/environment/sanctuary/fountain/divine_fountain_clean.png",
@@ -96,35 +87,12 @@ func _initialize() -> void:
 			spec.content as Vector2i,
 			int(spec.bottom_margin)
 		)
-		if asset_name == "portal":
-			var portal_layers := _split_portal_layers(runtime)
-			if not _save(portal_layers.ground as Image, String(spec.ground_runtime)):
-				return
-			runtime = portal_layers.structure as Image
 		if bool(spec.get("sheet", false)):
 			runtime = _build_npc_idle_sheet(runtime, String(spec.get("pulse", "ember")))
 		if not _save(runtime, String(spec.runtime)):
 			return
 	print("Processed %d standalone Sanctuary assets." % ASSET_SPECS.size())
 	quit(0)
-
-
-func _split_portal_layers(portal: Image) -> Dictionary:
-	# The broad center stairs are ground-plane art. The arch, guardians, and
-	# doorway remain one Y-sorted structure, preserving the exact combined image
-	# while allowing actors to pass in front or behind at the correct baseline.
-	var structure := portal.duplicate()
-	var ground := _new_image(portal.get_size())
-	for y in portal.get_height():
-		for x in portal.get_width():
-			if y < 133 or x < 45 or x > 146:
-				continue
-			ground.set_pixel(x, y, portal.get_pixel(x, y))
-			structure.set_pixel(x, y, CLEAR)
-	return {
-		"structure": structure,
-		"ground": ground,
-	}
 
 
 func _remove_chroma_background(image: Image) -> void:

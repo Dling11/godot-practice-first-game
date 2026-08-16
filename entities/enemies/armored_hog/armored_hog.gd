@@ -189,7 +189,10 @@ func _apply_knockback() -> void:
 
 
 func _on_stagger_started(duration_seconds: float) -> void:
-	if state in [State.DEAD, State.SPAWNING, State.CHARGE]:
+	## Once the warning lane appears, the charge is committed. Repeated basic
+	## hits may still deal guarded damage and show hurt feedback, but cannot keep
+	## restarting the wind-up forever. The intended punish window remains DAZED.
+	if state in [State.DEAD, State.SPAWNING, State.BRACE, State.CHARGE]:
 		return
 	attack_hitbox.deactivate()
 	_enter(State.STAGGER, duration_seconds)
