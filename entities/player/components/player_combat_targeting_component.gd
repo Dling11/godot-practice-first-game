@@ -9,9 +9,10 @@ signal target_health_changed(current: float, maximum: float)
 signal click_move_changed(world_position: Vector2, active: bool)
 
 const ENEMY_HURTBOX_MASK := 1 << 4
-const ATTACK_DISTANCE_PADDING := 4.0
+const ENEMY_FOOTPRINT_MASK := 1 << 2
+const PLAYER_FOOTPRINT_RADIUS := 6.0
+const ATTACK_APPROACH_PADDING := 8.0
 const TARGET_REPATH_SECONDS := 0.12
-const RAPID_ENGAGE_WINDOW_MSEC := 420
 
 @export var player: Player
 @export var navigation_agent: NavigationAgent2D
@@ -24,8 +25,6 @@ var _target_hurtbox: HurtboxComponent
 var _repath_remaining := 0.0
 var _click_move_target := Vector2.ZERO
 var _click_move_active := false
-var _last_world_selected_actor: Node2D
-var _last_world_selection_msec := -RAPID_ENGAGE_WINDOW_MSEC
 
 
 func _ready() -> void:
@@ -36,8 +35,9 @@ func _ready() -> void:
 func select_at_world_position(world_position: Vector2, enable_assistance := false) -> bool:
 	if player == null or not player.is_inside_tree():
 		return false
-	## An eight-pixel pick radius keeps small pixel enemies comfortable to click
-	## without allowing a nearby crowd member to replace the closest candidate.
+	## The point query reaches both the authored hurtbox and the physical foot
+	## circle. This lets the player click the readable underfoot aura without
+	## making that presentation node damage authority.
 	var pick_shape := CircleShape2D.new()
 	pick_shape.radius = 8.0
 	var query := PhysicsShapeQueryParameters2D.new()
@@ -58,16 +58,21 @@ func select_at_world_position(world_position: Vector2, enable_assistance := fals
 			best_distance = distance
 			best_hurtbox = hurtbox
 	if best_hurtbox == null:
+		query.collision_mask = ENEMY_FOOTPRINT_MASK
+		query.collide_with_areas = false
+		query.collide_with_bodies = true
+		for result: Dictionary in player.get_world_2d().direct_space_state.intersect_shape(query, 16):
+			var actor := result.get("collider") as Node2D
+			var footprint_hurtbox := _get_actor_hurtbox(actor)
+			if not _is_selectable_hurtbox(footprint_hurtbox):
+				continue
+			var footprint_distance := actor.global_position.distance_squared_to(world_position)
+			if footprint_distance < best_distance:
+				best_distance = footprint_distance
+				best_hurtbox = footprint_hurtbox
+	if best_hurtbox == null:
 		return false
-	var selected_actor := best_hurtbox.get_parent() as Node2D
-	var selection_msec := Time.get_ticks_msec()
-	var rapid_reselection := (
-		selected_actor == _last_world_selected_actor
-		and selection_msec - _last_world_selection_msec <= RAPID_ENGAGE_WINDOW_MSEC
-	)
-	_last_world_selected_actor = selected_actor
-	_last_world_selection_msec = selection_msec
-	return select_hurtbox(best_hurtbox, enable_assistance or rapid_reselection)
+	return select_hurtbox(best_hurtbox, enable_assistance)
 
 
 func select_hurtbox(hurtbox: HurtboxComponent, enable_assistance := false) -> bool:
@@ -169,8 +174,6 @@ func engage_next_roster_target() -> bool:
 
 
 func clear_target() -> void:
-	_last_world_selected_actor = null
-	_last_world_selection_msec = -RAPID_ENGAGE_WINDOW_MSEC
 	if target_actor == null and target_health == null:
 		return
 	_disconnect_target()
@@ -204,7 +207,7 @@ func get_assisted_move_direction(delta: float) -> Vector2:
 		return Vector2.ZERO
 	_repath_remaining -= delta
 	if _repath_remaining <= 0.0:
-		navigation_agent.target_desired_distance = 38.0
+		navigation_agent.target_desired_distance = get_target_approach_distance()
 		navigation_agent.target_position = target_actor.global_position
 		_repath_remaining = TARGET_REPATH_SECONDS
 	var steering := navigation_agent.get_next_path_position() - player.global_position
@@ -216,8 +219,14 @@ func get_assisted_move_direction(delta: float) -> Vector2:
 func is_target_in_attack_range() -> bool:
 	if not has_valid_target() or player.attack_component.weapon == null:
 		return false
-	var reach := player.attack_component.weapon.get_melee_forward_reach_pixels()
-	return player.global_position.distance_to(target_actor.global_position) <= reach + ATTACK_DISTANCE_PADDING
+	## Assisted attacks stop on the readable foot-circle boundary, then rely on
+	## the real melee hitbox for damage. This avoids centre-distance hovering on
+	## large actors and makes approach range match the visible footprint.
+	return player.global_position.distance_to(target_actor.global_position) <= get_target_approach_distance()
+
+
+func get_target_approach_distance() -> float:
+	return PLAYER_FOOTPRINT_RADIUS + _get_target_footprint_radius() + ATTACK_APPROACH_PADDING
 
 
 func is_target_within_assist_radius() -> bool:
@@ -280,6 +289,21 @@ func _is_selectable_hurtbox(hurtbox: HurtboxComponent) -> bool:
 		and hurtbox.health_component.current_health > 0.0
 		and hurtbox.get_parent() is Node2D
 	)
+
+
+func _get_actor_hurtbox(actor: Node2D) -> HurtboxComponent:
+	if actor == null:
+		return null
+	return actor.get_node_or_null("Hurtbox") as HurtboxComponent
+
+
+func _get_target_footprint_radius() -> float:
+	if not is_instance_valid(target_actor):
+		return PLAYER_FOOTPRINT_RADIUS
+	var definition: Variant = target_actor.get("definition")
+	if definition is EnemyDefinition:
+		return maxf((definition as EnemyDefinition).movement_footprint_radius, 2.0)
+	return PLAYER_FOOTPRINT_RADIUS
 
 
 func _resolve_display_name(actor: Node) -> String:

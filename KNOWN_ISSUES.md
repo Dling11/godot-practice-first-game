@@ -1,105 +1,63 @@
 # Known Issues
 
-- Sovereign Pursuit's jump motion is owner-approved. Owner playtesting found and resolved a moving Riftbreak crater, inconsistent Pursuit ground anchoring, and a visually weak travel phase. Both residues are world-locked; Pursuit's ground frames share one foot-contact baseline; a separate open-center power sheath follows King during the hop; and landing adds a brief shockwave before the debris/crater. The revised scale and feel still await owner approval; authority values remain unchanged.
-
-This file tracks confirmed limitations, unresolved risks, and decisions blocking implementation. Remove resolved entries and record their resolution in `CHANGELOG.md` or `DECISIONS.md` as appropriate.
+This file tracks current limitations only. Resolved and retired systems belong in `CHANGELOG.md` and the decision records.
 
 ## Current Limitations
 
-### KI-017 - Refined click-combat and footprint auras need owner feel approval
+### KI-017 - Click combat and footprint approach need owner feel approval
 
 - **Status:** Open.
-- **Progress:** Decisions 105-110 structurally verify pointer-direction left-click attacks, contextual right-click ground movement/enemy engagement, navigation-direction facing, right-click/`Esc` skill cancellation, a far-right icon-backed Attack after Skills `1`-`4`, optional roster-wide Auto/Auto Skill, restrained target chevrons, four-arrow move feedback, tier-aware oval auras, B+C native 24x24 King skill icons, and the taller top-right roster. Decision 109's realistic skill art is rejected; its generated cursor experiment remains installed but unapproved.
-- **Impact:** Headless tests cannot decide whether the aura opacity/motion, roster density, B+C skill silhouettes, generated cursor detail at runtime scale, chevron scale, contextual right-click behavior, or far-right Attack placement feels best in a full Stage 4 crowd.
-- **Planned resolution:** Owner-play the normal D: project at 960x540 and tune presentation values only from observed readability; preserve the separated selection, explicit engagement, and free-swing authority unless the controls themselves fail.
+- **Verified:** Automated coverage proves right-click movement/engagement, left-click movement cancellation, single-click enemy selection, double-click engagement, physical foot-circle picking, size-aware approach, a real landed melee hit, manual WASD override, target cleanup, and optional auto-skill/target cycling.
+- **Risk:** Headless tests cannot judge double-click comfort, dense-crowd selection, obstacle pursuit, moving-target jitter, aura prominence, or whether the eight-pixel combat gap feels too close for every enemy tier.
+- **Next:** Play Stages IV/V at 960x540 against normal, Elite, and Boss targets. Tune the one approach-padding/navigation contract from observed failures; do not add another movement authority.
 
-### KI-016 - Armored Hog crowd feel needs owner playtesting
+### KI-016 - Armored Hog and eight-enemy crowd feel need owner playtesting
 
 - **Status:** Open.
-- **Progress:** Structural tests validate the committed charge lane, frontal guard, rear full damage, daze, all animation families, audio resources, protected drops, and one/two-Hog Stage 4 composition.
-- **Impact:** Headless verification cannot judge final warning visibility, boar-vocal volume, hoof rhythm, collision feel, or whether two simultaneous lanes remain comfortable in a full eight-enemy field.
-- **Planned resolution:** Play Stage 4 with sound enabled and tune presentation volumes/timings or Hog count only from observed gameplay; keep the approved anatomy and dodge/punish authority intact unless the mechanic itself fails.
+- **Verified:** Charge lane, frontal guard, rear damage, daze, animation/audio resources, protected drops, and Stage IV composition pass structural tests.
+- **Risk:** Warning visibility, simultaneous charge readability, collision feel, and peak frame time remain human/performance questions.
 
-### KI-015 - Ultimate and Reality Breaking are reserved presentation tiers only
+### KI-015 - Ultimate and Reality Breaking are reserved UI tiers only
 
 - **Status:** Planned.
-- **Progress:** The Character menu names and visibly locks both tiers after the four active skills.
-- **Impact:** Neither tier currently has gameplay authority, input, animation, balance, unlock, or persistence. Reality Breaking is reserved as a stronger finisher tier beyond Ultimate, not a synonym.
-- **Planned resolution:** Design each tier separately after Stage 4 direction and King's core four-skill feel are stable.
+- **Impact:** Neither tier has an input, ability, cooldown, animation, balance, unlock, or save authority. Reality Breaking is a distinct future finisher tier, not Skill 4.
 
-### KI-014 - King is the temporary active proof; roster combat is incomplete
+### KI-014 - King still has presentation and combat-feel gaps
 
-- **Status:** Open
-- **Progress:** Decisions 077-082 temporarily make King the live player with tested locomotion, basic slash, and four playable skills. His approved two-pixel down-facing eyes remain intact; only the idle fringe pixel that extended into the left eye is deterministically corrected, with no atlas/anchor changes. Decision 101 finalizes the ten-position Gear presentation and implements Stage V non-weapon ownership, equipping, aggregation, and persistence. Skill 4 proves separate eight-frame generated sword and ground sequences, two authoritative radii/damage windows, original audio, corrected shared impact anchoring, and world-locked residue. Opaw remains a complete explicitly tested bench package.
-- **Impact:** King still lacks real tap/hold combo authority, dedicated dash/hurt/interact/defeat sheets, roster selection, accessory outputs, and per-character progression beyond current equipment choices. A unique Skill 1/4 body sheet and heavier camera/hitstop treatment remain optional polish rather than active blockers.
-- **Planned resolution:** Feel-test Skill 4 against normal waves and the Rootbound Husk, then tune its commitment, damage, and cooldown before expanding King's combo/roster systems.
-- **Workaround:** Use the current exact-grid eight-frame sword and eight-frame ground sequences while judging mechanics; Opaw remains recoverable through preserved resources and explicit regression setup.
+- **Status:** Open.
+- **Implemented:** King is the sole production player with locomotion, basic attack, dash/backstep aliases, hurt/defeat presentation, signature sword, four active skills, equipment, progression, and persistence.
+- **Remaining:** Owner approval of the generated cursor/action atlas, optional dedicated action families where aliases read weakly, normal-attack timing/variety, and full-kit balance against late crowds and bosses.
 
-### KI-013 - Forest crafting transactions and replay Hunts are not implemented
+### KI-013 - Crafting transactions and Hunts are not implemented
 
-- **Status:** Open
-- **Progress:** Segments 1-4 plus Decisions 097 and 101 provide Save/Continue, thirteen illustrated materials, protected drops, milestone chests, six finalized Stage V output icons/definitions, live equipment ownership/equipping/stats/save migration, exact recipes, and Nema's safe read-only output/stat preview. First Stage V claim grants the seal and two Varkuun Cores; replay grants one. F9 grants all Stage V test outputs, discoveries, the seal, and maximum materials without saving.
-- **Impact:** Players can earn and inspect requirements but cannot yet execute a normal atomic craft that consumes materials and grants an output. No `CraftingService`, Hunt selector, Stage VIII accessory seal, Stage X signature seal, or regional Mastery exists.
-- **Planned resolution:** Complete the Decision 071 essence/relic output contract first, then follow `docs/design/forest-loot-crafting-and-regional-material-plan.md`: Segment 5 atomic crafting/equipment transactions, Hunts, Stages 4-10, and the Stage 11 regional seam.
-- **Workaround:** Play through Stage V to collect materials and the core-gear seal, then inspect exact output/cost previews at Nema's Living Rootforge. F9's full equipment/material/unlock preset remains debug-only and non-saving.
+- **Status:** Open.
+- **Implemented:** Immutable recipe/material/output data, inventories, pickups, claims, Stage V equipment, persistence, and Nema's read-only preview.
+- **Impact:** Players cannot yet spend ingredients through a normal atomic craft or select replay Hunts.
+- **Next:** Implement one validated spend-once/grant-once/save-once crafting transaction before expanding recipes or regions.
 
-### KI-011 - Combat responsiveness, audio distinction, and Husk presentation need a playtest repair pass
+### KI-011 - Combat/audio feel still needs a full-session pass
 
-- **Status:** Open
-- **Audio progress:** Opaw's accepted-damage cue is now a distinct original cloth/body impact, and the dash uses a curated light CC0 swish; confirm their volume and clarity against every enemy attack in controller playtests.
-- **Progress:** Decision 081 generalizes the focused smoke-tested input buffer: one latest valid attack, dash, or equipped skill survives for at most 0.8 seconds and executes only at a recovery/ability-finished boundary. It resolves attack-to-skill and `Sovereign Pursuit -> Riftbreak` follow-ups without interrupting live damage or dash invulnerability, rejects cooldown waiting, and reopens targeted-skill previews. Decision 098 gives King his own integrated signature sword, dedicated 48x56 contact fan, and 10-12 normal-hit roll while preserving 25 skill power; Opaw's Ashwood/Iron data remains separate. Varkuun receives 30 armor and a cooldown-respecting 30%-phase anti-kite leap rule. Stage II permits six live enemies, while Stage I/III retain four and Stage IV retains eight. Automated coverage protects these contracts; human feel-testing remains open.
-- **Impact:** Earlier playtesting reported rejected attack-to-skill follow-ups, repetitive dash/incoming-hit audio, unclear threat direction, and Rootbound Husk scale popping. The structural input and Husk animation causes are repaired, but only a controller playtest can approve their final feel.
-- **Planned resolution:** Complete the roadmap's responsiveness, feedback/audio, and Husk-repair milestones in that order; measure each change with focused smoke coverage and a controller playtest before changing encounter counts or adding Stage 4 content.
-- **Workaround:** Use F9 to test the completed skills and implemented routes; treat only Husk timing/readability and exact combat reach tuning as provisional, not its animation or attack-authority architecture.
+- **Status:** Open.
+- **Verified:** Buffered inputs, cooldown denial, distinct player hurt/dash audio, King weapon reach/damage, crowd-control tiers, and boss armor/anti-kite behavior have automated coverage.
+- **Risk:** Repetition, threat direction, volume mix, hitstop strength, and long-session responsiveness require controller/mouse playtesting with sound enabled.
 
-### KI-010 - Expedition pacing still needs human controller playtesting
+### KI-010 - Expedition pacing and performance need human measurement
 
-- **Status:** Open
-- **Impact:** Automated coverage verifies the Stage 1-3 four-enemy caps, Stage 4's eight-enemy ceiling and 6/8/10/12/14 totals, reinforcement order, crowd spacing, authored terrain population, and individual attack behavior, but cannot judge whether eight simultaneous threats remain readable, whether AOE now feels worthwhile, frame-time stability, clear-time satisfaction, or controller feel at 960x540.
-- **Planned resolution:** Record timed Stage 1-4 controller runs using normal and F9 test loadouts, then profile Stage 4's peak eight-enemy field before authoring the larger Stage 6 horde ceiling.
-- **Workaround:** Keep Stages 1-3 at four and Stage 4 at eight; adjust authored cadence before health inflation or any further cap increase.
+- **Status:** Open.
+- **Verified:** Stage-specific live caps, wave totals, reinforcements, navigation, terrain population, and individual enemy behavior.
+- **Next:** Record clear time, damage taken, skill usage, and peak frame time for normal Stage I-V runs before increasing health or live-enemy ceilings.
 
-### KI-003 - Target platforms are undecided
+### KI-007 - Sealed future expeditions have no production content
 
-- **Status:** Open
-- **Impact:** Input, rendering, performance budgets, UI, and export decisions lack firm constraints.
-- **Planned resolution:** Prioritize desktop, web, and/or mobile targets before the vertical slice.
-- **Workaround:** Keep early designs platform-neutral where inexpensive.
+- **Status:** Open.
+- **Impact:** Data-driven previews can describe future routes, but destinations and requirements beyond the implemented Forest sequence are intentionally unavailable.
 
-### KI-004 - Pixel rendering baseline is not art-validated
+### KI-006 - Audio settings are session-only
 
-- **Status:** Open
-- **Impact:** The 960x540 baseline mechanically validates Opaw and now has exact-grid King idle/walk plus side-combo body/VFX assets, but the new processed motion has not received owner approval in the running game. Front/back attacks, dash, hurt, interaction, defeat, skills, and portrait remain absent.
-- **Planned resolution:** Approve the processed King core preview at 1x/960x540, then bind it to temporary-shape combat for contact-alignment review. Author front/back attacks and later action families only after the current side motion passes; keep gameplay authority independent from animation frames.
-- **Workaround:** Treat Opaw as a complete supported character whose compact style does not dictate King's body. The Wayfarer resource remains Opaw's additional visual rollback, not King's destination art style.
+- **Status:** Open.
+- **Impact:** Music, SFX, and UI mute states return to defaults after restart.
 
-### KI-005 - Expanded equipment and later skill balance remain incomplete
+### KI-003 - Target platform priority is undecided
 
-- **Status:** Open
-- **Impact:** Ashwood/Iron ownership, explicit equip, Level-3 Eira awakening, Opaw's base/level/flat-equipment vitality aggregation, earned material quantities, first-clear claims, and recipe discoveries now persist through the safe-point profile. No armor item currently supplies the prepared flat bonus; authored recipe outputs are data-only, while crafting, selling, higher tiers, potions, and mana remain incomplete.
-- **Planned resolution:** Complete the approved loot/chest and crafting/equipment sequence plus authored armor/mana/potion rules before expanding acquisition/balance, then author slots 3-4 only alongside content that supports their power.
-- **Workaround:** Treat Ashwood/Iron, 140+12/level vitality, delayed baseline regeneration, and Eira's Skill 2 awakening as the complete persisted beginner slice. Do not expose legacy/high-tier previews, sell skills, or claim armor, lifesteal, critical, potion, or mana systems are implemented content.
-
-### KI-006 - Title audio settings are session-only
-
-- **Status:** Open
-- **Impact:** Music, combat-sound, and menu-sound mute states return to defaults after closing the game.
-- **Planned resolution:** Store audio preferences in the future versioned settings/profile system.
-- **Workaround:** The title screen applies all three toggles immediately for the current session.
-
-### KI-007 - Future expeditions have no content
-
-- **Status:** Open
-- **Impact:** The Sanctuary portal evaluates data-driven level, story, boss, discovery, and narrative key-item requirements, and those memories now persist. The Rootbound Hollow is implemented and reachable through the continuous Stage 2 route or F9, but its legacy Sanctuary-only Thornbound Warden/Cinder Sigil requirements remain unobtainable; The Drowned Bells has no destination scene or obtainable requirements.
-- **Planned resolution:** Reconcile the legacy Sanctuary-only Rootbound Hollow replay gate during the Hunt/route-history segment, and keep The Drowned Bells sealed until its region is authored.
-- **Workaround:** The implemented forest sequence remains playable continuously from Stage 1 through Stage 3; Sanctuary replay buttons still enforce their authored requirements, and unbuilt future routes remain sealed.
-
-## Current Bugs
-
-None currently. The project and main scene pass headless editor import and runtime loading under Godot 4.7 stable.
-
-## Technical Limitations
-
-Assisted combat is implemented and structurally tested, but obstacle-by-obstacle pursuit, Stage 4 eight-enemy click selection, and touch ergonomics still need owner feel testing at 960x540. Direct WASD and all existing action controls remain the fallback if a route feels poor.
-
-Stage 4's eight-active-enemy field passes structural smoke coverage but still requires gameplay-scale frame-time, navigation, separation, and threat-readability profiling. Do not choose the Stage 6 horde ceiling until that evidence exists.
+- **Status:** Open.
+- **Impact:** Export, input, rendering, and performance budgets lack a final desktop/web/mobile priority order.

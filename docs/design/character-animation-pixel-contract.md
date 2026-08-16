@@ -6,11 +6,8 @@ This contract applies to generated, downloaded, and hand-authored character anim
 
 | Actor or effect | Runtime cell | Direction and frame contract |
 |---|---:|---|
-| King simple reboot | 32x32 target, expandable only for attack reach | Decision 076 approved an Opaw-complexity `down/left/right/up` identity with chunky hair, plain face, crimson scarf, compact body, mitten hands, tiny feet, and short broad rigid signature sword; exact body height/baseline freeze after the first normalized walk review |
+| King simple reboot | 32x32 locomotion target, expandable for authored attack reach | Production `down/left/right/up` identity with chunky hair, plain face, crimson scarf, compact body, mitten hands, tiny feet, and short broad rigid signature sword; preserve the reviewed y=30 foot baseline |
 | King extended greatsword actions (provisional) | 96x80 or 128x96 | Preserve the approved body scale; use canvas width/height for integrated greatsword reach and exaggerated combo silhouettes without clipping |
-| Opaw idle/walk/hurt | 32x32 | `down/left/right/up` rows; action frames across columns; 18x27 upright body |
-| Opaw extended actions | 48x32 | Preserve the same 18x27 body; use width for reach rather than shrinking |
-| Opaw defeat | 64x32 | Preserve body scale while allowing horizontal collapse |
 | Small forest creatures | 32x32 | Fixed scale and foot baseline across all direction rows |
 | Existing extended enemy attacks | 64x48 | Use only when a validated action cannot fit the locomotion cell |
 | Rootbound Husk walk | 72x64 | Four direction rows; contact A/pass A/contact B/pass B with leg exchange and arm counter-swing; 56-pixel actor scale |

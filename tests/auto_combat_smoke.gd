@@ -23,7 +23,7 @@ func _run() -> void:
 	root.add_child(hud)
 	hud.bind_player(player)
 	player.global_position = Vector2(100.0, 100.0)
-	first.global_position = Vector2(132.0, 100.0)
+	first.global_position = Vector2(120.0, 100.0)
 	second.global_position = Vector2(160.0, 100.0)
 	await process_frame
 	await physics_frame
@@ -37,7 +37,10 @@ func _run() -> void:
 		return
 	var first_target := player.combat_targeting.target_actor
 	player.set_auto_skills_enabled(true)
-	await physics_frame
+	for frame_index in range(60):
+		await physics_frame
+		if player.is_any_ability_casting() or player.ability_1_component.cooldown_remaining > 0.0:
+			break
 	if not player.is_any_ability_casting() and player.ability_1_component.cooldown_remaining <= 0.0:
 		_fail("AUTO SKILL did not use the first ready skill against an in-range target.")
 		return

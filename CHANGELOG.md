@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-08-16 - Manual Left-Click Authority and Runtime Cleanup Verification
+
+- Accepted Decision 112: any world left click now cancels right-click navigation and optional automation before resolving combat intent. A single enemy click selects/highlights without pursuit, a native double click engages, and empty ground performs a directional air swing.
+- Enemy selection now falls back from hurtbox queries to the physical enemy footprint with an eight-pixel circular assist. Assisted pursuit stops at the player radius plus the enemy's data-owned movement-footprint radius and shared padding before the real melee hitbox decides contact.
+- Removed the prior time-based rapid-reselect fallback so one explicit click cannot accidentally become engagement. Added a real approach-and-hit regression against King plus focused movement-cancellation, single-select, double-click, footprint, and distance coverage.
+- Retired two obsolete active design proposals into `art_source/archive/retired_docs_2026-08-16/` and corrected current project, roadmap, issue, design, architecture, story, style, art, asset-catalog, README, and AI handoff documents to King-only runtime truth. Historical ADR/changelog references remain intentionally intact.
+- Re-verified that active non-document code contains no retired player/shop/skill references except the archive-boundary test's explicit absence list.
+
 ## 2026-08-16 - Rapid Engage and Navigation Facing Correction
 
 - Accepted Decision 110 after owner review rejected Decision 109's realistic painted skill icons: generated and installed a B+C hybrid family for King Skills 1-4, normalized every runtime icon to native 24x24, binary alpha, and one fixed 14-color palette, and added native-size regression checks. The cursor experiment remains a separate pending visual review; the accepted four-arrow move marker remains.

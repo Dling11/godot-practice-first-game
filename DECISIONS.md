@@ -119,6 +119,7 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 109 | Use generated raster art for skills and cursors | Generated King Skill 1-4 icons, royal hand/sword cursors, full-resolution UI sources, or runtime downscaling |
 | 110 | Adopt B+C hard-pixel King skill icons | Native 24x24 King skill icons, B/C silhouette contract, fixed palette, binary alpha, or superseding painted skill art |
 | 111 | Retire Opaw and consolidate combat icons | King-only runtime, Opaw archive, weapon/awakening cleanup, six-cell action atlas, or unused-image audit |
+| 112 | Make left click manual selection authority | Cancel move on attack, single-click selection, double-click engage, foot-circle picking, or size-aware assisted approach |
 
 ## New Decisions
 

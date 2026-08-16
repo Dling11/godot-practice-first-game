@@ -36,7 +36,7 @@ The separate future Stage IV monster remains an unnamed armored, hide-bearing Fo
 
 ## Narrative Relationship
 
-Nema recognizes that a returning mortal carries materials marked by unusual pressure: Mire flexibility, Rootling tension, Thrall wear, Bramble resistance, and the Husk's corrupted endurance. She does not grant power freely. She teaches the player to preserve what a material survived, then combines root tension, controlled heat, hammer pressure, and living thread to bind it into a useful relic. Current Opaw dialogue may remain until King's story migration is implemented.
+Nema recognizes that King carries materials marked by unusual pressure: Mire flexibility, Rootling tension, Thrall wear, Bramble resistance, and the Husk's corrupted endurance. She does not grant power freely. She teaches him to preserve what a material survived, then combines root tension, controlled heat, hammer pressure, and living thread to bind it into a useful relic.
 
 Her first service appearance may occur immediately in Sanctuary, but the menu must honestly show that core-gear crafting remains sealed until the planned Stage V milestone. Stages VI-VII supply accessory-preparation materials and blueprints, Stage VIII permanently unlocks standard accessories, and Stage X permanently unlocks relic/signature crafting.
 
@@ -45,7 +45,7 @@ Her first service appearance may occur immediately in Sanctuary, but the menu mu
 ### Character
 
 - Clearly adult human woman; never a tree person, witch monster, child, or Rootbound creature
-- Compact Opaw-compatible proportions: oversized slightly boxy head, narrow tiny body, tiny grounded feet
+- Compact Sanctuary-compatible proportions: oversized slightly boxy head, narrow tiny body, tiny grounded feet
 - Confident kind black eyes, one small soot mark, and a subtly playful expression
 - Long dark-auburn hair tied into one practical side braid
 - Muted moss leather forge apron over a dark fitted work shirt, sturdy belt, and compact bracers
@@ -56,7 +56,7 @@ Her first service appearance may occur immediately in Sanctuary, but the menu mu
   - tongs drawing one strand of restrained relic-gold living thread
 - No antlers, horns, plant face, grandmother hood, gray hair, tall anatomy, pin-up armor, combat weapon, or excessive magical aura
 
-The accepted grove-smith concept establishes identity, materials, portrait, and Rootforge language. A separate generated 4x2 actor source board was component-isolated and normalized through `tools/process_rootweaver_service_assets.gd` into exact native-style `48x48` cells. Visible arms/tools are a deliberate Nema-only work-animation exception; Opaw's active armless modular contract is unchanged.
+The accepted grove-smith concept establishes identity, materials, portrait, and Rootforge language. A separate generated 4x2 actor source board was component-isolated and normalized through `tools/process_rootweaver_service_assets.gd` into exact native-style `48x48` cells. Visible arms/tools are a deliberate Nema-owned work-animation silhouette and do not define playable-character anatomy.
 
 ### Runtime actor package
 
@@ -257,7 +257,7 @@ Final prompt:
 Use case: style-transfer
 Asset type: Battle of Gods pixel-game female grove-blacksmith NPC and Sanctuary service concept board
 Input images: Image 1 is the EDIT TARGET and current elderly Rootweaver board; Image 2 is Eira's actual 48x48 runtime sprite-sheet STYLE AND PROPORTION REFERENCE; Image 3 is Orren's actual 48x48 runtime sprite-sheet STYLE AND PROPORTION REFERENCE.
-Primary request: redesign Rootweaver Nema as an attractive adult female fantasy grove blacksmith while preserving Image 1's compact board layout, organic Forest-crafting purpose, and Sanctuary-compatible pixel style. She forges armor and weapons from bark, hide, resin, roots, and monster materials rather than competing with Orren's ordinary iron weapon shop.
+Primary request: redesign Rootweaver Nema as an attractive adult female fantasy grove blacksmith while preserving Image 1's compact board layout, organic Forest-crafting purpose, and Sanctuary-compatible pixel style. She forges armor and weapons from bark, hide, resin, roots, and monster materials; Orren is now dialogue-only.
 Subject: Nema is unmistakably an adult woman, athletic and charismatic, with a confident subtly playful expression. Long dark auburn hair tied into one practical side braid, a tiny soot mark on one cheek, dark fitted work shirt, moss-green leather forge apron, sturdy belt, short work gloves or bracers, tiny boots, and one restrained violet stitch accent. Her blacksmith identity should be immediate through a detached compact root-forging hammer and detached tongs holding one short strand of relic-gold living thread. No elderly features, gray hair, hood, grandmother appearance, or masculine design.
 World-sprite proportions: match Images 2 and 3 exactly in visual language—oversized round/boxy head occupying about half the visible height, tiny narrow torso, extremely short legs and feet, simple face, large chunky pixel clusters, stable bottom-center origin. Keep the actor genuinely suitable for clean native 48x48 cells. Attractive adult identity must come from hair silhouette, confident eyes, apron, stance, and portrait—not realistic anatomy or a taller body.
 Board composition: plain near-black horizontal source board. Left: four evenly spaced front-facing idle-frame thumbnails designed for individual 48x48 cells, with hammer and tongs detached from the body. Center: one simplified square approximately 96x96-style dialogue portrait of the same woman, attractive, self-assured, warm, with a slight knowing half-smile, still chunky pixel art rather than anime or realism. Beneath or beside it: separate root-forging hammer and tongs/golden-thread props. Right: a simplified Sanctuary Rootforge workshop in front-facing top-down three-quarter game-sprite viewpoint: low open timber-and-root pavilion, one chunky stone anvil entwined with living roots, one compact amber-green ember brazier, one simple material rack, one small weaving frame for fibers, one warm lantern, broad uncluttered player approach. It is a small readable game building asset, not an isometric diorama.

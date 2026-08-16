@@ -218,6 +218,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			combat_targeting.request_click_move(get_global_mouse_position())
 		get_viewport().set_input_as_handled()
 		return
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if request_world_primary_click(get_global_mouse_position(), event.double_click):
+			get_viewport().set_input_as_handled()
+		return
 	if event.is_action_pressed("player_attack_primary"):
 		var attack_requested := false
 		if event is InputEventMouseButton:
@@ -345,6 +349,18 @@ func request_directional_primary_attack(world_position: Vector2) -> bool:
 	if not attack_direction.is_zero_approx():
 		_set_movement_facing_direction(attack_direction)
 	return request_primary_attack()
+
+
+func request_world_primary_click(world_position: Vector2, engage_target := false) -> bool:
+	## World left click is manual authority. End both ground movement and
+	## assisted pursuit before either selecting an enemy or swinging at air.
+	## One enemy click selects only; a double click explicitly engages it.
+	auto_combat.set_auto_farm_enabled(false)
+	combat_targeting.cancel_click_move()
+	combat_targeting.suspend_auto_attack()
+	if combat_targeting.select_at_world_position(world_position, engage_target):
+		return true
+	return request_directional_primary_attack(world_position)
 
 
 func request_assisted_primary_attack() -> bool:

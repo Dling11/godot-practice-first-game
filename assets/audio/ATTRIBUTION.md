@@ -1,5 +1,7 @@
 # Audio Attribution
 
+Sections explicitly marked **Archived** document recoverable retired sources and are not claims that those files remain active runtime dependencies.
+
 ## Player Cooldown-Denied Feedback
 
 - **Runtime file:** `sfx/ui/player_action_denied.mp3`
@@ -32,7 +34,7 @@ The louder fantasy/JRPG orchestral loop begins only after Varkuun's entrance dia
 
 The root-prison presentation reuses only Varkuun's attributed CC0 suite: the earth-spell recording is pitched separately for warning, lock, and execution rumble, while the attributed landing/impact recording supplies the final heavy execution transient. These layers observe `root_locked` and `root_executed`; they do not decide capture or damage.
 
-## Original Opaw Level-Up Chime
+## Archived Original Player Level-Up Chime
 
 - **Runtime file:** `sfx/ui/player_level_up_chime.wav`
 - **Source:** Original deterministic in-project synthesis via `tools/build_level_up_sfx.py`
@@ -40,7 +42,7 @@ The root-prison presentation reuses only Varkuun's attributed CC0 suite: the ear
 
 The restrained rising spirit chime accompanies the compact level-up banner. It is routed through the UI bus and requires no external attribution.
 
-## Original Opaw Action Cues
+## Archived Original Player Action Cues
 
 - **Runtime file:** `sfx/player_hurt_impact.wav`
 - **Source:** Original deterministic in-project synthesis via `tools/build_player_hurt_impact_sfx.py`
@@ -48,7 +50,7 @@ The restrained rising spirit chime accompanies the compact level-up banner. It i
 
 The hurt cue is a restrained cloth/body impact reserved for accepted player damage. It does not reuse enemy attack audio.
 
-## Opaw Dash CC0 SFX
+## Archived Player Dash CC0 SFX
 
 - **Author:** artisticdude
 - **License:** CC0 1.0 / Public Domain dedication
@@ -57,7 +59,7 @@ The hurt cue is a restrained cloth/body impact reserved for accepted player dama
 - **Selected source clip:** `swish-4.wav`
 - **Source pack downloaded:** 2026-07-18; curated for dash: 2026-07-19
 
-The short light swish is reserved for Opaw's dash at a restrained volume. The full source pack remains outside runtime imports under `art_source/archive/audio/opaw_piercing_rush_cc0_source_packs/`.
+The short light swish was selected for the retired player's dash at a restrained volume. The full source pack remains outside runtime imports under the archived source package.
 
 ## Cathedral in the Forest (ambient loop)
 
@@ -96,7 +98,7 @@ This cue belongs only to Rootbound Husk root attacks and is organized under the 
 
 Only the ten clips used by the current combat prototype are retained. The original pack contains 95 WAV files; unused material is not committed.
 
-## Piercing Rush CC0 SFX
+## Archived Piercing Rush CC0 SFX
 
 - **Charge source:** `Swishes Sound Pack` by artisticdude
 - **Thrust and impact source:** `20 Sword Sound Effects (Attacks and Clashes)` by StarNinjas
@@ -107,7 +109,7 @@ Only the ten clips used by the current combat prototype are retained. The origin
 
 The selected clips are used as a quiet wind-up, distinct active thrust, and accepted-hit impact for Piercing Rush. The downloaded source packs are preserved outside runtime import under `art_source/archive/audio/opaw_piercing_rush_cc0_source_packs/`; only the three named runtime clips are loaded by Godot.
 
-## Consecutive Thrust CC0 SFX
+## Archived Consecutive Thrust CC0 SFX
 
 - **Charge source:** `Swishes Sound Pack` by artisticdude
 - **Rapid flurry, final thrust, and contact sources:** `20 Sword Sound Effects (Attacks and Clashes)` by StarNinjas

@@ -22,7 +22,7 @@ The portal sequence is provisionally called the **Hundredfold Ascent**. Mortals 
 
 ## Narrative and Roster Status
 
-King is accepted future canon, but the playable runtime currently contains only Opaw while the character-definition, art, combo, essence, UI, and save additions are built. Opaw is a real displaced soul and remains playable with his current skills; he is not a placeholder and will not be archived when King arrives. Their exact meeting, starting selection, and first roster unlock scene remain open story work.
+King is the production canon and sole playable runtime character. Additional playable souls are deferred until King's release slice is stable; no roster meeting or selector is currently promised.
 
 ## Playable Characters and Classes
 
@@ -31,7 +31,7 @@ The planned game supports a **switchable roster of playable souls** gathered fro
 - A character owns a name, history, visual identity, signature weapon or fighting style, basic attack chain, skills, ultimate, relationships, and personal memory progression.
 - Reusable combat families such as melee, ranged, magic, mobility, guard, and status may share components without flattening characters into cosmetic class skins.
 - King is the planned narrative lead and establishes the young-prime broad-sword/combo combat direction.
-- Opaw is the implemented first playable soul and remains a supported roster character with his own thrust-focused skills and compact visual identity.
+- Retired prototype protagonists are historical development material, not current canon or supported roster content.
 - Later characters require their own reviewed body frames, contact silhouettes, portrait, story motive, and gameplay identity.
 - Character switching should occur in Sanctuary or another safe preparation space, never as an unexplained mid-attack body replacement.
 
@@ -62,7 +62,7 @@ The Grove is the first available expedition. Its corruption has begun to imitate
 
 ### Implemented Mini-Boss Expedition — The Rootbound Hollow
 
-A corrupted hollow reveals that the small Rootlings behave as the Rootbound Husk's brood. After the active player cuts through ten of them, the ancient guardian names the deaths as a trespass before confronting the player as the first mini-boss. The Opaw runtime version remains playable while the dialogue and presentation await King's migration.
+A corrupted hollow reveals that the small Rootlings behave as the Rootbound Husk's brood. After King cuts through ten of them, the ancient guardian names the deaths as a trespass before confronting him as the first mini-boss.
 
 ### Planned Continuation — The Drowned Bells
 

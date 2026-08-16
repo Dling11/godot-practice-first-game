@@ -6,7 +6,7 @@ The setting centers on gods, demons, forgotten civilizations, and **The One Abov
 
 ## Current Status
 
-Pre-alpha title-to-Sanctuary-to-five-stage prototype. F5 opens a mouse/keyboard/gamepad-ready Battle of Gods title screen with Continue, guarded New Journey, and session-audio settings. King is temporarily the active combat proof with simple four-direction locomotion, an integrated signature sword, one directional basic slash, and four playable skills; Ultimate and Reality Breaking remain locked future tiers. Opaw remains preserved as benched supported content. The implemented Forest route reaches Stage V and Varkuun. In Sanctuary, Rootweaver Nema's Living Rootforge previews six finalized Stage V core outputs plus two future accessory recipes, including icons, exact live stats, and owned/required materials without consuming anything. Stage V armor supports ownership, equipping, sorting, matching-slot drag, stat aggregation, and saving. F9 grants the complete debug equipment/crafting-readiness package without saving. Normal crafting transactions, Hunts, roster switching, and broader per-character progression are not yet playable.
+Pre-alpha title-to-Sanctuary-to-five-stage prototype. F5 opens a mouse/keyboard/gamepad-ready Battle of Gods title screen with Continue, guarded New Journey, and session-audio settings. King is the sole production player with four-direction locomotion, an integrated signature sword, one directional basic slash, and four playable skills; Ultimate and Reality Breaking remain locked future tiers. The implemented Forest route reaches Stage V and Varkuun. In Sanctuary, Rootweaver Nema's Living Rootforge previews six finalized Stage V core outputs plus two future accessory recipes, including icons, exact live stats, and owned/required materials without consuming anything. Stage V armor supports ownership, equipping, sorting, matching-slot drag, stat aggregation, and saving. F9 grants the complete debug equipment/crafting-readiness package without saving. Normal crafting transactions and Hunts are not yet playable. Retired Opaw content is recoverable only under `art_source/archive/retired_opaw_2026-08-16/` and is not imported by Godot.
 
 ## Intended Technology
 
@@ -38,7 +38,7 @@ The prototype uses a 960x540 logical viewport displayed at 1920x1080 for exact 2
 
 The current main scene is `res://ui/screens/title/title_screen.tscn`. Stage 1 remains `res://levels/test_arena/test_arena.tscn`.
 
-The game maintains one autosave at `user://battle_of_gods_profile.json` with a `.bak` recovery copy. Continue always resumes in Sanctuary. Autosaves occur on Sanctuary entry, Sanctuary purchase/equip/awakening actions, and stage clear after direct banking or a milestone chest claim—not during active combat. The profile includes versioned material quantities, recipe discoveries, first-clear claims, and drop-protection counters; older version-1 saves whose reserved extension sections are empty remain compatible. The exact operating-system location of `user://` is shown by Godot's **Open User Data Folder** command.
+The game maintains one autosave at `user://battle_of_gods_profile.json` with a `.bak` recovery copy. Continue always resumes in Sanctuary. Autosaves occur on Sanctuary entry, equipment changes, and stage clear after direct banking or a milestone chest claim—not during active combat. The profile includes versioned material quantities, recipe discoveries, first-clear claims, and drop-protection counters; older version-1 saves whose reserved extension sections are empty remain compatible. The exact operating-system location of `user://` is shown by Godot's **Open User Data Folder** command.
 
 Stages I-IV use authored Godot `TileMapLayer` cells rather than runtime-random ground. Shared forest and Rootbound Hollow atlases live under `assets/environment/forest/`; diffable map layouts live under `data/environment/layouts/`. Edit baked cells directly in Godot for local adjustments, or update a layout resource and regenerate the owning scene with `tools/bake_authored_ground.gd` for a whole-map revision.
 
@@ -85,7 +85,7 @@ res://
       rootbound_hollow.tres
       drowned_bells.tres
     items/
-      opaw_weapon_catalog.tres
+      king_weapon_catalog.tres
       materials/
         material_catalog.tres
         forest/
@@ -97,19 +97,12 @@ res://
       recipe_catalog.tres
       forest/
     skills/
-      opaw_starting_loadout.tres
+      king_starting_loadout.tres
     weapons/
-      ashwood_blade.tres
-      iron_sword.tres
-      attack_styles/
+      king_signature_sword.tres
   assets/
-    characters/playable/opaw/
-      compact_armless/
-        opaw_compact_armless_*_sheet_*.png
-        opaw_compact_armless_sprite_frames.tres
-      variants/wayfarer_original/
-        opaw_wayfarer_original_*_sheet_*.png
-        opaw_wayfarer_original_sprite_frames.tres
+    characters/playable/king/
+      simple_reboot/
     characters/npcs/
       skillkeeper/skillkeeper_idle_sheet_48x48.png
       armskeeper/armskeeper_idle_sheet_48x48.png
@@ -117,11 +110,8 @@ res://
       buildings/skillkeeper_lodge_128x192.png
       buildings/armskeeper_workshop_176x192.png
       shops/armskeeper_cart_128x96.png
-    items/weapons/
-      world/ashwood_blade_16x24.png
-      world/iron_sword_16x24.png
-      icons/ashwood_blade_64x64.png
-      icons/iron_sword_64x64.png
+    ui/icons/combat/
+      combat_action_atlas_bc_6x1_24.png
     items/materials/forest/
       *_24x24.png
     gameplay/loot/stage_clear_chest/
@@ -141,18 +131,14 @@ res://
   project.godot
 ```
 
-King's active proof art lives under `res://assets/characters/playable/king/simple_reboot/`. Opaw's benched compact art remains under `res://assets/characters/playable/opaw/compact_armless/`, with the complete Wayfarer rollback under `variants/wayfarer_original/`. Superseded/rejected experiments are organized under Godot-ignored `art_source/archive/`. All current enemy runtime art lives in named domains under `res://assets/characters/enemies/`. Exact-grid sheets under `assets/` are active or explicitly supported runtime files.
+King's production art lives under `res://assets/characters/playable/king/simple_reboot/`. Retired character packages and rejected experiments are organized under Godot-ignored `art_source/archive/`. All current enemy runtime art lives in named domains under `res://assets/characters/enemies/`. Exact-grid sheets under `assets/` are active runtime files.
 
-King's active proof, Opaw's supported bench package, Ashwood Blade, current Sanctuary assets, Rootling's runtime atlases, and the original level-up chime can be regenerated from their active sources with:
+King's production art, current Sanctuary assets, Rootling's runtime atlases, and the original level-up chime can be regenerated from their active sources with:
 
 ```powershell
 & 'C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' 'tools/process_king_simple_locomotion.py'
 & 'C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' 'tools/generate_riftbreak_sfx.py'
 & 'C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' 'tools/process_riftbreak_vfx.py'
-& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tools/apply_opaw_attack_vertical_revision.gd'
-& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tools/process_opaw_compact_armless_assets.gd'
-& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tools/process_opaw_modular_assets.gd'
-& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tools/process_iron_sword.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tools/build_character_sprite_frames.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tools/process_mireling_walk_assets.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tools/process_mireling_action_assets.gd'
@@ -197,13 +183,13 @@ The active prototype controls are:
 
 In a debug build, press F10 in Sanctuary to reveal the right-side Admin Tools panel, then use its button or F7 to enter the Combat Lab. The lab selects the Stage 5 boss proof by default and can spawn 1/4/8 of any current mob, Elite, mini-boss, or boss; pause enemy AI; toggle King invincibility; enable unlimited authored skills; clear; or reset. The boss's fourth proof action follows the lunge/slap/jump cycle: its root warning tracks King's feet, then locks and converts Dash into five `BREAK FREE` presses. Skills cannot escape it; failure resolves the provisional 300-damage execution. The lab removes enemy reward components before spawning and suppresses autosave, so lab combat cannot grant XP, coins, materials, story progress, or stage claims. For agent-driven visual review, launch `res://levels/combat_lab/combat_lab.tscn` directly.
 
-Movement, movement-owned facing, left-click manual attack, contextual right-click movement/engagement, dash, portal interaction, and arena restart after defeat are active for the temporary King proof. Right-clicking ground clears combat and moves; right-clicking an enemy immediately selects, approaches, and repeats legal basic attacks. Basic Attack has no number key; left click, the far-right HUD Attack control, and controller right trigger are its manual inputs. One latest valid attack, dash, or equipped skill input is retained for at most 0.8 seconds and executes only at the first legal recovery or ability-finished boundary; it never waits through a cooldown. Balanced Slash supplies the tested 58-pixel-forward by 96-pixel-wide contact fan, while King's integrated sword and white-blue trail present the hit. Echoing Sever is Skill 1 on `1`; aim its exact-angle wedge, then left-click/right-trigger to commit. Riftbreak is Skill 2 on `2`. Sovereign Pursuit is Skill 3 on `3`; aim and confirm its ground leap, then `2` may buffer Riftbreak until Pursuit finishes. Skill 4 is on `4`. Targeted previews cancel with right click or `Esc`, consuming the command without moving. Opaw's preserved skills are not silently attached to King. The shared proof vitality still begins at 140, gains 12 per level, retains health across stages, and regenerates 1 HP/s after five damage-free seconds. F9 grants level, coins, authored gear, maximum materials, and session-only unlimited skill cooldowns without changing King's normal balance data or skill loadout.
+Movement, movement-owned facing, contextual mouse combat, dash, portal interaction, and arena restart after defeat are active for King. Right-clicking ground clears combat and moves; right-clicking an enemy immediately selects, approaches its data-owned foot-circle boundary, and repeats legal basic attacks. Any world left click first stops right-click movement and optional automation. A single left click on an enemy hurtbox or physical foot circle selects it without pursuit; a double click engages it; clicking elsewhere performs a directional air swing. Basic Attack has no number key; left click, the far-right HUD Attack control, and controller right trigger are its manual inputs. One latest valid attack, dash, or equipped skill input is retained for at most 0.8 seconds and executes only at the first legal recovery or ability-finished boundary; it never waits through a cooldown. King's signature sword owns the tested contact fan while the integrated sword and white-blue trail present the hit. Echoing Sever is Skill 1 on `1`; Riftbreak is Skill 2 on `2`; Sovereign Pursuit is Skill 3 on `3`; Worldsplitter is Skill 4 on `4`. Targeted previews confirm with left click/right trigger and cancel with right click or `Esc`, consuming the command without moving. King begins at 140 vitality, gains 12 per level, retains health across stages, and regenerates 1 HP/s after five damage-free seconds. F9 grants level, coins, authored gear, maximum materials, and session-only unlimited skill cooldowns without changing King's normal balance data or skill loadout.
 
 The top-right enemy roster provides optional `AUTO ALL` and `AUTO SKILL` controls. Auto All cycles through living roster enemies using normal navigation and basic attacks; Auto Skill additionally commits ready equipped skills through their real targeting and cooldown rules. Right-clicking ground, pressing `Esc` while a combat target is selected, or turning Auto All off stops both modes. The move destination uses a small two-frame four-arrow convergence mark. King Skills 1-4 use a generated B+C hybrid normalized to native 24x24 hard-pixel icons, with full-resolution sources under `art_source/generated/ui/king_skill_icons_bc_hybrid/`. The generated royal hand/sword cursor experiment remains under `art_source/generated/ui/king_combat_ui/` pending its own visual review.
 
-During normal stage play, an ordinary defeated enemy rolls its authored sparse common and secondary material chances; sixth/twelfth-attempt protection prevents an unlimited drought, while the Rootbound Husk always drops its two signature materials. A successful stack hops from the death point, gently hovers for half a second, and then flies to Opaw automatically; touching it sooner also collects it. The upper-right toast identifies the material and quantity. After the final wave, Stages I-II bank collected materials and open their portals directly. Stage III instead summons the larger solid, Y-sorted Rootbound Reliquary through a rune reveal; press F to claim its guaranteed pool of ordinary Forest materials, release its collision, and open the return portal. The Reliquary grants no recipe unlock. Defeat, restart, or Return to Sanctuary before direct clear or chest claim removes that expedition's uncommitted materials.
+During normal stage play, an ordinary defeated enemy rolls its authored sparse common and secondary material chances; sixth/twelfth-attempt protection prevents an unlimited drought, while the Rootbound Husk always drops its two signature materials. A successful stack hops from the death point, gently hovers for half a second, and then flies to King automatically; touching it sooner also collects it. The upper-right toast identifies the material and quantity. After the final wave, Stages I-II bank collected materials and open their portals directly. Stage III instead summons the larger solid, Y-sorted Rootbound Reliquary through a rune reveal; press F to claim its guaranteed pool of ordinary Forest materials, release its collision, and open the return portal. The Reliquary grants no recipe unlock. Defeat, restart, or Return to Sanctuary before direct clear or chest claim removes that expedition's uncommitted materials.
 
-In Sanctuary, approach Skillkeeper Eira or Armskeeper Orren and press F. The character surface opens from Tab or the HUD satchel. Its compact Character & Bag page keeps the ten-position King loadout at upper left, selected-item information at upper right, and the 24-slot filterable/sortable inventory underneath. The detached equipment sword preview is hidden because King already carries his signature sword. Stage V armor can be selected and equipped or dragged into its matching slot; its live effects and equipped choices persist. Accessory positions remain future placeholders. Eira cannot awaken Opaw's Skill 2 for King; the Active Skills page presents all four King skill proofs as equipped. Orren still sells Iron Sword for 90 coins as compatibility equipment. HUD buttons consume their pointer clicks, so clicking dash or a skill never also triggers basic attack.
+In Sanctuary, approach Skillkeeper Eira or Armskeeper Orren and press F. The character surface opens from Tab or the HUD satchel. Its compact Character & Bag page keeps the ten-position King loadout at upper left, selected-item information at upper right, and the 24-slot filterable/sortable inventory underneath. King carries his signature sword. Stage V armor can be selected and equipped or dragged into its matching slot; its live effects and equipped choices persist. Accessory positions remain future placeholders. Eira presents King's four equipped active skills without an awakening transaction. Orren is dialogue-only after retirement of the weapon shop. HUD buttons consume pointer clicks, so clicking dash or a skill never also triggers basic attack.
 
 ## Verification
 
@@ -219,11 +205,7 @@ Run the current headless movement smoke test with:
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/rootling_behavior_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/player_defeat_flow_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/character_animation_smoke.gd'
-& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/opaw_model_backup_smoke.gd'
-& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/piercing_rush_smoke.gd'
-& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/consecutive_thrust_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/enemy_crowd_control_smoke.gd'
-& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/sweeping_cut_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/player_progression_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/run_session_progression_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/save_profile_snapshot_smoke.gd'
@@ -240,7 +222,6 @@ Run the current headless movement smoke test with:
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/ui_theme_icon_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/title_screen_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/sanctuary_hub_smoke.gd'
-& 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/skill_awakening_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/hud_action_controls_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/combat_foot_aura_smoke.gd'
 & 'D:\WORK_APP\godot\Godot_v4.7-stable_win64_console.exe' --headless --path . --script 'res://tests/auto_combat_smoke.gd'

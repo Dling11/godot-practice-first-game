@@ -21,6 +21,8 @@ func _run() -> void:
 	root.add_child(first)
 	root.add_child(second)
 	root.add_child(hud)
+	first.set_physics_process(false)
+	second.set_physics_process(false)
 	hud.bind_player(player)
 	player.global_position = Vector2(100.0, 100.0)
 	first.global_position = Vector2(240.0, 100.0)
@@ -56,11 +58,15 @@ func _run() -> void:
 		_fail("Manual WASD did not override assisted pursuit while held.")
 		return
 
-	player.global_position = Vector2(194.0, 100.0)
+	player.global_position = Vector2(220.0, 100.0)
 	player.velocity = Vector2.ZERO
 	await physics_frame
-	if player.facing_direction != Vector2.RIGHT or player.attack_component.phase == MeleeAttackComponent.Phase.IDLE:
-		_fail("King did not face and basic-attack the selected enemy in range.")
+	if (
+		player.facing_direction != Vector2.RIGHT
+		or player.attack_component.phase == MeleeAttackComponent.Phase.IDLE
+		or not is_equal_approx(player.combat_targeting.get_target_approach_distance(), 20.0)
+	):
+		_fail("King did not enter attack on the selected enemy's foot-circle boundary.")
 		return
 
 	if not player.combat_targeting.select_hurtbox(second.get_node("Hurtbox") as HurtboxComponent):
@@ -74,13 +80,20 @@ func _run() -> void:
 	if player.combat_targeting.has_valid_target() or hud.target_panel.visible:
 		_fail("Dead target cleanup did not clear targeting and its HUD presentation.")
 		return
+	player.attack_component.cancel_attack()
 	player.combat_targeting.request_click_move(Vector2(300.0, 100.0))
 	if player.combat_targeting.get_click_move_direction(0.2).dot(Vector2.RIGHT) < 0.9:
-		_fail("An empty left-click destination did not produce Dota-style movement intent.")
+		_fail("An empty right-click destination did not produce movement intent.")
 		return
 	await physics_frame
 	if player.facing_direction != Vector2.RIGHT:
 		_fail("Click-to-move did not face King along the actual ground path direction.")
+		return
+	if not player.request_world_primary_click(Vector2(100.0, 180.0)):
+		_fail("A ground left click did not request its directional air swing.")
+		return
+	if not player.combat_targeting.get_click_move_direction(0.2).is_zero_approx():
+		_fail("A ground left-click attack did not cancel active right-click movement.")
 		return
 
 	if hud.attack_button.size != Vector2(54.0, 48.0) or hud.attack_button.text != "ATK" or hud.attack_button.icon == null:
@@ -106,11 +119,29 @@ func _run() -> void:
 	player.attack_component.cancel_attack()
 	first.global_position = Vector2(240.0, 100.0)
 	player.combat_targeting.clear_target()
-	if not player.combat_targeting.select_at_world_position(first.global_position, true):
-		_fail("Contextual enemy-click engagement could not select the enemy.")
+	var footprint_pick := first.global_position + Vector2(0.0, 9.0)
+	if not player.request_world_primary_click(footprint_pick):
+		_fail("A single left click could not select the enemy through its foot circle.")
+		return
+	if player.combat_targeting.target_actor != first or player.combat_targeting.auto_attack_enabled:
+		_fail("A single enemy left click did not remain selected-but-idle.")
+		return
+	if not player.request_world_primary_click(footprint_pick, true):
+		_fail("A double left click could not engage the selected enemy.")
 		return
 	if not player.combat_targeting.auto_attack_enabled:
-		_fail("One contextual enemy click did not enable auto-attack pursuit.")
+		_fail("A double enemy left click did not enable approach-and-attack.")
+		return
+	var health_before := first.health_component.current_health
+	for frame_index in range(120):
+		await physics_frame
+		if first.health_component.current_health < health_before:
+			break
+	if first.health_component.current_health >= health_before:
+		_fail("Assisted combat approached the foot circle but never landed a real melee hit.")
+		return
+	if player.global_position.distance_to(first.global_position) > 24.0:
+		_fail("Assisted combat attacked before reaching the target's foot-circle boundary.")
 		return
 	player.combat_targeting.request_click_move(Vector2(320.0, 100.0))
 	if player.combat_targeting.has_valid_target() or player.combat_targeting.auto_attack_enabled:

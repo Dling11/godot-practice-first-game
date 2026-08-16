@@ -29,15 +29,15 @@ func _run() -> void:
 		not is_equal_approx(feedback._resolve_basic_hitstop(10.0), 0.026)
 		or not is_equal_approx(feedback._resolve_basic_hitstop(999.0), 0.034)
 		or not is_equal_approx(
-			feedback._resolve_ability_hitstop(player.ability_1_component, false),
+			feedback._resolve_ability_hitstop(player.ability_1_component),
 			CombatFeedbackPresenter.MEDIUM_HITSTOP_SECONDS
 		)
 		or not is_equal_approx(
-			feedback._resolve_ability_hitstop(player.ability_2_component, false),
+			feedback._resolve_ability_hitstop(player.ability_2_component),
 			CombatFeedbackPresenter.HEAVY_HITSTOP_SECONDS
 		)
 		or not is_equal_approx(
-			feedback._resolve_ability_hitstop(player.ability_3_component, false),
+			feedback._resolve_ability_hitstop(player.ability_3_component),
 			CombatFeedbackPresenter.MEDIUM_HITSTOP_SECONDS
 		)
 	):
@@ -45,7 +45,7 @@ func _run() -> void:
 		return
 	player.ability_4_component._current_strike_index = 1
 	if not is_equal_approx(
-		feedback._resolve_ability_hitstop(player.ability_4_component, false),
+		feedback._resolve_ability_hitstop(player.ability_4_component),
 		CombatFeedbackPresenter.DEVASTATING_HITSTOP_SECONDS
 	):
 		_fail("King Skill 4's final strike did not resolve the devastating hitstop tier.")

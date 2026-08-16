@@ -26,24 +26,18 @@ func _run() -> void:
 	var player_sfx := player.get_node("PlayerActionSfx") as PlayerActionSfx
 	if (
 		not _valid_sfx_player(player_sfx.sword_swing_player)
-		or not _valid_sfx_player(player_sfx.ability_player)
 		or not _valid_sfx_player(player_sfx.dash_player)
-		or not _valid_sfx_player(player_sfx.piercing_charge_player)
-		or not _valid_sfx_player(player_sfx.piercing_thrust_player)
-		or not _valid_sfx_player(player_sfx.consecutive_charge_player)
-		or not _valid_sfx_player(player_sfx.consecutive_flurry_player)
-		or not _valid_sfx_player(player_sfx.consecutive_final_player)
 		or not _valid_sfx_player(player_sfx.echoing_sever_fracture_player)
+		or not _valid_sfx_player(player_sfx.riftbreak_ground_slam_player)
+		or not _valid_sfx_player(player_sfx.sovereign_pursuit_launch_player)
+		or not _valid_sfx_player(player_sfx.sovereign_pursuit_landing_player)
+		or not _valid_sfx_player(player_sfx.skill_4_formation_player)
+		or not _valid_sfx_player(player_sfx.skill_4_first_impact_player)
+		or not _valid_sfx_player(player_sfx.skill_4_explosion_player)
 		or not _valid_sfx_player(player_sfx.action_denied_player)
-		or player_sfx.piercing_thrust_player.stream == player_sfx.sword_swing_player.stream
-		or player_sfx.consecutive_flurry_player.stream == player_sfx.sword_swing_player.stream
-		or player_sfx.consecutive_final_player.stream == player_sfx.consecutive_flurry_player.stream
 		or player_sfx.echoing_sever_fracture_player.stream == player_sfx.sword_swing_player.stream
 	):
-		_fail("Player action, Echoing Sever, Piercing Rush, and Consecutive Thrust SFX are not fully assigned to the SFX bus.")
-		return
-	if not is_equal_approx(PlayerActionSfx.CONSECUTIVE_FINAL_THRUST_ONSET_SECONDS, 0.50):
-		_fail("Consecutive Thrust final sword playback is not skipping its delayed source lead-in.")
+		_fail("King's attack, four skills, dash, and denied-action SFX are not fully assigned to the SFX bus.")
 		return
 	if player_sfx.dash_player.stream != PlayerDashLightSwoosh or player_sfx.dash_player.volume_db > -12.0:
 		_fail("Player dash does not use the dedicated light swoosh at a safe volume.")
@@ -95,16 +89,12 @@ func _run() -> void:
 	if (
 		feedback.sword_hit_sound == null
 		or feedback.ability_hit_sound == null
-		or feedback.consecutive_final_hit_sound == null
 		or feedback.player_hurt_sound == null
 	):
-		_fail("Accepted-hit, Piercing Rush, Consecutive Thrust, and player-damage SFX are not configured in the arena.")
+		_fail("Accepted sword/ability hits and player-damage SFX are not configured in the arena.")
 		return
 	if feedback.player_hurt_sound != PlayerHurtImpact or feedback.player_hurt_sound == thrall_sfx.primary_player.stream:
 		_fail("Player damage does not use a distinct impact sound.")
-		return
-	if not is_equal_approx(CombatFeedbackPresenter.CONSECUTIVE_FINAL_CONTACT_ONSET_SECONDS, 0.125):
-		_fail("Consecutive Thrust final contact playback is not skipping its delayed source lead-in.")
 		return
 	arena.free()
 	print("Combat audio smoke test passed.")
