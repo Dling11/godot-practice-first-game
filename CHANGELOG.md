@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-08-21 - Threat-Tiered Stage Portal Fields
+
+- Accepted Decision 119 and reorganized the existing neutral portal sheets into a strict threat ladder: Normal blue with no lightning, Mini Boss purple with restrained close discharge, Boss red with stronger reach, God searing white-gold with intense viewport-scale discharge, and Transcendent near-black with the widest violet-black field.
+- Decoupled lightning-field reach from doorway scale. The highest tier now spans more than half of the 960-pixel viewport without making the portal body itself enormous; opacity, speed, color, and reach remain presentation-only tier data.
+- Carried the selected tier into `SceneTransition`, preventing a quiet Normal portal from unexpectedly restoring maximum lightning during the loading veil. Added regressions for color order, strictly rising FX intensity/reach, lightning-free Normal, half-screen Transcendent reach, and tier-matched loading presentation.
+
 ## 2026-08-21 - Generated Full-Surface Abyssal Stage Portal
 
 - Stabilized the generated base layer around its alpha-weighted vortex center, reducing measured frame-to-frame anchor drift to roughly 1.5 pixels while preserving independent rim deformation and far-field lightning motion.

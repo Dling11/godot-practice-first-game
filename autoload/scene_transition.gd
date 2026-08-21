@@ -17,6 +17,7 @@ var _loading_portal: Sprite2D
 var _loading_portal_fx: Sprite2D
 var _loading_animation: Tween
 var _transitioning := false
+var _loading_fx_alpha := 0.0
 
 
 func _ready() -> void:
@@ -53,10 +54,11 @@ func _ready() -> void:
 	add_child(_loading_label)
 
 
-func transition_to(target_scene: String) -> bool:
+func transition_to(target_scene: String, portal_presentation: Dictionary = {}) -> bool:
 	if _transitioning or target_scene.is_empty() or not ResourceLoader.exists(target_scene):
 		return false
 	_transitioning = true
+	_apply_loading_portal_presentation(portal_presentation)
 	_loading_portal.position = get_viewport().get_visible_rect().size * 0.5 - Vector2(0.0, 12.0)
 	_loading_portal_fx.position = _loading_portal.position
 	_loading_label.text = _get_loading_message(target_scene)
@@ -68,7 +70,10 @@ func transition_to(target_scene: String) -> bool:
 	fade_out.tween_property(_overlay, "modulate:a", 1.0, 0.35)
 	fade_out.parallel().tween_property(_loading_label, "modulate:a", 1.0, 0.25)
 	fade_out.parallel().tween_property(_loading_portal, "modulate:a", 1.0, 0.25)
-	fade_out.parallel().tween_property(_loading_portal_fx, "modulate:a", 0.9, 0.25)
+	if _loading_portal_fx.visible:
+		fade_out.parallel().tween_property(
+			_loading_portal_fx, "modulate:a", _loading_fx_alpha, 0.25
+		)
 	await fade_out.finished
 	var error := get_tree().change_scene_to_file(target_scene)
 	if error != OK:
@@ -96,6 +101,21 @@ func transition_to(target_scene: String) -> bool:
 	_stop_loading_animation()
 	transition_finished.emit(target_scene)
 	return true
+
+
+func _apply_loading_portal_presentation(portal_presentation: Dictionary) -> void:
+	var presentation := portal_presentation
+	if presentation.is_empty():
+		presentation = StagePortal.TIER_PRESENTATION[StagePortal.PortalTier.NORMAL]
+	var portal_color: Color = presentation["color"]
+	var fx_color: Color = presentation["fx_color"]
+	var fx_reach: float = presentation["fx_reach"]
+	_loading_fx_alpha = presentation["fx_alpha"]
+	_loading_portal.scale = Vector2.ONE * 0.5
+	_loading_portal.modulate = Color(portal_color, 0.0)
+	_loading_portal_fx.visible = _loading_fx_alpha > 0.0
+	_loading_portal_fx.scale = Vector2.ONE * 0.5 * fx_reach
+	_loading_portal_fx.modulate = Color(fx_color, 0.0)
 
 
 func _start_loading_animation() -> void:

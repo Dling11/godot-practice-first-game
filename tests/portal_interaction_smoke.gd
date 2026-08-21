@@ -44,11 +44,17 @@ func _run() -> void:
 	):
 		_fail("The stage portal is missing either layered animation, guidance, or travel audio.")
 		return
+	if not _validate_threat_tier_ladder():
+		return
+	if portal_fx.visible or not is_zero_approx(portal_fx.speed_scale):
+		_fail("A Normal portal still presents higher-tier lightning.")
+		return
 	portal.portal_tier = StagePortal.PortalTier.GOD
 	portal._apply_tier_presentation()
 	if (
 		portal_visual.speed_scale < 1.2
 		or portal_fx.speed_scale <= portal_visual.speed_scale
+		or not portal_fx.visible
 		or portal_visual.scale.x <= 0.0
 		or portal_fx.scale.x <= 0.0
 	):
@@ -112,6 +118,45 @@ func _run() -> void:
 		return
 	print("Portal interaction smoke test passed.")
 	quit(0)
+
+
+func _validate_threat_tier_ladder() -> bool:
+	var normal: Dictionary = StagePortal.TIER_PRESENTATION[StagePortal.PortalTier.NORMAL]
+	var mini_boss: Dictionary = StagePortal.TIER_PRESENTATION[StagePortal.PortalTier.MINI_BOSS]
+	var boss: Dictionary = StagePortal.TIER_PRESENTATION[StagePortal.PortalTier.BOSS]
+	var god: Dictionary = StagePortal.TIER_PRESENTATION[StagePortal.PortalTier.GOD]
+	var transcendent: Dictionary = StagePortal.TIER_PRESENTATION[StagePortal.PortalTier.TRANSCENDENT]
+	var normal_color: Color = normal["color"]
+	var mini_boss_color: Color = mini_boss["color"]
+	var boss_color: Color = boss["color"]
+	var god_color: Color = god["color"]
+	var transcendent_color: Color = transcendent["color"]
+	if (
+		normal_color.b <= normal_color.r
+		or mini_boss_color.b <= mini_boss_color.r
+		or mini_boss_color.r <= mini_boss_color.g
+		or boss_color.r <= boss_color.b
+		or minf(god_color.r, minf(god_color.g, god_color.b)) < 0.9
+		or maxf(transcendent_color.r, maxf(transcendent_color.g, transcendent_color.b)) > 0.15
+	):
+		_fail("Portal tier colors no longer read blue, purple, red, searing light, then near-black.")
+		return false
+	var ordered_tiers := [normal, mini_boss, boss, god, transcendent]
+	for index in range(ordered_tiers.size() - 1):
+		if (
+			float(ordered_tiers[index]["fx_alpha"]) >= float(ordered_tiers[index + 1]["fx_alpha"])
+			or float(ordered_tiers[index]["fx_reach"]) >= float(ordered_tiers[index + 1]["fx_reach"])
+		):
+			_fail("Portal lightning intensity and reach do not rise with threat tier.")
+			return false
+	if not is_zero_approx(float(normal["fx_alpha"])) or not is_zero_approx(float(normal["fx_reach"])):
+		_fail("Normal portals must remain lightning-free.")
+		return false
+	var transcendent_field_width := 256.0 * float(transcendent["scale"]) * float(transcendent["fx_reach"])
+	if transcendent_field_width < 480.0:
+		_fail("The highest portal tier no longer throws lightning across at least half the viewport.")
+		return false
+	return true
 
 
 func _validate_layer_sheet(path: String, expected_size: Vector2i, layer_name: String) -> bool:

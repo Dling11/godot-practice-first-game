@@ -126,6 +126,7 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 116 | Separate fixed Sanctuary architecture from tiered stage vortices | Static angel gate, isolated energy animation, prior stage-vortex baseline, superiority tiers, or off-screen portal guidance |
 | 117 | Layer upright stage portals from separate vortex and lightning sheets (superseded by 118) | Historical ring and localized-eye portal passes |
 | 118 | Generate full-surface abyssal portal and dense lightning boards | Full-interior vortex depth, moving center/rim, frequent circumference lightning, smaller portal scale, or 16-frame board processing |
+| 119 | Tier stage portals by threat color and lightning reach | Normal-through-Transcendent color ladder, lightning suppression/intensity/reach, or tier-matched loading veil |
 
 ## New Decisions
 

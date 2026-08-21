@@ -15,6 +15,21 @@ func _run() -> void:
 	if transition_service == null:
 		_fail("SceneTransition autoload is unavailable.")
 		return
+	transition_service._apply_loading_portal_presentation(
+		StagePortal.TIER_PRESENTATION[StagePortal.PortalTier.NORMAL]
+	)
+	if transition_service._loading_portal_fx.visible:
+		_fail("The loading veil adds lightning to a Normal portal transition.")
+		return
+	transition_service._apply_loading_portal_presentation(
+		StagePortal.TIER_PRESENTATION[StagePortal.PortalTier.TRANSCENDENT]
+	)
+	if (
+		not transition_service._loading_portal_fx.visible
+		or transition_service._loading_portal_fx.scale.x < 1.4
+	):
+		_fail("The loading veil does not preserve the highest tier's extreme lightning reach.")
+		return
 	var result: bool = await transition_service.transition_to(STAGE_2)
 	if not result:
 		_fail("SceneTransition rejected the valid Stage 2 destination.")

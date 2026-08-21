@@ -14,24 +14,39 @@ enum PortalTier {
 
 const TIER_PRESENTATION := {
 	PortalTier.NORMAL: {
-		"color": Color(0.46, 0.74, 1.0), "scale": 0.64,
-		"base_speed": 0.84, "fx_speed": 1.16, "fx_alpha": 0.94,
+		"color": Color(0.38, 0.68, 1.0),
+		"fx_color": Color(0.52, 0.78, 1.0),
+		"guide_color": Color(0.46, 0.74, 1.0),
+		"scale": 0.64, "fx_reach": 0.0,
+		"base_speed": 0.78, "fx_speed": 0.0, "fx_alpha": 0.0,
 	},
 	PortalTier.MINI_BOSS: {
-		"color": Color(0.44, 1.0, 0.72), "scale": 0.72,
-		"base_speed": 0.96, "fx_speed": 1.34, "fx_alpha": 0.96,
+		"color": Color(0.62, 0.34, 1.0),
+		"fx_color": Color(0.76, 0.55, 1.0),
+		"guide_color": Color(0.72, 0.5, 1.0),
+		"scale": 0.70, "fx_reach": 0.82,
+		"base_speed": 0.92, "fx_speed": 1.08, "fx_alpha": 0.28,
 	},
 	PortalTier.BOSS: {
-		"color": Color(1.0, 0.38, 0.5), "scale": 0.82,
-		"base_speed": 1.08, "fx_speed": 1.56, "fx_alpha": 1.0,
+		"color": Color(1.0, 0.18, 0.26),
+		"fx_color": Color(1.0, 0.42, 0.32),
+		"guide_color": Color(1.0, 0.32, 0.32),
+		"scale": 0.78, "fx_reach": 1.18,
+		"base_speed": 1.06, "fx_speed": 1.42, "fx_alpha": 0.62,
 	},
 	PortalTier.GOD: {
-		"color": Color(1.0, 0.84, 0.34), "scale": 0.92,
-		"base_speed": 1.22, "fx_speed": 1.82, "fx_alpha": 1.0,
+		"color": Color(0.94, 0.98, 1.0),
+		"fx_color": Color(1.0, 0.94, 0.62),
+		"guide_color": Color(1.0, 0.94, 0.62),
+		"scale": 0.88, "fx_reach": 1.90,
+		"base_speed": 1.24, "fx_speed": 1.86, "fx_alpha": 0.94,
 	},
 	PortalTier.TRANSCENDENT: {
-		"color": Color(0.72, 0.96, 1.0), "scale": 1.02,
-		"base_speed": 1.38, "fx_speed": 2.05, "fx_alpha": 1.0,
+		"color": Color(0.08, 0.035, 0.12),
+		"fx_color": Color(0.38, 0.12, 0.62),
+		"guide_color": Color(0.68, 0.42, 1.0),
+		"scale": 0.96, "fx_reach": 2.85,
+		"base_speed": 1.42, "fx_speed": 2.18, "fx_alpha": 1.0,
 	},
 }
 
@@ -49,6 +64,8 @@ var _player_inside := false
 var _nearby_player: Player
 var _travel_started := false
 var _tier_color := Color.WHITE
+var _fx_color := Color.WHITE
+var _fx_alpha := 0.0
 var _portal_scale := Vector2.ONE
 var _base_pulse: Tween
 var _fx_pulse: Tween
@@ -72,10 +89,12 @@ func _process(_delta: float) -> void:
 func _apply_tier_presentation() -> void:
 	var presentation: Dictionary = TIER_PRESENTATION.get(portal_tier, TIER_PRESENTATION[PortalTier.NORMAL])
 	_tier_color = presentation["color"] as Color
+	_fx_color = presentation["fx_color"] as Color
 	var scale_factor: float = presentation["scale"]
+	var fx_reach: float = presentation["fx_reach"]
 	var base_speed: float = presentation["base_speed"]
 	var fx_speed: float = presentation["fx_speed"]
-	var fx_alpha: float = presentation["fx_alpha"]
+	_fx_alpha = presentation["fx_alpha"]
 	_portal_scale = Vector2.ONE * scale_factor
 	if portal_visual != null:
 		portal_visual.speed_scale = base_speed
@@ -85,21 +104,25 @@ func _apply_tier_presentation() -> void:
 		appearance.tween_property(portal_visual, "scale", _portal_scale, 0.48).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		appearance.tween_property(portal_visual, "modulate", Color(_tier_color, 1.0), 0.3)
 		if portal_fx != null:
+			portal_fx.visible = _fx_alpha > 0.0
 			portal_fx.speed_scale = fx_speed
-			portal_fx.scale = _portal_scale * 0.1
-			portal_fx.modulate = Color(_tier_color.lightened(0.18), 0.0)
-			appearance.tween_property(portal_fx, "scale", _portal_scale, 0.56).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-			appearance.tween_property(
-				portal_fx,
-				"modulate",
-				Color(_tier_color.lightened(0.18), fx_alpha),
-				0.38
-			)
+			var fx_scale := _portal_scale * fx_reach
+			portal_fx.scale = fx_scale * 0.1
+			portal_fx.modulate = Color(_fx_color, 0.0)
+			if portal_fx.visible:
+				appearance.tween_property(portal_fx, "scale", fx_scale, 0.56).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+				appearance.tween_property(
+					portal_fx,
+					"modulate",
+					Color(_fx_color, _fx_alpha),
+					0.38
+				)
 		appearance.chain().tween_callback(_start_energy_pulse)
+	var guide_color: Color = presentation["guide_color"] as Color
 	if guidance_arrow != null:
-		guidance_arrow.add_theme_color_override("font_color", _tier_color)
+		guidance_arrow.add_theme_color_override("font_color", guide_color)
 	if offscreen_guide != null:
-		offscreen_guide.add_theme_color_override("font_color", _tier_color)
+		offscreen_guide.add_theme_color_override("font_color", guide_color)
 		offscreen_guide.pivot_offset = offscreen_guide.size * 0.5
 
 
@@ -114,18 +137,13 @@ func _start_energy_pulse() -> void:
 	_base_pulse = create_tween().set_loops()
 	_base_pulse.tween_property(portal_visual, "modulate", Color(bright, 1.0), 0.62).set_trans(Tween.TRANS_SINE)
 	_base_pulse.tween_property(portal_visual, "modulate", Color(_tier_color, 1.0), 0.78).set_trans(Tween.TRANS_SINE)
-	if portal_fx != null and is_instance_valid(portal_fx):
-		var presentation: Dictionary = TIER_PRESENTATION.get(
-			portal_tier, TIER_PRESENTATION[PortalTier.NORMAL]
-		)
-		var fx_alpha: float = presentation["fx_alpha"]
-		var fx_color := _tier_color.lightened(0.28)
+	if portal_fx != null and is_instance_valid(portal_fx) and _fx_alpha > 0.0:
 		_fx_pulse = create_tween().set_loops()
 		_fx_pulse.tween_property(
-			portal_fx, "modulate", Color(fx_color, fx_alpha), 0.31
+			portal_fx, "modulate", Color(_fx_color.lightened(0.16), _fx_alpha), 0.31
 		).set_trans(Tween.TRANS_SINE)
 		_fx_pulse.tween_property(
-			portal_fx, "modulate", Color(_tier_color.lightened(0.12), fx_alpha * 0.72), 0.47
+			portal_fx, "modulate", Color(_fx_color.darkened(0.12), _fx_alpha * 0.68), 0.47
 		).set_trans(Tween.TRANS_SINE)
 
 
@@ -183,7 +201,10 @@ func _fade_player_into_portal(player: Player) -> void:
 		push_error("StagePortal requires the SceneTransition autoload.")
 		_restore_player_after_failed_travel(player)
 		return
-	if not await transition_service.transition_to(target_scene_path):
+	var presentation: Dictionary = TIER_PRESENTATION.get(
+		portal_tier, TIER_PRESENTATION[PortalTier.NORMAL]
+	)
+	if not await transition_service.transition_to(target_scene_path, presentation):
 		_restore_player_after_failed_travel(player)
 
 

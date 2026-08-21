@@ -7,9 +7,9 @@ This file tracks current limitations only. Resolved and retired systems belong i
 ### KI-018 - Portal presentation needs final owner-scale approval
 
 - **Status:** Open.
-- **Verified:** Sanctuary architecture is one fixed raster with an isolated energy animation and restored authored guardian/backstop/threshold collision that retains both walk-around approaches. Stage exits structurally pass a generated 16-frame full-surface vortex with a center locked within two pixels, nonempty moving interior and deforming rim, a dense distributed 16-frame lightning/particle loop, transparent interior gaps, five-tier styling, local guidance, and distant screen-edge pointer checks.
-- **Risk:** Headless checks cannot judge final reduced doorway scale, lightning intensity, multilayer depth, tier-color distinction, dual-loop cadence, or pointer comfort during a complete moving-camera playthrough.
-- **Next:** Review Normal/Mini Boss/Boss exits at 960x540 while moving around and through them; tune presentation data only unless collision or transition behavior actually fails.
+- **Verified:** Sanctuary architecture is one fixed raster with an isolated energy animation and restored authored guardian/backstop/threshold collision that retains both walk-around approaches. Stage exits structurally pass a centered moving 16-frame vortex/rim plus Decision 119's blue lightning-free Normal, restrained purple Mini Boss, red Boss, searing-light God, and near-black Transcendent ladder. FX opacity and independent reach rise strictly, Transcendent exceeds half the viewport, and the loading veil preserves the selected tier.
+- **Risk:** Headless checks cannot judge final Mini Boss/Boss restraint, God/Transcendent screen dominance, dark-field readability, dual-loop cadence, or pointer comfort during a complete moving-camera playthrough.
+- **Next:** Review Normal/Mini Boss/Boss exits at 960x540 first, then temporarily preview God/Transcendent to judge extreme reach; tune only tier presentation data unless collision or transition behavior actually fails.
 
 ### KI-017 - Repeated-click combat and footprint approach need owner feel approval
 
