@@ -10,7 +10,7 @@ This file records current production progress. Historical implementation detail 
 - Combat controls through Decision 114: right-click/WASD movement clears combat intent; left-click performs directional air swings, one-click enemy selection, and repeated same-enemy pursuit/attack; right-click/`Esc` cancels targeted skills; optional `AUTO ALL` and `AUTO SKILL` remain explicit.
 - Size-aware enemy footprints drive movement collision, navigation radius, crowd separation, readable tier auras, foot-circle selection, and assisted approach distance. Hurtboxes and attack shapes remain separate.
 - One six-cell generated combat-action atlas supplies King Skills 1-4, Basic Attack, and Dodge/Dash through reusable `AtlasTexture` resources.
-- Sanctuary with Eira skill information, Orren lore dialogue, Nema's read-only Living Rootforge, expedition selection, debug-only Combat Lab access, and safe-point autosave.
+- Sanctuary with Eira skill information, Orren lore dialogue, Nema's atomic Stage V Living Rootforge, expedition selection, debug-only Combat Lab access, and safe-point autosave.
 - Forest Stages 1-5, including authored TileMaps, bounded live-enemy pressure, sparse/protected loot, Stage III Rootbound Husk, Stage IV Armored Hog pressure, and Stage V Varkuun encounter/reward flow.
 - Versioned disk save/Continue with temporary write, rotating backup, story/progression/health, King weapon/gear, materials, recipes, and reward claims.
 - Sanctuary/Continue is a full-health recovery checkpoint; expedition stages still preserve attrition between direct stage transitions.
@@ -18,6 +18,7 @@ This file records current production progress. Historical implementation detail 
 - Sanctuary locks its generated angels/masonry to one static raster and animates only doorway energy. Stage exits use two approved 16-frame abyssal sheets with full-surface/deforming-rim motion and a separately scalable lightning field. Five threat tiers now progress from blue lightning-free Normal through purple Mini Boss, red Boss, searing-light God, and near-black Transcendent with half-viewport-plus reach; the loading veil preserves the chosen tier.
 - The live enemy roster is discovery-gated, uses stable signature refresh, and clips/pads/marquees only overflowing names.
 - Long-lived Spitter seeds tolerate shooter death, and Armored Hog's committed brace/charge cannot be permanently canceled by normal-hit spam.
+- Decision 121 establishes the first meaningful equipment band: exact Stage V slot identities, Varkuun Edge critical-hit authority, percentage caps, equipped-item comparisons, compact Character/Rootforge layouts, right-edge formula icons, and clearer binary-alpha Forest equipment silhouettes.
 - Opaw, the retired weapon shop/awakening flow, unused equipment showcase, obsolete processors/tests, and 30 unreferenced images moved into recoverable Godot-ignored archives. The post-cleanup runtime image audit reports no unreferenced images under `assets/`.
 
 ## In Progress
@@ -33,11 +34,10 @@ This file records current production progress. Historical implementation detail 
 
 ### Forest Production
 
-1. Implement atomic Rootforge crafting: validate recipe/unlock/material state, spend once, grant once, persist once, and recover safely on invalid input.
-2. Add replayable Hunts for completed stages with explicit reward families and modifiers.
-3. Continue authored Forest content from Stage 6 through Stage 10 using distinct enemy roles, readable telegraphs, regional materials, and bounded live-enemy caps.
-4. Finish the regional gear/accessory/relic progression and bounded Mastery contract.
-5. Define the Stage 11 seam before starting another region.
+1. Add replayable Hunts for completed stages with explicit reward families and modifiers.
+2. Author the Stage VI contract around optional-but-consequential Stage V gear: no ownership gate, no Mirelings/Rootlings in the new campaign roster, tougher readable enemies, and measured starter-versus-crafted clear-time/damage bands before continuing through Stage X.
+3. Finish the regional gear/accessory/relic progression and bounded Mastery contract.
+4. Define the Stage 11 seam before starting another region.
 
 ### Release Readiness
 
@@ -62,4 +62,4 @@ This file records current production progress. Historical implementation detail 
 
 ## Next Decision Gate
 
-Approve the Decision 112 control feel in the running game. If pursuit reliably reaches and damages normal, Elite, and Boss footprints without fighting manual input, retain the size-aware approach contract and proceed to crafting. If it fails, adjust approach padding/navigation steering from recorded cases; do not add a second movement or damage authority.
+Approve the compact equipment/Rootforge presentation and Decision 121 combat feel in the running game, then lock Stage VI enemy roles and measured health/damage bands. Preserve free stage entry; tune challenge through authored encounters instead of an equipment ownership check or a hidden starter-character nerf.

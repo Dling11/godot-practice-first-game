@@ -63,7 +63,7 @@ func _run() -> void:
 		"Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/"
 		+ "PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas/Body"
 	) as AnimatedSprite2D
-	if preview_body.sprite_frames != KingFrames or preview_body.position != Vector2(64, 77):
+	if preview_body.sprite_frames != KingFrames or preview_body.position != Vector2(55, 70):
 		_fail("Character menu preview is not using King's body-centered active model.")
 		return
 	var preview_grip := menu.get_node(
@@ -97,9 +97,9 @@ func _run() -> void:
 			_fail("Character menu equipment slot %d did not match the finalized model." % index)
 			return
 	if (
-		menu._equipment_slot_cards[0].position != Vector2(93, 0)
+		menu._equipment_slot_cards[0].position != Vector2(70, 0)
 		or menu._equipment_slot_cards[CharacterMenu.WEAPON_ESSENCE_SLOT_INDEX].position
-		!= Vector2(245, 0)
+		!= Vector2(221, 0)
 	):
 		_fail("Head and Weapon Essence did not use the compact armor/upper-body placement.")
 		return
@@ -122,6 +122,12 @@ func _run() -> void:
 		return
 	if menu.equipment_detail_panel.current_definition != player.get_equipped_weapon_item():
 		_fail("Character menu did not initially inspect the equipped weapon.")
+		return
+	if (
+		(menu.get_node("Panel") as Control).size != Vector2(840, 460)
+		or menu.equipment_detail_panel.custom_minimum_size != Vector2(225, 188)
+	):
+		_fail("Character & Bag did not adopt the approved compact modal and detail dimensions.")
 		return
 	if menu.skills_tab_button.get_node_or_null(menu.skills_tab_button.focus_neighbor_bottom) != menu._equipment_cards[0]:
 		_fail("Both tabs must lead into the visible Character & Bag inventory.")
@@ -262,6 +268,17 @@ func _run() -> void:
 	if gloves == null:
 		_fail("F9 did not grant the Stage V gloves for equipment testing.")
 		return
+	var glove_card: InventorySlotButton
+	for card: InventorySlotButton in menu._equipment_cards:
+		if card.equipment_definition == gloves:
+			glove_card = card
+			break
+	var drag_grab_position := Vector2(17, 13)
+	var drag_preview := glove_card._create_drag_preview(drag_grab_position)
+	if drag_preview.position != -drag_grab_position or drag_preview.size != Vector2(48, 48):
+		_fail("The equipment drag preview does not remain attached to the mouse grab point.")
+		return
+	drag_preview.free()
 	var glove_drop := {"equipment": gloves}
 	var glove_slot: EquipmentSlotCard = menu._equipment_slot_cards[3]
 	if not glove_slot._can_drop_data(Vector2.ZERO, glove_drop):
@@ -273,10 +290,11 @@ func _run() -> void:
 		if item != null and item.slot not in [EquipmentDefinition.Slot.WEAPON, EquipmentDefinition.Slot.GLOVES]:
 			menu._on_equipment_equip_requested(item)
 	if (
-		not is_equal_approx(player.health_component.maximum_health, 280.0)
-		or not is_equal_approx(player.health_component.armor_rating, 16.0)
-		or not is_equal_approx(player.health_component.ward_reduction_ratio, 0.04)
-		or not is_equal_approx(player.attack_component._attack_speed_bonus_ratio, 0.12)
+		not is_equal_approx(player.health_component.maximum_health, 388.0)
+		or not is_equal_approx(player.health_component.armor_rating, 30.0)
+		or not is_equal_approx(player.health_component.ward_reduction_ratio, 0.0)
+		or not is_equal_approx(player.health_regeneration_component.flat_regeneration_bonus, 2.0)
+		or not is_equal_approx(player.attack_component._attack_speed_bonus_ratio, 0.15)
 		or not is_equal_approx(player.movement_component.max_speed, 126.5)
 	):
 		_fail("Equipping the complete Stage V armor set did not apply its real reusable stats.")

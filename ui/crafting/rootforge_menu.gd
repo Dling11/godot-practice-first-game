@@ -1,15 +1,20 @@
 class_name RootforgeMenu
 extends Control
 
-## Segment 4 exposes recipe knowledge and current material readiness without
-## performing a crafting transaction. The disabled primary action is an honest
-## milestone preview, not a hidden mutation path.
+## Nema's recipe surface delegates all ownership mutation and saving to the
+## atomic CraftingService authority.
 
 signal menu_closed
 
 const ALL_CATEGORIES := -1
 const Stage5CoreEquipment: EquipmentCatalogDefinition = preload(
 	"res://data/items/equipment/forest/stage_5_core_catalog.tres"
+)
+const KingWeaponCatalog: WeaponCatalogDefinition = preload(
+	"res://data/items/king_weapon_catalog.tres"
+)
+const LockedFormulaIcon: Texture2D = preload(
+	"res://assets/ui/icons/states/icon_slot_locked_16x16.png"
 )
 
 @export var catalog: RecipeCatalogDefinition
@@ -38,6 +43,7 @@ var _button_recipes: Array[RecipeDefinition] = []
 var selected_recipe: RecipeDefinition
 var _active_category := ALL_CATEGORIES
 var _owns_pause := false
+var _transaction_message := ""
 
 
 func _ready() -> void:
@@ -53,6 +59,9 @@ func _ready() -> void:
 	if recipe_discovery != null:
 		recipe_discovery.recipe_discovered.connect(_on_recipe_discovered)
 		recipe_discovery.discovery_reset.connect(_on_recipe_discovery_reset)
+	var story_state := get_node_or_null("/root/StoryState")
+	if story_state != null:
+		story_state.story_state_changed.connect(_on_story_state_changed)
 	_build_recipe_list()
 	hide()
 
@@ -124,7 +133,7 @@ func _build_recipe_list() -> void:
 	for recipe: RecipeDefinition in catalog.recipes:
 		var button := Button.new()
 		button.name = "%sRecipeButton" % String(recipe.recipe_id).to_pascal_case()
-		button.custom_minimum_size = Vector2(0, 42)
+		button.custom_minimum_size = Vector2(0, 36)
 		button.toggle_mode = true
 		button.button_group = group
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
@@ -135,6 +144,19 @@ func _build_recipe_list() -> void:
 			recipe.display_name.to_upper(),
 		]
 		button.tooltip_text = recipe.description
+		var output := Stage5CoreEquipment.find_item(recipe.output_id)
+		var formula_icon := TextureRect.new()
+		formula_icon.name = "FormulaIcon"
+		formula_icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		formula_icon.set_anchors_preset(Control.PRESET_CENTER_RIGHT)
+		formula_icon.position = Vector2(-29, -12)
+		formula_icon.size = Vector2(24, 24)
+		formula_icon.texture = output.icon if output != null else LockedFormulaIcon
+		formula_icon.modulate = Color.WHITE if output != null else Color("746783")
+		formula_icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		formula_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		formula_icon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		button.add_child(formula_icon)
 		button.pressed.connect(_select_recipe.bind(recipe))
 		recipe_list.add_child(button)
 		recipe_buttons.append(button)
@@ -147,6 +169,7 @@ func _build_recipe_list() -> void:
 
 func _select_recipe(recipe: RecipeDefinition) -> void:
 	selected_recipe = recipe
+	_transaction_message = ""
 	for index in mini(recipe_buttons.size(), _button_recipes.size()):
 		recipe_buttons[index].set_pressed_no_signal(_button_recipes[index] == recipe)
 	_refresh_recipe_detail()
@@ -181,10 +204,7 @@ func _refresh_recipe_buttons() -> void:
 	var recipe_discovery := get_node_or_null("/root/RecipeDiscovery")
 	for index in mini(recipe_buttons.size(), _button_recipes.size()):
 		var recipe := _button_recipes[index]
-		var remembered: bool = (
-			recipe_discovery != null
-			and recipe_discovery.is_recipe_discovered(recipe.recipe_id)
-		)
+		var remembered := _is_recipe_available(recipe)
 		recipe_buttons[index].text = "  TIER %d  •  %s  •  %s\n  %s" % [
 			recipe.tier,
 			_category_name(recipe.category),
@@ -210,30 +230,52 @@ func _refresh_recipe_detail() -> void:
 			output.get_rarity_name(),
 		]
 		output_stats_label.text = output.get_stat_summary()
+		if output.slot == EquipmentDefinition.Slot.WEAPON:
+			output_stats_label.text += "\n" + output.get_comparison_summary(
+				KingWeaponCatalog.default_weapon
+			)
 	recipe_description_label.text = selected_recipe.description
-	var recipe_discovery := get_node_or_null("/root/RecipeDiscovery")
-	var remembered: bool = (
-		recipe_discovery != null
-		and recipe_discovery.is_recipe_discovered(selected_recipe.recipe_id)
-	)
+	var remembered := _is_recipe_available(selected_recipe)
 	recipe_state_label.text = (
-		"BLUEPRINT REMEMBERED  •  RECIPE PREVIEW"
+		"BLUEPRINT REMEMBERED  •  CRAFTING UNLOCKED"
 		if remembered
-		else "BLUEPRINT NOT REMEMBERED  •  RECIPE PREVIEW"
+		else "BLUEPRINT NOT REMEMBERED  •  RECIPE SEALED"
 	)
 	recipe_state_label.add_theme_color_override(
 		"font_color",
 		Color("9ab85d") if remembered else Color("c58bd8")
 	)
 	_rebuild_ingredient_rows()
-	var seal_text := _required_seal_text(selected_recipe.category)
+	var crafting_service := get_node_or_null("/root/CraftingService")
+	var status: Dictionary = (
+		crafting_service.get_recipe_status(selected_recipe)
+		if crafting_service != null
+		else {"success": false, "reason": &"service_missing", "message": "CRAFTING UNAVAILABLE"}
+	)
 	if _is_debug_crafting_preset_active():
-		milestone_label.text = "F9 TEST READY\nMATERIALS • BLUEPRINT • SEAL SATISFIED"
-		primary_action_button.text = "DEBUG READY • ITEM GRANTED"
+		milestone_label.text = "F9 TEST READY\nOUTPUT ALREADY OWNED • AUTOSAVE SUPPRESSED"
+		primary_action_button.text = "ALREADY OWNED"
+		primary_action_button.disabled = true
+	elif not _transaction_message.is_empty():
+		milestone_label.text = _transaction_message
+		primary_action_button.text = "ALREADY OWNED" if status["reason"] == &"already_owned" else "CRAFT"
+		primary_action_button.disabled = true
+	elif status["success"]:
+		milestone_label.text = "STAGE V CORE GEAR SEAL VERIFIED\nALL MATERIALS READY"
+		primary_action_button.text = "CRAFT %s" % selected_recipe.display_name.to_upper()
+		primary_action_button.disabled = false
 	else:
-		milestone_label.text = "%s\nCRAFTING TRANSACTION NOT YET ENABLED" % seal_text
-		primary_action_button.text = seal_text
-	primary_action_button.disabled = true
+		var status_message := String(status["message"])
+		milestone_label.text = "%s\n%s" % [
+			_required_seal_text(selected_recipe.category),
+			status_message,
+		]
+		primary_action_button.text = (
+			_required_seal_text(selected_recipe.category)
+			if status["reason"] in [&"recipe_sealed", &"seal_missing"]
+			else status_message
+		)
+		primary_action_button.disabled = true
 
 
 func _rebuild_ingredient_rows() -> void:
@@ -306,6 +348,28 @@ func _required_seal_text(category: int) -> String:
 	return "STAGE V CORE GEAR SEAL REQUIRED"
 
 
+func _is_recipe_available(recipe: RecipeDefinition) -> bool:
+	var recipe_discovery := get_node_or_null("/root/RecipeDiscovery")
+	var story_state := get_node_or_null("/root/StoryState")
+	return (
+		(recipe_discovery != null and recipe_discovery.is_recipe_discovered(recipe.recipe_id))
+		or (story_state != null and story_state.has_discovery(recipe.unlock_id))
+	)
+
+
+func _craft_selected_recipe() -> void:
+	if selected_recipe == null or primary_action_button.disabled:
+		return
+	var crafting_service := get_node_or_null("/root/CraftingService")
+	if crafting_service == null:
+		_transaction_message = "CRAFTING SERVICE UNAVAILABLE"
+		_refresh_all()
+		return
+	var result: Dictionary = crafting_service.try_craft(selected_recipe)
+	_transaction_message = String(result["message"])
+	_refresh_all()
+
+
 func _is_debug_crafting_preset_active() -> bool:
 	if not OS.is_debug_build():
 		return false
@@ -335,5 +399,10 @@ func _on_recipe_discovered(_recipe_id: StringName) -> void:
 
 
 func _on_recipe_discovery_reset() -> void:
+	_refresh_recipe_buttons()
+	_refresh_recipe_detail()
+
+
+func _on_story_state_changed() -> void:
 	_refresh_recipe_buttons()
 	_refresh_recipe_detail()

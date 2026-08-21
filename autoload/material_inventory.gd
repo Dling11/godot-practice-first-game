@@ -93,6 +93,43 @@ func remove_material(material_id: StringName, quantity: int) -> bool:
 	return true
 
 
+func can_remove_material_batch(quantities: Dictionary) -> bool:
+	if quantities.is_empty():
+		return false
+	for raw_material_id: Variant in quantities:
+		if not (raw_material_id is String or raw_material_id is StringName):
+			return false
+		var material_id := StringName(String(raw_material_id))
+		var raw_quantity: Variant = quantities[raw_material_id]
+		if (
+			not _is_positive_integer(raw_quantity)
+			or not MaterialCatalog.has_material(material_id)
+			or not has_material(material_id, int(raw_quantity))
+		):
+			return false
+	return true
+
+
+func remove_material_batch(quantities: Dictionary) -> bool:
+	if not can_remove_material_batch(quantities):
+		return false
+	var material_ids := PackedStringArray()
+	for raw_material_id: Variant in quantities:
+		material_ids.append(String(raw_material_id))
+	material_ids.sort()
+	for raw_material_id: String in material_ids:
+		var material_id := StringName(raw_material_id)
+		var updated_quantity := get_quantity(material_id) - int(quantities[raw_material_id])
+		if updated_quantity == 0:
+			_quantities.erase(material_id)
+		else:
+			_quantities[material_id] = updated_quantity
+	for raw_material_id: String in material_ids:
+		var material_id := StringName(raw_material_id)
+		material_quantity_changed.emit(material_id, get_quantity(material_id))
+	return true
+
+
 func create_snapshot() -> Dictionary:
 	var quantities := {}
 	var material_ids := PackedStringArray()

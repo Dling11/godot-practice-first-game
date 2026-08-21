@@ -16,7 +16,7 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [node name="EquipmentSlotCard" type="PanelContainer"]
-custom_minimum_size = Vector2(110, 31)
+custom_minimum_size = Vector2(90, 28)
 layout_mode = 2
 theme = ExtResource("2_theme")
 theme_override_styles/panel = SubResource("slot_panel")
@@ -35,7 +35,7 @@ theme_override_constants/separation = 4
 
 [node name="SlotIcon" type="TextureRect" parent="Margin/Content"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(24, 24)
+custom_minimum_size = Vector2(22, 22)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5

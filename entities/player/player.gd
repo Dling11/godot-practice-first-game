@@ -807,6 +807,7 @@ func _start_ability(component: AbilityComponent, direction: Vector2) -> bool:
 		if attack_component.weapon != null
 		else 0.0
 	)
+	_configure_ability_critical_profile(component)
 	return component.request_cast(direction, weapon_damage)
 
 
@@ -828,7 +829,18 @@ func _on_ground_targeting_confirmed(component: AbilityComponent, target_global_p
 	var direction := target_global_position - global_position
 	_set_facing_direction(input_source.resolve_cardinal_facing(direction, facing_direction))
 	var weapon_damage := attack_component.weapon.damage if attack_component.weapon != null else 0.0
+	_configure_ability_critical_profile(component)
 	component.request_cast_at(target_global_position, weapon_damage)
+
+
+func _configure_ability_critical_profile(component: AbilityComponent) -> void:
+	if component == null:
+		return
+	var weapon := attack_component.weapon
+	component.set_critical_profile(
+		weapon.critical_chance_ratio if weapon != null else 0.0,
+		weapon.critical_damage_multiplier if weapon != null else 1.5
+	)
 
 
 func _is_targeting_any_ability() -> bool:

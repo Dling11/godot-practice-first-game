@@ -4,6 +4,7 @@ extends Node
 ## Presents accepted hits without owning combat state, damage, or timing.
 
 const PLAYER_HIT_TINT := Color(1.0, 0.9, 0.42, 1.0)
+const CRITICAL_HIT_TINT := Color(1.0, 0.72, 0.18, 1.0)
 const PLAYER_DAMAGED_TINT := Color(1.0, 0.42, 0.42, 1.0)
 const HIT_FLASH_SHADER := preload("res://gameplay/presentation/hit_flash.gdshader")
 const HIT_FLASH_SECONDS := 0.1
@@ -149,7 +150,12 @@ func _resolve_incoming_hitstop(damage_amount: float) -> float:
 func _show_hit(position: Vector2, info: DamageInfo, tint: Color, camera_strength: float) -> void:
 	var number := damage_number_scene.instantiate() as DamageNumber
 	number.global_position = position
-	number.configure(info.amount, tint)
+	number.configure(
+		info.amount,
+		CRITICAL_HIT_TINT if info.is_critical else tint,
+		24.0 if info.is_critical else 18.0,
+		info.is_critical
+	)
 	effects_parent.add_child(number)
 
 	var burst := hit_burst_scene.instantiate() as HitBurst

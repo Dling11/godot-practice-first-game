@@ -1,6 +1,6 @@
 # Rootweaver Nema Sanctuary Service Proposal
 
-- **Status:** Owner-approved and implemented through the read-only Segment 4 service; Decision 071 redirects future outputs to essences/relics before Segment 5 transactions
+- **Status:** Owner-approved and implemented through the atomic Segment 5 service; Decisions 071 and 120 route outputs through character-owned equipment and validated crafting
 - **Prepared:** 2026-07-29
 - **Owning production segment:** Forest Segment 4
 - **Current concept source:** `art_source/generated/characters/npcs/rootweaver/rootweaver_nema_grove_smith_concept_v3_source.png`
@@ -154,11 +154,11 @@ The Segment 4 shell is a paused, theme-backed presentation with:
 
 - compact header showing Nema, current region, and material-pouch summary
 - filters for `ALL`, `WEAPONS`, `ARMOR`, and `ACCESSORIES`
-- left recipe list with name, tier, category, and remembered/sealed state
+- left recipe list with name, tier, category, remembered/sealed state, and a small right-edge output silhouette (or locked-box silhouette for sealed previews)
 - right recipe panel with description, blueprint state, and current milestone boundary
 - ingredient rows showing material icon plus `owned / required`
 - milestone status strip showing the relevant crafting seal
-- one primary action whose disabled text explains the exact missing condition
+- one primary action that crafts only when ready and otherwise explains the exact missing condition
 - controller/mouse focus navigation and Escape/close behavior consistent with existing menus
 
 Examples of honest disabled states:
@@ -167,20 +167,20 @@ Examples of honest disabled states:
 - `STAGE VIII ACCESSORY SEAL REQUIRED`
 - `BLUEPRINT NOT REMEMBERED`
 - `MISSING MATERIALS`
-- `OUTPUT EQUIPMENT NOT YET IMPLEMENTED`
+- `ALREADY OWNED`
 
-The shell may preview the four current data recipes, but it must not consume materials or claim that an equipment output exists during Segment 4.
+The current surface exposes six craftable Stage V outputs and two honest sealed Stage VIII previews.
 
-## Authority Boundary for Segment 5
+## Implemented Authority Boundary for Segment 5
 
-Future `CraftingService` owns validation and atomic transactions:
+`CraftingService` owns validation and atomic transactions:
 
 1. validate recipe and permanent category seal
 2. validate blueprint discovery
-3. validate output definition and inventory capacity/rules
+3. validate output definition and unique ownership rules
 4. validate every material quantity
-5. consume all costs atomically
-6. grant exactly one deterministic output
+5. reserve exactly one deterministic output
+6. consume all costs as one validated batch
 7. emit an observation result
 8. request the existing safe-profile save only after success
 
@@ -197,7 +197,7 @@ The owner accepted:
 5. proposed dialogue voice
 6. crafting-menu hierarchy
 
-Segment 4 now delivers the cleaned/runtime actor, portrait, workshop, dialogue integration, read-only menu shell, asset catalog entries, editor/runtime validation, and focused Sanctuary regression without activating crafting transactions. `tests/rootweaver_service_smoke.gd` verifies the no-mutation boundary.
+Segment 4 delivered the cleaned/runtime actor, portrait, workshop, dialogue integration, menu shell, asset catalog entries, and Sanctuary regression. Decision 120 activates Segment 5: real Stage V category/seal gates, exact material spending, unique weapon/gear grants, save/rollback, and focused atomic/UI regressions. Stage VIII previews remain non-craftable.
 
 ## Concept Generation Record
 

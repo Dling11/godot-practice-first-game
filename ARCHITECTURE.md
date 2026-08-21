@@ -28,6 +28,8 @@ This document records current production ownership. Detailed historical migratio
 - `KnockbackComponent` and enemy controllers cooperate so each enemy remains its own movement authority. Light enemies flinch; abilities may stagger/stun; Elite/Boss resistance is data-owned.
 - `CombatFeedbackPresenter` observes accepted hits for flash, numbers, sparks, camera response, sound, and presentation-only hitstop.
 - King loads `data/weapons/king_signature_sword.tres` and `data/skills/king_starting_loadout.tres`: Echoing Sever, Riftbreak, Sovereign Pursuit, and Worldsplitter.
+- `WeaponDefinition` owns bounded critical chance/damage data. `MeleeHitbox` rolls once when a basic swing or skill strike activates and carries the shared result in every `DamageInfo` emitted by that activation; multi-target cleaves therefore cannot roll independently per victim. `AbilityComponent` receives the equipped weapon profile before cast, while feedback only observes `DamageInfo.is_critical`.
+- `MeleeAttackComponent` and `PlayerMovementComponent` clamp aggregated equipment bonuses at 50% attack speed and 35% movement speed. Weapon definitions clamp critical chance at 50%; no UI or save data may bypass those runtime caps.
 
 ## Enemy Footprints and Navigation
 
@@ -43,11 +45,11 @@ This document records current production ownership. Detailed historical migratio
 - `CombatTargetMarker` uses the small selected chevron; `CombatFootAura` communicates footprint/tier.
 - `CursorService` owns normal, interactive, attack-target, and skill-confirm cursor presentation.
 - The six `AtlasTexture` action icons share `assets/ui/icons/combat/combat_action_atlas_bc_6x1_24.png` in fixed Skills 1-4, Basic Attack, Dodge/Dash order.
-- `CharacterMenu` observes King equipment/material/skill state. Ultimate and Reality Breaking are disabled previews with no input, ability, cooldown, unlock, or save authority.
+- `CharacterMenu` observes King equipment/material/skill state. Its compact slot detail compares a selected item with the currently equipped definition. `RootforgeMenu` places a small output icon at the right of every formula row, including a locked-box icon for sealed previews; these icons and comparison labels are presentation only. Ultimate and Reality Breaking are disabled previews with no input, ability, cooldown, unlock, or save authority.
 
 ## Sanctuary and Stages
 
-- `SanctuaryFlow` composes dialogue, expedition selection, Character & Bag, Eira's skill information, Orren dialogue, and Nema's read-only Rootforge. It restores King to current maximum health before writing the Sanctuary safe point.
+- `SanctuaryFlow` composes dialogue, expedition selection, Character & Bag, Eira's skill information, Orren dialogue, and Nema's Living Rootforge. `RootforgeMenu` observes readiness and delegates mutation to `CraftingService`; that service validates the canonical recipe/category/seal/cost/unique-output contract, coordinates `MaterialInventory` with `WeaponInventory` or `GearInventory`, and requests `SaveService` only after successful in-memory mutation. Any failed step restores pre-transaction snapshots. Sanctuary entry separately restores King to current maximum health before its ordinary safe-point write.
 - The retired weapon shop and skill-awakening transaction are not runtime dependencies.
 - Stage flows own dialogue gates, wave completion, reward/chest milestones, and transitions. They delegate reward calculation to loot services and persistence to save authorities.
 - Authored `TileMapLayer` data and environment scenes own collision/navigation/occlusion; runtime-random terrain generation is not production authority.

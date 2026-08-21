@@ -14,5 +14,5 @@ compatible_classes = PackedStringArray("warrior")
 weapon_definition = ExtResource("3_weapon")
 preview_power = 25
 lore = "King's own sword. Its weight and reach belong to his fighting form."
-synergy_name = "King's Form"
-synergy_description = "The signature sword used by King's normal attacks and active skills."
+synergy_name = "What These Numbers Mean"
+synergy_description = "Basic Hit is the damage rolled by each normal sword attack. Skill Power is inserted into all four of King's skill formulas; it is not the final damage of each skill."

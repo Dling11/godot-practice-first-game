@@ -21,6 +21,8 @@ var cooldown_remaining := 0.0
 var _phase_time_remaining := 0.0
 var _cast_direction := Vector2.RIGHT
 var _equipped_weapon_damage := 0.0
+var _critical_chance_ratio := 0.0
+var _critical_damage_multiplier := 1.5
 var _resolved_damage := 0.0
 var _current_strike_index := 0
 var _strike_time_remaining := 0.0
@@ -97,6 +99,11 @@ func has_active_movement() -> bool:
 
 func get_resolved_damage() -> float:
 	return _resolved_damage
+
+
+func set_critical_profile(chance_ratio: float, damage_multiplier: float) -> void:
+	_critical_chance_ratio = clampf(chance_ratio, 0.0, 0.5)
+	_critical_damage_multiplier = maxf(damage_multiplier, 1.0)
 
 
 func supports_ground_targeting() -> bool:
@@ -184,7 +191,9 @@ func _start_current_strike() -> void:
 		owner,
 		_cast_direction,
 		definition.resolve_strike_knockback(_current_strike_index),
-		definition.resolve_strike_stagger(_current_strike_index)
+		definition.resolve_strike_stagger(_current_strike_index),
+		_critical_chance_ratio,
+		_critical_damage_multiplier
 	)
 	strike_started.emit(_current_strike_index, strike_count, _strike_time_remaining)
 

@@ -30,16 +30,16 @@ const EQUIPMENT_SLOT_NAMES := [
 	"Talisman",
 ]
 const EQUIPMENT_SLOT_POSITIONS := [
-	Vector2(93, 0),
-	Vector2(245, 0),
-	Vector2(93, 34),
-	Vector2(93, 68),
-	Vector2(93, 102),
-	Vector2(93, 136),
-	Vector2(397, 0),
-	Vector2(397, 42),
-	Vector2(397, 84),
-	Vector2(397, 126),
+	Vector2(70, 0),
+	Vector2(221, 0),
+	Vector2(70, 30),
+	Vector2(70, 60),
+	Vector2(70, 90),
+	Vector2(70, 120),
+	Vector2(372, 0),
+	Vector2(372, 40),
+	Vector2(372, 80),
+	Vector2(372, 120),
 ]
 const EQUIPMENT_SLOT_TYPES := [
 	EquipmentDefinition.Slot.HEAD,
@@ -309,7 +309,7 @@ func _build_equipment_slots() -> void:
 		var slot_card := EquipmentSlotCardScene.instantiate() as EquipmentSlotCard
 		equipment_slots.add_child(slot_card)
 		slot_card.position = EQUIPMENT_SLOT_POSITIONS[index]
-		slot_card.size = Vector2(110, 31)
+		slot_card.size = Vector2(90, 28)
 		slot_card.configure(
 			EQUIPMENT_SLOT_NAMES[index],
 			slot_type,
@@ -572,8 +572,15 @@ func _refresh_equipment_detail(selected: EquipmentDefinition) -> void:
 	equipment_detail_panel.configure(
 		selected,
 		_is_equipment_equipped(selected),
-		selected.is_compatible_with(player.character_class_id)
+		selected.is_compatible_with(player.character_class_id),
+		_get_equipped_item_for_slot(selected.slot)
 	)
+
+
+func _get_equipped_item_for_slot(slot: EquipmentDefinition.Slot) -> EquipmentDefinition:
+	if slot == EquipmentDefinition.Slot.WEAPON:
+		return player.get_equipped_weapon_item()
+	return player.get_equipped_gear(slot)
 
 
 func _on_material_quantity_changed(

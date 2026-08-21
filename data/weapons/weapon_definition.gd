@@ -27,6 +27,10 @@ extends Resource
 ## weapons compatible by falling back to `damage`.
 @export_range(0.0, 9999.0, 1.0) var basic_damage_minimum: float = 0.0
 @export_range(0.0, 9999.0, 1.0) var basic_damage_maximum: float = 0.0
+## Critical chance applies once per accepted swing or skill strike so one broad
+## contact produces one coherent result across every target it reaches.
+@export_range(0.0, 0.5, 0.01, "suffix:%") var critical_chance_ratio := 0.0
+@export_range(1.0, 3.0, 0.05, "suffix:x") var critical_damage_multiplier := 1.5
 @export_range(0.0, 500.0, 1.0, "suffix:px/s") var knockback_strength: float = 0.0
 ## A normal sword hit is a brief flinch, never a long crowd-control lock.
 @export_range(0.0, 1.0, 0.01, "suffix:s") var basic_stagger_seconds: float = 0.0

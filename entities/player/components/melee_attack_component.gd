@@ -87,7 +87,9 @@ func _advance_phase() -> void:
 			owner,
 			_attack_direction,
 			weapon.knockback_strength,
-			weapon.basic_stagger_seconds
+			weapon.basic_stagger_seconds,
+			weapon.critical_chance_ratio,
+			weapon.critical_damage_multiplier
 		)
 		Phase.ACTIVE:
 			hitbox.deactivate()
@@ -113,7 +115,7 @@ func configure_random_seed_for_testing(seed: int) -> void:
 
 
 func set_equipment_attack_speed_bonus(bonus_ratio: float) -> void:
-	_attack_speed_bonus_ratio = maxf(bonus_ratio, 0.0)
+	_attack_speed_bonus_ratio = clampf(bonus_ratio, 0.0, 0.5)
 
 
 func _scaled_duration(base_duration: float) -> float:

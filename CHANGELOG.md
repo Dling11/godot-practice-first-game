@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-08-22 - Optional Stage VI Gear Progression and Compact Equipment UI
+
+- Accepted Decision 121: Stage VI remains freely enterable without Varkuun Edge or armor, but its future enemy health/damage band will make unequipped clears deliberately slower and riskier. Varkuun Edge is targeted for Stages VI-XV; no stage-entry ownership gate or starter-stat nerf was added.
+- Rebalanced the Stage V set into explicit slot identities. Varkuun Edge now deals 16-20 Basic Hit damage, supplies 38 Skill Power, and grants 8% critical chance at 150% critical damage without changing King's 0.59-second attack cycle or reach. Head owns +50 health/+2 health per second, Plate +30 armor, Gloves +15% basic-attack speed, Leggings +90 health, and Boots +15% movement speed.
+- Added one-roll-per-strike critical resolution across basic attacks and all four King skills, explicit gold `CRIT` damage feedback, and hard caps of 50% attack speed, 35% movement speed, and 50% critical chance.
+- Compacted Character & Bag and the Living Rootforge, added equipped-item comparison copy, and placed a small output/locked-slot icon at the right of every Forest formula row so weapon and armor types are recognizable without reading the full name.
+- Replaced the ambiguous Varkuun Edge, Helm, Plate, and Gloves icons with generated, processed 64x64 binary-alpha silhouettes while retaining the approved Forest palette and stable runtime IDs.
+
+## 2026-08-22 - Atomic Rootforge Crafting and Drag Alignment
+
+- Accepted Decision 120 and enabled Nema's six Stage V recipes after the real `forest_core_gear_crafting` discovery and permanent seal. The Rootforge now distinguishes sealed, missing-material, ready, crafted, and already-owned states while leaving the two Stage VIII accessory previews sealed.
+- Added `CraftingService` as the sole transaction coordinator: canonical recipe validation, full-batch affordability, unique output reservation, spend once, grant once, Sanctuary safe-point save once, and snapshot rollback on acquisition/spend/save failure. Exact recipe costs did not change.
+- Crafted Varkuun Edge and armor enter the existing weapon/gear inventories, update Character & Bag through existing signals, reject duplicate crafting without spending, and survive profile restoration.
+- Anchored the 48x48 equipment drag preview to the exact local mouse grab point, removing the large offset visible under the 2x canvas scale.
+
 ## 2026-08-21 - Threat-Tiered Stage Portal Fields
 
 - Accepted Decision 119 and reorganized the existing neutral portal sheets into a strict threat ladder: Normal blue with no lightning, Mini Boss purple with restrained close discharge, Boss red with stronger reach, God searing white-gold with intense viewport-scale discharge, and Transcendent near-black with the widest violet-black field.

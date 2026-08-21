@@ -51,15 +51,23 @@ func _run() -> void:
 	var leggings := Stage5CoreEquipment.find_slot(EquipmentDefinition.Slot.LEGGINGS)
 	var boots := Stage5CoreEquipment.find_slot(EquipmentDefinition.Slot.BOOTS)
 	if (
-		plate.flat_health_bonus != 20.0
-		or plate.armor_bonus != 8.0
-		or head.ward_reduction_ratio != 0.04
-		or gloves.attack_speed_bonus_ratio != 0.12
-		or leggings.flat_health_bonus != 12.0
-		or leggings.armor_bonus != 5.0
+		plate.flat_health_bonus != 0.0
+		or plate.armor_bonus != 30.0
+		or head.flat_health_bonus != 50.0
+		or head.regeneration_bonus != 2.0
+		or head.armor_bonus != 0.0
+		or head.ward_reduction_ratio != 0.0
+		or gloves.attack_speed_bonus_ratio != 0.15
+		or leggings.flat_health_bonus != 90.0
+		or leggings.armor_bonus != 0.0
 		or boots.movement_speed_bonus_ratio != 0.15
 	):
-		_fail("The Stage V defensive stat budget drifted from its approved first-pass values.")
+		_fail("The Stage V slot-focused armor stat budget drifted from its approved values.")
+		return
+	var plate_bounds := plate.icon.get_image().get_used_rect()
+	var helm_bounds := head.icon.get_image().get_used_rect()
+	if plate_bounds.size.x <= helm_bounds.size.x + 10 or helm_bounds.size.y <= helm_bounds.size.x:
+		_fail("The regenerated Plate and Helm silhouettes are not immediately distinguishable.")
 		return
 	var stage5_recipe_count := 0
 	var accessory_recipe_count := 0

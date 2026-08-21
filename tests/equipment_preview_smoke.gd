@@ -34,11 +34,20 @@ func _run() -> void:
 		varkuun_edge == null
 		or not varkuun_edge.is_equippable_weapon()
 		or not varkuun_edge.weapon_definition.uses_integrated_visual
-		or not is_equal_approx(varkuun_edge.weapon_definition.damage, 28.0)
-		or not is_equal_approx(varkuun_edge.weapon_definition.basic_damage_minimum, 11.0)
-		or not is_equal_approx(varkuun_edge.weapon_definition.basic_damage_maximum, 13.0)
+		or not is_equal_approx(varkuun_edge.weapon_definition.damage, 38.0)
+		or not is_equal_approx(varkuun_edge.weapon_definition.basic_damage_minimum, 16.0)
+		or not is_equal_approx(varkuun_edge.weapon_definition.basic_damage_maximum, 20.0)
+		or not is_equal_approx(varkuun_edge.weapon_definition.critical_chance_ratio, 0.08)
+		or not is_equal_approx(varkuun_edge.weapon_definition.critical_damage_multiplier, 1.5)
+		or not is_equal_approx(varkuun_edge.weapon_definition.wind_up_seconds, KingSword.wind_up_seconds)
+		or not is_equal_approx(varkuun_edge.weapon_definition.active_seconds, KingSword.active_seconds)
+		or not is_equal_approx(varkuun_edge.weapon_definition.recovery_seconds, KingSword.recovery_seconds)
+		or varkuun_edge.get_stat_summary() != "BASIC HIT 16-20  •  SKILL POWER 38  •  CRIT 8%"
+		or varkuun_edge.get_comparison_summary(KingCatalog.default_weapon)
+		!= "+6 MIN HIT  •  +8 MAX HIT  •  +13 SKILL POWER  •  +8% CRIT"
+		or not varkuun_edge.synergy_description.contains("150% damage")
 	):
-		_fail("Varkuun Edge lost its testable integrated 11-13 / 28-power contract.")
+		_fail("Varkuun Edge lost its clear Stage 6-15 damage, crit, or unchanged-timing contract.")
 		return
 	print("King equipment catalog smoke test passed.")
 	quit(0)

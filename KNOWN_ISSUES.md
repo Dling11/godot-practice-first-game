@@ -4,12 +4,19 @@ This file tracks current limitations only. Resolved and retired systems belong i
 
 ## Current Limitations
 
+### KI-019 - Stage VI-XV gear pacing is designed but not encounter-validated
+
+- **Status:** Planned.
+- **Implemented:** Varkuun Edge and the five Stage V armor pieces now have their Decision 121 stats, critical-hit behavior, caps, comparison copy, compact UI, and distinct icons.
+- **Risk:** Stages VI-XV and their enemy roster are not implemented, so the intended starter-versus-crafted clear-time and incoming-damage gap has not been measured in real encounters. Lifesteal is a future unique-effect idea, not a current stat authority.
+- **Next:** Author Stage VI without Mirelings/Rootlings in its campaign roster, permit entry with any equipment, then record clear time and damage taken with starter gear versus Varkuun/Forest gear before extending the band.
+
 ### KI-018 - Portal presentation needs final owner-scale approval
 
 - **Status:** Open.
-- **Verified:** Sanctuary architecture is one fixed raster with an isolated energy animation and restored authored guardian/backstop/threshold collision that retains both walk-around approaches. Stage exits structurally pass a centered moving 16-frame vortex/rim plus Decision 119's blue lightning-free Normal, restrained purple Mini Boss, red Boss, searing-light God, and near-black Transcendent ladder. FX opacity and independent reach rise strictly, Transcendent exceeds half the viewport, and the loading veil preserves the selected tier.
-- **Risk:** Headless checks cannot judge final Mini Boss/Boss restraint, God/Transcendent screen dominance, dark-field readability, dual-loop cadence, or pointer comfort during a complete moving-camera playthrough.
-- **Next:** Review Normal/Mini Boss/Boss exits at 960x540 first, then temporarily preview God/Transcendent to judge extreme reach; tune only tier presentation data unless collision or transition behavior actually fails.
+- **Verified:** Sanctuary architecture is one fixed raster with an isolated energy animation and restored authored guardian/backstop/threshold collision that retains both walk-around approaches. Stage exits structurally pass a centered moving 16-frame vortex/rim plus Decision 119's blue lightning-free Normal, restrained purple Mini Boss, red Boss, searing-light God, and near-black Transcendent ladder. FX opacity and independent reach rise strictly, Transcendent exceeds half the viewport, and the loading veil preserves the selected tier. The current full suite still fails the Sanctuary front-depth assertion because that zone does not begin early enough to protect King's head while crossing in front.
+- **Risk:** Sanctuary crossing can expose incorrect head/architecture occlusion. Headless checks also cannot judge final Mini Boss/Boss restraint, God/Transcendent screen dominance, dark-field readability, dual-loop cadence, or pointer comfort during a complete moving-camera playthrough.
+- **Next:** Correct and visually verify the Sanctuary front-depth boundary as a separate portal-depth task. Then review Normal/Mini Boss/Boss exits at 960x540 and temporarily preview God/Transcendent; tune only tier presentation data unless collision or transition behavior actually fails.
 
 ### KI-017 - Repeated-click combat and footprint approach need owner feel approval
 
@@ -35,12 +42,12 @@ This file tracks current limitations only. Resolved and retired systems belong i
 - **Implemented:** King is the sole production player with locomotion, basic attack, dash/backstep aliases, hurt/defeat presentation, signature sword, four active skills, equipment, progression, and persistence.
 - **Remaining:** Owner approval of the generated cursor/action atlas, optional dedicated action families where aliases read weakly, normal-attack timing/variety, and full-kit balance against late crowds and bosses.
 
-### KI-013 - Crafting transactions and Hunts are not implemented
+### KI-013 - Hunts are not implemented
 
 - **Status:** Open.
-- **Implemented:** Immutable recipe/material/output data, inventories, pickups, claims, Stage V equipment, persistence, and Nema's read-only preview.
-- **Impact:** Players cannot yet spend ingredients through a normal atomic craft or select replay Hunts.
-- **Next:** Implement one validated spend-once/grant-once/save-once crafting transaction before expanding recipes or regions.
+- **Implemented:** Decision 120 enables Nema's six Stage V recipes through an atomic spend-once/grant-once/save-once service with duplicate rejection and rollback. Crafted equipment enters the existing live inventory/equip paths.
+- **Impact:** Players still cannot select structured replay Hunts with explicit modifiers and reward families.
+- **Next:** Define and implement the first completed-stage Hunt without expanding the crafting catalog.
 
 ### KI-011 - Combat/audio feel still needs a full-session pass
 

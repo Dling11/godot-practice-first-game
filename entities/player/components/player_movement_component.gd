@@ -15,7 +15,7 @@ func _ready() -> void:
 
 
 func set_equipment_speed_bonus(bonus_ratio: float) -> void:
-	max_speed = _base_max_speed * (1.0 + maxf(bonus_ratio, 0.0))
+	max_speed = _base_max_speed * (1.0 + clampf(bonus_ratio, 0.0, 0.35))
 
 
 func calculate_velocity(

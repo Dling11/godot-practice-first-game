@@ -141,14 +141,21 @@ func _on_pressed() -> void:
 			material_selected.emit(material_definition)
 
 
-func _get_drag_data(_at_position: Vector2) -> Variant:
+func _get_drag_data(at_position: Vector2) -> Variant:
 	if kind != Kind.EQUIPMENT or equipment_definition == null:
 		return null
+	set_drag_preview(_create_drag_preview(at_position))
+	return {"equipment": equipment_definition}
+
+
+func _create_drag_preview(at_position: Vector2) -> TextureRect:
 	var preview := TextureRect.new()
 	preview.custom_minimum_size = Vector2(48, 48)
+	preview.size = Vector2(48, 48)
+	preview.position = -at_position.clamp(Vector2.ZERO, size)
+	preview.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	preview.texture = equipment_definition.icon
 	preview.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	preview.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	preview.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	set_drag_preview(preview)
-	return {"equipment": equipment_definition}
+	return preview

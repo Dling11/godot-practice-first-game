@@ -1,8 +1,8 @@
 # Forest Loot, Crafting, Replay, and Regional Material Plan
 
-- **Status:** Approved regional/economy design lock; Segments 1-4 plus Character & Bag preparation implemented, Segments 5-8 pending. Decision 071 supersedes physical visible-weapon outputs with character-owned combat plus essence/relic equipment.
+- **Status:** Approved regional/economy design lock; Segments 1-5 implemented, Segments 6-8 pending. Decision 071 supersedes physical visible-weapon outputs with character-owned combat plus essence/relic equipment.
 - **Approved:** 2026-07-26
-- **Runtime coverage today:** Stages 1-5, six sparse/protected enemy profiles, thirteen illustrated materials, collectible pickups, profile-backed weapon/gear/material/recipe/claim state, Stage III and V milestone chests, six finalized Stage V equipment definitions/icons/recipes with live equip/stat authority, and Rootweaver Nema's read-only output/stat/material preview; no normal crafting transaction
+- **Runtime coverage today:** Stages 1-5, six sparse/protected enemy profiles, thirteen illustrated materials, collectible pickups, profile-backed weapon/gear/material/recipe/claim state, Stage III and V milestone chests, six finalized Stage V equipment definitions/icons/recipes with live equip/stat authority, and Rootweaver Nema's atomic category/seal/material/output/save transaction
 - **Planned content covered here:** Forest Stages 1-10 and a reusable foundation for Stage 11 onward
 
 ## Purpose
@@ -33,7 +33,7 @@ The fight/loot/craft/replay structure and Stage III/V/VIII/X reward cadence rema
 - Difficulty must come from readable behaviors, combinations, armor-break opportunities, positioning, and elites rather than health inflation alone.
 - Earlier regions retain limited material relevance, but new-region recipes primarily use current-region materials.
 - Character level does not become an infinite raw-stat treadmill. Region caps may expand, while post-cap Mastery supplies bounded utility, crafting, cosmetic, title, or material benefits.
-- Reward resolution, direct Stage I-II banking, the Stage III Reliquary, and Rootweaver Nema's no-mutation Sanctuary preview are implemented. Nothing in this document claims crafting transactions, armor stats, Hunts, Mastery, or Stages 4-20 are currently implemented.
+- Reward resolution, direct Stage I-II banking, the Stage III Reliquary, Stage V equipment/stats, and Rootweaver Nema's atomic crafting transaction are implemented. Hunts, Mastery, and Stages 6-20 are not implemented.
 
 ## First-Clear and Replay Loop
 
@@ -109,7 +109,7 @@ Known enemies continue appearing in authored combinations. Aim for roughly one i
 
 A crafting seal is permanent progression and is never consumed. A catalyst is repeatable inventory material and may be consumed by deterministic recipes. Decision 101 locks Stage V to Varkuun Edge, Old Bark Helm, Heartwood Plate, Rootfiber Gloves, Mirebound Leggings, and Mirehide Boots; their exact costs and stat budgets live in `docs/design/stage-5-core-equipment-set.md`. Mireward Charm and Thornward Clasp remain Stage VIII previews. Decision 101 preserves later accessories as Bracer, Amulet, Ring, and Talisman; their final mappings and stat budgets remain unimplemented.
 
-Stage V's five recipes and item names are locked by Decision 100. Stage 6-10 enemy/item names remain open until their individual content contracts are approved. Stage 4's Armored Hog, Hide, Living Bark Plate, stats, and drop rates remain locked by its implemented contract.
+Stage V's six recipes and item names are locked by Decisions 100-101 and craftable under Decision 120. Stage 6-10 enemy/item names remain open until their individual content contracts are approved. Stage 4's Armored Hog, Hide, Living Bark Plate, stats, and drop rates remain locked by its implemented contract.
 
 ## Monster Content Contract
 
@@ -232,14 +232,14 @@ Stage UI and chest presentation do not roll rewards themselves.
 - `RecipeDiscovery`: implemented known-recipe IDs in a dedicated versioned snapshot, separate from `StoryState`
 - `LootState`: implemented first-clear claim IDs and bad-luck miss counters in a dedicated versioned snapshot
 - `LootService`: implemented enemy/stage table resolution, validated material grants, expedition reward baselines, and reward observation signals
-- `CraftingService`: planned validation of unlocks/costs and atomic transactions
+- `CraftingService`: implemented validation of unlocks/costs/unique outputs and atomic spend/grant/save transactions
 - Existing equipment inventory/stat authorities: own crafted equipment and equip state
 - `SaveService`: serializes explicit snapshots from progression, story, equipment, materials, recipes, and safe-location state
 - UI: observes definitions/state and submits requests only
 
 ## Rootweaver Sanctuary Role
 
-The approved crafting role is now implemented as **Rootweaver Nema**, an attractive adult female grove smith with a west-mid open-air Living Rootforge. Her compact screen-left three-quarter actor follows Eira and Orren's Sanctuary proportions while the portrait, auburn hair, forge apron, root hammer, tongs, and approved visible-arm work silhouette carry the adult character identity. Earlier realistic, elderly, and front-facing boards remain provenance only. `docs/design/rootweaver-nema-sanctuary-service-proposal.md` records the accepted identity, runtime package, dialogue, placement, and read-only menu contract.
+The approved crafting role is now implemented as **Rootweaver Nema**, an attractive adult female grove smith with a west-mid open-air Living Rootforge. Her compact screen-left three-quarter actor follows Eira and Orren's Sanctuary proportions while the portrait, auburn hair, forge apron, root hammer, tongs, and approved visible-arm work silhouette carry the adult character identity. Earlier realistic, elderly, and front-facing boards remain provenance only. `docs/design/rootweaver-nema-sanctuary-service-proposal.md` records the accepted identity, runtime package, dialogue, placement, and atomic crafting contract.
 
 The role must remain distinct from Orren:
 
@@ -256,13 +256,14 @@ Segment 4 delivers:
 - Tool/idle sounds plus attribution
 - Crafting UI responsibilities
 
-The current `RootforgeMenu` observes recipe discovery and material readiness, but its action is disabled and it cannot mutate inventory, discovery, equipment, or save state. Segment 5 must add an atomic `CraftingService`, real essence/relic output definitions, and the King/roster equipment-save boundary before this changes.
+`RootforgeMenu` observes recipe/category discovery, seal ownership, material readiness, and unique output ownership. It delegates to the implemented atomic `CraftingService`, which coordinates the existing material, weapon/gear, and safe-profile authorities without allowing UI-owned mutation.
 
 ## Level, Gear, and Mastery Direction
 
 - Current Forest development remains bounded by the authored Level 1-10 curve.
 - Later regions may expand the character cap in controlled bands rather than enabling infinite raw-stat scaling.
 - Post-cap Mastery may be uncapped only if rewards stay bounded: crafting efficiency, material bonuses, titles, cosmetics, discoveries, or small capped utility.
+- Varkuun Edge is targeted for Stages VI-XV. Stage VI must remain freely enterable without crafted ownership, while its new campaign enemies make starter-gear clears intentionally slower and riskier; Mirelings/Rootlings stay in earlier/replay content rather than the new roster.
 - Stage 11 should be balanced around partial Forest equipment, not require a complete perfect set.
 - An expert player with incomplete gear should retain a viable path through readable mastery.
 

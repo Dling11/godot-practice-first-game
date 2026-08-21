@@ -13,6 +13,7 @@ signal equip_requested(definition: EquipmentDefinition)
 @onready var rarity_label: Label = %RarityLabel
 @onready var name_label: Label = %NameLabel
 @onready var power_label: Label = %PowerLabel
+@onready var comparison_label: Label = %ComparisonLabel
 @onready var lore_label: Label = %LoreLabel
 @onready var synergy_title: Label = %SynergyTitle
 @onready var synergy_body: Label = %SynergyBody
@@ -24,7 +25,12 @@ var current_material_definition: MaterialDefinition
 var _aura_tween: Tween
 
 
-func configure(item: EquipmentDefinition, equipped: bool, class_compatible: bool = true) -> void:
+func configure(
+	item: EquipmentDefinition,
+	equipped: bool,
+	class_compatible: bool = true,
+	comparison_item: EquipmentDefinition = null
+) -> void:
 	current_definition = item
 	current_material_definition = null
 	var rarity_color := item.get_rarity_color()
@@ -37,6 +43,12 @@ func configure(item: EquipmentDefinition, equipped: bool, class_compatible: bool
 	rarity_label.add_theme_color_override("font_color", rarity_color)
 	name_label.text = item.display_name.to_upper()
 	power_label.text = item.get_stat_summary()
+	comparison_label.visible = true
+	comparison_label.text = item.get_comparison_summary(comparison_item)
+	comparison_label.add_theme_color_override(
+		"font_color",
+		Color("d6c171") if equipped else Color("8fca78")
+	)
 	lore_label.text = item.lore
 	synergy_title.text = item.synergy_name.to_upper()
 	synergy_title.add_theme_color_override("font_color", rarity_color)
@@ -73,6 +85,7 @@ func configure_material(item: MaterialDefinition, quantity: int) -> void:
 	rarity_label.add_theme_color_override("font_color", rarity_color)
 	name_label.text = item.display_name.to_upper()
 	power_label.text = "CRAFTING MATERIAL  ×%d" % quantity
+	comparison_label.visible = false
 	lore_label.text = item.description
 	synergy_title.text = "KNOWN SOURCE"
 	synergy_title.add_theme_color_override("font_color", rarity_color)

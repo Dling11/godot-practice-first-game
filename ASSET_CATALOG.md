@@ -38,7 +38,7 @@ This catalog records active asset families and lifecycle boundaries. Exact runti
 ## Items and Loot
 
 - Forest material icons: `assets/items/materials/forest/`.
-- Stage V equipment icons: `assets/items/equipment/forest/stage_5_core/`.
+- Stage V equipment icons: `assets/items/equipment/forest/stage_5_core/`. Varkuun Edge, Old Bark Helm, Heartwood Plate, and Rootfiber Gloves use generated V2 sources in `art_source/generated/items/equipment/forest/stage_5_core/`, processed into 64x64 binary-alpha runtime silhouettes; the combined review sheet lives beside the other item reviews.
 - Immutable item/material/recipe definitions: `data/items/`, `data/materials/`, and `data/crafting/`.
 - Loot/chest presentation: `assets/gameplay/loot/`.
 - Runtime item identity comes from stable resource IDs, never filenames or palette alone.

@@ -16,7 +16,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [node name="EquipmentDetailPanel" type="PanelContainer"]
-custom_minimum_size = Vector2(250, 210)
+custom_minimum_size = Vector2(225, 188)
 layout_mode = 2
 theme = ExtResource("2_theme")
 theme_override_styles/panel = SubResource("detail_panel")
@@ -106,12 +106,21 @@ theme_override_font_sizes/font_size = 12
 [node name="PowerLabel" type="Label" parent="Margin/Root"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "NORMAL DAMAGE 10-12 • SKILL DAMAGE 25"
+text = "BASIC HIT 10-12 • SKILL POWER 25"
 horizontal_alignment = 1
 autowrap_mode = 2
 theme_override_font_sizes/font_size = 8
 theme_override_colors/font_color = Color(0.7, 0.86, 1, 1)
 theme_override_font_sizes/font_size = 9
+
+[node name="ComparisonLabel" type="Label" parent="Margin/Root"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+6 MIN HIT  •  +8 MAX HIT  •  +13 SKILL POWER  •  +8% CRIT"
+horizontal_alignment = 1
+autowrap_mode = 2
+theme_override_colors/font_color = Color(0.56, 0.79, 0.47, 1)
+theme_override_font_sizes/font_size = 8
 
 [node name="LoreLabel" type="Label" parent="Margin/Root"]
 unique_name_in_owner = true

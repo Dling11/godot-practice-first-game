@@ -71,6 +71,8 @@ func _activate_echo_strike(strike_index: int, duration_seconds: float) -> void:
 		owner,
 		_cast_direction,
 		definition.resolve_strike_knockback(strike_index),
-		definition.resolve_strike_stagger(strike_index)
+		definition.resolve_strike_stagger(strike_index),
+		_critical_chance_ratio,
+		_critical_damage_multiplier
 	)
 	strike_started.emit(strike_index, definition.strike_count(), duration_seconds)

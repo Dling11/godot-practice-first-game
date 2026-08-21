@@ -18,7 +18,9 @@ func _start_current_strike() -> void:
 		owner,
 		hitbox.global_position,
 		definition.resolve_strike_knockback(0),
-		definition.resolve_strike_stagger(0)
+		definition.resolve_strike_stagger(0),
+		_critical_chance_ratio,
+		_critical_damage_multiplier
 	)
 	strike_started.emit(0, 1, definition.active_seconds)
 

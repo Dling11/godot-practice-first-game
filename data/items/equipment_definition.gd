@@ -96,11 +96,16 @@ func get_rarity_color() -> Color:
 
 func get_stat_summary() -> String:
 	if weapon_definition != null:
-		return "NORMAL DAMAGE %d-%d  •  SKILL DAMAGE %d" % [
+		var weapon_summary := "BASIC HIT %d-%d  •  SKILL POWER %d" % [
 			roundi(weapon_definition.basic_damage_minimum),
 			roundi(weapon_definition.basic_damage_maximum),
 			roundi(weapon_definition.damage),
 		]
+		if weapon_definition.critical_chance_ratio > 0.0:
+			weapon_summary += "  •  CRIT %d%%" % roundi(
+				weapon_definition.critical_chance_ratio * 100.0
+			)
+		return weapon_summary
 	var parts := PackedStringArray()
 	if flat_health_bonus > 0.0:
 		parts.append("HP +%d" % roundi(flat_health_bonus))
@@ -115,6 +120,61 @@ func get_stat_summary() -> String:
 	if movement_speed_bonus_ratio > 0.0:
 		parts.append("MOVE SPEED +%d%%" % roundi(movement_speed_bonus_ratio * 100.0))
 	return "  •  ".join(parts) if not parts.is_empty() else "NO ACTIVE STATS"
+
+
+func get_comparison_summary(reference: EquipmentDefinition) -> String:
+	if reference == self:
+		return "CURRENTLY EQUIPPED"
+	var parts := PackedStringArray()
+	if weapon_definition != null:
+		var reference_weapon := reference.weapon_definition if reference != null else null
+		var reference_minimum := reference_weapon.basic_damage_minimum if reference_weapon != null else 0.0
+		var reference_maximum := reference_weapon.basic_damage_maximum if reference_weapon != null else 0.0
+		var reference_skill_power := reference_weapon.damage if reference_weapon != null else 0.0
+		var reference_critical := reference_weapon.critical_chance_ratio if reference_weapon != null else 0.0
+		_append_signed_stat(parts, weapon_definition.basic_damage_minimum - reference_minimum, "MIN HIT")
+		_append_signed_stat(parts, weapon_definition.basic_damage_maximum - reference_maximum, "MAX HIT")
+		_append_signed_stat(parts, weapon_definition.damage - reference_skill_power, "SKILL POWER")
+		_append_signed_percent(
+			parts,
+			weapon_definition.critical_chance_ratio - reference_critical,
+			"CRIT"
+		)
+	else:
+		_append_signed_stat(parts, flat_health_bonus - _reference_stat(reference, "flat_health_bonus"), "HP")
+		_append_signed_stat(parts, armor_bonus - _reference_stat(reference, "armor_bonus"), "ARMOR")
+		_append_signed_stat(
+			parts,
+			regeneration_bonus - _reference_stat(reference, "regeneration_bonus"),
+			"REGEN/S"
+		)
+		_append_signed_percent(
+			parts,
+			attack_speed_bonus_ratio - _reference_stat(reference, "attack_speed_bonus_ratio"),
+			"ATTACK SPEED"
+		)
+		_append_signed_percent(
+			parts,
+			movement_speed_bonus_ratio - _reference_stat(reference, "movement_speed_bonus_ratio"),
+			"MOVE SPEED"
+		)
+	return "  •  ".join(parts) if not parts.is_empty() else "NO STAT CHANGE"
+
+
+func _reference_stat(reference: EquipmentDefinition, property_name: StringName) -> float:
+	return float(reference.get(property_name)) if reference != null else 0.0
+
+
+func _append_signed_stat(parts: PackedStringArray, difference: float, label: String) -> void:
+	if is_zero_approx(difference):
+		return
+	parts.append("%+d %s" % [roundi(difference), label])
+
+
+func _append_signed_percent(parts: PackedStringArray, difference: float, label: String) -> void:
+	if is_zero_approx(difference):
+		return
+	parts.append("%+d%% %s" % [roundi(difference * 100.0), label])
 
 
 func is_compatible_with(character_class_id: StringName) -> bool:

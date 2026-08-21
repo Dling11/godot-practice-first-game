@@ -146,9 +146,9 @@ func _run() -> void:
 		or not paused
 		or menu.primary_action_button == null
 		or not menu.primary_action_button.disabled
-		or not menu.milestone_label.text.contains("CRAFTING TRANSACTION NOT YET ENABLED")
+		or not menu.milestone_label.text.contains("BLUEPRINT SEALED")
 	):
-		_fail("Completing Nema's dialogue did not open the honest read-only Rootforge preview.")
+		_fail("Completing Nema's dialogue did not open the gated Rootforge crafting surface.")
 		return
 	if menu.ingredient_list.get_child_count() < 2:
 		_fail("The Rootforge preview does not expose recipe ingredient readiness.")
@@ -156,10 +156,16 @@ func _run() -> void:
 	if (
 		not menu.output_preview.visible
 		or menu.output_icon.texture == null
-		or not menu.output_stats_label.text.contains("SKILL DAMAGE 28")
+		or not menu.output_stats_label.text.contains("SKILL POWER 38")
+		or not menu.output_stats_label.text.contains("+13 SKILL POWER")
 	):
 		_fail("The Rootforge did not present the selected Stage V output icon and real stat preview.")
 		return
+	for button: Button in menu.recipe_buttons:
+		var formula_icon := button.get_node_or_null("FormulaIcon") as TextureRect
+		if formula_icon == null or formula_icon.texture == null or formula_icon.size != Vector2(24, 24):
+			_fail("A compact Forest formula row is missing its right-side output icon.")
+			return
 	menu.set_category_filter(RecipeDefinition.CraftingCategory.ARMOR)
 	var visible_armor_count := 0
 	for button: Button in menu.recipe_buttons:
@@ -190,16 +196,40 @@ func _run() -> void:
 		return
 	menu.close_button.pressed.emit()
 	if menu.visible or paused or not hud.interaction_panel.visible:
-		_fail("Closing the Rootforge preview did not restore Sanctuary control and Nema's prompt.")
+		_fail("Closing the Rootforge did not restore Sanctuary control and Nema's prompt.")
 		return
+	var story_state := root.get_node("StoryState")
+	story_state.record_discovery(&"forest_core_gear_crafting")
+	story_state.grant_key_item(&"forest_core_gear_seal")
+	var craft_recipe := menu.catalog.find_recipe(&"forest_stage_5_varkuun_edge")
+	var craft_costs := {}
+	for ingredient: MaterialStackDefinition in craft_recipe.ingredients:
+		craft_costs[ingredient.material.material_id] = ingredient.quantity
+	if not material_inventory.add_material_batch(craft_costs):
+		_fail("Could not seed the Rootforge's real Varkuun Edge costs.")
+		return
+	menu.open_menu()
+	menu._select_recipe(craft_recipe)
+	if menu.primary_action_button.disabled or not menu.primary_action_button.text.contains("CRAFT VARKUUN EDGE"):
+		_fail("The Stage V discovery, seal, and ingredients did not enable the Rootforge action.")
+		return
+	menu.primary_action_button.pressed.emit()
+	if (
+		not root.get_node("WeaponInventory").owns_weapon(craft_recipe.output_id)
+		or not menu.milestone_label.text.contains("CRAFTED VARKUUN EDGE")
+		or not menu.primary_action_button.disabled
+	):
+		_fail("The Rootforge button did not complete and lock the real Varkuun Edge transaction.")
+		return
+	menu.close_menu()
 	player.apply_debug_testing_preset()
 	menu.open_menu()
 	if (
 		not menu.milestone_label.text.contains("F9 TEST READY")
-		or not menu.primary_action_button.text.contains("ITEM GRANTED")
+		or not menu.primary_action_button.text.contains("ALREADY OWNED")
 		or not root.get_node("StoryState").has_key_item(&"forest_core_gear_seal")
 	):
-		_fail("F9 did not satisfy the Stage V Rootforge preview gates for debug testing.")
+		_fail("F9 did not satisfy the Stage V Rootforge ownership gates for debug testing.")
 		return
 	menu.close_menu()
 

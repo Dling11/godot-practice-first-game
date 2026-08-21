@@ -8,13 +8,16 @@ var _direction := Vector2.RIGHT
 var _source: Node
 var _knockback_strength := 0.0
 var _stagger_seconds := 0.0
+var _is_critical := false
 var _hit_targets: Dictionary = {}
 var _enabled := false
 var _uses_radial_direction := false
 var _radial_origin := Vector2.ZERO
+var _random := RandomNumberGenerator.new()
 
 
 func _ready() -> void:
+	_random.randomize()
 	area_entered.connect(_on_area_entered)
 	_set_enabled(false)
 	set_physics_process(false)
@@ -32,9 +35,11 @@ func activate(
 	source: Node,
 	direction: Vector2,
 	knockback_strength := 0.0,
-	stagger_seconds := 0.0
+	stagger_seconds := 0.0,
+	critical_chance_ratio := 0.0,
+	critical_damage_multiplier := 1.5
 ) -> void:
-	_damage = damage
+	_resolve_damage_roll(damage, critical_chance_ratio, critical_damage_multiplier)
 	_source = source
 	_direction = direction.normalized()
 	_knockback_strength = maxf(knockback_strength, 0.0)
@@ -50,9 +55,11 @@ func activate_radial(
 	source: Node,
 	origin: Vector2,
 	knockback_strength := 0.0,
-	stagger_seconds := 0.0
+	stagger_seconds := 0.0,
+	critical_chance_ratio := 0.0,
+	critical_damage_multiplier := 1.5
 ) -> void:
-	_damage = damage
+	_resolve_damage_roll(damage, critical_chance_ratio, critical_damage_multiplier)
 	_source = source
 	_direction = Vector2.DOWN
 	_knockback_strength = maxf(knockback_strength, 0.0)
@@ -98,7 +105,22 @@ func _try_hit(area: Area2D) -> void:
 		_source,
 		hit_direction,
 		_knockback_strength,
-		_stagger_seconds
+		_stagger_seconds,
+		_is_critical
 	)
 	if hurtbox.receive_hit(info):
 		hit_landed.emit(hurtbox, info)
+
+
+func configure_random_seed_for_testing(seed: int) -> void:
+	_random.seed = seed
+
+
+func _resolve_damage_roll(
+	base_damage: float,
+	critical_chance_ratio: float,
+	critical_damage_multiplier: float
+) -> void:
+	var chance := clampf(critical_chance_ratio, 0.0, 0.5)
+	_is_critical = chance > 0.0 and _random.randf() < chance
+	_damage = base_damage * (maxf(critical_damage_multiplier, 1.0) if _is_critical else 1.0)

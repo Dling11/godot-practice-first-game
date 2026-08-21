@@ -1,8 +1,8 @@
 # Stage V Core Equipment Set
 
-- **Status:** Six output definitions, live equipment authority, stats, sorting, drag-to-equip, persistence, Rootforge preview, and F9 testing implemented; normal crafting transaction pending
+- **Status:** Six output definitions, live equipment authority, stats, sorting, drag-to-equip, persistence, and atomic Rootforge crafting implemented
 - **Approved direction:** 2026-08-15
-- **Owning decisions:** 071, 097, 101
+- **Owning decisions:** 071, 097, 101, 120, 121
 
 ## Purpose
 
@@ -12,14 +12,14 @@ The first crafted set must reward completing The Dead Forest without erasing ear
 
 | Slot | Item | Implemented data | Intended role |
 |---|---|---:|---|
-| Weapon Essence | Varkuun Edge | 11-13 normal damage; 28 skill damage | modest first weapon upgrade with King's existing reach/art |
-| Head | Old Bark Helm | +3 armor; +4% Ward | broad protection without inventing critical-hit rules |
-| Plate | Heartwood Plate | +20 maximum health; +8 armor | main defensive investment |
-| Gloves | Rootfiber Gloves | +12% normal-attack speed | restores most of King's pre-equipment attack tempo |
-| Leggings | Mirebound Leggings | +12 maximum health; +5 armor | lower-body endurance |
+| Weapon Essence | Varkuun Edge | 16-20 Basic Hit; 38 Skill Power; 8% critical chance; 150% critical damage | meaningful Stage VI-XV damage band with unchanged timing/reach/art |
+| Head | Old Bark Helm | +50 maximum health; +2 health/second | regeneration plus moderate health |
+| Plate | Heartwood Plate | +30 armor | main damage-reduction investment |
+| Gloves | Rootfiber Gloves | +15% basic-attack speed | offensive handling without changing skill cadence |
+| Leggings | Mirebound Leggings | +90 maximum health | primary health investment |
 | Boots | Mirehide Boots | +15% grounded movement speed | raises 110 px/s base movement to 126.5 px/s |
 
-The five armor pieces total +32 maximum health, +16 armor, +4% Ward, +12% normal-attack speed, and +15% grounded movement speed. Under the shared formula, 16 armor reduces a hit by about 13.8%, then Ward reduces the accepted result by another 4%. Every value is live when the item is equipped.
+The five armor pieces total +140 maximum health, +30 armor, +2 health/second, +15% basic-attack speed, and +15% grounded movement speed. Every value is live when equipped. Shared caps prevent future stacking from exceeding +50% basic-attack speed, +35% movement speed, or 50% critical chance.
 
 ## Recipes
 
@@ -36,12 +36,15 @@ The complete set consumes five Varkuun Cores. Stage V grants two on first clear 
 
 ## Visual Contract
 
-All six icons use 64x64 binary-alpha runtime PNGs with a shared petrified-root, charcoal iron, restrained moss, green core, muted violet seam, and sparse aged-gold language. The approved concept supplies Weapon Essence, Plate, Gloves, and Boots; Helm and Leggings complete the family without discarding those assets. Varkuun Core's 24x24 material icon is a separate cracked seed-heart held by roots so it cannot be mistaken for a bottle.
+All six icons use 64x64 binary-alpha runtime PNGs with a shared petrified-root, charcoal iron, restrained moss, green core, muted violet seam, and sparse aged-gold language. Varkuun Edge, Helm, Plate, and Gloves use the clearer generated V2 silhouettes; Boots and Leggings retain their approved sources. Varkuun Core's 24x24 material icon is a separate cracked seed-heart held by roots so it cannot be mistaken for a bottle.
+
+## Progression Boundary
+
+Varkuun Edge is intended to carry a normal player through roughly Stages VI-XV, not the entire game. Stage VI remains enterable with King's starter equipment: crafted ownership is never checked by the portal or stage flow. The difficulty contract instead uses tougher, harder-hitting new enemies so skipping the set costs time and safety. Mirelings and Rootlings remain in earlier stages/replays but do not belong to the new Stage VI campaign roster. Exact encounter values still require Stage VI implementation and a starter-versus-crafted playtest.
 
 ## Current Boundary
 
-- Nema presents all six recipes, icons, exact costs, and stat summaries read-only.
+- Nema presents and atomically crafts all six recipes after the Stage V category discovery, permanent seal, and exact costs are present.
 - F9 grants maximum materials, all six outputs, their blueprint discoveries, and the Stage V seal without saving.
-- Normal play cannot craft any output yet.
 - Owned non-weapon gear can be selected or dragged into matching slots; effects and equipped choices persist in normal saves.
 - Stage VIII accessory recipes remain future previews and are not part of this set.
