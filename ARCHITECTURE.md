@@ -71,7 +71,7 @@ This document records current production ownership. Detailed historical migratio
 - Active `tests/*_smoke.gd` scripts are the executable structural contract.
 - `assisted_combat_targeting_smoke.gd` covers movement cancellation, single selection, repeated-click engagement, footprint picking, size-aware approach, a landed melee hit, and manual override.
 - `ExpeditionDefeatReturn` owns production defeat exit: abort uncommitted loot, preserve `RunSession`, and request Sanctuary through `SceneTransition`; `expedition_defeat_return_smoke.gd` verifies the real transition and progression boundary.
-- `StagePortal` owns proximity, generated eight-frame vortex presentation, tier styling, local and screen-edge guidance, travel audio, and player pull/fade before delegating scene replacement to `SceneTransition`. The transition autoload owns the blocking vortex-backed loading veil.
+- `StagePortal` owns proximity, a generated 16-frame full-surface vortex/deforming-rim layer, an independent dense 16-frame circumference and far-field lightning/particle layer, tier styling, local and screen-edge guidance, travel audio, and player pull/fade before delegating scene replacement to `SceneTransition`. The transition autoload owns the blocking loading veil and mirrors both presentation layers without gaining scene-change authority.
 - `auto_combat_smoke.gd` covers target cycling and real skill/cooldown use.
 - `runtime_archive_boundary_smoke.gd` guards the archive/runtime boundary.
 - Run all active smoke scripts after cross-system cleanup; do not retain documentation references to tests moved into an archive.

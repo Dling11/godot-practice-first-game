@@ -37,6 +37,8 @@ Future destination access should combine level, story flags, boss victories, dis
 
 **Implemented expedition access foundation:** immutable destination definitions combine the five requirement categories. The portal creates route buttons from data and explains missing requirements. Forgotten Grove is the starting route; the implemented Forest chain continues through Stage V. The Drowned Bells remains an unbuilt sealed preview. Story flags, victories, discoveries, and key items persist in the safe-point profile.
 
+**Implemented stage-exit presentation:** expedition exits appear as compact upright tears made only from energy, never ground holes, arches, monuments, or other physical structures. Sixteen generated frames move layered currents across the entire translucent inner surface—including the exact middle—while different bands change phase independently and the outer rim ripples and deforms rather than rotating as one flat wheel. A separately generated dense sixteen-frame field keeps multiple lightning branches, sparks, and particles active around the complete circumference and far outside the doorway. Normal, Mini Boss, Boss, God, and Transcendent destination tiers reuse those two neutral sheets with data-driven color, reduced scale, speed, and FX intensity. These differences communicate destination superiority but do not alter interaction range or transition rules.
+
 ## Combat
 
 - **Implemented combat audio identity:** King's accepted damage uses a distinct short cloth/body impact, while every enemy keeps its own attack signal. Dash uses a quiet curated light swish so it does not compete with danger or hit confirmation.

@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-08-21 - Generated Full-Surface Abyssal Stage Portal
+
+- Stabilized the generated base layer around its alpha-weighted vortex center, reducing measured frame-to-frame anchor drift to roughly 1.5 pixels while preserving independent rim deformation and far-field lightning motion.
+- Recovered the Sanctuary expedition altar's archived doorway trigger, full-height guardian outlines, and rear backstop after the broad portal rollback had returned them to the older committed shapes. The obstructing archived `WestGuardianCollision2` experiment stayed reverted; focused physics coverage confirms both authored walk-around routes remain clear.
+- Replaced all previous stage-exit portal artwork with two fresh generated 4x4 animation boards. The normalized 16-frame 160x192 base moves layered currents across the complete inner surface and exact middle while its outer rim visibly flickers, ripples, and deforms without rotating as one flat wheel.
+- Added a denser generated 16-frame 256x224 overlay with several simultaneous lightning discharges, sparks, curved streaks, and particles distributed around the whole circumference and far field. `PortalFx` remains phase-offset and faster than the base.
+- Reduced the runtime portal scale again while keeping interaction, collision, player pull/fade, and scene-change authority unchanged. Normal through Transcendent tiers tint and pace both layers independently, and the blocking loading veil mirrors the new sheets.
+- Added deterministic 4x4 board extraction, checker-matte removal, neutral tier-tint normalization, consistent cell alignment, still/animated reviews, and tests requiring a nonempty moving center, upper/middle/lower interior motion, changing rim silhouette, dense lightning, and four-side distribution. Ground-vortex, portal-ring, and localized-eye passes are recoverable only in the archive.
+
 ## 2026-08-16 - Movement Authority, Concealed Roster, and Portal Return
 
 - Accepted Decisions 114-115: right-click/WASD movement now clears combat intent; one left click selects, a repeated same-enemy click engages, and empty-world left click remains a directional basic attack. Roster rows follow the same mouse contract.

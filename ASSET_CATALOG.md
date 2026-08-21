@@ -32,7 +32,7 @@ This catalog records active asset families and lifecycle boundaries. Exact runti
 - Sanctuary structures/NPC presentation: `assets/environment/sanctuary/` and `assets/characters/npcs/`.
 - Stage V decay terrain and props: `assets/environment/forest/stage_5/`.
 - Generated Sanctuary gate: fixed `assets/environment/sanctuary/landmarks/generated/angel_expedition_portal_static_192x256.png` plus isolated `sanctuary_portal_energy_4x_44x112.png` (`4x1`, 44x112 cells).
-- Generated stage-exit vortex: `assets/environment/portals/generated/stage_vortex_portal_8x_128x96.png` (`8x1`, 128x96 cells); runtime tier data supplies superiority tint, scale, and speed.
+- Generated abyssal stage-exit base: `assets/environment/portals/generated/stage_abyssal_veil_base_16x_160x192.png` (`16x1`, 160x192 cells), with authored motion across upper/middle/lower interior, a nonempty moving center, and changing rim silhouette. Generated dense lightning/particle overlay: `assets/environment/portals/generated/stage_abyssal_veil_lightning_fx_16x_256x224.png` (`16x1`, 256x224 cells). Runtime tier data supplies tint, reduced display scale, independent base/FX speeds, and FX intensity; generated 4x4 boards and corrected review outputs live under `art_source/generated/environment/portals/abyssal_veil_portal/`. Ground-vortex, portal-ring, and localized-eye passes are archived.
 - Environment scenes must pair presentation with authored collision, navigation, depth, and occlusion where applicable.
 
 ## Items and Loot

@@ -1,0 +1,183 @@
+[gd_scene format=4]
+
+[ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://entities/enemies/mireling/mireling.tscn" id="2_mireling"]
+[ext_resource type="PackedScene" path="res://entities/enemies/rootling/rootling.tscn" id="3_rootling"]
+[ext_resource type="PackedScene" path="res://entities/enemies/forsaken_thrall/forsaken_thrall.tscn" id="4_thrall"]
+[ext_resource type="PackedScene" path="res://entities/enemies/bramble_spitter/bramble_spitter.tscn" id="5_spitter"]
+[ext_resource type="PackedScene" path="res://entities/enemies/rootbound_husk/rootbound_husk.tscn" id="6_husk"]
+[ext_resource type="Script" path="res://levels/stage_3/stage_3_flow.gd" id="7_flow"]
+[ext_resource type="PackedScene" path="res://ui/combat_hud.tscn" id="8_hud"]
+[ext_resource type="PackedScene" path="res://ui/character_menu.tscn" id="9_menu"]
+[ext_resource type="PackedScene" path="res://ui/pause_menu.tscn" id="10_pause"]
+[ext_resource type="TileSet" path="res://assets/environment/forest/rootbound_hollow/tiles/rootbound_ground_tileset.tres" id="11_tiles"]
+[ext_resource type="Script" path="res://environment/ground/authored_ground.gd" id="12_ground"]
+[ext_resource type="Script" path="res://levels/test_arena/arena_navigation.gd" id="13_navigation"]
+[ext_resource type="Script" path="res://gameplay/encounters/encounter_controller.gd" id="14_encounter"]
+[ext_resource type="Resource" path="res://data/encounters/stage_3_wave_1.tres" id="15_wave1"]
+[ext_resource type="Resource" path="res://data/encounters/stage_3_wave_2.tres" id="16_wave2"]
+[ext_resource type="PackedScene" path="res://gameplay/encounters/stage_portal.tscn" id="17_portal"]
+[ext_resource type="PackedScene" path="res://gameplay/encounters/summon_effect.tscn" id="18_summon"]
+[ext_resource type="Script" path="res://gameplay/audio/stage_music.gd" id="19_music"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/cathedral_in_the_forest.ogg" id="20_forest_music"]
+[ext_resource type="Script" path="res://gameplay/audio/miniboss_music_trigger.gd" id="21_miniboss_music"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/miniboss/rootbound_husk_basilisk_miniboss_loop.ogg" id="22_boss_track"]
+[ext_resource type="Script" path="res://gameplay/presentation/combat_feedback_presenter.gd" id="23_feedback"]
+[ext_resource type="PackedScene" path="res://ui/world/damage_number.tscn" id="24_number"]
+[ext_resource type="PackedScene" path="res://gameplay/presentation/hit_burst.tscn" id="25_burst"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/sword_hit.wav" id="26_sword_hit"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/player_hurt_impact.wav" id="27_player_hurt"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/player_ability_hit.ogg" id="28_piercing_impact"]
+[ext_resource type="PackedScene" path="res://ui/dialogue/dialogue_panel.tscn" id="30_dialogue"]
+[ext_resource type="Texture2D" path="res://assets/characters/enemies/portraits/rootbound_husk_portrait_96x96.png" id="31_husk_portrait"]
+[ext_resource type="Resource" path="res://data/environment/layouts/stage_3_rootbound_ground.tres" id="32_layout"]
+[ext_resource type="PackedScene" path="res://environment/props/ancient_tree/ancient_tree.tscn" id="33_tree"]
+[ext_resource type="PackedScene" path="res://environment/props/rootbound_arena_seal/rootbound_arena_seal.tscn" id="34_seal"]
+[ext_resource type="PackedScene" path="res://gameplay/loot/stage_reward_chest.tscn" id="35_reward_chest"]
+[ext_resource type="Resource" path="res://data/loot/forest/stages/stage_3_loot_table.tres" id="36_stage_loot"]
+
+[node name="RootboundHollow" type="Node" unique_id=1144420450 node_paths=PackedStringArray("player", "combat_hud", "character_menu", "encounter_controller", "dialogue_panel")]
+script = ExtResource("7_flow")
+player = NodePath("World/Actors/Player")
+combat_hud = NodePath("UI/CombatHUD")
+character_menu = NodePath("UI/CharacterMenu")
+encounter_controller = NodePath("GameplayServices/EncounterController")
+dialogue_panel = NodePath("UI/DialoguePanel")
+rootbound_husk_portrait = ExtResource("31_husk_portrait")
+
+[node name="World" type="Node2D" parent="." unique_id=562089717]
+
+[node name="Level" type="Node2D" parent="World" unique_id=1974775842]
+
+[node name="Ground" type="TileMapLayer" parent="World/Level" unique_id=735427708]
+z_index = -10
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAACAAAAAAABAAMAAAADAAAAAAADAAMAAAAEAAAAAAABAAIAAAAFAAAAAAACAAIAAAAGAAAAAAACAAIAAAAHAAAAAgAAAAAAAAAIAAAAAQABAAAAAAAJAAAAAQAAAAAAAAAKAAAAAQAAAAAAAAALAAAAAQAAAAAAAAAMAAAAAQABAAAAAAANAAAAAQABAAEAAAAOAAAAAQAAAAMAAAAPAAAAAQABAAMAAAAQAAAAAQADAAAAAAARAAAAAQACAAAAAAASAAAAAQADAAMAAAATAAAAAQABAAAAAAAUAAAAAQAAAAAAAAAVAAAAAQAAAAAAAAAWAAAAAQAAAAAAAAAXAAAAAQAAAAAAAAAAAAEAAAABAAAAAAABAAEAAAAAAAEAAAACAAEAAAADAAMAAAADAAEAAAABAAIAAAAEAAEAAAABAAIAAAAFAAEAAAABAAIAAAAGAAEAAgABAAAAAAAHAAEAAQAAAAAAAAAIAAEAAQAAAAAAAAAJAAEAAQAAAAAAAAAKAAEAAQAAAAAAAAALAAEAAQABAAAAAAAMAAEAAQABAAEAAAANAAEAAQAAAAMAAAAOAAEAAQABAAMAAAAPAAEAAQADAAAAAAAQAAEAAQACAAAAAAARAAEAAQADAAMAAAASAAEAAQABAAAAAAATAAEAAQAAAAAAAAAUAAEAAQAAAAAAAAAVAAEAAQAAAAAAAAAWAAEAAQAAAAAAAAAXAAEAAQAAAAAAAAAAAAIAAAABAAMAAAABAAIAAAADAAMAAAACAAIAAAACAAIAAAADAAIAAAACAAIAAAAEAAIAAAABAAIAAAAFAAIAAAABAAIAAAAGAAIAAgACAAAAAAAHAAIAAQABAAAAAAAIAAIAAQAAAAAAAAAJAAIAAQAAAAAAAAAKAAIAAQAAAAAAAAALAAIAAQABAAAAAAAMAAIAAQABAAEAAAANAAIAAQAAAAMAAAAOAAIAAQABAAMAAAAPAAIAAQADAAAAAAAQAAIAAQACAAAAAAARAAIAAQADAAMAAAASAAIAAQABAAAAAAATAAIAAQAAAAAAAAAUAAIAAQAAAAAAAAAVAAIAAQAAAAAAAAAWAAIAAQAAAAAAAAAXAAIAAQAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAADAAMAAAACAAMAAAABAAIAAAADAAMAAAACAAIAAAAEAAMAAAACAAIAAAAFAAMAAgAAAAEAAAAGAAMAAQAAAAAAAAAHAAMAAQAAAAAAAAAIAAMAAQAAAAAAAAAJAAMAAQABAAAAAAAKAAMAAQABAAEAAAALAAMAAQAAAAMAAAAMAAMAAQABAAMAAAANAAMAAQADAAAAAAAOAAMAAQACAAAAAAAPAAMAAQADAAMAAAAQAAMAAQABAAAAAAARAAMAAQAAAAAAAAASAAMAAQAAAAAAAAATAAMAAQAAAAAAAAAUAAMAAQAAAAAAAAAVAAMAAQAAAAAAAAAWAAMAAQAAAAAAAAAXAAMAAQAAAAAAAAAAAAQAAAABAAAAAAABAAQAAAADAAMAAAACAAQAAAABAAIAAAADAAQAAAACAAIAAAAEAAQAAAACAAIAAAAFAAQAAgABAAEAAAAGAAQAAQABAAAAAAAHAAQAAQAAAAAAAAAIAAQAAQAAAAAAAAAJAAQAAQAAAAAAAAAKAAQAAQABAAAAAAALAAQAAQABAAEAAAAMAAQAAQAAAAMAAAANAAQAAQABAAMAAAAOAAQAAQADAAAAAAAPAAQAAQACAAAAAAAQAAQAAQADAAMAAAARAAQAAQABAAAAAAASAAQAAQAAAAAAAAATAAQAAQAAAAAAAAAUAAQAAQAAAAAAAAAVAAQAAQAAAAAAAAAWAAQAAQAAAAAAAAAXAAQAAQAAAAAAAAAAAAUAAAABAAMAAAABAAUAAAABAAIAAAACAAUAAAACAAIAAAADAAUAAAABAAIAAAAEAAUAAgACAAEAAAAFAAUAAQAAAAAAAAAGAAUAAQAAAAAAAAAHAAUAAQAAAAAAAAAIAAUAAQABAAAAAAAJAAUAAQABAAEAAAAKAAUAAQAAAAMAAAALAAUAAQABAAMAAAAMAAUAAQADAAAAAAANAAUAAQACAAAAAAAOAAUAAQADAAMAAAAPAAUAAQABAAAAAAAQAAUAAQAAAAAAAAARAAUAAQAAAAAAAAASAAUAAQAAAAAAAAATAAUAAQAAAAAAAAAUAAUAAQAAAAAAAAAVAAUAAQAAAAAAAAAWAAUAAQAAAAAAAAAXAAUAAQAAAAAAAAAAAAYAAAAAAAAAAAABAAYAAAADAAMAAAACAAYAAAABAAIAAAADAAYAAAACAAIAAAAEAAYAAAABAAIAAAAFAAYAAgAAAAIAAAAGAAYAAQABAAAAAAAHAAYAAQAAAAAAAAAIAAYAAQAAAAAAAAAJAAYAAQAAAAAAAAAKAAYAAQABAAAAAAALAAYAAQABAAEAAAAMAAYAAQAAAAMAAAANAAYAAQABAAMAAAAOAAYAAQADAAAAAAAPAAYAAQACAAAAAAAQAAYAAQADAAMAAAARAAYAAQABAAAAAAASAAYAAQAAAAAAAAATAAYAAQAAAAAAAAAUAAYAAQAAAAAAAAAVAAYAAQAAAAAAAAAWAAYAAQAAAAAAAAAXAAYAAQAAAAAAAAAAAAcAAAABAAAAAAABAAcAAAADAAMAAAACAAcAAAACAAIAAAADAAcAAAACAAIAAAAEAAcAAAABAAIAAAAFAAcAAAABAAIAAAAGAAcAAgABAAIAAAAHAAcAAQAAAAAAAAAIAAcAAQAAAAAAAAAJAAcAAQAAAAAAAAAKAAcAAQABAAAAAAALAAcAAQABAAEAAAAMAAcAAQAAAAMAAAANAAcAAQABAAMAAAAOAAcAAQADAAAAAAAPAAcAAQACAAAAAAAQAAcAAQADAAMAAAARAAcAAQABAAAAAAASAAcAAQAAAAAAAAATAAcAAQAAAAAAAAAUAAcAAQAAAAAAAAAVAAcAAQAAAAAAAAAWAAcAAQAAAAAAAAAXAAcAAQAAAAAAAAAAAAgAAAABAAMAAAABAAgAAAADAAMAAAACAAgAAAABAAIAAAADAAgAAAACAAIAAAAEAAgAAAABAAIAAAAFAAgAAAABAAIAAAAGAAgAAgACAAIAAAAHAAgAAQABAAAAAAAIAAgAAQAAAAAAAAAJAAgAAQAAAAAAAAAKAAgAAQAAAAAAAAALAAgAAQABAAAAAAAMAAgAAQABAAEAAAANAAgAAQAAAAMAAAAOAAgAAQABAAMAAAAPAAgAAQADAAAAAAAQAAgAAQACAAAAAAARAAgAAQADAAMAAAASAAgAAQABAAAAAAATAAgAAQAAAAAAAAAUAAgAAQAAAAAAAAAVAAgAAQAAAAAAAAAWAAgAAQAAAAAAAAAXAAgAAQAAAAAAAAAAAAkAAAAAAAAAAAABAAkAAAADAAMAAAACAAkAAAABAAIAAAADAAkAAAACAAIAAAAEAAkAAAACAAIAAAAFAAkAAgAAAAMAAAAGAAkAAQAAAAAAAAAHAAkAAQAAAAAAAAAIAAkAAQAAAAAAAAAJAAkAAQABAAAAAAAKAAkAAQABAAEAAAALAAkAAQAAAAMAAAAMAAkAAQABAAMAAAANAAkAAQADAAAAAAAOAAkAAQACAAAAAAAPAAkAAQADAAMAAAAQAAkAAQABAAAAAAARAAkAAQAAAAAAAAASAAkAAQAAAAAAAAATAAkAAQAAAAAAAAAUAAkAAQAAAAAAAAAVAAkAAQAAAAAAAAAWAAkAAQAAAAAAAAAXAAkAAQAAAAAAAAAAAAoAAAABAAAAAAABAAoAAAABAAIAAAACAAoAAAACAAIAAAADAAoAAAABAAIAAAAEAAoAAgABAAMAAAAFAAoAAQABAAAAAAAGAAoAAQAAAAAAAAAHAAoAAQAAAAAAAAAIAAoAAQAAAAAAAAAJAAoAAQABAAAAAAAKAAoAAQABAAEAAAALAAoAAQAAAAMAAAAMAAoAAQABAAMAAAANAAoAAQADAAAAAAAOAAoAAQACAAAAAAAPAAoAAQADAAMAAAAQAAoAAQABAAAAAAARAAoAAQAAAAAAAAASAAoAAQAAAAAAAAATAAoAAQAAAAAAAAAUAAoAAQAAAAAAAAAVAAoAAQAAAAAAAAAWAAoAAQAAAAAAAAAXAAoAAQAAAAAAAAAAAAsAAAABAAMAAAABAAsAAAABAAIAAAACAAsAAAACAAIAAAADAAsAAAABAAIAAAAEAAsAAgACAAMAAAAFAAsAAQAAAAAAAAAGAAsAAQAAAAAAAAAHAAsAAQAAAAAAAAAIAAsAAQABAAAAAAAJAAsAAQABAAEAAAAKAAsAAQAAAAMAAAALAAsAAQABAAMAAAAMAAsAAQADAAAAAAANAAsAAQACAAAAAAAOAAsAAQADAAMAAAAPAAsAAQABAAAAAAAQAAsAAQAAAAAAAAARAAsAAQAAAAAAAAASAAsAAQAAAAAAAAATAAsAAQAAAAAAAAAUAAsAAQAAAAAAAAAVAAsAAQAAAAAAAAAWAAsAAQAAAAAAAAAXAAsAAQAAAAAAAAAAAAwAAAAAAAAAAAABAAwAAAADAAMAAAACAAwAAAABAAIAAAADAAwAAAACAAIAAAAEAAwAAAABAAIAAAAFAAwAAgAAAAAAAAAGAAwAAQABAAAAAAAHAAwAAQAAAAAAAAAIAAwAAQAAAAAAAAAJAAwAAQAAAAAAAAAKAAwAAQABAAAAAAALAAwAAQABAAEAAAAMAAwAAQAAAAMAAAANAAwAAQABAAMAAAAOAAwAAQADAAAAAAAPAAwAAQACAAAAAAAQAAwAAQADAAMAAAARAAwAAQABAAAAAAASAAwAAQAAAAAAAAATAAwAAQAAAAAAAAAUAAwAAQAAAAAAAAAVAAwAAQAAAAAAAAAWAAwAAQAAAAAAAAAXAAwAAQAAAAAAAAAAAA0AAAABAAAAAAABAA0AAAABAAMAAAACAA0AAAADAAMAAAADAA0AAAACAAIAAAAEAA0AAAABAAIAAAAFAA0AAAABAAIAAAAGAA0AAgABAAAAAAAHAA0AAQAAAAAAAAAIAA0AAQAAAAAAAAAJAA0AAQAAAAAAAAAKAA0AAQABAAAAAAALAA0AAQABAAEAAAAMAA0AAQAAAAMAAAANAA0AAQABAAMAAAAOAA0AAQADAAAAAAAPAA0AAQACAAAAAAAQAA0AAQADAAMAAAARAA0AAQABAAAAAAASAA0AAQAAAAAAAAATAA0AAQAAAAAAAAAUAA0AAQAAAAAAAAAVAA0AAQAAAAAAAAAWAA0AAQAAAAAAAAAXAA0AAQAAAAAAAAA=")
+tile_set = ExtResource("11_tiles")
+script = ExtResource("12_ground")
+map_size = Vector2i(24, 14)
+layout = ExtResource("32_layout")
+
+[node name="Actors" type="Node2D" parent="World" unique_id=383328135]
+y_sort_enabled = true
+
+[node name="Player" parent="World/Actors" unique_id=1505736831 instance=ExtResource("1_player")]
+position = Vector2(768, 760)
+movement_bounds = Rect2(56, 56, 1424, 840)
+
+[node name="Camera2D" type="Camera2D" parent="World/Actors/Player" unique_id=1572804930]
+position = Vector2(0, -8)
+limit_left = 0
+limit_top = 0
+limit_right = 1536
+limit_bottom = 896
+
+[node name="RootboundArenaSeal" parent="World/Actors" unique_id=1432251314 instance=ExtResource("34_seal")]
+position = Vector2(768, 300)
+
+[node name="BlightedTreeWest" parent="World/Actors" unique_id=313988838 instance=ExtResource("33_tree")]
+modulate = Color(0.47, 0.27, 0.34, 1)
+position = Vector2(245, 360)
+
+[node name="AncientTreeEast" parent="World/Actors" unique_id=2046688220 instance=ExtResource("33_tree")]
+position = Vector2(1290, 375)
+
+[node name="BlightedTreeSouthWest" parent="World/Actors" unique_id=1731085976 instance=ExtResource("33_tree")]
+modulate = Color(0.39, 0.24, 0.31, 1)
+position = Vector2(380, 730)
+
+[node name="AncientTreeSouthEast" parent="World/Actors" unique_id=415694029 instance=ExtResource("33_tree")]
+position = Vector2(1160, 725)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="World" unique_id=836943319]
+script = ExtResource("13_navigation")
+navigation_bounds = Rect2(48, 48, 1440, 800)
+navigation_agent_radius = 20.0
+
+[node name="Projectiles" type="Node2D" parent="World" unique_id=2016419382]
+
+[node name="Effects" type="Node2D" parent="World" unique_id=1022322140]
+
+[node name="StageMusic" type="Node" parent="." unique_id=796702411]
+script = ExtResource("19_music")
+music_stream = ExtResource("20_forest_music")
+
+[node name="GameplayServices" type="Node" parent="." unique_id=50397372]
+
+[node name="EncounterController" type="Node" parent="GameplayServices" unique_id=299827268 node_paths=PackedStringArray("player", "actors", "spawn_points_root", "portal_parent", "portal_spawn_point", "effects_parent", "projectiles_parent")]
+script = ExtResource("14_encounter")
+player = NodePath("../../World/Actors/Player")
+actors = NodePath("../../World/Actors")
+spawn_points_root = NodePath("../../SpawnPoints")
+waves = Array[Resource]([ExtResource("15_wave1"), ExtResource("16_wave2")])
+mireling_scene = ExtResource("2_mireling")
+rootling_scene = ExtResource("3_rootling")
+thrall_scene = ExtResource("4_thrall")
+bramble_spitter_scene = ExtResource("5_spitter")
+rootbound_husk_scene = ExtResource("6_husk")
+portal_scene = ExtResource("17_portal")
+portal_parent = NodePath("../../World/Effects")
+portal_spawn_point = NodePath("../../SpawnPoints/StageExit")
+portal_target_scene = "res://levels/stage_4/stage_4.tscn"
+portal_tier = 0
+completion_reward_mode = 1
+reward_chest_scene = ExtResource("35_reward_chest")
+stage_loot_table = ExtResource("36_stage_loot")
+reward_chest_tier = 1
+summon_effect_scene = ExtResource("18_summon")
+effects_parent = NodePath("../../World/Effects")
+projectiles_parent = NodePath("../../World/Projectiles")
+auto_start = false
+gated_wave_numbers = PackedInt32Array(2)
+
+[node name="MinibossMusicTrigger" type="Node" parent="GameplayServices" unique_id=1489585786 node_paths=PackedStringArray("encounter_controller")]
+script = ExtResource("21_miniboss_music")
+encounter_controller = NodePath("../EncounterController")
+miniboss_music = ExtResource("22_boss_track")
+
+[node name="CombatFeedback" type="Node" parent="GameplayServices" unique_id=1854871126 node_paths=PackedStringArray("player", "effects_parent", "camera")]
+script = ExtResource("23_feedback")
+player = NodePath("../../World/Actors/Player")
+effects_parent = NodePath("../../World/Effects")
+camera = NodePath("../../World/Actors/Player/Camera2D")
+damage_number_scene = ExtResource("24_number")
+hit_burst_scene = ExtResource("25_burst")
+sword_hit_sound = ExtResource("26_sword_hit")
+ability_hit_sound = ExtResource("28_piercing_impact")
+player_hurt_sound = ExtResource("27_player_hurt")
+
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=336055299]
+
+[node name="NorthWest" type="Marker2D" parent="SpawnPoints" unique_id=544994377]
+position = Vector2(260, 150)
+
+[node name="NorthEast" type="Marker2D" parent="SpawnPoints" unique_id=499324469]
+position = Vector2(1280, 150)
+
+[node name="West" type="Marker2D" parent="SpawnPoints" unique_id=1542571506]
+position = Vector2(170, 470)
+
+[node name="East" type="Marker2D" parent="SpawnPoints" unique_id=953562235]
+position = Vector2(1360, 470)
+
+[node name="StageExit" type="Marker2D" parent="SpawnPoints" unique_id=790309297]
+position = Vector2(768, 390)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=99273255]
+
+[node name="CombatHUD" parent="UI" unique_id=791403707 instance=ExtResource("8_hud")]
+
+[node name="CharacterMenu" parent="UI" unique_id=377298755 node_paths=PackedStringArray("player") instance=ExtResource("9_menu")]
+player = NodePath("../../World/Actors/Player")
+
+[node name="PauseMenu" parent="UI" unique_id=250085342 instance=ExtResource("10_pause")]
+
+[node name="DialoguePanel" parent="UI" unique_id=57601734 instance=ExtResource("30_dialogue")]
+
+[connection signal="enemy_spawned" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_spawn_direction"]
+[connection signal="portal_prompt_changed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_interaction_prompt"]
+[connection signal="portal_sealed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_portal_sealed"]
+[connection signal="reinforcement_announced" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_reinforcement_warning"]
+[connection signal="reward_chest_spawned" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_reward_chest_ready"]
+[connection signal="stage_cleared" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_stage_clear"]
+[connection signal="wave_changed" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_wave"]
+[connection signal="wave_cleared" from="GameplayServices/EncounterController" to="UI/CombatHUD" method="show_wave_clear"]

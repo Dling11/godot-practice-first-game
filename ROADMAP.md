@@ -15,7 +15,7 @@ This file records current production progress. Historical implementation detail 
 - Versioned disk save/Continue with temporary write, rotating backup, story/progression/health, King weapon/gear, materials, recipes, and reward claims.
 - Sanctuary/Continue is a full-health recovery checkpoint; expedition stages still preserve attrition between direct stage transitions.
 - Expedition defeat returns to Sanctuary, rolls back uncommitted loot, and preserves level/coins. Stage V's approach no longer reuses Sanctuary music.
-- Sanctuary locks its generated angels/masonry to one static raster and animates only doorway energy. Stage exits use one generated eight-frame ground-vortex sheet with five data-driven superiority tiers, near/far guidance, travel sound, player fade/pull-in, and a vortex-backed loading veil.
+- Sanctuary locks its generated angels/masonry to one static raster and animates only doorway energy. Stage exits use a newly generated compact upright abyssal veil with full-surface multilayer motion and deforming edges plus an independent dense circumference/far-field lightning layer: two 16-frame sheets, five data-driven superiority tiers, near/far guidance, travel sound, player fade/pull-in, and a matching layered loading veil.
 - The live enemy roster is discovery-gated, uses stable signature refresh, and clips/pads/marquees only overflowing names.
 - Long-lived Spitter seeds tolerate shooter death, and Armored Hog's committed brace/charge cannot be permanently canceled by normal-hit spam.
 - Opaw, the retired weapon shop/awakening flow, unused equipment showcase, obsolete processors/tests, and 30 unreferenced images moved into recoverable Godot-ignored archives. The post-cleanup runtime image audit reports no unreferenced images under `assets/`.
@@ -24,7 +24,7 @@ This file records current production progress. Historical implementation detail 
 
 - Owner feel-test Decision 114 in the normal game: click priority, repeated-click timing, footprint picking, pursuit around obstacles, moving targets, large bosses, movement cancellation, roster discovery, and long-name marquee readability.
 - Owner feel-test the taller enemy roster, target panel, tier foot auras, target chevron, generated cursors, six-cell action atlas, and Stage IV eight-enemy readability at 960x540.
-- Owner feel-test the fixed Sanctuary gate energy crop, eight-frame stage-vortex loop, tier colors, and screen-edge direction pointer at 960x540.
+- Owner feel-test the fixed Sanctuary gate energy crop, layered 16-frame abyssal stage portal, full-surface depth, animated rim, denser lightning-field overlap, tier colors, and screen-edge direction pointer at 960x540.
 - Feel-test King's attack timing and the complete four-skill kit, especially Riftbreak impact readability, Sovereign Pursuit anchoring, and Worldsplitter commitment/damage/cooldown against crowds and bosses.
 - Validate Stage V pacing, Varkuun audio/telegraphs, reward cadence, and saved return flow in a complete non-debug playthrough.
 - Keep documentation aligned with King-only runtime truth and classify any newly discovered dead asset before moving it to the archive.

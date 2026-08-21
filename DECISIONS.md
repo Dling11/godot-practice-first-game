@@ -123,7 +123,9 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 113 | Make Sanctuary a full-health recovery checkpoint | Continue health, Sanctuary entry, expedition attrition, or safe-point saves |
 | 114 | Make movement cancel combat intent | Right-click movement, repeated left-click engagement, WASD cancellation, roster disclosure, or marquee labels |
 | 115 | Return to Sanctuary on expedition defeat | Defeat consequences, progression preservation, utility-item boundary, Stage V approach music, or portal travel presentation |
-| 116 | Separate fixed Sanctuary architecture from tiered stage vortices | Static angel gate, isolated energy animation, eight-frame stage vortex, superiority tiers, or off-screen portal guidance |
+| 116 | Separate fixed Sanctuary architecture from tiered stage vortices | Static angel gate, isolated energy animation, prior stage-vortex baseline, superiority tiers, or off-screen portal guidance |
+| 117 | Layer upright stage portals from separate vortex and lightning sheets (superseded by 118) | Historical ring and localized-eye portal passes |
+| 118 | Generate full-surface abyssal portal and dense lightning boards | Full-interior vortex depth, moving center/rim, frequent circumference lightning, smaller portal scale, or 16-frame board processing |
 
 ## New Decisions
 

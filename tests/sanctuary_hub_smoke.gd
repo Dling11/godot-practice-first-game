@@ -197,6 +197,18 @@ func _run() -> void:
 	if altar.has_node("MonumentBody/PortalCollision"):
 		_fail("A solid collision still blocks the glowing portal doorway.")
 		return
+	var west_guardian := altar.get_node("MonumentBody/WestGuardianCollision") as CollisionPolygon2D
+	var east_guardian := altar.get_node("MonumentBody/EastGuardianCollision") as CollisionPolygon2D
+	var backstop := altar.get_node("MonumentBody/PortalBackstopCollision") as CollisionShape2D
+	if (
+		west_guardian.polygon[5].y > -120.0
+		or east_guardian.polygon[5].y > -120.0
+		or backstop.position != Vector2(2, -97.5)
+		or not backstop.shape is RectangleShape2D
+		or (backstop.shape as RectangleShape2D).size != Vector2(152, 55)
+	):
+		_fail("The angel portal lost its authored guardian or rear-structure collision tracing.")
+		return
 	var fountain_collision := fountain.get_node("Collision") as CollisionPolygon2D
 	if fountain_collision == null or fountain_collision.polygon.size() < 12:
 		_fail("The standalone fountain does not have its authored walk-around footprint.")
@@ -206,6 +218,9 @@ func _run() -> void:
 		_fail("The expedition prompt is not restricted to the portal threshold.")
 		return
 	var trigger_size := (trigger.shape as RectangleShape2D).size
+	if trigger_size != Vector2(48, 78) or trigger.position != Vector2(0, -61):
+		_fail("The expedition doorway trigger lost its authored threshold coverage.")
+		return
 	var trigger_bounds := Rect2(-trigger_size * 0.5, trigger_size)
 	var front_depth_shape := altar.get_node("FrontDepthArea/Collision") as CollisionShape2D
 	if not front_depth_shape.shape is RectangleShape2D:
