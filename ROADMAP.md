@@ -10,7 +10,7 @@ This file records current production progress. Historical implementation detail 
 - Combat controls through Decision 114: right-click/WASD movement clears combat intent; left-click performs directional air swings, one-click enemy selection, and repeated same-enemy pursuit/attack; right-click/`Esc` cancels targeted skills; optional `AUTO ALL` and `AUTO SKILL` remain explicit.
 - Size-aware enemy footprints drive movement collision, navigation radius, crowd separation, readable tier auras, foot-circle selection, and assisted approach distance. Hurtboxes and attack shapes remain separate.
 - One six-cell generated combat-action atlas supplies King Skills 1-4, Basic Attack, and Dodge/Dash through reusable `AtlasTexture` resources.
-- Sanctuary with Eira skill information, Orren lore dialogue, Nema's atomic Stage V Living Rootforge, expedition selection, debug-only Combat Lab access, and safe-point autosave.
+- Sanctuary with Eira skill information, Orren lore dialogue, Nema's atomic gold-backed Stage V Living Rootforge, Umi's catalog-driven Echo Crucible for selling/reconstruction, expedition selection, debug-only Combat Lab access, and safe-point autosave.
 - Forest Stages 1-5, including authored TileMaps, bounded live-enemy pressure, sparse/protected loot, Stage III Rootbound Husk, Stage IV Armored Hog pressure, and Stage V Varkuun encounter/reward flow.
 - Versioned disk save/Continue with temporary write, rotating backup, story/progression/health, King weapon/gear, materials, recipes, and reward claims.
 - Sanctuary/Continue is a full-health recovery checkpoint; expedition stages still preserve attrition between direct stage transitions.
@@ -19,6 +19,7 @@ This file records current production progress. Historical implementation detail 
 - The live enemy roster is discovery-gated, uses stable signature refresh, and clips/pads/marquees only overflowing names.
 - Long-lived Spitter seeds tolerate shooter death, and Armored Hog's committed brace/charge cannot be permanently canceled by normal-hit spam.
 - Decision 121 establishes the first meaningful equipment band: exact Stage V slot identities, Varkuun Edge critical-hit authority, percentage caps, equipped-item comparisons, compact Character/Rootforge layouts, right-edge formula icons, and clearer binary-alpha Forest equipment silhouettes.
+- Decision 123 implements persistent enemy memory, metadata-owned material valuation, protected boss reconstruction, exact Stage V crafting fees, and Umi's compact east-Sanctuary service without hardcoded NPC material lists.
 - Opaw, the retired weapon shop/awakening flow, unused equipment showcase, obsolete processors/tests, and 30 unreferenced images moved into recoverable Godot-ignored archives. The post-cleanup runtime image audit reports no unreferenced images under `assets/`.
 
 ## In Progress
@@ -26,6 +27,7 @@ This file records current production progress. Historical implementation detail 
 - Owner feel-test Decision 114 in the normal game: click priority, repeated-click timing, footprint picking, pursuit around obstacles, moving targets, large bosses, movement cancellation, roster discovery, and long-name marquee readability.
 - Owner feel-test the taller enemy roster, target panel, tier foot auras, target chevron, generated cursors, six-cell action atlas, and Stage IV eight-enemy readability at 960x540.
 - Owner feel-test the fixed Sanctuary gate energy crop and Decision 119 threat ladder at 960x540: quiet blue Normal, restrained purple Mini Boss, red Boss, searing-light God, near-black Transcendent, independent lightning reach, and screen-edge direction pointer.
+- Owner feel-test Umi's side-facing placement, 760x420 Sell/Reconstruct density, click/right-click fuel flow, Auto Fill explanation, and first-play gold pacing at 960x540.
 - Feel-test King's attack timing and the complete four-skill kit, especially Riftbreak impact readability, Sovereign Pursuit anchoring, and Worldsplitter commitment/damage/cooldown against crowds and bosses.
 - Validate Stage V pacing, Varkuun audio/telegraphs, reward cadence, and saved return flow in a complete non-debug playthrough.
 - Keep documentation aligned with King-only runtime truth and classify any newly discovered dead asset before moving it to the archive.
@@ -35,9 +37,9 @@ This file records current production progress. Historical implementation detail 
 ### Forest Production
 
 1. Add replayable Hunts for completed stages with explicit reward families and modifiers.
-2. Author the Stage VI contract around optional-but-consequential Stage V gear: no ownership gate, no Mirelings/Rootlings in the new campaign roster, tougher readable enemies, and measured starter-versus-crafted clear-time/damage bands before continuing through Stage X.
-3. Finish the regional gear/accessory/relic progression and bounded Mastery contract.
-4. Define the Stage 11 seam before starting another region.
+2. Author Stage VI within the Forest region using new enemy roles and meaningful names rather than naming every addition after roots or trees. Do not reuse Mirelings/Rootlings in forward campaign content or add an equipment ownership gate; measure starter-versus-crafted clear-time/damage bands.
+3. Continue authored Forest content through Stage X, including accessory/relic progression and bounded Mastery, while allowing names and mechanics beyond repetitive root terminology.
+4. Define the Stage XI seam and next-region identity before naming or generating that content.
 
 ### Release Readiness
 
@@ -62,4 +64,4 @@ This file records current production progress. Historical implementation detail 
 
 ## Next Decision Gate
 
-Approve the compact equipment/Rootforge presentation and Decision 121 combat feel in the running game, then lock Stage VI enemy roles and measured health/damage bands. Preserve free stage entry; tune challenge through authored encounters instead of an equipment ownership check or a hidden starter-character nerf.
+Approve the compact equipment/Rootforge/Umi presentation and Decision 121 combat feel in the running game, then lock Stage VI's new Forest enemy roles and measured health/damage bands. Regional content may reflect the Forest without forcing root/tree terminology onto every name. Preserve free stage entry and tune challenge through authored encounters instead of an ownership check or hidden starter-character nerf.

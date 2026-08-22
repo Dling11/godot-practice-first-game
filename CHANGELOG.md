@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-08-22 - Umi's Metadata-Driven Echo Crucible
+
+- Accepted Decision 123 and added Umi as a production side-facing Sanctuary NPC with a compact animated Echo Crucible, stable 48x48 idle/service frames, portrait dialogue, and a 760x420 Sell/Reconstruct surface.
+- Added material-owned exchange metadata and catalog-driven UI discovery. Common/Uncommon/Rare materials default to 1/5/18 sell gold, 1/10/35 meld value, and progressively higher reconstruction memory, meld, and gold requirements; new catalog materials no longer require Umi-code edits.
+- Added atomic selling and reconstruction with snapshot rollback and safe-point saving. Boss materials cannot be sold or used as fuel; reconstruction requires four same-region Rare catalysts, 1500 meld, 1000 gold, source victories, and a boss-memory charge earned every ten victories.
+- Added persistent stable-ID enemy defeat memory, ordinary enemy death recording, Varkuun claim recording, backward-compatible save extension handling, and New Journey reset.
+- Added gold fees to all six Stage V recipes: 150 Gloves, 200 Boots, 250 Helm, 300 Leggings, 400 Plate, and 500 Varkuun Edge (1800 total). Crafting now rolls material, output, and coin state back together on save failure.
+- Kept saved current HP authoritative when progression observers recalculate level vitality during profile restoration; the explicit health snapshot is re-applied before the health-restored signal.
+- Added deterministic Umi asset processing, focused exchange/data/crafting/UI tests, and rendered placement/Sell/Reconstruct review captures.
+
+## 2026-08-22 - Region-Scoped Forest Naming Rule
+
+- Accepted the clarified Decision 122: Stages I-X remain the planned Forest region, but Forest/root/tree vocabulary is not a mandatory naming formula for every addition and is not the identity of Battle of Gods.
+- Required unrelated Sanctuary characters, cross-region services, generic systems, and later regions to use simple, neutral, or lore-meaningful names instead of automatically becoming `Root-something`.
+- Preserved valid Forest names, planned accessory progression, stable resource IDs, and historical records. The future blue-witch transmutation concept remains neutrally named in source while her personal name is selected.
+
 ## 2026-08-22 - Optional Stage VI Gear Progression and Compact Equipment UI
 
 - Accepted Decision 121: Stage VI remains freely enterable without Varkuun Edge or armor, but its future enemy health/damage band will make unequipped clears deliberately slower and riskier. Varkuun Edge is targeted for Stages VI-XV; no stage-entry ownership gate or starter-stat nerf was added.

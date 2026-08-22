@@ -208,6 +208,7 @@ func _run() -> void:
 	if not material_inventory.add_material_batch(craft_costs):
 		_fail("Could not seed the Rootforge's real Varkuun Edge costs.")
 		return
+	root.get_node("RunSession").update_progression(0, craft_recipe.gold_cost)
 	menu.open_menu()
 	menu._select_recipe(craft_recipe)
 	if menu.primary_action_button.disabled or not menu.primary_action_button.text.contains("CRAFT VARKUUN EDGE"):

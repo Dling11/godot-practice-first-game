@@ -38,3 +38,4 @@ category = 1
 output_id = &"weapon_varkuun_edge_essence"
 ingredients = Array[ExtResource("2_stack")]([SubResource("Cost_varkuun"), SubResource("Cost_rootbound"), SubResource("Cost_fittings"), SubResource("Cost_bark")])
 unlock_id = &"forest_core_gear_crafting"
+gold_cost = 500

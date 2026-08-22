@@ -27,6 +27,7 @@ enum CraftingCategory {
 @export_range(1, 999999, 1) var output_quantity := 1
 @export var ingredients: Array[MaterialStackDefinition] = []
 @export var unlock_id: StringName
+@export_range(0, 999999, 1) var gold_cost := 0
 
 
 func is_valid() -> bool:

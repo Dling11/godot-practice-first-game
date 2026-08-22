@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1")
+enemy_id = &"varkuun"
 display_name = "Varkuun, Lord of the Withered Grove"
 portrait = ExtResource("2_portrait")
 maximum_health = 900.0

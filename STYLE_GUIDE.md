@@ -1,5 +1,13 @@
 # Style Guide
 
+## Material exchange content
+
+- Add future materials to the canonical catalog and complete their own `MaterialDefinition` exchange metadata. Never add material IDs, prices, or unlock branches to Umi's scene/menu.
+- Give every reward-bearing enemy a stable `EnemyDefinition.enemy_id`; material `source_enemy_id` must match it exactly.
+- Use rarity defaults for ordinary content and overrides only for intentional exceptions. Boss materials must remain explicitly unsellable and invalid as meld fuel.
+- Economy UI may preview transactions, but only `CraftingService` and `MaterialExchangeService` may perform durable spends, grants, saves, and rollback.
+- Compact Sanctuary service surfaces should stay within 760x420 at the 960x540 logical viewport unless the content genuinely requires a larger comparison workspace.
+
 ## Scope
 
 These conventions apply to Godot 4.x GDScript, scenes, resources, and game assets. Prefer consistency with an established local pattern when it is clearly intentional; record any durable convention change here.
@@ -14,6 +22,7 @@ These conventions apply to Godot 4.x GDScript, scenes, resources, and game asset
 - Private implementation members: leading underscore when it improves API clarity.
 - Node names: `PascalCase`, descriptive, and stable within reusable scenes.
 - Input actions: namespaced `snake_case`, such as `player_move_left` and `player_dodge`.
+- Regional vocabulary is scoped content, never the game's global naming template. Forest/root/tree/bark/grove language may be used across planned Stages I-X when a character, creature, material, or place genuinely belongs to that ecology, but do not force the motif into every name. Unrelated Sanctuary characters, cross-region services, generic systems, and Stage XI+ content require personal, neutral, or lore-meaningful naming rather than inheriting the Forest motif by habit.
 
 ## GDScript Organization
 

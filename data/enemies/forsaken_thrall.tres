@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1")
+enemy_id = &"forsaken_thrall"
 display_name = "Forsaken Thrall"
 portrait = ExtResource("2_portrait")
 move_speed = 58.0

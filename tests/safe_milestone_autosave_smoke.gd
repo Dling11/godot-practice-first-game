@@ -48,7 +48,12 @@ func _run() -> void:
 			&"forgotten_grove_stage_1_cleared"
 		)
 	):
-		_fail("The stage-clear autosave omitted progression or completion memory.")
+		_fail("The stage-clear autosave omitted progression or completion memory: XP=%d GOLD=%d HP=%.1f FLAG=%s" % [
+			root.get_node("RunSession").total_experience,
+			root.get_node("RunSession").coins,
+			root.get_node("RunSession").player_current_health,
+			root.get_node("StoryState").has_story_flag(&"forgotten_grove_stage_1_cleared"),
+		])
 		return
 
 	_cleanup()

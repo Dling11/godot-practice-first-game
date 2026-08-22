@@ -72,6 +72,7 @@ func _run() -> void:
 	var stage5_recipe_count := 0
 	var accessory_recipe_count := 0
 	var total_varkuun_cores := 0
+	var total_stage5_gold := 0
 	for recipe: RecipeDefinition in ForestRecipes.recipes:
 		if recipe.unlock_id == &"forest_core_gear_crafting":
 			stage5_recipe_count += 1
@@ -81,9 +82,10 @@ func _run() -> void:
 			for ingredient: MaterialStackDefinition in recipe.ingredients:
 				if ingredient.material.material_id == &"forest_varkuun_core":
 					total_varkuun_cores += ingredient.quantity
+			total_stage5_gold += recipe.gold_cost
 		elif recipe.category == RecipeDefinition.CraftingCategory.ACCESSORY:
 			accessory_recipe_count += 1
-	if stage5_recipe_count != 6 or accessory_recipe_count != 2 or total_varkuun_cores != 5:
+	if stage5_recipe_count != 6 or accessory_recipe_count != 2 or total_varkuun_cores != 5 or total_stage5_gold != 1800:
 		_fail("Stage V recipe count, future accessory count, or five-core full-set budget is invalid.")
 		return
 
@@ -98,6 +100,15 @@ func _run() -> void:
 			or material.icon.get_height() != 24
 		):
 			_fail("%s is missing its approved 24x24 icon." % material.display_name)
+			return
+		if material.source_enemy_id.is_empty() or material.get_transmutation_point_cost() <= 0 or material.get_transmutation_gold_cost() < 0:
+			_fail("%s is missing automatic Umi exchange metadata." % material.display_name)
+			return
+		if material.rarity == MaterialDefinition.MaterialRarity.BOSS and (material.get_sell_value() != 0 or material.get_meld_value() != 0):
+			_fail("Boss material protection drifted from Umi's exchange rules.")
+			return
+		if material.rarity == MaterialDefinition.MaterialRarity.COMMON and (material.get_sell_value() != 1 or material.get_meld_value() != 1):
+			_fail("Common material automatic sell or meld defaults drifted.")
 			return
 		material_ids[material.material_id] = true
 	for expected_id: StringName in [

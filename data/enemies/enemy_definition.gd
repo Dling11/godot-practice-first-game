@@ -7,6 +7,7 @@ extends Resource
 ## bosses can remain dangerous without duplicating enemy-controller scripts.
 enum CrowdControlTier { LIGHT, ELITE, BOSS }
 
+@export var enemy_id: StringName
 @export var display_name: String = "Enemy"
 ## Presentation-only portrait for target cards, dialogue, and future bestiary UI.
 @export var portrait: Texture2D

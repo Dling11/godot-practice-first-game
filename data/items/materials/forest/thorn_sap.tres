@@ -14,3 +14,5 @@ rarity = 1
 icon = ExtResource("2_icon")
 crafting_tags = PackedStringArray("thorn", "sap", "critical", "resistance")
 source_lore = "The Spitter's pulsing body mixes this sap immediately before firing."
+source_enemy_id = &"bramble_spitter"
+source_enemy_display_name = "Bramble Spitter"

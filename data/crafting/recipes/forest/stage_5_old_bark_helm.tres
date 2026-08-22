@@ -37,3 +37,4 @@ category = 0
 output_id = &"forest_old_bark_helm"
 ingredients = Array[ExtResource("2_stack")]([SubResource("Cost_varkuun"), SubResource("Cost_bark"), SubResource("Cost_rootbound"), SubResource("Cost_cloth")])
 unlock_id = &"forest_core_gear_crafting"
+gold_cost = 250

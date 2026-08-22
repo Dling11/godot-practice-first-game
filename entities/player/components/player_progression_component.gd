@@ -23,6 +23,8 @@ func _ready() -> void:
 	if run_session != null:
 		total_experience = run_session.total_experience
 		coins = run_session.coins
+		if not run_session.progression_state_changed.is_connected(_on_run_session_progression_changed):
+			run_session.progression_state_changed.connect(_on_run_session_progression_changed)
 	_recalculate_level()
 	_emit_progression_changed()
 	coins_changed.emit(coins)
@@ -92,3 +94,13 @@ func _sync_run_session() -> void:
 	var run_session := get_node_or_null("/root/RunSession")
 	if run_session != null:
 		run_session.update_progression(total_experience, coins)
+
+
+func _on_run_session_progression_changed(experience: int, coin_total: int) -> void:
+	if total_experience == experience and coins == coin_total:
+		return
+	total_experience = maxi(experience, 0)
+	coins = maxi(coin_total, 0)
+	_recalculate_level()
+	_emit_progression_changed()
+	coins_changed.emit(coins)

@@ -14,3 +14,5 @@ rarity = 2
 icon = ExtResource("2_icon")
 crafting_tags = PackedStringArray("rootbound", "heartwood", "reinforcement", "heavy")
 source_lore = "Years beneath the Rootbound Hollow compressed the guardian's inner rings into a dark mass."
+source_enemy_id = &"rootbound_husk"
+source_enemy_display_name = "Rootbound Husk"

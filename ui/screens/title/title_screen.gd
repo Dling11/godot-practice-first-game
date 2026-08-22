@@ -79,6 +79,9 @@ func _commit_new_journey() -> void:
 	var recipe_discovery := get_node_or_null("/root/RecipeDiscovery")
 	if recipe_discovery != null:
 		recipe_discovery.reset_discoveries()
+	var enemy_memory := get_node_or_null("/root/EnemyMemory")
+	if enemy_memory != null:
+		enemy_memory.reset_memory()
 	var loot_state := get_node_or_null("/root/LootState")
 	if loot_state != null:
 		loot_state.reset_state()

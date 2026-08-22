@@ -26,12 +26,15 @@ func get_recipe_status(recipe: RecipeDefinition) -> Dictionary:
 	var costs := _ingredient_costs(recipe)
 	if not MaterialInventory.can_remove_material_batch(costs):
 		return _failure(&"missing_materials", "MISSING MATERIALS")
+	if not RunSession.can_spend_coins(recipe.gold_cost):
+		return _failure(&"missing_gold", "GOLD %d / %d" % [RunSession.coins, recipe.gold_cost])
 	return {
 		"success": true,
 		"reason": &"ready",
 		"message": "READY TO CRAFT",
 		"output": output,
 		"costs": costs,
+		"gold_cost": recipe.gold_cost,
 	}
 
 
@@ -43,6 +46,7 @@ func try_craft(recipe: RecipeDefinition) -> Dictionary:
 	var output := status["output"] as EquipmentDefinition
 	var costs: Dictionary = status["costs"]
 	var material_snapshot := MaterialInventory.create_snapshot()
+	var run_snapshot := RunSession.create_snapshot()
 	var output_inventory: Node = WeaponInventory if output.slot == EquipmentDefinition.Slot.WEAPON else GearInventory
 	var output_snapshot: Dictionary = output_inventory.create_snapshot()
 	if not _acquire_output(output):
@@ -54,9 +58,16 @@ func try_craft(recipe: RecipeDefinition) -> Dictionary:
 		var failed := _failure(&"material_spend_failed", "MATERIAL SPEND FAILED")
 		craft_failed.emit(recipe.recipe_id, failed["reason"])
 		return failed
+	if recipe.gold_cost > 0 and not RunSession.spend_coins(recipe.gold_cost):
+		MaterialInventory.restore_snapshot(material_snapshot)
+		output_inventory.restore_snapshot(output_snapshot)
+		var failed := _failure(&"gold_spend_failed", "GOLD SPEND FAILED")
+		craft_failed.emit(recipe.recipe_id, failed["reason"])
+		return failed
 	if not SaveService.save_profile():
 		MaterialInventory.restore_snapshot(material_snapshot)
 		output_inventory.restore_snapshot(output_snapshot)
+		RunSession.restore_snapshot(run_snapshot)
 		var failed := _failure(&"save_failed", "CRAFT FAILED TO SAVE")
 		craft_failed.emit(recipe.recipe_id, failed["reason"])
 		return failed

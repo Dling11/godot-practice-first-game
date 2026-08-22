@@ -129,6 +129,8 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 119 | Tier stage portals by threat color and lightning reach | Normal-through-Transcendent color ladder, lightning suppression/intensity/reach, or tier-matched loading veil |
 | 120 | Enable atomic Rootforge crafting | Stage V category unlock, spend-once/grant-once/save-once transaction, duplicate rejection, or drag-preview alignment |
 | 121 | Make Stage V gear optional but consequential | Varkuun Edge Stage VI-XV band, slot identities, critical hits, percentage caps, compact equipment UI, or Stage VI no-gate balance |
+| 122 | Scope Forest naming without globalizing it | Forest Stages I-X, no automatic root/tree names for unrelated characters or systems, or meaningful personal names |
+| 123 | Use Umi and material-owned exchange metadata | Umi, Echo Crucible, selling, reconstruction, enemy memory, gold crafting fees, or automatic future-material integration |
 
 ## New Decisions
 

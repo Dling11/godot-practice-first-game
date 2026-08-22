@@ -13,3 +13,5 @@ material_family = 5
 icon = ExtResource("2_icon")
 crafting_tags = PackedStringArray("thorn", "seed", "critical", "projectile")
 source_lore = "Bramble Spitters launch these seeds after compressing sap around them."
+source_enemy_id = &"bramble_spitter"
+source_enemy_display_name = "Bramble Spitter"

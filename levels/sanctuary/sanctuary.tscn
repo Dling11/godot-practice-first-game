@@ -23,8 +23,11 @@
 [ext_resource type="PackedScene" path="res://environment/props/sanctuary/rootweaver_living_rootforge/rootweaver_living_rootforge.tscn" id="20_rootforge"]
 [ext_resource type="PackedScene" path="res://entities/npcs/rootweaver/rootweaver_nema.tscn" id="21_rootweaver"]
 [ext_resource type="PackedScene" path="res://ui/crafting/rootforge_menu.tscn" id="22_rootforge_menu"]
+[ext_resource type="PackedScene" path="res://entities/npcs/umi/umi.tscn" id="23_umi"]
+[ext_resource type="PackedScene" path="res://environment/props/sanctuary/echo_crucible/echo_crucible.tscn" id="24_crucible"]
+[ext_resource type="PackedScene" path="res://ui/material_exchange/umi_exchange_menu.tscn" id="25_exchange_menu"]
 
-[node name="Sanctuary" type="Node" unique_id=1171524165 node_paths=PackedStringArray("player", "combat_hud", "character_menu", "skillkeeper", "weapon_merchant", "rootweaver", "expedition_altar", "dialogue_panel", "expedition_menu", "rootforge_menu", "admin_panel", "admin_lab_button")]
+[node name="Sanctuary" type="Node" unique_id=1171524165 node_paths=PackedStringArray("player", "combat_hud", "character_menu", "skillkeeper", "weapon_merchant", "rootweaver", "echo_melder", "expedition_altar", "dialogue_panel", "expedition_menu", "rootforge_menu", "umi_exchange_menu", "admin_panel", "admin_lab_button")]
 script = ExtResource("1_flow")
 player = NodePath("World/Actors/Player")
 combat_hud = NodePath("UI/CombatHUD")
@@ -32,10 +35,12 @@ character_menu = NodePath("UI/CharacterMenu")
 skillkeeper = NodePath("World/Actors/Skillkeeper")
 weapon_merchant = NodePath("World/Actors/WeaponMerchant")
 rootweaver = NodePath("World/Actors/Rootweaver")
+echo_melder = NodePath("World/Actors/Umi")
 expedition_altar = NodePath("World/Actors/ExpeditionAltar")
 dialogue_panel = NodePath("UI/DialoguePanel")
 expedition_menu = NodePath("UI/ExpeditionMenu")
 rootforge_menu = NodePath("UI/RootforgeMenu")
+umi_exchange_menu = NodePath("UI/UmiExchangeMenu")
 admin_panel = NodePath("UI/AdminPanel")
 admin_lab_button = NodePath("UI/AdminPanel/Margin/Stack/OpenLab")
 
@@ -100,6 +105,12 @@ position = Vector2(916, 580)
 [node name="Rootweaver" parent="World/Actors" instance=ExtResource("21_rootweaver")]
 position = Vector2(342, 630)
 
+[node name="EchoCrucible" parent="World/Actors" instance=ExtResource("24_crucible")]
+position = Vector2(742, 650)
+
+[node name="Umi" parent="World/Actors" instance=ExtResource("23_umi")]
+position = Vector2(786, 650)
+
 [node name="Player" parent="World/Actors" unique_id=1654953230 instance=ExtResource("2_player")]
 position = Vector2(576, 676)
 movement_bounds = Rect2(56, 56, 1040, 656)
@@ -154,5 +165,7 @@ player = NodePath("../../World/Actors/Player")
 [node name="ExpeditionMenu" parent="UI" unique_id=385825578 instance=ExtResource("16_expedition")]
 
 [node name="RootforgeMenu" parent="UI" instance=ExtResource("22_rootforge_menu")]
+
+[node name="UmiExchangeMenu" parent="UI" instance=ExtResource("25_exchange_menu")]
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("19_pause")]

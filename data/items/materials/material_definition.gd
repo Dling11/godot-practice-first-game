@@ -32,6 +32,19 @@ enum MaterialRarity {
 @export var icon: Texture2D
 @export var crafting_tags := PackedStringArray()
 @export_multiline var source_lore := ""
+@export_group("Umi Exchange Metadata")
+@export var source_enemy_id: StringName
+@export var source_enemy_display_name := ""
+@export_range(-1, 999999, 1) var sell_value_override := -1
+@export_range(-1, 999999, 1) var meld_value_override := -1
+@export_range(-1, 999999, 1) var transmutation_point_cost_override := -1
+@export_range(-1, 999999, 1) var transmutation_gold_cost_override := -1
+@export_range(-1, 9999, 1) var required_source_defeats_override := -1
+@export_range(-1, 999, 1) var same_region_rare_catalysts_override := -1
+@export var can_be_sold := true
+@export var can_be_melded := true
+@export var can_be_transmuted := true
+@export_group("")
 
 
 func is_valid() -> bool:
@@ -44,6 +57,7 @@ func is_valid() -> bool:
 		or material_family > MaterialFamily.HEARTWOOD
 		or rarity < MaterialRarity.COMMON
 		or rarity > MaterialRarity.BOSS
+		or (can_be_transmuted and source_enemy_id.is_empty())
 	):
 		return false
 	var seen_tags := {}
@@ -53,6 +67,46 @@ func is_valid() -> bool:
 			return false
 		seen_tags[tag] = true
 	return true
+
+
+func get_sell_value() -> int:
+	if not can_be_sold:
+		return 0
+	if sell_value_override >= 0:
+		return sell_value_override
+	return [1, 5, 18, 0][rarity]
+
+
+func get_meld_value() -> int:
+	if not can_be_melded:
+		return 0
+	if meld_value_override >= 0:
+		return meld_value_override
+	return [1, 10, 35, 0][rarity]
+
+
+func get_transmutation_point_cost() -> int:
+	if transmutation_point_cost_override >= 0:
+		return transmutation_point_cost_override
+	return [25, 100, 400, 1500][rarity]
+
+
+func get_transmutation_gold_cost() -> int:
+	if transmutation_gold_cost_override >= 0:
+		return transmutation_gold_cost_override
+	return [10, 75, 200, 1000][rarity]
+
+
+func get_required_source_defeats() -> int:
+	if required_source_defeats_override >= 0:
+		return required_source_defeats_override
+	return [1, 10, 20, 10][rarity]
+
+
+func get_same_region_rare_catalyst_count() -> int:
+	if same_region_rare_catalysts_override >= 0:
+		return same_region_rare_catalysts_override
+	return 4 if rarity == MaterialRarity.BOSS else 0
 
 
 func get_family_name() -> String:

@@ -246,6 +246,16 @@ func _refresh_recipe_detail() -> void:
 		Color("9ab85d") if remembered else Color("c58bd8")
 	)
 	_rebuild_ingredient_rows()
+	var run_session := get_node_or_null("/root/RunSession")
+	var current_coins := int(run_session.get("coins")) if run_session != null else 0
+	var gold_row := Label.new()
+	gold_row.text = "CRAFTING FEE  •  %d / %d GOLD" % [current_coins, selected_recipe.gold_cost]
+	gold_row.add_theme_font_size_override("font_size", 9)
+	gold_row.add_theme_color_override(
+		"font_color",
+		Color("9ab85d") if current_coins >= selected_recipe.gold_cost else Color("c96a5c")
+	)
+	ingredient_list.add_child(gold_row)
 	var crafting_service := get_node_or_null("/root/CraftingService")
 	var status: Dictionary = (
 		crafting_service.get_recipe_status(selected_recipe)

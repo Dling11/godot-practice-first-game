@@ -14,3 +14,5 @@ rarity = 1
 icon = ExtResource("2_icon")
 crafting_tags = PackedStringArray("root", "heartwood", "reinforcement", "weapon")
 source_lore = "The grove has not yet hardened this wood into the dense core found in older guardians."
+source_enemy_id = &"rootling"
+source_enemy_display_name = "Rootling"

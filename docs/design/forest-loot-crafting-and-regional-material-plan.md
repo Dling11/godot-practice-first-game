@@ -1,9 +1,9 @@
 # Forest Loot, Crafting, Replay, and Regional Material Plan
 
-- **Status:** Approved regional/economy design lock; Segments 1-5 implemented, Segments 6-8 pending. Decision 071 supersedes physical visible-weapon outputs with character-owned combat plus essence/relic equipment.
+- **Status:** Approved Forest Stages I-X regional/economy direction; Segments 1-5 implemented and Segments 6-8 pending. Decision 122 prevents the regional motif from becoming a global naming formula.
 - **Approved:** 2026-07-26
 - **Runtime coverage today:** Stages 1-5, six sparse/protected enemy profiles, thirteen illustrated materials, collectible pickups, profile-backed weapon/gear/material/recipe/claim state, Stage III and V milestone chests, six finalized Stage V equipment definitions/icons/recipes with live equip/stat authority, and Rootweaver Nema's atomic category/seal/material/output/save transaction
-- **Planned content covered here:** Forest Stages 1-10 and a reusable foundation for Stage 11 onward
+- **Planned content covered here:** Forest Stages I-X and reusable loot/crafting infrastructure for Stage XI onward
 
 ## Purpose
 
@@ -15,11 +15,11 @@ Fight -> Loot -> Craft -> Build -> Master -> Advance
 
 First clears advance story and unlock content. Replays provide controlled material goals, Hunt variants, and milestone rewards. Sanctuary turns those rewards into deterministic equipment choices. Later regions reuse the same technical and visual grammar without collapsing into `Leather++` inventory clutter or cheap recolors.
 
-This plan is intentionally broader than the three implemented stages so save data, item identities, folder ownership, icon production, monster design, and crafting authority do not need destructive rewrites when Stages 4-20 arrive.
+This plan is intentionally broader than the five implemented stages so save data, item identities, folder ownership, icon production, monster design, and crafting authority do not need destructive rewrites when Stages VI-XX arrive. Forest vocabulary remains region-scoped rather than a default for unrelated characters or global systems.
 
 ## Decision 071 Equipment Overlay
 
-The fight/loot/craft/replay structure and Stage III/V/VIII/X reward cadence remain approved. Decision 099 finalizes nine positions: Weapon Essence; Head, Plate, Gloves, and Boots armor; plus Bracer, Amulet, Ring, and Talisman accessories. These items modify a playable character's stats or authored traits without automatically replacing the character's visible signature weapon. Existing physical Ashwood/Iron runtime items remain migration dependencies until explicit aliases or a save conversion exist. `docs/design/king-character-roster-and-essence-redesign.md` owns that migration.
+The fight/loot/craft/replay structure and Stage III/V/VIII/X reward cadence remain approved. Decision 099 finalizes nine positions: Weapon Essence; Head, Plate, Gloves, and Boots armor; plus Bracer, Amulet, Ring, and Talisman accessories. These items modify a playable character's stats or authored traits without automatically replacing the character's visible signature weapon.
 
 ## Approved Product Rules
 
@@ -33,7 +33,7 @@ The fight/loot/craft/replay structure and Stage III/V/VIII/X reward cadence rema
 - Difficulty must come from readable behaviors, combinations, armor-break opportunities, positioning, and elites rather than health inflation alone.
 - Earlier regions retain limited material relevance, but new-region recipes primarily use current-region materials.
 - Character level does not become an infinite raw-stat treadmill. Region caps may expand, while post-cap Mastery supplies bounded utility, crafting, cosmetic, title, or material benefits.
-- Reward resolution, direct Stage I-II banking, the Stage III Reliquary, Stage V equipment/stats, and Rootweaver Nema's atomic crafting transaction are implemented. Hunts, Mastery, and Stages 6-20 are not implemented.
+- Reward resolution, direct Stage I-II banking, the Stage III Reliquary, Stage V equipment/stats, and Rootweaver Nema's atomic crafting transaction are implemented. Hunts, Mastery, and Stages VI-XX are not implemented.
 
 ## First-Clear and Replay Loop
 
@@ -58,7 +58,7 @@ The fight/loot/craft/replay structure and Stage III/V/VIII/X reward cadence rema
 Hunts reuse a stage deliberately rather than rerunning an identical campaign scene. Candidate modifiers include:
 
 - Elite enemy replacement
-- Rootstorm or other region hazard
+- Rootstorm or another hazard derived from the replayed stage's actual region
 - Increased ranged pressure
 - Limited regeneration
 - Boss-remnant encounter
@@ -81,35 +81,35 @@ These names and region-prefixed stable IDs are now approved through their `Mater
 
 Leather is not assigned arbitrarily to a creature without a visible hide identity. The implemented Stage 4 Armored Hog now supplies the first true hide and bark-plate inputs. Stages 1-3 instead support rootfiber wraps, cloth equipment, charms, and weapon components.
 
-## Provisional Forest Stage 4-10 Content Skeleton
+## Provisional Forest Stage IV-X Content Skeleton
 
-The later roles and material purposes below remain planning slots rather than final names or approved enemy art. Stage 4's eastern-decay level, 6/8/10/12/14-enemy pressure sequence, Armored Hog, Hide, and Living Bark Plate are implemented; recipes consuming those two materials remain future work.
+The later roles and material purposes below remain planning slots rather than final names or approved enemy art. Stage IV's eastern-decay level, Armored Hog, Hide, and Living Bark Plate and Stage V's Varkuun milestone are implemented. Decision 122 permits the Forest theme through Stage X while rejecting repetitive motif-first naming.
 
 | Stage | New enemy/content role | Material purpose |
 |---|---|---|
 | 4 | Armored hide-bearing Forest beast | Hide and bark plates for leather armor |
-| 5 | Medium boss milestone, potentially extending the insect/swarm role | Permanent core-gear crafting seal plus repeatable catalyst |
-| 6 | Forest caster/support | Spirit sap, rune fragments, and first accessory components/blueprints |
-| 7 | Heavy corrupted brute or mini-boss | Dense heartwood plus binding/setting components for heavy gear and accessories |
+| 5 | Implemented Varkuun major-boss milestone | Permanent core-gear crafting seal plus repeatable Varkuun Core catalyst |
+| 6 | Forest caster/support role | Spirit or rune components and first accessory blueprints; final name should express its actual identity rather than defaulting to `Root-something` |
+| 7 | Heavy corrupted brute or mini-boss | Dense reinforcement plus binding/setting components for heavy gear and accessories |
 | 8 | Fungal/spirit mini-boss milestone | Permanent standard-accessory seal plus repeatable fungal/spirit catalyst |
-| 9 | Elite Forest warden/hunter | Refined fittings and advanced Forest recipes |
+| 9 | Elite Forest warden/hunter role | Refined fittings and advanced regional recipes |
 | 10 | Major Forest boss | Permanent relic/signature-accessory crafting seal plus repeatable unique catalyst |
 
-Known enemies continue appearing in authored combinations. Aim for roughly one important new family every one or two stages, then remix existing roles. Do not replace the full roster every stage.
+Stage VI onward introduces new roles rather than continuing Mireling/Rootling filler. Other known Forest enemies may return only in authored combinations where their combat role remains useful. Aim for roughly one important new family every one or two stages and never use palette-only replacements.
 
 ### Forest crafting tiers
 
 - **Stages 1-3:** collect and inspect root, mire, cloth, thorn, and Husk preparation materials; no recipe unlock is granted yet
 - **Stage 4:** implemented environment/crowd-pressure route plus Armored Hog hide-bearing ecology and protected materials; leather recipes remain future work
 - **Stage 5:** permanently unlock core crafting for Weapon Essence plus Head, Plate, Gloves, and Boots; consume a repeatable boss catalyst in relevant recipes
-- **Stages 6-7:** expand spirit, reinforced armor, axe/greatsword, and standard-accessory components/blueprints
-- **Stage 8:** permanently unlock standard accessories and award a repeatable fungal/spirit/binding catalyst
-- **Stage 9:** refine Forest fittings and advanced preparation
-- **Stage 10:** permanently unlock relic/signature-accessory crafting and supply the repeatable signature catalyst
+- **Stages VI-VII:** expand spirit, reinforced armor, heavier weapon support, and standard-accessory components/blueprints
+- **Stage VIII:** permanently unlock standard accessories and award a repeatable fungal/spirit/binding catalyst
+- **Stage IX:** refine regional fittings and advanced preparation
+- **Stage X:** permanently unlock relic/signature-accessory crafting and supply the repeatable signature catalyst
 
-A crafting seal is permanent progression and is never consumed. A catalyst is repeatable inventory material and may be consumed by deterministic recipes. Decision 101 locks Stage V to Varkuun Edge, Old Bark Helm, Heartwood Plate, Rootfiber Gloves, Mirebound Leggings, and Mirehide Boots; their exact costs and stat budgets live in `docs/design/stage-5-core-equipment-set.md`. Mireward Charm and Thornward Clasp remain Stage VIII previews. Decision 101 preserves later accessories as Bracer, Amulet, Ring, and Talisman; their final mappings and stat budgets remain unimplemented.
+A crafting seal is permanent progression and is never consumed. A catalyst is repeatable inventory material and may be consumed by deterministic recipes. Decision 101 locks Stage V to Varkuun Edge, Old Bark Helm, Heartwood Plate, Rootfiber Gloves, Mirebound Leggings, and Mirehide Boots; their exact costs and stat budgets live in `docs/design/stage-5-core-equipment-set.md`. Mireward Charm and Thornward Clasp remain Stage VIII regional previews. Decision 101 preserves later accessory slots as Bracer, Amulet, Ring, and Talisman; their final items and stat budgets remain unimplemented.
 
-Stage V's six recipes and item names are locked by Decisions 100-101 and craftable under Decision 120. Stage 6-10 enemy/item names remain open until their individual content contracts are approved. Stage 4's Armored Hog, Hide, Living Bark Plate, stats, and drop rates remain locked by its implemented contract.
+Stage V's six recipes and item names are locked by Decisions 100-101 and craftable under Decision 120. Stage VI-X enemy/item names remain open until their individual content contracts are approved; the regional theme does not require every name to mention roots or trees. Stage IV's Armored Hog, Hide, Living Bark Plate, stats, and drop rates remain locked by its implemented contract.
 
 ## Monster Content Contract
 
@@ -169,15 +169,15 @@ Templates support deterministic generation, but each approved material receives 
 
 ## Cross-Region Material Rules
 
-Stage 11 onward reuses the grammar and some universal materials, not the entire Forest economy.
+Stage XI onward reuses the technical grammar and some universal materials, never the entire Forest economy or naming language.
 
 - Ordinary later-region recipes should use roughly 20-30% universal or older materials and 60-70% current-region materials, with an occasional elite/boss catalyst.
 - Old boss materials appear only in special cross-region upgrades, never every recipe.
 - Higher-region materials differ by function and ecology, not names such as `Leather+`, `Leather++`, `Strong Leather`, or `Super Leather`.
-- Examples of meaningful variants include Barkhide, Acid-Sealed Hide, Scaled Hide, and Spectral Hide.
+- Examples of meaningful non-Forest variants include Acid-Sealed Hide, Scaled Hide, and Spectral Hide.
 - A future region may reuse an enemy animation contract or technical behavior composition, but a regional creature variant requires distinct readable anatomy, attack behavior, telegraph/VFX, audio layer, drop profile, and `SpriteFrames` resource. Palette-only enemy swaps are insufficient.
 
-The Stage 11-20 region theme, exact acid/corrosion use, and final material roster remain open. The data/art grammar is locked now so that choice does not require new infrastructure.
+The Stage XI-XX region theme, exact mechanics, and material roster remain open. The data/art grammar is locked so that choice does not require new infrastructure or recycled Forest terminology.
 
 ## Implemented Segments 2-3 Contracts
 
@@ -232,9 +232,11 @@ Stage UI and chest presentation do not roll rewards themselves.
 - `RecipeDiscovery`: implemented known-recipe IDs in a dedicated versioned snapshot, separate from `StoryState`
 - `LootState`: implemented first-clear claim IDs and bad-luck miss counters in a dedicated versioned snapshot
 - `LootService`: implemented enemy/stage table resolution, validated material grants, expedition reward baselines, and reward observation signals
-- `CraftingService`: implemented validation of unlocks/costs/unique outputs and atomic spend/grant/save transactions
+- `CraftingService`: implemented validation of unlocks/material-plus-gold costs/unique outputs and atomic spend/grant/save transactions
+- `EnemyMemory`: implemented stable-ID defeat counts and spent boss-reconstruction charges
+- `MaterialExchangeService`: implemented metadata-driven sale/reconstruction validation and atomic material/coin/memory rollback
 - Existing equipment inventory/stat authorities: own crafted equipment and equip state
-- `SaveService`: serializes explicit snapshots from progression, story, equipment, materials, recipes, and safe-location state
+- `SaveService`: serializes explicit snapshots from progression, story, equipment, materials, recipes, enemy memory, and safe-location state
 - UI: observes definitions/state and submits requests only
 
 ## Rootweaver Sanctuary Role
@@ -243,7 +245,7 @@ The approved crafting role is now implemented as **Rootweaver Nema**, an attract
 
 The role must remain distinct from Orren:
 
-- Orren currently sells/equips ordinary authored weapons and may later sell or temper simple mortal essences after migration.
+- Orren is dialogue-only after retirement of the weapon shop; he does not own current economy mutation.
 - The Rootweaver transforms creature/region materials through deterministic recipes.
 
 Segment 4 delivers:
@@ -258,13 +260,19 @@ Segment 4 delivers:
 
 `RootforgeMenu` observes recipe/category discovery, seal ownership, material readiness, and unique output ownership. It delegates to the implemented atomic `CraftingService`, which coordinates the existing material, weapon/gear, and safe-profile authorities without allowing UI-owned mutation.
 
+## Umi and the Echo Crucible
+
+Decision 123 implements Umi as a global Sanctuary service rather than another Forest/root-named specialist. Her compact side-facing station sells ordinary surplus and reconstructs catalog materials from meld fuel, gold, and recorded source-enemy victories. The complete player flow and defaults live in `docs/design/umi-echo-crucible-material-exchange.md`.
+
+The NPC owns no material table. Every `MaterialDefinition` declares its source, values, costs, thresholds, and protections; adding a valid definition to the canonical catalog automatically adds its Sell/Reconstruct behavior. Boss resources are explicitly protected from sale/fuel and require same-region Rare catalysts plus a ten-victory memory charge.
+
 ## Level, Gear, and Mastery Direction
 
-- Current Forest development remains bounded by the authored Level 1-10 curve.
+- Current Forest development remains bounded by the authored character Level 1-10 curve.
 - Later regions may expand the character cap in controlled bands rather than enabling infinite raw-stat scaling.
 - Post-cap Mastery may be uncapped only if rewards stay bounded: crafting efficiency, material bonuses, titles, cosmetics, discoveries, or small capped utility.
 - Varkuun Edge is targeted for Stages VI-XV. Stage VI must remain freely enterable without crafted ownership, while its new campaign enemies make starter-gear clears intentionally slower and riskier; Mirelings/Rootlings stay in earlier/replay content rather than the new roster.
-- Stage 11 should be balanced around partial Forest equipment, not require a complete perfect set.
+- Stage XI should be balanced around partial Forest equipment, not require a complete perfect set.
 - An expert player with incomplete gear should retain a viable path through readable mastery.
 
 Exact regional caps, final character cap, Mastery categories, and reward percentages remain open.
@@ -329,29 +337,31 @@ data/crafting/recipes/<future_region>/
 - Ten distinct flattened 24x24 Forest icons with preserved source/clean/review boards
 - Focused protection, duplicate-grant, persistence, rollback, chest, stage-wiring, and icon tests
 
-### Segment 4 - Rootweaver production
+### Segment 4 - Rootweaver production — implemented
 
 - Approved identity, portrait, sprite sheets, `SpriteFrames`, workshop, interaction, sound
 
-### Segment 5 - Crafting experience
+### Segment 5 - Crafting and material exchange — implemented
 
-- Crafting service and deterministic transaction UI
-- First Forest recipes and equipment/stat integration
+- Atomic material-plus-gold crafting service and deterministic transaction UI
+- Six Stage V Forest recipes and equipment/stat integration
+- Umi's catalog-driven selling, reconstruction, enemy memory, and boss safeguards
 
 ### Segment 6 - Replay Hunts
 
 - Cleared-stage selection, authored modifiers, replay rewards
 
-### Segment 7 - Stage 4-10 content
+### Segment 7 - Forest Stages VI-X
 
 - Approve each monster content contract before art/runtime work
-- Preserve the Stage V core-gear seal, Stage VIII standard-accessory seal, and Stage X relic/signature seal cadence
-- Stage 10 boss and signature Forest craft
+- Preserve the Stage V core-gear, Stage VIII standard-accessory, and Stage X relic/signature cadence
+- Use varied, meaningful identities within the Forest rather than naming every new creature or item after roots/trees
+- Finish the Stage X boss and signature regional craft
 
-### Segment 8 - Stage 11 and next region
+### Segment 8 - Stage XI and next region
 
-- Approve region identity
-- Reuse material grammar with new ecology, variants, and recipes
+- Approve the next region's distinct identity
+- Reuse technical material grammar with genuinely new ecology, variants, and recipes
 - Expand cap/Mastery only through a separate balance decision
 
 Each segment requires focused tests, full regression validation, relevant documentation updates, asset review, attribution, and removal/archive of superseded active-runtime material.
@@ -360,12 +370,11 @@ Each segment requires focused tests, full regression validation, relevant docume
 
 These are not blockers for Save/Continue, but must be approved before their owning segment:
 
-- Rootweaver's final name, design, personality, workshop, and lore
-- Final starter-equipment stats and recipe quantity tuning after crafting becomes playable
-- Exact Stage V/VIII/X boss identities, permanent seal/catalyst names and IDs, quantities, and first-clear presentation
-- Stage 4-10 monster names, visuals, behavior timing, and encounter composition
-- Stage 10 boss identity
-- Stage 11-20 biome/region theme
+- Campaign-scale tuning of the implemented recipe fees and material sell/reconstruction defaults
+- Final Stage VIII/X milestone identities, seals/catalysts, quantities, and first-clear presentation
+- Stage VI-X monster names, visuals, behavior timing, and encounter composition
+- Stage X boss identity
+- Stage XI+ biome/region theme and naming language
 - Exact regional level-cap expansion
 - Mastery categories and percentages
 - Hunt modifier list and reward multipliers

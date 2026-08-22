@@ -32,3 +32,4 @@ category = 0
 output_id = &"forest_rootfiber_gloves"
 ingredients = Array[ExtResource("2_stack")]([SubResource("Cost_fiber"), SubResource("Cost_hide"), SubResource("Cost_sap")])
 unlock_id = &"forest_core_gear_crafting"
+gold_cost = 150

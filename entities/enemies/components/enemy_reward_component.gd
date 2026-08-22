@@ -29,6 +29,9 @@ func _grant_rewards() -> void:
 	var recipient := enemy.get("target") as Player
 	if definition == null or recipient == null or recipient.progression_component == null:
 		return
+	var enemy_memory := get_node_or_null("/root/EnemyMemory")
+	if enemy_memory != null:
+		enemy_memory.record_defeat(definition.enemy_id)
 	recipient.progression_component.grant_rewards(definition.experience_reward, definition.coin_reward)
 	_spawn_material_drops(enemy, recipient)
 

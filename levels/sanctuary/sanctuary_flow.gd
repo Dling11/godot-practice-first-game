@@ -7,16 +7,19 @@ extends Node
 @export var skillkeeper: DialogueNpc
 @export var weapon_merchant: DialogueNpc
 @export var rootweaver: DialogueNpc
+@export var echo_melder: DialogueNpc
 @export var expedition_altar: ExpeditionAltar
 @export var dialogue_panel: DialoguePanel
 @export var expedition_menu: ExpeditionMenu
 @export var rootforge_menu: RootforgeMenu
+@export var umi_exchange_menu: UmiExchangeMenu
 @export var admin_panel: Control
 @export var admin_lab_button: Button
 
 var _active_dialogue_npc: DialogueNpc
 var _show_skill_information_after_dialogue := false
 var _show_rootforge_after_dialogue := false
+var _show_exchange_after_dialogue := false
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -51,10 +54,12 @@ func _ready() -> void:
 		or skillkeeper == null
 		or weapon_merchant == null
 		or rootweaver == null
+		or echo_melder == null
 		or expedition_altar == null
 		or dialogue_panel == null
 		or expedition_menu == null
 		or rootforge_menu == null
+		or umi_exchange_menu == null
 		or admin_panel == null
 		or admin_lab_button == null
 	):
@@ -78,12 +83,15 @@ func _ready() -> void:
 	skillkeeper.proximity_changed.connect(combat_hud.show_interaction_prompt)
 	weapon_merchant.proximity_changed.connect(combat_hud.show_interaction_prompt)
 	rootweaver.proximity_changed.connect(combat_hud.show_interaction_prompt)
+	echo_melder.proximity_changed.connect(combat_hud.show_interaction_prompt)
 	expedition_altar.proximity_changed.connect(combat_hud.show_interaction_prompt)
-	skillkeeper.dialogue_requested.connect(_on_npc_dialogue_requested.bind(skillkeeper, true, false))
-	weapon_merchant.dialogue_requested.connect(_on_npc_dialogue_requested.bind(weapon_merchant, false, false))
-	rootweaver.dialogue_requested.connect(_on_npc_dialogue_requested.bind(rootweaver, false, true))
+	skillkeeper.dialogue_requested.connect(_on_npc_dialogue_requested.bind(skillkeeper, true, false, false))
+	weapon_merchant.dialogue_requested.connect(_on_npc_dialogue_requested.bind(weapon_merchant, false, false, false))
+	rootweaver.dialogue_requested.connect(_on_npc_dialogue_requested.bind(rootweaver, false, true, false))
+	echo_melder.dialogue_requested.connect(_on_npc_dialogue_requested.bind(echo_melder, false, false, true))
 	dialogue_panel.dialogue_closed.connect(_on_dialogue_closed)
 	rootforge_menu.menu_closed.connect(rootweaver.restore_prompt)
+	umi_exchange_menu.menu_closed.connect(echo_melder.restore_prompt)
 	admin_lab_button.pressed.connect(_open_combat_lab)
 	var admin_state := get_node_or_null("/root/DebugAdminState")
 	if admin_state != null:
@@ -127,18 +135,20 @@ func _on_npc_dialogue_requested(
 	portrait: Texture2D,
 	npc: DialogueNpc,
 	show_skill_information: bool,
-	show_rootforge: bool
+	show_rootforge: bool,
+	show_exchange: bool
 ) -> void:
 	_active_dialogue_npc = npc
 	_show_skill_information_after_dialogue = show_skill_information
 	_show_rootforge_after_dialogue = show_rootforge
+	_show_exchange_after_dialogue = show_exchange
 	dialogue_panel.show_dialogue(speaker, lines, portrait)
 
 
 func _on_dialogue_closed(completed: bool) -> void:
 	if (
 		is_instance_valid(_active_dialogue_npc)
-		and not (completed and _show_rootforge_after_dialogue)
+		and not (completed and (_show_rootforge_after_dialogue or _show_exchange_after_dialogue))
 	):
 		_active_dialogue_npc.restore_prompt()
 	_active_dialogue_npc = null
@@ -146,8 +156,11 @@ func _on_dialogue_closed(completed: bool) -> void:
 		character_menu.open_skillkeeper_menu()
 	elif completed and _show_rootforge_after_dialogue:
 		rootforge_menu.open_menu()
+	elif completed and _show_exchange_after_dialogue:
+		umi_exchange_menu.open_menu()
 	_show_skill_information_after_dialogue = false
 	_show_rootforge_after_dialogue = false
+	_show_exchange_after_dialogue = false
 
 
 func _on_safe_profile_changed(_first: Variant = null, _second: Variant = null) -> void:

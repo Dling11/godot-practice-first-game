@@ -14,3 +14,5 @@ rarity = 1
 icon = ExtResource("2_icon")
 crafting_tags = PackedStringArray("metal", "fitting", "armor", "weapon")
 source_lore = "The metal outlasted the Forsaken warriors who carried it into the grove."
+source_enemy_id = &"forsaken_thrall"
+source_enemy_display_name = "Forsaken Thrall"

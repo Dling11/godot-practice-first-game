@@ -183,6 +183,9 @@ func _spawn_reward_chest() -> void:
 
 
 func _on_reward_claimed(_result: Dictionary) -> void:
+	var enemy_memory := get_node_or_null("/root/EnemyMemory")
+	if enemy_memory != null:
+		enemy_memory.record_defeat(&"varkuun")
 	var story_state := get_node_or_null("/root/StoryState")
 	if story_state != null:
 		story_state.remember_story(&"forest_stage_5_cleared")

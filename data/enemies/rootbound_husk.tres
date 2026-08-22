@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_definition")
+enemy_id = &"rootbound_husk"
 display_name = "Rootbound Husk"
 portrait = ExtResource("2_portrait")
 maximum_health = 280.0

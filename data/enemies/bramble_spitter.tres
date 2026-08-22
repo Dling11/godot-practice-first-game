@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1")
+enemy_id = &"bramble_spitter"
 display_name = "Bramble Spitter"
 portrait = ExtResource("2_portrait")
 maximum_health = 40.0

@@ -13,3 +13,5 @@ material_family = 0
 icon = ExtResource("2_icon")
 crafting_tags = PackedStringArray("mire", "resin", "recovery", "binding")
 source_lore = "Mirelings coat their soft bodies in this resin to survive the grove's wet ground."
+source_enemy_id = &"mireling"
+source_enemy_display_name = "Mireling"

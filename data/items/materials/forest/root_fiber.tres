@@ -13,3 +13,5 @@ material_family = 2
 icon = ExtResource("2_icon")
 crafting_tags = PackedStringArray("root", "fiber", "binding", "armor")
 source_lore = "Rootlings knot these fibers around their bodies before driving roots through the soil."
+source_enemy_id = &"rootling"
+source_enemy_display_name = "Rootling"

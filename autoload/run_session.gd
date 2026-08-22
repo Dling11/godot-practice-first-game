@@ -19,6 +19,26 @@ func update_progression(experience: int, coin_total: int) -> void:
 	progression_state_changed.emit(total_experience, coins)
 
 
+func can_spend_coins(amount: int) -> bool:
+	return amount >= 0 and coins >= amount
+
+
+func spend_coins(amount: int) -> bool:
+	if amount <= 0 or not can_spend_coins(amount):
+		return false
+	coins -= amount
+	progression_state_changed.emit(total_experience, coins)
+	return true
+
+
+func add_coins(amount: int) -> bool:
+	if amount <= 0 or coins > 2147483647 - amount:
+		return false
+	coins += amount
+	progression_state_changed.emit(total_experience, coins)
+	return true
+
+
 func has_player_health_state() -> bool:
 	return player_current_health >= 0.0
 
@@ -69,7 +89,11 @@ func restore_snapshot(snapshot: Dictionary) -> bool:
 		return false
 	total_experience = int(snapshot["total_experience"])
 	coins = int(snapshot["coins"])
-	player_current_health = float(snapshot["player_current_health"])
+	var restored_health := float(snapshot["player_current_health"])
+	player_current_health = restored_health
 	progression_state_changed.emit(total_experience, coins)
+	# Level-driven vitality observers may synchronize a recalculated current HP
+	# while handling progression. The explicit saved health must win last.
+	player_current_health = restored_health
 	player_health_state_changed.emit(player_current_health)
 	return true

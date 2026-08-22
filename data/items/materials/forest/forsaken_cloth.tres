@@ -13,3 +13,5 @@ material_family = 2
 icon = ExtResource("2_icon")
 crafting_tags = PackedStringArray("cloth", "lining", "armor", "mortal")
 source_lore = "Its faded stitching is one of the last signs that a Forsaken Thrall was once mortal."
+source_enemy_id = &"forsaken_thrall"
+source_enemy_display_name = "Forsaken Thrall"

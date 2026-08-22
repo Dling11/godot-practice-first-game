@@ -46,6 +46,7 @@ func _run() -> void:
 	if not material_inventory.add_material_batch(seeded_quantities):
 		_fail("Could not seed exact crafting ingredients.")
 		return
+	root.get_node("RunSession").update_progression(0, recipe.gold_cost + 50)
 	status = crafting_service.get_recipe_status(recipe)
 	if not status["success"]:
 		_fail("A discovered, sealed, fully funded recipe was not ready to craft.")
@@ -53,6 +54,9 @@ func _run() -> void:
 	var result: Dictionary = crafting_service.try_craft(recipe)
 	if not result["success"] or not gear_inventory.owns_item(recipe.output_id):
 		_fail("Atomic crafting did not grant the authored equipment output.")
+		return
+	if root.get_node("RunSession").coins != 50:
+		_fail("Atomic crafting did not spend the authored gold fee exactly once.")
 		return
 	for raw_material_id: Variant in expected_remaining:
 		var material_id := StringName(String(raw_material_id))

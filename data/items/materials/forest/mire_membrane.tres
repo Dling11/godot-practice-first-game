@@ -13,3 +13,5 @@ rarity = 1
 icon = ExtResource("2_icon")
 crafting_tags = PackedStringArray("mire", "membrane", "flexible", "resistance")
 source_lore = "The membrane lets Mirelings compress before their sudden body-slam."
+source_enemy_id = &"mireling"
+source_enemy_display_name = "Mireling"

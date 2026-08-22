@@ -9,6 +9,15 @@ This document records current production ownership. Detailed historical migratio
 - Immutable `.tres` definitions own balance/content data. Runtime state belongs to nodes or profile-backed autoloads, never shared resources.
 - Presentation nodes observe accepted events. Animation, VFX, audio, HUD, cursor, target markers, and hitstop never decide damage, movement, cooldown, rewards, or persistence.
 
+## Economy and material memory
+
+- `MaterialDefinition` owns immutable exchange metadata: source enemy, sale/meld values, reconstruction costs and memory thresholds, catalyst overrides, and protection flags. `material_catalog.tres` is the only list Umi reads.
+- `EnemyDefinition.enemy_id` supplies the stable defeat key. `EnemyRewardComponent` records ordinary defeats; the Stage V claim flow records Varkuun after the milestone is actually secured.
+- `EnemyMemory` owns defeat counts and spent ten-victory boss-memory charges. `SaveService` persists it as a backward-compatible extension and New Journey resets it.
+- `MaterialExchangeService` is the sole sell/reconstruct transaction coordinator. It validates catalog identity, inventory, memory, catalysts, points, and gold; snapshots material/coin/memory state; mutates once; saves once; and restores every snapshot on failure.
+- `CraftingService` similarly includes `RecipeDefinition.gold_cost` in its existing material/output/save transaction. `RunSession` is the durable coin authority and live `PlayerProgressionComponent` mirrors its progression signal.
+- `UmiExchangeMenu` and `RootforgeMenu` display authority results but do not calculate or mutate inventory ownership directly.
+
 ## Input and Assisted Combat
 
 - `PlayerInputSource` converts keyboard, mouse, and controller events into intent.

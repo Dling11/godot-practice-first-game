@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1")
+enemy_id = &"armored_hog"
 display_name = "Armored Hog"
 maximum_health = 125.0
 move_speed = 46.0
@@ -25,4 +26,3 @@ charge_speed = 330.0
 dazed_seconds = 1.15
 braced_front_damage_multiplier = 0.35
 front_guard_half_angle_degrees = 55.0
-

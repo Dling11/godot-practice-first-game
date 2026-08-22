@@ -34,6 +34,7 @@ func create_profile_snapshot(safe_scene_path: String = DEFAULT_SAFE_SCENE) -> Di
 			"gear_inventory": GearInventory.create_snapshot(),
 			"material_inventory": MaterialInventory.create_snapshot(),
 			"recipe_discovery": RecipeDiscovery.create_snapshot(),
+			"enemy_memory": EnemyMemory.create_snapshot(),
 			"stage_claims": loot_state.create_snapshot(),
 			"regional_progress": {},
 		},
@@ -107,6 +108,9 @@ func can_restore_profile(snapshot: Dictionary) -> bool:
 	var stage_claim_snapshot: Variant = (
 		extensions.get("stage_claims", {}) if extensions is Dictionary else {}
 	)
+	var enemy_memory_snapshot: Variant = (
+		extensions.get("enemy_memory", {}) if extensions is Dictionary else {}
+	)
 	return (
 		safe_scene_path is String
 		and String(safe_scene_path) == DEFAULT_SAFE_SCENE
@@ -121,6 +125,7 @@ func can_restore_profile(snapshot: Dictionary) -> bool:
 		and _can_restore_gear_extension(gear_snapshot)
 		and _can_restore_material_extension(material_snapshot)
 		and _can_restore_recipe_extension(recipe_snapshot)
+		and _can_restore_enemy_memory_extension(enemy_memory_snapshot)
 		and _can_restore_stage_claim_extension(stage_claim_snapshot)
 	)
 
@@ -135,6 +140,7 @@ func restore_profile(snapshot: Dictionary) -> bool:
 	var gear_snapshot: Dictionary = extensions.get("gear_inventory", {})
 	var material_snapshot: Dictionary = extensions["material_inventory"]
 	var recipe_snapshot: Dictionary = extensions["recipe_discovery"]
+	var enemy_memory_snapshot: Dictionary = extensions.get("enemy_memory", {})
 	var stage_claim_snapshot: Dictionary = extensions["stage_claims"]
 	var loot_state := get_node("/root/LootState")
 	if gear_snapshot.is_empty():
@@ -152,6 +158,10 @@ func restore_profile(snapshot: Dictionary) -> bool:
 		RecipeDiscovery.reset_discoveries()
 	else:
 		RecipeDiscovery.restore_snapshot(recipe_snapshot)
+	if enemy_memory_snapshot.is_empty():
+		EnemyMemory.reset_memory()
+	else:
+		EnemyMemory.restore_snapshot(enemy_memory_snapshot)
 	if stage_claim_snapshot.is_empty():
 		loot_state.reset_state()
 	else:
@@ -297,6 +307,7 @@ func _has_core_authorities() -> bool:
 		and get_node_or_null("/root/GearInventory") != null
 		and get_node_or_null("/root/MaterialInventory") != null
 		and get_node_or_null("/root/RecipeDiscovery") != null
+		and get_node_or_null("/root/EnemyMemory") != null
 		and get_node_or_null("/root/LootState") != null
 	)
 
@@ -319,6 +330,13 @@ func _can_restore_recipe_extension(snapshot: Variant) -> bool:
 	return (
 		snapshot is Dictionary
 		and (snapshot.is_empty() or RecipeDiscovery.can_restore_snapshot(snapshot))
+	)
+
+
+func _can_restore_enemy_memory_extension(snapshot: Variant) -> bool:
+	return (
+		snapshot is Dictionary
+		and (snapshot.is_empty() or EnemyMemory.can_restore_snapshot(snapshot))
 	)
 
 

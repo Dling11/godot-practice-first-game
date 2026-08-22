@@ -4,12 +4,19 @@ This file tracks current limitations only. Resolved and retired systems belong i
 
 ## Current Limitations
 
+### KI-020 - Umi exchange economy needs campaign-scale tuning
+
+- **Status:** Implemented, needs owner playtest and balance data.
+- **Verified:** Umi, the compact Echo Crucible UI, metadata-driven future-material discovery, sell/reconstruct transactions, enemy-memory persistence, boss safeguards, and Stage V gold fees pass focused structural and rendered-layout checks.
+- **Risk:** Current prices are deliberate first-pass values. Real Stage I-V play has not yet measured whether ordinary sales fund crafting too quickly, whether 1800 gold for the full set is too high, or whether Rare/Boss reconstruction feels appropriately long-term.
+- **Next:** Complete one fresh Stage I-V campaign without debug grants; record earned/spent gold, sold stacks, and first craft timing. Tune resource metadata rather than branching Umi's code.
+
 ### KI-019 - Stage VI-XV gear pacing is designed but not encounter-validated
 
 - **Status:** Planned.
 - **Implemented:** Varkuun Edge and the five Stage V armor pieces now have their Decision 121 stats, critical-hit behavior, caps, comparison copy, compact UI, and distinct icons.
 - **Risk:** Stages VI-XV and their enemy roster are not implemented, so the intended starter-versus-crafted clear-time and incoming-damage gap has not been measured in real encounters. Lifesteal is a future unique-effect idea, not a current stat authority.
-- **Next:** Author Stage VI without Mirelings/Rootlings in its campaign roster, permit entry with any equipment, then record clear time and damage taken with starter gear versus Varkuun/Forest gear before extending the band.
+- **Next:** Author Stage VI's new Forest roles without reusing Mirelings/Rootlings or defaulting every new name to roots/trees, permit entry with any equipment, and record clear time and damage taken with starter gear versus Varkuun/Forest gear.
 
 ### KI-018 - Portal presentation needs final owner-scale approval
 

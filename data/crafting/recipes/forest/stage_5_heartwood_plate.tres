@@ -37,3 +37,4 @@ category = 0
 output_id = &"forest_heartwood_plate"
 ingredients = Array[ExtResource("2_stack")]([SubResource("Cost_varkuun"), SubResource("Cost_bark"), SubResource("Cost_hide"), SubResource("Cost_heartwood")])
 unlock_id = &"forest_core_gear_crafting"
+gold_cost = 400

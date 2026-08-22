@@ -1,0 +1,41 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/characters/npcs/umi/umi_side_service_sheet_48x48.png" id="1_sheet"]
+
+[sub_resource type="AtlasTexture" id="Idle0"]
+atlas = ExtResource("1_sheet")
+region = Rect2(0, 0, 48, 48)
+[sub_resource type="AtlasTexture" id="Idle1"]
+atlas = ExtResource("1_sheet")
+region = Rect2(48, 0, 48, 48)
+[sub_resource type="AtlasTexture" id="Idle2"]
+atlas = ExtResource("1_sheet")
+region = Rect2(96, 0, 48, 48)
+[sub_resource type="AtlasTexture" id="Idle3"]
+atlas = ExtResource("1_sheet")
+region = Rect2(144, 0, 48, 48)
+[sub_resource type="AtlasTexture" id="Work0"]
+atlas = ExtResource("1_sheet")
+region = Rect2(0, 48, 48, 48)
+[sub_resource type="AtlasTexture" id="Work1"]
+atlas = ExtResource("1_sheet")
+region = Rect2(48, 48, 48, 48)
+[sub_resource type="AtlasTexture" id="Work2"]
+atlas = ExtResource("1_sheet")
+region = Rect2(96, 48, 48, 48)
+[sub_resource type="AtlasTexture" id="Work3"]
+atlas = ExtResource("1_sheet")
+region = Rect2(144, 48, 48, 48)
+
+[resource]
+animations = [{
+"frames": [{"duration": 1.0, "texture": SubResource("Idle0")}, {"duration": 1.0, "texture": SubResource("Idle1")}, {"duration": 1.0, "texture": SubResource("Idle2")}, {"duration": 1.0, "texture": SubResource("Idle3")}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("Work0")}, {"duration": 1.0, "texture": SubResource("Work1")}, {"duration": 1.0, "texture": SubResource("Work2")}, {"duration": 1.0, "texture": SubResource("Work3")}],
+"loop": false,
+"name": &"work",
+"speed": 4.5
+}]

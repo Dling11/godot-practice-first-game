@@ -37,3 +37,4 @@ category = 0
 output_id = &"forest_mirebound_leggings"
 ingredients = Array[ExtResource("2_stack")]([SubResource("Cost_varkuun"), SubResource("Cost_hide"), SubResource("Cost_bark"), SubResource("Cost_fiber")])
 unlock_id = &"forest_core_gear_crafting"
+gold_cost = 300

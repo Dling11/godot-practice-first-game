@@ -25,6 +25,13 @@ This catalog records active asset families and lifecycle boundaries. Exact runti
 - Enemy definitions own tier and movement-footprint radius. Foot auras are procedural/runtime presentation and are not replacement hurtboxes.
 - Portraits used by dialogue live under `assets/characters/enemies/portraits/`.
 
+## Sanctuary - Umi
+
+- Approved concept anchor: `art_source/generated/characters/npcs/blue_witch_transmuter/blue_witch_transmuter_source_v1.png`.
+- Final side-facing production source: `art_source/generated/characters/npcs/umi/umi_side_service_source_v1.png`; deterministic processor: `tools/process_umi_transmuter_assets.py`.
+- Runtime sheet/portrait: `assets/characters/npcs/umi/`; actor scene: `entities/npcs/umi/umi.tscn`; compact procedural workstation: `environment/props/sanctuary/echo_crucible/`.
+- All eight 48x48 frames face left toward the workstation. The top row is idle and the bottom row is the service gesture; runtime never references the generated source boards.
+
 ## Environment and Stages
 
 - Shared Forest terrain: `assets/environment/forest/`.
