@@ -27,6 +27,10 @@ func _run() -> void:
 	f9_event.action = "debug_max_progression"
 	f9_event.pressed = true
 	player._unhandled_input(f9_event)
+	var admin_state := root.get_node_or_null("DebugAdminState")
+	if admin_state == null or not bool(admin_state.get("enabled")):
+		_fail("F9 did not enable the debug review destinations.")
+		return
 	if player.ability_2_component.cooldown_remaining > 0.0:
 		_fail("F9 did not clear an existing skill cooldown.")
 		return

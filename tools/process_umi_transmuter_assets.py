@@ -84,30 +84,14 @@ def build_sheet(source_path: Path, output_path: Path) -> None:
     sheet.save(output_path)
 
 
-def build_portrait(concept_path: Path, output_path: Path) -> None:
-    board = remove_connected_cyan(Image.open(concept_path))
-    width, height = board.size
-    frame = board.crop((0, 0, round(width / 4), round(height / 2)))
-    frame = frame.crop(content_bbox(frame))
-    scale = min(88 / frame.width, 88 / frame.height)
-    frame = frame.resize((round(frame.width * scale), round(frame.height * scale)), Image.Resampling.NEAREST)
-    portrait = Image.new("RGBA", (96, 96), (0, 0, 0, 0))
-    portrait.alpha_composite(frame, ((96 - frame.width) // 2, 94 - frame.height))
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    portrait.save(output_path)
-
-
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--side-source", type=Path, required=True)
-    parser.add_argument("--concept-source", type=Path, required=True)
     parser.add_argument("--asset-dir", type=Path, required=True)
     parser.add_argument("--review-dir", type=Path, required=True)
     args = parser.parse_args()
     sheet_path = args.asset_dir / "umi_side_service_sheet_48x48.png"
-    portrait_path = args.asset_dir / "umi_portrait_96x96.png"
     build_sheet(args.side_source, sheet_path)
-    build_portrait(args.concept_source, portrait_path)
     args.review_dir.mkdir(parents=True, exist_ok=True)
     sheet = Image.open(sheet_path)
     sheet.resize((sheet.width * 4, sheet.height * 4), Image.Resampling.NEAREST).save(

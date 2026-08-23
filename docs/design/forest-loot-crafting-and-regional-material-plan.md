@@ -33,7 +33,7 @@ The fight/loot/craft/replay structure and Stage III/V/VIII/X reward cadence rema
 - Difficulty must come from readable behaviors, combinations, armor-break opportunities, positioning, and elites rather than health inflation alone.
 - Earlier regions retain limited material relevance, but new-region recipes primarily use current-region materials.
 - Character level does not become an infinite raw-stat treadmill. Region caps may expand, while post-cap Mastery supplies bounded utility, crafting, cosmetic, title, or material benefits.
-- Reward resolution, direct Stage I-II banking, the Stage III Reliquary, Stage V equipment/stats, and Rootweaver Nema's atomic crafting transaction are implemented. Hunts, Mastery, and Stages VI-XX are not implemented.
+- Reward resolution, direct Stage I-II banking, the Stage III Reliquary, Stage V equipment/stats, and Rootweaver Nema's atomic crafting transaction are implemented. Decisions 124-125 add a reviewable Stage VI top-down environment foundation only; its enemies, navigation, rewards, completion, and campaign connection remain unimplemented alongside Hunts, Mastery, and Stages VII-XX.
 
 ## First-Clear and Replay Loop
 
@@ -89,13 +89,15 @@ The later roles and material purposes below remain planning slots rather than fi
 |---|---|---|
 | 4 | Armored hide-bearing Forest beast | Hide and bark plates for leather armor |
 | 5 | Implemented Varkuun major-boss milestone | Permanent core-gear crafting seal plus repeatable Varkuun Core catalyst |
-| 6 | Forest caster/support role | Spirit or rune components and first accessory blueprints; final name should express its actual identity rather than defaulting to `Root-something` |
+| 6 | Implemented `The Elder Ascent` environment preview; planned new caster/support combat role | Spirit or rune components and first accessory blueprints; final enemy name should express its actual identity rather than defaulting to `Root-something` |
 | 7 | Heavy corrupted brute or mini-boss | Dense reinforcement plus binding/setting components for heavy gear and accessories |
 | 8 | Fungal/spirit mini-boss milestone | Permanent standard-accessory seal plus repeatable fungal/spirit catalyst |
 | 9 | Elite Forest warden/hunter role | Refined fittings and advanced regional recipes |
 | 10 | Major Forest boss | Permanent relic/signature-accessory crafting seal plus repeatable unique catalyst |
 
 Stage VI onward introduces new roles rather than continuing Mireling/Rootling filler. Other known Forest enemies may return only in authored combinations where their combat role remains useful. Aim for roughly one important new family every one or two stages and never use palette-only replacements.
+
+Decisions 124-125 lock only Stage VI's environmental foundation: the approved muted teal/pale-stone ground continues through one top-down upper terrace bounded by modular grass-topped cliffs, existing ancient trees, rocks, a four-frame waterfall, and explicit collision. The rejected distant canyon and oval threshold are archive-only. The current scene is an F6 Admin Mode preview, not a campaign stage. A separate provisional Stage VII idea may introduce an optional god-tier follower challenge, but its identity, dialogue, combat/reward contract, and relationship to Stage VII's ordinary roster remain open.
 
 ### Forest crafting tiers
 

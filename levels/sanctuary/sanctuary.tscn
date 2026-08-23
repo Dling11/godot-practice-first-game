@@ -27,7 +27,7 @@
 [ext_resource type="PackedScene" path="res://environment/props/sanctuary/echo_crucible/echo_crucible.tscn" id="24_crucible"]
 [ext_resource type="PackedScene" path="res://ui/material_exchange/umi_exchange_menu.tscn" id="25_exchange_menu"]
 
-[node name="Sanctuary" type="Node" unique_id=1171524165 node_paths=PackedStringArray("player", "combat_hud", "character_menu", "skillkeeper", "weapon_merchant", "rootweaver", "echo_melder", "expedition_altar", "dialogue_panel", "expedition_menu", "rootforge_menu", "umi_exchange_menu", "admin_panel", "admin_lab_button")]
+[node name="Sanctuary" type="Node" unique_id=1171524165 node_paths=PackedStringArray("player", "combat_hud", "character_menu", "skillkeeper", "weapon_merchant", "rootweaver", "echo_melder", "expedition_altar", "dialogue_panel", "expedition_menu", "rootforge_menu", "umi_exchange_menu", "admin_panel", "admin_stage_6_button", "admin_lab_button")]
 script = ExtResource("1_flow")
 player = NodePath("World/Actors/Player")
 combat_hud = NodePath("UI/CombatHUD")
@@ -42,6 +42,7 @@ expedition_menu = NodePath("UI/ExpeditionMenu")
 rootforge_menu = NodePath("UI/RootforgeMenu")
 umi_exchange_menu = NodePath("UI/UmiExchangeMenu")
 admin_panel = NodePath("UI/AdminPanel")
+admin_stage_6_button = NodePath("UI/AdminPanel/Margin/Stack/OpenStage6")
 admin_lab_button = NodePath("UI/AdminPanel/Margin/Stack/OpenLab")
 
 [node name="StageMusic" type="Node" parent="." unique_id=2133377204]
@@ -150,6 +151,12 @@ theme_override_colors/font_color = Color(0.82, 0.9, 0.62, 1)
 theme_override_font_sizes/font_size = 11
 text = "ADMIN TOOLS"
 horizontal_alignment = 1
+
+[node name="OpenStage6" type="Button" parent="UI/AdminPanel/Margin/Stack"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "STAGE VI LOOK  [F6]"
 
 [node name="OpenLab" type="Button" parent="UI/AdminPanel/Margin/Stack"]
 custom_minimum_size = Vector2(0, 34)

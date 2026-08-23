@@ -12,6 +12,7 @@ This file records current production progress. Historical implementation detail 
 - One six-cell generated combat-action atlas supplies King Skills 1-4, Basic Attack, and Dodge/Dash through reusable `AtlasTexture` resources.
 - Sanctuary with Eira skill information, Orren lore dialogue, Nema's atomic gold-backed Stage V Living Rootforge, Umi's catalog-driven Echo Crucible for selling/reconstruction, expedition selection, debug-only Combat Lab access, and safe-point autosave.
 - Forest Stages 1-5, including authored TileMaps, bounded live-enemy pressure, sparse/protected loot, Stage III Rootbound Husk, Stage IV Armored Hog pressure, and Stage V Varkuun encounter/reward flow.
+- Decisions 124-125 Stage VI environment foundation: `The Elder Ascent` owns a 24x20 authored route, preserved muted regional ground, modular top-down upper cliffs/rocks/trees, a four-frame waterfall, explicit cliff collision, ambient motes, and an Admin Mode F6 review path. The rejected scenic backdrop/oval threshold are archive-only. Encounters and campaign integration remain intentionally pending.
 - Versioned disk save/Continue with temporary write, rotating backup, story/progression/health, King weapon/gear, materials, recipes, and reward claims.
 - Sanctuary/Continue is a full-health recovery checkpoint; expedition stages still preserve attrition between direct stage transitions.
 - Expedition defeat returns to Sanctuary, rolls back uncommitted loot, and preserves level/coins. Stage V's approach no longer reuses Sanctuary music.
@@ -19,7 +20,7 @@ This file records current production progress. Historical implementation detail 
 - The live enemy roster is discovery-gated, uses stable signature refresh, and clips/pads/marquees only overflowing names.
 - Long-lived Spitter seeds tolerate shooter death, and Armored Hog's committed brace/charge cannot be permanently canceled by normal-hit spam.
 - Decision 121 establishes the first meaningful equipment band: exact Stage V slot identities, Varkuun Edge critical-hit authority, percentage caps, equipped-item comparisons, compact Character/Rootforge layouts, right-edge formula icons, and clearer binary-alpha Forest equipment silhouettes.
-- Decision 123 implements persistent enemy memory, metadata-owned material valuation, protected boss reconstruction, exact Stage V crafting fees, and Umi's compact east-Sanctuary service without hardcoded NPC material lists.
+- Decision 123 implements persistent enemy memory, metadata-owned material valuation, protected boss reconstruction, exact Stage V crafting fees, and Umi's compact east-Sanctuary service without hardcoded NPC material lists. Umi now has a native-density close dialogue portrait and a 72x64 asymmetrical side-facing Echo Crucible workbench; Common drops are fuel/sale resources rather than reconstruction targets.
 - Opaw, the retired weapon shop/awakening flow, unused equipment showcase, obsolete processors/tests, and 30 unreferenced images moved into recoverable Godot-ignored archives. The post-cleanup runtime image audit reports no unreferenced images under `assets/`.
 
 ## In Progress
@@ -27,7 +28,7 @@ This file records current production progress. Historical implementation detail 
 - Owner feel-test Decision 114 in the normal game: click priority, repeated-click timing, footprint picking, pursuit around obstacles, moving targets, large bosses, movement cancellation, roster discovery, and long-name marquee readability.
 - Owner feel-test the taller enemy roster, target panel, tier foot auras, target chevron, generated cursors, six-cell action atlas, and Stage IV eight-enemy readability at 960x540.
 - Owner feel-test the fixed Sanctuary gate energy crop and Decision 119 threat ladder at 960x540: quiet blue Normal, restrained purple Mini Boss, red Boss, searing-light God, near-black Transcendent, independent lightning reach, and screen-edge direction pointer.
-- Owner feel-test Umi's side-facing placement, 760x420 Sell/Reconstruct density, click/right-click fuel flow, Auto Fill explanation, and first-play gold pacing at 960x540.
+- Owner feel-test Umi's close dialogue portrait, right-facing-bowl hand alignment, lateral workbench scale/collision, reconstruction owned-count clarity, 760x420 Sell/Reconstruct density, click/right-click fuel flow, Auto Fill explanation, and first-play gold pacing at 960x540.
 - Feel-test King's attack timing and the complete four-skill kit, especially Riftbreak impact readability, Sovereign Pursuit anchoring, and Worldsplitter commitment/damage/cooldown against crowds and bosses.
 - Validate Stage V pacing, Varkuun audio/telegraphs, reward cadence, and saved return flow in a complete non-debug playthrough.
 - Keep documentation aligned with King-only runtime truth and classify any newly discovered dead asset before moving it to the archive.
@@ -37,9 +38,10 @@ This file records current production progress. Historical implementation detail 
 ### Forest Production
 
 1. Add replayable Hunts for completed stages with explicit reward families and modifiers.
-2. Author Stage VI within the Forest region using new enemy roles and meaningful names rather than naming every addition after roots or trees. Do not reuse Mirelings/Rootlings in forward campaign content or add an equipment ownership gate; measure starter-versus-crafted clear-time/damage bands.
+2. Build Stage VI encounters inside the approved `The Elder Ascent` environment using new enemy roles and meaningful names rather than naming every addition after roots or trees. Do not reuse Mirelings/Rootlings in forward campaign content or add an equipment ownership gate; add production navigation, then measure starter-versus-crafted clear-time/damage bands before connecting campaign progression.
 3. Continue authored Forest content through Stage X, including accessory/relic progression and bounded Mastery, while allowing names and mechanics beyond repetitive root terminology.
-4. Define the Stage XI seam and next-region identity before naming or generating that content.
+4. When Stage VIII gains canonical completion authority, use it to unlock Umi and the whole Echo Crucible service; keep the current instance available until then for production testing.
+5. Define the Stage XI seam and next-region identity before naming or generating that content.
 
 ### Release Readiness
 
@@ -64,4 +66,4 @@ This file records current production progress. Historical implementation detail 
 
 ## Next Decision Gate
 
-Approve the compact equipment/Rootforge/Umi presentation and Decision 121 combat feel in the running game, then lock Stage VI's new Forest enemy roles and measured health/damage bands. Regional content may reflect the Forest without forcing root/tree terminology onto every name. Preserve free stage entry and tune challenge through authored encounters instead of an ownership check or hidden starter-character nerf.
+Owner-walk Decision 125's Stage VI environment at 960x540 through Admin Mode F6. If the upper-cliff scale, waterfall approach, tree/rock density, and collision boundary hold up, lock the new enemy roles and measured health/damage bands. Preserve free stage entry and tune challenge through authored encounters instead of an ownership check or hidden starter-character nerf.

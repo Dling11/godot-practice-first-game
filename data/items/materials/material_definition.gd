@@ -57,7 +57,7 @@ func is_valid() -> bool:
 		or material_family > MaterialFamily.HEARTWOOD
 		or rarity < MaterialRarity.COMMON
 		or rarity > MaterialRarity.BOSS
-		or (can_be_transmuted and source_enemy_id.is_empty())
+		or (is_reconstruction_target() and source_enemy_id.is_empty())
 	):
 		return false
 	var seen_tags := {}
@@ -67,6 +67,12 @@ func is_valid() -> bool:
 			return false
 		seen_tags[tag] = true
 	return true
+
+
+func is_reconstruction_target() -> bool:
+	## Common drops remain sellable/fuel resources; Umi exists to relieve
+	## low-drop RNG rather than manufacture ordinary campaign materials.
+	return can_be_transmuted and rarity >= MaterialRarity.UNCOMMON
 
 
 func get_sell_value() -> int:

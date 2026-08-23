@@ -11,12 +11,13 @@ This document records current production ownership. Detailed historical migratio
 
 ## Economy and material memory
 
-- `MaterialDefinition` owns immutable exchange metadata: source enemy, sale/meld values, reconstruction costs and memory thresholds, catalyst overrides, and protection flags. `material_catalog.tres` is the only list Umi reads.
+- `MaterialDefinition` owns immutable exchange metadata: source enemy, rarity, sale/meld values, reconstruction costs and memory thresholds, catalyst overrides, and protection flags. `is_reconstruction_target()` excludes Common rarity centrally, so future ordinary drops remain fuel/sale resources without Umi-specific IDs. `material_catalog.tres` is the only list Umi reads.
 - `EnemyDefinition.enemy_id` supplies the stable defeat key. `EnemyRewardComponent` records ordinary defeats; the Stage V claim flow records Varkuun after the milestone is actually secured.
 - `EnemyMemory` owns defeat counts and spent ten-victory boss-memory charges. `SaveService` persists it as a backward-compatible extension and New Journey resets it.
 - `MaterialExchangeService` is the sole sell/reconstruct transaction coordinator. It validates catalog identity, inventory, memory, catalysts, points, and gold; snapshots material/coin/memory state; mutates once; saves once; and restores every snapshot on failure.
 - `CraftingService` similarly includes `RecipeDefinition.gold_cost` in its existing material/output/save transaction. `RunSession` is the durable coin authority and live `PlayerProgressionComponent` mirrors its progression signal.
 - `UmiExchangeMenu` and `RootforgeMenu` display authority results but do not calculate or mutate inventory ownership directly.
+- Umi's 48x48 side-facing world animation, native-density 96x96 dialogue portrait, and 72x64 lateral Echo Crucible workbench are separate derivatives. The workbench scene owns a narrow physical footprint and layers a small presentation-only pulse/orbit over the right-hand bowl that Umi faces.
 
 ## Input and Assisted Combat
 
@@ -61,7 +62,7 @@ This document records current production ownership. Detailed historical migratio
 - `SanctuaryFlow` composes dialogue, expedition selection, Character & Bag, Eira's skill information, Orren dialogue, and Nema's Living Rootforge. `RootforgeMenu` observes readiness and delegates mutation to `CraftingService`; that service validates the canonical recipe/category/seal/cost/unique-output contract, coordinates `MaterialInventory` with `WeaponInventory` or `GearInventory`, and requests `SaveService` only after successful in-memory mutation. Any failed step restores pre-transaction snapshots. Sanctuary entry separately restores King to current maximum health before its ordinary safe-point write.
 - The retired weapon shop and skill-awakening transaction are not runtime dependencies.
 - Stage flows own dialogue gates, wave completion, reward/chest milestones, and transitions. They delegate reward calculation to loot services and persistence to save authorities.
-- Authored `TileMapLayer` data and environment scenes own collision/navigation/occlusion; runtime-random terrain generation is not production authority.
+- Authored `TileMapLayer` data and environment scenes own collision/navigation/occlusion; runtime-random terrain generation is not production authority. `AuthoredGroundLayout.empty_tile_keys` may deliberately omit cells for a canyon or water reveal, but explicit physics and navigation geometry—not texture alpha or a missing cell—owns traversability. Stage VI composes its continuous approved ground, modular top-down cliff textures, existing tree scenes, rock props, and a presentation-only animated-waterfall scene beneath one explicit upper-cliff collision owner; it has no scenic backdrop dependency.
 
 ## Persistence
 

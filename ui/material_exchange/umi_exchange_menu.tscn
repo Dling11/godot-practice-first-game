@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/material_exchange/umi_exchange_menu.gd" id="1_script"]
 [ext_resource type="Theme" path="res://assets/ui/themes/battle_of_gods_theme.tres" id="2_theme"]
-[ext_resource type="Texture2D" path="res://assets/characters/npcs/umi/umi_portrait_96x96.png" id="3_portrait"]
+[ext_resource type="Texture2D" path="res://assets/characters/npcs/umi/umi_dialogue_portrait_96x96.png" id="3_portrait"]
 
 [node name="UmiExchangeMenu" type="Control"]
 visible = false

@@ -1,5 +1,25 @@
 # Umi Side Service Source v1
 
+## Dedicated dialogue portrait v2
+
+- **Tool:** built-in image generation
+- **Source:** `umi_dialogue_portrait_source_v2.png`
+- **Runtime derivative:** `assets/characters/npcs/umi/umi_dialogue_portrait_96x96.png`
+- **Processor:** `tools/process_umi_service_assets.py`
+
+```text
+Use case: identity-preserve
+Asset type: native low-density 96x96 pixel-art dialogue portrait for Battle of Gods
+Input images: Image 1 is Umi's approved identity only. Image 2 is the controlling art-style, pixel-density, crop, outline, and detail reference.
+Primary request: Redraw Umi as a true native-scale hard-pixel dialogue portrait. Preserve her adult blue-witch identity, long deep-blue hair, blue eyes, navy pointed hat, small silver-and-blue hat gem, and confident slight smile. Match Image 2's simple face-and-shoulders readability and restrained detail exactly; do not carry Image 1's promotional illustration density into the portrait.
+Composition/framing: one centered head-and-shoulders bust; face large and immediately readable; hat brim and most of hat visible; hair frames the shoulders; no hands and no body below upper chest.
+Style/medium: deliberately low-resolution hand-authored RPG pixel art designed directly for a 96x96 canvas; chunky 1-to-3 logical-pixel clusters; compact dark outline; limited 12-to-16 color sub-palette; flat clustered shading; no antialiasing, no subpixel detail, no high-resolution illustration reduced afterward.
+Lighting/mood: upper-left cool light consistent with the project; warm readable face; restrained cyan gem highlight.
+Scene/backdrop: genuinely transparent background.
+Constraints: Image 2 controls the pixel density; one adult character only; crisp square pixels; binary silhouette edge; no frame, scenery, text, watermark, hands, staff, cauldron, or full body.
+Avoid: anime splash-art detail, elaborate eyelashes, glossy skin rendering, dozens of hair strands, smooth gradients, painterly lighting, vector curves, chibi child proportions, excessive cleavage emphasis, tiny full-body framing.
+```
+
 - Mode: Codex built-in image generation
 - Generated default path: `C:\Users\Administrator\.codex\generated_images\01a0111e-08ca-7a12-8432-4f9b1257a413\exec-677074dd-5f9d-49eb-be2b-3e4315c3f7dd.png`
 - Workspace copy: `art_source/generated/characters/npcs/umi/umi_side_service_source_v1.png`

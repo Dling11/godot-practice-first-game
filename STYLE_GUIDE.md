@@ -5,6 +5,7 @@
 - Add future materials to the canonical catalog and complete their own `MaterialDefinition` exchange metadata. Never add material IDs, prices, or unlock branches to Umi's scene/menu.
 - Give every reward-bearing enemy a stable `EnemyDefinition.enemy_id`; material `source_enemy_id` must match it exactly.
 - Use rarity defaults for ordinary content and overrides only for intentional exceptions. Boss materials must remain explicitly unsellable and invalid as meld fuel.
+- Common rarity is never a reconstruction target. Keep Common materials sellable/usable as meld fuel unless an authored exception requires otherwise; use Uncommon or higher for low-drop reconstruction candidates.
 - Economy UI may preview transactions, but only `CraftingService` and `MaterialExchangeService` may perform durable spends, grants, saves, and rollback.
 - Compact Sanctuary service surfaces should stay within 760x420 at the 960x540 logical viewport unless the content genuinely requires a larger comparison workspace.
 
@@ -221,6 +222,7 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - Never manipulate draw order every frame when a stable scene hierarchy, Y-sort origin, or split sprite solves the relationship.
 - Test each large prop from the front, behind, and both sides with the player before approving it for reuse.
 - Safe-hub props follow the same separation as combat props: raster, shadow/glow, collision, interaction, and idle presentation remain independently replaceable.
+- Side-facing service NPCs require matching lateral work geometry: place the usable surface on the actor-facing edge, compare the prop against the actor's native cell before import, and reject front-facing symmetry or landmark scale when the contract calls for a compact workstation.
 - Crafting UI may report readiness and request a craft but must never spend or grant directly. One service validates the canonical recipe and all costs before mutation, reserves unique output ownership, spends one complete material batch, saves once, and rolls back authority snapshots on failure.
 - Drag previews use logical canvas coordinates and offset themselves by the local grab point. Do not apply window-scale compensation manually; drop targets remain the only equipment mutation authority.
 - Roll critical chance once per authoritative swing/strike activation, never once per victim in the same cleave. Carry the accepted result through `DamageInfo` and keep `CRIT` color/scale presentation-only. Clamp attack-speed, movement-speed, and critical-chance bonuses at their shared data/runtime boundaries.
@@ -233,12 +235,14 @@ Use static typing for public APIs, exported data, signals, return values, and no
 ## Tilemaps and Modular Environments
 
 - Build reusable terrain and prop sets instead of painting one-location-only combined images.
+- Playable maps must preserve the established top-down/slightly angled top-down camera language through their full viewport. Upper map boundaries use in-world elevated terrain, cliffs, trees, rocks, water, and authored collision; never introduce a sky, horizon, distant side-view mountain, or scenic landscape that changes perspective.
 - Support terrain transitions, ground variations, decorative overlays, collision, navigation, and foreground occlusion as separate data/layers where appropriate.
 - Keep decorative variation independent from gameplay collision whenever possible.
 - Reuse tile sources and terrain definitions across maps; do not duplicate a tileset solely to recolor or rearrange one level without a documented reason.
 - Validate seams, transition coverage, collision edges, navigation continuity, and pixel alignment before content-scale painting.
 - Save active combat-stage TileMap cells in the owning scene. Use `AuthoredGroundLayout` as the diffable composition source and `tools/bake_authored_ground.gd` when regenerating a whole map; ordinary local adjustments may then be painted and saved directly in Godot without runtime randomization.
 - In authored ground legends, use `Vector2i(atlas_x, atlas_y)` for source 0 and `Vector3i(atlas_x, atlas_y, source_id)` only when a transition map intentionally combines registered TileSet sources.
+- Use `AuthoredGroundLayout.empty_tile_keys` only for deliberate absent terrain such as a canyon or water reveal. Pair every exposed void with reviewed world collision and future navigation outlines; never infer a safe boundary from transparent pixels or the absence of a TileMap cell.
 - Keep shared biome tiles under `assets/environment/<biome>/shared/`; keep genuinely region-specific tiles and props under `assets/environment/<biome>/<region>/`. Preserve generated source/clean boards under the matching `art_source/generated/environment/` hierarchy.
 - Organic tree placement may be asymmetric. Landmark props must align to a visible path, threshold, plaza, encounter boundary, or authored symmetry and must not be scattered through empty space merely for variation.
 - On even-width tilemaps, center a landmark between the paired middle columns only when its approach also uses both columns; snap single-cell service approaches to the owning doorway's exact tile center and preserve intentional terrain breaks around local aprons.

@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/environment/forest/stage_6/props/elder_root_threshold_640x384.png" id="1_texture"]
+[ext_resource type="Script" path="res://gameplay/navigation/navigation_cutout.gd" id="2_cutout"]
+
+[sub_resource type="RectangleShape2D" id="left_foot"]
+size = Vector2(118, 92)
+
+[sub_resource type="RectangleShape2D" id="right_foot"]
+size = Vector2(118, 92)
+
+[node name="ElderRootThreshold" type="StaticBody2D"]
+collision_mask = 6
+
+[node name="GroundVisuals" type="Node2D" parent="."]
+
+[node name="LowerRoots" type="Sprite2D" parent="GroundVisuals"]
+position = Vector2(0, -67)
+texture = ExtResource("1_texture")
+region_enabled = true
+region_rect = Rect2(0, 250, 640, 134)
+
+[node name="OverheadVisuals" type="Node2D" parent="."]
+z_index = 12
+
+[node name="Crown" type="Sprite2D" parent="OverheadVisuals"]
+position = Vector2(0, -259)
+texture = ExtResource("1_texture")
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 250)
+
+[node name="LeftFoot" type="CollisionShape2D" parent="."]
+position = Vector2(-236, -46)
+shape = SubResource("left_foot")
+
+[node name="RightFoot" type="CollisionShape2D" parent="."]
+position = Vector2(236, -46)
+shape = SubResource("right_foot")
+
+[node name="NavigationCutout" type="Node" parent="." groups=["navigation_cutout"]]
+script = ExtResource("2_cutout")
+derive_from_collision_shapes = true

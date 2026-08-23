@@ -254,6 +254,7 @@ func apply_debug_testing_preset() -> void:
 	_enable_debug_test_loadout()
 	_enable_debug_unlimited_skills()
 	_unlock_debug_test_expeditions()
+	_enable_debug_admin_tools()
 	testing_preset_applied.emit(
 		progression_component.level,
 		progression_component.coins
@@ -926,6 +927,14 @@ func _unlock_debug_test_expeditions() -> void:
 	var story_state := get_node_or_null("/root/StoryState")
 	if story_state != null:
 		story_state.apply_debug_expedition_unlocks()
+
+
+func _enable_debug_admin_tools() -> void:
+	## F9 is the one-stop non-saving review preset. Keep new debug-only review
+	## destinations discoverable here instead of requiring a separate F10 setup.
+	var admin_state := get_node_or_null("/root/DebugAdminState")
+	if admin_state != null:
+		admin_state.call("set_enabled", true)
 
 
 func _on_died() -> void:

@@ -4,12 +4,19 @@ This file tracks current limitations only. Resolved and retired systems belong i
 
 ## Current Limitations
 
+### KI-021 - Stage VI environment is reviewable but has no encounters
+
+- **Status:** Environment preview implemented; campaign content planned.
+- **Verified:** `The Elder Ascent` loads as a continuous 24x20 authored top-down map with the approved Stage VI ground, modular upper cliffs/rocks, reused top-down ancient trees, a looping four-frame waterfall, explicit upper-cliff collision, paired terrace landmarks, ambient motes, and an Admin Mode F6 route. The old scenic backdrop and oval threshold are absent from runtime. Focused structural smoke and two rendered captures pass.
+- **Risk:** Live player movement has not yet owner-approved the full cliff line or waterfall-basin approach. The scene has no production navigation, enemies, rewards, clear authority, save flag, or Stage V transition and must not be mistaken for an implemented Stage VI campaign stage.
+- **Next:** Walk the preview at 960x540 along the full upper collision line and approach the waterfall basin from both sides. After owner approval, author navigation and the new enemy-role/balance contract before connecting progression.
+
 ### KI-020 - Umi exchange economy needs campaign-scale tuning
 
 - **Status:** Implemented, needs owner playtest and balance data.
-- **Verified:** Umi, the compact Echo Crucible UI, metadata-driven future-material discovery, sell/reconstruct transactions, enemy-memory persistence, boss safeguards, and Stage V gold fees pass focused structural and rendered-layout checks.
+- **Verified:** Umi, her native-density close dialogue portrait, compact side-facing Echo Crucible workbench, compact UI, metadata-driven future-material discovery, Common-target exclusion, sell/reconstruct transactions, enemy-memory persistence, boss safeguards, and Stage V gold fees pass focused structural checks.
 - **Risk:** Current prices are deliberate first-pass values. Real Stage I-V play has not yet measured whether ordinary sales fund crafting too quickly, whether 1800 gold for the full set is too high, or whether Rare/Boss reconstruction feels appropriately long-term.
-- **Next:** Complete one fresh Stage I-V campaign without debug grants; record earned/spent gold, sold stacks, and first craft timing. Tune resource metadata rather than branching Umi's code.
+- **Next:** Owner-check the corrected portrait, Umi-to-right-bowl hand alignment, workbench scale, and collision at 960x540, then complete one fresh Stage I-V campaign without debug grants; record earned/spent gold, sold stacks, and first craft timing. Add the intended Stage VIII unlock only after that stage exposes canonical completion state. Tune resource metadata rather than branching Umi's code.
 
 ### KI-019 - Stage VI-XV gear pacing is designed but not encounter-validated
 

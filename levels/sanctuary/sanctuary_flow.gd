@@ -14,6 +14,7 @@ extends Node
 @export var rootforge_menu: RootforgeMenu
 @export var umi_exchange_menu: UmiExchangeMenu
 @export var admin_panel: Control
+@export var admin_stage_6_button: Button
 @export var admin_lab_button: Button
 
 var _active_dialogue_npc: DialogueNpc
@@ -31,7 +32,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			var enabled := bool(admin_state.call("toggle"))
 			_update_admin_visibility(enabled)
 			combat_hud.show_story_message(
-				"ADMIN MODE ON  |  COMBAT LAB [F7]" if enabled else "ADMIN MODE OFF",
+				"ADMIN MODE ON  |  STAGE VI LOOK [F6]  |  COMBAT LAB [F7]" if enabled else "ADMIN MODE OFF",
 				2.0
 			)
 		get_viewport().set_input_as_handled()
@@ -41,6 +42,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_combat_lab"):
 		get_viewport().set_input_as_handled()
 		_transition_to("res://levels/combat_lab/combat_lab.tscn")
+	elif event.is_action_pressed("debug_stage_6_environment"):
+		get_viewport().set_input_as_handled()
+		_transition_to("res://levels/stage_6/stage_6.tscn")
 	elif event.is_action_pressed("debug_stage_5_boss_arena"):
 		get_viewport().set_input_as_handled()
 		_transition_to("res://levels/stage_5_boss_test/stage_5_boss_test.tscn")
@@ -61,6 +65,7 @@ func _ready() -> void:
 		or rootforge_menu == null
 		or umi_exchange_menu == null
 		or admin_panel == null
+		or admin_stage_6_button == null
 		or admin_lab_button == null
 	):
 		push_error("SanctuaryFlow is missing a required hub dependency.")
@@ -92,6 +97,7 @@ func _ready() -> void:
 	dialogue_panel.dialogue_closed.connect(_on_dialogue_closed)
 	rootforge_menu.menu_closed.connect(rootweaver.restore_prompt)
 	umi_exchange_menu.menu_closed.connect(echo_melder.restore_prompt)
+	admin_stage_6_button.pressed.connect(_open_stage_6_environment)
 	admin_lab_button.pressed.connect(_open_combat_lab)
 	var admin_state := get_node_or_null("/root/DebugAdminState")
 	if admin_state != null:
@@ -121,6 +127,11 @@ func _update_admin_visibility(enabled: bool) -> void:
 func _open_combat_lab() -> void:
 	if _is_admin_enabled():
 		_transition_to("res://levels/combat_lab/combat_lab.tscn")
+
+
+func _open_stage_6_environment() -> void:
+	if _is_admin_enabled():
+		_transition_to("res://levels/stage_6/stage_6.tscn")
 
 
 func _transition_to(scene_path: String) -> void:

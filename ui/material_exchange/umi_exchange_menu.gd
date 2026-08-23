@@ -132,17 +132,21 @@ func _rebuild_sell_list() -> void:
 
 func _rebuild_target_list() -> void:
 	_clear_children(target_list)
-	if _selected_target == null and not MaterialCatalog.materials.is_empty():
-		_selected_target = MaterialCatalog.materials[0]
+	var first_target: MaterialDefinition
 	for material: MaterialDefinition in MaterialCatalog.materials:
-		if not material.can_be_transmuted:
+		if not material.is_reconstruction_target():
 			continue
+		if first_target == null:
+			first_target = material
+		var owned := int(_material_inventory.call("get_quantity", material.material_id))
 		var defeats := int(_enemy_memory.call("get_defeat_count", material.source_enemy_id))
 		var required := material.get_required_source_defeats()
 		var state := "KNOWN" if defeats >= required else "MEMORY %d/%d" % [defeats, required]
-		var button := _make_material_button(material, "%s\n%s  •  %s" % [material.display_name.to_upper(), material.get_rarity_name().to_upper(), state])
+		var button := _make_material_button(material, "%s  ×%d\n%s  •  %s" % [material.display_name.to_upper(), owned, material.get_rarity_name().to_upper(), state])
 		button.pressed.connect(_select_target.bind(material))
 		target_list.add_child(button)
+	if _selected_target == null or not _selected_target.is_reconstruction_target():
+		_selected_target = first_target
 
 
 func _rebuild_fuel_list() -> void:
@@ -188,7 +192,8 @@ func _refresh_transmute_detail() -> void:
 		return
 	target_icon.texture = _selected_target.icon
 	target_name.text = _selected_target.display_name.to_upper()
-	target_meta.text = "%s  •  %d MELD  •  %d GOLD" % [_selected_target.get_rarity_name().to_upper(), _selected_target.get_transmutation_point_cost(), _selected_target.get_transmutation_gold_cost()]
+	var owned := int(_material_inventory.call("get_quantity", _selected_target.material_id))
+	target_meta.text = "%s  •  OWNED %d  •  %d MELD  •  %d GOLD" % [_selected_target.get_rarity_name().to_upper(), owned, _selected_target.get_transmutation_point_cost(), _selected_target.get_transmutation_gold_cost()]
 	var defeats := int(_enemy_memory.call("get_defeat_count", _selected_target.source_enemy_id))
 	var required := _selected_target.get_required_source_defeats()
 	memory_label.text = "SOURCE  •  %s  •  MEMORY %d / %d" % [_selected_target.source_enemy_display_name.to_upper(), defeats, required]

@@ -131,6 +131,8 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 121 | Make Stage V gear optional but consequential | Varkuun Edge Stage VI-XV band, slot identities, critical hits, percentage caps, compact equipment UI, or Stage VI no-gate balance |
 | 122 | Scope Forest naming without globalizing it | Forest Stages I-X, no automatic root/tree names for unrelated characters or systems, or meaningful personal names |
 | 123 | Use Umi and material-owned exchange metadata | Umi, Echo Crucible, selling, reconstruction, enemy memory, gold crafting fees, or automatic future-material integration |
+| 124 | Establish Stage VI environment before enemies (upper presentation superseded by 125) | Stage VI preview sequencing, environment-first review, F6 debug access, or campaign-integration boundary |
+| 125 | Keep Stage VI upper terrain top-down and modular | Stage VI perspective, continuous ground, reusable cliffs/rocks/trees, waterfall animation, or rejected scenic backdrop/threshold |
 
 ## New Decisions
 

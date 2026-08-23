@@ -29,7 +29,8 @@ This catalog records active asset families and lifecycle boundaries. Exact runti
 
 - Approved concept anchor: `art_source/generated/characters/npcs/blue_witch_transmuter/blue_witch_transmuter_source_v1.png`.
 - Final side-facing production source: `art_source/generated/characters/npcs/umi/umi_side_service_source_v1.png`; deterministic processor: `tools/process_umi_transmuter_assets.py`.
-- Runtime sheet/portrait: `assets/characters/npcs/umi/`; actor scene: `entities/npcs/umi/umi.tscn`; compact procedural workstation: `environment/props/sanctuary/echo_crucible/`.
+- Runtime world sheet and dedicated close dialogue portrait: `assets/characters/npcs/umi/`; actor scene: `entities/npcs/umi/umi.tscn`.
+- Generated Echo Crucible source: `art_source/generated/environment/sanctuary/services/umi/`; processed 72x64 side-facing workbench: `assets/environment/sanctuary/services/umi/`; deterministic portrait/workbench processor: `tools/process_umi_service_assets.py`; narrow collision and right-bowl pulse scene: `environment/props/sanctuary/echo_crucible/`.
 - All eight 48x48 frames face left toward the workstation. The top row is idle and the bottom row is the service gesture; runtime never references the generated source boards.
 
 ## Environment and Stages
@@ -38,6 +39,7 @@ This catalog records active asset families and lifecycle boundaries. Exact runti
 - Authored layouts: `data/environment/layouts/`.
 - Sanctuary structures/NPC presentation: `assets/environment/sanctuary/` and `assets/characters/npcs/`.
 - Stage V decay terrain and props: `assets/environment/forest/stage_5/`.
+- Stage VI environment preview: approved muted ground under `assets/environment/forest/stage_6/tiles/`; six reusable transparent cliff/rock pieces under `assets/environment/forest/stage_6/props/modular_cliffs/`; stable four-frame waterfall sheet under `assets/environment/forest/stage_6/waterfall/` with fixed banks and downward-only curtain motion, plus reusable static lip, `4x1` water-only flow, and static basin parts under `waterfall/modules/`; reusable scene under `environment/props/stage_6_waterfall/`; generated source boards/prompt provenance under `art_source/generated/environment/forest/stage_6/modular_topdown/`; deterministic processing in `tools/process_stage_6_environment.py`; runtime captures under `art_source/review/environment/forest/stage_6/runtime/`. Rejected canyon/threshold sources and derivatives are recoverable only under `art_source/archive/environment/stage_6_rejected_perspective_2026-08-24/`.
 - Generated Sanctuary gate: fixed `assets/environment/sanctuary/landmarks/generated/angel_expedition_portal_static_192x256.png` plus isolated `sanctuary_portal_energy_4x_44x112.png` (`4x1`, 44x112 cells).
 - Generated abyssal stage-exit base: `assets/environment/portals/generated/stage_abyssal_veil_base_16x_160x192.png` (`16x1`, 160x192 cells), with authored motion across upper/middle/lower interior, a nonempty moving center, and changing rim silhouette. Generated dense lightning/particle overlay: `assets/environment/portals/generated/stage_abyssal_veil_lightning_fx_16x_256x224.png` (`16x1`, 256x224 cells). Runtime tier data supplies tint, reduced display scale, independent base/FX speeds, and FX intensity; generated 4x4 boards and corrected review outputs live under `art_source/generated/environment/portals/abyssal_veil_portal/`. Ground-vortex, portal-ring, and localized-eye passes are archived.
 - Environment scenes must pair presentation with authored collision, navigation, depth, and occlusion where applicable.

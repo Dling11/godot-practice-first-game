@@ -51,7 +51,7 @@ func try_sell(material: MaterialDefinition, quantity: int) -> Dictionary:
 
 
 func get_transmutation_status(target: MaterialDefinition, fuel: Dictionary) -> Dictionary:
-	if not _is_catalog_material(target) or not target.can_be_transmuted:
+	if not _is_catalog_material(target) or not target.is_reconstruction_target():
 		return _failure(&"invalid_target", "MATERIAL CANNOT BE RECONSTRUCTED")
 	var defeats := EnemyMemory.get_defeat_count(target.source_enemy_id)
 	var required_defeats := target.get_required_source_defeats()

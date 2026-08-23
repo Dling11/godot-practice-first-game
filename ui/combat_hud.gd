@@ -512,7 +512,11 @@ func _update_coins(total_coins: int) -> void:
 
 
 func _show_testing_preset(level: int, coins: int) -> void:
-	_show_announcement("DEBUG TEST  •  LEVEL %d  •  %d COINS  •  UNLIMITED SKILLS" % [level, coins], 2.0)
+	_show_announcement(
+		"DEBUG TEST  •  LEVEL %d  •  %d COINS  •  STAGE VI [PANEL/F6]"
+		% [level, coins],
+		2.6
+	)
 
 
 func _on_skill_loadout_changed() -> void:

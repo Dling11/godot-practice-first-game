@@ -34,6 +34,8 @@ func rebuild_from_layout() -> void:
 		var row := layout.rows[y] if y < layout.rows.size() else ""
 		for x in range(map_size.x):
 			var key := row.substr(x, 1) if x < row.length() else ""
+			if not key.is_empty() and layout.empty_tile_keys.contains(key):
+				continue
 			var tile_spec: Variant = layout.tile_legend.get(key, layout.default_tile)
 			var source_id := layout.default_source_id
 			var atlas_coordinates := layout.default_tile

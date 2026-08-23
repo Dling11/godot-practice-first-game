@@ -1,5 +1,39 @@
 # Changelog
 
+## 2026-08-24 - Stage VI Waterfall Integration and Vertical Flow
+
+- Edited only the Stage VI waterfall source: the upper pool now enters a clearer carved cliff notch, the adjacent inner corners close around its banks, and the rest of the approved map composition remains unchanged.
+- Rebuilt the four-frame runtime animation around one canonical terrain silhouette and fixed curtain mask. Cliff banks, rocks, grass, source/basin outlines, curtain width, and alpha are identical in every frame; only curtain texture moves downward and foam brightness pulses in place.
+- Added reusable static cliff-lip, four-frame water-only flow, and static basin modules for future waterfall heights/locations without regenerating a whole background.
+- Added regression coverage that rejects any frame movement outside the curtain/foam zones and requires visible water motion. Focused Stage VI structure and rendered 960x540 integration review pass.
+
+## 2026-08-24 - Stage VI Top-Down Upper Terrace Correction
+
+- Accepted Decision 125 and preserved the approved Stage VI ground TileSet while replacing only the upper-map presentation that had changed the camera language into a side-view vista.
+- Removed the canyon backdrop and oval elder-root threshold from active runtime paths. Their sources, derivatives, scene, imports, and reviews remain recoverable under `art_source/archive/environment/stage_6_rejected_perspective_2026-08-24/`.
+- Added six reusable transparent top-down environment pieces (straight cliff, inner/outer corners, ramp, rocky outcrop, and boulder cluster), reused the existing ancient-tree scene, and composed them over continuous authored terrain.
+- Added a reusable four-frame waterfall scene with restrained mist and an explicit full-width upper-cliff collision boundary; animation remains presentation-only.
+- Reworked Stage VI structural coverage to reject scenic backdrops/oval thresholds and require continuous ground, modular cliffs, trees, rocks, four animated waterfall frames, and collision. Headless import, focused smoke, and two 960x540 runtime captures pass. The full suite remains 80/81 with only KI-018's pre-existing Sanctuary portal front-depth assertion failing.
+
+## 2026-08-24 - Stage VI Elder Ascent Environment Foundation
+
+- Accepted Decision 124 and built `The Elder Ascent` as a non-campaign Stage VI environment preview before enemy production.
+- Added a generated colossal living-root canyon backdrop and asymmetric root-and-stone threshold, then processed them into runtime pixel assets with preserved internal shadows, a split grounded/overhead occlusion contract, and stable foot collision.
+- Added a muted teal/pale-stone Stage VI terrain atlas, 24x20 authored terrace layout, deliberate background-revealing TileMap cells, explicit void collision, paired terrace monuments, and restrained ambient motes.
+- Extended `AuthoredGroundLayout` with reusable `empty_tile_keys`; missing terrain remains presentation/composition data and never replaces collision or navigation authority.
+- Added an Admin Mode F6 review transition, focused environment smoke coverage, and rendered north/mid runtime captures. Encounters, navigation, rewards, completion, saves, and Stage V integration remain pending.
+- Extended the non-saving F9 review preset to enable Admin Tools and advertise the Stage VI F6 preview, while retaining its existing progression, gear, material, expedition, and unlimited-skill setup.
+- Added a visible `STAGE VI LOOK [F6]` Admin Tools button and end-to-end regression coverage for F9 revealing the panel and the button requesting the preview transition; Stage VI remains intentionally absent from the production expedition list.
+
+## 2026-08-24 - Umi Portrait, Workstation, and Rare-Target Focus
+
+- Replaced Umi's squeezed full-body dialogue thumbnail with a generated native-density 96x96 face-and-shoulders portrait that preserves her approved blue-witch identity without promotional illustration detail.
+- Rejected and archived the oversized symmetrical altar pass. Replaced it with a 72x64 asymmetrical side-facing Echo Crucible workbench whose reservoir sits left and reachable glowing bowl sits beside Umi on the right; restored the original close spacing and a narrow collision footprint.
+- Made reconstruction rarity-aware: Common materials remain sellable and valid as meld fuel but never appear as targets; Uncommon, Rare, and protected Boss materials remain metadata-driven reconstruction candidates.
+- Added live owned-output quantities to every reconstruction target row and selected-target cost detail so players can judge whether another copy is worthwhile.
+- Recorded Stage VIII completion as Umi's intended future unlock without adding a permanently false placeholder gate before Stage VIII exists.
+- Added deterministic portrait/station processing, source prompt provenance, and updated exchange regression coverage.
+
 ## 2026-08-22 - Umi's Metadata-Driven Echo Crucible
 
 - Accepted Decision 123 and added Umi as a production side-facing Sanctuary NPC with a compact animated Echo Crucible, stable 48x48 idle/service frames, portrait dialogue, and a 760x420 Sell/Reconstruct surface.

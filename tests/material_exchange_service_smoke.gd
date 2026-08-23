@@ -27,23 +27,29 @@ func _run() -> void:
 
 	var resin := MaterialCatalog.find_material(&"forest_mire_resin")
 	var fiber := MaterialCatalog.find_material(&"forest_root_fiber")
+	var uncommon := MaterialCatalog.find_material(&"forest_living_bark_plate")
 	var rare := MaterialCatalog.find_material(&"forest_husk_heartwood")
 	var boss_core := MaterialCatalog.find_material(&"forest_rootbound_core")
-	if resin == null or fiber == null or rare == null or boss_core == null:
+	if resin == null or fiber == null or uncommon == null or rare == null or boss_core == null:
 		_fail("Exchange fixtures are missing.")
 		return
-	if exchange.get_transmutation_status(resin, {fiber.material_id: 25})["reason"] != &"memory_locked":
+	if exchange.get_transmutation_status(resin, {fiber.material_id: 25})["reason"] != &"invalid_target":
+		_fail("A Common material appeared as a reconstruction target.")
+		return
+	if exchange.get_transmutation_status(uncommon, {fiber.material_id: 100})["reason"] != &"memory_locked":
 		_fail("An unseen material source bypassed defeat memory.")
 		return
-	memory.record_defeat(&"mireling")
-	inventory.add_material(fiber.material_id, 25)
-	session.update_progression(0, 20)
-	var ordinary_result: Dictionary = exchange.try_transmute(resin, {fiber.material_id: 25})
-	if not ordinary_result["success"] or inventory.get_quantity(resin.material_id) != 1 or session.coins != 10:
-		_fail("Ordinary material reconstruction did not atomically spend meld and gold.")
+	for _index in 10:
+		memory.record_defeat(&"armored_hog")
+	inventory.add_material(fiber.material_id, 100)
+	inventory.add_material(resin.material_id, 1)
+	session.update_progression(0, 100)
+	var uncommon_result: Dictionary = exchange.try_transmute(uncommon, {fiber.material_id: 100})
+	if not uncommon_result["success"] or inventory.get_quantity(uncommon.material_id) != 1 or session.coins != 25:
+		_fail("Uncommon reconstruction did not atomically spend meld and gold.")
 		return
 	var sale_result: Dictionary = exchange.try_sell(resin, 1)
-	if not sale_result["success"] or inventory.get_quantity(resin.material_id) != 0 or session.coins != 11:
+	if not sale_result["success"] or inventory.get_quantity(resin.material_id) != 0 or session.coins != 26:
 		_fail("Material selling did not atomically grant the metadata-owned gold value.")
 		return
 
