@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=17 format=3]
 
 [ext_resource type="Script" path="res://levels/combat_lab/combat_lab.gd" id="1"]
 [ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="2"]
@@ -12,6 +12,8 @@
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/player_ability_hit.ogg" id="10"]
 [ext_resource type="PackedScene" path="res://ui/boss/boss_health_hud.tscn" id="11"]
 [ext_resource type="PackedScene" path="res://environment/arenas/divine_order/court_of_first_measure/court_of_first_measure.tscn" id="12"]
+[ext_resource type="PackedScene" path="res://ui/dialogue/dialogue_panel.tscn" id="13"]
+[ext_resource type="Script" path="res://entities/enemies/examiner/examiner_encounter_director.gd" id="14"]
 
 [sub_resource type="StyleBoxFlat" id="panel"]
 bg_color = Color(0.025, 0.028, 0.038, 0.96)
@@ -33,7 +35,7 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.24, 0.31, 0.2, 1)
 
-[node name="CombatLab" type="Node" node_paths=PackedStringArray("player", "actors", "projectiles", "effects", "camera", "combat_hud", "boss_hud", "court_arena", "base_arena", "base_arena_border", "enemy_selector", "spawn_one_button", "spawn_four_button", "spawn_eight_button", "clear_button", "reset_button", "exit_button", "ai_toggle", "invincible_toggle", "combat_tools_button", "status_label", "latest_label")]
+[node name="CombatLab" type="Node" node_paths=PackedStringArray("player", "actors", "projectiles", "effects", "camera", "combat_hud", "boss_hud", "court_arena", "base_arena", "base_arena_border", "examiner_director", "enemy_selector", "spawn_one_button", "spawn_four_button", "spawn_eight_button", "force_phase_button", "clear_button", "reset_button", "exit_button", "ai_toggle", "invincible_toggle", "combat_tools_button", "status_label", "latest_label")]
 script = ExtResource("1")
 player = NodePath("World/Actors/Player")
 actors = NodePath("World/Actors")
@@ -45,10 +47,12 @@ boss_hud = NodePath("UI/BossHealthHUD")
 court_arena = NodePath("World/CourtOfFirstMeasure")
 base_arena = NodePath("World/Arena")
 base_arena_border = NodePath("World/ArenaBorder")
+examiner_director = NodePath("Services/ExaminerEncounterDirector")
 enemy_selector = NodePath("UI/LabPanel/Margin/Stack/EnemySelector")
 spawn_one_button = NodePath("UI/LabPanel/Margin/Stack/SpawnRow/Spawn1")
 spawn_four_button = NodePath("UI/LabPanel/Margin/Stack/SpawnRow/Spawn4")
 spawn_eight_button = NodePath("UI/LabPanel/Margin/Stack/SpawnRow/Spawn8")
+force_phase_button = NodePath("UI/LabPanel/Margin/Stack/ForcePhase")
 clear_button = NodePath("UI/LabPanel/Margin/Stack/ActionRow/Clear")
 reset_button = NodePath("UI/LabPanel/Margin/Stack/ActionRow/Reset")
 exit_button = NodePath("UI/LabPanel/Margin/Stack/Exit")
@@ -117,9 +121,19 @@ sword_hit_sound = ExtResource("8")
 ability_hit_sound = ExtResource("10")
 player_hurt_sound = ExtResource("9")
 
+[node name="ExaminerEncounterDirector" type="Node" parent="Services" node_paths=PackedStringArray("player", "camera", "arena", "dialogue", "combat_hud")]
+script = ExtResource("14")
+player = NodePath("../../World/Actors/Player")
+camera = NodePath("../../World/Actors/Player/Camera2D")
+arena = NodePath("../../World/CourtOfFirstMeasure")
+dialogue = NodePath("../../UI/DialoguePanel")
+combat_hud = NodePath("../../UI/CombatHUD")
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="CombatHUD" parent="UI" instance=ExtResource("3")]
+
+[node name="DialoguePanel" parent="UI" instance=ExtResource("13")]
 
 [node name="BossHealthHUD" parent="UI" instance=ExtResource("11")]
 offset_left = -330.0
@@ -212,6 +226,12 @@ custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "UNLIMITED SKILLS / TEST KIT"
+
+[node name="ForcePhase" type="Button" parent="UI/LabPanel/Margin/Stack"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "FORCE DIVINE DESCENT"
 
 [node name="ActionRow" type="HBoxContainer" parent="UI/LabPanel/Margin/Stack"]
 layout_mode = 2

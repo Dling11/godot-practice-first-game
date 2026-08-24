@@ -4,6 +4,13 @@ This file tracks current limitations only. Resolved and retired systems belong i
 
 ## Current Limitations
 
+### KI-023 - Examiner production outcome and final feel remain unapproved
+
+- **Status:** Debug proof complete; owner feel-test and Stage VII integration pending.
+- **Verified:** Fresh V5 physical Descent sheets replace the malformed body boards; velocity-aligned normal facing, bounded wind-up tracking, 0.17-second complete offscreen launch, 0.15-second fall, dedicated contact/recovery, synchronized silhouette/red-eye accent, 70% phase interruption, short dialogue/camera focus, 3.8-second player-controlled cover window, four exact pylon zones, finite shared-path damage, Phase II cadence, aura/seal/impact VFX, synchronized SFX, one cancellable CC0 vocal foundation, repeated-force rejection, and F7 force control pass focused structural and rendered-capture checks.
+- **Risk:** Automated checks cannot judge whether the replacement poses and 0.15-second fall read perfectly at gameplay speed, 3.8 seconds is the right reach allowance, the seal is too busy/bright, 260 raw damage is appropriate after real armor, or the single vocal foundation and impact sit correctly in the final mix. The archived orchestral audition is deliberately not layered because it is a separate complete song; a coherent vocal-orchestral replacement remains open. Production defeat interception, abnormal victory, rewards, replay, portals, saves, and lore conversation are not implemented.
+- **Next:** Feel-test in F7 with invincibility both on and off, deliberately survive and fail each pylon, then approve timing/mix before Stage VII production flow. Tune existing values rather than adding unavoidable damage or premature divine-resistance gear.
+
 ### KI-022 - Reusable Crag Bear art still has stage-numbered ownership
 
 - **Status:** Open documentation/asset migration debt.
@@ -87,7 +94,7 @@ This file tracks current limitations only. Resolved and retired systems belong i
 - **Status:** Open.
 - **Impact:** Data-driven previews can describe future routes, but destinations and requirements beyond the implemented Forest sequence are intentionally unavailable.
 - **Planned direction:** Decision 131 assigns Stage VII to the first Disciple choice/test, Stage IX to modular reclaimed magical ruins with provisional Mage/Warden roles, and Stage XX to the first direct One Above confrontation. These are documentation anchors, not runtime destinations.
-- **Disciple preparation:** Decision 132 defines the Examiner/Executioner high-level visual contract. The reattached original remains outside runtime assets, and the owner-approved compact-pixel V3 Examiner board is the active style lock. Decision 133 assigns the optional Challenge portal a separate circular divine arena and accepts Axiom Divide: First Measure as the restrained signature direction. A debug-only F7 implementation now proves the court, six stable `192x128` action sheets, compact kit, three-lane warning authority, final dash, and dodge recognition. The malformed signature boards and prior realistic runtime prototype are excluded from live assets; Axiom composes the approved sweep/dash poses in all four directions. It is not wired to Stage VII and still has no story outcome, rewards, saves, replay, or final audio.
+- **Disciple preparation:** Decisions 132-134 define the Examiner/Executioner visual contract, special arena, and readable divine-combat rule. The F7 proof now has seven stable `192x128` action sheets, rebuilt physical thrust/sweep/charge/slam motion, accurate charge/slam warnings, restrained reusable aura, synchronized original SFX, three-lane Axiom authority, and compact behavioral adaptation. Rejected/malformed generations and the retired Zero Interval sheet remain outside active runtime. It is not wired to Stage VII and still has no story outcome, rewards, saves, replay, portrait/dialogue, final mix, or production balance.
 
 ### KI-006 - Audio settings are session-only
 

@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted high-level character direction and owner-approved Examiner compact-pixel V3 style lock: masculine, tall, long-legged, simplified ivory/gold, and deliberately free of the rejected realistic miniature detail. The Examiner is the priority for the planned Stage VII encounter; the Executioner is documented for later continuity only. A debug-only F7 proof now uses six four-direction `192x128` action sheets, a 12-pixel movement footprint, fixed-scale/baseline normalization, and controller-owned combat. Those values remain subject to owner feel-testing and are not yet production Stage VII approval. Portrait, dedicated sound, dialogue, portal flow, story outcomes, and the Executioner remain unimplemented.
+Accepted high-level character direction and owner-approved Examiner compact-pixel V3 style lock: masculine, tall, long-legged, simplified ivory/gold, and deliberately free of the rejected realistic miniature detail. The Examiner is the priority for the planned Stage VII encounter; the Executioner is documented for later continuity only. The debug-only F7 proof now uses seven four-direction `192x128` action sheets, a 12-pixel movement footprint, fixed-scale/baseline normalization, fresh physical thrust/sweep/charge/slam poses, and controller-owned combat. Original action sound now exists for the proof; portrait, dialogue, portal flow, story outcomes, final mix, and the Executioner remain unimplemented.
 
 `Examiner` and `Executioner` are accepted role titles. Personal names remain open.
 
@@ -81,6 +81,8 @@ Preserve these silhouette anchors:
 
 Do not reduce the identity to a generic white knight. The mask construction, long controlled lines, impossible weapon, and shared divine geometry must survive simplification.
 
+His spectacle ceiling is controlled divine technique. Axiom Divide expresses exact multi-lane measurement; Divine Descent expresses a severe but survivable arena test through authored launch/fall motion and reliable pylon cover. Neither may use the Executioner's future destruction language or The One Above's reality-scale rule breaking merely to look stronger.
+
 ### Palette direction
 
 - deep navy/plum outline and deepest shadow rather than pure black everywhere;
@@ -99,11 +101,12 @@ The Split Glaive is a signature divine weapon, not an ordinary spear with decora
 
 At rest it reads as one elegant long glaive. During authored attacks, a small number of blade pieces may separate along controlled geometric seams, remain aligned by divine energy, perform an impossible sweep or short ranged cut, and reconnect. The first implementation remains deliberately bounded:
 
-1. one precise thrust-to-sweep basic sequence;
-2. one explosive combat dash/gap close;
+1. one precise thrust-to-separately-warned-sweep basic sequence;
+2. one accurately telegraphed Judgment Charge gap close;
 3. one bounded parry/escape answer to spam;
-4. one recognizable split-blade divine technique;
-5. no large catalogue of weapon modes.
+4. one radial Ground Judgment slam;
+5. one recognizable split-blade divine technique;
+6. no large catalogue of weapon modes.
 
 The shaft, hands, core blade, and body pose should be authored together where grip and silhouette matter. Separated blade pieces and energy cuts use synchronized secondary `AnimatedSprite2D` layers so they can move impossibly without disconnecting the Examiner's hands or changing weapon length accidentally. VFX may brighten seams and contact but cannot substitute for the physical thrust, sweep, separation, recoil, or reconnection poses.
 
@@ -120,8 +123,9 @@ Every family uses `down/left/right/up` rows, exact-grid runtime sheets, one scal
 | `idle_<direction>` | 2 debug / 3-4 target | `192x128` debug | Almost motionless observation; at most restrained cloth, breathing, or marking change |
 | `walk_<direction>` | 4 debug | `192x128` debug | Contact/pass/opposite-contact/opposite-pass with deliberate stride |
 | `combat_stance_<direction>` | Folded into transitions in debug | `192x128` debug | Quiet grip and weight set without bouncing |
-| `attack_combo_<direction>` | 6 thrust + 6 sweep debug | `192x128` debug | Preparation, precise thrust, body commitment, wide glaive sweep, follow-through, reset |
-| `dash_<direction>` | 5 debug | `192x128` debug | Compression, launch, directional travel silhouette, braking/reappearance, controlled stance |
+| `attack_combo_<direction>` | 6 thrust + 6 sweep source poses | `192x128` debug | Preparation, precise thrust, separate sweep anticipation, body commitment, follow-through, reset |
+| `judgment_charge_<direction>` | 6 source poses | `192x128` debug | Target point, compression, launch, directional travel silhouette, hard brake, controlled stance |
+| `ground_judgment_<direction>` | 6 source poses | `192x128` debug | High overhead preparation, whole-body descent, planted contact, heavy recovery |
 | `parry_<direction>` | 5 debug | `192x128` debug | Weapon intercept, body angle, accepted contact, deflection/escape, reset |
 | `split_glaive_<direction>` | Composed sweep/dash debug | `192x128` body plus separate lane presentation | Guided physical cuts and final dash; lane energy never substitutes for body motion |
 | `hurt_<direction>` | 3 debug | `192x128` debug | Minimal but unmistakable accepted impact; no immunity illusion |
@@ -130,6 +134,8 @@ Every family uses `down/left/right/up` rows, exact-grid runtime sheets, one scal
 The Stage VII Examiner does not need a death family. Unexpected player dominance transitions into recognition, disengagement, or withdrawal. A true death animation remains deferred until the story explicitly permits this character to die.
 
 Hit flash, hit pause, sparks, audio, and stagger resistance remain separate presentation/gameplay systems. High resistance may reduce reaction frequency or duration, but accepted hits must still communicate contact.
+
+Decision 134 requires a no-VFX body test before presentation approval. Judgment Charge's red lane must match its captured endpoint; Ground Judgment's ring must match its 72-pixel radial hitbox. The current proof intentionally applies no zone slow. `DivineThreatAura` is reusable presentation language and must never be mistaken for collision.
 
 ## Disciple II — The Executioner
 

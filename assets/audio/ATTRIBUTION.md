@@ -161,3 +161,22 @@ The pitch-lowered vocal layers only on the authoritative brace warning. Original
 - **Downloaded:** 2026-08-24
 
 The 0.38-second claw cue layers heavy air displacement, body weight, and three tearing transients at the authored contact. The 0.62-second slam cue layers body/sub impact, earth fracture, grit, and settling debris. The two 1.07-1.19-second real-animal growls alternate during the hind-leg rise and use slightly lowered pitch in runtime. The original CC0 archive and included source note are preserved under `art_source/archive/audio/stage_6_crag_bear_cc0_sources/`.
+
+## Examiner Divine Action Suite
+
+- **Runtime folder:** `sfx/characters/disciples/examiner/`
+- **Source:** Original deterministic in-project synthesis via `tools/generate_examiner_sfx.py`
+- **Created:** 2026-08-25
+
+Fifteen mono cues cover thrust, sweep, charge preparation/travel/impact, slam preparation/impact, Refutation, Axiom preparation/cuts, and Divine Descent chime/launch/charge/fall/impact. They combine synthesized metallic partials, filtered noise, low impacts, and restrained divine chimes; no external recordings or third-party licenses are used.
+
+## Examiner Single-Foundation Boss Theme
+
+- **Runtime folder:** `music/boss/examiner/`
+- **Runtime foundation:** `examiner_ethereal_vocal_loop.mp3`, from `Ethereal Loop` by wipics
+- **Archived audition:** `art_source/archive/audio/examiner_cc0_auditions/examiner_battle_orchestral.mp3`, from `Oh! boss!` by haruta
+- **License:** CC0 / Public Domain for both tracks
+- **Source pages:** https://opengameart.org/content/ethereal-loop and https://opengameart.org/content/oh-boss
+- **Downloaded:** 2026-08-25
+
+The F7 encounter plays exactly one complete music foundation. Dialogue ducks it, launch restores it, the final charge briefly approaches silence, and Phase II returns it after impact. The orchestral audition is preserved outside runtime because the two independently composed songs do not share a verified key, tempo, or arrangement and sounded like overlapping tracks when played together. A future vocal-orchestral replacement must be one coherent licensed composition or stems authored to harmonize.

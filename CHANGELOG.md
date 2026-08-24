@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-08-25 - Examiner Divine Descent V5 Stability and Mix Correction
+
+- Rejected and archived the malformed V4 launch/landing boards after frame-level inspection found detached feet, missing lower-body/armor pixels, cropped profiles, palette artifacts, and unstable silhouettes. Generated fresh V5 6x4 launch and meteor-landing boards from the approved compact Examiner identity, normalized them on a fixed lower-body anchor, and mirrored the right profile for exact left/right mass.
+- Rebuilt Divine Descent presentation around 0.64-second compression, a 0.17-second complete offscreen launch, 3.8 seconds of player-controlled cover, a 0.15-second meteor fall, dedicated kneeling contact, 0.32-second hold, and 0.90-second recovery. A restrained falling streak and 0.055-second black-silhouette/red-eye accent now coincide with contact before the existing shockwave, dust, sound, and finite damage response.
+- Corrected normal Examiner locomotion to face actual velocity after acceleration instead of the desired target vector, removing target-crossover moonwalking while preserving bounded pre-commit attack tracking and locked committed attacks.
+- Removed the two-complete-song overlap. The encounter now owns exactly one CC0 vocal music foundation with cancellable dialogue/launch/silence/Phase-II fades; the unrelated orchestral audition is preserved under the Godot-ignored audio archive.
+- Extended the Examiner smoke test for one-player music ownership, repeated-force idempotence, velocity-aligned facing, complete offscreen exit, meteor-speed timing, impact-accent ownership, and revised frame families. Focused Examiner and Combat Lab checks pass; refreshed rendered V5 captures cover preparation, launch, silhouette contact, and authored landing. The full suite remains 83/84, with only the pre-existing KI-018 Sanctuary front-depth assertion failing.
+
 ## 2026-08-24 - Examiner Compact-Pixel Animation Rebuild
 
 - Replaced the realistic miniature-like Examiner presentation with the owner-approved compact-pixel V3 identity across six action-owned four-direction runtime sheets: locomotion, Measured Thrust, Axis Sweep, Zero Interval, Refutation, and hurt/withdrawal.
@@ -1405,3 +1413,15 @@ All notable completed project changes are recorded here. This project follows a 
 ### Performance Improvements
 
 - None.
+## 2026-08-25 - Examiner Divine Boss Combat Polish
+
+- Accepted Decision 135 and implemented Divine Descent as the Examiner's official Phase I-to-II transition in the F7 proof: 70% trigger, short calm dialogue/camera focus, authored launch/fall/impact/recovery, 3.8-second player-controlled cover window, four exact 54-pixel pylon zones, finite 260 raw exposed damage, zero protected damage, and a 0.95-second punish recovery.
+- Added two fresh action-owned runtime sheets plus their immutable generated sources, an original reusable 512-pixel white-gold seal with counter-rotating layers, brighter beating divine aura symbols, large impact shockwave/debris, and rendered launch/cover/impact reviews.
+- Corrected Examiner horizontal animation-row mapping and allowed only bounded thrust/sweep wind-up tracking before commitment, fixing cases where the body attacked opposite King's actual position while preserving locked warnings.
+- Added an encounter director that keeps body timing, arena damage/cover, and camera/dialogue/music authority separate; added the F7-only `FORCE DIVINE DESCENT` control and a reusable Player cinematic lock that releases as soon as the cover phase begins.
+- Added five deterministic Divine Descent cues and two CC0 music layers. Phase I is restrained, dialogue ducks the orchestral layer, and Phase II brings it forward without changing combat authority.
+- Rebuilt Precision Thrust, Divine Sweep, Judgment Charge, and Ground Judgment from fresh compact-pixel physical poses, normalized them to one planted baseline, and kept `AnimatedSprite2D` as the body-animation owner.
+- Replaced the ambiguous Zero Interval proof with one accurate red-lane Judgment Charge; added a separately warned sweep, contact-synchronized radial slam, charge afterimages, directional weapon trails, subtle divine motes, reusable divine threat aura, ground cracks/shockwave/debris, and reserved camera pulses.
+- Added ten deterministic original Examiner action/impact cues and synchronized them to state/contact signals. No external audio license dependency or charge-zone slow was introduced.
+- Added compact player-responsive behavior: range selects the gap closer, repeated close exchanges expose Ground Judgment, and repeated accepted hits ready Refutation sooner without interrupting current actions or bypassing cooldowns.
+- Archived the unused Zero Interval sheet/source outside runtime, refreshed F7 review captures, and extended the focused Examiner smoke test for the new sheets, states, hitboxes, warning endpoint, presentation, and audio ownership. Focused Examiner/Lab/HUD/audio/archive checks pass; the full suite is 83/84 with only the pre-existing documented Sanctuary front-depth assertion failing.

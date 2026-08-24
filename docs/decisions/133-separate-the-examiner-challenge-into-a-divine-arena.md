@@ -27,7 +27,7 @@ Choose option 3.
 - The owner-supplied images are preserved as composition/readability references only. Their creature engraving, characters, UI, and exact layout must not be copied.
 - The exact shared divine emblem remains open, so the floor uses abstract measurement and Split Glaive geometry rather than a permanent god symbol.
 - Terrain, dormant engraving, animated flames, and authoritative Axiom Divide warnings remain separate layers.
-- The accepted Stage VII signature skill direction is **Axiom Divide: First Measure**: three separated blade sections, precise sequential lane cuts, a final committed dash, strong audiovisual closure, and an optional recognition response when King avoids the complete measure.
+- **Axiom Divide: First Measure** remains the accepted high-tier lane technique: three separated blade sections, precise sequential cuts, a final committed dash, strong audiovisual closure, and an optional recognition response. Decision 135 supersedes only its former phase-signature role by making **Divine Descent** the official Phase I-to-II transition.
 - The arena must be modular, navigation-aware, collision-authored, and identity-owned. No reusable path may include `stage_7`.
 - The empty-arena preview remains review art and cannot be imported or scaled into a runtime map.
 
@@ -41,4 +41,4 @@ Choose option 3.
 
 ## Implementation Note — 2026-08-24
 
-The F7 Combat Lab now opens on a one-at-a-time Examiner proof and swaps the ordinary lab floor for a reusable procedural Court layer. The controller owns the compact four-technique kit and three independent Axiom damage lanes; presentation scripts own body frames, warnings, and court response. This proof deliberately has no portal, story, reward, replay, or save authority and does not complete Stage VII.
+The F7 Combat Lab now opens on a one-at-a-time Examiner proof and swaps the ordinary lab floor for a reusable procedural Court layer. The controller owns the physical kit, Axiom lanes, and Descent body timing; the Court owns exact pylon protection and impact damage; a debug encounter director owns short dialogue, camera, and phase-aware music. This proof deliberately has no portal, story outcome, reward, replay, or save authority and does not complete Stage VII.

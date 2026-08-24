@@ -76,6 +76,7 @@ var _last_primary_target_id := 0
 var _last_primary_click_msec := -PRIMARY_CLICK_ENGAGE_WINDOW_MSEC
 var _last_primary_click_world_position := Vector2.ZERO
 var _applied_knockback_velocity := Vector2.ZERO
+var _cinematic_locked := false
 
 
 func _ready() -> void:
@@ -129,6 +130,12 @@ func _sync_run_health(current: float, _maximum: float) -> void:
 func _physics_process(delta: float) -> void:
 	velocity -= _applied_knockback_velocity
 	_applied_knockback_velocity = Vector2.ZERO
+	if _cinematic_locked:
+		velocity = Vector2.ZERO
+		if _was_moving:
+			_was_moving = false
+			movement_changed.emit(Vector2.ZERO, false)
+		return
 	_try_apply_pending_weapon()
 	if not is_in_hit_recovery():
 		auto_combat.update_auto_combat(delta)
@@ -203,6 +210,9 @@ func _physics_process(delta: float) -> void:
 	)
 
 func _unhandled_input(event: InputEvent) -> void:
+	if _cinematic_locked:
+		get_viewport().set_input_as_handled()
+		return
 	if _is_targeting_any_ability():
 		var is_left_mouse_confirm: bool = (
 			event is InputEventMouseButton
@@ -255,6 +265,31 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	apply_debug_testing_preset()
 	get_viewport().set_input_as_handled()
+
+
+func set_cinematic_locked(value: bool) -> void:
+	if _cinematic_locked == value:
+		return
+	_cinematic_locked = value
+	if not value:
+		return
+	_clear_buffered_action()
+	_cancel_all_targeting()
+	combat_targeting.clear_target()
+	auto_combat.set_auto_farm_enabled(false)
+	attack_component.cancel_attack()
+	evade_component.cancel_evade()
+	ability_1_component.cancel_cast()
+	ability_2_component.cancel_cast()
+	ability_3_component.cancel_cast()
+	ability_4_component.cancel_cast()
+	knockback_component.clear()
+	stagger_component.clear()
+	velocity = Vector2.ZERO
+
+
+func is_cinematic_locked() -> bool:
+	return _cinematic_locked
 
 
 func apply_debug_testing_preset() -> void:

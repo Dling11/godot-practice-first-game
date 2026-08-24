@@ -41,6 +41,7 @@ func _run() -> void:
 		lab.ai_toggle,
 		lab.invincible_toggle,
 		lab.combat_tools_button,
+		lab.force_phase_button,
 		lab.clear_button,
 		lab.reset_button,
 		lab.exit_button,
@@ -51,6 +52,9 @@ func _run() -> void:
 			return
 	if not _enemies_are_rewardless(lab):
 		_fail("Combat Lab enemy retained production reward authority.")
+		return
+	if not lab.force_phase_button.visible or lab.force_phase_button.disabled:
+		_fail("Combat Lab did not expose the Examiner-only Divine Descent force control.")
 		return
 
 	lab.set_enemy_ai_enabled(false)

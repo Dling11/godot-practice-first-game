@@ -24,10 +24,12 @@ const ARENA_BOUNDS := Rect2(40.0, 92.0, 650.0, 390.0)
 @export var court_arena: CourtOfFirstMeasure
 @export var base_arena: CanvasItem
 @export var base_arena_border: CanvasItem
+@export var examiner_director: ExaminerEncounterDirector
 @export var enemy_selector: OptionButton
 @export var spawn_one_button: Button
 @export var spawn_four_button: Button
 @export var spawn_eight_button: Button
+@export var force_phase_button: Button
 @export var clear_button: Button
 @export var reset_button: Button
 @export var exit_button: Button
@@ -91,6 +93,8 @@ func spawn_selected(count: int) -> void:
 
 func clear_simulation() -> void:
 	boss_hud.clear_boss()
+	examiner_director.bind(null)
+	force_phase_button.disabled = true
 	for enemy in _active_enemies.duplicate():
 		if is_instance_valid(enemy):
 			enemy.queue_free()
@@ -164,6 +168,8 @@ func _spawn_enemy(scene: PackedScene, index: int, requested_count: int) -> void:
 		boss_hud.bind_boss(enemy.health_component, "THE EXAMINER", "FIRST MEASURE | DEBUG TRIAL")
 		enemy.axiom_started.connect(court_arena.pulse_measure)
 		enemy.measure_recognized.connect(_on_measure_recognized)
+		examiner_director.bind(enemy)
+		force_phase_button.disabled = false
 
 
 func _spawn_position(index: int, requested_count: int) -> Vector2:
@@ -188,6 +194,7 @@ func _bind_controls() -> void:
 		ai_toggle,
 		invincible_toggle,
 		combat_tools_button,
+		force_phase_button,
 		clear_button,
 		reset_button,
 		exit_button,
@@ -202,12 +209,20 @@ func _bind_controls() -> void:
 	ai_toggle.toggled.connect(set_enemy_ai_enabled)
 	invincible_toggle.toggled.connect(set_player_invincible)
 	combat_tools_button.pressed.connect(player.enable_debug_combat_tools)
+	force_phase_button.pressed.connect(_force_examiner_phase)
 	enemy_selector.item_selected.connect(_on_roster_selected)
 
 
 func _on_roster_selected(_index: int) -> void:
 	_set_examiner_arena(_selected_is_examiner())
+	force_phase_button.visible = _selected_is_examiner()
+	force_phase_button.disabled = not _selected_is_examiner()
 	_update_latest_label()
+
+
+func _force_examiner_phase() -> void:
+	if not examiner_director.force_divine_descent():
+		combat_hud.show_story_message("SPAWN A FRESH EXAMINER FIRST", 1.5)
 
 
 func _on_measure_recognized() -> void:
@@ -305,10 +320,12 @@ func _has_required_dependencies() -> bool:
 		and court_arena != null
 		and base_arena != null
 		and base_arena_border != null
+		and examiner_director != null
 		and enemy_selector != null
 		and spawn_one_button != null
 		and spawn_four_button != null
 		and spawn_eight_button != null
+		and force_phase_button != null
 		and clear_button != null
 		and reset_button != null
 		and exit_button != null

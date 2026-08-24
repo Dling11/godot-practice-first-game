@@ -17,7 +17,8 @@ from PIL import Image
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "art_source/generated/characters/disciples/examiner/compact_pixel_v2"
+LEGACY_SOURCE = ROOT / "art_source/generated/characters/disciples/examiner/compact_pixel_v2"
+BOSS_SOURCE = ROOT / "art_source/generated/characters/disciples/examiner/boss_combat_v3"
 OUTPUT = ROOT / "assets/characters/enemies/examiner"
 CELL = (192, 128)
 ROWS = 4
@@ -28,18 +29,20 @@ FOOT_BASELINE_Y = 120
 
 @dataclass(frozen=True)
 class SheetSpec:
+    source_dir: Path
     source_name: str
     output_name: str
     columns: int
 
 
 SHEETS = (
-    SheetSpec("examiner_locomotion_compact_source_v2_2026-08-24.png", "examiner_locomotion_sheet_192x128.png", 6),
-    SheetSpec("examiner_thrust_compact_source_v2_2026-08-24.png", "examiner_thrust_sheet_192x128.png", 6),
-    SheetSpec("examiner_sweep_compact_source_v2_2026-08-24.png", "examiner_sweep_sheet_192x128.png", 6),
-    SheetSpec("examiner_zero_interval_compact_source_v2_2026-08-24.png", "examiner_zero_interval_sheet_192x128.png", 5),
-    SheetSpec("examiner_refutation_compact_source_v2_2026-08-24.png", "examiner_refutation_sheet_192x128.png", 5),
-    SheetSpec("examiner_reaction_withdraw_compact_source_v2_2026-08-24.png", "examiner_reaction_withdraw_sheet_192x128.png", 6),
+    SheetSpec(LEGACY_SOURCE, "examiner_locomotion_compact_source_v2_2026-08-24.png", "examiner_locomotion_sheet_192x128.png", 6),
+    SheetSpec(BOSS_SOURCE, "examiner_precision_thrust_boss_source_v3_2026-08-25.png", "examiner_thrust_sheet_192x128.png", 6),
+    SheetSpec(BOSS_SOURCE, "examiner_divine_sweep_boss_source_v3_2026-08-25.png", "examiner_sweep_sheet_192x128.png", 6),
+    SheetSpec(BOSS_SOURCE, "examiner_judgment_charge_boss_source_v3_2026-08-25.png", "examiner_judgment_charge_sheet_192x128.png", 6),
+    SheetSpec(BOSS_SOURCE, "examiner_ground_judgment_boss_source_v3_2026-08-25.png", "examiner_ground_judgment_sheet_192x128.png", 6),
+    SheetSpec(LEGACY_SOURCE, "examiner_refutation_compact_source_v2_2026-08-24.png", "examiner_refutation_sheet_192x128.png", 5),
+    SheetSpec(LEGACY_SOURCE, "examiner_reaction_withdraw_compact_source_v2_2026-08-24.png", "examiner_reaction_withdraw_sheet_192x128.png", 6),
 )
 
 
@@ -139,7 +142,7 @@ def _place_frame(frame: Image.Image) -> tuple[Image.Image, tuple[int, int, int, 
 
 
 def _normalize(spec: SheetSpec) -> None:
-    source = _clean_alpha(Image.open(SOURCE / spec.source_name))
+    source = _clean_alpha(Image.open(spec.source_dir / spec.source_name))
     alpha = source.getchannel("A")
     row_bounds = _gutter_boundaries(alpha, ROWS, "y", (0, 0, source.width, source.height))
     sheet = Image.new("RGBA", (CELL[0] * spec.columns, CELL[1] * ROWS))

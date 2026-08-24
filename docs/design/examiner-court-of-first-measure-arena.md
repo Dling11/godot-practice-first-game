@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted high-level direction plus a debug-only F7 combat proof. The working title remains provisional. Production Stage VII terrain, transitions, dialogue, outcomes, reward/save authority, final modular raster kit, and dedicated audio do not exist yet.
+Accepted high-level direction plus a debug-only F7 combat proof. The working title remains provisional. The proof now includes synchronized action audio, a phase-aware two-layer theme, short transition dialogue, and the complete Divine Descent cover lesson. Production Stage VII travel, outcomes, reward/save authority, final modular raster kit, and final numerical mix remain open.
 
 ## Stage VII Placement
 
@@ -41,6 +41,12 @@ It is concept evidence only. Never place or scale that full image directly into 
 - no Forest trees, roots, ordinary ruins, throne, corpse, or clutter inside the challenge arena.
 
 The floor engraving must remain quieter than every authoritative attack warning. During Axiom Divide, presentation may dim the dormant engraving while separate gold-white lane overlays illuminate. Static terrain must never be mistaken for an active hit area.
+
+## Divine Descent — Phase Transition
+
+At 70% health in the debug proof, the Examiner stops the fight, draws a short camera focus, and calmly acknowledges King before launching out of view. King regains control for 3.8 seconds while an original white-gold seal charges at arena center. The four cyan pylons expose 54-pixel protection zones driven by the exact same coordinates as damage authority. The center impact deals 260 finite raw damage when exposed and zero damage when protected, then leaves a 0.95-second recovery before Phase II.
+
+Fresh frame-authored preparation, launch, fall, contact, and recovery remain readable without VFX. The generated seal is split into counter-rotating presentation layers; charge glow, safe-zone rings, debris, shockwaves, camera response, and five original cues enhance the action. A future Stage XV rematch may threaten cover, but Stage VII must keep all four zones reliable.
 
 ## Axiom Divide — First Measure
 
@@ -85,10 +91,10 @@ Reusable paths must not include `stage_7`.
 
 - owner feel-test of the F7 court composition and working title;
 - production modular raster tiles, pylon scenes/collision, animated flames, entrance/exit anchors, and camera behavior;
-- exact Examiner dialogue positions, expected-loss/abnormal-victory outcomes, and portal-return behavior;
-- final Axiom lane widths, telegraph duration, damage, recognition condition, safe-space rules, and dedicated audio;
+- expected-loss/abnormal-victory outcomes and portal-return behavior beyond the approved two-line phase interruption;
+- final Axiom lane widths, telegraph duration, damage, recognition condition, safe-space rules, and audio mix;
 - owner approval of the rebuilt compact-pixel `192x128` Examiner motion at gameplay speed; the temporary duplicated signature row has already been removed.
 
 ## Debug Proof Values
 
-F7 currently opens on one Examiner at 1,800 HP and 38 armor in a 650x390 bounded court. Axiom begins after 4.2 seconds, uses two offset orthogonal warnings plus one final committed lane, deals 38 raw damage per resolved lane, and reuses after 11.5 seconds. The proof recognizes a complete three-lane dodge. These are feel-test defaults, not locked Stage VII balance.
+F7 currently opens on one Examiner at 1,800 HP and 38 armor in a 650x390 bounded court. Axiom begins after 4.2 seconds, uses two offset orthogonal warnings plus one final committed lane, deals 38 raw damage per resolved lane, and reuses after 11.5 seconds. Divine Descent triggers at 70% HP (or the force button), allows 3.8 seconds to reach one of four exact 54-pixel pylon zones, deals 260 raw damage only when exposed, and grants 0.95 seconds of recovery. These are feel-test defaults, not locked Stage VII balance.

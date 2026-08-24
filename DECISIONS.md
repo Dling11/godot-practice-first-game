@@ -141,6 +141,8 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 131 | Establish the divine Game slow-burn roadmap | King's Champion motive, The One Above as Game architect, hidden tragedy involvement, Stage VII Disciple choice, Stage IX ruins, Stage XX confrontation, reusable content naming, or divine hierarchy boundaries |
 | 132 | Define the two Disciple visual identities | Examiner ivory mask and Split Glaive, Executioner fractured halo and Execution Wheel, shared divine-order language, gameplay scale, animation-first contract, missing reference preservation, or identity-owned folders |
 | 133 | Separate the Examiner challenge into a divine arena | Stage VII Continue/Challenge environments, Court of the First Measure, circular arena, Axiom Divide, modular divine terrain, or special-arena references |
+| 134 | Rebuild the Examiner around readable divine combat | Physical attack frames, Judgment Charge, Ground Judgment, accurate warnings, divine threat aura, synchronized audio, restrained VFX, or compact adaptive behavior |
+| 135 | Make Divine Descent the Examiner phase transition | 70% phase break, calm dialogue, launch/fall frames, exact pylon cover, finite impact damage, phase-aware music, or Stage XV cover escalation boundary |
 
 ## New Decisions
 

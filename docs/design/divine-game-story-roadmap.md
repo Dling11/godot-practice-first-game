@@ -143,7 +143,7 @@ The first-pass combat design uses:
 - strong, fair damage with readable telegraphs;
 - correct use of existing hit-pause, damage, stagger, super-armor, and presentation boundaries.
 
-Axiom Divide separates the Split Glaive into three readable sections, creates accurate sequential gold-white lane warnings and cuts, then commits the Examiner to a final marked dash. The special arena keeps its dormant engraving low contrast and provides genuine safe space; terrain decoration never doubles as an authoritative warning. `docs/design/examiner-court-of-first-measure-arena.md` owns the environment and presentation contract.
+Axiom Divide separates the Split Glaive into three readable sections, creates accurate sequential gold-white lane warnings and cuts, then commits the Examiner to a final marked dash. **Divine Descent** is the accepted phase-transition signature: after a calm interruption the Examiner launches away, a divine seal charges, the four Court pylons become exact safe zones, and the Examiner falls into a finite but devastating center impact. Stage VII keeps the protection reliable; a later-game rematch near Stage XV may threaten cover only after a separate implementation decision. The special arena keeps its dormant engraving low contrast and provides genuine safe space; terrain decoration never doubles as an authoritative warning. `docs/design/examiner-court-of-first-measure-arena.md` owns the environment and presentation contract.
 
 The expected first result is not the Disciple's death. At a designed threshold, on King defeat, or after a readable test condition, the Disciple may stop the encounter and permit King to continue rather than triggering an ordinary Game Over.
 
