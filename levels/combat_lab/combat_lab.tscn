@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=15 format=3]
 
 [ext_resource type="Script" path="res://levels/combat_lab/combat_lab.gd" id="1"]
 [ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="2"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/player_hurt_impact.wav" id="9"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/player_ability_hit.ogg" id="10"]
 [ext_resource type="PackedScene" path="res://ui/boss/boss_health_hud.tscn" id="11"]
+[ext_resource type="PackedScene" path="res://environment/arenas/divine_order/court_of_first_measure/court_of_first_measure.tscn" id="12"]
 
 [sub_resource type="StyleBoxFlat" id="panel"]
 bg_color = Color(0.025, 0.028, 0.038, 0.96)
@@ -32,7 +33,7 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.24, 0.31, 0.2, 1)
 
-[node name="CombatLab" type="Node" node_paths=PackedStringArray("player", "actors", "projectiles", "effects", "camera", "combat_hud", "boss_hud", "enemy_selector", "spawn_one_button", "spawn_four_button", "spawn_eight_button", "clear_button", "reset_button", "exit_button", "ai_toggle", "invincible_toggle", "combat_tools_button", "status_label", "latest_label")]
+[node name="CombatLab" type="Node" node_paths=PackedStringArray("player", "actors", "projectiles", "effects", "camera", "combat_hud", "boss_hud", "court_arena", "base_arena", "base_arena_border", "enemy_selector", "spawn_one_button", "spawn_four_button", "spawn_eight_button", "clear_button", "reset_button", "exit_button", "ai_toggle", "invincible_toggle", "combat_tools_button", "status_label", "latest_label")]
 script = ExtResource("1")
 player = NodePath("World/Actors/Player")
 actors = NodePath("World/Actors")
@@ -41,6 +42,9 @@ effects = NodePath("World/Effects")
 camera = NodePath("World/Actors/Player/Camera2D")
 combat_hud = NodePath("UI/CombatHUD")
 boss_hud = NodePath("UI/BossHealthHUD")
+court_arena = NodePath("World/CourtOfFirstMeasure")
+base_arena = NodePath("World/Arena")
+base_arena_border = NodePath("World/ArenaBorder")
 enemy_selector = NodePath("UI/LabPanel/Margin/Stack/EnemySelector")
 spawn_one_button = NodePath("UI/LabPanel/Margin/Stack/SpawnRow/Spawn1")
 spawn_four_button = NodePath("UI/LabPanel/Margin/Stack/SpawnRow/Spawn4")
@@ -73,6 +77,9 @@ width = 3.0
 default_color = Color(0.31, 0.37, 0.23, 0.9)
 closed = true
 points = PackedVector2Array(40, 92, 690, 92, 690, 482, 40, 482)
+
+[node name="CourtOfFirstMeasure" parent="World" instance=ExtResource("12")]
+visible = false
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="World"]
 script = ExtResource("4")

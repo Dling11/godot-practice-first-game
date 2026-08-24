@@ -91,14 +91,16 @@ The later roles and material purposes below remain planning slots rather than fi
 | 4 | Armored hide-bearing Forest beast | Hide and bark plates for leather armor |
 | 5 | Implemented Varkuun major-boss milestone | Permanent core-gear crafting seal plus repeatable Varkuun Core catalyst |
 | 6 | Implemented `The Elder Ascent`; normal armored Crag Bear melee/slam family | Crag Iron fittings and Echo Claw resonance/accessory components |
-| 7 | Heavy corrupted brute or mini-boss | Dense reinforcement plus binding/setting components for heavy gear and accessories |
+| 7 | Compact story stage with the masked Examiner and a Continue/Challenge event; ordinary roster remains open | Any ordinary-stage drops may prepare accessory components, but the optional overpowered test cannot gate core progression |
 | 8 | Fungal/spirit mini-boss milestone | Permanent standard-accessory seal plus repeatable fungal/spirit catalyst |
-| 9 | Elite Forest warden/hunter role | Refined fittings and advanced regional recipes |
+| 9 | Modular reclaimed magical ruins; provisional fast Mage plus space-controlling Stone Warden pairing | Arcane/resonant plus durable/ancient component families for refined accessories |
 | 10 | Major Forest boss | Permanent relic/signature-accessory crafting seal plus repeatable unique catalyst |
 
 Stage VI onward introduces new roles rather than continuing Mireling/Rootling filler. Decision 127 removes Mirelings and Rootlings from Stage VI; known Forest enemies may return only in authored combinations where their role remains useful. Stage VI therefore uses Thralls as melee screeners, rebuilt Spitters as ranged priorities, and one finale Hog around the approved Bear population. Aim for roughly one important new family every one or two stages and never use palette-only replacements.
 
-Decisions 124-127 complete Stage VI on the approved muted teal/pale-stone top-down terrace with modular cliffs, trees, rocks, fixed-bank waterfall, collision/navigation, composition-heavy five-wave pressure, Crag Bear drops, and production completion. The rejected distant canyon/threshold remain archive-only. A provisional Stage VII idea may introduce an optional god-tier follower challenge, but its identity, dialogue, combat/reward contract, and relationship to Stage VII's ordinary roster remain open.
+Decisions 124-127 complete Stage VI on the approved muted teal/pale-stone top-down terrace with modular cliffs, trees, rocks, fixed-bank waterfall, collision/navigation, composition-heavy five-wave pressure, Crag Bear drops, and production completion. The rejected distant canyon/threshold remain archive-only. Decisions 131-132 assign Stage VII a compact story role: the calm masked Examiner presents an honest Continue/Challenge choice and an optional fair recognition test. His lean ivory/gold silhouette, Divine Split Glaive, animation-first behavior, and art-first large-scale approval gate are documented; he does not die during the expected first encounter, and defeating the optional overpowered test cannot be required for ordinary progression. His personal name, ordinary roster, dialogue, reward, replay, saving, transition rules, selected size, and final pixel proof remain open.
+
+Stage IX owns the reclaimed magical-ruins direction that was deliberately removed from Stage VII. Its modular top-down environment and provisional Mage/Warden pairing should create ranged repositioning behind physical space control. The Mage must use bounded retreat rather than indefinite kiting; the Warden must block/control space rather than being ignorable slow health. Their material families prepare later accessory work, but exact IDs, rarities, drops, and recipes require the individual content contracts.
 
 ### Forest crafting tiers
 
@@ -112,7 +114,7 @@ Decisions 124-127 complete Stage VI on the approved muted teal/pale-stone top-do
 
 A crafting seal is permanent progression and is never consumed. A catalyst is repeatable inventory material and may be consumed by deterministic recipes. Decision 101 locks Stage V to Varkuun Edge, Old Bark Helm, Heartwood Plate, Rootfiber Gloves, Mirebound Leggings, and Mirehide Boots; their exact costs and stat budgets live in `docs/design/stage-5-core-equipment-set.md`. Mireward Charm and Thornward Clasp remain Stage VIII regional previews. Decision 101 preserves later accessory slots as Bracer, Amulet, Ring, and Talisman; their final items and stat budgets remain unimplemented.
 
-Stage V's six recipes and item names are locked by Decisions 100-101 and craftable under Decision 120. Crag Bear, Crag Iron, and Echo Claw are locked by Decision 126; Stage VII-X enemy/item names remain open until their individual content contracts are approved. The regional theme does not require every name to mention roots or trees. Stage IV's Armored Hog contract remains locked.
+Stage V's six recipes and item names are locked by Decisions 100-101 and craftable under Decision 120. Crag Bear, Crag Iron, and Echo Claw are locked by Decision 126. Decision 131 locks the Stage VII/IX narrative roles; Decision 132 locks the Examiner/Executioner role titles and high-level visual/weapon identities. Their personal names plus Mage, Warden, material, and item names remain open until their individual content contracts are approved. The regional theme does not require every name to mention roots or trees. Stage IV's Armored Hog contract remains locked.
 
 ## Monster Content Contract
 

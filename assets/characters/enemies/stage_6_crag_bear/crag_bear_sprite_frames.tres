@@ -1,9 +1,9 @@
-[gd_resource type="SpriteFrames" format=3]
+[gd_resource type="SpriteFrames" format=3 uid="uid://4bi33cwsgm3k"]
 
-[ext_resource type="Texture2D" path="res://assets/characters/enemies/stage_6_crag_bear/crag_bear_basic_attack_v2_sheet_96x64.png" id="1_781km"]
-[ext_resource type="Texture2D" path="res://assets/characters/enemies/stage_6_crag_bear/crag_bear_reaction_sheet_64x48.png" id="2_kfrbc"]
-[ext_resource type="Texture2D" path="res://assets/characters/enemies/stage_6_crag_bear/crag_bear_locomotion_sheet_64x48.png" id="3_vviuq"]
-[ext_resource type="Texture2D" path="res://assets/characters/enemies/stage_6_crag_bear/crag_bear_body_slam_v2_sheet_96x80.png" id="4_vc6ku"]
+[ext_resource type="Texture2D" uid="uid://csitfecfeajcq" path="res://assets/characters/enemies/stage_6_crag_bear/crag_bear_basic_attack_v2_sheet_96x64.png" id="1_781km"]
+[ext_resource type="Texture2D" uid="uid://bqikrrja2skow" path="res://assets/characters/enemies/stage_6_crag_bear/crag_bear_reaction_sheet_64x48.png" id="2_kfrbc"]
+[ext_resource type="Texture2D" uid="uid://dovj6j3mvknqm" path="res://assets/characters/enemies/stage_6_crag_bear/crag_bear_locomotion_sheet_64x48.png" id="3_vviuq"]
+[ext_resource type="Texture2D" uid="uid://cisj7a434ojx3" path="res://assets/characters/enemies/stage_6_crag_bear/crag_bear_body_slam_v2_sheet_96x80.png" id="4_vc6ku"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fpjt5"]
 atlas = ExtResource("1_781km")

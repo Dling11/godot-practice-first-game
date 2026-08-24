@@ -4,21 +4,33 @@ This file is the canonical memory for narrative direction. It separates accepted
 
 ## Accepted Premise
 
-**Battle of Gods** begins as an isekai story. **King** died in a former world alongside his family, including his daughter, and awakened beyond death in the **Sanctuary of the Remembered Veil**. His final memories are fractured: the killer, sequence of deaths, and fate of the other souls remain mysteries that should unfold through play rather than an opening exposition dump.
+**Battle of Gods** begins as an isekai story. **King** lost his family, including his daughter, and died or fell in a former world before awakening beyond death in the **Sanctuary of the Remembered Veil**. His final memories are fractured: the killer, sequence of deaths, and fate of the other souls remain mysteries that should unfold through play rather than an opening exposition dump.
 
 Many known gods crave the emotional resonance produced by mortal choice under pressure. Worlds, wars, chosen heroes, and catastrophes become nourishment, trials, wagers, or entertainment; grief, wrath, fear, hope, and defiance are valuable precisely because the victim can still choose. This makes divine power dangerous even when it appears beautiful. Not every god is identical: some may be cruel, indifferent, trapped by divine law, secretly sympathetic, or openly opposed to the games.
 
-**The One Above** predates and exceeds the known gods. It remains the strongest known being and a mystery rather than an ordinary quest-giver or the automatically confirmed final villain. The lesser gods' cruelty does not yet prove The One Above created or approves their games.
+The stages belong to a divine **Game** created within the larger universe. The Game can organize Champions, trials, monsters, rewards, materials, Sanctuary access, resurrection, progression, and divine interference without being reality itself.
+
+**The One Above** is the title of the being who architected the Game. It does not establish that he created reality, created the other gods, or is the strongest being in existence. His true name and final place in the divine order remain open; `Aethron` is only an unapproved working possibility. Mortals may initially mistake the title for a supreme-being claim, but the long-term theme preserves the possibility that there is always something above.
 
 ## King and the Veil
 
-King is the planned young-prime narrative lead and begins mortal, wounded, and inexperienced in the new world's rules, not as a chosen demigod. He may have been a father, but his playable appearance is a lean, energetic man in his late twenties rather than an aged patriarch. He owns a signature sword and fighting identity rather than changing his visible body weapon whenever an equipment card changes. Equippable essences and relics strengthen that identity while later supernatural growth remains earned.
+King is the young-prime production lead and begins mortal, wounded, and inexperienced in the Game's rules, not as a chosen demigod. He was a father, but his playable appearance is a lean, energetic man in his late twenties rather than an aged patriarch. He owns a signature sword and fighting identity rather than changing his visible body weapon whenever an equipment card changes. Equippable essences and relics strengthen that identity while later supernatural growth remains earned.
 
 The Remembered Veil preserves impressions that death and divine interference could not fully erase. Sanctuary is a refuge where displaced souls can recover identity, learn which memories are truly theirs, and enter hostile realms through earned expedition paths. Eira studies soul-memory and sealed power. Orren prepares mortal arms and essences because honest craft remains valuable even against divine enemies. Nema binds living materials into relics that can carry power without replacing a soul's identity.
 
-The first story question is not “How powerful can King become?” but “Why did the Veil remember him—and what happened to the souls of his family—when death should have ended their story?”
+The first story question is not “How powerful can King become?” but “Why did the Veil remember him—and what happened to the souls of his family—when death should have ended their story?” A future revised opening has an unknown `???` offer King another chance and suggest that his family remains reachable. King accepts willingly and initially believes this being saved him.
 
-The portal sequence is provisionally called the **Hundredfold Ascent**. Mortals believe its last threshold reaches the divine authors of their trials. This supports the image of a journey toward Stage 100 without claiming that one hundred separate production levels already exist or that the final threshold tells the truth.
+The portal sequence is provisionally called the **Hundredfold Ascent**. Mortals believe its last threshold reaches the divine authors of their trials. This supports the image of a journey toward Stage 100 without claiming that one hundred separate production levels already exist or that the final threshold tells the truth. King climbs to recover his memories, find his family's souls, understand why he was selected, and confront the beings who control his path.
+
+## Internal Divine-Game Truth
+
+This section is internal spoiler authority and must not be copied into early player-facing dialogue or route descriptions.
+
+King is one of the Game's selected **Champions**. The One Above did not merely discover him after the family tragedy; the accepted long-term direction is that he selected King before or during it and materially helped create or exploit the conditions that produced King's loss, grief, hope, struggle, rage, and growth. The exact mechanism remains open.
+
+The family promise should not be a trivial total lie. The preferred direction preserves an authentic form of their souls or identities because The One Above deliberately retained the hope required to motivate King. Their exact condition—alive, imprisoned, reincarnated, divided, copied, or otherwise preserved—remains unresolved.
+
+The gradual reveal is `mysterious rescue -> architected Game -> Disciples -> other gods -> competing Champions -> impossible knowledge -> suspected complicity -> engineered suffering`. Early story must make The One Above more credible before it makes him suspect. The complete disclosure and stage anchors live in `docs/design/divine-game-story-roadmap.md`.
 
 ## Narrative and Roster Status
 
@@ -52,9 +64,9 @@ Huge swords, catastrophic spells, impossible movement, screen fractures, black-f
 
 ## Opening Story Path
 
-### Prologue — The Soul the Veil Remembered
+### Planned Opening Revision — The Soul the Veil Remembered
 
-King awakens in Sanctuary with no clear explanation for why he crossed worlds alone. The portal opens only after Sanctuary records that awakening. Eira recognizes that parts of his soul are sealed rather than missing, including memories that may belong to his daughter.
+King falls or dies and reaches a transitional Sanctuary/Veil space. An unknown `???` offers him another chance and suggests that his family's souls are not completely gone. King enters willingly, but neither he nor the player learns the being's title, the Game's authorship, Champion selection, or responsibility for the tragedy. The current title-to-Sanctuary runtime remains in place until this opening receives its own implementation contract.
 
 ### Chapter I — Forgotten Grove
 
@@ -64,14 +76,24 @@ The Grove is the first available expedition. Its corruption has begun to imitate
 
 A corrupted hollow reveals that the small Rootlings behave as the Rootbound Husk's brood. After King cuts through ten of them, the ancient guardian names the deaths as a trespass before confronting him as the first mini-boss.
 
-### Planned Continuation — The Drowned Bells
+### Planned Stage VII — The Examiner's Choice
 
-A drowned sanctuary still calls to gods that abandoned it. Its authored access contract includes higher level, story, boss, discovery, and key-item memories. The route and its content remain planned.
+The first Disciple, using the role title **The Examiner**, is a calm masked masculine humanoid in pale divine armor who wields a Divine Split Glaive. He recognizes King and identifies his master as the being responsible for King's return. The Examiner reinforces hope that King's family remains reachable, then offers an honest Continue/Challenge choice. The optional challenge demonstrates a severe but fair power gap as a recognition test; expected defeat does not require an ordinary Game Over, and abnormal player success cannot permanently kill him or break later story. A second future Disciple, **The Executioner**, is a heavily armored feminine/subtly feminine contrast with a fractured halo and Divine Execution Wheel; she may be foreshadowed but is not introduced at Stage VII.
+
+### Planned Stage IX — Reclaimed Magical Ruins
+
+Stage IX, not Stage VII, carries the larger modular magical-ruins identity. A provisional fast ranged Mage and space-controlling Stone Warden create chase-versus-blocker pressure and supply material families for later accessory progression. Their names, art, stats, drops, and recipes remain open.
+
+### Planned Stage XX — The Benefactor Enters
+
+The One Above personally enters his Game for the first direct god confrontation. He still presents himself as King's benefactor and treats combat as an entertaining trial. Details he should not know about King's original tragedy create the first major crack in that story without forcing the full truth to be revealed at Stage XX.
 
 ## Story Delivery
 
 - Prefer short dialogue, locations, enemy design, artifacts, boss phases, and recovered memories over long exposition.
 - Let the gods tempt King with believable fragments of his family rather than confirming the truth too early.
+- Let Stage VII strengthen King's trust in The One Above before later contradictions weaken it.
+- Never expose the internal engineered-tragedy direction in early route copy, dialogue, marketing, or player-facing documentation.
 - Let Eira interpret memory without making her automatically correct about every mystery.
 - Let Orren ground the story in mortal survival and the cost of divine conflict.
 - Let Nema connect living materials, crafted relics, and memory without turning crafting into a lore dump.
@@ -80,11 +102,13 @@ A drowned sanctuary still calls to gods that abandoned it. Its authored access c
 
 ## Open Questions
 
-- Who or what caused King and his family's deaths in their former world?
+- How exactly did The One Above create, commission, alter, or exploit the tragedy after selecting King?
 - Is King's daughter alive, imprisoned, copied from memory, reincarnated elsewhere, or used as divine bait?
 - Was “King” his former name, a title, or a name the Veil gave him?
-- Did the Veil choose King, or did someone place his soul there?
+- Did the Veil independently preserve King, or was his arrival arranged through the Game?
 - Which god first turned mortal struggle into entertainment?
-- Is The One Above absent, observing, imprisoned, or operating under rules unknown even to gods?
+- What is The One Above's actual name, and where does he stand among other gods and greater beings?
+- Which authentic form of King's family did The One Above preserve, and what would rescue truly mean?
+- What are the Examiner's personal name, exact dialogue, test/reward/replay rules, and later relationship with King and the Executioner?
 - What unlocks the first playable character switch, and how is the new soul's motive introduced?
-- Which early boss closes the full Forgotten Grove arc, and where are the Cinder Sigil and Thornbound Warden introduced?
+- Which boss closes the full Forest arc at Stage X, and what first proves that the Game is a constructed system?

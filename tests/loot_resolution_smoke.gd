@@ -173,6 +173,32 @@ func _run() -> void:
 	if material_inventory.get_quantity(&"forest_root_fiber") != 1:
 		_fail("A visible enemy drop did not magnetically auto-collect.")
 		return
+	if not material_inventory.add_material(
+		&"forest_root_fiber",
+		material_inventory.MAX_MATERIAL_QUANTITY - 1
+	):
+		_fail("The capped-pickup fixture could not fill its material stack.")
+		return
+	var capped_pickup := PickupScene.instantiate() as MaterialPickup
+	capped_pickup.auto_collect_delay = 0.01
+	capped_pickup.configure(
+		MaterialCatalog.find_material(&"forest_root_fiber"),
+		2,
+		pickup_player
+	)
+	pickup_controller.actors.add_child(capped_pickup)
+	capped_pickup.global_position = pickup_player.global_position + Vector2(20.0, 0.0)
+	capped_pickup.begin_pop(Vector2.UP)
+	var capped_pickup_deadline := Time.get_ticks_msec() + 2000
+	while is_instance_valid(capped_pickup) and Time.get_ticks_msec() < capped_pickup_deadline:
+		await process_frame
+	if (
+		is_instance_valid(capped_pickup)
+		or material_inventory.get_quantity(&"forest_root_fiber")
+			!= material_inventory.MAX_MATERIAL_QUANTITY
+	):
+		_fail("A loot pickup remained in the world after reaching a full material stack.")
+		return
 	pickup_stage.queue_free()
 	await process_frame
 
@@ -217,6 +243,38 @@ func _run() -> void:
 		or not (stage_5_replay.get("key_item_ids", PackedStringArray()) as PackedStringArray).is_empty()
 	):
 		_fail("Stage V replay did not grant exactly one repeat catalyst without repeating the seal.")
+		return
+
+	_reset_loot_state()
+	material_inventory.apply_debug_testing_preset()
+	if not material_inventory.add_material(
+		&"forest_varkuun_core",
+		material_inventory.MAX_MATERIAL_QUANTITY
+			- material_inventory.DEBUG_TEST_MATERIAL_QUANTITY
+	):
+		_fail("The full Varkuun Core stack fixture could not reach its cap.")
+		return
+	loot_service.begin_expedition()
+	var debug_varkuun_chest := ChestScene.instantiate() as StageRewardChest
+	debug_varkuun_chest.configure(
+		Stage5Table,
+		StageRewardChest.ChestTier.VARKUUN_CHEST
+	)
+	root.add_child(debug_varkuun_chest)
+	await process_frame
+	var debug_chest_result := debug_varkuun_chest.claim_for_testing()
+	await physics_frame
+	if (
+		not bool(debug_chest_result.get("success", false))
+		or debug_varkuun_chest.chest_sprite.texture != debug_varkuun_chest.open_texture
+		or material_inventory.get_quantity(&"forest_varkuun_core")
+			!= material_inventory.MAX_MATERIAL_QUANTITY
+		or _quantity_for(
+			debug_chest_result.get("overflow_materials", []),
+			&"forest_varkuun_core"
+		) != 2
+	):
+		_fail("A full material stack blocked or overfilled the production Stage V chest reward.")
 		return
 
 	_reset_loot_state()
@@ -332,7 +390,7 @@ func _run() -> void:
 	quit(0)
 
 
-func _quantity_for(stacks: Array[Dictionary], material_id: StringName) -> int:
+func _quantity_for(stacks: Array, material_id: StringName) -> int:
 	for stack: Dictionary in stacks:
 		var material := stack.get("material") as MaterialDefinition
 		if material != null and material.material_id == material_id:

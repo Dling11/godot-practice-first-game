@@ -26,6 +26,7 @@ These conventions apply to Godot 4.x GDScript, scenes, resources, and game asset
 - Node names: `PascalCase`, descriptive, and stable within reusable scenes.
 - Input actions: namespaced `snake_case`, such as `player_move_left` and `player_dodge`.
 - Regional vocabulary is scoped content, never the game's global naming template. Forest/root/tree/bark/grove language may be used across planned Stages I-X when a character, creature, material, or place genuinely belongs to that ecology, but do not force the motif into every name. Unrelated Sanctuary characters, cross-region services, generic systems, and Stage XI+ content require personal, neutral, or lore-meaningful naming rather than inheriting the Forest motif by habit.
+- Reusable enemies, NPCs, projectiles, VFX, sounds, materials, tiles, and environment modules use identity-owned folders and filenames. Never prefix or nest reusable content under `stage_7`, `stage_9`, or another introduction stage. Stage folders own only layouts, encounter composition, stage-specific flow, and assets that truly cannot exist outside that stage.
 
 ## GDScript Organization
 

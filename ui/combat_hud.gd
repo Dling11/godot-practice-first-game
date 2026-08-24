@@ -601,14 +601,22 @@ func _on_options_button_pressed() -> void:
 func _on_material_granted(
 	material: MaterialDefinition,
 	quantity: int,
-	source_kind: StringName
+	source_kind: StringName,
+	reached_cap: bool
 ) -> void:
 	var source_text := "ENEMY DROP"
 	if source_kind == &"stage_chest":
 		source_text = "STAGE CHEST"
+	var title := "%s  ×%d" % [material.display_name.to_upper(), quantity]
+	if quantity <= 0:
+		title = "%s  •  MAX" % material.display_name.to_upper()
+	elif reached_cap:
+		title += "  •  MAX"
+	if reached_cap:
+		source_text += "  •  STACK FULL"
 	_queue_loot_notification(
 		material.icon,
-		"%s  ×%d" % [material.display_name.to_upper(), quantity],
+		title,
 		source_text
 	)
 
@@ -618,11 +626,19 @@ func _on_stage_reward_granted(result: Dictionary) -> void:
 	var total_quantity := 0
 	for stack: Dictionary in materials:
 		total_quantity += int(stack.get("quantity", 0))
+	var overflow_materials: Array = result.get("overflow_materials", [])
+	var overflow_quantity := 0
+	for stack: Dictionary in overflow_materials:
+		overflow_quantity += int(stack.get("quantity", 0))
 	var recipe_ids: PackedStringArray = result.get(
 		"recipe_ids",
 		PackedStringArray()
 	)
 	var title := "%d MATERIALS" % total_quantity
+	if total_quantity == 0 and overflow_quantity > 0:
+		title = "MATERIAL STACKS MAX"
+	elif overflow_quantity > 0:
+		title += "  •  STACK MAX"
 	if not recipe_ids.is_empty():
 		title += "  •  %d BLUEPRINTS" % recipe_ids.size()
 	var key_item_ids: PackedStringArray = result.get(

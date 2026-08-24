@@ -1,5 +1,61 @@
 # Changelog
 
+## 2026-08-24 - Examiner Compact-Pixel Animation Rebuild
+
+- Replaced the realistic miniature-like Examiner presentation with the owner-approved compact-pixel V3 identity across six action-owned four-direction runtime sheets: locomotion, Measured Thrust, Axis Sweep, Zero Interval, Refutation, and hurt/withdrawal.
+- Rebuilt the source processor around detected gutters, one fixed `0.42` scale, lower-body anchoring, a shared `y=120` foot baseline, exact left-to-right mirroring, and edge protection so generated spacing cannot create growth, side-direction drift, borrowed neighbor pixels, or clipped capes/weapons.
+- Rejected malformed Axiom generations that crossed cells or omitted a row. Axiom now composes the clean sweep and dash body poses in all four directions while its three authoritative lane cuts remain independent VFX.
+- Archived the prior realistic sources, runtime sheets, and review captures outside Godot imports; added fresh idle, thrust, sweep, dash, and Axiom gameplay captures at 960x540.
+- Reimported all six sheets and passed Combat Lab, Examiner trial, and boss-HUD smoke coverage.
+
+## 2026-08-24 - Examiner F7 Combat Proof
+
+- Added the rewardless, one-at-a-time Examiner as the ninth F7 Combat Lab entry and made it the opening proof; selecting any other actor restores the original lab arena.
+- Added four action-owned `192x128` Examiner sheets derived from approved V2 art, plus a deterministic source processor, runtime/telegraph captures, data-owned tuning, boss HUD binding, and named `AnimatedSprite2D` ranges for locomotion, combo, Zero Interval, Refutation, hurt/withdrawal, and Axiom Divide.
+- Added controller-owned Measured Thrust into Axis Sweep, Zero Interval, Refutation, and Axiom Divide: First Measure. Axiom creates three independent accurate lane warnings, resolves damage separately from presentation, commits the Examiner through the final lane, and reports complete-dodge recognition.
+- Added a reusable debug Court of the First Measure layer with quiet concentric geometry, four boundary pylons, cyan flames, and Axiom-reactive gold inlay. Stage VII transitions, dialogue, outcomes, rewards, saving, final audio, and production raster modules remain intentionally unimplemented.
+- Updated Combat Lab and focused Examiner smoke coverage; editor import, the nine-entry lab contract, reward stripping, arena switching, animation families, and three-lane Axiom startup pass.
+
+## 2026-08-24 - Examiner Special Arena and First Measure Direction
+
+- Accepted Decision 133: the ordinary Stage VII Continue route retains compact Forest-region production, while the optional white-gold Challenge portal transports King to a separate one-screen circular divine test arena. `Court of the First Measure` remains a working title.
+- Preserved the owner's clean-combat and circular-map screenshots unchanged outside runtime assets with provenance, dimensions, checksums, and a non-copying policy.
+- Generated and preserved one original empty-arena preview V1 with an open low-contrast measurement floor, four non-obstructing cyan-flame pylons, broken outer stone, and a southern threshold. It remains review-only; no full-image runtime import is permitted.
+- Accepted **Axiom Divide: First Measure** as the Examiner's restrained Stage VII signature direction: three separated blade sections, sequential accurate lane cuts, a final committed dash, strong audiovisual closure, and possible recognition for a complete dodge. Exact warnings, timing, damage, and safe-space values remain open.
+- Recorded modular target ownership for base floor tiles, engraving overlays, boundary pieces, pylon scenes, isolated flames, Axiom presentation, navigation, collision, occlusion, camera bounds, and transition anchors. No arena, Examiner, skill, or Stage VII runtime content was implemented.
+
+## 2026-08-24 - Two Disciple Visual Direction and Art-First Scale Gate
+
+- Preserved the newly reattached `1536x1024` two-Disciple concept unchanged under `art_source/references/characters/disciples/` with original filename, provenance, dimensions, SHA-256, and a non-runtime modification policy.
+- Preserved the same-baseline height/style board after the owner approved its deliberately tall, long-legged Examiner direction. This approval does not lock an exact pixel height, cell, baseline, footprint, or collision shape.
+- Generated and preserved a preview-only four-cardinal Examiner static-turnaround V1 under `art_source/review/characters/disciples/examiner/`; it was never an animation sheet or runtime texture.
+- Preserved V1 as review history after the owner found its King-relative scale excessive and its narrow cloth-heavy silhouette too feminine. Generated static-turnaround V2 with reduced intended scale, broader masculine shoulders/torso, and more visible long armored legs; V2 remains preview-only and awaits approval.
+- Accepted Decision 132 and documented the two masked Disciples as original top-down pixel-art interpretations rather than resized concept art. The Examiner is the Stage VII priority; the Executioner remains future-only.
+- Locked the Examiner's high-level identity as a tall, lean masculine humanoid in ivory/white-stone armor with restrained gold geometry and a Divine Split Glaive. Live-roster measurements remain comparison evidence only: the owner explicitly rejected the preliminary numeric scale limits and permits a tall or huge presentation independent of King's compact scale.
+- Limited the first Split Glaive contract to one precise thrust/sweep sequence, explosive dash, bounded parry/escape, and one split-blade technique. Hands, shaft, core blade, body commitment, and recovery require real frames before separated-blade VFX or sound.
+- Locked the future Executioner direction as an even larger/broader armored feminine/subtly feminine humanoid with darker divine materials, restrained violet accents, four to six fractured halo pieces, and a broken circular Divine Execution Wheel. Her exact size remains unset, and no Executioner runtime assets or abilities were created.
+- Established a shared non-demonic divine-order language—smooth masks, pale stone material, restrained gold geometry, limited floating construction, and impossible weapons—while leaving the exact emblem and mask mystery open.
+- Recorded identity-owned target paths for both Disciples and their weapons/VFX/audio. No sprite grid, animation, collision, or code may proceed until the preserved static-turnaround design board is approved by the owner.
+
+## 2026-08-24 - Divine Game Story and Stage Roadmap
+
+- Accepted Decision 131 and created the internal divine-Game roadmap. The Game is now explicitly a constructed system within a larger universe; The One Above architects it but is no longer established as reality's creator or the strongest being. `Aethron` remains an unapproved working-name possibility.
+- Clarified King's motive and slow-burn twist: he willingly enters after an unknown apparent benefactor offers credible hope for his family's souls, while internal canon records that The One Above selected him before or during the tragedy and helped create or exploit the suffering that drives his growth.
+- Assigned Stage VII a compact story role with one calm humanoid Disciple, an honest Continue/Challenge route, an expected-loss recognition test, and abnormal-victory handling that preserves the Disciple. Exact identity, dialogue, reward, replay, save, and ordinary-roster contracts remain open before implementation.
+- Reserved the modular reclaimed magical-ruins direction and provisional bounded-kiting Mage/space-controlling Stone Warden pairing for Stage IX, with future material families feeding accessory progression. Reserved Stage XX for the first direct One Above confrontation and the first major crack in his benefactor story.
+- Documented the immediate production bridge as a measured Stage VI Wave 4-5 composition experiment with approximately two late-section Hogs, preserving eight Bears and avoiding global HP/damage inflation. No encounter resource was changed in this documentation pass.
+- Locked reusable content naming by identity rather than introduction stage and recorded the existing stage-numbered Crag Bear art/provenance paths as controlled migration debt. No runtime art path was moved.
+
+## 2026-08-24 - Capped Loot Collection and F9 Chest Safety
+
+- Fixed the production Stage V chest remaining closed after an F9-assisted campaign jump. F9 had filled Varkuun Core and every other material to the technical inventory ceiling, causing the chest's atomic reward batch to reject its two-core first-clear grant as overflow.
+- Changed the non-saving F9 material grant to a still-generous 10,000-unit stockpile, preserving ample crafting/exchange testing supplies while leaving room for real enemy drops and milestone rewards.
+- Added a regression that applies the debug material preset, opens the real Varkuun chest tier, verifies the first-clear reward succeeds, and confirms the two Varkuun Cores are added.
+- Restored the Bramble Spitter firing player's existing `SFX` bus assignment after full-suite validation exposed that the current reauthored scene had dropped it.
+- Made enemy pickups and stage-chest rewards use loot-only saturating collection. A full stack remains capped, its pickup is removed from the world, and milestone progression still completes with explicit `MAX / STACK FULL` feedback instead of leaving uncollectable drops behind.
+- Kept economic creation strict: Umi now reports `MATERIAL STACK IS FULL` before consuming fuel, gold, or boss memory, while direct inventory additions retain their existing overflow rejection.
+- Focused chest/UI/crafting/audio checks pass. The complete suite passes 82/83; only the pre-existing KI-018 Sanctuary front-depth assertion fails.
+
 ## 2026-08-24 - Destination-Driven Portal Tiers and Stage VI Continuation
 
 - Corrected the Forest clear-route tier sequence so portals preview the destination: Stage I->II is blue Normal, II->III is purple Mini Boss, III->IV returns to blue Normal, IV->V remains red Boss, and V->VI returns to blue Normal.

@@ -137,6 +137,10 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 127 | Recompose Stage VI pressure and rebuild the Bramble Spitter | Missing Stage V expedition route, Mireling removal, five-live Stage VI composition, bounded Spitter retreat, fresh body/projectile art, destructible seeds, or Bear drop retuning |
 | 128 | Separate impact feedback from accumulating stagger breakout | Stun-lock prevention, Heavy control, Hog/Bear resistance, player interruption, super armor, or Spitter native scale |
 | 129 | Make clear portals preview the destination threat | Stage I-VI portal colors, post-mini-boss/post-boss reset, or Stage V direct continuation into Stage VI |
+| 130 | Saturate earned loot but keep paid creation strict | Full material stacks, pickup cleanup, chest progression, overflow feedback, or Umi capacity checks |
+| 131 | Establish the divine Game slow-burn roadmap | King's Champion motive, The One Above as Game architect, hidden tragedy involvement, Stage VII Disciple choice, Stage IX ruins, Stage XX confrontation, reusable content naming, or divine hierarchy boundaries |
+| 132 | Define the two Disciple visual identities | Examiner ivory mask and Split Glaive, Executioner fractured halo and Execution Wheel, shared divine-order language, gameplay scale, animation-first contract, missing reference preservation, or identity-owned folders |
+| 133 | Separate the Examiner challenge into a divine arena | Stage VII Continue/Challenge environments, Court of the First Measure, circular arena, Axiom Divide, modular divine terrain, or special-arena references |
 
 ## New Decisions
 

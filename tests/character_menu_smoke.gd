@@ -244,8 +244,11 @@ func _run() -> void:
 	await process_frame
 	var material_inventory := root.get_node("MaterialInventory")
 	for material: MaterialDefinition in MaterialInventory.MaterialCatalog.materials:
-		if material_inventory.get_quantity(material.material_id) != material_inventory.MAX_MATERIAL_QUANTITY:
-			_fail("F9 did not maximize every authored material for crafting simulation.")
+		if (
+			material_inventory.get_quantity(material.material_id)
+			!= material_inventory.DEBUG_TEST_MATERIAL_QUANTITY
+		):
+			_fail("F9 did not grant every authored material its reward-safe testing stockpile.")
 			return
 	if (
 		player.skill_loadout.get_slot(2).ability == null

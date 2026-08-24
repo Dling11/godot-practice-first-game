@@ -10,6 +10,7 @@ const ROSTER := [
 	{"label": "Crag Bear [STAGE VI]", "scene": preload("res://entities/enemies/crag_bear/crag_bear.tscn")},
 	{"label": "Rootbound Husk [MINI-BOSS]", "scene": preload("res://entities/enemies/rootbound_husk/rootbound_husk.tscn")},
 	{"label": "Stage 5 Boss [PROOF]", "scene": preload("res://entities/enemies/stage_5_boss/stage_5_boss.tscn")},
+	{"label": "The Examiner [DIVINE TRIAL]", "scene": preload("res://entities/enemies/examiner/examiner.tscn")},
 ]
 const ARENA_BOUNDS := Rect2(40.0, 92.0, 650.0, 390.0)
 
@@ -20,6 +21,9 @@ const ARENA_BOUNDS := Rect2(40.0, 92.0, 650.0, 390.0)
 @export var camera: Camera2D
 @export var combat_hud: CombatHUD
 @export var boss_hud: BossHealthHUD
+@export var court_arena: CourtOfFirstMeasure
+@export var base_arena: CanvasItem
+@export var base_arena_border: CanvasItem
 @export var enemy_selector: OptionButton
 @export var spawn_one_button: Button
 @export var spawn_four_button: Button
@@ -55,6 +59,7 @@ func _ready() -> void:
 	for entry: Dictionary in ROSTER:
 		enemy_selector.add_item(String(entry["label"]))
 	enemy_selector.select(ROSTER.size() - 1)
+	_set_examiner_arena(true)
 	_bind_controls()
 	_update_latest_label()
 	_update_status()
@@ -76,8 +81,10 @@ func spawn_selected(count: int) -> void:
 		return
 	var entry: Dictionary = ROSTER[enemy_selector.selected]
 	var scene := entry["scene"] as PackedScene
-	for index in range(clampi(count, 1, 8)):
-		_spawn_enemy(scene, index, count)
+	var spawn_count := 1 if _selected_is_examiner() else clampi(count, 1, 8)
+	_set_examiner_arena(_selected_is_examiner())
+	for index in range(spawn_count):
+		_spawn_enemy(scene, index, spawn_count)
 	_update_latest_label()
 	_update_status()
 
@@ -153,6 +160,10 @@ func _spawn_enemy(scene: PackedScene, index: int, requested_count: int) -> void:
 		feedback.camera = camera
 		add_child(feedback)
 		enemy.tree_exited.connect(feedback.queue_free)
+	elif enemy is Examiner:
+		boss_hud.bind_boss(enemy.health_component, "THE EXAMINER", "FIRST MEASURE | DEBUG TRIAL")
+		enemy.axiom_started.connect(court_arena.pulse_measure)
+		enemy.measure_recognized.connect(_on_measure_recognized)
 
 
 func _spawn_position(index: int, requested_count: int) -> Vector2:
@@ -191,7 +202,29 @@ func _bind_controls() -> void:
 	ai_toggle.toggled.connect(set_enemy_ai_enabled)
 	invincible_toggle.toggled.connect(set_player_invincible)
 	combat_tools_button.pressed.connect(player.enable_debug_combat_tools)
-	enemy_selector.item_selected.connect(func(_index: int) -> void: _update_latest_label())
+	enemy_selector.item_selected.connect(_on_roster_selected)
+
+
+func _on_roster_selected(_index: int) -> void:
+	_set_examiner_arena(_selected_is_examiner())
+	_update_latest_label()
+
+
+func _on_measure_recognized() -> void:
+	combat_hud.show_story_message("THE EXAMINER:  MEASURE ACCEPTED.", 2.0)
+
+
+func _selected_is_examiner() -> bool:
+	return enemy_selector.selected == ROSTER.size() - 1
+
+
+func _set_examiner_arena(enabled: bool) -> void:
+	if court_arena != null:
+		court_arena.visible = enabled
+	if base_arena != null:
+		base_arena.visible = not enabled
+	if base_arena_border != null:
+		base_arena_border.visible = not enabled
 
 
 func _on_enemy_health_changed(current: float, maximum: float, enemy: Node2D) -> void:
@@ -205,7 +238,7 @@ func _on_enemy_died(_enemy: Node2D) -> void:
 
 func _on_enemy_exited(enemy: Node2D) -> void:
 	_active_enemies.erase(enemy)
-	if enemy is Stage5Boss:
+	if enemy is Stage5Boss or enemy is Examiner:
 		call_deferred("_refresh_boss_hud")
 	_update_latest_label()
 	_update_status()
@@ -216,6 +249,9 @@ func _refresh_boss_hud() -> void:
 		var enemy := _active_enemies[index]
 		if is_instance_valid(enemy) and enemy is Stage5Boss and enemy.health_component.current_health > 0.0:
 			boss_hud.bind_boss(enemy.health_component, "STAGE 5 BOSS", "COMBAT LAB")
+			return
+		if is_instance_valid(enemy) and enemy is Examiner and enemy.health_component.current_health > 0.0:
+			boss_hud.bind_boss(enemy.health_component, "THE EXAMINER", "FIRST MEASURE | DEBUG TRIAL")
 			return
 	boss_hud.clear_boss()
 
@@ -266,6 +302,9 @@ func _has_required_dependencies() -> bool:
 		and camera != null
 		and combat_hud != null
 		and boss_hud != null
+		and court_arena != null
+		and base_arena != null
+		and base_arena_border != null
 		and enemy_selector != null
 		and spawn_one_button != null
 		and spawn_four_button != null

@@ -23,7 +23,9 @@ This file records current production progress. Historical implementation detail 
 - Decision 128 adds reusable stagger-chain breakout without coupling it to hitstop: weak mobs remain freely interruptible, Hog/Bear resistance thresholds are data-owned, Heavy and Boss response stay distinct, and accepted enemy control now cancels vulnerable King actions and applies Player-owned knockback. The rebuilt Spitter's approved frames are normalized to normal-mob native pixel scale rather than scene-scaled; attack entry now preserves idle actor mass and its seed impact ends on the clean third-frame explosion.
 - Decision 121 establishes the first meaningful equipment band: exact Stage V slot identities, Varkuun Edge critical-hit authority, percentage caps, equipped-item comparisons, compact Character/Rootforge layouts, right-edge formula icons, and clearer binary-alpha Forest equipment silhouettes.
 - Decision 123 implements persistent enemy memory, metadata-owned material valuation, protected boss reconstruction, exact Stage V crafting fees, and Umi's compact east-Sanctuary service without hardcoded NPC material lists. Umi now has a native-density close dialogue portrait and a 72x64 asymmetrical side-facing Echo Crucible workbench; Common drops are fuel/sale resources rather than reconstruction targets.
+- Decision 130 makes earned loot saturate at full material stacks so pickups clean up and milestone chests advance, while paid reconstruction remains capacity-strict and refuses before spending.
 - Opaw, the retired weapon shop/awakening flow, unused equipment showcase, obsolete processors/tests, and 30 unreferenced images moved into recoverable Godot-ignored archives. The post-cleanup runtime image audit reports no unreferenced images under `assets/`.
+- F7 now opens on a rewardless, one-at-a-time Examiner combat proof in the modular Court of the First Measure layer. Six compact-pixel, action-owned `192x128` runtime sheets drive idle/walk, Measured Thrust, Axis Sweep, Zero Interval, Refutation, hurt/withdrawal, and the body poses composed by Axiom Divide. Their processor fixes scale, lower-body anchor, foot baseline, gutters, and clipping; the rejected realistic prototype is recoverably archived. The controller owns timing, hitboxes, parry response, three independent lane warnings, the final dash, and complete-dodge recognition; none of this grants Stage VII story or progression authority.
 
 ## In Progress
 
@@ -34,17 +36,20 @@ This file records current production progress. Historical implementation detail 
 - Feel-test King's attack timing and the complete four-skill kit, especially Riftbreak impact readability, Sovereign Pursuit anchoring, and Worldsplitter commitment/damage/cooldown against crowds and bosses.
 - Validate Stage V pacing, Varkuun audio/telegraphs, reward cadence, and saved direct continuation into Stage VI in a complete non-debug playthrough.
 - Owner feel-test Stage VI with no armor, starter gear, and the Stage V crafted set; record clear time, damage taken, target-priority pressure, five-live crowd readability, corrected Spitter scale/counter/retreat feel, Bear four-hit stagger breakout and slam/audio, Hog charge interruption, and Crag material yield.
+- Test a composition-first Stage VI Wave 4-5 pressure variant with approximately two late-section Armored Hogs while preserving eight Bears and the five-live cap; approve exact counts only from no-armor/starter/Stage-V-set measurements.
+- Owner feel-test the rebuilt F7 Examiner proof at 960x540: compact-pixel readability, walk and two-hit combo weight, Zero Interval tracking, Refutation fairness, Axiom lane visibility/safe space/final dash, and whether the procedural court is strong enough to become production modular art. The duplicated up-facing Axiom row and realistic sprite package are gone; dedicated Examiner audio remains after this visual feel gate.
 - Keep documentation aligned with King-only runtime truth and classify any newly discovered dead asset before moving it to the archive.
 
 ## Planned
 
 ### Forest Production
 
-1. Add replayable Hunts for completed stages with explicit reward families and modifiers.
-2. Design Stage VII's ordinary roster and optional god-tier follower event from the completed Stage VI baseline; approve its choice, failure, reward, and replay contract before art/runtime work.
-3. Continue authored Forest content through Stage X, including accessory/relic progression and bounded Mastery, while allowing names and mechanics beyond repetitive root terminology.
+1. Promote or revise the accepted F7 Examiner/Court combat proof after owner feel-testing. The production Stage VII gate still requires the ordinary roster, two-portal placement, arrival/return transitions, dialogue, expected-loss/abnormal-victory handling, reward/replay/save contracts, dedicated audio, and final balance. Keep the Executioner documentation-only.
+2. Add replayable Hunts for completed stages with explicit reward families and modifiers.
+3. Continue authored Forest content through Stage X. Keep Stage VIII's standard-accessory/Umi milestone, reserve modular reclaimed magical ruins plus the provisional Mage/Warden pressure pair for Stage IX, and retain Stage X's relic/signature milestone.
 4. When Stage VIII gains canonical completion authority, use it to unlock Umi and the whole Echo Crucible service; keep the current instance available until then for production testing.
-5. Define the Stage XI seam and next-region identity before naming or generating that content.
+5. Preserve Stage XX as the first planned direct confrontation with The One Above; do not implement it until intervening regions and the slow disclosure earn that moment.
+6. Define the Stage XI seam and next-region identity before naming or generating that content.
 
 ### Release Readiness
 
@@ -66,7 +71,8 @@ This file records current production progress. Historical implementation detail 
 - Some historical ADRs and `CHANGELOG.md` intentionally mention retired Opaw systems. They are records, not current instructions.
 - Audio settings remain session-only.
 - Sanctuary expedition previews still expose sealed future routes whose content is not implemented.
+- The reusable Crag Bear's active art/provenance paths still contain `stage_6`; migrate them only through a controlled reference-safe asset move. New reusable enemy/environment/VFX/audio/material paths must be identity-owned immediately.
 
 ## Next Decision Gate
 
-Owner-play the complete Stage VI at 960x540 with no armor, starter gear, and the Stage V set, then lock composition/drop balance. Measure clear time, damage taken, target-priority pressure, Spitter seed counters, and Bear slam readability before changing stats. Then decide Stage VII's ordinary roster and optional god-tier follower contract before generating it.
+Owner feel-test the new F7 Examiner proof before any Stage VII integration. First confirm scale/baseline and body motion without relying on lane VFX; then judge the court, Refutation window, Axiom safe space, and final dash. After that, lock the two-route placement, expected-loss/abnormal-victory handling, dialogue, reward, replay, audio, and safe-point contract. Stage VI's candidate Wave 4-5 Hog-pressure measurements remain a separate balance gate.

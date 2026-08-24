@@ -4,12 +4,19 @@ This file tracks current limitations only. Resolved and retired systems belong i
 
 ## Current Limitations
 
+### KI-022 - Reusable Crag Bear art still has stage-numbered ownership
+
+- **Status:** Open documentation/asset migration debt.
+- **Verified:** The reusable runtime enemy scene is correctly owned by `entities/enemies/crag_bear/`, but its active body art remains under `assets/characters/enemies/stage_6_crag_bear/` and some provenance paths still include `stage_6`.
+- **Risk:** Future work may incorrectly treat a recurring enemy as Stage-VI-only or repeat stage-numbered folders for Mage, Stone Warden, Disciples, projectiles, VFX, audio, or materials.
+- **Next:** Do not rename live paths during the story-roadmap pass. Before the next Crag Bear art edit, perform one controlled reference/provenance/catalog/tool/test migration to identity-owned paths such as `assets/characters/enemies/crag_bear/`. All newly created reusable content must use identity-owned folders immediately.
+
 ### KI-021 - Stage VI production balance needs owner validation
 
 - **Status:** Implemented; balance/feel pending.
 - **Verified:** `The Elder Ascent` has production navigation and five 4/4/5/6/9 waves under a five-live cap: eight Bears, fourteen Thralls, five rebuilt Spitters, one finale Hog, and no Mirelings. Crag Bear retains approved body-authored attacks/audio/impact and now uses Heavy 30% stagger duration plus a fourth-hit/1.05-second breakout. Hog uses a third-hit/0.8-second breakout, and its charge sends data-owned 175 knockback/0.24-second recovery to Player. Spitter body motion, stable idle-to-attack actor mass, three-frame clean impact, bounded retreat, destructible seeds, cleanup cases, loot data, Stage V/VI route order, and encounter composition pass focused checks.
 - **Risk:** Headless checks cannot judge final five-enemy priority readability, whether Bear resistance feels forceful rather than arbitrary, Hog charge recovery comfort, corrected Spitter on-screen scale, waterfall-path movement feel, or whether full-skill/no-armor and starter-gear clears are demanding without becoming noisy or tedious.
-- **Next:** Complete Stage VI with no armor/full skills, starter gear, and the Stage V set; deliberately spam normal attack and Skills 1/3 into Bear, take and evade Hog charges, inspect Spitter beside Thrall/Hog/Bear, and record clear time, damage taken, target choices, seed-counter success, slam failures, audio/camera mix, and Crag Iron/Echo Claw yield before changing stats or feedback intensity.
+- **Next:** Compare the current composition against a Wave 4-5 candidate containing approximately two late-section Hogs while preserving eight Bears and the five-live cap. Use no armor/full skills, starter gear, and the Stage V set; record clear time, damage taken, charge overlap, target choices, seed-counter success, slam failures, audio/camera mix, and Crag Iron/Echo Claw yield before accepting exact counts or changing stats.
 
 ### KI-020 - Umi exchange economy needs campaign-scale tuning
 
@@ -79,6 +86,8 @@ This file tracks current limitations only. Resolved and retired systems belong i
 
 - **Status:** Open.
 - **Impact:** Data-driven previews can describe future routes, but destinations and requirements beyond the implemented Forest sequence are intentionally unavailable.
+- **Planned direction:** Decision 131 assigns Stage VII to the first Disciple choice/test, Stage IX to modular reclaimed magical ruins with provisional Mage/Warden roles, and Stage XX to the first direct One Above confrontation. These are documentation anchors, not runtime destinations.
+- **Disciple preparation:** Decision 132 defines the Examiner/Executioner high-level visual contract. The reattached original remains outside runtime assets, and the owner-approved compact-pixel V3 Examiner board is the active style lock. Decision 133 assigns the optional Challenge portal a separate circular divine arena and accepts Axiom Divide: First Measure as the restrained signature direction. A debug-only F7 implementation now proves the court, six stable `192x128` action sheets, compact kit, three-lane warning authority, final dash, and dodge recognition. The malformed signature boards and prior realistic runtime prototype are excluded from live assets; Axiom composes the approved sweep/dash poses in all four directions. It is not wired to Stage VII and still has no story outcome, rewards, saves, replay, or final audio.
 
 ### KI-006 - Audio settings are session-only
 

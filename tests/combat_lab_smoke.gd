@@ -21,14 +21,17 @@ func _run() -> void:
 	if admin_state == null or not bool(admin_state.get("enabled")):
 		_fail("Opening the debug Combat Lab did not enable session Admin Mode.")
 		return
-	if lab.enemy_selector.item_count != 8:
-		_fail("Combat Lab roster must expose all eight current enemy archetypes.")
+	if lab.enemy_selector.item_count != 9:
+		_fail("Combat Lab roster must expose all nine current enemy archetypes and trials.")
 		return
-	if lab.enemy_selector.selected != 7 or lab.get_live_enemy_count() != 1:
-		_fail("Combat Lab did not open on one visible Stage 5 boss proof.")
+	if lab.enemy_selector.selected != 8 or lab.get_live_enemy_count() != 1:
+		_fail("Combat Lab did not open on one visible Examiner trial proof.")
 		return
 	if not lab.boss_hud.visible or lab.boss_hud.health_component == null:
-		_fail("Combat Lab did not bind its top-screen HUD to the opening Stage 5 boss.")
+		_fail("Combat Lab did not bind its top-screen HUD to the opening Examiner trial.")
+		return
+	if not lab.court_arena.visible or lab.base_arena.visible or lab.base_arena_border.visible:
+		_fail("Combat Lab did not switch the opening Examiner proof to the divine court.")
 		return
 	var admin_controls: Array[Control] = [
 		lab.enemy_selector,
@@ -70,7 +73,7 @@ func _run() -> void:
 		_fail("Combat Lab clear did not remove the active boss HUD binding.")
 		return
 
-	for roster_index in range(8):
+	for roster_index in range(9):
 		lab.enemy_selector.select(roster_index)
 		lab.spawn_selected(1)
 		await physics_frame
@@ -79,6 +82,9 @@ func _run() -> void:
 			return
 		if roster_index == 7 and not lab.boss_hud.visible:
 			_fail("Combat Lab did not restore boss presentation when respawning the Stage 5 boss.")
+			return
+		if roster_index == 8 and (not lab.boss_hud.visible or not lab.court_arena.visible):
+			_fail("Combat Lab did not restore the Examiner boss presentation and divine court.")
 			return
 		lab.clear_simulation()
 		await process_frame
@@ -107,7 +113,7 @@ func _run() -> void:
 		_fail("Combat Lab could not restore King invincibility.")
 		return
 
-	print("Combat Lab admin boundary, complete roster, reward stripping, AI, x1/x4/x8 spawning, clear, and invincibility passed.")
+	print("Combat Lab admin boundary, complete roster including Examiner trial, reward stripping, arena switching, AI, x1/x4/x8 spawning, clear, and invincibility passed.")
 	quit(0)
 
 

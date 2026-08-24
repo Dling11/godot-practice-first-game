@@ -52,6 +52,17 @@ func _run() -> void:
 	if not sale_result["success"] or inventory.get_quantity(resin.material_id) != 0 or session.coins != 26:
 		_fail("Material selling did not atomically grant the metadata-owned gold value.")
 		return
+	if (
+		not inventory.add_material(
+			uncommon.material_id,
+			inventory.MAX_MATERIAL_QUANTITY - 1
+		)
+		or exchange.get_transmutation_status(uncommon, {fiber.material_id: 1})["reason"]
+			!= &"stack_full"
+	):
+		_fail("Umi allowed reconstruction spending against a full output stack.")
+		return
+	inventory.remove_material(uncommon.material_id, inventory.MAX_MATERIAL_QUANTITY)
 
 	for _index in 10:
 		memory.record_defeat(&"rootbound_husk")

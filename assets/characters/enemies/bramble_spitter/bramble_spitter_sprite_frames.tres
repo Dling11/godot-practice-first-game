@@ -1,7 +1,7 @@
-[gd_resource type="SpriteFrames" format=3]
+[gd_resource type="SpriteFrames" format=3 uid="uid://ck5ip5uhchlty"]
 
-[ext_resource type="Texture2D" path="res://assets/characters/enemies/bramble_spitter/bramble_spitter_attack_sheet_64x56.png" id="1_mwc38"]
-[ext_resource type="Texture2D" path="res://assets/characters/enemies/bramble_spitter/bramble_spitter_locomotion_sheet_48x48.png" id="2_a1kvx"]
+[ext_resource type="Texture2D" uid="uid://cfj8j4ii18bno" path="res://assets/characters/enemies/bramble_spitter/bramble_spitter_attack_sheet_64x56.png" id="1_mwc38"]
+[ext_resource type="Texture2D" uid="uid://dnljcsem6l56" path="res://assets/characters/enemies/bramble_spitter/bramble_spitter_locomotion_sheet_48x48.png" id="2_a1kvx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_utxun"]
 atlas = ExtResource("1_mwc38")

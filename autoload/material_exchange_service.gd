@@ -53,6 +53,8 @@ func try_sell(material: MaterialDefinition, quantity: int) -> Dictionary:
 func get_transmutation_status(target: MaterialDefinition, fuel: Dictionary) -> Dictionary:
 	if not _is_catalog_material(target) or not target.is_reconstruction_target():
 		return _failure(&"invalid_target", "MATERIAL CANNOT BE RECONSTRUCTED")
+	if not MaterialInventory.can_add_material(target.material_id, 1):
+		return _failure(&"stack_full", "MATERIAL STACK IS FULL")
 	var defeats := EnemyMemory.get_defeat_count(target.source_enemy_id)
 	var required_defeats := target.get_required_source_defeats()
 	if defeats < required_defeats:

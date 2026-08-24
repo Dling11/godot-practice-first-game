@@ -6,7 +6,8 @@ extends Node
 signal material_granted(
 	material: MaterialDefinition,
 	quantity: int,
-	source_kind: StringName
+	source_kind: StringName,
+	reached_cap: bool
 )
 signal stage_reward_granted(result: Dictionary)
 
@@ -81,9 +82,15 @@ func grant_material(
 ) -> bool:
 	if material == null or not material.is_valid() or quantity <= 0:
 		return false
-	if not MaterialInventory.add_material(material.material_id, quantity):
+	var collection: Dictionary = MaterialInventory.collect_material(
+		material.material_id,
+		quantity
+	)
+	if not bool(collection.get("success", false)):
 		return false
-	material_granted.emit(material, quantity, source_kind)
+	var added_quantity := int(collection.get("added_quantity", 0))
+	var reached_cap := int(collection.get("overflow_quantity", 0)) > 0
+	material_granted.emit(material, added_quantity, source_kind, reached_cap)
 	return true
 
 
@@ -113,8 +120,11 @@ func claim_stage_reward(table: LootTableDefinition) -> Dictionary:
 	for stack: Dictionary in resolved:
 		var material := stack["material"] as MaterialDefinition
 		quantities[material.material_id] = int(stack["quantity"])
-	if not MaterialInventory.add_material_batch(quantities):
+	var collection: Dictionary = MaterialInventory.collect_material_batch(quantities)
+	if not bool(collection.get("success", false)):
 		return failed
+	var added_quantities: Dictionary = collection["added_quantities"]
+	var overflow_quantities: Dictionary = collection["overflow_quantities"]
 
 	var discovered_recipe_ids := PackedStringArray()
 	var discovery_ids := PackedStringArray()
@@ -136,15 +146,35 @@ func claim_stage_reward(table: LootTableDefinition) -> Dictionary:
 			push_error("LootService could not record a validated first-clear claim.")
 			return failed
 
+	var granted_materials: Array[Dictionary] = []
+	var overflow_materials: Array[Dictionary] = []
 	for stack: Dictionary in resolved:
 		var material := stack["material"] as MaterialDefinition
-		material_granted.emit(material, int(stack["quantity"]), &"stage_chest")
+		var added_quantity := int(added_quantities.get(material.material_id, 0))
+		var overflow_quantity := int(overflow_quantities.get(material.material_id, 0))
+		if added_quantity > 0:
+			granted_materials.append({
+				"material": material,
+				"quantity": added_quantity,
+			})
+		if overflow_quantity > 0:
+			overflow_materials.append({
+				"material": material,
+				"quantity": overflow_quantity,
+			})
+		material_granted.emit(
+			material,
+			added_quantity,
+			&"stage_chest",
+			overflow_quantity > 0
+		)
 
 	var result := {
 		"success": true,
 		"stage_id": table.stage_id,
 		"first_clear": is_first_clear,
-		"materials": resolved,
+		"materials": granted_materials,
+		"overflow_materials": overflow_materials,
 		"recipe_ids": discovered_recipe_ids,
 		"discovery_ids": discovery_ids,
 		"key_item_ids": key_item_ids,

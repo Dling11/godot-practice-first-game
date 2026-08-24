@@ -10,6 +10,9 @@ This contract applies to generated, downloaded, and hand-authored character anim
 | King extended greatsword actions (provisional) | 96x80 or 128x96 | Preserve the approved body scale; use canvas width/height for integrated greatsword reach and exaggerated combo silhouettes without clipping |
 | Small forest creatures | 32x32 | Fixed scale and foot baseline across all direction rows |
 | Existing extended enemy attacks | 64x48 | Use only when a validated action cannot fit the locomotion cell |
+| Examiner locomotion/idle | `192x128` debug cell | Six-column source with two idle plus four walk poses across `down/left/right/up`; compact-pixel V3 style, `0.42` scale, `y=120` cell baseline, and `-56 px` visual origin are the current F7 proof values |
+| Examiner extended weapon actions | `192x128` debug cell | Separate thrust, sweep, Zero Interval, Refutation, and reaction/withdrawal sheets preserve the same scale; Axiom composes accepted body poses while its lane energy remains a synchronized secondary layer |
+| Executioner future locomotion/idle | Unset; documentation only | Show only in the preview concept as larger/broader than the Examiner; no direction grid, runtime cell, or generation until separately approved |
 | Rootbound Husk walk | 72x64 | Four direction rows; contact A/pass A/contact B/pass B with leg exchange and arm counter-swing; 56-pixel actor scale |
 | Rootbound Husk reaction | 64x64 | Four direction rows; 56-pixel upright target including antlers; 2-pixel foot margin |
 | Rootbound Husk root-attack body | 96x64 | Six action columns; wider canvas preserves the 56-pixel actor scale |
@@ -41,7 +44,7 @@ Runtime PNG dimensions must equal `cell width * columns` by `cell height * rows`
 - Derive one scale from the approved standing frame for each direction row and apply that scale unchanged across the row.
 - Run containment/debris filtering before accepting the visible scale result. Every upright locomotion frame must still retain the actor's target visible height after filtering; a removed disconnected foot must not silently turn one frame into a smaller body.
 - Recover actor pixels from a bounded overlap only when they remain connected to the intended actor.
-- Keep the largest eight-connected actor component before and after downscaling so neighboring fragments and detached debris cannot enter runtime cells.
+- Keep the largest eight-connected actor component before and after downscaling so neighboring fragments and detached debris cannot enter runtime cells. An approved identity-owned detached element such as the Examiner's halo is the exception: preserve it only inside the actor-owned gutter crop and reject any unapproved neighbouring fragment.
 - Preserve the ideal source-cell horizontal origin for extended attacks; center compact locomotion, reactions, and defeat frames.
 - Align every frame to the authored foot margin and fail the build when any frame exceeds its runtime cell.
 - Use a wider runtime cell or regenerate the source rather than shrinking one exceptional pose independently.
