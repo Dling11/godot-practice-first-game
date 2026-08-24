@@ -176,6 +176,14 @@ func _pulse_camera(strength: float) -> void:
 	_camera_tween.tween_property(camera, "offset", _camera_base_offset, 0.045)
 
 
+func request_camera_pulse(strength: float) -> void:
+	## Shared presentation entry point for authored world impacts. Keeping the
+	## active tween here prevents independent enemies from fighting camera offset.
+	if camera == null or DisplayServer.get_name() == "headless":
+		return
+	_pulse_camera(maxf(strength, 0.0))
+
+
 func _flash_target(target: HurtboxComponent) -> void:
 	var actor := target.get_parent()
 	if actor == null:

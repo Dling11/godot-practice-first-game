@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3]
+[gd_scene load_steps=33 format=3]
 
 [ext_resource type="Script" path="res://levels/stage_6/stage_6_flow.gd" id="1_flow"]
 [ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="2_player"]
@@ -23,21 +23,25 @@
 [ext_resource type="Texture2D" path="res://assets/environment/forest/stage_6/props/modular_cliffs/rocky_outcrop_208x208.png" id="21_outcrop"]
 [ext_resource type="Texture2D" path="res://assets/environment/forest/stage_6/props/modular_cliffs/boulder_cluster_192x176.png" id="22_boulders"]
 [ext_resource type="Texture2D" path="res://assets/environment/forest/stage_6/props/modular_cliffs/cliff_ramp_192x224.png" id="23_ramp"]
+[ext_resource type="Script" path="res://levels/test_arena/arena_navigation.gd" id="24_navigation"]
+[ext_resource type="Script" path="res://gameplay/encounters/encounter_controller.gd" id="25_encounter"]
+[ext_resource type="Resource" path="res://data/encounters/stage_6_wave_1.tres" id="26_wave1"]
+[ext_resource type="Resource" path="res://data/encounters/stage_6_wave_2.tres" id="27_wave2"]
+[ext_resource type="Resource" path="res://data/encounters/stage_6_wave_3.tres" id="28_wave3"]
+[ext_resource type="Resource" path="res://data/encounters/stage_6_wave_4.tres" id="29_wave4"]
+[ext_resource type="Resource" path="res://data/encounters/stage_6_wave_5.tres" id="30_wave5"]
+[ext_resource type="PackedScene" path="res://gameplay/encounters/stage_portal.tscn" id="31_portal"]
+[ext_resource type="PackedScene" path="res://gameplay/encounters/summon_effect.tscn" id="32_summon"]
 
 [sub_resource type="RectangleShape2D" id="cliff_blocker"]
 size = Vector2(1536, 64)
 
-[sub_resource type="LabelSettings" id="title_settings"]
-font_size = 15
-font_color = Color(0.76, 0.9, 0.82, 1)
-outline_size = 3
-outline_color = Color(0.025, 0.055, 0.08, 1)
-
-[node name="Stage6EnvironmentPreview" type="Node" node_paths=PackedStringArray("player", "combat_hud", "character_menu")]
+[node name="Stage6" type="Node" node_paths=PackedStringArray("player", "combat_hud", "character_menu", "encounter_controller")]
 script = ExtResource("1_flow")
 player = NodePath("World/Actors/Player")
 combat_hud = NodePath("UI/CombatHUD")
 character_menu = NodePath("UI/CharacterMenu")
+encounter_controller = NodePath("Services/EncounterController")
 
 [node name="World" type="Node2D" parent="."]
 
@@ -157,6 +161,11 @@ collision_mask = 6
 position = Vector2(768, 352)
 shape = SubResource("cliff_blocker")
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="World"]
+script = ExtResource("24_navigation")
+navigation_bounds = Rect2(56, 392, 1424, 832)
+navigation_agent_radius = 11.0
+
 [node name="Projectiles" type="Node2D" parent="World"]
 
 [node name="Effects" type="Node2D" parent="World"]
@@ -180,6 +189,24 @@ color = Color(1, 0.73, 0.24, 0.52)
 
 [node name="Services" type="Node" parent="."]
 
+[node name="EncounterController" type="Node" parent="Services" node_paths=PackedStringArray("player", "actors", "spawn_points_root", "portal_parent", "portal_spawn_point", "effects_parent", "projectiles_parent")]
+script = ExtResource("25_encounter")
+player = NodePath("../../World/Actors/Player")
+actors = NodePath("../../World/Actors")
+spawn_points_root = NodePath("../../SpawnPoints")
+waves = Array[Resource]([ExtResource("26_wave1"), ExtResource("27_wave2"), ExtResource("28_wave3"), ExtResource("29_wave4"), ExtResource("30_wave5")])
+portal_scene = ExtResource("31_portal")
+portal_parent = NodePath("../../World/Effects")
+portal_spawn_point = NodePath("../../SpawnPoints/StageExit")
+portal_target_scene = "res://levels/sanctuary/sanctuary.tscn"
+portal_tier = 0
+summon_effect_scene = ExtResource("32_summon")
+effects_parent = NodePath("../../World/Effects")
+projectiles_parent = NodePath("../../World/Projectiles")
+auto_start = false
+inter_wave_delay = 1.75
+max_active_enemies = 5
+
 [node name="CombatFeedback" type="Node" parent="Services" node_paths=PackedStringArray("player", "effects_parent", "camera")]
 script = ExtResource("12_feedback")
 player = NodePath("../../World/Actors/Player")
@@ -191,6 +218,29 @@ sword_hit_sound = ExtResource("15_sword_hit")
 ability_hit_sound = ExtResource("17_ability_hit")
 player_hurt_sound = ExtResource("16_hurt")
 
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="West" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(180, 660)
+
+[node name="NorthWest" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(350, 500)
+
+[node name="NorthEast" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1186, 500)
+
+[node name="East" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1356, 660)
+
+[node name="SouthWest" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(360, 1060)
+
+[node name="SouthEast" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1176, 1060)
+
+[node name="StageExit" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(768, 650)
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="CombatHUD" parent="UI" instance=ExtResource("9_hud")]
@@ -200,14 +250,10 @@ player = NodePath("../../World/Actors/Player")
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("11_pause")]
 
-[node name="PreviewLabel" type="Label" parent="UI"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -240.0
-offset_top = 58.0
-offset_right = 240.0
-offset_bottom = 84.0
-text = "STAGE VI ENVIRONMENT PASS  •  ENCOUNTERS PENDING"
-label_settings = SubResource("title_settings")
-horizontal_alignment = 1
+[connection signal="enemy_spawned" from="Services/EncounterController" to="UI/CombatHUD" method="show_spawn_direction"]
+[connection signal="portal_prompt_changed" from="Services/EncounterController" to="UI/CombatHUD" method="show_interaction_prompt"]
+[connection signal="portal_sealed" from="Services/EncounterController" to="UI/CombatHUD" method="show_portal_sealed"]
+[connection signal="reinforcement_announced" from="Services/EncounterController" to="UI/CombatHUD" method="show_reinforcement_warning"]
+[connection signal="stage_cleared" from="Services/EncounterController" to="UI/CombatHUD" method="show_stage_clear"]
+[connection signal="wave_changed" from="Services/EncounterController" to="UI/CombatHUD" method="show_wave"]
+[connection signal="wave_cleared" from="Services/EncounterController" to="UI/CombatHUD" method="show_wave_clear"]

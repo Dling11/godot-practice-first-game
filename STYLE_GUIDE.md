@@ -4,6 +4,8 @@
 
 - Add future materials to the canonical catalog and complete their own `MaterialDefinition` exchange metadata. Never add material IDs, prices, or unlock branches to Umi's scene/menu.
 - Give every reward-bearing enemy a stable `EnemyDefinition.enemy_id`; material `source_enemy_id` must match it exactly.
+- Keep ordinary recurring mobs intentionally bounded: one readable basic attack plus at most one signature skill unless a later approved contract justifies more. Reserve multi-skill kits and phase complexity for Elites, mini-bosses, and bosses.
+- Add new wave families through scene-plus-count spawn-entry resources. Do not add one new hardcoded count/export branch to the encounter controller for every enemy type.
 - Use rarity defaults for ordinary content and overrides only for intentional exceptions. Boss materials must remain explicitly unsellable and invalid as meld fuel.
 - Common rarity is never a reconstruction target. Keep Common materials sellable/usable as meld fuel unless an authored exception requires otherwise; use Uncommon or higher for low-drop reconstruction candidates.
 - Economy UI may preview transactions, but only `CraftingService` and `MaterialExchangeService` may perform durable spends, grants, saves, and rollback.
@@ -48,6 +50,8 @@ Use static typing for public APIs, exported data, signals, return values, and no
 
 - Assisted controls may produce movement or action intent, but `Player` remains the only body/action authority. Manual input has explicit priority, selection identifies one actor, and target UI/markers remain observers.
 - Hitstop is presentation-only. Enemy interruption requires explicit `DamageInfo.stagger_seconds` plus the target's crowd-control policy; never infer stagger from pause duration or repeated input.
+- Configure repeat-interruption limits and resistance windows on `EnemyDefinition`; do not add hit counters to individual enemy controllers. A resistance window may reject gameplay stagger only—accepted damage, flash, audio, particles, and bounded hitstop must remain intact.
+- Control tier describes reaction strength, not encounter rank. A recurring normal mob may use `HEAVY` without becoming an Elite/mini-boss, and a boss should use data-owned immunity rather than skill-specific exceptions.
 
 - A script should have one clear reason to change.
 - Prefer components and collaborators over deep inheritance trees.
@@ -56,6 +60,7 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - Presentation scripts must not silently own combat rules.
 - Hit flash and hitstop may observe only accepted-hit signals. They must remain presentation feedback and must not decide damage or contact. Preserve target-local confirmation, but coalesce camera, hitstop, and impact-audio work once per swing/cast impact so multi-target contacts cannot stack pauses or rebuild shared effects.
 - Avoid hidden mutations of shared `Resource` assets.
+- Fix an incorrect sprite silhouette in processed frame pixels. Permanent node scale is not an acceptable substitute for correcting generated/native actor scale; temporary authored squash/stretch such as spawning remains presentation-only.
 
 ## Signals
 
@@ -130,6 +135,9 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - Backgrounds, icons, and panel art are presentation dependencies. Reference them through configured scenes/resources rather than branching gameplay logic on filenames.
 - Follow `ART_DIRECTION.md` for palette roles, lighting, pixel density, and replaceable-background requirements.
 - Follow `docs/design/character-animation-pixel-contract.md` when generating or processing character boards; prompts, source boards, runtime cells, safe margins, and acceptance scans must share one explicit pixel contract.
+- Every enemy with frame-based body art must use `AnimatedSprite2D` and clearly named `SpriteFrames` families (`idle_<direction>`, `walk_<direction>`, `attack_<direction>`, `hurt_<direction>`, `dead_<direction>`, plus explicit special families where needed). Synchronize authoritative state/contact timing to those frames. Do not fake an absent physical action by scaling an idle pose, rotating a whole sprite, swapping raw textures manually, or hiding it behind VFX.
+- Ranged enemies may retreat to preserve role identity, but retreat must be bounded by a fixed target/duration/cooldown and end in a legal decision such as fire, flank, or recover. Never recompute an unlimited directly-away target every path refresh.
+- A destructible hostile projectile should compose the shared health/hurtbox path. Mark its hurtbox non-selectable when it is counterplay rather than an enemy target; projectile scripts still own travel, player/world impact, cleanup, and freed-source validation.
 - Apply `assets/ui/themes/battle_of_gods_theme.tres` at reusable UI roots; add local theme overrides only for semantic states the shared theme cannot represent.
 - UI icons use stable canonical concepts and native 16x16 or 24x24 textures; detailed inventory item portraits use the approved 64x64 contract. Pass them as presentation configuration or metadata; never parse their filenames to decide gameplay behavior.
 - Extend the established crisp 24x24 Battle-of-Gods action-icon language for small semantic controls: navy outline, pale readable core, cyan motion/interaction accent, and restrained gold emphasis. Generated character skill art must still become purpose-built native 24x24 hard-pixel UI: one dominant symbol plus one supporting effect, binary alpha, limited fixed palette, transparent padding, and native-size validation. Do not treat painted detail or a large antialiased reduction as an exception. Never substitute default engine icons or mix unrelated packs. Keep animation to two or a few purposeful frames when motion communicates state.

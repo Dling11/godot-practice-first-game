@@ -33,7 +33,7 @@ The fight/loot/craft/replay structure and Stage III/V/VIII/X reward cadence rema
 - Difficulty must come from readable behaviors, combinations, armor-break opportunities, positioning, and elites rather than health inflation alone.
 - Earlier regions retain limited material relevance, but new-region recipes primarily use current-region materials.
 - Character level does not become an infinite raw-stat treadmill. Region caps may expand, while post-cap Mastery supplies bounded utility, crafting, cosmetic, title, or material benefits.
-- Reward resolution, direct Stage I-II banking, the Stage III Reliquary, Stage V equipment/stats, and Rootweaver Nema's atomic crafting transaction are implemented. Decisions 124-125 add a reviewable Stage VI top-down environment foundation only; its enemies, navigation, rewards, completion, and campaign connection remain unimplemented alongside Hunts, Mastery, and Stages VII-XX.
+- Reward resolution, direct Stage I-II/VI banking, the Stage III Reliquary, Stage V equipment/stats, Rootweaver Nema's atomic crafting, and Decision 126's production Stage VI route are implemented. Hunts, Mastery, and Stages VII-XX remain unimplemented.
 
 ## First-Clear and Replay Loop
 
@@ -78,6 +78,7 @@ These names and region-prefixed stable IDs are now approved through their `Mater
 | Forsaken Thrall | Forsaken Cloth; Weathered Fittings | Armor lining and weapon fittings |
 | Bramble Spitter | Barbed Seed; Thorn Sap | Thorn/critical identity and ranged-pressure resistance |
 | Rootbound Husk | Husk Heartwood; Rootbound Core | Reinforced Forest equipment and rare recipes |
+| Crag Bear | Crag Iron; Echo Claw | Reinforced fittings, resonance, and future accessory components |
 
 Leather is not assigned arbitrarily to a creature without a visible hide identity. The implemented Stage 4 Armored Hog now supplies the first true hide and bark-plate inputs. Stages 1-3 instead support rootfiber wraps, cloth equipment, charms, and weapon components.
 
@@ -89,15 +90,15 @@ The later roles and material purposes below remain planning slots rather than fi
 |---|---|---|
 | 4 | Armored hide-bearing Forest beast | Hide and bark plates for leather armor |
 | 5 | Implemented Varkuun major-boss milestone | Permanent core-gear crafting seal plus repeatable Varkuun Core catalyst |
-| 6 | Implemented `The Elder Ascent` environment preview; planned new caster/support combat role | Spirit or rune components and first accessory blueprints; final enemy name should express its actual identity rather than defaulting to `Root-something` |
+| 6 | Implemented `The Elder Ascent`; normal armored Crag Bear melee/slam family | Crag Iron fittings and Echo Claw resonance/accessory components |
 | 7 | Heavy corrupted brute or mini-boss | Dense reinforcement plus binding/setting components for heavy gear and accessories |
 | 8 | Fungal/spirit mini-boss milestone | Permanent standard-accessory seal plus repeatable fungal/spirit catalyst |
 | 9 | Elite Forest warden/hunter role | Refined fittings and advanced regional recipes |
 | 10 | Major Forest boss | Permanent relic/signature-accessory crafting seal plus repeatable unique catalyst |
 
-Stage VI onward introduces new roles rather than continuing Mireling/Rootling filler. Other known Forest enemies may return only in authored combinations where their combat role remains useful. Aim for roughly one important new family every one or two stages and never use palette-only replacements.
+Stage VI onward introduces new roles rather than continuing Mireling/Rootling filler. Decision 127 removes Mirelings and Rootlings from Stage VI; known Forest enemies may return only in authored combinations where their role remains useful. Stage VI therefore uses Thralls as melee screeners, rebuilt Spitters as ranged priorities, and one finale Hog around the approved Bear population. Aim for roughly one important new family every one or two stages and never use palette-only replacements.
 
-Decisions 124-125 lock only Stage VI's environmental foundation: the approved muted teal/pale-stone ground continues through one top-down upper terrace bounded by modular grass-topped cliffs, existing ancient trees, rocks, a four-frame waterfall, and explicit collision. The rejected distant canyon and oval threshold are archive-only. The current scene is an F6 Admin Mode preview, not a campaign stage. A separate provisional Stage VII idea may introduce an optional god-tier follower challenge, but its identity, dialogue, combat/reward contract, and relationship to Stage VII's ordinary roster remain open.
+Decisions 124-127 complete Stage VI on the approved muted teal/pale-stone top-down terrace with modular cliffs, trees, rocks, fixed-bank waterfall, collision/navigation, composition-heavy five-wave pressure, Crag Bear drops, and production completion. The rejected distant canyon/threshold remain archive-only. A provisional Stage VII idea may introduce an optional god-tier follower challenge, but its identity, dialogue, combat/reward contract, and relationship to Stage VII's ordinary roster remain open.
 
 ### Forest crafting tiers
 
@@ -111,7 +112,7 @@ Decisions 124-125 lock only Stage VI's environmental foundation: the approved mu
 
 A crafting seal is permanent progression and is never consumed. A catalyst is repeatable inventory material and may be consumed by deterministic recipes. Decision 101 locks Stage V to Varkuun Edge, Old Bark Helm, Heartwood Plate, Rootfiber Gloves, Mirebound Leggings, and Mirehide Boots; their exact costs and stat budgets live in `docs/design/stage-5-core-equipment-set.md`. Mireward Charm and Thornward Clasp remain Stage VIII regional previews. Decision 101 preserves later accessory slots as Bracer, Amulet, Ring, and Talisman; their final items and stat budgets remain unimplemented.
 
-Stage V's six recipes and item names are locked by Decisions 100-101 and craftable under Decision 120. Stage VI-X enemy/item names remain open until their individual content contracts are approved; the regional theme does not require every name to mention roots or trees. Stage IV's Armored Hog, Hide, Living Bark Plate, stats, and drop rates remain locked by its implemented contract.
+Stage V's six recipes and item names are locked by Decisions 100-101 and craftable under Decision 120. Crag Bear, Crag Iron, and Echo Claw are locked by Decision 126; Stage VII-X enemy/item names remain open until their individual content contracts are approved. The regional theme does not require every name to mention roots or trees. Stage IV's Armored Hog contract remains locked.
 
 ## Monster Content Contract
 
@@ -273,7 +274,7 @@ The NPC owns no material table. Every `MaterialDefinition` declares its source, 
 - Current Forest development remains bounded by the authored character Level 1-10 curve.
 - Later regions may expand the character cap in controlled bands rather than enabling infinite raw-stat scaling.
 - Post-cap Mastery may be uncapped only if rewards stay bounded: crafting efficiency, material bonuses, titles, cosmetics, discoveries, or small capped utility.
-- Varkuun Edge is targeted for Stages VI-XV. Stage VI must remain freely enterable without crafted ownership, while its new campaign enemies make starter-gear clears intentionally slower and riskier; Mirelings/Rootlings stay in earlier/replay content rather than the new roster.
+- Varkuun Edge is targeted for Stages VI-XV. Stage VI remains freely enterable without crafted ownership; eight Bears plus five-live Thrall/Spitter pressure make starter-gear clears intentionally slower and riskier without an HP gate. Mirelings and Rootlings are absent.
 - Stage XI should be balanced around partial Forest equipment, not require a complete perfect set.
 - An expert player with incomplete gear should retain a viable path through readable mastery.
 
@@ -374,7 +375,7 @@ These are not blockers for Save/Continue, but must be approved before their owni
 
 - Campaign-scale tuning of the implemented recipe fees and material sell/reconstruction defaults
 - Final Stage VIII/X milestone identities, seals/catalysts, quantities, and first-clear presentation
-- Stage VI-X monster names, visuals, behavior timing, and encounter composition
+- Stage VII-X monster names, visuals, behavior timing, and encounter composition; Stage VI balance remains owner-tunable
 - Stage X boss identity
 - Stage XI+ biome/region theme and naming language
 - Exact regional level-cap expansion

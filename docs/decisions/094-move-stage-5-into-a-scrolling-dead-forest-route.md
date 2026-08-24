@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted — 2026-08-14
+Accepted — 2026-08-14; Sanctuary destination superseded by Decision 129
 
 ## Context
 

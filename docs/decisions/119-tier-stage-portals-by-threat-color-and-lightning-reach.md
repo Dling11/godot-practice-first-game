@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted — 2026-08-21
+Accepted — 2026-08-21; stage assignment wording superseded by Decision 129
 
 ## Context
 

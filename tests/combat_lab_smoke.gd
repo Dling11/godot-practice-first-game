@@ -21,10 +21,10 @@ func _run() -> void:
 	if admin_state == null or not bool(admin_state.get("enabled")):
 		_fail("Opening the debug Combat Lab did not enable session Admin Mode.")
 		return
-	if lab.enemy_selector.item_count != 7:
-		_fail("Combat Lab roster must expose all seven current enemy archetypes.")
+	if lab.enemy_selector.item_count != 8:
+		_fail("Combat Lab roster must expose all eight current enemy archetypes.")
 		return
-	if lab.enemy_selector.selected != 6 or lab.get_live_enemy_count() != 1:
+	if lab.enemy_selector.selected != 7 or lab.get_live_enemy_count() != 1:
 		_fail("Combat Lab did not open on one visible Stage 5 boss proof.")
 		return
 	if not lab.boss_hud.visible or lab.boss_hud.health_component == null:
@@ -70,14 +70,14 @@ func _run() -> void:
 		_fail("Combat Lab clear did not remove the active boss HUD binding.")
 		return
 
-	for roster_index in range(7):
+	for roster_index in range(8):
 		lab.enemy_selector.select(roster_index)
 		lab.spawn_selected(1)
 		await physics_frame
 		if lab.get_live_enemy_count() != 1 or not _enemies_are_rewardless(lab):
 			_fail("Combat Lab could not safely instantiate roster entry %d." % roster_index)
 			return
-		if roster_index == 6 and not lab.boss_hud.visible:
+		if roster_index == 7 and not lab.boss_hud.visible:
 			_fail("Combat Lab did not restore boss presentation when respawning the Stage 5 boss.")
 			return
 		lab.clear_simulation()

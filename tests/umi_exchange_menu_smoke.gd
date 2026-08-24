@@ -30,7 +30,7 @@ func _run() -> void:
 		return
 	menu.show_transmute_page()
 	await process_frame
-	if menu.get_node("Panel/Margin/Root/TransmutePage/Targets/Scroll/TargetList").get_child_count() != 8:
+	if menu.get_node("Panel/Margin/Root/TransmutePage/Targets/Scroll/TargetList").get_child_count() != 9:
 		_fail("Umi's reconstruction targets did not mirror the catalog's low-drop rarities.")
 		return
 	var target_list: VBoxContainer = menu.get_node("Panel/Margin/Root/TransmutePage/Targets/Scroll/TargetList")

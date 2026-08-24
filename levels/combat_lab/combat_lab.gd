@@ -7,6 +7,7 @@ const ROSTER := [
 	{"label": "Forsaken Thrall", "scene": preload("res://entities/enemies/forsaken_thrall/forsaken_thrall.tscn")},
 	{"label": "Bramble Spitter", "scene": preload("res://entities/enemies/bramble_spitter/bramble_spitter.tscn")},
 	{"label": "Armored Hog [ELITE]", "scene": preload("res://entities/enemies/armored_hog/armored_hog.tscn")},
+	{"label": "Crag Bear [STAGE VI]", "scene": preload("res://entities/enemies/crag_bear/crag_bear.tscn")},
 	{"label": "Rootbound Husk [MINI-BOSS]", "scene": preload("res://entities/enemies/rootbound_husk/rootbound_husk.tscn")},
 	{"label": "Stage 5 Boss [PROOF]", "scene": preload("res://entities/enemies/stage_5_boss/stage_5_boss.tscn")},
 ]

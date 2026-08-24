@@ -138,7 +138,13 @@ func _tick_state(delta: float) -> void:
 	if state == State.BRACE:
 		_charge_remaining = definition.charge_distance
 		_hoofbeat_remaining = 0.0
-		attack_hitbox.activate(definition.attack_damage, self, _charge_direction, 150.0, 0.2)
+		attack_hitbox.activate(
+			definition.attack_damage,
+			self,
+			_charge_direction,
+			definition.charge_knockback_strength,
+			definition.charge_stagger_seconds
+		)
 		charge_started.emit()
 		_enter(State.CHARGE, definition.active_seconds)
 	elif state == State.DAZED:

@@ -4,12 +4,12 @@ This file tracks current limitations only. Resolved and retired systems belong i
 
 ## Current Limitations
 
-### KI-021 - Stage VI environment is reviewable but has no encounters
+### KI-021 - Stage VI production balance needs owner validation
 
-- **Status:** Environment preview implemented; campaign content planned.
-- **Verified:** `The Elder Ascent` loads as a continuous 24x20 authored top-down map with the approved Stage VI ground, modular upper cliffs/rocks, reused top-down ancient trees, a looping four-frame waterfall, explicit upper-cliff collision, paired terrace landmarks, ambient motes, and an Admin Mode F6 route. The old scenic backdrop and oval threshold are absent from runtime. Focused structural smoke and two rendered captures pass.
-- **Risk:** Live player movement has not yet owner-approved the full cliff line or waterfall-basin approach. The scene has no production navigation, enemies, rewards, clear authority, save flag, or Stage V transition and must not be mistaken for an implemented Stage VI campaign stage.
-- **Next:** Walk the preview at 960x540 along the full upper collision line and approach the waterfall basin from both sides. After owner approval, author navigation and the new enemy-role/balance contract before connecting progression.
+- **Status:** Implemented; balance/feel pending.
+- **Verified:** `The Elder Ascent` has production navigation and five 4/4/5/6/9 waves under a five-live cap: eight Bears, fourteen Thralls, five rebuilt Spitters, one finale Hog, and no Mirelings. Crag Bear retains approved body-authored attacks/audio/impact and now uses Heavy 30% stagger duration plus a fourth-hit/1.05-second breakout. Hog uses a third-hit/0.8-second breakout, and its charge sends data-owned 175 knockback/0.24-second recovery to Player. Spitter body motion, stable idle-to-attack actor mass, three-frame clean impact, bounded retreat, destructible seeds, cleanup cases, loot data, Stage V/VI route order, and encounter composition pass focused checks.
+- **Risk:** Headless checks cannot judge final five-enemy priority readability, whether Bear resistance feels forceful rather than arbitrary, Hog charge recovery comfort, corrected Spitter on-screen scale, waterfall-path movement feel, or whether full-skill/no-armor and starter-gear clears are demanding without becoming noisy or tedious.
+- **Next:** Complete Stage VI with no armor/full skills, starter gear, and the Stage V set; deliberately spam normal attack and Skills 1/3 into Bear, take and evade Hog charges, inspect Spitter beside Thrall/Hog/Bear, and record clear time, damage taken, target choices, seed-counter success, slam failures, audio/camera mix, and Crag Iron/Echo Claw yield before changing stats or feedback intensity.
 
 ### KI-020 - Umi exchange economy needs campaign-scale tuning
 
@@ -18,12 +18,12 @@ This file tracks current limitations only. Resolved and retired systems belong i
 - **Risk:** Current prices are deliberate first-pass values. Real Stage I-V play has not yet measured whether ordinary sales fund crafting too quickly, whether 1800 gold for the full set is too high, or whether Rare/Boss reconstruction feels appropriately long-term.
 - **Next:** Owner-check the corrected portrait, Umi-to-right-bowl hand alignment, workbench scale, and collision at 960x540, then complete one fresh Stage I-V campaign without debug grants; record earned/spent gold, sold stacks, and first craft timing. Add the intended Stage VIII unlock only after that stage exposes canonical completion state. Tune resource metadata rather than branching Umi's code.
 
-### KI-019 - Stage VI-XV gear pacing is designed but not encounter-validated
+### KI-019 - Stage VI-XV gear pacing has its first encounter but lacks measurements
 
-- **Status:** Planned.
+- **Status:** Partially implemented.
 - **Implemented:** Varkuun Edge and the five Stage V armor pieces now have their Decision 121 stats, critical-hit behavior, caps, comparison copy, compact UI, and distinct icons.
-- **Risk:** Stages VI-XV and their enemy roster are not implemented, so the intended starter-versus-crafted clear-time and incoming-damage gap has not been measured in real encounters. Lifesteal is a future unique-effect idea, not a current stat authority.
-- **Next:** Author Stage VI's new Forest roles without reusing Mirelings/Rootlings or defaulting every new name to roots/trees, permit entry with any equipment, and record clear time and damage taken with starter gear versus Varkuun/Forest gear.
+- **Risk:** Decision 127 now provides a composition-heavy measurement target, but no no-armor/starter/crafted clear-time, incoming-damage, target-priority, or material-yield data exists yet. Stages VII-XV remain unimplemented. Lifesteal is a future unique-effect idea, not current authority.
+- **Next:** Play complete Stage VI with all three loadouts and record the metrics before tuning Bear stats, the five-live cap, Spitter cadence, Crag drop protection, or projecting the band into Stage VII.
 
 ### KI-018 - Portal presentation needs final owner-scale approval
 

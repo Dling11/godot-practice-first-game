@@ -4,6 +4,8 @@ const ForgottenGrove = preload("res://data/expeditions/forgotten_grove.tres")
 const GroveThorns = preload("res://data/expeditions/thorns_of_the_forgotten_grove.tres")
 const RootboundHollow = preload("res://data/expeditions/rootbound_hollow.tres")
 const EasternRot = preload("res://data/expeditions/eastern_rot.tres")
+const DeadForest = preload("res://data/expeditions/dead_forest.tres")
+const ElderAscent = preload("res://data/expeditions/elder_ascent.tres")
 const DrownedBells = preload("res://data/expeditions/drowned_bells.tres")
 const Progression = preload("res://data/progression/king_path.tres")
 
@@ -17,8 +19,25 @@ func _run() -> void:
 	var run_session := root.get_node("RunSession")
 	story_state.reset_story()
 	run_session.reset_run()
+	var menu_scene := load("res://ui/expeditions/expedition_menu.tscn") as PackedScene
+	var menu := menu_scene.instantiate() as ExpeditionMenu
+	var route_order: Array[StringName] = []
+	for definition: ExpeditionDefinition in menu.expeditions:
+		route_order.append(definition.expedition_id)
+	if route_order != [
+		&"forgotten_grove",
+		&"thorns_of_the_forgotten_grove",
+		&"rootbound_hollow",
+		&"eastern_rot",
+		&"dead_forest",
+		&"elder_ascent",
+		&"drowned_bells",
+	]:
+		_fail("The expedition menu does not preserve canonical Stage I-VI order.")
+		return
+	menu.free()
 
-	for definition: ExpeditionDefinition in [ForgottenGrove, GroveThorns, RootboundHollow, EasternRot, DrownedBells]:
+	for definition: ExpeditionDefinition in [ForgottenGrove, GroveThorns, RootboundHollow, EasternRot, DeadForest, ElderAscent, DrownedBells]:
 		if not definition.is_valid_definition():
 			_fail("An expedition definition is missing its stable identity or display metadata.")
 			return
@@ -71,6 +90,30 @@ func _run() -> void:
 	story_state.record_discovery(&"rootbound_hollow")
 	if player_level != 4 or not EasternRot.is_available(story_state, player_level):
 		_fail("Stage 4 did not open at Level 4 after the Rootbound Hollow clear memories were recorded.")
+		return
+	if DeadForest.is_available(story_state, player_level):
+		_fail("Stage 5 opened before Stage 4 was cleared and Level 5 was reached.")
+		return
+	run_session.update_progression(1200, 0)
+	player_level = Progression.get_level_for_total_experience(run_session.total_experience)
+	story_state.remember_story(&"forest_stage_4_cleared")
+	story_state.record_discovery(&"eastern_rot")
+	if player_level != 5 or not DeadForest.is_available(story_state, player_level):
+		_fail("Stage 5 did not open in sequence after the Eastern Rot clear.")
+		return
+	if ElderAscent.is_available(story_state, player_level):
+		_fail("Stage 6 opened before the Stage 5 boss was defeated.")
+		return
+	run_session.update_progression(1750, 0)
+	player_level = Progression.get_level_for_total_experience(run_session.total_experience)
+	story_state.remember_story(&"forest_stage_5_cleared")
+	story_state.record_boss_victory(&"stage_5_boss")
+	story_state.record_discovery(&"dead_forest")
+	if player_level < 6 or not ElderAscent.is_available(story_state, player_level):
+		_fail("Stage 6 did not open at Level %d; unmet: %s." % [
+			player_level,
+			", ".join(ElderAscent.get_unmet_requirements(story_state, player_level)),
+		])
 		return
 
 	story_state.record_discovery(&"remembered_thorn_shrine")

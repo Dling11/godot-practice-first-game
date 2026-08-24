@@ -133,6 +133,10 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 123 | Use Umi and material-owned exchange metadata | Umi, Echo Crucible, selling, reconstruction, enemy memory, gold crafting fees, or automatic future-material integration |
 | 124 | Establish Stage VI environment before enemies (upper presentation superseded by 125) | Stage VI preview sequencing, environment-first review, F6 debug access, or campaign-integration boundary |
 | 125 | Keep Stage VI upper terrain top-down and modular | Stage VI perspective, continuous ground, reusable cliffs/rocks/trees, waterfall animation, or rejected scenic backdrop/threshold |
+| 126 | Introduce Crag Bear and purposeful Stage VI continuity | One-Mireling opening, Crag Bear combat/art/drops, generic spawn entries, Stage VI waves, or production route completion |
+| 127 | Recompose Stage VI pressure and rebuild the Bramble Spitter | Missing Stage V expedition route, Mireling removal, five-live Stage VI composition, bounded Spitter retreat, fresh body/projectile art, destructible seeds, or Bear drop retuning |
+| 128 | Separate impact feedback from accumulating stagger breakout | Stun-lock prevention, Heavy control, Hog/Bear resistance, player interruption, super armor, or Spitter native scale |
+| 129 | Make clear portals preview the destination threat | Stage I-VI portal colors, post-mini-boss/post-boss reset, or Stage V direct continuation into Stage VI |
 
 ## New Decisions
 

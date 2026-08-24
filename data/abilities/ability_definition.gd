@@ -29,6 +29,9 @@ enum ImpactWeight { LIGHT, MEDIUM, HEAVY, DEVASTATING }
 @export_range(0.0, 3.0, 0.01, "suffix:s") var recovery_seconds := 0.2
 @export_range(0.0, 30.0, 0.1, "suffix:s") var cooldown_seconds := 1.0
 @export var grants_invulnerability := false
+## Super armor preserves the cast when accepted damage carries stagger. Damage,
+## flash, audio, and hit-pause still resolve normally.
+@export var grants_super_armor := false
 @export var dash_cancelable := false
 
 

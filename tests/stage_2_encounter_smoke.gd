@@ -26,6 +26,9 @@ func _run() -> void:
 	if controller.portal_target_scene != "res://levels/stage_3/stage_3.tscn":
 		_fail("Stage 2's clear portal must continue directly into Stage 3.")
 		return
+	if controller.portal_tier != StagePortal.PortalTier.MINI_BOSS:
+		_fail("Stage 2 must preview the Stage 3 mini-boss with a purple Mini Boss portal.")
+		return
 	if (
 		controller.completion_reward_mode
 			!= EncounterController.CompletionRewardMode.DIRECT_PORTAL

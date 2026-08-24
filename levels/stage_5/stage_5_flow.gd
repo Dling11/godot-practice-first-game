@@ -2,6 +2,7 @@ extends Node
 
 const PortalScene = preload("res://gameplay/encounters/stage_portal.tscn")
 const RewardChestScene = preload("res://gameplay/loot/stage_reward_chest.tscn")
+const NEXT_STAGE_PATH := "res://levels/stage_6/stage_6.tscn"
 const ExpeditionDefeatReturnScript = preload(
 	"res://gameplay/expeditions/expedition_defeat_return.gd"
 )
@@ -195,13 +196,13 @@ func _on_reward_claimed(_result: Dictionary) -> void:
 	if save_service != null:
 		save_service.save_profile()
 	combat_hud.show_story_message("THE LORD'S SEAL IS YOURS  •  THE DEAD FOREST FALLS SILENT", 3.2)
-	_spawn_return_portal()
+	_spawn_forward_portal()
 
 
-func _spawn_return_portal() -> void:
+func _spawn_forward_portal() -> void:
 	var portal := PortalScene.instantiate() as StagePortal
-	portal.target_scene_path = "res://levels/sanctuary/sanctuary.tscn"
-	portal.portal_tier = StagePortal.PortalTier.BOSS
+	portal.target_scene_path = NEXT_STAGE_PATH
+	portal.portal_tier = StagePortal.PortalTier.NORMAL
 	portal_parent.add_child(portal)
 	portal.global_position = _boss_defeat_position
 	portal.proximity_changed.connect(combat_hud.show_interaction_prompt)

@@ -48,6 +48,11 @@ func apply_debug_expedition_unlocks() -> bool:
 	remember_story(&"rootbound_hollow_completed")
 	record_boss_victory(&"rootbound_husk")
 	record_discovery(&"rootbound_hollow")
+	remember_story(&"forest_stage_4_cleared")
+	record_discovery(&"eastern_rot")
+	remember_story(&"forest_stage_5_cleared")
+	record_boss_victory(&"stage_5_boss")
+	record_discovery(&"dead_forest")
 	return true
 
 

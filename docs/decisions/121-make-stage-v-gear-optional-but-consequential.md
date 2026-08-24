@@ -3,6 +3,8 @@
 - **Status:** Accepted
 - **Date:** 2026-08-22
 
+> Decision 126 supersedes only the strict no-Mireling Stage VI roster clause below: Stage VI now opens with exactly one authored Mireling before its new Crag Bear roster. The no-equipment-gate and meaningful-gear balance rules remain active.
+
 ## Context
 
 The first crafted set must matter before production proceeds to Stage VI. A hard rule such as "equip Varkuun Edge to enter" would remove player freedom, while the previous small numerical upgrade allowed players to ignore crafting without feeling a meaningful combat difference. The set also lacked durable slot identities, and percentage bonuses needed explicit bounds before later gear could stack them.

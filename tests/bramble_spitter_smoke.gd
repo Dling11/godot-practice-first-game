@@ -26,8 +26,60 @@ func _run() -> void:
 	if body.sprite_frames.get_frame_texture(&"idle_down", 0) == null:
 		_fail("Bramble Spitter body animation has no atlas texture.")
 		return
-	if body.sprite_frames.get_frame_count(&"attack_down") != 3:
-		_fail("Bramble Spitter attack must contain charge, compression, and spit frames.")
+	for direction in [&"down", &"left", &"right", &"up"]:
+		if body.sprite_frames.get_frame_count(&"attack_%s" % direction) != 8:
+			_fail("Bramble Spitter attack must contain eight physical action poses.")
+			return
+		if body.sprite_frames.get_frame_count(&"walk_%s" % direction) != 4:
+			_fail("Bramble Spitter walk must contain four authored locomotion poses.")
+			return
+		if body.sprite_frames.get_frame_count(&"hurt_%s" % direction) != 1:
+			_fail("Bramble Spitter hurt pose is missing.")
+			return
+		if body.sprite_frames.get_frame_count(&"dead_%s" % direction) != 1:
+			_fail("Bramble Spitter collapse pose is missing.")
+			return
+		var idle_direction_bounds := _opaque_bounds(
+			body.sprite_frames.get_frame_texture(&"idle_%s" % direction, 0)
+		)
+		var attack_entry_bounds := _opaque_bounds(
+			body.sprite_frames.get_frame_texture(&"attack_%s" % direction, 0)
+		)
+		var actor_area_ratio := (
+			float(attack_entry_bounds.size.x * attack_entry_bounds.size.y)
+			/ float(idle_direction_bounds.size.x * idle_direction_bounds.size.y)
+		)
+		if actor_area_ratio < 0.85 or actor_area_ratio > 1.15:
+			_fail(
+				"Bramble Spitter changed actor mass on attack entry (%s %.2f)."
+				% [direction, actor_area_ratio]
+			)
+			return
+	var idle_bounds := _opaque_bounds(
+		body.sprite_frames.get_frame_texture(&"idle_down", 0)
+	)
+	var attack_bounds := _opaque_bounds(
+		body.sprite_frames.get_frame_texture(&"attack_down", 4)
+	)
+	if idle_bounds.size.x > 32.0 or idle_bounds.size.y > 30.0:
+		_fail("Bramble Spitter locomotion raster remains heavy-enemy sized.")
+		return
+	if attack_bounds.size.x > 38.0 or attack_bounds.size.y > 29.0:
+		_fail("Bramble Spitter attack raster exceeds its authored extension budget.")
+		return
+	var projectile_frames := load(
+		"res://assets/characters/enemies/bramble_spitter/bramble_thorn_seed_sprite_frames.tres"
+	) as SpriteFrames
+	if (
+		projectile_frames == null
+		or projectile_frames.get_frame_count(&"flight") != 4
+		or projectile_frames.get_frame_count(&"impact") != 3
+	):
+		_fail("Bramble thorn-seed must end on the third clean explosion frame.")
+		return
+	var final_impact := projectile_frames.get_frame_texture(&"impact", 2) as AtlasTexture
+	if final_impact == null or final_impact.region.position.x != 144.0:
+		_fail("Bramble impact still routes to the rejected spent-seed remnant.")
 		return
 
 	var telegraph := {"seen": false, "target": Vector2.ZERO, "visible": false}
@@ -57,6 +109,9 @@ func _run() -> void:
 		return
 	if not close_retreat_seen:
 		_fail("Bramble Spitter close-range retreat regression was not exercised.")
+		return
+	if spitter.global_position.distance_to(Vector2(80.0, 200.0)) > 90.0:
+		_fail("Bramble Spitter exceeded its bounded retreat burst before committing.")
 		return
 	if telegraph.target.distance_to(player.global_position) > 0.1:
 		_fail("Bramble Spitter did not snapshot the player's target position.")
@@ -102,6 +157,22 @@ func _run() -> void:
 		_fail("Bramble seed did not create its impact feedback.")
 		return
 
+	var countered_projectile := spitter.projectile_scene.instantiate() as CounterableHostileProjectile
+	projectiles.add_child(countered_projectile)
+	countered_projectile.global_position = Vector2(300.0, 300.0)
+	countered_projectile.launch(Vector2.RIGHT, 3.0, spitter)
+	var projectile_hurtbox := countered_projectile.get_node("Hurtbox") as HurtboxComponent
+	if projectile_hurtbox.selectable_as_combat_target:
+		_fail("Counterable projectile leaked into assisted enemy targeting.")
+		return
+	var counter_seen := {"value": false}
+	countered_projectile.countered.connect(func() -> void: counter_seen.value = true)
+	projectile_hurtbox.receive_hit(DamageInfo.new(1.0, player, Vector2.RIGHT))
+	await process_frame
+	if not counter_seen.value or is_instance_valid(countered_projectile):
+		_fail("Player damage did not destroy the counterable thorn-seed cleanly.")
+		return
+
 	# A fired seed must remain valid after Skill 4 or another attack frees its
 	# shooter. The impact becomes source-less instead of passing a freed Object
 	# into DamageInfo's typed constructor.
@@ -117,10 +188,88 @@ func _run() -> void:
 	if not is_equal_approx(player_health.current_health, health_before_orphaned_hit - 3.0):
 		_fail("A projectile whose shooter was freed did not resolve safely.")
 		return
+
+	# Killing the shooter during wind-up must cancel the state authority before
+	# its delayed presentation/timers can create a projectile.
+	var dying_target := CharacterBody2D.new()
+	dying_target.global_position = Vector2(600.0, 400.0)
+	world.add_child(dying_target)
+	var dying_spitter := SpitterScene.instantiate() as BrambleSpitter
+	dying_spitter.definition = dying_spitter.definition.duplicate(true) as EnemyDefinition
+	dying_spitter.definition.spawn_seconds = 0.05
+	dying_spitter.target = dying_target
+	dying_spitter.set_projectile_parent(projectiles)
+	dying_spitter.global_position = Vector2(470.0, 400.0)
+	world.add_child(dying_spitter)
+	for frame in range(90):
+		await physics_frame
+		if dying_spitter.state == BrambleSpitter.State.WIND_UP:
+			break
+	if dying_spitter.state != BrambleSpitter.State.WIND_UP:
+		_fail("Stability audit could not place the Spitter in wind-up.")
+		return
+	var projectile_count_before_death := _count_projectiles(projectiles)
+	(dying_spitter.get_node("HealthComponent") as HealthComponent).apply_damage(
+		DamageInfo.new(999.0, player, Vector2.RIGHT)
+	)
+	await create_timer(0.9).timeout
+	if _count_projectiles(projectiles) != projectile_count_before_death:
+		_fail("A dead Spitter completed a cancelled wind-up and spawned a seed.")
+		return
+
+	# Losing the player/target and unloading a scene with an active projectile
+	# must both cleanly stop ownership without a stale-reference callback.
+	var targetless_spitter := SpitterScene.instantiate() as BrambleSpitter
+	var temporary_target := CharacterBody2D.new()
+	world.add_child(temporary_target)
+	targetless_spitter.target = temporary_target
+	world.add_child(targetless_spitter)
+	temporary_target.queue_free()
+	await process_frame
+	await physics_frame
+	if targetless_spitter.velocity.length() > 0.1:
+		_fail("Bramble Spitter kept moving after its target was freed.")
+		return
+	var transition_world := Node2D.new()
+	root.add_child(transition_world)
+	var transition_projectile := spitter.projectile_scene.instantiate() as HostileProjectile
+	transition_world.add_child(transition_projectile)
+	transition_projectile.launch(Vector2.RIGHT, 3.0, null)
+	transition_world.queue_free()
+	await process_frame
+	await process_frame
+	if is_instance_valid(transition_projectile):
+		_fail("Scene unload left an active Bramble projectile alive.")
+		return
 	print("Bramble Spitter smoke test passed.")
 	quit(0)
+
+
+func _count_projectiles(parent: Node) -> int:
+	var count := 0
+	for child in parent.get_children():
+		if child is HostileProjectile:
+			count += 1
+	return count
 
 
 func _fail(message: String) -> void:
 	push_error(message)
 	quit(1)
+
+
+func _opaque_bounds(texture: Texture2D) -> Rect2i:
+	var image := texture.get_image()
+	var minimum := Vector2i(image.get_width(), image.get_height())
+	var maximum := Vector2i(-1, -1)
+	for y in image.get_height():
+		for x in image.get_width():
+			if image.get_pixel(x, y).a < 0.5:
+				continue
+			minimum.x = mini(minimum.x, x)
+			minimum.y = mini(minimum.y, y)
+			maximum.x = maxi(maximum.x, x)
+			maximum.y = maxi(maximum.y, y)
+	if maximum.x < 0:
+		return Rect2i()
+	return Rect2i(minimum, maximum - minimum + Vector2i.ONE)

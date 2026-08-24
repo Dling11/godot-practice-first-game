@@ -15,7 +15,9 @@
 [ext_resource type="Resource" path="res://data/items/materials/forest/armored_hog_hide.tres" id="12_hog_hide"]
 [ext_resource type="Resource" path="res://data/items/materials/forest/living_bark_plate.tres" id="13_bark_plate"]
 [ext_resource type="Resource" path="res://data/items/materials/forest/varkuun_core.tres" id="14_varkuun_core"]
+[ext_resource type="Resource" path="res://data/items/materials/forest/crag_iron.tres" id="15_crag_iron"]
+[ext_resource type="Resource" path="res://data/items/materials/forest/echo_claw.tres" id="16_echo_claw"]
 
 [resource]
 script = ExtResource("1_catalog")
-materials = Array[ExtResource("1_2a203")]([ExtResource("2_resin"), ExtResource("3_membrane"), ExtResource("4_fiber"), ExtResource("5_young"), ExtResource("6_cloth"), ExtResource("7_fittings"), ExtResource("8_seed"), ExtResource("9_sap"), ExtResource("10_husk"), ExtResource("11_core"), ExtResource("12_hog_hide"), ExtResource("13_bark_plate"), ExtResource("14_varkuun_core")])
+materials = Array[ExtResource("1_2a203")]([ExtResource("2_resin"), ExtResource("3_membrane"), ExtResource("4_fiber"), ExtResource("5_young"), ExtResource("6_cloth"), ExtResource("7_fittings"), ExtResource("8_seed"), ExtResource("9_sap"), ExtResource("10_husk"), ExtResource("11_core"), ExtResource("12_hog_hide"), ExtResource("13_bark_plate"), ExtResource("14_varkuun_core"), ExtResource("15_crag_iron"), ExtResource("16_echo_claw")])

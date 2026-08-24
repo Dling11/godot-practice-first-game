@@ -102,6 +102,9 @@ func _advance_wave() -> void:
 	wave_changed.emit(wave_index + 1, waves.size(), wave.title)
 	_spawning = true
 	_pending_enemies.clear()
+	wave.append_spawn_scenes(_pending_enemies)
+	## Preserve the implemented Stage I-IV wave resources while new stages use
+	## generic scene/count entries instead of adding one property per enemy.
 	for count in range(wave.mireling_count): _pending_enemies.append(mireling_scene)
 	for count in range(wave.rootling_count): _pending_enemies.append(rootling_scene)
 	for count in range(wave.thrall_count): _pending_enemies.append(thrall_scene)

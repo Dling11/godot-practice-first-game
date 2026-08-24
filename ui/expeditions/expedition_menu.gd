@@ -63,7 +63,7 @@ func _build_route_buttons() -> void:
 			continue
 		var button := Button.new()
 		button.name = "%sButton" % String(definition.expedition_id).to_pascal_case()
-		button.custom_minimum_size = Vector2(0, 56)
+		button.custom_minimum_size = Vector2(0, 44)
 		button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 		button.add_theme_font_size_override("font_size", 10)
 		button.pressed.connect(_begin_expedition.bind(definition))

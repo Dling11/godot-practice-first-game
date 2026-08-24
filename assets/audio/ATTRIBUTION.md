@@ -148,3 +148,16 @@ This 0.34-second mono presentation cue combines a restrained wooden knock, stone
 - **Downloaded:** 2026-08-13
 
 The pitch-lowered vocal layers only on the authoritative brace warning. Original short hoof transients accelerate during the committed charge, and the original crash cue marks entry into the punishable daze. The source OGG and one evaluated CC0 horse-trot candidate are preserved under `art_source/archive/audio/stage_4_armored_hog_cc0_sources/`; the horse recording is not used at runtime.
+
+## Crag Bear Action Suite
+
+- **Original runtime files:** `sfx/enemies/crag_bear/crag_bear_claw_swipe.wav` and `crag_bear_ground_slam.wav`
+- **Original source:** Deterministic in-project synthesis via `tools/generate_crag_bear_sfx.py`
+- **Created:** 2026-08-24
+- **Vocal runtime files:** `sfx/enemies/crag_bear/crag_bear_growl_a.ogg` and `crag_bear_growl_b.ogg`
+- **Pack:** `Bear Growls` by AntumDeluge, sourced from the U.S. Fish & Wildlife Service
+- **License:** CC0 1.0 / Public Domain dedication
+- **Source page:** https://opengameart.org/content/bear-growls
+- **Downloaded:** 2026-08-24
+
+The 0.38-second claw cue layers heavy air displacement, body weight, and three tearing transients at the authored contact. The 0.62-second slam cue layers body/sub impact, earth fracture, grit, and settling debris. The two 1.07-1.19-second real-animal growls alternate during the hind-leg rise and use slightly lowered pitch in runtime. The original CC0 archive and included source note are preserved under `art_source/archive/audio/stage_6_crag_bear_cc0_sources/`.

@@ -285,6 +285,7 @@ func get_click_move_direction(delta: float) -> Vector2:
 func _is_selectable_hurtbox(hurtbox: HurtboxComponent) -> bool:
 	return (
 		is_instance_valid(hurtbox)
+		and hurtbox.selectable_as_combat_target
 		and is_instance_valid(hurtbox.health_component)
 		and hurtbox.health_component.current_health > 0.0
 		and hurtbox.get_parent() is Node2D

@@ -16,6 +16,8 @@ signal restraint_progress(source: Node, remaining_break_points: int, total_break
 signal restraint_ended(source: Node, escaped: bool)
 signal action_denied(action: StringName)
 signal auto_combat_changed(auto_farm_enabled: bool, auto_skills_enabled: bool)
+signal hit_recovery_started(duration_seconds: float)
+signal hit_recovery_finished
 
 enum BufferedAction { NONE, PRIMARY_ATTACK, EVADE, ABILITY }
 
@@ -51,6 +53,8 @@ const CombatTargetingScript = preload("res://entities/player/components/player_c
 @onready var combat_targeting: CombatTargetingScript = %CombatTargetingComponent
 @onready var auto_combat: PlayerAutoCombatComponent = %AutoCombatComponent
 @onready var health_component: HealthComponent = %HealthComponent
+@onready var knockback_component: KnockbackComponent = %KnockbackComponent
+@onready var stagger_component: StaggerComponent = %StaggerComponent
 @onready var progression_component: PlayerProgressionComponent = %ProgressionComponent
 @onready var vitality_component: PlayerVitalityComponent = %VitalityComponent
 @onready var health_regeneration_component: PlayerHealthRegenerationComponent = %HealthRegenerationComponent
@@ -71,12 +75,15 @@ var _restraint_total_break_points := 0
 var _last_primary_target_id := 0
 var _last_primary_click_msec := -PRIMARY_CLICK_ENGAGE_WINDOW_MSEC
 var _last_primary_click_world_position := Vector2.ZERO
+var _applied_knockback_velocity := Vector2.ZERO
 
 
 func _ready() -> void:
 	_restore_run_health()
 	health_component.health_changed.connect(_sync_run_health)
 	health_component.died.connect(_on_died)
+	stagger_component.stagger_started.connect(_on_hit_recovery_started)
+	stagger_component.stagger_finished.connect(_on_hit_recovery_finished)
 	evade_component.phase_changed.connect(_on_evade_phase_changed)
 	attack_component.phase_changed.connect(_on_attack_phase_changed)
 	attack_component.attack_finished.connect(_on_attack_finished)
@@ -120,13 +127,17 @@ func _sync_run_health(current: float, _maximum: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	velocity -= _applied_knockback_velocity
+	_applied_knockback_velocity = Vector2.ZERO
 	_try_apply_pending_weapon()
-	auto_combat.update_auto_combat(delta)
+	if not is_in_hit_recovery():
+		auto_combat.update_auto_combat(delta)
 	var manual_move_direction := input_source.get_move_direction()
 	var move_direction := manual_move_direction
 	if (
 		move_direction.is_zero_approx()
 		and not is_restrained()
+		and not is_in_hit_recovery()
 		and not evade_component.is_dashing()
 		and not is_any_ability_casting()
 	):
@@ -140,9 +151,9 @@ func _physics_process(delta: float) -> void:
 		)
 	if ground_point_targeting.is_targeting():
 		ground_point_targeting.update_aim(get_global_mouse_position(), input_source.get_aim_direction())
-	if not manual_move_direction.is_zero_approx() and not is_restrained():
+	if not manual_move_direction.is_zero_approx() and not is_restrained() and not is_in_hit_recovery():
 		_cancel_combat_intent_for_manual_movement()
-	if not move_direction.is_zero_approx() and not is_restrained():
+	if not move_direction.is_zero_approx() and not is_restrained() and not is_in_hit_recovery():
 		_set_movement_facing_direction(move_direction)
 	elif combat_targeting.has_valid_target() and not is_restrained():
 		_set_movement_facing_direction(combat_targeting.get_direction_to_target())
@@ -162,6 +173,8 @@ func _physics_process(delta: float) -> void:
 
 	if is_restrained():
 		velocity = movement_component.calculate_velocity(velocity, Vector2.ZERO, delta)
+	elif is_in_hit_recovery():
+		velocity = movement_component.calculate_velocity(velocity, Vector2.ZERO, delta)
 	elif evade_component.is_dashing():
 		velocity = evade_component.get_dash_velocity()
 	elif is_any_ability_casting():
@@ -172,9 +185,11 @@ func _physics_process(delta: float) -> void:
 			velocity = movement_component.calculate_velocity(velocity, Vector2.ZERO, delta)
 	else:
 		velocity = movement_component.calculate_velocity(velocity, move_direction, delta)
+	_apply_incoming_knockback()
 	var is_moving := (
 		not move_direction.is_zero_approx()
 		and not is_restrained()
+		and not is_in_hit_recovery()
 		and not evade_component.is_dashing()
 		and not is_any_ability_casting()
 	)
@@ -331,7 +346,7 @@ func _struggle_against_restraint() -> bool:
 
 
 func request_primary_attack() -> bool:
-	if is_defeated or is_restrained() or _is_targeting_any_ability():
+	if is_defeated or is_restrained() or is_in_hit_recovery() or _is_targeting_any_ability():
 		return false
 	if is_any_ability_casting():
 		return _buffer_action(BufferedAction.PRIMARY_ATTACK, facing_direction)
@@ -444,7 +459,7 @@ func _try_assisted_primary_attack() -> void:
 
 
 func request_evade(direction: Vector2) -> bool:
-	if is_defeated:
+	if is_defeated or is_in_hit_recovery():
 		return false
 	if is_restrained():
 		return _struggle_against_restraint()
@@ -480,7 +495,7 @@ func request_ability_1() -> bool:
 
 func request_ability(slot_number: int) -> bool:
 	var component := get_ability_component_for_slot(slot_number)
-	if is_restrained():
+	if is_restrained() or is_in_hit_recovery():
 		return false
 	if _is_targeting_any_ability():
 		## Repeating the skill key is intentionally consumed but never confirms.
@@ -698,6 +713,10 @@ func is_any_ability_casting() -> bool:
 	return get_active_ability_component() != null
 
 
+func is_in_hit_recovery() -> bool:
+	return stagger_component != null and stagger_component.is_staggered()
+
+
 func _set_facing_direction(direction: Vector2) -> void:
 	if direction.is_zero_approx():
 		return
@@ -754,7 +773,13 @@ func _buffer_action(action: BufferedAction, direction: Vector2, ability_slot := 
 
 
 func _try_execute_buffered_action() -> bool:
-	if _buffered_action == BufferedAction.NONE or is_defeated or is_restrained() or is_any_ability_casting():
+	if (
+		_buffered_action == BufferedAction.NONE
+		or is_defeated
+		or is_restrained()
+		or is_in_hit_recovery()
+		or is_any_ability_casting()
+	):
 		return false
 	if attack_component.phase != attack_component.Phase.IDLE:
 		if attack_component.phase != attack_component.Phase.RECOVERY:
@@ -787,6 +812,35 @@ func _clear_buffered_action() -> void:
 	_buffered_ability_slot = 0
 	if not action_buffer_timer.is_stopped():
 		action_buffer_timer.stop()
+
+
+func _apply_incoming_knockback() -> void:
+	_applied_knockback_velocity = knockback_component.velocity
+	velocity += _applied_knockback_velocity
+
+
+func _on_hit_recovery_started(duration_seconds: float) -> void:
+	var active_ability := get_active_ability_component()
+	if (
+		active_ability != null
+		and active_ability.definition != null
+		and active_ability.definition.grants_super_armor
+	):
+		stagger_component.clear()
+		return
+	_clear_buffered_action()
+	_cancel_all_targeting()
+	attack_component.cancel_attack()
+	evade_component.interrupt_recovery()
+	ability_1_component.cancel_cast()
+	ability_2_component.cancel_cast()
+	ability_3_component.cancel_cast()
+	ability_4_component.cancel_cast()
+	hit_recovery_started.emit(duration_seconds)
+
+
+func _on_hit_recovery_finished() -> void:
+	hit_recovery_finished.emit()
 
 
 func _begin_ability_input(component: AbilityComponent, direction: Vector2) -> bool:
@@ -946,6 +1000,8 @@ func _on_died() -> void:
 	_clear_buffered_action()
 	_cancel_all_targeting()
 	velocity = Vector2.ZERO
+	knockback_component.clear()
+	stagger_component.clear()
 	attack_component.cancel_attack()
 	evade_component.cancel_evade()
 	ability_1_component.cancel_cast()

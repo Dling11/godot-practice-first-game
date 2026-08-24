@@ -21,7 +21,9 @@ This catalog records active asset families and lifecycle boundaries. Exact runti
 ## Enemies
 
 - Active enemy art is organized by actor under `assets/characters/enemies/`.
-- Production roster: Mireling, Rootling, Forsaken Thrall, Bramble Spitter, Rootbound Husk, Armored Hog, and Varkuun.
+- Production roster: Mireling, Rootling, Forsaken Thrall, Bramble Spitter, Rootbound Husk, Armored Hog, Crag Bear, and Varkuun.
+- Crag Bear runtime sheets and SpriteFrames live under `assets/characters/enemies/stage_6_crag_bear/`; its 96x96 portrait is under `assets/characters/enemies/portraits/`. The active action families are an eight-frame `96x64` claw assembled from separate anticipation/execution boards and an eight-frame `96x80` body slam with a real upright pose. Approved/generated boards, prompt provenance, deterministic processor, body-only reviews, and the procedural slam-effect review live under `art_source/generated/characters/enemies/stage_6_armored_bear/`, `tools/process_stage_6_crag_bear.py`, and `art_source/review/characters/enemies/stage_6_crag_bear/`. The reusable slam impact itself is code-native under `entities/enemies/crag_bear/`. Rejected static/awkward attack sources and superseded runtime derivatives are archived under `art_source/archive/characters/enemies/crag_bear_rejected_attacks_2026-08-24/`.
+- Bramble Spitter runtime body sheets, seven-cell thorn-seed sheet, and named SpriteFrames live under `assets/characters/enemies/bramble_spitter/`. Accepted generated action/locomotion/projectile sources live under `art_source/generated/characters/enemies/bramble_spitter_rework/`; `tools/process_bramble_spitter_rework.py` derives binary-alpha fixed-cell sheets, preserves idle-to-attack actor mass, and deliberately omits the rejected eighth spent-seed pose. `tools/build_bramble_spitter_sprite_frames.gd` owns reproducible four-frame flight and three-frame impact resources. Runtime review is under `art_source/review/characters/enemies/bramble_spitter_rework/`; the superseded three-frame body sheet/source is archive-only under `art_source/archive/characters/enemies/bramble_spitter_replaced_2026-08-24/`.
 - Enemy definitions own tier and movement-footprint radius. Foot auras are procedural/runtime presentation and are not replacement hurtboxes.
 - Portraits used by dialogue live under `assets/characters/enemies/portraits/`.
 
@@ -39,7 +41,7 @@ This catalog records active asset families and lifecycle boundaries. Exact runti
 - Authored layouts: `data/environment/layouts/`.
 - Sanctuary structures/NPC presentation: `assets/environment/sanctuary/` and `assets/characters/npcs/`.
 - Stage V decay terrain and props: `assets/environment/forest/stage_5/`.
-- Stage VI environment preview: approved muted ground under `assets/environment/forest/stage_6/tiles/`; six reusable transparent cliff/rock pieces under `assets/environment/forest/stage_6/props/modular_cliffs/`; stable four-frame waterfall sheet under `assets/environment/forest/stage_6/waterfall/` with fixed banks and downward-only curtain motion, plus reusable static lip, `4x1` water-only flow, and static basin parts under `waterfall/modules/`; reusable scene under `environment/props/stage_6_waterfall/`; generated source boards/prompt provenance under `art_source/generated/environment/forest/stage_6/modular_topdown/`; deterministic processing in `tools/process_stage_6_environment.py`; runtime captures under `art_source/review/environment/forest/stage_6/runtime/`. Rejected canyon/threshold sources and derivatives are recoverable only under `art_source/archive/environment/stage_6_rejected_perspective_2026-08-24/`.
+- Stage VI production environment: approved muted ground under `assets/environment/forest/stage_6/tiles/`; six reusable transparent cliff/rock pieces under `assets/environment/forest/stage_6/props/modular_cliffs/`; stable four-frame waterfall sheet under `assets/environment/forest/stage_6/waterfall/` with fixed banks and downward-only curtain motion, plus reusable static lip, `4x1` water-only flow, and static basin parts under `waterfall/modules/`; reusable scene under `environment/props/stage_6_waterfall/`; generated source boards/prompt provenance under `art_source/generated/environment/forest/stage_6/modular_topdown/`; deterministic processing in `tools/process_stage_6_environment.py`; runtime captures under `art_source/review/environment/forest/stage_6/runtime/`. Rejected canyon/threshold sources and derivatives are recoverable only under `art_source/archive/environment/stage_6_rejected_perspective_2026-08-24/`.
 - Generated Sanctuary gate: fixed `assets/environment/sanctuary/landmarks/generated/angel_expedition_portal_static_192x256.png` plus isolated `sanctuary_portal_energy_4x_44x112.png` (`4x1`, 44x112 cells).
 - Generated abyssal stage-exit base: `assets/environment/portals/generated/stage_abyssal_veil_base_16x_160x192.png` (`16x1`, 160x192 cells), with authored motion across upper/middle/lower interior, a nonempty moving center, and changing rim silhouette. Generated dense lightning/particle overlay: `assets/environment/portals/generated/stage_abyssal_veil_lightning_fx_16x_256x224.png` (`16x1`, 256x224 cells). Runtime tier data supplies tint, reduced display scale, independent base/FX speeds, and FX intensity; generated 4x4 boards and corrected review outputs live under `art_source/generated/environment/portals/abyssal_veil_portal/`. Ground-vortex, portal-ring, and localized-eye passes are archived.
 - Environment scenes must pair presentation with authored collision, navigation, depth, and occlusion where applicable.
@@ -47,6 +49,7 @@ This catalog records active asset families and lifecycle boundaries. Exact runti
 ## Items and Loot
 
 - Forest material icons: `assets/items/materials/forest/`.
+- Stage VI Crag Iron and Echo Claw use distinct 24x24 binary-alpha icons in the Forest material folder and canonical definitions under `data/items/materials/forest/`.
 - Stage V equipment icons: `assets/items/equipment/forest/stage_5_core/`. Varkuun Edge, Old Bark Helm, Heartwood Plate, and Rootfiber Gloves use generated V2 sources in `art_source/generated/items/equipment/forest/stage_5_core/`, processed into 64x64 binary-alpha runtime silhouettes; the combined review sheet lives beside the other item reviews.
 - Immutable item/material/recipe definitions: `data/items/`, `data/materials/`, and `data/crafting/`.
 - Loot/chest presentation: `assets/gameplay/loot/`.
@@ -56,6 +59,7 @@ This catalog records active asset families and lifecycle boundaries. Exact runti
 
 - Music: `assets/audio/music/`.
 - SFX: `assets/audio/sfx/`.
+- Crag Bear's dedicated action suite lives under `assets/audio/sfx/enemies/crag_bear/`: two original deterministic contact cues plus two short CC0 bear-growl variants. The source pack remains recoverable under `art_source/archive/audio/stage_6_crag_bear_cc0_sources/`.
 - Licensing/provenance: `assets/audio/ATTRIBUTION.md`.
 - Audio observes authoritative events; it never decides damage, cooldown, movement, or reward outcomes.
 

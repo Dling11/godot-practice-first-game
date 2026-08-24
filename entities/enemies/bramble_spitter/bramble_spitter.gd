@@ -10,6 +10,9 @@ signal shot_fired(direction: Vector2)
 
 const SeparationComponentScene = preload("res://entities/enemies/components/enemy_separation_component.tscn")
 const EnemyFootprint = preload("res://entities/enemies/components/enemy_footprint_system.gd")
+const RETREAT_BURST_SECONDS := 0.55
+const RETREAT_COOLDOWN_SECONDS := 1.65
+const RETREAT_DISTANCE := 72.0
 
 @export var definition: EnemyDefinition
 @export var target: CharacterBody2D
@@ -31,6 +34,9 @@ var _repath_time_remaining := 0.0
 var _aim_direction := Vector2.DOWN
 var _aim_target := Vector2.ZERO
 var _applied_knockback_velocity := Vector2.ZERO
+var _retreat_time_remaining := 0.0
+var _retreat_cooldown_remaining := 0.0
+var _retreat_target := Vector2.ZERO
 
 
 func _ready() -> void:
@@ -70,6 +76,7 @@ func _ensure_separation_component() -> EnemySeparationComponent:
 
 
 func _physics_process(delta: float) -> void:
+	_retreat_cooldown_remaining = maxf(_retreat_cooldown_remaining - delta, 0.0)
 	velocity -= _applied_knockback_velocity
 	_applied_knockback_velocity = Vector2.ZERO
 	if state == State.DEAD or state == State.SPAWNING or not is_instance_valid(target):
@@ -93,20 +100,28 @@ func _process_positioning(delta: float) -> void:
 	var offset := target.global_position - global_position
 	var distance := offset.length()
 	if distance >= minimum_attack_range and distance <= definition.attack_range and _has_clear_shot():
-		velocity = Vector2.ZERO
-		var muzzle_origin := global_position + Vector2(0.0, -13.0)
-		_aim_target = target.global_position + Vector2(0.0, -13.0)
-		_aim_direction = muzzle_origin.direction_to(_aim_target)
-		_set_facing(_aim_direction)
-		shot_telegraphed.emit(target.global_position, definition.wind_up_seconds)
-		_enter(State.WIND_UP, definition.wind_up_seconds)
+		_begin_shot()
 		return
+	if distance < minimum_attack_range:
+		if _retreat_time_remaining > 0.0:
+			_retreat_time_remaining = maxf(_retreat_time_remaining - delta, 0.0)
+			_process_retreat_motion(delta, offset)
+			if _retreat_time_remaining <= 0.0 and _has_clear_shot():
+				_begin_shot()
+			return
+		if _retreat_cooldown_remaining <= 0.0:
+			_begin_retreat(offset)
+			_process_retreat_motion(delta, offset)
+			return
+		# Once one retreat burst is spent, the Spitter commits to a readable
+		# close shot instead of kiting forever while the player follows.
+		if _has_clear_shot():
+			_begin_shot()
+			return
 
 	_repath_time_remaining -= delta
 	if _repath_time_remaining <= 0.0:
 		var requested_target := target.global_position
-		if distance < minimum_attack_range:
-			requested_target = global_position - offset.normalized() * (minimum_attack_range - distance + 48.0)
 		navigation_agent.target_position = _navigation_safe_target(requested_target)
 		_repath_time_remaining = 0.25
 
@@ -117,15 +132,47 @@ func _process_positioning(delta: float) -> void:
 		direction = path_direction
 	elif distance > definition.attack_range and _has_clear_shot():
 		direction = offset
-	elif distance < minimum_attack_range:
-		direction = -offset
 	direction = separation_component.blend_direction(self, direction)
-	# Ranged enemies keep watching their target while kiting; facing the retreat
-	# vector caused a visible 180-degree flip immediately before every shot.
-	_set_facing(offset if distance < minimum_attack_range else direction)
+	_set_facing(direction)
 	velocity = velocity.move_toward(direction.normalized() * definition.move_speed, definition.acceleration * delta)
 	_apply_knockback_velocity()
 	move_and_slide()
+
+
+func _begin_retreat(offset: Vector2) -> void:
+	var away := -offset.normalized() if not offset.is_zero_approx() else Vector2.LEFT
+	_retreat_target = _navigation_safe_target(global_position + away * RETREAT_DISTANCE)
+	navigation_agent.target_position = _retreat_target
+	_retreat_time_remaining = RETREAT_BURST_SECONDS
+	_retreat_cooldown_remaining = RETREAT_COOLDOWN_SECONDS
+
+
+func _process_retreat_motion(delta: float, offset: Vector2) -> void:
+	var direction := navigation_agent.get_next_path_position() - global_position
+	if navigation_agent.is_navigation_finished() or direction.is_zero_approx():
+		direction = _retreat_target - global_position
+	if direction.length() <= 5.0:
+		_retreat_time_remaining = 0.0
+		direction = Vector2.ZERO
+	direction = separation_component.blend_direction(self, direction)
+	_set_facing(offset)
+	velocity = velocity.move_toward(
+		direction.normalized() * definition.move_speed,
+		definition.acceleration * delta
+	)
+	_apply_knockback_velocity()
+	move_and_slide()
+
+
+func _begin_shot() -> void:
+	velocity = Vector2.ZERO
+	_retreat_time_remaining = 0.0
+	var muzzle_origin := global_position + Vector2(0.0, -13.0)
+	_aim_target = target.global_position + Vector2(0.0, -13.0)
+	_aim_direction = muzzle_origin.direction_to(_aim_target)
+	_set_facing(_aim_direction)
+	shot_telegraphed.emit(target.global_position, definition.wind_up_seconds)
+	_enter(State.WIND_UP, definition.wind_up_seconds)
 
 
 func _process_stagger(delta: float) -> void:
@@ -152,7 +199,14 @@ func _fire_projectile() -> void:
 	if projectile_scene == null:
 		return
 	var projectile := projectile_scene.instantiate() as HostileProjectile
+	if projectile == null:
+		push_error("Bramble Spitter projectile scene must instantiate HostileProjectile.")
+		return
 	var parent := _projectile_parent if is_instance_valid(_projectile_parent) else get_tree().current_scene
+	if not parent is Node2D:
+		projectile.queue_free()
+		push_warning("Bramble Spitter could not resolve a valid projectile parent.")
+		return
 	parent.add_child(projectile)
 	projectile.global_position = global_position + Vector2(0.0, -13.0) + _aim_direction * 10.0
 	projectile.launch(
@@ -176,8 +230,7 @@ func _navigation_safe_target(requested: Vector2) -> Vector2:
 	var map := navigation_agent.get_navigation_map()
 	if not map.is_valid() or NavigationServer2D.map_get_iteration_id(map) == 0:
 		return requested
-	var safe := NavigationServer2D.map_get_closest_point(map, requested)
-	return requested if safe.distance_to(requested) > 64.0 else safe
+	return NavigationServer2D.map_get_closest_point(map, requested)
 
 
 func _apply_knockback_velocity() -> void:
@@ -207,11 +260,13 @@ func _on_stagger_started(duration_seconds: float) -> void:
 	if state == State.DEAD or state == State.SPAWNING:
 		return
 	if state != State.STAGGER:
+		_retreat_time_remaining = 0.0
 		_enter(State.STAGGER, duration_seconds)
 
 
 func _die() -> void:
 	state = State.DEAD
+	_retreat_time_remaining = 0.0
 	velocity = Vector2.ZERO
 	set_physics_process(false)
 	collision_layer = 0

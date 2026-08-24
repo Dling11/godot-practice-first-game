@@ -141,6 +141,18 @@ func play_hurt(_info: DamageInfo) -> void:
 	play("hurt_" + _action_direction)
 
 
+func play_hit_recovery(_duration_seconds: float) -> void:
+	## Gameplay interruption may cancel an action after HealthComponent already
+	## emitted damaged. Replay the authored hurt pose from the now-unlocked state
+	## so a canceled attack or skill always reads clearly.
+	_kill_recoil_tween()
+	_kill_attack_phase_tween()
+	_action_direction = _direction
+	_action_locked = true
+	position = _base_position
+	play("hurt_" + _action_direction)
+
+
 func resume_locomotion() -> void:
 	_kill_recoil_tween()
 	_kill_attack_phase_tween()

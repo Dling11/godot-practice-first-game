@@ -30,6 +30,9 @@ func _run() -> void:
 	if controller.portal_target_scene != "res://levels/stage_4/stage_4.tscn":
 		_fail("Stage 3's post-mini-boss portal must continue into Stage 4.")
 		return
+	if controller.portal_tier != StagePortal.PortalTier.NORMAL:
+		_fail("Stage 3 must return to a blue Normal portal after its mini-boss is defeated.")
+		return
 	if (
 		controller.completion_reward_mode
 			!= EncounterController.CompletionRewardMode.STAGE_CHEST
@@ -38,7 +41,7 @@ func _run() -> void:
 		or controller.reward_chest_tier
 			!= StageRewardChest.ChestTier.ROOTBOUND_RELIQUARY
 	):
-		_fail("Stage 3 must gate its return portal behind the authored clear chest.")
+		_fail("Stage 3 must gate its forward portal behind the authored clear chest.")
 		return
 	if 2 not in controller.gated_wave_numbers:
 		_fail("Stage 3 must gate the solo Husk until its skippable introduction closes.")

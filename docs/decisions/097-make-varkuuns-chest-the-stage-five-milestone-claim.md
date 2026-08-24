@@ -1,6 +1,6 @@
 # Decision 097: Make Varkuun's Chest the Stage Five Milestone Claim
 
-- **Status:** Accepted
+- **Status:** Accepted; Sanctuary destination superseded by Decision 129
 - **Date:** 2026-08-15
 
 ## Context

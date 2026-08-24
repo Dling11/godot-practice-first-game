@@ -1,5 +1,6 @@
 extends SceneTree
 
+const Stage1Scene = preload("res://levels/test_arena/test_arena.tscn")
 const STAGE_2 := "res://levels/stage_2/stage_2.tscn"
 
 
@@ -8,6 +9,16 @@ func _initialize() -> void:
 
 
 func _run() -> void:
+	var stage_one := Stage1Scene.instantiate()
+	var stage_one_controller := stage_one.get_node("GameplayServices/EncounterController") as EncounterController
+	if (
+		stage_one_controller.portal_target_scene != STAGE_2
+		or stage_one_controller.portal_tier != StagePortal.PortalTier.NORMAL
+	):
+		stage_one.free()
+		_fail("Stage 1 must lead to Stage 2 through a blue Normal portal.")
+		return
+	stage_one.free()
 	if not ResourceLoader.exists(STAGE_2):
 		_fail("Stage 2 destination scene does not exist.")
 		return
@@ -63,8 +74,11 @@ func _run() -> void:
 		_fail("Clearing the current grove route did not record its story memories.")
 		return
 	var forward_portal: StagePortal = current_scene.get_node("World/Effects").get_child(0)
-	if forward_portal.target_scene_path != "res://levels/stage_3/stage_3.tscn":
-		_fail("Cleared Stage 2 portal is not configured to continue into Stage 3.")
+	if (
+		forward_portal.target_scene_path != "res://levels/stage_3/stage_3.tscn"
+		or forward_portal.portal_tier != StagePortal.PortalTier.MINI_BOSS
+	):
+		_fail("Cleared Stage 2 portal must preview Stage 3 with the purple Mini Boss tier.")
 		return
 	player.health_component.apply_damage(
 		DamageInfo.new(37.0, player, Vector2.LEFT)
@@ -84,6 +98,9 @@ func _run() -> void:
 	if stage_three_controller.portal_target_scene != "res://levels/stage_4/stage_4.tscn":
 		_fail("Stage 3 no longer continues into Stage 4.")
 		return
+	if stage_three_controller.portal_tier != StagePortal.PortalTier.NORMAL:
+		_fail("Stage 3 no longer returns to a blue Normal portal after its mini-boss.")
+		return
 	var stage_four_result: bool = await transition_service.transition_to(
 		"res://levels/stage_4/stage_4.tscn"
 	)
@@ -97,6 +114,12 @@ func _run() -> void:
 	var stage_four_controller := current_scene.get_node("GameplayServices/EncounterController") as EncounterController
 	if stage_four_controller.max_active_enemies != 8:
 		_fail("Stage 4 did not install its eight-enemy active cap.")
+		return
+	if (
+		stage_four_controller.portal_target_scene != "res://levels/stage_5/stage_5.tscn"
+		or stage_four_controller.portal_tier != StagePortal.PortalTier.BOSS
+	):
+		_fail("Stage 4 must preview Stage 5 with the red Boss portal.")
 		return
 	print("Scene transition smoke test passed.")
 	quit(0)

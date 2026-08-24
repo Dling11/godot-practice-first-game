@@ -11,6 +11,18 @@ func _run() -> void:
 	var stage := Stage5Scene.instantiate()
 	root.add_child(stage)
 	await process_frame
+	stage.call("_spawn_forward_portal")
+	var portal_parent := stage.get_node("World/Effects") as Node2D
+	var next_portal := portal_parent.get_child(portal_parent.get_child_count() - 1) as StagePortal
+	if (
+		next_portal == null
+		or next_portal.target_scene_path != "res://levels/stage_6/stage_6.tscn"
+		or next_portal.portal_tier != StagePortal.PortalTier.NORMAL
+	):
+		_fail("Claiming Varkuun's chest must open a blue Normal portal directly into Stage 6.")
+		return
+	next_portal.queue_free()
+	await process_frame
 	var dialogue := stage.get_node("UI/DialoguePanel") as DialoguePanel
 	var actors := stage.get_node("World/Actors") as Node2D
 	stage.call("_on_boss_died")

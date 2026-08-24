@@ -55,14 +55,17 @@ func _on_body_entered(_body: Node2D) -> void:
 	_resolve_impact()
 
 
-func _resolve_impact() -> void:
+func _resolve_impact(effect_override: PackedScene = null) -> void:
 	if _resolved:
 		return
 	_resolved = true
-	if impact_effect_scene != null:
-		var impact := impact_effect_scene.instantiate() as Node2D
-		get_parent().add_child(impact)
-		impact.global_position = global_position
+	var effect_scene := effect_override if effect_override != null else impact_effect_scene
+	var parent := get_parent()
+	if effect_scene != null and is_instance_valid(parent):
+		var impact := effect_scene.instantiate() as Node2D
+		if impact != null:
+			parent.add_child(impact)
+			impact.global_position = global_position
 	queue_free()
 
 

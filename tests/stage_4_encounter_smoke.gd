@@ -47,6 +47,9 @@ func _run() -> void:
 	if controller.portal_target_scene != "res://levels/stage_5/stage_5.tscn":
 		_fail("Stage 4 must advance through its eastern gateway into the production Stage 5 route.")
 		return
+	if controller.portal_tier != StagePortal.PortalTier.BOSS:
+		_fail("Stage 4 must preview Varkuun with a red Boss portal.")
+		return
 	if ground.layout == null or ground.layout.resource_path != "res://data/environment/layouts/stage_4_eastern_rot_ground.tres":
 		_fail("Stage 4 is not using its authored eastern-rot layout.")
 		return

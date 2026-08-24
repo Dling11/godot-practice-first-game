@@ -5,7 +5,7 @@ extends Resource
 
 ## Crowd-control response is intentionally separate from health and damage so
 ## bosses can remain dangerous without duplicating enemy-controller scripts.
-enum CrowdControlTier { LIGHT, ELITE, BOSS }
+enum CrowdControlTier { LIGHT, ELITE, BOSS, HEAVY }
 
 @export var enemy_id: StringName
 @export var display_name: String = "Enemy"
@@ -28,12 +28,22 @@ enum CrowdControlTier { LIGHT, ELITE, BOSS }
 @export_range(0, 9999, 1) var experience_reward := 1
 @export_range(0, 9999, 1) var coin_reward := 0
 @export var crowd_control_tier := CrowdControlTier.LIGHT
+@export_group("Stagger Chain Resistance")
+## Zero keeps the original freely interruptible behavior. Positive values
+## break a rapid stagger chain on that hit and begin a temporary resistance
+## window without suppressing damage or presentation feedback.
+@export_range(0, 12, 1) var stagger_interrupt_limit := 0
+@export_range(0.1, 3.0, 0.05, "suffix:s") var stagger_chain_window_seconds := 0.9
+@export_range(0.0, 3.0, 0.05, "suffix:s") var stagger_resistance_seconds := 0.0
+@export_group("")
 
 
 func knockback_multiplier() -> float:
 	match crowd_control_tier:
 		CrowdControlTier.ELITE:
 			return 0.35
+		CrowdControlTier.HEAVY:
+			return 0.2
 		CrowdControlTier.BOSS:
 			return 0.0
 		_:
@@ -44,6 +54,8 @@ func stagger_multiplier() -> float:
 	match crowd_control_tier:
 		CrowdControlTier.ELITE:
 			return 0.45
+		CrowdControlTier.HEAVY:
+			return 0.3
 		CrowdControlTier.BOSS:
 			return 0.0
 		_:

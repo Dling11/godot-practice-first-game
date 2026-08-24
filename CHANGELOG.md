@@ -1,5 +1,58 @@
 # Changelog
 
+## 2026-08-24 - Destination-Driven Portal Tiers and Stage VI Continuation
+
+- Corrected the Forest clear-route tier sequence so portals preview the destination: Stage I->II is blue Normal, II->III is purple Mini Boss, III->IV returns to blue Normal, IV->V remains red Boss, and V->VI returns to blue Normal.
+- Replaced Stage V's post-chest red Sanctuary portal with a direct blue Normal portal into production Stage VI while preserving Varkuun reward claim, progression recording, and safe-point save order.
+- Kept Stage VI's current blue Normal return to Sanctuary until Stage VII has an implemented route contract.
+- Added focused progression assertions across the existing Stage II, III, IV, V, VI, and scene-transition smoke tests.
+- Focused portal/progression verification passes 7/7. The complete suite remains 82/83, with only the pre-existing KI-018 Sanctuary front-depth assertion failing.
+
+## 2026-08-24 - Bramble Attack-Mass and Impact Cleanup
+
+- Corrected the remaining Bramble Spitter attack-size pulse in processed frame pixels. Each direction's first attack pose now occupies 93-101% of its idle opaque area, while only the authored mouth/thrust contact pose extends outward; no permanent node scaling was added.
+- Removed the fourth projectile-impact pose from the runtime atlas and animation after confirming its purple-brown spent-seed silhouette read like a carrot at gameplay speed. Impact now uses a three-frame expanding burst and ends on the previously second-to-last clean green/yellow explosion.
+- Strengthened the Spitter smoke contract with four-direction idle-to-attack actor-mass limits, the smaller attack-extension bounds, exactly four flight frames, exactly three impact frames, and an assertion that the rejected eighth source pose cannot re-enter runtime playback. The full suite passes 82/83; only the pre-existing KI-018 Sanctuary portal front-depth assertion fails.
+
+## 2026-08-24 - Stagger Breakout, Player Impact, and Spitter Scale
+
+- Accepted Decision 128 and extended the existing `StaggerComponent` with data-owned rapid-interrupt limits and temporary resistance windows. Light mobs remain freely interruptible; Armored Hog breaks the third consecutive stagger for 0.8 seconds; normal-mob Crag Bear uses Heavy 20% knockback/30% stagger and breaks the fourth for 1.05 seconds; Boss immunity remains unchanged.
+- Kept gameplay interruption separate from presentation: damage, flash, sparks, audio, numbers, camera response, and bounded hitstop still resolve while stagger is resisted. Skill 1 and Skill 3 retain one shared data path, with Skill 3's larger authored stagger remaining stronger after target scaling.
+- Composed the existing knockback/stagger components into Player authority. Accepted Hog/Bear control now cancels vulnerable attacks and casts, clears buffered actions, applies directional pushback, and enforces brief recovery; invulnerability blocks the hit and explicit ability super armor preserves a cast.
+- Moved Hog charge and Bear basic/slam impact values out of controller literals into their definitions. Reprocessed the approved Bramble Spitter art from near-heavy-enemy pixel bounds to normal-ranged-mob bounds without node scaling or regenerating its identity.
+- Added focused regression coverage for weak/Hog/Bear/Boss control, rapid multi-hit breakout, Skill 1/3 scaling, continued resistance-window damage, player interruption/knockback/recovery, invulnerability, super armor, and Spitter opaque frame bounds. Editor import passes; the full suite passes 82/83, with only the pre-existing KI-018 Sanctuary portal front-depth assertion failing.
+
+## 2026-08-24 - Stage VI Pressure and Bramble Spitter Rebuild
+
+- Restored the implemented Stage V Dead Forest route to the Sanctuary expedition menu, so selectable progression now displays I through VI without skipping V; the compact route list scrolls rather than overflowing.
+- Reauthored all five Stage VI waves around eight approved Crag Bears, fourteen Forsaken Thralls, five Bramble Spitters, and one finale Armored Hog under a five-live cap. Removed the Mireling completely and preserved Bear stats so difficulty comes from composition and priority pressure.
+- Rebuilt Bramble Spitter body presentation with fresh four-direction idle/walk/hurt/death and eight-pose physical spit art through `AnimatedSprite2D`. Replaced indefinite retreat with one fixed burst followed by a fire decision and shortened the telegraph/recovery cadence.
+- Replaced the procedural seed with an animated corrupted thorn-seed at 155 px/s. It composes the shared health/hurtbox system, can be destroyed by one player hit, and is explicitly excluded from assisted target selection and enemy rosters.
+- Hardened projectile/shooter/parent cleanup and covered shooter death during wind-up, freed shooter after launch, freed target, impact/expiry, projectile counter, and scene unload. Retuned Crag Iron to 30%/fifth-attempt protection and Echo Claw to 8%/twelfth-attempt protection for future accessory progression.
+- Project-wide smoke verification passes 81/82 scripts; the only failure is the pre-existing Sanctuary portal front-depth assertion already tracked as KI-018.
+
+## 2026-08-24 - Crag Bear Contact Audio and Ground-Slam Impact
+
+- Replaced the borrowed Thrall claw and Armored Hog crash with a dedicated Crag Bear action suite: an original weighted claw swipe, two short alternating CC0 bear growls, and an original layered earth/stone slam impact.
+- Added a reusable world-anchored slam effect synchronized to the radial damage contact: broken shock ring, spreading ground cracks, dust motes, launched stone chips, and a restrained shared camera pulse. It remains normal-mob scale and does not compensate for or obscure the body-authored slam.
+- Centralized authored impact camera requests through the existing combat-feedback presenter, added regression coverage for all four audio streams and exact hitbox-origin VFX spawning, and preserved the downloaded source pack in the Godot-ignored audio archive.
+
+## 2026-08-24 - Crag Bear Body-Authored Attack Redraw
+
+- Inspected every Crag Bear body-only runtime family and retained the readable locomotion, idle reuse, hurt, and death art. Rejected the original claw and slam because their physical actions could not be repaired honestly through timing, VFX, scaling, or repositioning.
+- Generated fresh identity-locked claw anticipation/execution boards and a fresh body-slam board. The runtime claw now owns eight connected whole-body poses; the body slam owns eight poses including crouch, half-rise, full hind-leg rise/roar, downward pitch, two-paw impact, recoil, and recovery.
+- Expanded action canvases to `96x64` and `96x80`, derived one actor scale per direction from approved locomotion, kept the actor root stationary, and synchronized hitbox activation to the newly authored contact frames. VFX remain enhancement-only.
+- Archived rejected sources and superseded runtime sheets outside Godot imports. Focused Crag Bear, Combat Lab, editor-import, and live Stage VI headless checks pass.
+
+## 2026-08-24 - Stage VI Crag Bear Production Expedition
+
+- Accepted Decision 126 and converted `The Elder Ascent` from environment preview into a production Stage VI route with navigation, five waves, a three-active-enemy cap, clear banking/memory, and a Normal return portal.
+- Added the normal armored Crag Bear with directional locomotion/reaction art, portrait, paw-swipe basic attack, and one telegraphed radial ground slam. It remains a recurring mob rather than a mini-boss.
+- Opened the stage with exactly one Mireling for authored continuity, then shifted to Crag Bear pressure and later Armored Hog combinations; Rootlings remain absent.
+- Added Common Crag Iron and Uncommon Echo Claw icons/definitions plus protected drop entries. Canonical metadata automatically exposes Echo Claw to Umi reconstruction while Crag Iron remains sale/meld fuel.
+- Generalized new encounter composition through reusable scene-plus-count spawn entries without breaking legacy Stage I-IV wave fields. Added the Level 6 Elder Ascent expedition route, F9 prerequisite memories, Crag Bear Combat Lab access, and compact six-route expedition-menu sizing.
+- Focused enemy, attack-state, stage/environment, encounter/reinforcement, loot, material/Umi, expedition, debug, and Combat Lab checks pass; the Stage VI scene also completes a headless runtime parse/run.
+
 ## 2026-08-24 - Stage VI Waterfall Integration and Vertical Flow
 
 - Edited only the Stage VI waterfall source: the upper pool now enters a clearer carved cliff notch, the adjacent inner corners close around its banks, and the rest of the approved map composition remains unchanged.

@@ -88,6 +88,17 @@ func cancel_evade() -> void:
 		cooldown_finished.emit()
 
 
+func interrupt_recovery() -> void:
+	## Accepted hits cannot reach the invulnerable dash phase, but may interrupt
+	## its vulnerable recovery without refunding the already-spent cooldown.
+	if phase != Phase.RECOVERY:
+		return
+	phase = Phase.READY
+	_phase_time_remaining = 0.0
+	set_physics_process(_cooldown_time_remaining > 0.0)
+	evade_finished.emit()
+
+
 func _physics_process(delta: float) -> void:
 	var previous_cooldown := _cooldown_time_remaining
 	_cooldown_time_remaining = maxf(_cooldown_time_remaining - delta, 0.0)
