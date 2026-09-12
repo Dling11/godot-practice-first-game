@@ -5,6 +5,14 @@ var _length := 500.0
 var _width := 28.0
 var _active := false
 var _alpha := 0.0
+var _elapsed := 0.0
+var _resolve_elapsed := 0.0
+var _resolve_delay := 1.0
+
+
+func _ready() -> void:
+	# Floor danger remains visible while the actor's mask and pose stay clear.
+	z_index = -1
 
 
 func configure(
@@ -19,6 +27,7 @@ func configure(
 	rotation = direction.angle()
 	_length = length
 	_width = width
+	_resolve_delay = maxf(resolve_delay, 0.01)
 	queue_redraw()
 	var tween := create_tween()
 	tween.tween_property(self, "_alpha", 0.5, maxf(warning_seconds * 0.45, 0.05))
@@ -29,7 +38,10 @@ func configure(
 	tween.tween_callback(queue_free)
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	_elapsed += delta
+	if _active:
+		_resolve_elapsed += delta
 	queue_redraw()
 
 
@@ -41,6 +53,11 @@ func _resolve() -> void:
 
 func _draw() -> void:
 	var half := Vector2(_length * 0.5, _width * 0.5)
-	var color := Color(1.0, 0.93, 0.58, _alpha) if _active else Color(0.96, 0.78, 0.32, _alpha)
-	draw_rect(Rect2(-half, half * 2.0), color, true)
-	draw_line(Vector2(-half.x, 0.0), Vector2(half.x, 0.0), Color(1.0, 1.0, 0.86, minf(_alpha + 0.18, 1.0)), 2.0)
+	if _active:
+		ExaminerEffectAtlas.draw_frame(self, ExaminerEffectAtlas.AxiomBeam, ExaminerEffectAtlas.frame_at(_resolve_elapsed, 0.28), Rect2(Vector2(-half.x, -half.y * 1.6), Vector2(_length, _width * 1.6)), Color(1, 1, 1, _alpha))
+	else:
+		var progress := clampf(_elapsed / _resolve_delay, 0, 1)
+		# Segment-distance damage includes semicircular caps at both endpoints.
+		ExaminerEffectAtlas.danger_circle(self, Vector2(-half.x, 0), half.y, progress)
+		ExaminerEffectAtlas.danger_circle(self, Vector2(half.x, 0), half.y, progress)
+		ExaminerEffectAtlas.danger_lane(self, Rect2(-half, half * 2), clampf(_elapsed / _resolve_delay, 0, 1))

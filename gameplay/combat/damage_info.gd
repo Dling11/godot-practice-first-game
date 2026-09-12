@@ -8,6 +8,8 @@ var direction: Vector2
 var knockback_strength: float
 var stagger_seconds: float
 var is_critical: bool
+## Authored arena verdicts can pierce action i-frames; armor still applies.
+var ignores_invulnerability := false
 
 
 func _init(

@@ -16,6 +16,8 @@ signal died
 
 var current_health: float
 var is_invulnerable := false
+## Debug/cinematic immunity is separate from temporary combat i-frames.
+var is_damage_immune := false
 
 
 func _ready() -> void:
@@ -50,7 +52,7 @@ func heal(amount: float) -> float:
 func apply_damage(info: DamageInfo) -> bool:
 	if current_health <= 0.0 or info.amount <= 0.0:
 		return false
-	if is_invulnerable:
+	if is_damage_immune or (is_invulnerable and not info.ignores_invulnerability):
 		damage_blocked.emit(info)
 		return false
 

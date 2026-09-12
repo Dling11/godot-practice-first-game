@@ -25,7 +25,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	state_elapsed += delta
 	afterimage_remaining -= delta
-	if state in [Examiner.State.CHARGE_TRAVEL, Examiner.State.AXIOM_DASH] and afterimage_remaining <= 0.0:
+	if state in [Examiner.State.CHARGE_TRAVEL, Examiner.State.AXIOM_DASH, Examiner.State.PURSUIT_TRAVEL] and afterimage_remaining <= 0.0:
 		_spawn_afterimage()
 		afterimage_remaining = afterimage_interval
 	queue_redraw()
@@ -37,7 +37,7 @@ func play_state(next_state: Examiner.State, duration_seconds: float) -> void:
 	state_duration = maxf(duration_seconds, 0.01)
 	if divine_aura != null:
 		divine_aura.set_empowered(state in [Examiner.State.CHARGE_WIND_UP, Examiner.State.SLAM_WIND_UP, Examiner.State.AXIOM_WIND_UP, Examiner.State.PHASE_STANCE, Examiner.State.DESCENT_PREPARE, Examiner.State.DESCENT_LAUNCH, Examiner.State.DESCENT_FALL, Examiner.State.DESCENT_IMPACT])
-	if state in [Examiner.State.CHARGE_TRAVEL, Examiner.State.AXIOM_DASH]:
+	if state in [Examiner.State.CHARGE_TRAVEL, Examiner.State.AXIOM_DASH, Examiner.State.PURSUIT_TRAVEL]:
 		afterimage_remaining = 0.0
 	if state == Examiner.State.DESCENT_LAUNCH and examiner != null:
 		var launch := DescentLaunchVfx.new() as Node2D
@@ -72,9 +72,15 @@ func _draw() -> void:
 	_draw_body_presence()
 	if examiner == null:
 		return
-	if state == Examiner.State.CHARGE_WIND_UP:
+	if state in [Examiner.State.CHARGE_WIND_UP, Examiner.State.PURSUIT_WIND_UP]:
 		_draw_charge_warning()
-	elif state == Examiner.State.SLAM_WIND_UP:
+	elif state == Examiner.State.TRIAL_CHANNEL:
+		draw_texture_rect(CourtOfFirstMeasure.DescentCircle, Rect2(-52, -54, 104, 104), false, Color(1, 0.87, 0.52, 0.55))
+	elif state == Examiner.State.COMBO_WIND_UP:
+		draw_set_transform(Vector2.ZERO, examiner.facing_direction.angle())
+		ExaminerEffectAtlas.danger_lane(self, Rect2(16, -12, 108, 24), clampf(state_elapsed / state_duration, 0, 1))
+		draw_set_transform(Vector2.ZERO)
+	elif state in [Examiner.State.SLAM_WIND_UP, Examiner.State.HELD_JUDGMENT]:
 		_draw_slam_warning()
 	elif state == Examiner.State.DESCENT_FALL:
 		_draw_descent_streak()
@@ -92,33 +98,21 @@ func _draw_body_presence() -> void:
 
 func _draw_charge_warning() -> void:
 	var endpoint := to_local(examiner.judgment_charge_endpoint())
-	var direction := endpoint.normalized()
-	var length := endpoint.length()
-	var side := direction.rotated(PI * 0.5) * 22.0
-	var start := direction * 12.0
-	var finish := direction * maxf(length, 48.0)
-	var pulse := 0.48 + 0.30 * sin(state_elapsed * 18.0)
-	draw_colored_polygon(PackedVector2Array([start - side, finish - side, finish + side, start + side]), Color(0.82, 0.08, 0.08, pulse * 0.42))
-	draw_line(start - side, finish - side, Color(1.0, 0.22, 0.16, pulse), 2.0, false)
-	draw_line(start + side, finish + side, Color(1.0, 0.22, 0.16, pulse), 2.0, false)
+	var length := maxf(endpoint.length(), 48.0)
 	var buildup := clampf(state_elapsed / state_duration, 0.0, 1.0)
-	draw_line(start, start.lerp(finish, buildup), Color(1.0, 0.86, 0.28, 0.82), 3.0, false)
+	draw_set_transform(Vector2.ZERO, endpoint.angle())
+	ExaminerEffectAtlas.danger_lane(self, Rect2(0, -22, length, 44), buildup)
+	draw_set_transform(Vector2.ZERO)
 
 
 func _draw_slam_warning() -> void:
-	var buildup := clampf(state_elapsed / state_duration, 0.0, 1.0)
-	var color := Color(0.94, 0.16, 0.10, 0.44 + buildup * 0.38)
-	draw_arc(Vector2(0, -6), 72.0, 0.0, TAU * buildup, 48, color, 4.0, false)
-	draw_circle(Vector2(0, -6), 67.0, Color(0.56, 0.04, 0.03, buildup * 0.16), true)
+	ExaminerEffectAtlas.danger_circle(self, to_local(examiner.slam_hitbox.global_position), 72.0, clampf(state_elapsed / state_duration, 0, 1))
 
 
 func _draw_descent_streak() -> void:
-	var progress := clampf(state_elapsed / state_duration, 0.0, 1.0)
-	var alpha := sin(progress * PI)
-	for index in 7:
-		var x := float(index - 3) * 4.0
-		var length := 82.0 + float(index % 3) * 28.0
-		draw_line(Vector2(x, -24.0), Vector2(x * 0.35, -24.0 - length), Color(1.0, 0.90, 0.50, alpha * (0.78 - absf(x) * 0.035)), 2.0, false)
+	draw_set_transform(Vector2(0, -90), PI * 0.5)
+	ExaminerEffectAtlas.draw_frame(self, ExaminerEffectAtlas.Energy, ExaminerEffectAtlas.frame_at(state_elapsed, state_duration), Rect2(-100, -22, 200, 44))
+	draw_set_transform(Vector2.ZERO)
 
 
 func _spawn_afterimage() -> void:

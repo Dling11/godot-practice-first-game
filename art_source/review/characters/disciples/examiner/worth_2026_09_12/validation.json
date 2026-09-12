@@ -1,0 +1,34 @@
+{
+  "validation": "2026-09-12",
+  "passed": [
+    "examiner_worth_smoke",
+    "examiner_trial_smoke",
+    "examiner_rework_smoke",
+    "examiner_effects_smoke",
+    "combat_lab_smoke",
+    "player_evade_smoke",
+    "armor_mitigation_smoke",
+    "runtime_archive_boundary_smoke",
+    "git diff --check",
+    "GPU capture with no runtime errors",
+    "MP4 decode"
+  ],
+  "behavior_regression": {
+    "straight_retreat_damage": 82,
+    "sidestep_damage": 0,
+    "player_motion_px_per_second": 120,
+    "uses_real_hitboxes": true
+  },
+  "verdict_checks": {
+    "raw_damage": 800,
+    "armor_100_result": 400,
+    "earned_sanctuary_result": 0,
+    "action_iframes": "pierced",
+    "lab_immunity": "preserved"
+  },
+  "notes": [
+    "Armor mitigation assertions passed; its existing exit path reported ObjectDB/resource cleanup warnings.",
+    "Movie uses scripted placement and accepted-damage fixtures; it is a presentation review, not a full playthrough.",
+    "Stage XX production scenario and future equipment balance are not implemented."
+  ]
+}

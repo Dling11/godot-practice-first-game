@@ -143,6 +143,10 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 133 | Separate the Examiner challenge into a divine arena | Stage VII Continue/Challenge environments, Court of the First Measure, circular arena, Axiom Divide, modular divine terrain, or special-arena references |
 | 134 | Rebuild the Examiner around readable divine combat | Physical attack frames, Judgment Charge, Ground Judgment, accurate warnings, divine threat aura, synchronized audio, restrained VFX, or compact adaptive behavior |
 | 135 | Make Divine Descent the Examiner phase transition | 70% phase break, calm dialogue, launch/fall frames, exact pylon cover, finite impact damage, phase-aware music, or Stage XV cover escalation boundary |
+| 136 | Rework Examiner animation, court, and audio | New eight-pose action families, contact timing, grounded charge collision, slate court, exact ward plates, compact lab UI, actual phase display, and original Foley |
+| 137 | [Examiner gait, complete weapons, and impact atlases](docs/decisions/137-examiner-gait-complete-weapons-and-impact-atlases.md) | Alternating feet, source clipping, raster skills, red telegraphs, and Descent impacts |
+
+| 138 | [Examiner Trial of Worth and Stage XX false mentor](docs/decisions/138-examiner-trial-of-worth-and-stage-xx.md) | Advancing combos, earned sanctuary, finite Verdict, dead family and manipulated Stage 100 promise |
 
 ## New Decisions
 

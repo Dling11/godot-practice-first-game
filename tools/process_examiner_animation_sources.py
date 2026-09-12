@@ -19,10 +19,14 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 LEGACY_SOURCE = ROOT / "art_source/generated/characters/disciples/examiner/compact_pixel_v2"
 BOSS_SOURCE = ROOT / "art_source/generated/characters/disciples/examiner/boss_combat_v3"
+AXIOM_BASE_SOURCE = ROOT / "art_source/generated/characters/disciples/examiner/axiom_divide_v5"
+AXIOM_DOWN_SOURCE = ROOT / "art_source/generated/characters/disciples/examiner/axiom_divide_v6"
 OUTPUT = ROOT / "assets/characters/enemies/examiner"
 CELL = (192, 128)
 ROWS = 4
 SCALE = 0.42
+AXIOM_VERTICAL_SCALE = 0.31
+AXIOM_DOWN_SCALE = 0.26
 BODY_ANCHOR_X = 96
 FOOT_BASELINE_Y = 120
 
@@ -118,15 +122,19 @@ def _body_anchor(frame: Image.Image) -> tuple[int, int]:
     return body_x, body_y
 
 
-def _place_frame(frame: Image.Image) -> tuple[Image.Image, tuple[int, int, int, int]]:
-    body_x, body_y = _body_anchor(frame)
+def _place_frame(
+    frame: Image.Image,
+    scale: float = SCALE,
+    anchor: tuple[int, int] | None = None,
+) -> tuple[Image.Image, tuple[int, int, int, int]]:
+    body_x, body_y = anchor if anchor is not None else _body_anchor(frame)
     resized = frame.resize(
-        (max(1, round(frame.width * SCALE)), max(1, round(frame.height * SCALE))),
+        (max(1, round(frame.width * scale)), max(1, round(frame.height * scale))),
         Image.Resampling.NEAREST,
     )
     target = Image.new("RGBA", CELL)
-    paste_x = round(BODY_ANCHOR_X - body_x * SCALE)
-    paste_y = round(FOOT_BASELINE_Y - body_y * SCALE)
+    paste_x = round(BODY_ANCHOR_X - body_x * scale)
+    paste_y = round(FOOT_BASELINE_Y - body_y * scale)
     resized_bbox = resized.getchannel("A").getbbox()
     if resized_bbox is not None:
         left, top, right, bottom = resized_bbox
@@ -175,9 +183,100 @@ def _normalize(spec: SheetSpec) -> None:
     print(output_path)
 
 
+def _normalized_source_row(
+    source: Image.Image,
+    row_count: int,
+    row: int,
+    columns: int,
+    scale: float,
+) -> list[Image.Image]:
+    alpha = source.getchannel("A")
+    row_bounds = _gutter_boundaries(alpha, row_count, "y", (0, 0, source.width, source.height))
+    top, bottom = row_bounds[row], row_bounds[row + 1]
+    column_bounds = _gutter_boundaries(alpha, columns, "x", (0, top, source.width, bottom))
+    return [
+        _place_frame(source.crop((column_bounds[column], top, column_bounds[column + 1], bottom)), scale)[0]
+        for column in range(columns)
+    ]
+
+
+def _down_thrust_body_anchor(frame: Image.Image) -> tuple[int, int]:
+    """Anchor the actor's feet while ignoring the centerline thrust blade."""
+    body_x, _weapon_tip_y = _body_anchor(frame)
+    alpha = frame.getchannel("A")
+    pixels = alpha.load()
+    side_left = max(0, body_x - 125)
+    side_right = min(frame.width, body_x + 126)
+    grounded_rows = [
+        y
+        for y in range(frame.height)
+        if sum(
+            1
+            for x in range(side_left, side_right)
+            if abs(x - body_x) >= 30 and pixels[x, y] > 0
+        ) >= 5
+    ]
+    if not grounded_rows:
+        raise ValueError("Could not find the Examiner's feet outside the down-thrust weapon centerline")
+    return body_x, grounded_rows[-1]
+
+
+def _normalized_down_thrust(source: Image.Image) -> list[Image.Image]:
+    """Flatten the approved 3-by-2 review board into six chronological poses."""
+    row_count = 2
+    columns = 3
+    alpha = source.getchannel("A")
+    row_bounds = _gutter_boundaries(alpha, row_count, "y", (0, 0, source.width, source.height))
+    normalized: list[Image.Image] = []
+    for row in range(row_count):
+        top, bottom = row_bounds[row], row_bounds[row + 1]
+        column_bounds = _gutter_boundaries(alpha, columns, "x", (0, top, source.width, bottom))
+        for column in range(columns):
+            frame = source.crop((column_bounds[column], top, column_bounds[column + 1], bottom))
+            placed, _bbox = _place_frame(
+                frame,
+                AXIOM_DOWN_SCALE,
+                _down_thrust_body_anchor(frame),
+            )
+            normalized.append(placed)
+    return normalized
+
+
+def _normalize_axiom() -> None:
+    """Replace only down-facing Axiom art; preserve accepted side/up rows."""
+    columns = 6
+    side_source = _clean_alpha(Image.open(
+        AXIOM_BASE_SOURCE / "examiner_axiom_side_source_v4_2026-08-25.png"
+    ))
+    up_source = _clean_alpha(Image.open(
+        AXIOM_BASE_SOURCE / "examiner_axiom_vertical_source_v5_2026-08-25.png"
+    ))
+    down_source = _clean_alpha(Image.open(
+        AXIOM_DOWN_SOURCE / "examiner_axiom_down_thrust_source_v6_2026-08-25.png"
+    ))
+    down_row = _normalized_down_thrust(down_source)
+    right_row = _normalized_source_row(side_source, 4, 1, columns, SCALE)
+    left_row = [frame.transpose(Image.Transpose.FLIP_LEFT_RIGHT) for frame in right_row]
+    up_row = _normalized_source_row(up_source, 2, 1, columns, AXIOM_VERTICAL_SCALE)
+    sheet = Image.new("RGBA", (CELL[0] * columns, CELL[1] * ROWS))
+    for row, normalized_row in enumerate((down_row, right_row, left_row, up_row)):
+        metrics: list[str] = []
+        for column, frame in enumerate(normalized_row):
+            bbox = frame.getchannel("A").getbbox()
+            if bbox is None:
+                raise ValueError(f"Empty normalized Axiom frame row {row} column {column}")
+            sheet.alpha_composite(frame, (column * CELL[0], row * CELL[1]))
+            metrics.append(f"{bbox[0]},{bbox[1]}-{bbox[2]},{bbox[3]}")
+        print(f"examiner_axiom_divide_sheet_192x128.png row {row}: {' | '.join(metrics)}")
+    output_path = OUTPUT / "examiner_axiom_divide_sheet_192x128.png"
+    sheet.save(output_path, optimize=True)
+    print(output_path)
+
+
 def main() -> None:
     for spec in SHEETS:
         _normalize(spec)
+    _normalize_axiom()
 
 
 if __name__ == "__main__":

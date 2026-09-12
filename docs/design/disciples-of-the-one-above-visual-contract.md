@@ -2,7 +2,9 @@
 
 ## Status
 
-Accepted high-level character direction and owner-approved Examiner compact-pixel V3 style lock: masculine, tall, long-legged, simplified ivory/gold, and deliberately free of the rejected realistic miniature detail. The Examiner is the priority for the planned Stage VII encounter; the Executioner is documented for later continuity only. The debug-only F7 proof now uses seven four-direction `192x128` action sheets, a 12-pixel movement footprint, fixed-scale/baseline normalization, fresh physical thrust/sweep/charge/slam poses, and controller-owned combat. Original action sound now exists for the proof; portrait, dialogue, portal flow, story outcomes, final mix, and the Executioner remain unimplemented.
+Decision 136 (2026-09-12) is the current F7 visual iteration, authorized by the owner to redo Examiner. It retains the tall masculine ivory/gold mask and glaive identity with new filled armor shapes, ten eight-column 192x160 body sheets, 116 clips, disjoint anticipation/contact, original sound, and a 12-pixel movement footprint. Earlier V3/V5/V6 approvals below are historical references; the owner approved the corrected replacement; production Stage XX integration remains pending. Executioner remains documentation-only.
+
+Decision 137 (2026-09-12) follows owner acceptance of the Examiner look with a dedicated four-pose alternating gait, turn-continuous footsteps, complete-source weapon extraction, repaired slam source, four eight-frame raster skill atlases, crimson danger decals, exact Descent safe-hole shading, and heavier fracture/beam audio. The 116 named clips, 192x160 cells, baseline 128, origin -48, controller timing, and trial authority remain intact. New gait/effect feel approval and Stage VII integration remain pending.
 
 `Examiner` and `Executioner` are accepted role titles. Personal names remain open.
 
@@ -32,7 +34,7 @@ These measurements include all nontransparent pixels in the existing locomotion 
 
 ### Art-style and scale approval gate
 
-The Examiner's current F7 proof uses `192x128` action cells, a root-relative `-56 px` visual origin, a source-to-runtime scale of `0.42`, a normalized cell baseline of `y=120`, and a 12-pixel movement footprint. These are concrete debug values for owner review, not locked production ceilings. The Executioner still has no numeric runtime contract.
+The current Decision 136 F7 proof uses 192x160 action cells, root-relative -48-pixel visual origin, one standing-reference scale recorded in the import report, foot baseline 128, and a 12-pixel movement footprint. Final owner feel approval remains pending. Executioner still has no numeric runtime contract.
 
 The first generated deliverable was a **preview-only art-style concept**, not a production sprite sheet. It intentionally presented the Examiner as tall and imposing rather than matching King's compact scale. The same rule remains binding for the future Executioner. A large or even huge humanoid presentation is acceptable when it preserves the top-down perspective, readable anatomy, combat space, and environmental fit.
 
@@ -116,20 +118,19 @@ The personality rhythm is:
 
 `near stillness -> sudden explosive movement -> exact contact -> immediate control`
 
-Every family uses `down/left/right/up` rows, exact-grid runtime sheets, one scale per direction row, stable feet, and named `SpriteFrames` on `AnimatedSprite2D`.
+Current Examiner families use `down/right/left/up` runtime rows, padded exact-grid sheets, one reference-derived scale after source-density normalization, stable feet, and named `SpriteFrames` on `AnimatedSprite2D`. The frame manifest is the exact mapping authority.
 
-| Family | First-pass frame budget | Runtime cell | Required read |
+| Family | Current source frame budget | Runtime cell | Required read |
 |---|---:|---:|---|
-| `idle_<direction>` | 2 debug / 3-4 target | `192x128` debug | Almost motionless observation; at most restrained cloth, breathing, or marking change |
-| `walk_<direction>` | 4 debug | `192x128` debug | Contact/pass/opposite-contact/opposite-pass with deliberate stride |
-| `combat_stance_<direction>` | Folded into transitions in debug | `192x128` debug | Quiet grip and weight set without bouncing |
-| `attack_combo_<direction>` | 6 thrust + 6 sweep source poses | `192x128` debug | Preparation, precise thrust, separate sweep anticipation, body commitment, follow-through, reset |
-| `judgment_charge_<direction>` | 6 source poses | `192x128` debug | Target point, compression, launch, directional travel silhouette, hard brake, controlled stance |
-| `ground_judgment_<direction>` | 6 source poses | `192x128` debug | High overhead preparation, whole-body descent, planted contact, heavy recovery |
-| `parry_<direction>` | 5 debug | `192x128` debug | Weapon intercept, body angle, accepted contact, deflection/escape, reset |
-| `split_glaive_<direction>` | Composed sweep/dash debug | `192x128` body plus separate lane presentation | Guided physical cuts and final dash; lane energy never substitutes for body motion |
-| `hurt_<direction>` | 3 debug | `192x128` debug | Minimal but unmistakable accepted impact; no immunity illusion |
-| `recognition_withdraw_<direction>` | 3 debug / 5-6 target | `192x128` debug | Ends the Stage VII test without a death animation |
+| Idle | 2 | `192x160` | Restrained observation and breathing |
+| Walk | 6 | `192x160` | Alternating planted feet, passing legs, and cloth |
+| Thrust / sweep | 8 each | `192x160` | Separate preparation, contact, and recovery |
+| Judgment Charge | 8 | `192x160` | Compression, drive, braking, recovery |
+| Ground Judgment | 8 with dedicated overhead supplement | `192x160` | Two-handed high raise, deep planted contact, recovery |
+| Refutation | 8 | `192x160` | Guard, intercept, counter, reset |
+| Axiom Divide | 8 plus Charge travel | `192x160` | Two physical contacts and committed dash |
+| Divine Descent | 8 launch + 8 landing | `192x160` | Compression, departure, fall, contact, recovery |
+| Hurt / withdrawal | 3 hurt + 5 withdrawal | `192x160` | Accepted reaction and controlled kneeling withdrawal |
 
 The Stage VII Examiner does not need a death family. Unexpected player dominance transitions into recognition, disengagement, or withdrawal. A true death animation remains deferred until the story explicitly permits this character to die.
 
@@ -181,7 +182,9 @@ Planned canonical ownership uses identity rather than introduction stage:
 
 Stage VII data may reference the Examiner scene, dialogue, and portal choice, but no reusable asset path may contain `stage_7`. Do not create empty runtime directories for the Executioner before production begins.
 
-## Production Sequence
+## Initial Production Sequence (Historical)
+
+Decision 136 supersedes the initial art/audio sequence below. Current next work is owner feel-testing of the complete F7 replacement, then the separately gated Stage VII production flow. Zero Interval and the original six-pose body sheets below are retired.
 
 1. **Complete:** preserve the original concept reference outside `assets/` with provenance and checksum.
 2. **Complete:** generate one preview-only art-style/same-baseline scale board showing both Disciples as deliberately tall original top-down pixel interpretations.
@@ -206,3 +209,9 @@ Stage VII data may reference the Examiner scene, dialogue, and portal choice, bu
 - Per-frame scaling, shifting feet, changing armor proportions, changing weapon length, or disconnected hands.
 - More tiny floating fragments than remain readable at 960x540.
 - Any reusable folder or stable ID named after Stage VII.
+
+## Current combat/placement override — Decision 138
+
+Decision 138 (2026-09-12) supersedes the Stage VII optional-challenge and Stage XX direct-god placement: Examiner is the required Stage XX scenario boss, a false mentor serving the gods' manipulation. They promise reunion at Stage 100; King's family is actually dead. Souls, resurrection, replicas, the ending, and any bestowed power remain open possibilities, not established survival facts. The One Above's direct confrontation is now unscheduled. Only the F7 combat proof is playable; production route/outcome/reward/save integration is pending.
+
+Approved body sprites remain the visual identity. Reprisal reuses the complete charge wind-up/travel/recovery poses; Held Judgment raises the approved overhead pose promptly then holds it before contact. Trial stance uses the existing guarded pose and generated divine seal. No unrelated HUD restyle or replacement character art is introduced. Earlier Stage VII rules below are historical.

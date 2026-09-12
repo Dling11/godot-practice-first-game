@@ -21,37 +21,60 @@ func _run() -> void:
 	if examiner == null:
 		_fail("Combat Lab opening actor is not the Examiner.")
 		return
-	if examiner.definition.maximum_health != 1800.0 or examiner.definition.axiom_damage != 38.0 or examiner.definition.ground_judgment_damage != 42.0:
+	if examiner.definition.maximum_health != 1800.0 or examiner.definition.axiom_damage != 90.0 or examiner.definition.ground_judgment_damage != 110.0:
 		_fail("Examiner did not receive its data-driven trial tuning.")
 		return
 	var body := examiner.get_node("Visual/Body") as AnimatedSprite2D
-	if not is_equal_approx(body.position.y, -56.0):
+	if not is_equal_approx(body.position.y, -48.0):
 		_fail("Examiner lost its normalized visual origin.")
+		return
+	if (
+		body.sprite_frames.resource_path != "res://assets/characters/enemies/examiner/examiner_sprite_frames.tres"
+		or body.sprite_frames.get_animation_names().size() != 116
+	):
+		_fail("Examiner must expose its complete saved SpriteFrames library in the scene and editor.")
+		return
+	var walk_right := body.sprite_frames.get_frame_texture(&"walk_right", 0) as AtlasTexture
+	var walk_left := body.sprite_frames.get_frame_texture(&"walk_left", 0) as AtlasTexture
+	var thrust_right := body.sprite_frames.get_frame_texture(&"thrust_right", 0) as AtlasTexture
+	var thrust_left := body.sprite_frames.get_frame_texture(&"thrust_left", 0) as AtlasTexture
+	if (
+		walk_right == null
+		or walk_left == null
+		or thrust_right == null
+		or thrust_left == null
+		or walk_right.region.position.y != 160.0
+		or walk_left.region.position.y != 320.0
+		or thrust_right.region.position.y != 160.0
+		or thrust_left.region.position.y != 320.0
+	):
+		_fail("Examiner rework lost its normalized right/left row mappings.")
 		return
 	var expected_frames := {
 		&"idle_down": 2,
 		&"walk_right": 4,
-		&"thrust_down": 5,
-		&"thrust_recovery_up": 2,
-		&"sweep_wind_up_left": 4,
+		&"thrust_down": 3,
+		&"thrust_strike_down": 2,
+		&"thrust_recovery_up": 3,
+		&"sweep_wind_up_left": 3,
 		&"sweep_strike_right": 3,
-		&"charge_wind_up_down": 4,
-		&"charge_travel_right": 3,
-		&"slam_wind_up_up": 4,
-		&"slam_contact_left": 1,
-		&"slam_recovery_down": 2,
-		&"refutation_active_down": 3,
+		&"charge_wind_up_down": 3,
+		&"charge_travel_right": 2,
+		&"slam_wind_up_up": 3,
+		&"slam_contact_left": 2,
+		&"slam_recovery_down": 3,
+		&"refutation_active_down": 2,
 		&"hurt_up": 3,
-		&"withdrawal_left": 3,
-		&"axiom_wind_up_up": 3,
-		&"axiom_cut_one_down": 4,
-		&"axiom_cut_two_right": 4,
-		&"axiom_dash_left": 4,
+		&"withdrawal_left": 5,
+		&"axiom_wind_up_up": 2,
+		&"axiom_cut_one_down": 2,
+		&"axiom_cut_two_right": 2,
+		&"axiom_dash_left": 2,
 		&"descent_prepare_down": 3,
-		&"descent_launch_right": 3,
+		&"descent_launch_right": 5,
 		&"descent_fall_up": 2,
 		&"descent_impact_left": 2,
-		&"descent_recovery_down": 3,
+		&"descent_recovery_down": 4,
 	}
 	for animation: StringName in expected_frames:
 		if not body.sprite_frames.has_animation(animation) or body.sprite_frames.get_frame_count(animation) != expected_frames[animation]:
@@ -59,14 +82,62 @@ func _run() -> void:
 			return
 		for frame_index in body.sprite_frames.get_frame_count(animation):
 			var frame_texture := body.sprite_frames.get_frame_texture(animation, frame_index) as AtlasTexture
-			if frame_texture == null or frame_texture.region.size != Vector2(192.0, 128.0):
-				_fail("Examiner animation %s lost its exact 192x128 frame grid." % animation)
+			if frame_texture == null or frame_texture.region.size != Vector2(192.0, 160.0):
+				_fail("Examiner animation %s lost its padded 192x160 frame grid." % animation)
 				return
+	var axiom_down_contact := body.sprite_frames.get_frame_texture(&"axiom_cut_one_down", 0) as AtlasTexture
+	var axiom_up_contact := body.sprite_frames.get_frame_texture(&"axiom_cut_one_up", 0) as AtlasTexture
+	var axiom_second_contact := body.sprite_frames.get_frame_texture(&"axiom_cut_two_down", 0) as AtlasTexture
+	var axiom_up_second_contact := body.sprite_frames.get_frame_texture(&"axiom_cut_two_up", 0) as AtlasTexture
+	if (
+		axiom_down_contact == null
+		or axiom_up_contact == null
+		or axiom_second_contact == null
+		or axiom_up_second_contact == null
+		or not axiom_down_contact.atlas.resource_path.ends_with("examiner_axiom_divide_sheet_192x160.png")
+		or axiom_down_contact.region.position != Vector2(384.0, 0.0)
+		or axiom_up_contact.region.position != Vector2(384.0, 480.0)
+		or axiom_second_contact.region.position != Vector2(768.0, 0.0)
+		or axiom_up_second_contact.region.position != Vector2(768.0, 480.0)
+	):
+		_fail("Axiom Divide lost its dedicated cardinal First/Second Measure contact frames.")
+		return
+	var down_axiom_contacts: Array[AtlasTexture] = [
+		axiom_down_contact,
+		axiom_second_contact,
+	]
+	for contact: AtlasTexture in down_axiom_contacts:
+		var opaque_bounds := _opaque_bounds(contact)
+		var opaque_center_x := float(opaque_bounds.position.x) + float(opaque_bounds.size.x) * 0.5
+		var weapon_tip_center_x := _bottom_opaque_center_x(contact, opaque_bounds)
+		if (
+			opaque_bounds.size.x > 70
+			or absf(opaque_center_x - 96.0) > 18.0
+			or opaque_bounds.end.y < 132
+			or absf(weapon_tip_center_x - 96.0) > 12.0
+		):
+			_fail(
+				"Axiom Divide down contacts stopped thrusting through the body toward screen-bottom center: bounds=%s, center=%.1f, tip=%.1f."
+				% [opaque_bounds, opaque_center_x, weapon_tip_center_x]
+			)
+			return
+	var up_axiom_contacts: Array[AtlasTexture] = [
+		axiom_up_contact,
+		axiom_up_second_contact,
+	]
+	for contact: AtlasTexture in up_axiom_contacts:
+		var opaque_bounds := _opaque_bounds(contact)
+		var opaque_center_x := float(opaque_bounds.position.x) + float(opaque_bounds.size.x) * 0.5
+		if opaque_bounds.size.x > 60 or absf(opaque_center_x - 96.0) > 14.0:
+			_fail("Axiom Divide up contacts became diagonal or drifted away from the body centerline.")
+			return
 	if examiner.get_node_or_null("CombatPresentation") == null or examiner.get_node_or_null("ActionSfx") == null:
 		_fail("Examiner lost its readable telegraph/VFX or action-audio presenter.")
 		return
-	if examiner.get_node_or_null("Visual/DivineDescentImpactEyes") == null:
-		_fail("Divine Descent lost its brief body-owned impact accent.")
+	var action_player := examiner.get_node("ActionSfx/ActionPlayer") as AudioStreamPlayer2D
+	var impact_player := examiner.get_node("ActionSfx/ImpactPlayer") as AudioStreamPlayer2D
+	if action_player.bus != &"SFX" or impact_player.bus != &"SFX" or body.autoplay != "idle_down":
+		_fail("Examiner scene lost its authored SFX routing or editor-safe idle preview.")
 		return
 	if not ResourceLoader.exists("res://assets/environment/arenas/divine_order/court_of_first_measure/examiner_divine_descent_circle_512.png"):
 		_fail("Divine Descent lost its identity-owned arena seal.")
@@ -158,9 +229,10 @@ func _run() -> void:
 		return
 	dialogue.close_dialogue(true)
 	await create_timer(0.30).timeout
-	if examiner.state != Examiner.State.DESCENT_PREPARE:
-		_fail("Dialogue completion did not begin authored Divine Descent preparation.")
+	if examiner.state != Examiner.State.TRIAL_CHANNEL or lab.player.is_cinematic_locked():
+		_fail("Dialogue completion did not release King into the damage trial.")
 		return
+	examiner.trial.record_damage(DamageInfo.new(examiner.definition.trial_damage_required, lab.player, Vector2.UP))
 	examiner._state_remaining = 0.0
 	examiner._process_divine_descent(0.0)
 	if examiner.state != Examiner.State.DESCENT_LAUNCH:
@@ -177,7 +249,7 @@ func _run() -> void:
 	if Examiner.DESCENT_FALL_SECONDS > 0.16:
 		_fail("Divine Descent meteor fall became floaty again.")
 		return
-	var pylon: Vector2 = lab.court_arena.protection_points()[0]
+	var pylon: Vector2 = lab.court_arena.active_wards[0]
 	if not lab.court_arena.is_position_protected(pylon) or lab.court_arena.is_position_protected(Vector2(365.0, 287.0)):
 		_fail("Court protection geometry does not match the four visible pylons.")
 		return
@@ -204,3 +276,42 @@ func _run() -> void:
 func _fail(message: String) -> void:
 	push_error(message)
 	quit(1)
+
+
+func _opaque_bounds(frame_texture: AtlasTexture) -> Rect2i:
+	var atlas_image := frame_texture.atlas.get_image()
+	var region := Rect2i(
+		Vector2i(frame_texture.region.position),
+		Vector2i(frame_texture.region.size)
+	)
+	var minimum := region.size
+	var maximum := Vector2i(-1, -1)
+	for local_y in region.size.y:
+		for local_x in region.size.x:
+			var atlas_position := region.position + Vector2i(local_x, local_y)
+			if atlas_image.get_pixelv(atlas_position).a <= 0.0:
+				continue
+			minimum.x = mini(minimum.x, local_x)
+			minimum.y = mini(minimum.y, local_y)
+			maximum.x = maxi(maximum.x, local_x)
+			maximum.y = maxi(maximum.y, local_y)
+	if maximum.x < minimum.x or maximum.y < minimum.y:
+		return Rect2i()
+	return Rect2i(minimum, maximum - minimum + Vector2i.ONE)
+
+
+func _bottom_opaque_center_x(frame_texture: AtlasTexture, opaque_bounds: Rect2i) -> float:
+	var atlas_image := frame_texture.atlas.get_image()
+	var region_position := Vector2i(frame_texture.region.position)
+	var first_y := maxi(opaque_bounds.position.y, opaque_bounds.end.y - 4)
+	var minimum_x := opaque_bounds.end.x
+	var maximum_x := opaque_bounds.position.x - 1
+	for local_y in range(first_y, opaque_bounds.end.y):
+		for local_x in range(opaque_bounds.position.x, opaque_bounds.end.x):
+			if atlas_image.get_pixelv(region_position + Vector2i(local_x, local_y)).a <= 0.0:
+				continue
+			minimum_x = mini(minimum_x, local_x)
+			maximum_x = maxi(maximum_x, local_x)
+	if maximum_x < minimum_x:
+		return -1.0
+	return float(minimum_x + maximum_x) * 0.5

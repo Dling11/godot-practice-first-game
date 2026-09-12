@@ -13,6 +13,8 @@ const MarqueeLabelScript = preload("res://ui/components/marquee_label.gd")
 
 signal character_menu_requested
 
+@export var enemy_roster_enabled := true
+
 @onready var health_bar: ProgressBar = %HealthBar
 @onready var health_label: Label = %HealthLabel
 @onready var blocked_label: Label = %BlockedLabel
@@ -218,7 +220,7 @@ func _on_auto_combat_changed(auto_farm_enabled: bool, auto_skills_enabled: bool)
 	auto_skill_button.text = "SKILL ON" if auto_skills_enabled else "AUTO SKILL"
 	_style_auto_button(auto_farm_button, auto_farm_enabled, Color(0.35, 0.88, 0.64, 1.0))
 	_style_auto_button(auto_skill_button, auto_skills_enabled, Color(0.65, 0.58, 1.0, 1.0))
-	if auto_farm_enabled:
+	if auto_farm_enabled and enemy_roster_enabled:
 		enemy_roster_panel.show()
 
 
@@ -264,6 +266,9 @@ func _on_target_close_button_pressed() -> void:
 
 
 func _refresh_enemy_roster() -> void:
+	if not enemy_roster_enabled:
+		enemy_roster_panel.hide()
+		return
 	if not is_instance_valid(_player):
 		return
 	var targets := _get_revealed_roster_targets()

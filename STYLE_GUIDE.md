@@ -275,3 +275,19 @@ Before approving a sprite, prop, tile set, or environment scene, verify:
 - Do not commit `.godot/` generated cache content.
 - Do commit project settings, import metadata required by Godot, source assets, scenes, resources, scripts, and documentation.
 - Update affected documentation in the same change as the code.
+
+### Examiner rework import convention (Decision 136)
+
+- Examiner action cells are 192x160 with foot baseline 128 and visual origin -48. Apply one standing-reference scale; never fit extended poses independently or anchor a downward thrust by its blade tip.
+- Anticipation excludes contact frames. Contact animations begin at the controller damage boundary; permitted directional retargeting preserves frame/progress. Profile mirroring and reversed source rows are explicit importer mappings.
+- Traversable floor engravings and ward plates must agree with independently authored world collision and exact protection geometry.
+
+### Examiner gait and skill effects (Decision 137)
+
+- Resolve complete connected actors across the whole source before cropping; reject merged figures and source-edge clipping. Runtime padding cannot prove the source tip survived extraction.
+- Contact/passing gait poses must alternate legs. Preserve gait phase across turns and attach footsteps to planted contacts.
+- Raster effects retain one scale and a reviewed shared contact origin. Keep damage marker bounds fixed to actual radii/lanes; animate the interior and texture. Descent shader safe holes read Court points/radius.
+
+- For a generated replacement animation, use isolated approved character poses as identity references. Match mask, armor, coat, weapon, shading, and helmet-to-ground size beside idle/attack at runtime density. Weapon-inclusive silhouette height alone is not a body-scale measurement. Keep the chosen direction scale fixed across the whole cycle.
+
+- Arena verdicts that bypass action i-frames must opt in on `DamageInfo`; retain normal armor/ward mitigation and separate explicit debug immunity. Earned-safe-zone geometry and visual shader flags must share the same active point list. Trial completion, death, and reset cancel pending authoritative hazards and their visuals.

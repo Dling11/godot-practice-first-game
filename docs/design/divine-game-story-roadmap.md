@@ -54,7 +54,7 @@ The accepted long-term twist is that The One Above did not merely discover King 
 
 The exact causal method remains open. Do not yet decide whether The One Above directly killed the family, ordered another actor, altered probability, commissioned a Champion, or transformed an existing disaster into part of the Game.
 
-The family promise should not collapse into a trivial total lie. The preferred direction is that an authentic part of King's family—their souls, preserved identities, imprisoned continuities, or another genuine form—still exists because The One Above deliberately retained the source of King's hope. Their exact condition remains open.
+King's family is actually dead. The gods' promise of saving or reuniting with them at Stage 100 manipulates King through grief and false hope. Authentic surviving souls, resurrection, and preserved identities are not confirmed; any final twist remains a future choice.
 
 The manipulation is therefore:
 
@@ -68,9 +68,9 @@ King believes he was rescued. Internally, he was motivated. This truth is not ea
 |---|---|---|
 | Revised opening | `???` offers King a return and says his family may still be reachable | The title, the Game's architect, Champion selection, and responsibility for the tragedy |
 | Stages I-VI | Sanctuary and staged realms are real; corruption sometimes imitates memory; divine forces exist | The gods as the central antagonistic structure and The One Above's personal interest |
-| Stage VII | A Disciple identifies The One Above as the being responsible for King's return and reinforces that King's family still exists | The One Above's involvement in the tragedy and the full purpose of Champion selection |
+| Stage VII | Revised content remains open; Examiner has moved to XX | Divine manipulation and the family lie |
 | Stage IX vicinity | Ancient magical/divine infrastructure makes the Game's constructed nature more visible | The complete architect, hierarchy, and family truth |
-| Stage XX | King directly confronts The One Above, still presented partly as benefactor and examiner; impossible knowledge creates the first major crack | The entire tragedy must not automatically be explained in one conversation |
+| Stage XX | Examiner tests King as a severe apparent mentor and reinforces the hundredth-gate promise | The gods' manipulation and the family lie |
 | Later arcs | Other gods, other Champions, divine factions, and incompatible accounts challenge the supreme-title assumption | Final hierarchy and The One Above's ultimate place remain open until explicitly authored |
 
 Story delivery should prefer short dialogue, environment, enemy behavior, artifacts, recovered memories, boss phases, and contradictions over exposition dumps.
@@ -98,67 +98,9 @@ Before Stage VII implementation, test composition-first pressure changes in Wave
 
 No exact Hog count or wave edit is accepted until the candidate composition is played at 960x540 with no armor, starter gear, and the Stage V set.
 
-## Stage VII — The Examiner's Choice
+## Stage VII — Placement superseded
 
-### Role and environment
-
-Stage VII is a compact story/spice stage, not the large magical-ruins production. Its ordinary Continue route reuses the established top-down Forest-region grammar and remains inexpensive enough that character, dialogue, choice, and combat quality receive the production budget. Decision 133 gives only the optional white-gold Challenge branch a separate one-screen divine arena, provisionally called the Court of the First Measure. This does not move Stage IX's larger magical-ruins identity into Stage VII.
-
-The stage introduces the first **Disciple of The One Above**, using the accepted role title **The Examiner**. He has a masculine, tall, lean, athletic silhouette; pale ivory/white-stone armor; restrained gold geometry; a smooth fully covered mask; long controlled lines; and a Divine Split Glaive. `Examiner` is a role title rather than a finalized personal name. Decision 132 and `docs/design/disciples-of-the-one-above-visual-contract.md` own his art-first scale gate, animation, weapon, palette, and reusable-asset contract. He does not need to match King's size; a tall or huge approved presentation is acceptable.
-
-### Narrative function
-
-The first Disciple is calm, curious, polite, and potentially respectful. They recognize King without behaving like an obvious villain. Their dialogue should connect the opening entity to The One Above and increase King's trust:
-
-- the Disciple recognizes King as the selected mortal;
-- their master knows King well;
-- The One Above is identified as responsible for King's return;
-- the Disciple may confirm that King's family genuinely remains somewhere beyond reach;
-- nothing in the exchange should reveal that The One Above helped create the tragedy.
-
-Any sample dialogue remains conceptual until the Stage VII conversation is separately approved.
-
-### Two-path choice
-
-The encounter presents an honest choice:
-
-- **Continue:** take the ordinary route and proceed without fighting the Disciple.
-- **Challenge:** enter the white-gold God-tier route and show the Disciple what King has become.
-
-The choice should be embodied by two clear paths, portals, or equivalent world interactions rather than a misleading mandatory boss prompt. The normal route must remain understandable and available. Exact scene placement, return behavior, saving, health carryover, and replay rules remain part of the Stage VII implementation contract.
-
-### Combat contract
-
-The Examiner is far beyond ordinary Stage VII enemies but must demonstrate superiority through mechanics rather than cheap instant death. The base body and Split Glaive animation must communicate every action before VFX are added.
-
-The first-pass combat design uses:
-
-- controlled stance and deliberate footwork;
-- properly animated weapon combinations;
-- anticipation, contact, follow-through, and recovery;
-- a dash or gap closer;
-- high but explicit stagger resistance;
-- an answer to basic-attack stun spam, such as a bounded parry, escape, or resistance transition;
-- one recognizable divine technique, **Axiom Divide: First Measure**;
-- strong, fair damage with readable telegraphs;
-- correct use of existing hit-pause, damage, stagger, super-armor, and presentation boundaries.
-
-Axiom Divide separates the Split Glaive into three readable sections, creates accurate sequential gold-white lane warnings and cuts, then commits the Examiner to a final marked dash. **Divine Descent** is the accepted phase-transition signature: after a calm interruption the Examiner launches away, a divine seal charges, the four Court pylons become exact safe zones, and the Examiner falls into a finite but devastating center impact. Stage VII keeps the protection reliable; a later-game rematch near Stage XV may threaten cover only after a separate implementation decision. The special arena keeps its dormant engraving low contrast and provides genuine safe space; terrain decoration never doubles as an authoritative warning. `docs/design/examiner-court-of-first-measure-arena.md` owns the environment and presentation contract.
-
-The expected first result is not the Disciple's death. At a designed threshold, on King defeat, or after a readable test condition, the Disciple may stop the encounter and permit King to continue rather than triggering an ordinary Game Over.
-
-The encounter must also handle abnormal player performance:
-
-- declining the challenge;
-- expected defeat/test completion;
-- reaching the intended recognition threshold;
-- unexpectedly depleting the Disciple's combat threshold through grinding, a powerful build, or later replay.
-
-Unexpected victory earns distinct recognition and dialogue but does not permanently kill the Disciple or break later story continuity. Exact rewards and replay access remain open; no mandatory progression reward should depend on beating an intentionally overpowered optional opponent.
-
-### Future second Disciple
-
-The One Above has a future second important Disciple using the accepted role title **The Executioner**: a feminine/subtly feminine, taller, broader, heavily armored contrast who is contemptuous of mortals and willing to kill King if not restrained by orders. Her smooth covered mask, darker white-stone/void armor, restrained violet accents, four to six fractured halo pieces, and broken circular Divine Execution Wheel establish future visual continuity. Stage VII introduces only the Examiner; a single restrained reference to a harsher sister/peer may foreshadow the Executioner without showing or explaining her. She remains documentation-only, and neither role title is a final personal name.
+Decision 138 moves Examiner to the required Stage XX scenario. The earlier optional Continue/Challenge split, Stage VII cover lesson, and proposed Stage XV cover rematch are historical alternatives. Stage VII needs a separate production content plan.
 
 ## Stage IX — Reclaimed Magical Ruins
 
@@ -183,22 +125,13 @@ Their exact identities, names, art, stats, drops, and recipes remain unapproved.
 
 Common through boss rarity should continue expressing acquisition intent. Drops must support a real recipe purpose without making every important material guaranteed or creating purposeless grind.
 
-## Stage XX — First Direct God Encounter
+## Stage XX — Examiner, the False Mentor
 
-Stage XX is the planned first direct confrontation with The One Above. It is not a declaration that he is the universe's strongest god or the final boss.
+Decision 138 (2026-09-12) supersedes the Stage VII optional-challenge and Stage XX direct-god placement: Examiner is the required Stage XX scenario boss, a false mentor serving the gods' manipulation. They promise reunion at Stage 100; King's family is actually dead. Souls, resurrection, replicas, the ending, and any bestowed power remain open possibilities, not established survival facts. The One Above's direct confrontation is now unscheduled. Only the F7 combat proof is playable; production route/outcome/reward/save integration is pending.
 
-From King's current perspective, The One Above should appear absurdly powerful and may intentionally restrict himself to participate in his own Game. He fights because King's development has become personally interesting, not because of simple hatred.
+The owner approved the corrected animation identity. Decision 138 adds a 38px physical thrust step, position-conditional Reprisal with locked warning/260px maximum collision-stopped advance, a behind-the-boss punish window, and second-measure Held Judgment. At 70% HP a short false-mentor dialogue releases King into Trial of Worth: deal 240 accepted damage within 7 seconds while avoiding alternating snapshot ground cuts. Success unlocks the nearest one of four 54px sanctuary plates; failure unlocks none. After 0.64s preparation and 0.17s launch, a 2.8s escape window precedes a finite 800-raw-damage Verdict that bypasses action i-frames, respects armor/ward and explicit lab immunity, and deals zero inside earned sanctuary. A second trial occurs on the first accepted combat hit at or below 35% HP after phase two. No extra dialogue interrupts that repeat. Current tuning is a prototype, not validated Stage XX gear balance.
 
-He initially retains the demeanor of a benefactor:
-
-- congratulates King's progress;
-- frames the encounter as another trial;
-- treats participation as attention or favor;
-- does not immediately confess the hidden truth.
-
-The first major fracture comes from knowledge he should not possess: private details of King's original tragedy that King never disclosed. King's question—conceptually, “How do you know that?”—opens suspicion without resolving the entire mystery at Stage XX.
-
-Exact arena, phases, outcome, rewards, return rules, and later rematch structure remain open and must not be implemented from this roadmap alone.
+His instruction should first make divine patronage credible: he recognizes King's goal, demonstrates the gap in strength, and tells King to earn the right to continue. Do not reveal the family lie in this encounter. A possible power reward with an undisclosed surveillance or dependency cost is only an idea; no reward, new ability, or ending is selected or implemented. Executioner remains a future separate Disciple. The One Above's eventual impossible knowledge can still crack King's trust, but its stage is no longer fixed at XX.
 
 ## Future Divine Expansion
 
@@ -216,16 +149,14 @@ The long disclosure rhythm is:
 - Stage flows own when dialogue and choices occur. Dialogue presentation does not own travel, rewards, combat results, or save authority.
 - Reusable enemy, projectile, VFX, sound, material, and environment identities must not include the stage number merely because that stage introduces them. Stage data composes reusable content.
 - Frame-authored important enemies use `AnimatedSprite2D` with named `SpriteFrames`. VFX enhance readable body animation and never conceal missing physical action.
-- The Stage IX and Stage XX sections are roadmap only. Do not generate their actors/environments or add sealed runtime resources until their individual content contracts are approved.
+- Stage IX and production Stage XX routing remain planned. Examiner's authorized F7 combat mechanics are implemented as a rewardless proof; they do not imply the production scenario exists.
 
-## Open Decisions Before Stage VII Implementation
+## Open Decisions Before Production Stage XX
 
-1. **Resolved:** the two-character reference is preserved and static Examiner V2 is the approved design direction. Exact runtime normalization remains open.
-2. The Examiner's personal name, speaking voice, exact shared divine emblem, and final mask-detail simplification.
-3. Owner approval/correction of the special-arena empty preview, plus exact placement of the ordinary and white-gold portals on the compact Stage VII route.
-4. Challenge start confirmation, surrender/exit behavior, test threshold, expected-loss handling, and abnormal-victory logic.
-5. Whether Stage VII contains ordinary enemies before or after the Examiner, and which reusable roles appear.
-6. Reward and replay contract, including whether later Hunts can revisit the test.
-7. Exact dialogue and which family fact the Examiner is permitted to confirm.
-8. Stable story IDs and safe-point timing.
-9. Measured Stage VI Wave 4-5 composition after the late-Hog experiment.
+- Arrival, compulsory fight framing, and post-fight outcome: victory, defeat, retry, and continuation rules.
+- Whether Examiner grants a power, what it does, and whether it carries a hidden cost; none is implemented.
+- Stage XX equipment/HP/DPS measurements and final seal threshold/damage values.
+- Exact scenario dialogue, his personal name, and how much of the manipulation he knows.
+- Rewards, replay, stable story IDs, and safe-point/save timing.
+- Stage VII's replacement content and the later timing of The One Above's direct encounter.
+- The family's ending twist remains open; their deaths are established.

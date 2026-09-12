@@ -14,6 +14,8 @@ extends Control
 var health_component: HealthComponent
 var _damage_tween: Tween
 var _reveal_tween: Tween
+var _phase_status := ""
+var _phase_color := Color.WHITE
 
 
 func _ready() -> void:
@@ -53,8 +55,17 @@ func clear_boss() -> void:
 		if health_component.died.is_connected(_on_boss_died):
 			health_component.died.disconnect(_on_boss_died)
 	health_component = null
+	_phase_status = ""
 	_kill_tweens()
 	hide()
+
+
+func set_phase_status(text: String, color := Color(0.86, 0.78, 0.55)) -> void:
+	# Boss-owned state can override the legacy Stage V health bands.
+	_phase_status = text
+	_phase_color = color
+	if is_instance_valid(health_component):
+		_update_labels(health_component.current_health, health_component.maximum_health)
 
 
 func _on_health_changed(current: float, maximum: float) -> void:
@@ -78,6 +89,10 @@ func _update_labels(current: float, maximum: float) -> void:
 	if current <= 0.0:
 		phase_label.text = "DEFEATED"
 		phase_label.add_theme_color_override("font_color", Color(0.66, 0.62, 0.56, 1.0))
+		return
+	if not _phase_status.is_empty():
+		phase_label.text = _phase_status
+		phase_label.add_theme_color_override("font_color", _phase_color)
 		return
 	var ratio := current / maxf(maximum, 1.0)
 	if ratio <= 0.30:

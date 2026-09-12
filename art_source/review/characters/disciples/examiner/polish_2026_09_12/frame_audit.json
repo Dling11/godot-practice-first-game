@@ -1,0 +1,57 @@
+{
+  "examiner_axiom_divide_sheet_192x160.png": {
+    "cells": 32,
+    "minimum_padding": 4,
+    "binary_alpha": true
+  },
+  "examiner_divine_descent_land_sheet_192x160.png": {
+    "cells": 32,
+    "minimum_padding": 26,
+    "binary_alpha": true
+  },
+  "examiner_divine_descent_launch_sheet_192x160.png": {
+    "cells": 32,
+    "minimum_padding": 22,
+    "binary_alpha": true
+  },
+  "examiner_ground_judgment_sheet_192x160.png": {
+    "cells": 32,
+    "minimum_padding": 26,
+    "binary_alpha": true
+  },
+  "examiner_judgment_charge_sheet_192x160.png": {
+    "cells": 32,
+    "minimum_padding": 1,
+    "binary_alpha": true
+  },
+  "examiner_locomotion_sheet_192x160.png": {
+    "cells": 32,
+    "minimum_padding": 20,
+    "binary_alpha": true
+  },
+  "examiner_reaction_withdraw_sheet_192x160.png": {
+    "cells": 32,
+    "minimum_padding": 30,
+    "binary_alpha": true
+  },
+  "examiner_refutation_sheet_192x160.png": {
+    "cells": 32,
+    "minimum_padding": 29,
+    "binary_alpha": true
+  },
+  "examiner_sweep_sheet_192x160.png": {
+    "cells": 32,
+    "minimum_padding": 30,
+    "binary_alpha": true
+  },
+  "examiner_thrust_sheet_192x160.png": {
+    "cells": 32,
+    "minimum_padding": 12,
+    "binary_alpha": true
+  },
+  "examiner_walk_sheet_192x160.png": {
+    "cells": 16,
+    "minimum_padding": 32,
+    "binary_alpha": true
+  }
+}

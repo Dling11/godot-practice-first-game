@@ -1,0 +1,190 @@
+[
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\vfx\\divine_order\\examiner\\axiom_beam.png",
+    "Hash": "DBC3827081790FE12615BC1376C08BF6377972B944552F9ABFA0C6356A0AE39A"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\vfx\\divine_order\\examiner\\axiom_beam.png.import",
+    "Hash": "A606358D9C3352B0440D48C25D37C3B688FCC16EC75265643B40702E76F45477"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\vfx\\divine_order\\examiner\\court_danger.gdshader",
+    "Hash": "04EBF4FF9489163AC2DF9BF076E412E3D5C608C2D940D7B3C0AB98A1393C3A8A"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\vfx\\divine_order\\examiner\\court_danger.gdshader.uid",
+    "Hash": "7DB9EA3718B87B0EA302767DAE459C0244B2D973D6B6F9E586A43B0D8AC17CB4"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\vfx\\divine_order\\examiner\\danger_circle.png",
+    "Hash": "2CEE05ED97247ECD204AA12D36B1D3F98765919FD47CEEAAA567EFC89A4C9CEE"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\vfx\\divine_order\\examiner\\danger_circle.png.import",
+    "Hash": "84EBA66CB45197ADC22C956BF2796859EC513CF4DB1A2EF630D54057E2737FF9"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\vfx\\divine_order\\examiner\\danger_lane.png",
+    "Hash": "F846215B2F71B5EF31648D071B8DF7463E6F306F3EB670DAD38BA58D93421D7F"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\vfx\\divine_order\\examiner\\danger_lane.png.import",
+    "Hash": "ECAB7010C450F6D6E0EEE0A15F256B16F2AA1F8F07C7E8A01E1C5932B33C8270"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\vfx\\divine_order\\examiner\\energy.png",
+    "Hash": "4874BB60D66A04D4FDC14CF7661B80C7467931FBF2583E90FD3D46013290ECBD"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\vfx\\divine_order\\examiner\\energy.png.import",
+    "Hash": "9E4CB6EA532C79F5AF5FA01900F23B82E1502D275CBC89BEC8DD78CD3BBC51B9"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\vfx\\divine_order\\examiner\\impact.png",
+    "Hash": "06732D9A2029EBC39F60FB57AFBA4A38A4A823FE3D6C30942301E51964692373"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\vfx\\divine_order\\examiner\\impact.png.import",
+    "Hash": "FF02E33E06E983AAD52862F7746A32F8D93E0272AC3E14E85B6C3A99C6507B0B"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\vfx\\divine_order\\examiner\\sweep.png",
+    "Hash": "564CE0890E08B543C4350CE1A617D74AE7EA95DF03EC984158F3ADCBCFFCA3C0"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\vfx\\divine_order\\examiner\\sweep.png.import",
+    "Hash": "9BB312602EBFC413A27A383D406DF4969F62C197A5A22A1D4CC4987C6D1C40F0"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_axiom_cut.wav",
+    "Hash": "D59048D71C5277F45186B52ED6F7B5666F5C7EE6DD3DEF317736CF13F4CAB8D6"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_axiom_cut.wav.import",
+    "Hash": "9A2E69772ED8A3A013CE786ADEE8A1B46FCA4CBD6AC10F499D6CAF97868B4335"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_axiom_prepare.wav",
+    "Hash": "B20950FE2B57290FA1CE380A17ECF6B8A655898AC362FA963155BAF81A89C6FB"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_axiom_prepare.wav.import",
+    "Hash": "CA212C11B1DDF685A195C819770E8C6FB0566420DFFA877B31ED7932F05E2B76"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_charge_dash.wav",
+    "Hash": "42A2A6B9B5A84C288418E700C2AC872D634F721506B9D1EDFAB7925801587F76"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_charge_dash.wav.import",
+    "Hash": "7FD7002242708027BBFDD41DDDA935386C2BBFDDCA517AE0304EA1321AF67D54"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_charge_impact.wav",
+    "Hash": "3D21F0EFFEC4DF3D4418D720CCBD8A91B5EAC6FC4ABCA9A953033971E427AC5B"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_charge_impact.wav.import",
+    "Hash": "943BAFDC1E4CBF29F3CD18A06DCE2CAA176CF9A2E711AA3B74060BA006CA0669"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_charge_prepare.wav",
+    "Hash": "0D9B62737AE42269372A02C50DEABFDC60C15A8F564076CBAF479A5BA02C8496"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_charge_prepare.wav.import",
+    "Hash": "5DAC4A8B6FE56C2A7F9C2CA6ED3CD21218BC9E0510228751498248567F74556D"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_descent_charge.wav",
+    "Hash": "B261DBC58DDBFBCF44BF9F75F0EF0336EF8C6B0E07257A6F897097C2C35E6CB3"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_descent_charge.wav.import",
+    "Hash": "28D49B5ECD3235BA4F79D00382B30C9027E154A08EAF14F68208B881D71E9C3E"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_descent_chime.wav",
+    "Hash": "E2268173DFD1AD556C41F58156739BB5F4C2024CB966175ADE7D0B47D32161B2"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_descent_chime.wav.import",
+    "Hash": "3BF7CC082C51F6398E93674DE8863457754284DAD527EB3C8DE23A7C31F4C9C3"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_descent_fall.wav",
+    "Hash": "2C2C81262C2CF82A1B3AC9F25FA74717C5628B3D9D2B246DBED9728EBEC41EF8"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_descent_fall.wav.import",
+    "Hash": "454E69911686E96E47DB1B422A6D5C78534622323AA60B1B4ABB848F4F9AD808"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_descent_impact.wav",
+    "Hash": "A2CA041AC8A9C3B3A4C4B4E33B95539C05F29D0FD9A56688D14AA9B6A25AA9F8"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_descent_impact.wav.import",
+    "Hash": "B342CD26812F852C38B5DCE0FB392FE4A5397A4A7C1584EDFBF599D25375FB81"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_descent_launch.wav",
+    "Hash": "63D2ECE7C53CF2E142D3B3757E9108A1041C7112CBFB42D4011069CCAA191501"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_descent_launch.wav.import",
+    "Hash": "1DC61643E26079B28527C305F5CBED46CB7CA9C6611E7AEC67B49BC366F40D16"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_refutation.wav",
+    "Hash": "91989360912407E6B2E63EBCE38FAD2476F82597FCE35BACBED2A8F6C66AF75F"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_refutation.wav.import",
+    "Hash": "FC8CD6C6FAE629C29CADA87CA5018E2BA9D5CD6C9FDB84F7860DCB891C1203FC"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_slam_impact.wav",
+    "Hash": "EDA3EC8C6ECE96FB10630798BCEB58351804454AA97B6A479C8D995A3C445314"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_slam_impact.wav.import",
+    "Hash": "D1CD783F892533396915049664CC1D91E203A35815A8B20920F707B43CB8A8DC"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_slam_prepare.wav",
+    "Hash": "6C3774EEFEFC1C1D787CC6F4773C34EE9D4933A8F2CAD3F677CE0FAE3826B440"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_slam_prepare.wav.import",
+    "Hash": "1D6CEBF8451FF9AF2D3CA67484BBD7DC244623A41CBE7A492AF0CFECD01B8ADE"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_step.wav",
+    "Hash": "BDE16E8004CF9CB5FC62D8E38F004147B41649556392B576C297696C4DE75A06"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_step.wav.import",
+    "Hash": "8BF07018F6AF94A10F630AA4B9FACA9BA9B5816811F537BF3550A528428D4DF7"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_sweep.wav",
+    "Hash": "A20A287C798EEBD83C23F2E14A5296236B71708DE2708296EE642EB8CBB54C2E"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_sweep.wav.import",
+    "Hash": "50A0BC2DF3A88C5AE152F5DEF20BE1A149B0A9431DC35A440FD3DB558EB5E20A"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_thrust.wav",
+    "Hash": "A7FA520F9D1C1DFACD864F937D65A29CA0D63E96757B62AE1F8DE0ACF89C62D9"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\examiner_thrust.wav.import",
+    "Hash": "06E462AD8CF03AC3EBCB925B78974BA3F3856995A84218B512728FD5051EA3AD"
+  },
+  {
+    "Path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\audio\\sfx\\characters\\disciples\\examiner\\rework\\provenance.json",
+    "Hash": "0E4CEAB6C6589554888F1C9A4F1584FEF80C44DBA9CA18FD125A78518E39CD4F"
+  }
+]

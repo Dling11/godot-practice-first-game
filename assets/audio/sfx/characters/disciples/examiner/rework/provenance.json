@@ -1,0 +1,87 @@
+{
+  "author": "Original procedural synthesis for Battle of Gods",
+  "generator": "tools/generate_examiner_rework_sfx.py",
+  "sample_rate": 44100,
+  "cues": {
+    "thrust": {
+      "seconds": 0.28,
+      "peak_dbfs": -1.72,
+      "rms_dbfs": -12.28
+    },
+    "sweep": {
+      "seconds": 0.42,
+      "peak_dbfs": -1.72,
+      "rms_dbfs": -14.27
+    },
+    "charge_prepare": {
+      "seconds": 0.72,
+      "peak_dbfs": -1.72,
+      "rms_dbfs": -14.23
+    },
+    "charge_dash": {
+      "seconds": 0.31,
+      "peak_dbfs": -1.72,
+      "rms_dbfs": -12.92
+    },
+    "charge_impact": {
+      "seconds": 0.55,
+      "peak_dbfs": -1.72,
+      "rms_dbfs": -17.82
+    },
+    "slam_prepare": {
+      "seconds": 0.82,
+      "peak_dbfs": -1.72,
+      "rms_dbfs": -14.47
+    },
+    "slam_impact": {
+      "seconds": 1.1,
+      "peak_dbfs": -1.72,
+      "rms_dbfs": -17.11
+    },
+    "refutation": {
+      "seconds": 0.42,
+      "peak_dbfs": -1.72,
+      "rms_dbfs": -13.55
+    },
+    "axiom_prepare": {
+      "seconds": 0.9,
+      "peak_dbfs": -1.72,
+      "rms_dbfs": -13.97
+    },
+    "axiom_cut": {
+      "seconds": 0.42,
+      "peak_dbfs": -1.72,
+      "rms_dbfs": -14.68
+    },
+    "descent_chime": {
+      "seconds": 1.25,
+      "peak_dbfs": -1.72,
+      "rms_dbfs": -16.97
+    },
+    "descent_launch": {
+      "seconds": 0.43,
+      "peak_dbfs": -1.72,
+      "rms_dbfs": -14.3
+    },
+    "descent_charge": {
+      "seconds": 3.8,
+      "peak_dbfs": -1.72,
+      "rms_dbfs": -15.46
+    },
+    "descent_fall": {
+      "seconds": 0.15,
+      "peak_dbfs": -1.72,
+      "rms_dbfs": -14.31
+    },
+    "descent_impact": {
+      "seconds": 1.75,
+      "peak_dbfs": -1.72,
+      "rms_dbfs": -18.6
+    },
+    "step": {
+      "seconds": 0.14,
+      "peak_dbfs": -1.72,
+      "rms_dbfs": -17.5
+    }
+  }
+}

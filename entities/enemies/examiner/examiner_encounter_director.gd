@@ -39,7 +39,18 @@ func bind(next_examiner: Examiner) -> void:
 	_transition_running = false
 	if examiner == null:
 		_stop_theme()
+		if arena != null:
+			arena.reset_trial()
+		if player != null:
+			player.set_cinematic_locked(false)
+		if camera != null:
+			camera.position = _camera_home
+		if dialogue != null and dialogue.visible:
+			dialogue.close_dialogue(false)
 		return
+	arena.set_sanctuary(false)
+	examiner.trial_started.connect(_on_trial_started)
+	examiner.trial_finished.connect(_on_trial_finished)
 	examiner.phase_transition_requested.connect(_on_phase_transition_requested)
 	examiner.divine_descent_launched.connect(_on_divine_descent_launched)
 	examiner.divine_descent_impact.connect(_on_divine_descent_impact)
@@ -64,7 +75,7 @@ func _on_phase_transition_requested() -> void:
 	await tween.finished
 	if examiner == null or not is_instance_valid(examiner):
 		return
-	dialogue.show_dialogue("THE EXAMINER", ["Interesting.", "Then let us continue."])
+	dialogue.show_dialogue("THE EXAMINER", ["You seek the hundredth gate. You are not ready.", "Break my seal. Earn your sanctuary."])
 
 
 func _on_dialogue_closed(_completed: bool) -> void:
@@ -84,16 +95,16 @@ func _on_divine_descent_launched(charge_seconds: float) -> void:
 	_tween_theme(-12.0, 0.32)
 	_silence_timer.start(maxf(charge_seconds - 0.10, 0.05))
 	if combat_hud != null:
-		combat_hud.show_story_message("DIVINE DESCENT  |  SEEK THE FOUR PYLONS", charge_seconds - 0.25)
+		combat_hud.show_story_message("SANCTUARY OPEN  |  REACH THE CYAN CIRCLE" if examiner._trial_succeeded else "FINAL VERDICT  |  NO SANCTUARY", charge_seconds - 0.25)
 
 
 func _on_divine_descent_impact(world_position: Vector2) -> void:
 	# Leave the foundation nearly absent at contact so the dedicated landing
 	# body pose and impact SFX carry the weight without a competing song.
 	_tween_theme(-28.0, 0.06)
-	var protected := arena.resolve_divine_descent(player, 260.0, examiner)
+	var protected := arena.resolve_divine_descent(player, examiner.definition.verdict_damage, examiner)
 	if combat_hud != null:
-		combat_hud.show_story_message("PYLON MEASURE: PROTECTED" if protected else "DIVINE DESCENT: EXPOSED", 1.35)
+		combat_hud.show_story_message("WORTH PROVEN  |  SANCTUARY HELD" if protected else "FINAL VERDICT  |  SEAL UNBROKEN", 1.35)
 	var feedback := get_tree().current_scene.find_child("CombatFeedback", true, false) if get_tree().current_scene != null else null
 	if feedback != null and feedback.has_method("request_camera_pulse"):
 		feedback.request_camera_pulse(8.0)
@@ -110,6 +121,7 @@ func _on_impact_silence() -> void:
 
 func _on_phase_two_started() -> void:
 	_transition_running = false
+	arena.set_sanctuary(false)
 	_tween_theme(-10.0, 0.72)
 	if combat_hud != null:
 		combat_hud.show_story_message("SECOND MEASURE", 1.8)
@@ -158,6 +170,10 @@ func _stop_theme() -> void:
 
 
 func _disconnect_examiner() -> void:
+	if examiner.trial_started.is_connected(_on_trial_started):
+		examiner.trial_started.disconnect(_on_trial_started)
+	if examiner.trial_finished.is_connected(_on_trial_finished):
+		examiner.trial_finished.disconnect(_on_trial_finished)
 	if examiner.phase_transition_requested.is_connected(_on_phase_transition_requested):
 		examiner.phase_transition_requested.disconnect(_on_phase_transition_requested)
 	if examiner.divine_descent_launched.is_connected(_on_divine_descent_launched):
@@ -174,4 +190,18 @@ func _on_examiner_exited() -> void:
 	player.set_cinematic_locked(false)
 	camera.position = _camera_home
 	_stop_theme()
+	arena.set_sanctuary(false)
 	examiner = null
+
+
+func _on_trial_started() -> void:
+	arena.set_sanctuary(false)
+	player.set_cinematic_locked(false)
+	if combat_hud != null:
+		combat_hud.show_story_message("TRIAL OF WORTH  |  STRIKE EXAMINER TO BREAK THE SEAL", 3.0)
+
+
+func _on_trial_finished(success: bool, sanctuary: Vector2) -> void:
+	arena.set_sanctuary(success, sanctuary)
+	if combat_hud != null:
+		combat_hud.show_story_message("SEAL BROKEN  |  SANCTUARY OPEN" if success else "SEAL UNBROKEN  |  VERDICT CANNOT BE DODGED", 2.8)

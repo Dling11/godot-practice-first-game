@@ -1,7 +1,19 @@
 class_name ExaminerDefinition
 extends EnemyDefinition
 
-## Debug-first tuning for the Examiner's restrained Stage VII challenge kit.
+## Stage XX boss mechanics, tuned first in the rewardless Combat Lab.
+
+@export var thrust_step_distance := 38.0
+@export var pursuit_distance := 260.0
+@export var pursuit_overshoot := 96.0
+@export var pursuit_warning_seconds := 0.48
+@export var pursuit_travel_seconds := 0.26
+@export var pursuit_recovery_seconds := 0.78
+@export var trial_damage_required := 240.0
+@export var trial_duration_seconds := 7.0
+@export var trial_cut_damage := 46.0
+@export var verdict_damage := 800.0
+@export var sanctuary_escape_seconds := 2.8
 
 @export_range(1.0, 9999.0, 1.0) var sweep_damage := 30.0
 @export_range(0.05, 2.0, 0.01, "suffix:s") var combo_gap_seconds := 0.18

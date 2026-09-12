@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3]
+[gd_scene load_steps=19 format=3]
 
 [ext_resource type="Script" path="res://levels/combat_lab/combat_lab.gd" id="1"]
 [ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="2"]
@@ -21,7 +21,7 @@ border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.42, 0.52, 0.28, 1)
+border_color = Color(0.38, 0.34, 0.24, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -34,6 +34,12 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.24, 0.31, 0.2, 1)
+
+[sub_resource type="RectangleShape2D" id="wall_horizontal"]
+size = Vector2(690, 20)
+
+[sub_resource type="RectangleShape2D" id="wall_vertical"]
+size = Vector2(20, 390)
 
 [node name="CombatLab" type="Node" node_paths=PackedStringArray("player", "actors", "projectiles", "effects", "camera", "combat_hud", "boss_hud", "court_arena", "base_arena", "base_arena_border", "examiner_director", "enemy_selector", "spawn_one_button", "spawn_four_button", "spawn_eight_button", "force_phase_button", "clear_button", "reset_button", "exit_button", "ai_toggle", "invincible_toggle", "combat_tools_button", "status_label", "latest_label")]
 script = ExtResource("1")
@@ -66,7 +72,7 @@ latest_label = NodePath("UI/LabPanel/Margin/Stack/Latest")
 
 [node name="Ground" type="Polygon2D" parent="World"]
 z_index = -10
-color = Color(0.06, 0.075, 0.063, 1)
+color = Color(0.025, 0.035, 0.055, 1)
 polygon = PackedVector2Array(0, 0, 960, 0, 960, 540, 0, 540)
 
 [node name="Arena" type="Polygon2D" parent="World"]
@@ -92,6 +98,26 @@ navigation_agent_radius = 20.0
 
 [node name="Actors" type="Node2D" parent="World"]
 y_sort_enabled = true
+
+[node name="ArenaWalls" type="StaticBody2D" parent="World"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="North" type="CollisionShape2D" parent="World/ArenaWalls"]
+position = Vector2(365, 82)
+shape = SubResource("wall_horizontal")
+
+[node name="South" type="CollisionShape2D" parent="World/ArenaWalls"]
+position = Vector2(365, 492)
+shape = SubResource("wall_horizontal")
+
+[node name="West" type="CollisionShape2D" parent="World/ArenaWalls"]
+position = Vector2(30, 287)
+shape = SubResource("wall_vertical")
+
+[node name="East" type="CollisionShape2D" parent="World/ArenaWalls"]
+position = Vector2(700, 287)
+shape = SubResource("wall_vertical")
 
 [node name="Player" parent="World/Actors" instance=ExtResource("2")]
 position = Vector2(365, 425)
@@ -132,12 +158,13 @@ combat_hud = NodePath("../../UI/CombatHUD")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="CombatHUD" parent="UI" instance=ExtResource("3")]
+enemy_roster_enabled = false
 
 [node name="DialoguePanel" parent="UI" instance=ExtResource("13")]
 
 [node name="BossHealthHUD" parent="UI" instance=ExtResource("11")]
-offset_left = -330.0
-offset_right = 210.0
+offset_left = -245.0
+offset_right = 205.0
 
 [node name="LabPanel" type="PanelContainer" parent="UI"]
 offset_left = 708.0
@@ -159,9 +186,9 @@ theme_override_constants/separation = 7
 
 [node name="Title" type="Label" parent="UI/LabPanel/Margin/Stack"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.84, 0.92, 0.62, 1)
-theme_override_font_sizes/font_size = 16
-text = "ADMIN COMBAT LAB"
+theme_override_colors/font_color = Color(0.84, 0.79, 0.65, 1)
+theme_override_font_sizes/font_size = 12
+text = "COMBAT REVIEW"
 horizontal_alignment = 1
 
 [node name="Subtitle" type="Label" parent="UI/LabPanel/Margin/Stack"]

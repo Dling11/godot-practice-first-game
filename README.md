@@ -240,3 +240,17 @@ Run the current headless movement smoke test with:
 ## Build and Export
 
 Build targets and export presets have not been selected.
+
+## Examiner rework review (2026-09-12)
+
+Double-click `Play Examiner.cmd` on this workstation, or press F7 during a debug game. The lab opens on the rebuilt Examiner with King invincible. Disable `KING INVINCIBLE` to test damage and cyan-ward protection; `FORCE DIVINE DESCENT` exercises the phase transition. The lab grants no progression or saves.
+
+Current prompts and import measurements: `art_source/generated/characters/disciples/examiner/rework_2026_09_12/`. Animation mapping: `assets/characters/enemies/examiner/FRAME_MANIFEST.md`. Run `tools/process_examiner_rework.py` and `tools/generate_examiner_rework_sfx.py` with the project's Python runtime, then Godot `--headless --path . --import`, followed by `--script res://tools/build_examiner_rework_frames.gd`. The older frame-builder entry point delegates to this builder.
+
+Focused checks: `tests/examiner_trial_smoke.gd`, `tests/examiner_rework_smoke.gd`, `tests/combat_lab_smoke.gd`. `tools/capture_examiner_rework.gd` records a scripted in-engine presentation using real action-state methods; it is not an autonomous player skill assessment.
+
+Examiner F7 follow-up adds alternating footsteps, repaired weapon tips, animated impacts, and crimson telegraphs (Decision 137). See `art_source/review/characters/disciples/examiner/polish_2026_09_12/REVIEW.md` for the video, source prompts, and rebuild commands.
+
+### Examiner combat review (F7)
+
+The rewardless Combat Lab now tests the planned Stage XX Examiner mechanics. Reprisal punishes straight retreat; get behind the committed thrust or sidestep the advancing follow-up. In Trial of Worth, deal 240 damage within 7 seconds while avoiding the red ground cuts, then reach the single cyan sanctuary. Failure grants no sanctuary; Final Verdict deals 800 raw damage through dodge/skill i-frames, with armor/ward mitigation. Disable KING INVINCIBLE to assess damage. The force-phase button starts the dialogue and complete seal trial. Production Stage XX is not connected and this lab grants no story powers, rewards, or saves.

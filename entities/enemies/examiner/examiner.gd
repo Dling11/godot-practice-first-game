@@ -2,6 +2,7 @@ class_name Examiner
 extends CharacterBody2D
 
 const EnemyFootprint = preload("res://entities/enemies/components/enemy_footprint_system.gd")
+const TrialComponent = preload("res://entities/enemies/examiner/examiner_trial.gd")
 const AxiomLaneScene = preload("res://entities/enemies/examiner/examiner_axiom_lane.tscn")
 
 enum State {
@@ -28,6 +29,11 @@ enum State {
 	AXIOM_CUT_TWO,
 	AXIOM_DASH,
 	AXIOM_RECOVERY,
+	PURSUIT_WIND_UP,
+	PURSUIT_TRAVEL,
+	PURSUIT_RECOVERY,
+	HELD_JUDGMENT,
+	TRIAL_CHANNEL,
 	PHASE_STANCE,
 	DESCENT_PREPARE,
 	DESCENT_LAUNCH,
@@ -48,6 +54,9 @@ signal action_impact(kind: StringName, world_position: Vector2, direction: Vecto
 signal phase_transition_requested
 signal divine_descent_launched(charge_seconds: float)
 signal divine_descent_impact(world_position: Vector2)
+signal trial_started
+signal trial_progressed(damage: float, required: float, seconds_left: float)
+signal trial_finished(success: bool, sanctuary_position: Vector2)
 signal phase_two_started
 
 @export var definition: ExaminerDefinition
@@ -64,6 +73,11 @@ signal phase_two_started
 @onready var dash_hitbox: MeleeHitbox = %DashHitbox
 @onready var slam_hitbox: MeleeHitbox = %SlamHitbox
 
+var trial: ExaminerTrial
+var _sanctuary_position := Vector2.ZERO
+var _trial_succeeded := false
+var _final_trial_requested := false
+var _thrust_step_remaining := 0.0
 var state := State.SPAWNING
 var facing_direction := Vector2.DOWN
 var _state_remaining := 0.0
@@ -92,7 +106,6 @@ var _original_collision_mask := 0
 const PHASE_TRIGGER_RATIO := 0.70
 const DESCENT_PREPARE_SECONDS := 0.64
 const DESCENT_LAUNCH_SECONDS := 0.17
-const DESCENT_COVER_SECONDS := 3.8
 const DESCENT_FALL_SECONDS := 0.15
 const DESCENT_IMPACT_SECONDS := 0.32
 const DESCENT_RECOVERY_SECONDS := 0.90
@@ -110,9 +123,15 @@ func _ready() -> void:
 	health_component.current_health = definition.maximum_health
 	health_component.armor_rating = definition.armor_rating
 	health_component.died.connect(_withdraw)
-	health_component.damaged.connect(_on_damaged)
 	health_component.damage_blocked.connect(_on_damage_blocked)
 	knockback_component.configure(definition)
+	trial = TrialComponent.new() as ExaminerTrial
+	add_child(trial)
+	trial.progressed.connect(func(damage: float, required: float, seconds_left: float) -> void: trial_progressed.emit(damage, required, seconds_left))
+	trial.completed.connect(_finish_trial)
+	trial.cut_released.connect($ActionSfx.play_trial_cut)
+	health_component.damaged.connect(trial.record_damage)
+	health_component.damaged.connect(_on_damaged)
 	_original_collision_layer = collision_layer
 	_original_collision_mask = collision_mask
 	_axiom_cooldown = definition.initial_axiom_delay
@@ -131,6 +150,8 @@ func _physics_process(delta: float) -> void:
 	_attack_pressure_remaining = maxf(_attack_pressure_remaining - delta, 0.0)
 	if _attack_pressure_remaining <= 0.0:
 		_recent_player_hits = 0
+	if state == State.TRIAL_CHANNEL:
+		return
 	if state in [State.PHASE_STANCE, State.DESCENT_PREPARE, State.DESCENT_LAUNCH, State.DESCENT_ABSENT, State.DESCENT_FALL, State.DESCENT_IMPACT, State.DESCENT_RECOVERY]:
 		_process_divine_descent(delta)
 		return
@@ -140,11 +161,15 @@ func _physics_process(delta: float) -> void:
 		return
 	if state == State.APPROACH:
 		_process_approach(delta)
-	elif state in [State.CHARGE_TRAVEL, State.AXIOM_DASH]:
+	elif state in [State.CHARGE_TRAVEL, State.AXIOM_DASH, State.PURSUIT_TRAVEL]:
 		_process_travel(delta)
 	else:
 		velocity = Vector2.ZERO
 		_set_moving(false)
+		if state == State.THRUST_ACTIVE and _thrust_step_remaining > 0.0:
+			var step := minf(_thrust_step_remaining, definition.thrust_step_distance * delta / definition.active_seconds)
+			move_and_collide(facing_direction * step)
+			_thrust_step_remaining -= step
 		_track_target_before_commit()
 		_tick_state(delta)
 
@@ -240,11 +265,18 @@ func _begin_axiom(offset: Vector2) -> void:
 func _process_travel(delta: float) -> void:
 	_travel_elapsed += delta
 	var progress := clampf(_travel_elapsed / maxf(_active_travel_seconds, 0.01), 0.0, 1.0)
-	global_position = _travel_start.lerp(_travel_target, progress * progress * (3.0 - 2.0 * progress))
-	if progress < 1.0:
+	var desired := _travel_start.lerp(_travel_target, progress * progress * (3.0 - 2.0 * progress))
+	var collision := move_and_collide(desired - global_position)
+	if progress < 1.0 and collision == null:
 		return
-	global_position = _travel_target
-	if state == State.CHARGE_TRAVEL:
+	# A grounded charge stops at physical geometry instead of teleporting
+	# through it. Aerial Divine Descent has its own explicit collision policy.
+	velocity = Vector2.ZERO
+	if state == State.PURSUIT_TRAVEL:
+		dash_hitbox.deactivate()
+		action_impact.emit(&"judgment_charge", global_position + Vector2(0, -20), facing_direction)
+		_enter(State.PURSUIT_RECOVERY, definition.pursuit_recovery_seconds)
+	elif state == State.CHARGE_TRAVEL:
 		dash_hitbox.deactivate()
 		action_impact.emit(&"judgment_charge", global_position + Vector2(0.0, -20.0), facing_direction)
 		_enter(State.CHARGE_IMPACT, definition.judgment_charge_impact_seconds)
@@ -259,6 +291,7 @@ func _tick_state(delta: float) -> void:
 		return
 	match state:
 		State.COMBO_WIND_UP:
+			_thrust_step_remaining = definition.thrust_step_distance
 			thrust_hitbox.activate(definition.attack_damage, self, facing_direction, 110.0, 0.08)
 			action_impact.emit(&"precision_thrust", global_position + facing_direction * 58.0 + Vector2(0.0, -24.0), facing_direction)
 			_enter(State.THRUST_ACTIVE, definition.active_seconds)
@@ -266,7 +299,7 @@ func _tick_state(delta: float) -> void:
 			thrust_hitbox.deactivate()
 			_enter(State.COMBO_GAP, definition.combo_gap_seconds)
 		State.COMBO_GAP:
-			_enter(State.SWEEP_WIND_UP, definition.sweep_wind_up_seconds)
+			_choose_follow_up()
 		State.SWEEP_WIND_UP:
 			sweep_hitbox.activate(definition.sweep_damage, self, facing_direction, 150.0, 0.10)
 			action_impact.emit(&"divine_sweep", global_position + Vector2(0.0, -24.0), facing_direction)
@@ -277,6 +310,12 @@ func _tick_state(delta: float) -> void:
 		State.COMBO_RECOVERY:
 			_close_exchange_count += 1
 			_enter(State.APPROACH, 0.0)
+		State.PURSUIT_WIND_UP:
+			dash_hitbox.activate(definition.judgment_charge_damage, self, facing_direction, 160.0, 0.12)
+			_enter(State.PURSUIT_TRAVEL, definition.pursuit_travel_seconds)
+		State.PURSUIT_RECOVERY:
+			_close_exchange_count += 1
+			_enter(State.APPROACH, 0.0)
 		State.CHARGE_WIND_UP:
 			dash_hitbox.activate(definition.judgment_charge_damage, self, facing_direction, 180.0, 0.14)
 			_enter(State.CHARGE_TRAVEL, definition.judgment_charge_travel_seconds)
@@ -284,7 +323,7 @@ func _tick_state(delta: float) -> void:
 			_enter(State.CHARGE_RECOVERY, definition.judgment_charge_recovery_seconds)
 		State.CHARGE_RECOVERY:
 			_enter(State.APPROACH, 0.0)
-		State.SLAM_WIND_UP:
+		State.SLAM_WIND_UP, State.HELD_JUDGMENT:
 			slam_hitbox.activate_radial(definition.ground_judgment_damage, self, global_position, 220.0, 0.18)
 			action_impact.emit(&"ground_judgment", global_position + Vector2(0.0, -6.0), facing_direction)
 			_enter(State.SLAM_ACTIVE, definition.ground_judgment_active_seconds)
@@ -292,6 +331,7 @@ func _tick_state(delta: float) -> void:
 			slam_hitbox.deactivate()
 			_enter(State.SLAM_RECOVERY, definition.ground_judgment_recovery_seconds)
 		State.SLAM_RECOVERY:
+			_close_exchange_count += 1
 			_enter(State.APPROACH, 0.0)
 		State.REFUTATION_WIND_UP:
 			health_component.set_invulnerable(true)
@@ -375,6 +415,13 @@ func _on_damage_blocked(_info: DamageInfo) -> void:
 
 
 func _on_damaged(_info: DamageInfo) -> void:
+	if health_component.current_health <= 0.0 or state in [State.TRIAL_CHANNEL, State.WITHDRAWAL]:
+		return
+	if _phase_two and not _final_trial_requested and health_component.current_health <= health_component.maximum_health * 0.35:
+		_final_trial_requested = true
+		_deactivate_hitboxes()
+		_begin_trial()
+		return
 	if not _phase_transition_requested and health_component.current_health <= health_component.maximum_health * PHASE_TRIGGER_RATIO:
 		request_phase_transition()
 		return
@@ -401,8 +448,7 @@ func request_phase_transition() -> bool:
 func begin_divine_descent() -> bool:
 	if state != State.PHASE_STANCE:
 		return false
-	_set_facing(Vector2.DOWN)
-	_enter(State.DESCENT_PREPARE, DESCENT_PREPARE_SECONDS)
+	_begin_trial()
 	return true
 
 
@@ -451,8 +497,8 @@ func _process_divine_descent(delta: float) -> void:
 			_enter(State.DESCENT_LAUNCH, DESCENT_LAUNCH_SECONDS)
 		State.DESCENT_LAUNCH:
 			visible = false
-			divine_descent_launched.emit(DESCENT_COVER_SECONDS)
-			_enter(State.DESCENT_ABSENT, DESCENT_COVER_SECONDS)
+			divine_descent_launched.emit(definition.sanctuary_escape_seconds)
+			_enter(State.DESCENT_ABSENT, definition.sanctuary_escape_seconds)
 		State.DESCENT_ABSENT:
 			_descent_destination = arena_bounds.get_center()
 			_descent_origin = _descent_destination + Vector2(0.0, -340.0)
@@ -521,6 +567,8 @@ func judgment_charge_endpoint() -> Vector2:
 
 func _withdraw() -> void:
 	state = State.WITHDRAWAL
+	if trial != null:
+		trial.cancel()
 	velocity = Vector2.ZERO
 	_deactivate_hitboxes()
 	health_component.set_invulnerable(true)
@@ -529,3 +577,55 @@ func _withdraw() -> void:
 	state_changed.emit(State.WITHDRAWAL, 1.25)
 	set_physics_process(false)
 	get_tree().create_timer(1.4).timeout.connect(queue_free)
+
+
+func _choose_follow_up() -> void:
+	if not is_instance_valid(target):
+		_enter(State.COMBO_RECOVERY, definition.combo_recovery_seconds)
+		return
+	var offset := target.global_position - global_position
+	# Getting behind the committed first strike earns an actual punish window.
+	if offset.normalized().dot(facing_direction) < -0.15:
+		_enter(State.COMBO_RECOVERY, definition.combo_recovery_seconds)
+	elif offset.length() > 92.0:
+		_begin_pursuit(offset)
+	elif _phase_two and _close_exchange_count % 2 == 0:
+		_enter(State.HELD_JUDGMENT, 1.05)
+	else:
+		_enter(State.SWEEP_WIND_UP, definition.sweep_wind_up_seconds)
+
+
+func _begin_pursuit(offset: Vector2) -> void:
+	_set_facing(offset.normalized())
+	_travel_start = global_position
+	_travel_target = (global_position + facing_direction * minf(definition.pursuit_distance, offset.length() + definition.pursuit_overshoot)).clamp(arena_bounds.position + Vector2(20,20), arena_bounds.end - Vector2(20,20))
+	_active_travel_seconds = definition.pursuit_travel_seconds
+	_travel_elapsed = 0.0
+	_enter(State.PURSUIT_WIND_UP, definition.pursuit_warning_seconds)
+
+
+func _begin_trial() -> void:
+	velocity = Vector2.ZERO
+	_deactivate_hitboxes()
+	_set_facing(Vector2.DOWN)
+	_trial_succeeded = false
+	health_component.set_invulnerable(false)
+	_enter(State.TRIAL_CHANNEL, definition.trial_duration_seconds)
+	trial_started.emit()
+	trial.begin(self, target, definition)
+
+
+func _finish_trial(success: bool) -> void:
+	if state != State.TRIAL_CHANNEL:
+		return
+	_trial_succeeded = success
+	# Pick the nearest reachable sanctuary at resolution; never move it afterward.
+	var points := CourtOfFirstMeasure.PYLON_POINTS
+	var player_position := target.global_position if is_instance_valid(target) else global_position
+	_sanctuary_position = points[0]
+	for point: Vector2 in points:
+		if player_position.distance_squared_to(point) < player_position.distance_squared_to(_sanctuary_position):
+			_sanctuary_position = point
+	health_component.set_invulnerable(true)
+	trial_finished.emit(success, _sanctuary_position)
+	_enter(State.DESCENT_PREPARE, DESCENT_PREPARE_SECONDS)

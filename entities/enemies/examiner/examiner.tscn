@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=17 format=3]
 
 [ext_resource type="Script" path="res://entities/enemies/examiner/examiner.gd" id="1"]
 [ext_resource type="Resource" path="res://data/enemies/examiner.tres" id="2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://entities/enemies/examiner/examiner_combat_presenter.gd" id="8"]
 [ext_resource type="Script" path="res://entities/enemies/examiner/examiner_action_sfx.gd" id="9"]
 [ext_resource type="Script" path="res://entities/shared/presentation/divine_threat_aura.gd" id="10"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/enemies/examiner/examiner_sprite_frames.tres" id="11_frames"]
 
 [sub_resource type="CircleShape2D" id="movement"]
 radius = 12.0
@@ -52,8 +53,11 @@ body = NodePath("Body")
 shadow = NodePath("../Shadow")
 
 [node name="Body" type="AnimatedSprite2D" parent="Visual"]
-position = Vector2(0, -60)
+position = Vector2(0, -48)
 texture_filter = 1
+sprite_frames = ExtResource("11_frames")
+animation = &"idle_down"
+autoplay = "idle_down"
 
 [node name="CombatPresentation" type="Node2D" parent="." node_paths=PackedStringArray("examiner", "body", "divine_aura")]
 script = ExtResource("8")

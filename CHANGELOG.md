@@ -1,5 +1,44 @@
 # Changelog
 
+## 2026-09-12 - Examiner Trial of Worth and Stage XX Direction
+
+- Added physical thrust advancement, locked Reprisal against retreat, behind-target recovery, and phase-two Held Judgment; raised ordinary attack stakes while retaining readable anticipation.
+- Added the 240-damage/7-second Trial of Worth, alternating warned ground cuts, one earned sanctuary, 800 raw Verdict through action i-frames, and a repeat at 35% HP. Armor/ward and explicit lab immunity remain effective.
+- Reused approved body/VFX/audio assets, exposed damage/time progress in the boss HUD, and moved lab instruction messages below the boss panel for readability.
+- Updated canonical story direction: mandatory Stage XX Examiner false-mentor scenario, gods' Stage 100 promise, actually dead family, open ending. Earlier Stage VII optional encounter and Stage XX direct-god placement are superseded; production scenario and rewards remain pending.
+
+## 2026-09-12 - Examiner Walking Identity Correction
+
+- Replaced the ornate walking variant with front/profile/back studies referenced from approved locomotion art: narrow mask, simple ivory armor, navy cloth, long split coat, and matching glaive.
+- Matched body size using helmet-to-ground measurements, retained alternating four-frame steps and turning continuity, and routed rebuilds to the corrected source set.
+- Added idle/walk/combo comparison capture in all four directions. Body padding/alpha audit, extractor regressions, and focused Examiner smoke checks pass. Skills, audio, HUD, and gameplay remain unchanged in this correction; owner gait review remains pending.
+
+## 2026-09-12 - Examiner Gait, Weapon Tips, and Skill Impacts
+
+- Replaced the repetitive walk with four alternating contact/passing poses per direction; preserved step phase on turns and synchronized footsteps to contacts.
+- Recovered complete connected weapons before cropping, rejected source-edge clipping/merged figures, and repaired the overlapping slam source. Audited all 336 body cells.
+- Replaced thin yellow skill lines with eight-frame energy, crescent, and slate impact atlases; aligned eruption/crater origins. Added crimson circular/arrow telegraphs and Court danger shading with exact safe holes.
+- Strengthened slam/Descent fracture and rubble audio and Axiom beam sound with original synthesis. Focused combat, gait, effect lifecycle, import, and runtime-boundary checks pass; refreshed GPU review includes sound.
+
+
+## 2026-09-12 - Examiner Animation, Court, and Audio Rework
+
+- Replaced the full Examiner body library with ten eight-column 192x160 sheets and 116 saved clips. Separated anticipation/contact/recovery, animated contact phases, preserved wind-up direction timing, and removed the fixed red-eye overlay that floated above new landing poses.
+- Added engraved slate terrain, exact traversable cyan wards, physical lab perimeter walls, collision-stopped grounded charge, and restrained effects whose contact accents match real reach.
+- Added sixteen original Foley cues, frame-timed footsteps, distinct Axiom pitches, explicit audio cleanup, compact review controls, and an actual phase/technique display. Retained one encounter music foundation.
+- Added the focused regression test, repeatable capture, prompt/import/audio provenance, and direct-launch shortcut. Preserved superseded assets and prior edited implementations in the Godot-ignored archive. Final owner feel and Stage VII integration remain pending.
+
+## 2026-08-25 - Examiner Editor-Visible Animation Ownership
+
+- Replaced the Examiner's runtime-only `SpriteFrames` construction with one saved `examiner_sprite_frames.tres` containing all 112 named directional body animations. The `AnimatedSprite2D` now exposes and previews its real animation library directly in the Godot editor.
+- Corrected the backward horizontal walk by mapping the locomotion board's authored down/left/right/up rows independently from the combat boards' down/right/left/up rows; attack-facing rows remain unchanged.
+- Removed the duplicate runtime atlas-construction code and sheet preloads from `examiner_visual.gd`. Added one deterministic build tool and smoke assertions that lock editor ownership, animation count, exact frame grid, and the distinct locomotion/action direction mappings.
+- Retired the completed one-off Examiner screenshot helper from active `tools/`; its stale V4 capture target is preserved only in the Godot-ignored archive and cannot be mistaken for a current animation pipeline.
+- Rejected and archived the first dedicated Axiom V4 board after runtime review correctly found that its front/back contacts remained diagonal. V5 corrected the centerline but its down-facing body still read as a static pole plant. The owner then approved a V6 six-pose direct thrust aimed exactly at a player standing at screen-bottom; only that down row changed, while V5 up and the accepted side/mirrored rows remain intact.
+- Built the exact 6-by-4 Axiom runtime sheet with fixed per-source scales: `0.26` for V6 down, `0.31` for preserved V5 up, and `0.42` for the preserved side source. The V6 foot anchor explicitly excludes the centered blade, preventing the weapon tip from moving the body baseline. All 24 cells retain binary alpha; processor checks prove the right, left, and up runtime rows and every non-Axiom sheet remain byte-identical.
+- Wired all six Axiom poses into wind-up, first contact, physical reversal, second contact, and recovery while preserving the matching Judgment Charge family only for the final committed dash. Damage resolution begins on the authored contact cells, and focused smoke coverage locks the dedicated texture and cardinal atlas coordinates.
+- Added an active frame manifest that distinguishes dedicated generated sheets and the remaining final-dash reuse so later art selection cannot infer nonexistent source animation from a runtime name.
+
 ## 2026-08-25 - Examiner Divine Descent V5 Stability and Mix Correction
 
 - Rejected and archived the malformed V4 launch/landing boards after frame-level inspection found detached feet, missing lower-body/armor pixels, cropped profiles, palette artifacts, and unstable silhouettes. Generated fresh V5 6x4 launch and meteor-landing boards from the approved compact Examiner identity, normalized them on a fixed lower-body anchor, and mirrored the right profile for exact left/right mass.

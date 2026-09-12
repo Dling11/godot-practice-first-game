@@ -28,7 +28,7 @@ This section is internal spoiler authority and must not be copied into early pla
 
 King is one of the Game's selected **Champions**. The One Above did not merely discover him after the family tragedy; the accepted long-term direction is that he selected King before or during it and materially helped create or exploit the conditions that produced King's loss, grief, hope, struggle, rage, and growth. The exact mechanism remains open.
 
-The family promise should not be a trivial total lie. The preferred direction preserves an authentic form of their souls or identities because The One Above deliberately retained the hope required to motivate King. Their exact condition—alive, imprisoned, reincarnated, divided, copied, or otherwise preserved—remains unresolved.
+King's family is actually dead. The gods promise that reaching Stage 100 will let him save or reunite with them, using grief and false hope to keep their Champion climbing. No authentic surviving soul, resurrection, or preserved identity is confirmed. A later twist remains open; possible endings must not silently undo the established deaths.
 
 The gradual reveal is `mysterious rescue -> architected Game -> Disciples -> other gods -> competing Champions -> impossible knowledge -> suspected complicity -> engineered suffering`. Early story must make The One Above more credible before it makes him suspect. The complete disclosure and stage anchors live in `docs/design/divine-game-story-roadmap.md`.
 
@@ -76,23 +76,25 @@ The Grove is the first available expedition. Its corruption has begun to imitate
 
 A corrupted hollow reveals that the small Rootlings behave as the Rootbound Husk's brood. After King cuts through ten of them, the ancient guardian names the deaths as a trespass before confronting him as the first mini-boss.
 
-### Planned Stage VII — The Examiner's Choice
+### Stage VII — Revised placement
 
-The first Disciple, using the role title **The Examiner**, is a calm masked masculine humanoid in pale divine armor who wields a Divine Split Glaive. He recognizes King and identifies his master as the being responsible for King's return. The Examiner reinforces hope that King's family remains reachable, then offers an honest Continue/Challenge choice. The optional challenge demonstrates a severe but fair power gap as a recognition test; expected defeat does not require an ordinary Game Over, and abnormal player success cannot permanently kill him or break later story. His accepted phase interruption is deliberately short and non-revealing—`Interesting.` / `Then let us continue.`—before **Divine Descent** teaches reliable pylon cover. His awareness of resurrection may later surface as a subtle reassurance, but Stage VII must not expose the manipulation behind King's return. A second future Disciple, **The Executioner**, is a heavily armored feminine/subtly feminine contrast with a fractured halo and Divine Execution Wheel; she may be foreshadowed but is not introduced at Stage VII.
+The earlier optional Examiner choice is superseded by Decision 138. Stage VII content remains unimplemented and must be planned separately.
 
 ### Planned Stage IX — Reclaimed Magical Ruins
 
 Stage IX, not Stage VII, carries the larger modular magical-ruins identity. A provisional fast ranged Mage and space-controlling Stone Warden create chase-versus-blocker pressure and supply material families for later accessory progression. Their names, art, stats, drops, and recipes remain open.
 
-### Planned Stage XX — The Benefactor Enters
+### Planned Stage XX — The False Mentor
 
-The One Above personally enters his Game for the first direct god confrontation. He still presents himself as King's benefactor and treats combat as an entertaining trial. Details he should not know about King's original tragedy create the first major crack in that story without forcing the full truth to be revealed at Stage XX.
+Decision 138 (2026-09-12) supersedes the Stage VII optional-challenge and Stage XX direct-god placement: Examiner is the required Stage XX scenario boss, a false mentor serving the gods' manipulation. They promise reunion at Stage 100; King's family is actually dead. Souls, resurrection, replicas, the ending, and any bestowed power remain open possibilities, not established survival facts. The One Above's direct confrontation is now unscheduled. Only the F7 combat proof is playable; production route/outcome/reward/save integration is pending.
+
+Examiner frames the required fight as instruction: King must become worthy of reaching the hundredth gate. His calm corrections, seal test, and conditional sanctuary make him seem like a severe teacher who wants King to succeed. Internally he advances the gods' manipulation. Whether he knows the full lie, later regrets his role, or grants a power with a hidden cost remains open. The F7 transition now says “You seek the hundredth gate. You are not ready.” / “Break my seal. Earn your sanctuary.” This is a combat proof, not the complete scenario dialogue.
 
 ## Story Delivery
 
 - Prefer short dialogue, locations, enemy design, artifacts, boss phases, and recovered memories over long exposition.
 - Let the gods tempt King with believable fragments of his family rather than confirming the truth too early.
-- Let Stage VII strengthen King's trust in The One Above before later contradictions weaken it.
+- Let the Stage XX Examiner encounter strengthen King's trust in The One Above before later contradictions weaken it.
 - Never expose the internal engineered-tragedy direction in early route copy, dialogue, marketing, or player-facing documentation.
 - Let Eira interpret memory without making her automatically correct about every mystery.
 - Let Orren ground the story in mortal survival and the cost of divine conflict.
@@ -103,12 +105,12 @@ The One Above personally enters his Game for the first direct god confrontation.
 ## Open Questions
 
 - How exactly did The One Above create, commission, alter, or exploit the tragedy after selecting King?
-- Is King's daughter alive, imprisoned, copied from memory, reincarnated elsewhere, or used as divine bait?
+- What later twist, if any, follows the established death of King's family without making the Stage 100 promise an already-confirmed truth?
 - Was “King” his former name, a title, or a name the Veil gave him?
 - Did the Veil independently preserve King, or was his arrival arranged through the Game?
 - Which god first turned mortal struggle into entertainment?
 - What is The One Above's actual name, and where does he stand among other gods and greater beings?
-- Which authentic form of King's family did The One Above preserve, and what would rescue truly mean?
+- Does the ending offer farewell, a costly resurrection, an imitation, or rejection of the gods' bargain? None is selected yet.
 - What are the Examiner's personal name, exact dialogue, test/reward/replay rules, and later relationship with King and the Executioner?
 - What unlocks the first playable character switch, and how is the new soul's motive introduced?
 - Which boss closes the full Forest arc at Stage X, and what first proves that the Game is a constructed system?

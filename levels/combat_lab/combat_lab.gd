@@ -55,18 +55,50 @@ func _ready() -> void:
 	if admin_state != null:
 		admin_state.call("set_enabled", true)
 	combat_hud.bind_player(player)
+	# Trial instructions must sit below the boss HUD, not behind its panel.
+	combat_hud.stage_label.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	combat_hud.stage_label.position = Vector2(55, 132)
+	combat_hud.stage_label.size = Vector2(620, 26)
+	combat_hud.stage_label.add_theme_font_size_override("font_size", 11)
 	player.enable_debug_combat_tools()
 	player.health_component.set_current_health(player.health_component.maximum_health)
 	player.health_component.set_invulnerable(true)
+	player.health_component.is_damage_immune = true
 	for entry: Dictionary in ROSTER:
 		enemy_selector.add_item(String(entry["label"]))
 	enemy_selector.select(ROSTER.size() - 1)
 	_set_examiner_arena(true)
 	_bind_controls()
+	_style_review_panel()
 	_update_latest_label()
 	_update_status()
-	combat_hud.show_story_message("ADMIN COMBAT LAB  |  REAL ACTORS  |  NO REWARDS OR SAVES", 3.5)
 	call_deferred("spawn_selected", 1)
+
+
+func _style_review_panel() -> void:
+	# The lab uses a compact control surface at the real 960x540 viewport.
+	var panel := get_node("UI/LabPanel") as Control
+	var review_theme := Theme.new()
+	review_theme.default_font_size = 11
+	for type_name in ["Button", "OptionButton"]:
+		for style_name in ["normal", "hover", "pressed", "disabled"]:
+			var style := StyleBoxFlat.new()
+			style.bg_color = Color("15212b") if style_name == "normal" else Color("23333d")
+			style.border_color = Color("60583f") if style_name == "normal" else Color("b4a471")
+			style.set_border_width_all(1)
+			style.content_margin_left = 7
+			style.content_margin_right = 7
+			style.content_margin_top = 4
+			style.content_margin_bottom = 4
+			review_theme.set_stylebox(style_name, type_name, style)
+		review_theme.set_color("font_color", type_name, Color("e2dac5"))
+	panel.theme = review_theme
+	for control in panel.find_children("*", "BaseButton", true, false):
+		control.add_theme_font_size_override("font_size", 11)
+		control.custom_minimum_size.y = 28.0
+	var roster := combat_hud.find_child("EnemyRosterPanel", true, false) as Control
+	if roster != null:
+		roster.hide()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -116,6 +148,7 @@ func set_enemy_ai_enabled(enabled: bool) -> void:
 func set_player_invincible(enabled: bool) -> void:
 	_invincible = enabled
 	player.health_component.set_invulnerable(enabled)
+	player.health_component.is_damage_immune = enabled
 	if enabled:
 		player.health_component.set_current_health(player.health_component.maximum_health)
 	_update_status()
@@ -165,11 +198,39 @@ func _spawn_enemy(scene: PackedScene, index: int, requested_count: int) -> void:
 		add_child(feedback)
 		enemy.tree_exited.connect(feedback.queue_free)
 	elif enemy is Examiner:
-		boss_hud.bind_boss(enemy.health_component, "THE EXAMINER", "FIRST MEASURE | DEBUG TRIAL")
+		boss_hud.bind_boss(enemy.health_component, "THE EXAMINER", "COURT OF THE FIRST MEASURE")
+		boss_hud.set_phase_status("FIRST MEASURE")
+		enemy.trial_progressed.connect(func(damage: float, required: float, seconds_left: float) -> void:
+			boss_hud.set_phase_status("BREAK SEAL  %d/%d  |  %.1fs" % [mini(int(damage), int(required)), int(required), seconds_left], Color("edbc72"))
+		)
+		enemy.state_changed.connect(_on_examiner_state_changed.bind(enemy))
+		enemy.phase_two_started.connect(func() -> void: boss_hud.set_phase_status("SECOND MEASURE", Color("91d8df")))
 		enemy.axiom_started.connect(court_arena.pulse_measure)
 		enemy.measure_recognized.connect(_on_measure_recognized)
 		examiner_director.bind(enemy)
 		force_phase_button.disabled = false
+
+
+func _on_examiner_state_changed(state: Examiner.State, _duration: float, enemy: Examiner) -> void:
+	if not is_instance_valid(enemy) or boss_hud.health_component != enemy.health_component:
+		return
+	var technique := ""
+	match state:
+		Examiner.State.COMBO_WIND_UP: technique = "PRECISION THRUST"
+		Examiner.State.PURSUIT_WIND_UP: technique = "REPRISAL  |  SIDESTEP"
+		Examiner.State.TRIAL_CHANNEL: technique = "BREAK THE SEAL"
+		Examiner.State.SWEEP_WIND_UP: technique = "DIVINE SWEEP"
+		Examiner.State.CHARGE_WIND_UP: technique = "JUDGMENT CHARGE"
+		Examiner.State.HELD_JUDGMENT: technique = "HELD JUDGMENT  |  WAIT FOR THE FALL"
+		Examiner.State.SLAM_WIND_UP: technique = "GROUND JUDGMENT"
+		Examiner.State.REFUTATION_WIND_UP: technique = "REFUTATION"
+		Examiner.State.AXIOM_WIND_UP: technique = "AXIOM DIVIDE"
+		Examiner.State.DESCENT_PREPARE: technique = "DIVINE DESCENT"
+		Examiner.State.DESCENT_ABSENT: technique = "REACH SANCTUARY" if enemy._trial_succeeded else "FINAL VERDICT"
+		Examiner.State.APPROACH:
+			technique = "SECOND MEASURE" if enemy.is_phase_two() else "FIRST MEASURE"
+	if not technique.is_empty():
+		boss_hud.set_phase_status(technique, Color("91d8df") if enemy.is_phase_two() else Color("d6c593"))
 
 
 func _spawn_position(index: int, requested_count: int) -> Vector2:
@@ -266,7 +327,8 @@ func _refresh_boss_hud() -> void:
 			boss_hud.bind_boss(enemy.health_component, "STAGE 5 BOSS", "COMBAT LAB")
 			return
 		if is_instance_valid(enemy) and enemy is Examiner and enemy.health_component.current_health > 0.0:
-			boss_hud.bind_boss(enemy.health_component, "THE EXAMINER", "FIRST MEASURE | DEBUG TRIAL")
+			boss_hud.bind_boss(enemy.health_component, "THE EXAMINER", "COURT OF THE FIRST MEASURE")
+			boss_hud.set_phase_status("SECOND MEASURE" if enemy.is_phase_two() else "FIRST MEASURE")
 			return
 	boss_hud.clear_boss()
 

@@ -1,36 +1,36 @@
 extends Node2D
 
-const LocomotionTexture = preload("res://assets/characters/enemies/examiner/examiner_locomotion_sheet_192x128.png")
-const ThrustTexture = preload("res://assets/characters/enemies/examiner/examiner_thrust_sheet_192x128.png")
-const SweepTexture = preload("res://assets/characters/enemies/examiner/examiner_sweep_sheet_192x128.png")
-const JudgmentChargeTexture = preload("res://assets/characters/enemies/examiner/examiner_judgment_charge_sheet_192x128.png")
-const GroundJudgmentTexture = preload("res://assets/characters/enemies/examiner/examiner_ground_judgment_sheet_192x128.png")
-const RefutationTexture = preload("res://assets/characters/enemies/examiner/examiner_refutation_sheet_192x128.png")
-const ReactionTexture = preload("res://assets/characters/enemies/examiner/examiner_reaction_withdraw_sheet_192x128.png")
-const DescentLaunchTexture = preload("res://assets/characters/enemies/examiner/examiner_divine_descent_launch_sheet_192x128.png")
-const DescentLandTexture = preload("res://assets/characters/enemies/examiner/examiner_divine_descent_land_sheet_192x128.png")
-
 @export var body: AnimatedSprite2D
 @export var shadow: Polygon2D
 
 var _direction := "down"
 var _state := Examiner.State.SPAWNING
 var _moving := false
-var _base_position := Vector2(0.0, -56.0)
+var _base_position := Vector2(0.0, -48.0)
 var _tween: Tween
 var _impact_tween: Tween
-var _impact_eyes: Node2D
 
 
 func _ready() -> void:
-	body.sprite_frames = _build_frames()
 	body.position = _base_position
 	body.play(&"idle_down")
-	_impact_eyes = _build_impact_eyes()
 
 
 func set_facing(direction: Vector2) -> void:
-	_direction = _direction_name(direction)
+	var next_direction := _direction_name(direction)
+	if next_direction == _direction:
+		return
+	var previous_direction := _direction
+	_direction = next_direction
+	# Bounded controller tracking may cross a cardinal during anticipation.
+	# Retarget the same pose without restarting its authored phase clock.
+	if (_state == Examiner.State.APPROACH and _moving) or _state in [Examiner.State.COMBO_WIND_UP, Examiner.State.SWEEP_WIND_UP, Examiner.State.CHARGE_WIND_UP, Examiner.State.SLAM_WIND_UP]:
+		var key := String(body.animation).trim_suffix("_" + previous_direction) + "_" + _direction
+		if body.sprite_frames.has_animation(key):
+			var saved_frame := body.frame
+			var saved_progress := body.frame_progress
+			body.play(key)
+			body.set_frame_and_progress(saved_frame, saved_progress)
 	_restore()
 
 
@@ -46,8 +46,6 @@ func play_state(state: Examiner.State, duration_seconds: float) -> void:
 		_tween.kill()
 	if _impact_tween != null and _impact_tween.is_valid():
 		_impact_tween.kill()
-	if _impact_eyes != null:
-		_impact_eyes.visible = false
 	body.position = _base_position
 	body.modulate = Color.WHITE
 	match state:
@@ -61,7 +59,7 @@ func play_state(state: Examiner.State, duration_seconds: float) -> void:
 		Examiner.State.COMBO_WIND_UP:
 			_play_fit("thrust_" + _direction, duration_seconds)
 		Examiner.State.THRUST_ACTIVE:
-			_hold("thrust_" + _direction, 3)
+			_play_fit("thrust_strike_" + _direction, duration_seconds)
 		Examiner.State.COMBO_GAP:
 			_play_fit("thrust_recovery_" + _direction, duration_seconds)
 		Examiner.State.SWEEP_WIND_UP:
@@ -70,18 +68,21 @@ func play_state(state: Examiner.State, duration_seconds: float) -> void:
 			_play_fit("sweep_strike_" + _direction, duration_seconds)
 		Examiner.State.COMBO_RECOVERY:
 			_play_fit("sweep_recovery_" + _direction, duration_seconds)
-		Examiner.State.CHARGE_WIND_UP:
+		Examiner.State.CHARGE_WIND_UP, Examiner.State.PURSUIT_WIND_UP:
 			_play_fit("charge_wind_up_" + _direction, duration_seconds)
-		Examiner.State.CHARGE_TRAVEL:
+		Examiner.State.CHARGE_TRAVEL, Examiner.State.PURSUIT_TRAVEL:
 			_play_fit("charge_travel_" + _direction, duration_seconds)
 		Examiner.State.CHARGE_IMPACT:
 			_hold("charge_travel_" + _direction, 2)
-		Examiner.State.CHARGE_RECOVERY:
+		Examiner.State.CHARGE_RECOVERY, Examiner.State.PURSUIT_RECOVERY:
 			_play_fit("charge_recovery_" + _direction, duration_seconds)
 		Examiner.State.SLAM_WIND_UP:
 			_play_fit("slam_wind_up_" + _direction, duration_seconds)
+		Examiner.State.HELD_JUDGMENT:
+			# Raise promptly, then hold the complete overhead anticipation pose.
+			_play_fit("slam_wind_up_" + _direction, 0.38)
 		Examiner.State.SLAM_ACTIVE:
-			_hold("slam_contact_" + _direction, 0)
+			_play_fit("slam_contact_" + _direction, duration_seconds)
 		Examiner.State.SLAM_RECOVERY:
 			_play_fit("slam_recovery_" + _direction, duration_seconds)
 		Examiner.State.REFUTATION_WIND_UP:
@@ -100,6 +101,8 @@ func play_state(state: Examiner.State, duration_seconds: float) -> void:
 			_play_fit("axiom_dash_" + _direction, duration_seconds)
 		Examiner.State.AXIOM_RECOVERY:
 			_play_fit("axiom_recovery_" + _direction, duration_seconds)
+		Examiner.State.TRIAL_CHANNEL:
+			_hold("refutation_active_" + _direction, 1)
 		Examiner.State.PHASE_STANCE:
 			body.play("idle_" + _direction)
 		Examiner.State.DESCENT_PREPARE:
@@ -111,7 +114,7 @@ func play_state(state: Examiner.State, duration_seconds: float) -> void:
 		Examiner.State.DESCENT_FALL:
 			_play_fit("descent_fall_" + _direction, duration_seconds)
 		Examiner.State.DESCENT_IMPACT:
-			_hold("descent_impact_" + _direction, 0)
+			_play_fit("descent_impact_" + _direction, duration_seconds)
 			_play_divine_descent_impact_accent()
 		Examiner.State.DESCENT_RECOVERY:
 			_play_fit("descent_recovery_" + _direction, duration_seconds)
@@ -143,6 +146,7 @@ func _restore() -> void:
 
 
 func _play_fit(animation: String, duration_seconds: float) -> void:
+	body.stop()
 	body.speed_scale = 1.0
 	var frames := body.sprite_frames
 	var count := frames.get_frame_count(animation)
@@ -159,100 +163,15 @@ func _hold(animation: String, frame_index: int) -> void:
 	body.pause()
 
 
-func _build_frames() -> SpriteFrames:
-	var frames := SpriteFrames.new()
-	frames.remove_animation(&"default")
-	# Generated source row 1 faces screen-right; row 2 is its exact mirror.
-	# Keeping the gameplay names aligned with that authored direction prevents
-	# the body from attacking away from a correctly aimed hitbox.
-	var directions := ["down", "right", "left", "up"]
-	for row in range(4):
-		var direction: String = directions[row]
-		_add_range(frames, "idle_" + direction, LocomotionTexture, 6, row, 0, 2, 3.0, true)
-		_add_range(frames, "walk_" + direction, LocomotionTexture, 6, row, 2, 6, 7.0, true)
-		_add_range(frames, "thrust_" + direction, ThrustTexture, 6, row, 0, 5, 9.0, false)
-		_add_range(frames, "thrust_recovery_" + direction, ThrustTexture, 6, row, 4, 6, 8.0, false)
-		_add_range(frames, "sweep_wind_up_" + direction, SweepTexture, 6, row, 0, 4, 8.0, false)
-		_add_range(frames, "sweep_strike_" + direction, SweepTexture, 6, row, 3, 6, 11.0, false)
-		_add_reverse_range(frames, "sweep_recovery_" + direction, SweepTexture, 6, row, 4, 6, 7.0)
-		_add_range(frames, "charge_wind_up_" + direction, JudgmentChargeTexture, 6, row, 0, 4, 7.0, false)
-		_add_range(frames, "charge_travel_" + direction, JudgmentChargeTexture, 6, row, 3, 6, 14.0, false)
-		_add_range(frames, "charge_recovery_" + direction, JudgmentChargeTexture, 6, row, 5, 6, 5.0, false)
-		_add_range(frames, "slam_wind_up_" + direction, GroundJudgmentTexture, 6, row, 0, 4, 6.0, false)
-		_add_range(frames, "slam_contact_" + direction, GroundJudgmentTexture, 6, row, 4, 5, 1.0, false)
-		_add_range(frames, "slam_recovery_" + direction, GroundJudgmentTexture, 6, row, 4, 6, 5.0, false)
-		_add_range(frames, "refutation_wind_up_" + direction, RefutationTexture, 5, row, 0, 2, 7.0, false)
-		_add_range(frames, "refutation_active_" + direction, RefutationTexture, 5, row, 1, 4, 10.0, false)
-		_add_range(frames, "refutation_recovery_" + direction, RefutationTexture, 5, row, 3, 5, 7.0, false)
-		_add_range(frames, "hurt_" + direction, ReactionTexture, 6, row, 0, 3, 12.0, false)
-		_add_range(frames, "withdrawal_" + direction, ReactionTexture, 6, row, 3, 6, 4.5, false)
-		# Axiom composes the clean physical sweep/dash poses. Lane geometry and
-		# energy remain separate, so cross-cell weapon fragments are unnecessary.
-		_add_range(frames, "axiom_wind_up_" + direction, SweepTexture, 6, row, 0, 3, 7.0, false)
-		_add_range(frames, "axiom_cut_one_" + direction, SweepTexture, 6, row, 2, 6, 11.0, false)
-		_add_reverse_range(frames, "axiom_cut_two_" + direction, SweepTexture, 6, row, 1, 5, 11.0)
-		_add_range(frames, "axiom_dash_" + direction, JudgmentChargeTexture, 6, row, 2, 6, 13.0, false)
-		_add_range(frames, "axiom_recovery_" + direction, ReactionTexture, 6, row, 4, 6, 5.0, false)
-		# V5 is authored as one physical sequence: compression and launch remain
-		# in the launch board; fall, dedicated contact, and recovery remain in
-		# the landing board. VFX never substitutes for these body poses.
-		_add_range(frames, "descent_prepare_" + direction, DescentLaunchTexture, 6, row, 0, 3, 8.0, false)
-		_add_range(frames, "descent_launch_" + direction, DescentLaunchTexture, 6, row, 3, 6, 12.0, false)
-		_add_range(frames, "descent_fall_" + direction, DescentLandTexture, 6, row, 0, 2, 15.0, false)
-		_add_range(frames, "descent_impact_" + direction, DescentLandTexture, 6, row, 2, 4, 7.0, false)
-		_add_range(frames, "descent_recovery_" + direction, DescentLandTexture, 6, row, 3, 6, 6.0, false)
-	return frames
-
-
-func _build_impact_eyes() -> Node2D:
-	var accent := Node2D.new()
-	accent.name = "DivineDescentImpactEyes"
-	accent.position = Vector2(0.0, -68.0)
-	accent.z_index = 30
-	accent.visible = false
-	for x in [-3.5, 3.5]:
-		var eye := Polygon2D.new()
-		eye.polygon = PackedVector2Array([Vector2(-2.0, -1.0), Vector2(2.0, -1.0), Vector2(1.0, 1.0), Vector2(-1.0, 1.0)])
-		eye.position = Vector2(x, 0.0)
-		eye.color = Color(1.0, 0.08, 0.025, 1.0)
-		accent.add_child(eye)
-	add_child(accent)
-	return accent
-
-
 func _play_divine_descent_impact_accent() -> void:
-	# One ~three-frame anime accent: the existing landing silhouette goes
-	# black, the eyes cut red, and then the authored ivory/gold body returns.
+	# A three-frame silhouette accent uses the actual moving body. The old
+	# fixed-position red eyes floated above crouched/reversed landing poses.
 	body.modulate = Color(0.018, 0.012, 0.022, 1.0)
-	_impact_eyes.visible = true
 	_impact_tween = create_tween()
 	_impact_tween.tween_interval(0.055)
 	_impact_tween.tween_callback(func() -> void:
 		body.modulate = Color.WHITE
-		_impact_eyes.visible = false
 	)
-
-
-func _add_range(frames: SpriteFrames, name: String, texture: Texture2D, columns: int, row: int, start: int, end: int, speed: float, loop: bool) -> void:
-	frames.add_animation(name)
-	frames.set_animation_speed(name, speed)
-	frames.set_animation_loop(name, loop)
-	for column in range(start, mini(end, columns)):
-		var atlas := AtlasTexture.new()
-		atlas.atlas = texture
-		atlas.region = Rect2(column * 192, row * 128, 192, 128)
-		frames.add_frame(name, atlas)
-
-
-func _add_reverse_range(frames: SpriteFrames, name: String, texture: Texture2D, columns: int, row: int, start: int, end: int, speed: float) -> void:
-	frames.add_animation(name)
-	frames.set_animation_speed(name, speed)
-	frames.set_animation_loop(name, false)
-	for column in range(mini(end, columns) - 1, start - 1, -1):
-		var atlas := AtlasTexture.new()
-		atlas.atlas = texture
-		atlas.region = Rect2(column * 192, row * 128, 192, 128)
-		frames.add_frame(name, atlas)
 
 
 func _direction_name(direction: Vector2) -> String:
