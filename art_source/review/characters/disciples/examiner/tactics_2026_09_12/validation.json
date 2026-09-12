@@ -1,0 +1,25 @@
+{
+  "clean_checks": [
+    "examiner_ascendant_smoke",
+    "examiner_worth_smoke",
+    "examiner_rework_smoke",
+    "examiner_effects_smoke",
+    "boss_health_hud_smoke",
+    "combat_lab_smoke",
+    "runtime_archive_boundary_smoke",
+    "examiner_firmament_smoke",
+    "examiner_tactics_victory_smoke",
+    "examiner_trial_smoke",
+    "examiner_rain_movement_smoke"
+  ],
+  "rain_seeds": 30,
+  "stationary_damage_total": 24000,
+  "planned_movement_damage_total": 0,
+  "movement_speed": 120,
+  "body_pngs_unchanged": 11,
+  "rendered_review": "eight snapshots; no engine errors; dialogue ordering corrected",
+  "video": "tactics.mp4",
+  "video_bytes": 4223202,
+  "mp4_decode": "passed",
+  "normal_loadout_clear": "not claimed; scripted invincible visual review; owner balance playtest pending"
+}

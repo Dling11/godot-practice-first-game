@@ -51,15 +51,13 @@ func _run() -> void:
 	# Real accepted health damage, rather than a fabricated meter event.
 	boss.health_component.apply_damage(DamageInfo.new(138.0, lab.player, Vector2.UP))
 	check(is_equal_approx(boss.trial.damage, 100.0), "Meter ignored actual armor-mitigated damage")
-	check(lab.boss_hud.phase_label.text.contains("100/240"), "HUD did not expose damage progress")
+	check(lab.boss_hud.phase_label.text.contains("140/240"), "HUD did not expose damage progress")
 	boss.health_component.apply_damage(DamageInfo.new(200.0, lab.player, Vector2.UP))
-	check(boss.state == Examiner.State.DESCENT_PREPARE and boss._trial_succeeded, "Damage threshold did not unlock launch")
-	check(lab.court_arena.active_wards.size() == 1, "Successful trial did not earn exactly one sanctuary")
-	var sanctuary: Vector2 = lab.court_arena.active_wards[0]
-	for point: Vector2 in lab.court_arena.protection_points():
-		check(lab.court_arena.is_position_protected(point) == (point == sanctuary), "Dormant sanctuary still protected King")
-	check(lab.court_arena.is_position_protected(sanctuary + Vector2(53,0)), "Sanctuary inner boundary unsafe")
-	check(not lab.court_arena.is_position_protected(sanctuary + Vector2(55,0)), "Sanctuary protected outside visible edge")
+	check(boss.state == Examiner.State.GUARD_BROKEN and boss._trial_succeeded, "Breaking seal did not cancel into stun")
+	check(lab.court_arena.active_wards.is_empty(), "Guard break should cancel, not grant sanctuary")
+	# Reusable Court geometry remains independently testable.
+	var sanctuary: Vector2 = CourtOfFirstMeasure.PYLON_POINTS[0]
+	lab.court_arena.set_sanctuary(true, sanctuary)
 	var health := lab.player.health_component as HealthComponent
 	lab.set_player_invincible(false)
 	health.set_maximum_health(1000.0, false)
@@ -106,13 +104,13 @@ func _run() -> void:
 	await create_timer(.4).timeout
 	check(not is_instance_valid(pending_visual), "Trial cut leaked after resolution")
 	boss._phase_two = true
-	boss._final_trial_requested = false
+	boss._berserk = false
 	boss.health_component.set_invulnerable(false)
 	boss.health_component.set_current_health(boss.health_component.maximum_health * .36)
 	boss._enter(Examiner.State.APPROACH, 0)
 	boss.health_component.apply_damage(DamageInfo.new(50.0, lab.player, Vector2.UP))
-	check(boss.state == Examiner.State.TRIAL_CHANNEL and boss._final_trial_requested, "35 percent did not begin the second trial")
-	check(is_zero_approx(boss.trial.damage), "Triggering hit was counted again as trial damage")
+	check(boss.state == Examiner.State.BERSERK_AWAKEN and boss.is_berserk(), "35 percent did not begin berserk")
+	boss._begin_trial()
 	boss.trial.set_physics_process(false)
 	boss.trial._warn_cut()
 	pending_visual = boss.trial._pending[0].visual
@@ -127,7 +125,7 @@ func _run() -> void:
 	await process_frame
 	for failure in failures:
 		push_error(failure)
-	print("Examiner Worth: branch/commit, advancing step, real damage meter, earned wards, Verdict mitigation/i-frames/immunity, timeout and cleanup: ", "PASS" if failures.is_empty() else "FAIL")
+	print("Examiner Worth: branch/commit, advancing step, guard meter, guard-break stun, Court geometry, Verdict mitigation/i-frames/immunity, timeout and cleanup: ", "PASS" if failures.is_empty() else "FAIL")
 	quit(0 if failures.is_empty() else 1)
 
 

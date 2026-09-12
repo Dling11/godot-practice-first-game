@@ -9,6 +9,19 @@ var _moving := false
 var _base_position := Vector2(0.0, -48.0)
 var _tween: Tween
 var _impact_tween: Tween
+var _charge_elapsed := 0.0
+var _charge_duration := 1.0
+
+
+func _process(delta: float) -> void:
+	if _state not in [Examiner.State.ORB_CHARGE, Examiner.State.FIRMAMENT_CHARGE]:
+		return
+	_charge_elapsed += delta
+	var progress := clampf(_charge_elapsed / _charge_duration, 0, 1)
+	# Brace around the feet: the approved body stays at native scale.
+	var angle := sin(_charge_elapsed * 5.0) * (0.008 + progress * 0.018)
+	body.rotation = angle
+	body.position = _base_position.rotated(angle)
 
 
 func _ready() -> void:
@@ -42,6 +55,9 @@ func set_moving(value: bool) -> void:
 
 func play_state(state: Examiner.State, duration_seconds: float) -> void:
 	_state = state
+	_charge_elapsed = 0.0
+	_charge_duration = maxf(duration_seconds, 0.01)
+	body.rotation = 0.0
 	if _tween != null and _tween.is_valid():
 		_tween.kill()
 	if _impact_tween != null and _impact_tween.is_valid():
@@ -102,7 +118,34 @@ func play_state(state: Examiner.State, duration_seconds: float) -> void:
 		Examiner.State.AXIOM_RECOVERY:
 			_play_fit("axiom_recovery_" + _direction, duration_seconds)
 		Examiner.State.TRIAL_CHANNEL:
-			_hold("refutation_active_" + _direction, 1)
+			_play_fit("refutation_wind_up_" + _direction, 0.4)
+		Examiner.State.ORB_CHARGE, Examiner.State.CROWNFALL, Examiner.State.BERSERK_AWAKEN, Examiner.State.FIRMAMENT_CHARGE:
+			_play_fit("slam_wind_up_" + _direction, 0.55)
+		Examiner.State.FIRMAMENT_BARRAGE:
+			_play_fit("slam_contact_" + _direction, 0.2)
+			_tween = create_tween()
+			_tween.tween_interval(0.2)
+			_tween.tween_callback(func() -> void: _play_fit("slam_recovery_" + _direction, 0.35))
+			_tween.tween_interval(0.35)
+			_tween.tween_callback(func() -> void: _hold("refutation_active_" + _direction, 1))
+		Examiner.State.ORB_RELEASE:
+			_play_fit("thrust_strike_" + _direction, duration_seconds)
+		Examiner.State.ORB_RECOVERY:
+			_play_fit("thrust_recovery_" + _direction, duration_seconds)
+		Examiner.State.GUARD_BROKEN:
+			_play_fit("descent_impact_" + _direction, 0.22)
+			body.modulate = Color(1.3, 1.15, 0.9)
+			_tween = create_tween()
+			_tween.tween_property(body, "modulate", Color.WHITE, 0.18)
+		Examiner.State.GUARD_RECOVERY:
+			_play_fit("descent_recovery_" + _direction, duration_seconds)
+		Examiner.State.VICTORY_KNEEL:
+			_play_fit("descent_impact_" + _direction, 0.28)
+		Examiner.State.VICTORY_RISE:
+			_play_fit("descent_recovery_" + _direction, duration_seconds)
+		Examiner.State.VICTORY_HOLD:
+			body.play("idle_" + _direction)
+			body.speed_scale = 1.0
 		Examiner.State.PHASE_STANCE:
 			body.play("idle_" + _direction)
 		Examiner.State.DESCENT_PREPARE:

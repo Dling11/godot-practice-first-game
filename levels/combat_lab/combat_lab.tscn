@@ -160,8 +160,6 @@ combat_hud = NodePath("../../UI/CombatHUD")
 [node name="CombatHUD" parent="UI" instance=ExtResource("3")]
 enemy_roster_enabled = false
 
-[node name="DialoguePanel" parent="UI" instance=ExtResource("13")]
-
 [node name="BossHealthHUD" parent="UI" instance=ExtResource("11")]
 offset_left = -245.0
 offset_right = 205.0
@@ -295,3 +293,5 @@ theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 11
 text = "LIVE: 0 | AI: ON | KING: INVINCIBLE"
 horizontal_alignment = 1
+
+[node name="DialoguePanel" parent="UI" instance=ExtResource("13")]

@@ -2,6 +2,19 @@ class_name ExaminerEffectAtlas
 extends RefCounted
 
 const Energy = preload("res://assets/vfx/divine_order/examiner/energy.png")
+const Sun = preload("res://assets/vfx/divine_order/examiner/sun.png")
+const SunLoop = preload("res://assets/vfx/divine_order/examiner/sun_loop.png")
+
+
+static func draw_sun(canvas: CanvasItem, elapsed: float, center: Vector2, extent: float, tint := Color.WHITE, turn := 0.0, hot_core := false) -> void:
+	var frame := posmod(int(elapsed * 18.0), 16)
+	var cell := SunLoop.get_size() / 4.0
+	canvas.draw_set_transform(center, turn)
+	canvas.draw_texture_rect_region(SunLoop, Rect2(-Vector2.ONE * extent, Vector2.ONE * extent * 2), Rect2(Vector2(frame % 4, frame / 4) * cell, cell), tint)
+	if hot_core:
+		var core_extent := extent * 0.43
+		canvas.draw_texture_rect_region(SunLoop, Rect2(-Vector2.ONE * core_extent, Vector2.ONE * core_extent * 2), Rect2(Vector2(frame % 4, frame / 4) * cell, cell), Color(1,0.86,0.64,0.95))
+	canvas.draw_set_transform(Vector2.ZERO)
 const AxiomBeam = preload("res://assets/vfx/divine_order/examiner/axiom_beam.png")
 const Sweep = preload("res://assets/vfx/divine_order/examiner/sweep.png")
 const Impact = preload("res://assets/vfx/divine_order/examiner/impact.png")

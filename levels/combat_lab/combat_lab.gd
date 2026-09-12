@@ -200,8 +200,9 @@ func _spawn_enemy(scene: PackedScene, index: int, requested_count: int) -> void:
 	elif enemy is Examiner:
 		boss_hud.bind_boss(enemy.health_component, "THE EXAMINER", "COURT OF THE FIRST MEASURE")
 		boss_hud.set_phase_status("FIRST MEASURE")
+		boss_hud.set_phase_markers(0.35, 0.60)
 		enemy.trial_progressed.connect(func(damage: float, required: float, seconds_left: float) -> void:
-			boss_hud.set_phase_status("BREAK SEAL  %d/%d  |  %.1fs" % [mini(int(damage), int(required)), int(required), seconds_left], Color("edbc72"))
+			boss_hud.show_guard(required - damage, required, seconds_left)
 		)
 		enemy.state_changed.connect(_on_examiner_state_changed.bind(enemy))
 		enemy.phase_two_started.connect(func() -> void: boss_hud.set_phase_status("SECOND MEASURE", Color("91d8df")))
@@ -215,7 +216,17 @@ func _on_examiner_state_changed(state: Examiner.State, _duration: float, enemy: 
 	if not is_instance_valid(enemy) or boss_hud.health_component != enemy.health_component:
 		return
 	var technique := ""
+	if state not in [Examiner.State.TRIAL_CHANNEL, Examiner.State.ORB_CHARGE, Examiner.State.FIRMAMENT_CHARGE]:
+		boss_hud.clear_guard()
 	match state:
+		Examiner.State.FIRMAMENT_CHARGE: technique = "CRIMSON FIRMAMENT  |  BREAK THE SEAL"
+		Examiner.State.FIRMAMENT_BARRAGE: technique = "CRIMSON FIRMAMENT  |  KEEP MOVING"
+		Examiner.State.ORB_CHARGE: technique = "BORROWED SUN  |  BREAK HIS SEAL"
+		Examiner.State.ORB_RELEASE: technique = "BORROWED SUN  |  MOVE FROM THE MARK"
+		Examiner.State.GUARD_BROKEN: technique = "SEAL SHATTERED  |  ATTACK NOW"
+		Examiner.State.GUARD_RECOVERY: technique = "RECOVERING"
+		Examiner.State.BERSERK_AWAKEN: technique = "THIRD MEASURE  |  UNBOUND"
+		Examiner.State.CROWNFALL: technique = "CROWNFALL  |  THREE VERDICTS"
 		Examiner.State.COMBO_WIND_UP: technique = "PRECISION THRUST"
 		Examiner.State.PURSUIT_WIND_UP: technique = "REPRISAL  |  SIDESTEP"
 		Examiner.State.TRIAL_CHANNEL: technique = "BREAK THE SEAL"
@@ -228,7 +239,7 @@ func _on_examiner_state_changed(state: Examiner.State, _duration: float, enemy: 
 		Examiner.State.DESCENT_PREPARE: technique = "DIVINE DESCENT"
 		Examiner.State.DESCENT_ABSENT: technique = "REACH SANCTUARY" if enemy._trial_succeeded else "FINAL VERDICT"
 		Examiner.State.APPROACH:
-			technique = "SECOND MEASURE" if enemy.is_phase_two() else "FIRST MEASURE"
+			technique = "THIRD MEASURE  |  UNBOUND" if enemy.is_berserk() else ("SECOND MEASURE" if enemy.is_phase_two() else "FIRST MEASURE")
 	if not technique.is_empty():
 		boss_hud.set_phase_status(technique, Color("91d8df") if enemy.is_phase_two() else Color("d6c593"))
 

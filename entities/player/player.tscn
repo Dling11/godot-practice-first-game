@@ -13,8 +13,8 @@
 [ext_resource type="Script" uid="uid://edpqlhbhvhav" path="res://gameplay/combat/hurtbox_component.gd" id="12_hurtbox"]
 [ext_resource type="Script" uid="uid://c6tnb2d6x4r3l" path="res://entities/player/presentation/dash_visual.gd" id="13_dash_visual"]
 [ext_resource type="Script" uid="uid://bfftqao8u5k1s" path="res://entities/player/presentation/player_state_visual.gd" id="14_state_visual"]
-[ext_resource type="SpriteFrames" path="res://assets/characters/playable/king/simple_reboot/king_simple_sprite_frames.tres" id="15_player_frames"]
-[ext_resource type="Script" uid="uid://q76dk4eb6285" path="res://entities/player/presentation/player_animation.gd" id="16_player_animation"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/playable/king/greatsword/king_greatsword_sprite_frames.tres" id="15_player_frames"]
+[ext_resource type="Script" path="res://entities/player/presentation/king_greatsword_animation.gd" id="16_player_animation"]
 [ext_resource type="Script" path="res://gameplay/abilities/king/echoing_sever_component.gd" id="17_ability"]
 [ext_resource type="Resource" path="res://data/abilities/king/echoing_sever.tres" id="18_ability_data"]
 [ext_resource type="Script" uid="uid://y4q77uqmwwkr" path="res://entities/player/components/player_progression_component.gd" id="20_progression"]
@@ -29,7 +29,7 @@
 [ext_resource type="Script" path="res://entities/player/components/player_vitality_component.gd" id="42_vitality"]
 [ext_resource type="Resource" path="res://data/progression/king_vitality.tres" id="43_vitality_data"]
 [ext_resource type="Script" path="res://entities/player/presentation/player_level_up_visual.gd" id="44_level_visual"]
-[ext_resource type="Shape2D" path="res://data/weapons/hit_shapes/king_sword_cleave.tres" id="45_melee_shape"]
+[ext_resource type="Shape2D" path="res://data/weapons/hit_shapes/king_greatsword_cleave.tres" id="45_melee_shape"]
 [ext_resource type="Script" path="res://entities/player/components/player_health_regeneration_component.gd" id="46_health_regen"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/ui/player_level_up_chime.wav" id="47_level_chime"]
 [ext_resource type="Script" path="res://gameplay/abilities/targeting/directional_wedge_targeting.gd" id="48_cardinal_targeting"]
@@ -68,6 +68,11 @@
 [ext_resource type="Script" path="res://entities/player/components/player_auto_combat_component.gd" id="82_auto_combat"]
 [ext_resource type="Script" path="res://gameplay/combat/knockback_component.gd" id="83_knockback"]
 [ext_resource type="Script" path="res://gameplay/combat/stagger_component.gd" id="84_stagger"]
+
+[ext_resource type="Script" path="res://entities/player/king/king_mastery_component.gd" id="85_mastery"]
+[ext_resource type="Resource" path="res://data/abilities/king/king_mastery.tres" id="86_mastery_data"]
+
+[ext_resource type="Script" path="res://entities/player/presentation/king_greatsword_effects.gd" id="87_greatsword_fx"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_sweep"]
 points = PackedVector2Array(3, -9, 14, -28, 39, -24, 48, 0, 39, 24, 14, 28, 3, 9)
@@ -127,12 +132,14 @@ texture_filter = 1
 sprite_frames = ExtResource("67_pursuit_travel_frames")
 animation = &"travel"
 
-[node name="Body" type="AnimatedSprite2D" parent="VisualRoot" unique_id=924091774 node_paths=PackedStringArray("ability_component", "ability_2_component", "ability_3_component")]
+[node name="Body" type="AnimatedSprite2D" parent="VisualRoot" unique_id=924091774 node_paths=PackedStringArray("attack_component", "ability_component", "ability_2_component", "ability_3_component", "ability_4_component")]
 unique_name_in_owner = true
 position = Vector2(0, -16)
 sprite_frames = ExtResource("15_player_frames")
 animation = &"attack_down"
 script = ExtResource("16_player_animation")
+attack_component = NodePath("../../MeleeAttackComponent")
+ability_4_component = NodePath("../../Ability4Component")
 ability_component = NodePath("../../Ability1Component")
 ability_2_component = NodePath("../../Ability2Component")
 ability_3_component = NodePath("../../Ability3Component")
@@ -537,6 +544,13 @@ offset_bottom = 25.0
 text = "KING"
 label_settings = SubResource("LabelSettings_name")
 horizontal_alignment = 1
+
+[node name="KingMastery" type="Node" parent="."]
+script = ExtResource("85_mastery")
+definition = ExtResource("86_mastery_data")
+
+[node name="GreatswordEffects" type="Node2D" parent="."]
+script = ExtResource("87_greatsword_fx")
 
 [connection signal="defeated" from="." to="VisualRoot/Body" method="play_defeat"]
 [connection signal="defeated" from="." to="VisualRoot/WeaponVisual" method="play_defeat"]

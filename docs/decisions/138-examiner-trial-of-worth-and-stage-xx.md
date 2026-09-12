@@ -2,6 +2,8 @@
 
 ## Status
 
+Combat seal/sanctuary/phase rules below are superseded by Decision 139. The Stage XX false-mentor story and advancing-combo direction remain current.
+
 Owner-authorized and implemented in the rewardless F7 proof, 2026-09-12. Production Stage XX scenario integration and final gear balance remain pending. Supersedes the Stage VII optional encounter and Stage XX direct One Above placement in Decisions 131/133, and the freely available cover/260 damage lesson in Decision 135. Decision 137's corrected body identity is owner-approved.
 
 ## Context and alternatives

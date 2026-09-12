@@ -5,6 +5,17 @@ extends Resource
 
 @export_range(1, 99, 1) var maximum_level := 10
 @export var total_experience_by_level := PackedInt32Array([0, 20, 50, 90, 140, 200, 270, 350, 440, 540])
+@export var initial_level_cap := 0
+@export var cap_unlock_flags: Array[StringName] = []
+@export var unlocked_level_caps := PackedInt32Array()
+
+func unlocked_cap(story: Node) -> int:
+	var cap := initial_level_cap if initial_level_cap > 0 else maximum_level
+	if story != null:
+		for index in mini(cap_unlock_flags.size(), unlocked_level_caps.size()):
+			if story.has_story_flag(cap_unlock_flags[index]):
+				cap = maxi(cap, unlocked_level_caps[index])
+	return clampi(cap, 1, maximum_level)
 
 
 func get_level_for_total_experience(total_experience: int) -> int:

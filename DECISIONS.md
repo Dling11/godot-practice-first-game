@@ -5,7 +5,6 @@ Architecture decisions are stored as durable ADR history. Read this compact inde
 The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-archive.md`](docs/decisions/001-025-archive.md).
 
 ## Active Decision Map
-
 | ID | Decision | Read when working on |
 |---|---|---|
 | 001 | Repository documentation is persistent project memory | Documentation workflow or project handoff |
@@ -145,8 +144,13 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 135 | Make Divine Descent the Examiner phase transition | 70% phase break, calm dialogue, launch/fall frames, exact pylon cover, finite impact damage, phase-aware music, or Stage XV cover escalation boundary |
 | 136 | Rework Examiner animation, court, and audio | New eight-pose action families, contact timing, grounded charge collision, slate court, exact ward plates, compact lab UI, actual phase display, and original Foley |
 | 137 | [Examiner gait, complete weapons, and impact atlases](docs/decisions/137-examiner-gait-complete-weapons-and-impact-atlases.md) | Alternating feet, source clipping, raster skills, red telegraphs, and Descent impacts |
-
 | 138 | [Examiner Trial of Worth and Stage XX false mentor](docs/decisions/138-examiner-trial-of-worth-and-stage-xx.md) | Advancing combos, earned sanctuary, finite Verdict, dead family and manipulated Stage 100 promise |
+| 139 | [Examiner breakable seal, Borrowed Sun and Unbound](docs/decisions/139-examiner-breakable-seal-and-borrowed-sun.md) | Guard absorption/stun, 60%/35% escalation, fixed Sun impacts and Crownfall; supersedes 138 combat trial rules |
+| 140 | [Living Sun charge and Crimson Firmament](docs/decisions/140-examiner-crimson-firmament-and-living-charge.md) | Sixteen-frame core, faster fixed Sun flight, persistent enrage aura, twelve-meteor barrage and clear corridor |
+| 141 | [Examiner randomized rain, tactics and victory](docs/decisions/141-examiner-random-rain-tactics-and-victory.md) | Twenty-four warned meteors, legal move variety, committed links, seal reactions and rewardless outro |
+| 142 | [King adventurer identity and scale](docs/decisions/142-king-adventurer-identity-and-scale.md) | Rejected royal costume; compact progressing adventurer, preview before full animation production |
+
+| 143 | [King greatsword, mastery and stage caps](docs/decisions/143-king-greatsword-mastery-and-stage-caps.md) | Selected C installed, physical three-cut combo, clipped white trails, Resolve, Pursuit/Riftbreak link and bounded growth |
 
 ## New Decisions
 

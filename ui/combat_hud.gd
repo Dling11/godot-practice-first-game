@@ -94,6 +94,11 @@ func _style_enemy_roster_scrollbar() -> void:
 
 func bind_player(player: Player) -> void:
 	_player = player
+	var mastery := player.get_node_or_null("KingMastery") as KingMasteryComponent
+	if mastery != null:
+		mastery.resolve_changed.connect(_update_resolve)
+		mastery.link_changed.connect(_update_link)
+		_update_resolve(mastery.stacks,mastery.definition.resolve_hits)
 	var health: HealthComponent = player.health_component
 	health.health_changed.connect(_update_health)
 	health.damage_blocked.connect(_show_blocked)
@@ -501,10 +506,10 @@ func _update_progression(_level: int, _total_experience: int, _next_level_experi
 		return
 	var progression := _player.progression_component
 	level_label.text = "LEVEL %d" % progression.level
-	if progression.level >= progression.definition.maximum_level:
+	if progression.level >= progression.get_current_level_cap():
 		experience_bar.max_value = 1.0
 		experience_bar.value = 1.0
-		experience_label.text = "MAX"
+		experience_label.text = "MAX" if progression.level >= progression.definition.maximum_level else "STAGE CAP"
 		return
 	var required := progression.experience_required_for_current_level()
 	experience_bar.max_value = required
@@ -696,3 +701,17 @@ func _play_next_loot_notification() -> void:
 		loot_toast_panel.hide()
 	_loot_toast_busy = false
 	_play_next_loot_notification()
+
+
+func _update_resolve(stacks: int, maximum: int) -> void:
+	var label := get_node("ResolveLabel") as Label
+	label.text = "RESOLVE %d/%d · NEXT SKILL +25%%" % [stacks,maximum]
+	label.modulate = Color("c7efff") if stacks == maximum else Color("829aa9")
+
+func _update_link(available: bool) -> void:
+	if available:
+		get_node("ResolveLabel").text = "PURSUIT → RIFTBREAK · +15%"
+		get_node("ResolveLabel").modulate = Color("c7efff")
+	else:
+		var mastery := _player.get_node("KingMastery") as KingMasteryComponent
+		_update_resolve(mastery.stacks,mastery.definition.resolve_hits)

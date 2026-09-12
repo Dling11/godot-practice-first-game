@@ -232,7 +232,7 @@ func _run() -> void:
 	if examiner.state != Examiner.State.TRIAL_CHANNEL or lab.player.is_cinematic_locked():
 		_fail("Dialogue completion did not release King into the damage trial.")
 		return
-	examiner.trial.record_damage(DamageInfo.new(examiner.definition.trial_damage_required, lab.player, Vector2.UP))
+	examiner.trial._physics_process(examiner.definition.trial_duration_seconds + 0.1)
 	examiner._state_remaining = 0.0
 	examiner._process_divine_descent(0.0)
 	if examiner.state != Examiner.State.DESCENT_LAUNCH:
@@ -249,7 +249,12 @@ func _run() -> void:
 	if Examiner.DESCENT_FALL_SECONDS > 0.16:
 		_fail("Divine Descent meteor fall became floaty again.")
 		return
-	var pylon: Vector2 = lab.court_arena.active_wards[0]
+	# Court protection remains a reusable API; the failed seal grants none.
+	if not lab.court_arena.active_wards.is_empty():
+		_fail("Failed seal granted a sanctuary.")
+		return
+	var pylon: Vector2 = CourtOfFirstMeasure.PYLON_POINTS[0]
+	lab.court_arena.set_sanctuary(true, pylon)
 	if not lab.court_arena.is_position_protected(pylon) or lab.court_arena.is_position_protected(Vector2(365.0, 287.0)):
 		_fail("Court protection geometry does not match the four visible pylons.")
 		return

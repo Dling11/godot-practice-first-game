@@ -187,7 +187,7 @@ Use static typing for public APIs, exported data, signals, return values, and no
 - Judge animation at gameplay scale and speed, not only zoomed in within an art tool.
 - Prefer simple color blocks and controlled clusters over noisy micro-detail; environment assets must not visually overpower actors or combat telegraphs.
 - Validate asset scale in the full gameplay viewport before approving detail density.
-- King and future character-owned combatants start from a reviewed four-direction turnaround. King's production locomotion uses exact-grid `32x32` cells with a y=30 foot baseline; larger action/VFX cells are allowed only when reach or readable impact requires them. The style is hard-pixel chibi with an oversized head, short body, simple connected visible arms, and readable hand-to-signature-weapon contact—not realistic anatomy or a detached weapon orbit. Existing enemy-humanoid locomotion may retain its validated 24x32 contract, and small creatures retain 32x32.
+- King and future character-owned combatants start from a reviewed four-direction turnaround. King C uses exact-grid `96x64` cells with y=48 feet and approximately 27px standing anatomy; padding protects the complete greatsword rather than enlarging his body. The style is hard-pixel chibi with an oversized head, short body, simple connected visible arms, and readable hand-to-signature-weapon contact—not realistic anatomy or a detached weapon orbit. Existing enemy-humanoid locomotion may retain its validated 24x32 contract, and small creatures retain 32x32.
 - Prefer one exact-grid PNG per coherent action family with `down/left/right/up` rows and time across columns. Do not default to unwieldy one-row strips or combine unrelated idle, walk, attack, and skill actions into one atlas. Every frame uses the same declared cell, and PNG dimensions equal cell size times column/row count. Keep King's body/weapon and oversized crescent VFX in separate `AnimatedSprite2D` assets even if a combined proof is used for timing review.
 - Keep active actor sheets on a fixed direction-row grid: down, left, right, up; action time advances across columns.
 - Character body scale must remain constant across directions and action cells. Normalize from a per-direction standing reference, keep one foot baseline, and allocate a wider cell rather than shrinking an actor, long weapon, reach, lean, or collapse.
@@ -291,3 +291,20 @@ Before approving a sprite, prop, tile set, or environment scene, verify:
 - For a generated replacement animation, use isolated approved character poses as identity references. Match mask, armor, coat, weapon, shading, and helmet-to-ground size beside idle/attack at runtime density. Weapon-inclusive silhouette height alone is not a body-scale measurement. Keep the chosen direction scale fixed across the whole cycle.
 
 - Arena verdicts that bypass action i-frames must opt in on `DamageInfo`; retain normal armor/ward mitigation and separate explicit debug immunity. Earned-safe-zone geometry and visual shader flags must share the same active point list. Trial completion, death, and reset cancel pending authoritative hazards and their visuals.
+
+### Examiner identity continuity (Decision 139)
+
+Use the owner-approved ivory/navy/gold body sheets as the mandatory reference for any new Examiner action. Prefer composing their existing raise, release, landing and recovery poses with independently authored effects. Never regenerate a new character identity to obtain a spell effect. The Sun board is VFX-only, uses fixed cell scaling and padded complete silhouettes, and records source/prompt plus approved body hashes. New mechanics must expose distinct warning/contact/recovery timing without moving damage into the animation presenter.
+
+- Examiner energy loops use fixed cells and stable core scale; continuous buildup is presentation-driven growth around those cells, not per-frame source fitting. Body bracing rotates around the established foot origin. Multi-projectile spectacles must retain a tested escape route, fixed warning geometry and bounded simultaneous audio/camera feedback.
+
+### Randomized boss pressure and outcomes
+
+- Random attacks must commit visible warning geometry before damage. Use seed injection for reproducible checks and bound concurrent threats; do not turn a moving target snapshot into hidden homing. Test arena edges as well as center.
+- Keep encounter outcome authority separate from dialogue. Clear owned hazards before cinematics, restore input on completion/skip, and reject asynchronous callbacks from an earlier encounter binding. Reuse approved body poses when presenting new transitions.
+
+### King and human-scale character reviews
+
+Decisions 142-143 keep King near the existing 26-28px standing height; active C atlases use padded 96x64 cells on y=48, centered at sprite position (0,-16). The prior 48x32/y30 set is visual rollback. Compare candidate art beside current runtime King at identical nearest-neighbor zoom before producing complete sheets. Do not infer a crown or ceremonial costume from his name, use Examiner as a human scale reference, or fit anatomy to weapon-inclusive bounds. Native pixel density and starter-adventurer readability govern future NPC comparisons too.
+
+King C imports measure a fixed standing head-to-boot scale per direction/action board, exclude blade extent from anatomy, extract complete connected islands across nominal cell boundaries, and retain binary alpha. Back-facing contact uses the dedicated northward correction board. Never carry an old Godot resource UID onto a replacement script path: verify the actual loaded resource. Contact light is texture-mapped inside the authoritative polygon; no detached Line2D duplicate. Walk cadence follows equipment movement speed; action frames follow live phase durations.

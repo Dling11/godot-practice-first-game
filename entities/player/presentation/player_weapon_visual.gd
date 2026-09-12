@@ -76,6 +76,9 @@ func set_facing_direction(direction: Vector2) -> void:
 
 
 func play_attack_phase(phase: int, duration_seconds: float) -> void:
+	if weapon != null and weapon.combo != null:
+		_hide_swing_trail()
+		return
 	_play_action_phase(phase, duration_seconds, false)
 
 

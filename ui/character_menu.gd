@@ -201,10 +201,10 @@ func _update_progression(_level: int, _total_experience: int, _next_level_experi
 		return
 	var progression := player.progression_component
 	level_label.text = "LEVEL %d / %d" % [progression.level, progression.definition.maximum_level]
-	if progression.level >= progression.definition.maximum_level:
+	if progression.level >= progression.get_current_level_cap():
 		experience_bar.max_value = 1.0
 		experience_bar.value = 1.0
-		experience_label.text = "MAXIMUM LEVEL"
+		experience_label.text = "MAXIMUM LEVEL" if progression.level >= progression.definition.maximum_level else "CLEAR NEXT STAGE TO GROW"
 		return
 	var required := progression.experience_required_for_current_level()
 	experience_bar.max_value = required
@@ -680,6 +680,10 @@ func _on_skill_slot_selected(definition: SkillSlotDefinition) -> void:
 			definition.slot_number,
 			definition.unlock_hint,
 		]
+
+	if definition.is_equipped():
+		var mastery := player.get_node("KingMastery") as KingMasteryComponent
+		skill_detail_label.text += "\nRESOLVE: 3 landed swings → next skill +25%% (8s). Pursuit → Riftbreak within 1.2s: +15%%.\nLEVEL MASTERY: +%d%% skill damage (maximum +18%%)." % roundi((mastery.definition.level_multiplier(player.progression_component.level)-1.0)*100)
 
 
 var _selected_skill: SkillSlotDefinition

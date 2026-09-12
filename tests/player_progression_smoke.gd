@@ -12,6 +12,7 @@ func _initialize() -> void:
 func _run() -> void:
 	var run_session := root.get_node("RunSession")
 	run_session.reset_run()
+	root.get_node("StoryState").reset_story()
 	var player := PlayerScene.instantiate() as Player
 	var hud := HudScene.instantiate() as CombatHUD
 	root.add_child(player)
@@ -55,7 +56,27 @@ func _run() -> void:
 	if progression.level != 3 or not is_equal_approx(player.health_component.maximum_health, 164.0):
 		_fail("The 400-XP threshold did not unlock Level 3 and 164 maximum health.")
 		return
-	progression.grant_rewards(9999, 0)
+	progression.grant_rewards(9999, 3)
+	if progression.level != 3 or progression.total_experience != 400 or progression.coins != 4:
+		_fail("Stage cap must discard excess XP while preserving coin rewards.")
+		return
+	if hud.experience_label.text != "STAGE CAP":
+		_fail("Stage cap needs distinct HUD feedback.")
+		return
+	for index in progression.definition.cap_unlock_flags.size():
+		root.get_node("StoryState").remember_story(progression.definition.cap_unlock_flags[index])
+		var cap: int = progression.definition.unlocked_level_caps[index]
+		if progression.get_current_level_cap() != cap:
+			_fail("Stage-clear cap did not unlock immediately.")
+			return
+		progression.grant_rewards(9999, 0)
+		if progression.level != cap or progression.total_experience != progression.definition.total_experience_by_level[cap-1]:
+			_fail("XP banked beyond the unlocked stage cap.")
+			return
+	root.get_node("StoryState").reset_story()
+	if progression.get_current_level_cap() != 10:
+		_fail("Legacy earned levels were taken away by a new gate.")
+		return
 	if progression.level != 10 or not is_equal_approx(player.health_component.maximum_health, 248.0):
 		_fail("Progression or level-scaled vitality failed to reach the Level-10 cap.")
 		return
@@ -64,6 +85,7 @@ func _run() -> void:
 		return
 
 	run_session.reset_run()
+	root.get_node("StoryState").reset_story()
 	var reward_player := PlayerScene.instantiate() as Player
 	var mireling := MirelingScene.instantiate() as Mireling
 	mireling.target = reward_player

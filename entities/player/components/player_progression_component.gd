@@ -12,6 +12,7 @@ signal leveled_up(new_level: int)
 var level := 1
 var total_experience := 0
 var coins := 0
+var _debug_cap_bypass := false
 
 
 func _ready() -> void:
@@ -26,14 +27,22 @@ func _ready() -> void:
 		if not run_session.progression_state_changed.is_connected(_on_run_session_progression_changed):
 			run_session.progression_state_changed.connect(_on_run_session_progression_changed)
 	_recalculate_level()
+	var story := get_node_or_null("/root/StoryState")
+	if story != null:
+		story.story_state_changed.connect(_emit_progression_changed)
 	_emit_progression_changed()
 	coins_changed.emit(coins)
 
 
 func grant_rewards(experience: int, coin_amount: int) -> void:
 	if experience > 0:
-		total_experience += experience
-		while level < definition.maximum_level and total_experience >= _next_level_threshold():
+		var cap := get_current_level_cap()
+		var cap_experience := definition.total_experience_by_level[cap - 1]
+		# Preserve existing saves above a newly introduced gate. New XP cannot
+		# accumulate past the current ceiling and burst through future unlocks.
+		var room := maxi(cap_experience - total_experience, 0)
+		total_experience += mini(experience, room)
+		while level < cap and total_experience >= _next_level_threshold():
 			level += 1
 			leveled_up.emit(level)
 		_emit_progression_changed()
@@ -58,6 +67,7 @@ func apply_debug_testing_preset() -> bool:
 	var maximum_index := mini(definition.maximum_level - 1, definition.total_experience_by_level.size() - 1)
 	if maximum_index < 0:
 		return false
+	_debug_cap_bypass = true
 	total_experience = definition.total_experience_by_level[maximum_index]
 	coins = 999
 	_recalculate_level()
@@ -72,7 +82,7 @@ func experience_into_current_level() -> int:
 
 
 func experience_required_for_current_level() -> int:
-	if level >= definition.maximum_level:
+	if level >= get_current_level_cap():
 		return 0
 	return _next_level_threshold() - definition.total_experience_by_level[level - 1]
 
@@ -82,8 +92,14 @@ func _next_level_threshold() -> int:
 
 
 func _emit_progression_changed() -> void:
-	var next_level_experience := _next_level_threshold() if level < definition.maximum_level else total_experience
+	var next_level_experience := _next_level_threshold() if level < get_current_level_cap() else total_experience
 	progression_changed.emit(level, total_experience, next_level_experience)
+
+
+func get_current_level_cap() -> int:
+	if _debug_cap_bypass:
+		return definition.maximum_level
+	return maxi(level, definition.unlocked_cap(get_node_or_null("/root/StoryState")))
 
 
 func _recalculate_level() -> void:

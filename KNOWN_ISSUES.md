@@ -6,10 +6,10 @@ This file tracks current limitations only. Resolved and retired systems belong i
 
 ### KI-023 - Examiner Stage XX balance and scenario integration remain pending
 
-- **Status:** Owner approved the corrected animation identity. Decision 138 combat mechanics are implemented in F7; production Stage XX is not connected.
-- **Implemented:** Physical opening step, position-dependent Reprisal, delayed Held Judgment, damage-check trials, one earned sanctuary, and 800 raw Verdict with action-i-frame bypass and normal armor/ward mitigation. Trial cleanup and explicit lab immunity are covered by focused checks.
+- **Status:** Owner approved the corrected animation identity. Decisions 139-141 combat mechanics are implemented in F7; production Stage XX is not connected.
+- **Implemented:** Physical opening step, Reprisal, Held Judgment, a separate absorbing seal and interrupt/stun window, animated Borrowed Sun, 60%/35% escalation, Crownfall, interruptible Crimson Firmament, persistent enrage aura and finite 800 raw Verdict, varied legal attack choices, warned Axiom follow-ups, seal reactions and a skippable F7 victory acknowledgment. Body identity is preserved; focused authority and cleanup checks pass.
 - **Remaining:** Measure actual player success, seal DPS, normal attack damage, and later gear survival. Stage XX gear is not implemented, so the current values cannot guarantee Stage I-X equipment dies and later equipment survives. Stage routing, required encounter outcome, power reward, replay, and saving remain open. The One Above's direct encounter is no longer fixed at XX.
-- **Next:** Play F7 with invincibility off; test straight retreat versus sidestep/behind, seal success/failure, and the repeat at 35% HP. Keep the approved character identity.
+- **Next:** Play F7 with invincibility off; test straight retreat versus sidestep/behind, seal success/failure, faster Sun escapes, randomized red rain from center and arena edges, and berserk Crownfall at 35% HP. Keep the approved character identity.
 
 ### KI-022 - Reusable Crag Bear art still has stage-numbered ownership
 
@@ -64,11 +64,11 @@ This file tracks current limitations only. Resolved and retired systems belong i
 - **Status:** Planned.
 - **Impact:** Neither tier has an input, ability, cooldown, animation, balance, unlock, or save authority. Reality Breaking is a distinct future finisher tier, not Skill 4.
 
-### KI-014 - King still has presentation and combat-feel gaps
+### KI-014 - King greatsword needs campaign feel and balance measurements
 
-- **Status:** Open.
-- **Implemented:** King is the sole production player with locomotion, basic attack, dash/backstep aliases, hurt/defeat presentation, signature sword, four active skills, equipment, progression, and persistence.
-- **Remaining:** Owner approval of the generated cursor/action atlas, optional dedicated action families where aliases read weakly, normal-attack timing/variety, and full-kit balance against late crowds and bosses.
+- **Status:** Implemented; owner playtesting remains.
+- **Implemented:** Decision 143 installs C's compact greatsword identity, alternating gait, eight-frame action families, portrait, three-cut combo, contact-clipped raster trails, Resolve, Pursuit/Riftbreak link, original audio and bounded skill/XP progression.
+- **Remaining:** Judge swing readability and audio in crowded fights, plus first-clear pacing with no armor/starter/Stage V gear. +25% Resolve, +15% link and stage cap thresholds are authored starting values, not campaign-balance claims. Final level progression beyond the implemented six-stage campaign remains undefined.
 
 ### KI-013 - Hunts are not implemented
 
@@ -93,8 +93,8 @@ This file tracks current limitations only. Resolved and retired systems belong i
 
 - **Status:** Open.
 - **Impact:** Data-driven previews can describe future routes, but destinations and requirements beyond the implemented Forest sequence are intentionally unavailable.
-- **Planned direction:** Decision 131 assigns Stage VII to the first Disciple choice/test, Stage IX to modular reclaimed magical ruins with provisional Mage/Warden roles, and Stage XX to the first direct One Above confrontation. These are documentation anchors, not runtime destinations.
-- **Disciple preparation:** Decision 136 replaces F7 Examiner body/court/audio presentation with ten 192x160 sheets and 116 clips, retaining Refutation, Axiom, finite Descent, and exact ward protection. Stage VII is not connected and has no outcomes, rewards, saves, or replay authority. Final owner approval remains pending.
+- **Planned direction:** Decision 138 assigns Examiner to the required Stage XX false-mentor scenario; the direct One Above encounter is unscheduled. Stage IX retains modular reclaimed magical ruins with provisional Mage/Warden roles. These are documentation anchors, not runtime destinations.
+- **Disciple preparation:** Decisions 139-141 extend the accepted F7 Examiner body/court proof with separate seals, Unbound and Crimson Firmament. Production Stage XX has no route, outcome, reward, save or replay implementation yet. The owner accepted the living-charge/Unbound pass; the new random pressure and outro need playtesting.
 
 ### KI-006 - Audio settings are session-only
 

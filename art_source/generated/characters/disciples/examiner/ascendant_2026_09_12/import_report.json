@@ -1,0 +1,70 @@
+{
+  "frames": 8,
+  "cell": [
+    192,
+    192
+  ],
+  "bounds": [
+    [
+      68,
+      69,
+      126,
+      123
+    ],
+    [
+      50,
+      52,
+      141,
+      141
+    ],
+    [
+      29,
+      20,
+      154,
+      153
+    ],
+    [
+      20,
+      8,
+      167,
+      162
+    ],
+    [
+      37,
+      28,
+      155,
+      155
+    ],
+    [
+      25,
+      18,
+      165,
+      161
+    ],
+    [
+      30,
+      34,
+      160,
+      157
+    ],
+    [
+      33,
+      44,
+      147,
+      140
+    ]
+  ],
+  "body_hashes": {
+    "assets\\characters\\enemies\\examiner\\examiner_axiom_divide_sheet_192x160.png": "63dc1d7a05b1e202aaeebfab7a45e3536418b0ce07905cf971a51e1e9733f5f6",
+    "assets\\characters\\enemies\\examiner\\examiner_divine_descent_land_sheet_192x160.png": "5f2223783ec7ade23adfca1254830872f44d158e7974b2e06c2be4a2f1c6c8bf",
+    "assets\\characters\\enemies\\examiner\\examiner_divine_descent_launch_sheet_192x160.png": "14f51af449163bb7c1bf08845bcb3d69db3b66fd593654ae38ff164e2f5c2b47",
+    "assets\\characters\\enemies\\examiner\\examiner_ground_judgment_sheet_192x160.png": "8adc418f641d40610cff40a6eccfe0224b9870036eb71ce1d1b0b3a4b4911965",
+    "assets\\characters\\enemies\\examiner\\examiner_judgment_charge_sheet_192x160.png": "071390ea52daa402b8abc3f7498fd8e09ccf163f76d8748a90d9992842dbb380",
+    "assets\\characters\\enemies\\examiner\\examiner_locomotion_sheet_192x160.png": "8a79b79a454b4ab716e1a9f2936896cf1e3ce0f7be89d99305af778f23ce8ab0",
+    "assets\\characters\\enemies\\examiner\\examiner_reaction_withdraw_sheet_192x160.png": "892d6ab8f2a6dc6aad0eaa7463c218eed69c4d96489e761de8ae9809a787f76f",
+    "assets\\characters\\enemies\\examiner\\examiner_refutation_sheet_192x160.png": "5e06103d927867ca430323ec1dcbbb71f5968638619b7957ec2a7a871c431ee7",
+    "assets\\characters\\enemies\\examiner\\examiner_sweep_sheet_192x160.png": "a62a12f6ee501fc370e731be5de942a7d2a2507f56cbef08b6f4b29ddf4cf669",
+    "assets\\characters\\enemies\\examiner\\examiner_thrust_sheet_192x160.png": "16f1d3c2293986c40db72e16fe7b6a94baee848671957881016fb9800e9b45af",
+    "assets\\characters\\enemies\\examiner\\examiner_walk_sheet_192x160.png": "0ec5996e9a692ac344570020190485a08279da89c923a3748becbe12418f99d5"
+  }
+}

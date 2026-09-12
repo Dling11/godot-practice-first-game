@@ -102,7 +102,8 @@ res://
       king_signature_sword.tres
   assets/
     characters/playable/king/
-      simple_reboot/
+      greatsword/
+      simple_reboot/  # complete visual rollback
     characters/npcs/
       skillkeeper/skillkeeper_idle_sheet_48x48.png
       armskeeper/armskeeper_idle_sheet_48x48.png
@@ -131,7 +132,7 @@ res://
   project.godot
 ```
 
-King's production art lives under `res://assets/characters/playable/king/simple_reboot/`. Retired character packages and rejected experiments are organized under Godot-ignored `art_source/archive/`. All current enemy runtime art lives in named domains under `res://assets/characters/enemies/`. Exact-grid sheets under `assets/` are active runtime files.
+King's production art lives under `res://assets/characters/playable/king/greatsword/`; `simple_reboot/` retains the complete supported visual rollback. Retired character packages and rejected experiments are organized under Godot-ignored `art_source/archive/`. All current enemy runtime art lives in named domains under `res://assets/characters/enemies/`. Exact-grid sheets under `assets/` are active runtime files.
 
 King's production art, current Sanctuary assets, Rootling's runtime atlases, and the original level-up chime can be regenerated from their active sources with:
 
@@ -243,7 +244,7 @@ Build targets and export presets have not been selected.
 
 ## Examiner rework review (2026-09-12)
 
-Double-click `Play Examiner.cmd` on this workstation, or press F7 during a debug game. The lab opens on the rebuilt Examiner with King invincible. Disable `KING INVINCIBLE` to test damage and cyan-ward protection; `FORCE DIVINE DESCENT` exercises the phase transition. The lab grants no progression or saves.
+Double-click `Play Examiner.cmd` on this workstation, or press F7 during a debug game. The lab opens on the rebuilt Examiner with King invincible. Disable `KING INVINCIBLE` to test damage; `FORCE DIVINE DESCENT` exercises the interruptible seal trial. The lab grants no progression or saves.
 
 Current prompts and import measurements: `art_source/generated/characters/disciples/examiner/rework_2026_09_12/`. Animation mapping: `assets/characters/enemies/examiner/FRAME_MANIFEST.md`. Run `tools/process_examiner_rework.py` and `tools/generate_examiner_rework_sfx.py` with the project's Python runtime, then Godot `--headless --path . --import`, followed by `--script res://tools/build_examiner_rework_frames.gd`. The older frame-builder entry point delegates to this builder.
 
@@ -253,4 +254,16 @@ Examiner F7 follow-up adds alternating footsteps, repaired weapon tips, animated
 
 ### Examiner combat review (F7)
 
-The rewardless Combat Lab now tests the planned Stage XX Examiner mechanics. Reprisal punishes straight retreat; get behind the committed thrust or sidestep the advancing follow-up. In Trial of Worth, deal 240 damage within 7 seconds while avoiding the red ground cuts, then reach the single cyan sanctuary. Failure grants no sanctuary; Final Verdict deals 800 raw damage through dodge/skill i-frames, with armor/ward mitigation. Disable KING INVINCIBLE to assess damage. The force-phase button starts the dialogue and complete seal trial. Production Stage XX is not connected and this lab grants no story powers, rewards, or saves.
+The rewardless Combat Lab tests the Stage XX Examiner proof. Reprisal punishes straight retreat; get behind the thrust or sidestep the advancing follow-up. The gold seal bar absorbs damage separately from HP: break it to cancel his charge and earn a 2.6-second kneeling stun. Trial of Worth requires 240 mitigated damage in 7 seconds; failure releases the 800 raw Verdict through dodge, with normal armor/ward. Borrowed Sun requires 210 seal damage in 5.5 seconds; failure throws a large orb at a fixed, warned landing point. His opening is calmer, Second Measure begins after the 60% trial, and 35% HP unlocks Unbound: faster movement, 1.65x ordinary damage, larger Suns and three-impact Crownfall. Disable KING INVINCIBLE to assess difficulty. Production Stage XX routing, gear balance, rewards and saving remain pending. See `art_source/review/characters/disciples/examiner/ascendant_2026_09_12/REVIEW.md` for the rendered review and source prompt.
+
+### Examiner Crimson Firmament review
+
+The accepted 35% Unbound phase now has a persistent flame aura and a second signature, Crimson Firmament. Break its 180-point seal during the 3.8s charge, or evade eight randomized waves of three red meteors, moving away from each fresh warning. Borrowed Sun has a continuous sixteen-frame energy cycle, stronger gathering/release and faster fixed flight. F7/Play Examiner.cmd launch the same rewardless proof; King starts invincible. Previous charge/aura review: `art_source/review/characters/disciples/examiner/firmament_2026_09_12/REVIEW.md`. The current Decision 141 pass adds varied attack choices, warned Axiom follow-ups, changing seal reactions and a skippable victory conversation. Current review: `art_source/review/characters/disciples/examiner/tactics_2026_09_12/REVIEW.md`.
+
+### King greatsword controls and review
+
+Left-click/basic attack continues the three-cut chain through the existing buffer. Three landed swings charge **Resolve** for +25% on the next skill; use it within eight seconds. Land **3 (Pursuit)**, then use **2 (Riftbreak)** within 1.2 seconds for +15%. Slots 1-4 and their targeting controls are unchanged. The HUD shows Resolve and the link; Active Skills explains both and current level mastery.
+
+Current campaign caps: start 3, then 4/5/6/7/10 after Stages I-V. Extra XP stops at the cap; coins/loot still accrue. Existing earned levels and F9's non-saving test mode are preserved.
+
+Art rebuild: run `tools/build_king_greatsword_assets.gd`, Godot `--editor --import --quit`, then the same script with `-- --frames-only`. Effects/portrait use `tools/build_king_greatsword_effect_assets.gd`; original audio uses `tools/generate_king_greatsword_sfx.py`. Generation and correction prompts are in `art_source/generated/characters/king/greatsword_2026_09_12/`. Rendered review is in the matching `art_source/review/characters/king/` folder.

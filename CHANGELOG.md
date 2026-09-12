@@ -1,5 +1,35 @@
 # Changelog
 
+## 2026-09-12 - King C Greatsword, Resolve and Bounded Growth
+
+- Installed the selected compact adventurer/greatsword identity, four-direction alternating gait, three eight-frame basic cuts, skill/reaction families, portrait and coordinated 24px skill icons. Preserved complete weapon tips through fixed body-scale, connected-island imports.
+- Added data-owned opening/return/heavy damage and timing, committed 36-forward/44-wide contact, white raster trails clipped to real collision, original steel/footstep/Resolve audio, and generated skill contact accents. Equipment speed and the existing latest-intent buffer remain authoritative.
+- Added one-stack-per-landed-swing Resolve (+25% next skill), a 1.2s Pursuit-to-Riftbreak link (+15%), and +2% skill growth per level after L1 capped at +18%. Added compact HUD/menu explanations.
+- Added stage-clear level ceilings 3 -> 4/5/6/7/10, discarding newly earned XP beyond the current cap while preserving coins, existing levels/save XP and F9 save suppression.
+- Corrected a stale animation script UID, back-facing strike direction and menu foot baseline. Updated Decision 143 and current design/architecture/art contracts.
+- Validation: 26 focused suites pass, including 353 greatsword/mastery/asset assertions; real rendered lab review and decoded H.264/AAC recording saved under art_source/review/characters/king/greatsword_2026_09_12/. Full campaign balance remains owner playtesting.
+
+## 2026-09-12 - Examiner Random Rain, Tactics and Victory
+
+- Replaced twelve fixed meteors and the safe column with 24 randomized meteors in eight waves. Each wave snapshots King, reserves a nearby opening and shares exact 0.90s warning/48px contact geometry.
+- Added legal weighted move selection with recent-action memory and selected phase-two Axiom follow-ups using a fresh committed Reprisal warning.
+- Added seal-break reactions and a hazard-clearing kneel/recovery, skippable acknowledgment, completion signal and input restoration. The lab remains rewardless.
+- Added seeded movement and outcome lifecycle checks; preserved the approved body atlases.
+
+## 2026-09-12 - Examiner Living Charge and Crimson Firmament
+
+- Added sixteen distinct churning Sun frames, continuous energy growth/filaments, bracing motion, accelerating charge cues, projectile wakes and a persistent Unbound aura without changing approved body art.
+- Tightened Sun release/flight to 0.24s plus 0.72s (0.62s berserk), bounded pre-commit movement lead, and 84/116px impact radii.
+- Added a berserk-only interruptible 3.8s Crimson Firmament charge, twelve red meteors in four waves, and a full clear column for each committed barrage.
+- Added focused checks for guard cancellation, wave counts, corridor geometry, dodge, prediction, pause and cleanup.
+
+## 2026-09-12 - Examiner Breakable Seal, Borrowed Sun and Unbound
+
+- Replaced the after-HP damage check with a separate gold seal bar. Breaking either charge now cancels its attack, clears pressure cuts, and grants a kneeling stun/punish window without overflow damage.
+- Added Borrowed Sun charge/throw/detonation, fixed ground warnings, and three-seal Crownfall at 35% HP. Restored 66px/s opening pace; second measure starts after the 60% trial, with Unbound at 35%.
+- Preserved all approved body PNGs and reused their raise/release/kneeling poses. Added an eight-frame generated Sun atlas and six original audio cues.
+- Added guard, projectile, phase and lifecycle regression checks, including repeated casts after natural effect expiry; captured rendered F7 review. Final owner feel-testing and Stage XX production integration remain pending.
+
 ## 2026-09-12 - Examiner Trial of Worth and Stage XX Direction
 
 - Added physical thrust advancement, locked Reprisal against retreat, behind-target recovery, and phase-two Held Judgment; raised ordinary attack stakes while retaining readable anticipation.

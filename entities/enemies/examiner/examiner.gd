@@ -2,6 +2,9 @@ class_name Examiner
 extends CharacterBody2D
 
 const EnemyFootprint = preload("res://entities/enemies/components/enemy_footprint_system.gd")
+const SunAttack = preload("res://entities/enemies/examiner/examiner_sun.gd")
+const TacticsComponent = preload("res://entities/enemies/examiner/examiner_tactics.gd")
+const FirmamentComponent = preload("res://entities/enemies/examiner/examiner_firmament.gd")
 const TrialComponent = preload("res://entities/enemies/examiner/examiner_trial.gd")
 const AxiomLaneScene = preload("res://entities/enemies/examiner/examiner_axiom_lane.tscn")
 
@@ -41,6 +44,18 @@ enum State {
 	DESCENT_FALL,
 	DESCENT_IMPACT,
 	DESCENT_RECOVERY,
+	GUARD_BROKEN,
+	GUARD_RECOVERY,
+	ORB_CHARGE,
+	ORB_RELEASE,
+	ORB_RECOVERY,
+	BERSERK_AWAKEN,
+	CROWNFALL,
+	FIRMAMENT_CHARGE,
+	FIRMAMENT_BARRAGE,
+	VICTORY_KNEEL,
+	VICTORY_RISE,
+	VICTORY_HOLD,
 	WITHDRAWAL,
 }
 
@@ -57,6 +72,11 @@ signal divine_descent_impact(world_position: Vector2)
 signal trial_started
 signal trial_progressed(damage: float, required: float, seconds_left: float)
 signal trial_finished(success: bool, sanctuary_position: Vector2)
+signal berserk_started
+signal victory_started
+signal victory_ready
+signal encounter_completed
+signal combat_remark(text: String)
 signal phase_two_started
 
 @export var definition: ExaminerDefinition
@@ -73,10 +93,23 @@ signal phase_two_started
 @onready var dash_hitbox: MeleeHitbox = %DashHitbox
 @onready var slam_hitbox: MeleeHitbox = %SlamHitbox
 
+var tactics := TacticsComponent.new() as ExaminerTactics
+var seals_broken := 0
+var seals_attempted := 0
+var _axiom_count := 0
+var _owned_lanes: Array[Node] = []
 var trial: ExaminerTrial
+var firmament: ExaminerFirmament
+var _firmament_cooldown := 6.0
+var _firmament_casts := 0
 var _sanctuary_position := Vector2.ZERO
 var _trial_succeeded := false
-var _final_trial_requested := false
+var _berserk := false
+var _orb_cooldown := 10.0
+var _crownfall_cooldown := 0.0
+var _charged_skill: StringName = &"descent"
+var _sun_target := Vector2.ZERO
+var _owned_suns: Array[Node] = []
 var _thrust_step_remaining := 0.0
 var state := State.SPAWNING
 var facing_direction := Vector2.DOWN
@@ -103,7 +136,8 @@ var _descent_destination := Vector2.ZERO
 var _original_collision_layer := 0
 var _original_collision_mask := 0
 
-const PHASE_TRIGGER_RATIO := 0.70
+const PHASE_TRIGGER_RATIO := 0.60
+const BERSERK_TRIGGER_RATIO := 0.35
 const DESCENT_PREPARE_SECONDS := 0.64
 const DESCENT_LAUNCH_SECONDS := 0.17
 const DESCENT_FALL_SECONDS := 0.15
@@ -127,10 +161,12 @@ func _ready() -> void:
 	knockback_component.configure(definition)
 	trial = TrialComponent.new() as ExaminerTrial
 	add_child(trial)
+	firmament = FirmamentComponent.new() as ExaminerFirmament
+	add_child(firmament)
 	trial.progressed.connect(func(damage: float, required: float, seconds_left: float) -> void: trial_progressed.emit(damage, required, seconds_left))
 	trial.completed.connect(_finish_trial)
 	trial.cut_released.connect($ActionSfx.play_trial_cut)
-	health_component.damaged.connect(trial.record_damage)
+	health_component.damage_absorber = trial.absorb_damage
 	health_component.damaged.connect(_on_damaged)
 	_original_collision_layer = collision_layer
 	_original_collision_mask = collision_mask
@@ -143,6 +179,10 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if _berserk:
+		_firmament_cooldown = maxf(_firmament_cooldown - delta, 0.0)
+	_orb_cooldown = maxf(_orb_cooldown - delta, 0.0)
+	_crownfall_cooldown = maxf(_crownfall_cooldown - delta, 0.0)
 	_axiom_cooldown = maxf(_axiom_cooldown - delta, 0.0)
 	_charge_cooldown = maxf(_charge_cooldown - delta, 0.0)
 	_slam_cooldown = maxf(_slam_cooldown - delta, 0.0)
@@ -150,7 +190,7 @@ func _physics_process(delta: float) -> void:
 	_attack_pressure_remaining = maxf(_attack_pressure_remaining - delta, 0.0)
 	if _attack_pressure_remaining <= 0.0:
 		_recent_player_hits = 0
-	if state == State.TRIAL_CHANNEL:
+	if state in [State.TRIAL_CHANNEL, State.ORB_CHARGE, State.FIRMAMENT_CHARGE]:
 		return
 	if state in [State.PHASE_STANCE, State.DESCENT_PREPARE, State.DESCENT_LAUNCH, State.DESCENT_ABSENT, State.DESCENT_FALL, State.DESCENT_IMPACT, State.DESCENT_RECOVERY]:
 		_process_divine_descent(delta)
@@ -175,26 +215,24 @@ func _physics_process(delta: float) -> void:
 
 
 func _process_approach(delta: float) -> void:
+	# Threshold transitions wait for committed attacks and earned stun windows.
+	if _try_phase_transition():
+		return
 	var offset := target.global_position - global_position
-	var distance := offset.length()
-	if _axiom_cooldown <= 0.0:
-		_begin_axiom(offset)
-		return
-	if _refutation_cooldown <= 0.0 and distance <= 112.0:
-		_begin_refutation(offset)
-		return
-	if _slam_cooldown <= 0.0 and distance <= 92.0 and _close_exchange_count >= 1:
-		_begin_ground_judgment(offset)
-		return
-	if _charge_cooldown <= 0.0 and distance >= 138.0:
-		_begin_judgment_charge(offset)
-		return
-	if distance <= definition.attack_range:
-		_begin_combo(offset)
+	var choice := tactics.choose(self, offset.length())
+	match choice:
+		&"firmament": _begin_firmament()
+		&"crownfall": _begin_crownfall()
+		&"sun": _begin_orb()
+		&"axiom": _begin_axiom(offset)
+		&"refutation": _begin_refutation(offset)
+		&"slam": _begin_ground_judgment(offset)
+		&"charge": _begin_judgment_charge(offset)
+		&"combo": _begin_combo(offset)
+	if not choice.is_empty():
 		return
 	var direction := offset.normalized() if not offset.is_zero_approx() else facing_direction
-	var phase_speed := 1.12 if _phase_two else 1.0
-	velocity = velocity.move_toward(direction * definition.move_speed * phase_speed, definition.acceleration * delta)
+	velocity = velocity.move_toward(direction * movement_speed(), definition.acceleration * delta)
 	# The sprite must describe physical travel, not the new desired direction
 	# while acceleration is still carrying the body the other way.
 	_set_facing(velocity.normalized() if not velocity.is_zero_approx() else direction)
@@ -239,6 +277,7 @@ func _begin_refutation(offset: Vector2) -> void:
 
 
 func _begin_axiom(offset: Vector2) -> void:
+	_axiom_count += 1
 	var aim := offset.normalized() if not offset.is_zero_approx() else facing_direction
 	_set_facing(aim)
 	_axiom_hit_player = false
@@ -290,9 +329,25 @@ func _tick_state(delta: float) -> void:
 	if _state_remaining > 0.0:
 		return
 	match state:
+		State.GUARD_BROKEN:
+			_enter(State.GUARD_RECOVERY, 0.45)
+		State.GUARD_RECOVERY:
+			_complete_second_measure()
+			_enter(State.APPROACH, 0.0)
+		State.ORB_RELEASE:
+			_spawn_sun(_sun_target, definition.berserk_orb_radius if _berserk else definition.orb_radius,
+				scaled_damage(definition.orb_damage), definition.berserk_orb_flight_seconds if _berserk else definition.orb_flight_seconds, false)
+			_enter(State.ORB_RECOVERY, 0.95)
+		State.ORB_RECOVERY, State.CROWNFALL:
+			_enter(State.APPROACH, 0.0)
+		State.FIRMAMENT_BARRAGE:
+			_enter(State.APPROACH, 0.0)
+		State.BERSERK_AWAKEN:
+			health_component.set_invulnerable(false)
+			_begin_crownfall()
 		State.COMBO_WIND_UP:
 			_thrust_step_remaining = definition.thrust_step_distance
-			thrust_hitbox.activate(definition.attack_damage, self, facing_direction, 110.0, 0.08)
+			thrust_hitbox.activate(scaled_damage(definition.attack_damage), self, facing_direction, 110.0, 0.08)
 			action_impact.emit(&"precision_thrust", global_position + facing_direction * 58.0 + Vector2(0.0, -24.0), facing_direction)
 			_enter(State.THRUST_ACTIVE, definition.active_seconds)
 		State.THRUST_ACTIVE:
@@ -301,7 +356,7 @@ func _tick_state(delta: float) -> void:
 		State.COMBO_GAP:
 			_choose_follow_up()
 		State.SWEEP_WIND_UP:
-			sweep_hitbox.activate(definition.sweep_damage, self, facing_direction, 150.0, 0.10)
+			sweep_hitbox.activate(scaled_damage(definition.sweep_damage), self, facing_direction, 150.0, 0.10)
 			action_impact.emit(&"divine_sweep", global_position + Vector2(0.0, -24.0), facing_direction)
 			_enter(State.SWEEP_ACTIVE, definition.sweep_seconds)
 		State.SWEEP_ACTIVE:
@@ -311,20 +366,20 @@ func _tick_state(delta: float) -> void:
 			_close_exchange_count += 1
 			_enter(State.APPROACH, 0.0)
 		State.PURSUIT_WIND_UP:
-			dash_hitbox.activate(definition.judgment_charge_damage, self, facing_direction, 160.0, 0.12)
+			dash_hitbox.activate(scaled_damage(definition.judgment_charge_damage), self, facing_direction, 160.0, 0.12)
 			_enter(State.PURSUIT_TRAVEL, definition.pursuit_travel_seconds)
 		State.PURSUIT_RECOVERY:
 			_close_exchange_count += 1
 			_enter(State.APPROACH, 0.0)
 		State.CHARGE_WIND_UP:
-			dash_hitbox.activate(definition.judgment_charge_damage, self, facing_direction, 180.0, 0.14)
+			dash_hitbox.activate(scaled_damage(definition.judgment_charge_damage), self, facing_direction, 180.0, 0.14)
 			_enter(State.CHARGE_TRAVEL, definition.judgment_charge_travel_seconds)
 		State.CHARGE_IMPACT:
 			_enter(State.CHARGE_RECOVERY, definition.judgment_charge_recovery_seconds)
 		State.CHARGE_RECOVERY:
 			_enter(State.APPROACH, 0.0)
 		State.SLAM_WIND_UP, State.HELD_JUDGMENT:
-			slam_hitbox.activate_radial(definition.ground_judgment_damage, self, global_position, 220.0, 0.18)
+			slam_hitbox.activate_radial(scaled_damage(definition.ground_judgment_damage), self, global_position, 220.0, 0.18)
 			action_impact.emit(&"ground_judgment", global_position + Vector2(0.0, -6.0), facing_direction)
 			_enter(State.SLAM_ACTIVE, definition.ground_judgment_active_seconds)
 		State.SLAM_ACTIVE:
@@ -360,12 +415,24 @@ func _tick_state(delta: float) -> void:
 		State.AXIOM_RECOVERY:
 			if not _axiom_hit_player:
 				measure_recognized.emit()
+			if _try_phase_transition():
+				return
+			if _phase_two and _axiom_count % 2 == 1 and is_instance_valid(target):
+				var offset := target.global_position - global_position
+				if offset.length() > 92 and offset.length() < 320 and offset.normalized().dot(facing_direction) > -0.15:
+					combat_remark.emit("A second question. Keep your footing.")
+					_begin_pursuit(offset)
+					return
 			_enter(State.APPROACH, 0.0)
 
 
 func _spawn_lane_preview(lane: Dictionary, resolve_delay: float) -> void:
 	var preview := AxiomLaneScene.instantiate() as ExaminerAxiomLane
 	_effects_parent().add_child(preview)
+	for index in range(_owned_lanes.size() - 1, -1, -1):
+		if not is_instance_valid(_owned_lanes[index]):
+			_owned_lanes.remove_at(index)
+	_owned_lanes.append(preview)
 	preview.configure(
 		lane["center"], lane["direction"], lane["length"], lane["width"],
 		definition.axiom_telegraph_seconds, resolve_delay
@@ -387,7 +454,7 @@ func _resolve_axiom_lane(index: int) -> void:
 		target_health = target.find_child("HealthComponent", true, false) as HealthComponent
 	if target_health != null:
 		_axiom_hit_player = target_health.apply_damage(
-			DamageInfo.new(definition.axiom_damage, self, direction, 120.0, 0.10)
+			DamageInfo.new(scaled_damage(definition.axiom_damage), self, direction, 120.0, 0.10)
 		) or _axiom_hit_player
 
 
@@ -411,19 +478,13 @@ func _on_damage_blocked(_info: DamageInfo) -> void:
 	global_position = (global_position + away * 36.0).clamp(arena_bounds.position, arena_bounds.end)
 	var target_health := target.find_child("HealthComponent", true, false) as HealthComponent
 	if target_health != null:
-		target_health.apply_damage(DamageInfo.new(definition.refutation_damage, self, -away, 90.0, 0.08))
+		target_health.apply_damage(DamageInfo.new(scaled_damage(definition.refutation_damage), self, -away, 90.0, 0.08))
 
 
 func _on_damaged(_info: DamageInfo) -> void:
 	if health_component.current_health <= 0.0 or state in [State.TRIAL_CHANNEL, State.WITHDRAWAL]:
 		return
-	if _phase_two and not _final_trial_requested and health_component.current_health <= health_component.maximum_health * 0.35:
-		_final_trial_requested = true
-		_deactivate_hitboxes()
-		_begin_trial()
-		return
-	if not _phase_transition_requested and health_component.current_health <= health_component.maximum_health * PHASE_TRIGGER_RATIO:
-		request_phase_transition()
+	if state == State.APPROACH and _try_phase_transition():
 		return
 	_recent_player_hits += 1
 	_attack_pressure_remaining = 1.25
@@ -516,9 +577,7 @@ func _process_divine_descent(delta: float) -> void:
 			collision_layer = _original_collision_layer
 			collision_mask = _original_collision_mask
 			health_component.set_invulnerable(false)
-			_phase_two = true
-			_axiom_cooldown = minf(_axiom_cooldown, 2.6)
-			phase_two_started.emit()
+			_complete_second_measure()
 			_enter(State.APPROACH, 0.0)
 
 
@@ -530,6 +589,9 @@ func _deactivate_hitboxes() -> void:
 
 
 func _enter(next_state: State, duration_seconds: float) -> void:
+	# Shorter recoveries in later measures; warnings and earned stuns stay legible.
+	if next_state in [State.COMBO_RECOVERY, State.CHARGE_RECOVERY, State.SLAM_RECOVERY, State.AXIOM_RECOVERY]:
+		duration_seconds *= 0.78 if _berserk else (0.9 if _phase_two else 1.0)
 	state = next_state
 	_state_remaining = duration_seconds
 	if next_state != State.APPROACH:
@@ -566,7 +628,12 @@ func judgment_charge_endpoint() -> Vector2:
 
 
 func _withdraw() -> void:
-	state = State.WITHDRAWAL
+	if state in [State.VICTORY_KNEEL, State.VICTORY_RISE, State.VICTORY_HOLD, State.WITHDRAWAL]:
+		return
+	state = State.VICTORY_KNEEL
+	_cancel_lanes()
+	firmament.cancel()
+	_cancel_suns()
 	if trial != null:
 		trial.cancel()
 	velocity = Vector2.ZERO
@@ -574,9 +641,35 @@ func _withdraw() -> void:
 	health_component.set_invulnerable(true)
 	collision_layer = 0
 	collision_mask = 0
-	state_changed.emit(State.WITHDRAWAL, 1.25)
+	_enter(State.VICTORY_KNEEL, 0.9)
 	set_physics_process(false)
-	get_tree().create_timer(1.4).timeout.connect(queue_free)
+	victory_started.emit()
+	get_tree().create_timer(0.9, false).timeout.connect(_victory_rise)
+
+
+func _victory_rise() -> void:
+	if state != State.VICTORY_KNEEL:
+		return
+	_enter(State.VICTORY_RISE, 0.65)
+	get_tree().create_timer(0.65, false).timeout.connect(_victory_hold)
+
+
+func _victory_hold() -> void:
+	if state != State.VICTORY_RISE:
+		return
+	_enter(State.VICTORY_HOLD, 0)
+	if victory_ready.get_connections().is_empty():
+		complete_victory()
+	else:
+		victory_ready.emit()
+
+
+func complete_victory() -> void:
+	if state != State.VICTORY_HOLD:
+		return
+	_enter(State.WITHDRAWAL, 1.25)
+	encounter_completed.emit()
+	get_tree().create_timer(1.4, false).timeout.connect(queue_free)
 
 
 func _choose_follow_up() -> void:
@@ -605,27 +698,139 @@ func _begin_pursuit(offset: Vector2) -> void:
 
 
 func _begin_trial() -> void:
+	_begin_guard(&"descent")
+
+
+func _begin_orb() -> void:
+	_orb_cooldown = definition.orb_cooldown_seconds
+	_begin_guard(&"sun")
+
+
+func _begin_firmament() -> bool:
+	if not _berserk:
+		return false
+	_firmament_cooldown = definition.firmament_cooldown_seconds
+	_begin_guard(&"firmament")
+	return true
+
+
+func _begin_guard(skill: StringName) -> void:
+	seals_attempted += 1
 	velocity = Vector2.ZERO
 	_deactivate_hitboxes()
 	_set_facing(Vector2.DOWN)
+	_charged_skill = skill
 	_trial_succeeded = false
 	health_component.set_invulnerable(false)
-	_enter(State.TRIAL_CHANNEL, definition.trial_duration_seconds)
+	if skill == &"firmament":
+		_enter(State.FIRMAMENT_CHARGE, definition.firmament_charge_seconds)
+	else:
+		_enter(State.ORB_CHARGE if skill == &"sun" else State.TRIAL_CHANNEL,
+			definition.orb_charge_seconds if skill == &"sun" else definition.trial_duration_seconds)
 	trial_started.emit()
-	trial.begin(self, target, definition)
+	trial.begin(self, target, definition, skill == &"sun", skill == &"firmament")
 
 
 func _finish_trial(success: bool) -> void:
-	if state != State.TRIAL_CHANNEL:
+	if state not in [State.TRIAL_CHANNEL, State.ORB_CHARGE, State.FIRMAMENT_CHARGE]:
 		return
 	_trial_succeeded = success
-	# Pick the nearest reachable sanctuary at resolution; never move it afterward.
-	var points := CourtOfFirstMeasure.PYLON_POINTS
-	var player_position := target.global_position if is_instance_valid(target) else global_position
-	_sanctuary_position = points[0]
-	for point: Vector2 in points:
-		if player_position.distance_squared_to(point) < player_position.distance_squared_to(_sanctuary_position):
-			_sanctuary_position = point
-	health_component.set_invulnerable(true)
-	trial_finished.emit(success, _sanctuary_position)
-	_enter(State.DESCENT_PREPARE, DESCENT_PREPARE_SECONDS)
+	if success:
+		seals_broken += 1
+	trial_finished.emit(success, Vector2.ZERO)
+	if success:
+		health_component.set_invulnerable(false)
+		action_impact.emit(&"guard_break", global_position + Vector2(0, -24), facing_direction)
+		_enter(State.GUARD_BROKEN, definition.guard_stun_seconds)
+	elif _charged_skill == &"firmament":
+		firmament.begin(self)
+		_firmament_casts += 1
+		_enter(State.FIRMAMENT_BARRAGE, definition.firmament_wave_interval * (definition.firmament_wave_count - 1) + definition.firmament_warning_seconds + 0.65)
+	elif _charged_skill == &"sun":
+		# Aim locks at the throwing stance. The projectile never homes afterward.
+		_sun_target = (target.global_position if is_instance_valid(target) else global_position).clamp(arena_bounds.position, arena_bounds.end)
+		if is_instance_valid(target):
+			_sun_target = (_sun_target + (target.velocity * definition.orb_prediction_seconds).limit_length(28.0)).clamp(arena_bounds.position, arena_bounds.end)
+		_set_facing((_sun_target - global_position).normalized())
+		_enter(State.ORB_RELEASE, definition.orb_release_seconds)
+	else:
+		health_component.set_invulnerable(true)
+		_enter(State.DESCENT_PREPARE, DESCENT_PREPARE_SECONDS)
+
+
+func movement_speed() -> float:
+	return definition.berserk_speed if _berserk else (definition.second_measure_speed if _phase_two else definition.move_speed)
+
+
+func scaled_damage(base: float) -> float:
+	return base * definition.berserk_damage_multiplier if _berserk else base
+
+
+func is_berserk() -> bool:
+	return _berserk
+
+
+func _try_phase_transition() -> bool:
+	var ratio := health_component.current_health / health_component.maximum_health
+	if not _phase_transition_requested and ratio <= PHASE_TRIGGER_RATIO:
+		return request_phase_transition()
+	if _phase_two and not _berserk and ratio <= BERSERK_TRIGGER_RATIO:
+		_berserk = true
+		velocity = Vector2.ZERO
+		_deactivate_hitboxes()
+		_enter(State.BERSERK_AWAKEN, 1.5)
+		berserk_started.emit()
+		return true
+	return false
+
+
+func _complete_second_measure() -> void:
+	if _phase_transition_requested and not _phase_two:
+		_phase_two = true
+		_axiom_cooldown = maxf(_axiom_cooldown, 2.6)
+		_orb_cooldown = maxf(_orb_cooldown, 5.0)
+		phase_two_started.emit()
+
+
+func _spawn_sun(point: Vector2, radius: float, damage: float, warning: float, falling: bool) -> ExaminerSun:
+	var sun := SunAttack.new() as ExaminerSun
+	_effects_parent().add_child(sun)
+	sun.configure(self, target, global_position + Vector2(0, -100), point, radius, damage, warning, falling)
+	# Expired effects leave freed references; do not pass them to a typed lambda.
+	for index in range(_owned_suns.size() - 1, -1, -1):
+		if not is_instance_valid(_owned_suns[index]):
+			_owned_suns.remove_at(index)
+	_owned_suns.append(sun)
+	return sun
+
+
+func _begin_crownfall() -> void:
+	_crownfall_cooldown = definition.crownfall_cooldown_seconds
+	velocity = Vector2.ZERO
+	_set_facing(Vector2.DOWN)
+	var center := target.global_position if is_instance_valid(target) else arena_bounds.get_center()
+	var axis := Vector2.RIGHT if absf(center.x - global_position.x) < absf(center.y - global_position.y) else Vector2.DOWN
+	# Three fixed seals resolve in sequence. A perpendicular escape stays open.
+	for index in 3:
+		var point := (center + axis * float(index - 1) * 116.0).clamp(arena_bounds.position + Vector2.ONE * 30, arena_bounds.end - Vector2.ONE * 30)
+		_spawn_sun(point, definition.crownfall_radius, scaled_damage(definition.crownfall_damage), 1.1 + index * 0.7, true)
+	_enter(State.CROWNFALL, 2.9)
+
+
+func _cancel_suns() -> void:
+	for sun in _owned_suns:
+		if is_instance_valid(sun):
+			sun.queue_free()
+	_owned_suns.clear()
+
+
+func _cancel_lanes() -> void:
+	for lane in _owned_lanes:
+		if is_instance_valid(lane):
+			lane.queue_free()
+	_owned_lanes.clear()
+
+
+func _exit_tree() -> void:
+	_cancel_suns()
+	_cancel_lanes()

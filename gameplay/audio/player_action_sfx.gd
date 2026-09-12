@@ -19,6 +19,9 @@ extends Node2D
 @export var action_denied_player: AudioStreamPlayer2D
 
 func play_attack_phase(phase: int, _duration_seconds: float) -> void:
+	var actor := get_parent() as Player
+	if actor != null and actor.attack_component.weapon.combo != null:
+		return # Greatsword presentation owns the three distinct weight cues.
 	if phase == MeleeAttackComponent.Phase.ACTIVE:
 		_play(sword_swing_player, 1.0)
 

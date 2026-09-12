@@ -39,11 +39,11 @@ func _run() -> void:
 		_fail("The down-facing sword does not connect at the body and point away from the player's head.")
 		return
 	if (
-		not is_equal_approx(KingSword.get_melee_forward_reach_pixels(), 48.0)
-		or not is_equal_approx(KingSword.get_melee_half_width_pixels(), 28.0)
+		not is_equal_approx(KingSword.get_melee_forward_reach_pixels(), 36.0)
+		or not is_equal_approx(KingSword.get_melee_half_width_pixels(), 22.0)
 		or player.attack_component.collision_shape.shape != KingSword.melee_hitbox_shape
 	):
-		_fail("King's sword form is missing its tightened 48-reach by 56-wide contact fan.")
+		_fail("King's sword form is missing its tightened 36-reach by 44-wide contact fan.")
 		return
 	if KingSwordForm.normal_variant_count() != 3:
 		_fail("King's sword form must expose the approved three-swing visual sequence.")
@@ -70,11 +70,15 @@ func _run() -> void:
 		return
 	var observed_variants: Array[int] = []
 	for attack_index in 3:
-		player.weapon_visual.play_attack_phase(MeleeAttackComponent.Phase.WIND_UP, 0.01)
-		observed_variants.append(player.weapon_visual._normal_swing_variant_index)
-		player.weapon_visual.resume_locomotion()
-	if observed_variants != [0, 1, 2]:
-		_fail("Normal attacks did not cycle through all three swing variants: %s" % [observed_variants])
+		player.request_primary_attack()
+		observed_variants.append(player.attack_component.combo_step)
+		while player.attack_component.phase != MeleeAttackComponent.Phase.IDLE:
+			await physics_frame
+			if player.weapon_visual.swing_trail.visible:
+				_fail("Legacy Line2D trail duplicates the generated greatsword contact.")
+				return
+	if observed_variants != [0,1,2]:
+		_fail("The authoritative three-cut chain is out of order.")
 		return
 
 	var upgraded_weapon := KingSword.duplicate(true) as WeaponDefinition

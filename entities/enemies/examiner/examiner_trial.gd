@@ -1,7 +1,7 @@
 class_name ExaminerTrial
 extends Node
 
-## Owns the damage check and warned cuts. Art and HUD only observe its signals.
+## Separate defensive seal. Absorbs mitigated hits before HP, never after it.
 signal progressed(damage: float, required: float, seconds_left: float)
 signal completed(success: bool)
 signal cut_released
@@ -13,6 +13,8 @@ var definition: ExaminerDefinition
 var active := false
 var damage := 0.0
 var remaining := 0.0
+var required := 240.0
+var warns_cuts := true
 var _cut_clock := 0.0
 var _hud_clock := 0.0
 var _cut_index := 0
@@ -24,27 +26,44 @@ func _ready() -> void:
 	set_physics_process(false)
 
 
-func begin(owner_actor: Node2D, player: Node2D, tuning: ExaminerDefinition) -> void:
+func begin(owner_actor: Node2D, player: Node2D, tuning: ExaminerDefinition, orb := false, firmament := false) -> void:
 	cancel()
 	actor = owner_actor
 	target = player
 	definition = tuning
 	damage = 0.0
 	remaining = definition.trial_duration_seconds
+	required = definition.trial_damage_required
+	warns_cuts = not orb
+	if orb:
+		remaining = definition.orb_charge_seconds
+		required = definition.orb_guard_health
+	if firmament:
+		warns_cuts = false
+		remaining = definition.firmament_charge_seconds
+		required = definition.firmament_guard_health
 	_cut_clock = 1.0
 	_hud_clock = 0.0
 	_cut_index = 0
 	active = true
 	set_physics_process(true)
-	progressed.emit(damage, definition.trial_damage_required, remaining)
+	progressed.emit(damage, required, remaining)
+
+
+func absorb_damage(info: DamageInfo) -> bool:
+	if not active:
+		return false
+	record_damage(info)
+	# No overflow: breaking the seal earns the following attacks a HP window.
+	return true
 
 
 func record_damage(info: DamageInfo) -> void:
 	if not active or (actor.get_node("HealthComponent") as HealthComponent).current_health <= 0.0:
 		return
 	damage += info.amount
-	progressed.emit(damage, definition.trial_damage_required, remaining)
-	if damage >= definition.trial_damage_required:
+	progressed.emit(damage, required, remaining)
+	if damage >= required:
 		_finish(true)
 
 
@@ -62,12 +81,12 @@ func _physics_process(delta: float) -> void:
 	if remaining <= 0.0:
 		_finish(false)
 		return
-	if _cut_clock <= 0.0 and remaining > 1.0:
+	if warns_cuts and _cut_clock <= 0.0 and remaining > 1.0:
 		_warn_cut()
 		_cut_clock = 1.5
 	if _hud_clock <= 0.0:
 		_hud_clock = 0.1
-		progressed.emit(damage, definition.trial_damage_required, remaining)
+		progressed.emit(damage, required, remaining)
 
 
 func _warn_cut() -> void:

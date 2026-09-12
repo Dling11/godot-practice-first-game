@@ -10,6 +10,7 @@ extends Control
 @onready var phase_label: Label = %PhaseLabel
 @onready var damage_trail: ProgressBar = %DamageTrail
 @onready var health_bar: ProgressBar = %HealthBar
+@onready var guard_bar: ProgressBar = %GuardBar
 
 var health_component: HealthComponent
 var _damage_tween: Tween
@@ -29,6 +30,7 @@ func bind_boss(
 	context: String = "BOSS ENCOUNTER"
 ) -> void:
 	clear_boss()
+	set_phase_markers(0.3, 0.8)
 	if next_health == null:
 		push_error("BossHealthHUD requires a HealthComponent.")
 		return
@@ -56,6 +58,7 @@ func clear_boss() -> void:
 			health_component.died.disconnect(_on_boss_died)
 	health_component = null
 	_phase_status = ""
+	clear_guard()
 	_kill_tweens()
 	hide()
 
@@ -66,6 +69,27 @@ func set_phase_status(text: String, color := Color(0.86, 0.78, 0.55)) -> void:
 	_phase_color = color
 	if is_instance_valid(health_component):
 		_update_labels(health_component.current_health, health_component.maximum_health)
+
+
+func show_guard(remaining: float, maximum: float, seconds_left: float) -> void:
+	guard_bar.show()
+	offset_bottom = 92.0
+	guard_bar.max_value = maximum
+	guard_bar.value = maxf(remaining, 0)
+	set_phase_status("SEAL %d/%d  |  %.1fs" % [ceili(maxf(remaining, 0)), int(maximum), seconds_left], Color("edbc72"))
+
+
+func clear_guard() -> void:
+	if guard_bar != null:
+		guard_bar.hide()
+	offset_bottom = 82.0
+
+
+func set_phase_markers(first: float, second: float) -> void:
+	var marks := [$Panel/Margin/Stack/BarStack/ThirtyMark, $Panel/Margin/Stack/BarStack/EightyMark]
+	for index in 2:
+		marks[index].anchor_left = first if index == 0 else second
+		marks[index].anchor_right = marks[index].anchor_left
 
 
 func _on_health_changed(current: float, maximum: float) -> void:

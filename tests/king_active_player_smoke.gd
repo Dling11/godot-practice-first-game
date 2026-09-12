@@ -1,7 +1,7 @@
 extends SceneTree
 
 const PlayerScene = preload("res://entities/player/player.tscn")
-const KingFrames = preload("res://assets/characters/playable/king/simple_reboot/king_simple_sprite_frames.tres")
+const KingFrames = preload("res://assets/characters/playable/king/greatsword/king_greatsword_sprite_frames.tres")
 const KingSword = preload("res://data/weapons/king_signature_sword.tres")
 
 
@@ -62,16 +62,16 @@ func _run() -> void:
 		await physics_frame
 		if player.attack_component.phase == MeleeAttackComponent.Phase.ACTIVE:
 			break
-	if player.attack_component.phase != MeleeAttackComponent.Phase.ACTIVE or body.frame < 2 or body.frame > 3:
+	if player.attack_component.phase != MeleeAttackComponent.Phase.ACTIVE or body.frame < 3 or body.frame > 4:
 		_fail("King's active contact phase does not use its two-frame slash contact beat.")
 		return
 	if body.position != idle_body_position:
 		_fail("King's body pivot shifts between idle and the attack contact phase.")
 		return
-	var observed_second_contact_pose := body.frame == 3
-	for frame_index in range(4):
+	var observed_second_contact_pose := body.frame == 4
+	for frame_index in range(6):
 		await physics_frame
-		observed_second_contact_pose = observed_second_contact_pose or body.frame == 3
+		observed_second_contact_pose = observed_second_contact_pose or body.frame == 4
 		if player.attack_component.phase != MeleeAttackComponent.Phase.ACTIVE:
 			break
 	if not observed_second_contact_pose:

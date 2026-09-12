@@ -1,0 +1,146 @@
+{
+  "date": "2026-09-12",
+  "engine": "Godot 4.7 stable",
+  "focused_suites": 26,
+  "mastery_and_asset_assertions": 353,
+  "tests": [
+    {
+      "test": "ability_input_buffer_smoke",
+      "result": "passed",
+      "log": ".godot\\king_final_ability_input_buffer_smoke.log"
+    },
+    {
+      "test": "basic_attack_repeat_smoke",
+      "result": "passed",
+      "log": ".godot\\king_basic_attack_repeat_smoke.log"
+    },
+    {
+      "test": "melee_combat_smoke",
+      "result": "passed",
+      "log": ".godot\\king_melee_combat_smoke.log"
+    },
+    {
+      "test": "echoing_sever_smoke",
+      "result": "passed",
+      "log": ".godot\\king_echoing_sever_smoke.log"
+    },
+    {
+      "test": "riftbreak_smoke",
+      "result": "passed",
+      "log": ".godot\\king_riftbreak_smoke.log"
+    },
+    {
+      "test": "sovereign_pursuit_smoke",
+      "result": "passed",
+      "log": ".godot\\king_sovereign_pursuit_smoke.log"
+    },
+    {
+      "test": "king_skill_4_smoke",
+      "result": "passed",
+      "log": ".godot\\king_king_skill_4_smoke.log"
+    },
+    {
+      "test": "player_movement_smoke",
+      "result": "passed",
+      "log": ".godot\\king_player_movement_smoke.log"
+    },
+    {
+      "test": "player_evade_smoke",
+      "result": "passed",
+      "log": ".godot\\king_final_player_evade_smoke.log"
+    },
+    {
+      "test": "king_greatsword_mastery_smoke",
+      "result": "passed",
+      "log": ".godot\\king_final_king_greatsword_mastery_smoke.log"
+    },
+    {
+      "test": "player_progression_smoke",
+      "result": "passed",
+      "log": ".godot\\king_final_player_progression_smoke.log"
+    },
+    {
+      "test": "king_active_player_smoke",
+      "result": "passed",
+      "log": ".godot\\king_final_king_active_player_smoke.log"
+    },
+    {
+      "test": "equipment_preview_smoke",
+      "result": "passed",
+      "log": ".godot\\king_equipment_preview_smoke.log"
+    },
+    {
+      "test": "combat_audio_smoke",
+      "result": "passed",
+      "log": ".godot\\king_combat_audio_smoke.log"
+    },
+    {
+      "test": "sword_attack_style_smoke",
+      "result": "passed",
+      "log": ".godot\\king_sword_attack_style_smoke.log"
+    },
+    {
+      "test": "character_menu_smoke",
+      "result": "passed",
+      "log": ".godot\\king_character_menu_smoke.log"
+    },
+    {
+      "test": "hud_action_controls_smoke",
+      "result": "passed",
+      "log": ".godot\\king_hud_action_controls_smoke.log"
+    },
+    {
+      "test": "assisted_combat_targeting_smoke",
+      "result": "passed",
+      "log": ".godot\\king_assisted_combat_targeting_smoke.log"
+    },
+    {
+      "test": "material_crafting_data_smoke",
+      "result": "passed",
+      "log": ".godot\\king_material_crafting_data_smoke.log"
+    },
+    {
+      "test": "run_session_progression_smoke",
+      "result": "passed",
+      "log": ".godot\\king_run_session_progression_smoke.log"
+    },
+    {
+      "test": "save_profile_snapshot_smoke",
+      "result": "passed",
+      "log": ".godot\\king_save_profile_snapshot_smoke.log"
+    },
+    {
+      "test": "save_disk_persistence_smoke",
+      "result": "passed",
+      "log": ".godot\\king_final_save_disk_persistence_smoke.log"
+    },
+    {
+      "test": "debug_unlimited_skills_smoke",
+      "result": "passed",
+      "log": ".godot\\king_debug_unlimited_skills_smoke.log"
+    },
+    {
+      "test": "examiner_trial_smoke",
+      "result": "passed",
+      "log": ".godot\\king_examiner_trial_smoke.log"
+    },
+    {
+      "test": "ui_theme_icon_smoke",
+      "result": "passed",
+      "log": ".godot\\king_ui_theme_icon_smoke.log"
+    },
+    {
+      "test": "runtime_archive_boundary_smoke",
+      "result": "passed",
+      "log": ".godot\\king_runtime_archive_boundary_smoke.log"
+    }
+  ],
+  "render": "Real Player in controlled F7 lab, four-direction walk/basic chain, four skills, Pursuit/Riftbreak, UI; 2x inspection followed by native scale",
+  "movie": "king_greatsword_review.mp4",
+  "source_prompts": "art_source/generated/characters/king/greatsword_2026_09_12/",
+  "limitations": [
+    "Campaign difficulty and timing feel still need owner playtesting.",
+    "Current level caps cover the six implemented stages; later game progression is undecided.",
+    "Complete prior simple_reboot visual set remains available for rollback."
+  ]
+}

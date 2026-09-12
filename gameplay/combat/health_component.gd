@@ -4,6 +4,7 @@ extends Node
 signal health_changed(current: float, maximum: float)
 signal damaged(info: DamageInfo)
 signal damage_blocked(info: DamageInfo)
+signal damage_absorbed(info: DamageInfo)
 signal died
 
 @export_range(1.0, 999999.0, 1.0) var maximum_health: float = 100.0
@@ -18,6 +19,9 @@ var current_health: float
 var is_invulnerable := false
 ## Debug/cinematic immunity is separate from temporary combat i-frames.
 var is_damage_immune := false
+## Optional guard authority consumes a mitigated hit before it reaches HP.
+## Return true only when the entire hit was absorbed (including a breaking hit).
+var damage_absorber: Callable
 
 
 func _ready() -> void:
@@ -58,6 +62,9 @@ func apply_damage(info: DamageInfo) -> bool:
 
 	info.raw_amount = info.amount
 	info.amount = resolve_damage(info.amount)
+	if damage_absorber.is_valid() and damage_absorber.call(info):
+		damage_absorbed.emit(info)
+		return true
 	current_health = maxf(current_health - info.amount, 0.0)
 	damaged.emit(info)
 	health_changed.emit(current_health, maximum_health)

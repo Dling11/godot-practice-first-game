@@ -4,12 +4,16 @@ This file records current production progress. Historical implementation detail 
 
 ## Completed
 
+- Decision 143: selected King C greatsword body/portrait/actions, three-cut physical chain, clipped white trails, Resolve passive, Pursuit/Riftbreak bonus, original action cues, +2%-per-level capped skill growth and stage-clear level ceilings. Owner full-campaign feel/balance testing remains active.
+
+- Decision 141: randomized 24-meteor Firmament, recent-action-aware legal attack selection, committed Axiom/Reprisal links, seal-break remarks and a rewardless F7 victory acknowledgment. Production Stage XX integration remains planned.
+
 - Godot 4.7 top-down production foundation with 960x540 logical rendering, keyboard/mouse/controller input, pause flow, scene transitions, and reusable data-owned combat authority.
 - King is the sole production player with four-direction locomotion/basic attack, dash/backstep, hit reactions, defeat, persistent vitality/progression, equipment aggregation, and four active skills: Echoing Sever, Riftbreak, Sovereign Pursuit, and Worldsplitter.
 - Basic attacks and skills use committed direction, authored hit shapes, damage, knockback, stagger, hitstop, camera response, audio, and world-space feedback without moving authority into animation.
 - Combat controls through Decision 114: right-click/WASD movement clears combat intent; left-click performs directional air swings, one-click enemy selection, and repeated same-enemy pursuit/attack; right-click/`Esc` cancels targeted skills; optional `AUTO ALL` and `AUTO SKILL` remain explicit.
 - Size-aware enemy footprints drive movement collision, navigation radius, crowd separation, readable tier auras, foot-circle selection, and assisted approach distance. Hurtboxes and attack shapes remain separate.
-- One six-cell generated combat-action atlas supplies King Skills 1-4, Basic Attack, and Dodge/Dash through reusable `AtlasTexture` resources.
+- Four coordinated greatsword skill icons join the existing Basic Attack and Dodge/Dash icons, all through reusable native-24px `AtlasTexture` resources.
 - Sanctuary with Eira skill information, Orren lore dialogue, Nema's atomic gold-backed Stage V Living Rootforge, Umi's catalog-driven Echo Crucible for selling/reconstruction, expedition selection, debug-only Combat Lab access, and safe-point autosave.
 - Forest Stages 1-5, including authored TileMaps, bounded live-enemy pressure, sparse/protected loot, Stage III Rootbound Husk, Stage IV Armored Hog pressure, and Stage V Varkuun encounter/reward flow.
 - Decisions 126-127 production Stage VI: `The Elder Ascent` preserves the approved top-down terrace/waterfall and eight-Bear population while five waves now total 4/4/5/6/9 under a five-live cap. Mirelings are absent; fourteen Thralls, five rebuilt Bramble Spitters, and one finale Hog supply composition pressure. Spitters own fresh `AnimatedSprite2D` action families, bounded retreat, and destructible thorn-seeds. Retuned Crag Iron/Echo Claw drops, clear banking, Level 6 access, Normal return, and F9 review remain active.
@@ -30,8 +34,9 @@ This file records current production progress. Historical implementation detail 
 
 ## In Progress
 
+
 - Owner feel-test Decision 114 in the normal game: click priority, repeated-click timing, footprint picking, pursuit around obstacles, moving targets, large bosses, movement cancellation, roster discovery, and long-name marquee readability.
-- Owner feel-test the taller enemy roster, target panel, tier foot auras, target chevron, generated cursors, six-cell action atlas, and Stage IV eight-enemy readability at 960x540.
+- Owner feel-test the taller enemy roster, target panel, tier foot auras, target chevron, generated cursors, greatsword skill icons, and Stage IV eight-enemy readability at 960x540.
 - Owner feel-test the fixed Sanctuary gate energy crop and Decision 119 threat ladder at 960x540: quiet blue Normal, restrained purple Mini Boss, red Boss, searing-light God, near-black Transcendent, independent lightning reach, and screen-edge direction pointer.
 - Owner feel-test Umi's close dialogue portrait, right-facing-bowl hand alignment, lateral workbench scale/collision, reconstruction owned-count clarity, 760x420 Sell/Reconstruct density, click/right-click fuel flow, Auto Fill explanation, and first-play gold pacing at 960x540.
 - Feel-test King's attack timing and the complete four-skill kit, especially Riftbreak impact readability, Sovereign Pursuit anchoring, and Worldsplitter commitment/damage/cooldown against crowds and bosses.
@@ -45,7 +50,7 @@ This file records current production progress. Historical implementation detail 
 
 ### Forest Production
 
-1. Promote or revise the accepted F7 Examiner/Court combat proof after owner feel-testing. The production Stage XX gate still requires the arrival/return transitions, scenario dialogue, success/failure handling, reward/replay/save contracts, final mix, and final balance. Keep the Executioner documentation-only.
+1. Promote or revise the accepted F7 Examiner/Court combat proof after owner feel-testing. The production Stage XX gate still requires the arrival/return transitions, production scenario dialogue and outcome wiring beyond the F7 victory preview, reward/replay/save contracts, final mix, and final balance. Keep the Executioner documentation-only.
 2. Add replayable Hunts for completed stages with explicit reward families and modifiers.
 3. Continue authored Forest content through Stage X. Keep Stage VIII's standard-accessory/Umi milestone, reserve modular reclaimed magical ruins plus the provisional Mage/Warden pressure pair for Stage IX, and retain Stage X's relic/signature milestone.
 4. When Stage VIII gains canonical completion authority, use it to unlock Umi and the whole Echo Crucible service; keep the current instance available until then for production testing.
@@ -82,4 +87,4 @@ Owner feel-test the new F7 Examiner proof before any Stage XX integration. First
 
 Decision 138 (2026-09-12) supersedes the Stage VII optional-challenge and Stage XX direct-god placement: Examiner is the required Stage XX scenario boss, a false mentor serving the gods' manipulation. They promise reunion at Stage 100; King's family is actually dead. Souls, resurrection, replicas, the ending, and any bestowed power remain open possibilities, not established survival facts. The One Above's direct confrontation is now unscheduled. Only the F7 combat proof is playable; production route/outcome/reward/save integration is pending.
 
-The owner approved the corrected animation identity. Decision 138 adds a 38px physical thrust step, position-conditional Reprisal with locked warning/260px maximum collision-stopped advance, a behind-the-boss punish window, and second-measure Held Judgment. At 70% HP a short false-mentor dialogue releases King into Trial of Worth: deal 240 accepted damage within 7 seconds while avoiding alternating snapshot ground cuts. Success unlocks the nearest one of four 54px sanctuary plates; failure unlocks none. After 0.64s preparation and 0.17s launch, a 2.8s escape window precedes a finite 800-raw-damage Verdict that bypasses action i-frames, respects armor/ward and explicit lab immunity, and deals zero inside earned sanctuary. A second trial occurs on the first accepted combat hit at or below 35% HP after phase two. No extra dialogue interrupts that repeat. Current tuning is a prototype, not validated Stage XX gear balance.
+Decision 141 preserves the approved body art, living Sun charge, separate seal/stun rules, 60% Second Measure and 35% Unbound. Crimson Firmament retains its 180-point/3.8s interruptible charge, then releases 24 red meteors in eight randomized waves of three, 0.62s apart, with 0.90s warnings and 48px impact radii. Each wave snapshots King and scatters other impacts while leaving a nearby opening; no permanent safe column remains. Weighted legal attack selection discourages recent repetitions, and selected phase-two Axiom recoveries can lead into a newly warned, committed Reprisal. Seal breaks earn changing remarks. Lethal damage clears hazards, then Examiner kneels, rises, acknowledges King in a skippable conversation and withdraws. This is a rewardless F7 outcome preview: production Stage XX routing, rewards, story persistence and gear balance remain pending.

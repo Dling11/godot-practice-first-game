@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://ui/boss/boss_health_hud.gd" id="1"]
 [ext_resource type="Theme" path="res://assets/ui/themes/battle_of_gods_theme.tres" id="2"]
@@ -42,6 +42,15 @@ corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="guard"]
+bg_color = Color(0.88, 0.65, 0.24, 1)
+border_width_top = 1
+border_color = Color(1, 0.9, 0.57, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_left = 2
+corner_radius_bottom_right = 2
 
 [node name="BossHealthHUD" type="Control"]
 layout_mode = 3
@@ -156,6 +165,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.96, 0.76, 0.54, 0.8)
+
+[node name="GuardBar" type="ProgressBar" parent="Panel/Margin/Stack"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+mouse_filter = 2
+show_percentage = false
+theme_override_styles/background = SubResource("empty")
+theme_override_styles/fill = SubResource("guard")
 
 [node name="Footer" type="HBoxContainer" parent="Panel/Margin/Stack"]
 layout_mode = 2

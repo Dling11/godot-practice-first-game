@@ -20,8 +20,8 @@ func _run() -> void:
 	root.add_child(former_wide_edge_target)
 	root.add_child(opposite_target)
 	player.global_position = Vector2(100.0, 100.0)
-	center_target.global_position = Vector2(100.0, 140.0)
-	# This target sits inside King's tightened 48-reach by 56-wide contact fan.
+	center_target.global_position = Vector2(100.0, 118.0)
+	# This target sits inside King's greatsword 36-reach by 44-wide contact fan.
 	edge_target.global_position = Vector2(125.0, 120.0)
 	# This lane was covered by the old inherited 96-wide contact fan.
 	former_wide_edge_target.global_position = Vector2(143.0, 104.0)

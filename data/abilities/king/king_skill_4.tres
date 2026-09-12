@@ -8,8 +8,8 @@
 [resource]
 script = ExtResource("1_script")
 ability_id = &"king_skill_4"
-display_name = "Skill 4"
-hud_name = "SKILL 4"
+display_name = "Worldsplitter"
+hud_name = "WORLDSPLITTER"
 description = "Call down a giant spirit sword. Its first crash deals concentrated damage; after the blade forces itself deeper, a second strike detonates a much larger area.\n220% + 300% center damage - 260 px range - 104 px final radius"
 icon = ExtResource("2_icon")
 activation_mode = 1

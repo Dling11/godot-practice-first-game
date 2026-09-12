@@ -2,6 +2,13 @@ class_name ExaminerActionSfx
 extends Node
 
 const Thrust = preload("res://assets/audio/sfx/characters/disciples/examiner/rework/examiner_thrust.wav")
+const SunCharge = preload("res://assets/audio/sfx/characters/disciples/examiner/firmament/sun_gather.wav")
+const CrimsonCharge = preload("res://assets/audio/sfx/characters/disciples/examiner/firmament/crimson_gather.wav")
+const CrimsonRelease = preload("res://assets/audio/sfx/characters/disciples/examiner/firmament/crimson_release.wav")
+const SealCharge = preload("res://assets/audio/sfx/characters/disciples/examiner/ascendant/seal_charge.wav")
+const SunRelease = preload("res://assets/audio/sfx/characters/disciples/examiner/ascendant/sun_release.wav")
+const GuardBreak = preload("res://assets/audio/sfx/characters/disciples/examiner/ascendant/guard_break.wav")
+const Awakening = preload("res://assets/audio/sfx/characters/disciples/examiner/ascendant/awakening.wav")
 const Sweep = preload("res://assets/audio/sfx/characters/disciples/examiner/rework/examiner_sweep.wav")
 const ChargePrepare = preload("res://assets/audio/sfx/characters/disciples/examiner/rework/examiner_charge_prepare.wav")
 const ChargeDash = preload("res://assets/audio/sfx/characters/disciples/examiner/rework/examiner_charge_dash.wav")
@@ -60,8 +67,25 @@ func play_state(state: Examiner.State, _duration_seconds: float) -> void:
 			_play(action_player, SlamPrepare, -5.0)
 		Examiner.State.REFUTATION_ACTIVE:
 			_play(action_player, Refutation, -4.0)
-		Examiner.State.AXIOM_WIND_UP, Examiner.State.TRIAL_CHANNEL:
+		Examiner.State.AXIOM_WIND_UP:
 			_play(action_player, AxiomPrepare, -4.0)
+		Examiner.State.TRIAL_CHANNEL:
+			_play(action_player, SealCharge, -8.0)
+		Examiner.State.ORB_CHARGE:
+			_play(action_player, SunCharge, -7.0)
+		Examiner.State.FIRMAMENT_CHARGE:
+			_play(action_player, CrimsonCharge, -7.0)
+		Examiner.State.FIRMAMENT_BARRAGE:
+			_play(action_player, CrimsonRelease, -5.0)
+		Examiner.State.ORB_RELEASE:
+			_play(action_player, SunRelease, -3.0)
+		Examiner.State.GUARD_BROKEN:
+			action_player.stop()
+			_play(impact_player, GuardBreak, -3.0)
+		Examiner.State.BERSERK_AWAKEN:
+			_play(action_player, Awakening, -3.0)
+		Examiner.State.CROWNFALL:
+			_play(action_player, DescentChime, -4.0)
 		Examiner.State.AXIOM_CUT_ONE:
 			_play(action_player, AxiomCut, -3.0)
 			action_player.pitch_scale = 0.92
@@ -80,6 +104,11 @@ func play_state(state: Examiner.State, _duration_seconds: float) -> void:
 			_play(action_player, DescentFall, -1.0)
 		Examiner.State.WITHDRAWAL:
 			action_player.stop()
+		Examiner.State.VICTORY_KNEEL:
+			action_player.stop()
+			_play(impact_player, GuardBreak, -7.0)
+		Examiner.State.VICTORY_RISE:
+			_play(action_player, DescentChime, -9.0)
 
 
 func play_impact(kind: StringName, _world_position: Vector2, _direction: Vector2) -> void:
@@ -102,4 +131,4 @@ func _play(player: AudioStreamPlayer2D, stream: AudioStream, volume_db: float) -
 
 
 func play_trial_cut() -> void:
-	_play(action_player, AxiomCut, -5.0)
+	_play(impact_player, AxiomCut, -5.0)

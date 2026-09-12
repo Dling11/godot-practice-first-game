@@ -3,7 +3,7 @@ extends SceneTree
 const PlayerScene = preload("res://entities/player/player.tscn")
 const CharacterMenuScene = preload("res://ui/character_menu.tscn")
 const HudScene = preload("res://ui/combat_hud.tscn")
-const KingFrames = preload("res://assets/characters/playable/king/simple_reboot/king_simple_sprite_frames.tres")
+const KingFrames = preload("res://assets/characters/playable/king/greatsword/king_greatsword_sprite_frames.tres")
 
 
 func _initialize() -> void:
@@ -63,7 +63,7 @@ func _run() -> void:
 		"Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/"
 		+ "PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas/Body"
 	) as AnimatedSprite2D
-	if preview_body.sprite_frames != KingFrames or preview_body.position != Vector2(55, 70):
+	if preview_body.sprite_frames != KingFrames or preview_body.position != Vector2(55, 60):
 		_fail("Character menu preview is not using King's body-centered active model.")
 		return
 	var preview_grip := menu.get_node(

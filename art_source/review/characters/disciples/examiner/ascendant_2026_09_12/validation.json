@@ -1,0 +1,21 @@
+{
+  "body_pngs_unchanged_from_HEAD": 11,
+  "vfx_frames": 8,
+  "vfx_padding_checked": true,
+  "clean_checks": [
+    "examiner_ascendant_smoke",
+    "examiner_worth_smoke",
+    "examiner_trial_smoke",
+    "examiner_rework_smoke",
+    "examiner_effects_smoke",
+    "boss_health_hud_smoke",
+    "combat_lab_smoke",
+    "player_evade_smoke",
+    "runtime_archive_boundary_smoke"
+  ],
+  "armor_mitigation_smoke": "Assertions passed; existing fixture exit reports two ObjectDB instances and one resource",
+  "rendered_capture": "error-free, ten snapshots",
+  "video": "ascendant.mp4",
+  "mp4_decodes": true,
+  "source_prompt": "art_source/generated/characters/disciples/examiner/ascendant_2026_09_12/prompt.md"
+}

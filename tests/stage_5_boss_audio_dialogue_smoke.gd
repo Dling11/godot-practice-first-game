@@ -3,7 +3,7 @@ extends SceneTree
 const BossScene = preload("res://entities/enemies/stage_5_boss/stage_5_boss.tscn")
 const DialogueScene = preload("res://ui/dialogue/dialogue_panel.tscn")
 const BossPortrait = preload("res://assets/characters/enemies/portraits/stage_5_boss_portrait_96x96.png")
-const KingPortrait = preload("res://assets/characters/playable/king/portraits/king_portrait_96x96.png")
+const KingPortrait = preload("res://assets/characters/playable/king/greatsword/king_greatsword_portrait_96x96.png")
 
 
 func _initialize() -> void:

@@ -1,0 +1,18 @@
+{
+  "author": "Original procedural synthesis for Battle of Gods",
+  "generator": "tools/generate_examiner_firmament_sfx.py",
+  "cues": {
+    "sun_gather": {
+      "seconds": 5.5,
+      "peak_dbfs": -1.6184381524785225
+    },
+    "crimson_gather": {
+      "seconds": 3.8,
+      "peak_dbfs": -1.6184381524785225
+    },
+    "crimson_release": {
+      "seconds": 0.95,
+      "peak_dbfs": -1.6184381524785212
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "clean_checks": [
+    "examiner_firmament_smoke",
+    "examiner_ascendant_smoke",
+    "examiner_worth_smoke",
+    "examiner_trial_smoke",
+    "examiner_rework_smoke",
+    "examiner_effects_smoke",
+    "boss_health_hud_smoke",
+    "combat_lab_smoke",
+    "runtime_archive_boundary_smoke"
+  ],
+  "body_pngs_unchanged": 11,
+  "distinct_energy_frames": 16,
+  "rendered_review": "error-free; ten snapshots",
+  "video": "firmament.mp4",
+  "video_bytes": 8637000,
+  "mp4_decode": "passed",
+  "normal_loadout_clear": "not claimed; owner balance playtest pending"
+}
