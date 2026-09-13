@@ -71,15 +71,29 @@ func _ready() -> void:
 	_bind_controls()
 	_style_review_panel()
 	var collection := Button.new()
-	collection.text="KING · TECHNIQUE COLLECTION"
-	collection.position=Vector2(726,494)
-	collection.size=Vector2(220,30)
+	collection.text="KING · SKILLS"
+	collection.position=Vector2(726,438)
+	collection.size=Vector2(106,30)
+	collection.focus_mode=Control.FOCUS_NONE
 	collection.theme=get_node("UI/LabPanel").theme
 	collection.pressed.connect(func() -> void: player.get_node("KingSkillLibrary").open_collection())
 	get_node("UI").add_child(collection)
+	var king_review := preload("res://levels/combat_lab/king_spellward_review.gd").new()
+	king_review.name = "KingSpellwardReview"
+	add_child(king_review)
+	var review_button := Button.new()
+	review_button.text = "KING REVIEW"
+	review_button.position = Vector2(838, 438)
+	review_button.size = Vector2(108, 30)
+	review_button.theme = collection.theme
+	review_button.focus_mode = Control.FOCUS_NONE
+	review_button.pressed.connect(king_review.open_review)
+	get_node("UI").add_child(review_button)
 	_update_latest_label()
 	_update_status()
 	call_deferred("spawn_selected", 1)
+	if "--king-review" in OS.get_cmdline_user_args():
+		king_review.call_deferred("open_review")
 
 
 func _style_review_panel() -> void:

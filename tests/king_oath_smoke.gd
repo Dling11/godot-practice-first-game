@@ -54,15 +54,16 @@ func _run() -> void:
 			var before := target.health_component.current_health
 			var missed := outside.health_component.current_health
 			await physics_frame
-			_check(ability.request_cast_at(actor.global_position,25) if tuning.technique==2 else ability.request_cast(Vector2.RIGHT,25),"Cast rank "+str(rank))
+			_check(ability.request_cast_at(target.global_position,25) if tuning.technique==1 else ability.request_cast(Vector2.RIGHT,25),"Cast rank "+str(rank))
 			_check(actor.get_active_ability_component()==ability,"Generic active authority")
 			var elapsed := 0.0
 			while ability.is_casting() and elapsed<4:
 				await physics_frame
 				elapsed+=1.0/60
 			_check(not ability.is_casting(),"Complete timeline")
-			_check(contacts.size()==tuning.strike_count(),"Every authored contact fires")
-			_check(target.health_component.current_health<before,"Real hurtbox receives new skill")
+			await create_timer(.25).timeout # Released ground authority outlives control.
+			_check(contacts.size()==tuning.beat_times.size(),"Every authored contact fires")
+			_check(target.health_component.current_health<before if tuning.technique!=2 else target.health_component.current_health==before,"Damage skills hit; evasive step has no automatic explosion")
 			_check(outside.health_component.current_health==missed,"No damage outside AOE")
 			_check(tuning.strike_damage_multipliers==immutable,"Shared tuning immutable")
 			_check(not actor.health_component.is_invulnerable,"Travel protection clears")
@@ -70,7 +71,7 @@ func _run() -> void:
 		ability.clear_cooldown()
 		mastery.stacks=3
 		ability.request_cast(Vector2.RIGHT,25)
-		_check(mastery.stacks==0 and ability.cast_power_multiplier==1.25,"One Resolve consumption")
+		_check(mastery.stacks==3 if (ability.definition as KingOathDefinition).technique==2 else mastery.stacks==0 and ability.cast_power_multiplier==1.25,"Damage consumes Resolve once; mobility retains it")
 		ability.cancel_cast()
 		_check(not ability.hitbox._enabled and not actor.health_component.is_invulnerable,"Cancel cleans combat")
 		_check(not ability.request_cast(Vector2.RIGHT,25),"Cancellation retains cooldown")

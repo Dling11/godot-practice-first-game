@@ -11,6 +11,7 @@ signal defeated
 signal testing_preset_applied(level: int, coins: int)
 signal equipment_stats_changed
 signal skill_loadout_changed
+signal selected_skill_changed(slot_number: int)
 signal restraint_started(source: Node, total_break_points: int)
 signal restraint_progress(source: Node, remaining_break_points: int, total_break_points: int)
 signal restraint_ended(source: Node, escaped: bool)
@@ -62,6 +63,7 @@ const CombatTargetingScript = preload("res://entities/player/components/player_c
 @onready var action_buffer_timer: Timer = %ActionBufferTimer
 
 var facing_direction := Vector2.DOWN
+var selected_skill_slot := 1
 var is_defeated := false
 var _was_moving := false
 var _buffered_action := BufferedAction.NONE
@@ -174,6 +176,15 @@ func _physics_process(delta: float) -> void:
 		request_ability(3)
 	if input_source.is_ability_4_just_pressed():
 		request_ability(4)
+	for slot_number in range(5, SkillLoadoutDefinition.SLOT_COUNT + 1):
+		if Input.is_action_just_pressed("player_skill_%d" % slot_number):
+			request_ability(slot_number)
+	if Input.is_action_just_pressed("player_skill_previous") or Input.is_action_just_pressed("player_skill_next"):
+		var step := -1 if Input.is_action_just_pressed("player_skill_previous") else 1
+		selected_skill_slot = posmod(selected_skill_slot - 1 + step, SkillLoadoutDefinition.SLOT_COUNT) + 1
+		selected_skill_changed.emit(selected_skill_slot)
+	if Input.is_action_just_pressed("player_skill_selected"):
+		request_ability(selected_skill_slot)
 	_try_assisted_primary_attack()
 
 	if is_restrained():
@@ -503,6 +514,7 @@ func request_evade(direction: Vector2) -> bool:
 		if not evade_component.is_evade_available():
 			return false
 		if active_ability.definition != null and active_ability.definition.dash_cancelable:
+			_clear_buffered_action()
 			active_ability.cancel_cast()
 		else:
 			return _buffer_action(BufferedAction.EVADE, direction)
@@ -524,6 +536,9 @@ func request_ability_1() -> bool:
 
 func request_ability(slot_number: int) -> bool:
 	var component := get_ability_component_for_slot(slot_number)
+	var direction := facing_direction
+	if component is KingOathComponent and (component.definition as KingOathDefinition).technique == KingOathDefinition.Technique.STARFALL:
+		direction = input_source.resolve_mobility_direction(get_global_mouse_position()-global_position, facing_direction)
 	if is_restrained() or is_in_hit_recovery():
 		return false
 	if _is_targeting_any_ability():
@@ -540,20 +555,20 @@ func request_ability(slot_number: int) -> bool:
 	):
 		return false
 	if is_any_ability_casting():
-		return _buffer_action(BufferedAction.ABILITY, facing_direction, slot_number)
+		return _buffer_action(BufferedAction.ABILITY, direction, slot_number)
 	if attack_component.phase != attack_component.Phase.IDLE:
-		_buffer_action(BufferedAction.ABILITY, facing_direction, slot_number)
+		_buffer_action(BufferedAction.ABILITY, direction, slot_number)
 		if attack_component.phase == attack_component.Phase.RECOVERY:
 			return _try_execute_buffered_action()
 		return true
 	if evade_component.is_dashing():
-		return _buffer_action(BufferedAction.ABILITY, facing_direction, slot_number)
+		return _buffer_action(BufferedAction.ABILITY, direction, slot_number)
 	if evade_component.is_recovering():
-		_buffer_action(BufferedAction.ABILITY, facing_direction, slot_number)
+		_buffer_action(BufferedAction.ABILITY, direction, slot_number)
 		return _try_execute_buffered_action()
 	if not evade_component.is_ready():
 		return false
-	return _begin_ability_input(component, facing_direction)
+	return _begin_ability_input(component, direction)
 
 
 func set_auto_farm_enabled(enabled: bool) -> void:
@@ -892,6 +907,8 @@ func _begin_ability_input(component: AbilityComponent, direction: Vector2) -> bo
 
 
 func _start_ability(component: AbilityComponent, direction: Vector2) -> bool:
+	if component is KingOathComponent and (component.definition as KingOathDefinition).technique == KingOathDefinition.Technique.STARFALL:
+		_set_facing_direction(input_source.resolve_cardinal_facing(direction, facing_direction))
 	var weapon_damage := (
 		attack_component.weapon.damage
 		if attack_component.weapon != null

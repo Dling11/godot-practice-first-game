@@ -92,7 +92,7 @@ signal menu_closed
 @onready var consumables_filter_button: Button = %ConsumablesFilterButton
 @onready var key_filter_button: Button = %KeyFilterButton
 @onready var sort_button: Button = %SortButton
-@onready var skills_container: HBoxContainer = %Skills
+@onready var skills_container: GridContainer = %Skills
 @onready var skill_detail_label: Label = %SkillDetailLabel
 @onready var portrait_aura: Polygon2D = %PortraitAura
 @onready var weapon_preview: Sprite2D = %WeaponPreview
@@ -614,7 +614,7 @@ func _build_skill_cards() -> void:
 	_skill_cards.clear()
 	_future_skill_cards.clear()
 	if player.skill_loadout == null or not player.skill_loadout.has_complete_layout():
-		push_error("CharacterMenu requires a complete four-slot skill loadout.")
+		push_error("CharacterMenu requires a complete ten-slot skill loadout.")
 		return
 	var button_group := ButtonGroup.new()
 	button_group.allow_unpress = false
@@ -674,11 +674,11 @@ func _focus_default_control() -> void:
 func _on_skill_slot_selected(definition: SkillSlotDefinition) -> void:
 	_selected_skill = definition
 	if definition.is_equipped():
-		skill_detail_label.text = "%s\n%s\nSLOT %d • EQUIPPED • PRESS %d DURING COMBAT" % [
+		skill_detail_label.text = "%s\n%s\nSLOT %d • EQUIPPED • PRESS %s DURING COMBAT" % [
 			definition.get_display_name().to_upper(),
 			definition.get_description(),
 			definition.slot_number,
-			definition.slot_number,
+			definition.get_key_label(),
 		]
 	else:
 		skill_detail_label.text = "%s\n%s\nSLOT %d • SEALED • %s" % [
@@ -690,7 +690,7 @@ func _on_skill_slot_selected(definition: SkillSlotDefinition) -> void:
 
 	if definition.is_equipped():
 		var mastery := player.get_node("KingMastery") as KingMasteryComponent
-		skill_detail_label.text += "\nRESOLVE: 3 landed swings → next skill +25%% (8s). Pursuit/Starfall → Riftbreak/Griefwake within 1.2s: +15%%.\nLEVEL MASTERY: +%d%% skill damage (maximum +18%%)." % roundi((mastery.definition.level_multiplier(player.progression_component.level)-1.0)*100)
+		skill_detail_label.text += "\nRESOLVE: 3 landed swings → next skill +25%% (8s). Pursuit/Breakstep → Riftbreak/Griefwake within 1.2s: +15%%.\nLEVEL MASTERY: +%d%% skill damage (maximum +18%%)." % roundi((mastery.definition.level_multiplier(player.progression_component.level)-1.0)*100)
 
 
 var _selected_skill: SkillSlotDefinition

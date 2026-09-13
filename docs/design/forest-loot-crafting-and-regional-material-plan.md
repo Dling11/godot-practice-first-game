@@ -2,7 +2,7 @@
 
 - **Status:** Approved Forest Stages I-X regional/economy direction; Segments 1-5 implemented and Segments 6-8 pending. Decision 122 prevents the regional motif from becoming a global naming formula.
 - **Approved:** 2026-07-26
-- **Runtime coverage today:** Stages 1-5, six sparse/protected enemy profiles, thirteen illustrated materials, collectible pickups, profile-backed weapon/gear/material/recipe/claim state, Stage III and V milestone chests, six finalized Stage V equipment definitions/icons/recipes with live equip/stat authority, and Rootweaver Nema's atomic category/seal/material/output/save transaction
+- **Runtime coverage today:** Stages I-VI, including the production Elder Ascent route and Crag Bear/Crag Iron/Echo Claw additions; collectible pickups, profile-backed weapon/gear/material/recipe/claim state, Stage III and V milestone chests, six finalized Stage V equipment definitions/icons/recipes with live equip/stat authority, and Rootweaver Nema's atomic category/seal/material/output/save transaction. Stages VII-X remain planned.
 - **Planned content covered here:** Forest Stages I-X and reusable loot/crafting infrastructure for Stage XI onward
 
 ## Purpose
@@ -15,7 +15,7 @@ Fight -> Loot -> Craft -> Build -> Master -> Advance
 
 First clears advance story and unlock content. Replays provide controlled material goals, Hunt variants, and milestone rewards. Sanctuary turns those rewards into deterministic equipment choices. Later regions reuse the same technical and visual grammar without collapsing into `Leather++` inventory clutter or cheap recolors.
 
-This plan is intentionally broader than the five implemented stages so save data, item identities, folder ownership, icon production, monster design, and crafting authority do not need destructive rewrites when Stages VI-XX arrive. Forest vocabulary remains region-scoped rather than a default for unrelated characters or global systems.
+This plan is intentionally broader than the six implemented stages so save data, item identities, folder ownership, icon production, monster design, and crafting authority can extend into Stages VII-XX. Forest vocabulary remains region-scoped rather than a default for unrelated characters or global systems.
 
 ## Decision 071 Equipment Overlay
 

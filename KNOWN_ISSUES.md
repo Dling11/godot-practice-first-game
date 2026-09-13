@@ -4,11 +4,24 @@ This file tracks current limitations only. Resolved and retired systems belong i
 
 ## Current Limitations
 
-### KI-024 - King future forms need campaign milestones and balance
+### KI-025 - Divine collection and future reward gates remain incomplete
 
-- **Implemented:** Eight-technique collection, four equipped slots, four finite Oath forms, Stage II/V learn/evolution gates, Sanctuary persistence and isolated Lab previews. New contacts, wall-stopped mobility, Resolve/link integration, cancellation and loadout lifecycle have focused coverage.
+- **Implemented:** Decision 147 exposes ten equipped slots on 1–0, controller slot selection, expanded HUD/collection and compatible four/ten-entry saves. Eight techniques exist; extra positions can remain empty.
+- **Remaining:** The proposed domain spell families, broader status system, divine passives and future stage reward gates are not implemented. Minus/plus remain optional later extensions.
+- **Next:** Review the responsive core in combat, then build earned spells with bounded player commitments and explicit stage/reward authority. See Decisions 145–147.
+
+### KI-024 - King skill responsiveness, future milestones and balance need review
+
+- **Owner rejection / pause:** Latest Skills 2/3 and old/new coexistence are not accepted. Increasing skill numbers should represent stronger progression tiers. Skill redesign remains pending; September 14 authorization permits the isolated C character review under Decision 148. Passing checks do not establish an approved final kit.
+- **Character review update:** Owner selected C Spellward and authorized its review proof, with clearer detail at unchanged human scale and no realistic treatment. Review-only idle/walk/swing studies exist; walking still repeats the lead-leg arrangement too closely. Motion quality, fine-density rendering/pixel snapping, background cleanup and directional consistency remain unapproved. This does not resume runtime skill implementation.
+- **Decision 148 follow-up:** Owner approves the three-cut art. The latest Lab correction replaces mixed-sheet idle/walk with a coherent source, registers the upper hair band instead of cell centers, lowers the rear shoulder blade below the hair and adds one source texel of charcoal outline to all C body animations. Side-stride overlap/locomotion feel, mirrored clothing asymmetry and provisional skill-body mappings still need owner review. Earlier captures remain historical drafts; campaign appearance is unchanged.
+- **Side-walk correction:** Owner approves down/up gait but rejects the foot-only side correction as mechanical. Left/right now use an eight-frame whole-body source with authored free-arm swing, changing waist/chest silhouette and scarf overlap. Four/eight-frame turns preserve stride phase and cycle cadence. Original walk atlas, idle and attacks retain their hashes. The revised motion still awaits owner approval; `spellward_bodywalk_2026_09_14` supersedes the foot-only capture.
+- **Latest leg correction:** Owner accepts the whole-body hand movement but rejects its feet. The side atlas now renders opposing continuous support/swing paths through an offline two-bone rig using generated raster leg parts, under the locked accepted upper-body frames. The tunic join is isolated without removing hand pixels. Normal and quarter-speed captures are in `spellward_legcycle_2026_09_14`; final visual approval remains pending. Passing combat tests is not evidence of accepted walking quality.
+
+- **Implemented:** Eight-technique collection, ten equipped slots, four finite forms, Stage II/V gates, Sanctuary persistence and isolated Lab previews. Decision 147 adds short fixed commitments, released targeted damage, center/rim tiers, Light-only rim slow, collision-stopped Breakstep and earned riposte. Focused behavior and regression coverage pass.
 - **Remaining:** Production Stage XX and late-game rewards do not grant Ascendant/Unbound yet. Their story flags are hooks, not completed routes. Campaign pacing, future gear, crowd damage and the Examiner seal matchup require playtesting; the current campaign still reaches VI.
-- **Next:** Compare the Mortal/Resonant kit against normal Stage IV-VI encounters with debug helpers off, then tune the eventual Stage XX rewards and equipment together. F7's existing unlimited-skill helper is for reviewing effects, not cooldown balance.
+- **Current timing:** Crosscut/Griefwake/Breakstep/Last Oath commit for 0.48/0.42/0.32/0.62 s before hit pauses, unchanged by form. Dash can cancel the damaging core skills; Breakstep completes its short evasive sequence.
+- **Next:** Owner feel-test timing, sound and incoming pressure with debug helpers off, then tune campaign damage and later forms with actual gear measurements. F7's unlimited-skill helper is for review, not cooldown balance.
 
 ### KI-023 - Examiner Stage XX balance and scenario integration remain pending
 
@@ -74,7 +87,7 @@ This file tracks current limitations only. Resolved and retired systems belong i
 
 - **Status:** Implemented; owner playtesting remains.
 - **Implemented:** Decision 143 installs C's compact greatsword identity, alternating gait, eight-frame action families, portrait, three-cut combo, contact-clipped raster trails, Resolve, Pursuit/Riftbreak link, original audio and bounded skill/XP progression.
-- **September 13 correction:** Replaced inconsistent front/back walk poses, separated basic finishing sweep from ground-slam art, corrected the wrong-facing defeat settle, removed dark-magenta fringes, and reviewed all 280 installed frames. Riftbreak's duplicate/offset crater and premature impact cleanup are corrected; Pursuit damage/crater/shockwave now share the current foot origin. Resolve HUD explains building versus ready and retains the simultaneous landing-link cue. The action-kit brainstorm is documentation only.
+- **September 13 correction:** Replaced inconsistent front/back walk poses, separated basic finishing sweep from ground-slam art, corrected the wrong-facing defeat settle, removed dark-magenta fringes, and reviewed all 280 installed frames. Riftbreak's duplicate/offset crater and premature impact cleanup are corrected; Pursuit damage/crater/shockwave now share the current foot origin. Resolve HUD explains building versus ready and retains the simultaneous landing-link cue. The original brainstorm is superseded by implemented Decision 144; the subsequent responsiveness redesign remains a proposal.
 - **Remaining:** Judge swing readability and audio in crowded fights, plus first-clear pacing with no armor/starter/Stage V gear. +25% Resolve, +15% link and stage cap thresholds are authored starting values, not campaign-balance claims. Final level progression beyond the implemented six-stage campaign remains undefined.
 
 ### KI-013 - Hunts are not implemented

@@ -21,6 +21,14 @@ func get_aim_direction() -> Vector2:
 		"player_aim_down"
 	)
 
+func resolve_mobility_direction(pointer_direction: Vector2, current_facing: Vector2) -> Vector2:
+	var direction := get_move_direction()
+	if direction.is_zero_approx():
+		direction = get_aim_direction()
+	if direction.is_zero_approx() and Input.get_connected_joypads().is_empty():
+		direction = pointer_direction
+	return current_facing if direction.is_zero_approx() else direction.normalized()
+
 
 func resolve_cardinal_facing(move_direction: Vector2, current_facing: Vector2) -> Vector2:
 	## Combat facing follows movement intent, never passive pointer position.

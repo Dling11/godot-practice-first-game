@@ -4,7 +4,7 @@
 [ext_resource type="Theme" path="res://assets/ui/themes/battle_of_gods_theme.tres" id="2_theme"]
 
 [node name="SkillSlotCard" type="Button"]
-custom_minimum_size = Vector2(128, 68)
+custom_minimum_size = Vector2(116, 48)
 layout_mode = 2
 theme = ExtResource("2_theme")
 toggle_mode = true

@@ -1,0 +1,72 @@
+[
+	{
+		"end": 2.35,
+		"group": "Original",
+		"id": "echoing_sever",
+		"name": "Echoing Sever",
+		"start": 0.0166666666666667
+	},
+	{
+		"end": 4.66666666666667,
+		"group": "Original",
+		"id": "riftbreak",
+		"name": "Riftbreak",
+		"start": 2.66666666666667
+	},
+	{
+		"end": 7.15,
+		"group": "Original",
+		"id": "sovereign_pursuit",
+		"name": "Sovereign Pursuit",
+		"start": 4.98333333333333
+	},
+	{
+		"end": 10.6833333333333,
+		"group": "Original",
+		"id": "king_skill_4",
+		"name": "Worldsplitter",
+		"start": 7.46666666666667
+	},
+	{
+		"end": 13.05,
+		"group": "Latest",
+		"id": "crosscut_advance",
+		"name": "Crosscut Advance",
+		"start": 11.0
+	},
+	{
+		"end": 15.2666666666667,
+		"group": "Latest",
+		"id": "griefwake",
+		"name": "Griefwake",
+		"start": 13.3666666666667
+	},
+	{
+		"end": 17.3833333333333,
+		"group": "Latest",
+		"id": "starfall_step",
+		"name": "Breakstep",
+		"start": 15.5833333333333
+	},
+	{
+		"end": 19.8666666666667,
+		"group": "Latest",
+		"id": "oathstorm",
+		"name": "Last Oath",
+		"start": 17.7
+	},
+	{
+		"end": 23.4333333333333,
+		"group": "Body reference",
+		"id": "basic_combo",
+		"name": "Basic attack combo",
+		"start": 20.1833333333333
+	},
+	{
+		"end": 26.3833333333333,
+		"group": "Body reference",
+		"id": "walking",
+		"name": "Walking reference",
+		"start": 23.4333333333333
+	}
+]

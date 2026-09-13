@@ -20,6 +20,8 @@ var _attack_speed_bonus_ratio := 0.0
 var combo_step := 0
 var _next_combo_step := 0
 var _combo_timer: Timer
+var committed_damage_multiplier := 1.0
+var committed_animation_key := ""
 
 
 func _ready() -> void:
@@ -60,6 +62,8 @@ func request_attack(direction: Vector2) -> bool:
 	_attack_direction = direction.normalized() if not direction.is_zero_approx() else Vector2.RIGHT
 	combo_step = _next_combo_step
 	_combo_timer.stop()
+	committed_damage_multiplier = 1.0
+	committed_animation_key = ""
 	attack_started.emit()
 	_enter_phase(Phase.WIND_UP, _scaled_duration(_step_duration(Phase.WIND_UP)))
 	set_physics_process(true)
@@ -94,7 +98,7 @@ func _advance_phase() -> void:
 		Phase.WIND_UP:
 			_enter_phase(Phase.ACTIVE, _scaled_duration(_step_duration(Phase.ACTIVE)))
 			hitbox.activate(
-			weapon.roll_basic_damage(_random) * (weapon.combo.damage_multipliers[combo_step] if _has_combo() else 1.0),
+			weapon.roll_basic_damage(_random) * committed_damage_multiplier * (weapon.combo.damage_multipliers[combo_step] if _has_combo() else 1.0),
 			owner,
 			_attack_direction,
 			weapon.knockback_strength * (weapon.combo.knockback_multipliers[combo_step] if _has_combo() else 1.0),
@@ -143,6 +147,8 @@ func reset_combo() -> void:
 
 
 func get_animation_key() -> String:
+	if not committed_animation_key.is_empty():
+		return committed_animation_key
 	return weapon.combo.animation_keys[combo_step] if _has_combo() else "attack"
 
 

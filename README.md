@@ -6,7 +6,9 @@ The setting centers on gods, demons, forgotten civilizations, and a divine Game 
 
 ## Current Status
 
-Pre-alpha title-to-Sanctuary-to-six-stage prototype. F5 opens a mouse/keyboard/gamepad-ready Battle of Gods title screen with Continue, guarded New Journey, and session-audio settings. King is the sole production player with four-direction locomotion, an integrated signature sword, a physical three-cut basic chain, and four equipped slots drawn from eight playable techniques; Ultimate and Reality Breaking remain locked future tiers. The implemented Forest route reaches Stage VI: after Varkuun, `The Elder Ascent` introduces the armored Crag Bear and its Crag Iron/Echo Claw drops through five production waves. In Sanctuary, Rootweaver Nema's Living Rootforge crafts the six Stage V core outputs, while Umi's Echo Crucible handles metadata-driven material selling/reconstruction. Stage V armor supports ownership, equipping, sorting, matching-slot drag, stat aggregation, and saving. F9 grants the complete debug equipment/crafting-readiness package without saving. Hunts are not yet playable. Retired Opaw content is recoverable only under `art_source/archive/retired_opaw_2026-08-16/` and is not imported by Godot.
+King C review (September 14): press **F7 -> KING REVIEW** for the isolated playable comparison. LOOK switches appearance; SPEED cycles gear/base/existing caps; VIEW changes magnification; HIT/STUN sample real control reactions with health restored; REACH outlines the real melee shape. Existing Lab controls spawn enemies and toggle AI/invincibility. [Latest idle/walk/outline review](art_source/review/characters/king/spellward_locomotion_2026_09_14/index.html) · [Initial full action review](art_source/review/characters/king/spellward_lab_2026_09_14/index.html). Restart an already-running review to load updated art. This is opt-in art review; campaign King and skill rules remain unchanged. Direct debug launch also accepts `res://levels/combat_lab/combat_lab.tscn -- --king-review`.
+
+Pre-alpha title-to-Sanctuary-to-six-stage prototype. F5 opens a mouse/keyboard/gamepad-ready Battle of Gods title screen with Continue, guarded New Journey, and session-audio settings. King is the sole production player with four-direction locomotion, an integrated signature sword, a physical three-cut basic chain, and ten equipped slots drawn from eight playable techniques; Ultimate and Reality Breaking remain locked future tiers. The implemented Forest route reaches Stage VI: after Varkuun, `The Elder Ascent` introduces the armored Crag Bear and its Crag Iron/Echo Claw drops through five production waves. In Sanctuary, Rootweaver Nema's Living Rootforge crafts the six Stage V core outputs, while Umi's Echo Crucible handles metadata-driven material selling/reconstruction. Stage V armor supports ownership, equipping, sorting, matching-slot drag, stat aggregation, and saving. F9 grants the complete debug equipment/crafting-readiness package without saving. Hunts are not yet playable. Retired Opaw content is recoverable only under `art_source/archive/retired_opaw_2026-08-16/` and is not imported by Godot.
 
 ## Intended Technology
 
@@ -172,6 +174,7 @@ The active prototype controls are:
 | Skill 2: Riftbreak self-AOE | 2 or click its HUD slot | Reserved |
 | Skill 3: Sovereign Pursuit ground leap | 3, aim, then left-click/right-trigger | Right trigger confirms |
 | Skill 4: spirit-sword target and delayed AOE | 4, aim, then left-click/right-trigger | Right trigger confirms |
+| Equipped skills 5–10 | 5–9, 0 or click the slot | D-pad left/right selects; D-pad down activates |
 | Open character / gear / skills | Tab or click the HUD satchel button | Not assigned |
 | Interact / claim reward chest / enter portal | F | West face button |
 | Close / cancel modal | Escape or visible mouse button | UI Cancel |
@@ -262,7 +265,7 @@ The accepted 35% Unbound phase now has a persistent flame aura and a second sign
 
 ### King greatsword controls and review
 
-Left-click/basic attack continues the three-cut chain through the existing buffer. Three landed swings charge **Resolve** for +25% on the next skill; use it within eight seconds. Land **3 (Pursuit)**, then use **2 (Riftbreak)** within 1.2 seconds for +15%. Slots 1-4 and their targeting controls are unchanged. The HUD shows Resolve and the link; Active Skills explains both and current level mastery.
+Left-click/basic attack continues the three-cut chain through the existing buffer. Three landed swings charge **Resolve** for +25% on the next skill; use it within eight seconds. Land **3 (Pursuit)**, then use **2 (Riftbreak)** within 1.2 seconds for +15%. The original four remain collection alternatives; ten equipped slots now use 1–0. The HUD shows Resolve and the link; Active Skills explains both and current level mastery.
 
 Current campaign caps: start 3, then 4/5/6/7/10 after Stages I-V. Extra XP stops at the cap; coins/loot still accrue. Existing earned levels and F9's non-saving test mode are preserved.
 
@@ -270,6 +273,8 @@ Art rebuild: run `tools/build_king_greatsword_assets.gd`, Godot `--editor --impo
 
 ## Try King's evolving techniques
 
-Open **Tab → Active Skills → Technique Collection** (also reachable through Eira). Select a technique and a slot; change loadouts while idle in Sanctuary. Four slots can mix the original four skills with Crosscut Advance, Griefwake, Starfall Step and Oathstorm. Griefwake unlocks after Stage II; Oathstorm and Resonant forms after Stage V.
+Open **Tab → Active Skills → Technique Collection** (also reachable through Eira). Select a technique and a slot; change loadouts while idle in Sanctuary. Ten slots can mix the original four skills with Crosscut Advance, Griefwake, Breakstep and Last Oath. Choose **Equip core kit** to assign learned core skills to 1–4; unlearned core skills leave empty slots. Griefwake unlocks after Stage II; Last Oath and Resonant forms after Stage V. Right-click a collection slot to clear it. Four-slot saves preserve their choices and add six empty positions.
 
-For the complete spectacle now: **F7 Combat Lab → King · Technique Collection → choose a form → Equip all four Oath skills → Close**. Keys 1/2/4 cast; 3 opens Starfall's ground reticle, confirmed with left-click/right trigger and canceled with right-click/Esc. Ascendant and Unbound are future-milestone previews and do not change your save. F7/F9 retain the existing unlimited-skills helper. [Collection rules and lore](docs/design/king-unwritten-oath.md).
+For the complete spectacle now: **F7 Combat Lab → King · Technique Collection → choose a form → Equip all four Oath skills → Close**. In the core kit, **1** performs two cuts, **2** aims Griefwake (left-click/right trigger confirms; right-click/Esc cancels), **3** immediately Breaksteps in movement/aim direction, and **4** performs Last Oath. Griefwake returns control before the eruption lands. A real successful Breakstep evade primes one basic riposte for two seconds; completing the step links a rupture. Slots **5–9 and 0** accept any other learned techniques. On controller, D-pad left/right selects a slot and D-pad down activates it; the bar marks the selection. Ascendant and Unbound are future-milestone previews and do not change your save. F7/F9 retain the existing unlimited-skills helper. [Collection rules and lore](docs/design/king-unwritten-oath.md).
+
+Current implementation and timing: [Decision 147](docs/decisions/147-responsive-king-core-and-ten-slots.md). Repeatable visual capture: `tools/capture_king_responsive_review.gd`; current review is under `art_source/review/characters/king/responsive_2026_09_13/`. Ten slots are capacity, not ten free powers: divine spells and future encounter rewards remain planned.

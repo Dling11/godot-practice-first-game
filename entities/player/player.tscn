@@ -80,6 +80,8 @@
 
 [ext_resource type="Script" path="res://gameplay/abilities/king/oath/king_oath_presentation.gd" id="91_oath_vfx"]
 
+[ext_resource type="Script" path="res://entities/player/king/king_riposte_component.gd" id="responsive_riposte"]
+
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_sweep"]
 points = PackedVector2Array(3, -9, 14, -28, 39, -24, 48, 0, 39, 24, 14, 28, 3, 9)
 
@@ -661,3 +663,6 @@ script = ExtResource("91_oath_vfx")
 [connection signal="damage_blocked" from="HealthComponent" to="StateVisual" method="flash_blocked"]
 [connection signal="damaged" from="HealthComponent" to="VisualRoot/Body" method="play_hurt"]
 [connection signal="damaged" from="HealthComponent" to="StateVisual" method="flash_damaged"]
+
+[node name="KingRiposte" type="Node" parent="."]
+script = ExtResource("responsive_riposte")

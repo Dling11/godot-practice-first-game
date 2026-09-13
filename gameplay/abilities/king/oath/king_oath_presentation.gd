@@ -7,6 +7,7 @@ const Fracture = preload("res://assets/vfx/abilities/king/oath/fracture_192.png"
 const Charge = preload("res://assets/audio/sfx/player/oath/charge.wav")
 const Sounds := [preload("res://assets/audio/sfx/player/oath/crosscut.wav"),preload("res://assets/audio/sfx/player/oath/griefwake.wav"),preload("res://assets/audio/sfx/player/oath/starfall.wav"),preload("res://assets/audio/sfx/player/oath/storm.wav")]
 const Finale = preload("res://assets/audio/sfx/player/oath/finale.wav")
+const StepSound = preload("res://assets/audio/sfx/player_dash_light_swoosh.wav")
 var actor: Player
 var _charge: Node2D
 var _sounds: Array[AudioStreamPlayer2D] = []
@@ -32,12 +33,17 @@ func _bind() -> void:
 		if ability is KingOathComponent:
 			ability.phase_changed.connect(_phase.bind(ability))
 			ability.strike_started.connect(_strike.bind(ability))
+			ability.ground_released.connect(_ground_release)
 			ability.ability_finished.connect(_finish)
 
 func _phase(phase: int, duration: float, ability: KingOathComponent) -> void:
 	if phase==AbilityComponent.Phase.WIND_UP:
 		_clear_charge()
 		var tuning := ability.definition as KingOathDefinition
+		if tuning.technique in [KingOathDefinition.Technique.CROSSCUT, KingOathDefinition.Technique.STARFALL]:
+			if tuning.technique==KingOathDefinition.Technique.STARFALL:
+				_play(StepSound,1.12,-18)
+			return
 		_charge=_burst(Storm,actor.global_position,28+tuning.rank*7,duration)
 		_charge.charge=true
 		_play(Charge,1.12-tuning.rank*.05,-22)
@@ -50,6 +56,8 @@ func _phase(phase: int, duration: float, ability: KingOathComponent) -> void:
 
 func _strike(index: int, count: int, _duration: float, ability: KingOathComponent) -> void:
 	var tuning := ability.definition as KingOathDefinition
+	if tuning.technique!=KingOathDefinition.Technique.CROSSCUT:
+		return
 	var texture: Texture2D = Fracture if tuning.technique==KingOathDefinition.Technique.GRIEFWAKE else Storm
 	var burst := _burst(texture,ability.contact_origin,ability.contact_radius,.48 if tuning.technique!=KingOathDefinition.Technique.OATHSTORM else .42)
 	if tuning.technique==KingOathDefinition.Technique.CROSSCUT:
@@ -69,6 +77,28 @@ func _strike(index: int, count: int, _duration: float, ability: KingOathComponen
 			ground.z_index=-2
 	var final := index==count-1
 	_play(Finale if final and tuning.rank>=2 else Sounds[tuning.technique],1.07-index*.025-tuning.rank*.035,-15 if final else -20)
+
+func _ground_release(attack: Node2D) -> void:
+	var tuning: KingOathDefinition = attack.tuning
+	var origin: Vector2 = attack.origin
+	if tuning.technique==KingOathDefinition.Technique.GRIEFWAKE:
+		# Faint moving raster cracks communicate travel, without claiming a hit lane.
+		for index in 5:
+			var crack := _burst(Fracture,actor.global_position.lerp(origin,(index+1)/5.0),12,.32)
+			crack.z_index=-2
+			crack.modulate=Color(.65,.8,1,.35)
+			crack.scale=Vector2(.35,.35)
+			var tween := crack.create_tween()
+			tween.tween_interval(index*.035)
+			tween.tween_property(crack,"scale",Vector2.ONE,.12)
+	attack.impacted.connect(func() -> void:
+		var rim := _burst(Storm,origin,tuning.beat_radii[0],.48)
+		rim.z_index=-2
+		rim.modulate=Color(.65,.8,1,.55)
+		var core := _burst(Fracture,origin,tuning.core_radius,.65)
+		core.z_index=-1
+		_play(Finale if tuning.technique==KingOathDefinition.Technique.OATHSTORM else Sounds[1],1.02-tuning.rank*.025,-16)
+	)
 
 func _burst(texture: Texture2D, at: Vector2, radius: float, duration: float) -> Node2D:
 	var burst := Burst.new()

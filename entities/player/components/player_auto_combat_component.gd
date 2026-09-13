@@ -64,9 +64,12 @@ func _try_ready_skill() -> bool:
 		return false
 	var target_position := targeting_component.target_actor.global_position
 	var target_direction := target_position - player.global_position
-	for slot_number in range(1, 5):
+	for slot_number in range(1, SkillLoadoutDefinition.SLOT_COUNT + 1):
 		var component := player.get_ability_component_for_slot(slot_number)
 		if component == null or component.definition == null or not component.is_ready():
+			continue
+		# Defensive timing skills remain manual; automation must not spend an escape.
+		if component is KingOathComponent and (component.definition as KingOathDefinition).technique == KingOathDefinition.Technique.STARFALL:
 			continue
 		if not player.request_ability(slot_number):
 			continue

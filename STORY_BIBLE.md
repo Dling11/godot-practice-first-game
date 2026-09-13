@@ -84,9 +84,15 @@ The earlier optional Examiner choice is superseded by Decision 138. Stage VII co
 
 Stage IX, not Stage VII, carries the larger modular magical-ruins identity. A provisional fast ranged Mage and space-controlling Stone Warden create chase-versus-blocker pressure and supply material families for later accessory progression. Their names, art, stats, drops, and recipes remain open.
 
+### Planned Stage X — Forest Goddess
+
+The owner accepts a Forest Goddess as the Stage X direction: an attractive adult woman with strong plant identity, as large as Examiner or larger. Growth and Renewal and The First Bloom are proposed domain/title wording; her personal name, encounter and rewards remain open. [Divine inheritance proposal](docs/design/divine-inheritance-and-plant-god.md) explores roots, poison, protective bark, a root-fed barrier trait and later renewal/revival mastery. The existing Stage V Varkuun identity is unchanged; no Stage X encounter is implemented.
+
 ### Planned Stage XX — The False Mentor
 
 Decision 138 (2026-09-12) supersedes the Stage VII optional-challenge and Stage XX direct-god placement: Examiner is the required Stage XX scenario boss, a false mentor serving the gods' manipulation. They promise reunion at Stage 100; King's family is actually dead. Souls, resurrection, replicas, the ending, and any bestowed power remain open possibilities, not established survival facts. The One Above's direct confrontation is now unscheduled. Only the F7 combat proof is playable; production route/outcome/reward/save integration is pending.
+
+Decision 146 clarifies that Examiner is himself a god and also a Disciple serving a higher power. Disciple is his allegiance/office, not proof that he is non-divine. This does not establish equal power among gods or change his Stage XX placement.
 
 Examiner frames the required fight as instruction: King must become worthy of reaching the hundredth gate. His calm corrections and breakable seal make him seem like a severe teacher who wants King to succeed. Internally he advances the gods' manipulation. Whether he knows the full lie, later regrets his role, or grants a power with a hidden cost remains open. Decision 141 adds a rewardless F7 victory preview: Examiner kneels, recovers and says King has earned the right to continue. King asks about the hundredth gate and his family; Examiner redirects him toward that purpose without confirming resurrection. The preview grants no power, story flag or persistent reward. Production scenario integration remains pending.
 
@@ -114,3 +120,7 @@ Examiner frames the required fight as instruction: King must become worthy of re
 - What are the Examiner's personal name, exact dialogue, test/reward/replay rules, and later relationship with King and the Executioner?
 - What unlocks the first playable character switch, and how is the new soul's motive introduced?
 - Which boss closes the full Forest arc at Stage X, and what first proves that the Game is a constructed system?
+
+## Proposed inheritance and revival narrative
+
+The owner wants defeated gods to grant recognizable skills or passive build effects. Exact Domain Echo rewards and passive capacity remain proposals. A possible Champion-anchor rule would allow limited player revival without confirming that King's dead family can be recovered; neither that explanation nor any ending is accepted canon yet. See Decision 146 and the inheritance design.

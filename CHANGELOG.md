@@ -1,5 +1,46 @@
 # Changelog
 
+## 2026-09-14 - King side leg continuity
+
+- Replaced disconnected generated leg poses with an offline two-bone raster rig: one leg supports while the other passes on a low arc, with stable foreground/background identity and fixed segment lengths. Preserved accepted hands/upper-body pixels, isolating the tunic join from obsolete raised-knee pixels.
+- Only walk_side.png changes in live character art. Cadence, direction phase continuity, approved down/up atlas, idle and three attacks stay intact. The raw whole-body generator now writes a source study rather than overwriting the corrected runtime atlas.
+- Verified preserved hand regions/upper pixels, fixed limb lengths, support baseline, and the existing 232 behavior checks. Added actual Lab and quarter-speed captures; visual approval remains pending.
+
+## 2026-09-14 - King C whole-body side stride
+
+- Replaced the rejected foot-only side correction with one coherent eight-frame cycle featuring changing waist/chest silhouette, free-arm swing, scarf overlap and alternating foot support. Preserved shoulder carry, outline and compact body size.
+- Side clips use a separate walk_side atlas at 14 FPS, retaining the four-frame/7 FPS cycle period. Preview presentation preserves normalized stride phase when turning between four/eight-frame directions; equipment cadence still comes from the shared controller.
+- Original walk atlas, idle and three attacks remain byte-identical. Focused 232 checks pass, including four/eight-frame direction changes and cadence. Actual Godot capture, full frame board, source and prompts are under spellward_bodywalk_2026_09_14; owner feel approval remains pending.
+
+## 2026-09-14 - King C alternating side steps
+
+- Fixed the left/right walk's persistently planted forward boot with two identity-referenced lift/extension poses, paired with the existing rear-leg lift. Preserved shoulder carry, outline, scale and equipment cadence.
+- Verified down/up walking remains pixel-identical and idle/three attack atlases retain their hashes. Focused 221 checks pass; a dedicated real-Lab capture and normalized frame board document the correction.
+
+## 2026-09-14 - King C locomotion and outline correction
+
+- Preserved the owner-approved three attack atlases and combat timing. Replaced mixed-sheet idle/walk/interact with a coherent shoulder-carry source, stable head registration and slower two-second idle loop. Lowered the rear blade below the hair.
+- Added a thin charcoal outline across all C body animations; original comparison restores the original material. Kept the correction inside the opt-in Lab.
+- Focused 221 checks pass, including real directional-facing signals after presentation replacement, three actual hit contacts, speed caps, stun release and original-material restoration. Generated-source provenance and a dedicated actual-Godot review accompany the correction; owner gait feel approval remains pending.
+
+## 2026-09-14 - King C isolated playable Lab review
+
+- Added F7 KING REVIEW with selected C fine-detail art, four-direction states, three distinct physical cuts, clipped white trails, hurt/stun, dash/brake and defeat. Original presentation remains default and can be restored for comparison.
+- Added local gear/base/capped speed samples, short/long accepted control samples with restored HP/immunity, a collision outline and close-up view. Controller timing, damage, gear ownership, skills and campaign appearance remain unchanged.
+- Generated and normalized identity-referenced source art; recorded actual native 1080p/audio review and five GIFs. Focused 215 checks, existing Lab regression and 385 mastery checks pass. Motion feel, mirrored asymmetry and provisional skill-body mappings remain owner-review items under Decision 148.
+
+## 2026-09-13 - Selected C character clarity review
+
+- Recorded owner selection of C Spellward and clearer stylized detail at compact human scale. Added review-only generated idle, walk and swing studies, GIFs at two magnifications, an interactive frame review and source/prompt provenance.
+- Walk remains unfinished: repeated lead-leg arrangements did not pass motion review. Runtime density integration, cleanup and remaining directions are pending. No runtime art, gameplay, collision or saves changed; GIF decode checks pass.
+
+## 2026-09-13 - Responsive King core and ten equipped slots
+
+- Implemented two-cut Crosscut, targeted released Griefwake, collision-controlled Breakstep with earned riposte, and one precision Last Oath impact. Preserved saved family IDs, approved C body art, equipment/caps and original skill alternatives. Control locks stay short across forms.
+- Added immutable released ground attacks with exclusive core/rim damage and Light-only timed rim slow. Breakstep preserves Resolve; real eligible evasion rewards one basic return cut, while completion opens the existing rupture link.
+- Migrated input, controller access, HUD, Character cards, collection and saves to ten slots on 1–0. Four-entry saves retain choices and add empty slots; a Sanctuary core preset equips learned skills only. Moved Lab collection access above the wider tray.
+- Retimed existing directional animation frames and raster/SFX presentation. Verified 82 responsive checks, 174 Oath checks, 37 library checks and existing equipment/mastery, HUD, buffer, auto-combat, feedback, debug and save regressions. Rendered review is under `art_source/review/characters/king/responsive_2026_09_13/`. Future divine spells/rewards and campaign balance remain open.
+
 ## 2026-09-13 - King Unwritten Oath and technique collection
 
 - Added Crosscut Advance, Griefwake, Starfall Step and Oathstorm as four alternatives to the original kit, each with Mortal/Resonant/Ascendant/Unbound forms. Stage II/V gates connect early progression; later forms remain explicitly labeled Lab previews with future story hooks.

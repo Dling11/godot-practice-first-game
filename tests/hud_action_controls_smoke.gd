@@ -26,7 +26,7 @@ func _run() -> void:
 	var tray := hud.get_node("ActionTray") as Control
 	var dash_rect := hud.dash_slot.get_global_rect()
 	var skill_rect := hud.get_skill_slot(1).get_global_rect()
-	var last_skill_rect := hud.get_skill_slot(4).get_global_rect()
+	var last_skill_rect := hud.get_skill_slot(10).get_global_rect()
 	var attack_rect := hud.attack_button.get_global_rect()
 	var tray_rect := tray.get_global_rect()
 	if (

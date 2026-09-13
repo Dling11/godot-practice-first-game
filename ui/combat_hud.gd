@@ -126,6 +126,8 @@ func bind_player(player: Player) -> void:
 	progression.coins_changed.connect(_update_coins)
 	player.testing_preset_applied.connect(_show_testing_preset)
 	player.skill_loadout_changed.connect(_on_skill_loadout_changed)
+	player.selected_skill_changed.connect(_show_selected_skill)
+	player.get_node("KingRiposte").riposte_changed.connect(_show_riposte)
 	player.restraint_started.connect(_on_restraint_started)
 	player.restraint_progress.connect(_on_restraint_progress)
 	player.restraint_ended.connect(_on_restraint_ended)
@@ -158,6 +160,24 @@ func get_skill_slot(slot_number: int) -> SkillBarSlot:
 			return slot
 	return null
 
+func _show_selected_skill(slot_number: int) -> void:
+	for slot in _skill_slots:
+		slot.key_label.text = ("›" if slot.slot_definition.slot_number==slot_number else "") + slot.slot_definition.get_key_label()
+
+func _show_riposte(available: bool) -> void:
+	var label := get_node_or_null("RiposteLabel") as Label
+	if label==null:
+		label=Label.new()
+		label.name="RiposteLabel"
+		label.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
+		label.position+=Vector2(-110,-110)
+		label.size=Vector2(220,20)
+		label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+		label.add_theme_font_size_override("font_size",10)
+		label.add_theme_color_override("font_color",Color("bceeff"))
+		add_child(label)
+	label.text="RIPOSTE READY · NEXT CUT +50%" if available else ""
+
 
 func _build_skill_bar(player: Player) -> void:
 	for child: Node in skill_bar.get_children():
@@ -166,7 +186,7 @@ func _build_skill_bar(player: Player) -> void:
 	_skill_slots.clear()
 	ability_panel = null
 	if player.skill_loadout == null or not player.skill_loadout.has_complete_layout():
-		push_error("CombatHUD requires a complete four-slot skill loadout.")
+		push_error("CombatHUD requires a complete ten-slot skill loadout.")
 		return
 	for definition: SkillSlotDefinition in player.skill_loadout.get_ordered_slots():
 		var slot := SkillBarSlotScene.instantiate() as SkillBarSlot
@@ -177,6 +197,8 @@ func _build_skill_bar(player: Player) -> void:
 		_skill_slots.append(slot)
 		if definition.slot_number == 1:
 			ability_panel = slot
+	if not Input.get_connected_joypads().is_empty():
+		_show_selected_skill(player.selected_skill_slot)
 
 
 func _on_skill_activation_requested(slot_number: int) -> void:

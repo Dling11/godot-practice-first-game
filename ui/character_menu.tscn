@@ -574,7 +574,8 @@ text = "GEAR SUPPORTS SKILLS; IT NEVER REPLACES THEM"
 theme_override_colors/font_color = Color(0.45, 0.5, 0.42, 1)
 theme_override_font_sizes/font_size = 7
 
-[node name="Skills" type="HBoxContainer" parent="Panel/Margin/Root/PageHost/SkillsPage"]
+[node name="Skills" type="GridContainer" parent="Panel/Margin/Root/PageHost/SkillsPage"]
+columns = 6
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1

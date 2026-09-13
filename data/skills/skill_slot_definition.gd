@@ -3,7 +3,7 @@ extends Resource
 
 ## Immutable presentation and input metadata for one equipped-skill slot.
 
-@export_range(1, 4, 1) var slot_number := 1
+@export_range(1, 10, 1) var slot_number := 1
 @export var input_action: StringName = &"player_skill_1"
 @export var ability: AbilityDefinition
 @export var locked_icon: Texture2D
@@ -14,6 +14,10 @@ extends Resource
 
 func is_equipped() -> bool:
 	return ability != null
+
+
+func get_key_label() -> String:
+	return str(slot_number % 10)
 
 
 func get_display_name() -> String:

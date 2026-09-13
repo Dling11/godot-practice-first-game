@@ -85,6 +85,9 @@ func _draw() -> void:
 	draw_arc(Vector2.ZERO, _range, 0.0, TAU, 64, Color(0.22, 0.45, 0.68, 0.32), 1.0, false)
 	draw_circle(_target_local, _radius, Color(0.05, 0.19, 0.31, 0.18))
 	draw_arc(_target_local, _radius, 0.0, TAU, 48, Color(0.75, 0.91, 1.0, 0.88), 2.0, false)
+	var core := _component.get_target_core_radius_pixels()
+	if core>0.0:
+		draw_arc(_target_local,core,0.0,TAU,32,Color(1.0,.78,.31,.8),1.0,false)
 	draw_line(_target_local + Vector2(-10, 0), _target_local + Vector2(10, 0), Color(1.0, 0.78, 0.31, 0.95), 2.0)
 	draw_line(_target_local + Vector2(0, -10), _target_local + Vector2(0, 10), Color(1.0, 0.78, 0.31, 0.95), 2.0)
 

@@ -17,8 +17,8 @@ func configure(definition: SkillSlotDefinition) -> void:
 	slot_definition = definition
 	name = "Skill%d" % definition.slot_number
 	icon = definition.get_icon()
-	text = "[%d]  %s\n%s" % [
-		definition.slot_number,
+	text = "[%s]  %s\n%s" % [
+		definition.get_key_label(),
 		definition.get_display_name().to_upper(),
 		definition.get_status_text(),
 	]

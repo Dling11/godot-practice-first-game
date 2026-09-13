@@ -4,6 +4,14 @@ This document is the visual source of truth for Battle of Gods. It governs handm
 
 ## Visual Promise
 
+### King selected appearance review — September 13
+
+The owner selected C Spellward from `art_source/review/characters/king/identity_options_2026_09_13/king_identity_options_v1.png`: black hair, short crimson scarf, charcoal asymmetric tunic with pale seam trim, wrapped wrists, brown leather equipment and shoulder-supported silver greatsword. This is an appearance choice, not a gameplay class. They want clearer, finer stylized pixels at compact human scale, avoiding coarse unreadable blocks and realism. The review-only 56px-body / 28-logical-pixel density experiment in `art_source/review/characters/king/spellward_motion_2026_09_13/` is not an approved runtime density change. Motion remains pending, especially genuine opposite-leg exchange. Prior artwork remains installed until the proof is accepted.
+
+### World visual direction
+
+Decision 148 (September 14) makes the C density experiment playable only through F7 -> KING REVIEW, with 192x128 binary-alpha cells and consistent half-scale origins. Native 1080p rendering has been inspected. Added opposite-stride references and three distinct action families replace the earlier one-facing draft during this review. Final gait/transition feel, mirrored asymmetry and campaign promotion still require owner review; default campaign art remains unchanged.
+
 Battle of Gods is a readable retro pixel-action game set in an ancient world shaped by divine conflict. The image should feel mysterious, weathered, and epic without becoming muddy, realistic, or excessively detailed.
 
 The active forest direction is **luminous dark fantasy**: living greens and warm natural light sit beside old stone, restrained violet divinity, and deep shadow. Darkness comes from history, danger, and atmosphere rather than making the whole screen black.

@@ -10,6 +10,8 @@ enum Technique { CROSSCUT, GRIEFWAKE, STARFALL, OATHSTORM }
 @export var beat_distances := PackedFloat32Array()
 @export var travel_seconds := 0.0
 @export var travel_range := 0.0
+@export var core_radius := 0.0
+@export var outer_damage_ratio := 0.4
 @export_multiline var lore := ""
 
 const RANK_NAMES := ["Mortal", "Resonant", "Ascendant", "Unbound"]
@@ -17,14 +19,14 @@ const FAMILIES := ["crosscut_advance", "griefwake", "starfall_step", "oathstorm"
 const NAMES := [
 	["Crosscut Advance", "Silver Refrain", "Horizon Cleaver", "Sever the Horizon"],
 	["Griefwake", "Echoes Below", "Fault of Heaven", "The Earth Remembers"],
-	["Starfall Step", "Comet Return", "Astral Passage", "Beyond the Firmament"],
-	["Oathstorm", "Choir of Steel", "Heaven's Silence", "The Unwritten Dawn"]
+	["Breakstep", "Thread the Needle", "Astral Passage", "Beyond the Firmament"],
+	["Last Oath", "Oath Unbroken", "Heaven's Silence", "The Unwritten Dawn"]
 ]
 const STORIES := [
 	"A promise carried in both hands. King learns to put his next step inside the opening his blade creates.",
 	"The ground remembers every weight it has carried. King gives that memory a voice.",
 	"For one breath, the distance between danger and safety belongs to him.",
-	"He repeats no prayer. Every turning stroke is another word of an oath he refuses to abandon."
+	"He repeats no prayer. He plants his feet, remembers his promise, and brings the weight of it down."
 ]
 
 func at_rank(next_rank: int) -> KingOathDefinition:
@@ -36,11 +38,14 @@ func at_rank(next_rank: int) -> KingOathDefinition:
 func _configure() -> void:
 	ability_id = FAMILIES[technique]
 	display_name = NAMES[technique][rank]
-	hud_name = ["CROSSCUT","GRIEFWAKE","STARFALL","OATHSTORM"][technique]
+	hud_name = ["CROSSCUT","GRIEFWAKE","BREAKSTEP","LAST OATH"][technique]
 	lore = STORIES[technique]
 	weapon_damage_multiplier = 1.0
 	grants_invulnerability = false
 	grants_super_armor = false
+	dash_cancelable = true
+	travel_range = 0.0
+	travel_seconds = 0.0
 	non_final_knockback_multiplier = .18
 	non_final_stagger_multiplier = .3
 	knockback_strength = 100.0
@@ -54,50 +59,51 @@ func _configure() -> void:
 	var count := 2
 	match technique:
 		Technique.CROSSCUT:
-			count = [2,2,3,4][rank]
-			wind_up_seconds = .18
-			active_seconds = count*.22
-			recovery_seconds = .19
+			count = 2
+			wind_up_seconds = .10
+			active_seconds = .28
+			recovery_seconds = .10
 			cooldown_seconds = 5.0
-			travel_range = 28+rank*7
-			travel_seconds = .14
+			travel_range = 24+rank*4
+			travel_seconds = .12
 			for i in count:
-				_add_beat(i*.22,48+rank*14,0,.85+rank*.12 if i<count-1 else 1.05+rank*.2)
+				_add_beat(i*.16,46+rank*6,0,.9+rank*.18 if i==0 else 1.1+rank*.22)
 		Technique.GRIEFWAKE:
-			count = [3,4,5,6][rank]
-			wind_up_seconds = .34
-			active_seconds = count*.16+.12
-			recovery_seconds = .23
-			cooldown_seconds = 8.0
-			for i in count:
-				_add_beat(i*.16,48+rank*15+i*4,28+i*(34+rank*4),.45+rank*.12 if i<count-1 else 1.1+rank*.3)
-		Technique.STARFALL:
-			count = [1,2,2,3][rank]
+			count = 1
 			activation_mode = ActivationMode.GROUND_TARGETED
-			wind_up_seconds = .12
-			travel_seconds = .24
-			travel_range = 180+rank*20
-			active_seconds = travel_seconds+count*.18+.1
-			recovery_seconds = .14
-			cooldown_seconds = 7.5
-			for i in count:
-				_add_beat(travel_seconds+i*.18,56+rank*13+i*18,0,1.25+rank*.2 if i==0 else .65+rank*.2)
+			wind_up_seconds = .20
+			active_seconds = .10
+			recovery_seconds = .12
+			cooldown_seconds = 8.0
+			travel_range = 190+rank*25
+			core_radius = 27+rank*4
+			outer_damage_ratio = .55
+			_add_beat(0,58+rank*10,0,2.4+rank*.5)
+		Technique.STARFALL:
+			count = 0
+			wind_up_seconds = .06
+			travel_seconds = .20
+			travel_range = 100+rank*10
+			active_seconds = travel_seconds
+			recovery_seconds = .06
+			cooldown_seconds = 6.0
+			dash_cancelable = false
 		Technique.OATHSTORM:
-			count = [3,4,5,7][rank]
-			activation_mode = ActivationMode.SELF_AREA
-			wind_up_seconds = .42
-			active_seconds = count*.19+.12
-			recovery_seconds = .32
-			cooldown_seconds = 17.0
+			count = 1
+			wind_up_seconds = .28
+			active_seconds = .10
+			recovery_seconds = .24
+			cooldown_seconds = 13.0
 			impact_weight = ImpactWeight.DEVASTATING
-			for i in count:
-				var reach := lerpf(62+rank*14,108+rank*38,float(i)/maxi(count-1,1))
-				_add_beat(i*.19,reach,0,.55+rank*.1 if i<count-1 else 1.5+rank*.45)
+			core_radius = 28+rank*3
+			outer_damage_ratio = .32
+			knockback_strength = 180.0
+			_add_beat(0,85+rank*16,40,4.0+rank*.8)
 	var shape := CircleShape2D.new()
-	shape.radius = beat_radii[0]
+	shape.radius = beat_radii[0] if not beat_radii.is_empty() else 1.0
 	hitbox_shape = shape
 	description = "%s\n%s form · %d contacts · %.1fs cooldown\n%s" % [
-		["Advance through two-handed cuts.","Release successive ground ruptures along your committed direction.","Cross danger, then release a falling-star impact.","Turn your greatsword through expanding waves of white steel."][technique],
+		["Two advancing cuts. Dash out to forfeit the remaining cut.","Aim a ground eruption. Strong center; weaker rim slows ordinary foes. Move again before it lands.","Step through danger. Evading a real hit primes your next basic cut for +50% damage (2s). Complete the step to link a rupture.","One decisive forward impact. Powerful small center; weaker wide rim pushes enemies away."][technique],
 		RANK_NAMES[rank],count,cooldown_seconds,lore]
 
 func _add_beat(time: float, radius: float, distance: float, multiplier: float) -> void:

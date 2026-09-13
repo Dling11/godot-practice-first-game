@@ -4,7 +4,7 @@ var library: KingSkillLibrary
 var _selected := ""
 var _detail: RichTextLabel
 var _list: VBoxContainer
-var _slots: HBoxContainer
+var _slots: GridContainer
 var _notice: Label
 var _owns_pause := false
 
@@ -39,6 +39,12 @@ func _ready() -> void:
 	title.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	title.add_theme_font_size_override("font_size",16)
 	header.add_child(title)
+	var core_kit := Button.new()
+	core_kit.text="Equip core kit"
+	core_kit.tooltip_text="Assign learned core techniques to 1–4. Unlearned techniques remain empty."
+	core_kit.disabled=not library.can_edit()
+	core_kit.pressed.connect(library.equip_core_kit)
+	header.add_child(core_kit)
 	var close := Button.new()
 	close.text="Close"
 	close.pressed.connect(_close)
@@ -70,16 +76,17 @@ func _ready() -> void:
 	body.add_theme_constant_override("separation",18)
 	stack.add_child(body)
 	_list=VBoxContainer.new()
-	_list.custom_minimum_size=Vector2(255,280)
+	_list.custom_minimum_size=Vector2(255,245)
 	body.add_child(_list)
 	_detail=RichTextLabel.new()
 	_detail.bbcode_enabled=true
-	_detail.custom_minimum_size=Vector2(475,280)
+	_detail.custom_minimum_size=Vector2(475,245)
 	_detail.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	_detail.add_theme_font_size_override("normal_font_size",13)
 	body.add_child(_detail)
-	_slots=HBoxContainer.new()
-	_slots.add_theme_constant_override("separation",6)
+	_slots=GridContainer.new()
+	_slots.columns=5
+	_slots.add_theme_constant_override("h_separation",6)
 	stack.add_child(_slots)
 	_selected=String(library.entries()[0].definition.ability_id)
 	library.library_changed.connect(_refresh)
@@ -98,14 +105,14 @@ func _refresh() -> void:
 	for child in _slots.get_children():
 		_slots.remove_child(child)
 		child.queue_free()
-	_notice.text="Learn techniques. Equip four. Swap in Sanctuary." if not library.is_lab() else "Combat Lab preview · future forms do not change campaign progress."
+	_notice.text="Equip ten on 1–0 in Sanctuary. Right-click a slot to clear it." if not library.is_lab() else "Lab preview does not change campaign progress. Right-click a slot to clear it."
 	for ability in library.entries():
 		var id := String(ability.definition.ability_id)
 		var button := Button.new()
 		button.text=ability.definition.display_name+("  [LOCKED]" if not library.is_learned(id) else "")
 		button.icon=ability.definition.icon
 		button.alignment=HORIZONTAL_ALIGNMENT_LEFT
-		button.custom_minimum_size.y=30
+		button.custom_minimum_size.y=26
 		button.add_theme_font_size_override("font_size",12)
 		button.pressed.connect(func() -> void: _selected=id; _refresh())
 		_list.add_child(button)
@@ -120,16 +127,21 @@ func _refresh() -> void:
 					_detail.text+="\n\n[b]Learn after clearing Stage "+("II" if id=="griefwake" else "V")+".[/b]"
 			if not library.can_edit():
 				_detail.text+="\n\nReturn to Sanctuary to change equipped techniques."
-	for i in 4:
+	for i in SkillLoadoutDefinition.SLOT_COUNT:
 		var slot := library.actor.skill_loadout.get_slot(i+1)
 		var button := Button.new()
-		button.text="[%d]  %s" % [i+1,slot.ability.hud_name if slot.ability else "SEALED"]
+		button.text="[%s]  %s" % [slot.get_key_label(),slot.ability.hud_name if slot.ability else "EMPTY"]
+		button.custom_minimum_size.x=148
 		button.add_theme_font_size_override("font_size",11)
 		button.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 		button.custom_minimum_size.y=32
 		button.disabled=not library.can_edit() or not library.is_learned(_selected)
 		button.tooltip_text="Equip selected technique in slot "+str(i+1)
 		button.pressed.connect(func() -> void: library.equip(_selected,i+1))
+		button.gui_input.connect(func(event: InputEvent) -> void:
+			if event is InputEventMouseButton and event.pressed and event.button_index==MOUSE_BUTTON_RIGHT:
+				library.equip("",i+1)
+		)
 		_slots.add_child(button)
 
 func _close() -> void:

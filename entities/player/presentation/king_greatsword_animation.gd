@@ -110,7 +110,7 @@ func _play_oath_phase(phase: int, duration: float, ability: KingOathComponent) -
 	if phase==AbilityComponent.Phase.WIND_UP:
 		_action_direction=_direction
 	var tuning := ability.definition as KingOathDefinition
-	var key: String = ["oath_spin","riftbreak","sovereign_pursuit","oath_spin"][tuning.technique]
+	var key: String = ["oath_spin","riftbreak","dash","worldsplitter"][tuning.technique]
 	animation=key+"_"+_action_direction
 	position=_base_position
 	var first := 0
@@ -121,11 +121,11 @@ func _play_oath_phase(phase: int, duration: float, ability: KingOathComponent) -
 	elif phase==AbilityComponent.Phase.RECOVERY:
 		first=5
 		last=7
+	first=mini(first,sprite_frames.get_frame_count(animation)-1)
+	last=mini(last,sprite_frames.get_frame_count(animation)-1)
 	frame=first
 	_attack_phase_tween=create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	_attack_phase_tween.tween_method(_set_attack_frame,float(first),float(last),maxf(duration,.01))
-	if tuning.technique==KingOathDefinition.Technique.STARFALL and phase==AbilityComponent.Phase.ACTIVE:
-		_attack_phase_tween.parallel().tween_method(_set_hop,0.0,1.0,tuning.travel_seconds)
 
 func play_oath_strike(index: int, _count: int, _duration: float, ability: KingOathComponent) -> void:
 	if (ability.definition as KingOathDefinition).technique==KingOathDefinition.Technique.GRIEFWAKE and index>0:
@@ -140,17 +140,21 @@ func play_oath_strike(index: int, _count: int, _duration: float, ability: KingOa
 		KingOathDefinition.Technique.CROSSCUT:
 			key="oath_spin" if index%2==0 else "return_cut"
 			sequence=[3,4,5,6,2]
-			seconds=.21
+			seconds=.14
 		KingOathDefinition.Technique.GRIEFWAKE:
 			if index>0:
 				return
 			key="riftbreak"
 			sequence=[4,5,6,7]
-			seconds=.42
+			seconds=.10
 		KingOathDefinition.Technique.STARFALL:
 			key="sovereign_pursuit"
 			sequence=[5,6,7]
 			seconds=.17
+		KingOathDefinition.Technique.OATHSTORM:
+			key="worldsplitter"
+			sequence=[4,5]
+			seconds=.10
 	animation=key+"_"+_action_direction
 	frame=sequence[0]
 	_attack_phase_tween=create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)

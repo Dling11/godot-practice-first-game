@@ -1,5 +1,7 @@
 # King — The Unwritten Oath
 
+**Current implementation update — Decision 147:** The owner authorized development. The responsive four-technique core and ten-slot foundation are now installed; eight techniques exist. See [current rules](../decisions/147-responsive-king-core-and-ten-slots.md). Historical timing/four-slot statements below describe the earlier design or implementation baseline. The six divine spells, future stage gates and inheritance rewards remain proposals.
+
 Implemented 2026-09-13 (Decision 144). Eight techniques are available in the collection; King equips four. The original Echoing Sever, Riftbreak, Sovereign Pursuit and Worldsplitter remain the initial loadout and usable alternatives.
 
 ## Play and progression

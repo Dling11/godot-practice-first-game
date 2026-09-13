@@ -1,5 +1,9 @@
 # Style Guide
 
+## King C Lab density experiment (148)
+
+Keep preview art under `assets/characters/playable/king/spellward_preview/` and source provenance under the identity-owned King source/review folders. Its 192x128 cells, y96 foot baseline and 56px standing body use deliberate half-scale presentation for ~28 logical pixels in canvas-items rendering. This is an opt-in detail-density experiment, not permission to resize other actors to compensate for inconsistent generation. Default production frames and combat resources stay unchanged; authored pose aliases must be labeled provisional.
+
 ## Material exchange content
 
 - Add future materials to the canonical catalog and complete their own `MaterialDefinition` exchange metadata. Never add material IDs, prices, or unlock branches to Umi's scene/menu.
@@ -305,6 +309,10 @@ Use the owner-approved ivory/navy/gold body sheets as the mandatory reference fo
 
 ### King and human-scale character reviews
 
+For Spellward Lab locomotion, register horizontal position from the upper hair band, excluding the shoulder blade and moving arms, and retain one scale per direction. Source cell centers are not body anchors. Use a coherent source for idle and walking; keep accepted attack drawings intact during a locomotion correction. The optional C outline is one source texel in the renderer, not alpha dilation baked into the accepted art, and restores with the original material when comparison is disabled.
+
+Judge walk cycles as coordinated body motion, not independent boot positions: include pelvis/chest silhouette changes, opposite arm swing, supported weapon weight and cloth follow-through. Multi-row source layouts for a single direction share one scale. When direction clips differ in frame count, retain normalized cycle phase and cycle duration; wrapping raw frame indices skips half-strides.
+
 Decisions 142-143 keep King near the existing 26-28px standing height; active C atlases use padded 96x64 cells on y=48, centered at sprite position (0,-16). The prior 48x32/y30 set is visual rollback. Compare candidate art beside current runtime King at identical nearest-neighbor zoom before producing complete sheets. Do not infer a crown or ceremonial costume from his name, use Examiner as a human scale reference, or fit anatomy to weapon-inclusive bounds. Native pixel density and starter-adventurer readability govern future NPC comparisons too.
 
 King C imports measure a fixed standing head-to-boot scale per direction/action board, exclude blade extent from anatomy, extract complete connected islands across nominal cell boundaries, and retain binary alpha. Back-facing contact uses the dedicated northward correction board. Never carry an old Godot resource UID onto a replacement script path: verify the actual loaded resource. Contact light is texture-mapped inside the authoritative polygon; no detached Line2D duplicate. Walk cadence follows equipment movement speed; action frames follow live phase durations.
@@ -316,3 +324,10 @@ Review complete runtime frame boards as well as source sheets. Reject wrong-faci
 For new techniques, retain C anatomy and 96×64/y48 body origins; enlarge separate VFX, not King. The Oath spin has eight poses in four directions. Storm/rupture atlases use fixed 192 px cells and fixed centers, black-matte removal and nearest filtering; never recenter each expanding debris frame. Generated source/prompt and deterministic import measurements live under the identity-owned King source folder. Original Oath audio is reproducible with `tools/build_king_oath_audio.py`.
 
 Explicitly duplicate each external slot Resource when constructing a mutable player loadout. Do not assume deep duplication of a Resource's exported array isolates every external element. Store stable IDs, not resource paths or current rank names. Presentation binds gameplay signals and disconnects on removal; detached HUD controls must not keep receiving cooldown events.
+
+## Released skills and expandable loadouts
+
+- Keep action commitment separate from released attack lifetime. A released attack snapshots its tuning, source, world point, damage and critical profile; never read a later cast's mutable component state to resolve that attack.
+- Overlapping core/rim visuals require one explicit damage-tier choice per target, not two independent hitboxes that unintentionally stack damage.
+- SkillLoadoutDefinition.SLOT_COUNT owns equipped capacity. Slot 10 displays key 0. Empty IDs represent unoccupied positions; preserve legacy choices during expansion and never turn migration into a reward grant.
+- Temporary slow modifies bounded movement state with expiry; never edit shared EnemyDefinition speed. Boss-specific control eligibility remains explicit.

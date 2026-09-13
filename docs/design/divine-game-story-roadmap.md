@@ -160,3 +160,11 @@ The long disclosure rhythm is:
 - Rewards, replay, stable story IDs, and safe-point/save timing.
 - Stage VII's replacement content and the later timing of The One Above's direct encounter.
 - The family's ending twist remains open; their deaths are established.
+
+## September 13 clarification — divine Examiner and proposed Plant God
+
+**Accepted (146):** Examiner is a god whose Disciple role means service to a higher power. He remains the required Stage XX false mentor. Gods do not share one fixed strength merely by being divine.
+
+**Proposed:** Stage X may introduce a God of Plants, with active/passive inheritance such as roots, poison, bark protection and later limited revival. Examiner could later grant a ward, a version of Borrowed Sun or an anti-interruption passive. No exact reward is locked and F7 remains rewardless. [Full inheritance proposal](divine-inheritance-and-plant-god.md).
+
+The idea that revival preserves a still-anchored Champion could strengthen King's belief in the gods' family promise, but that mechanism remains a proposal and does not confirm surviving family identities or choose the ending.

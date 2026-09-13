@@ -1,0 +1,16 @@
+[
+	{
+		"end": 3.16666666666667,
+		"group": "Body reference",
+		"id": "basic_combo",
+		"name": "Basic attack combo",
+		"start": 0.0333333333333333
+	},
+	{
+		"end": 6.11666666666667,
+		"group": "Body reference",
+		"id": "walking",
+		"name": "Walking reference",
+		"start": 3.16666666666667
+	}
+]

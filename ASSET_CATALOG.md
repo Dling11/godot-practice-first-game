@@ -4,8 +4,15 @@ This catalog records active asset families and lifecycle boundaries. Exact runti
 
 ## Player - King
 
-- Production locomotion/action art: `assets/characters/playable/king/simple_reboot/`.
+- Latest side-leg source parts: `leg_parts.png` and locked `side_upper_approved.png` in `art_source/generated/characters/king/spellward_locomotion_2026_09_14/`. `tools/build_king_side_leg_cycle.gd` renders the final walk_side.png without regenerating accepted hands. Foot trajectories, prompts and normal/slow review: `art_source/review/characters/king/spellward_legcycle_2026_09_14/`.
+
+- Latest Spellward side gait: `assets/characters/playable/king/spellward_preview/walk_side.png`, eight 192x128 cells in two rows (left/right), 14 FPS before equipment scaling. Front/back still use original walk.png at four frames/7 FPS. Source `side_body.png` in the Spellward locomotion source folder; review and generation provenance in `art_source/review/characters/king/spellward_bodywalk_2026_09_14/`. The foot-only side_pass study is superseded for live side clips.
+
+- Production locomotion/action art: `assets/characters/playable/king/greatsword/`; `simple_reboot/` remains the earlier rollback baseline.
+- Decision 148 opt-in C body family: `assets/characters/playable/king/spellward_preview/`, ten 192x128-cell atlases and `spellward_frames.tres` (60 directional clips including provisional skill aliases). Loaded only by the Combat Lab comparison. Sources: `art_source/generated/characters/king/spellward_lab_2026_09_14/`; prompts, measurements, GIFs and native capture: `art_source/review/characters/king/spellward_lab_2026_09_14/`.
 - Skill body/VFX families: `assets/characters/playable/king/skills/` and the King ability resources under `data/abilities/`.
+- Spellward side-walk follow-up: `side_pass.png` beside the locomotion source adds two forward-foot poses used only in left/right walk rows. Prompt, packed measurements, preserved prior walk, normalized frame board and actual Lab recording live under `art_source/review/characters/king/spellward_sidewalk_2026_09_14/`.
+- Decision 148 locomotion correction source: `art_source/generated/characters/king/spellward_locomotion_2026_09_14/locomotion.png`; replaces only preview idle/walk/interact through `tools/build_king_spellward_preview.gd -- --locomotion-only`. Review/provenance: `art_source/review/characters/king/spellward_locomotion_2026_09_14/`. `levels/combat_lab/king_spellward_outline.gdshader` adds a consistent one-source-texel contour to all preview body clips. Accepted three attack atlases retain their hashes.
 - Signature weapon data: `data/weapons/king_signature_sword.tres`; weapon catalog: `data/items/king_weapon_catalog.tres`.
 - Production skill loadout: `data/skills/king_starting_loadout.tres`.
 - Portrait: `assets/characters/playable/king/portrait/`.

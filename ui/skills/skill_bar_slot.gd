@@ -52,7 +52,7 @@ func configure(definition: SkillSlotDefinition) -> void:
 	slot_definition = definition
 	name = "Skill%d" % definition.slot_number
 	_accent_color = SLOT_ACCENTS.get(definition.slot_number, SLOT_ACCENTS[1])
-	key_label.text = str(definition.slot_number)
+	key_label.text = definition.get_key_label()
 	ability_icon.texture = definition.get_icon()
 	tooltip_text = "%s — %s" % [definition.get_display_name(), definition.get_status_text()]
 	activation_button.tooltip_text = tooltip_text
@@ -62,8 +62,8 @@ func configure(definition: SkillSlotDefinition) -> void:
 		activation_button.disabled = ability_component == null
 		_show_ready()
 	else:
-		ability_name.text = "SEALED"
-		state_label.text = "LOCKED"
+		ability_name.text = "EMPTY" if definition.unlock_hint=="EMPTY" else "SEALED"
+		state_label.text = definition.unlock_hint if definition.unlock_hint=="EMPTY" else "LOCKED"
 		state_label.add_theme_color_override("font_color", Color(0.62, 0.58, 0.66, 1))
 		cooldown_bar.value = 0.0
 		modulate = Color(0.48, 0.48, 0.52, 0.82)

@@ -127,6 +127,9 @@ func get_target_range_pixels() -> float:
 func get_target_radius_pixels() -> float:
 	return 0.0
 
+func get_target_core_radius_pixels() -> float:
+	return 0.0
+
 
 func request_cast_at(_target_global_position: Vector2, _equipped_weapon_damage := 0.0) -> bool:
 	return false

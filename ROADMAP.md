@@ -4,6 +4,8 @@ This file records current production progress. Historical implementation detail 
 
 ## Completed
 
+- Decision 147: responsive core, targeted released Griefwake, Breakstep/riposte, Last Oath center/rim, ten-slot keyboard/controller/HUD/collection/save migration, safe core preset and retimed approved presentation. Focused behavior and regression checks pass; rendered review is available.
+
 - Decision 144: Unwritten Oath collection, Crosscut/Griefwake/Starfall/Oathstorm and four authored forms, generated body/VFX/icons, original SFX, safe four-slot swaps, optional stable-ID saving and Lab previews. Mortal/Resonant integrate with the current route; future Ascendant/Unbound reward hooks remain unconnected.
 
 - September 13 King review: corrected front/back gait, dedicated basic finishing sweep, back-facing defeat hold, dark-matte fringe cleanup, clear Resolve/link HUD text, fixed Riftbreak impact/residual lifecycle and unified foot origins for Riftbreak/Pursuit. Full 280-frame review artifacts accompany the changes. Decision 144 now extends that groundwork with four new evolving technique families.
@@ -13,7 +15,7 @@ This file records current production progress. Historical implementation detail 
 - Decision 141: randomized 24-meteor Firmament, recent-action-aware legal attack selection, committed Axiom/Reprisal links, seal-break remarks and a rewardless F7 victory acknowledgment. Production Stage XX integration remains planned.
 
 - Godot 4.7 top-down production foundation with 960x540 logical rendering, keyboard/mouse/controller input, pause flow, scene transitions, and reusable data-owned combat authority.
-- King is the sole production player with four-direction locomotion/basic attack, dash/backstep, hit reactions, defeat, persistent vitality/progression, equipment aggregation, and four equipped slots drawing from eight techniques; Echoing Sever, Riftbreak, Sovereign Pursuit and Worldsplitter remain the defaults.
+- King is the sole production player with four-direction locomotion/basic attack, dash/backstep, hit reactions, defeat, persistent vitality/progression, equipment aggregation, and ten equipped slots drawing from eight techniques; Echoing Sever, Riftbreak, Sovereign Pursuit and Worldsplitter remain the defaults.
 - Basic attacks and skills use committed direction, authored hit shapes, damage, knockback, stagger, hitstop, camera response, audio, and world-space feedback without moving authority into animation.
 - Combat controls through Decision 114: right-click/WASD movement clears combat intent; left-click performs directional air swings, one-click enemy selection, and repeated same-enemy pursuit/attack; right-click/`Esc` cancels targeted skills; optional `AUTO ALL` and `AUTO SKILL` remain explicit.
 - Size-aware enemy footprints drive movement collision, navigation radius, crowd separation, readable tier auras, foot-circle selection, and assisted approach distance. Hurtboxes and attack shapes remain separate.
@@ -37,6 +39,18 @@ This file records current production progress. Historical implementation detail 
 - Decision 137 (2026-09-12) follows owner acceptance of the Examiner look with a dedicated four-pose alternating gait, turn-continuous footsteps, complete-source weapon extraction, repaired slam source, four eight-frame raster skill atlases, crimson danger decals, exact Descent safe-hole shading, and heavier fracture/beam audio. The 116 named clips, 192x160 cells, baseline 128, origin -48, controller timing, and trial authority remain intact. The owner accepted the skill effects but rejected the replacement walk identity. The identity follow-up now derives front/profile/back studies from isolated approved locomotion references, restores the narrow mask and long ivory coat, and matches helmet-to-ground body scale per direction. Skills, audio, HUD, and combat authority are unchanged; the owner approved the revised gait. Stage XX integration remains pending.
 
 ## In Progress
+
+- **King review first:** September 14 authorization permits Decision 148's isolated playable C character review. Skill/tier redesign remains pending; owner rejects latest Skills 2/3 and old/new coexistence as the final direction, and expects higher skill numbers to represent stronger tiers.
+- **Character before skills:** C's shoulder carry, finer detail and three attacks are selected. Decision 148's follow-up replaces mixed-sheet locomotion with registered poses, lowers the rear blade beneath the hair and adds a consistent thin outline in the opt-in Lab. Owner locomotion approval and campaign promotion precede extending skill animations.
+- **Side-walk review:** Owner approves down/up gait but rejects foot-only side corrections. A dedicated eight-frame whole-body side cycle now includes waist/chest and free-arm motion, preserving original cadence and continuous stride phase when turning. Final side-gait feel and campaign promotion remain pending.
+- **Leg-cycle review:** Owner accepts hands in the whole-body cycle but rejects its feet. Final side frames now combine the approved upper body with offline rigged raster legs, using continuous opposed support/swing paths. Quarter-speed review accompanies the real Lab capture; owner motion approval remains pending.
+- September 13 character review: owner selected C Spellward and requested finer, clearer stylized pixels at the same body scale. Initial one-facing idle/walk/swing studies and interactive small-scale review are in `art_source/review/characters/king/spellward_motion_2026_09_13/`. The walk remains unfinished: the opposite-foot contact is not convincing. Final density, motion cleanup, other directions and runtime integration remain pending; no new runtime assets installed.
+
+- Decision 146: develop the accepted Stage X female Forest Goddess direction (Examiner-sized or larger) and distinct boss traits. Root-fed bark protection and Examiner heat pulses are proposals; boss production, exact scale, passive capacity, survival effects and inheritance rewards remain design work.
+
+- Develop earned domain spells for the implemented ten-slot foundation after core feel review. Eight techniques currently exist; new poison/lightning/gravity/ward/blind/meteor families and production divine reward gates are not implemented.
+
+- Owner feel-test Decision 147 core with immunity/unlimited skills disabled: targeted Griefwake while moving, actual Breakstep evade/riposte versus rupture link, center placement on Last Oath, two-cut cancellation, ten-slot readability and upgraded forms. No final endgame balance claim.
 
 
 - Owner feel-test Decision 114 in the normal game: click priority, repeated-click timing, footprint picking, pursuit around obstacles, moving targets, large bosses, movement cancellation, roster discovery, and long-name marquee readability.

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>King — character design review</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#111a20;color:#e5e8e5;font:16px/1.5 system-ui,sans-serif}main{max-width:1180px;margin:auto;padding:28px}h1{font-size:24px;margin:0 0 8px}h2{font-size:18px}p{color:#bac7ca}img{width:100%;height:auto;display:block;border-radius:8px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0}article{background:#202c34;padding:18px;border-radius:8px}canvas{image-rendering:pixelated;display:block;max-width:100%;margin:12px auto;background:#26362f}label{display:inline-block;margin-right:16px}select{font:inherit;background:#202c34;color:#fff;border:1px solid #67777c;padding:6px}small{color:#aebec2} @media(max-width:700px){.grid{grid-template-columns:1fr}}
+</style>
+<main><h1>King — choose the character foundation</h1>
+<p>Same adventurer, three clothing directions. These names describe the artwork; they are not character classes.</p>
+<img id="board" src="king_identity_options_v1.png" alt="A Wayfarer, B Vanguard and C Spellward, each shown from front and rear carrying a greatsword on the shoulder">
+<h2>Small-scale readability</h2><p>Approximate 28-pixel standing body, sampled from the concept board. This checks silhouette and color readability; final pixel cleanup and animation are still pending.</p>
+<label>Display size <select id="zoom"><option value="1">1× logical size</option><option value="2" selected>2× game display</option><option value="4">4× detail view</option></select></label>
+<div class="grid">
+<article><h2>A · Wayfarer</h2><canvas width="112" height="48" aria-label="Small front and rear views of Wayfarer"></canvas><p>Clean tunic, rolled sleeves, light leather equipment. Closest to a simple starting adventurer.</p></article>
+<article><h2>B · Vanguard</h2><canvas width="112" height="48" aria-label="Small front and rear views of Vanguard"></canvas><p>Rugged outfit and one shoulder plate. Strongest fighter silhouette.</p></article>
+<article><h2>C · Spellward</h2><canvas width="112" height="48" aria-label="Small front and rear views of Spellward"></canvas><p>Distinct seam trim and wrist wraps. A practical adventurer who can grow into divine powers.</p></article>
+</div><p>Next, after choosing: a short stable idle, alternating-step walk, and broad swing animation proof using that same design.</p><small>Static review only. No runtime character, skills, collision or save changes. <a href="prompt.txt" style="color:#a5d5eb">Generation prompt</a></small></main>
+<script>
+const board=document.getElementById('board'),zoom=document.getElementById('zoom');
+function render(){document.querySelectorAll('canvas').forEach((canvas,i)=>{const ctx=canvas.getContext('2d');ctx.clearRect(0,0,112,48);ctx.imageSmoothingEnabled=false;const scale=28/412;for(let side=0;side<2;side++){const sx=i*512+78,sy=side?530:100;ctx.drawImage(board,sx,sy,390,430,Math.round(15+side*56),10,Math.round(390*scale),Math.round(430*scale));}canvas.style.width=(112*Number(zoom.value))+'px';canvas.style.height=(48*Number(zoom.value))+'px';});}
+board.addEventListener('load',render);zoom.addEventListener('change',render);if(board.complete&&board.naturalWidth)render();
+</script></html>

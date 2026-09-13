@@ -6,6 +6,7 @@ func _initialize() -> void:
 	call_deferred("_run")
 
 func _run() -> void:
+	root.get_node("SaveService").configure_storage_path_for_testing("user://king_skill_library_smoke.json")
 	var session := root.get_node("RunSession")
 	var story := root.get_node("StoryState")
 	session.reset_run()
@@ -22,7 +23,10 @@ func _run() -> void:
 	var flags: Dictionary=story.create_snapshot().duplicate(true)
 	_check(library.is_lab() and library.can_edit(),"Lab edit available")
 	_check(library.equip_oath_preview(),"One-button Oath kit")
-	_check(library.current_ids()==KingOathDefinition.FAMILIES,"Four new slots")
+	_check(library.current_ids()==KingSkillCatalog.expanded_slots(KingOathDefinition.FAMILIES),"Four core skills plus six empty slots")
+	_check(library.equip("riftbreak",10),"Tenth slot can equip a learned skill")
+	_check(actor.get_ability_component_for_slot(10)==actor.ability_2_component,"Tenth slot resolves authority")
+	_check(library.equip("",10),"Slots can be cleared")
 	for i in 4:
 		_check(actor.get_ability_component_for_slot(i+1)==actor.get_node("OathAbility"+str(i+1)),"Slot resolves exact component")
 	_check(library.set_preview_rank(3),"Unbound preview")
@@ -50,7 +54,7 @@ func _run() -> void:
 	# Defeat interrupts every new component, including travel invulnerability.
 	var step := actor.get_node("OathAbility3") as KingOathComponent
 	step.request_cast_at(actor.global_position+Vector2(120,0),25)
-	while step.phase!=AbilityComponent.Phase.ACTIVE:
+	while not step._travel_invulnerable:
 		await physics_frame
 	_check(step._travel_invulnerable,"Travel-only protection active")
 	actor.health_component.is_damage_immune=false
@@ -77,6 +81,8 @@ func _run() -> void:
 	_check(session.king_skill_slots[0]=="crosscut_advance","Stable loadout stored in RunSession")
 	_check(not production.equip("oathstorm",4),"Cannot equip unlearned skill")
 	_check(not production.set_preview_rank(3),"Future preview denied in Sanctuary")
+	_check(production.equip_core_kit(),"Sanctuary core preset")
+	_check(production.current_ids().slice(0,4)==["crosscut_advance","","starfall_step",""],"Core preset respects Stage II and V learn gates")
 	var second := preload("res://entities/player/player.tscn").instantiate() as Player
 	sanctuary.add_child(second)
 	_check(second.get_ability_component_for_slot(1) is KingOathComponent,"Fresh player restores saved loadout")

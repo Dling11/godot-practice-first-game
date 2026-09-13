@@ -1,7 +1,7 @@
 class_name KingSkillLibrary
 extends Node
 
-## Eight learnable techniques, four equipped slots; persistence stores stable IDs.
+## Learnable techniques and ten equipped slots; persistence stores stable IDs.
 signal library_changed
 var actor: Player
 var preview_rank := -1
@@ -25,7 +25,7 @@ func _bind() -> void:
 	story.story_state_changed.connect(refresh)
 	refresh()
 	var saved: Array = get_node("/root/RunSession").king_skill_slots
-	if saved.size()==4 and saved.all(func(id: String) -> bool: return is_learned(id)):
+	if not saved.is_empty() and KingSkillCatalog.valid_slots(saved):
 		_apply_slots(saved)
 
 func get_rank() -> int:
@@ -69,11 +69,11 @@ func entries() -> Array[AbilityComponent]:
 	return actor.get_all_ability_components()
 
 func equip(id: String, slot_number: int) -> bool:
-	if not can_edit() or not is_learned(id) or slot_number<1 or slot_number>4:
+	if not can_edit() or (not id.is_empty() and not is_learned(id)) or slot_number<1 or slot_number>SkillLoadoutDefinition.SLOT_COUNT:
 		return false
 	var ids := current_ids()
 	var previous := ids.find(id)
-	if previous>=0:
+	if previous>=0 and not id.is_empty():
 		ids[previous]=ids[slot_number-1]
 	ids[slot_number-1]=id
 	_apply_slots(ids)
@@ -110,6 +110,23 @@ func equip_oath_preview() -> bool:
 	_apply_slots(KingOathDefinition.FAMILIES)
 	return true
 
+func equip_core_kit() -> bool:
+	if not can_edit():
+		return false
+	var ids := current_ids()
+	for index in 4:
+		var id: String = KingOathDefinition.FAMILIES[index]
+		var previous := ids.find(id)
+		if previous>=4:
+			ids[previous]=""
+		ids[index]=id if is_learned(id) else ""
+	_apply_slots(ids)
+	actor._clear_buffered_action()
+	if not is_lab():
+		get_node("/root/RunSession").king_skill_slots=ids.duplicate()
+		get_node("/root/SaveService").save_profile()
+	return true
+
 func open_collection() -> void:
 	if is_instance_valid(_collection):
 		return
@@ -144,9 +161,19 @@ func _apply_slots(ids: Array) -> void:
 	var loadout := SkillLoadoutDefinition.new()
 	for slot in actor.skill_loadout.get_ordered_slots():
 		loadout.slots.append(slot.duplicate(false))
-	for index in mini(ids.size(),4):
-		var id: String = ids[index]
-		if not is_learned(id):
+	while loadout.slots.size()<SkillLoadoutDefinition.SLOT_COUNT:
+		var empty := SkillSlotDefinition.new()
+		empty.slot_number=loadout.slots.size()+1
+		empty.input_action=StringName("player_skill_%d" % empty.slot_number)
+		empty.locked_title="Empty slot"
+		empty.locked_description="Equip a learned technique in Sanctuary."
+		empty.unlock_hint="EMPTY"
+		loadout.slots.append(empty)
+	var expanded := KingSkillCatalog.expanded_slots(ids)
+	for index in SkillLoadoutDefinition.SLOT_COUNT:
+		var id: String = expanded[index]
+		loadout.get_slot(index+1).ability=null
+		if id.is_empty() or not is_learned(id):
 			continue
 		for ability in entries():
 			if String(ability.definition.ability_id)==id:

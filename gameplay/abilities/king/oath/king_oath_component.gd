@@ -2,6 +2,9 @@ class_name KingOathComponent
 extends AbilityComponent
 
 ## Contact timing and shapes remain authoritative; presentation observes signals.
+signal ground_released(attack: Node2D)
+signal step_completed
+const GroundAttack = preload("res://gameplay/abilities/king/oath/king_oath_ground_attack.gd")
 var elapsed := 0.0
 var contact_origin := Vector2.ZERO
 var contact_radius := 0.0
@@ -43,13 +46,17 @@ func request_cast_at(target_global_position: Vector2, equipped_weapon_damage := 
 	return true
 
 func supports_ground_targeting() -> bool:
-	return (definition as KingOathDefinition).technique == KingOathDefinition.Technique.STARFALL
+	return (definition as KingOathDefinition).technique == KingOathDefinition.Technique.GRIEFWAKE
 
 func get_target_range_pixels() -> float:
 	return (definition as KingOathDefinition).travel_range
 
 func get_target_radius_pixels() -> float:
-	return (definition as KingOathDefinition).beat_radii[0]
+	var radii := (definition as KingOathDefinition).beat_radii
+	return radii[0] if not radii.is_empty() else 0.0
+
+func get_target_core_radius_pixels() -> float:
+	return (definition as KingOathDefinition).core_radius
 
 func has_active_movement() -> bool:
 	return (definition as KingOathDefinition).travel_seconds > 0
@@ -73,19 +80,27 @@ func _physics_process(delta: float) -> void:
 
 func _start_current_strike() -> void:
 	# Base phase entry calls this once; the authored timeline owns later contacts.
-	var tuning := definition as KingOathDefinition
-	if tuning.technique == KingOathDefinition.Technique.STARFALL:
-		_travel_invulnerable = true
-		invulnerability_changed.emit(true)
 	_fire_due_beats()
 
 func _advance_active_strikes(delta: float) -> void:
 	elapsed += delta
 	var tuning := definition as KingOathDefinition
-	if _travel_invulnerable and elapsed>=tuning.travel_seconds:
+	if tuning.technique == KingOathDefinition.Technique.STARFALL:
+		var protected := elapsed >= .035 and elapsed < .165
+		if protected != _travel_invulnerable:
+			_travel_invulnerable = protected
+			invulnerability_changed.emit(protected)
+	_fire_due_beats()
+
+func _advance_phase() -> void:
+	var completed_step := phase == Phase.ACTIVE and (definition as KingOathDefinition).technique == KingOathDefinition.Technique.STARFALL
+	if completed_step and _travel_invulnerable:
 		_travel_invulnerable = false
 		invulnerability_changed.emit(false)
-	_fire_due_beats()
+	super._advance_phase()
+	if completed_step:
+		contact_origin = (owner as Node2D).global_position
+		step_completed.emit()
 
 func _fire_due_beats() -> void:
 	var tuning := definition as KingOathDefinition
@@ -97,6 +112,9 @@ func _fire_due_beats() -> void:
 
 func _fire_beat(index: int) -> void:
 	var tuning := definition as KingOathDefinition
+	if tuning.technique in [KingOathDefinition.Technique.GRIEFWAKE, KingOathDefinition.Technique.OATHSTORM]:
+		_release_ground_attack()
+		return
 	_current_strike_index = index
 	contact_radius = tuning.beat_radii[index]
 	contact_origin = (owner as Node2D).global_position
@@ -126,6 +144,25 @@ func _fire_beat(index: int) -> void:
 	hitbox.activate_radial(tuning.resolve_strike_damage(_equipped_weapon_damage,index),owner,contact_origin,
 		tuning.resolve_strike_knockback(index),tuning.resolve_strike_stagger(index),_critical_chance_ratio,_critical_damage_multiplier)
 	strike_started.emit(index,tuning.strike_count(),.1)
+
+func _release_ground_attack() -> void:
+	var tuning := definition as KingOathDefinition
+	contact_radius = tuning.beat_radii[0]
+	contact_origin = _target if tuning.technique == KingOathDefinition.Technique.GRIEFWAKE else (owner as Node2D).global_position + _cast_direction * tuning.beat_distances[0]
+	var attack := GroundAttack.new()
+	attack.source = owner as Player
+	attack.tuning = tuning.duplicate(true)
+	attack.origin = contact_origin
+	attack.damage = tuning.resolve_strike_damage(_equipped_weapon_damage, 0)
+	attack.critical_chance = _critical_chance_ratio
+	attack.critical_multiplier = _critical_damage_multiplier
+	attack.delay = .26 if tuning.technique == KingOathDefinition.Technique.GRIEFWAKE else 0.0
+	# Child authority lives with the actor's scene but its transform is world-fixed.
+	attack.top_level = true
+	add_child(attack)
+	attack.hit_landed.connect(_on_hit_landed)
+	ground_released.emit(attack)
+	strike_started.emit(0, 1, .1)
 
 func cancel_cast() -> void:
 	_contact_remaining = 0.0

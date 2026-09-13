@@ -149,10 +149,12 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 140 | [Living Sun charge and Crimson Firmament](docs/decisions/140-examiner-crimson-firmament-and-living-charge.md) | Sixteen-frame core, faster fixed Sun flight, persistent enrage aura, twelve-meteor barrage and clear corridor |
 | 141 | [Examiner randomized rain, tactics and victory](docs/decisions/141-examiner-random-rain-tactics-and-victory.md) | Twenty-four warned meteors, legal move variety, committed links, seal reactions and rewardless outro |
 | 142 | [King adventurer identity and scale](docs/decisions/142-king-adventurer-identity-and-scale.md) | Rejected royal costume; compact progressing adventurer, preview before full animation production |
-
 | 143 | [King greatsword, mastery and stage caps](docs/decisions/143-king-greatsword-mastery-and-stage-caps.md) | Selected C installed, physical three-cut combo, clipped white trails, Resolve, Pursuit/Riftbreak link and bounded growth |
-
 | 144 | [King Unwritten Oath and skill collection](docs/decisions/144-king-unwritten-oath-and-skill-collection.md) | Eight techniques, four equipped slots, finite forms, saved Sanctuary swaps and future-form Lab previews |
+| 145 | [King ten equipped skills direction](docs/decisions/145-king-ten-equipped-skills-direction.md) | Accepted ten equipped skills on 1–0; broader powers and statuses proposed; runtime migration completed in 147 |
+| 146 | [Examiner divinity and inheritance direction](docs/decisions/146-examiner-divinity-and-inheritance-direction.md) | Examiner is a god and disciple; female Forest Goddess direction accepted; boss traits and inheritances proposed |
+| 147 | [Responsive King core and ten equipped slots](docs/decisions/147-responsive-king-core-and-ten-slots.md) | Current short core skills, released damage, Breakstep riposte, ten-slot input/UI/save migration |
+| 148 | [King C Spellward isolated Lab review](docs/decisions/148-king-spellward-lab-review.md) | Opt-in fine-detail C art, three cuts, clipped white trails, real control/speed comparison; campaign promotion pending |
 
 ## New Decisions
 
