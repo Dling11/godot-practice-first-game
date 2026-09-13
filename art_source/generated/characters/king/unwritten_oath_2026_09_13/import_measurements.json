@@ -1,0 +1,436 @@
+{
+	"spin": [
+		{
+			"boot_source_y": 336,
+			"column": 0,
+			"native_bounds": [
+				41,
+				21,
+				20,
+				29
+			],
+			"row": 0,
+			"scale": 0.127962085308057,
+			"source_bounds": [
+				41,
+				126,
+				156,
+				226
+			]
+		},
+		{
+			"boot_source_y": 335,
+			"column": 1,
+			"native_bounds": [
+				37,
+				21,
+				25,
+				27
+			],
+			"row": 0,
+			"scale": 0.127962085308057,
+			"source_bounds": [
+				202,
+				128,
+				199,
+				208
+			]
+		},
+		{
+			"boot_source_y": 335,
+			"column": 2,
+			"native_bounds": [
+				38,
+				21,
+				23,
+				27
+			],
+			"row": 0,
+			"scale": 0.127962085308057,
+			"source_bounds": [
+				403,
+				127,
+				179,
+				210
+			]
+		},
+		{
+			"boot_source_y": 335,
+			"column": 3,
+			"native_bounds": [
+				38,
+				21,
+				30,
+				27
+			],
+			"row": 0,
+			"scale": 0.127962085308057,
+			"source_bounds": [
+				590,
+				127,
+				232,
+				209
+			]
+		},
+		{
+			"boot_source_y": 335,
+			"column": 4,
+			"native_bounds": [
+				39,
+				21,
+				26,
+				27
+			],
+			"row": 0,
+			"scale": 0.127962085308057,
+			"source_bounds": [
+				793,
+				128,
+				207,
+				208
+			]
+		},
+		{
+			"boot_source_y": 335,
+			"column": 5,
+			"native_bounds": [
+				39,
+				17,
+				21,
+				31
+			],
+			"row": 0,
+			"scale": 0.127962085308057,
+			"source_bounds": [
+				986,
+				96,
+				167,
+				240
+			]
+		},
+		{
+			"boot_source_y": 335,
+			"column": 6,
+			"native_bounds": [
+				39,
+				16,
+				24,
+				32
+			],
+			"row": 0,
+			"scale": 0.127962085308057,
+			"source_bounds": [
+				1177,
+				89,
+				187,
+				247
+			]
+		},
+		{
+			"boot_source_y": 336,
+			"column": 7,
+			"native_bounds": [
+				40,
+				21,
+				19,
+				29
+			],
+			"row": 0,
+			"scale": 0.127962085308057,
+			"source_bounds": [
+				1376,
+				126,
+				145,
+				226
+			]
+		},
+		{
+			"boot_source_y": 642,
+			"column": 0,
+			"native_bounds": [
+				39,
+				21,
+				21,
+				27
+			],
+			"row": 1,
+			"scale": 0.129807692307692,
+			"source_bounds": [
+				29,
+				435,
+				163,
+				208
+			]
+		},
+		{
+			"boot_source_y": 642,
+			"column": 1,
+			"native_bounds": [
+				33,
+				21,
+				22,
+				27
+			],
+			"row": 1,
+			"scale": 0.129807692307692,
+			"source_bounds": [
+				176,
+				436,
+				169,
+				207
+			]
+		},
+		{
+			"boot_source_y": 642,
+			"column": 2,
+			"native_bounds": [
+				36,
+				21,
+				28,
+				27
+			],
+			"row": 1,
+			"scale": 0.129807692307692,
+			"source_bounds": [
+				384,
+				436,
+				214,
+				207
+			]
+		},
+		{
+			"boot_source_y": 642,
+			"column": 3,
+			"native_bounds": [
+				37,
+				21,
+				31,
+				27
+			],
+			"row": 1,
+			"scale": 0.129807692307692,
+			"source_bounds": [
+				584,
+				436,
+				238,
+				207
+			]
+		},
+		{
+			"boot_source_y": 642,
+			"column": 4,
+			"native_bounds": [
+				39,
+				21,
+				24,
+				27
+			],
+			"row": 1,
+			"scale": 0.129807692307692,
+			"source_bounds": [
+				793,
+				437,
+				188,
+				206
+			]
+		},
+		{
+			"boot_source_y": 642,
+			"column": 5,
+			"native_bounds": [
+				40,
+				17,
+				23,
+				31
+			],
+			"row": 1,
+			"scale": 0.129807692307692,
+			"source_bounds": [
+				992,
+				402,
+				175,
+				241
+			]
+		},
+		{
+			"boot_source_y": 642,
+			"column": 6,
+			"native_bounds": [
+				38,
+				19,
+				24,
+				29
+			],
+			"row": 1,
+			"scale": 0.129807692307692,
+			"source_bounds": [
+				1174,
+				423,
+				185,
+				220
+			]
+		},
+		{
+			"boot_source_y": 642,
+			"column": 7,
+			"native_bounds": [
+				39,
+				21,
+				21,
+				27
+			],
+			"row": 1,
+			"scale": 0.129807692307692,
+			"source_bounds": [
+				1367,
+				436,
+				159,
+				207
+			]
+		},
+		{
+			"boot_source_y": 944,
+			"column": 0,
+			"native_bounds": [
+				41,
+				21,
+				19,
+				27
+			],
+			"row": 2,
+			"scale": 0.128571428571429,
+			"source_bounds": [
+				41,
+				735,
+				148,
+				210
+			]
+		},
+		{
+			"boot_source_y": 944,
+			"column": 1,
+			"native_bounds": [
+				38,
+				21,
+				23,
+				27
+			],
+			"row": 2,
+			"scale": 0.128571428571429,
+			"source_bounds": [
+				211,
+				736,
+				181,
+				209
+			]
+		},
+		{
+			"boot_source_y": 944,
+			"column": 2,
+			"native_bounds": [
+				37,
+				21,
+				24,
+				27
+			],
+			"row": 2,
+			"scale": 0.128571428571429,
+			"source_bounds": [
+				394,
+				735,
+				186,
+				210
+			]
+		},
+		{
+			"boot_source_y": 944,
+			"column": 3,
+			"native_bounds": [
+				38,
+				21,
+				28,
+				27
+			],
+			"row": 2,
+			"scale": 0.128571428571429,
+			"source_bounds": [
+				594,
+				736,
+				220,
+				209
+			]
+		},
+		{
+			"boot_source_y": 944,
+			"column": 4,
+			"native_bounds": [
+				39,
+				21,
+				24,
+				27
+			],
+			"row": 2,
+			"scale": 0.128571428571429,
+			"source_bounds": [
+				797,
+				736,
+				188,
+				209
+			]
+		},
+		{
+			"boot_source_y": 944,
+			"column": 5,
+			"native_bounds": [
+				36,
+				19,
+				22,
+				29
+			],
+			"row": 2,
+			"scale": 0.128571428571429,
+			"source_bounds": [
+				959,
+				720,
+				171,
+				225
+			]
+		},
+		{
+			"boot_source_y": 944,
+			"column": 6,
+			"native_bounds": [
+				37,
+				18,
+				21,
+				30
+			],
+			"row": 2,
+			"scale": 0.128571428571429,
+			"source_bounds": [
+				1163,
+				710,
+				162,
+				235
+			]
+		},
+		{
+			"boot_source_y": 944,
+			"column": 7,
+			"native_bounds": [
+				40,
+				21,
+				19,
+				27
+			],
+			"row": 2,
+			"scale": 0.128571428571429,
+			"source_bounds": [
+				1377,
+				736,
+				150,
+				209
+			]
+		}
+	]
+}

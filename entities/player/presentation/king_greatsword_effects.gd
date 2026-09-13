@@ -98,6 +98,10 @@ func _on_empowered(_ability: AbilityComponent, resolved: bool, linked: bool) -> 
 		_play(_resolve,ResolveSound,1.2)
 
 func _on_strike(index: int, _count: int, duration: float, ability: AbilityComponent) -> void:
+	# Riftbreak owns its complete impact-to-residual sequence. A second atlas
+	# here used to overlap a crater drawn 16px lower by RiftbreakVisual.
+	if ability is RiftbreakComponent:
+		return
 	var burst := Burst.new()
 	add_child(burst)
 	burst.top_level = true

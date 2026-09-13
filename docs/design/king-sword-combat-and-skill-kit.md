@@ -2,13 +2,13 @@
 
 ## Current status
 
-Decision 143 installs owner-selected compact greatsword **C**. This is the current runtime contract. Earlier tap/hold proposals are archived under `art_source/archive/retired_docs_2026-09-12/`; they do not describe active controls.
+Decision 143 installs owner-selected compact greatsword **C**. This documents the default four-technique loadout; [Decision 144’s collection extension](king-unwritten-oath.md) adds four alternatives and evolving forms. Earlier tap/hold proposals are archived under `art_source/archive/retired_docs_2026-09-12/`; they do not describe active controls.
 
 ## Identity and art
 
 King is a simple progressing MMORPG adventurer: black tousled hair, short brick-red scarf, navy tunic, dark trousers, brown belt/gloves/boots and a broad silver two-handed blade with dark fuller. No crown, ornate armor or mantle. Anatomy stays approximately 27px tall, independent of weapon extent; the 96x64 cells have y48 feet with Body centered at (0,-16). All four directions use the same reference. Left mirrors the complete right pose; the northward attack correction keeps contact above the actor. Source matte removal/packing never draws replacement anatomy.
 
-The current `assets/characters/playable/king/greatsword/` set supplies four-step alternating gait, two-pose idle/reactions and eight-pose basic/skill families. Movement equipment changes stride cadence. Basic phase durations drive body frames and white raster contact trails; those trails are clipped to the authoritative fan. Menu preview and dialogue portrait use C. Complete `simple_reboot/` frames remain supported visual rollback.
+The current `assets/characters/playable/king/greatsword/` set supplies four-step alternating gait, two-frame idle/reactions and eight-frame basic/skill families. The September 13 review replaces front/back gait against the same reference, gives the basic finisher its own waist-height sweep, and holds the correct back-facing defeat rather than turning toward the camera. Some recovery/defeat frames deliberately hold the same drawing. Movement equipment changes stride cadence; reaction/dash playback resets that multiplier. Basic phase durations drive body frames and white raster contact trails; those trails are clipped to the authoritative fan. Menu preview and dialogue portrait use C. Complete `simple_reboot/` frames remain supported visual rollback.
 
 ## Basic chain
 
@@ -16,7 +16,7 @@ The current `assets/characters/playable/king/greatsword/` set supplies four-step
 |---|---|---|---|
 | Opening | .19 / .12 / .30 s | 100% | 100% |
 | Return | .15 / .12 / .27 s | 115% | 115% |
-| Heavy cleave | .26 / .14 / .36 s | 165% | 200% |
+| Finishing sweep (internal heavy_cleave) | .26 / .14 / .36 s | 165% | 200% |
 
 Current weapons share a 36px-forward, 44px-wide convex fan. Direction commits on acceptance. Equipment attack speed divides all phases (existing +50% cap). Base weapon roll stays 10-12, or 16-20 for Varkuun Edge; basic rolls remain separate from skill power. Each swing deduplicates per target. The next cut can be buffered using the existing single latest-intent buffer and starts after full recovery. Continuation remains available .9s after recovery; dash, skills, interruption and weapon changes reset it. Basic attacks continue to permit movement. No hold-charge action or extra queue is installed.
 
@@ -31,9 +31,11 @@ Current weapons share a 36px-forward, 44px-wide convex fan. Direction commits on
 
 Body anticipation, planted impact, hop and command poses use C's generated frames. Generated white/cyan contact accents accompany the existing skill fields, Pursuit sheath and world-locked craters. Original cut/return/cleave, leather step and Resolve cues join the working four-skill audio. Target confirmation/cancellation, player interruption, armor, criticals and hitstop continue through the existing components.
 
+Riftbreak now owns one seven-frame steel/debris impact followed by its eighth-frame residue, with explicit source ground anchors mapped to (96,96). Contact captures the actual hitbox world position; its floor sprite has no extra 16px offset, and the generic contact observer no longer duplicates its crater. The sequence survives gameplay recovery and fades in place. Pursuit's world-space landing offset is zero, aligning its damage, crater and shockwave with King's actual foot/target origin; its jump mechanics and numbers above are retained.
+
 ## Passive and skill link
 
-**Resolve:** one stack per basic swing that lands an accepted hit, at most three. Three stacks multiply the next committed skill by 1.25. Retention is eight seconds after the last landed swing. Air swings and skills do not charge it. Rejected casts preserve it; accepted casts consume it even if subsequently interrupted. Defeat clears it. Three pips and HUD text show progress; a chime announces readiness.
+**Resolve:** one stack per basic swing that lands an accepted hit, at most three. Three stacks multiply the next committed skill by 1.25. Retention is eight seconds after the last landed swing. Air swings and skills do not charge it. Rejected casts preserve it; accepted casts consume it even if subsequently interrupted. Defeat clears it. Three overhead pips and HUD text show progress; a chime announces readiness. The HUD explicitly distinguishes building stacks from the ready bonus, offers an explanation on hover, and appends the landing-link cue without replacing Resolve status.
 
 **Pursuit -> Riftbreak:** actual landing opens 1.2 seconds to commit Riftbreak for a 1.15 multiplier. Any intervening skill consumes the opportunity. The existing buffer supports pressing 3 then 2; no extra input or cooldown reset exists. A short blue line and HUD cue announce the link.
 
@@ -45,4 +47,10 @@ Current campaign ceiling: 3 initially; clearing Stages I/II/III/IV/V unlocks 4/5
 
 ## Open work
 
+[Action-kit brainstorm](king-action-kit-brainstorm.md) proposes Crosscut Advance, Faultline, the preserved Pursuit jump and Last Oath, plus a timed-counter alternative. These are proposals, not installed skills.
+
 Owner full-campaign testing must judge the new cut timing, shorter honest reach, Resolve/link values, stage caps and audio mix against starter and crafted gear. Ultimate, Reality Breaking, charged-hold basics and further skills remain future proposals. Production Stage XX Examiner integration is separate from this player overhaul.
+
+## Collection extension — September 13 / Decision 144
+
+The four techniques above remain the default loadout. [The Unwritten Oath](king-unwritten-oath.md) adds four alternative families and four finite forms, with Sanctuary slot assignment and non-persistent Lab previews. Either Pursuit or Starfall can now open the link into Riftbreak or Griefwake. C identity, the physical basic chain, capped level mastery and current stage ceilings remain unchanged. The active player SpriteFrames resource is now `king_oath_sprite_frames.tres`, which includes every approved greatsword action plus the new eight-pose spin; the menu retains the same existing idle art.

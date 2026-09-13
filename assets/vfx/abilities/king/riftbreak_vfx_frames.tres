@@ -1,63 +1,51 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://50hx0l5fk6jy"]
 
-[ext_resource type="Texture2D" uid="uid://c05tr5k4aqvbw" path="res://assets/vfx/abilities/king/riftbreak_vfx_sheet_192.png" id="1_vfx"]
+[ext_resource type="Texture2D" path="res://assets/vfx/abilities/king/riftbreak_vfx_sheet_192.png" id="1_wind"]
+[ext_resource type="Texture2D" path="res://assets/vfx/abilities/king/greatsword/steel_impact_192x192.png" id="2_impact"]
 
-[sub_resource type="AtlasTexture" id="RiftbreakAtlas_2"]
-atlas = ExtResource("1_vfx")
-region = Rect2(384, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="RiftbreakAtlas_3"]
-atlas = ExtResource("1_vfx")
-region = Rect2(0, 192, 192, 192)
-
-[sub_resource type="AtlasTexture" id="RiftbreakAtlas_4"]
-atlas = ExtResource("1_vfx")
-region = Rect2(192, 192, 192, 192)
-
-[sub_resource type="AtlasTexture" id="RiftbreakAtlas_5"]
-atlas = ExtResource("1_vfx")
-region = Rect2(384, 192, 192, 192)
-
-[sub_resource type="AtlasTexture" id="RiftbreakAtlas_0"]
-atlas = ExtResource("1_vfx")
+[sub_resource type="AtlasTexture" id="Wind_0"]
+atlas = ExtResource("1_wind")
 region = Rect2(0, 0, 192, 192)
 
-[sub_resource type="AtlasTexture" id="RiftbreakAtlas_1"]
-atlas = ExtResource("1_vfx")
+[sub_resource type="AtlasTexture" id="Wind_1"]
+atlas = ExtResource("1_wind")
 region = Rect2(192, 0, 192, 192)
 
+[sub_resource type="AtlasTexture" id="Impact_0"]
+atlas = ExtResource("2_impact")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="Impact_1"]
+atlas = ExtResource("2_impact")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="Impact_2"]
+atlas = ExtResource("2_impact")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="Impact_3"]
+atlas = ExtResource("2_impact")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="Impact_4"]
+atlas = ExtResource("2_impact")
+region = Rect2(0, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="Impact_5"]
+atlas = ExtResource("2_impact")
+region = Rect2(192, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="Impact_6"]
+atlas = ExtResource("2_impact")
+region = Rect2(384, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="Impact_7"]
+atlas = ExtResource("2_impact")
+region = Rect2(576, 192, 192, 192)
+
 [resource]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("RiftbreakAtlas_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("RiftbreakAtlas_3")
-}, {
-"duration": 1.0,
-"texture": SubResource("RiftbreakAtlas_4")
-}],
-"loop": 0,
-"name": &"impact",
-"speed": 18.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("RiftbreakAtlas_5")
-}],
-"loop": 1,
-"name": &"residual",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("RiftbreakAtlas_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("RiftbreakAtlas_1")
-}],
-"loop": 0,
-"name": &"wind_up",
-"speed": 12.0
-}]
+animations = [
+{"frames": [{"duration": 1.0, "texture": SubResource("Wind_0")}, {"duration": 1.0, "texture": SubResource("Wind_1")}], "loop": false, "name": &"wind_up", "speed": 12.0},
+{"frames": [{"duration": 1.0, "texture": SubResource("Impact_0")}, {"duration": 1.0, "texture": SubResource("Impact_1")}, {"duration": 1.0, "texture": SubResource("Impact_2")}, {"duration": 1.0, "texture": SubResource("Impact_3")}, {"duration": 1.0, "texture": SubResource("Impact_4")}, {"duration": 1.0, "texture": SubResource("Impact_5")}, {"duration": 1.0, "texture": SubResource("Impact_6")}], "loop": false, "name": &"impact", "speed": 20.0},
+{"frames": [{"duration": 1.0, "texture": SubResource("Impact_7")}], "loop": true, "name": &"residual", "speed": 1.0},
+]

@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-09-13 - King Unwritten Oath and technique collection
+
+- Added Crosscut Advance, Griefwake, Starfall Step and Oathstorm as four alternatives to the original kit, each with Mortal/Resonant/Ascendant/Unbound forms. Stage II/V gates connect early progression; later forms remain explicitly labeled Lab previews with future story hooks.
+- Added safe Sanctuary slot swaps and optional unique stable-ID RunSession persistence. Old saves retain their defaults, previews do not write progression, cooldowns stay with components and each actor owns its slot copies.
+- Extended Player cancellation/buffering/debug cleanup, mastery and accepted-hit feedback to the full collection. Starfall respects wall collisions and travel-only protection; its first landing links into either rupture. Rank changes wait for cast completion.
+- Added approved-C eight-pose directional body art, two 16-frame raster effect sequences, four icons and six original layered SFX cues. The body remains small while separate area effects expand. Fixed same-frame loadout/HUD cooldown observer cleanup.
+- Validation: new 174-assertion combat/form smoke and 32-assertion library/persistence lifecycle smoke; existing mastery, presentation, buffer, auto-combat, feedback, debug, save, Riftbreak, Pursuit and Worldsplitter suites. Rendered Lab review plus decoded 27-second H.264/AAC preview under `art_source/review/characters/king/unwritten_oath_2026_09_13/`. Full campaign/endgame balance remains open.
+
+## 2026-09-13 - King Complete Character Presentation Review
+
+- Corrected front/back gait using the approved C reference while retaining the existing side poses. Replaced the basic chain's shared ground-cleave artwork with a dedicated horizontal finishing sweep; kept white contact trails and existing chain timing/damage. Rejected missing/edge-touching source blade drawings and settled into approved guard art.
+- Corrected a front-facing drawing in the back-facing defeat sequence, removed dark-magenta matte fringes across the character sheets, included Riftbreak's skipped preparation drawing, and prevented movement-speed cadence from leaking into dash/reaction playback.
+- Unified Riftbreak's duplicate, 16px-separated crater layers into one ground-anchored seven-frame impact/eighth-frame residual. Preserve the full sequence after gameplay recovery. Corrected Pursuit's legacy world-space landing offset to the actual feet, keeping its core jump and other values intact.
+- Clarified the three overhead Resolve pips through building/ready HUD wording, a hover explanation and a simultaneous landing-link cue. Added a fresh action-kit brainstorm; proposed Crosscut/Faultline/Last Oath are not installed gameplay.
+- Added repeatable all-direction frame boards/bounds audit and regression coverage for actual contact origin, every impact frame, residual persistence, canceled preparation, reaction cadence and separate basic/skill artwork. Rendered review and validation are stored under `art_source/review/characters/king/polish_2026_09_13/`.
+
 ## 2026-09-12 - King C Greatsword, Resolve and Bounded Growth
 
 - Installed the selected compact adventurer/greatsword identity, four-direction alternating gait, three eight-frame basic cuts, skill/reaction families, portrait and coordinated 24px skill icons. Preserved complete weapon tips through fixed body-scale, connected-island imports.

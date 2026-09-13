@@ -33,6 +33,7 @@ func play_strike(_strike_index: int, _strike_count: int, _duration_seconds: floa
 	if not _is_pursuit() or effect_sprite == null:
 		return
 	_follow_landing_origin()
+	global_position = ability_component.hitbox.global_position
 	_reset_fade()
 	visible = true
 	effect_sprite.visible = true
@@ -118,7 +119,7 @@ func _set_shockwave_alpha(value: float) -> void:
 func _draw() -> void:
 	if _shockwave_alpha <= 0.0:
 		return
-	var ground_center := Vector2(0.0, 16.0)
+	var ground_center := Vector2.ZERO
 	draw_circle(ground_center, maxf(_shockwave_radius - 5.0, 1.0), Color(0.36, 0.68, 1.0, 0.08 * _shockwave_alpha))
 	draw_arc(ground_center, _shockwave_radius, 0.0, TAU, 40, Color(0.88, 0.96, 1.0, 0.9 * _shockwave_alpha), 2.0, false)
 	draw_arc(ground_center, maxf(_shockwave_radius - 5.0, 1.0), 0.0, TAU, 32, Color(0.34, 0.62, 1.0, 0.62 * _shockwave_alpha), 1.0, false)

@@ -146,12 +146,19 @@ func _ready() -> void:
 	equipment_detail_panel.equip_requested.connect(_on_equipment_equip_requested)
 	_build_character_bag()
 	_build_skill_cards()
+	var collection := Button.new()
+	collection.text="TECHNIQUE COLLECTION"
+	collection.add_theme_font_size_override("font_size",11)
+	collection.pressed.connect(func() -> void: player.get_node("KingSkillLibrary").open_collection())
+	skills_page.get_node("SkillHeader").add_child(collection)
 	_show_page(&"gear", false)
 	_start_portrait_aura()
 	hide()
 
 
 func _input(event: InputEvent) -> void:
+	if is_instance_valid(player.get_node("KingSkillLibrary")._collection):
+		return
 	if visible and event.is_action_pressed("ui_cancel"):
 		get_viewport().set_input_as_handled()
 		close_menu()
@@ -683,7 +690,7 @@ func _on_skill_slot_selected(definition: SkillSlotDefinition) -> void:
 
 	if definition.is_equipped():
 		var mastery := player.get_node("KingMastery") as KingMasteryComponent
-		skill_detail_label.text += "\nRESOLVE: 3 landed swings → next skill +25%% (8s). Pursuit → Riftbreak within 1.2s: +15%%.\nLEVEL MASTERY: +%d%% skill damage (maximum +18%%)." % roundi((mastery.definition.level_multiplier(player.progression_component.level)-1.0)*100)
+		skill_detail_label.text += "\nRESOLVE: 3 landed swings → next skill +25%% (8s). Pursuit/Starfall → Riftbreak/Griefwake within 1.2s: +15%%.\nLEVEL MASTERY: +%d%% skill damage (maximum +18%%)." % roundi((mastery.definition.level_multiplier(player.progression_component.level)-1.0)*100)
 
 
 var _selected_skill: SkillSlotDefinition

@@ -1,12 +1,15 @@
 extends SceneTree
-const OUT := "res://art_source/review/characters/king/greatsword_2026_09_12/"
+var OUT := "res://art_source/review/characters/king/greatsword_2026_09_12/"
 const Lab = preload("res://levels/combat_lab/combat_lab.tscn")
 const Foe = preload("res://entities/enemies/forsaken_thrall/forsaken_thrall.tscn")
 var _caption: Label
 var _player: Player
 var _lab: Node
+var _rift_review_cast := 0
 
 func _initialize() -> void:
+	if "--polish" in OS.get_cmdline_user_args():
+		OUT = "res://art_source/review/characters/king/polish_2026_09_13/"
 	call_deferred("_run")
 
 func _run() -> void:
@@ -19,6 +22,13 @@ func _run() -> void:
 	_lab.get_node("UI/LabPanel").hide()
 	_lab.get_node("UI/BossHealthHUD").hide()
 	_player = _lab.player
+	if "--polish" in OS.get_cmdline_user_args():
+		var crater: AnimatedSprite2D = _player.get_node("AbilityPivot/RiftbreakVisual/EffectSprite")
+		_player.ability_2_component.ability_started.connect(func() -> void: _rift_review_cast += 1)
+		crater.frame_changed.connect(func() -> void:
+			if crater.visible and crater.animation == &"impact":
+				_save("riftbreak_cast_"+str(_rift_review_cast)+"_contact_"+str(crater.frame)+".png")
+		)
 	_player.global_position = Vector2(365,300)
 	var camera: Camera2D = _lab.camera
 	camera.top_level=true
@@ -55,7 +65,7 @@ func _run() -> void:
 	for direction in [Vector2.RIGHT,Vector2.DOWN,Vector2.LEFT,Vector2.UP]:
 		_player.attack_component.reset_combo()
 		_player._set_facing_direction(direction)
-		_caption.text="OPENING CUT → RETURN CUT → HEAVY CLEAVE\nWhite contact light follows the real hit shape"
+		_caption.text="OPENING CUT → RETURN CUT → FINISHING SWEEP\nWhite contact light follows the real hit shape"
 		for index in 3:
 			foe.global_position=_player.get_node("SwordPivot").global_position+direction*25+Vector2(0,10)
 			_player.request_primary_attack()
@@ -73,6 +83,8 @@ func _run() -> void:
 	await _wait(.22)
 	await _save("echoing_sever.png")
 	await _wait(.9)
+	if "--polish" in OS.get_cmdline_user_args():
+		foe.global_position=Vector2(900,900)
 	_caption.text="2 · RIFTBREAK\nPlanted greatsword, grounded impact"
 	_player.ability_2_component.request_cast(Vector2.RIGHT,25)
 	await _wait(.2)
@@ -105,6 +117,13 @@ func _run() -> void:
 	await _wait(.25)
 	await _save("skills_menu.png")
 	menu.close_menu()
+	menu.queue_free()
+	_lab.queue_free()
+	await process_frame
+	await process_frame
+	# Release review cursor handles before the rendering server shuts down.
+	Input.set_custom_mouse_cursor(null,Input.CURSOR_ARROW)
+	Input.set_custom_mouse_cursor(null,Input.CURSOR_POINTING_HAND)
 	print("KING_GREATSW0RD_RENDER_REVIEW_COMPLETE")
 	quit()
 

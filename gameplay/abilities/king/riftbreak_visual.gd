@@ -34,8 +34,15 @@ func play_phase(phase: int, _duration_seconds: float) -> void:
 func play_strike(_strike_index: int, _strike_count: int, _duration_seconds: float) -> void:
 	if not _is_riftbreak() or effect_sprite == null:
 		return
+	# Capture the actual contact point after the radial hitbox has been placed.
+	# Recovery/residual frames keep this world origin even if King moves away.
+	global_position = ability_component.hitbox.global_position
+	global_rotation = 0.0
 	visible = true
 	_reset_fade()
+	# The longer debris sequence outlives gameplay recovery. Once contact has
+	# happened, keep the grounded impact through its residual/fade lifecycle.
+	_preserve_residual = true
 	effect_sprite.visible = true
 	effect_sprite.play(&"impact")
 

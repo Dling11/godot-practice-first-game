@@ -11,6 +11,7 @@ const SNAPSHOT_VERSION := 1
 var total_experience := 0
 var coins := 0
 var player_current_health := -1.0
+var king_skill_slots: Array = []
 
 
 func update_progression(experience: int, coin_total: int) -> void:
@@ -49,6 +50,7 @@ func update_player_health(current_health: float) -> void:
 
 
 func reset_run() -> void:
+	king_skill_slots.clear()
 	total_experience = 0
 	coins = 0
 	player_current_health = -1.0
@@ -62,10 +64,13 @@ func create_snapshot() -> Dictionary:
 		"total_experience": total_experience,
 		"coins": coins,
 		"player_current_health": player_current_health,
+		"king_skill_slots": king_skill_slots.duplicate(),
 	}
 
 
 func can_restore_snapshot(snapshot: Dictionary) -> bool:
+	if not KingSkillCatalog.valid_slots(snapshot.get("king_skill_slots",[])):
+		return false
 	if snapshot.get("version", -1) != SNAPSHOT_VERSION:
 		return false
 	var experience_value: Variant = snapshot.get("total_experience")
@@ -87,6 +92,7 @@ func can_restore_snapshot(snapshot: Dictionary) -> bool:
 func restore_snapshot(snapshot: Dictionary) -> bool:
 	if not can_restore_snapshot(snapshot):
 		return false
+	king_skill_slots = snapshot.get("king_skill_slots",[]).duplicate()
 	total_experience = int(snapshot["total_experience"])
 	coins = int(snapshot["coins"])
 	var restored_health := float(snapshot["player_current_health"])

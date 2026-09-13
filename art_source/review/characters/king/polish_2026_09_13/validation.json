@@ -1,0 +1,79 @@
+{
+  "date": "2026-09-13",
+  "godot": "4.7.stable.official.5b4e0cb0f",
+  "suites": [
+    {
+      "suite": "king_presentation_polish_smoke",
+      "result": "passed",
+      "output": "KING_PRESENTATION_POLISH_PASSED"
+    },
+    {
+      "suite": "king_greatsword_mastery_smoke",
+      "result": "passed",
+      "output": "KING_GREATSW0RD_MASTERY_PASSED=353"
+    },
+    {
+      "suite": "riftbreak_smoke",
+      "result": "passed",
+      "output": "Riftbreak self-AOE, radial knockback, and presentation smoke test passed."
+    },
+    {
+      "suite": "sovereign_pursuit_smoke",
+      "result": "passed",
+      "output": "Sovereign Pursuit targeting, traversal, landing damage, and generated presentation smoke test passed."
+    },
+    {
+      "suite": "king_skill_4_smoke",
+      "result": "passed",
+      "output": "King Skill 4 targeting, eight-frame sword/ground sequences, corrected crater anchor, and world-locked residue test passed."
+    },
+    {
+      "suite": "echoing_sever_smoke",
+      "result": "passed",
+      "output": "Echoing Sever targeting and timing smoke test passed."
+    },
+    {
+      "suite": "ability_input_buffer_smoke",
+      "result": "passed",
+      "output": "Short latest-intent combat buffer smoke test passed."
+    },
+    {
+      "suite": "basic_attack_repeat_smoke",
+      "result": "passed",
+      "output": "Basic attack repeat cadence smoke test passed."
+    },
+    {
+      "suite": "player_movement_smoke",
+      "result": "passed",
+      "output": "Player movement smoke test passed."
+    },
+    {
+      "suite": "player_evade_smoke",
+      "result": "passed",
+      "output": "Player evade smoke test passed. Distance: 53.33 px"
+    },
+    {
+      "suite": "hud_action_controls_smoke",
+      "result": "passed",
+      "output": "HUD action controls smoke test passed."
+    },
+    {
+      "suite": "combat_audio_smoke",
+      "result": "passed",
+      "output": "Combat audio smoke test passed."
+    }
+  ],
+  "frame_audit": {
+    "frames": 280,
+    "directions": 4,
+    "result": "padded bounds pass plus reviewed direction boards"
+  },
+  "render": {
+    "frames": 622,
+    "fps": 30,
+    "seconds": 20.733333333333334,
+    "exit_errors": 0,
+    "mp4_full_decode": "passed"
+  },
+  "limits": "Fresh action-kit alternatives are proposals only. Full campaign balance and final feel are owner playtesting."
+}

@@ -4,6 +4,12 @@ This file tracks current limitations only. Resolved and retired systems belong i
 
 ## Current Limitations
 
+### KI-024 - King future forms need campaign milestones and balance
+
+- **Implemented:** Eight-technique collection, four equipped slots, four finite Oath forms, Stage II/V learn/evolution gates, Sanctuary persistence and isolated Lab previews. New contacts, wall-stopped mobility, Resolve/link integration, cancellation and loadout lifecycle have focused coverage.
+- **Remaining:** Production Stage XX and late-game rewards do not grant Ascendant/Unbound yet. Their story flags are hooks, not completed routes. Campaign pacing, future gear, crowd damage and the Examiner seal matchup require playtesting; the current campaign still reaches VI.
+- **Next:** Compare the Mortal/Resonant kit against normal Stage IV-VI encounters with debug helpers off, then tune the eventual Stage XX rewards and equipment together. F7's existing unlimited-skill helper is for reviewing effects, not cooldown balance.
+
 ### KI-023 - Examiner Stage XX balance and scenario integration remain pending
 
 - **Status:** Owner approved the corrected animation identity. Decisions 139-141 combat mechanics are implemented in F7; production Stage XX is not connected.
@@ -68,6 +74,7 @@ This file tracks current limitations only. Resolved and retired systems belong i
 
 - **Status:** Implemented; owner playtesting remains.
 - **Implemented:** Decision 143 installs C's compact greatsword identity, alternating gait, eight-frame action families, portrait, three-cut combo, contact-clipped raster trails, Resolve, Pursuit/Riftbreak link, original audio and bounded skill/XP progression.
+- **September 13 correction:** Replaced inconsistent front/back walk poses, separated basic finishing sweep from ground-slam art, corrected the wrong-facing defeat settle, removed dark-magenta fringes, and reviewed all 280 installed frames. Riftbreak's duplicate/offset crater and premature impact cleanup are corrected; Pursuit damage/crater/shockwave now share the current foot origin. Resolve HUD explains building versus ready and retains the simultaneous landing-link cue. The action-kit brainstorm is documentation only.
 - **Remaining:** Judge swing readability and audio in crowded fights, plus first-clear pacing with no armor/starter/Stage V gear. +25% Resolve, +15% link and stage cap thresholds are authored starting values, not campaign-balance claims. Final level progression beyond the implemented six-stage campaign remains undefined.
 
 ### KI-013 - Hunts are not implemented

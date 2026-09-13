@@ -88,10 +88,8 @@ func _ready() -> void:
 	evade_component.phase_changed.connect(_on_evade_phase_changed)
 	attack_component.phase_changed.connect(_on_attack_phase_changed)
 	attack_component.attack_finished.connect(_on_attack_finished)
-	ability_1_component.ability_finished.connect(_on_ability_finished)
-	ability_2_component.ability_finished.connect(_on_ability_finished)
-	ability_3_component.ability_finished.connect(_on_ability_finished)
-	ability_4_component.ability_finished.connect(_on_ability_finished)
+	for component in get_all_ability_components():
+		component.ability_finished.connect(_on_ability_finished)
 	action_buffer_timer.timeout.connect(_clear_buffered_action)
 	auto_combat.mode_changed.connect(_on_auto_combat_mode_changed)
 	directional_wedge_targeting.targeting_confirmed.connect(_on_directional_targeting_confirmed)
@@ -279,10 +277,8 @@ func set_cinematic_locked(value: bool) -> void:
 	auto_combat.set_auto_farm_enabled(false)
 	attack_component.cancel_attack()
 	evade_component.cancel_evade()
-	ability_1_component.cancel_cast()
-	ability_2_component.cancel_cast()
-	ability_3_component.cancel_cast()
-	ability_4_component.cancel_cast()
+	for component in get_all_ability_components():
+		component.cancel_cast()
 	knockback_component.clear()
 	stagger_component.clear()
 	velocity = Vector2.ZERO
@@ -332,10 +328,8 @@ func try_begin_root_restraint(source: Node, break_points: int) -> bool:
 	_cancel_all_targeting()
 	attack_component.cancel_attack()
 	evade_component.cancel_evade()
-	ability_1_component.cancel_cast()
-	ability_2_component.cancel_cast()
-	ability_3_component.cancel_cast()
-	ability_4_component.cancel_cast()
+	for component in get_all_ability_components():
+		component.cancel_cast()
 	_restraint_source = source
 	_restraint_break_points = break_points
 	_restraint_total_break_points = break_points
@@ -737,8 +731,16 @@ func get_ability_component_for_slot(slot_number: int) -> AbilityComponent:
 	return null
 
 
+func get_all_ability_components() -> Array[AbilityComponent]:
+	var result: Array[AbilityComponent] = []
+	for child in get_children():
+		if child is AbilityComponent:
+			result.append(child)
+	return result
+
+
 func get_active_ability_component() -> AbilityComponent:
-	for component in [ability_1_component, ability_2_component, ability_3_component, ability_4_component]:
+	for component in get_all_ability_components():
 		if component != null and component.is_casting():
 			return component
 	return null
@@ -867,10 +869,8 @@ func _on_hit_recovery_started(duration_seconds: float) -> void:
 	_cancel_all_targeting()
 	attack_component.cancel_attack()
 	evade_component.interrupt_recovery()
-	ability_1_component.cancel_cast()
-	ability_2_component.cancel_cast()
-	ability_3_component.cancel_cast()
-	ability_4_component.cancel_cast()
+	for component in get_all_ability_components():
+		component.cancel_cast()
 	hit_recovery_started.emit(duration_seconds)
 
 
@@ -970,7 +970,7 @@ func _enable_debug_unlimited_skills() -> void:
 
 
 func _clear_all_ability_cooldowns() -> void:
-	for component in [ability_1_component, ability_2_component, ability_3_component, ability_4_component]:
+	for component in get_all_ability_components():
 		if component != null:
 			component.clear_cooldown()
 
@@ -1039,9 +1039,7 @@ func _on_died() -> void:
 	stagger_component.clear()
 	attack_component.cancel_attack()
 	evade_component.cancel_evade()
-	ability_1_component.cancel_cast()
-	ability_2_component.cancel_cast()
-	ability_3_component.cancel_cast()
-	ability_4_component.cancel_cast()
+	for component in get_all_ability_components():
+		component.cancel_cast()
 	set_physics_process(false)
 	defeated.emit()

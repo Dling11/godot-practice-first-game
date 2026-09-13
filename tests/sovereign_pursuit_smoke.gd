@@ -24,6 +24,10 @@ func _run() -> void:
 	var body := player.get_node("VisualRoot/Body") as AnimatedSprite2D
 	var effect := player.get_node("AbilityPivot/SovereignPursuitVisual/EffectSprite") as AnimatedSprite2D
 	var visual := player.get_node("AbilityPivot/SovereignPursuitVisual") as SovereignPursuitVisual
+	ability.strike_started.connect(func(_index: int, _count: int, _duration: float) -> void:
+		if ability.hitbox.global_position.distance_to(player.global_position) > 0.1:
+			_fail("Pursuit landing damage must share the actual foot/target origin.")
+	)
 	var travel_visual := player.get_node("VisualRoot/SovereignPursuitTravelVisual") as SovereignPursuitTravelVisual
 	var travel_effect := player.get_node("VisualRoot/SovereignPursuitTravelVisual/EffectSprite") as AnimatedSprite2D
 	var launch_audio := player.get_node("PlayerActionSfx/SovereignPursuitLaunch") as AudioStreamPlayer2D
@@ -74,8 +78,8 @@ func _run() -> void:
 	if effect.animation != &"crater" or not visual.visible:
 		_fail("Sovereign Pursuit did not leave its post-recovery crater visible.")
 		return
-	if effect.position != Vector2(0.0, 16.0):
-		_fail("Sovereign Pursuit VFX no longer shares the authored ground-center offset.")
+	if effect.global_position.distance_to(player.global_position) > 0.1:
+		_fail("Sovereign Pursuit crater is offset from King's actual landing feet.")
 		return
 	var crater_origin := visual.global_position
 	player.global_position += Vector2(32.0, 0.0)

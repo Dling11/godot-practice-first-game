@@ -44,18 +44,8 @@ func _ready() -> void:
 	_hit_flash_material.set_shader_parameter("flash_amount", 1.0)
 	player.attack_component.hit_landed.connect(_on_player_hit_landed)
 	player.attack_component.attack_started.connect(_on_player_attack_started)
-	player.ability_1_component.hit_landed.connect(
-		_on_player_ability_hit_landed.bind(player.ability_1_component)
-	)
-	player.ability_2_component.hit_landed.connect(
-		_on_player_ability_hit_landed.bind(player.ability_2_component)
-	)
-	player.ability_3_component.hit_landed.connect(
-		_on_player_ability_hit_landed.bind(player.ability_3_component)
-	)
-	player.ability_4_component.hit_landed.connect(
-		_on_player_ability_hit_landed.bind(player.ability_4_component)
-	)
+	for ability in player.get_all_ability_components():
+		ability.hit_landed.connect(_on_player_ability_hit_landed.bind(ability))
 	player.health_component.damaged.connect(_on_player_damaged)
 
 

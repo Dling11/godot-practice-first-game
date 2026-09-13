@@ -72,6 +72,7 @@ func configure(definition: SkillSlotDefinition) -> void:
 
 
 func bind_ability(component: AbilityComponent) -> void:
+	_unbind_ability()
 	ability_component = component
 	if component == null:
 		activation_button.disabled = true
@@ -86,6 +87,17 @@ func bind_ability(component: AbilityComponent) -> void:
 		_show_ready()
 	else:
 		_show_cooldown(component.cooldown_remaining)
+
+func _exit_tree() -> void:
+	_unbind_ability()
+
+func _unbind_ability() -> void:
+	if is_instance_valid(ability_component):
+		if ability_component.cooldown_started.is_connected(_show_cooldown):
+			ability_component.cooldown_started.disconnect(_show_cooldown)
+		if ability_component.cooldown_finished.is_connected(_show_ready):
+			ability_component.cooldown_finished.disconnect(_show_ready)
+	ability_component=null
 
 
 func _show_cooldown(duration_seconds: float) -> void:

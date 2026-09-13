@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://edpqlhbhvhav" path="res://gameplay/combat/hurtbox_component.gd" id="12_hurtbox"]
 [ext_resource type="Script" uid="uid://c6tnb2d6x4r3l" path="res://entities/player/presentation/dash_visual.gd" id="13_dash_visual"]
 [ext_resource type="Script" uid="uid://bfftqao8u5k1s" path="res://entities/player/presentation/player_state_visual.gd" id="14_state_visual"]
-[ext_resource type="SpriteFrames" path="res://assets/characters/playable/king/greatsword/king_greatsword_sprite_frames.tres" id="15_player_frames"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/playable/king/greatsword/king_oath_sprite_frames.tres" id="15_player_frames"]
 [ext_resource type="Script" path="res://entities/player/presentation/king_greatsword_animation.gd" id="16_player_animation"]
 [ext_resource type="Script" path="res://gameplay/abilities/king/echoing_sever_component.gd" id="17_ability"]
 [ext_resource type="Resource" path="res://data/abilities/king/echoing_sever.tres" id="18_ability_data"]
@@ -74,6 +74,12 @@
 
 [ext_resource type="Script" path="res://entities/player/presentation/king_greatsword_effects.gd" id="87_greatsword_fx"]
 
+[ext_resource type="Script" path="res://gameplay/abilities/king/oath/king_oath_component.gd" id="88_oath"]
+[ext_resource type="Script" path="res://data/abilities/king/oath/king_oath_definition.gd" id="89_oath_data"]
+[ext_resource type="Script" path="res://entities/player/king/king_skill_library.gd" id="90_library"]
+
+[ext_resource type="Script" path="res://gameplay/abilities/king/oath/king_oath_presentation.gd" id="91_oath_vfx"]
+
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_sweep"]
 points = PackedVector2Array(3, -9, 14, -28, 39, -24, 48, 0, 39, 24, 14, 28, 3, 9)
 
@@ -98,6 +104,22 @@ font_size = 9
 font_color = Color(1, 0.86, 0.36, 1)
 outline_size = 2
 outline_color = Color(0.027, 0.02, 0.039, 1)
+
+[sub_resource type="Resource" id="Oath_0"]
+script = ExtResource("89_oath_data")
+technique = 0
+
+[sub_resource type="Resource" id="Oath_1"]
+script = ExtResource("89_oath_data")
+technique = 1
+
+[sub_resource type="Resource" id="Oath_2"]
+script = ExtResource("89_oath_data")
+technique = 2
+
+[sub_resource type="Resource" id="Oath_3"]
+script = ExtResource("89_oath_data")
+technique = 3
 
 [node name="Player" type="CharacterBody2D" unique_id=442018439]
 collision_layer = 2
@@ -260,7 +282,6 @@ effect_sprite = NodePath("EffectSprite")
 
 [node name="EffectSprite" type="AnimatedSprite2D" parent="AbilityPivot/RiftbreakVisual"]
 texture_filter = 1
-position = Vector2(0, 16)
 sprite_frames = ExtResource("58_riftbreak_frames")
 animation = &"wind_up"
 
@@ -273,7 +294,6 @@ effect_sprite = NodePath("EffectSprite")
 
 [node name="EffectSprite" type="AnimatedSprite2D" parent="AbilityPivot/SovereignPursuitVisual"]
 texture_filter = 1
-position = Vector2(0, 16)
 sprite_frames = ExtResource("63_pursuit_frames")
 animation = &"launch"
 
@@ -551,6 +571,28 @@ definition = ExtResource("86_mastery_data")
 
 [node name="GreatswordEffects" type="Node2D" parent="."]
 script = ExtResource("87_greatsword_fx")
+
+[node name="OathAbility1" type="Node" parent="."]
+script = ExtResource("88_oath")
+definition = SubResource("Oath_0")
+
+[node name="OathAbility2" type="Node" parent="."]
+script = ExtResource("88_oath")
+definition = SubResource("Oath_1")
+
+[node name="OathAbility3" type="Node" parent="."]
+script = ExtResource("88_oath")
+definition = SubResource("Oath_2")
+
+[node name="OathAbility4" type="Node" parent="."]
+script = ExtResource("88_oath")
+definition = SubResource("Oath_3")
+
+[node name="KingSkillLibrary" type="Node" parent="."]
+script = ExtResource("90_library")
+
+[node name="OathPresentation" type="Node2D" parent="."]
+script = ExtResource("91_oath_vfx")
 
 [connection signal="defeated" from="." to="VisualRoot/Body" method="play_defeat"]
 [connection signal="defeated" from="." to="VisualRoot/WeaponVisual" method="play_defeat"]

@@ -50,10 +50,10 @@ func _run() -> void:
 	if (
 		vfx_frames == null
 		or vfx_frames.get_frame_count(&"wind_up") != 2
-		or vfx_frames.get_frame_count(&"impact") != 3
+		or vfx_frames.get_frame_count(&"impact") != 7
 		or vfx_frames.get_frame_count(&"residual") != 1
 	):
-		_fail("Riftbreak VFX is missing its authored six-frame phase animations.")
+		_fail("Riftbreak VFX is missing its continuous impact-to-residual sequence.")
 		return
 	if player.skill_loadout.get_slot(2).ability != ability.definition:
 		_fail("King's second skill slot does not expose Riftbreak.")
@@ -84,6 +84,8 @@ func _run() -> void:
 	ability.strike_started.connect(func(index: int, _count: int, _duration: float) -> void:
 		strikes.append(index)
 		observed_vfx_animations.append(effect_sprite.animation)
+		if effect_sprite.global_position.distance_to(hitbox.global_position) > 0.1:
+			_fail("Riftbreak contact artwork is offset from its real damage origin.")
 	)
 	var observed_directions := {
 		"left": Vector2.ZERO,

@@ -24,4 +24,4 @@ recovery_seconds = 0.24
 cooldown_seconds = 8.5
 target_range_pixels = 220.0
 landing_radius_pixels = 52.0
-ground_center_offset_y = 16.0
+ground_center_offset_y = 0.0

@@ -51,6 +51,7 @@ signal character_menu_requested
 
 var _blocked_tween: Tween
 var _player: Player
+var _pursuit_link_available := false
 var _spawn_tween: Tween
 var ability_panel: SkillBarSlot
 var _skill_slots: Array[SkillBarSlot] = []
@@ -705,13 +706,13 @@ func _play_next_loot_notification() -> void:
 
 func _update_resolve(stacks: int, maximum: int) -> void:
 	var label := get_node("ResolveLabel") as Label
-	label.text = "RESOLVE %d/%d · NEXT SKILL +25%%" % [stacks,maximum]
+	label.text = "RESOLVE READY · NEXT SKILL +25%" if stacks == maximum else "RESOLVE %d/%d · LAND BASIC HITS" % [stacks,maximum]
+	if _pursuit_link_available:
+		label.text += " · RUPTURE +15%"
+	label.tooltip_text = "Each landed basic swing fills one bar. Fill all three for +25% damage on your next skill. Lasts 8 seconds after your last basic hit; hitting more enemies in one swing still earns only one bar."
 	label.modulate = Color("c7efff") if stacks == maximum else Color("829aa9")
 
 func _update_link(available: bool) -> void:
-	if available:
-		get_node("ResolveLabel").text = "PURSUIT → RIFTBREAK · +15%"
-		get_node("ResolveLabel").modulate = Color("c7efff")
-	else:
-		var mastery := _player.get_node("KingMastery") as KingMasteryComponent
-		_update_resolve(mastery.stacks,mastery.definition.resolve_hits)
+	_pursuit_link_available = available
+	var mastery := _player.get_node("KingMastery") as KingMasteryComponent
+	_update_resolve(mastery.stacks,mastery.definition.resolve_hits)

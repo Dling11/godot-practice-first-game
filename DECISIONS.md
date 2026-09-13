@@ -152,6 +152,8 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 
 | 143 | [King greatsword, mastery and stage caps](docs/decisions/143-king-greatsword-mastery-and-stage-caps.md) | Selected C installed, physical three-cut combo, clipped white trails, Resolve, Pursuit/Riftbreak link and bounded growth |
 
+| 144 | [King Unwritten Oath and skill collection](docs/decisions/144-king-unwritten-oath-and-skill-collection.md) | Eight techniques, four equipped slots, finite forms, saved Sanctuary swaps and future-form Lab previews |
+
 ## New Decisions
 
 Record future decisions as individual files under `docs/decisions/` using `NNN-short-title.md`, then add one row to this index. New ADRs should contain status, context, alternatives, decision, and consequences.

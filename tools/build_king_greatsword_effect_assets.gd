@@ -1,6 +1,10 @@
 extends SceneTree
 const SOURCE := "res://art_source/generated/characters/king/greatsword_2026_09_12/"
 const OUT := "res://assets/vfx/abilities/king/greatsword/"
+# Authored ground contact points in the original 1774x887 sheet. Debris bounds
+# expand and rise, so neither cell centers nor per-frame bounding boxes anchor
+# the crater. These points always map to native (96,96).
+const IMPACT_ORIGINS := [Vector2i(236,384),Vector2i(672,384),Vector2i(1104,384),Vector2i(1548,384),Vector2i(232,744),Vector2i(668,744),Vector2i(1096,744),Vector2i(1540,744)]
 
 func _initialize() -> void:
 	DirAccess.make_dir_recursive_absolute(OUT)
@@ -27,7 +31,8 @@ func _initialize() -> void:
 			var y1 := roundi((row+1)*impact.get_height()/2.0)
 			var cell := impact.get_region(Rect2i(x0,y0,x1-x0,y1-y0))
 			cell.resize(roundi(cell.get_width()*.36),roundi(cell.get_height()*.36),Image.INTERPOLATE_NEAREST)
-			var dest := Vector2i(col*192+96-cell.get_width()/2,row*192+96-roundi(([380,745][row]-y0)*.36))
+			var origin: Vector2i = IMPACT_ORIGINS[row*4+col]
+			var dest := Vector2i(col*192+96-roundi((origin.x-x0)*.36),row*192+96-roundi((origin.y-y0)*.36))
 			impacts.blit_rect(cell,Rect2i(Vector2i.ZERO,cell.get_size()),dest)
 	impacts.save_png(OUT+"steel_impact_192x192.png")
 	var portrait := _matte("portrait_clean",false)

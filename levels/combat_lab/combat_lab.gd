@@ -70,6 +70,13 @@ func _ready() -> void:
 	_set_examiner_arena(true)
 	_bind_controls()
 	_style_review_panel()
+	var collection := Button.new()
+	collection.text="KING · TECHNIQUE COLLECTION"
+	collection.position=Vector2(726,494)
+	collection.size=Vector2(220,30)
+	collection.theme=get_node("UI/LabPanel").theme
+	collection.pressed.connect(func() -> void: player.get_node("KingSkillLibrary").open_collection())
+	get_node("UI").add_child(collection)
 	_update_latest_label()
 	_update_status()
 	call_deferred("spawn_selected", 1)

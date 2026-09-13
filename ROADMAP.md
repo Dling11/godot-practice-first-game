@@ -4,12 +4,16 @@ This file records current production progress. Historical implementation detail 
 
 ## Completed
 
+- Decision 144: Unwritten Oath collection, Crosscut/Griefwake/Starfall/Oathstorm and four authored forms, generated body/VFX/icons, original SFX, safe four-slot swaps, optional stable-ID saving and Lab previews. Mortal/Resonant integrate with the current route; future Ascendant/Unbound reward hooks remain unconnected.
+
+- September 13 King review: corrected front/back gait, dedicated basic finishing sweep, back-facing defeat hold, dark-matte fringe cleanup, clear Resolve/link HUD text, fixed Riftbreak impact/residual lifecycle and unified foot origins for Riftbreak/Pursuit. Full 280-frame review artifacts accompany the changes. Decision 144 now extends that groundwork with four new evolving technique families.
+
 - Decision 143: selected King C greatsword body/portrait/actions, three-cut physical chain, clipped white trails, Resolve passive, Pursuit/Riftbreak bonus, original action cues, +2%-per-level capped skill growth and stage-clear level ceilings. Owner full-campaign feel/balance testing remains active.
 
 - Decision 141: randomized 24-meteor Firmament, recent-action-aware legal attack selection, committed Axiom/Reprisal links, seal-break remarks and a rewardless F7 victory acknowledgment. Production Stage XX integration remains planned.
 
 - Godot 4.7 top-down production foundation with 960x540 logical rendering, keyboard/mouse/controller input, pause flow, scene transitions, and reusable data-owned combat authority.
-- King is the sole production player with four-direction locomotion/basic attack, dash/backstep, hit reactions, defeat, persistent vitality/progression, equipment aggregation, and four active skills: Echoing Sever, Riftbreak, Sovereign Pursuit, and Worldsplitter.
+- King is the sole production player with four-direction locomotion/basic attack, dash/backstep, hit reactions, defeat, persistent vitality/progression, equipment aggregation, and four equipped slots drawing from eight techniques; Echoing Sever, Riftbreak, Sovereign Pursuit and Worldsplitter remain the defaults.
 - Basic attacks and skills use committed direction, authored hit shapes, damage, knockback, stagger, hitstop, camera response, audio, and world-space feedback without moving authority into animation.
 - Combat controls through Decision 114: right-click/WASD movement clears combat intent; left-click performs directional air swings, one-click enemy selection, and repeated same-enemy pursuit/attack; right-click/`Esc` cancels targeted skills; optional `AUTO ALL` and `AUTO SKILL` remain explicit.
 - Size-aware enemy footprints drive movement collision, navigation radius, crowd separation, readable tier auras, foot-circle selection, and assisted approach distance. Hurtboxes and attack shapes remain separate.

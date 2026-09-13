@@ -3,8 +3,9 @@ extends SceneTree
 ## Deterministic import of generated artwork: matte removal, fixed body scale,
 ## complete connected-island extraction, grounded origin, and atlas packing.
 const SOURCE := "res://art_source/generated/characters/king/greatsword_2026_09_12/"
+const POLISH := "res://art_source/generated/characters/king/polish_2026_09_13/"
 const OUT := "res://assets/characters/playable/king/greatsword/"
-const REVIEW := "res://art_source/review/characters/king/greatsword_2026_09_12/"
+const REVIEW := "res://art_source/review/characters/king/polish_2026_09_13/"
 const CELL := Vector2i(96,64)
 var _report: Dictionary = {}
 
@@ -21,9 +22,20 @@ func _initialize() -> void:
 	boards.slash[2] = boards.up_combat[0]
 	boards["return"][2] = boards.up_combat[1]
 	boards.cleave[2] = boards.up_combat[2]
+	boards.sweep = _body_board("sweep",8,3)
+	# Reject a missing-blade recovery drawing and the source's edge-touching
+	# final guard. Return to the same approved idle instead of installing either.
+	for row in 3:
+		boards.sweep[row][6] = boards.reactions[row][0]
+		boards.sweep[row][7] = boards.reactions[row][0]
+	# The original back-facing defeat ended on an accidentally front-facing
+	# drawing. Hold its complete back-facing kneel through the settle instead.
+	boards.reactions[2][7] = boards.reactions[2][6]
 	var gait: Array = boards.gait
-	gait[0][2] = boards.front_right_step[0][0]
-	var actions := {"walk":[gait,[0,1,2,3]],"idle":[boards.reactions,[0,1]],"attack":[boards.slash,range(8)],"return_cut":[boards["return"],range(8)],"heavy_cleave":[boards.cleave,range(8)],"echoing_sever":[boards.slash,range(8)],"riftbreak":[boards.cleave,range(8)],"sovereign_pursuit":[boards.pursuit,range(8)],"worldsplitter":[boards.command,range(8)],"dash":[boards.reactions,[2,3]],"hurt":[boards.reactions,[4,5]],"defeat":[boards.reactions,[6,7]],"interact":[boards.reactions,[0,1]]}
+	var corrected_gait := _body_board("gait_polish",4,3)
+	gait[0] = corrected_gait[0]
+	gait[2] = corrected_gait[2]
+	var actions := {"walk":[gait,[0,1,2,3]],"idle":[boards.reactions,[0,1]],"attack":[boards.slash,range(8)],"return_cut":[boards["return"],range(8)],"heavy_cleave":[boards.sweep,range(8)],"echoing_sever":[boards.slash,range(8)],"riftbreak":[boards.cleave,range(8)],"sovereign_pursuit":[boards.pursuit,range(8)],"worldsplitter":[boards.command,range(8)],"dash":[boards.reactions,[2,3]],"hurt":[boards.reactions,[4,5]],"defeat":[boards.reactions,[6,7]],"interact":[boards.reactions,[0,1]]}
 	var review := Image.create(96*8,64*actions.size(),false,Image.FORMAT_RGBA8)
 	review.fill(Color("263139"))
 	var review_row := 0
@@ -47,7 +59,7 @@ func _initialize() -> void:
 	quit()
 
 func _body_board(key: String, columns: int, rows: int) -> Array:
-	var image := Image.load_from_file(SOURCE+key+".png")
+	var image := Image.load_from_file(_source_path(key))
 	image.convert(Image.FORMAT_RGBA8)
 	var width := image.get_width()
 	var height := image.get_height()
@@ -56,7 +68,7 @@ func _body_board(key: String, columns: int, rows: int) -> Array:
 	for y in height:
 		for x in width:
 			var c := image.get_pixel(x,y)
-			if c.r > .30 and c.b > .30 and c.r > c.g*1.6 and c.b > c.g*1.6:
+			if c.r > .06 and c.b > .06 and c.r > c.g*1.6 and c.b > c.g*1.6:
 				image.set_pixel(x,y,Color.TRANSPARENT)
 				visited[y*width+x] = 1
 	var islands: Array = []
@@ -123,6 +135,9 @@ func _body_board(key: String, columns: int, rows: int) -> Array:
 		result.append(frames)
 	_report[key] = measurements
 	return result
+
+func _source_path(key: String) -> String:
+	return (POLISH if key in ["sweep","gait_polish"] else SOURCE)+key+".png"
 
 func _boot_y(image: Image, island: Dictionary) -> int:
 	var bounds: Rect2i = island.bounds
