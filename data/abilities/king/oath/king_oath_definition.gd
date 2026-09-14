@@ -49,7 +49,8 @@ func _configure() -> void:
 	non_final_knockback_multiplier = .18
 	non_final_stagger_multiplier = .3
 	knockback_strength = 100.0
-	stagger_seconds = .5
+	stagger_seconds = .14
+	stun_seconds = 0.0
 	beat_times.clear()
 	beat_radii.clear()
 	beat_distances.clear()

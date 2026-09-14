@@ -1,6 +1,6 @@
 # 148 — King C Spellward isolated Lab review
 
-Status: implemented as an opt-in debug Lab review; campaign promotion and final motion approval pending. 2026-09-14.
+Status: implemented as an opt-in debug Lab review; directional walking, hand motion, three basic attacks and hurt/stun body poses owner-approved. Campaign promotion and dash/defeat final review pending. 2026-09-14.
 
 ## Context
 
@@ -29,3 +29,7 @@ The owner approves the attacks and flags idle sway, walking coherence, the rear 
 A Lab-only one-source-texel charcoal outline applies to every C body clip. It preserves texture interiors and vertex modulation; comparison restores the original material. The importer exposes --locomotion-only and reproduces the correction after a full build, without touching attacks during the scoped build. Sources, prompts, measurements and fresh actual-Godot review live under the corresponding spellward_locomotion_2026_09_14 folders. Final gait feel and campaign promotion remain pending.
 
 The owner subsequently accepts front/back gait but rejects foot-only side posing. The latest side cycle uses eight coordinated whole-body drawings in walk_side.png; four-frame front/back drawings stay intact. Fourteen FPS maintains the existing cycle period, and the preview animation subclass retains normalized cycle phase on turns between different frame counts. No gameplay speed changes. The source rows share one scale. Focused checks now total 232; whole-body motion approval remains pending.
+
+## Final gait acceptance
+
+The owner accepted the upper-body motion but rejected that generated leg sequence. The final side atlas uses an offline two-bone raster rig under locked approved upper-body frames, preserving foreground leg identity and continuous support/swing paths. The owner explicitly approved this revision. The current accepted proof is spellward_legcycle_2026_09_14. Earlier pending-motion statements are superseded for walking and the accepted hands/attacks. Campaign promotion and the separate skill redesign remain pending.

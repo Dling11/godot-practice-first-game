@@ -1,4 +1,6 @@
-[gd_scene load_steps=28 format=3]
+[gd_scene load_steps=29 format=3]
+
+[ext_resource type="PackedScene" path="res://gameplay/presentation/stun_indicator.tscn" id="stun_indicator"]
 
 [ext_resource type="Script" path="res://entities/enemies/crag_bear/crag_bear.gd" id="1_enemy"]
 [ext_resource type="Resource" path="res://data/enemies/crag_bear.tres" id="2_data"]
@@ -187,6 +189,10 @@ bus = &"SFX"
 script = ExtResource("22_impact_presenter")
 impact_origin = NodePath("../GroundSlamHitbox")
 impact_scene = ExtResource("23_impact_vfx")
+
+[node name="StunIndicator" parent="." instance=ExtResource("stun_indicator")]
+position = Vector2(0, -48)
+orbit_radius = Vector2(12, 3)
 
 [connection signal="facing_changed" from="." to="VisualPivot" method="set_facing_direction"]
 [connection signal="facing_changed" from="." to="BasicPivot" method="set_facing_direction"]

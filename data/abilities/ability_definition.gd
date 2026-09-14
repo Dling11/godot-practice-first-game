@@ -22,6 +22,9 @@ enum ImpactWeight { LIGHT, MEDIUM, HEAVY, DEVASTATING }
 @export var strike_damage_multipliers := PackedFloat32Array([1.0])
 @export_range(0.0, 1.0, 0.05) var non_final_knockback_multiplier := 1.0
 @export_range(0.0, 3.0, 0.01, "suffix:s") var stagger_seconds := 0.0
+## Opt-in stun for designated skills/heavy contacts. Zero means flinch only.
+@export_range(0.0, 3.0, 0.01, "suffix:s") var stun_seconds := 0.0
+@export var stun_on_final_strike_only := true
 @export_range(0.0, 1.0, 0.05) var non_final_stagger_multiplier := 1.0
 @export_range(0.0, 1000.0, 1.0, "suffix:px/s") var active_movement_speed := 0.0
 @export_range(0.0, 2.0, 0.01, "suffix:s") var wind_up_seconds := 0.1
@@ -60,6 +63,12 @@ func resolve_strike_stagger(strike_index: int) -> float:
 	if strike_index >= strike_count() - 1:
 		return stagger_seconds
 	return stagger_seconds * non_final_stagger_multiplier
+
+
+func resolve_strike_stun(strike_index: int) -> float:
+	if stun_on_final_strike_only and strike_index < strike_count() - 1:
+		return 0.0
+	return stun_seconds
 
 
 ## Returns the forward tip of a convex thrust lane in local gameplay pixels.

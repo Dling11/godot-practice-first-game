@@ -23,11 +23,22 @@ var _zoom_button: Button
 var _message: Label
 var _zoomed := false
 var _opened := false
+var riftbreak_review: Node
+var _rift_button: Button
+var earthsplitter_review: Node
+var _earth_button: Button
+var _earth_form_button: Button
 
 func _ready() -> void:
 	lab = get_parent()
 	actor = lab.player
 	body = actor.get_node("VisualRoot/Body")
+	riftbreak_review = preload("res://levels/combat_lab/riftbreak_review.gd").new()
+	riftbreak_review.actor = actor
+	add_child(riftbreak_review)
+	earthsplitter_review = preload("res://levels/combat_lab/earthsplitter_review.gd").new()
+	earthsplitter_review.actor = actor
+	add_child(earthsplitter_review)
 	_original_script = body.get_script()
 	_original_frames = body.sprite_frames
 	_original_scale = body.scale
@@ -127,7 +138,12 @@ func sample_hit(stagger_seconds: float) -> void:
 	var before := health.current_health
 	health.is_damage_immune = false
 	health.set_invulnerable(false)
-	health.apply_damage(DamageInfo.new(minf(1.0, before * .25), self, Vector2.LEFT, 0.0, stagger_seconds))
+	var sample := DamageInfo.new(minf(1.0, before * .25), self, Vector2.LEFT)
+	if stagger_seconds >= .3:
+		sample.stun_seconds = stagger_seconds
+	else:
+		sample.stagger_seconds = stagger_seconds
+	health.apply_damage(sample)
 	health.set_current_health(before)
 	health.is_damage_immune = was_immune
 	health.set_invulnerable(was_invulnerable)
@@ -150,11 +166,46 @@ func _build_panel() -> void:
 	_button(row, "STUN", sample_hit.bind(.8))
 	_button(row, "REACH", func() -> void: show_contact = not show_contact; set_process(show_contact); queue_redraw())
 	_button(row, "HIDE", func() -> void: _panel.hide())
+	var skill_row := HBoxContainer.new()
+	stack.add_child(skill_row)
+	_rift_button = _button(skill_row, "RIFTBREAK: ORIGINAL", toggle_riftbreak_review)
+	_earth_button = _button(skill_row, "SKILL 1: ORIGINAL", toggle_earthsplitter_review)
+	_earth_form_button = _button(skill_row, "FORM: FOUNDATION", toggle_earthsplitter_form)
+	_earth_form_button.disabled = true
 	_message = Label.new()
 	_message.add_theme_font_size_override("font_size", 10)
 	stack.add_child(_message)
 	lab.get_node("UI").add_child(_panel)
 	_panel.hide()
+
+
+func toggle_riftbreak_review() -> void:
+	if not enabled and not set_preview_enabled(true):
+		return
+	if not riftbreak_review.set_enabled(not riftbreak_review.enabled):
+		_message.text = "Finish the current action or targeting before changing the skill review."
+		return
+	_rift_button.text = "RIFTBREAK: TARGETED TEST" if riftbreak_review.enabled else "RIFTBREAK: ORIGINAL"
+	_message.text = "2 then click: center stuns / outer blast pushes. Cast 0.38s; debris continues." if riftbreak_review.enabled else "Original Riftbreak and previous loadout restored."
+
+
+func toggle_earthsplitter_review() -> void:
+	if not enabled and not set_preview_enabled(true):
+		return
+	if not earthsplitter_review.set_enabled(not earthsplitter_review.enabled):
+		_message.text = "Finish the current action before changing the skill review."
+		return
+	_earth_button.text = "SKILL 1: EARTHSPLITTER" if earthsplitter_review.enabled else "SKILL 1: ORIGINAL"
+	_earth_form_button.disabled = not earthsplitter_review.enabled
+	_earth_form_button.text = "FORM: ADVANCED" if earthsplitter_review.advanced else "FORM: FOUNDATION"
+	_message.text = "1 then click: summoned sword / moving earth rupture / no stun / 0.36s cast." if earthsplitter_review.enabled else "Original Skill 1 and loadout restored."
+
+func toggle_earthsplitter_form() -> void:
+	if not earthsplitter_review.set_advanced(not earthsplitter_review.advanced):
+		_message.text = "Finish aiming, casting and the released waves before changing form."
+		return
+	_earth_form_button.text = "FORM: ADVANCED" if earthsplitter_review.advanced else "FORM: FOUNDATION"
+	_message.text = "Advanced: three waves / third reaches farther and hits hardest / same quick cast." if earthsplitter_review.advanced else "Foundation: approved single wave / 164 reach / one hit per enemy."
 
 func _button(row: HBoxContainer, text: String, callback: Callable) -> Button:
 	var button := Button.new()

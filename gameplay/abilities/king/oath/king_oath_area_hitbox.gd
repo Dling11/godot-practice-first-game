@@ -15,15 +15,18 @@ func _try_hit(area: Area2D) -> void:
 	var core_damage := _damage
 	var core_knockback := _knockback_strength
 	var core_stagger := _stagger_seconds
+	var core_stun := _stun_seconds
 	if outside_core:
 		_damage *= outer_ratio
 		_stagger_seconds *= .25
+		_stun_seconds = 0.0
 	if slows_outer:
 		_knockback_strength = 0.0
 	super._try_hit(area)
 	_damage = core_damage
 	_knockback_strength = core_knockback
 	_stagger_seconds = core_stagger
+	_stun_seconds = core_stun
 
 func _ready() -> void:
 	super._ready()

@@ -1,5 +1,86 @@
 # Changelog
 
+## 2026-09-14 - Correct Earthsplitter upgrade intent and save handoff
+
+- Owner clarified that three waves meant three spatial lanes in a triangular fan, not consecutive waves on one path. Preserved Cascade as a possible later/third upgrade.
+- Documented exact next steps, runtime/code pointers, collision and overlap requirements, and approval boundaries in `docs/design/earthsplitter-fan-handoff.md`. Fan remains unimplemented; no runtime/art edits or new test runs in this documentation-only turn.
+
+## 2026-09-14 - Earthsplitter Advanced Cascading Rupture Lab prototype
+
+- Added Foundation/Advanced form comparison on the existing Skill 1 slot. One quick sword cast releases three terrain-safe waves; the third reaches 228px and carries 55% of a bounded 225% weapon budget. Player commitment remains .36s; no stun or new invulnerability.
+- Released sequence snapshots paths and combat stats, keeps each wave independent of later player movement, and cancels on defeat/review exit. Refreshed loadout references after form changes so hotkey 1 remains valid.
+- Reused the approved sword/rock atlases and existing audio. First two aftermaths settle faster; the last wave gains stronger pressure/endpoint presentation. Stage gates, saves and Awakened radial damage remain unimplemented.
+- 839 checks passed across Advanced (49), Foundation (116), rendered atlas (29), targeted Riftbreak (28), Spellward (232) and mastery (385). Advanced coverage includes three/two/one-wave target coverage, exact damage shares, committed stats, intermediate aim, static/late walls, cancellation and original loadout restoration. Actual Godot capture covers Foundation, nine Advanced directions, target damage and terrain. See the review folder for validation and playback.
+
+## 2026-09-14 - Fix upward Earthsplitter atlas sliver
+
+- Recorded owner acceptance of the fuller eruption baseline. Reproduced the seven-o'clock white line: at noninteger display scale, pixel-snapped sword quads sampled the next sprite-sheet row.
+- Select each 512px sword cell through an explicit clipped region. Source PNGs, registration, frame order, motion, ground effects and gameplay remain unchanged.
+- GPU regression: 29 checks, including positive reproduction of the old defect and seven production windup drawings at two scales/two subpixel positions. All 116 Earthsplitter gameplay checks pass. Before/after evidence: `art_source/review/characters/king/earthsplitter_bleed_2026_09_14/`.
+
+## 2026-09-14 - Restore Earthsplitter ground weight after owner review
+
+- Owner rejected the thin pressure-only look. Restored the original sixteen-frame rock/dust animation as upright sequential eruptions, with short white-blue bursts, a connected fracture bed, ballistic chips and a stronger endpoint presentation beat.
+- Corrected the Lab's impact-feedback lookup and added bounded contact/terminal camera pulses with layered existing slam audio. No new generated art; the approved sword source, atlas and motion remain intact.
+- Earthsplitter 116 checks pass. Fixed-length aiming, exact collision path, one-hit budget, no stun and early movement return remain. The final visual burst adds no extra damage and does not implement the planned upgrade forms.
+
+## 2026-09-14 - Earthsplitter directional pressure and fixed lane
+
+- Preserved the owner-approved summoned sword source, atlas and animation; documented its reusable future-skill language. Replaced rotated rubble stamps with forty ground drawings across five views, mirrored to eight facings, plus brief blue fractures and upright chips.
+- Added a fixed 164px line preview sharing the attack's radius-aware terrain resolver. Corrected close-pointer direction by measuring from King's feet, and separated stationary overlap checks from motion sweeps so a wall ahead does not cancel the whole lane. Other targeted skills keep their circle behavior.
+- Earthsplitter 116 assertions, targeted Riftbreak 28, Spellward preview 232 and original Echoing Sever smoke pass. Current Godot playback covers eight views plus 17-degree aim, near/far targeting, live target damage and terrain. New ground-art acceptance, upgrades, Skill 2 and campaign promotion remain pending.
+
+## 2026-09-14 - Earthsplitter Foundation playable motion proof
+
+- Added the reversible King Lab Skill 1 comparison: quick separate summoned-sword swing, .36s base commitment, targeted moving earth rupture, one 165% weapon hit per enemy, flinch/knockback without stun and wall-safe released authority.
+- Generated/register sixteen sword and sixteen ground-effect drawings; retained the approved C body with heavy-cleave phase timing. Corrected left/up presentation so overhead motion is not inverted. Reused existing cleave/slam audio and shared contact/hit feedback; residuals outlive control.
+- Verified 49 Earthsplitter assertions, 232 Spellward checks, 28 targeted Riftbreak checks, 385 mastery checks and original Echoing Sever smoke. Captured real-speed four-direction playback, three-target damage, slow review and GIF. Campaign replacement, upgrades and Skill 2 remain pending.
+
+## 2026-09-14 - King skill upgrade and resource plan
+
+- Planned four progressing forms for Earthsplitter/Molten Crash, short baseline commitments, bounded damage/area budgets and stage-gated growth that preserves current mastery/equipment rules.
+- Recorded trail/particle/audio direction and checked creator-published Kenney, Pimen and GDQuest resource pages. Assets remain candidates, not auditioned or installed deliverables; no runtime changes.
+
+## 2026-09-14 - Separate summoned-sword motion clarification
+
+- Recorded acceptance of the Earthsplitter smash/rupture direction with the owner's correction that the large sword appears separately while King acts. Superseded the enlarged-held-blade interpretation and shared-weapon-anchor requirement.
+- Specified Skill 1's weighted swing, Skill 2's brief lift then crash, coordinated body effort, contact feedback and early recovery. Documentation only; no new art or runtime changes in this clarification.
+
+## 2026-09-14 - Earthsplitter Skill 1 concept V3
+
+- Recorded owner acceptance of Skill 2 V2 and rejection of Skill 1 V2's plunge/crescent direction. Generated a separate four-pose overhead smash and advancing earth-rupture storyboard, retaining earlier samples and the exact prompt.
+- V3 remains a proposed interpretation awaiting review; no runtime, collision, terrain or animation resources changed.
+
+## 2026-09-14 - Spirit-sword concept corrections V2
+
+- Revised the static review boards to show blade-first ground contact, a low traveling Skill 1 shockwave and an unmistakably local Skill 2 molten burst. Preserved the owner-liked molten colors and V1 artifacts; saved exact correction prompts.
+- Recorded the rejected static trail and remaining motion/contact-anchor proof. No runtime or animation resources changed.
+
+## 2026-09-14 - Spirit-sword Skill 1/2 concept samples
+
+- Generated two matching static pixel-art storyboards using approved King C/arena references: aimed white Spirit Sword Trail and self-area Molten Crash. Included provisional progression diagrams; corrected molten diagrams to keep the burst and heat aftershock centered on King.
+- Recorded the owner's revised skill direction, explicit Skill 2 stun boundary and the difference between extra impact count and possible stored charges. Saved complete generation prompts and review notes.
+- No runtime skills, character frames, collision, progression or loadout removals changed. Samples await owner alignment before Skill 1 motion work.
+
+## 2026-09-14 - Explicit stun and targeted Riftbreak review
+
+- Corrected the overhead marker treating every enemy STAGGER state as stun. Added independent opt-in stun metadata/timing through skill definitions, melee/radial hit delivery, accepted control and body/star presentation. Large damage and critical hits never infer stun. Flinch cannot extend a shorter stun marker.
+- Shortened generic King skill interruptions to brief flinches; preserved their authored knockback. Designated Riftbreak and only Worldsplitter's final heavy contact as stun-capable. Boss immunity, charge commitment, target scaling and chain resistance remain.
+- Added an opt-in F7 KING REVIEW targeted Riftbreak comparison: 180px aim, 30px stun core, 68px outer flinch/push, 0.38s cast, wall/range checks and exact restoration. Generated sixteen coherent ground-effect drawings; registered their contact anchors and retained approved King art and existing impact audio. Broader skill/campaign promotion remains pending.
+- Validation includes explicit-stun lifecycle, actual core/rim damage, blocked/high-damage hits, final-hit-only stun, original skill regressions, mastery and responsive collection checks. Video/GIF review accompanies the playable comparison.
+
+## 2026-09-14 - Reusable overhead stun stars
+
+- Added a looping, outlined gold pixel-star orbit above King and all six existing staggerable mob types, plus Examiner's guard-break punish state. Actor-specific placement clears small-mob health bars and stays independent of sprite scale.
+- Marker visibility follows accepted control states, including Hog crash daze, instead of raw incoming stagger. Short King hurt, ignored Hog charge interruptions, ordinary idle, recovery and death do not leave a false stun marker. Timers, movement, damage, body frames and accepted animations are unchanged.
+- Recorded owner acceptance of King's existing hurt/stun body animation. Campaign promotion and skill redesign remain separate.
+- Validation: 33 focused lifecycle/scene integration checks and 232 existing King preview checks pass. In-engine comparison capture: `art_source/review/combat/stun_indicator_2026_09_14/`.
+
+## 2026-09-14 - King walking approval checkpoint
+
+- Recorded owner approval of the continuous side leg-cycle, completing directional gait acceptance alongside the previously approved hands and three attacks. Preserved the character baseline and retired the repeated-foot issue from current limitations.
+- No runtime changes in this checkpoint. Campaign promotion, ancillary-state final review and skill redesign remain separate follow-ups.
+
 ## 2026-09-14 - King side leg continuity
 
 - Replaced disconnected generated leg poses with an offline two-bone raster rig: one leg supports while the other passes on a low arc, with stable foreground/background identity and fixed segment lengths. Preserved accepted hands/upper-body pixels, isolating the tunic join from obsolete raised-knee pixels.

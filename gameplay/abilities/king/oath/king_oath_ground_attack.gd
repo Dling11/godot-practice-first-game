@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
 	_age += delta
 	if not _released and _age >= delay:
 		_released = true
-		contact.activate_radial(damage, source, origin, tuning.knockback_strength, tuning.stagger_seconds, critical_chance, critical_multiplier)
+		contact.activate_radial(damage, source, origin, tuning.knockback_strength, tuning.stagger_seconds, critical_chance, critical_multiplier, tuning.resolve_strike_stun(0))
 		impacted.emit()
 	elif _released:
 		_contact_age += delta

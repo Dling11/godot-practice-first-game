@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://difdkorqc36xq"]
 
+[ext_resource type="PackedScene" path="res://gameplay/presentation/stun_indicator.tscn" id="stun_indicator"]
+
 [ext_resource type="Script" uid="uid://dgsgs4ahp55gy" path="res://entities/enemies/rootling/rootling.gd" id="1_rootling"]
 [ext_resource type="Resource" path="res://data/enemies/rootling.tres" id="2_definition"]
 [ext_resource type="Script" uid="uid://dofrtfb7pqiuc" path="res://entities/enemies/rootling/rootling_visual.gd" id="3_visual"]
@@ -125,6 +127,10 @@ script = ExtResource("9_hitbox")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackPivot/AttackHitbox" unique_id=139413490]
 position = Vector2(28, 0)
 shape = SubResource("root_jab")
+
+[node name="StunIndicator" parent="." instance=ExtResource("stun_indicator")]
+position = Vector2(0, -44)
+orbit_radius = Vector2(9, 3)
 
 [connection signal="facing_changed" from="." to="Visual" method="set_facing"]
 [connection signal="root_jab_erupted" from="." to="Visual" method="play_root_jab"]

@@ -1,0 +1,15 @@
+# Riftbreak review source
+
+Generated with the built-in image_gen tool on 2026-09-14. Reference: the existing `assets/vfx/abilities/king/riftbreak_vfx_sheet_192.png`. King character art was not generated or edited.
+
+## Initial prompt
+
+Create one production sprite-sheet asset for a top-down pixel-art action RPG, using the attached existing Riftbreak VFX ONLY as a palette/style reference. This is an improved ground-impact effect with physical slate debris, not a character redesign. EXACT layout: 1024x1024 transparent PNG, exactly FOUR columns and FOUR rows, 16 equal 256x256 cells, read left to right then next row. No grid lines, no captions, no numbers. Every cell has the SAME fixed ground contact center at (128,152) inside its cell, top-down 3/4 view with an elliptical ground footprint. Keep all debris safely at least 12 pixels inside each cell. Consistent crisp detailed pixel art, hard opaque pixels and a genuinely transparent background. Preserve existing icy electric-blue and white energy with dark charcoal/slate fragments; no gold/red, no grass, no character, no sword, no textured backdrop. Animate ONE coherent rupture over 16 distinct sequential drawings: frames1-3 tiny hairline ground fracture, blue sparks converging; 4 tightly compressed white-blue flash; 5-6 sharp explosive rising angular stone slabs and expanding low ring; 7-9 ring dissipates as stone fragments arc outwards and descend; 10-13 falling grit, receding blue light in radial cracks; 14-16 quiet broken slate ground scar with last sparse fading blue flecks. Dramatic moment concentrated in frames4-7, readable and restrained aftermath, no oversized glowing blob. Maximum footprint 204px wide, approximately100px deep on floor. Make each frame actually evolve, not repeated images scaled, rotated, or recolored. Atlas intended to be cropped on exact 256px boundaries; nothing should cross boundaries. Render transparent alpha, no checkerboard.
+
+## Background repair prompt
+
+Edit this exact sprite sheet ONLY to replace every checkerboard background pixel with a solid pure BLACK (#000000) background suitable for game chroma-key extraction. Preserve all sixteen blue-white rupture/stone drawings, all slate debris, all colors, the identical composition and EXACT four-column/four-row cell positions. Do not redraw, redesign, move, add, remove, rescale, or crop any effect. Keep white/blue sparks and stone outlines intact. Absolutely no gray/white checkerboard remains. Flat pure black background throughout entire canvas behind the original effects. Same square image size. No text.
+
+## Packing
+
+The tool returned a 1254px square rather than the requested 1024px exact grid, and the first output baked in a checkerboard. The repaired source is `rupture_source.png`. `tools/build_riftbreak_review.gd` uses nearest-neighbor normalization, binary black-key alpha and authored per-row contact anchors to pack the sixteen cells. Runtime ground center is (128,128), independent of debris bounds. Source originals remain at the tool's default generated-image location; the final source is copied here for reproducibility.

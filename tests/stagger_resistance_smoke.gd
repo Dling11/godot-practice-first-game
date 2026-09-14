@@ -82,6 +82,15 @@ func _validate_enemy_stagger_chains() -> void:
 	var boss := await _make_stagger_fixture(boss_definition)
 	boss.health.apply_damage(DamageInfo.new(1.0, _damage_source, Vector2.RIGHT, 0.0, 0.78))
 	assert(not boss.stagger.is_staggered())
+	boss.health.apply_damage(DamageInfo.new(1.0, _damage_source, Vector2.RIGHT, 0.0, 0.0, false, .8))
+	assert(not boss.stagger.is_stunned())
+	hog.stagger.clear()
+	hog.health.apply_damage(DamageInfo.new(1.0, _damage_source, Vector2.RIGHT, 0.0, 0.0, false, .8))
+	assert(hog.stagger.is_stunned())
+	assert(is_equal_approx(hog.stagger.stun_remaining_seconds, .8 * .45))
+	for hit in 2:
+		hog.health.apply_damage(DamageInfo.new(1.0, _damage_source, Vector2.RIGHT, 0.0, .11))
+	assert(hog.stagger.is_resisting_stagger() and not hog.stagger.is_stunned())
 
 	for fixture in [light, hog, bear, boss]:
 		fixture.host.queue_free()
@@ -128,6 +137,9 @@ func _validate_player_charge_interruption() -> void:
 	)
 	assert(armored_ability.is_casting())
 	assert(not player.is_in_hit_recovery())
+	player.health_component.apply_damage(DamageInfo.new(1.0, _damage_source, Vector2.LEFT, 0.0, 0.0, false, .8))
+	assert(armored_ability.is_casting() and not player.stagger_component.is_stunned())
+	assert(not player.get_node("StunIndicator").visible)
 	armored_ability.cancel_cast()
 	player.queue_free()
 	await process_frame

@@ -38,9 +38,12 @@ func _run() -> void:
 		_fail("King Skill 4 is not equipped through its dedicated component.")
 		return
 	var hit_counts := {}
-	ability.hit_landed.connect(func(target: HurtboxComponent, _info: DamageInfo) -> void:
+	var center_stuns: Array[float] = []
+	ability.hit_landed.connect(func(target: HurtboxComponent, info: DamageInfo) -> void:
 		var key := target.get_instance_id()
 		hit_counts[key] = int(hit_counts.get(key, 0)) + 1
+		if target == center_target.get_node("Hurtbox"):
+			center_stuns.append(info.stun_seconds)
 	)
 	if not player.request_ability(4) or not player.ground_point_targeting.is_targeting():
 		_fail("Skill 4 did not open ground-point targeting.")
@@ -91,6 +94,9 @@ func _run() -> void:
 			break
 	if not saw_build_up or not saw_explosion:
 		_fail("Skill 4 did not present its unified build-up and second explosion in order.")
+		return
+	if center_stuns.size() != 2 or center_stuns[0] != 0.0 or not is_equal_approx(center_stuns[1], .65):
+		_fail("Only Worldsplitter's designated final heavy contact may stun.")
 		return
 	if minimum_sword_cutoff > 0.91:
 		_fail("Skill 4 did not swallow the sword point below ground during the unified build-up.")

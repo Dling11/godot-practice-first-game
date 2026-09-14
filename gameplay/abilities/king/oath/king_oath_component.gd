@@ -142,7 +142,7 @@ func _fire_beat(index: int) -> void:
 		collision_shape.shape = circle
 	_contact_remaining = .1
 	hitbox.activate_radial(tuning.resolve_strike_damage(_equipped_weapon_damage,index),owner,contact_origin,
-		tuning.resolve_strike_knockback(index),tuning.resolve_strike_stagger(index),_critical_chance_ratio,_critical_damage_multiplier)
+		tuning.resolve_strike_knockback(index),tuning.resolve_strike_stagger(index),_critical_chance_ratio,_critical_damage_multiplier,tuning.resolve_strike_stun(index))
 	strike_started.emit(index,tuning.strike_count(),.1)
 
 func _release_ground_attack() -> void:

@@ -154,7 +154,11 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 145 | [King ten equipped skills direction](docs/decisions/145-king-ten-equipped-skills-direction.md) | Accepted ten equipped skills on 1–0; broader powers and statuses proposed; runtime migration completed in 147 |
 | 146 | [Examiner divinity and inheritance direction](docs/decisions/146-examiner-divinity-and-inheritance-direction.md) | Examiner is a god and disciple; female Forest Goddess direction accepted; boss traits and inheritances proposed |
 | 147 | [Responsive King core and ten equipped slots](docs/decisions/147-responsive-king-core-and-ten-slots.md) | Current short core skills, released damage, Breakstep riposte, ten-slot input/UI/save migration |
+| 149 | [Explicit stun and targeted Riftbreak review](docs/decisions/149-explicit-stun-and-riftbreak-review.md) | Separate flinch/knockback from opt-in stun, accepted status presentation and reversible targeted Skill 2 comparison |
+| 150 | [Earthsplitter motion proof](docs/decisions/150-earthsplitter-motion-proof.md) | Separate summoned sword, quick cast, released wall-safe rupture, one-hit budget and reversible Skill 1 review |
 | 148 | [King C Spellward isolated Lab review](docs/decisions/148-king-spellward-lab-review.md) | Opt-in fine-detail C art, three cuts, clipped white trails, real control/speed comparison; campaign promotion pending |
+| 151 | [Earthsplitter directional pressure](docs/decisions/151-earthsplitter-directional-pressure.md) | Preserve accepted sword, upright pressure views, fixed-length terrain-aware lane and reusable summon language |
+| 152 | [Earthsplitter Advanced Lab form](docs/decisions/152-earthsplitter-advanced-lab.md) | One quick cast, three released waves, bounded damage and reversible Foundation comparison |
 
 ## New Decisions
 

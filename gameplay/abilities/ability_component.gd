@@ -131,6 +131,14 @@ func get_target_core_radius_pixels() -> float:
 	return 0.0
 
 
+func is_fixed_length_line_targeted() -> bool:
+	return false
+
+
+func get_target_lane_preview(_point: Vector2) -> Dictionary:
+	return {}
+
+
 func request_cast_at(_target_global_position: Vector2, _equipped_weapon_damage := 0.0) -> bool:
 	return false
 
@@ -206,7 +214,8 @@ func _start_current_strike() -> void:
 		definition.resolve_strike_knockback(_current_strike_index),
 		definition.resolve_strike_stagger(_current_strike_index),
 		_critical_chance_ratio,
-		_critical_damage_multiplier
+		_critical_damage_multiplier,
+		definition.resolve_strike_stun(_current_strike_index)
 	)
 	strike_started.emit(_current_strike_index, strike_count, _strike_time_remaining)
 

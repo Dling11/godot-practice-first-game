@@ -1,4 +1,6 @@
-[gd_scene load_steps=27 format=3]
+[gd_scene load_steps=28 format=3]
+
+[ext_resource type="PackedScene" path="res://gameplay/presentation/stun_indicator.tscn" id="stun_indicator"]
 
 [ext_resource type="Script" path="res://entities/enemies/armored_hog/armored_hog.gd" id="1"]
 [ext_resource type="Resource" path="res://data/enemies/armored_hog.tres" id="2"]
@@ -155,6 +157,10 @@ bus = &"SFX"
 stream = ExtResource("19")
 volume_db = -3.0
 bus = &"SFX"
+
+[node name="StunIndicator" parent="." instance=ExtResource("stun_indicator")]
+position = Vector2(0, -45)
+orbit_radius = Vector2(12, 3)
 
 [connection signal="facing_changed" from="." to="VisualPivot" method="set_facing_direction"]
 [connection signal="facing_changed" from="." to="AttackPivot" method="set_facing_direction"]

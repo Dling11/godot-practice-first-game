@@ -54,3 +54,7 @@ Owner full-campaign testing must judge the new cut timing, shorter honest reach,
 ## Collection extension — September 13 / Decision 144
 
 The four techniques above remain the default loadout. [The Unwritten Oath](king-unwritten-oath.md) adds four alternative families and four finite forms, with Sanctuary slot assignment and non-persistent Lab previews. Either Pursuit or Starfall can now open the link into Riftbreak or Griefwake. C identity, the physical basic chain, capped level mastery and current stage ceilings remain unchanged. The active player SpriteFrames resource is now `king_oath_sprite_frames.tres`, which includes every approved greatsword action plus the new eight-pose spin; the menu retains the same existing idle art.
+
+## September 14 control clarification and Riftbreak review
+
+Decision 149 explicitly separates flinch, knockback and stun. Only designated heavy/stun contacts carry stun; damage and critical hits do not infer it. Campaign Riftbreak carries 0.52s stun and Worldsplitter only its final contact carries 0.65s, before target resistance. Other King skills now use short flinches. The opt-in F7 targeted Riftbreak comparison uses a 30px stun core, 68px outer push and 0.38s cast. Its generated sixteen-drawing aftermath outlives control recovery; campaign targeting, bespoke body frames and later stage AOE growth remain pending.

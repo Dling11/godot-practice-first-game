@@ -1,5 +1,7 @@
 # King side leg-cycle review
 
+Owner-approved on September 14. This is the accepted side-walk baseline; preserve its hand/upper-body motion and leg cycle during later integration. Earlier pending-approval text below records the pre-review verification boundary.
+
 The owner accepts the preceding hand movement but rejects the feet. This correction retains those upper-body drawings and renders the legs through one continuous cycle instead of assembling disconnected generated poses.
 
 ## Motion

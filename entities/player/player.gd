@@ -18,6 +18,7 @@ signal restraint_ended(source: Node, escaped: bool)
 signal action_denied(action: StringName)
 signal auto_combat_changed(auto_farm_enabled: bool, auto_skills_enabled: bool)
 signal hit_recovery_started(duration_seconds: float)
+signal hit_recovery_kind_changed(duration_seconds: float)
 signal hit_recovery_finished
 
 enum BufferedAction { NONE, PRIMARY_ATTACK, EVADE, ABILITY }
@@ -87,6 +88,7 @@ func _ready() -> void:
 	health_component.died.connect(_on_died)
 	stagger_component.stagger_started.connect(_on_hit_recovery_started)
 	stagger_component.stagger_finished.connect(_on_hit_recovery_finished)
+	stagger_component.stun_changed.connect(_on_hit_recovery_kind_changed)
 	evade_component.phase_changed.connect(_on_evade_phase_changed)
 	attack_component.phase_changed.connect(_on_attack_phase_changed)
 	attack_component.attack_finished.connect(_on_attack_finished)
@@ -887,6 +889,11 @@ func _on_hit_recovery_started(duration_seconds: float) -> void:
 	for component in get_all_ability_components():
 		component.cancel_cast()
 	hit_recovery_started.emit(duration_seconds)
+
+
+func _on_hit_recovery_kind_changed(_stunned: bool) -> void:
+	if is_in_hit_recovery() and not is_defeated:
+		hit_recovery_kind_changed.emit(stagger_component.remaining_seconds)
 
 
 func _on_hit_recovery_finished() -> void:

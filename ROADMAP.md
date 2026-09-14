@@ -1,8 +1,22 @@
 # Roadmap
 
+**Owner correction (2026-09-14):** Intended Advanced is three spatial lanes in a rotating fan (center plus two angled sides) for wider AOE. The current sequential Cascade remains implemented and preserved as a possible later/third upgrade; it is not the accepted Advanced design. Fan implementation is pending. Resume from [the handoff](docs/design/earthsplitter-fan-handoff.md).
+
+- Decision 152 completed: reversible Foundation/Advanced Earthsplitter comparison, three independently released terrain-safe waves, stronger longer third wave, shared damage budget and unchanged .36s cast. Owner feel review is next. Campaign gates/saves, Awakened endpoint explosion and Molten Crash remain planned.
+
 This file records current production progress. Historical implementation detail belongs in `CHANGELOG.md`; major superseded choices remain in `docs/decisions/`.
 
 ## Completed
+
+- Earthsplitter eruption baseline accepted by owner. Follow-up upward-cast atlas sliver corrected through explicit clipped sword regions without asset/motion/gameplay changes; 29 rendered checks and 116 gameplay checks pass. Full campaign integration remains pending.
+
+- Decision 150: opt-in Earthsplitter Foundation motion/gameplay proof with generated sixteen-frame sword and rupture sheets, .36s base cast, released wall-safe lane damage, one hit per target, no stun and exact review restoration. Owner approves the sword animation. Decision 151 adds the fixed-length terrain-aware lane. After rejecting the thin pressure-only look, the owner accepts the restored fuller upright ground eruptions, embedded energy bursts and endpoint feedback; full skill integration remains pending.
+
+- Decision 149: separate explicitly authored stun from flinch/knockback, correct shared stars and King pose selection, shorten generic King skill flinches, and add the reversible targeted Riftbreak Lab review with a 16-drawing impact sequence. Owner visual/gameplay acceptance of the preview remains pending.
+
+- September 14 reusable stun indicator: animated head stars on King, six staggerable mobs and Examiner guard break; accepted states own visibility, with authored actor offsets and no gameplay changes. Owner accepts existing King hurt/stun body poses.
+
+- September 14 King motion acceptance: owner approves the continuous side leg-cycle, completing four-direction gait review alongside accepted hands and three basic attacks. Preserve this C baseline; campaign integration and skill redesign remain separate work.
 
 - Decision 147: responsive core, targeted released Griefwake, Breakstep/riposte, Last Oath center/rim, ten-slot keyboard/controller/HUD/collection/save migration, safe core preset and retimed approved presentation. Focused behavior and regression checks pass; rendered review is available.
 
@@ -40,10 +54,13 @@ This file records current production progress. Historical implementation detail 
 
 ## In Progress
 
-- **King review first:** September 14 authorization permits Decision 148's isolated playable C character review. Skill/tier redesign remains pending; owner rejects latest Skills 2/3 and old/new coexistence as the final direction, and expects higher skill numbers to represent stronger tiers.
-- **Character before skills:** C's shoulder carry, finer detail and three attacks are selected. Decision 148's follow-up replaces mixed-sheet locomotion with registered poses, lowers the rear blade beneath the hair and adds a consistent thin outline in the opt-in Lab. Owner locomotion approval and campaign promotion precede extending skill animations.
-- **Side-walk review:** Owner approves down/up gait but rejects foot-only side corrections. A dedicated eight-frame whole-body side cycle now includes waist/chest and free-arm motion, preserving original cadence and continuous stride phase when turning. Final side-gait feel and campaign promotion remain pending.
-- **Leg-cycle review:** Owner accepts hands in the whole-body cycle but rejects its feet. Final side frames now combine the approved upper body with offline rigged raster legs, using continuous opposed support/swing paths. Quarter-speed review accompanies the real Lab capture; owner motion approval remains pending.
+- **King Skills 1-2 production plan:** Skill 1 Foundation is owner-approved; Advanced Cascading Rupture is implemented in the Lab and awaiting owner feel review. `docs/design/king-skill-upgrades-and-production.md` specifies the remaining upgrade forms, bounded stage growth, VFX/audio candidates and Skill 2 implementation. Numbers/gates remain proposed; old skill removal and campaign promotion are still pending.
+
+- **Latest King concept alignment:** Owner accepts Skill 2 V2's local molten burst and Skill 1 V3's expressive smash/earth rupture with a separate summoned-sword correction. Skill 1 now demonstrates that direction in the Lab; Skill 2's lift/crash is still planned. Upgrade impacts/final explosion, names, counts, charges and lore gates remain provisional. Existing Crosscut and Riftbreak alternatives are still installed. See `docs/design/king-spirit-sword-concepts.md`.
+
+- **King review first:** September 14 authorization permits Decision 148's isolated playable C character review. The isolated targeted Riftbreak comparison is now authorized and implemented; broader skill/tier redesign remains pending. Owner rejects latest Skills 2/3 and old/new coexistence as the final direction, and expects higher skill numbers to represent stronger tiers.
+- **Character before skills:** C's shoulder carry, finer detail and three attacks are selected. Decision 148's follow-up replaces mixed-sheet locomotion with registered poses, lowers the rear blade beneath the hair and adds a consistent thin outline in the opt-in Lab. Owner has approved locomotion and reactions; targeted Riftbreak is now a separately authorized Lab comparison. Campaign promotion remains pending.
+- **Character integration next:** Directional gait and basic attacks are owner-approved. Hurt/stun body poses are also owner-approved; review dash/defeat, promote the selected Lab presentation into campaign play, and continue the separately authorized Riftbreak skill comparison. No further base-character redesign is needed for the current direction.
 - September 13 character review: owner selected C Spellward and requested finer, clearer stylized pixels at the same body scale. Initial one-facing idle/walk/swing studies and interactive small-scale review are in `art_source/review/characters/king/spellward_motion_2026_09_13/`. The walk remains unfinished: the opposite-foot contact is not convincing. Final density, motion cleanup, other directions and runtime integration remain pending; no new runtime assets installed.
 
 - Decision 146: develop the accepted Stage X female Forest Goddess direction (Examiner-sized or larger) and distinct boss traits. Root-fed bark protection and Examiner heat pulses are proposals; boss production, exact scale, passive capacity, survival effects and inheritance rewards remain design work.

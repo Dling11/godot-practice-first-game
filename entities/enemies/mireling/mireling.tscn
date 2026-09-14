@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://d0fi77o2m5rxa"]
 
+[ext_resource type="PackedScene" path="res://gameplay/presentation/stun_indicator.tscn" id="stun_indicator"]
+
 [ext_resource type="Script" uid="uid://bpyjwhfealhuy" path="res://entities/enemies/mireling/mireling.gd" id="1"]
 [ext_resource type="Resource" path="res://data/enemies/mireling.tres" id="2"]
 [ext_resource type="Script" uid="uid://c75hy86crniob" path="res://entities/enemies/mireling/mireling_visual.gd" id="4"]
@@ -127,6 +129,10 @@ script = ExtResource("7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackPivot/AttackHitbox" unique_id=1857687529]
 shape = SubResource("attack")
+
+[node name="StunIndicator" parent="." instance=ExtResource("stun_indicator")]
+position = Vector2(0, -44)
+orbit_radius = Vector2(8, 3)
 
 [connection signal="facing_changed" from="." to="Visual" method="set_facing"]
 [connection signal="facing_changed" from="." to="AttackPivot" method="set_facing_direction"]

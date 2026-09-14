@@ -87,7 +87,7 @@ func _finish_residual() -> void:
 
 func _capture_cast_origin() -> void:
 	if ability_component != null and ability_component.owner is Node2D:
-		global_position = (ability_component.owner as Node2D).global_position
+		global_position = ability_component.get_target_global_position()
 		global_rotation = 0.0
 
 

@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://7gpqrhm32t6x"]
 
+[ext_resource type="PackedScene" path="res://gameplay/presentation/stun_indicator.tscn" id="stun_indicator"]
+[ext_resource type="Script" path="res://gameplay/abilities/king/riftbreak_hitbox.gd" id="riftbreak_hitbox"]
+
 [ext_resource type="Script" uid="uid://bfjslqi8334my" path="res://entities/player/player.gd" id="1_player"]
 [ext_resource type="Script" uid="uid://dob8x3ikf6t0i" path="res://entities/player/components/player_input_source.gd" id="2_input"]
 [ext_resource type="Script" uid="uid://cj8rt8iwktnj2" path="res://entities/player/components/player_movement_component.gd" id="3_movement"]
@@ -243,7 +246,7 @@ shape = SubResource("ConvexPolygonShape2D_sweep")
 [node name="Ability2Hitbox" type="Area2D" parent="AbilityPivot" node_paths=PackedStringArray()]
 collision_layer = 8
 collision_mask = 16
-script = ExtResource("6_hitbox")
+script = ExtResource("riftbreak_hitbox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AbilityPivot/Ability2Hitbox"]
 shape = SubResource("ConvexPolygonShape2D_sweep")
@@ -596,6 +599,10 @@ script = ExtResource("90_library")
 [node name="OathPresentation" type="Node2D" parent="."]
 script = ExtResource("91_oath_vfx")
 
+[node name="StunIndicator" parent="." instance=ExtResource("stun_indicator")]
+position = Vector2(0, -36)
+orbit_radius = Vector2(9, 3)
+
 [connection signal="defeated" from="." to="VisualRoot/Body" method="play_defeat"]
 [connection signal="defeated" from="." to="VisualRoot/WeaponVisual" method="play_defeat"]
 [connection signal="defeated" from="." to="StateVisual" method="play_defeat"]
@@ -608,6 +615,7 @@ script = ExtResource("91_oath_vfx")
 [connection signal="movement_changed" from="." to="VisualRoot/Body" method="set_movement"]
 [connection signal="action_denied" from="." to="PlayerActionSfx" method="play_action_denied"]
 [connection signal="hit_recovery_started" from="." to="VisualRoot/Body" method="play_hit_recovery"]
+[connection signal="hit_recovery_kind_changed" from="." to="VisualRoot/Body" method="play_hit_recovery"]
 [connection signal="hit_recovery_finished" from="." to="VisualRoot/Body" method="resume_locomotion"]
 [connection signal="attack_finished" from="MeleeAttackComponent" to="VisualRoot/Body" method="resume_locomotion"]
 [connection signal="attack_finished" from="MeleeAttackComponent" to="VisualRoot/WeaponVisual" method="resume_locomotion"]

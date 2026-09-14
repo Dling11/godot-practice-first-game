@@ -1,5 +1,15 @@
 # Style Guide
 
+Advanced Earthsplitter reuses the approved sword and eruption atlases without regenerating them. One body/sword action releases three waves; never stretch the body animation to cover their lifetime. First two ground aftermaths settle 1.35x faster, keeping the strongest final front readable. Bound contact/second/third/terminal audio and camera cues per cast; do not emit a boom per stone stamp. Keep the clipped sword atlas selector intact.
+
+## Summoned-weapon skill language (150-151)
+
+Earthsplitter's rotated sword uses explicit clipped 512px Sprite2D regions. Keep region_enabled and region_filter_clip_enabled enabled: with vertex/transform pixel snapping at noninteger display scales, unfiltered sheet framing can sample the neighboring row and leave a distant sliver. Renderer tests must enable both SubViewport snapping flags to match the project viewport. Preserve the approved source, registration and timing.
+
+The owner approved Earthsplitter's separate sword animation as a reusable direction for future skills. Preserve King C's identity and human proportions; a summoned weapon is its own asset, coordinated with an expressive short body action. Register blade-first contact, anticipation, acceleration, follow-through and early control return. Future powers may vary weapon/material/gameplay; this does not require every skill to use a sword.
+
+Keep the approved Earthsplitter sword source, atlas, frame order and timing intact during ground-only revisions. Raised ground sprites require authored camera views and horizontal mirrors; do not rotate stones, dust or particle gravity with the floor. Flat cracks and targeting geometry may follow continuous aim. Inspect cardinal, diagonal and an intermediate angle against actual terrain and damage. Directional pressure V2 uses five rows of eight frames with fixed ground anchors and binary alpha; its dedicated packer never writes the sword. Owner rejected the thin pressure-only composition: preserve a substantial ground rupture silhouette, using the original centered rock/dust eruption upright with short energy bursts and a connected flat fracture bed. A stronger endpoint visual does not imply an extra damage pulse. Do not strip away the physical impact when cleaning the trail.
+
 ## King C Lab density experiment (148)
 
 Keep preview art under `assets/characters/playable/king/spellward_preview/` and source provenance under the identity-owned King source/review folders. Its 192x128 cells, y96 foot baseline and 56px standing body use deliberate half-scale presentation for ~28 logical pixels in canvas-items rendering. This is an opt-in detail-density experiment, not permission to resize other actors to compensate for inconsistent generation. Default production frames and combat resources stay unchanged; authored pose aliases must be labeled provisional.
@@ -14,6 +24,10 @@ Keep preview art under `assets/characters/playable/king/spellward_preview/` and 
 - Common rarity is never a reconstruction target. Keep Common materials sellable/usable as meld fuel unless an authored exception requires otherwise; use Uncommon or higher for low-drop reconstruction candidates.
 - Economy UI may preview transactions, but only `CraftingService` and `MaterialExchangeService` may perform durable spends, grants, saves, and rollback.
 - Compact Sanctuary service surfaces should stay within 760x420 at the 960x540 logical viewport unless the content genuinely requires a larger comparison workspace.
+
+## Crowd-control authoring
+
+Use `stagger_seconds` for brief flinch and `stun_seconds` only for designated stun/heavy contacts. Never derive stun from damage, critical flags, visual size, ImpactWeight or duration heuristics. Keep knockback separate. Multi-contact skills default to stun on the final contact only; area skills may restrict it to an explicit core. Existing target immunity/resistance and accepted controller states still gate presentation.
 
 ## Scope
 

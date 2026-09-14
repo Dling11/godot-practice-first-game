@@ -1,4 +1,6 @@
-[gd_scene load_steps=17 format=3]
+[gd_scene load_steps=18 format=3]
+
+[ext_resource type="PackedScene" path="res://gameplay/presentation/stun_indicator.tscn" id="stun_indicator"]
 
 [ext_resource type="Script" path="res://entities/enemies/examiner/examiner.gd" id="1"]
 [ext_resource type="Resource" path="res://data/enemies/examiner.tres" id="2"]
@@ -151,6 +153,10 @@ max_distance = 900.0
 [node name="ImpactPlayer" type="AudioStreamPlayer2D" parent="ActionSfx"]
 bus = &"SFX"
 max_distance = 900.0
+
+[node name="StunIndicator" parent="." instance=ExtResource("stun_indicator")]
+position = Vector2(0, -55)
+orbit_radius = Vector2(15, 3)
 
 [connection signal="facing_changed" from="." to="Visual" method="set_facing"]
 [connection signal="movement_changed" from="." to="Visual" method="set_moving"]

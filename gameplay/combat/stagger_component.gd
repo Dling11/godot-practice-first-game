@@ -9,10 +9,12 @@ signal stagger_started(duration_seconds: float)
 signal stagger_finished
 signal stagger_resistance_started(duration_seconds: float)
 signal stagger_resistance_finished
+signal stun_changed(active: bool)
 
 @export var health_component: HealthComponent
 
 var remaining_seconds := 0.0
+var stun_remaining_seconds := 0.0
 var _duration_multiplier := 1.0
 var _interrupt_limit := 0
 var _chain_window_seconds := 0.9
@@ -48,6 +50,10 @@ func is_staggered() -> bool:
 	return remaining_seconds > 0.0
 
 
+func is_stunned() -> bool:
+	return stun_remaining_seconds > 0.0 and is_staggered()
+
+
 func is_resisting_stagger() -> bool:
 	return _resistance_remaining > 0.0
 
@@ -57,19 +63,27 @@ func get_chain_interrupt_count() -> int:
 
 
 func clear() -> void:
+	var was_stunned := is_stunned()
 	remaining_seconds = 0.0
+	stun_remaining_seconds = 0.0
 	_interrupt_count = 0
 	_chain_remaining = 0.0
 	_resistance_remaining = 0.0
 	set_physics_process(false)
+	if was_stunned:
+		stun_changed.emit(false)
 
 
 func _physics_process(delta: float) -> void:
 	var was_staggered := is_staggered()
+	var was_stunned := is_stunned()
 	var was_resisting := is_resisting_stagger()
 	remaining_seconds = maxf(remaining_seconds - delta, 0.0)
+	stun_remaining_seconds = maxf(stun_remaining_seconds - delta, 0.0)
 	_chain_remaining = maxf(_chain_remaining - delta, 0.0)
 	_resistance_remaining = maxf(_resistance_remaining - delta, 0.0)
+	if was_stunned and not is_stunned():
+		stun_changed.emit(false)
 	if was_staggered and not is_staggered():
 		stagger_finished.emit()
 	if was_resisting and not is_resisting_stagger():
@@ -80,7 +94,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_damaged(info: DamageInfo) -> void:
-	var resolved_duration := info.stagger_seconds * _duration_multiplier
+	var resolved_stun := info.stun_seconds * _duration_multiplier
+	var resolved_duration := maxf(info.stagger_seconds * _duration_multiplier, resolved_stun)
 	if resolved_duration <= 0.0:
 		return
 	if is_resisting_stagger():
@@ -92,20 +107,29 @@ func _on_damaged(info: DamageInfo) -> void:
 		_chain_remaining = _chain_window_seconds
 		if _interrupt_count >= _interrupt_limit:
 			var was_staggered := is_staggered()
+			var was_stunned := is_stunned()
 			remaining_seconds = 0.0
+			stun_remaining_seconds = 0.0
 			_interrupt_count = 0
 			_chain_remaining = 0.0
 			_resistance_remaining = _resistance_duration_seconds
+			if was_stunned:
+				stun_changed.emit(false)
 			if was_staggered:
 				stagger_finished.emit()
 			stagger_resistance_started.emit(_resistance_duration_seconds)
 			_update_processing()
 			return
 	var was_staggered := is_staggered()
+	var was_stunned := is_stunned()
 	remaining_seconds = maxf(remaining_seconds, resolved_duration)
+	stun_remaining_seconds = maxf(stun_remaining_seconds, resolved_stun)
 	_update_processing()
 	if not was_staggered:
 		stagger_started.emit(resolved_duration)
+	# Controllers may synchronously reject this through super armor/clear().
+	if was_stunned != is_stunned():
+		stun_changed.emit(is_stunned())
 
 
 func _update_processing() -> void:

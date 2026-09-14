@@ -91,7 +91,8 @@ func _land() -> void:
 		definition.resolve_strike_knockback(0),
 		definition.resolve_strike_stagger(0),
 		_critical_chance_ratio,
-		_critical_damage_multiplier
+		_critical_damage_multiplier,
+		definition.resolve_strike_stun(0)
 	)
 	strike_started.emit(0, 1, definition.recovery_seconds)
 

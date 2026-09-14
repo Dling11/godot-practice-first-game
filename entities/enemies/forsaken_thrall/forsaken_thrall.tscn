@@ -1,4 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://maebhhj1ooeb"]
+[gd_scene load_steps=20 format=3 uid="uid://maebhhj1ooeb"]
+
+[ext_resource type="PackedScene" path="res://gameplay/presentation/stun_indicator.tscn" id="stun_indicator"]
 
 [ext_resource type="Script" uid="uid://cnwqmaxp002w6" path="res://entities/enemies/forsaken_thrall/forsaken_thrall.gd" id="1_enemy"]
 [ext_resource type="Resource" path="res://data/enemies/forsaken_thrall.tres" id="2_data"]
@@ -135,6 +137,10 @@ script = ExtResource("6_hitbox")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackPivot/AttackHitbox" unique_id=2114807984]
 position = Vector2(18, 0)
 shape = SubResource("CircleShape2D_attack")
+
+[node name="StunIndicator" parent="." instance=ExtResource("stun_indicator")]
+position = Vector2(0, -44)
+orbit_radius = Vector2(9, 3)
 
 [connection signal="facing_changed" from="." to="VisualPivot" method="set_facing_direction"]
 [connection signal="facing_changed" from="." to="AttackPivot" method="set_facing_direction"]

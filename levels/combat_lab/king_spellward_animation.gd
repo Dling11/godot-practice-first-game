@@ -1,6 +1,27 @@
 extends "res://entities/player/presentation/king_greatsword_animation.gd"
 
 ## Opt-in presentation only. Player/StaggerComponent retain all control timing.
+func _play_action_phase(phase: int, seconds: float) -> void:
+	var active := (owner as Player).get_active_ability_component()
+	if active == null or not active.definition.get_meta("earthsplitter_review", false):
+		super._play_action_phase(phase, seconds)
+		return
+	_kill_recoil_tween()
+	_kill_attack_phase_tween()
+	speed_scale = 1.0
+	_action_locked = true
+	if phase == AbilityComponent.Phase.WIND_UP:
+		_action_direction = _direction
+	stop()
+	animation = "heavy_cleave_" + _action_direction
+	position = _base_position
+	var first: int = [0, 4, 5][clampi(phase - 1, 0, 2)]
+	var last: int = [3, 5, 7][clampi(phase - 1, 0, 2)]
+	frame = first
+	_attack_phase_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	_attack_phase_tween.tween_method(_set_attack_frame, float(first), float(last), maxf(seconds, .01))
+
+
 func _play_locomotion() -> void:
 	var previous := animation
 	var previous_count := maxi(1, sprite_frames.get_frame_count(previous))
@@ -18,15 +39,16 @@ func resume_locomotion() -> void:
 		return
 	super.resume_locomotion()
 
-func play_hit_recovery(duration_seconds: float) -> void:
+func play_hit_recovery(_duration_seconds: float) -> void:
 	_kill_recoil_tween()
 	_kill_attack_phase_tween()
 	speed_scale = 1.0
 	_action_direction = _direction
 	_action_locked = true
 	position = _base_position
-	# A longer real stagger gets a held dazed stance; short contacts stay brisk.
-	play(("stagger_" if duration_seconds >= .3 else "hurt_") + _action_direction)
+	var actor := owner as Player
+	var stunned := actor != null and actor.stagger_component.is_stunned()
+	play(("stagger_" if stunned else "hurt_") + _action_direction)
 
 func _on_animation_finished() -> void:
 	var actor := owner as Player
