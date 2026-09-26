@@ -712,11 +712,11 @@ func _play_next_loot_notification() -> void:
 
 func _update_resolve(stacks: int, maximum: int) -> void:
 	var label := get_node("ResolveLabel") as Label
-	label.text = "RESOLVE READY · NEXT SKILL +25%" if stacks == maximum else "RESOLVE %d/%d · LAND BASIC HITS" % [stacks,maximum]
+	label.text = "RESOLVE %d/%d READY · NEXT SKILL +25%%" % [stacks, maximum] if stacks == maximum else "RESOLVE %d/%d STACKS · BASIC HITS" % [stacks, maximum]
 	if _pursuit_link_available:
 		label.text += " · RUPTURE +15%"
 	label.tooltip_text = "Each landed basic swing fills one bar. Fill all three for +25% damage on your next skill. Lasts 8 seconds after your last basic hit; hitting more enemies in one swing still earns only one bar."
-	label.modulate = Color("c7efff") if stacks == maximum else Color("829aa9")
+	label.add_theme_color_override("font_color", Color("c7efff") if stacks == maximum else Color("adc5d5"))
 
 func _update_link(available: bool) -> void:
 	_pursuit_link_available = available

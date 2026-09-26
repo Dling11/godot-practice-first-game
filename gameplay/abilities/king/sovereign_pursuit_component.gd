@@ -5,11 +5,72 @@ extends AbilityComponent
 ## contact at the actual collision-safe landing position.
 
 var _target_global_position := Vector2.ZERO
+signal charges_changed(available: int, maximum: int)
+var charges_available := 1
+
+
+func _ready() -> void:
+	super._ready()
+	charges_available = get_max_charges()
+
+
+func get_max_charges() -> int:
+	var pursuit := definition as SovereignPursuitDefinition
+	return pursuit.max_charges if pursuit != null else 1
+
+
+func is_ready() -> bool:
+	return phase == Phase.IDLE and charges_available > 0
+
+
+func can_queue_cast() -> bool:
+	return charges_available > 0
+
+
+func clear_cooldown() -> void:
+	charges_available = get_max_charges()
+	super.clear_cooldown()
+	charges_changed.emit(charges_available, get_max_charges())
+
+
+func apply_rank(value: int) -> void:
+	if value < SovereignPursuitDefinition.Rank.FOUNDATION or value > SovereignPursuitDefinition.Rank.MATURE:
+		return
+	var current := definition as SovereignPursuitDefinition
+	if current == null or phase != Phase.IDLE:
+		return
+	var previous_capacity := current.max_charges
+	var upgraded := current.duplicate(true) as SovereignPursuitDefinition
+	upgraded.configure_rank(value)
+	definition = upgraded
+	charges_available = mini(charges_available + maxi(upgraded.max_charges - previous_capacity, 0), upgraded.max_charges)
+	if charges_available >= upgraded.max_charges:
+		cooldown_remaining = 0.0
+	elif cooldown_remaining <= 0.0:
+		cooldown_remaining = upgraded.cooldown_seconds
+	_update_processing()
+	charges_changed.emit(charges_available, upgraded.max_charges)
+
+
+func _start_cooldown() -> void:
+	charges_available -= 1
+	if cooldown_remaining <= 0.0:
+		cooldown_remaining = definition.cooldown_seconds
+	cooldown_started.emit(cooldown_remaining)
+	charges_changed.emit(charges_available, get_max_charges())
+
+
+func _on_cooldown_elapsed() -> void:
+	charges_available = mini(charges_available + 1, get_max_charges())
+	if charges_available < get_max_charges():
+		cooldown_remaining = definition.cooldown_seconds
+	cooldown_finished.emit()
+	charges_changed.emit(charges_available, get_max_charges())
 
 
 func request_cast_at(target_global_position: Vector2, equipped_weapon_damage := 0.0) -> bool:
 	var pursuit := definition as SovereignPursuitDefinition
-	if pursuit == null or owner == null:
+	if pursuit == null or owner == null or not is_ready():
 		return false
 	var actor := owner as Node2D
 	if actor == null:

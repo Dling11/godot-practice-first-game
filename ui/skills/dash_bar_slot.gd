@@ -1,5 +1,5 @@
 class_name DashBarSlot
-extends PanelContainer
+extends Panel
 
 ## Compact HUD control for the core dash action and its cooldown.
 
@@ -56,7 +56,7 @@ func _show_ready() -> void:
 	cooldown_bar.value = 0.0
 	modulate = Color.WHITE
 	activation_button.disabled = false
-	state_label.text = "READY"
+	state_label.text = "DODGE"
 	state_label.add_theme_color_override("font_color", Color(0.62, 0.9, 0.54, 1))
 	cooldown_tick.stop()
 
@@ -78,8 +78,8 @@ func show_restraint_progress(remaining: int, total: int) -> void:
 
 func clear_restraint_progress() -> void:
 	_restraint_active = false
-	key_label.text = "SPC"
-	activation_button.tooltip_text = "Dash (Space)"
+	key_label.text = "SPACE"
+	activation_button.tooltip_text = "Dodge (Space)"
 	if is_instance_valid(evade_component) and evade_component.get_cooldown_remaining() > 0.0:
 		_show_cooldown(evade_component.get_cooldown_remaining())
 	else:

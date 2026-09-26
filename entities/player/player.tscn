@@ -24,7 +24,7 @@
 [ext_resource type="Resource" path="res://data/progression/king_path.tres" id="21_progression_data"]
 [ext_resource type="Script" uid="uid://b61awjvau5rtl" path="res://gameplay/audio/player_action_sfx.gd" id="22_player_sfx"]
 [ext_resource type="AudioStream" uid="uid://tg77jorh8gfu" path="res://assets/audio/sfx/sword_swing.wav" id="23_sword_swing"]
-[ext_resource type="AudioStream" path="res://assets/audio/sfx/player_dash_light_swoosh.wav" id="25_dash"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/player_dash_grounded.wav" id="25_dash"]
 [ext_resource type="Resource" path="res://data/skills/king_starting_loadout.tres" id="26_loadout"]
 [ext_resource type="Resource" path="res://data/skills/king_starting_loadout.tres" id="38_debug_loadout"]
 [ext_resource type="Resource" path="res://data/items/king_weapon_catalog.tres" id="27_weapon_catalog"]
@@ -466,7 +466,7 @@ bus = &"SFX"
 
 [node name="Dash" type="AudioStreamPlayer2D" parent="PlayerActionSfx" unique_id=795989634]
 stream = ExtResource("25_dash")
-volume_db = -13.0
+volume_db = -11.0
 bus = &"SFX"
 
 [node name="SovereignPursuitLanding" type="AudioStreamPlayer2D" parent="PlayerActionSfx"]

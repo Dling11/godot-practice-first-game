@@ -1,8 +1,18 @@
 # Known Issues
 
-**Current King follow-up (Decision 157, 2026-09-26):** King C, Earthsplitter Foundation, blue Molten Crash Foundation and blade-cut Pursuit are the production baseline. The old Oath collection and original Skill 1/2 nodes are retired. The skill form buttons in F7 are session-only: campaign unlock/persistence, Pursuit charges, final Skill 4 design, owner combat feel and phone performance remain open. Historical Lab-only issue notes below are superseded where they describe the default player.
+**Action-bar visual review (2026-09-27):** Owner selected Eclipse Bind and the full-box shadow frame is installed. The native 960x540 capture is readable and the live-control smoke check passes. Owner in-game feel and representative-phone readability remain unverified; no gameplay rules depend on the frame.
 
-**Skill 3 production status (Decision 157, 2026-09-26):** The blue-white blade-cut Sovereign Pursuit travel/landing art is active in the campaign. The 1-to-3-charge range progression remains a proposal; charge handling, HUD, owner feel approval and representative-device performance checks remain open.
+**Previous dragon HUD art (2026-09-27):** The detached dragon pass is no longer referenced by active UI scenes. Its original source and runtime derivatives remain for provenance and can be removed during the planned asset cleanup after reference audit.
+
+**Action-tray follow-up (2026-09-27):** Cyan Dash and gold Attack side cards and the replacement grounded Dash cue are implemented. Automated checks verify the bound `SFX` resource and clickable actions, and the 960x540 capture verifies layout. Exact loudness/feel in a crowded fight and phone-size legibility still need live review.
+
+**Resolved 2026-09-27:** Pursuit travel speed no longer bleeds into landing recovery; ranked ability duplication no longer disconnects its equipped hotkey/HUD binding. Action-slot key/icon/status overlap caused by `PanelContainer` sizing is fixed. The smaller tray and larger status text were rendered at the project viewport; phone-scale legibility still needs device review.
+
+**Skill 3 follow-up (Decision 158, 2026-09-27):** Eira-gated Level 5/8 Pursuit charges and 220/250/280px range are implemented and saved by rank. Charge stock refills on scene entry; owner combat-feel, exact level pacing, HUD legibility and representative-phone profiling remain open. Skill 4's Unbroken Stand redesign is a proposal only; Worldsplitter remains active. Older "charges unimplemented" notes below are historical.
+
+**Current King follow-up (Decisions 157–158):** King C, Earthsplitter Foundation, blue Molten Crash Foundation and trained blade-cut Pursuit are the production baseline. The old Oath collection and original Skill 1/2 nodes are retired. F7 form/rank buttons are session-only. Campaign unlock/persistence for later Skills 1/2 forms, final Skill 4 design, owner combat feel and phone performance remain open. Historical Lab-only issue notes below are superseded where they describe the default player.
+
+**Skill 3 production status (Decisions 157–158):** The blue-white blade-cut Sovereign Pursuit travel/landing art and 1-to-3 trained-use progression are active in the campaign. Owner feel approval and representative-device performance checks remain open.
 
 **Molten Crash upgrades (Decision 155, 2026-09-26):** Skill 2 now has four selectable Lab forms: 72px blue stone-and-light Foundation, 80px molten Advanced, 84px Awakened with one delayed 86px damage-only heat pulse, and 86px Mature with a stronger center and gentler damage rim. One .36s local sword cast, 8s cooldown and initial authored stun remain. The pulse resolves at the original impact while King can move. F7 -> KING REVIEW -> SKILL 2 and FORM compares them. Campaign unlock/persistence and owner feel review remain pending.
 
@@ -21,7 +31,7 @@ This file tracks current limitations only. Resolved and retired systems belong i
 ### KI-024 - King skill responsiveness, future milestones and balance need review
 
 - **Current kit:** Earthsplitter Foundation, Molten Crash blue Foundation, blade-cut Sovereign Pursuit and Worldsplitter are the four playable skills. King C body and its accepted gait, attacks and outline are production in gameplay and the character menu. The retired Oath and targeted Riftbreak proofs are in the recovery archive.
-- **Remaining:** Owner feel/balance review, later-form stage unlocks and persistence, bespoke cast-body art, Pursuit charge progression, Skill 4 redesign and phone performance measurements. No terrain destruction is implemented. The current campaign still reaches VI; Stage XX rewards and the Examiner seal matchup remain future work.
+- **Remaining:** Owner feel/balance review, later-form stage unlocks and persistence for Skills 1/2, bespoke cast-body art, Pursuit charge tuning, Skill 4 redesign and phone performance measurements. No terrain destruction is implemented. The current campaign still reaches VI; Stage XX rewards and the Examiner seal matchup remain future work.
 - **Next:** Check this four-skill kit in live combat with debug helpers off; tune after measured damage and incoming pressure. F7's form and unlimited-skill controls are session-only review aids.
 
 ### KI-023 - Examiner Stage XX balance and scenario integration remain pending

@@ -34,8 +34,10 @@ This catalog records active asset families and lifecycle boundaries. Exact runti
 
 ## Combat UI
 
+- Owner-selected Eclipse Bind action bar: `art_source/generated/ui/eclipse_bind_hotbar/` holds the generated empty-frame and matching shadow-step Dash sources plus prompts. `tools/build_eclipse_bind_hud_art.gd` creates binary-alpha, fixed-palette `assets/ui/hud/eclipse_bind/eclipse_frame_760x120.png` and `eclipse_dash_24.png`. The frame is the one continuous mouse-ignored backdrop of `CombatHUD`; Dash slot and character menu share the glyph. All twelve controls are real Godot nodes over the art. Native runtime review: `art_source/review/ui/eclipse_bind_runtime_2026_09_27/`. This is a HUD motif, not a confirmed divine-order insignia.
+- Historical provisional dragon action-bar source and derivatives remain under `art_source/generated/ui/divine_dragon_hotbar/` and `assets/ui/hud/divine_dragon/`; active scenes do not reference them. The unselected Shadow Crown concept remains in `art_source/review/ui/shadow_action_bar_concepts_2026_09_27/`.
 - Shared six-cell runtime atlas: `assets/ui/icons/combat/combat_action_atlas_bc_6x1_24.png`.
-- Fixed cells: Earthsplitter, Molten Crash, Sovereign Pursuit, Worldsplitter, Basic Attack, Dodge/Dash. The first two atlas cells retain their legacy image indices for save/UI compatibility.
+- Fixed cells: Earthsplitter, Molten Crash, Sovereign Pursuit, Worldsplitter, Basic Attack, legacy Dodge/Dash. The HUD and character menu now display the Eclipse Bind shadow-step Dash glyph; the atlas cell remains for compatible older uses. The first two atlas cells retain their legacy image indices for save/UI compatibility.
 - Each action is exposed through a reusable `AtlasTexture` resource in `assets/ui/icons/combat/`.
 - Generated source images remain in `art_source/generated/ui/combat_action_atlas_bc/`; runtime must never reference those sources.
 - The small movement destination indicator and themed cursors remain active presentation assets under `assets/ui/`; their visual approval remains a feel-test item.

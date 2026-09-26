@@ -1,5 +1,5 @@
 class_name SkillBarSlot
-extends PanelContainer
+extends Panel
 
 ## Compact reusable HUD observer for one configured skill slot.
 
@@ -46,6 +46,11 @@ func _draw() -> void:
 	draw_polyline(PackedVector2Array([
 		Vector2(right - 6.0, bottom), Vector2(right, bottom), Vector2(right, bottom - 6.0)
 	]), accent, 1.0, false)
+	if ability_component is SovereignPursuitComponent and slot_definition != null and slot_definition.is_equipped():
+		var pursuit := ability_component as SovereignPursuitComponent
+		for index in pursuit.get_max_charges():
+			var pip_color := accent if index < pursuit.charges_available else Color(0.17, 0.25, 0.33, 1.0)
+			draw_rect(Rect2(size.x - 7.0 - index * 6.0, 4.0, 4.0, 4.0), pip_color)
 
 
 func configure(definition: SkillSlotDefinition) -> void:
@@ -77,12 +82,17 @@ func bind_ability(component: AbilityComponent) -> void:
 	if component == null:
 		activation_button.disabled = true
 		if slot_definition != null and slot_definition.is_equipped():
-			state_label.text = "UNAVAILABLE"
+			state_label.text = "OFFLINE"
 			state_label.add_theme_color_override("font_color", Color(0.92, 0.4, 0.4, 1))
 			modulate = Color(0.68, 0.52, 0.52, 1)
 		return
 	component.cooldown_started.connect(_show_cooldown)
 	component.cooldown_finished.connect(_show_ready)
+	if component is SovereignPursuitComponent:
+		(component as SovereignPursuitComponent).charges_changed.connect(_show_pursuit_charges)
+		_show_pursuit_charges(0, 0)
+		queue_redraw()
+		return
 	if component.is_ready():
 		_show_ready()
 	else:
@@ -97,17 +107,24 @@ func _unbind_ability() -> void:
 			ability_component.cooldown_started.disconnect(_show_cooldown)
 		if ability_component.cooldown_finished.is_connected(_show_ready):
 			ability_component.cooldown_finished.disconnect(_show_ready)
+		if ability_component is SovereignPursuitComponent and (ability_component as SovereignPursuitComponent).charges_changed.is_connected(_show_pursuit_charges):
+			(ability_component as SovereignPursuitComponent).charges_changed.disconnect(_show_pursuit_charges)
 	ability_component=null
 
 
 func _show_cooldown(duration_seconds: float) -> void:
+	if ability_component is SovereignPursuitComponent:
+		_show_pursuit_charges(0, 0)
+		return
 	if _cooldown_tween != null and _cooldown_tween.is_valid():
 		_cooldown_tween.kill()
-	modulate = Color(0.58, 0.58, 0.58, 1.0)
+	modulate = Color.WHITE
+	ability_icon.modulate = Color(0.58, 0.58, 0.58, 1.0)
 	# Cooldown remains an actionable rejected state so keyboard, controller,
 	# mouse, and future touch input all reach the shared denied-action feedback.
 	activation_button.disabled = false
 	state_label.text = "%.1f" % duration_seconds
+	state_label.add_theme_font_size_override("font_size", 10)
 	state_label.add_theme_color_override("font_color", Color(0.94, 0.72, 0.38, 1))
 	cooldown_bar.max_value = duration_seconds
 	cooldown_bar.value = duration_seconds
@@ -119,12 +136,17 @@ func _show_cooldown(duration_seconds: float) -> void:
 func _show_ready() -> void:
 	if slot_definition == null or not slot_definition.is_equipped():
 		return
+	if ability_component is SovereignPursuitComponent:
+		_show_pursuit_charges(0, 0)
+		return
 	if _cooldown_tween != null and _cooldown_tween.is_valid():
 		_cooldown_tween.kill()
 	cooldown_bar.value = 0.0
 	modulate = Color.WHITE
+	ability_icon.modulate = Color.WHITE
 	activation_button.disabled = false
 	state_label.text = "READY"
+	state_label.add_theme_font_size_override("font_size", 10)
 	state_label.add_theme_color_override("font_color", Color(0.62, 0.9, 0.54, 1))
 	cooldown_tick.stop()
 
@@ -134,6 +156,7 @@ func show_targeting() -> void:
 		return
 	_targeting_active = true
 	state_label.text = "AIM  RMB"
+	state_label.add_theme_font_size_override("font_size", 8)
 	state_label.add_theme_color_override("font_color", Color(1.0, 0.86, 0.5, 1.0))
 	if _targeting_tween != null and _targeting_tween.is_valid():
 		_targeting_tween.kill()
@@ -165,7 +188,35 @@ func _on_cooldown_tick() -> void:
 	if not is_instance_valid(ability_component):
 		cooldown_tick.stop()
 		return
+	if ability_component is SovereignPursuitComponent:
+		_show_pursuit_charges(0, 0)
+		return
 	state_label.text = "%.1f" % ability_component.cooldown_remaining
+
+
+func _show_pursuit_charges(_available: int, _maximum: int) -> void:
+	var pursuit := ability_component as SovereignPursuitComponent
+	if pursuit == null or slot_definition == null or not slot_definition.is_equipped():
+		return
+	if _cooldown_tween != null and _cooldown_tween.is_valid():
+		_cooldown_tween.kill()
+	if not _targeting_active:
+		state_label.text = "%d/%d" % [pursuit.charges_available, pursuit.get_max_charges()]
+		state_label.add_theme_font_size_override("font_size", 10)
+		state_label.add_theme_color_override("font_color", Color(0.62, 0.9, 0.54, 1) if pursuit.charges_available > 0 else Color(0.94, 0.72, 0.38, 1))
+	modulate = Color.WHITE
+	if not _targeting_active:
+		ability_icon.modulate = Color.WHITE if pursuit.charges_available > 0 else Color(0.58, 0.58, 0.58, 1)
+	activation_button.disabled = false
+	cooldown_bar.max_value = pursuit.definition.cooldown_seconds
+	cooldown_bar.value = pursuit.definition.cooldown_seconds - pursuit.cooldown_remaining if pursuit.cooldown_remaining > 0.0 else 0.0
+	if pursuit.cooldown_remaining > 0.0:
+		cooldown_tick.start()
+	else:
+		cooldown_tick.stop()
+	tooltip_text = "%s — %d/%d uses; next refill in %.1fs" % [slot_definition.get_display_name(), pursuit.charges_available, pursuit.get_max_charges(), pursuit.cooldown_remaining] if pursuit.cooldown_remaining > 0.0 else "%s — %d/%d uses ready" % [slot_definition.get_display_name(), pursuit.charges_available, pursuit.get_max_charges()]
+	activation_button.tooltip_text = tooltip_text
+	queue_redraw()
 
 
 func _on_activation_button_pressed() -> void:

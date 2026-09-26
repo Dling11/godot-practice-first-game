@@ -39,6 +39,10 @@ func is_ready() -> bool:
 	return phase == Phase.IDLE and cooldown_remaining <= 0.0
 
 
+func can_queue_cast() -> bool:
+	return cooldown_remaining <= 0.0
+
+
 func is_casting() -> bool:
 	return phase != Phase.IDLE
 
@@ -79,11 +83,10 @@ func request_cast(direction: Vector2, equipped_weapon_damage := 0.0) -> bool:
 	cast_power_multiplier = 1.0
 	_resolved_damage = definition.resolve_damage(equipped_weapon_damage)
 	collision_shape.shape = definition.hitbox_shape
-	cooldown_remaining = definition.cooldown_seconds
 	ability_started.emit()
 	if definition.grants_invulnerability:
 		invulnerability_changed.emit(true)
-	cooldown_started.emit(definition.cooldown_seconds)
+	_start_cooldown()
 	_enter_phase(Phase.WIND_UP, definition.wind_up_seconds)
 	set_physics_process(true)
 	return true
@@ -159,7 +162,7 @@ func _physics_process(delta: float) -> void:
 	if cooldown_remaining > 0.0:
 		cooldown_remaining = maxf(cooldown_remaining - delta, 0.0)
 		if cooldown_remaining <= 0.0:
-			cooldown_finished.emit()
+			_on_cooldown_elapsed()
 	if phase != Phase.IDLE:
 		if phase == Phase.ACTIVE:
 			_advance_active_strikes(delta)
@@ -169,6 +172,15 @@ func _physics_process(delta: float) -> void:
 			_advance_phase()
 			_phase_time_remaining -= overflow
 	_update_processing()
+
+
+func _start_cooldown() -> void:
+	cooldown_remaining = definition.cooldown_seconds
+	cooldown_started.emit(definition.cooldown_seconds)
+
+
+func _on_cooldown_elapsed() -> void:
+	cooldown_finished.emit()
 
 
 func _advance_phase() -> void:

@@ -102,7 +102,7 @@ func _run() -> void:
 		_fail("A ground left-click attack did not cancel active right-click movement.")
 		return
 
-	if hud.attack_button.size != Vector2(54.0, 48.0) or hud.attack_button.text != "ATK" or hud.attack_button.icon == null:
+	if hud.attack_button.size != Vector2(54.0, 44.0) or (hud.attack_button.get_parent().get_node("AttackLabel") as Label).text != "ATK" or (hud.attack_button.get_parent().get_node("AttackIcon") as TextureRect).texture == null:
 		_fail("The compact unnumbered Attack fallback does not retain its authored footprint or label.")
 		return
 	player.attack_component.cancel_attack()

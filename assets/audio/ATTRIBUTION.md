@@ -50,6 +50,14 @@ The restrained rising spirit chime accompanies the compact level-up banner. It i
 
 The hurt cue is a restrained cloth/body impact reserved for accepted player damage. It does not reuse enemy attack audio.
 
+## Player Dash Grounded SFX
+
+- **Runtime file:** `sfx/player_dash_grounded.wav`
+- **Source:** Original deterministic in-project synthesis via `tools/build_player_dash_sfx.ps1`
+- **Created:** 2026-09-27
+
+One descending boot impulse and a short filtered cloth/air tail replace the older rising swish. The clip plays through the existing player Dash `SFX` node.
+
 ## Archived Player Dash CC0 SFX
 
 - **Author:** artisticdude

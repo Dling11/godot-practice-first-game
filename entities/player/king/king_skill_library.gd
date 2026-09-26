@@ -11,6 +11,9 @@ func _ready() -> void:
 	actor.ready.connect(_bind)
 
 func _bind() -> void:
+	var pursuit := actor.ability_3_component as SovereignPursuitComponent
+	if pursuit != null:
+		pursuit.apply_rank(get_node("/root/RunSession").king_pursuit_rank)
 	refresh()
 	var saved: Array = get_node("/root/RunSession").king_skill_slots
 	if not saved.is_empty() and KingSkillCatalog.valid_slots(saved):
@@ -79,12 +82,33 @@ func equip_core_kit() -> bool:
 		get_node("/root/SaveService").save_profile()
 	return true
 
-func open_collection() -> void:
+func open_collection(at_skillkeeper := false) -> void:
 	if is_instance_valid(_collection):
 		return
 	_collection=load("res://ui/skills/king_skill_collection.gd").new()
 	_collection.library=self
+	_collection.trainer_access=at_skillkeeper
 	add_child(_collection)
+
+func get_pursuit_upgrade_level() -> int:
+	var rank: int = get_node("/root/RunSession").king_pursuit_rank
+	return [5, 8][rank] if rank < 2 else 0
+
+func can_upgrade_pursuit(at_skillkeeper: bool) -> bool:
+	return at_skillkeeper and not is_lab() and can_edit() and get_pursuit_upgrade_level() > 0 and actor.progression_component.level >= get_pursuit_upgrade_level()
+
+func upgrade_pursuit(at_skillkeeper: bool) -> bool:
+	if not can_upgrade_pursuit(at_skillkeeper):
+		return false
+	var session := get_node("/root/RunSession")
+	var previous: int = session.king_pursuit_rank
+	session.king_pursuit_rank = previous + 1
+	if not get_node("/root/SaveService").save_profile():
+		session.king_pursuit_rank = previous
+		return false
+	(actor.ability_3_component as SovereignPursuitComponent).apply_rank(session.king_pursuit_rank)
+	refresh()
+	return true
 
 func refresh() -> void:
 	_apply_slots(current_ids())

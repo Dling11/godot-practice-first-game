@@ -1,18 +1,19 @@
-# Sovereign Pursuit: proposed range and charge progression
+# Sovereign Pursuit: trained range and stored uses
 
-Status: owner idea recorded 2026-09-26; numeric balance, unlock stages and charge implementation remain open. Current runtime has one 220px cast and an 8.5-second cooldown. Decision 157 promoted the blade-cut art to normal play; art promotion does not grant any charge upgrade.
+Status: implemented 2026-09-27 (Decision 158). Owner combat feel and representative-phone performance remain to be reviewed.
 
-Pursuit is King's precise, aggressive movement skill. Its upgrades should let the player choose more entries and escapes, while each landing stays one compact hit. The player aims and commits each use separately; three charges never fire as one automatic triple attack.
+Pursuit is King's separately aimed, aggressive movement skill. Each confirmed cast consumes one stored use, performs one collision-safe leap and resolves one compact landing hit. Its current blade-cut travel/landing frames are reused at all ranks so the actor identity and contact timing stay consistent.
 
-| Proposed rank | Maximum aim range | Stored charges | What changes |
+| Rank | Maximum aim range | Stored uses | Training requirement |
 | --- | ---: | ---: | --- |
-| Foundation | 220px | 1 | Current targeted leap and single landing hit. |
-| Advanced | 240px | 1 | Longer route choice without extra damage or area. |
-| Awakened | 260px | 2 | One additional stored use for repositioning or a second deliberate entry. |
-| Mature | 280px | 3 | Three deliberately aimed uses at full stock; still one contact per cast. |
+| Foundation | 220px | 1 | Starting form |
+| Advanced | 250px | 2 | Speak to Eira at Level 5 |
+| Mature | 280px | 3 | Speak to Eira at Level 8 |
 
-Start balance testing with **one charge restored every 8.5 seconds, sequentially**, up to the rank's maximum. Using a charge must never reset the recharge already in progress. A fully spent Mature stock would therefore take 25.5 seconds to refill. The HUD should show charge pips plus progress to the *next* charge; targeting should display the active rank's maximum reach. Unused stock does not grant passive damage.
+The existing level cap means Level 5 requires enough progression beyond Stage II; Level 8 requires the Stage V cap increase. Eira's Technique Collection performs the manual upgrade and saves the rank. The normal Tab menu shows the next requirement but cannot grant it. F7 can preview all three ranks without saving. Older profiles load at Foundation. A new player scene restores the saved rank; individual charge stock is session-local and starts full on scene entry.
 
-Keep the current .14-second windup, .28-second collision-safe travel, .24-second recovery, 52px landing radius and 125% weapon hit **per cast** for the first balance prototype. Invulnerability applies only during each actual traversal, never between charges or during recovery. Each accepted input spends exactly one charge and produces exactly one landing hit. If a cast is blocked or canceled before commitment, it must not consume a charge. The existing 1.2-second Pursuit-to-Skill-2 +15% link should be refreshed by a landed cast, not stacked additively by repeated Pursuits. Existing Resolve, mastery, equipment and ten-slot rules still apply.
+One use refills every **8.5 seconds, sequentially**. Spending another use does not restart a refill already in progress. Empty Mature stock takes 25.5 seconds to become full. The HUD shows available/maximum uses and a small next-use refill bar. F9's unlimited-skill helper fills all uses for its non-saving debug session.
 
-Before campaign promotion, measure sustained damage, three-charge burst damage, terrain-obstructed travel, input buffering, enemy pressure between leaps, the Skill-2 link and phone performance. Decide which milestones award the ranks and how rank/charge state persists only after those tests. Range values and recharge are starting numbers, not locked balance.
+The .14-second windup, .28-second collision-safe travel, .24-second recovery, 52px landing radius and 125% weapon hit remain per cast. Travel-only invulnerability never covers the interval between uses. Rejected casts and canceled targeting spend nothing; an accepted cast spends exactly one use, even if interrupted afterward. Multiple landings can each hit, but their Pursuit-to-Molten Crash combo window refreshes rather than stacking. Existing Resolve, mastery, equipment, input buffering and ten-slot rules still apply.
+
+Remaining review: test three-use boss burst, enemy pressure between leaps, terrain-stopped travel, Eira discoverability, actual level pacing, HUD legibility and representative-phone frame time. Range and recharge values are owner-approved starting values and can be tuned from combat measurements.

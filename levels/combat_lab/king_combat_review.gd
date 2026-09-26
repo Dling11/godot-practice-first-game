@@ -8,6 +8,7 @@ var _panel: PanelContainer
 var _message: Label
 var _earth_form: Button
 var _molten_form: Button
+var _pursuit_rank: Button
 var _speed_button: Button
 var _zoom_button: Button
 var _zoomed := false
@@ -65,6 +66,17 @@ func set_molten_form(value: int) -> bool:
 	actor.get_node("KingSkillLibrary").refresh()
 	_molten_form.text = ["SKILL 2: FOUNDATION", "SKILL 2: ADVANCED", "SKILL 2: AWAKENED", "SKILL 2: MATURE"][value]
 	_message.text = "Skill 2 form preview only; campaign starts with blue Foundation."
+	return true
+
+
+func set_pursuit_rank(value: int) -> bool:
+	if value < SovereignPursuitDefinition.Rank.FOUNDATION or value > SovereignPursuitDefinition.Rank.MATURE or not can_switch():
+		return false
+	var pursuit := actor.ability_3_component as SovereignPursuitComponent
+	pursuit.apply_rank(value)
+	actor.get_node("KingSkillLibrary").refresh()
+	_pursuit_rank.text = ["SKILL 3: 1 USE", "SKILL 3: 2 USES", "SKILL 3: 3 USES"][value]
+	_message.text = "Pursuit charge preview only; campaign upgrades are trained with Eira."
 	return true
 
 
@@ -126,6 +138,8 @@ func _build_panel() -> void:
 	stack.add_child(forms)
 	_earth_form = _button(forms, "SKILL 1: FOUNDATION", func() -> void: set_earthsplitter_form(((actor.ability_1_component.definition as EarthsplitterDefinition).form + 1) % 3))
 	_molten_form = _button(forms, "SKILL 2: FOUNDATION", func() -> void: set_molten_form(((actor.ability_2_component.definition as MoltenCrashDefinition).form + 1) % 4))
+	var current_pursuit_rank := (actor.ability_3_component.definition as SovereignPursuitDefinition).rank
+	_pursuit_rank = _button(forms, ["SKILL 3: 1 USE", "SKILL 3: 2 USES", "SKILL 3: 3 USES"][current_pursuit_rank], func() -> void: set_pursuit_rank(((actor.ability_3_component.definition as SovereignPursuitDefinition).rank + 1) % 3))
 	_message = Label.new()
 	_message.add_theme_font_size_override("font_size", 10)
 	stack.add_child(_message)

@@ -1,5 +1,22 @@
 # Changelog
 
+## 2026-09-27 — Compact skill HUD and Pursuit landing correction
+
+- Implemented the owner-selected Eclipse Bind full-box action bar from a clean generated frame: one continuous hard-pixel ornament behind twelve live controls, a matching shadow-step Dash icon in HUD/character menu, and matching obsidian/violet slot colors. Removed active references to the provisional detached dragons, moved Resolve above the taller frame, and saved 960x540 runtime captures. The live input/cooldown semantics and grounded Dash cue remain.
+- Generated two full-box shadow action-bar concepts, Shadow Crown and Eclipse Bind, after owner clarification that the earlier detached dragon edges were not the intended design. Eclipse Bind was subsequently selected and installed.
+- Generated and integrated mirrored divine-dragon artwork on the two outer action-tray edges, plus a matching Space/Dodge glyph shared with the character menu. The HUD ornament ignores pointer input and has reproducible hard-pixel runtime derivatives.
+- Changed the Dash card's visible input/action labels to `SPACE` and `DODGE`, keeping cooldown and restraint feedback intact.
+- Gave the action tray distinct cyan Dash and gold Attack end cards, with visible Space/left-click labels and the same clickable gameplay paths.
+- Replaced the retired light dash swish with an original short boot/cloth movement cue on the existing SFX bus; added a deterministic PowerShell builder and attribution.
+- Reduced the ten-slot action tray and separated key, icon and state layers; improved charge, cooldown and Resolve readability, including Pursuit stock pips.
+- Stopped Pursuit's authored leap velocity from sliding King through landing recovery, and matched ranked abilities to equipped slots by stable ID.
+- Added a rendered HUD comparison and regression coverage for slot geometry, ranked Pursuit binding and landing position.
+
+## 2026-09-27 - Train Sovereign Pursuit charges with Eira (Decision 158)
+
+- Added manual Level 5/8 Skillkeeper upgrades for two/three independently aimed Pursuit uses at 250/280px. One use refills every 8.5 seconds without resetting when another is spent; the HUD shows stock and refill. Rank saves compatibly with older profiles, while F7 can preview all ranks without saving.
+- Kept Pursuit landing damage, radius, frames, travel protection and Molten Crash link behavior. Added focused charge/refill/HUD and Eira/save-restore checks; the Skill 4 Unbroken Stand concept is documented only, with Worldsplitter still active.
+
 ## 2026-09-26 - Promote King C and retire old King skills (Decision 157)
 
 - Promoted King C's accepted body/outline to normal play and the character menu, with its runtime art folder renamed to `spellward/`. Promoted Earthsplitter Foundation, blue Molten Crash Foundation and the blade-cut Sovereign Pursuit art to the player scene. Skill 4 remains Worldsplitter for its next design pass.

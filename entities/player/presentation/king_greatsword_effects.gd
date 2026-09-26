@@ -84,7 +84,7 @@ func _draw() -> void:
 	if _mastery.stacks > 0:
 		for index in _mastery.definition.resolve_hits:
 			var color := Color("d6f4ff") if index < _mastery.stacks else Color("354353")
-			draw_rect(Rect2(-7+index*5,-35,3,2),color)
+			draw_rect(Rect2(-9+index*6,-36,4,3),color)
 	if _linked:
 		draw_line(Vector2(-7,-31),Vector2(6,-31),Color("7fcfff"),1)
 

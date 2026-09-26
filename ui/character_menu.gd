@@ -69,6 +69,8 @@ const FUTURE_SKILL_TIERS := [
 
 signal menu_closed
 
+var _skillkeeper_access := false
+
 @export var player: Player
 
 @onready var level_label: Label = %LevelLabel
@@ -149,7 +151,7 @@ func _ready() -> void:
 	var collection := Button.new()
 	collection.text="TECHNIQUE COLLECTION"
 	collection.add_theme_font_size_override("font_size",11)
-	collection.pressed.connect(func() -> void: player.get_node("KingSkillLibrary").open_collection())
+	collection.pressed.connect(func() -> void: player.get_node("KingSkillLibrary").open_collection(_skillkeeper_access))
 	skills_page.get_node("SkillHeader").add_child(collection)
 	_show_page(&"gear", false)
 	_start_portrait_aura()
@@ -186,12 +188,14 @@ func open_skillkeeper_menu() -> void:
 		return
 	_show_page(&"skills", false)
 	open_menu()
+	_skillkeeper_access = true
 
 
 func close_menu() -> void:
 	if not visible:
 		return
 	hide()
+	_skillkeeper_access = false
 	if _owns_pause:
 		get_tree().paused = false
 	_owns_pause = false

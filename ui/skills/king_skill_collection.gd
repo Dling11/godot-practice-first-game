@@ -1,8 +1,10 @@
 extends CanvasLayer
 
 var library: KingSkillLibrary
+var trainer_access := false
 var _selected := ""
 var _detail: RichTextLabel
+var _upgrade_button: Button
 var _list: VBoxContainer
 var _slots: GridContainer
 var _notice: Label
@@ -58,12 +60,20 @@ func _ready() -> void:
 	_list=VBoxContainer.new()
 	_list.custom_minimum_size=Vector2(255,245)
 	body.add_child(_list)
+	var detail_column := VBoxContainer.new()
+	detail_column.custom_minimum_size=Vector2(475,245)
+	detail_column.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	body.add_child(detail_column)
 	_detail=RichTextLabel.new()
 	_detail.bbcode_enabled=true
-	_detail.custom_minimum_size=Vector2(475,245)
+	_detail.custom_minimum_size=Vector2(475,205)
 	_detail.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	_detail.size_flags_vertical=Control.SIZE_EXPAND_FILL
 	_detail.add_theme_font_size_override("normal_font_size",13)
-	body.add_child(_detail)
+	detail_column.add_child(_detail)
+	_upgrade_button=Button.new()
+	_upgrade_button.pressed.connect(func() -> void: library.upgrade_pursuit(trainer_access))
+	detail_column.add_child(_upgrade_button)
 	_slots=GridContainer.new()
 	_slots.columns=5
 	_slots.add_theme_constant_override("h_separation",6)
@@ -85,7 +95,7 @@ func _refresh() -> void:
 	for child in _slots.get_children():
 		_slots.remove_child(child)
 		child.queue_free()
-	_notice.text="Equip ten on 1–0 in Sanctuary. Right-click a slot to clear it." if not library.is_lab() else "Lab preview does not change campaign progress. Right-click a slot to clear it."
+	_notice.text="Equip ten on 1–0 in Sanctuary. Eira trains eligible skill upgrades." if not library.is_lab() else "Lab preview does not change campaign progress. Right-click a slot to clear it."
 	for ability in library.entries():
 		var id := String(ability.definition.ability_id)
 		var button := Button.new()
@@ -101,6 +111,17 @@ func _refresh() -> void:
 			_detail.text="[b]"+ability.definition.display_name+"[/b]\n\n"+ability.definition.description
 			if not library.can_edit():
 				_detail.text+="\n\nReturn to Sanctuary to change equipped techniques."
+	_upgrade_button.visible=_selected=="sovereign_pursuit" and not library.is_lab()
+	if _upgrade_button.visible:
+		var rank: int=(library.actor.ability_3_component.definition as SovereignPursuitDefinition).rank
+		var required: int=library.get_pursuit_upgrade_level()
+		if required==0:
+			_upgrade_button.text="PURSUIT MASTERED · 3 USES · 280 PX"
+		elif not trainer_access:
+			_upgrade_button.text="SPEAK WITH EIRA TO UPGRADE PURSUIT"
+		else:
+			_upgrade_button.text="UPGRADE PURSUIT TO %d USES / %d PX · LEVEL %d" % [rank+2, [250,280][rank], required]
+		_upgrade_button.disabled=not library.can_upgrade_pursuit(trainer_access)
 	for i in SkillLoadoutDefinition.SLOT_COUNT:
 		var slot := library.actor.skill_loadout.get_slot(i+1)
 		var button := Button.new()

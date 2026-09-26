@@ -79,6 +79,7 @@ var _last_primary_target_id := 0
 var _last_primary_click_msec := -PRIMARY_CLICK_ENGAGE_WINDOW_MSEC
 var _last_primary_click_world_position := Vector2.ZERO
 var _applied_knockback_velocity := Vector2.ZERO
+var _was_ability_movement_active := false
 var _cinematic_locked := false
 
 
@@ -188,6 +189,13 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("player_skill_selected"):
 		request_ability(selected_skill_slot)
 	_try_assisted_primary_attack()
+	var active_ability := get_active_ability_component()
+	var ability_movement_active := active_ability != null and active_ability.has_active_movement()
+	# A mobility skill's travel speed is authored movement, not walking momentum.
+	# Discard it on landing/cancel before normal deceleration can produce a slide.
+	if _was_ability_movement_active and not ability_movement_active:
+		velocity = Vector2.ZERO
+	_was_ability_movement_active = ability_movement_active
 
 	if is_restrained():
 		velocity = movement_component.calculate_velocity(velocity, Vector2.ZERO, delta)
@@ -196,8 +204,7 @@ func _physics_process(delta: float) -> void:
 	elif evade_component.is_dashing():
 		velocity = evade_component.get_dash_velocity()
 	elif is_any_ability_casting():
-		var active_ability := get_active_ability_component()
-		if active_ability != null and active_ability.has_active_movement():
+		if ability_movement_active:
 			velocity = active_ability.get_active_velocity()
 		else:
 			velocity = movement_component.calculate_velocity(velocity, Vector2.ZERO, delta)
@@ -545,17 +552,18 @@ func request_ability(slot_number: int) -> bool:
 		## Repeating the skill key is intentionally consumed but never confirms.
 		## Confirmation belongs only to primary attack/right trigger.
 		return directional_wedge_targeting.get_target_component() == component or ground_point_targeting.get_target_component() == component
-	if component != null and component.cooldown_remaining > 0.0:
+	if component != null and not component.can_queue_cast():
 		action_denied.emit(&"skill_cooldown")
 		return false
 	if (
 		component == null
 		or is_defeated
-		or not component.is_ready()
 	):
 		return false
 	if is_any_ability_casting():
 		return _buffer_action(BufferedAction.ABILITY, direction, slot_number)
+	if not component.is_ready():
+		return false
 	if attack_component.phase != attack_component.Phase.IDLE:
 		_buffer_action(BufferedAction.ABILITY, direction, slot_number)
 		if attack_component.phase == attack_component.Phase.RECOVERY:
@@ -741,7 +749,7 @@ func get_ability_component_for_slot(slot_number: int) -> AbilityComponent:
 		return null
 	for child: Node in get_children():
 		var component := child as AbilityComponent
-		if component != null and component.definition == slot.ability:
+		if component != null and component.definition != null and component.definition.ability_id == slot.ability.ability_id:
 			return component
 	return null
 
