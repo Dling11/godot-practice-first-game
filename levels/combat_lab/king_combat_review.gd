@@ -14,6 +14,7 @@ var _zoom_button: Button
 var _zoomed := false
 var _speed_mode := 0
 var _show_reach := false
+var buff_test: Node
 
 
 func _ready() -> void:
@@ -23,12 +24,20 @@ func _ready() -> void:
 	z_index = 20
 	set_process(false)
 	_build_panel()
+	buff_test = preload("res://levels/combat_lab/unbroken_vow_test.gd").new()
+	buff_test.name = "UnbrokenVowTest"
+	add_child(buff_test)
 	actor.equipment_stats_changed.connect(_restore_speed)
 
 
 func open_review() -> void:
 	_panel.show()
 	_message.text = "Current King C · Earthsplitter · Molten Crash · Sovereign Pursuit. FORM changes are Lab-only."
+
+
+func open_buff_test() -> void:
+	if not buff_test.open():
+		_message.text = "Finish the current action before opening BUFF TEST."
 
 
 func can_switch() -> bool:
@@ -140,6 +149,7 @@ func _build_panel() -> void:
 	_molten_form = _button(forms, "SKILL 2: FOUNDATION", func() -> void: set_molten_form(((actor.ability_2_component.definition as MoltenCrashDefinition).form + 1) % 4))
 	var current_pursuit_rank := (actor.ability_3_component.definition as SovereignPursuitDefinition).rank
 	_pursuit_rank = _button(forms, ["SKILL 3: 1 USE", "SKILL 3: 2 USES", "SKILL 3: 3 USES"][current_pursuit_rank], func() -> void: set_pursuit_rank(((actor.ability_3_component.definition as SovereignPursuitDefinition).rank + 1) % 3))
+	_button(forms, "BUFF TEST", open_buff_test)
 	_message = Label.new()
 	_message.add_theme_font_size_override("font_size", 10)
 	stack.add_child(_message)

@@ -1,6 +1,6 @@
 # Skill 4 proposal: Unbroken Stand
 
-Status: proposal for owner review, 2026-09-27. No Skill 4 gameplay, art, audio or slot resource has been changed. Worldsplitter remains playable.
+Status: superseded concept history, 2026-09-27. The owner prefers a self-buff for Skill 4 and Worldsplitter in Skill 5; see `king-skill-4-unbroken-vow-proposal.md`. No Skill 4 gameplay, art, audio or slot resource has been changed. Worldsplitter remains playable in slot 4 until the replacement is ready.
 
 ## Why change it
 

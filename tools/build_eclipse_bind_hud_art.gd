@@ -24,6 +24,7 @@ func _initialize() -> void:
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(OUTPUT_DIR))
 	var outputs := {
 		"eclipse_frame_760x120.png": _make_runtime(frame_source, Vector2i(760, 120)),
+		"eclipse_frame_compact_720x104.png": _make_compact_frame(frame_source),
 		"eclipse_dash_24.png": _make_runtime(dash_source, Vector2i(24, 24)),
 	}
 	for filename: String in outputs:
@@ -59,6 +60,18 @@ func _make_runtime(source: Image, size: Vector2i) -> Image:
 					chosen = candidate
 			native.set_pixel(x, y, chosen)
 	return native
+
+
+func _make_compact_frame(source: Image) -> Image:
+	var frame := _make_runtime(source, Vector2i(720, 104))
+	# Preserve the opaque pixel ornament, but let the separate Godot veil supply
+	# adjustable translucency beneath the controls. Never fade the ivory edge.
+	for y in range(34, 83):
+		for x in range(38, 682):
+			var pixel := frame.get_pixel(x, y)
+			if pixel.a > 0.0 and maxf(pixel.r, maxf(pixel.g, pixel.b)) <= 0.22:
+				frame.set_pixel(x, y, Color.TRANSPARENT)
+	return frame
 
 
 func _occupied_bounds(source: Image) -> Rect2i:

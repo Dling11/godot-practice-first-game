@@ -1,5 +1,7 @@
 # Battle of Gods
 
+**King buff testing:** Open F7 -> KING REVIEW -> BUFF TEST, then press T/REPLAY. Normal cast is .32s; SPEED offers slow inspection. Move, dodge and attack while the visual barrier follows King. SOUND, VIEW, RESET and CLOSE/Esc are available. This is an art test, with no buff stats yet. Direct launcher: `tools/launch_unbroken_vow_test.ps1`; focused check: `tests/unbroken_vow_test_smoke.gd`.
+
 **Current King kit (Decision 157):** The approved detailed King C body now appears in normal play and in the character menu. Skills `1`–`3` are Earthsplitter Foundation (aim a fixed lane, then click), blue Molten Crash Foundation (press for a local stun impact), and Sovereign Pursuit with the blue-white blade-cut landing (aim a point, then click). Skill `4` remains Worldsplitter until its redesign. The four Oath techniques and previous Echoing Sever/Riftbreak variants are archived. Existing save slots migrate to these four skills. F7 -> **KING REVIEW** shows the current character and permits session-only Skill 1/2 form comparisons; there is no old-art toggle. Later form unlocks and Pursuit's proposed [three-charge progression](docs/design/sovereign-pursuit-charge-progression.md) are not implemented.
 
 Battle of Gods is a planned 2D top-down pixel action game for Godot 4.x. The player survives relentless dark-fantasy enemies through precise movement, positioning, dodging, weapon mastery, and divine or demonic abilities.

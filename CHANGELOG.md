@@ -1,7 +1,16 @@
 # Changelog
 
+- 2026-09-27: Prepared owner-accessible F7 King BUFF TEST with actual Player movement return, replay/slow/audio/view/reset controls, temporary-state cleanup and a direct launcher. Added31-check focused smoke and five in-engine GPU captures; King kit and Combat Lab regressions pass. Recorded the requirement to include ready testing with game deliveries. Shared GPU shutdown warnings also reproduce at the title screen.
+
+- 2026-09-27: Added Unbroken Vow down-facing activation-body/pressure study with exact King idle bookends, shared anatomy scale/foot baseline, existing-walk transition, normal/slow/native GIFs and original contact-audio preview. Corrected generated silhouette/anatomy before packing. Recorded accepted Advanced-speed/Mature-combo direction; no live ability, HUD, save or slot changes.
+
+- 2026-09-27: Revised Unbroken Vow visual review after owner feedback: generated connected protective shell, improved ground seal, registered six hard-pixel drawings over exact King C and built activation/sustain GIF. Documented distinct shield/damage cues and future depletion responses. Live skills, saves and slots unchanged.
+
 ## 2026-09-27 — Compact skill HUD and Pursuit landing correction
 
+- Recorded Decision 159's owner-selected Skill 4 self-buff and Worldsplitter-to-5 direction, including preserving Worldsplitter for existing players. Generated and extracted a six-frame hard-pixel Unbroken Vow activation/aura review over the unchanged King C body, built a looping GIF and proposed Eira upgrade forms. The playable loadout and saves remain unchanged pending visual/gameplay review.
+- Darkened only Eclipse Bind's center veil from 55% to 78% opacity after owner review; kept the accepted 720x104 frame and control sizes. Saved dark and bright-backdrop 960x540 captures to verify the tint.
+- Tightened Eclipse Bind from the first 760x120 opaque frame to a 720x104 border with a separate 55%-opacity dark center veil. Kept the ornament binary-alpha and controls at their readable size; moved Resolve down with the shorter frame and retained both 960x540 captures for comparison.
 - Implemented the owner-selected Eclipse Bind full-box action bar from a clean generated frame: one continuous hard-pixel ornament behind twelve live controls, a matching shadow-step Dash icon in HUD/character menu, and matching obsidian/violet slot colors. Removed active references to the provisional detached dragons, moved Resolve above the taller frame, and saved 960x540 runtime captures. The live input/cooldown semantics and grounded Dash cue remain.
 - Generated two full-box shadow action-bar concepts, Shadow Crown and Eclipse Bind, after owner clarification that the earlier detached dragon edges were not the intended design. Eclipse Bind was subsequently selected and installed.
 - Generated and integrated mirrored divine-dragon artwork on the two outer action-tray edges, plus a matching Space/Dodge glyph shared with the character menu. The HUD ornament ignores pointer input and has reproducible hard-pixel runtime derivatives.

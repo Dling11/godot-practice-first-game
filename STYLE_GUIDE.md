@@ -1,6 +1,10 @@
 # Style Guide
 
-Eclipse Bind HUD convention (2026-09-27): keep the approved continuous shadow frame as one mouse-ignored backdrop around Space, ten numbered skills and Attack. Generated source is never a flattened functional HUD: strip baked text/icons before quantizing to binary-alpha native art; build counts, charges, cooldowns, labels and hit targets with Godot controls. Keep the restrained obsidian/ivory/violet frame palette and matching shadow-step Dash glyph in HUD and character menu. At 960x540, keep Resolve above the frame and all controls inside its inner border.
+## Owner-ready game testing
+
+Every meaningful skill, animation or gameplay delivery must include an accessible in-engine test route and clear controls. Prepare and run appropriate focused checks plus a rendered review before handing it back. A GIF or source-file validation alone is insufficient. Keep visual rehearsals explicitly labeled when gameplay authority is pending, and state what was verified versus what still needs owner feel review. Preserve current art scale, input rules and saves; provide replay/reset and cleanup for temporary test state.
+
+Eclipse Bind HUD convention (2026-09-27): keep the approved continuous shadow border as one mouse-ignored binary-alpha texture around Space, ten numbered skills and Attack. Use a separate translucent Godot veil inside the border for gameplay contrast; never fade the ornament or flatten functional UI into generated art. Strip baked text/icons before quantizing; build counts, charges, cooldowns, labels and hit targets with Godot controls. Keep the restrained obsidian/ivory/violet frame palette and matching shadow-step Dash glyph in HUD and character menu. At 960x540, keep Resolve above the frame and all controls inside its inner border.
 
 Pursuit rank convention (Decision 158): keep the approved King C body and blade-cut travel/landing frames across all charge ranks. Increase only authored aim reach and stored uses; each cast has one distinct target, movement, landing and audio contact. Present stock as compact HUD numbers/progress instead of duplicating large particles for higher rank. Gameplay owns recharge and invulnerability; VFX cannot imply a protected interval between leaps.
 

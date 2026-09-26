@@ -2,7 +2,7 @@ extends SceneTree
 
 const PlayerScene = preload("res://entities/player/player.tscn")
 const HudScene = preload("res://ui/combat_hud.tscn")
-const REVIEW_DIR := "res://art_source/review/ui/eclipse_bind_runtime_2026_09_27"
+const REVIEW_DIR := "res://art_source/review/ui/eclipse_bind_tuned_2026_09_27"
 
 
 func _initialize() -> void:
@@ -34,6 +34,9 @@ func _capture() -> void:
 	pursuit.charges_changed.emit(1, 3)
 	await process_frame
 	_save("02_one_charge.png")
+	backdrop.color = Color("5f6b5d")
+	await process_frame
+	_save("03_contrast.png")
 	hud.queue_free()
 	player.queue_free()
 	backdrop.queue_free()

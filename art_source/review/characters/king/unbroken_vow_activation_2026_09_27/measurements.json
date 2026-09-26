@@ -1,0 +1,107 @@
+{
+	"body_cell": [
+		192,
+		128
+	],
+	"cast_seconds": 0.32,
+	"frames": [
+		{
+			"bounds": [
+				72,
+				40,
+				49,
+				56
+			],
+			"foot_y": 96,
+			"frame": 1,
+			"height": 56,
+			"shared_scale": 0.25
+		},
+		{
+			"bounds": [
+				72,
+				40,
+				49,
+				56
+			],
+			"foot_y": 96,
+			"frame": 2,
+			"height": 56,
+			"shared_scale": 0.25
+		},
+		{
+			"bounds": [
+				72,
+				42,
+				49,
+				54
+			],
+			"foot_y": 96,
+			"frame": 3,
+			"height": 54,
+			"shared_scale": 0.25
+		},
+		{
+			"bounds": [
+				72,
+				44,
+				49,
+				52
+			],
+			"foot_y": 96,
+			"frame": 4,
+			"height": 52,
+			"shared_scale": 0.25
+		},
+		{
+			"bounds": [
+				72,
+				40,
+				49,
+				56
+			],
+			"foot_y": 96,
+			"frame": 5,
+			"height": 56,
+			"shared_scale": 0.25
+		},
+		{
+			"bounds": [
+				72,
+				39,
+				49,
+				57
+			],
+			"foot_y": 96,
+			"frame": 6,
+			"height": 57,
+			"shared_scale": 0.25
+		},
+		{
+			"bounds": [
+				72,
+				40,
+				49,
+				56
+			],
+			"foot_y": 96,
+			"frame": 7,
+			"height": 56,
+			"shared_scale": 0.25
+		},
+		{
+			"bounds": [
+				72,
+				40,
+				49,
+				56
+			],
+			"foot_y": 96,
+			"frame": 8,
+			"height": 56,
+			"shared_scale": 0.25
+		}
+	],
+	"production_scale": 0.5,
+	"standing_body_height": 56
+}

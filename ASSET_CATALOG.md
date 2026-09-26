@@ -1,5 +1,15 @@
 # Asset Catalog
 
+**Unbroken Vow Lab assets (2026-09-27):** `tools/prepare_unbroken_vow_test_assets.gd` packs approved review body/pressure/barrier into three lossless, non-mipmapped atlases plus the original contact WAV under `assets/vfx/abilities/king/unbroken_vow_test/`. Consumer: F7 `unbroken_vow_test.gd`, with clipped Sprite2D regions and nearest sampling. These are Lab visual-test assets, not a production buff.
+
+**Unbroken Vow activation study (2026-09-27):** `art_source/generated/characters/king/unbroken_vow_activation_2026_09_27/` holds exact King templates, final body/pressure sources and prompts. Matching review folder has a 4x2 down-pose atlas, measurements, normal/slow/native GIFs, click-to-play HTML and original pressure WAV. Built with `tools/build_unbroken_vow_activation_review.gd`; existing GIF builder supports `-Activation`, `-Slow`, `-Native`. Art-only assets; no runtime consumer.
+
+**Unbroken Vow V2 (2026-09-27):** Source/prompts: `art_source/generated/characters/king/unbroken_vow_v2_2026_09_27/`. Review: matching path below `art_source/review/`. Six 112x112 binary-alpha effect drawings, unchanged King C composites and twelve-frame GIF (repeated sustain). Existing review builders accept `--shield-v2` and `-ShieldV2` respectively. No runtime consumer.
+
+## Unbroken Vow generated Skill 4 review - 2026-09-27
+
+- `art_source/generated/characters/king/unbroken_vow_2026_09_27/activation_source.png` is a built-in ImageGen six-cell concept with provenance beside it. `tools/build_unbroken_vow_review.gd` extracts six 112x112 eleven-color binary-alpha effect frames and composites the exact approved King C idle cell into `art_source/review/characters/king/unbroken_vow_2026_09_27/`; `tools/build_unbroken_vow_review_gif.ps1` produces the looping 192x128 GIF. These are review-only assets: no runtime scene, animation or slot references them. Worldsplitter remains live in slot 4 until the owner-reviewed buff is playable; Decision 159 moves it to 5 with ownership preserved afterward.
+
 ## Sovereign Pursuit production presentation - 2026-09-26
 
 - Production `assets/vfx/abilities/king/sovereign_pursuit_review/landing.png` is a 4x4 padded binary-alpha atlas with fifteen visible blade-cut/pressure drawings and one transparent cleanup cell; `travel.png` has eight padded travel drawings. Decision 157 selects these existing review-named resources in `player.tscn`; old Pursuit sheets are in the recovery archive. The directory name is kept to avoid regenerating approved art while Skill 4 work remains open.
@@ -34,7 +44,7 @@ This catalog records active asset families and lifecycle boundaries. Exact runti
 
 ## Combat UI
 
-- Owner-selected Eclipse Bind action bar: `art_source/generated/ui/eclipse_bind_hotbar/` holds the generated empty-frame and matching shadow-step Dash sources plus prompts. `tools/build_eclipse_bind_hud_art.gd` creates binary-alpha, fixed-palette `assets/ui/hud/eclipse_bind/eclipse_frame_760x120.png` and `eclipse_dash_24.png`. The frame is the one continuous mouse-ignored backdrop of `CombatHUD`; Dash slot and character menu share the glyph. All twelve controls are real Godot nodes over the art. Native runtime review: `art_source/review/ui/eclipse_bind_runtime_2026_09_27/`. This is a HUD motif, not a confirmed divine-order insignia.
+- Owner-selected Eclipse Bind action bar: `art_source/generated/ui/eclipse_bind_hotbar/` holds the generated empty-frame and matching shadow-step Dash sources plus prompts. `tools/build_eclipse_bind_hud_art.gd` creates fixed-palette binary-alpha `assets/ui/hud/eclipse_bind/eclipse_frame_compact_720x104.png`, the earlier `eclipse_frame_760x120.png` comparison, and `eclipse_dash_24.png`. The active border has a transparent center over a separate mouse-ignored 78%-opacity Godot veil. Dash slot and character menu share the glyph; all twelve controls remain real Godot nodes. Native current review: `art_source/review/ui/eclipse_bind_tuned_2026_09_27/`; lighter compact comparison: `art_source/review/ui/eclipse_bind_compact_2026_09_27/`; first opaque comparison: `art_source/review/ui/eclipse_bind_runtime_2026_09_27/`. This is a HUD motif, not a confirmed divine-order insignia.
 - Historical provisional dragon action-bar source and derivatives remain under `art_source/generated/ui/divine_dragon_hotbar/` and `assets/ui/hud/divine_dragon/`; active scenes do not reference them. The unselected Shadow Crown concept remains in `art_source/review/ui/shadow_action_bar_concepts_2026_09_27/`.
 - Shared six-cell runtime atlas: `assets/ui/icons/combat/combat_action_atlas_bc_6x1_24.png`.
 - Fixed cells: Earthsplitter, Molten Crash, Sovereign Pursuit, Worldsplitter, Basic Attack, legacy Dodge/Dash. The HUD and character menu now display the Eclipse Bind shadow-step Dash glyph; the atlas cell remains for compatible older uses. The first two atlas cells retain their legacy image indices for save/UI compatibility.

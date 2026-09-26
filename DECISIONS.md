@@ -169,6 +169,7 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 156 | [Sovereign Pursuit visual review](docs/decisions/156-sovereign-pursuit-visual-review.md) | Reversible Skill 3 blade-cut/travel comparison with unchanged mobility and damage |
 | 157 | [King kit production cleanup](docs/decisions/157-king-kit-production-cleanup.md) | Promote King C and Skills 1-3; archive old Oath/skill variants and normalize saved slots |
 | 158 | [Pursuit trained charges](docs/decisions/158-pursuit-trained-charges.md) | Eira-gated Level 5/8 Pursuit ranks with 1/2/3 stored uses, 220/250/280px reach and sequential refill |
+| 159 | [King buff four, Worldsplitter five](docs/decisions/159-king-buff-four-worldsplitter-five.md) | Approved skill-role and slot direction, save migration, generated visual review; prototype balance pending |
 
 ## New Decisions
 

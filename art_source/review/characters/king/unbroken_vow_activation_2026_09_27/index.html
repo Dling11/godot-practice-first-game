@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>King — Unbroken Vow activation review</title>
+<style>body{margin:0;background:#101820;color:#e4ecf0;font:16px/1.5 system-ui}main{max-width:860px;margin:40px auto;padding:24px}h1{font-size:26px}p{color:#b1c0cb}.panes{display:flex;flex-wrap:wrap;gap:20px}.pane{background:#17212e;border:1px solid #344452;border-radius:8px;padding:14px;text-align:center}.pane img{display:block;width:384px;height:256px;max-width:100%;object-fit:contain;image-rendering:pixelated}.controls{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:22px 0}button{background:#497492;color:white;border:0;border-radius:6px;padding:12px 20px;font:inherit;cursor:pointer}a{color:#8cd1ef}.native img{width:96px;height:64px;image-rendering:pixelated}small{color:#b1c0cb}</style>
+<main><h1>Unbroken Vow — brace, release, protect</h1>
+<p>Same King, same size. A short planted activation returns to his existing idle and walk while the accepted blue barrier continues flowing.</p>
+<div class="panes"><div class="pane"><small>APPROVED IDLE · 4× GAMEPLAY SIZE</small><img src="idle_large.png" alt="Current King idle"></div><div class="pane"><small>ACTIVATION STUDY · SAME DISPLAY SCALE</small><img id="preview" src="idle_large.png" alt="New buff animation"></div></div>
+<div class="controls"><button id="play">Play activation</button><label><input id="slow" type="checkbox"> Slow the cast for inspection</label><label><input id="sound" type="checkbox" checked> Pressure sound</label></div>
+<div class="native"><small>NATIVE GAMEPLAY SIZE</small><img id="native" src="idle_native.png" alt="King at half-scale production size"></div>
+<p id="status" role="status">Cast: 0.32 seconds. Eight pose slots with exact original idle bookends.</p>
+<p>This is an art and timing study, not a gameplay capture. Walking is shown in place to compare the transition. The final disappearance resets the review; the production shield-expiry animation remains to build.</p>
+<p><a href="activation.gif">Normal-speed GIF</a> · <a href="activation_slow.gif">Slow GIF</a> · <a href="activation_contact_sheet.png">All poses</a> · <a href="README.md">Scope and measurements</a></p></main>
+<script>
+const sequence=[['idle',550],...Array.from({length:8},(_,i)=>['cast_'+String(i+1).padStart(2,'0'),40]),...Array.from({length:9},(_,i)=>['sustain_'+String(i+1).padStart(2,'0'),140]),...Array.from({length:8},(_,i)=>['walk_'+String(i+1).padStart(2,'0'),140]),['idle',450]];
+const preview=document.getElementById('preview'),native=document.getElementById('native'),play=document.getElementById('play'),status=document.getElementById('status');
+const audio=new Audio('pressure_contact.wav');audio.preload='auto';audio.volume=.65;
+const images=Promise.all(sequence.flatMap(([name])=>['_large','_native'].map(suffix=>{const image=new Image();image.src=name+suffix+'.png';return image.decode();})));
+let token=0;
+play.onclick=async()=>{const run=++token;audio.pause();audio.currentTime=0;play.disabled=true;try{await images;const slow=document.getElementById('slow').checked;status.textContent=slow?'Cast inspection: 3× slower. Production target remains 0.32 seconds.':'Normal speed: 0.32-second cast, then existing idle and walk.';for(const [name,delay]of sequence){if(run!==token)return;preview.src=name+'_large.png';native.src=name+'_native.png';if(name==='cast_05'&&document.getElementById('sound').checked)audio.play().catch(()=>{status.textContent+=' Browser blocked sound; the WAV is available beside this review.';});await new Promise(resolve=>setTimeout(resolve,delay*(slow&&name.startsWith('cast_')?3:1)));}}catch(error){status.textContent='Could not load review images: '+error.message;}finally{if(run===token)play.disabled=false;}};
+</script></html>

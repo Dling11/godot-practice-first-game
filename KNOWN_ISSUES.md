@@ -1,6 +1,14 @@
 # Known Issues
 
-**Action-bar visual review (2026-09-27):** Owner selected Eclipse Bind and the full-box shadow frame is installed. The native 960x540 capture is readable and the live-control smoke check passes. Owner in-game feel and representative-phone readability remain unverified; no gameplay rules depend on the frame.
+**Unbroken Vow testing update (2026-09-27):** In-engine rehearsal is now available under F7 -> KING REVIEW -> BUFF TEST, replacing the earlier GIF-only testing limitation. Down-facing activation and real movement/dodge/attack sustain are verified; shield/stats/depletion/upgrades and other cast directions remain pending. GPU capture exits report two5460-byte texture RID leaks plus RenderingServer teardown errors; identical errors reproduce on ordinary title-screen startup/exit without entering the test, so shared shutdown cleanup remains open.
+
+**Skill 4 activation review boundary (2026-09-27):** The current preview adds down-facing King body poses and original pressure audio at .32s, preserving production size and exact idle bookends. Other directions, weapon-following crimson accents, shield-hit/break/expiry, Mature finisher and gameplay integration remain pending. Walk transition is composited in place, not a live combat capture; end-of-loop disappearance only resets the review.
+
+**Skill 4 V2 art limitation:** The current six-drawing review shows a wrapping shell and ground seal over static King C. Its twelve-frame GIF repeats sustain drawings. Directional weapon accents, moving-player depth, shield damage/break/expiry and all gameplay integration remain unimplemented. Generated source halos were stripped in the review derivatives; original source is not import-ready.
+
+**King Skill 4–5 pending implementation (Decision 159, 2026-09-27):** The owner has chosen the buff/fifth-slot direction and to keep Worldsplitter learned, but the generated `Unbroken Vow` effect is review-only. The active build still has Worldsplitter in slot 4, no shield/damage buff or Eira upgrade for Skill 4, and no save migration to slot 5. The six-frame effect requires an approved looping aura, cast body pose, depletion/recast frames, audio and real gameplay measurement before promotion.
+
+**Action-bar visual review (2026-09-27):** Owner selected Eclipse Bind and accepted the compact size, then found the 55%-opacity center too transparent. The active 720x104 binary-alpha border now uses a separate 78%-opacity center veil. Native 960x540 dark- and bright-backdrop captures and the live-control smoke check pass. Owner combat-scene feel and representative-phone readability remain unverified; no gameplay rules depend on the frame.
 
 **Previous dragon HUD art (2026-09-27):** The detached dragon pass is no longer referenced by active UI scenes. Its original source and runtime derivatives remain for provenance and can be removed during the planned asset cleanup after reference audit.
 
@@ -8,7 +16,7 @@
 
 **Resolved 2026-09-27:** Pursuit travel speed no longer bleeds into landing recovery; ranked ability duplication no longer disconnects its equipped hotkey/HUD binding. Action-slot key/icon/status overlap caused by `PanelContainer` sizing is fixed. The smaller tray and larger status text were rendered at the project viewport; phone-scale legibility still needs device review.
 
-**Skill 3 follow-up (Decision 158, 2026-09-27):** Eira-gated Level 5/8 Pursuit charges and 220/250/280px range are implemented and saved by rank. Charge stock refills on scene entry; owner combat-feel, exact level pacing, HUD legibility and representative-phone profiling remain open. Skill 4's Unbroken Stand redesign is a proposal only; Worldsplitter remains active. Older "charges unimplemented" notes below are historical.
+**Skill 3 follow-up (Decision 158, 2026-09-27):** Eira-gated Level 5/8 Pursuit charges and 220/250/280px range are implemented and saved by rank. Charge stock refills on scene entry; owner combat-feel, exact level pacing, HUD legibility and representative-phone profiling remain open. Decision 159 supersedes the Unbroken Stand counter proposal with a Skill 4 buff direction; Worldsplitter remains active until the replacement and fifth-slot migration are built. Older "charges unimplemented" notes below are historical.
 
 **Current King follow-up (Decisions 157–158):** King C, Earthsplitter Foundation, blue Molten Crash Foundation and trained blade-cut Pursuit are the production baseline. The old Oath collection and original Skill 1/2 nodes are retired. F7 form/rank buttons are session-only. Campaign unlock/persistence for later Skills 1/2 forms, final Skill 4 design, owner combat feel and phone performance remain open. Historical Lab-only issue notes below are superseded where they describe the default player.
 

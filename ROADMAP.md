@@ -1,6 +1,14 @@
 # Roadmap
 
-**Eclipse Bind action bar implemented (2026-09-27):** Owner-selected concept B now supplies one integrated shadow frame and matching Dash glyph around the existing ten skills, Space and Attack. The native 960x540 render and pointer/ability smoke checks pass. Remaining: owner in-game feel and representative-phone readability review; retain the current click, charge and cooldown semantics.
+**Unbroken Vow owner test prepared (2026-09-27):** Added F7 -> KING REVIEW -> BUFF TEST and direct launcher, normal/slow replay, sound/camera controls and real movement return. Focused31 checks, King kit regression and Combat Lab smoke pass. Rendered five GPU captures. Visual rehearsal only; actual buff/upgrade authority and slot migration remain planned.
+
+**Skill 4 activation study complete (2026-09-27):** Down-facing brace/release poses, pressure/current effects, original contact sound and normal/slow/native-size review now exist. Owner approved flow and upgrade identities: Advanced speed, Mature empowered third strike. Next implementation work: remaining directional poses, Foundation authority/HUD, actual terrain/combat validation, upgrades and ownership-preserving Worldsplitter migration. This art study does not change live skills.
+
+**Skill 4 V2 review ready (2026-09-27):** Generated enclosing shield and ground-seal activation replace the floating-shard concept. Remaining: directional weapon-power accents/cast poses, damage ripple/break/expiry, moving-player layering, buff authority/audio/HUD and Worldsplitter-to-5 migration. Review-only; no gameplay promotion.
+
+**Active King Skill 4–5 design review (Decision 159, 2026-09-27):** Owner chose a self-buff for 4 and to retain Worldsplitter in 5 for existing players. Generated a six-frame effect source, reproducible hard-pixel review extraction, exact King C composite and looping GIF; proposed Foundation/Advanced/Mature gameplay and Eira Level 7/10 gates. Next: owner-review the visual and mechanics, implement buff authority and UI, migrate saved/current Worldsplitter to 5 without loss, then test crowd/boss balance. Live Skill 4 remains Worldsplitter until the replacement is playable.
+
+**Eclipse Bind action bar implemented (2026-09-27):** Owner-selected concept B now supplies one integrated shadow frame and matching Dash glyph around ten skills, Space and Attack. The active 720x104 border uses a 78%-opacity center veil after the 55% pass felt too transparent; older captures remain for comparison. Native 960x540 dark- and bright-backdrop renders and the pointer/ability smoke check pass. Remaining: owner combat-scene feel and representative-phone readability review; retain the current click, charge and cooldown semantics.
 
 **Previous generated action-bar art (2026-09-27):** The paired divine-dragon edge pass and its hard-pixel source remain archived in place for provenance; active HUD and character menu references have moved to Eclipse Bind.
 
@@ -8,7 +16,7 @@
 
 **Skill HUD/landing polish complete (2026-09-27):** Compact ten-slot/Dash tray, separated labels, readable charge stock and Resolve count, and no post-landing Pursuit travel slide. Ranked Pursuit lookup uses stable IDs, including after the debug loadout switches. Rendered 960x540 review and focused smoke checks pass; representative-device readability and owner feel remain active review items.
 
-**Decision 158 complete (2026-09-27):** Pursuit ranks train manually with Eira at Levels 5/8: 1/2/3 stored uses, 220/250/280px aim range, sequential 8.5-second refill, compact HUD stock/progress and backward-compatible rank saving. F7 can preview ranks without saving. Still active: combat-feel and phone checks. Skill 4 remains Worldsplitter; the [Unbroken Stand concept](docs/design/king-skill-4-unbroken-stand-proposal.md) awaits owner selection and has no runtime implementation.
+**Decision 158 complete (2026-09-27):** Pursuit ranks train manually with Eira at Levels 5/8: 1/2/3 stored uses, 220/250/280px aim range, sequential 8.5-second refill, compact HUD stock/progress and backward-compatible rank saving. F7 can preview ranks without saving. Still active: combat-feel and phone checks. Skill 4 remains Worldsplitter at runtime while Decision 159's proposed buff is reviewed; the counter-only Unbroken Stand concept is superseded.
 
 **Current King cleanup complete (Decision 157, 2026-09-26):** King C and Skills 1-3 run in the campaign. F7 shows current production art and session-only Earthsplitter/Molten form choices, with Pursuit rank preview added in Decision 158. Echoing Sever, Riftbreak, old Pursuit art, four Oath techniques and their unused observers/capture harnesses moved to the Godot-ignored recovery archive. Old Oath save slots migrate by family. Skill 4 remains the playable Worldsplitter placeholder. Still planned: owner feel review, later-form stage gates/persistence for Skills 1/2 and representative-phone profiling.
 

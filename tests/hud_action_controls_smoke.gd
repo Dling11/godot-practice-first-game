@@ -30,6 +30,7 @@ func _run() -> void:
 	var attack_rect := hud.attack_button.get_global_rect()
 	var tray_rect := tray.get_global_rect()
 	var eclipse_frame := hud.get_node("EclipseFrame") as TextureRect
+	var eclipse_veil := hud.get_node("EclipseVeil") as ColorRect
 	if (
 		dash_rect.end.x > skill_rect.position.x
 		or last_skill_rect.end.x > attack_rect.position.x
@@ -44,6 +45,9 @@ func _run() -> void:
 		or hud.get_skill_slot(1).size != Vector2(46.0, 44.0)
 		or eclipse_frame.texture == null
 		or eclipse_frame.mouse_filter != Control.MOUSE_FILTER_IGNORE
+		or eclipse_veil.mouse_filter != Control.MOUSE_FILTER_IGNORE
+		or eclipse_veil.color.a < 0.76
+		or eclipse_veil.color.a > 0.8
 		or not eclipse_frame.get_global_rect().encloses(tray_rect)
 	):
 		_fail("The Dash, Skills 1-10, then Attack tray geometry is incorrect: tray=%s dash=%s first=%s last=%s attack=%s sizes=%s/%s/%s" % [tray_rect, dash_rect, skill_rect, last_skill_rect, attack_rect, hud.dash_slot.size, hud.get_skill_slot(1).size, hud.attack_button.size])
