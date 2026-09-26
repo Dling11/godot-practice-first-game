@@ -16,6 +16,7 @@ var _age := 0.0
 var _next := 0
 var _active := 0
 var _cancelled := false
+var _shared_targets: Dictionary = {}
 
 func _ready() -> void:
 	add_to_group("earthsplitter_review_sequences")
@@ -36,6 +37,8 @@ func _launch_due() -> void:
 		_active += 1
 		var wave := GroundAttack.new()
 		wave.source = source
+		if plan.get("share_hits", false):
+			wave.shared_targets = _shared_targets
 		wave.origin = plan.path.contact
 		wave.target = plan.path.end
 		wave.tuning = plan.tuning

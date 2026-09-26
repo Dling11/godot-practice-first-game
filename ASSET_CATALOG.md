@@ -1,5 +1,11 @@
 # Asset Catalog
 
+## Molten Crash VFX - 2026-09-26
+
+- Runtime: `assets/vfx/abilities/king/molten_crash/sword.png`, `burst.png` and `aftershock.png`, sixteen padded 512px cells each, 2048px atlases; nearest/clipped regions, no mipmaps. Foundation recolors the same registered sword/burst at runtime to pale stone/light; Advanced and above retain the approved molten orange.
+- Built-in generated source and exact prompts: `art_source/generated/vfx/king/molten_crash_2026_09_26/`. References are the accepted Molten Crash V2 concept and Earthsplitter sword identity; no King body regeneration.
+- `tools/build_molten_crash.gd` performs offline cell registration and alpha normalization. `tools/capture_molten_crash.gd` records the original Foundation pass; `tools/capture_molten_upgrades.gd` records all four playable forms under `art_source/review/characters/king/molten_crash_upgrades_2026_09_26/`. The first generated ring draft had empty cells and was not installed; the selected full sheet is `aftershock_source.png`. Existing cleave/slam audio is reused with a restrained pulse accent.
+
 This catalog records active asset families and lifecycle boundaries. Exact runtime truth is the reference graph under `assets/`, `data/`, scenes, and scripts. Generated provenance lives under `art_source/`; retired material lives only below `art_source/archive/`.
 
 ## Player - King

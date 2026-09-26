@@ -30,9 +30,15 @@ func _resolve_plans(point: Vector2) -> Array[Dictionary]:
 		_preview_definition = definition
 		_wave_templates = definition.build_waves()
 	var plans: Array[Dictionary] = []
+	var center := Path.resolve(owner as Player,point,definition)
 	for template in _wave_templates:
 		var plan: Dictionary = template.duplicate()
-		plan["path"] = Path.resolve(owner as Player,point,template.tuning)
+		if definition.shares_lane_hits:
+			var heading: Vector2 = center.direction.rotated(template.angle)
+			var reach: float = maxf(0.0,template.tuning.range_pixels-center.origin.distance_to(center.contact))
+			plan["path"] = Path.resolve(owner as Player,center.contact+heading*maxf(reach,1.0),template.tuning,center.contact,reach,0.0)
+		else:
+			plan["path"] = Path.resolve(owner as Player,point,template.tuning)
 		plans.append(plan)
 	return plans
 
@@ -65,6 +71,7 @@ func request_cast_at(point: Vector2, weapon_damage := 0.0) -> bool:
 		_visual.contact = contact_position
 		_visual.direction = direction
 		_visual.wave_count = _plans.size()
+		_visual.is_fan = definition.shares_lane_hits
 		actor.get_parent().add_child(_visual)
 	return accepted
 

@@ -102,6 +102,11 @@ func _ready() -> void:
 		if "--earthsplitter-advanced-review" in OS.get_cmdline_user_args():
 			king_review.call_deferred("toggle_earthsplitter_form")
 
+	if "--molten-crash-review" in OS.get_cmdline_user_args():
+		king_review.call_deferred("open_review")
+		king_review.call_deferred("toggle_earthsplitter_review")
+		king_review.call_deferred("toggle_earthsplitter_form")
+		king_review.call_deferred("toggle_molten_review")
 
 func _style_review_panel() -> void:
 	# The lab uses a compact control surface at the real 960x540 viewport.

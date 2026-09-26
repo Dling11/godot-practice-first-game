@@ -160,6 +160,12 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 151 | [Earthsplitter directional pressure](docs/decisions/151-earthsplitter-directional-pressure.md) | Preserve accepted sword, upright pressure views, fixed-length terrain-aware lane and reusable summon language |
 | 152 | [Earthsplitter Advanced Lab form](docs/decisions/152-earthsplitter-advanced-lab.md) | One quick cast, three released waves, bounded damage and reversible Foundation comparison |
 
+| 153 | [Earthsplitter Advanced Fan](docs/decisions/153-earthsplitter-advanced-fan.md) | Three simultaneous spatial lanes, common contact, shared target accounting; Cascade preserved |
+
+| 154 | [Molten Crash Foundation](docs/decisions/154-molten-crash-foundation.md) | Local summoned sword impact, explicit initial stun, quick recovery and reversible Skill 2 Lab review |
+
+| 155 | [Molten Crash upgrade forms](docs/decisions/155-molten-crash-upgrade-forms.md) | Stone/light Foundation, molten Advanced, delayed damage-only pulse and bounded Mature area in the Lab |
+
 ## New Decisions
 
 Record future decisions as individual files under `docs/decisions/` using `NNN-short-title.md`, then add one row to this index. New ADRs should contain status, context, alternatives, decision, and consequences.

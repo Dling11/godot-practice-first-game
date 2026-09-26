@@ -1,6 +1,12 @@
 # Style Guide
 
-Advanced Earthsplitter reuses the approved sword and eruption atlases without regenerating them. One body/sword action releases three waves; never stretch the body animation to cover their lifetime. First two ground aftermaths settle 1.35x faster, keeping the strongest final front readable. Bound contact/second/third/terminal audio and camera cues per cast; do not emit a boom per stone stamp. Keep the clipped sword atlas selector intact.
+Molten upgrade convention (155): keep the same registered sixteen-frame sword and burst across forms; a per-instance pale stone/light shader makes Foundation read as the first rank, while the approved molten colors begin at Advanced. The delayed heat ring is a separate sixteen-frame, ground-anchored atlas, not a looping static circle. Let the original burst dim at the pulse so the second beat is legible. Damage, including the delayed hit, is owned by world authority at the original contact position. Shared contact stun must not be silently removed when authoring a separate outer damage falloff. Keep the player commitment, target resistance and ten-slot binding identical across upgrade forms.
+
+Molten Crash (154): generated VFX use the approved molten concept as reference; preserve the existing King body and its lift/crash poses. Two sixteen-drawing atlases have padded 512px cells, registered ground/tip anchors, binary alpha, nearest filtering and clipped regions. Keep sword and burst behind King so contact remains readable. Raised debris stays upright; do not rotate the complete sheet with facing. One contact sound/camera cue per cast; no repeated cues for every rock.
+
+Fan presentation (Decision 153): preserve the single approved sword and upright rock/dust assets. Rotate flat lane geometry and choose pressure directions per branch, keeping debris gravity screen-up. Three simultaneous lanes share one contact audio/camera cue; the delayed center finisher adds one deeper release accent and one terminal cue. First fan aftermath settles faster to reveal the follow-up. Do not triple loudness at fan launch or fill the aiming triangle: only its three swept lanes deal damage.
+
+Cascade Earthsplitter reuses the approved sword and eruption atlases without regenerating them. One body/sword action releases three waves; never stretch the body animation to cover their lifetime. First two ground aftermaths settle 1.35x faster, keeping the strongest final front readable. Bound contact/second/third/terminal audio and camera cues per cast; do not emit a boom per stone stamp. Keep the clipped sword atlas selector intact.
 
 ## Summoned-weapon skill language (150-151)
 

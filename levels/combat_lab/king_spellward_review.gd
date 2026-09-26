@@ -28,6 +28,9 @@ var _rift_button: Button
 var earthsplitter_review: Node
 var _earth_button: Button
 var _earth_form_button: Button
+var molten_review: Node
+var _molten_button: Button
+var _molten_form_button: Button
 
 func _ready() -> void:
 	lab = get_parent()
@@ -39,6 +42,9 @@ func _ready() -> void:
 	earthsplitter_review = preload("res://levels/combat_lab/earthsplitter_review.gd").new()
 	earthsplitter_review.actor = actor
 	add_child(earthsplitter_review)
+	molten_review = preload("res://levels/combat_lab/molten_crash_review.gd").new()
+	molten_review.actor = actor
+	add_child(molten_review)
 	_original_script = body.get_script()
 	_original_frames = body.sprite_frames
 	_original_scale = body.scale
@@ -172,6 +178,11 @@ func _build_panel() -> void:
 	_earth_button = _button(skill_row, "SKILL 1: ORIGINAL", toggle_earthsplitter_review)
 	_earth_form_button = _button(skill_row, "FORM: FOUNDATION", toggle_earthsplitter_form)
 	_earth_form_button.disabled = true
+	var molten_row := HBoxContainer.new()
+	stack.add_child(molten_row)
+	_molten_button = _button(molten_row,"SKILL 2: ORIGINAL",toggle_molten_review)
+	_molten_form_button = _button(molten_row,"FORM: FOUNDATION",toggle_molten_form)
+	_molten_form_button.disabled = true
 	_message = Label.new()
 	_message.add_theme_font_size_override("font_size", 10)
 	stack.add_child(_message)
@@ -180,6 +191,9 @@ func _build_panel() -> void:
 
 
 func toggle_riftbreak_review() -> void:
+	if molten_review.enabled:
+		_message.text = "Restore Skill 2 before comparing the earlier targeted experiment."
+		return
 	if not enabled and not set_preview_enabled(true):
 		return
 	if not riftbreak_review.set_enabled(not riftbreak_review.enabled):
@@ -197,15 +211,15 @@ func toggle_earthsplitter_review() -> void:
 		return
 	_earth_button.text = "SKILL 1: EARTHSPLITTER" if earthsplitter_review.enabled else "SKILL 1: ORIGINAL"
 	_earth_form_button.disabled = not earthsplitter_review.enabled
-	_earth_form_button.text = "FORM: ADVANCED" if earthsplitter_review.advanced else "FORM: FOUNDATION"
+	_earth_form_button.text = ["FORM: FOUNDATION", "FORM: FAN", "FORM: CASCADE"][earthsplitter_review.form]
 	_message.text = "1 then click: summoned sword / moving earth rupture / no stun / 0.36s cast." if earthsplitter_review.enabled else "Original Skill 1 and loadout restored."
 
 func toggle_earthsplitter_form() -> void:
-	if not earthsplitter_review.set_advanced(not earthsplitter_review.advanced):
+	if not earthsplitter_review.set_form((earthsplitter_review.form + 1) % 3):
 		_message.text = "Finish aiming, casting and the released waves before changing form."
 		return
-	_earth_form_button.text = "FORM: ADVANCED" if earthsplitter_review.advanced else "FORM: FOUNDATION"
-	_message.text = "Advanced: three waves / third reaches farther and hits hardest / same quick cast." if earthsplitter_review.advanced else "Foundation: approved single wave / 164 reach / one hit per enemy."
+	_earth_form_button.text = ["FORM: FOUNDATION", "FORM: FAN", "FORM: CASCADE"][earthsplitter_review.form]
+	_message.text = ["Foundation: approved single wave / one hit per enemy.", "Advanced fan: three lanes + stronger center follow-up / one quick smash.", "Cascade candidate: three successive waves / stronger third / same quick cast."][earthsplitter_review.form]
 
 func _button(row: HBoxContainer, text: String, callback: Callable) -> Button:
 	var button := Button.new()
@@ -239,3 +253,32 @@ func _draw() -> void:
 func _exit_tree() -> void:
 	if is_instance_valid(_panel):
 		_panel.queue_free()
+
+func toggle_molten_review() -> void:
+	if not enabled and not set_preview_enabled(true):
+		return
+	if riftbreak_review.enabled:
+		if not riftbreak_review.set_enabled(false):
+			_message.text = "Finish the current skill before changing Skill 2."
+			return
+		_rift_button.text = "RIFTBREAK: ORIGINAL"
+	if not molten_review.set_enabled(not molten_review.enabled):
+		_message.text = "Finish the current action before changing Skill 2."
+		return
+	_molten_button.text = "SKILL 2: MOLTEN CRASH" if molten_review.enabled else "SKILL 2: ORIGINAL"
+	_molten_form_button.disabled = not molten_review.enabled
+	_molten_form_button.text = ["FORM: FOUNDATION","FORM: ADVANCED","FORM: AWAKENED","FORM: MATURE"][molten_review.form]
+	_rift_button.disabled = molten_review.enabled
+	_message.text = "2: local crash / first impact stuns / .36s cast. Use FORM to compare upgrades." if molten_review.enabled else "Original Skill 2 restored."
+
+func toggle_molten_form() -> void:
+	if not molten_review.set_form((molten_review.form+1)%4):
+		_message.text = "Finish the cast and any released heat pulse before changing form."
+		return
+	_molten_form_button.text = ["FORM: FOUNDATION","FORM: ADVANCED","FORM: AWAKENED","FORM: MATURE"][molten_review.form]
+	_message.text = [
+		"Foundation: stone-and-light 72px impact; initial stun.",
+		"Advanced: molten 80px impact; stronger damage.",
+		"Awakened: 84px crash then one delayed 86px heat pulse; no repeat stun.",
+		"Mature: 86px center-biased crash and one delayed pulse."
+	][molten_review.form]

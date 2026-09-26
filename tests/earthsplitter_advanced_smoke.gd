@@ -25,7 +25,7 @@ func _run() -> void:
 	var original_script: Script = ability.get_script()
 	var saved: Array = root.get_node("RunSession").king_skill_slots.duplicate()
 	review.toggle_earthsplitter_review()
-	_check(review.earthsplitter_review.set_advanced(true),"Advanced form did not activate")
+	_check(review.earthsplitter_review.set_form(2),"Advanced form did not activate")
 	actor.position = Vector2(300,280)
 	actor.set_physics_process(false)
 	ability.set_critical_profile(0.0,1.5)
@@ -35,7 +35,7 @@ func _run() -> void:
 		_check(is_equal_approx(actor.position.distance_to(preview.waves[index].end),[164.0,196.0,228.0][index]),"Preview reach mismatch")
 		_check(is_equal_approx(preview.waves[index].radius,[17.0,19.0,21.0][index]),"Preview width mismatch")
 	_check(actor.request_ability(1) and actor.ground_point_targeting.is_targeting(),"Advanced slot lost the live component binding")
-	_check(not review.earthsplitter_review.set_advanced(false),"Form changed while aiming")
+	_check(not review.earthsplitter_review.set_form(0),"Form changed while aiming")
 	actor.ground_point_targeting.cancel_targeting()
 	var foes: Array[ForsakenThrall] = []
 	for offset in [Vector2(100,0),Vector2(205,0),Vector2(240,0),Vector2(100,80)]:
@@ -55,7 +55,7 @@ func _run() -> void:
 			amounts[target] = []
 		amounts[target].append(info.amount))
 	_check(ability.request_cast_at(actor.position+Vector2(12,0),100),"Advanced cast rejected")
-	_check(not review.earthsplitter_review.set_advanced(false),"Form changed during windup")
+	_check(not review.earthsplitter_review.set_form(0),"Form changed during windup")
 	await create_timer(.14).timeout
 	_check(foes[0].health_component.current_health==1000,"Damage occurred before sword contact")
 	await create_timer(.10,false).timeout
@@ -63,7 +63,7 @@ func _run() -> void:
 	_check(sequences.size()==1 and sequences[0]._next==1,"First wave timing is wrong")
 	await create_timer(.15,false).timeout
 	_check(not ability.is_casting(),"Advanced extended the player commitment")
-	_check(not review.earthsplitter_review.set_advanced(false),"Form changed while waves were still pending")
+	_check(not review.earthsplitter_review.set_form(0),"Form changed while waves were still pending")
 	_check(sequences[0]._next==2,"Second wave should release after 0.16s")
 	var origin := actor.position
 	actor.position += Vector2(0,-70)
@@ -81,9 +81,9 @@ func _run() -> void:
 	var near: Array = amounts.get(foes[0].get_node("Hurtbox"),[])
 	_check(near.size()==3 and is_equal_approx(near[0],45.0) and is_equal_approx(near[1],56.25) and is_equal_approx(near[2],123.75),"Third wave must own the largest damage share")
 	_check(get_nodes_in_group("earthsplitter_review_sequences").is_empty(),"Completed sequence leaked")
-	_check(review.earthsplitter_review.set_advanced(false),"Foundation restoration failed")
+	_check(review.earthsplitter_review.set_form(0),"Foundation restoration failed")
 	_check(is_equal_approx(ability.definition.range_pixels,164.0) and is_equal_approx(ability.definition.weapon_damage_multiplier,1.65),"Foundation values were not restored")
-	_check(review.earthsplitter_review.set_advanced(true),"Advanced reactivation failed")
+	_check(review.earthsplitter_review.set_form(2),"Advanced reactivation failed")
 	actor.position = origin
 	ability.set_critical_profile(0.0,1.5)
 	for index in range(1,foes.size()):

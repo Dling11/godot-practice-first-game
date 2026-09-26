@@ -1,5 +1,35 @@
 # Changelog
 
+## 2026-09-26 - Molten Crash form progression in the Combat Lab
+
+- Added four selectable Skill 2 forms: pale stone/light Foundation, the previous molten appearance as Advanced, and Awakened/Mature forms with one world-fixed, damage-only heat pulse. Initial radius grows 72/80/84/86px; all forms keep .36s control commitment, 8s cooldown and authored initial stun subject to resistance.
+- Split later-form damage 80/20 between contact and pulse, with Mature's 48px core dealing more initial damage than its rim. The rim retains initial stun. Added a sixteen-frame heat-ring atlas, bounded sound/camera accent and in-game form comparison capture. King body art remains unchanged.
+- Added 37 upgrade assertions beside the 40 Foundation assertions. Stage unlocks, persistence, campaign promotion and mobile performance remain pending.
+
+## 2026-09-26 - Molten Crash Foundation Skill 2 Lab implementation
+
+- Built the approved local sword lift/crash and molten burst: one 200% weapon contact at 72px radius, .55s explicit stun with existing target resistance, radial push, .36s commitment and 8s cooldown. Walls block delivery; cooling aftermath does no extra damage.
+- Generated sixteen sword drawings and sixteen burst drawings from approved references using built-in image generation. Revised burst spacing before packing padded/clipped atlases; preserved King body identity and put the effect behind his silhouette. Reused existing cleave/slam audio and shared contact feedback.
+- Added reversible Skill 2 review, mutually exclusive with the older targeted Riftbreak comparison; direct launch includes Earthsplitter. 821 checks passed: Molten 40, targeted Riftbreak 28, Spellward 232, mastery 385, Earthsplitter Fan 136. Godot capture shows four facings, early movement and crowd stun stars.
+- Campaign replacement, future Molten upgrades/aftershock, god-power lore and deferred cleanup remain pending.
+
+## 2026-09-26 - Finish Skill 1 fan with approved center follow-up
+
+- Fan now releases its three lanes together, then one stronger center wave .22s later. One sword action, unchanged .36s body commitment and no stun. Initial fan 100% weapon damage with shared target accounting; center follow-up 140% once more, reaching 228px with heavier push/visual feedback. Side lanes remain 196px.
+- The delayed finisher retains committed origin/stats and rechecks terrain; switching forms, defeat and review exit cannot leave delayed damage behind. Foundation/Cascade and deferred cleanup remain preserved.
+- Fan regression covers 136 checks, including a wall appearing between release beats and review exit with a pending follow-up. Updated real-speed playback and design handoff; campaign promotion remains pending.
+
+## 2026-09-26 - Record Skill 1 acceptance and deferred cleanup
+
+- Owner accepts Earthsplitter/fan as Skill 1 and asks to preserve the sequential follow-up idea for further discussion. Current Fan and Cascade remain separate; no new combined attack or campaign promotion implemented.
+- Recorded a later reference-checked cleanup of superseded assets/code and redundant artifacts. Documentation only; no deletions or gameplay changes.
+
+## 2026-09-26 - Earthsplitter Advanced three-lane fan
+
+- Implemented the corrected AOE design: one quick smash, three simultaneous lanes at center and +/-20 degrees, 196px center reach and 19px lane radius. Each target receives one 185% weapon hit across the fan, including overlap; no stun.
+- Added explicit Foundation/Fan/Cascade comparison identities, independent branch wall clipping and per-branch presentation while preserving the accepted sword and .36s control return. Cascade remains a separate later-form candidate.
+- 937 checks passed: Fan 98, Foundation 116, Cascade 49, atlas rendering 29, targeted Riftbreak 28, Spellward 232 and mastery 385. Added 98 fan checks for rotating geometry, common contact, fixed reach, simultaneous release, side coverage, overlap damage, branch-specific walls, recovery, defeat, slot binding and restoration. No mobile-performance or campaign-unlock claim. Review artifacts: `art_source/review/characters/king/earthsplitter_fan_2026_09_26/`.
+
 ## 2026-09-14 - Correct Earthsplitter upgrade intent and save handoff
 
 - Owner clarified that three waves meant three spatial lanes in a triangular fan, not consecutive waves on one path. Preserved Cascade as a possible later/third upgrade.

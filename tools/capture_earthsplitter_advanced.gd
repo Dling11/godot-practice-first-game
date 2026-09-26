@@ -20,6 +20,7 @@ func _run() -> void:
 	lab.clear_simulation()
 	if "--ui-proof" in OS.get_cmdline_user_args():
 		review.toggle_earthsplitter_form()
+		review.toggle_earthsplitter_form()
 		await _wait(.2)
 		await RenderingServer.frame_post_draw
 		root.get_texture().get_image().save_png(EARTH_OUT + "playable_lab.png")
@@ -52,7 +53,7 @@ func _run() -> void:
 	var cast_index := 0
 	for direction in [Vector2.RIGHT, Vector2.RIGHT, Vector2(1,1).normalized(), Vector2.DOWN, Vector2(-1,1).normalized(), Vector2.LEFT, Vector2(-1,-1).normalized(), Vector2.UP, Vector2(1,-1).normalized(), Vector2.RIGHT.rotated(deg_to_rad(17))]:
 		if cast_index == 1:
-			review.toggle_earthsplitter_form()
+			review.earthsplitter_review.set_form(2)
 			_capture_prefix = "advanced_"
 		caption.text = "FOUNDATION / APPROVED SINGLE WAVE" if cast_index==0 else "ADVANCED / THREE WAVES / ONE QUICK CAST"
 		cast_index += 1

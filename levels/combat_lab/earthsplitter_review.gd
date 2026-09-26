@@ -5,7 +5,7 @@ const Component = preload("res://gameplay/abilities/king/earthsplitter_component
 const Definition = preload("res://data/abilities/king/earthsplitter_definition.gd")
 var actor: Player
 var enabled := false
-var advanced := false
+var form := Definition.Form.FOUNDATION
 var _script: Script
 var _definition: AbilityDefinition
 var _slots: Array
@@ -53,7 +53,7 @@ func set_enabled(value: bool) -> bool:
 		tuning.impact_weight = AbilityDefinition.ImpactWeight.HEAVY
 		tuning.description = "Aim a quick summoned sword smash. The earth tears forward; each enemy is hit once. No stun. Control returns after 0.36s."
 		tuning.set_meta("earthsplitter_review", true)
-		tuning.configure_form(advanced)
+		tuning.configure_form(form)
 		ability.set_script(Component)
 		ability.definition = tuning
 		ability.hitbox = box
@@ -80,15 +80,17 @@ func set_enabled(value: bool) -> bool:
 	enabled = value
 	return true
 
-func set_advanced(value: bool) -> bool:
+func set_form(value: int) -> bool:
+	if value < Definition.Form.FOUNDATION or value > Definition.Form.CASCADE:
+		return false
 	if not enabled or not actor.get_node("KingSkillLibrary").can_edit():
 		return false
 	for sequence in get_tree().get_nodes_in_group("earthsplitter_review_sequences"):
 		if sequence.source == actor:
 			return false
-	advanced = value
+	form = value
 	var next: AbilityDefinition = actor.ability_1_component.definition.duplicate(true)
-	next.configure_form(advanced)
+	next.configure_form(form)
 	actor.ability_1_component.definition = next
 	actor.ability_1_component.clear_cooldown()
 	var library: KingSkillLibrary = actor.get_node("KingSkillLibrary")

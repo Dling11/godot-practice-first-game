@@ -15,6 +15,8 @@ var _contact: MeleeHitbox
 var _age := 0.0
 var _last := Vector2.ZERO
 var _ended := false
+# Fan siblings share this cast-owned ledger; other waves receive their own.
+var shared_targets: Dictionary = {}
 
 func _ready() -> void:
 	add_to_group("earthsplitter_review_attacks")
@@ -33,6 +35,7 @@ func _ready() -> void:
 	add_child(_contact)
 	_contact.global_position = origin
 	_contact.activate(damage, source, (target-origin).normalized(), tuning.knockback_strength, tuning.stagger_seconds, critical_chance, critical_multiplier, 0.0)
+	_contact._hit_targets = shared_targets
 	_contact.set_physics_process(false)
 	_contact.hit_landed.connect(func(hurtbox: HurtboxComponent, info: DamageInfo) -> void: hit_landed.emit(hurtbox, info))
 	front_advanced.emit(origin)

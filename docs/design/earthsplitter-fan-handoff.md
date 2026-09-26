@@ -1,5 +1,9 @@
 # Earthsplitter: owner correction and next-session handoff
 
+**Skill 1 accepted direction (2026-09-26):** Earthsplitter Fan now releases three simultaneous lanes at center and +/-20 degrees, followed .22s later by one stronger, longer center wave. One sword smash and .36s base commitment remain. Initial lanes reach 196px (19px radius), deal 100% weapon damage once per enemy across the fan, and use light push/flinch. The follow-up reaches 228px (21px radius), deals 140% once more, and has heavier impact/55 knockback. Maximum unmitigated noncritical weapon budget is 240% per target; side targets usually receive only the fan. No stun. Foundation and Cascade remain separate Lab comparisons. Campaign promotion, upgrade gates, phone testing and the requested later cleanup remain pending.
+
+**Handoff complete:** the owner approved fan then one stronger center wave. That combination is now implemented in the existing Fan form. Next planned skill work is Molten Crash; campaign promotion/upgrade gates and deferred cleanup remain separate. Historical September 14 handoff follows for reference.
+
 September 14, 2026. Documentation-only handoff requested as credits run low. No gameplay/art changes in this correction.
 
 ## Owner intent - overrides the Advanced interpretation in Decision 152

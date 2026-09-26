@@ -17,6 +17,7 @@ var _ground: Node2D
 var _played_swing := false
 var _feedback: CombatFeedbackPresenter
 var wave_count := 1
+var is_fan := false
 var _grounds: Array[Node2D] = []
 var _wave_fronts: Array[Vector2] = []
 var _wave_contacts: Array[Vector2] = []
@@ -54,11 +55,13 @@ func release() -> void:
 
 func start_wave(index: int, plan: Dictionary) -> void:
 	_ground = GroundVisual.new()
-	_ground.direction = direction
+	_ground.direction = plan.path.direction
 	_ground.radius = plan.tuning.lane_radius
 	_ground.strength_scale = plan.strength
 	_ground.aftermath_speed = plan.aftermath_speed
-	if wave_count > 1:
+	if plan.get("accent",false):
+		_ground.terminal_scale = 1.45
+	elif wave_count > 1 and not is_fan:
 		_ground.terminal_scale = 1.38 if index==wave_count-1 else .95
 	_ground.z_index = -1
 	add_child(_ground)
@@ -66,7 +69,7 @@ func start_wave(index: int, plan: Dictionary) -> void:
 	_grounds.append(_ground)
 	_wave_contacts.append(plan.path.contact)
 	_wave_fronts.append(plan.path.contact)
-	if index > 0:
+	if index > 0 and (not is_fan or plan.get("accent",false)):
 		var final := index == wave_count-1
 		_sound(Impact,-14.5 if final else -23.0,.84 if final else 1.14,to_local(plan.path.contact))
 		if final and is_instance_valid(_feedback):
