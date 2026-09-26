@@ -2,7 +2,7 @@ extends SceneTree
 
 ## Offline pose rendering. No rig or IK runs on the gameplay actor.
 const SOURCE := "res://art_source/generated/characters/king/spellward_locomotion_2026_09_14/"
-const OUT := "res://assets/characters/playable/king/spellward_preview/walk_side.png"
+const OUT := "res://assets/characters/playable/king/spellward/walk_side.png"
 const REVIEW := "res://art_source/review/characters/king/spellward_legcycle_2026_09_14/"
 const CELL := Vector2i(192, 128)
 var viewport: SubViewport

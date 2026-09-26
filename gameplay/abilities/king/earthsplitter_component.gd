@@ -1,6 +1,7 @@
+class_name EarthsplitterComponent
 extends EchoingSeverComponent
 
-## Lab replacement preserves Player bindings. Released authority is independent.
+## Released lane authority; the Player and equipped slot retain their stable ID.
 const Sequence = preload("res://gameplay/abilities/king/earthsplitter_sequence.gd")
 const Visual = preload("res://gameplay/abilities/king/earthsplitter_visual.gd")
 const Path = preload("res://gameplay/abilities/king/earthsplitter_path.gd")

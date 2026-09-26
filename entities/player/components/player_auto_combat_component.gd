@@ -68,8 +68,8 @@ func _try_ready_skill() -> bool:
 		var component := player.get_ability_component_for_slot(slot_number)
 		if component == null or component.definition == null or not component.is_ready():
 			continue
-		# Defensive timing skills remain manual; automation must not spend an escape.
-		if component is KingOathComponent and (component.definition as KingOathDefinition).technique == KingOathDefinition.Technique.STARFALL:
+		# Pursuit is King's manual mobility choice, not a routine auto-cast.
+		if component == player.ability_3_component:
 			continue
 		if not player.request_ability(slot_number):
 			continue

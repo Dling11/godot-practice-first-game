@@ -52,26 +52,6 @@ func _ready() -> void:
 	_notice=Label.new()
 	_notice.add_theme_font_size_override("font_size",11)
 	stack.add_child(_notice)
-	if library.is_lab():
-		var preview := HBoxContainer.new()
-		stack.add_child(preview)
-		var label := Label.new()
-		label.text="LAB FORM"
-		preview.add_child(label)
-		var ranks := OptionButton.new()
-		ranks.add_item("Campaign progression")
-		for form in KingOathDefinition.RANK_NAMES:
-			ranks.add_item(form+" preview")
-		ranks.select(library.preview_rank+1)
-		ranks.item_selected.connect(func(index: int) -> void: library.set_preview_rank(index-1))
-		preview.add_child(ranks)
-		var preset := Button.new()
-		preset.text="Equip all four Oath skills"
-		preset.pressed.connect(func() -> void:
-			if library.equip_oath_preview():
-				ranks.select(library.preview_rank+1)
-		)
-		preview.add_child(preset)
 	var body := HBoxContainer.new()
 	body.add_theme_constant_override("separation",18)
 	stack.add_child(body)
@@ -119,12 +99,6 @@ func _refresh() -> void:
 		if id==_selected:
 			button.modulate=Color("aee8ff")
 			_detail.text="[b]"+ability.definition.display_name+"[/b]\n\n"+ability.definition.description
-			if ability is KingOathComponent:
-				var tuning := ability.definition as KingOathDefinition
-				_detail.text+="\n\n[b]EVOLUTION[/b]\n"+" → ".join(KingOathDefinition.NAMES[tuning.technique])
-				_detail.text+="\n\nMortal → Stage V: Resonant\nAscendant / Unbound: future story milestones; Lab preview available."
-				if not library.is_learned(id):
-					_detail.text+="\n\n[b]Learn after clearing Stage "+("II" if id=="griefwake" else "V")+".[/b]"
 			if not library.can_edit():
 				_detail.text+="\n\nReturn to Sanctuary to change equipped techniques."
 	for i in SkillLoadoutDefinition.SLOT_COUNT:

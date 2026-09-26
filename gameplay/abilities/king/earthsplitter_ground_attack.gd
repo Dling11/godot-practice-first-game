@@ -19,7 +19,7 @@ var _ended := false
 var shared_targets: Dictionary = {}
 
 func _ready() -> void:
-	add_to_group("earthsplitter_review_attacks")
+	add_to_group("earthsplitter_attacks")
 	_last = origin
 	_contact = MeleeHitbox.new()
 	# Queries own the swept shape; disable Area monitoring to avoid a second,

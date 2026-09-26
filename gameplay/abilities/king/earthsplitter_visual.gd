@@ -28,7 +28,7 @@ func _ready() -> void:
 	while ancestor != null and _feedback == null:
 		_feedback = ancestor.get_node_or_null("Services/CombatFeedback") as CombatFeedbackPresenter
 		ancestor = ancestor.get_parent()
-	add_to_group("earthsplitter_review_effects")
+	add_to_group("earthsplitter_effects")
 	global_position = contact
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	z_index = 3

@@ -4,6 +4,7 @@ extends Node2D
 const Sword = preload("res://assets/vfx/abilities/king/molten_crash/sword.png")
 const Burst = preload("res://assets/vfx/abilities/king/molten_crash/burst.png")
 const HeatRing = preload("res://assets/vfx/abilities/king/molten_crash/aftershock.png")
+const CalderaCore = preload("res://assets/vfx/abilities/king/molten_crash/caldera_core.png")
 const Swing = preload("res://assets/audio/sfx/player/greatsword/cleave.wav")
 const Impact = preload("res://assets/audio/sfx/abilities/king/riftbreak_ground_slam.wav")
 var source: Player
@@ -13,6 +14,7 @@ var form := MoltenCrashDefinition.Form.FOUNDATION
 var _sword: Sprite2D
 var _burst: Sprite2D
 var _ring: Sprite2D
+var _core: Sprite2D
 var _age := 0.0
 var _after := 0.0
 var _released := false
@@ -26,14 +28,14 @@ void fragment() {
 	vec4 src = texture(TEXTURE, UV);
 	float warm = clamp((src.r-src.b)*1.7,0.0,1.0);
 	float bright = clamp(src.g*1.55,0.0,1.0);
-	vec3 stone = mix(vec3(0.19,0.20,0.23),vec3(0.48,0.46,0.40),bright);
-	vec3 light = mix(vec3(0.73,0.64,0.43),vec3(1.0,0.96,0.74),bright);
+	vec3 stone = mix(vec3(0.12,0.18,0.26),vec3(0.35,0.48,0.58),bright);
+	vec3 light = mix(vec3(0.18,0.49,0.87),vec3(0.82,0.96,1.0),bright);
 	COLOR = vec4(mix(stone,light,warm),src.a*COLOR.a);
 }
 """
 
 func _ready() -> void:
-	add_to_group("molten_crash_review_effects")
+	add_to_group("molten_crash_effects")
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	var ancestor := source.get_parent()
 	while ancestor != null and _feedback == null:
@@ -55,7 +57,9 @@ func _ready() -> void:
 	_ring.z_index = -1
 	_ring.visible = false
 	if form == MoltenCrashDefinition.Form.MATURE:
-		_ring.modulate = Color(1.0,.90,.72)
+		_core = _sprite(CalderaCore,.47)
+		_core.z_index = -2
+		_core.visible = false
 	_frame(_sword,0)
 
 func _sprite(texture: Texture2D, size: float) -> Sprite2D:
@@ -77,9 +81,15 @@ func release() -> void:
 	_frame(_sword,7)
 	_burst.visible = true
 	_frame(_burst,0)
-	_sound(Impact,-12.5,.88)
+	if is_instance_valid(_core):
+		_core.visible = true
+		_frame(_core,0)
+	if form == MoltenCrashDefinition.Form.MATURE:
+		_sound(Impact,-11.5,.80)
+	else:
+		_sound(Impact,-12.5,.88)
 	if is_instance_valid(_feedback):
-		_feedback.request_camera_pulse(3.2)
+		_feedback.request_camera_pulse(3.6 if form == MoltenCrashDefinition.Form.MATURE else 3.2)
 
 func prepare_aftershock() -> void:
 	_ring_age = 0.0
@@ -89,7 +99,10 @@ func prepare_aftershock() -> void:
 func release_aftershock() -> void:
 	_ring_age = maxf(_ring_age,.14)
 	_frame(_ring,4)
-	_sound(Impact,-19.0,1.2)
+	if form == MoltenCrashDefinition.Form.MATURE:
+		_sound(Impact,-17.5,.98)
+	else:
+		_sound(Impact,-19.0,1.2)
 	if is_instance_valid(_feedback):
 		_feedback.request_camera_pulse(1.6 if form == MoltenCrashDefinition.Form.AWAKENED else 2.0)
 
@@ -112,6 +125,9 @@ func _physics_process(delta: float) -> void:
 		_sword.visible = _after<.25
 		_frame(_burst,mini(15,int(_after/.040)))
 		_burst.modulate.a = clampf((.95-_after)/.35,0.0,1.0)
+		if is_instance_valid(_core):
+			_frame(_core,mini(15,int(_after/.038)))
+			_core.modulate.a = clampf((.78-_after)/.25,0.0,1.0)
 		if _ring_age >= 0.0:
 			_ring_age += delta
 			_frame(_ring,mini(15,int(_ring_age/.035)))

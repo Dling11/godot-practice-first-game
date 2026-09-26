@@ -539,8 +539,6 @@ func request_ability_1() -> bool:
 func request_ability(slot_number: int) -> bool:
 	var component := get_ability_component_for_slot(slot_number)
 	var direction := facing_direction
-	if component is KingOathComponent and (component.definition as KingOathDefinition).technique == KingOathDefinition.Technique.STARFALL:
-		direction = input_source.resolve_mobility_direction(get_global_mouse_position()-global_position, facing_direction)
 	if is_restrained() or is_in_hit_recovery():
 		return false
 	if _is_targeting_any_ability():
@@ -914,8 +912,6 @@ func _begin_ability_input(component: AbilityComponent, direction: Vector2) -> bo
 
 
 func _start_ability(component: AbilityComponent, direction: Vector2) -> bool:
-	if component is KingOathComponent and (component.definition as KingOathDefinition).technique == KingOathDefinition.Technique.STARFALL:
-		_set_facing_direction(input_source.resolve_cardinal_facing(direction, facing_direction))
 	var weapon_damage := (
 		attack_component.weapon.damage
 		if attack_component.weapon != null

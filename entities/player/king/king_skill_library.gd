@@ -4,9 +4,6 @@ extends Node
 ## Learnable techniques and ten equipped slots; persistence stores stable IDs.
 signal library_changed
 var actor: Player
-var preview_rank := -1
-var _refresh_pending := false
-var _campaign_slots: Array = []
 var _collection: CanvasLayer
 
 func _ready() -> void:
@@ -14,40 +11,16 @@ func _ready() -> void:
 	actor.ready.connect(_bind)
 
 func _bind() -> void:
-	for ability in actor.get_all_ability_components():
-		if ability is KingOathComponent:
-			ability.ability_finished.connect(_finish_refresh)
-			ability.phase_changed.connect(actor.get_node("VisualRoot/Body").play_ability_phase)
-			ability.strike_started.connect(actor.get_node("VisualRoot/Body").play_oath_strike.bind(ability))
-			ability.ability_finished.connect(actor.get_node("VisualRoot/Body").resume_locomotion)
-			ability.invulnerability_changed.connect(actor.health_component.set_invulnerable)
-	var story := get_node("/root/StoryState")
-	story.story_state_changed.connect(refresh)
 	refresh()
 	var saved: Array = get_node("/root/RunSession").king_skill_slots
 	if not saved.is_empty() and KingSkillCatalog.valid_slots(saved):
-		_apply_slots(saved)
-
-func get_rank() -> int:
-	if preview_rank>=0:
-		return preview_rank
-	var story := get_node("/root/StoryState")
-	if story.has_story_flag(&"king_oath_unbound"):
-		return 3
-	if story.has_story_flag(&"king_oath_ascendant"):
-		return 2
-	return 1 if story.has_story_flag(&"forest_stage_5_cleared") else 0
+		var normalized := KingSkillCatalog.expanded_slots(saved)
+		_apply_slots(normalized)
+		get_node("/root/RunSession").king_skill_slots = normalized
 
 func is_learned(id: String) -> bool:
 	if id not in KingSkillCatalog.IDS:
 		return false
-	if preview_rank>=0:
-		return true
-	var story := get_node("/root/StoryState")
-	if id=="griefwake":
-		return story.has_story_flag(&"forgotten_grove_completed")
-	if id=="oathstorm":
-		return story.has_story_flag(&"forest_stage_5_cleared")
 	return true
 
 func can_edit() -> bool:
@@ -78,7 +51,7 @@ func equip(id: String, slot_number: int) -> bool:
 	ids[slot_number-1]=id
 	_apply_slots(ids)
 	actor._clear_buffered_action()
-	if not is_lab() and preview_rank<0:
+	if not is_lab():
 		get_node("/root/RunSession").king_skill_slots=ids.duplicate()
 		get_node("/root/SaveService").save_profile()
 	return true
@@ -89,33 +62,12 @@ func current_ids() -> Array:
 		ids.append(String(slot.ability.ability_id) if slot.ability!=null else "")
 	return ids
 
-func set_preview_rank(value: int) -> bool:
-	if not is_lab() or not can_edit() or value < -1 or value>3:
-		return false
-	if preview_rank<0 and value>=0:
-		_campaign_slots=current_ids()
-	preview_rank=value
-	if value<0 and not _campaign_slots.is_empty():
-		_apply_slots(_campaign_slots)
-	refresh()
-	return true
-
-func equip_oath_preview() -> bool:
-	if not is_lab() or not can_edit():
-		return false
-	if preview_rank<0:
-		_campaign_slots=current_ids()
-		preview_rank=0
-	refresh()
-	_apply_slots(KingOathDefinition.FAMILIES)
-	return true
-
 func equip_core_kit() -> bool:
 	if not can_edit():
 		return false
 	var ids := current_ids()
 	for index in 4:
-		var id: String = KingOathDefinition.FAMILIES[index]
+		var id: String = KingSkillCatalog.IDS[index]
 		var previous := ids.find(id)
 		if previous>=4:
 			ids[previous]=""
@@ -135,24 +87,7 @@ func open_collection() -> void:
 	add_child(_collection)
 
 func refresh() -> void:
-	if actor.is_any_ability_casting():
-		_refresh_pending=true
-		return
-	var ids := current_ids()
-	for ability in entries():
-		if ability is KingOathComponent:
-			var tuning := ability.definition as KingOathDefinition
-			ability.definition=tuning.at_rank(get_rank())
-			var icon := AtlasTexture.new()
-			icon.atlas=load("res://assets/vfx/abilities/king/oath/icons_24.png")
-			icon.region=Rect2(tuning.technique*24,0,24,24)
-			ability.definition.icon=icon
-	_apply_slots(ids)
-
-func _finish_refresh() -> void:
-	if _refresh_pending:
-		_refresh_pending=false
-		refresh.call_deferred()
+	_apply_slots(current_ids())
 
 func _apply_slots(ids: Array) -> void:
 	# Preserve sealed legacy slots on actors used by older progression proofs.

@@ -17,7 +17,6 @@ var _step: AudioStreamPlayer2D
 var _resolve: AudioStreamPlayer2D
 var _linked := false
 var _previous_stacks := 0
-var review_trails_enabled := false
 
 func _ready() -> void:
 	_actor = get_parent() as Player
@@ -79,7 +78,7 @@ func _draw() -> void:
 				var uv := Vector2(point.x/36.0,point.y/44.0+.5)
 				if _actor.attack_component.combo_step == 1:
 					uv.y = 1.0-uv.y
-				var atlas_row := 1 if review_trails_enabled and _actor.attack_component.combo_step == 2 else 0
+				var atlas_row := 1 if _actor.attack_component.combo_step == 2 else 0
 				uvs.append((uv+Vector2(index,atlas_row))/Vector2(4,2))
 			draw_polygon(points,PackedColorArray([Color.WHITE]),uvs,Trail)
 	if _mastery.stacks > 0:
@@ -100,9 +99,8 @@ func _on_empowered(_ability: AbilityComponent, resolved: bool, linked: bool) -> 
 		_play(_resolve,ResolveSound,1.2)
 
 func _on_strike(index: int, _count: int, duration: float, ability: AbilityComponent) -> void:
-	# Riftbreak owns its complete impact-to-residual sequence. A second atlas
-	# here used to overlap a crater drawn 16px lower by RiftbreakVisual.
-	if ability is RiftbreakComponent:
+	# Molten Crash owns its contact burst; a second atlas obscures its center.
+	if ability is MoltenCrashComponent:
 		return
 	var burst := Burst.new()
 	add_child(burst)

@@ -1,10 +1,27 @@
 # Changelog
 
+## 2026-09-26 - Promote King C and retire old King skills (Decision 157)
+
+- Promoted King C's accepted body/outline to normal play and the character menu, with its runtime art folder renamed to `spellward/`. Promoted Earthsplitter Foundation, blue Molten Crash Foundation and the blade-cut Sovereign Pursuit art to the player scene. Skill 4 remains Worldsplitter for its next design pass.
+- Simplified F7 to current-kit form previews. Removed Oath abilities/riposte, old Skill 1/2 VFX nodes and old character/skill toggles from live scenes. Moved their source, artwork and obsolete checks into the Godot-ignored recovery archive. Ten-slot input remains; loaded Oath IDs normalize to the four current stable slots.
+- Verified Godot import/Lab launch, production kit casting and save migration, character-menu presentation, input buffering and F9 cooldown behavior. Later form unlocks, Pursuit charges and phone profiling remain open.
+- Removed the obsolete Skill 3 visual switch and review-only greatsword trail branch; the approved landing/trail are now direct production presentation. Cleaned active skill display names and runtime effect group names. Final checks also passed for the main scene, current Skill 4 and Stage V boss.
+
+## 2026-09-26 - Sovereign Pursuit blade-cut visual comparison
+
+- Added a reversible F7 Skill 3 art comparison around the preserved targeted leap: eight blue-white travel frames, four faint timed wake snapshots, fifteen visible takeoff/blade-cut/pressure/afterglow drawings, one transparent exit cell, and one restrained landing camera pulse. The impact continues after King regains control. The original rock-fragment draft was replaced with a cleaner blade-first release; sounds and Skill 3 gameplay values remain unchanged.
+- Original and review smoke pass, and a corrected 60 FPS Godot Compatibility comparison with audio is saved under `art_source/review/characters/king/sovereign_pursuit_2026_09_26/`. The owner's longer-range, up-to-three-charge upgrade idea is recorded as a proposal, with no charge gameplay or campaign promotion yet.
+
+## 2026-09-26 - Clarify Molten Crash upgrade visuals
+
+- Changed Skill 2 Foundation from the rejected pale gold treatment to blue stone and white-cyan sword light, preserving its frames, radius and hit rules.
+- Replaced the visually repetitive delayed crater with a sixteen-frame outward heat wave. Added a separate compact sixteen-frame basalt uplift for Mature's stronger center, with a lower contact cue and restrained pulse accent. All frames were checked for nonempty alpha and captured in Godot at game scale; original King art and Molten damage authority stay intact.
+
 ## 2026-09-26 - Molten Crash form progression in the Combat Lab
 
-- Added four selectable Skill 2 forms: pale stone/light Foundation, the previous molten appearance as Advanced, and Awakened/Mature forms with one world-fixed, damage-only heat pulse. Initial radius grows 72/80/84/86px; all forms keep .36s control commitment, 8s cooldown and authored initial stun subject to resistance.
-- Split later-form damage 80/20 between contact and pulse, with Mature's 48px core dealing more initial damage than its rim. The rim retains initial stun. Added a sixteen-frame heat-ring atlas, bounded sound/camera accent and in-game form comparison capture. King body art remains unchanged.
-- Added 37 upgrade assertions beside the 40 Foundation assertions. Stage unlocks, persistence, campaign promotion and mobile performance remain pending.
+- Added four selectable Skill 2 forms: the first pale stone/light Foundation treatment (superseded by the blue correction above), the previous molten appearance as Advanced, and Awakened/Mature forms with one world-fixed, damage-only heat pulse. Initial radius grows 72/80/84/86px; all forms keep .36s control commitment, 8s cooldown and authored initial stun subject to resistance.
+- Split later-form damage 80/20 between contact and pulse, with Mature's 48px core dealing more initial damage than its rim. The rim retains initial stun. Added the first sixteen-frame heat-ring study (superseded by the outward wave above), bounded sound/camera accent and in-game form comparison capture. King body art remains unchanged.
+- Added 38 upgrade assertions beside the 40 Foundation assertions. Stage unlocks, persistence, campaign promotion and mobile performance remain pending.
 
 ## 2026-09-26 - Molten Crash Foundation Skill 2 Lab implementation
 

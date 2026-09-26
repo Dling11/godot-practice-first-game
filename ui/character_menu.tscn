@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3]
+[gd_scene load_steps=19 format=3]
 
 [ext_resource type="Script" path="res://ui/character_menu.gd" id="1_script"]
 [ext_resource type="Theme" path="res://assets/ui/themes/battle_of_gods_theme.tres" id="2_theme"]
@@ -6,10 +6,14 @@
 [ext_resource type="Texture2D" path="res://assets/ui/icons/economy/icon_currency_coin_16x16.png" id="4_coin"]
 [ext_resource type="Texture2D" path="res://assets/ui/icons/combat/basic_attack_icon.tres" id="5_attack"]
 [ext_resource type="Texture2D" path="res://assets/ui/icons/combat/dodge_dash_icon.tres" id="6_dash"]
-[ext_resource type="SpriteFrames" path="res://assets/characters/playable/king/greatsword/king_greatsword_sprite_frames.tres" id="7_frames"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/playable/king/spellward/spellward_frames.tres" id="7_frames"]
+[ext_resource type="Shader" path="res://entities/player/presentation/king_spellward_outline.gdshader" id="king_outline"]
 [ext_resource type="PackedScene" path="res://ui/equipment/equipment_detail_panel.tscn" id="8_detail"]
 [ext_resource type="Script" path="res://entities/npcs/presentation/npc_idle_breath.gd" id="9_breath"]
 [ext_resource type="Texture2D" path="res://assets/ui/icons/status/icon_status_health_16x16.png" id="11_health"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_king_outline"]
+shader = ExtResource("king_outline")
 
 [sub_resource type="StyleBoxFlat" id="panel"]
 bg_color = Color(0.027, 0.034, 0.052, 0.99)
@@ -355,8 +359,9 @@ polygon = PackedVector2Array(-25, 0, -15, -5, 15, -5, 25, 0, 15, 5, -15, 5)
 color = Color(0.01, 0.015, 0.025, 0.68)
 
 [node name="Body" type="AnimatedSprite2D" parent="Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas"]
+material = SubResource("ShaderMaterial_king_outline")
 position = Vector2(55, 60)
-scale = Vector2(3.5, 3.5)
+scale = Vector2(1.75, 1.75)
 sprite_frames = ExtResource("7_frames")
 animation = &"idle_down"
 

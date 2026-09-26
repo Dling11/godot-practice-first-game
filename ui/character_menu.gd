@@ -690,7 +690,7 @@ func _on_skill_slot_selected(definition: SkillSlotDefinition) -> void:
 
 	if definition.is_equipped():
 		var mastery := player.get_node("KingMastery") as KingMasteryComponent
-		skill_detail_label.text += "\nRESOLVE: 3 landed swings → next skill +25%% (8s). Pursuit/Breakstep → Riftbreak/Griefwake within 1.2s: +15%%.\nLEVEL MASTERY: +%d%% skill damage (maximum +18%%)." % roundi((mastery.definition.level_multiplier(player.progression_component.level)-1.0)*100)
+		skill_detail_label.text += "\nRESOLVE: 3 landed swings → next skill +25%% (8s). Pursuit → Molten Crash within 1.2s: +15%%.\nLEVEL MASTERY: +%d%% skill damage (maximum +18%%)." % roundi((mastery.definition.level_multiplier(player.progression_component.level)-1.0)*100)
 
 
 var _selected_skill: SkillSlotDefinition

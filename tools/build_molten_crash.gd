@@ -4,7 +4,7 @@ extends SceneTree
 const SOURCE := "res://art_source/generated/vfx/king/molten_crash_2026_09_26/"
 const DEST := "res://assets/vfx/abilities/king/molten_crash/"
 func _initialize() -> void:
-	for kind in ["sword","burst","aftershock"]:
+	for kind in ["sword","burst","aftershock","caldera_core"]:
 		var source := Image.load_from_file(SOURCE+kind+"_source.png")
 		source.convert(Image.FORMAT_RGBA8)
 		source.resize(1024,1024,Image.INTERPOLATE_NEAREST)
@@ -15,7 +15,9 @@ func _initialize() -> void:
 			if kind=="sword":
 				anchor.y = [223,228,224,222,226,226,232,244,232,236,232,224,232,232,222,218][index]
 			elif kind=="aftershock":
-				anchor.y = [180,170,166,166][index/4]
+				anchor.y = [180,174,160,150][index/4]
+			elif kind=="caldera_core":
+				anchor.y = [180,186,185,180][index/4]
 			for y in 256:
 				for x in 256:
 					var color := source.get_pixelv(cell*256+Vector2i(x,y))

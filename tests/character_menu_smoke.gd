@@ -3,7 +3,7 @@ extends SceneTree
 const PlayerScene = preload("res://entities/player/player.tscn")
 const CharacterMenuScene = preload("res://ui/character_menu.tscn")
 const HudScene = preload("res://ui/combat_hud.tscn")
-const KingFrames = preload("res://assets/characters/playable/king/greatsword/king_greatsword_sprite_frames.tres")
+const KingFrames = preload("res://assets/characters/playable/king/spellward/spellward_frames.tres")
 
 
 func _initialize() -> void:
@@ -63,7 +63,7 @@ func _run() -> void:
 		"Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/"
 		+ "PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas/Body"
 	) as AnimatedSprite2D
-	if preview_body.sprite_frames != KingFrames or preview_body.position != Vector2(55, 60):
+	if preview_body.sprite_frames != KingFrames or preview_body.position != Vector2(55, 60) or preview_body.scale != Vector2(1.75, 1.75):
 		_fail("Character menu preview is not using King's body-centered active model.")
 		return
 	var preview_grip := menu.get_node(
@@ -233,9 +233,9 @@ func _run() -> void:
 	if (
 		player.skill_loadout.get_slot(1).ability == null
 		or player.skill_loadout.get_slot(1).ability.ability_id != &"echoing_sever"
-		or not menu._skill_cards[0].text.contains("ECHOING SEVER")
+		or not menu._skill_cards[0].text.contains("EARTHSPLIT")
 	):
-		_fail("King's implemented Echoing Sever is not presented as equipped Skill 1.")
+		_fail("King's Earthsplitter is not presented as equipped Skill 1.")
 		return
 	var f9_event := InputEventAction.new()
 	f9_event.action = "debug_max_progression"
@@ -254,13 +254,13 @@ func _run() -> void:
 		player.skill_loadout.get_slot(2).ability == null
 		or player.skill_loadout.get_slot(2).ability.ability_id != &"riftbreak"
 		or menu._skill_cards[1].slot_definition.ability == null
-		or not menu._skill_cards[1].text.contains("RIFTBREAK")
+		or not menu._skill_cards[1].text.contains("CRASH")
 		or menu._equipment_cards.size() != player.weapon_catalog.weapons.size() + 5
 		or menu._material_cards.size() != MaterialInventory.MaterialCatalog.materials.size()
 		or menu._material_cards[0].quantity_label.text != "MAX"
 		or menu.vitality_label.text != "HP 248/248"
 	):
-		_fail("F9 did not preserve King's two implemented skills while refreshing gear, materials, and Level-10 vitality.")
+		_fail("F9 did not preserve King's current skills while refreshing gear, materials, and Level-10 vitality.")
 		return
 	menu.gear_tab_button.pressed.emit()
 	var gloves: EquipmentDefinition

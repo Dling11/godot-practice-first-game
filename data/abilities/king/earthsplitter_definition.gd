@@ -1,3 +1,4 @@
+class_name EarthsplitterDefinition
 extends AbilityDefinition
 
 ## Foundation values; presentation reads these same distances and timings.
@@ -16,7 +17,7 @@ func configure_form(value: Form) -> void:
 	range_pixels = [164.0,228.0,228.0][form]
 	lane_radius = [17.0,21.0,21.0][form]
 	weapon_damage_multiplier = [1.65,2.40,2.25][form]
-	display_name = ["Earthsplitter (Foundation Review)","Earthsplitter (Advanced Fan Review)","Cascading Rupture (Later Form Candidate)"][form]
+	display_name = ["Earthsplitter", "Earthsplitter: Fan", "Cascading Rupture"][form]
 	hud_name = ["EARTHSPLIT","EARTHFAN","CASCADE"][form]
 	hitbox_shape = CircleShape2D.new()
 	hitbox_shape.radius = lane_radius

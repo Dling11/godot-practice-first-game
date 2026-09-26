@@ -64,22 +64,22 @@ func _run() -> void:
 	king.global_position = Vector2(200.0, 200.0)
 	await physics_frame
 	var pursuit := king.ability_3_component as SovereignPursuitComponent
-	var riftbreak := king.ability_2_component as RiftbreakComponent
+	var molten_crash := king.ability_2_component as MoltenCrashComponent
 	if not pursuit.request_cast_at(Vector2(300.0, 200.0), 25.0):
 		_fail("Sovereign Pursuit did not start for the Skill 3-to-2 buffer proof.")
 		return
 	if not king.request_ability(2):
-		_fail("Riftbreak was not retained while Sovereign Pursuit was committed.")
+		_fail("Molten Crash was not retained while Sovereign Pursuit was committed.")
 		return
-	if riftbreak.is_casting():
-		_fail("Buffered Riftbreak overlapped Sovereign Pursuit.")
+	if molten_crash.is_casting():
+		_fail("Buffered Molten Crash overlapped Sovereign Pursuit.")
 		return
 	while pursuit.is_casting():
 		await physics_frame
-	if not riftbreak.is_casting():
-		_fail("Buffered Riftbreak did not execute when Sovereign Pursuit finished.")
+	if not molten_crash.is_casting():
+		_fail("Buffered Molten Crash did not execute when Sovereign Pursuit finished.")
 		return
-	riftbreak.cancel_cast()
+	molten_crash.cancel_cast()
 	king.queue_free()
 	await process_frame
 

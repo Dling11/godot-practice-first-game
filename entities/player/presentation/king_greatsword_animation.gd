@@ -14,10 +14,6 @@ func _refresh_stride() -> void:
 		_play_locomotion()
 
 func _play_action_phase(phase: int, duration_seconds: float) -> void:
-	var active := (owner as Player).get_active_ability_component()
-	if active is KingOathComponent:
-		_play_oath_phase(phase,duration_seconds,active)
-		return
 	speed_scale = 1.0
 	_kill_recoil_tween()
 	if phase == MeleeAttackComponent.Phase.WIND_UP:
@@ -100,64 +96,3 @@ func resume_locomotion() -> void:
 		if ability != null and ability.is_casting():
 			return
 	super.resume_locomotion()
-
-func _play_oath_phase(phase: int, duration: float, ability: KingOathComponent) -> void:
-	speed_scale=1.0
-	_kill_recoil_tween()
-	_kill_attack_phase_tween()
-	_action_locked=true
-	stop()
-	if phase==AbilityComponent.Phase.WIND_UP:
-		_action_direction=_direction
-	var tuning := ability.definition as KingOathDefinition
-	var key: String = ["oath_spin","riftbreak","dash","worldsplitter"][tuning.technique]
-	animation=key+"_"+_action_direction
-	position=_base_position
-	var first := 0
-	var last := 2
-	if phase==AbilityComponent.Phase.ACTIVE:
-		first=2
-		last=4
-	elif phase==AbilityComponent.Phase.RECOVERY:
-		first=5
-		last=7
-	first=mini(first,sprite_frames.get_frame_count(animation)-1)
-	last=mini(last,sprite_frames.get_frame_count(animation)-1)
-	frame=first
-	_attack_phase_tween=create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	_attack_phase_tween.tween_method(_set_attack_frame,float(first),float(last),maxf(duration,.01))
-
-func play_oath_strike(index: int, _count: int, _duration: float, ability: KingOathComponent) -> void:
-	if (ability.definition as KingOathDefinition).technique==KingOathDefinition.Technique.GRIEFWAKE and index>0:
-		return
-	_kill_attack_phase_tween()
-	position=_base_position
-	var tuning := ability.definition as KingOathDefinition
-	var key := "oath_spin"
-	var sequence: Array = [3,4,5,6,2]
-	var seconds := .19
-	match tuning.technique:
-		KingOathDefinition.Technique.CROSSCUT:
-			key="oath_spin" if index%2==0 else "return_cut"
-			sequence=[3,4,5,6,2]
-			seconds=.14
-		KingOathDefinition.Technique.GRIEFWAKE:
-			if index>0:
-				return
-			key="riftbreak"
-			sequence=[4,5,6,7]
-			seconds=.10
-		KingOathDefinition.Technique.STARFALL:
-			key="sovereign_pursuit"
-			sequence=[5,6,7]
-			seconds=.17
-		KingOathDefinition.Technique.OATHSTORM:
-			key="worldsplitter"
-			sequence=[4,5]
-			seconds=.10
-	animation=key+"_"+_action_direction
-	frame=sequence[0]
-	_attack_phase_tween=create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	for i in range(1,sequence.size()):
-		_attack_phase_tween.tween_interval(seconds/(sequence.size()-1))
-		_attack_phase_tween.tween_callback(set_frame.bind(sequence[i]))

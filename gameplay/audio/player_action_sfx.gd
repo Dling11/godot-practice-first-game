@@ -9,8 +9,6 @@ extends Node2D
 @export var ability_2_component: AbilityComponent
 @export var ability_3_component: AbilityComponent
 @export var ability_4_component: AbilityComponent
-@export var echoing_sever_fracture_player: AudioStreamPlayer2D
-@export var riftbreak_ground_slam_player: AudioStreamPlayer2D
 @export var sovereign_pursuit_landing_player: AudioStreamPlayer2D
 @export var sovereign_pursuit_launch_player: AudioStreamPlayer2D
 @export var skill_4_formation_player: AudioStreamPlayer2D
@@ -28,9 +26,7 @@ func play_attack_phase(phase: int, _duration_seconds: float) -> void:
 
 func play_ability_phase(phase: int, _duration_seconds: float) -> void:
 	var active_ability := _get_casting_ability()
-	if _is_echoing_sever(active_ability):
-		return
-	if _is_riftbreak(active_ability):
+	if active_ability is EarthsplitterComponent or active_ability is MoltenCrashComponent:
 		return
 	if _is_sovereign_pursuit(active_ability):
 		if phase == AbilityComponent.Phase.ACTIVE:
@@ -43,20 +39,13 @@ func play_ability_phase(phase: int, _duration_seconds: float) -> void:
 
 
 func play_ability_strike(strike_index: int, strike_count: int, _duration_seconds: float) -> void:
-	if _is_riftbreak(_get_casting_ability()):
-		_play(riftbreak_ground_slam_player, 0.96)
+	if _get_casting_ability() is EarthsplitterComponent or _get_casting_ability() is MoltenCrashComponent:
 		return
 	if _is_sovereign_pursuit(_get_casting_ability()):
 		_play(sovereign_pursuit_landing_player, 1.0)
 		return
 	if _is_skill_4(_get_casting_ability()):
 		_play(skill_4_explosion_player if strike_index >= strike_count - 1 else skill_4_first_impact_player, 0.96)
-		return
-	if _is_echoing_sever(_get_casting_ability()):
-		if strike_index >= strike_count - 1:
-			_play(echoing_sever_fracture_player, 1.0)
-		else:
-			_play(sword_swing_player, 0.90)
 		return
 
 
@@ -80,14 +69,6 @@ func _get_casting_ability() -> AbilityComponent:
 		if component != null and component.is_casting():
 			return component
 	return null
-
-
-func _is_echoing_sever(component: AbilityComponent) -> bool:
-	return component != null and component.definition != null and component.definition.ability_id == &"echoing_sever"
-
-
-func _is_riftbreak(component: AbilityComponent) -> bool:
-	return component != null and component.definition != null and component.definition.ability_id == &"riftbreak"
 
 
 func _is_sovereign_pursuit(component: AbilityComponent) -> bool:

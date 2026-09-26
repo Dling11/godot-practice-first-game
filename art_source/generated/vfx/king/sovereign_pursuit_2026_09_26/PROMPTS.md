@@ -1,0 +1,15 @@
+# Sovereign Pursuit review generation
+
+Built-in image generation on 2026-09-26. The existing `sovereign_pursuit_vfx_sheet_192.png` was the landing-style reference; `sovereign_pursuit_travel_vfx_sheet_128.png` was the travel-style reference. The first rock-heavy output is preserved as `landing_stone_source.png` but was rejected after owner review. The selected outputs are revised `landing_source.png` and unchanged `travel_source.png`. No King body frames were generated or changed. `tools/build_sovereign_pursuit_review.gd` registers, nearest-scales and alpha-hardens these sources into padded runtime atlases. The last landing frame is intentionally transparent for a clean exit; other used cells have binary alpha.
+
+## Landing prompt
+
+Create a production-ready 4-column by 4-row sprite sheet with exactly 16 separate animation frames for a top-down 2D pixel-art RPG skill effect, transparent background. Match the existing Sovereign Pursuit ground VFX style and palette: crisp hard pixel clusters, navy stone, charcoal debris, ice-blue and white-cyan spirit light. No character, UI, words, frame numbers, grid lines, painterly glow, gold, orange/red, or broad opaque disks. Keep the same center ground-contact point and generous transparent margins. Frames 1-2: quiet blue takeoff scuff and foot dust. Frames 3-4: faint ground compression. Frames 5-7: narrow downward white-blue sword point strikes center, sharp star, stone chips buckle upward. Frames 8-10: compact cross-shaped blue shock with asymmetric angular rock shards, within the gameplay radius when scaled down. Frames 11-13: thin broken ring of light and debris moves outward with an open center. Frames 14-16: light fades into a dark cracked-stone scar. Keep frames distinct, contact registered, flat top-down ground perspective and binary-looking edges.
+
+## Selected landing revision
+
+Edit the rejected landing sheet while preserving its 4x4 frame grid, top-down contact registration, hard-pixel density, transparent background and blue-white spirit palette. Remove the loose rock chunks, crater, debris halo and dark scar. Make the landing a blade-first downward cut with a sharp white-blue contact, then four asymmetric, open pressure arcs that expand rapidly and dissipate into a faint blue afterglow. Keep the center open around King and leave the final cell transparent so the effect clears cleanly. This revision changes the visual only; the gameplay radius remains 52px.
+
+## Travel prompt
+
+Create exactly eight distinct top-down pixel-art frames in 4 columns x 2 rows on transparent background, matching the existing Sovereign Pursuit travel sheath. Keep hard pixel clusters, blue-white spirit energy and one centered transparent character opening. No character, sword, ground, UI, text, border, halo, warm colors, bloom or painterly gradient. Progress from converging sparks to an elongated forward comet/sheath, then compress and stream backward before collapsing to a blue wisp. The sheath sits behind a roughly 28px King during a .28s leap, preserves his silhouette and uses the same identity and lighting direction in every frame.

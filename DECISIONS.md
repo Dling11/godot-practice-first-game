@@ -166,6 +166,9 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 
 | 155 | [Molten Crash upgrade forms](docs/decisions/155-molten-crash-upgrade-forms.md) | Stone/light Foundation, molten Advanced, delayed damage-only pulse and bounded Mature area in the Lab |
 
+| 156 | [Sovereign Pursuit visual review](docs/decisions/156-sovereign-pursuit-visual-review.md) | Reversible Skill 3 blade-cut/travel comparison with unchanged mobility and damage |
+| 157 | [King kit production cleanup](docs/decisions/157-king-kit-production-cleanup.md) | Promote King C and Skills 1-3; archive old Oath/skill variants and normalize saved slots |
+
 ## New Decisions
 
 Record future decisions as individual files under `docs/decisions/` using `NNN-short-title.md`, then add one row to this index. New ADRs should contain status, context, alternatives, decision, and consequences.

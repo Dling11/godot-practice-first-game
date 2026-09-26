@@ -78,8 +78,8 @@ func _ready() -> void:
 	collection.theme=get_node("UI/LabPanel").theme
 	collection.pressed.connect(func() -> void: player.get_node("KingSkillLibrary").open_collection())
 	get_node("UI").add_child(collection)
-	var king_review := preload("res://levels/combat_lab/king_spellward_review.gd").new()
-	king_review.name = "KingSpellwardReview"
+	var king_review := preload("res://levels/combat_lab/king_combat_review.gd").new()
+	king_review.name = "KingCombatReview"
 	add_child(king_review)
 	var review_button := Button.new()
 	review_button.text = "KING REVIEW"
@@ -92,21 +92,15 @@ func _ready() -> void:
 	_update_latest_label()
 	_update_status()
 	call_deferred("spawn_selected", 1)
-	if "--king-review" in OS.get_cmdline_user_args() or "--riftbreak-review" in OS.get_cmdline_user_args():
+	if "--king-review" in OS.get_cmdline_user_args() or "--pursuit-review" in OS.get_cmdline_user_args():
 		king_review.call_deferred("open_review")
-	if "--riftbreak-review" in OS.get_cmdline_user_args():
-		king_review.call_deferred("toggle_riftbreak_review")
 	if "--earthsplitter-review" in OS.get_cmdline_user_args() or "--earthsplitter-advanced-review" in OS.get_cmdline_user_args():
 		king_review.call_deferred("open_review")
-		king_review.call_deferred("toggle_earthsplitter_review")
 		if "--earthsplitter-advanced-review" in OS.get_cmdline_user_args():
-			king_review.call_deferred("toggle_earthsplitter_form")
+			king_review.call_deferred("set_earthsplitter_form", EarthsplitterDefinition.Form.FAN)
 
 	if "--molten-crash-review" in OS.get_cmdline_user_args():
 		king_review.call_deferred("open_review")
-		king_review.call_deferred("toggle_earthsplitter_review")
-		king_review.call_deferred("toggle_earthsplitter_form")
-		king_review.call_deferred("toggle_molten_review")
 
 func _style_review_panel() -> void:
 	# The lab uses a compact control surface at the real 960x540 viewport.

@@ -14,7 +14,7 @@ var _prepared := false
 var _hitbox: MeleeHitbox
 
 func _ready() -> void:
-	add_to_group("molten_crash_review_pulses")
+	add_to_group("molten_crash_pulses")
 	_hitbox = MeleeHitbox.new()
 	add_child(_hitbox)
 	_hitbox.hit_landed.connect(func(target: HurtboxComponent, info: DamageInfo) -> void:

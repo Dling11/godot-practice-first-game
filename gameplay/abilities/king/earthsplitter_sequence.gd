@@ -19,7 +19,7 @@ var _cancelled := false
 var _shared_targets: Dictionary = {}
 
 func _ready() -> void:
-	add_to_group("earthsplitter_review_sequences")
+	add_to_group("earthsplitter_sequences")
 	_launch_due()
 
 func _physics_process(delta: float) -> void:

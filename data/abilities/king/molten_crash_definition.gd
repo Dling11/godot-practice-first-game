@@ -1,7 +1,7 @@
 class_name MoltenCrashDefinition
 extends RiftbreakDefinition
 
-## Four bounded Lab upgrade forms of the same local control skill.
+## Four bounded forms of the same local control skill; later forms are Lab-only.
 enum Form { FOUNDATION, ADVANCED, AWAKENED, MATURE }
 @export var form: Form = Form.FOUNDATION
 @export var aftershock_delay_seconds := 0.0
@@ -11,7 +11,7 @@ enum Form { FOUNDATION, ADVANCED, AWAKENED, MATURE }
 
 func _init() -> void:
 	ability_id = &"riftbreak"
-	display_name = "Molten Crash (Review)"
+	display_name = "Molten Crash"
 	hud_name = "MOLTEN"
 	activation_mode = ActivationMode.SELF_AREA
 	ground_center_offset_y = 0.0
@@ -27,7 +27,6 @@ func _init() -> void:
 	cooldown_seconds = 8.0
 	dash_cancelable = true
 	impact_weight = ImpactWeight.HEAVY
-	set_meta("molten_crash_review",true)
 	configure_form(Form.FOUNDATION)
 
 func configure_form(value: Form) -> void:
@@ -41,12 +40,12 @@ func configure_form(value: Form) -> void:
 	stun_core_radius_pixels = 0.0
 	damage_core_radius_pixels = 48.0 if form == Form.MATURE else 0.0
 	outer_damage_ratio = .72 if form == Form.MATURE else 1.0
-	display_name = ["Molten Crash (Foundation Review)","Molten Crash (Advanced Review)","Furnace Break (Awakened Review)","Caldera (Mature Review)"][form]
+	display_name = ["Molten Crash","Molten Crash: Advanced","Furnace Break","Caldera"][form]
 	hud_name = ["CRASH","MOLTEN","FURNACE","CALDERA"][form]
 	hitbox_shape = CircleShape2D.new()
 	hitbox_shape.radius = effect_radius_pixels
 	description = [
-		"A quick stone-and-light sword crash. 72px local impact and initial stun.",
+		"A quick blue stone-and-light sword crash. 72px local impact and initial stun.",
 		"Molten sword crash: 80px impact and stronger damage, with initial stun.",
 		"The 84px crash leaves one delayed, damage-only heat pulse in 86px.",
 		"A stronger 86px center, gentler rim and one damage-only heat pulse."

@@ -1,3 +1,4 @@
+class_name MoltenCrashComponent
 extends RiftbreakComponent
 
 ## Local, single-contact authority. Effects may outlive Player recovery.

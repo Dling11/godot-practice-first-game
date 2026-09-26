@@ -33,8 +33,6 @@ func _bind() -> void:
 	for ability in actor.get_all_ability_components():
 		if ability != null:
 			ability.ability_started.connect(_on_skill_started.bind(ability))
-			if ability is KingOathComponent and (ability.definition as KingOathDefinition).technique==KingOathDefinition.Technique.STARFALL:
-				ability.step_completed.connect(func() -> void: _on_pursuit_landed(0, 1, 0.0))
 	actor.ability_3_component.strike_started.connect(_on_pursuit_landed)
 
 func _on_swing_started() -> void:
@@ -50,9 +48,8 @@ func _on_sword_hit(_target: HurtboxComponent, _info: DamageInfo) -> void:
 
 func _on_skill_started(ability: AbilityComponent) -> void:
 	actor.attack_component.reset_combo()
-	var is_breakstep := ability is KingOathComponent and (ability.definition as KingOathDefinition).technique == KingOathDefinition.Technique.STARFALL
-	var resolved := stacks >= definition.resolve_hits and not is_breakstep
-	var is_rupture := ability == actor.ability_2_component or (ability is KingOathComponent and (ability.definition as KingOathDefinition).technique==KingOathDefinition.Technique.GRIEFWAKE)
+	var resolved := stacks >= definition.resolve_hits
+	var is_rupture := ability == actor.ability_2_component
 	var linked := not _link.is_stopped() and is_rupture
 	var multiplier := definition.level_multiplier(actor.progression_component.level)
 	if resolved:
@@ -68,10 +65,6 @@ func _on_skill_started(ability: AbilityComponent) -> void:
 func _on_pursuit_landed(_index: int, _count: int, _duration: float) -> void:
 	_link.start(definition.pursuit_rift_window_seconds)
 	link_changed.emit(true)
-
-func _on_starfall_landed(index: int, count: int, duration: float) -> void:
-	if index==0:
-		_on_pursuit_landed(index,count,duration)
 
 func clear_resolve() -> void:
 	stacks = 0
