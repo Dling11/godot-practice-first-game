@@ -1,47 +1,33 @@
-# Skill 4 proposal: Unbroken Vow
+# Unbroken Vow — playable Skill 4
 
-Status: role, blue barrier, planted pressure-release flow and upgrade identities approved, 2026-09-27. Numeric balance remains provisional. A down-facing activation-body/pressure/audio study now exists under `art_source/review/characters/king/unbroken_vow_activation_2026_09_27/`; it is not a playable buff. No production ability, loadout, save, audio, character frames, or Worldsplitter behavior changed. Existing players keep Worldsplitter learned and equipped after its eventual move to5. Until Skill4 is playable, Worldsplitter remains in the current fourth slot.
+Status: implemented 2026-09-27. Role and blue barrier approved; current numbers are first playable tuning, pending owner combat-feel review. Worldsplitter is now slot5 and stays learned.
 
-## Role
+## Gameplay
 
-King briefly gathers power through his real greatsword and releases a sharp body-centered pressure burst. An elliptical ground seal rises into a connected curved blue-violet barrier enclosing his body, then follows him through walking, dodging, and other skills. Concentrated arm/greatsword energy communicates the outgoing damage bonus. The activation can create breathing room, but Molten Crash remains the local stun and Worldsplitter remains the large targeted finisher. The appearance never changes King's approved C sprite scale or redraws him per aura frame.
+King braces for .16s, releases pressure, then finishes recovery at .32s. Shielded movement, dodge, basic attacks and other skills remain available after the cast. A single 42px pulse pushes eligible Light enemies without damage/stun, respecting terrain and control resistance.
 
-Owner visual correction, 2026-09-27: floating ornaments alone do not communicate protection. V2 replaces that visual direction with a wrapping shell and a more deliberate ground circle. `art_source/review/characters/king/unbroken_vow_v2_2026_09_27/` contains the current generated review; V1 remains historical comparison. This is a visual revision, not approval of balance numbers or a playable implementation.
+| Rank | Manual Eira requirement | Shield | Duration | Damage while shielded | Added effect |
+|---|---|---|---|---|---|
+| Foundation | Core technique | 25% max HP | 6s | +12% | Pressure activation |
+| Advanced | Level 7 | 30% max HP | 7s | +15% | +8% movement, sharing the 35% gear cap |
+| Mature | Level 10 | 35% max HP | 8s | +18% | Third basic-combo cut gains +30% damage and a small rising/downcut pressure accent |
 
-## Proposed Foundation rules
+Cooldown is20s from activation. Startup can be interrupted before protection arrives. The shield is a separate transient pool after armor/ward, not armor or invulnerability; excess breaking damage reaches HP. Full absorption prevents the normal HP-damage reaction. Break, expiry, defeat, rank replacement or unequipping Vow removes its bonuses. Recasts replace rather than stack the shield. Mature does not add a second hit, stun, movement teleport or airborne invulnerability; equipment attack timing still applies. Already committed damage snapshots retain their accepted modifiers.
 
-- Start-up/return of control: 0.25–0.35 seconds, with the current body study at0.32s. King draws energy inward, braces, and the outward burst marks activation. The lingering aura runs while the player controls King.
-- A one-time approximately 42px pressure pulse at activation pushes eligible Light enemies without damage or stun. Elite/Heavy/Boss control rules remain authoritative. No hit pause from a zero-damage push.
-- For 6 seconds, a shield absorbs mitigated incoming damage up to 25% of current maximum HP. The shield is a separate temporary pool; it does not alter equipment armor, ward or maximum HP. A partial break passes excess damage through. No invulnerability; Examiner's authored Verdict still pierces Dodge and can overwhelm an early shield.
-- While shield remains, basic attacks and damaging skills gain +12% damage. End the bonus when the shield breaks or the duration expires. Combine this additively with temporary Resolve and Pursuit-link bonuses before normal weapon/critical calculations, so stacking remains bounded and legible. The buff itself cannot consume Resolve or its own damage bonus.
-- Cooldown prototype: 20 seconds from activation. The shield cannot stack with another cast of itself. Defeat, scene exit and skill reconfiguration clear its transient state.
+Resolve, Pursuit-link and Vow bonuses combine additively. Casting Vow does not spend Resolve or the Pursuit link. Level and equipment progression still affect damaging techniques; shield capacity scales with maximum HP.
 
-These are first balance targets, not approved values. Measure against Stage VI crowds, starter/Stage V armor, the existing Resolve/Pursuit-to-Molten burst, and the Examiner's finite 800-raw Verdict before promotion.
+## Presentation
 
-## Eira upgrade ladder, proposed
+Production reuses the approved generated barrier and pressure atlases at .5 scale and King's existing foot registration. A generated eight-slot down-facing brace plays on the actual body; left/right/up use existing approved heavy-cleave anticipation/release frames at the same size. Bespoke brace drawings for those directions remain an art follow-up. Hit flash, low-shield flicker, reverse-frame collapse and crimson current use the accepted atlas; no new painted crack sheet is claimed. Mature reuses the approved cleave with a 5px visual rise and one compact Earthsplitter contact accent. No collision movement comes from these visuals.
 
-| Form | Provisional training gate | Shield / duration / damage | New decision |
-|---|---|---|---|
-| Foundation | Learned with Skill 4 | 25% max HP / 6s / +12% | Quick activation push creates room, then shielded offense. |
-| Advanced | Eira at Level 7 | 30% max HP / 7s / +15% | Add modest movement speed while shielded; begin testing at+8%, through existing equipment/movement rules and caps. |
-| Mature | Eira at Level 10 | 35% max HP / 8s / +18% | Retain Advanced speed and empower the third basic-combo strike with a short rising step, heavy downward cut and compact pressure impact. Preserve normal combo timing, equipment speed and explicit stun rules. Final damage/radius need a separate measured prototype. |
+A numeric shield/time readout and bar sit below the character-menu control. Activation has one existing pressure sound; sustain remains quiet. Prior generated-source/GIF directories are retained as provenance, while the old pose rehearsal remains optional in Lab.
 
-The owner accepted this upgrade flow. It supersedes the earlier shield-break push and Mature recast explosion proposals. No automatic stun or jump invulnerability is granted by the finisher's appearance; no secondary cooldown, extra contact or uncapped damage budget is implied. Numbers and Eira gates are still tuning targets.
+## Worldsplitter — Skill 5
 
-The current stage caps make Levels 7 and 10 reachable after Stages IV and V. Training should be manual through Eira, like Pursuit. No automatic upgrade on level-up. Worldsplitter stays learned and moves to fifth slot for existing players and fresh kits. Saved layouts require a migration that moves it from slot 4 to 5 while placing Unbroken Vow in slot 4, preserving explicitly customized other slots where possible.
+The approved Molten Crash summoned sword now lands at the chosen point, then four small Earthsplitter faults spread into a radial pressure release. King commits .18s startup + .03s contact + .11s recovery; the released follow-up happens .24s after contact while movement/dodge are available. Initial radius54px at220% weapon damage; final radius90px at300%, with .5s designated stun and100 knockback. Range260px, cooldown20s. Preview and commit share terrain clipping; each pulse checks foot radius and line of sight. Presentation owns no hits, and pending attacks cancel on source defeat/scene teardown. Existing generated sword/eruption/pressure art and sound are reused, not a new character design. Later Worldsplitter forms are not implemented; normal equipment/level/Resolve scaling still applies.
 
-## Animation, sound, and HUD contract
+## Persistence and testing
 
-Activation-body study: eight192x128 pose slots, exact approved idle in first/last, one shared .25 source scale and y96 foot anchor. Standing body remains56px at .5 production scale; the brief brace compresses to52px and release rebounds to57px. The review has normal/slow/native GIFs, unchanged down-walk transition, separate generated crimson currents/ground pressure, a tiny release-only view jolt and an original .65s pressure WAV. This is a composited art study, not runtime gameplay. The first narrow-body generation was rejected; the final source uses an exact existing-sprite template, and two duplicated forearms were corrected with approved pixels. No new character design or UI scale is approved by this work.
+Vow rank and layout version are optional fields in the existing version-1 save format. Legacy default Worldsplitter moves4→5; Vow occupies4; displaced techniques move to empty slots, and existing custom Worldsplitter positions remain. The migration is idempotent. Temporary shield/duration never save. Eira level caps still apply; no automatic rank-up.
 
-V2 barrier semantics remain accepted: the ground seal ignites, curved shell rises, closure burst marks activation, then three quiet barrier drawings loop. Keep the center open so King and enemy tells remain readable, with a front lip over the boots and the rest behind the body. Surface glints indicate curved protective substance rather than detached gems. In production, crimson weapon-edge/forearm accents signal increased outgoing damage and follow the actual directional weapon. Remaining directions and weapon tracking still need authoring. The seal does not imply continuous ground damage. Accepted shield damage creates one localized ripple; low remaining shield introduces cracks; breaking removes shell and damage accents together. Natural expiry collapses quietly. These response states remain planned.
-
-The V1 floating-shard source/review directories remain historical comparison. V2 owns the accepted shield design; the activation-body study layers new motion and pressure around it. Production still needs remaining directions, shield-break/expiry, Mature combo-finisher frames and careful moving-player depth. Keep one contact audio/camera cue per release; the sustain should stay quiet.
-
-The shield needs a visible numeric/bar readout near King's HP or Skill4 status; the aura alone cannot communicate remaining protection. Show remaining duration without replacing ten-slot click targets. Aura VFX observes buff state. `HealthComponent` owns mitigated damage/partial absorption, a dedicated King buff component owns duration/rank, and outgoing damage and movement authorities own their temporary modifiers. The melee combo owns the Mature finisher contact. Save ranks, not transient shield time.
-
-## Review boundary
-
-Ready test route: F7 -> KING REVIEW -> BUFF TEST, or `tools/launch_unbroken_vow_test.ps1`. This now runs the down-facing pose and barrier on the real Player, returns control after .32s, and permits normal movement/dodge/attack during a six-second visual sustain. It grants no buff stats. The 31-check smoke plus King/Lab regressions pass; actual GPU screenshots and shutdown-warning evidence are in `art_source/review/characters/king/unbroken_vow_in_engine_2026_09_27/`. Always include this kind of owner-accessible test alongside future art/gameplay deliveries.
-
-Role and visual flow are approved. Continue Foundation implementation in F7, validate the new poses against production King, and promote with slot migration after a playable comparison. Worldsplitter's existing stable ability ID can remain even when equipped in slot5; node names are not player-facing slot authority. Do not rename that ID or orphan existing saved layouts. The old counter-only Unbroken Stand remains superseded history.
+F7 opens Combat Lab; F9 restores all five skills. Skills tab offers Vow rank selection without training/saving. Use4 to buff and5 to target Worldsplitter; disable AI-tab invincibility to test absorption. Combat, save/trainer, terrain, cancellation and native GPU review live in the focused tests and review README. Phone profiling and subjective balance remain open.

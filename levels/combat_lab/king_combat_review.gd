@@ -6,12 +6,13 @@ var actor: Player
 var body: AnimatedSprite2D
 var _panel: PanelContainer
 var _message: Label
-var _earth_form: Button
-var _molten_form: Button
-var _pursuit_rank: Button
+var _earth_form: OptionButton
+var _molten_form: OptionButton
+var _pursuit_rank: OptionButton
+var _vow_rank: OptionButton
+var _world_rank: OptionButton
 var _speed_button: Button
 var _zoom_button: Button
-var _zoomed := false
 var _speed_mode := 0
 var _show_reach := false
 var buff_test: Node
@@ -31,8 +32,9 @@ func _ready() -> void:
 
 
 func open_review() -> void:
+	lab.show_skills_tab()
 	_panel.show()
-	_message.text = "Current King C · Earthsplitter · Molten Crash · Sovereign Pursuit. FORM changes are Lab-only."
+	_message.text = "Choose upgrades below. Lab previews never spend levels or change trained ranks."
 
 
 func open_buff_test() -> void:
@@ -41,7 +43,7 @@ func open_buff_test() -> void:
 
 
 func can_switch() -> bool:
-	return not actor.is_defeated and not actor.is_restrained() and not actor.is_in_hit_recovery() and not actor._is_targeting_any_ability() and not actor.is_any_ability_casting() and not actor.evade_component.is_dashing() and actor.attack_component.phase == MeleeAttackComponent.Phase.IDLE
+	return not actor.is_cinematic_locked() and not actor.is_defeated and not actor.is_restrained() and not actor.is_in_hit_recovery() and not actor._is_targeting_any_ability() and not actor.is_any_ability_casting() and not actor.evade_component.is_dashing() and actor.attack_component.phase == MeleeAttackComponent.Phase.IDLE
 
 
 func set_earthsplitter_form(value: int) -> bool:
@@ -56,7 +58,7 @@ func set_earthsplitter_form(value: int) -> bool:
 	actor.ability_1_component.collision_shape.shape = next.hitbox_shape
 	actor.ability_1_component.clear_cooldown()
 	actor.get_node("KingSkillLibrary").refresh()
-	_earth_form.text = ["SKILL 1: FOUNDATION", "SKILL 1: FAN", "SKILL 1: CASCADE TEST"][value]
+	_earth_form.select(value)
 	_message.text = "Skill 1 form preview only; campaign starts with Foundation."
 	return true
 
@@ -73,7 +75,7 @@ func set_molten_form(value: int) -> bool:
 	actor.ability_2_component.collision_shape.shape = next.hitbox_shape
 	actor.ability_2_component.clear_cooldown()
 	actor.get_node("KingSkillLibrary").refresh()
-	_molten_form.text = ["SKILL 2: FOUNDATION", "SKILL 2: ADVANCED", "SKILL 2: AWAKENED", "SKILL 2: MATURE"][value]
+	_molten_form.select(value)
 	_message.text = "Skill 2 form preview only; campaign starts with blue Foundation."
 	return true
 
@@ -84,7 +86,7 @@ func set_pursuit_rank(value: int) -> bool:
 	var pursuit := actor.ability_3_component as SovereignPursuitComponent
 	pursuit.apply_rank(value)
 	actor.get_node("KingSkillLibrary").refresh()
-	_pursuit_rank.text = ["SKILL 3: 1 USE", "SKILL 3: 2 USES", "SKILL 3: 3 USES"][value]
+	_pursuit_rank.select(value)
 	_message.text = "Pursuit charge preview only; campaign upgrades are trained with Eira."
 	return true
 
@@ -130,36 +132,82 @@ func sample_hit(seconds: float) -> void:
 
 func _build_panel() -> void:
 	_panel = PanelContainer.new()
-	_panel.position = Vector2(46, 150)
-	_panel.size = Vector2(648, 64)
-	_panel.theme = lab.get_node("UI/LabPanel").theme
+	_panel.name = "SkillReview"
+	_panel.add_theme_stylebox_override("panel", StyleBoxEmpty.new())
+	lab.skills_controls.add_child(_panel)
 	var stack := VBoxContainer.new()
+	stack.add_theme_constant_override("separation", 5)
 	_panel.add_child(stack)
-	var row := HBoxContainer.new()
+	_heading(stack, "1 · EARTHSPLITTER")
+	_earth_form = _option(stack, ["Foundation · one lane", "Fan · three lanes + follow-up", "Cascade · successive waves"], func(value: int) -> void:
+		if not set_earthsplitter_form(value): _selection_busy())
+	_heading(stack, "2 · MOLTEN CRASH")
+	_molten_form = _option(stack, ["Foundation · blue impact", "Advanced · molten impact", "Awakened · aftershock", "Mature · stronger core"], func(value: int) -> void:
+		if not set_molten_form(value): _selection_busy())
+	_heading(stack, "3 · SOVEREIGN PURSUIT")
+	_pursuit_rank = _option(stack, ["Foundation · 1 use / 220px", "Advanced · 2 uses / 250px", "Mature · 3 uses / 280px"], func(value: int) -> void:
+		if not set_pursuit_rank(value): _selection_busy())
+	_heading(stack, "4 · UNBROKEN VOW")
+	_vow_rank = _option(stack, ["Foundation · shield + damage", "Advanced · shield + speed", "Mature · empowered combo"], func(value: int) -> void:
+		if not set_vow_rank(value): _selection_busy())
+	_heading(stack, "5 · WORLDSPLITTER · AVAILABLE")
+	_world_rank = _option(stack, ["Foundation · 1 blue sword", "Advanced · 2 summoned swords", "Mature · 3 crimson swords"], func(value: int) -> void:
+		if not set_worldsplitter_rank(value): _selection_busy())
+	_button(stack, "OLD POSE REHEARSAL", open_buff_test)
+	_button(stack, "EDIT TEN-SLOT LOADOUT", func() -> void: actor.get_node("KingSkillLibrary").open_collection())
+	_heading(stack, "KING · MOVEMENT & HIT REVIEW")
+	var row := GridContainer.new()
+	row.columns = 2
 	stack.add_child(row)
 	_speed_button = _button(row, "SPEED: GEAR", cycle_speed)
 	_zoom_button = _button(row, "VIEW: GAME", _toggle_zoom)
 	_button(row, "HIT", sample_hit.bind(.11))
 	_button(row, "STUN", sample_hit.bind(.8))
-	_button(row, "REACH", func() -> void: _show_reach = not _show_reach; set_process(_show_reach); queue_redraw())
-	_button(row, "HIDE", func() -> void: _panel.hide())
-	var forms := HBoxContainer.new()
-	stack.add_child(forms)
-	_earth_form = _button(forms, "SKILL 1: FOUNDATION", func() -> void: set_earthsplitter_form(((actor.ability_1_component.definition as EarthsplitterDefinition).form + 1) % 3))
-	_molten_form = _button(forms, "SKILL 2: FOUNDATION", func() -> void: set_molten_form(((actor.ability_2_component.definition as MoltenCrashDefinition).form + 1) % 4))
-	var current_pursuit_rank := (actor.ability_3_component.definition as SovereignPursuitDefinition).rank
-	_pursuit_rank = _button(forms, ["SKILL 3: 1 USE", "SKILL 3: 2 USES", "SKILL 3: 3 USES"][current_pursuit_rank], func() -> void: set_pursuit_rank(((actor.ability_3_component.definition as SovereignPursuitDefinition).rank + 1) % 3))
-	_button(forms, "BUFF TEST", open_buff_test)
+	_button(stack, "TOGGLE ATTACK REACH", func() -> void: _show_reach = not _show_reach; set_process(_show_reach); queue_redraw())
 	_message = Label.new()
+	_message.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_message.add_theme_font_size_override("font_size", 10)
+	_message.text = "Upgrade previews are Lab-only. Press 4 to buff; aim 5 for Worldsplitter."
 	stack.add_child(_message)
-	lab.get_node("UI").add_child(_panel)
-	_panel.hide()
+	_sync_forms()
 
 
-func _button(row: HBoxContainer, label: String, action: Callable) -> Button:
+func _sync_forms() -> void:
+	_earth_form.select((actor.ability_1_component.definition as EarthsplitterDefinition).form)
+	_molten_form.select((actor.ability_2_component.definition as MoltenCrashDefinition).form)
+	_pursuit_rank.select((actor.ability_3_component.definition as SovereignPursuitDefinition).rank)
+	_vow_rank.select((actor.get_node("UnbrokenVowComponent").definition as UnbrokenVowDefinition).rank)
+	_world_rank.select((actor.ability_4_component.definition as KingSkill4Definition).rank)
+
+
+func _selection_busy() -> void:
+	_sync_forms()
+	_message.text = "Finish the current action and its impacts before changing upgrades."
+
+
+func _heading(stack: Container, label: String) -> void:
+	var heading := Label.new()
+	heading.text = label
+	heading.add_theme_font_size_override("font_size", 10)
+	heading.add_theme_color_override("font_color", Color("c7b88e"))
+	stack.add_child(heading)
+
+
+func _option(stack: Container, choices: Array, action: Callable) -> OptionButton:
+	var option := OptionButton.new()
+	option.fit_to_longest_item = false
+	option.focus_mode = Control.FOCUS_NONE
+	for choice: String in choices:
+		option.add_item(choice)
+	option.item_selected.connect(action)
+	stack.add_child(option)
+	return option
+
+
+func _button(row: Container, label: String, action: Callable) -> Button:
 	var button := Button.new()
 	button.text = label
+	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	button.focus_mode = Control.FOCUS_NONE
 	button.pressed.connect(action)
 	row.add_child(button)
@@ -167,9 +215,9 @@ func _button(row: HBoxContainer, label: String, action: Callable) -> Button:
 
 
 func _toggle_zoom() -> void:
-	_zoomed = not _zoomed
-	lab.camera.zoom = Vector2(2, 2) if _zoomed else Vector2.ONE
-	_zoom_button.text = "VIEW: CLOSE" if _zoomed else "VIEW: GAME"
+	var close_view: bool = lab.camera.zoom == Vector2.ONE
+	lab.camera.zoom = Vector2(2, 2) if close_view else Vector2.ONE
+	_zoom_button.text = "VIEW: CLOSE" if close_view else "VIEW: GAME"
 
 
 func _process(_delta: float) -> void:
@@ -188,3 +236,22 @@ func _draw() -> void:
 		points.append(transform * point)
 	points.append(points[0])
 	draw_polyline(points, Color("c6edff") if actor.attack_component.phase == MeleeAttackComponent.Phase.ACTIVE else Color("607c86"), 1.0)
+
+func set_vow_rank(value: int) -> bool:
+	if value < 0 or value > 2 or not can_switch(): return false
+	(actor.get_node("UnbrokenVowComponent") as UnbrokenVowComponent).apply_rank(value)
+	actor.get_node("KingSkillLibrary").refresh()
+	_vow_rank.select(value)
+	_message.text = "Vow upgrade preview. Press 4; disable invincibility under AI to test shield damage."
+	return true
+
+func set_worldsplitter_rank(value: int) -> bool:
+	if value < 0 or value > 2 or not can_switch(): return false
+	for sequence in get_tree().get_nodes_in_group("worldsplitter_sequences"):
+		if sequence.source == actor: return false
+	(actor.ability_4_component as KingSkill4Component).apply_rank(value)
+	actor.ability_4_component.clear_cooldown()
+	actor.get_node("KingSkillLibrary").refresh()
+	_world_rank.select(value)
+	_message.text = "Worldsplitter: aim 5, then move. Each new sword buries and bursts across the target area."
+	return true

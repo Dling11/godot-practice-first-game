@@ -43,7 +43,7 @@ func _ready() -> void:
 	header.add_child(title)
 	var core_kit := Button.new()
 	core_kit.text="Equip core kit"
-	core_kit.tooltip_text="Assign learned core techniques to 1–4. Unlearned techniques remain empty."
+	core_kit.tooltip_text="Assign learned core techniques to 1–5. Unlearned techniques remain empty."
 	core_kit.disabled=not library.can_edit()
 	core_kit.pressed.connect(library.equip_core_kit)
 	header.add_child(core_kit)
@@ -72,7 +72,10 @@ func _ready() -> void:
 	_detail.add_theme_font_size_override("normal_font_size",13)
 	detail_column.add_child(_detail)
 	_upgrade_button=Button.new()
-	_upgrade_button.pressed.connect(func() -> void: library.upgrade_pursuit(trainer_access))
+	_upgrade_button.pressed.connect(func() -> void:
+		if _selected == "unbroken_vow": library.upgrade_vow(trainer_access)
+		elif _selected == "king_skill_4": library.upgrade_worldsplitter(trainer_access)
+		else: library.upgrade_pursuit(trainer_access))
 	detail_column.add_child(_upgrade_button)
 	_slots=GridContainer.new()
 	_slots.columns=5
@@ -111,8 +114,8 @@ func _refresh() -> void:
 			_detail.text="[b]"+ability.definition.display_name+"[/b]\n\n"+ability.definition.description
 			if not library.can_edit():
 				_detail.text+="\n\nReturn to Sanctuary to change equipped techniques."
-	_upgrade_button.visible=_selected=="sovereign_pursuit" and not library.is_lab()
-	if _upgrade_button.visible:
+	_upgrade_button.visible=_selected in ["sovereign_pursuit", "unbroken_vow", "king_skill_4"] and not library.is_lab()
+	if _upgrade_button.visible and _selected == "sovereign_pursuit":
 		var rank: int=(library.actor.ability_3_component.definition as SovereignPursuitDefinition).rank
 		var required: int=library.get_pursuit_upgrade_level()
 		if required==0:
@@ -122,6 +125,14 @@ func _refresh() -> void:
 		else:
 			_upgrade_button.text="UPGRADE PURSUIT TO %d USES / %d PX · LEVEL %d" % [rank+2, [250,280][rank], required]
 		_upgrade_button.disabled=not library.can_upgrade_pursuit(trainer_access)
+	if _upgrade_button.visible and _selected == "unbroken_vow":
+		var required := library.get_vow_upgrade_level()
+		_upgrade_button.text = "UNBROKEN VOW MASTERED" if required == 0 else ("TRAIN VOW · LEVEL %d" % required if trainer_access else "SPEAK WITH EIRA TO UPGRADE VOW")
+		_upgrade_button.disabled = not library.can_upgrade_vow(trainer_access)
+	if _upgrade_button.visible and _selected == "king_skill_4":
+		var required := library.get_worldsplitter_upgrade_level()
+		_upgrade_button.text = "WORLDSPLITTER MASTERED" if required == 0 else ("TRAIN WORLDSPLITTER · LEVEL %d" % required if trainer_access else "SPEAK WITH EIRA TO UPGRADE WORLDSPLITTER")
+		_upgrade_button.disabled = not library.can_upgrade_worldsplitter(trainer_access)
 	for i in SkillLoadoutDefinition.SLOT_COUNT:
 		var slot := library.actor.skill_loadout.get_slot(i+1)
 		var button := Button.new()

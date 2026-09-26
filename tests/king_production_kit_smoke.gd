@@ -19,14 +19,14 @@ func _run() -> void:
 	var library: KingSkillLibrary = actor.get_node("KingSkillLibrary")
 	var review: Node = lab.get_node("KingCombatReview")
 	var body: AnimatedSprite2D = actor.get_node("VisualRoot/Body")
-	check(body.sprite_frames == load("res://assets/characters/playable/king/spellward/spellward_frames.tres") and body.scale == Vector2(.5, .5), "Current King C art is not production")
+	check(body.sprite_frames.get_frame_texture("idle_down",0).atlas == (load("res://assets/characters/playable/king/spellward/spellward_frames.tres") as SpriteFrames).get_frame_texture("idle_down",0).atlas and body.scale == Vector2(.5, .5), "Current King C art is not production")
 	check(body.material is ShaderMaterial and body.get_script().resource_path == "res://entities/player/presentation/king_spellward_animation.gd", "Current outline and animation are not production")
-	check(library.entries().size() == 4 and library.current_ids().slice(0, 4) == KingSkillCatalog.IDS, "Retired Oath abilities leaked into the collection")
+	check(library.entries().size() == 5 and library.current_ids().slice(0, 5) == KingSkillCatalog.IDS, "Retired Oath abilities leaked into the collection")
 	check(actor.ability_1_component is EarthsplitterComponent and actor.ability_1_component.definition.display_name == "Earthsplitter", "Skill 1 is not Earthsplitter")
 	check(actor.ability_2_component is MoltenCrashComponent and actor.ability_2_component.definition.form == MoltenCrashDefinition.Form.FOUNDATION, "Skill 2 is not blue Foundation")
 	check(actor.get_node("AbilityPivot/SovereignPursuitVisual/EffectSprite").sprite_frames == load("res://assets/vfx/abilities/king/sovereign_pursuit_review/landing_frames.tres"), "Skill 3 blade-cut art is not production")
 	check(KingSkillCatalog.valid_slots(["crosscut_advance", "griefwake", "starfall_step", "oathstorm"]), "Legacy save IDs cannot be read")
-	check(KingSkillCatalog.expanded_slots(["crosscut_advance", "griefwake", "starfall_step", "oathstorm"]).slice(0, 4) == KingSkillCatalog.IDS, "Legacy save IDs do not migrate to the core kit")
+	check(KingSkillCatalog.migrate_legacy_slots(["crosscut_advance", "griefwake", "starfall_step", "oathstorm"]).slice(0, 5) == KingSkillCatalog.IDS, "Legacy save IDs do not migrate to the core kit")
 	check(KingSkillCatalog.expanded_slots(["echoing_sever", "crosscut_advance", "", ""]).slice(0, 2) == ["echoing_sever", ""], "Mixed save duplicates were not removed")
 	check(review.set_earthsplitter_form(EarthsplitterDefinition.Form.FAN), "Skill 1 Lab form selection failed")
 	check(actor.ability_1_component.definition.form == EarthsplitterDefinition.Form.FAN and library.current_ids()[0] == "echoing_sever", "Skill 1 form lost its slot identity")
@@ -50,11 +50,12 @@ func _run() -> void:
 	check(actor.ability_2_component is MoltenCrashComponent and not get_nodes_in_group("molten_crash_effects").is_empty(), "Molten Crash did not release its visual contact")
 	await create_timer(.9, false).timeout
 	var session := root.get_node("RunSession")
+	session.king_skill_layout_version = 0
 	session.king_skill_slots = ["crosscut_advance", "griefwake", "starfall_step", "oathstorm"]
 	var restored := PlayerScene.instantiate() as Player
 	root.add_child(restored)
 	await process_frame
-	check(restored.get_node("KingSkillLibrary").current_ids().slice(0, 4) == KingSkillCatalog.IDS and session.king_skill_slots.slice(0, 4) == KingSkillCatalog.IDS, "A loaded Oath save was not migrated")
+	check(restored.get_node("KingSkillLibrary").current_ids().slice(0, 5) == KingSkillCatalog.IDS and session.king_skill_slots.slice(0, 5) == KingSkillCatalog.IDS, "A loaded Oath save was not migrated")
 	restored.queue_free()
 	lab.queue_free()
 	print("KING_PRODUCTION_KIT_SMOKE_FAILURES=", failures)

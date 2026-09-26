@@ -228,7 +228,7 @@ func _run() -> void:
 		return
 	var front_depth_size := (front_depth_shape.shape as RectangleShape2D).size
 	var front_depth_bounds := Rect2(
-		altar.front_depth_area.position - front_depth_size * 0.5,
+		altar.front_depth_area.position + front_depth_shape.position - front_depth_size * 0.5,
 		front_depth_size
 	)
 	var trigger_world_bounds := Rect2(trigger.position - trigger_size * 0.5, trigger_size)

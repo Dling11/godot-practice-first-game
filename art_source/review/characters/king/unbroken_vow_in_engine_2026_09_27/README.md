@@ -1,6 +1,6 @@
 # Unbroken Vow in-engine test
 
-Open **F7 -> KING REVIEW -> BUFF TEST**. Press **T** or **REPLAY**. After the .32s activation, use normal movement, Dodge and basic/skill attacks while the barrier follows the real Player for6s. SPEED slows only the test cast to .96s. SOUND toggles the contact cue. VIEW switches native/close camera. RESET cancels the effect; CLOSE/Esc restores previous enemy-AI and camera settings.
+Open **F7 -> Skills tab -> BUFF · ANIMATION TEST**. Press **T** or **REPLAY**. After the .32s activation, use normal movement, Dodge and basic/skill attacks while the barrier follows the real Player for6s. SPEED slows only the test cast to .96s. SOUND toggles the contact cue. VIEW switches native/close camera. RESET cancels the effect; CLOSE/Esc restores previous enemy-AI and camera settings.
 
 Direct launch: `tools/launch_unbroken_vow_test.ps1`, or Godot with `--path . --script res://tools/launch_unbroken_vow_test.gd`. Direct launch suppresses disk saves and clears the opening Lab enemy. Normal F7 entry pauses enemy AI while the test is open, without deleting the existing encounter. This is a **down-facing visual rehearsal**: Skill4 remains Worldsplitter and the barrier grants no shield, damage or speed bonus. Normal hit shapes/equipment remain live.
 

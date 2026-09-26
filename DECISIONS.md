@@ -171,6 +171,11 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 158 | [Pursuit trained charges](docs/decisions/158-pursuit-trained-charges.md) | Eira-gated Level 5/8 Pursuit ranks with 1/2/3 stored uses, 220/250/280px reach and sequential refill |
 | 159 | [King buff four, Worldsplitter five](docs/decisions/159-king-buff-four-worldsplitter-five.md) | Approved skill-role and slot direction, save migration, generated visual review; prototype balance pending |
 
+| 160 | [Worldsplitter upright released impact](docs/decisions/160-worldsplitter-upright-released-impact.md) | Straight descent, independent control, generated frames, upgrade/training/save rules |
+
+| 161 | [Worldsplitter fractured-light plunges](docs/decisions/161-worldsplitter-fractured-light-plunges.md) | One/two/three same-point contacts, buried tip, crimson upgrade, compact light effects |
+| 162 | [Worldsplitter summoned radial blasts](docs/decisions/162-worldsplitter-summoned-radial-blasts.md) | Fresh swords, deep burial, rapid cadence and radial shatter replace the rejected bouncing blade |
+
 ## New Decisions
 
 Record future decisions as individual files under `docs/decisions/` using `NNN-short-title.md`, then add one row to this index. New ADRs should contain status, context, alternatives, decision, and consequences.

@@ -1,6 +1,6 @@
 extends SceneTree
 
-## Direct entry to the same F7 -> KING REVIEW -> BUFF TEST surface.
+## Direct entry to the same F7 -> Skills tab -> BUFF · ANIMATION TEST surface.
 func _initialize() -> void:
 	call_deferred("_launch")
 

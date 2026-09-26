@@ -1,8 +1,32 @@
 extends "res://entities/player/presentation/king_greatsword_animation.gd"
 
 ## Production King C body; gameplay components retain all control timing.
+func _ready() -> void:
+	super._ready()
+	sprite_frames = sprite_frames.duplicate(true)
+	var sheet := preload("res://assets/vfx/abilities/king/unbroken_vow_test/body_down.png")
+	sprite_frames.add_animation("unbroken_vow_down")
+	sprite_frames.set_animation_loop("unbroken_vow_down", false)
+	for index in 8:
+		var texture := AtlasTexture.new()
+		texture.atlas = sheet
+		texture.region = Rect2(Vector2(index%4,index/4)*Vector2(192,128),Vector2(192,128))
+		texture.filter_clip = true
+		sprite_frames.add_frame("unbroken_vow_down", texture)
+
 func _play_action_phase(phase: int, seconds: float) -> void:
 	var active := (owner as Player).get_active_ability_component()
+	if active is UnbrokenVowComponent:
+		_play_vow_phase(phase, seconds)
+		return
+	if active == null and attack_component.committed_vow_finisher:
+		super._play_action_phase(phase, seconds)
+		if phase == MeleeAttackComponent.Phase.WIND_UP:
+			_attack_phase_tween.parallel().tween_property(self, "position", _base_position+Vector2(0,-5), seconds)
+		elif phase == MeleeAttackComponent.Phase.ACTIVE:
+			position = _base_position+Vector2(0,-5)
+			_attack_phase_tween.parallel().tween_property(self, "position", _base_position, minf(seconds,.06))
+		return
 	if not active is EarthsplitterComponent:
 		super._play_action_phase(phase, seconds)
 		return
@@ -55,3 +79,20 @@ func _on_animation_finished() -> void:
 	if actor != null and (actor.is_defeated or actor.is_in_hit_recovery()):
 		return
 	super._on_animation_finished()
+
+func _play_vow_phase(phase: int, seconds: float) -> void:
+	_kill_recoil_tween()
+	_kill_attack_phase_tween()
+	speed_scale = 1.0
+	_action_locked = true
+	if phase == AbilityComponent.Phase.WIND_UP: _action_direction = _direction
+	stop()
+	# Keep approved directional anatomy. Down uses the generated pressure pose;
+	# other directions use the matching planted heavy-cleave anticipation/release.
+	animation = "unbroken_vow_down" if _action_direction == "down" else "heavy_cleave_"+_action_direction
+	position = _base_position
+	var first: int = [0,4,5][clampi(phase-1,0,2)]
+	var last: int = [3,4,7][clampi(phase-1,0,2)]
+	frame = first
+	_attack_phase_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	_attack_phase_tween.tween_method(_set_attack_frame,float(first),float(last),seconds)

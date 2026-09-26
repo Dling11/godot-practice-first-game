@@ -130,6 +130,10 @@ func get_target_range_pixels() -> float:
 func get_target_radius_pixels() -> float:
 	return 0.0
 
+
+func resolve_ground_target(point: Vector2) -> Vector2:
+	return point
+
 func get_target_core_radius_pixels() -> float:
 	return 0.0
 

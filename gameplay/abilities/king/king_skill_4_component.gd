@@ -1,13 +1,16 @@
 class_name KingSkill4Component
 extends AbilityComponent
 
-## Resolves a concentrated first impact followed by one delayed larger radial hit
-## at a player-confirmed world point. Presentation observes the two strike events.
+## Releases rank-authored plunges at a fixed target independently of recovery.
 
+const Visual = preload("res://gameplay/abilities/king/worldsplitter_visual.gd")
+const Sequence = preload("res://gameplay/abilities/king/worldsplitter_sequence.gd")
+var _visual: Node2D
 var _target_global_position := Vector2.ZERO
 
 
 func request_cast_at(target_global_position: Vector2, equipped_weapon_damage := 0.0) -> bool:
+	if not is_ready(): return false
 	var skill := definition as KingSkill4Definition
 	var actor := owner as Node2D
 	if skill == null or actor == null:
@@ -15,8 +18,16 @@ func request_cast_at(target_global_position: Vector2, equipped_weapon_damage := 
 	var offset := target_global_position - actor.global_position
 	if offset.length() > skill.target_range_pixels:
 		offset = offset.normalized() * skill.target_range_pixels
-	_target_global_position = actor.global_position + offset
-	return request_cast(offset, equipped_weapon_damage)
+	_target_global_position = resolve_ground_target(target_global_position)
+	if not request_cast(offset, equipped_weapon_damage): return false
+	_visual = Visual.new()
+	_visual.source = actor
+	_visual.component = self
+	_visual.radius = skill.first_impact_radius_pixels
+	_visual.tuning = skill.duplicate(true)
+	actor.get_parent().add_child(_visual)
+	_visual.global_position = get_target_global_position()
+	return true
 
 
 func supports_ground_targeting() -> bool:
@@ -39,33 +50,28 @@ func get_target_global_position() -> Vector2:
 
 
 func cancel_cast() -> void:
+	if phase == Phase.WIND_UP and is_instance_valid(_visual): _visual.queue_free()
 	_reset_hitbox_position()
 	super.cancel_cast()
 
 
 func _start_current_strike() -> void:
-	var skill := definition as KingSkill4Definition
-	if skill == null or hitbox == null or collision_shape == null:
-		return
-	var strike_count := definition.strike_count()
-	_strike_time_remaining = definition.active_seconds / float(strike_count)
-	collision_shape.shape = (
-		skill.explosion_hitbox_shape
-		if _current_strike_index >= strike_count - 1
-		else definition.hitbox_shape
-	)
-	hitbox.global_position = get_target_global_position()
-	hitbox.activate_radial(
-		definition.resolve_strike_damage(_equipped_weapon_damage, _current_strike_index),
-		owner,
-		hitbox.global_position,
-		definition.resolve_strike_knockback(_current_strike_index),
-		definition.resolve_strike_stagger(_current_strike_index),
-		_critical_chance_ratio,
-		_critical_damage_multiplier,
-		definition.resolve_strike_stun(_current_strike_index)
-	)
-	strike_started.emit(_current_strike_index, strike_count, _strike_time_remaining)
+	if is_instance_valid(_visual): _visual.release()
+	var sequence := Sequence.new()
+	sequence.source = owner
+	sequence.component = self
+	sequence.tuning = definition.duplicate(true) as KingSkill4Definition
+	sequence.visual = _visual
+	sequence.damage = definition.resolve_damage(_equipped_weapon_damage)
+	sequence.critical_chance = _critical_chance_ratio
+	sequence.critical_multiplier = _critical_damage_multiplier
+	owner.get_parent().add_child(sequence)
+	sequence.global_position = get_target_global_position()
+	strike_started.emit(0, 1, definition.active_seconds)
+
+
+func _advance_active_strikes(_delta: float) -> void:
+	pass # Released sequence owns all plunge contacts after the short cast.
 
 
 func _advance_phase() -> void:
@@ -78,3 +84,20 @@ func _advance_phase() -> void:
 func _reset_hitbox_position() -> void:
 	if hitbox != null:
 		hitbox.position = Vector2.ZERO
+
+func resolve_ground_target(point: Vector2) -> Vector2:
+	var actor := owner as Player
+	var offset := (point-actor.global_position).limit_length(get_target_range_pixels())
+	var ray := PhysicsRayQueryParameters2D.create(actor.global_position,actor.global_position+offset,1,[actor.get_rid()])
+	var block := actor.get_world_2d().direct_space_state.intersect_ray(ray)
+	return actor.global_position+offset if block.is_empty() else block.position-offset.normalized()*4.0
+
+func get_target_core_radius_pixels() -> float:
+	return (definition as KingSkill4Definition).contact_radius(0)
+
+func apply_rank(value: int) -> void:
+	if is_casting(): return
+	var next := definition.duplicate(true) as KingSkill4Definition
+	next.configure_rank(value)
+	definition = next
+	collision_shape.shape = next.hitbox_shape

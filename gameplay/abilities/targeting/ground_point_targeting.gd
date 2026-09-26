@@ -37,6 +37,7 @@ func begin_targeting(component: AbilityComponent, initial_direction: Vector2) ->
 	_target_local = (initial_direction.normalized() if not initial_direction.is_zero_approx() else Vector2.DOWN) * minf(96.0, _range)
 	if component.is_fixed_length_line_targeted():
 		_target_local = _target_local.normalized() * _range
+	_target_local = component.resolve_ground_target(_aim_origin()+_target_local) - _aim_origin()
 	_update_lane_preview()
 	visible = true
 	_set_cursor_targeting(true)
@@ -56,7 +57,7 @@ func update_aim(pointer_global_position: Vector2, stick_direction: Vector2) -> v
 	if _component.is_fixed_length_line_targeted():
 		# Keep the last useful direction when the cursor crosses King's center.
 		next_local = next_local.normalized() * _range if next_local.length_squared() >= .01 else _target_local
-	_target_local = next_local
+	_target_local = _component.resolve_ground_target(_aim_origin()+next_local) - _aim_origin()
 	_update_lane_preview()
 	queue_redraw()
 

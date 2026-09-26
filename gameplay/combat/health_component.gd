@@ -6,6 +6,11 @@ signal damaged(info: DamageInfo)
 signal damage_blocked(info: DamageInfo)
 signal damage_absorbed(info: DamageInfo)
 signal died
+signal shield_changed(current: float, maximum: float)
+signal shield_hit(absorbed: float)
+
+var shield_health := 0.0
+var shield_maximum := 0.0
 
 @export_range(1.0, 999999.0, 1.0) var maximum_health: float = 100.0
 ## Positive armor uses diminishing returns: 100 armor halves accepted damage.
@@ -65,6 +70,15 @@ func apply_damage(info: DamageInfo) -> bool:
 	if damage_absorber.is_valid() and damage_absorber.call(info):
 		damage_absorbed.emit(info)
 		return true
+	if shield_health > 0.0:
+		var absorbed := minf(info.amount, shield_health)
+		shield_health -= absorbed
+		info.amount -= absorbed
+		shield_hit.emit(absorbed)
+		shield_changed.emit(shield_health, shield_maximum)
+		if info.amount <= 0.0:
+			damage_absorbed.emit(info)
+			return true
 	current_health = maxf(current_health - info.amount, 0.0)
 	damaged.emit(info)
 	health_changed.emit(current_health, maximum_health)
@@ -75,6 +89,12 @@ func apply_damage(info: DamageInfo) -> bool:
 
 func set_invulnerable(value: bool) -> void:
 	is_invulnerable = value
+
+
+func set_temporary_shield(amount: float) -> void:
+	shield_maximum = maxf(amount, 0.0)
+	shield_health = shield_maximum
+	shield_changed.emit(shield_health, shield_maximum)
 
 
 func resolve_damage(raw_damage: float) -> float:

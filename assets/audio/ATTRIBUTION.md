@@ -190,3 +190,11 @@ Fifteen mono cues cover thrust, sweep, charge preparation/travel/impact, slam pr
 - **Downloaded:** 2026-08-25
 
 The F7 encounter plays exactly one complete music foundation. Dialogue ducks it, launch restores it, the final charge briefly approaches silence, and Phase II returns it after impact. The orchestral audition is preserved outside runtime because the two independently composed songs do not share a verified key, tempo, or arrangement and sounded like overlapping tracks when played together. A future vocal-orchestral replacement must be one coherent licensed composition or stems authored to harmonize.
+
+## Worldsplitter upright descent (2026-09-27)
+
+Four original deterministic cues: `sfx/abilities/king/worldsplitter_{gather,descent,contact,rupture}.wav`, authored with `tools/build_worldsplitter_audio.js`. Layered filtered noise, low body tones, timed stone transients and smooth onset/tail fades.44.1kHz mono16-bit PCM, normalized peak0.78 (-2.16dBFS) before conservative runtime SFX gains. No third-party recordings or license requirements.
+
+### Worldsplitter fractured-light accent (2026-09-27)
+
+`worldsplitter_light_shards.wav` is an original 0.48s deterministic synthesis from `tools/build_worldsplitter_audio.js`, combining restrained decaying partials and filtered air. No external samples. Peak -2.16dBFS before runtime gain (-23dB final, -28dB early), with smooth onset/tail to complement the grounded contact.

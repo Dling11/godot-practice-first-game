@@ -54,19 +54,19 @@ court_arena = NodePath("World/CourtOfFirstMeasure")
 base_arena = NodePath("World/Arena")
 base_arena_border = NodePath("World/ArenaBorder")
 examiner_director = NodePath("Services/ExaminerEncounterDirector")
-enemy_selector = NodePath("UI/LabPanel/Margin/Stack/EnemySelector")
-spawn_one_button = NodePath("UI/LabPanel/Margin/Stack/SpawnRow/Spawn1")
-spawn_four_button = NodePath("UI/LabPanel/Margin/Stack/SpawnRow/Spawn4")
-spawn_eight_button = NodePath("UI/LabPanel/Margin/Stack/SpawnRow/Spawn8")
-force_phase_button = NodePath("UI/LabPanel/Margin/Stack/ForcePhase")
+enemy_selector = NodePath("UI/LabPanel/Margin/Stack/Tabs/AI/Controls/EnemySelector")
+spawn_one_button = NodePath("UI/LabPanel/Margin/Stack/Tabs/AI/Controls/SpawnRow/Spawn1")
+spawn_four_button = NodePath("UI/LabPanel/Margin/Stack/Tabs/AI/Controls/SpawnRow/Spawn4")
+spawn_eight_button = NodePath("UI/LabPanel/Margin/Stack/Tabs/AI/Controls/SpawnRow/Spawn8")
+force_phase_button = NodePath("UI/LabPanel/Margin/Stack/Tabs/AI/Controls/ForcePhase")
 clear_button = NodePath("UI/LabPanel/Margin/Stack/ActionRow/Clear")
 reset_button = NodePath("UI/LabPanel/Margin/Stack/ActionRow/Reset")
 exit_button = NodePath("UI/LabPanel/Margin/Stack/Exit")
-ai_toggle = NodePath("UI/LabPanel/Margin/Stack/AIToggle")
-invincible_toggle = NodePath("UI/LabPanel/Margin/Stack/InvincibleToggle")
+ai_toggle = NodePath("UI/LabPanel/Margin/Stack/Tabs/AI/Controls/AIToggle")
+invincible_toggle = NodePath("UI/LabPanel/Margin/Stack/Tabs/AI/Controls/InvincibleToggle")
 combat_tools_button = NodePath("UI/LabPanel/Margin/Stack/CombatTools")
 status_label = NodePath("UI/Status")
-latest_label = NodePath("UI/LabPanel/Margin/Stack/Latest")
+latest_label = NodePath("UI/LabPanel/Margin/Stack/Tabs/AI/Controls/Latest")
 
 [node name="World" type="Node2D" parent="."]
 
@@ -168,7 +168,7 @@ offset_right = 205.0
 offset_left = 708.0
 offset_top = 74.0
 offset_right = 950.0
-offset_bottom = 500.0
+offset_bottom = 438.0
 theme_override_styles/panel = SubResource("panel")
 
 [node name="Margin" type="MarginContainer" parent="UI/LabPanel"]
@@ -180,7 +180,7 @@ theme_override_constants/margin_bottom = 9
 
 [node name="Stack" type="VBoxContainer" parent="UI/LabPanel/Margin"]
 layout_mode = 2
-theme_override_constants/separation = 7
+theme_override_constants/separation = 4
 
 [node name="Title" type="Label" parent="UI/LabPanel/Margin/Stack"]
 layout_mode = 2
@@ -193,70 +193,93 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.62, 0.68, 0.58, 1)
 theme_override_font_sizes/font_size = 10
-text = "REAL RUNTIME ACTORS | NO REWARDS"
+text = "F9: TEST KIT  |  NO REWARDS"
 horizontal_alignment = 1
 
-[node name="EnemySelector" type="OptionButton" parent="UI/LabPanel/Margin/Stack"]
+[node name="CombatTools" type="Button" parent="UI/LabPanel/Margin/Stack"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "REFILL / EQUIP ALL SKILLS"
+
+[node name="Tabs" type="TabContainer" parent="UI/LabPanel/Margin/Stack"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AI" type="ScrollContainer" parent="UI/LabPanel/Margin/Stack/Tabs"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Controls" type="VBoxContainer" parent="UI/LabPanel/Margin/Stack/Tabs/AI"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="EnemySelector" type="OptionButton" parent="UI/LabPanel/Margin/Stack/Tabs/AI/Controls"]
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="Latest" type="Label" parent="UI/LabPanel/Margin/Stack"]
-custom_minimum_size = Vector2(0, 34)
+[node name="Latest" type="Label" parent="UI/LabPanel/Margin/Stack/Tabs/AI/Controls"]
+custom_minimum_size = Vector2(0, 18)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.78, 0.82, 0.72, 1)
 theme_override_font_sizes/font_size = 10
 text = "LATEST: NONE"
 autowrap_mode = 2
 
-[node name="SpawnRow" type="HBoxContainer" parent="UI/LabPanel/Margin/Stack"]
+[node name="SpawnRow" type="HBoxContainer" parent="UI/LabPanel/Margin/Stack/Tabs/AI/Controls"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Spawn1" type="Button" parent="UI/LabPanel/Margin/Stack/SpawnRow"]
+[node name="Spawn1" type="Button" parent="UI/LabPanel/Margin/Stack/Tabs/AI/Controls/SpawnRow"]
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 text = "SPAWN 1"
 
-[node name="Spawn4" type="Button" parent="UI/LabPanel/Margin/Stack/SpawnRow"]
+[node name="Spawn4" type="Button" parent="UI/LabPanel/Margin/Stack/Tabs/AI/Controls/SpawnRow"]
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 text = "x4"
 
-[node name="Spawn8" type="Button" parent="UI/LabPanel/Margin/Stack/SpawnRow"]
+[node name="Spawn8" type="Button" parent="UI/LabPanel/Margin/Stack/Tabs/AI/Controls/SpawnRow"]
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 text = "x8"
 
-[node name="AIToggle" type="CheckButton" parent="UI/LabPanel/Margin/Stack"]
+[node name="AIToggle" type="CheckButton" parent="UI/LabPanel/Margin/Stack/Tabs/AI/Controls"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 button_pressed = true
 text = "ENEMY AI ENABLED"
 
-[node name="InvincibleToggle" type="CheckButton" parent="UI/LabPanel/Margin/Stack"]
+[node name="InvincibleToggle" type="CheckButton" parent="UI/LabPanel/Margin/Stack/Tabs/AI/Controls"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 button_pressed = true
 text = "KING INVINCIBLE"
 
-[node name="CombatTools" type="Button" parent="UI/LabPanel/Margin/Stack"]
-custom_minimum_size = Vector2(0, 34)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-text = "UNLIMITED SKILLS / TEST KIT"
-
-[node name="ForcePhase" type="Button" parent="UI/LabPanel/Margin/Stack"]
+[node name="ForcePhase" type="Button" parent="UI/LabPanel/Margin/Stack/Tabs/AI/Controls"]
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "FORCE DIVINE DESCENT"
+
+[node name="Skills" type="ScrollContainer" parent="UI/LabPanel/Margin/Stack/Tabs"]
+visible = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Controls" type="VBoxContainer" parent="UI/LabPanel/Margin/Stack/Tabs/Skills"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
 
 [node name="ActionRow" type="HBoxContainer" parent="UI/LabPanel/Margin/Stack"]
 layout_mode = 2

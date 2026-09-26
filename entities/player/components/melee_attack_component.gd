@@ -22,6 +22,7 @@ var _next_combo_step := 0
 var _combo_timer: Timer
 var committed_damage_multiplier := 1.0
 var committed_animation_key := ""
+var committed_vow_finisher := false
 
 
 func _ready() -> void:
@@ -64,6 +65,7 @@ func request_attack(direction: Vector2) -> bool:
 	_combo_timer.stop()
 	committed_damage_multiplier = 1.0
 	committed_animation_key = ""
+	committed_vow_finisher = false
 	attack_started.emit()
 	_enter_phase(Phase.WIND_UP, _scaled_duration(_step_duration(Phase.WIND_UP)))
 	set_physics_process(true)

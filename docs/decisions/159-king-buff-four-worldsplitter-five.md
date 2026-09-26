@@ -1,6 +1,6 @@
 # 159 - Put King's active buff in Skill 4 and retain Worldsplitter in Skill 5
 
-Date: 2026-09-27. Status: direction approved; art/gameplay review and implementation pending.
+Date: 2026-09-27. Status: implemented 2026-09-27; numerical balance and owner feel review remain active.
 
 ## Context
 
@@ -12,6 +12,6 @@ Develop Skill4 as a self-buff with a generated activation and persistent blue pr
 
 ## Consequences
 
-Visual refinement after owner feedback: use an enclosing curved barrier, an activating underfoot seal, and distinct concentrated arm/weapon power accents. Protection and outgoing damage must be identifiable from the effect. The six-drawing V2 review supersedes the floating-shard look; runtime implementation and balance remain pending.
+Visual refinement after owner feedback: use an enclosing curved barrier, an activating underfoot seal, and distinct concentrated arm/weapon power accents. Protection and outgoing damage must be identifiable from the effect. The six-drawing V2 review supersedes the floating-shard look; runtime shield/buff/training are now implemented; balance remains under review.
 
-The fifth slot becomes meaningfully equipped without losing an existing skill. Slot numbers remain input bindings rather than ability IDs. Saved four- and ten-slot layouts need explicit migration that preserves current ability ownership and user choices. The current live game deliberately stays on Worldsplitter in slot 4 until the buff can replace it without an empty action. The six-frame generated aura review is not a runtime SpriteFrames resource or proof of gameplay balance.
+The fifth slot becomes meaningfully equipped without losing an existing skill. Slot numbers remain input bindings rather than ability IDs. Saved four- and ten-slot layouts need explicit migration that preserves current ability ownership and user choices. The live default kit now has Vow in4 and Worldsplitter in5. Worldsplitter uses a short .32s cast and a released two-hit sequence with the approved summoned sword and compact Earthsplitter faults. Directional Vow body art reuses approved heavy-cleave poses outside the dedicated down-facing brace. GPU captures and focused gameplay checks verify behavior; they are not proof of final balance.

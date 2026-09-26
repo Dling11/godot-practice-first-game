@@ -13,6 +13,9 @@ var coins := 0
 var player_current_health := -1.0
 var king_skill_slots: Array = []
 var king_pursuit_rank := 0
+var king_vow_rank := 0
+var king_worldsplitter_rank := 0
+var king_skill_layout_version := 2
 
 
 func update_progression(experience: int, coin_total: int) -> void:
@@ -53,6 +56,9 @@ func update_player_health(current_health: float) -> void:
 func reset_run() -> void:
 	king_skill_slots.clear()
 	king_pursuit_rank = 0
+	king_vow_rank = 0
+	king_worldsplitter_rank = 0
+	king_skill_layout_version = 2
 	total_experience = 0
 	coins = 0
 	player_current_health = -1.0
@@ -68,12 +74,19 @@ func create_snapshot() -> Dictionary:
 		"player_current_health": player_current_health,
 		"king_skill_slots": king_skill_slots.duplicate(),
 		"king_pursuit_rank": king_pursuit_rank,
+		"king_vow_rank": king_vow_rank,
+		"king_worldsplitter_rank": king_worldsplitter_rank,
+		"king_skill_layout_version": king_skill_layout_version,
 	}
 
 
 func can_restore_snapshot(snapshot: Dictionary) -> bool:
 	if not KingSkillCatalog.valid_slots(snapshot.get("king_skill_slots",[])):
 		return false
+	for key in ["king_vow_rank", "king_worldsplitter_rank", "king_skill_layout_version"]:
+		var value: Variant = snapshot.get(key, 0)
+		if not (value is int or value is float) or not is_finite(float(value)) or value < 0 or value > 2 or not is_equal_approx(float(value), roundf(float(value))):
+			return false
 	var pursuit_rank: Variant = snapshot.get("king_pursuit_rank", 0)
 	if (
 		not (pursuit_rank is int or pursuit_rank is float)
@@ -106,6 +119,9 @@ func restore_snapshot(snapshot: Dictionary) -> bool:
 		return false
 	king_skill_slots = snapshot.get("king_skill_slots",[]).duplicate()
 	king_pursuit_rank = int(snapshot.get("king_pursuit_rank", 0))
+	king_vow_rank = int(snapshot.get("king_vow_rank", 0))
+	king_worldsplitter_rank = int(snapshot.get("king_worldsplitter_rank", 0))
+	king_skill_layout_version = int(snapshot.get("king_skill_layout_version", 0))
 	total_experience = int(snapshot["total_experience"])
 	coins = int(snapshot["coins"])
 	var restored_health := float(snapshot["player_current_health"])

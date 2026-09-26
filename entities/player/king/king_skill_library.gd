@@ -14,10 +14,18 @@ func _bind() -> void:
 	var pursuit := actor.ability_3_component as SovereignPursuitComponent
 	if pursuit != null:
 		pursuit.apply_rank(get_node("/root/RunSession").king_pursuit_rank)
+	var vow := actor.get_node("UnbrokenVowComponent") as UnbrokenVowComponent
+	vow.apply_rank(get_node("/root/RunSession").king_vow_rank)
+	(actor.ability_4_component as KingSkill4Component).apply_rank(get_node("/root/RunSession").king_worldsplitter_rank)
 	refresh()
+	if is_lab():
+		_apply_slots(KingSkillCatalog.IDS)
+		return
 	var saved: Array = get_node("/root/RunSession").king_skill_slots
 	if not saved.is_empty() and KingSkillCatalog.valid_slots(saved):
-		var normalized := KingSkillCatalog.expanded_slots(saved)
+		var session := get_node("/root/RunSession")
+		var normalized := KingSkillCatalog.migrate_legacy_slots(saved) if session.king_skill_layout_version < 2 else KingSkillCatalog.expanded_slots(saved)
+		session.king_skill_layout_version = 2
 		_apply_slots(normalized)
 		get_node("/root/RunSession").king_skill_slots = normalized
 
@@ -27,7 +35,7 @@ func is_learned(id: String) -> bool:
 	return true
 
 func can_edit() -> bool:
-	if actor.is_defeated or actor.is_any_ability_casting() or actor.attack_component.phase!=MeleeAttackComponent.Phase.IDLE or actor.evade_component.is_dashing() or actor.is_restrained() or actor.is_in_hit_recovery() or actor._is_targeting_any_ability():
+	if actor.is_cinematic_locked() or actor.is_defeated or actor.is_any_ability_casting() or actor.attack_component.phase!=MeleeAttackComponent.Phase.IDLE or actor.evade_component.is_dashing() or actor.is_restrained() or actor.is_in_hit_recovery() or actor._is_targeting_any_ability():
 		return false
 	var scene := get_tree().current_scene
 	var path := scene.scene_file_path if scene!=null else ""
@@ -69,10 +77,10 @@ func equip_core_kit() -> bool:
 	if not can_edit():
 		return false
 	var ids := current_ids()
-	for index in 4:
+	for index in KingSkillCatalog.IDS.size():
 		var id: String = KingSkillCatalog.IDS[index]
 		var previous := ids.find(id)
-		if previous>=4:
+		if previous>=KingSkillCatalog.IDS.size():
 			ids[previous]=""
 		ids[index]=id if is_learned(id) else ""
 	_apply_slots(ids)
@@ -147,3 +155,41 @@ func _apply_slots(ids: Array) -> void:
 	actor.skill_loadout=loadout
 	actor.skill_loadout_changed.emit()
 	library_changed.emit()
+
+func get_vow_upgrade_level() -> int:
+	var rank: int = get_node("/root/RunSession").king_vow_rank
+	return [7, 10][rank] if rank < 2 else 0
+
+func can_upgrade_vow(at_skillkeeper: bool) -> bool:
+	return at_skillkeeper and not is_lab() and can_edit() and get_vow_upgrade_level() > 0 and actor.progression_component.level >= get_vow_upgrade_level()
+
+func upgrade_vow(at_skillkeeper: bool) -> bool:
+	if not can_upgrade_vow(at_skillkeeper): return false
+	var session := get_node("/root/RunSession")
+	var previous: int = session.king_vow_rank
+	session.king_vow_rank += 1
+	if not get_node("/root/SaveService").save_profile():
+		session.king_vow_rank = previous
+		return false
+	(actor.get_node("UnbrokenVowComponent") as UnbrokenVowComponent).apply_rank(session.king_vow_rank)
+	refresh()
+	return true
+
+func get_worldsplitter_upgrade_level() -> int:
+	var rank: int = get_node("/root/RunSession").king_worldsplitter_rank
+	return [10, 15][rank] if rank < 2 else 0
+
+func can_upgrade_worldsplitter(at_skillkeeper: bool) -> bool:
+	return at_skillkeeper and not is_lab() and can_edit() and get_worldsplitter_upgrade_level() > 0 and actor.progression_component.level >= get_worldsplitter_upgrade_level()
+
+func upgrade_worldsplitter(at_skillkeeper: bool) -> bool:
+	if not can_upgrade_worldsplitter(at_skillkeeper): return false
+	var session := get_node("/root/RunSession")
+	var previous: int = session.king_worldsplitter_rank
+	session.king_worldsplitter_rank += 1
+	if not get_node("/root/SaveService").save_profile():
+		session.king_worldsplitter_rank = previous
+		return false
+	(actor.ability_4_component as KingSkill4Component).apply_rank(session.king_worldsplitter_rank)
+	refresh()
+	return true

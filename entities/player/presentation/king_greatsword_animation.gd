@@ -8,6 +8,8 @@ func _ready() -> void:
 	var actor := owner as Player
 	if actor != null:
 		actor.ready.connect(func() -> void: actor.equipment_stats_changed.connect(_refresh_stride))
+		actor.ready.connect(func() -> void:
+			actor.movement_component.speed_changed.connect(func(_speed: float) -> void: _refresh_stride()))
 
 func _refresh_stride() -> void:
 	if not _action_locked:

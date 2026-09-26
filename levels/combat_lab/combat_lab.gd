@@ -39,6 +39,9 @@ const ARENA_BOUNDS := Rect2(40.0, 92.0, 650.0, 390.0)
 @export var status_label: Label
 @export var latest_label: Label
 
+@onready var review_tabs: TabContainer = $UI/LabPanel/Margin/Stack/Tabs
+@onready var skills_controls: VBoxContainer = $UI/LabPanel/Margin/Stack/Tabs/Skills/Controls
+
 var _active_enemies: Array[Node2D] = []
 var _ai_enabled := true
 var _invincible := true
@@ -70,25 +73,12 @@ func _ready() -> void:
 	_set_examiner_arena(true)
 	_bind_controls()
 	_style_review_panel()
-	var collection := Button.new()
-	collection.text="KING · SKILLS"
-	collection.position=Vector2(726,438)
-	collection.size=Vector2(106,30)
-	collection.focus_mode=Control.FOCUS_NONE
-	collection.theme=get_node("UI/LabPanel").theme
-	collection.pressed.connect(func() -> void: player.get_node("KingSkillLibrary").open_collection())
-	get_node("UI").add_child(collection)
 	var king_review := preload("res://levels/combat_lab/king_combat_review.gd").new()
 	king_review.name = "KingCombatReview"
 	add_child(king_review)
-	var review_button := Button.new()
-	review_button.text = "KING REVIEW"
-	review_button.position = Vector2(838, 438)
-	review_button.size = Vector2(108, 30)
-	review_button.theme = collection.theme
-	review_button.focus_mode = Control.FOCUS_NONE
-	review_button.pressed.connect(king_review.open_review)
-	get_node("UI").add_child(review_button)
+	review_tabs.get_tab_bar().focus_mode = Control.FOCUS_NONE
+	review_tabs.tab_changed.connect(_on_review_tab_changed)
+	player.testing_preset_applied.connect(_on_testing_preset_applied)
 	_update_latest_label()
 	_update_status()
 	call_deferred("spawn_selected", 1)
@@ -101,6 +91,20 @@ func _ready() -> void:
 
 	if "--molten-crash-review" in OS.get_cmdline_user_args():
 		king_review.call_deferred("open_review")
+
+func show_skills_tab() -> void:
+	review_tabs.current_tab = 1
+
+
+func _on_review_tab_changed(index: int) -> void:
+	var review := get_node_or_null("KingCombatReview")
+	if index != 1 and review != null and review.buff_test.opened:
+		review.buff_test.close(false)
+
+
+func _on_testing_preset_applied(_level: int, _coins: int) -> void:
+	show_skills_tab()
+
 
 func _style_review_panel() -> void:
 	# The lab uses a compact control surface at the real 960x540 viewport.
@@ -122,7 +126,7 @@ func _style_review_panel() -> void:
 	panel.theme = review_theme
 	for control in panel.find_children("*", "BaseButton", true, false):
 		control.add_theme_font_size_override("font_size", 11)
-		control.custom_minimum_size.y = 28.0
+		control.custom_minimum_size.y = 26.0
 	var roster := combat_hud.find_child("EnemyRosterPanel", true, false) as Control
 	if roster != null:
 		roster.hide()
@@ -151,6 +155,10 @@ func spawn_selected(count: int) -> void:
 
 
 func clear_simulation() -> void:
+	player.ability_4_component.cancel_cast()
+	for group in ["worldsplitter_sequences", "worldsplitter_effects"]:
+		for released in get_tree().get_nodes_in_group(group):
+			if is_ancestor_of(released): released.queue_free()
 	boss_hud.clear_boss()
 	examiner_director.bind(null)
 	force_phase_button.disabled = true
@@ -166,6 +174,7 @@ func clear_simulation() -> void:
 
 func set_enemy_ai_enabled(enabled: bool) -> void:
 	_ai_enabled = enabled
+	ai_toggle.set_pressed_no_signal(enabled)
 	for enemy in _active_enemies:
 		if is_instance_valid(enemy) and "target" in enemy:
 			enemy.set("target", player if enabled else null)
@@ -174,6 +183,7 @@ func set_enemy_ai_enabled(enabled: bool) -> void:
 
 func set_player_invincible(enabled: bool) -> void:
 	_invincible = enabled
+	invincible_toggle.set_pressed_no_signal(enabled)
 	player.health_component.set_invulnerable(enabled)
 	player.health_component.is_damage_immune = enabled
 	if enabled:

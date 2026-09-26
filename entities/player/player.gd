@@ -989,7 +989,12 @@ func _enable_debug_test_loadout() -> void:
 	if debug_test_skill_loadout == null or skill_loadout == debug_test_skill_loadout:
 		return
 	skill_loadout = debug_test_skill_loadout
-	skill_loadout_changed.emit()
+	var library := get_node_or_null("KingSkillLibrary") as KingSkillLibrary
+	if library != null:
+		# Bind the complete debug kit to live ranked definitions, never saved slots.
+		library.refresh()
+	else:
+		skill_loadout_changed.emit()
 
 
 func _enable_debug_unlimited_skills() -> void:

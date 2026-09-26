@@ -95,6 +95,10 @@ func _style_enemy_roster_scrollbar() -> void:
 
 func bind_player(player: Player) -> void:
 	_player = player
+	if player.has_node("UnbrokenVowComponent"):
+		var vow_status := preload("res://ui/skills/vow_status.gd").new()
+		vow_status.actor = player
+		add_child(vow_status)
 	var mastery := player.get_node_or_null("KingMastery") as KingMasteryComponent
 	if mastery != null:
 		mastery.resolve_changed.connect(_update_resolve)

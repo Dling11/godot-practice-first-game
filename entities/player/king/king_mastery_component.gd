@@ -37,6 +37,13 @@ func _bind() -> void:
 
 func _on_swing_started() -> void:
 	_swing_awarded = false
+	var vow := actor.get_node_or_null("UnbrokenVowComponent") as UnbrokenVowComponent
+	if vow != null:
+		actor.attack_component.committed_damage_multiplier += vow.get_damage_bonus()
+		if vow.has_mature_finisher() and actor.attack_component.combo_step == 2:
+			actor.attack_component.committed_vow_finisher = true
+			actor.attack_component.committed_damage_multiplier += .30
+			actor.attack_component.committed_animation_key = "heavy_cleave"
 
 func _on_sword_hit(_target: HurtboxComponent, _info: DamageInfo) -> void:
 	if _swing_awarded:
@@ -48,17 +55,21 @@ func _on_sword_hit(_target: HurtboxComponent, _info: DamageInfo) -> void:
 
 func _on_skill_started(ability: AbilityComponent) -> void:
 	actor.attack_component.reset_combo()
+	if ability is UnbrokenVowComponent:
+		return # A self buff neither spends Resolve nor consumes the Pursuit link.
 	var resolved := stacks >= definition.resolve_hits
 	var is_rupture := ability == actor.ability_2_component
 	var linked := not _link.is_stopped() and is_rupture
 	var multiplier := definition.level_multiplier(actor.progression_component.level)
 	if resolved:
-		multiplier *= definition.resolve_multiplier
+		multiplier += definition.resolve_multiplier - 1.0
 		clear_resolve()
 	if linked:
-		multiplier *= definition.pursuit_rift_multiplier
+		multiplier += definition.pursuit_rift_multiplier - 1.0
 	_link.stop()
 	link_changed.emit(false)
+	var vow := actor.get_node_or_null("UnbrokenVowComponent") as UnbrokenVowComponent
+	if vow != null: multiplier += vow.get_damage_bonus()
 	ability.amplify_committed_cast(multiplier)
 	technique_empowered.emit(ability, resolved, linked)
 

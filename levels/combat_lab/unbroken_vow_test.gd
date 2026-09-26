@@ -76,8 +76,10 @@ func open() -> bool:
 	_zoom_button.text = "VIEW: GAME" if _old_zoom == Vector2.ONE else "VIEW: CLOSE"
 	lab.set_enemy_ai_enabled(false)
 	lab.ai_toggle.set_pressed_no_signal(false)
+	lab.show_skills_tab()
 	_panel.show()
 	get_parent()._panel.hide()
+	lab.review_tabs.get_child(1).scroll_vertical = 0
 	set_process_input(true)
 	_status.text = "UNBROKEN VOW · Down-facing art test. T / REPLAY, then move, dodge and attack. No shield or damage bonus."
 	return true
@@ -157,7 +159,7 @@ func reset_preview() -> void:
 	set_physics_process(false)
 
 
-func close() -> void:
+func close(return_to_skills := true) -> void:
 	reset_preview()
 	if not opened:
 		return
@@ -167,7 +169,10 @@ func close() -> void:
 	lab.set_enemy_ai_enabled(_old_ai)
 	lab.ai_toggle.set_pressed_no_signal(_old_ai)
 	lab.camera.zoom = _old_zoom
-	get_parent().open_review()
+	get_parent()._panel.show()
+	get_parent()._zoom_button.text = "VIEW: GAME" if _old_zoom == Vector2.ONE else "VIEW: CLOSE"
+	if return_to_skills:
+		get_parent().open_review()
 
 
 func _exit_tree() -> void:
@@ -228,17 +233,18 @@ func _show_cast_frame(index: int) -> void:
 func _build_panel() -> void:
 	_panel = PanelContainer.new()
 	_panel.name = "UnbrokenVowTestPanel"
-	_panel.position = Vector2(46, 150)
+	_panel.add_theme_stylebox_override("panel", StyleBoxEmpty.new())
 	_panel.theme = lab.get_node("UI/LabPanel").theme
 	var stack := VBoxContainer.new()
 	_panel.add_child(stack)
-	var row := HBoxContainer.new()
+	var row := GridContainer.new()
+	row.columns = 2
 	stack.add_child(row)
 	_button(row, "REPLAY [T]", play_preview)
-	_slow_button = _button(row, "SPEED: NORMAL", func() -> void:
+	_slow_button = _button(row, "NORMAL", func() -> void:
 		if casting: return
 		slow = not slow
-		_slow_button.text = "SPEED: SLOW" if slow else "SPEED: NORMAL")
+		_slow_button.text = "SLOW x3" if slow else "SPEED: NORMAL")
 	_sound_button = _button(row, "SOUND: ON", func() -> void:
 		sound_enabled = not sound_enabled
 		if not sound_enabled: _audio.stop()
@@ -248,19 +254,24 @@ func _build_panel() -> void:
 		lab.camera.zoom = Vector2(2, 2) if close_view else Vector2.ONE
 		_zoom_button.text = "VIEW: CLOSE" if close_view else "VIEW: GAME")
 	_button(row, "RESET", reset_preview)
-	_button(row, "CLOSE [ESC]", close)
+	_button(row, "BACK [ESC]", close)
 	_status = Label.new()
-	_status.custom_minimum_size.x = 630
 	_status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_status.add_theme_font_size_override("font_size", 10)
 	stack.add_child(_status)
-	lab.get_node("UI").add_child(_panel)
+	var upgrades := Label.new()
+	upgrades.text = "LIVE SKILL: HOTKEY 4\nUpgrade Foundation / Advanced / Mature on the Skills tab.\nThis optional pose rehearsal grants no stats; use normal hotkey 4 for combat."
+	upgrades.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	upgrades.add_theme_font_size_override("font_size", 10)
+	stack.add_child(upgrades)
+	lab.skills_controls.add_child(_panel)
 	_panel.hide()
 
 
-func _button(row: HBoxContainer, text: String, action: Callable) -> Button:
+func _button(row: Container, text: String, action: Callable) -> Button:
 	var button := Button.new()
 	button.text = text
+	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	button.focus_mode = Control.FOCUS_NONE
 	button.pressed.connect(action)
 	row.add_child(button)

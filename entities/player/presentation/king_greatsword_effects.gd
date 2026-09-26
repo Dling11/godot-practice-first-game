@@ -99,8 +99,9 @@ func _on_empowered(_ability: AbilityComponent, resolved: bool, linked: bool) -> 
 		_play(_resolve,ResolveSound,1.2)
 
 func _on_strike(index: int, _count: int, duration: float, ability: AbilityComponent) -> void:
-	# Molten Crash owns its contact burst; a second atlas obscures its center.
-	if ability is MoltenCrashComponent:
+	# These skills own their contact visuals. Worldsplitter's strike signal is
+	# release, not impact; its legacy hitbox still sits at King's upper body.
+	if ability is MoltenCrashComponent or ability is KingSkill4Component:
 		return
 	var burst := Burst.new()
 	add_child(burst)
