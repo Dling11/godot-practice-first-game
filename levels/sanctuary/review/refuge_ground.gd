@@ -8,6 +8,7 @@ var routes: Array[PackedVector2Array] = [
 	PackedVector2Array([Vector2(224,400),Vector2(224,464),Vector2(352,496),Vector2(480,488),Vector2(576,480),Vector2(688,488),Vector2(864,472),Vector2(928,400)]),
 	PackedVector2Array([Vector2(256,640),Vector2(368,640),Vector2(464,592),Vector2(560,608),Vector2(704,656),Vector2(800,656),Vector2(912,592),Vector2(928,472)]),
 	PackedVector2Array([Vector2(352,496),Vector2(360,528)]),
+	PackedVector2Array([Vector2(912,472),Vector2(992,464),Vector2(992,416)]),
 ]
 var path_cells: Dictionary = {}
 

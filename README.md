@@ -1,5 +1,9 @@
 # Battle of Gods
 
+Continuing this project in a new chat: start with `CONTINUE_SANCTUARY.md` after the required context docs. The latest Sanctuary review includes Orren's larger, bolder V2 sprite and name/role label.
+
+**Sanctuary redesign review:** Run `tools/launch_sanctuary_study.ps1`. It starts beside the remodeled Orren and workshop. Press F for his matching portrait/dialogue; top buttons compare old/new, visit Orren/the lodge, or switch overview/walking. This optional review suppresses autosaving. Eira/Nema/Umi and interiors are future passes; the campaign still uses its existing art. See `docs/design/sanctuary-environment-renewal.md`.
+
 **Worldsplitter summoned-sword review:** Run `tools/launch_king_skills.ps1` for three fresh crimson blades that bury and detonate across the target area. Press **5**, aim/click, then move or dodge. **F7 -> Skills -> Worldsplitter** compares one/two/three swords; F9 refills the kit. The selected rank is a session-only preview. Current design: `docs/design/worldsplitter-fractured-light.md`.
 
 **Worldsplitter review:** Run `tools/launch_king_skills.ps1`; press **5**, aim and click, then move/dodge while the upright sword finishes. F7 -> **Skills ->5 WORLDSPLITTER** selects all three upgrades; F9 restores the test kit. Eira trains Advanced at Level10 and Mature at Level15 (later campaign cap required). New in-engine captures: `art_source/review/characters/king/worldsplitter_upright_2026_09_27/`.

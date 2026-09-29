@@ -40,6 +40,9 @@ func _initialize() -> void:
 
 
 func _run() -> void:
+	root.get_node("SaveService").suppress_autosave_for_debug_session()
+	root.get_node("StoryState").reset_story()
+	root.get_node("RunSession").reset_run()
 	for path: String in RUNTIME_SPRITES:
 		var texture := load(path) as Texture2D
 		if texture == null or texture.get_size() != Vector2(RUNTIME_SPRITES[path]):
@@ -350,9 +353,13 @@ func _run() -> void:
 	):
 		_fail("The first available Sanctuary expedition is not Stage 1.")
 		return
-	if menu.route_buttons.size() != 5 or menu.first_expedition_button.disabled:
-		_fail("The expedition menu did not build one available and four sealed data-driven routes.")
+	if menu.route_buttons.size() != 7 or menu.first_expedition_button.disabled:
+		_fail("The expedition menu did not build the six authored stages and sealed future route.")
 		return
+	for index in range(1,menu.route_buttons.size()):
+		if not menu.route_buttons[index].disabled:
+			_fail("A fresh profile bypasses expedition progression: %s" % menu.expeditions[index].expedition_id)
+			return
 	if (
 		not menu.route_buttons[1].disabled
 		or not menu.route_buttons[2].disabled
@@ -409,6 +416,10 @@ func _portal_approach_is_clear(altar: ExpeditionAltar, fountain: DivineFountain)
 			for sample_index in range(sample_count + 1):
 				var local_point := start.lerp(end, float(sample_index) / float(sample_count))
 				query.transform = Transform2D(0.0, local_point)
-				if not altar.get_world_2d().direct_space_state.intersect_shape(query, 1).is_empty():
+				var obstructions := altar.get_world_2d().direct_space_state.intersect_shape(query, 1)
+				if not obstructions.is_empty():
+					var body: CollisionObject2D = obstructions[0].collider
+					var shape_owner := body.shape_find_owner(obstructions[0].shape)
+					push_error("Portal route blocked at %s by %s" % [local_point, body.shape_owner_get_owner(shape_owner).get_path()])
 					return false
 	return true

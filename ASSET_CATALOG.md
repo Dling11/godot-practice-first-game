@@ -1,5 +1,12 @@
 # Asset Catalog
 
+## Orren and workshop review — 2026-09-30
+
+- Runtime candidate: `assets/characters/npcs/armskeeper/renewal/idle_work_v2.png` (384x192; eight96px cells;60px body; foot baseline80), `portrait.png` (96x96); `assets/environment/sanctuary/refuge_review/orren_workshop.png` (320x224, doorway anchor160,208). Prior `idle_work.png` retained; owner requested larger head and bolder outlines.
+- Sources, complete prompts, rejected first idle and normalization manifest: `art_source/generated/environment/sanctuary/orren_workshop_2026_09_30/`. Built-in image generation referenced current King, old Orren's role and the trainer lodge. No downloaded assets.
+- Rebuild: `tools/build_orren_workshop_review.gd`, followed by editor import. Single shared body scale, binary-alpha threshold, connected-component cleanup and padded foot registration. Runtime uses named `idle_down` SpriteFrames in `orren_workshop_review.gd`, half-scale body, nearest filtering and no mipmaps.
+- Latest native rendered evidence: `art_source/review/environment/orren_readability_2026_09_30/`; prior captures remain under `orren_workshop_2026_09_30/`. Current generated edit and exact prompt: `idle_readable_source.png` and `READABILITY_PROMPT.md` in the source folder. Workshop/theme accepted; revised NPC owner acceptance pending. Campaign assets remain intact.
+
 **Unbroken Vow Lab assets (2026-09-27):** `tools/prepare_unbroken_vow_test_assets.gd` packs approved review body/pressure/barrier into three lossless, non-mipmapped atlases plus the original contact WAV under `assets/vfx/abilities/king/unbroken_vow_test/`. Consumer: F7 `unbroken_vow_test.gd`, with clipped Sprite2D regions and nearest sampling. These are Lab visual-test assets, not a production buff.
 
 **Unbroken Vow activation study (2026-09-27):** `art_source/generated/characters/king/unbroken_vow_activation_2026_09_27/` holds exact King templates, final body/pressure sources and prompts. Matching review folder has a 4x2 down-pose atlas, measurements, normal/slow/native GIFs, click-to-play HTML and original pressure WAV. Built with `tools/build_unbroken_vow_activation_review.gd`; existing GIF builder supports `-Activation`, `-Slow`, `-Native`. Art-only assets; no runtime consumer.

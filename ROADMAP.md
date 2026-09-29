@@ -1,5 +1,9 @@
 # Roadmap
 
+**Latest Sanctuary handoff (2026-09-30):** Workshop/theme accepted. Orren readability V2 (larger head, stronger silhouette/outline, name/role label) is implemented in the study and awaiting owner review;78 rendered checks pass. Continue via `CONTINUE_SANCTUARY.md`, then Eira's remodel.
+
+**Active milestone — Sanctuary renewal (2026-09-30):** First terrain/lodge direction accepted; Orren and his workshop are now a playable review candidate together, including a new portrait and eight-pose working idle. Next: owner review, Eira's matching character/portrait/idle, Nema and Umi with their buildings, then one enter/exit interior proof and campaign promotion before resuming skill progression. All NPC replacements remain in scope; only Orren is remodeled so far. Full phased scope: `docs/design/sanctuary-environment-renewal.md`.
+
 **Owner milestone accepted (2026-09-27):** King Skills 1–5 are accepted as the current design/visual baseline after the Worldsplitter momentum review. Preserve this baseline for subsequent work. Campaign progression completion, whole-kit balance, cleanup and mobile profiling remain separate follow-ups; acceptance does not mark those finished.
 
 **Current Worldsplitter (Decision 162, 2026-09-27):** The owner corrected repeated strikes to fresh summoned swords. Foundation/Advanced/Mature now summon one/two/three blades at the same point, with .28s gaps. Blade arrival is now 144px high, with follow-up summoning begun .34s before impact for clearer momentum. Each drives 60px deep, fractures while sinking, and detonates into a broad radial light AOE; a generated summoning seam and energy filaments precede each blade. The rejected single-blade bounce/pullout is removed. King retains .32s commitment, existing total damage, training and saves. See `docs/design/worldsplitter-fractured-light.md`; visual acceptance and mobile profiling remain pending. Earlier conflicting Worldsplitter entries below are historical.

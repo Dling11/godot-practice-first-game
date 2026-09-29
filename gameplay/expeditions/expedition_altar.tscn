@@ -104,10 +104,6 @@ collision_mask = 2
 [node name="WestGuardianCollision" type="CollisionPolygon2D" parent="MonumentBody" unique_id=585007807]
 polygon = PackedVector2Array(-85, -47, -81, -58, -80, -74, -87, -111, -67, -122, -29, -122, -28, -83, -27, -60, -27, -25, -42, -25, -46, -8, -57, 3, -78, 2, -90, -8, -90, -20, -86, -27)
 
-[node name="WestGuardianCollision2" type="CollisionPolygon2D" parent="MonumentBody" unique_id=1417408029]
-position = Vector2(44, 4)
-polygon = PackedVector2Array(-71, -33, -19, -33, -17, -65, -73, -65)
-
 [node name="EastGuardianCollision" type="CollisionPolygon2D" parent="MonumentBody" unique_id=1986486292]
 polygon = PackedVector2Array(80, -62, 79, -83, 83, -94, 84, -111, 66, -122, 27, -120, 28, -93, 27, -27, 42, -26, 47, -8, 57, 2, 76, 2, 88, -10, 89, -26, 86, -38, 87, -49)
 

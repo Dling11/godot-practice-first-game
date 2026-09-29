@@ -1,5 +1,7 @@
 # Known Issues
 
+**Sanctuary review (2026-09-30):** Orren readability V2 study passes78 GPU checks; production hub smoke passes. Workshop/theme accepted; the initial NPC looked too small/faint beside King. Revised larger-head60px body, bolder outline and nameplate await owner review. Eight-pose idle and portrait are optional-review-only. Eira/Nema/Umi, interiors, mobile profiling and campaign promotion remain unfinished. Shared GPU teardown warnings persist. Continue via `CONTINUE_SANCTUARY.md`.
+
 **Worldsplitter correction (Decision 162, 2026-09-27):** The rejected bouncing sword and narrow sideways splash are replaced by fresh summoned blades and broad radial detonations. Distinct-blade, burial, all-direction AOE and control checks pass. Owner art/audio acceptance and mobile profiling remain open. Existing shared GPU shutdown warnings persist.
 
 **Resolved 2026-09-27 — Worldsplitter overhead crater:** The generic GreatswordEffects observer emitted a redundant radial burst at King on skill release. Worldsplitter now bypasses that observer; its dedicated ground effect still appears only at the target on contact. All three ranks pass early-activation GPU regression checks. Existing shared GPU shutdown warnings remain.

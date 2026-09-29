@@ -2,11 +2,13 @@ extends Node
 
 ## Optional environment review on the real hub, without changing service authority.
 const Ground = preload("res://levels/sanctuary/review/refuge_ground.gd")
+const OrrenReview = preload("res://levels/sanctuary/review/orren_workshop_review.gd")
 const ART := "res://assets/environment/sanctuary/refuge_review/"
 var hub: Node
 var ground: TileMapLayer
 var props: Node2D
 var lodge: StaticBody2D
+var orren_review: Node
 var review_enabled := true
 var overview := false
 var _button: Button
@@ -21,6 +23,9 @@ func _ready() -> void:
 	props.y_sort_enabled = true
 	hub.get_node("World/Actors").add_child(props)
 	_build_lodge()
+	orren_review = OrrenReview.new()
+	add_child(orren_review)
+	orren_review.configure(hub,props)
 	for position in [Vector2(128,432),Vector2(344,432),Vector2(464,388),Vector2(688,388),Vector2(464,564),Vector2(672,584),Vector2(512,720),Vector2(624,720)]:
 		_prop("lantern",position,Vector2(18,12))
 	for position in [Vector2(384,408),Vector2(752,408),Vector2(400,584),Vector2(720,584)]:
@@ -113,16 +118,17 @@ func _build_controls() -> void:
 	var column := VBoxContainer.new()
 	_panel.add_child(column)
 	var title := Label.new()
-	title.text = "SANCTUARY STUDY · GROUND + TRAINER LODGE"
+	title.text = "SANCTUARY STUDY · ORREN + WORKSHOP"
 	title.add_theme_font_size_override("font_size",12)
 	column.add_child(title)
 	var caption := Label.new()
-	caption.text = "NPC art / remaining buildings / interiors are later passes."
+	caption.text = "New Orren portrait + working idle. Other NPCs / interiors follow."
 	caption.add_theme_font_size_override("font_size",11)
 	column.add_child(caption)
 	var row := HBoxContainer.new()
 	column.add_child(row)
 	_button = _action(row,"Compare old environment",func() -> void: set_review_enabled(not review_enabled))
+	_action(row,"Visit Orren",visit_orren)
 	_action(row,"Visit lodge",func() -> void:
 		set_overview(false)
 		hub.get_node("World/Actors/Player").global_position = Vector2(224,434)
@@ -142,11 +148,17 @@ func set_review_enabled(value: bool) -> void:
 	ground.visible = value
 	props.visible = value
 	props.process_mode = Node.PROCESS_MODE_INHERIT if value else Node.PROCESS_MODE_DISABLED
+	orren_review.set_enabled(value)
 	hub.get_node("World/Level/Ground").visible = not value
 	var original := hub.get_node("World/Actors/SkillkeeperLodge")
 	original.visible = not value
 	original.process_mode = Node.PROCESS_MODE_DISABLED if value else Node.PROCESS_MODE_INHERIT
 	_button.text = "Compare old environment" if value else "Return to new study"
+
+func visit_orren() -> void:
+	set_overview(false)
+	hub.get_node("World/Actors/Player").global_position = Vector2(984,474) if review_enabled else Vector2(916,616)
+	hub.get_node("World/Actors/Player/Camera2D").reset_smoothing()
 
 func set_overview(value: bool) -> void:
 	overview = value

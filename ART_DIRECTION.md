@@ -4,6 +4,10 @@ This document is the visual source of truth for Battle of Gods. It governs handm
 
 ## Visual Promise
 
+### Sanctuary NPC renewal candidate — September 30
+
+Orren is the first remodeled NPC in the optional Sanctuary study: a mature working artisan, rolled charcoal sleeves, russet leather apron, short brown hair with a silver streak and trimmed beard. Eight generated blade-inspection poses and a matching96px portrait replace his old art only in that review. The owner found the first55–56px body/head too small and faint beside King. V2 uses a60px body at half scale, larger head, broader shoulders and stronger dark contours; visible silhouette matters alongside numerical height. Feet remain registered and the whole-body translation helper is disabled. Nearest filtering, binary alpha and padded cells preserve readability. Outlined name/role labels add MMORPG-style NPC identity. The owner loves the stone/timber workshop and fantasy theme; V2 NPC review remains pending.
+
 ### King selected appearance review — September 13
 
 The owner selected C Spellward from `art_source/review/characters/king/identity_options_2026_09_13/king_identity_options_v1.png`: black hair, short crimson scarf, charcoal asymmetric tunic with pale seam trim, wrapped wrists, brown leather equipment and shoulder-supported silver greatsword. This is an appearance choice, not a gameplay class. They want clearer, finer stylized pixels at compact human scale, avoiding coarse unreadable blocks and realism. The review-only 56px-body / 28-logical-pixel density experiment in `art_source/review/characters/king/spellward_motion_2026_09_13/` is not an approved runtime density change. Motion remains pending, especially genuine opposite-leg exchange. Prior artwork remains installed until the proof is accepted.
