@@ -60,6 +60,9 @@ func set_selected(value: bool) -> void:
 func _on_proximity_changed(value: bool, _prompt: String, _icon: Texture2D) -> void:
 	near = value
 	queue_redraw()
+	if not value:
+		speech.hide()
+		_speech_timer.stop()
 	if not enabled or not value or Time.get_ticks_msec() - _last_greeting_ms < 20000:
 		return
 	_last_greeting_ms = Time.get_ticks_msec()

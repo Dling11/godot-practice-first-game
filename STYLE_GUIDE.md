@@ -1,5 +1,7 @@
 # Style Guide
 
+**Ambient locomotion and work (2026-10-01):** A unique sprite hash does not prove a walk cycle. Inspect contact/passing leg silhouettes at native size and tie ambient footsteps to traveled distance; idle while blocked, yielding or waiting. Fixed services retain planted registered feet and presentation-owned work animation; disable competing timers and restore them on comparison. Tree/bird motion stays bounded and separate from collision/service authority.
+
 ## Owner-ready game testing
 
 Every meaningful skill, animation or gameplay delivery must include an accessible in-engine test route and clear controls. Prepare and run appropriate focused checks plus a rendered review before handing it back. A GIF or source-file validation alone is insufficient. Keep visual rehearsals explicitly labeled when gameplay authority is pending, and state what was verified versus what still needs owner feel review. Preserve current art scale, input rules and saves; provide replay/reset and cleanup for temporary test state.

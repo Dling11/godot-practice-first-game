@@ -93,6 +93,7 @@ func _build_dialogue() -> void:
 	talk_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(talk_label)
 	talk_label.hide()
+	dialogue.dialogue_requested.connect(func(_speaker: String, _lines: Array[String], _portrait: Texture2D) -> void: talk_label.hide())
 
 func set_enabled(value: bool) -> void:
 	_enabled = value

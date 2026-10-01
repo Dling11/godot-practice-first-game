@@ -55,6 +55,10 @@ func _building(kind: String, point: Vector2, footprint: Vector2, body_offset: Ve
 	var body := _prop("../courtyards/"+kind,point,footprint,0)
 	body.name = kind.to_pascal_case()
 	body.get_node("CollisionShape2D").position = body_offset
+	if kind == "nema_side":
+		_collision(body,Vector2(46,28),Vector2(64,-17))
+	else:
+		_collision(body,Vector2(44,20),Vector2(-57,-20))
 	buildings.append(body)
 	body.set_meta("interior_status", &"planned")
 	for marker_name in ["Doorway","Approach","ReturnPoint"]:
@@ -105,6 +109,7 @@ func _prop(kind: String, point: Vector2, footprint: Vector2, bottom_padding: flo
 
 func _collision(parent: CollisionObject2D, size: Vector2, offset: Vector2) -> void:
 	var collision := CollisionShape2D.new()
+	collision.name = "CollisionShape2D"
 	var shape := RectangleShape2D.new()
 	shape.size = size
 	collision.shape = shape

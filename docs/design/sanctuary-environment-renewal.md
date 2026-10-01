@@ -1,6 +1,6 @@
 # Sanctuary renewal — staged environment and NPC work
 
-**Latest continuation (2026-10-01, Decision163):** Owner screenshot feedback led to a living-town pass: old red cart and trees replaced, walls organized into connected boundaries, purposeful workstations, four service markers/greetings, a town map/noticeboard and walking courier. The earlier Orren/Eira work remains. Current evidence: `art_source/review/environment/sanctuary_life_2026_10_01/`. Town feel review is next; Nema/Umi remodeling, interiors and campaign promotion remain pending. New-chat handoff: `CONTINUE_SANCTUARY.md`.
+**Latest continuation (2026-10-01):** The owner rejected the courier's sliding feel and lectern placement, then authorized Nema and Umi. Their working sprites/portraits and angled houses are now integrated, alongside distance-driven courier poses, an off-road teaching nook, foliage wind, swallows and Rowan dialogue. Current layout, sources and verification are in `sanctuary-courtyard-renewal.md`. Earlier sections below describe prior iterations where positions or pending status differ.
 
 Updated 2026-10-01. Owner direction: a richer inhabited fantasy RPG settlement, cohesive trees/walls/workstations, discoverable reactive NPCs, walking civilians, finer tiles, useful buildings with future interiors, and all service NPCs refreshed to match current King. Keep accepted workshop/lodge and King Skills1–5; preserve service functionality and stage major service-character replacements individually.
 

@@ -1,5 +1,17 @@
 # Continue Sanctuary renewal
 
+## Current continuation — courtyard correction and Nema/Umi, 2026-10-01
+
+Read the required project docs, then `docs/design/sanctuary-courtyard-renewal.md`. The owner authorized continuing after rejecting gliding courier legs, Eira's road placement and static surroundings. Implemented: contact/passing gait driven by distance, an off-road teaching nook, Nema and Umi working sprites/portraits and angled houses, foliage wind, two occasional swallows, and F dialogue with Rowan. NPC service authority and King are retained.
+
+**Test:** F5 -> Continue -> F10 -> SANCTUARY REVIEW, or `tools/launch_sanctuary_study.ps1`. Visit Nema/Umi, Find Rowan, F talk, M map; step away from Rowan to watch him resume. Compare restores old art/layout, but saves remain suppressed until process restart. Campaign art is not promoted.
+
+**Verified:** 99 rendered courtyard checks, 95 town-life checks, 108 existing study checks and production hub smoke pass. Courtyard tests exercise real F/cancel/complete/menu flow, eight-pose playback, original restoration, road/door access, physical blockage/distance cadence, service priority, roof reveal and birds. Native images: `art_source/review/environment/sanctuary_courtyards_2026_10_01/`. Shared GPU teardown warnings remain.
+
+**Next:** owner native-scale gait/composition/identity review, one complete interior proof, phone profiling and deliberate promotion. Nema/Umi are implemented candidates, not approved content. Preserve user changes; do not commit/push.
+
+Everything below is historical where it describes the earlier town iteration or says Nema/Umi are pending.
+
 ## Current continuation — inhabited town, 2026-10-01
 
 Verified: town-life suite91 rendered/82 headless checks, existing Sanctuary review108 rendered checks, production hub smoke and `git diff --check` pass. Shared GPU texture shutdown warnings remain. No commit, branch switch or push was performed.

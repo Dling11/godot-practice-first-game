@@ -43,7 +43,7 @@ func _run() -> void:
 	check(not _blocked(space,Vector2(832,550)),"Hidden red cart still blocks its former footprint")
 	check(study.dressing.trees.size() == 6 and study.dressing.stations.size() == 3,"Tree/workstation set incomplete")
 	check(_blocked(space,Vector2(280,218)) and not _blocked(space,Vector2(456,224)),"North garden boundary or deliberate portal approach is wrong")
-	check(_blocked(space,Vector2(1038,424)) and _blocked(space,Vector2(248,412)),"New workstations have no physical footprint")
+	check(_blocked(space,Vector2(1038,424)) and _blocked(space,Vector2(344,408)),"New workstations have no physical footprint")
 	_check_courier_frames(study.courier)
 	for index in study.courier.route.size():
 		var start: Vector2 = study.courier.route[index]

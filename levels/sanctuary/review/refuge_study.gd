@@ -249,7 +249,7 @@ func visit_eira() -> void:
 	hub.get_node("World/Actors/Player/Camera2D").reset_smoothing()
 
 func visit_nema() -> void:
-	_visit(Vector2(374,658))
+	_visit(Vector2(366,658))
 
 func visit_umi() -> void:
 	_visit(Vector2(784,686))

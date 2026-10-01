@@ -10,5 +10,6 @@ func can_interact() -> bool:
 	return true
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not _player_inside or not event.is_action_pressed("player_interact"): return
 	if not can_interact(): return
 	super._unhandled_input(event)

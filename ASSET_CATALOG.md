@@ -1,5 +1,11 @@
 # Asset Catalog
 
+## Sanctuary courtyard correction — 2026-10-01
+
+Built-in imagegen assets: Nema/Umi atlases and96px portraits in `assets/characters/npcs/rootweaver/renewal/` and `assets/characters/npcs/umi/renewal/`; Rowan's `walk_v2.png` and `portrait.png` in `assets/characters/npcs/courier/`; angled houses and swallow in `assets/environment/sanctuary/courtyards/`. Existing courier standing poses remain.
+
+Exact prompts/originals: `art_source/generated/characters/npcs/nema/renewal_2026_10_01/`, `art_source/generated/characters/npcs/umi/renewal_2026_10_01/`, `art_source/generated/characters/npcs/courier/locomotion_v2_2026_10_01/` and `art_source/generated/environment/sanctuary/courtyards_2026_10_01/`. Builder: `tools/build_sanctuary_courtyards.gd`. Manifest and rejected frontal house are retained. Full mapping and native evidence: `docs/design/sanctuary-courtyard-renewal.md`.
+
 ## Inhabited Sanctuary — 2026-10-01
 
 - Runtime environment: `assets/environment/sanctuary/inhabited/` contains linden128x156, cedar93x176, anvil station69x48, lectern38x44, horizontal wall96x32, vertical wall32x96, pillar28x39 and noticeboard64x69 PNGs. Binary alpha/nearest, separate footprints/canopy fade, no baked actors.

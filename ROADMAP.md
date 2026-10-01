@@ -1,8 +1,8 @@
 # Roadmap
 
-**Latest Sanctuary handoff (2026-10-01, Decision163):** Town-life pass implemented in the optional study: old red cart/trees replaced, purposeful workstations and intact walls, reactive service markers/greetings, M map and F noticeboard, walking/resting courier, F10 entry after normal Continue. Next: owner town/interaction/route feel review, then Nema/Umi individually. Continue via `CONTINUE_SANCTUARY.md`.
+**Latest Sanctuary handoff (2026-10-01):** Implemented gait/layout corrections, Nema and Umi renewals with angled artisan houses, foliage wind and swallows, and civilian Rowan dialogue. Eira's lectern is off-road. Next: owner native-scale gait/composition review, one interior proof, phone profiling and deliberate campaign promotion. Continue via `CONTINUE_SANCTUARY.md`.
 
-**Active milestone — Sanctuary renewal (2026-10-01):** First terrain/lodge/workshop direction accepted; Orren and Eira retain individual portraits/eight-pose working idles, now within the inhabited-town pass. Next: town feel review, Nema and Umi with their buildings, then one enter/exit interior proof and campaign promotion before resuming skill progression. Full phased scope: `docs/design/sanctuary-environment-renewal.md`.
+**Active milestone — Sanctuary renewal (2026-10-01):** Orren/workshop and Eira/lodge are retained; Nema and Umi now have eight-pose working presentations and side-elevation houses in the optional town study. All four retain existing service authority. Current scope and evidence: `docs/design/sanctuary-courtyard-renewal.md`; earlier stages are recorded in `docs/design/sanctuary-environment-renewal.md`.
 
 **Owner milestone accepted (2026-09-27):** King Skills 1–5 are accepted as the current design/visual baseline after the Worldsplitter momentum review. Preserve this baseline for subsequent work. Campaign progression completion, whole-kit balance, cleanup and mobile profiling remain separate follow-ups; acceptance does not mark those finished.
 

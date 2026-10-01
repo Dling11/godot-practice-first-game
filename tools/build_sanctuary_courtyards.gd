@@ -47,16 +47,23 @@ func _courier() -> void:
 	var source := Image.load_from_file(SOURCE+"characters/npcs/courier/locomotion_v2_2026_10_01/walk_source.png")
 	var poses := _cells(source,4,4)
 	var ratio := 58.0/poses[0].get_used_rect().size.y
+	var vertical := _cells(Image.load_from_file(SOURCE+"characters/npcs/courier/locomotion_v2_2026_10_01/vertical_source.png"),4,2)
+	var vertical_ratio := 58.0/vertical[0].get_used_rect().size.y
 	var atlas := Image.create(384,384,false,Image.FORMAT_RGBA8)
 	for index in 16:
 		var pose := poses[index]
-		pose.resize(roundi(pose.get_width()*ratio),roundi(pose.get_height()*ratio),Image.INTERPOLATE_NEAREST)
+		var factor := ratio
+		if index < 4 or index >= 12:
+			pose = vertical[index if index < 4 else index-8]
+			factor = vertical_ratio
+		pose.resize(roundi(pose.get_width()*factor),roundi(pose.get_height()*factor),Image.INTERPOLATE_NEAREST)
 		var bounds := pose.get_used_rect()
 		var offset := Vector2i(48-bounds.get_center().x,80-bounds.end.y)
 		atlas.blit_rect(pose,Rect2i(Vector2i.ZERO,pose.get_size()),Vector2i(index%4,index/4)*96+offset)
-		manifest.append({"identity":"courier_v2","frame":index,"bounds":str(Rect2i(bounds.position+offset,bounds.size)),"scale":ratio})
+		manifest.append({"identity":"courier_v2","frame":index,"bounds":str(Rect2i(bounds.position+offset,bounds.size)),"scale":factor})
 	assert(atlas.save_png("res://assets/characters/npcs/courier/walk_v2.png") == OK)
-	var face := poses[0].get_region(Rect2i(20,8,38,38))
+	var first := atlas.get_region(Rect2i(0,0,96,96))
+	var face := first.get_region(Rect2i(28,18,40,40))
 	face.resize(96,96,Image.INTERPOLATE_NEAREST)
 	assert(face.save_png("res://assets/characters/npcs/courier/portrait.png") == OK)
 

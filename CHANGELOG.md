@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-01 — Sanctuary gait, courtyards and remaining artisans
+
+- Replaced nearly static courier strides with contact/passing drawings and distance-driven phase; waits, yielding and physical blockage select standing. Rowan gains F dialogue and fixed-service priority.
+- Moved Eira/lectern to an off-road teaching nook; revised paths, garden props and lower-west wall.
+- Added Nema hammer-work and Umi crystal-work sheets/portraits, attentive holds and angled houses with bench collision/roof reveal. Existing crafting/exchange services remain connected; comparison restores original assets/timers.
+- Added tree crown wind, occasional two-swallow flights, Visit Nema/Umi and Find Rowan.
+- 99 rendered courtyard checks, 95 town-life checks, 108 existing study checks and production hub smoke pass. Shared GPU teardown warnings remain. Details: `docs/design/sanctuary-courtyard-renewal.md`.
+
+Earlier iteration:
+
 - 2026-10-01: Implemented Decision163's inhabited Sanctuary study from owner screenshot feedback. Removed the old red cart from the new layout; generated matching planted trees, small workstations, noticeboard and intact wall modules; placed connected boundaries with clear approaches. Added four NPC rings/greetings, Orren/Eira attentive holds, M town map/service tracking, F noticeboard and one collision-tested walking/resting courier that yields near King. Added F10 admin entry after normal Continue with explicit session save suppression and single-overlay reuse. Source prompts, old assets and native captures retained; town-life suite passes91 rendered/82 headless checks, existing rendered study108 and production hub smoke pass. Normal campaign promotion and remaining NPC/interior work are still pending; shared GPU shutdown warnings remain.
 
 - 2026-10-01: Reviewed Orren V2 beside King and continued the staged Sanctuary NPC renewal with Eira. Generated eight reading/page-turn poses and a matching portrait, normalized fixed foot registration and half-scale body, added Skillkeeper label and lodge-side placement, and retained the original F/dialogue/skill-service authority. Old/new comparison restores her original presentation and position. Launcher starts beside Eira. Review passes108 rendered/94 headless checks with native captures; production hub smoke passes. Eira visual acceptance, Nema/Umi, interiors and campaign promotion remain pending. Shared GPU shutdown warnings remain.
