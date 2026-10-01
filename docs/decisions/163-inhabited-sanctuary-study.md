@@ -1,5 +1,7 @@
 # Decision 163: Make the Sanctuary study an inhabited settlement
 
+**2026-10-02 interior follow-up:** Continue with one walkable Orren workshop proof composed in the optional study. Reuse the same Player, DialoguePanel and service authorities; give furniture shared physics/navigation footprints, reversible bounds/camera/tolerance changes and explicit doorway return. Suspend outdoor overlays without discarding destination selection. Inspection remains rewardless and Orren remains outside. Other interiors and campaign promotion are pending. See ../design/sanctuary-workshop-interior.md.
+
 **2026-10-01 follow-up:** Owner feedback rejects diagonal artisan buildings and requests clearer screen UI. The same optional study now uses overhead houses with left-positioned entrances, a persistent corner minimap, compact action frame and reversible generated nine-slice modal theme. Reuse actual menu/service controls and live map coordinates; preserve old assets. Only the crafting-body overflow fix also applies outside the study. See ../design/sanctuary-interface-renewal.md. Campaign promotion and final visual acceptance remain pending.
 
 - Date: 2026-10-01

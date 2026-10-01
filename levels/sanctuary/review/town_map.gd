@@ -12,6 +12,7 @@ var drawing: Control
 var guidance: Label
 var selected_id := ""
 var enabled := false
+var suspended := false
 var _timer: Timer
 var _modals: Array[Control] = []
 
@@ -109,12 +110,12 @@ func set_enabled(value: bool) -> void:
 		clear_destination()
 
 func toggle() -> void:
-	if enabled and not get_tree().paused and not hub.dialogue_panel.visible:
+	if enabled and not suspended and not get_tree().paused and not hub.dialogue_panel.visible:
 		panel.visible = not panel.visible
 		_refresh()
 
 func select_destination(service_id: String) -> void:
-	if not enabled: return
+	if not enabled or suspended: return
 	selected_id = service_id
 	for entry in entries:
 		if entry.has("beacon"): entry.beacon.set_selected(str(entry.id) == selected_id)
@@ -133,19 +134,20 @@ func clear_destination() -> void:
 		mini_drawing.queue_redraw()
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_M and enabled and not hub.dialogue_panel.visible:
+	if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_M and enabled and not suspended and not hub.dialogue_panel.visible:
 		toggle()
 		get_viewport().set_input_as_handled()
 
 func _refresh() -> void:
 	if not enabled: return
-	var modal_open := get_tree().paused
+	var modal_open := get_tree().paused or suspended
 	for modal in _modals: modal_open = modal_open or modal.visible
 	if modal_open:
 		panel.hide()
 		mini.hide()
 		guidance.hide()
 		return
+
 	drawing.selected_id = selected_id
 	mini.visible = not panel.visible
 	mini_drawing.selected_id = selected_id
@@ -162,6 +164,10 @@ func _refresh() -> void:
 		guidance.text = direction + "  " + str(entry.name) + " · " + str(entry.role)
 		guidance.modulate = entry.color
 		return
+
+func set_suspended(value: bool) -> void:
+	suspended = value
+	_refresh()
 
 func _layout() -> void:
 	var width := get_viewport().get_visible_rect().size.x

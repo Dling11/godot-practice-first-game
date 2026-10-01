@@ -1,5 +1,15 @@
 # Continue Sanctuary renewal
 
+## Current continuation - first workshop interior, 2026-10-02
+
+Read the required docs, then `docs/design/sanctuary-workshop-interior.md`. One walkable Orren workshop now connects to the accepted courtyard exterior. It has separate generated room/furniture sprites, measured collision, mouse navigation around the bench, forge embers and three F inspection points. Orren remains outside at his station. The owner-reported oversized furniture is corrected in V2, with a smaller room and furniture calibrated against unchanged King. Owner accepted the current furniture size for now; retain it. Door wording is now Enter workshop. Previous house/UI/NPC/ambient changes remain.
+
+**Test:** F5 -> Continue -> F10 -> SANCTUARY REVIEW -> **Workshop door**, then walk to the doorstep to enter automatically. WASD walks; right click routes to a spot; F inspects the bench/forge/rack; F at the south opening returns. Tab inventory and Esc pause work indoors. Review saves remain suppressed until restart. Other interiors and campaign promotion remain pending.
+
+**Verified:** 57 rendered interior checks, 63 rendered interface checks, 90 headless courtyard checks, 94 headless study checks and production hub smoke pass. Native images: `art_source/review/environment/orren_interior_scale_v2_2026_10_02/`. Shared GPU teardown warnings remain.
+
+**Next:** recommend Eira training-lodge interior using the current character/furniture scale and overhead perspective, then Nema and Umi interiors. Indoor audio, phone profiling and deliberate campaign promotion remain pending. Scale approval does not approve the whole room or promote it to campaign. Preserve user changes and do not commit/push. Earlier all-interiors-planned descriptions below are superseded for Orren only.
+
 ## Current continuation - house perspective and interface, 2026-10-01
 
 Read the required project docs, then `docs/design/sanctuary-interface-renewal.md`. The owner rejected diagonal artisan-house perspective. New Nema/Umi houses preserve the overhead Orren baseline with entrances positioned left. Added a top-right parchment minimap, smaller action frame and generated slate/gold/ivory/amethyst theme for dialogue, inventory, skills, technique collection and service/pause menus. Nema recipe overflow is fixed through a bounded scrolling body. Previous NPC, courier, foliage and bird work remains.

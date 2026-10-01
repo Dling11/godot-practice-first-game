@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-10-02 - Walkable Orren workshop review
+
+- Owner accepted the current furniture size for now. Retain V2 proportions; simplified doorway wording to Enter workshop. Broader room acceptance and campaign promotion remain pending.
+
+- Corrected owner-reported oversized furniture: room shell 480x168, bench 56x30, rack 48x39 and forge 56x60; King stays at the approved scale. Resized physical/navigation footprints, camera center and inspection points. Original assets/captures are retained; V2 passes 57 rendered checks with an adjacent-character scale capture.
+
+- Added owner-requested automatic entry on approaching the doorstep. Kept optional F entry and the courtyard return outside the automatic zone; guarded against one F event entering and exiting. Workshop suite now passes 56 rendered checks.
+
+- Fixed the owner-reported close-door entry gap: replaced an Approach-centered circle with a Doorway-anchored apron shared by prompt and entry validation. Real walking/physical F and side/far-entry checks now pass; workshop suite expanded to 54 rendered checks.
+
+- Connected the accepted workshop doorway to one generated stone/timber interior with separate forge, workbench and weapon rack, measured collision and foot-depth sorting.
+- Added F entry/inspection/exit, room navigation around furniture and bounded forge embers. Existing Player, inventory, service and dialogue authorities remain in use; Orren stays in the courtyard.
+- Snapshot/restore movement bounds, camera and waypoint tolerance; clear stale movement at both boundaries. Suspend the outdoor map without losing its selection; hide room/study headers during modals. Compare and visit actions return King outside first.
+- Added Workshop door to the review controls. Other interiors and campaign promotion remain pending.
+- 50 rendered interior checks, 63 interface checks, 90 headless courtyard checks, 94 headless study checks and production hub smoke pass. Shared GPU teardown warnings remain. Provenance and native captures: `docs/design/sanctuary-workshop-interior.md`.
+
 ## 2026-10-01 - Sanctuary perspective and interface correction
 
 - Replaced rejected diagonal Nema/Umi houses with generated overhead stone/timber/slate candidates and left-positioned entrances; retained older assets and source prompts.

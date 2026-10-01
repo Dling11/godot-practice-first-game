@@ -1,6 +1,6 @@
 # Battle of Gods
 
-**Latest Sanctuary review:** F5 -> Continue -> F10 -> **SANCTUARY REVIEW · NO SAVES**, or run tools/launch_sanctuary_study.ps1. Visit Nema/Umi for corrected overhead houses with left-positioned entrances. Click the top-right minimap or press M for destinations; F talks and Tab opens the themed inventory. Eira opens skills after dialogue. The action frame is smaller while its buttons remain readable. Compare restores old presentation; restart normal play to resume saves. This remains an optional study. Details: docs/design/sanctuary-interface-renewal.md.
+**Latest Sanctuary review:** F5 -> Continue -> F10 -> **SANCTUARY REVIEW · NO SAVES** -> **Workshop door**, then walk up to the doorstep to enter the new Orren workshop automatically. WASD walks, right click moves around furniture, F inspects bench/forge/rack, and F at the south opening returns to the courtyard. Tab inventory and Esc pause work indoors. Previous town improvements remain available through Visit buttons and the M map. Saving stays suppressed until normal-play restart. Details: docs/design/sanctuary-workshop-interior.md.
 
 Continuing this project in a new chat: start with `CONTINUE_SANCTUARY.md` after the required context docs. The living Sanctuary study includes Orren/Eira, replacement trees/workstations/walls, NPC discovery and a walking courier.
 

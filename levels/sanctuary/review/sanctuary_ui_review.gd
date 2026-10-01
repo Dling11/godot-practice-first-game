@@ -15,10 +15,12 @@ var _hints: Array[Dictionary] = []
 var _review_controls: Control
 var _fonts: Array[Dictionary] = []
 var _town_map: Node
+var _study: Node
 
 func configure(hub: Node, review_controls: Control) -> void:
 	_review_controls = review_controls
-	_town_map = hub.get_node("SanctuaryStudy").town_map
+	_study = hub.get_node("SanctuaryStudy")
+	_town_map = _study.town_map
 	_theme = ThemeKit.build()
 	var library := hub.get_node("World/Actors/Player/KingSkillLibrary")
 	library.child_entered_tree.connect(func(child: Node) -> void:
@@ -95,5 +97,7 @@ func _sync_review_controls() -> void:
 	for record in _modals: modal_open = modal_open or record.node.visible
 	for record in _collection_panels:
 		if is_instance_valid(record.node): modal_open = modal_open or record.node.is_inside_tree()
-	_review_controls.visible = not modal_open
+	var inside: bool = _study.workshop_visit != null and _study.workshop_visit.inside
+	_review_controls.visible = not modal_open and not inside
+	if _study.workshop_visit != null: _study.workshop_visit.set_modal_open(modal_open)
 	if modal_open: _town_map.hide_for_modal()

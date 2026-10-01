@@ -47,7 +47,7 @@ func _run() -> void:
 	check(not _blocked(space,Vector2(224,434)),"Lodge approach blocked")
 	check(_blocked(space,Vector2(1040,370)),"Workshop forge footprint not solid")
 	check(not _blocked(space,Vector2(928,426)),"Workshop doorway approach blocked")
-	check(study.orren_review.workshop.get_meta("interior_status") == &"planned","Workshop falsely offers an interior")
+	check(study.orren_review.workshop.get_meta("interior_status") == &"review_playable","Workshop interior is not routed to the playable review")
 	check(orren.get_node("Body/Collision").shape == old_collision,"NPC body authority replaced")
 	check(orren.get_node("IdleBreath").is_stopped(),"Old whole-body bob still active")
 	check(study.orren_review.nameplate.visible and study.orren_review.nameplate.npc_name == "Orren" and study.orren_review.nameplate.role_name == "Armskeeper","NPC name/role missing")

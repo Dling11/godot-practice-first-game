@@ -1,6 +1,6 @@
 extends "res://tests/sanctuary_refuge_review_smoke.gd"
 
-const EVIDENCE := "res://art_source/review/ui/sanctuary_theme_2026_10_01/"
+const EVIDENCE := "res://art_source/review/ui/sanctuary_theme_2026_10_02/"
 
 func _run() -> void:
 	root.size = Vector2i(960,540)

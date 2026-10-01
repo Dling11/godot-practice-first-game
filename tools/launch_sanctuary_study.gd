@@ -13,5 +13,6 @@ func _run() -> void:
 	var study: Node = load("res://levels/sanctuary/review/refuge_study.gd").new()
 	study.hub = hub
 	hub.add_child(study)
-	study.visit_orren()
+	if "--workshop-door" in OS.get_cmdline_user_args(): study.visit_workshop()
+	else: study.visit_orren()
 	root.title = "Battle of Gods — Living Sanctuary Review"

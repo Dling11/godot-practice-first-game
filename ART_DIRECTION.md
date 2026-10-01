@@ -1,5 +1,7 @@
 # Art Direction
 
+**Orren interior (2026-10-02):** The first room uses the accepted exterior stone/timber/charcoal/amber family, quiet plank flooring, warm windows and a cutaway south wall. Separate forge, bench and rack retain hard pixel outlines; V2 scales the furniture to unchanged King. Compare at the same floor baseline: the workbench front reaches his waist, with its top depth accounted for by the overhead projection. Keep furniture collision on the floor and tall silhouettes depth-sorted; preserve the existing overhead perspective. Sources and native review: docs/design/sanctuary-workshop-interior.md.
+
 **Sanctuary perspective and interface (2026-10-01):** Match the accepted Orren workshop: horizontal ground/facade lines, upright walls, overhead visible roof and stone/timber/slate materials. A left-positioned entrance does not justify diagonal isometric foundations or a different camera. New Nema/Umi houses replace the rejected angled candidates. Menus and map share dark slate, aged gold, ivory feather corners and restrained amethyst; keep functional controls live and readable. Current provenance: docs/design/sanctuary-interface-renewal.md.
 
 This document is the visual source of truth for Battle of Gods. It governs handmade, generated, downloaded, and purchased assets before they become runtime content. `ASSET_CATALOG.md` records the concrete files that follow these rules.

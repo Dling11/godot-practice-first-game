@@ -7,6 +7,7 @@ const EiraReview = preload("res://levels/sanctuary/review/eira_renewal_review.gd
 const ArtisanReview = preload("res://levels/sanctuary/review/artisan_renewal_review.gd")
 const Birds = preload("res://levels/sanctuary/review/garden_birds.gd")
 const InterfaceReview = preload("res://levels/sanctuary/review/sanctuary_ui_review.gd")
+const WorkshopVisit = preload("res://levels/sanctuary/review/workshop_visit.gd")
 const TownDressing = preload("res://levels/sanctuary/review/town_dressing.gd")
 const Beacon = preload("res://entities/npcs/presentation/service_beacon.gd")
 const TownMap = preload("res://levels/sanctuary/review/town_map.gd")
@@ -24,6 +25,7 @@ var nema_review: Node
 var umi_review: Node
 var birds: Node2D
 var interface_review: Node
+var workshop_visit: Node
 var dressing: Node
 var town_map: CanvasLayer
 var courier: CharacterBody2D
@@ -73,6 +75,9 @@ func _ready() -> void:
 	interface_review = InterfaceReview.new()
 	add_child(interface_review)
 	interface_review.configure(hub,_panel)
+	workshop_visit = WorkshopVisit.new()
+	add_child(workshop_visit)
+	workshop_visit.configure(self)
 	set_review_enabled(true)
 
 func _build_lodge() -> void:
@@ -175,6 +180,7 @@ func _build_controls() -> void:
 	_action(navigation,"Overview / walk",func() -> void: set_overview(not overview))
 	_action(navigation,"Town map [M]",town_map.toggle)
 	_action(navigation,"Find Rowan",visit_courier)
+	_action(navigation,"Workshop door",visit_workshop)
 
 func _action(row: HBoxContainer, title: String, action: Callable) -> Button:
 	var button := Button.new()
@@ -185,6 +191,7 @@ func _action(row: HBoxContainer, title: String, action: Callable) -> Button:
 	return button
 
 func set_review_enabled(value: bool) -> void:
+	if workshop_visit != null: workshop_visit.set_enabled(value)
 	review_enabled = value
 	ground.visible = value
 	props.visible = value
@@ -249,6 +256,10 @@ func visit_orren() -> void:
 	hub.get_node("World/Actors/Player").global_position = Vector2(984,474) if review_enabled else Vector2(916,616)
 	hub.get_node("World/Actors/Player/Camera2D").reset_smoothing()
 
+func visit_workshop() -> void:
+	if not review_enabled: return
+	_visit(orren_review.workshop.get_node("Approach").global_position)
+
 func visit_eira() -> void:
 	set_overview(false)
 	hub.get_node("World/Actors/Player").global_position = Vector2(344,474) if review_enabled else Vector2(360,556)
@@ -274,6 +285,7 @@ func _visit(point: Vector2) -> void:
 	hub.get_node("World/Actors/Player/Camera2D").reset_smoothing()
 
 func set_overview(value: bool) -> void:
+	if workshop_visit != null and workshop_visit.inside: workshop_visit.leave()
 	overview = value
 	var camera := hub.get_node("World/Actors/Player/Camera2D") as Camera2D
 	camera.position_smoothing_enabled = false
