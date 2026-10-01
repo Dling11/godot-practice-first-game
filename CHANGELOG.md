@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-02 - Owner-selected Slim Runic HP
+
+- Replace the large shared vitality surround with A Slim Runic: 248x38 HP-only generated frame, native centered HP plaque, separate quiet growth row and explicit critical line. Preserve immediate health, finite damage trail, healing, shield-only hits, growth/cap notices and bag access.
+- Built-in imagegen edits the selected concept into a blank transparent production frame. Exact prompt/source and deterministic Godot binary-alpha/crop/nearest builder are preserved. Record the owner's preference for simple readable fantasy UI in STYLE_GUIDE.md; Sanctuary remains temporarily complete.
+- 69 rendered interface checks and14 actual demo checks pass, including native HP/readout bounds and progression separation. UI theme/icon and player-progression smoke pass; editor import and git diff --check pass. Evidence: art_source/review/ui/slim_runic_hp_2026_10_02/. Existing GPU shutdown warnings and unverified phone readability remain.
+
+
 ## 2026-10-02 - Sanctuary temporary closeout and recovery archive (Decision165)
 
 - Promote the renewed town to normal F5/Continue/new-game/expedition-return composition. SanctuaryFlow mounts it once, heals and saves normally. Debug controls/fixtures stay explicit and suppress saving before activation; reopening debug uses the same town.

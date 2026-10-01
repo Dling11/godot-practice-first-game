@@ -1,0 +1,9 @@
+{
+	"alpha": "binary",
+	"crop": "[P: (111, 302), S: (1730, 230)]",
+	"fill_rect": "(17,20,214,9)",
+	"label_rect": "(66,3,116,13)",
+	"sampling": "nearest",
+	"size": "(248, 38)",
+	"source_size": "(1952, 806)"
+}

@@ -10,7 +10,7 @@ A presentation shortcut classified every sealed no-save test session as F9's all
 
 ## Vitality and growth
 
-CombatHUD uses a compact generated midnight-slate, aged-gold, ivory/amethyst frame. HP numbers and red fill update immediately from HealthComponent. A gold trail holds for .25s and settles over .55s after loss; healing/max-HP changes snap the trail to the authoritative value. Critical health at 25% or below has red styling and CRITICAL text; it does not depend on color alone. Tooltip reads regeneration delay from vitality data.
+Owner selected A Slim Runic on2026-10-02 for its simplicity. CombatHUD now uses a248x38 HP-only frame: thin aged-gold lip, small violet end tabs and a raised dark HP-number plaque. The separate dark progression row holds level, coins and XP; the large feathered surround is superseded. Native controls occupy fixed plaque/fill rectangles; the critical warning has a separate line above progression. HP numbers and red fill update immediately from HealthComponent. A gold trail holds for .25s and settles over .55s after loss; healing/max-HP changes snap the trail to the authoritative value. Critical health at25% or below has red styling and CRITICAL text; it does not depend on color alone. Tooltip reads regeneration delay from vitality data.
 
 Vow retains its real shield/duration readout, now below the bag button. Shield-only damage leaves HP unchanged. A separate finite level-up notice sits below that readout and names newly eligible Eira training. No perpetual flashing or new per-frame gameplay observer is introduced.
 
@@ -32,8 +32,8 @@ Selection, explicit equip, drag equip, quantities/rarity/equipped markers and so
 - ui/hud/progression_readout.gd formats authoritative progression data for both views.
 - CharacterMenu selects/filters/sorts; Player and inventory services still own equip/ownership/save.
 - Generated originals and exact built-in imagegen prompts: art_source/generated/ui/player_readability_2026_10_02/.
-- Runtime assets: assets/ui/player_readability/vitality.png (288x104) and satchel.png (24x24). Alpha is binary, sampling nearest, mipmaps disabled. tools/build_player_readability_art.gd normalizes alpha before tight cropping/resizing and records normalization.json. Original prior art remains preserved.
-- Native evidence: art_source/review/ui/player_readability_2026_10_02/.
+- Current runtime assets: assets/ui/player_readability/slim_runic_hp.png (248x38) and satchel.png (24x24). Alpha is binary, sampling nearest, mipmaps disabled. tools/build_slim_runic_hp.gd records crop/size/label/fill geometry in its source normalization.json. Source/exact built-in edit prompt: art_source/generated/ui/slim_runic_hp_2026_10_02/. Previous vitality art/sources remain preserved as history; the HUD no longer references vitality.png. The original player-readability builder retains historical reproducibility and satchel normalization.
+- Current native evidence: art_source/review/ui/slim_runic_hp_2026_10_02/; earlier player_readability_2026_10_02/ captures remain historical.
 
 The HP/bag changes remain shared in normal play. Decision165 promotes the broader renewed Sanctuary and generated modal theme to the normal town; expeditions retain their battle frame. See sanctuary-closeout.md.
 
@@ -47,7 +47,7 @@ Starts beside Nema with temporary100 XP,750 gold,8 of every authored material an
 
 ## Verification and limits
 
-66 rendered interface checks: immediate HP/trail/critical/heal, actual level-up/HP growth, stage/max/legacy cap copy, shield-only hits and overlap exclusion, real F/Nema crafting and exact spends, preview ownership fix, currency refresh, profile checksum preservation, actual HUD bag click, all owned items/counts, arrow navigation, sorting, case-insensitive search/focus, empty-state actions and real equip.
+69 rendered interface checks: selected slim texture/dimensions, native HP label/fill enclosure and non-overlap, separate critical/growth bounds, immediate HP/trail/critical/heal, actual level-up/HP growth, stage/max/legacy cap copy, shield-only hits and overlap exclusion, real F/Nema crafting and exact spends, preview ownership fix, currency refresh, profile checksum preservation, actual HUD bag click, all owned items/counts, arrow navigation, sorting, case-insensitive search/focus, empty-state actions and real equip.
 
 14 rendered launcher checks exercise actual demo buttons, native bounds/map separation, XP cap/unlock, critical/heal, seeded Nema readiness and bag items. CharacterMenu, player/run progression, atomic crafting and UI-icon smoke pass; historical Sanctuary interface52 and retained Eira flow73 headless checks and combined Vow/Worldsplitter49 pass. Editor import and git diff --check pass. Existing GPU shutdown texture warnings remain; automated results do not establish subjective feel or phone readability.
 

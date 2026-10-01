@@ -1,5 +1,7 @@
 # Roadmap
 
+**Slim Runic HP complete (2026-10-02):** Owner-selected A replaces the large vitality surround in shared normal play. Separate HP/growth rows retain live damage trail, critical text, shield and level feedback. 69 rendered interface and14 demo checks plus UI-icon/player-progression smoke pass; native evidence: art_source/review/ui/slim_runic_hp_2026_10_02/. Phone readability remains unverified; next expedition work is unchanged.
+
 **Sanctuary temporarily complete (Decision 165, 2026-10-02):** The renewed town is the normal F5/Continue/expedition-return baseline, mounted once under SanctuaryTown by SanctuaryFlow. Normal saves remain active; only explicit debug entry/launchers suppress saving and grant fixtures. Retired town/NPC art, idle helpers, comparison code/tests and prior docs are recoverable in art_source/archive/sanctuary_retired_2026_10_02/ (.gdignore). Read CONTINUE_SANCTUARY.md and docs/design/sanctuary-closeout.md. Current King/skills/furniture and canonical NPC services remain. Further interiors/audio, phone profiling and balance are deferred; move to expedition objective/reward work.
 
 

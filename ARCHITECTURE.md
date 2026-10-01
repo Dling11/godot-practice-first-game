@@ -1,5 +1,7 @@
 # Architecture
 
+**Slim Runic HUD (2026-10-02):** PlayerStatusPresenter composes the 248x38 generated HP frame independently of ProgressPanel. It reparents the existing unique HealthLabel/HealthBar while retaining scene ownership; native controls render the numbers and two overlaid live/trail bars. Critical text occupies a separate bounded line. All health/progression authority and signal subscriptions remain unchanged. tools/build_slim_runic_hp.gd records binary-alpha/crop/nearest normalization; see docs/design/player-interface-readability.md.
+
 **Sanctuary ownership (Decision 165):** SanctuaryFlow wires existing services, mounts one levels/sanctuary/town/sanctuary_town.gd, then saves the recovery checkpoint. NPC scenes load current renewal/sprite_frames.tres directly; service_work_animation.gd observes dialogue/greetings without old idle timers or art snapshots. Town modules compose current ground/buildings/map/life/theme and F-required workshop visits. Workshop camera/bounds/navigation snapshots remain necessary for room return. Debug controls reuse the same town and suppress saving before activation; normal town presentation never suppresses saves. Retired material and prior docs are Godot-ignored recovery history. Shared HUD/bag and KingTrainingCatalog ownership remain unchanged. See docs/design/sanctuary-closeout.md.
 
 

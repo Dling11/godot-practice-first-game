@@ -1,5 +1,7 @@
 # Game Design
 
+**Current HP presentation (2026-10-02):** Owner-selected Slim Runic is a compact HP-only strip with thin gold edging and small violet ends. Actual HP numbers sit in its raised plaque; XP/level/coins remain in a separate row. Immediate damage, finite gold damage trail, explicit critical warning at25%, regeneration, shield, growth and save rules remain unchanged. Prefer this simple readable fantasy UI direction for future work.
+
 **Sanctuary temporarily complete (Decision 165, 2026-10-02):** The renewed town is the normal F5/Continue/expedition-return baseline, mounted once under SanctuaryTown by SanctuaryFlow. Normal saves remain active; only explicit debug entry/launchers suppress saving and grant fixtures. Retired town/NPC art, idle helpers, comparison code/tests and prior docs are recoverable in art_source/archive/sanctuary_retired_2026_10_02/ (.gdignore). Read CONTINUE_SANCTUARY.md and docs/design/sanctuary-closeout.md. Current King/skills/furniture and canonical NPC services remain. Further interiors/audio, phone profiling and balance are deferred; move to expedition objective/reward work.
 
 

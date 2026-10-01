@@ -5,7 +5,7 @@ const Study = preload("res://levels/sanctuary/town/sanctuary_town.gd")
 const MATERIALS = preload("res://data/items/materials/material_catalog.tres")
 const GEAR = preload("res://data/items/equipment/forest/stage_5_core_catalog.tres")
 const PROFILE := "user://player_interface_readability_smoke.json"
-const EVIDENCE := "res://art_source/review/ui/player_readability_2026_10_02/"
+const EVIDENCE := "res://art_source/review/ui/slim_runic_hp_2026_10_02/"
 var checks := 0
 var failures := 0
 
@@ -28,6 +28,9 @@ func _run() -> void:
 	var hud: CombatHUD = hub.combat_hud
 	var presenter: Node = hud.status_presenter
 	check(presenter.frame.get_theme_stylebox("panel") is StyleBoxTexture,"HUD does not use the new generated frame")
+	check(presenter.frame.size == Vector2(248,38) and presenter.frame.get_theme_stylebox("panel").texture.resource_path.ends_with("slim_runic_hp.png"),"HUD loses the selected slim frame")
+	check(presenter.frame.get_global_rect().encloses(hud.health_label.get_global_rect()) and presenter.frame.get_global_rect().encloses(hud.health_bar.get_global_rect()) and not hud.health_label.get_global_rect().intersects(hud.health_bar.get_global_rect()),"Native HP numbers overlap or escape the health fill")
+	check(not presenter.frame.get_global_rect().intersects(hud.get_node("ProgressPanel").get_global_rect()) and not presenter.health_state.get_global_rect().intersects(hud.get_node("ProgressPanel").get_global_rect()),"Slim health/critical readout overlaps progression")
 	check(hud.get_node("%HealthBar") == hud.health_bar,"Status composition loses the scene's unique health control")
 	check(hud.health_bar.value == 140 and hud.health_label.text.contains("140 / 140"),"Initial vitality is inaccurate")
 	check(hud.health_label.tooltip_text.contains("100%") and hud.health_label.tooltip_text.contains("5"),"Vitality tooltip is missing or disagrees with regeneration data")

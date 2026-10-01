@@ -1,5 +1,9 @@
 # Style Guide
 
+## Owner UI preference: Slim Runic
+
+2026-10-02: the owner selected Slim Runic for its simplicity and wants this approach used often. Favor compact horizontal readouts, restrained gold borders, small violet accents and clear native text over large decorative surrounds. Keep important state legible through text and color. Separate unrelated information into quiet rows; decoration must leave health fills, numbers and input targets unobstructed. This guides future UI work; existing accepted art is not automatically replaced. Runtime labels/fills remain Godot controls; review at960x540 with nearest sampling and binary-alpha generated frames.
+
 **Status/inventory convention (2026-10-02):** Show authoritative HP immediately; animate a separate recent-loss trail. Pair critical color with readable text and keep shield/level notices clear of bag access. Share XP/cap copy and derive named requirements from data, including preserved legacy levels. Show filtered results and equipment/pouch totals separately; never imply materials consume gear capacity. Bound inventory bodies, preserve typing/item focus, clamp raster icons explicitly and present empty states without stale equip actions. Tight-crop transparent sources after alpha normalization; keep source/prompt/manifest provenance.
 
 **Training service convention (Decision 164):** Keep Training and Loadout as distinct tasks; show current/next benefit, exact level and cost, then one action. Keep curriculum metadata shared with authoritative validation rather than hardcoding UI-only gates. Native 960x540 must fit the longest rank ladder and loadout grid. Direct service entry closes with one Esc; nested inventory arrangement returns to its parent. Verify real pointer training and persistence, not only button appearance.

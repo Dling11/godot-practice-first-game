@@ -1,5 +1,7 @@
 # Project Context
 
+**Slim Runic HP (2026-10-02):** Owner selected concept A for its simplicity. Shared normal-play CombatHUD now uses the 248x38 HP-only frame with separate progression; see docs/design/player-interface-readability.md. Future UI should favor this restrained, readable fantasy direction (STYLE_GUIDE.md). Sanctuary remains temporarily complete.
+
 **Sanctuary temporarily complete (Decision 165, 2026-10-02):** The renewed town is the normal F5/Continue/expedition-return baseline, mounted once under SanctuaryTown by SanctuaryFlow. Normal saves remain active; only explicit debug entry/launchers suppress saving and grant fixtures. Retired town/NPC art, idle helpers, comparison code/tests and prior docs are recoverable in art_source/archive/sanctuary_retired_2026_10_02/ (.gdignore). Read CONTINUE_SANCTUARY.md and docs/design/sanctuary-closeout.md. Current King/skills/furniture and canonical NPC services remain. Further interiors/audio, phone profiling and balance are deferred; move to expedition objective/reward work.
 
 
