@@ -1,5 +1,7 @@
 # Decision 164: Give Eira a reachable training curriculum
 
+**Closeout amendment:** Decision165 promotes current town/placement to normal play and archives old comparison. This document remains decision history; docs/design/sanctuary-closeout.md owns current runtime status.
+
 - Date: 2026-10-02
 - Status: Implemented; owner usability/balance review pending.
 - Source: Owner requested useful Eira functionality, improved skill arrangement and authorized mechanic refactoring.

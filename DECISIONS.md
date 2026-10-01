@@ -4,6 +4,8 @@ Architecture decisions are stored as durable ADR history. Read this compact inde
 
 The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-archive.md`](docs/decisions/001-025-archive.md).
 
+Current Sanctuary baseline: [Decision165](docs/decisions/165-finalize-sanctuary-and-archive-legacy-town.md) supersedes optional-only/comparison and study-only placement in Decisions163/164.
+
 ## Active Decision Map
 | ID | Decision | Read when working on |
 |---|---|---|
@@ -179,6 +181,7 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 | 163 | [Inhabited Sanctuary study](docs/decisions/163-inhabited-sanctuary-study.md) | Cohesive replacement props, service beacons/greetings, map/noticeboard, ambient courier and F10 review entry |
 
 | 164 | [Eira reachable curriculum](docs/decisions/164-eira-reachable-curriculum.md) | Direct mentor Training/Loadout, free five-technique upgrades within cap10 and compatible Earth/Molten saving |
+| 165 | [Finalize Sanctuary and archive legacy town](docs/decisions/165-finalize-sanctuary-and-archive-legacy-town.md) | Normal renewed town, recoverable cleanup, normal vs debug saving and temporary closeout |
 
 ## New Decisions
 

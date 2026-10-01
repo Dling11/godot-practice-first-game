@@ -1,5 +1,24 @@
 # Changelog
 
+## 2026-10-02 - Sanctuary temporary closeout and recovery archive (Decision165)
+
+- Promote the renewed town to normal F5/Continue/new-game/expedition-return composition. SanctuaryFlow mounts it once, heals and saves normally. Debug controls/fixtures stay explicit and suppress saving before activation; reopening debug uses the same town.
+- Move current modules from levels/sanctuary/review/ to levels/sanctuary/town/. NPC scenes load authored renewed frame resources directly; consolidate planted work/greeting/dialogue animation in service_work_animation.gd. Remove legacy town instances, old idle helpers, presentation restoration snapshots and old/new comparison.
+- Archive49 retired primary files plus sidecars, the original hub test, and complete pre-closeout code/design/handoff snapshots in art_source/archive/sanctuary_retired_2026_10_02/ with .gdignore, recovery README, path list and SHA256 manifest. Live reference audit finds0 retired references. Builders no longer regenerate obsolete wall/angled-house/old-walk candidates.
+- Replace the conflicting handoff with current status/controls and aligned design/architecture/roadmap docs. Sanctuary is temporarily complete; further interiors/audio, phone profiling and whole-kit balance remain deferred. Accepted King/skills/workshop scale and canonical services remain.
+- 207 rendered checks pass:67 normal-town/save/service/debug-isolation,60 F-required interior/actual pointer navigation,66 HP/growth/bag/Nema,14 actual demo. Eira flow73 headless, archive boundary, atomic crafting, character menu, progression, Umi exchange and editor backdrop pass. Final editor import and git diff --check pass. Existing GPU shutdown texture warnings remain.
+- The first concurrent rendered workshop run had a pointer-routing failure; the isolated rerun passed60/60. Pointer-warping rendered suites must run sequentially. Native evidence: art_source/review/environment/sanctuary_closeout_2026_10_02/ (normal town/workshop/demo) and existing player-readability captures.
+- No commit or push. Closed the stale previous preview. Next work is expedition objective/reward feedback and a full fight/loot/craft/equip/train pass.
+
+
+## 2026-10-02 - Nema audit and player interface readability
+
+- Owner passed Eira for now; audited Nema previews, gates, fees, exact crafting, duplicates, results and equip. Removed the no-save shortcut falsely marking unowned outputs ALREADY OWNED; refresh visible craft readiness when gold changes.
+- Added generated shared vitality frame/satchel, immediate HP with a finite damage trail, critical text/color and separated Vow/level notices. Shared growth copy explains XP remaining, named cap requirements and legacy/max states without changing progression.
+- Added bag search, result and pouch/gear counts, bounded scroll, fixed-size icons, focus retention and honest empty detail. Hide unimplemented consumable/key filters.
+- Added save-suppressed -InterfaceDemo launcher with actual XP/damage/heal/cap buttons and Nema crafting fixtures. Sources/exact prompts, native evidence and builder are preserved.
+- 66 rendered interface/14 launcher checks pass; menu, player/run progression, atomic crafting, UI icons, 52 Sanctuary interface/73 Eira flow headless and49 combined combat checks pass. Existing GPU shutdown warnings and owner/phone review remain open.
+
 ## 2026-10-02 - Eira mentor curriculum and direct service
 
 - Place Eira directly RIGHT of her book at384,410 on the same foot baseline; clear nearby planter/name overlap.

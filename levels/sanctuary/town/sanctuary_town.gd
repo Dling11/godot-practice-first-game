@@ -1,19 +1,18 @@
 extends Node
 
-## Optional environment review on the real hub, without changing service authority.
-const Ground = preload("res://levels/sanctuary/review/refuge_ground.gd")
-const OrrenReview = preload("res://levels/sanctuary/review/orren_workshop_review.gd")
-const EiraReview = preload("res://levels/sanctuary/review/eira_renewal_review.gd")
-const ArtisanReview = preload("res://levels/sanctuary/review/artisan_renewal_review.gd")
-const Birds = preload("res://levels/sanctuary/review/garden_birds.gd")
-const InterfaceReview = preload("res://levels/sanctuary/review/sanctuary_ui_review.gd")
-const WorkshopVisit = preload("res://levels/sanctuary/review/workshop_visit.gd")
-const TownDressing = preload("res://levels/sanctuary/review/town_dressing.gd")
+## Current Sanctuary composition; service, progression and save authorities remain on the hub.
+const Ground = preload("res://levels/sanctuary/town/town_ground.gd")
+const OrrenReview = preload("res://levels/sanctuary/town/orren_workshop.gd")
+const EiraReview = preload("res://levels/sanctuary/town/eira_presentation.gd")
+const ArtisanReview = preload("res://levels/sanctuary/town/artisan_presentation.gd")
+const Birds = preload("res://levels/sanctuary/town/garden_birds.gd")
+const InterfaceReview = preload("res://levels/sanctuary/town/sanctuary_interface.gd")
+const WorkshopVisit = preload("res://levels/sanctuary/town/workshop_visit.gd")
+const TownDressing = preload("res://levels/sanctuary/town/town_dressing.gd")
 const Beacon = preload("res://entities/npcs/presentation/service_beacon.gd")
-const TownMap = preload("res://levels/sanctuary/review/town_map.gd")
+const TownMap = preload("res://levels/sanctuary/town/town_map.gd")
 const Courier = preload("res://entities/npcs/courier/sanctuary_courier.gd")
-const Nameplate = preload("res://entities/npcs/presentation/npc_nameplate.gd")
-const Noticeboard = preload("res://levels/sanctuary/review/town_noticeboard.gd")
+const Noticeboard = preload("res://levels/sanctuary/town/town_noticeboard.gd")
 const ART := "res://assets/environment/sanctuary/refuge_review/"
 var hub: Node
 var ground: TileMapLayer
@@ -31,19 +30,17 @@ var town_map: CanvasLayer
 var courier: CharacterBody2D
 var noticeboard: Area2D
 var beacons: Array[Node2D] = []
-var extra_nameplates: Array[Node2D] = []
-var review_enabled := true
+var test_controls_enabled := false
 var overview := false
-var _button: Button
 var _panel: PanelContainer
 
 func _ready() -> void:
-	name = "SanctuaryStudy"
+	name = "SanctuaryTown"
 	ground = Ground.new()
-	ground.name = "RefugeGround32"
+	ground.name = "SanctuaryGround32"
 	hub.get_node("World/Level").add_child(ground)
 	props = Node2D.new()
-	props.name = "RefugeStudyProps"
+	props.name = "TownProps"
 	props.y_sort_enabled = true
 	hub.get_node("World/Actors").add_child(props)
 	_build_lodge()
@@ -55,10 +52,10 @@ func _ready() -> void:
 	eira_review.configure(hub)
 	nema_review = ArtisanReview.new()
 	add_child(nema_review)
-	nema_review.configure(hub,"Rootweaver","rootweaver","Nema","Grove Smith")
+	nema_review.configure(hub,"Rootweaver","Nema","Grove Smith")
 	umi_review = ArtisanReview.new()
 	add_child(umi_review)
-	umi_review.configure(hub,"Umi","umi","Umi","Echo Melder")
+	umi_review.configure(hub,"Umi","Umi","Echo Melder")
 	for position in [Vector2(168,448),Vector2(456,432),Vector2(464,388),Vector2(688,388),Vector2(464,564),Vector2(672,584),Vector2(512,720),Vector2(624,720)]:
 		_prop("lantern",position,Vector2(18,12))
 	for position in [Vector2(440,336),Vector2(752,408),Vector2(400,584),Vector2(720,584)]:
@@ -78,11 +75,16 @@ func _ready() -> void:
 	workshop_visit = WorkshopVisit.new()
 	add_child(workshop_visit)
 	workshop_visit.configure(self)
-	set_review_enabled(true)
+	_panel.hide()
+	workshop_visit.set_enabled(true)
+	for beacon in beacons: beacon.set_enabled(true)
+	town_map.set_enabled(true)
+	courier.set_enabled(true)
+	birds.set_enabled(true)
 
 func _build_lodge() -> void:
 	lodge = StaticBody2D.new()
-	lodge.name = "TrainerLodgeReview"
+	lodge.name = "TrainerLodge"
 	lodge.position = Vector2(224,390)
 	lodge.collision_layer = 1
 	lodge.collision_mask = 0
@@ -156,12 +158,12 @@ func _build_controls() -> void:
 	layer.layer = 15
 	add_child(layer)
 	_panel = PanelContainer.new()
-	_panel.position = Vector2(220,8)
+	_panel.position = Vector2(280,8)
 	layer.add_child(_panel)
 	var column := VBoxContainer.new()
 	_panel.add_child(column)
 	var title := Label.new()
-	title.text = "SANCTUARY · LIVING TOWN STUDY"
+	title.text = "SANCTUARY · TEST SESSION"
 	title.add_theme_font_size_override("font_size",12)
 	column.add_child(title)
 	var caption := Label.new()
@@ -170,7 +172,6 @@ func _build_controls() -> void:
 	column.add_child(caption)
 	var row := HBoxContainer.new()
 	column.add_child(row)
-	_button = _action(row,"Compare old environment",func() -> void: set_review_enabled(not review_enabled))
 	_action(row,"Visit Orren",visit_orren)
 	_action(row,"Visit Eira",visit_eira)
 	_action(row,"Visit Nema",visit_nema)
@@ -190,28 +191,9 @@ func _action(row: HBoxContainer, title: String, action: Callable) -> Button:
 	row.add_child(button)
 	return button
 
-func set_review_enabled(value: bool) -> void:
-	if workshop_visit != null: workshop_visit.set_enabled(value)
-	review_enabled = value
-	ground.visible = value
-	props.visible = value
-	props.process_mode = Node.PROCESS_MODE_INHERIT if value else Node.PROCESS_MODE_DISABLED
-	orren_review.set_enabled(value)
-	eira_review.set_enabled(value)
-	nema_review.set_enabled(value)
-	umi_review.set_enabled(value)
-	dressing.set_enabled(value)
-	for beacon in beacons: beacon.set_enabled(value)
-	for nameplate in extra_nameplates: nameplate.visible = value
-	town_map.set_enabled(value)
-	courier.set_enabled(value)
-	birds.set_enabled(value)
-	interface_review.set_enabled(value)
-	hub.get_node("World/Level/Ground").visible = not value
-	var original := hub.get_node("World/Actors/SkillkeeperLodge")
-	original.visible = not value
-	original.process_mode = Node.PROCESS_MODE_DISABLED if value else Node.PROCESS_MODE_INHERIT
-	_button.text = "Compare old environment" if value else "Return to new study"
+func enable_test_controls() -> void:
+	test_controls_enabled = true
+	interface_review._sync_review_controls()
 
 func _build_town_life() -> void:
 	var entries: Array[Dictionary] = []
@@ -228,13 +210,6 @@ func _build_town_life() -> void:
 		beacon.configure(npc,recipe[4],recipe[5],recipe[6])
 		beacons.append(beacon)
 		entries.append({"id":recipe[0],"node":npc,"name":recipe[2],"role":recipe[3],"color":recipe[4],"beacon":beacon})
-		if recipe[6] == null:
-			var nameplate := Nameplate.new()
-			nameplate.npc_name = recipe[2]
-			nameplate.role_name = recipe[3]
-			nameplate.position = Vector2(0,-64)
-			npc.add_child(nameplate)
-			extra_nameplates.append(nameplate)
 	entries.append({"id":"gate","node":hub.get_node("World/Actors/ExpeditionAltar"),"name":"Veil Gate","role":"Expeditions","color":Color(.85,.77,.97)})
 	town_map = TownMap.new()
 	add_child(town_map)
@@ -253,16 +228,15 @@ func _build_town_life() -> void:
 
 func visit_orren() -> void:
 	set_overview(false)
-	hub.get_node("World/Actors/Player").global_position = Vector2(984,474) if review_enabled else Vector2(916,616)
+	hub.get_node("World/Actors/Player").global_position = Vector2(984,474)
 	hub.get_node("World/Actors/Player/Camera2D").reset_smoothing()
 
 func visit_workshop() -> void:
-	if not review_enabled: return
 	_visit(orren_review.workshop.get_node("Approach").global_position)
 
 func visit_eira() -> void:
 	set_overview(false)
-	hub.get_node("World/Actors/Player").global_position = EiraReview.APPROACH if review_enabled else Vector2(360,556)
+	hub.get_node("World/Actors/Player").global_position = EiraReview.APPROACH
 	hub.get_node("World/Actors/Player/Camera2D").reset_smoothing()
 
 func visit_nema() -> void:
@@ -272,7 +246,6 @@ func visit_umi() -> void:
 	_visit(Vector2(784,686))
 
 func visit_courier() -> void:
-	if not review_enabled: return
 	# Use an authored open delivery stop; avoid teleporting King into a nearby prop.
 	courier.position = Vector2(704,552)
 	courier.destination_index = 6

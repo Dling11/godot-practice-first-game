@@ -60,7 +60,7 @@ func _run() -> void:
 	if progression.level != 3 or progression.total_experience != 400 or progression.coins != 4:
 		_fail("Stage cap must discard excess XP while preserving coin rewards.")
 		return
-	if hud.experience_label.text != "STAGE CAP":
+	if not hud.experience_label.text.begins_with("STAGE CAP") or not hud.experience_label.tooltip_text.contains("Stage I"):
 		_fail("Stage cap needs distinct HUD feedback.")
 		return
 	for index in progression.definition.cap_unlock_flags.size():
@@ -80,7 +80,7 @@ func _run() -> void:
 	if progression.level != 10 or not is_equal_approx(player.health_component.maximum_health, 248.0):
 		_fail("Progression or level-scaled vitality failed to reach the Level-10 cap.")
 		return
-	if hud.get_node("ProgressPanel/Margin/Stack/ExperienceLabel").text != "MAX":
+	if hud.get_node("ProgressPanel/Margin/Stack/ExperienceLabel").text != "MAX LEVEL":
 		_fail("Progression HUD did not show maximum-level state.")
 		return
 

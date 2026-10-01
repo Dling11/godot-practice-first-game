@@ -107,6 +107,7 @@ func _ready() -> void:
 	expedition_altar.selection_requested.connect(expedition_menu.open_menu)
 	expedition_menu.menu_closed.connect(expedition_altar.restore_prompt)
 	combat_hud.show_story_message("SANCTUARY OF THE REMEMBERED VEIL", 2.8)
+	_mount_town()
 	_save_profile_at_sanctuary()
 
 
@@ -133,14 +134,18 @@ func _open_combat_lab() -> void:
 func _open_sanctuary_study() -> void:
 	if not _is_admin_enabled(): return
 	get_node("/root/SaveService").suppress_autosave_for_debug_session()
-	var study := get_node_or_null("SanctuaryStudy")
-	if study == null:
-		study = load("res://levels/sanctuary/review/refuge_study.gd").new()
-		study.hub = self
-		add_child(study)
-	study.set_review_enabled(true)
+	var study := _mount_town()
+	study.enable_test_controls()
 	study.visit_orren()
 	get_node("/root/DebugAdminState").set_enabled(false)
+
+func _mount_town() -> Node:
+	var town := get_node_or_null("SanctuaryTown")
+	if town == null:
+		town = preload("res://levels/sanctuary/town/sanctuary_town.gd").new()
+		town.hub = self
+		add_child(town)
+	return town
 
 func _open_stage_6_environment() -> void:
 	if _is_admin_enabled():

@@ -1,5 +1,10 @@
 # Asset Catalog
 
+**Sanctuary asset closeout (Decision165, 2026-10-02):** Current art is the normal-town baseline. NPC scenes consume renewal/sprite_frames.tres; active house/ground/prop/theme/v2 interior assets and source prompts are preserved. Old atlases/portraits/tiles/buildings/trees/cart/stations, prior Orren/courier, rejected angled houses and large interior art are now under art_source/archive/sanctuary_retired_2026_10_02/retired/ with sidecars and hashes. Older catalog paths/status below are historical; consult retired_paths.json and docs/design/sanctuary-closeout.md for current ownership. Native closeout evidence: art_source/review/environment/sanctuary_closeout_2026_10_02/.
+
+
+**Player interface assets (2026-10-02):** Built-in imagegen vitality_source.png and satchel_source.png plus exact PROMPTS.md and normalization.json are under art_source/generated/ui/player_readability_2026_10_02/. tools/build_player_readability_art.gd produces assets/ui/player_readability/vitality.png288x104 and satchel.png24x24, tightly cropped after binary-alpha normalization and nearest resizing. These are consumed by shared CombatHUD and CharacterMenu. No prior art removed. Native HUD damage/critical/growth/shield, Nema transaction and bag/search/equip/demo captures: art_source/review/ui/player_readability_2026_10_02/.
+
 **Eira Training V2 evidence (2026-10-02):** Native direct Training, right-edge workstation, requirement, loadout-swap and all-five completed course captures: art_source/review/ui/eira_training_v2_2026_10_02/. Reuses existing generated fantasy menu frames, Eira portrait and King skill icons. No new artwork generated; prior capture sets remain preserved.
 
 **NPC usability evidence (2026-10-02):** Native Eira work-corner, shared skill grid, training requirements, pointer swap and ordinary loadout captures are under art_source/review/ui/sanctuary_functionality_2026_10_02/. This pass reuses existing sprites/icons/generated menu frames; no new artwork was generated. Earlier theme captures are preserved.
@@ -18,7 +23,7 @@ Exact prompts/originals: `art_source/generated/characters/npcs/nema/renewal_2026
 
 - Runtime environment: `assets/environment/sanctuary/inhabited/` contains linden128x156, cedar93x176, anvil station69x48, lectern38x44, horizontal wall96x32, vertical wall32x96, pillar28x39 and noticeboard64x69 PNGs. Binary alpha/nearest, separate footprints/canopy fade, no baked actors.
 - Environment source, exact built-in imagegen prompt and crop/size manifest: `art_source/generated/environment/sanctuary/inhabited_2026_10_01/`. Generated source layout required explicit object crops; runtime assets are individual props.
-- Courier: `assets/characters/npcs/courier/walk.png` (384x384,4x4) and `idle.png` (384x96,4x1),96px cells/y80 feet/.5 presentation. Down/left/right/up order, four walk poses and one rest per direction. Sources/exact prompts: `art_source/generated/characters/npcs/courier/inhabited_2026_10_01/`. Walk source1254px requires rounded source-cell recovery; all runtime cells are exact.
+- Courier: `art_source/archive/sanctuary_retired_2026_10_02/retired/assets/characters/npcs/courier/walk.png` (384x384,4x4) and `idle.png` (384x96,4x1),96px cells/y80 feet/.5 presentation. Down/left/right/up order, four walk poses and one rest per direction. Sources/exact prompts: `art_source/generated/characters/npcs/courier/inhabited_2026_10_01/`. Walk source1254px requires rounded source-cell recovery; all runtime cells are exact.
 - Builder: `tools/build_sanctuary_life_art.gd`. Consumers: `town_dressing.gd` and `sanctuary_courier.gd`. Evidence: `art_source/review/environment/sanctuary_life_2026_10_01/`. Legacy cart/trees retained for comparison and campaign.
 
 ## Eira renewal study — 2026-10-01

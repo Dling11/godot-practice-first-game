@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3]
+[gd_scene load_steps=20 format=3]
 
 [ext_resource type="Script" path="res://ui/character_menu.gd" id="1_script"]
 [ext_resource type="Theme" path="res://assets/ui/themes/battle_of_gods_theme.tres" id="2_theme"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" path="res://ui/equipment/equipment_detail_panel.tscn" id="8_detail"]
 [ext_resource type="Script" path="res://entities/npcs/presentation/npc_idle_breath.gd" id="9_breath"]
 [ext_resource type="Texture2D" path="res://assets/ui/icons/status/icon_status_health_16x16.png" id="11_health"]
+
+[ext_resource type="Texture2D" path="res://assets/ui/player_readability/satchel.png" id="12_satchel"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_king_outline"]
 shader = ExtResource("king_outline")
@@ -115,9 +117,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -420.0
-offset_top = -230.0
+offset_top = -245.0
 offset_right = 420.0
-offset_bottom = 230.0
+offset_bottom = 245.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("panel")
@@ -132,9 +134,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 388.0
-offset_top = -224.0
+offset_top = -239.0
 offset_right = 414.0
-offset_bottom = -200.0
+offset_bottom = -215.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
@@ -168,7 +170,7 @@ theme_override_font_sizes/font_size = 16
 
 [node name="Subtitle" type="Label" parent="Panel/Margin/Root/Header/Identity"]
 layout_mode = 2
-text = "MORTAL RIFTSWORD  •  COMBAT PROOF"
+text = "MORTAL RIFTSWORD  •  EQUIPMENT & TECHNIQUES"
 theme_override_colors/font_color = Color(0.45, 0.5, 0.42, 1)
 theme_override_font_sizes/font_size = 8
 
@@ -284,7 +286,7 @@ theme_override_font_sizes/font_size = 7
 layout_mode = 2
 
 [node name="PageHost" type="Control" parent="Panel/Margin/Root"]
-custom_minimum_size = Vector2(808, 324)
+custom_minimum_size = Vector2(808, 348)
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -398,7 +400,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="BagPanel" type="PanelContainer" parent="Panel/Margin/Root/PageHost/GearPage"]
-custom_minimum_size = Vector2(0, 124)
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("inner_panel")
@@ -417,6 +419,14 @@ theme_override_constants/separation = 3
 [node name="BagHeader" type="HBoxContainer" parent="Panel/Margin/Root/PageHost/GearPage/BagPanel/BagMargin/BagRoot"]
 layout_mode = 2
 theme_override_constants/separation = 4
+
+[node name="BagIcon" type="TextureRect" parent="Panel/Margin/Root/PageHost/GearPage/BagPanel/BagMargin/BagRoot/BagHeader"]
+custom_minimum_size = Vector2(20,20)
+layout_mode = 2
+texture = ExtResource("12_satchel")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
 
 [node name="BagTitle" type="Label" parent="Panel/Margin/Root/PageHost/GearPage/BagPanel/BagMargin/BagRoot/BagHeader"]
 layout_mode = 2
@@ -485,12 +495,33 @@ size_flags_horizontal = 3
 [node name="BagCapacityLabel" type="Label" parent="Panel/Margin/Root/PageHost/GearPage/BagPanel/BagMargin/BagRoot/BagHeader"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "BAG  1 / 24"
+text = "SHOWING 1"
 vertical_alignment = 1
 theme_override_colors/font_color = Color(0.72, 0.78, 0.68, 1)
 theme_override_font_sizes/font_size = 8
 
-[node name="InventoryGrid" type="GridContainer" parent="Panel/Margin/Root/PageHost/GearPage/BagPanel/BagMargin/BagRoot"]
+[node name="SearchRow" type="HBoxContainer" parent="Panel/Margin/Root/PageHost/GearPage/BagPanel/BagMargin/BagRoot"]
+layout_mode = 2
+
+[node name="BagSearch" type="LineEdit" parent="Panel/Margin/Root/PageHost/GearPage/BagPanel/BagMargin/BagRoot/SearchRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0,24)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Search owned items by name, slot or rarity..."
+clear_button_enabled = true
+theme_override_font_sizes/font_size = 11
+
+[node name="BagScroll" type="ScrollContainer" parent="Panel/Margin/Root/PageHost/GearPage/BagPanel/BagMargin/BagRoot"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0,80)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+follow_focus = true
+
+[node name="InventoryGrid" type="GridContainer" parent="Panel/Margin/Root/PageHost/GearPage/BagPanel/BagMargin/BagRoot/BagScroll"]
+size_flags_horizontal = 3
 unique_name_in_owner = true
 layout_mode = 2
 columns = 12
@@ -506,6 +537,7 @@ theme_override_colors/font_color = Color(0.52, 0.56, 0.5, 1)
 theme_override_font_sizes/font_size = 7
 
 [node name="BagFooter" type="Label" parent="Panel/Margin/Root/PageHost/GearPage/BagPanel/BagMargin/BagRoot"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "MATERIALS USE NO BAG SPACE  •  DRAG OR SELECT + EQUIP ITEMS"
 theme_override_colors/font_color = Color(0.45, 0.5, 0.42, 1)

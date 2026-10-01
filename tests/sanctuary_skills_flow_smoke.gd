@@ -1,4 +1,4 @@
-extends "res://tests/sanctuary_refuge_review_smoke.gd"
+extends "res://tests/sanctuary_test_base.gd"
 
 const EVIDENCE := "res://art_source/review/ui/eira_training_v2_2026_10_02/"
 
@@ -9,9 +9,8 @@ func _run() -> void:
 	root.add_child(hub)
 	current_scene = hub
 	await process_frame
-	var study := Study.new()
-	study.hub = hub
-	hub.add_child(study)
+	var study: Node = hub.get_node("SanctuaryTown")
+	study.enable_test_controls()
 	study.visit_eira()
 	await create_timer(.2).timeout
 	var eira: DialogueNpc = hub.skillkeeper

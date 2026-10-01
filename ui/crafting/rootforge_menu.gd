@@ -62,6 +62,7 @@ func _ready() -> void:
 	var story_state := get_node_or_null("/root/StoryState")
 	if story_state != null:
 		story_state.story_state_changed.connect(_on_story_state_changed)
+	get_node("/root/RunSession").progression_state_changed.connect(_on_currency_changed)
 	_build_recipe_list()
 	hide()
 
@@ -262,11 +263,7 @@ func _refresh_recipe_detail() -> void:
 		if crafting_service != null
 		else {"success": false, "reason": &"service_missing", "message": "CRAFTING UNAVAILABLE"}
 	)
-	if _is_debug_crafting_preset_active():
-		milestone_label.text = "F9 TEST READY\nOUTPUT ALREADY OWNED • AUTOSAVE SUPPRESSED"
-		primary_action_button.text = "ALREADY OWNED"
-		primary_action_button.disabled = true
-	elif not _transaction_message.is_empty():
+	if not _transaction_message.is_empty():
 		milestone_label.text = _transaction_message
 		primary_action_button.text = "ALREADY OWNED" if status["reason"] == &"already_owned" else "CRAFT"
 		primary_action_button.disabled = true
@@ -380,17 +377,9 @@ func _craft_selected_recipe() -> void:
 	_refresh_all()
 
 
-func _is_debug_crafting_preset_active() -> bool:
-	if not OS.is_debug_build():
-		return false
-	var save_service := get_node_or_null("/root/SaveService")
-	var story_state := get_node_or_null("/root/StoryState")
-	return (
-		save_service != null
-		and save_service.is_autosave_suppressed_for_debug()
-		and story_state != null
-		and story_state.has_key_item(&"forest_core_gear_seal")
-	)
+func _on_currency_changed(_experience: int, _coins: int) -> void:
+	if visible:
+		_refresh_recipe_detail()
 
 
 func _on_material_quantity_changed(_material_id: StringName, _quantity: int) -> void:

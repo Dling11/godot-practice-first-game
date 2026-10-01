@@ -1,5 +1,7 @@
 # Decision 163: Make the Sanctuary study an inhabited settlement
 
+**Closeout amendment:** Decision165 promotes current town/placement to normal play and archives old comparison. This document remains decision history; docs/design/sanctuary-closeout.md owns current runtime status.
+
 **2026-10-02 priority correction:** Owner redirected effort from additional houses/interiors to NPC service functionality and skill arrangement. Further interiors are deferred. Eira placement/name clarity and the shared training/loadout presentation are corrected using existing service/library authority; the accepted furniture scale and F-required entry remain. See ../design/sanctuary-npc-usability.md. This does not promote campaign environment art or grant new progression.
 
 **2026-10-02 interior follow-up:** Continue with one walkable Orren workshop proof composed in the optional study. Reuse the same Player, DialoguePanel and service authorities; give furniture shared physics/navigation footprints, reversible bounds/camera/tolerance changes and explicit doorway return. Suspend outdoor overlays without discarding destination selection. Inspection remains rewardless and Orren remains outside. Other interiors and campaign promotion are pending. See ../design/sanctuary-workshop-interior.md.

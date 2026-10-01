@@ -24,6 +24,25 @@ var current_definition: EquipmentDefinition
 var current_material_definition: MaterialDefinition
 var _aura_tween: Tween
 
+func configure_empty(message: String) -> void:
+	current_definition = null
+	current_material_definition = null
+	if is_instance_valid(_aura_tween): _aura_tween.kill()
+	item_icon.hide()
+	fallback_glyph.hide()
+	rarity_label.text = "INVENTORY"
+	rarity_label.add_theme_color_override("font_color",Color("a3adbd"))
+	name_label.text = message.to_upper()
+	power_label.text = ""
+	comparison_label.hide()
+	lore_label.text = "Choose another category or clear the search to find an owned item."
+	synergy_title.text = ""
+	synergy_body.text = "Equipment can be inspected and equipped here. Materials stay in your separate pouch."
+	state_label.text = "NO ITEM SELECTED"
+	state_label.add_theme_color_override("font_color",Color("a3adbd"))
+	_apply_aura_style(Color("657185"))
+	equip_button.hide()
+
 
 func configure(
 	item: EquipmentDefinition,

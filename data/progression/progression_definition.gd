@@ -8,6 +8,14 @@ extends Resource
 @export var initial_level_cap := 0
 @export var cap_unlock_flags: Array[StringName] = []
 @export var unlocked_level_caps := PackedInt32Array()
+@export var cap_unlock_names := PackedStringArray()
+
+func next_cap_requirement(story: Node, minimum_cap := 0) -> Dictionary:
+	var current := maxi(minimum_cap,unlocked_cap(story))
+	for index in mini(cap_unlock_flags.size(),unlocked_level_caps.size()):
+		if unlocked_level_caps[index] > current:
+			return {"name":cap_unlock_names[index] if index < cap_unlock_names.size() else "the next expedition", "cap":unlocked_level_caps[index], "flag":cap_unlock_flags[index]}
+	return {}
 
 func unlocked_cap(story: Node) -> int:
 	var cap := initial_level_cap if initial_level_cap > 0 else maximum_level

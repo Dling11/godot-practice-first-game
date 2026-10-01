@@ -1,7 +1,7 @@
 extends SceneTree
 
 const HUB = preload("res://levels/sanctuary/sanctuary.tscn")
-const Study = preload("res://levels/sanctuary/review/refuge_study.gd")
+const Study = preload("res://levels/sanctuary/town/sanctuary_town.gd")
 const OUT := "res://art_source/review/environment/sanctuary_life_2026_10_01/"
 var failures := 0
 var checks := 0

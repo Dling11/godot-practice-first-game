@@ -1,0 +1,767 @@
+[
+    {
+        "path":  "snapshots/tools/build_sanctuary_refuge_review.gd",
+        "bytes":  3417,
+        "sha256":  "6369dcf3ca8db4ab3f670b133e009696683baea63a59afec21465602b91dbc0f"
+    },
+    {
+        "path":  "snapshots/tools/build_sanctuary_life_art.gd",
+        "bytes":  4451,
+        "sha256":  "47ddfd94f060a9dd6eb85de3c74721f6c8d13a18f7ab99ff7c9df50ca88f7a8f"
+    },
+    {
+        "path":  "snapshots/tools/build_sanctuary_courtyards.gd",
+        "bytes":  6109,
+        "sha256":  "616f1607e466ffdd3782109874167176ba87b8a174795b69ef04126a11365ca3"
+    },
+    {
+        "path":  "snapshots/STYLE_GUIDE.md",
+        "bytes":  64343,
+        "sha256":  "e8c311f8b8acc4de49ebf4a576ee7df11370b08899187ed9cd45f4c9b268d09c"
+    },
+    {
+        "path":  "snapshots/ROADMAP.md",
+        "bytes":  33739,
+        "sha256":  "9ab94a582a3b9b740afafac0ca4cadd4b2a053b5a4bbdfb9b518e124d5aafdf3"
+    },
+    {
+        "path":  "snapshots/README.md",
+        "bytes":  35076,
+        "sha256":  "cc81427426eccfc0e6d35285d63d0746dc0106ccd18fb793878a86a9e5e89a10"
+    },
+    {
+        "path":  "snapshots/PROJECT_CONTEXT.md",
+        "bytes":  55265,
+        "sha256":  "18efb36f197cfb0e412098680502869489a016a1654248fd5ef9fe88d1609774"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/sanctuary_ground.gd.uid",
+        "bytes":  20,
+        "sha256":  "4c2edbdd237212c7bce25d31679b052c3f709964340858ccbd15051d3bf45014"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/sanctuary_ground.gd",
+        "bytes":  2348,
+        "sha256":  "e261a97d6b741e07687229f368cba5321bf2c50dbcc24d3cadc4bbadfb1feff7"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/sanctuary_flow.gd.uid",
+        "bytes":  19,
+        "sha256":  "cfaadf6b18ed796918fa4dd0dbdf5df3d34c08989fc8422f32fb71f48df907a9"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/sanctuary_flow.gd",
+        "bytes":  7592,
+        "sha256":  "1e7c49986ce3b94226548f2cb1b7760d50359a68de68d022774be8315a688ebf"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/sanctuary.tscn",
+        "bytes":  9426,
+        "sha256":  "6b7254f7c5529d73990566331c71bde3ae39186a66a46f2322155512487c544e"
+    },
+    {
+        "path":  "snapshots/docs/design/sanctuary-workshop-interior.md",
+        "bytes":  7328,
+        "sha256":  "746fcbfd68db4b4c199701425b9f83d4cc8d35c040e8e9f95ff558272d34a02f"
+    },
+    {
+        "path":  "snapshots/docs/design/sanctuary-npc-usability.md",
+        "bytes":  5712,
+        "sha256":  "0060629811426f4aef6284f68802f51bf25a732466bcb79ed77266f58879fbb8"
+    },
+    {
+        "path":  "snapshots/docs/design/sanctuary-interface-renewal.md",
+        "bytes":  5351,
+        "sha256":  "d1d9b227a3b0ccab33174d3a4ab3609acb7f7bbe71325c0bc55a5e9bd3f04d8a"
+    },
+    {
+        "path":  "snapshots/docs/design/sanctuary-environment-renewal.md",
+        "bytes":  11100,
+        "sha256":  "9cbaed3e403ae7b73861c581b10102b7ee6355187a4272a6c03fe4e4e6c514e5"
+    },
+    {
+        "path":  "snapshots/docs/design/sanctuary-courtyard-renewal.md",
+        "bytes":  6973,
+        "sha256":  "5b6ad61bacdbe3fbd02d9a397249ac3a9746dbe2d4f360ec482290b5a1b8804b"
+    },
+    {
+        "path":  "snapshots/docs/design/player-interface-readability.md",
+        "bytes":  6905,
+        "sha256":  "e44e97273bcc79dbbb9083bb08b5da57f4f9e7ae27e655d610d80ddb912f32a9"
+    },
+    {
+        "path":  "snapshots/CONTINUE_SANCTUARY.md",
+        "bytes":  19812,
+        "sha256":  "fcb5dbbe4e6b4f8ce2b0819345b971337c915a111ff0d0bd957c7e37bdc9d57e"
+    },
+    {
+        "path":  "snapshots/ASSET_CATALOG.md",
+        "bytes":  27885,
+        "sha256":  "f9d6b19875f32d22a914dd8f9fa6264e7ea336372d7a021fe9e4e308ddba7a05"
+    },
+    {
+        "path":  "snapshots/ARCHITECTURE.md",
+        "bytes":  50342,
+        "sha256":  "1bce14ce396485f4b4b44bcccf043cad2c405fce964fb1ce700a526052536976"
+    },
+    {
+        "path":  "retired_paths.json",
+        "bytes":  3098,
+        "sha256":  "01b8c82898cd4ecf9b01515fc73dcfd0847b79e1bbe911ae94ee07dc0fa40aaa"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/artisan_renewal_review.gd.uid",
+        "bytes":  20,
+        "sha256":  "28828a75624e533b36fd95e82c43ee03b18f82977cf1c58fc231d4db7c930c38"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/foliage_wind.gdshader",
+        "bytes":  347,
+        "sha256":  "fdfc444572cebadb55d885fb927cabe88738bc393c81b1abb0b57eb1ba7351d9"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/foliage_wind.gdshader.uid",
+        "bytes":  19,
+        "sha256":  "b7fe98d485617f5da6f2b42cdad592d9526857d3ce7670896f9c5285f81585c0"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/eira_renewal_review.gd",
+        "bytes":  3477,
+        "sha256":  "568393ab5b321d607d85140694596eaa004ceed25ebcfb7652cc6d2ade965f7b"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/artisan_renewal_review.gd",
+        "bytes":  3410,
+        "sha256":  "8732f3bd675ab780ca76942be68e3cb263dc66aa16f1d0d1ab76cb4d98931e0a"
+    },
+    {
+        "path":  "snapshots/KNOWN_ISSUES.md",
+        "bytes":  25356,
+        "sha256":  "e12f784049865f17758542d59353ce5ea45c40fd4d6cb0e04ed71d6191c218de"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/garden_birds.gd",
+        "bytes":  1834,
+        "sha256":  "2751d3df4ec0f760134854b927e51f5531e1fe303bf30f759d3d7472cb14386c"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/eira_renewal_review.gd.uid",
+        "bytes":  19,
+        "sha256":  "057a213716f9cda8945908dd3931e1f0ed35fe7ef0f16259a872cee612bb1970"
+    },
+    {
+        "path":  "closeout.ps1",
+        "bytes":  11092,
+        "sha256":  "0eb1569d6c0b4a4fa9b68eae4059c737b93c10b21329c7b8dc7d5ec43a2118c5"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/orren_workshop_review.gd",
+        "bytes":  5653,
+        "sha256":  "3538754fb064351893f934ac2147da900deb2a4435514e1a0f373bed1e97565c"
+    },
+    {
+        "path":  "README.md",
+        "bytes":  1357,
+        "sha256":  "cda304db19f967549fc1cabca0eb25c2dd179688e8e3d7ed394313137f7df834"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/garden_birds.gd.uid",
+        "bytes":  20,
+        "sha256":  "daba20d2f79c8c84f91fcdb895837d206d82020a02d4e3483fd853e4637c9f49"
+    },
+    {
+        "path":  ".gdignore",
+        "bytes":  0,
+        "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+        "path":  "snapshots/GAME_DESIGN.md",
+        "bytes":  83262,
+        "sha256":  "8296b2388da5d97cc0aa0c631037814887113864625d0f72c06a1ca851a3882d"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/orren_workshop_review.gd.uid",
+        "bytes":  19,
+        "sha256":  "dfafe96c2dfeed4c344a22db6e2abb3756f26c37d99baf6c9966509c6b955f46"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/workshop_visit.gd.uid",
+        "bytes":  20,
+        "sha256":  "39b7f06124f6f1217f4778b858eb1a725af326307f91967aec35ab5962f4cbf9"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/workshop_visit.gd",
+        "bytes":  8414,
+        "sha256":  "717aa7d3e7c2e3a258e8c702091e5b5ee92c49909d56932c2ea11bd6529e2ccd"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/workshop_interior.gd.uid",
+        "bytes":  20,
+        "sha256":  "f4fd830176dea395009dba05112a8a25487ac3a9d3ba0fef2dca8a50e8f8f86e"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/workshop_interior.gd",
+        "bytes":  3449,
+        "sha256":  "d13713129e100f5e31ecbc361e6703aa9ecd9045ed28f0723b5e158875519528"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/town_noticeboard.gd.uid",
+        "bytes":  20,
+        "sha256":  "d0ce28ba1ea9f800d0a046119412d0e3f4c9829f68dfb9b5052272ffe1a42f69"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/town_noticeboard.gd",
+        "bytes":  924,
+        "sha256":  "a4070361053b391ca8399979b72a4f2e209a5d989432314e3292991d0ada3616"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/town_map_drawing.gd.uid",
+        "bytes":  20,
+        "sha256":  "148ee5b904faaadf0284d5e814a2eca2e81689bf98d708b41324db69087a5591"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/town_map_drawing.gd",
+        "bytes":  2577,
+        "sha256":  "cfe5047060dc29e9a191725fdce2ffd6dec17d8c95ee4fa5154a647f103e3a35"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/town_map.gd.uid",
+        "bytes":  20,
+        "sha256":  "2a47d0feb81aa63b4beb1df57823b43dbee5c8d2c131d452963ae5199ea50aaf"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/town_map.gd",
+        "bytes":  6987,
+        "sha256":  "3453f2a3db1b47426b1f13cdde7b7a377713a801d13da5d6303b6ca8ff2f148c"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/town_dressing.gd.uid",
+        "bytes":  19,
+        "sha256":  "a7664943c459798b209375af94de3829fe6b441b2ada3d92ec892d24e370242b"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/town_dressing.gd",
+        "bytes":  5252,
+        "sha256":  "b9daf6312dec794cd258e3ea02df17da47f6eb1ac77e9212574e04502d89dcb5"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/sanctuary_ui_review.gd.uid",
+        "bytes":  19,
+        "sha256":  "b277d1dd1aef881d461e7fd0d089886c9127a3b049f4ba82bbeae4c58f98ef79"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/sanctuary_ui_review.gd",
+        "bytes":  5368,
+        "sha256":  "28178f6d727f32ab61b7df5b960cb5bed5e901a780e3f5936ebf4c74601f8a80"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/refuge_study.gd.uid",
+        "bytes":  18,
+        "sha256":  "dbc9e9cc5106f7cc9d190364fbbf7442580f78794385f03ef8122d2fb152664a"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/refuge_study.gd",
+        "bytes":  12009,
+        "sha256":  "9928e3f1a82a0d70bb61d332ae091d7334d8a181a412e15a40a31fec8f1b183c"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/refuge_ground.gd.uid",
+        "bytes":  20,
+        "sha256":  "6a083d4c4eacaf87e5e32735a475b2812ab4e781ffc403108f38a2c526eb0b63"
+    },
+    {
+        "path":  "snapshots/levels/sanctuary/review/refuge_ground.gd",
+        "bytes":  2420,
+        "sha256":  "400efc6e48b6c24b1c288cafa481aab4d3b338d296804c389ac9e3c91a7f1a73"
+    },
+    {
+        "path":  "snapshots/entities/npcs/umi/umi_work_idle.gd.uid",
+        "bytes":  20,
+        "sha256":  "c0b20a1554e64f4bf4c66a8a38c56da92dcb119335fb20622c5d1ee3f18ba597"
+    },
+    {
+        "path":  "snapshots/entities/npcs/umi/umi_work_idle.gd",
+        "bytes":  397,
+        "sha256":  "2fddab2c4cfcbeddf7321b819edd16d5aebd59a0c5242b8031fc9ea89035c82a"
+    },
+    {
+        "path":  "snapshots/entities/npcs/umi/umi.tscn",
+        "bytes":  2249,
+        "sha256":  "04af2ccacb9c4b820d744935cb2fdb92570ce2c648e32fc89e9c132e9f97d3ec"
+    },
+    {
+        "path":  "retired/levels/sanctuary/sanctuary_ground.gd.uid",
+        "bytes":  20,
+        "sha256":  "4c2edbdd237212c7bce25d31679b052c3f709964340858ccbd15051d3bf45014"
+    },
+    {
+        "path":  "retired/levels/sanctuary/sanctuary_ground.gd",
+        "bytes":  2348,
+        "sha256":  "e261a97d6b741e07687229f368cba5321bf2c50dbcc24d3cadc4bbadfb1feff7"
+    },
+    {
+        "path":  "retired/tools/capture_sanctuary_baseline.gd.uid",
+        "bytes":  20,
+        "sha256":  "13fdfccbd141d27cfebfbb05c8e28a959204e80d113392f8d95539a9b5645228"
+    },
+    {
+        "path":  "retired/tools/capture_sanctuary_baseline.gd",
+        "bytes":  1267,
+        "sha256":  "f76937fb0e2b5dd3d5e558b5959003092e95551c1a698d326ea3e87a62550911"
+    },
+    {
+        "path":  "retired/tools/capture_rootweaver_service.gd.uid",
+        "bytes":  20,
+        "sha256":  "ba12987ebfd64f5db6684aaafb2f87df69db76c1aa0ca72932b8781b7124ccf7"
+    },
+    {
+        "path":  "retired/tools/capture_rootweaver_service.gd",
+        "bytes":  1515,
+        "sha256":  "1e92cc9c040b5deb8255c1b0d0f1213f1d5928037a1cfa56751a8415791d618c"
+    },
+    {
+        "path":  "retired/tools/process_sanctuary_direction_board.gd",
+        "bytes":  12530,
+        "sha256":  "31832cd9d2326ab0c2e8a12395025d3d892c3e04f3d3166a6c4261fa49d4850c"
+    },
+    {
+        "path":  "retired/tools/process_rootweaver_service_assets.gd.uid",
+        "bytes":  20,
+        "sha256":  "333db39c1f860364495c2e447b4eef63d952f94f22acc622f8e68a6c425b61b2"
+    },
+    {
+        "path":  "retired/tools/process_rootweaver_service_assets.gd",
+        "bytes":  10519,
+        "sha256":  "0b281732aa7451fb106ed2b1e860fb244d675dfa959a227b13338b320da87a0a"
+    },
+    {
+        "path":  "retired/tools/process_sanctuary_direction_board.gd.uid",
+        "bytes":  20,
+        "sha256":  "afd4f71db691c0c18809b8d51b2c2f268c632c5f665d6ba780ca00f49881be31"
+    },
+    {
+        "path":  "retired/tools/process_sanctuary_individual_assets.gd",
+        "bytes":  8945,
+        "sha256":  "fb78655458a0d4940ce53f532362859e2760730dd594f467de18ecf0a6a8dfb0"
+    },
+    {
+        "path":  "retired/tools/process_sanctuary_individual_assets.gd.uid",
+        "bytes":  20,
+        "sha256":  "8e859d8bdfa2a32a84daaedea9289073b871e58af3119b07f98acb59eb615b74"
+    },
+    {
+        "path":  "snapshots/entities/npcs/skillkeeper/skillkeeper.tscn",
+        "bytes":  4179,
+        "sha256":  "35b6600d37a99ac538d13597ac89fdf933c8746aa7b0447d0a2d4ccdca6e75d5"
+    },
+    {
+        "path":  "retired/tests/sanctuary_refuge_review_smoke.gd.uid",
+        "bytes":  20,
+        "sha256":  "3b39554e2b7aa774d08282c274945c2143d98a069a725f991032db0187fca767"
+    },
+    {
+        "path":  "retired/tests/sanctuary_refuge_review_smoke.gd",
+        "bytes":  14143,
+        "sha256":  "03c908f4265b5a55230c624b99b25c50c98f931f8a7cf8f0c5c379161cfef72e"
+    },
+    {
+        "path":  "retired/tests/sanctuary_life_smoke.gd.uid",
+        "bytes":  20,
+        "sha256":  "548a349eed436c893abea6931bc77f97f2320122572fbdc7978f66a30f01ea07"
+    },
+    {
+        "path":  "retired/tests/sanctuary_life_smoke.gd",
+        "bytes":  9015,
+        "sha256":  "c197e37874ce5d2ee478c5322051e788b319317436bb526b27b2043b94bb8856"
+    },
+    {
+        "path":  "retired/tests/sanctuary_interface_smoke.gd.uid",
+        "bytes":  19,
+        "sha256":  "007f8648f8075705b9a900fd312289f7931f3a74e39c6ae8195efe21b692a78f"
+    },
+    {
+        "path":  "retired/tests/sanctuary_interface_smoke.gd",
+        "bytes":  7851,
+        "sha256":  "847543bf811a8a3dc5543052df5d47e5b829151389f4409d4e5252461abf6b6d"
+    },
+    {
+        "path":  "retired/tests/sanctuary_hub_smoke.gd.uid",
+        "bytes":  19,
+        "sha256":  "d3f1b237ae2dd94e16b6912bd762de47db89258dd5d5694e1c0cac1d75e793c5"
+    },
+    {
+        "path":  "retired/tests/sanctuary_hub_smoke.gd",
+        "bytes":  20373,
+        "sha256":  "b7ee92e5275d99d59b84e215b8a92eafa1f3a03489d72762b2e32c4ad85a1d84"
+    },
+    {
+        "path":  "retired/tests/sanctuary_courtyards_smoke.gd.uid",
+        "bytes":  20,
+        "sha256":  "6ce6eb6088ba09c560d769ab5ceefbb17be85a7c90917593add9308849e944d9"
+    },
+    {
+        "path":  "retired/tests/sanctuary_courtyards_smoke.gd",
+        "bytes":  9450,
+        "sha256":  "f3d8f9c8c1ebb36af4eb9b43f4f009766cd46a3faa56aca50f26a4515066f219"
+    },
+    {
+        "path":  "retired/tests/rootweaver_service_smoke.gd.uid",
+        "bytes":  20,
+        "sha256":  "d97553264c495ea7ac652cb34dad519c8eac46b21ab1d877eeb5cc35b231154b"
+    },
+    {
+        "path":  "retired/tests/rootweaver_service_smoke.gd",
+        "bytes":  9995,
+        "sha256":  "5d567f3f3b61a55616cbe96b95a69efb21c9c3e76dd3a3c0e4d1e32f28633a4d"
+    },
+    {
+        "path":  "retired/entities/npcs/umi/umi_work_idle.gd.uid",
+        "bytes":  20,
+        "sha256":  "c0b20a1554e64f4bf4c66a8a38c56da92dcb119335fb20622c5d1ee3f18ba597"
+    },
+    {
+        "path":  "retired/entities/npcs/umi/umi_work_idle.gd",
+        "bytes":  397,
+        "sha256":  "2fddab2c4cfcbeddf7321b819edd16d5aebd59a0c5242b8031fc9ea89035c82a"
+    },
+    {
+        "path":  "snapshots/entities/npcs/armskeeper/armskeeper.tscn",
+        "bytes":  3531,
+        "sha256":  "2a2eb81c0452b52948f2e73ef1b50f2d7f64f9915dcbd81620e2d1e16c99ef59"
+    },
+    {
+        "path":  "retired/environment/props/sanctuary/skillkeeper_lodge.tscn",
+        "bytes":  1331,
+        "sha256":  "8a9a5bc91d50de8bcbe8d6ff17181562d86acdfc40a7daf81a47b0452a7ced7d"
+    },
+    {
+        "path":  "retired/environment/props/sanctuary/sanctuary_tree_tall.tscn",
+        "bytes":  1576,
+        "sha256":  "9e9793a9695e337b35633431d30a1668523de48aa356a2fb9a243716fc245d3b"
+    },
+    {
+        "path":  "retired/environment/props/sanctuary/sanctuary_tree_idle.gd.uid",
+        "bytes":  19,
+        "sha256":  "38c0eafacecdee2e1b65f894d2f5aadd0ea5efa922c89e2d27a450d008f356ea"
+    },
+    {
+        "path":  "retired/environment/props/sanctuary/sanctuary_tree_idle.gd",
+        "bytes":  404,
+        "sha256":  "ee2326b5815c7e763e23001ccbbdb5cf77f13beb008dfd56acb225e7ce863d2f"
+    },
+    {
+        "path":  "retired/environment/props/sanctuary/sanctuary_tree_broad.tscn",
+        "bytes":  1467,
+        "sha256":  "f46cc193a152c3e6c515495ff05f853f0a284e0c4773fd69bdea1a3b776b1979"
+    },
+    {
+        "path":  "retired/environment/props/sanctuary/sanctuary_building_idle.gd.uid",
+        "bytes":  19,
+        "sha256":  "d48a9bd80ae68b8da574d94b0cd446944a593d00eadac2097c203c5e6bfc1db9"
+    },
+    {
+        "path":  "retired/environment/props/sanctuary/sanctuary_building_idle.gd",
+        "bytes":  374,
+        "sha256":  "843d81b647c2a1ae644863b8d7043cd3f5131d1c1726764a73ab30d1edb52615"
+    },
+    {
+        "path":  "retired/entities/npcs/rootweaver/rootweaver_work_idle.gd.uid",
+        "bytes":  20,
+        "sha256":  "dfbf95415c3907a4f88a18f977cfae713f476aad4769774d6870973271a0068f"
+    },
+    {
+        "path":  "retired/entities/npcs/rootweaver/rootweaver_work_idle.gd",
+        "bytes":  957,
+        "sha256":  "1c0c7de03c62225ac2128835f52eab9e217e7b3cd622df1bf57d928b75b3e14f"
+    },
+    {
+        "path":  "retired/environment/props/sanctuary/armskeeper_workshop.tscn",
+        "bytes":  1516,
+        "sha256":  "f8c42a50310e5d6a8cae2f6e25bbcf067faec6c99e75327e699c8c0b1b011f2b"
+    },
+    {
+        "path":  "retired/environment/props/sanctuary/armskeeper_cart.tscn",
+        "bytes":  1384,
+        "sha256":  "d5f2bdf5da87d4f752d62b60818d55e913342e8f3d837a33d5443f69ddbd6780"
+    },
+    {
+        "path":  "snapshots/entities/npcs/rootweaver/rootweaver_work_idle.gd.uid",
+        "bytes":  20,
+        "sha256":  "dfbf95415c3907a4f88a18f977cfae713f476aad4769774d6870973271a0068f"
+    },
+    {
+        "path":  "snapshots/entities/npcs/rootweaver/rootweaver_work_idle.gd",
+        "bytes":  957,
+        "sha256":  "1c0c7de03c62225ac2128835f52eab9e217e7b3cd622df1bf57d928b75b3e14f"
+    },
+    {
+        "path":  "snapshots/entities/npcs/rootweaver/rootweaver_nema.tscn",
+        "bytes":  3035,
+        "sha256":  "bcc08649cd572e7fea2a185e0d6fa84274cf1e2473c6621d1674217da400f9ab"
+    },
+    {
+        "path":  "retired/environment/props/sanctuary/rootweaver_living_rootforge/rootweaver_living_rootforge.tscn",
+        "bytes":  1745,
+        "sha256":  "02fce73c3a5336e16164030739c52e5a6fe59606f078139820b0f87f05c9baf7"
+    },
+    {
+        "path":  "retired/environment/props/sanctuary/echo_crucible/echo_crucible.tscn",
+        "bytes":  1395,
+        "sha256":  "d36a70f726fb45c478388d5b0f8d8fe215cdcad5a4b53abd587cba12ecb76770"
+    },
+    {
+        "path":  "retired/environment/props/sanctuary/echo_crucible/echo_crucible.gd.uid",
+        "bytes":  20,
+        "sha256":  "336e343d0332a86fe788f73275ba86b92eea31ec5c6f94f492f8408c51642d01"
+    },
+    {
+        "path":  "retired/environment/props/sanctuary/echo_crucible/echo_crucible.gd",
+        "bytes":  456,
+        "sha256":  "5c5c93200bcd52d0b8e874a0afd745036e2e2faa0dd5167d6f99c2b7dcecc587"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/props/sanctuary_tree_tall_96x120.png.import",
+        "bytes":  1017,
+        "sha256":  "8097ce7b8a81ffe050702b8385df2b5f26f19346ca2b84955b5984ee59911ab9"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/props/sanctuary_tree_tall_96x120.png",
+        "bytes":  12532,
+        "sha256":  "d1ce1e2ea2ef06dcb50e8041de8f9bb9e125880a061a066d4d7aa4fe1bd513aa"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/props/sanctuary_tree_broad_96x120.png.import",
+        "bytes":  1019,
+        "sha256":  "0ad3f492b8d9ff29d5360b39073093c977d6633a6a108022d121e6d372b74710"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/props/sanctuary_tree_broad_96x120.png",
+        "bytes":  15629,
+        "sha256":  "a659ca3b582533e30e7662edd6d5823752e53270714df9c0cdd9e97b72772850"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/tiles/sanctuary_ground_tileset.tres",
+        "bytes":  661,
+        "sha256":  "4e468a5163b762e245b5198728376c31493bb4469ac011f3a963177ffe4ba35d"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/tiles/sanctuary_ground_atlas_64x64.png.import",
+        "bytes":  1023,
+        "sha256":  "751a061d9ce10b0f146cc7f08cee6840aa6e5097d010ab67ac62c4fbc73714ad"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/tiles/sanctuary_ground_atlas_64x64.png",
+        "bytes":  7548,
+        "sha256":  "0951ba0d710b1f359e459023a6c7b5a25c78cc81062218980d289a4f365cd42d"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/courtyards/umi_side.png.import",
+        "bytes":  968,
+        "sha256":  "cf5f6b03bdb2ed50dce1150ac692ca4813caa24c560aef3e7e160d76032db2b4"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/courtyards/umi_side.png",
+        "bytes":  55906,
+        "sha256":  "1ae0446218ee4af8f4e40568a44d61d313a67d439242e148506f092a529f5532"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/courtyards/nema_side.png.import",
+        "bytes":  971,
+        "sha256":  "22bccb83321a184182d5322204bbe8a44693bba1e8478bad88226ace21b3c2f7"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/courtyards/nema_side.png",
+        "bytes":  64125,
+        "sha256":  "89ea2846a6784cba999e6bfdf96db81d027dd25a21d1e3c85490d95762ecd651"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/buildings/skillkeeper_lodge_128x192.png.import",
+        "bytes":  1018,
+        "sha256":  "4934cc0660c1bacd27ec757df051bdad44c8d51472fbb88582f11709259845ad"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/buildings/skillkeeper_lodge_128x192.png",
+        "bytes":  10903,
+        "sha256":  "429ababa5ea57e967494f7c3ba25005470d7e495740a9c0fcbd0b4baa0374cac"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/buildings/armskeeper_workshop_176x192.png.import",
+        "bytes":  1024,
+        "sha256":  "c717ba88c24cddde04ca2a116385e1a282c9dabbce7cd906a051d291798082d5"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/buildings/armskeeper_workshop_176x192.png",
+        "bytes":  20769,
+        "sha256":  "00b120c86ac08d4a511e63250b278d1df206b94a0220dc8b85fb172c3fc4cbe0"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/services/umi/umi_echo_crucible_workbench_72x64.png.import",
+        "bytes":  1045,
+        "sha256":  "fc45eabfda9dfc2d7988050fd53dc899a9315ae6ebe4538fbce0ecfb7c6578f1"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/services/umi/umi_echo_crucible_workbench_72x64.png",
+        "bytes":  4951,
+        "sha256":  "bedcce291f378dfa1ed73131dacc8a2566913cc82cdcbf3bf7895be1b97e0e39"
+    },
+    {
+        "path":  "retired/assets/characters/npcs/umi/umi_sprite_frames.tres",
+        "bytes":  1656,
+        "sha256":  "67ad2d9c1bdd5d357bfe88ce38e24e87e987854936fc59532c6d5a25683a7227"
+    },
+    {
+        "path":  "retired/assets/characters/npcs/umi/umi_side_service_sheet_48x48.png.import",
+        "bytes":  1015,
+        "sha256":  "23e85c6c0de7edb35b168fb2c60754db5a504827c655fb2d72d79e3fa98b7aaa"
+    },
+    {
+        "path":  "retired/assets/characters/npcs/umi/umi_side_service_sheet_48x48.png",
+        "bytes":  10487,
+        "sha256":  "ff3c7e4a47fa0e32eb4f231eaae7168e4eeee4874b9b6ba46e639193b4111414"
+    },
+    {
+        "path":  "retired/assets/characters/npcs/umi/umi_dialogue_portrait_96x96.png.import",
+        "bytes":  1012,
+        "sha256":  "b0f5e42f9799e22b2279e5f99449c28990dddf877f0932cec37179d802778c25"
+    },
+    {
+        "path":  "retired/assets/characters/npcs/umi/umi_dialogue_portrait_96x96.png",
+        "bytes":  12164,
+        "sha256":  "db5b7b5963f06b02d6a06cfba38ab5034ccf1f8f90bd2d20bc635a93c48859ca"
+    },
+    {
+        "path":  "retired/assets/characters/npcs/rootweaver/rootweaver_nema_sprite_frames.tres",
+        "bytes":  1877,
+        "sha256":  "a8eb39b919cbaf43ffdee001eafcb9eba43025a83d84f349f053dfe85f5167f8"
+    },
+    {
+        "path":  "retired/assets/characters/npcs/rootweaver/rootweaver_nema_service_sheet_48x48.png.import",
+        "bytes":  1043,
+        "sha256":  "2c3151212b78e8069f3f850290441e540bb32a958e9f7a0d4dedada8ee49aa83"
+    },
+    {
+        "path":  "retired/assets/characters/npcs/rootweaver/rootweaver_nema_service_sheet_48x48.png",
+        "bytes":  9664,
+        "sha256":  "a958ec4a76c2899738374d12e839afcd3b7663a88541e61461292bee3abd3fa5"
+    },
+    {
+        "path":  "retired/assets/characters/npcs/rootweaver/rootweaver_nema_portrait_96x96.png.import",
+        "bytes":  1028,
+        "sha256":  "23a39867b48e6ef7c174d04843c0c16ae91c545b747ec6378514c1ddb817d71d"
+    },
+    {
+        "path":  "retired/assets/characters/npcs/rootweaver/rootweaver_nema_portrait_96x96.png",
+        "bytes":  5828,
+        "sha256":  "9227b8b03e4c6176a7f41786cb53d0de5ec08ee2a38900c7d384713387258143"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/services/rootweaver/rootweaver_living_rootforge_176x144.png.import",
+        "bytes":  1057,
+        "sha256":  "0e3f89417ddba358ea95303e14fe79b131fd237a17d9e73bbb7f66f51c47b9da"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/services/rootweaver/rootweaver_living_rootforge_176x144.png",
+        "bytes":  23338,
+        "sha256":  "1a81957a4a4bf8b92991b1a513022f1a4ce9b26772a9a364ea928945ffad8052"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/refuge_review/wall.png",
+        "bytes":  5036,
+        "sha256":  "66668728d5f3c6707ec9e39ca75b74b259afb4f227fd38fe985ad877999c2c73"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/refuge_review/wall.png.import",
+        "bytes":  959,
+        "sha256":  "bed599d56c0651c10aa4b291224aee698ecf6bf0312fa5cd77c26b8f320db481"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/shops/armskeeper_cart_128x96.png.import",
+        "bytes":  1004,
+        "sha256":  "7d0fd112f82850d2611e36f7099ce9f6ec8735cf2969e5fe81ee45ab9cd8b602"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/shops/armskeeper_cart_128x96.png",
+        "bytes":  7463,
+        "sha256":  "8d56caf41c5cddb109f924e46d4d3d4b4da45b2becb03a2df8759af6fbe643cf"
+    },
+    {
+        "path":  "retired/assets/characters/npcs/skillkeeper/skillkeeper_idle_sheet_48x48.png.import",
+        "bytes":  1022,
+        "sha256":  "724f4563c0f8c793085766696dee179ab06e31314a5d1679d6e5dbf3075a1a6e"
+    },
+    {
+        "path":  "retired/assets/characters/npcs/skillkeeper/skillkeeper_idle_sheet_48x48.png",
+        "bytes":  2257,
+        "sha256":  "4c380441946e3f142677e9af626cd6c971bc804109fc7b5bac35419ee875f633"
+    },
+    {
+        "path":  "retired/assets/characters/npcs/courier/walk.png.import",
+        "bytes":  947,
+        "sha256":  "b21b1eb879f0f7b9b40de2dfb1871ffd430bc4e1a36ce8f5f3c18a06685c571c"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/interiors/orren/workbench.png.import",
+        "bytes":  976,
+        "sha256":  "adc1cebd48a3950b73ae775f0a83fc81ffe8187372885e828e5dcce52f71df9e"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/interiors/orren/workbench.png",
+        "bytes":  17820,
+        "sha256":  "89b1847791983e54fd38459704141d653bc71b97de441f06e503b78be3f984e6"
+    },
+    {
+        "path":  "retired/assets/characters/npcs/courier/walk.png",
+        "bytes":  56091,
+        "sha256":  "7c70199b39fc17bcaf4bf24d960c2beab22ee2e9e8af7efd13dc1ebd5f8d048b"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/interiors/orren/shell.png.import",
+        "bytes":  964,
+        "sha256":  "47d4011a3ec439eb15693c7849d27839d0d0345e2f831d31e0b48b3c146dbf5f"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/interiors/orren/shell.png",
+        "bytes":  235018,
+        "sha256":  "abc7048912d95744c6cbcc24faf722fa6c04d67c3f43a04628818a54f11988c8"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/interiors/orren/rack.png.import",
+        "bytes":  961,
+        "sha256":  "d1f15a3051c54774423921d7ccf6e9fb850e0bc8795288f825898281080a0d3f"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/interiors/orren/rack.png",
+        "bytes":  19506,
+        "sha256":  "d7a9a5eb716064c31463a659ac84c12694fb8d2a470a066104329970a899a1ad"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/interiors/orren/forge.png.import",
+        "bytes":  963,
+        "sha256":  "8b61ba8a5e6a338457e6bc2235c0700c7e4838afd0f4e323c9c9f42cc60c999c"
+    },
+    {
+        "path":  "retired/assets/environment/sanctuary/interiors/orren/forge.png",
+        "bytes":  17370,
+        "sha256":  "1ab4b0e8e10aee675e1179dc8955f0127a6c96d1173278dfc188ea7c7fd064b7"
+    },
+    {
+        "path":  "retired/assets/characters/npcs/armskeeper/renewal/idle_work.png.import",
+        "bytes":  973,
+        "sha256":  "dce7567a955a098d8b4fb23eeb5624d3fe537b4ddd741e99fd7a53a54a9cb565"
+    },
+    {
+        "path":  "retired/assets/characters/npcs/armskeeper/renewal/idle_work.png",
+        "bytes":  26321,
+        "sha256":  "d33ac12e6ef4b3cf4ec5e0821ca42b9dae8c0dfe90e45d77cd63332ff57e739c"
+    },
+    {
+        "path":  "retired/assets/characters/npcs/armskeeper/armskeeper_idle_sheet_48x48.png.import",
+        "bytes":  1019,
+        "sha256":  "565b76baa3b11b7feb0719666044a5b143dae532f4fc9ff846076bb4b799ff35"
+    },
+    {
+        "path":  "retired/assets/characters/npcs/armskeeper/armskeeper_idle_sheet_48x48.png",
+        "bytes":  1790,
+        "sha256":  "5562b71aa1fd7cc77f2aed5fb5a53a1bb65e014e87123f38f03c445c1744f233"
+    }
+]

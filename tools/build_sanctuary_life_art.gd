@@ -33,31 +33,9 @@ func _initialize() -> void:
 		manifest.append({"asset": recipe[0], "source_rect": str(recipe[1]), "size": str(size)})
 	var file := FileAccess.open(SOURCE + "normalization.json", FileAccess.WRITE)
 	file.store_string(JSON.stringify(manifest, "\t"))
-	_build_courier()
 	_build_courier_idle()
 	print("SANCTUARY_LIFE_ART_BUILT: ", manifest)
 	quit()
-
-func _build_courier() -> void:
-	var source := Image.load_from_file(COURIER_SOURCE + "walk_source.png")
-	var poses: Array[Image] = []
-	for index in 16:
-		var begin := Vector2i(roundi(index % 4 * source.get_width() / 4.0), roundi(index / 4 * source.get_height() / 4.0))
-		var end := Vector2i(roundi((index % 4 + 1) * source.get_width() / 4.0), roundi((index / 4 + 1) * source.get_height() / 4.0))
-		poses.append(_binary(source.get_region(Rect2i(begin, end - begin))))
-	var ratio := 58.0 / poses[0].get_used_rect().size.y
-	var atlas := Image.create(384, 384, false, Image.FORMAT_RGBA8)
-	var manifest: Array[Dictionary] = []
-	for index in 16:
-		var pose := poses[index]
-		pose.resize(roundi(pose.get_width() * ratio), roundi(pose.get_height() * ratio), Image.INTERPOLATE_NEAREST)
-		var bounds := pose.get_used_rect()
-		var offset := Vector2i(48 - bounds.get_center().x, 80 - bounds.end.y)
-		atlas.blit_rect(pose, Rect2i(Vector2i.ZERO, pose.get_size()), Vector2i(index % 4, index / 4) * 96 + offset)
-		manifest.append({"frame": index, "bounds": str(Rect2i(bounds.position + offset, bounds.size)), "shared_scale": ratio})
-	assert(atlas.save_png(COURIER_OUTPUT + "walk.png") == OK)
-	var file := FileAccess.open(COURIER_SOURCE + "normalization.json", FileAccess.WRITE)
-	file.store_string(JSON.stringify(manifest, "\t"))
 
 func _build_courier_idle() -> void:
 	var source := Image.load_from_file(COURIER_SOURCE + "idle_source.png")

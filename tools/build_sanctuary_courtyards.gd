@@ -10,9 +10,6 @@ func _initialize() -> void:
 		_actor("umi", "umi", true)
 	_courier()
 	_birds()
-	_building("nema_side", Vector2i(208, 184))
-	if FileAccess.file_exists(SOURCE + "environment/sanctuary/courtyards_2026_10_01/umi_side_source.png"):
-		_building("umi_side", Vector2i(176, 168))
 	var file := FileAccess.open(SOURCE + "environment/sanctuary/courtyards_2026_10_01/normalization.json", FileAccess.WRITE)
 	file.store_string(JSON.stringify(manifest, "\t"))
 	print("COURTYARD_ART_BUILT: ", manifest)
@@ -81,16 +78,6 @@ func _birds() -> void:
 		atlas.blit_rect(pose,Rect2i(Vector2i.ZERO,pose.get_size()),Vector2i(index*40,0)+offset)
 	DirAccess.make_dir_recursive_absolute("res://assets/environment/sanctuary/courtyards/")
 	assert(atlas.save_png("res://assets/environment/sanctuary/courtyards/swallow.png") == OK)
-
-func _building(identity: String, limit: Vector2i) -> void:
-	var source := _binary(Image.load_from_file(SOURCE+"environment/sanctuary/courtyards_2026_10_01/"+identity+"_source.png"))
-	var crop := source.get_region(source.get_used_rect())
-	var ratio := minf(float(limit.x)/crop.get_width(),float(limit.y)/crop.get_height())
-	crop.resize(roundi(crop.get_width()*ratio),roundi(crop.get_height()*ratio),Image.INTERPOLATE_NEAREST)
-	var output := "res://assets/environment/sanctuary/courtyards/"
-	DirAccess.make_dir_recursive_absolute(output)
-	assert(crop.save_png(output+identity+".png") == OK)
-	manifest.append({"building":identity,"size":str(crop.get_size())})
 
 func _cells(source: Image, columns: int, rows: int) -> Array[Image]:
 	var poses: Array[Image] = []

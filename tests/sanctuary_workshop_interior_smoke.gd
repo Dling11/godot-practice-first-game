@@ -1,6 +1,6 @@
-extends "res://tests/sanctuary_refuge_review_smoke.gd"
+extends "res://tests/sanctuary_test_base.gd"
 
-const EVIDENCE := "res://art_source/review/environment/orren_interior_manual_entry_2026_10_02/"
+const EVIDENCE := "res://art_source/review/environment/sanctuary_closeout_2026_10_02/workshop/"
 
 func _run() -> void:
 	root.size = Vector2i(960,540)
@@ -9,9 +9,8 @@ func _run() -> void:
 	root.add_child(hub)
 	current_scene = hub
 	await process_frame
-	var study := Study.new()
-	study.hub = hub
-	hub.add_child(study)
+	var study: Node = hub.get_node("SanctuaryTown")
+	study.enable_test_controls()
 	var visit: Node = study.workshop_visit
 	var player: Player = hub.player
 	var bounds: Rect2 = player.movement_bounds
@@ -127,13 +126,12 @@ func _run() -> void:
 	check(not visit.enter(),"Doorway transfers during an active dash")
 	player.evade_component.cancel_evade()
 	check(visit.enter(),"Re-entry fails after dash ends")
-	study.set_review_enabled(false)
-	check(not visit.inside and not visit.enabled and player.movement_bounds == bounds,"Comparison strands King indoors")
+	visit.leave()
+	check(not visit.inside and player.movement_bounds == bounds,"Leaving strands King indoors")
 	check(not _blocked(space,visit.ROOM_ORIGIN+Vector2(240,107)),"Hidden room retains collision")
-	study.set_review_enabled(true)
 	study.visit_workshop()
 	await create_timer(.2).timeout
-	check(visit.enter(),"Workshop cannot reopen after comparison")
+	check(visit.enter(),"Workshop cannot reopen after leaving")
 	study.visit_eira()
 	await create_timer(.2).timeout
 	check(not visit.inside and player.position.distance_to(study.eira_review.APPROACH)<2,"Visit button strands player/camera indoors")

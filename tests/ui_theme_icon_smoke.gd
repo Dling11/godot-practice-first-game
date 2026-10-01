@@ -111,7 +111,7 @@ func _run() -> void:
 	if hud.get_node("HealthPanel/Margin/Stack/Header/HealthIcon").texture == null:
 		_fail("CombatHUD health icon is not configured.")
 		return
-	if hud.character_menu_button.icon == null or hud.character_menu_button.text != "CHARACTER  [TAB]":
+	if hud.character_menu_button.icon == null or hud.character_menu_button.text != "CHARACTER & BAG  [TAB]":
 		_fail("CombatHUD character/inventory entry button is not configured.")
 		return
 	var menu := CharacterMenuScene.instantiate() as CharacterMenu

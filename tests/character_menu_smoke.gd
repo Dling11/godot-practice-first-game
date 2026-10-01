@@ -112,7 +112,7 @@ func _run() -> void:
 	if (
 		menu._inventory_slots.size() != CharacterMenu.BAG_CAPACITY
 		or menu.inventory_grid.columns != CharacterMenu.BAG_COLUMNS
-		or menu.bag_capacity_label.text != "BAG  1 / 24"
+		or menu.bag_capacity_label.text != "SHOWING 1"
 		or menu._inventory_slots[0].custom_minimum_size != Vector2(38, 38)
 	):
 		_fail("Character menu did not build the compact 24-slot bag contract.")
@@ -124,7 +124,7 @@ func _run() -> void:
 		_fail("Character menu did not initially inspect the equipped weapon.")
 		return
 	if (
-		(menu.get_node("Panel") as Control).size != Vector2(840, 460)
+		(menu.get_node("Panel") as Control).size != Vector2(840, 490)
 		or menu.equipment_detail_panel.custom_minimum_size != Vector2(225, 188)
 	):
 		_fail("Character & Bag did not adopt the approved compact modal and detail dimensions.")
@@ -166,7 +166,7 @@ func _run() -> void:
 	if (
 		menu._equipment_cards.size() != 0
 		or menu._material_cards.size() != 1
-		or menu.bag_capacity_label.text != "BAG  1 / 24"
+		or menu.bag_capacity_label.text != "SHOWING 1"
 	):
 		_fail("Materials filter did not isolate the capacity-free material pouch.")
 		return

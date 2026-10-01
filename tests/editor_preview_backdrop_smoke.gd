@@ -3,11 +3,6 @@ extends SceneTree
 const PREVIEW_SCENES := [
 	"res://gameplay/expeditions/expedition_altar.tscn",
 	"res://environment/props/sanctuary/divine_fountain.tscn",
-	"res://environment/props/sanctuary/skillkeeper_lodge.tscn",
-	"res://environment/props/sanctuary/armskeeper_workshop.tscn",
-	"res://environment/props/sanctuary/armskeeper_cart.tscn",
-	"res://environment/props/sanctuary/sanctuary_tree_broad.tscn",
-	"res://environment/props/sanctuary/sanctuary_tree_tall.tscn",
 	"res://entities/npcs/skillkeeper/skillkeeper.tscn",
 	"res://entities/npcs/armskeeper/armskeeper.tscn",
 ]

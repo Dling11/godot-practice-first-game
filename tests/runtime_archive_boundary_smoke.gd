@@ -1,14 +1,14 @@
 extends SceneTree
 
 const ACTIVE_PATHS := [
+"res://levels/sanctuary/town/sanctuary_town.gd",
+"res://assets/characters/npcs/armskeeper/renewal/sprite_frames.tres",
+"res://assets/characters/npcs/skillkeeper/renewal/sprite_frames.tres",
+"res://assets/characters/npcs/rootweaver/renewal/sprite_frames.tres",
+"res://assets/characters/npcs/umi/renewal/sprite_frames.tres",
 	"res://assets/characters/playable/king/simple_reboot/king_simple_sprite_frames.tres",
 	"res://assets/characters/enemies/rootbound_husk/rootbound_husk_sprite_frames.tres",
 	"res://assets/characters/enemies/rootbound_husk/rootbound_husk_root_spear_vfx_sprite_frames.tres",
-	"res://assets/characters/npcs/skillkeeper/skillkeeper_idle_sheet_48x48.png",
-	"res://assets/characters/npcs/armskeeper/armskeeper_idle_sheet_48x48.png",
-	"res://environment/props/sanctuary/skillkeeper_lodge.tscn",
-	"res://environment/props/sanctuary/armskeeper_workshop.tscn",
-	"res://environment/props/sanctuary/armskeeper_cart.tscn",
 ]
 
 const RETIRED_RUNTIME_PATHS := [
@@ -48,6 +48,15 @@ func _initialize() -> void:
 	var archive_root := ProjectSettings.globalize_path("res://art_source/archive")
 	if not DirAccess.dir_exists_absolute(archive_root):
 		_fail("The Godot-ignored archive root is missing.")
+		return
+	var closeout := "res://art_source/archive/sanctuary_retired_2026_10_02/"
+	var retired: Array = JSON.parse_string(FileAccess.get_file_as_string(closeout+"retired_paths.json"))
+	for relative: String in retired:
+		if FileAccess.file_exists("res://"+relative) or not FileAccess.file_exists(closeout+"retired/"+relative):
+			_fail("Sanctuary archive is incomplete or retired content is active: "+relative)
+			return
+	if not FileAccess.file_exists(closeout+".gdignore"):
+		_fail("Sanctuary recovery archive lacks its Godot import exclusion.")
 		return
 	print("Runtime/archive boundary smoke test passed.")
 	quit(0)

@@ -10,6 +10,9 @@ const ROSTER_REFRESH_SECONDS := 0.25
 const ROSTER_REVEAL_DISTANCE := 300.0
 const ROSTER_REPEAT_CLICK_WINDOW_MSEC := 520
 const MarqueeLabelScript = preload("res://ui/components/marquee_label.gd")
+const ProgressionReadout = preload("res://ui/hud/progression_readout.gd")
+const StatusPresenter = preload("res://ui/hud/player_status_presenter.gd")
+var status_presenter: Node
 
 signal character_menu_requested
 
@@ -76,6 +79,9 @@ func _ready() -> void:
 	target_panel.hide()
 	enemy_roster_panel.hide()
 	_style_enemy_roster_scrollbar()
+	status_presenter = StatusPresenter.new()
+	add_child(status_presenter)
+	status_presenter.configure(self)
 
 
 func _style_enemy_roster_scrollbar() -> void:
@@ -95,10 +101,12 @@ func _style_enemy_roster_scrollbar() -> void:
 
 func bind_player(player: Player) -> void:
 	_player = player
+	status_presenter.bind_player(player)
 	if player.has_node("UnbrokenVowComponent"):
 		var vow_status := preload("res://ui/skills/vow_status.gd").new()
 		vow_status.actor = player
 		add_child(vow_status)
+		vow_status.position = Vector2(12,168)
 	var mastery := player.get_node_or_null("KingMastery") as KingMasteryComponent
 	if mastery != null:
 		mastery.resolve_changed.connect(_update_resolve)
@@ -516,16 +524,13 @@ func _update_progression(_level: int, _total_experience: int, _next_level_experi
 	if not is_instance_valid(_player):
 		return
 	var progression := _player.progression_component
-	level_label.text = "LEVEL %d" % progression.level
-	if progression.level >= progression.get_current_level_cap():
-		experience_bar.max_value = 1.0
-		experience_bar.value = 1.0
-		experience_label.text = "MAX" if progression.level >= progression.definition.maximum_level else "STAGE CAP"
-		return
-	var required := progression.experience_required_for_current_level()
-	experience_bar.max_value = required
-	experience_bar.value = progression.experience_into_current_level()
-	experience_label.text = "%d / %d XP" % [experience_bar.value, required]
+	var readout := ProgressionReadout.describe(progression)
+	level_label.text = readout.level
+	experience_bar.max_value = readout.maximum
+	experience_bar.value = readout.value
+	experience_label.text = readout.text
+	experience_label.tooltip_text = readout.help
+	level_label.tooltip_text = readout.help
 
 
 func _update_coins(total_coins: int) -> void:
@@ -596,6 +601,7 @@ func _update_health(current: float, maximum: float) -> void:
 	health_bar.max_value = maximum
 	health_bar.value = current
 	health_label.text = "HP  %d / %d" % [ceili(current), ceili(maximum)]
+	status_presenter.set_health(current,maximum)
 
 
 func _show_blocked(_info: DamageInfo) -> void:

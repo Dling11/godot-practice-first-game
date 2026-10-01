@@ -18,9 +18,9 @@ func _initialize() -> void:
 	output.save_png(DEST+"trainer_lodge.png")
 	var props := Image.load_from_file(SOURCE+"props_source.png")
 	var cell := props.get_size()/2
-	var names := ["lantern","planter","bench","wall"]
+	var names := ["lantern","planter","bench"]
 	var sizes := [Vector2i(28,64),Vector2i(64,36),Vector2i(64,34),Vector2i(80,36)]
-	for index in 4:
+	for index in names.size():
 		var frame := _opaque(props.get_region(Rect2i(Vector2i(index%2,index/2)*cell,cell)))
 		frame = frame.get_region(frame.get_used_rect())
 		var limit: Vector2i = sizes[index]

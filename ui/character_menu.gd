@@ -9,6 +9,7 @@ const SkillSlotCardScene = preload("res://ui/skills/skill_slot_card.tscn")
 const InventorySlotButtonScene = preload("res://ui/inventory/inventory_slot_button.tscn")
 const EquipmentSlotCardScene = preload("res://ui/equipment/equipment_slot_card.tscn")
 const EmptySlotIcon = preload("res://assets/ui/icons/states/icon_slot_locked_16x16.png")
+const ProgressionReadout = preload("res://ui/hud/progression_readout.gd")
 const MaterialCatalog: MaterialCatalogDefinition = preload(
 	"res://data/items/materials/material_catalog.tres"
 )
@@ -118,6 +119,10 @@ var _portrait_rotation_tween: Tween
 var _portrait_pulse_tween: Tween
 var _selected_equipment: EquipmentDefinition
 var _selected_material: MaterialDefinition
+var _search_query := ""
+@onready var bag_search: LineEdit = %BagSearch
+@onready var bag_scroll: ScrollContainer = %BagScroll
+@onready var bag_footer: Label = %BagFooter
 
 
 func _ready() -> void:
@@ -139,6 +144,11 @@ func _ready() -> void:
 		gear_inventory.gear_acquired.connect(_on_gear_inventory_changed.unbind(1))
 		gear_inventory.gear_equipped.connect(_on_gear_inventory_changed.unbind(3))
 		gear_inventory.inventory_reset.connect(_on_gear_inventory_changed)
+	var weapon_inventory := get_node_or_null("/root/WeaponInventory")
+	if weapon_inventory != null:
+		weapon_inventory.weapon_acquired.connect(_on_gear_inventory_changed.unbind(1))
+		weapon_inventory.weapon_equipped.connect(_on_gear_inventory_changed.unbind(2))
+		weapon_inventory.inventory_reset.connect(_on_gear_inventory_changed)
 	_update_progression(progression.level, progression.total_experience, 0)
 	_update_coins(progression.coins)
 	_update_vitality(
@@ -147,6 +157,7 @@ func _ready() -> void:
 	)
 	_configure_tabs()
 	_configure_inventory_filters()
+	bag_search.text_changed.connect(_on_bag_search_changed)
 	sort_button.pressed.connect(_cycle_inventory_sort)
 	equipment_detail_panel.equip_requested.connect(_on_equipment_equip_requested)
 	_build_character_bag()
@@ -226,16 +237,13 @@ func _update_progression(_level: int, _total_experience: int, _next_level_experi
 	if not is_instance_valid(player):
 		return
 	var progression := player.progression_component
-	level_label.text = "LEVEL %d / %d" % [progression.level, progression.definition.maximum_level]
-	if progression.level >= progression.get_current_level_cap():
-		experience_bar.max_value = 1.0
-		experience_bar.value = 1.0
-		experience_label.text = "MAXIMUM LEVEL" if progression.level >= progression.definition.maximum_level else "CLEAR NEXT STAGE TO GROW"
-		return
-	var required := progression.experience_required_for_current_level()
-	experience_bar.max_value = required
-	experience_bar.value = progression.experience_into_current_level()
-	experience_label.text = "%d / %d XP" % [experience_bar.value, required]
+	var readout := ProgressionReadout.describe(progression)
+	level_label.text = "LEVEL %d / %d" % [progression.level,progression.definition.maximum_level]
+	experience_bar.max_value = readout.maximum
+	experience_bar.value = readout.value
+	experience_label.text = readout.text
+	experience_label.tooltip_text = readout.help
+	level_label.tooltip_text = readout.help
 
 
 func _update_coins(total_coins: int) -> void:
@@ -261,6 +269,14 @@ func _configure_tabs() -> void:
 
 
 func _configure_inventory_filters() -> void:
+	# Only implemented inventory kinds belong in the playable category bar.
+	consumables_filter_button.hide()
+	key_filter_button.hide()
+	for button: Button in [all_filter_button,equipment_filter_button,materials_filter_button,sort_button]:
+		button.add_theme_font_size_override("font_size",9)
+		button.custom_minimum_size.y = 22
+	bag_footer.add_theme_font_size_override("font_size",8)
+	bag_capacity_label.add_theme_font_size_override("font_size",9)
 	var filter_group := ButtonGroup.new()
 	filter_group.allow_unpress = false
 	var filters := {
@@ -292,6 +308,7 @@ func _set_inventory_filter(filter_name: StringName) -> void:
 	if _active_inventory_filter == filter_name:
 		return
 	_active_inventory_filter = filter_name
+	bag_scroll.scroll_vertical = 0
 	_build_inventory_grid()
 	if visible and _active_page == &"gear":
 		_focus_default_control()
@@ -347,6 +364,8 @@ func _build_equipment_slots() -> void:
 
 
 func _build_inventory_grid() -> void:
+	var focused := get_viewport().gui_get_focus_owner()
+	var focused_item: StringName = focused.name if focused != null and inventory_grid.is_ancestor_of(focused) else &""
 	_clear_children(inventory_grid)
 	_inventory_slots.clear()
 	_selectable_inventory_slots.clear()
@@ -363,6 +382,7 @@ func _build_inventory_grid() -> void:
 
 	if _active_inventory_filter in [&"all", &"equipment"]:
 		for item: EquipmentDefinition in owned_equipment:
+			if not _matches_search(item.display_name+" "+item.get_slot_name()+" "+item.get_rarity_name()): continue
 			var slot := _create_inventory_slot(button_group)
 			var equipped := _is_equipment_equipped(item)
 			slot.configure_equipment(
@@ -380,6 +400,7 @@ func _build_inventory_grid() -> void:
 	if _active_inventory_filter in [&"all", &"materials"] and material_inventory != null:
 		var sorted_materials := _get_sorted_owned_materials(material_inventory)
 		for material: MaterialDefinition in sorted_materials:
+			if not _matches_search(material.display_name+" "+material.get_family_name()+" "+material.get_rarity_name()): continue
 			var quantity: int = int(material_inventory.get_quantity(material.material_id))
 			if quantity <= 0:
 				continue
@@ -397,7 +418,9 @@ func _build_inventory_grid() -> void:
 		empty_slot.configure_empty()
 		_inventory_slots.append(empty_slot)
 
-	bag_capacity_label.text = "BAG  %d / %d" % [owned_equipment.size(), BAG_CAPACITY]
+	var material_count := _get_sorted_owned_materials(material_inventory).size() if material_inventory != null else 0
+	bag_capacity_label.text = "SHOWING %d" % visible_item_count
+	bag_footer.text = "%d equipment · %d material types · Materials use no bag space. Select an item to inspect or equip." % [owned_equipment.size(),material_count]
 	bag_empty_label.visible = visible_item_count == 0
 	bag_empty_label.text = _get_empty_filter_message()
 	if selected_slot == null and not _selectable_inventory_slots.is_empty():
@@ -408,10 +431,21 @@ func _build_inventory_grid() -> void:
 			_on_equipment_selected(selected_slot.equipment_definition)
 		elif selected_slot.kind == InventorySlotButton.Kind.MATERIAL:
 			_on_material_selected(selected_slot.material_definition)
-	elif player.get_equipped_weapon_item() != null:
-		_refresh_equipment_detail(player.get_equipped_weapon_item())
+	else:
+		equipment_detail_panel.configure_empty("No matching items" if not _search_query.is_empty() else "No items in this category")
 	_configure_inventory_focus()
 	_refresh_page_focus_links()
+	if not focused_item.is_empty():
+		var restored := inventory_grid.get_node_or_null(NodePath(focused_item)) as Control
+		if restored != null: restored.grab_focus()
+
+func _on_bag_search_changed(query: String) -> void:
+	_search_query = query.strip_edges().to_lower()
+	bag_scroll.scroll_vertical = 0
+	_build_inventory_grid()
+
+func _matches_search(value: String) -> bool:
+	return _search_query.is_empty() or value.to_lower().contains(_search_query)
 
 
 func _create_inventory_slot(button_group: ButtonGroup) -> InventorySlotButton:
@@ -492,6 +526,7 @@ func _is_equipment_equipped(item: EquipmentDefinition) -> bool:
 
 
 func _get_empty_filter_message() -> String:
+	if not _search_query.is_empty(): return "NO MATCHING ITEMS · Clear search or choose another category."
 	match _active_inventory_filter:
 		&"materials":
 			return "NO MATERIALS COLLECTED • MONSTER DROPS ARRIVE WITH STAGE LOOT"

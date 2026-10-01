@@ -1,0 +1,174 @@
+# Roadmap
+
+**Player interface pass complete (2026-10-02):** Nema reviewed; fixed preview false-ownership and currency refresh without changing crafting. Shared generated HP frame/satchel, loss trail/critical state, growth/cap explanation, finite level-up notice, bag search/counts/scrolling and honest empty detail are implemented. 80 rendered focused checks and menu/progression/crafting/skill/interface regressions pass. Eira provisionally accepted. Next: owner use test, expedition objective/reward feedback and the complete combat/loot/craft/equip/train loop. Phone profiling and town-art promotion remain open; more houses remain deferred. See docs/design/player-interface-readability.md.
+
+**Eira training complete (Decision 164, 2026-10-02):** Direct right-edge placement, separate Training/Loadout, five-technique reachable free curriculum, saved Earth/Molten forms and World8/10 gates are implemented. 84 rendered flow and91 curriculum checks pass, with interface/study/menu/progression/combat regressions. Test using tools/launch_sanctuary_study.ps1 -TrainingDemo. Next: owner usability/balance review, Nema/Umi service clarity, phone profiling and deliberate campaign art promotion. Prior Lab-only and unreachable World Mature plans are superseded.
+
+**Current NPC usability work (2026-10-02):** Eira work-corner placement, current five-skill dialogue and shared training/loadout layout are corrected; 43 rendered functional checks and existing trainer/menu regressions pass. Further houses/interiors are deferred by owner direction. Next: review the service flow, improve Nema crafting/Umi exchange clarity and feedback, and test phone usability before campaign promotion. See docs/design/sanctuary-npc-usability.md. Earlier interior-first recommendations below are historical.
+
+**Latest Sanctuary handoff (2026-10-02):** One walkable Orren workshop interior is implemented in the optional study, following the house-perspective and interface corrections. F entry/exit, persistent close-door prompting, inspection, collision, depth, mouse navigation and restored outdoor presentation are verified with 60 rendered checks; walking alone does not enter. V2 corrects oversized room/furniture proportions against unchanged King with 57 rendered checks; owner accepted the furniture size for now. The former Eira/Nema/Umi interior sequence is deferred by the newer NPC-usability priority above. Broader room review, indoor audio, phone profiling and deliberate campaign promotion remain pending. Source: docs/design/sanctuary-workshop-interior.md; continuation: CONTINUE_SANCTUARY.md.
+
+**Active milestone — Sanctuary renewal (2026-10-01):** Orren/workshop and Eira/lodge are retained; Nema and Umi now have eight-pose working presentations and overhead houses with left-positioned entrances in the optional town study. All four retain existing service authority. Current scope and evidence: `docs/design/sanctuary-courtyard-renewal.md`; earlier stages are recorded in `docs/design/sanctuary-environment-renewal.md`.
+
+**Owner milestone accepted (2026-09-27):** King Skills 1–5 are accepted as the current design/visual baseline after the Worldsplitter momentum review. Preserve this baseline for subsequent work. Campaign progression completion, whole-kit balance, cleanup and mobile profiling remain separate follow-ups; acceptance does not mark those finished.
+
+**Current Worldsplitter (Decision 162, 2026-09-27):** The owner corrected repeated strikes to fresh summoned swords. Foundation/Advanced/Mature now summon one/two/three blades at the same point, with .28s gaps. Blade arrival is now 144px high, with follow-up summoning begun .34s before impact for clearer momentum. Each drives 60px deep, fractures while sinking, and detonates into a broad radial light AOE; a generated summoning seam and energy filaments precede each blade. The rejected single-blade bounce/pullout is removed. King retains .32s commitment, existing total damage, training and saves. See `docs/design/worldsplitter-fractured-light.md`; visual acceptance and mobile profiling remain pending. Earlier conflicting Worldsplitter entries below are historical.
+
+**Worldsplitter detail pass (2026-09-27):** Skill 5 now uses edited sword/ground sheets directly referenced to Earthsplitter: dark blue blade planes, defined white bevels, clearer guard/shards, outlined gray stone faces and narrower bright fissures. Active atlases are under `assets/vfx/abilities/king/worldsplitter/detailed/`; sources/prompts under `art_source/generated/vfx/king/worldsplitter_detail_2026_09_27/`. Same 32-frame sequence, straight descent, scale settings, damage, upgrades, audio and control timing. Owner visual preference review remains open.
+
+**Worldsplitter upright rebuild (2026-09-27, Decision160):** Skill5 now uses a larger straight-down generated blade and a connected shattered-ground eruption, replacing the rejected X faults and angled concept.32 new drawings; .32s King commitment, independent contacts near .60/.84s, roughly1.84s total visual lifetime. Foundation/Advanced/Mature grow radius/damage with Eira Level10/15 training and saved rank; Mature is campaign-locked by the current cap but all forms are available in F7 -> Skills. Skill4 is unchanged. See `docs/design/worldsplitter-upright-descent.md`; owner balance/mix review and mobile profiling remain pending.
+
+**King Skills 4–5 implementation complete (2026-09-27):** Unbroken Vow authority, shield/readout, damage/speed bonuses, Mature combo accent, Eira Level 7/10 training, save fields and ownership-preserving default slot migration are active. Worldsplitter uses the accepted summoned sword plus compact radial faults and returns control at .32s before its final released impact. F7/F9 equip five skills and preview Vow ranks. Focused combat/trainer/save/sidebar/kit/armor/CC checks and GPU captures validate implementation. Still open: owner combat-feel/balance review, bespoke Vow side/up brace drawings (current approved cleave poses are reused), and representative-phone profiling. Earlier pending implementation notes are superseded.
+
+**Combat Lab testing usability complete (2026-09-27):** One right sidebar with AI/Skills tabs, explicit upgrade dropdowns, embedded buff preview with cleanup on tab change, always-equipped authored test kit on entry/F9, and retained ranked bindings. No campaign training/save grants. 26 focused assertions, four native GPU captures and existing King/Lab/buff regressions verify the delivery; Unbroken Vow combat upgrades remain planned.
+
+**Unbroken Vow owner test prepared (2026-09-27):** Added F7 -> Skills tab -> BUFF · ANIMATION TEST and direct launcher, normal/slow replay, sound/camera controls and real movement return. Focused31 checks, King kit regression and Combat Lab smoke pass. Rendered five GPU captures. Visual rehearsal only; actual buff/upgrade authority and slot migration remain planned.
+
+**Skill 4 activation study complete (2026-09-27):** Down-facing brace/release poses, pressure/current effects, original contact sound and normal/slow/native-size review now exist. Owner approved flow and upgrade identities: Advanced speed, Mature empowered third strike. Next implementation work: remaining directional poses, Foundation authority/HUD, actual terrain/combat validation, upgrades and ownership-preserving Worldsplitter migration. This art study does not change live skills.
+
+**Skill 4 V2 review ready (2026-09-27):** Generated enclosing shield and ground-seal activation replace the floating-shard concept. Remaining: directional weapon-power accents/cast poses, damage ripple/break/expiry, moving-player layering, buff authority/audio/HUD and Worldsplitter-to-5 migration. Review-only; no gameplay promotion.
+
+**Active King Skill 4–5 design review (Decision 159, 2026-09-27):** Owner chose a self-buff for 4 and to retain Worldsplitter in 5 for existing players. Generated a six-frame effect source, reproducible hard-pixel review extraction, exact King C composite and looping GIF; proposed Foundation/Advanced/Mature gameplay and Eira Level 7/10 gates. Next: owner-review the visual and mechanics, implement buff authority and UI, migrate saved/current Worldsplitter to 5 without loss, then test crowd/boss balance. Live Skill 4 remains Worldsplitter until the replacement is playable.
+
+**Eclipse Bind action bar implemented (2026-09-27):** Owner-selected concept B now supplies one integrated shadow frame and matching Dash glyph around ten skills, Space and Attack. The active 720x104 border uses a 78%-opacity center veil after the 55% pass felt too transparent; older captures remain for comparison. Native 960x540 dark- and bright-backdrop renders and the pointer/ability smoke check pass. Remaining: owner combat-scene feel and representative-phone readability review; retain the current click, charge and cooldown semantics.
+
+**Previous generated action-bar art (2026-09-27):** The paired divine-dragon edge pass and its hard-pixel source remain archived in place for provenance; active HUD and character menu references have moved to Eclipse Bind.
+
+**Action-tray bookends and Dash sound complete (2026-09-27):** Distinct cyan Dash and gold Attack end cards flank the ten skill slots, retaining input semantics. Space/Dash now uses an original grounded boot/cloth cue instead of the retired swish. Native-size render, audio import and HUD/assisted input checks pass; owner mix and phone checks remain.
+
+**Skill HUD/landing polish complete (2026-09-27):** Compact ten-slot/Dash tray, separated labels, readable charge stock and Resolve count, and no post-landing Pursuit travel slide. Ranked Pursuit lookup uses stable IDs, including after the debug loadout switches. Rendered 960x540 review and focused smoke checks pass; representative-device readability and owner feel remain active review items.
+
+**Decision 158 complete (2026-09-27):** Pursuit ranks train manually with Eira at Levels 5/8: 1/2/3 stored uses, 220/250/280px aim range, sequential 8.5-second refill, compact HUD stock/progress and backward-compatible rank saving. F7 can preview ranks without saving. Still active: combat-feel and phone checks. Skill 4 remains Worldsplitter at runtime while Decision 159's proposed buff is reviewed; the counter-only Unbroken Stand concept is superseded.
+
+**Current King cleanup complete (Decision 157, 2026-09-26):** King C and Skills 1-3 run in the campaign. F7 shows current production art and session-only Earthsplitter/Molten form choices, with Pursuit rank preview added in Decision 158. Echoing Sever, Riftbreak, old Pursuit art, four Oath techniques and their unused observers/capture harnesses moved to the Godot-ignored recovery archive. Old Oath save slots migrate by family. Skill 4 remains the playable Worldsplitter placeholder. Still planned: owner feel review, later-form stage gates/persistence for Skills 1/2 and representative-phone profiling.
+
+**Skill 3 production art (Decisions 156–157, 2026-09-26):** Sovereign Pursuit uses its eight-frame travel sheath and fifteen-visible-frame blade-cut landing in the campaign. Decision 158 subsequently added trained range/charge progression; owner visual/feel approval remains active.
+
+**Molten Crash upgrades (Decision 155, 2026-09-26):** Skill 2 now has four selectable Lab forms: 72px blue stone-and-light Foundation, 80px molten Advanced, 84px Awakened with one delayed 86px damage-only heat pulse, and 86px Mature with a stronger center and gentler damage rim. One .36s local sword cast, 8s cooldown and initial authored stun remain. The pulse resolves at the original impact while King can move. F7 -> Skills tab -> SKILL 2 and FORM compares them. Campaign unlock/persistence and owner feel review remain pending.
+
+**Skill 1 later form (2026-09-26):** Earthsplitter Foundation is in the campaign. Its Lab-only Fan releases three simultaneous lanes at center and +/-20 degrees, followed .22s later by one stronger, longer center wave. One sword smash and .36s base commitment remain. Initial lanes reach 196px (19px radius), deal 100% weapon damage once per enemy across the fan, and use light push/flinch. The follow-up reaches 228px (21px radius), deals 140% once more, and has heavier impact/55 knockback. Maximum unmitigated noncritical weapon budget is 240% per target; side targets usually receive only the fan. No stun. Cascade remains another Lab comparison. Upgrade gates and phone testing remain pending.
+
+- Owner-approved Skill 1 combination implemented in Lab: three-lane Fan followed by one stronger center wave. Cascade remains a separate comparison.
+- **King cleanup completed (Decision 157):** Superseded Oath skills, old King body atlases, old Skill 1/2 and Pursuit VFX, comparison adapters and their obsolete tests/builders moved to the Godot-ignored recovery archive. Preserve the accepted Cascade prototype inside the current Earthsplitter form selector. Further cleanup should follow live reference audits.
+
+- Decision 155 completed: Molten Crash Foundation, Advanced, Awakened and Mature can be compared in the Lab with bounded area growth, a single damage-only heat pulse at higher forms and unchanged .36s commitment. Campaign gates/saves and final owner feel review remain active.
+
+This file records current production progress. Historical implementation detail belongs in `CHANGELOG.md`; major superseded choices remain in `docs/decisions/`.
+
+## Completed
+
+- Earthsplitter eruption baseline accepted by owner. Follow-up upward-cast atlas sliver corrected through explicit clipped sword regions without asset/motion/gameplay changes; 29 rendered checks and 116 gameplay checks pass. Full campaign integration remains pending.
+
+- Decision 150: opt-in Earthsplitter Foundation motion/gameplay proof with generated sixteen-frame sword and rupture sheets, .36s base cast, released wall-safe lane damage, one hit per target, no stun and exact review restoration. Owner approves the sword animation. Decision 151 adds the fixed-length terrain-aware lane. After rejecting the thin pressure-only look, the owner accepts the restored fuller upright ground eruptions, embedded energy bursts and endpoint feedback; full skill integration remains pending.
+
+- Decision 149: separate explicitly authored stun from flinch/knockback, correct shared stars and King pose selection, shorten generic King skill flinches, and add the reversible targeted Riftbreak Lab review with a 16-drawing impact sequence. Owner visual/gameplay acceptance of the preview remains pending.
+
+- September 14 reusable stun indicator: animated head stars on King, six staggerable mobs and Examiner guard break; accepted states own visibility, with authored actor offsets and no gameplay changes. Owner accepts existing King hurt/stun body poses.
+
+- September 14 King motion acceptance: owner approves the continuous side leg-cycle, completing four-direction gait review alongside accepted hands and three basic attacks. Preserve this C baseline; campaign integration and skill redesign remain separate work.
+
+- Decision 147: responsive core, targeted released Griefwake, Breakstep/riposte, Last Oath center/rim, ten-slot keyboard/controller/HUD/collection/save migration, safe core preset and retimed approved presentation. Focused behavior and regression checks pass; rendered review is available.
+
+- Decision 144: Unwritten Oath collection, Crosscut/Griefwake/Starfall/Oathstorm and four authored forms, generated body/VFX/icons, original SFX, safe four-slot swaps, optional stable-ID saving and Lab previews. Mortal/Resonant integrate with the current route; future Ascendant/Unbound reward hooks remain unconnected.
+
+- September 13 King review: corrected front/back gait, dedicated basic finishing sweep, back-facing defeat hold, dark-matte fringe cleanup, clear Resolve/link HUD text, fixed Riftbreak impact/residual lifecycle and unified foot origins for Riftbreak/Pursuit. Full 280-frame review artifacts accompany the changes. Decision 144 now extends that groundwork with four new evolving technique families.
+
+- Decision 143: selected King C greatsword body/portrait/actions, three-cut physical chain, clipped white trails, Resolve passive, Pursuit/Riftbreak bonus, original action cues, +2%-per-level capped skill growth and stage-clear level ceilings. Owner full-campaign feel/balance testing remains active.
+
+- Decision 141: randomized 24-meteor Firmament, recent-action-aware legal attack selection, committed Axiom/Reprisal links, seal-break remarks and a rewardless F7 victory acknowledgment. Production Stage XX integration remains planned.
+
+- Godot 4.7 top-down production foundation with 960x540 logical rendering, keyboard/mouse/controller input, pause flow, scene transitions, and reusable data-owned combat authority.
+- King is the sole production player with the accepted King C body, four-direction actions, equipment/progression and ten equipped positions. Four current techniques are learnable: Earthsplitter, Molten Crash, Sovereign Pursuit and Worldsplitter. The old Oath four are archived.
+- Basic attacks and skills use committed direction, authored hit shapes, damage, knockback, stagger, hitstop, camera response, audio, and world-space feedback without moving authority into animation.
+- Combat controls through Decision 114: right-click/WASD movement clears combat intent; left-click performs directional air swings, one-click enemy selection, and repeated same-enemy pursuit/attack; right-click/`Esc` cancels targeted skills; optional `AUTO ALL` and `AUTO SKILL` remain explicit.
+- Size-aware enemy footprints drive movement collision, navigation radius, crowd separation, readable tier auras, foot-circle selection, and assisted approach distance. Hurtboxes and attack shapes remain separate.
+- Four coordinated greatsword skill icons join the existing Basic Attack and Dodge/Dash icons, all through reusable native-24px `AtlasTexture` resources.
+- Sanctuary with Eira skill information, Orren lore dialogue, Nema's atomic gold-backed Stage V Living Rootforge, Umi's catalog-driven Echo Crucible for selling/reconstruction, expedition selection, debug-only Combat Lab access, and safe-point autosave.
+- Forest Stages 1-5, including authored TileMaps, bounded live-enemy pressure, sparse/protected loot, Stage III Rootbound Husk, Stage IV Armored Hog pressure, and Stage V Varkuun encounter/reward flow.
+- Decisions 126-127 production Stage VI: `The Elder Ascent` preserves the approved top-down terrace/waterfall and eight-Bear population while five waves now total 4/4/5/6/9 under a five-live cap. Mirelings are absent; fourteen Thralls, five rebuilt Bramble Spitters, and one finale Hog supply composition pressure. Spitters own fresh `AnimatedSprite2D` action families, bounded retreat, and destructible thorn-seeds. Retuned Crag Iron/Echo Claw drops, clear banking, Level 6 access, Normal return, and F9 review remain active.
+- Versioned disk save/Continue with temporary write, rotating backup, story/progression/health, King weapon/gear, materials, recipes, and reward claims.
+- Sanctuary/Continue is a full-health recovery checkpoint; expedition stages still preserve attrition between direct stage transitions.
+- Expedition defeat returns to Sanctuary, rolls back uncommitted loot, and preserves level/coins. Stage V's approach no longer reuses Sanctuary music.
+- Sanctuary locks its generated angels/masonry to one static raster and animates only doorway energy. Stage exits use two approved 16-frame abyssal sheets with full-surface/deforming-rim motion and a separately scalable lightning field. Five threat tiers now progress from blue lightning-free Normal through purple Mini Boss, red Boss, searing-light God, and near-black Transcendent with half-viewport-plus reach; the loading veil preserves the chosen tier.
+- The complete implemented clear-route contract now previews destination threat and advances continuously: I->II blue, II->III purple Mini Boss, III->IV blue, IV->V red Boss, V->VI blue, then VI->Sanctuary blue until Stage VII exists. Varkuun's chest/save order remains intact before the Stage VI portal appears.
+- The live enemy roster is discovery-gated, uses stable signature refresh, and clips/pads/marquees only overflowing names.
+- Long-lived Spitter seeds tolerate shooter death, can be destroyed by player hitboxes without entering enemy targeting, and clean up on range/lifetime/scene unload. Armored Hog's committed brace/charge cannot be permanently canceled by normal-hit spam.
+- Decision 128 adds reusable stagger-chain breakout without coupling it to hitstop: weak mobs remain freely interruptible, Hog/Bear resistance thresholds are data-owned, Heavy and Boss response stay distinct, and accepted enemy control now cancels vulnerable King actions and applies Player-owned knockback. The rebuilt Spitter's approved frames are normalized to normal-mob native pixel scale rather than scene-scaled; attack entry now preserves idle actor mass and its seed impact ends on the clean third-frame explosion.
+- Decision 121 establishes the first meaningful equipment band: exact Stage V slot identities, Varkuun Edge critical-hit authority, percentage caps, equipped-item comparisons, compact Character/Rootforge layouts, right-edge formula icons, and clearer binary-alpha Forest equipment silhouettes.
+- Decision 123 implements persistent enemy memory, metadata-owned material valuation, protected boss reconstruction, exact Stage V crafting fees, and Umi's compact east-Sanctuary service without hardcoded NPC material lists. Umi now has a native-density close dialogue portrait and a 72x64 asymmetrical side-facing Echo Crucible workbench; Common drops are fuel/sale resources rather than reconstruction targets.
+- Decision 130 makes earned loot saturate at full material stacks so pickups clean up and milestone chests advance, while paid reconstruction remains capacity-strict and refuses before spending.
+- Opaw, the retired weapon shop/awakening flow, unused equipment showcase, obsolete processors/tests, and 30 unreferenced images moved into recoverable Godot-ignored archives. The post-cleanup runtime image audit reports no unreferenced images under `assets/`.
+- Decision 136 (2026-09-12) rebuilds the rewardless F7 Examiner proof with ten eight-column `192x160` sheets, 116 named clips, disjoint anticipation/contact spans, original action/footstep audio, an engraved-slate Court, exact traversable cyan wards, compact review controls, and actual phase/technique text. Grounded charge now stops at physical collision. Body baseline is 128 and visual origin is -48; final owner feel approval and production Stage XX integration remain pending. The established Divine Descent rules and one music foundation remain intact. The lab grants no rewards or saves.
+- Decision 137 (2026-09-12) follows owner acceptance of the Examiner look with a dedicated four-pose alternating gait, turn-continuous footsteps, complete-source weapon extraction, repaired slam source, four eight-frame raster skill atlases, crimson danger decals, exact Descent safe-hole shading, and heavier fracture/beam audio. The 116 named clips, 192x160 cells, baseline 128, origin -48, controller timing, and trial authority remain intact. The owner accepted the skill effects but rejected the replacement walk identity. The identity follow-up now derives front/profile/back studies from isolated approved locomotion references, restores the narrow mask and long ivory coat, and matches helmet-to-ground body scale per direction. Skills, audio, HUD, and combat authority are unchanged; the owner approved the revised gait. Stage XX integration remains pending.
+
+## In Progress
+
+- **King Skills 1-2 production plan:** Skill 1 Foundation and Advanced Fan are playable in the Lab; Cascade remains a preserved later-form candidate. Skill 2 now has four playable Lab forms. `docs/design/king-skill-upgrades-and-production.md` tracks bounded stage growth and remaining integration. Campaign gates, old skill removal, save wiring and final balance remain pending.
+
+- **Latest King concept alignment:** Owner accepts Skill 2 V2's local molten burst and Skill 1 V3's expressive smash/earth rupture with a separate summoned-sword correction. Both skill proofs and Skill 2's four upgrade forms now run in the Lab. Skill 1's later damaging explosion, campaign unlock gates, charges and lore grants remain provisional. Existing Crosscut and Riftbreak alternatives are still installed. See `docs/design/king-spirit-sword-concepts.md`.
+
+- **King review first:** September 14 authorization permits Decision 148's isolated playable C character review. The isolated targeted Riftbreak comparison is now authorized and implemented; broader skill/tier redesign remains pending. Owner rejects latest Skills 2/3 and old/new coexistence as the final direction, and expects higher skill numbers to represent stronger tiers.
+- **Character before Skill 4:** The accepted King C locomotion, attacks, reactions and outline are now in production (Decision 157). Its skill-body aliases remain provisional; Worldsplitter is the next design and frame pass.
+- **Character integration next:** Directional gait and basic attacks are owner-approved. Hurt/stun body poses are also owner-approved; review dash/defeat, promote the selected Lab presentation into campaign play, and continue the separately authorized Riftbreak skill comparison. No further base-character redesign is needed for the current direction.
+- September 13 character review: owner selected C Spellward and requested finer, clearer stylized pixels at the same body scale. Initial one-facing idle/walk/swing studies and interactive small-scale review are in `art_source/review/characters/king/spellward_motion_2026_09_13/`. The walk remains unfinished: the opposite-foot contact is not convincing. Final density, motion cleanup, other directions and runtime integration remain pending; no new runtime assets installed.
+
+- Decision 146: develop the accepted Stage X female Forest Goddess direction (Examiner-sized or larger) and distinct boss traits. Root-fed bark protection and Examiner heat pulses are proposals; boss production, exact scale, passive capacity, survival effects and inheritance rewards remain design work.
+
+- Develop earned domain spells for the implemented ten-slot foundation after core feel review. Eight techniques currently exist; new poison/lightning/gravity/ward/blind/meteor families and production divine reward gates are not implemented.
+
+- Owner feel-test Decision 147 core with immunity/unlimited skills disabled: targeted Griefwake while moving, actual Breakstep evade/riposte versus rupture link, center placement on Last Oath, two-cut cancellation, ten-slot readability and upgraded forms. No final endgame balance claim.
+
+
+- Owner feel-test Decision 114 in the normal game: click priority, repeated-click timing, footprint picking, pursuit around obstacles, moving targets, large bosses, movement cancellation, roster discovery, and long-name marquee readability.
+- Owner feel-test the taller enemy roster, target panel, tier foot auras, target chevron, generated cursors, greatsword skill icons, and Stage IV eight-enemy readability at 960x540.
+- Owner feel-test the fixed Sanctuary gate energy crop and Decision 119 threat ladder at 960x540: quiet blue Normal, restrained purple Mini Boss, red Boss, searing-light God, near-black Transcendent, independent lightning reach, and screen-edge direction pointer.
+- Owner feel-test Umi's close dialogue portrait, right-facing-bowl hand alignment, lateral workbench scale/collision, reconstruction owned-count clarity, 760x420 Sell/Reconstruct density, click/right-click fuel flow, Auto Fill explanation, and first-play gold pacing at 960x540.
+- Feel-test King's attack timing and the complete four-skill kit, especially Riftbreak impact readability, Sovereign Pursuit anchoring, and Worldsplitter commitment/damage/cooldown against crowds and bosses.
+- Validate Stage V pacing, Varkuun audio/telegraphs, reward cadence, and saved direct continuation into Stage VI in a complete non-debug playthrough.
+- Owner feel-test Stage VI with no armor, starter gear, and the Stage V crafted set; record clear time, damage taken, target-priority pressure, five-live crowd readability, corrected Spitter scale/counter/retreat feel, Bear four-hit stagger breakout and slam/audio, Hog charge interruption, and Crag material yield.
+- Test a composition-first Stage VI Wave 4-5 pressure variant with approximately two late-section Armored Hogs while preserving eight Bears and the five-live cap; approve exact counts only from no-armor/starter/Stage-V-set measurements.
+- Owner feel-test the Decision 136 F7 rework at 960x540: stable anatomy/foot baseline, all directional action phases, four-pose alternating walking, collision-stopped charges, counter/Axiom readability, Descent cover and impact, sound mix, and compact controls. No charge-zone slow is active.
+- Keep documentation aligned with King-only runtime truth and classify any newly discovered dead asset before moving it to the archive.
+
+## Planned
+
+### Forest Production
+
+1. Promote or revise the accepted F7 Examiner/Court combat proof after owner feel-testing. The production Stage XX gate still requires the arrival/return transitions, production scenario dialogue and outcome wiring beyond the F7 victory preview, reward/replay/save contracts, final mix, and final balance. Keep the Executioner documentation-only.
+2. Add replayable Hunts for completed stages with explicit reward families and modifiers.
+3. Continue authored Forest content through Stage X. Keep Stage VIII's standard-accessory/Umi milestone, reserve modular reclaimed magical ruins plus the provisional Mage/Warden pressure pair for Stage IX, and retain Stage X's relic/signature milestone.
+4. When Stage VIII gains canonical completion authority, use it to unlock Umi and the whole Echo Crucible service; keep the current instance available until then for production testing.
+5. Build toward the required Stage XX Examiner scenario; The One Above's direct encounter is unscheduled. The Stage 100 family-reunion promise is manipulation, not a confirmed resurrection outcome.
+6. Define the Stage XI seam and next-region identity before naming or generating that content.
+
+### Release Readiness
+
+- Decide target-platform priority and set measurable desktop/web/mobile budgets.
+- Add accessibility, localization readiness, settings persistence, export validation, compatibility testing, and performance profiling.
+- Finish onboarding, balance passes, campaign pacing, and production-quality owner review at the logical viewport.
+
+## Deferred
+
+- Ultimate and Reality Breaking gameplay; both are presentation-only reserved tiers.
+- Additional playable characters. New roster work begins only after King and the release slice are stable.
+- Utility items such as healing potions, temporary buffs, and a rare revive; define inventory limits, combat-use commitment, rarity, and save rules before implementation.
+- Multiplayer, branching routes, challenge modes, and mod support.
+- Divine-weapon immunity and other high-tier rules that currently have no production content.
+
+## Technical Debt
+
+- The combat action buffer, assisted targeting, and auto-combat are structurally tested but still need long-session feel/profiling in obstacle-heavy Stage IV/V encounters.
+- Some historical ADRs and `CHANGELOG.md` intentionally mention retired Opaw systems. They are records, not current instructions.
+- Audio settings remain session-only.
+- Sanctuary expedition previews still expose sealed future routes whose content is not implemented.
+- The reusable Crag Bear's active art/provenance paths still contain `stage_6`; migrate them only through a controlled reference-safe asset move. New reusable enemy/environment/VFX/audio/material paths must be identity-owned immediately.
+
+## Next Decision Gate
+
+Owner feel-test the new F7 Examiner proof before any Stage XX integration. First confirm scale/baseline and body motion without relying on lane VFX; then judge the court, Refutation window, Axiom safe space, and final dash. After that, lock the required-encounter outcome handling, dialogue, reward, replay, audio, and safe-point contract. Stage VI's candidate Wave 4-5 Hog-pressure measurements remain a separate balance gate.
+
+## Examiner Stage XX direction (Decision 138)
+
+Decision 138 (2026-09-12) supersedes the Stage VII optional-challenge and Stage XX direct-god placement: Examiner is the required Stage XX scenario boss, a false mentor serving the gods' manipulation. They promise reunion at Stage 100; King's family is actually dead. Souls, resurrection, replicas, the ending, and any bestowed power remain open possibilities, not established survival facts. The One Above's direct confrontation is now unscheduled. Only the F7 combat proof is playable; production route/outcome/reward/save integration is pending.
+
+Decision 141 preserves the approved body art, living Sun charge, separate seal/stun rules, 60% Second Measure and 35% Unbound. Crimson Firmament retains its 180-point/3.8s interruptible charge, then releases 24 red meteors in eight randomized waves of three, 0.62s apart, with 0.90s warnings and 48px impact radii. Each wave snapshots King and scatters other impacts while leaving a nearby opening; no permanent safe column remains. Weighted legal attack selection discourages recent repetitions, and selected phase-two Axiom recoveries can lead into a newly warned, committed Reprisal. Seal breaks earn changing remarks. Lethal damage clears hazards, then Examiner kneels, rises, acknowledges King in a skippable conversation and withdraws. This is a rewardless F7 outcome preview: production Stage XX routing, rewards, story persistence and gear balance remain pending.
