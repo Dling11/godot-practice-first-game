@@ -55,7 +55,7 @@ func _run() -> void:
 	_check_eira_art(study.eira_review)
 	check(eira.get_node("Body/Collision").shape == eira_body and eira.get_node("Trigger").shape == eira_trigger,"Eira interaction/body authority replaced")
 	check(eira.get_node("IdleBreath").is_stopped() and not eira.idle_aura.visible,"Eira's old body wobble or floating aura is active")
-	check(study.eira_review.nameplate.visible and study.eira_review.nameplate.npc_name == "Eira" and study.eira_review.nameplate.role_name == "Skillkeeper","Eira identity label missing")
+	check(study.eira_review.nameplate.visible and study.eira_review.nameplate.npc_name == "Eira" and study.eira_review.nameplate.role_name == "Skill Mentor","Eira identity label missing")
 	var reachable := _reachable(space,Vector2i(36,42))
 	for destination in [Vector2(224,434),study.eira_review.APPROACH,Vector2(360,548),Vector2(376,630),Vector2(808,670),Vector2(984,474),Vector2(928,426),Vector2(576,328)]:
 		check(reachable.has(Vector2i(destination/16)),"An existing service/door/gate route is blocked: "+str(destination))

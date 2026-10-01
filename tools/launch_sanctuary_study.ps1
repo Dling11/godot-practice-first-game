@@ -1,5 +1,8 @@
-param([string]$GodotPath = 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe')
+param([string]$GodotPath = 'D:\WORK_APP\godot\Godot_v4.7-stable_win64.exe', [switch]$Eira, [switch]$TrainingDemo)
 $projectPath = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 if (-not (Test-Path -LiteralPath $GodotPath)) { throw "Godot not found at $GodotPath" }
 # Visible window is the requested interactive environment review.
-Start-Process -FilePath $GodotPath -WorkingDirectory $projectPath -ArgumentList @('--path', ('"' + $projectPath + '"'), '--resolution', '1280x720', '--script', 'res://tools/launch_sanctuary_study.gd') -PassThru | Select-Object Id, ProcessName
+$reviewArgs = @('--path', ('"' + $projectPath + '"'), '--resolution', '1280x720', '--script', 'res://tools/launch_sanctuary_study.gd')
+if ($Eira -or $TrainingDemo) { $reviewArgs += @('--', '--eira') }
+if ($TrainingDemo) { $reviewArgs += '--training-demo' }
+Start-Process -FilePath $GodotPath -WorkingDirectory $projectPath -ArgumentList $reviewArgs -PassThru | Select-Object Id, ProcessName

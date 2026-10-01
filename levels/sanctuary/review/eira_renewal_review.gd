@@ -4,7 +4,7 @@ extends Node
 const IDLE = preload("res://assets/characters/npcs/skillkeeper/renewal/idle_read.png")
 const PORTRAIT = preload("res://assets/characters/npcs/skillkeeper/renewal/portrait.png")
 const Nameplate = preload("res://entities/npcs/presentation/npc_nameplate.gd")
-const EIRA_POSITION := Vector2(400, 450)
+const EIRA_POSITION := Vector2(384, 410)
 const APPROACH := EIRA_POSITION + Vector2(0, 36)
 
 var npc: DialogueNpc
@@ -33,8 +33,8 @@ func configure(hub: Node) -> void:
 	nameplate = Nameplate.new()
 	nameplate.name = "ReviewNameplate"
 	nameplate.npc_name = "Eira"
-	nameplate.role_name = "Skillkeeper"
-	nameplate.position = Vector2(0, -62)
+	nameplate.role_name = "Skill Mentor"
+	nameplate.position = Vector2(12, -62)
 	npc.add_child(nameplate)
 	npc.proximity_changed.connect(_on_proximity_changed)
 	npc.dialogue_requested.connect(_on_dialogue_requested)

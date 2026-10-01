@@ -1,5 +1,13 @@
 # Continue Sanctuary renewal
 
+## Latest continuation - Eira mentor curriculum, 2026-10-02
+
+Read required docs, then docs/design/sanctuary-npc-usability.md and Decision164. Eira is DIRECTLY RIGHT of the book at384,410 on the same foot baseline; approach384,446. F/dialogue opens Training directly. Five-technique current/next effects and reachable free ranks: Earth2, Molten3/6/9, Pursuit5/8, Vow7/10, World8/10. Earth/Molten ranks save compatibly; custom hotkeys remain. Loadout separately offers swap/clear/core restore. Esc from Eira resumes play; ordinary inventory retains its nested return.
+
+Test immediately: `powershell -NoProfile -ExecutionPolicy Bypass -File ./tools/launch_sanctuary_study.ps1 -TrainingDemo` opens temporary Level10 beside Eira with saves suppressed. Or F5 -> Continue -> F10 -> SANCTUARY REVIEW -> Visit Eira -> F -> finish/skip dialogue. Native evidence: art_source/review/ui/eira_training_v2_2026_10_02/. 84 rendered flow,91 curriculum,64 interface,94 study,14 World training,49 combined combat checks and menu/progression/production kit smoke pass. Baseline GPU shutdown warnings remain.
+
+Next: owner usability/balance feedback, then Nema crafting/Umi exchange clarity and feedback. Further houses/interiors are deferred; retain accepted furniture and F-required entry. Preserve user changes; do not commit or push. Phone profiling/campaign art promotion remain separate. Earlier positions400,450/400,486, two-step menu routes, Lab-only Skills1/2 and World10/15 gates below are superseded.
+
 ## Current continuation - NPC service usability, 2026-10-02
 
 Owner redirected work away from further houses/interiors toward NPC function, layout and skill arrangement. Read required project docs, then `docs/design/sanctuary-npc-usability.md`. Eira is now right of her lectern at400,450 with a400,486 approach; labels clear the books and the nearby lamp moves to456,432. Current five-skill dialogue replaces retired names. Shared Skills has two rows of five capped icons, TRAIN & ARRANGE through Eira, ARRANGE SKILLS through ordinary inventory, explicit training requirements and swap/clear/restore feedback with retained focus. Existing authority and progression remain.

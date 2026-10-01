@@ -7,12 +7,12 @@ Current runtime: Decision 162, 2026-09-27. This supersedes Decision 161's reject
 | Form | Summoned blades | Damage per blast | Contact radii | Reach | Training |
 |---|---|---|---|---|---|
 | Foundation | One blue-white sword | 520% | 88px | 260px | Already learned |
-| Advanced | Blue-white sword, then a fresh crimson sword | 220% + 380% | 72 / 96px | 280px | Eira Level 10 |
-| Mature | Three fresh crimson swords in rapid succession | 180% + 200% + 320% | 72 / 80 / 104px | 300px | Eira Level 15 |
+| Advanced | Blue-white sword, then a fresh crimson sword | 220% + 380% | 72 / 96px | 280px | Eira Level 8 |
+| Mature | Three fresh crimson swords in rapid succession | 180% + 200% + 320% | 72 / 80 / 104px | 300px | Eira Level 10 |
 
 All swords strike the SAME chosen point. Total damage remains 520/600/700% weapon damage, with ordinary equipment, mastery and critical modifiers. Only the final detonation has the designated .5s stun and 100 knockback; earlier impacts use light 8 push. Terrain LOS, foot-distance checks and one hit per target per contact remain authoritative.
 
-Mature is locked in the current campaign by its Level 10 cap, but all three forms are available in F7 testing. Training gates, saved ranks, cooldown and slot 5 mapping are unchanged.
+Decision 164 (2026-10-02) sets Eira gates to Level 8/10, so both trained ranks are reachable within the current Level 10 cap. All forms remain available in F7 testing. Saved ranks, cooldown and slot 5 mapping are unchanged.
 
 ## Motion and control
 

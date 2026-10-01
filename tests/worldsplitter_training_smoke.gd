@@ -25,8 +25,8 @@ func _run() -> void:
 	var library: KingSkillLibrary = actor.get_node("KingSkillLibrary")
 	check(not library.can_upgrade_worldsplitter(true), "Upgrade ignored level requirement")
 	story.remember_story(&"forest_stage_5_cleared")
-	session.update_progression(4950,0)
-	check(actor.progression_component.level == 10 and library.can_upgrade_worldsplitter(true) and not library.can_upgrade_worldsplitter(false), "Eira/level gate wrong")
+	session.update_progression(3150,0)
+	check(actor.progression_component.level == 8 and library.can_upgrade_worldsplitter(true) and not library.can_upgrade_worldsplitter(false), "Eira/level gate wrong")
 	library.open_collection(true)
 	var collection: Node = library._collection
 	collection._selected = "king_skill_4"
@@ -36,7 +36,7 @@ func _run() -> void:
 	collection._close()
 	await process_frame
 	check(session.king_worldsplitter_rank == 1 and actor.ability_4_component.definition.rank == 1, "Training click did not grant Advanced")
-	check(library.get_worldsplitter_upgrade_level() == 15 and not library.can_upgrade_worldsplitter(true), "Mature bypassed current campaign cap")
+	check(library.get_worldsplitter_upgrade_level() == 10 and not library.can_upgrade_worldsplitter(true), "Mature bypassed its Level 10 gate")
 	session.king_worldsplitter_rank = 0
 	check(save.load_profile() == save.DEFAULT_SAFE_SCENE and session.king_worldsplitter_rank == 1, "Rank failed save/reload")
 	var player: Player = load("res://entities/player/player.tscn").instantiate()

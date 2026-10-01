@@ -1,5 +1,7 @@
 # Worldsplitter — upright descent
 
+**Current correction (Decision 164, 2026-10-02):** Eira training gates are now Level8/10, both reachable by cap10; previous10/15 statements below are historical. Decision162 and worldsplitter-fractured-light.md own the current fresh-sword/radial-blast presentation. Saved ranks remain compatible; no damage/cooldown/art changed in the curriculum pass.
+
 **Superseded by implemented Decision161:** The owner approved fractured-light impacts and three consecutive same-point Mature plunges with burial/extraction. The triangle and former stone/two-contact progression below are historical. See `worldsplitter-fractured-light.md`.
 
 Implemented 2026-09-27, owner feel/balance review pending. Replaces the X-fault prototype and supersedes the unimplemented angled Severing Descent concept. Skill 4 is unchanged.

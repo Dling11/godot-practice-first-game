@@ -15,6 +15,8 @@ var king_skill_slots: Array = []
 var king_pursuit_rank := 0
 var king_vow_rank := 0
 var king_worldsplitter_rank := 0
+var king_earthsplitter_rank := 0
+var king_molten_rank := 0
 var king_skill_layout_version := 2
 
 
@@ -58,6 +60,8 @@ func reset_run() -> void:
 	king_pursuit_rank = 0
 	king_vow_rank = 0
 	king_worldsplitter_rank = 0
+	king_earthsplitter_rank = 0
+	king_molten_rank = 0
 	king_skill_layout_version = 2
 	total_experience = 0
 	coins = 0
@@ -76,11 +80,17 @@ func create_snapshot() -> Dictionary:
 		"king_pursuit_rank": king_pursuit_rank,
 		"king_vow_rank": king_vow_rank,
 		"king_worldsplitter_rank": king_worldsplitter_rank,
+		"king_earthsplitter_rank": king_earthsplitter_rank,
+		"king_molten_rank": king_molten_rank,
 		"king_skill_layout_version": king_skill_layout_version,
 	}
 
 
 func can_restore_snapshot(snapshot: Dictionary) -> bool:
+	for field in ["king_earthsplitter_rank","king_molten_rank"]:
+		var rank: Variant = snapshot.get(field,0)
+		var maximum := 1 if field == "king_earthsplitter_rank" else 3
+		if not (rank is int or rank is float) or not is_finite(float(rank)) or rank < 0 or rank > maximum or not is_equal_approx(float(rank),roundf(float(rank))): return false
 	if not KingSkillCatalog.valid_slots(snapshot.get("king_skill_slots",[])):
 		return false
 	for key in ["king_vow_rank", "king_worldsplitter_rank", "king_skill_layout_version"]:
@@ -121,6 +131,8 @@ func restore_snapshot(snapshot: Dictionary) -> bool:
 	king_pursuit_rank = int(snapshot.get("king_pursuit_rank", 0))
 	king_vow_rank = int(snapshot.get("king_vow_rank", 0))
 	king_worldsplitter_rank = int(snapshot.get("king_worldsplitter_rank", 0))
+	king_earthsplitter_rank = int(snapshot.get("king_earthsplitter_rank", 0))
+	king_molten_rank = int(snapshot.get("king_molten_rank", 0))
 	king_skill_layout_version = int(snapshot.get("king_skill_layout_version", 0))
 	total_experience = int(snapshot["total_experience"])
 	coins = int(snapshot["coins"])

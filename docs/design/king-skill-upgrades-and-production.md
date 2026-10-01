@@ -1,5 +1,7 @@
 # King Skills 1-2: upgrade and production plan
 
+**Current campaign correction (Decision 164, 2026-10-02):** Eira now trains Earthsplitter Fan at Level2 and Molten Advanced/Awakened/Mature at3/6/9 with compatible saved ranks. Existing per-form gameplay/art/cooldowns remain. Earth Cascade stays a Lab alternative. Earlier Lab-only/future-gate statements below are historical. See sanctuary-npc-usability.md and ../decisions/164-eira-reachable-curriculum.md.
+
 **Current runtime (Decision 157, 2026-09-26):** Earthsplitter Foundation and blue Molten Crash Foundation are production Skills 1/2. Fan/Cascade and Advanced/Awakened/Mature remain F7 session-only form comparisons. Stage unlocks, persistence for later forms and owner balance review remain open. The older execution checklist below records the prototype; campaign replacement and archive cleanup are now complete.
 
 **Molten Crash upgrades (Decision 155, 2026-09-26):** Skill 2 now has four selectable Lab forms: 72px blue stone-and-light Foundation, 80px molten Advanced, 84px Awakened with one delayed 86px damage-only heat pulse, and 86px Mature with a stronger center and gentler damage rim. One .36s local sword cast, 8s cooldown and initial authored stun remain. The pulse resolves at the original impact while King can move. F7 -> KING REVIEW -> SKILL 2 and FORM compares them. Campaign unlock/persistence and owner feel review remain pending.

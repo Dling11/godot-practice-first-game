@@ -3,6 +3,7 @@ extends Node
 
 ## Learnable techniques and ten equipped slots; persistence stores stable IDs.
 signal library_changed
+const Training = preload("res://data/abilities/king/king_training_catalog.gd")
 var actor: Player
 var _collection: CanvasLayer
 
@@ -11,6 +12,9 @@ func _ready() -> void:
 	actor.ready.connect(_bind)
 
 func _bind() -> void:
+	if not is_lab():
+		_apply_training_rank("echoing_sever",get_node("/root/RunSession").king_earthsplitter_rank)
+		_apply_training_rank("riftbreak",get_node("/root/RunSession").king_molten_rank)
 	var pursuit := actor.ability_3_component as SovereignPursuitComponent
 	if pursuit != null:
 		pursuit.apply_rank(get_node("/root/RunSession").king_pursuit_rank)
@@ -96,27 +100,62 @@ func open_collection(at_skillkeeper := false) -> void:
 	_collection=load("res://ui/skills/king_skill_collection.gd").new()
 	_collection.library=self
 	_collection.trainer_access=at_skillkeeper
+	_collection.tree_exited.connect(func() -> void: _collection = null,CONNECT_ONE_SHOT)
 	add_child(_collection)
 
-func get_pursuit_upgrade_level() -> int:
-	var rank: int = get_node("/root/RunSession").king_pursuit_rank
-	return [5, 8][rank] if rank < 2 else 0
+func training_info(id: String) -> Dictionary:
+	var course := Training.course(id)
+	if course.is_empty(): return {}
+	var rank: int = get_node("/root/RunSession").get(course.field)
+	var result := course.duplicate(true)
+	result.rank = rank
+	result.required_level = course.levels[rank] if rank < course.levels.size() else 0
+	result.current_level = actor.progression_component.level
+	return result
 
-func can_upgrade_pursuit(at_skillkeeper: bool) -> bool:
-	return at_skillkeeper and not is_lab() and can_edit() and get_pursuit_upgrade_level() > 0 and actor.progression_component.level >= get_pursuit_upgrade_level()
+func can_upgrade_skill(id: String, at_skillkeeper: bool) -> bool:
+	var info := training_info(id)
+	return not info.is_empty() and at_skillkeeper and not is_lab() and can_edit() and info.required_level > 0 and actor.progression_component.level >= info.required_level
 
-func upgrade_pursuit(at_skillkeeper: bool) -> bool:
-	if not can_upgrade_pursuit(at_skillkeeper):
-		return false
+func upgrade_skill(id: String, at_skillkeeper: bool) -> bool:
+	if not can_upgrade_skill(id,at_skillkeeper): return false
+	var info := training_info(id)
 	var session := get_node("/root/RunSession")
-	var previous: int = session.king_pursuit_rank
-	session.king_pursuit_rank = previous + 1
+	session.set(info.field,info.rank+1)
 	if not get_node("/root/SaveService").save_profile():
-		session.king_pursuit_rank = previous
+		session.set(info.field,info.rank)
 		return false
-	(actor.ability_3_component as SovereignPursuitComponent).apply_rank(session.king_pursuit_rank)
+	_apply_training_rank(id,info.rank+1)
 	refresh()
 	return true
+
+func _apply_training_rank(id: String, rank: int) -> void:
+	match id:
+		"echoing_sever":
+			# Keep the authored Foundation untouched for old/default saves.
+			if rank == 0: return
+			var next := actor.ability_1_component.definition.duplicate(true) as EarthsplitterDefinition
+			next.configure_form(EarthsplitterDefinition.Form.FAN)
+			actor.ability_1_component.definition = next
+			actor.ability_1_component.collision_shape.shape = next.hitbox_shape
+		"riftbreak":
+			if rank == 0: return
+			var next := actor.ability_2_component.definition.duplicate(true) as MoltenCrashDefinition
+			next.configure_form(rank)
+			actor.ability_2_component.definition = next
+			actor.ability_2_component.collision_shape.shape = next.hitbox_shape
+		"sovereign_pursuit": (actor.ability_3_component as SovereignPursuitComponent).apply_rank(rank)
+		"unbroken_vow": (actor.get_node("UnbrokenVowComponent") as UnbrokenVowComponent).apply_rank(rank)
+		"king_skill_4": (actor.ability_4_component as KingSkill4Component).apply_rank(rank)
+
+func get_pursuit_upgrade_level() -> int:
+	return training_info("sovereign_pursuit").required_level
+
+func can_upgrade_pursuit(at_skillkeeper: bool) -> bool:
+	return can_upgrade_skill("sovereign_pursuit",at_skillkeeper)
+
+func upgrade_pursuit(at_skillkeeper: bool) -> bool:
+	return upgrade_skill("sovereign_pursuit",at_skillkeeper)
 
 func refresh() -> void:
 	_apply_slots(current_ids())
@@ -157,39 +196,19 @@ func _apply_slots(ids: Array) -> void:
 	library_changed.emit()
 
 func get_vow_upgrade_level() -> int:
-	var rank: int = get_node("/root/RunSession").king_vow_rank
-	return [7, 10][rank] if rank < 2 else 0
+	return training_info("unbroken_vow").required_level
 
 func can_upgrade_vow(at_skillkeeper: bool) -> bool:
-	return at_skillkeeper and not is_lab() and can_edit() and get_vow_upgrade_level() > 0 and actor.progression_component.level >= get_vow_upgrade_level()
+	return can_upgrade_skill("unbroken_vow",at_skillkeeper)
 
 func upgrade_vow(at_skillkeeper: bool) -> bool:
-	if not can_upgrade_vow(at_skillkeeper): return false
-	var session := get_node("/root/RunSession")
-	var previous: int = session.king_vow_rank
-	session.king_vow_rank += 1
-	if not get_node("/root/SaveService").save_profile():
-		session.king_vow_rank = previous
-		return false
-	(actor.get_node("UnbrokenVowComponent") as UnbrokenVowComponent).apply_rank(session.king_vow_rank)
-	refresh()
-	return true
+	return upgrade_skill("unbroken_vow",at_skillkeeper)
 
 func get_worldsplitter_upgrade_level() -> int:
-	var rank: int = get_node("/root/RunSession").king_worldsplitter_rank
-	return [10, 15][rank] if rank < 2 else 0
+	return training_info("king_skill_4").required_level
 
 func can_upgrade_worldsplitter(at_skillkeeper: bool) -> bool:
-	return at_skillkeeper and not is_lab() and can_edit() and get_worldsplitter_upgrade_level() > 0 and actor.progression_component.level >= get_worldsplitter_upgrade_level()
+	return can_upgrade_skill("king_skill_4",at_skillkeeper)
 
 func upgrade_worldsplitter(at_skillkeeper: bool) -> bool:
-	if not can_upgrade_worldsplitter(at_skillkeeper): return false
-	var session := get_node("/root/RunSession")
-	var previous: int = session.king_worldsplitter_rank
-	session.king_worldsplitter_rank += 1
-	if not get_node("/root/SaveService").save_profile():
-		session.king_worldsplitter_rank = previous
-		return false
-	(actor.ability_4_component as KingSkill4Component).apply_rank(session.king_worldsplitter_rank)
-	refresh()
-	return true
+	return upgrade_skill("king_skill_4",at_skillkeeper)

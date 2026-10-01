@@ -1,7 +1,7 @@
 class_name MoltenCrashDefinition
 extends RiftbreakDefinition
 
-## Four bounded forms of the same local control skill; later forms are Lab-only.
+## Four bounded forms of the same local control skill, trained through Eira.
 enum Form { FOUNDATION, ADVANCED, AWAKENED, MATURE }
 @export var form: Form = Form.FOUNDATION
 @export var aftershock_delay_seconds := 0.0

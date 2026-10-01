@@ -1,6 +1,6 @@
 extends "res://tests/sanctuary_refuge_review_smoke.gd"
 
-const EVIDENCE := "res://art_source/review/ui/sanctuary_functionality_2026_10_02/"
+const EVIDENCE := "res://art_source/review/ui/eira_training_v2_2026_10_02/"
 
 func _run() -> void:
 	root.size = Vector2i(960,540)
@@ -18,6 +18,7 @@ func _run() -> void:
 	var books: Sprite2D = study.dressing.stations[1].get_node("Art")
 	var book_rect: Rect2 = books.global_transform*books.get_rect()
 	check(eira.position.x > book_rect.end.x+20,"Eira is not beside the right of her workstation")
+	check(absf(eira.position.y-study.dressing.stations[1].position.y)<1,"Eira is below the books instead of directly beside their right edge")
 	var name_label: Label = study.eira_review.nameplate._name_label
 	var font: Font = name_label.get_theme_font("font")
 	var width: float = font.get_string_size(name_label.text,HORIZONTAL_ALIGNMENT_LEFT,-1,name_label.get_theme_font_size("font_size")).x
@@ -33,6 +34,14 @@ func _run() -> void:
 	await process_frame
 	var menu: CharacterMenu = hub.character_menu
 	check(menu.visible and menu._skillkeeper_access and menu.collection_button.text == "TRAIN & ARRANGE","Eira training context is missing")
+	var library: KingSkillLibrary = hub.player.get_node("KingSkillLibrary")
+	var collection: Node = library._collection
+	check(is_instance_valid(collection) and collection.trainer_access and collection._training_mode,"Eira does not open her dedicated training screen directly")
+	await capture("eira_training_direct.png")
+	await key(KEY_ESCAPE)
+	check(not menu.visible and not paused,"Closing direct Eira training leaves another modal or pause behind")
+	menu.open_menu()
+	menu._show_page(&"skills",false)
 	check(menu.skills_container.columns == 5 and menu._skill_cards.size() == 10,"Combat slots are not arranged as two rows of five")
 	for card: SkillSlotCard in menu._skill_cards:
 		check(card.size.y <= 60 and card.get_theme_constant("icon_max_width") == 24,"Skill art stretches a combat slot")
@@ -42,17 +51,20 @@ func _run() -> void:
 	check(root.gui_get_focus_owner() == menu._skill_cards[5],"Down-arrow does not follow the visible slot grid")
 	await capture("eira_skills.png")
 	await click(menu.collection_button.get_global_rect().get_center())
-	var library: KingSkillLibrary = hub.player.get_node("KingSkillLibrary")
-	var collection: Node = library._collection
-	check(is_instance_valid(collection) and collection.trainer_access,"Training/arranging loses Eira access")
+	collection = library._collection
+	check(is_instance_valid(collection) and not collection.trainer_access,"Ordinary arranging gains trainer access")
 	await process_frame
 	check(Rect2(Vector2.ZERO,Vector2(960,540)).encloses(collection._panel.get_global_rect()),"Training panel exceeds native viewport")
 	check(String(collection._list.get_child(3).name) == "Technique_unbroken_vow","Technique list disagrees with the core hotkey order")
 	var pursuit_button: Button = collection._list.get_node("Technique_sovereign_pursuit")
 	await click(pursuit_button.get_global_rect().get_center())
+	collection.trainer_access = true # Exercise a valid trainer context without an extra dialogue round.
+	await click(collection._training_tab.get_global_rect().get_center())
 	check(collection._upgrade_button.disabled and collection._upgrade_button.text == "Requires Level 5","Locked training lacks its exact requirement")
 	check(collection._detail.text.contains("current Level 1") and collection._detail.text.contains("2 aimed uses"),"Training does not explain the next rank and current level")
 	await capture("eira_training_requirements.png")
+	await click(collection._loadout_tab.get_global_rect().get_center())
+	check(collection._slots.visible and not collection._upgrade_button.visible,"Training controls interfere with loadout arrangement")
 	var before := library.current_ids()
 	await click(collection._slots.get_child(0).get_global_rect().get_center())
 	check(library.current_ids()[0] == "sovereign_pursuit" and library.current_ids()[2] == before[0],"Assigning into an occupied slot loses rather than swaps the other technique")
@@ -77,10 +89,28 @@ func _run() -> void:
 	await click(menu.collection_button.get_global_rect().get_center())
 	collection = library._collection
 	await click(collection._list.get_node("Technique_unbroken_vow").get_global_rect().get_center())
+	await click(collection._training_tab.get_global_rect().get_center())
 	check(collection._upgrade_button.disabled and collection._upgrade_button.text == "Visit Eira to train","Ordinary loadout grants remote NPC training")
 	await capture("ordinary_skill_loadout.png")
 	await key(KEY_ESCAPE)
 	await key(KEY_ESCAPE)
+	root.get_node("StoryState").remember_story(&"forest_stage_5_cleared")
+	root.get_node("RunSession").update_progression(4950,0)
+	menu.open_skillkeeper_menu()
+	await process_frame
+	collection = library._collection
+	for id: String in KingSkillCatalog.IDS:
+		await click(collection._list.get_node("Technique_"+id).get_global_rect().get_center())
+		var course := library.training_info(id)
+		for index in course.levels.size():
+			check(not collection._upgrade_button.disabled,"Eligible training is not available through the real modal")
+			await click(collection._upgrade_button.get_global_rect().get_center())
+			check(library.training_info(id).rank == index+1 and collection._status.text.contains("trained"),"Real training click did not update the rank and feedback")
+		check(collection._upgrade_button.disabled and collection._upgrade_button.text == "Fully trained","Completed course still offers another purchase")
+		check(Rect2(Vector2.ZERO,Vector2(960,540)).encloses(collection._panel.get_global_rect()),"Eligible rank ladder exceeds native viewport")
+		await capture("trained_"+id+".png")
+	await key(KEY_ESCAPE)
+	check(not paused and not menu.visible,"Eligible training leaves gameplay paused")
 	check(root.get_node("SaveService").is_autosave_suppressed_for_debug(),"Functional review permits profile writes")
 	hub.queue_free()
 	current_scene = null

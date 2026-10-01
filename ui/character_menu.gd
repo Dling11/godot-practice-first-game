@@ -198,13 +198,17 @@ func open_skillkeeper_menu() -> void:
 	_refresh_skill_context()
 	_show_page(&"skills", false)
 	open_menu()
-	collection_button.grab_focus()
+	var library: KingSkillLibrary = player.get_node("KingSkillLibrary")
+	library.open_collection(true)
+	library._collection.return_menu = self
 
 
 func close_menu() -> void:
 	if not visible:
 		return
 	hide()
+	var library: KingSkillLibrary = player.get_node("KingSkillLibrary")
+	if is_instance_valid(library._collection): library._collection._close()
 	_skillkeeper_access = false
 	_refresh_skill_context()
 	if _owns_pause:

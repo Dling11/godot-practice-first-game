@@ -61,7 +61,7 @@ func _ready() -> void:
 	umi_review.configure(hub,"Umi","umi","Umi","Echo Melder")
 	for position in [Vector2(168,448),Vector2(456,432),Vector2(464,388),Vector2(688,388),Vector2(464,564),Vector2(672,584),Vector2(512,720),Vector2(624,720)]:
 		_prop("lantern",position,Vector2(18,12))
-	for position in [Vector2(392,384),Vector2(752,408),Vector2(400,584),Vector2(720,584)]:
+	for position in [Vector2(440,336),Vector2(752,408),Vector2(400,584),Vector2(720,584)]:
 		_prop("planter",position,Vector2(54,18))
 	for position in [Vector2(408,352),Vector2(752,352)]:
 		_prop("bench",position,Vector2(56,14))

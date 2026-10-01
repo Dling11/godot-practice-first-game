@@ -1,36 +1,47 @@
-# Sanctuary NPC and skill-menu usability
+# Eira training and Sanctuary NPC usability
 
-2026-10-02. The owner redirected work from additional houses/interiors to useful NPC services, readable layouts and skill arrangement. Further interior work is deferred. Retain the approved workshop furniture size and F-required entry.
+Current runtime: 2026-10-02, Decision 164. Owner requested Eira immediately to the RIGHT of the book, a useful service, clearer skill layout and a playable upgrade loop. Further houses/interiors remain deferred; retain approved furniture size and F-required doors.
 
-## Eira approach and service
+## Placement and purpose
 
-In the optional study Eira stands at (400,450), to the right of the lectern at (344,410). Her visit/interaction approach is (400,486). The neighboring lamp moves to (456,432), clearing the label and approach. The name is checked against the actual book silhouette at native size. Character art, body/trigger shapes, teaching animation, map tracking and service authority remain unchanged. Comparison restores the original NPC position.
+In the optional study Eira stands at **(384,410)**, directly beside the right edge of the lectern at (344,410), on the same foot baseline. Approach is (384,446); nameplate offset is (12,-62). The neighboring planter moves to (440,336), clearing her silhouette and label. Lamp stays at (456,432). Original position/presentation restore on comparison. This relocation does not promote study art to campaign.
 
-Her prompt is **PRESS F · TRAIN & ARRANGE SKILLS**. Updated dialogue names the five current techniques, including Unbroken Vow, instead of retired four-skill content. Complete/skip dialogue to open Skills, then choose **TRAIN & ARRANGE**. Tab opens the ordinary character menu, whose Skills page offers **ARRANGE SKILLS** without Eira training permission.
+Eira is King's **Skill Mentor**. Expedition experience earns levels; return to Eira and press F, then finish/skip dialogue to open Training directly. Select a technique to see its role, current effect, next effect, required/current level and rank ladder. Training costs no coins/materials. Click Train once per rank; upgrades apply immediately and persist in normal play. All five base techniques remain learned from the start. Training improves them rather than adding duplicate equipped skills.
 
-## Skill presentation and interaction
+## Reachable curriculum
 
-- Equipped slots use two rows of five: 1–5, then 6–0. Icons are limited to 24px; the large Vow source no longer stretches its row. Arrow navigation follows the visible grid. Future Ultimate/Reality Breaking previews sit separately below the details, disabled.
-- The training/loadout window lists the five techniques in core hotkey order. Selecting one shows its description, equipped slot and, where implemented, current rank, next-rank benefit, required level and current level. A disabled train button names the requirement instead of silently offering an unavailable action.
-- Select a technique, then click a combat slot to equip it. Occupied skills swap using existing library rules. Right-click clears a slot; the explicit Clear selected slot button provides the same action without requiring right-click. Restore core layout restores learned core skills to 1–5. Result text reports assignment, clearing, restoration or training success/failure.
-- Focus survives rebuilding after assignment. Esc returns from the collection to the paused character menu; Esc again closes that menu and resumes gameplay. Existing shared generated menu frames and modal/map exclusion remain.
+| Technique | Training levels | Result |
+| --- | --- | --- |
+| Earthsplitter | 2 | Fan: three spreading lanes and a stronger center follow-up, 228px final reach |
+| Molten Crash | 3 / 6 / 9 | Advanced / Awakened / Mature: larger impact, then a delayed heat pulse and stronger center |
+| Sovereign Pursuit | 5 / 8 | Two / three independently aimed uses, 250 / 280px reach |
+| Unbroken Vow | 7 / 10 | Stronger shield and offense; movement bonus; Mature empowers the third basic strike |
+| Worldsplitter | 8 / 10 | Two / three fresh summoned blades, 600 / 700% total weapon damage |
 
-The presentation is shared by normal play and review. Eira's relocated work corner remains study-only. This does not promote review environment art into the campaign or change skill balance, unlocks, costs or save policy.
+The current cap remains Level 10. Worldsplitter's former 10/15 gates are superseded; existing trained ranks remain valid. Earthsplitter Cascade stays a Lab alternative, not a higher campaign rank. Accepted combat artwork, animations, cooldowns and per-form tuning are reused.
 
-## Authority and limits
+## Training and Loadout
 
-`CharacterMenu` owns page context, the training/arrangement entry and grid focus. `king_skill_collection.gd` displays controls and dispatches intent through `KingSkillLibrary`; the library retains edit guards, slot swapping, trainer/level requirements, rank application and saving. No new progression grant or training rank is introduced. Pursuit still trains at Levels 5/8, Vow at 7/10 and Worldsplitter at 10/15; Earthsplitter/Molten later forms remain outside campaign training.
+The themed 860x480 modal fits native 960x540. Eira portrait/header explain her purpose. Training and Loadout are distinct tabs; five icon-bounded techniques stay in core order at left. The right pane shows role/current effect, rank ladder and one training action, or ten combat slots in two rows of five. No currency selector or extra purchase screen is introduced.
 
-Review saves remain suppressed for the process. Eira skill arrangement can be tried safely there; training still depends on existing save authority. Normal training/persistence is verified using isolated test profiles, separate from the review.
+In Loadout select a technique, then click a slot. Occupied slots swap; right-click or Clear selected slot clears. Restore core layout returns learned core techniques to 1-5. Visible result text and library events update the menu and live HUD immediately; keyboard focus survives rebuilds.
 
-## Test route and evidence
+Tab -> Active Skills -> ARRANGE SKILLS opens ordinary Loadout. Its Training tab explains requirements but cannot upgrade remotely. Esc closes Eira's direct modal and resumes play. When arranging from ordinary inventory, Esc returns to inventory; a second Esc resumes play. The shared CharacterMenu retains bounded 24px icons and separate disabled future tiers.
 
-F5 -> Continue -> F10 -> **SANCTUARY REVIEW · NO SAVES** -> **Visit Eira** -> F -> finish/skip dialogue -> **TRAIN & ARRANGE**. Select Pursuit to see its Level 5 requirement. Select a technique and click a slot to swap, right-click to clear, or restore the core layout. The direct launcher accepts `--eira` after `--`.
+## Authority and persistence
 
-Native evidence: `art_source/review/ui/sanctuary_functionality_2026_10_02/`. Earlier theme/scale captures remain preserved. No artwork was generated for this pass.
+KingTrainingCatalog owns names, rank fields, gates and benefit copy. KingSkillLibrary validates trainer access, current level, Sanctuary/busy guards and rank limits. It saves the new session rank, rolls it back on failed save, then applies the real definition/hitbox and refreshes without replacing custom hotkeys. RunSession stores optional Earthsplitter/Molten ranks alongside existing fields. Legacy version-1 profiles default missing fields to Foundation; malformed ranks are rejected. Lab selectors do not train or save.
 
-Verification: 43 rendered functional checks cover physical F, name/book separation, real pointer swap/clear/restore, live HUD/menu updates, arrow navigation, focus retention, requirements, ordinary-menu trainer exclusion, pause cleanup and save suppression. Shared interface: 64 rendered checks. Character menu and Pursuit trainer/persistence smoke pass; Vow and Worldsplitter training/persistence each pass 14 checks. Courtyard and prior study pass 90/94 headless checks. Existing GPU shutdown texture warnings remain; owner usability judgment and representative-phone profiling remain open.
+Review suppresses profile writes for the whole process. Training/loadout changes there work in memory and reset when closed. Normal progression is untouched by the optional Level-10 training demo.
 
-## Next scope
+## Test routes and evidence
 
-Review this service flow, then improve Nema crafting and Umi exchange usability: selected-item clarity, requirements, result feedback and keyboard/mouse access. Continue skill-menu polish from observed play issues. Further houses/interiors remain deferred by owner direction; full-game production readiness and campaign promotion are separate milestones.
+- F5 -> Continue -> F10 -> SANCTUARY REVIEW -> Visit Eira -> F -> finish/skip dialogue -> Training. Switch to Loadout to arrange.
+- Immediate all-rank testing: `powershell -NoProfile -ExecutionPolicy Bypass -File ./tools/launch_sanctuary_study.ps1 -TrainingDemo`. This opens at Eira with temporary Level 10 and saves suppressed.
+- Direct Godot script accepts `-- --eira --training-demo`. `-Eira` on the PowerShell launcher visits her without granting demo levels.
+
+Native captures: `art_source/review/ui/eira_training_v2_2026_10_02/`. Existing generated frames/portrait/icons are reused; no artwork was generated this pass. Earlier evidence remains preserved.
+
+Verified: 84 rendered functional checks cover physical F, right-edge/name separation, direct entry, every real upgrade-button click, all five completed rank ladders, pointer swaps/clears/core restore, HUD updates, focus and pause cleanup. 91 curriculum checks cover exact level/access gates, rank limits, real form/hitbox application, custom-layout preservation, legacy/malformed snapshots, save/reload and restored Fan/Mature casts with the single aftershock. 64 rendered interface, 94 headless study, 14 Worldsplitter trainer, 14 Vow trainer and 49 combined Vow/Worldsplitter combat checks pass; CharacterMenu, Pursuit trainer, run progression and production kit smoke pass. Existing GPU shutdown texture warnings remain.
+
+Owner usability/balance review and representative-phone profiling remain open. Next scope: Nema crafting and Umi exchange clarity, requirements and result feedback; deliberate campaign art promotion is separate.

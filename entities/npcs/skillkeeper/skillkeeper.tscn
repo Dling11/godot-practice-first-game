@@ -55,7 +55,7 @@ script = ExtResource("1_script")
 interaction_icon = ExtResource("3_icon")
 prompt_text = "PRESS F · TRAIN & ARRANGE SKILLS"
 speaker_name = "SKILLKEEPER EIRA"
-dialogue_lines = Array[String](["Earthsplitter, Molten Crash, Sovereign Pursuit, Unbroken Vow, and Worldsplitter are yours to command.", "Arrange your combat slots, or choose a technique to see the next rank and its training requirements."])
+dialogue_lines = Array[String](["Earthsplitter, Molten Crash, Sovereign Pursuit, Unbroken Vow, and Worldsplitter are yours to command.", "Earn experience on expeditions, then return to me to train stronger techniques. Training costs no coins or materials.", "Choose Training to improve a technique, or Loadout to arrange your combat keys."])
 idle_aura = NodePath("IdleAura")
 
 [node name="EditorPreviewBackdrop" parent="." unique_id=724842116 instance=ExtResource("99_preview")]

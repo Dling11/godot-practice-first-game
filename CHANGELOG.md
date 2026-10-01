@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-02 - Eira mentor curriculum and direct service
+
+- Place Eira directly RIGHT of her book at384,410 on the same foot baseline; clear nearby planter/name overlap.
+- Open a themed Training modal directly after dialogue, with five-technique list, current/next effects, level requirements and rank ladder. Separate Loadout retains two rows of five, swap/clear/core restore and immediate HUD updates.
+- Add free campaign training for Earth Fan2 and Molten3/6/9; retain Pursuit5/8 and Vow7/10; replace unreachable World10/15 gates with8/10. Reuse accepted combat art/tuning. Save compatible optional ranks and retain custom hotkeys.
+- Fix collection lifetime/pause cleanup; expose -Eira and no-save -TrainingDemo launcher flags.
+- 84 rendered flow,91 curriculum,64 rendered interface,94 study,14 World trainer and49 combined combat checks pass; character menu, progression and production kit smoke pass. Existing GPU teardown warnings remain. Balance/owner usability and phone profiling pending.
+
 ## 2026-10-02 - NPC services and skill arrangement
 
 - Owner redirected work from further houses/interiors to NPC function and menu usability. Moved Eira right of the lectern, cleared the neighboring lamp/name overlap and updated her visit point. Replaced retired four-skill dialogue with the current five techniques and a training/arrangement prompt.

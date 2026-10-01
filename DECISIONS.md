@@ -178,6 +178,8 @@ The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-
 
 | 163 | [Inhabited Sanctuary study](docs/decisions/163-inhabited-sanctuary-study.md) | Cohesive replacement props, service beacons/greetings, map/noticeboard, ambient courier and F10 review entry |
 
+| 164 | [Eira reachable curriculum](docs/decisions/164-eira-reachable-curriculum.md) | Direct mentor Training/Loadout, free five-technique upgrades within cap10 and compatible Earth/Molten saving |
+
 ## New Decisions
 
 Record future decisions as individual files under `docs/decisions/` using `NNN-short-title.md`, then add one row to this index. New ADRs should contain status, context, alternatives, decision, and consequences.
