@@ -48,14 +48,14 @@ func configure(hub: Node, props: Node2D) -> void:
 	_wall_run(Vector2(992, 224), 1, true)
 	for point in [Vector2(136,224),Vector2(424,224),Vector2(704,224),Vector2(992,224),Vector2(136,416),Vector2(992,320),Vector2(136,704),Vector2(328,704),Vector2(880,736),Vector2(1072,736)]:
 		walls.append(_prop("pillar", point, Vector2(20,16), 4))
-	_building("nema_side",Vector2(232,648),Vector2(132,46),Vector2(-12,-27),Vector2(30,-3))
-	_building("umi_side",Vector2(904,668),Vector2(132,42),Vector2(5,-25),Vector2(-20,-3))
+	_building("nema",Vector2(232,648),Vector2(132,46),Vector2(-12,-27),Vector2(-38,-3))
+	_building("umi",Vector2(904,668),Vector2(132,42),Vector2(5,-25),Vector2(-18,-3))
 
 func _building(kind: String, point: Vector2, footprint: Vector2, body_offset: Vector2, door: Vector2) -> void:
-	var body := _prop("../courtyards/"+kind,point,footprint,0)
+	var body := _prop("../orthographic/"+kind,point,footprint,0)
 	body.name = kind.to_pascal_case()
 	body.get_node("CollisionShape2D").position = body_offset
-	if kind == "nema_side":
+	if kind == "nema":
 		_collision(body,Vector2(46,28),Vector2(64,-17))
 	else:
 		_collision(body,Vector2(44,20),Vector2(-57,-20))

@@ -1,6 +1,6 @@
 # Battle of Gods
 
-**Latest Sanctuary review:** F5 -> Continue -> F10 -> **SANCTUARY REVIEW · NO SAVES**, or run `tools/launch_sanctuary_study.ps1`. Visit Nema/Umi shows the new artisans and angled houses; Find Rowan brings you to the courier for F dialogue, then step away to watch his walk. M opens the map. Eira's teaching nook, tree wind and occasional swallows are included. Compare restores the old layout; restart normal play to resume saves. This remains an optional study. Details: `docs/design/sanctuary-courtyard-renewal.md`.
+**Latest Sanctuary review:** F5 -> Continue -> F10 -> **SANCTUARY REVIEW · NO SAVES**, or run tools/launch_sanctuary_study.ps1. Visit Nema/Umi for corrected overhead houses with left-positioned entrances. Click the top-right minimap or press M for destinations; F talks and Tab opens the themed inventory. Eira opens skills after dialogue. The action frame is smaller while its buttons remain readable. Compare restores old presentation; restart normal play to resume saves. This remains an optional study. Details: docs/design/sanctuary-interface-renewal.md.
 
 Continuing this project in a new chat: start with `CONTINUE_SANCTUARY.md` after the required context docs. The living Sanctuary study includes Orren/Eira, replacement trees/workstations/walls, NPC discovery and a walking courier.
 

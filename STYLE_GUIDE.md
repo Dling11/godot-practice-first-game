@@ -1,5 +1,7 @@
 # Style Guide
 
+**Sanctuary interface/perspective correction (2026-10-01):** Left-facing/left-positioned entrances must preserve the approved overhead roof and horizontal foundation perspective. Reuse a generated nine-slice frame around real Godot controls; never bake labels, slots or map destinations into imagery. Reduce ornamental HUD footprint while preserving native button/icon sizes. Bound long modal bodies with scrolling and verify last-item keyboard access. The compact Sanctuary frame is study-only; the Eclipse convention below remains the campaign baseline.
+
 **Ambient locomotion and work (2026-10-01):** A unique sprite hash does not prove a walk cycle. Inspect contact/passing leg silhouettes at native size and tie ambient footsteps to traveled distance; idle while blocked, yielding or waiting. Fixed services retain planted registered feet and presentation-owned work animation; disable competing timers and restore them on comparison. Tree/bird motion stays bounded and separate from collision/service authority.
 
 ## Owner-ready game testing

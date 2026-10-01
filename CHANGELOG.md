@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-01 - Sanctuary perspective and interface correction
+
+- Replaced rejected diagonal Nema/Umi houses with generated overhead stone/timber/slate candidates and left-positioned entrances; retained older assets and source prompts.
+- Added a persistent top-right parchment minimap with expandable live-coordinate directory and clickable service markers.
+- Reduced the action frame from 720x104 to 660x66 while retaining native skill controls and icon sizes.
+- Added a generated reusable slate/gold/ivory/amethyst theme for dialogue, inventory, skills, technique collection and service/pause menus. Updated Nema/Umi portraits, dialogue readability and immediate overlay hiding during modals.
+- Fixed the existing crafting-window overflow with a bounded scrolling body and keyboard focus following; this layout fix also applies outside the study.
+- 63 rendered interface checks and 99 courtyard checks pass; town-life 95, previous study 108, production hub and crafting-service checks pass. Native captures and source provenance: `docs/design/sanctuary-interface-renewal.md`. Shared GPU teardown warnings remain; owner visual acceptance and campaign promotion are pending.
+
 ## 2026-10-01 — Sanctuary gait, courtyards and remaining artisans
 
 - Replaced nearly static courier strides with contact/passing drawings and distance-driven phase; waits, yielding and physical blockage select standing. Rowan gains F dialogue and fixed-service priority.

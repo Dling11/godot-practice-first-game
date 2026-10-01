@@ -1,6 +1,6 @@
 # Project Context
 
-**Continue Sanctuary (2026-10-01):** Read `CONTINUE_SANCTUARY.md` and `docs/design/sanctuary-courtyard-renewal.md`. The latest owner correction adds contact/passing courier drawings with distance-driven steps, an off-road Eira teaching nook, Nema then Umi working sprites/portraits and angled houses, foliage wind, occasional swallows and F conversation with Rowan. The optional study now has Visit Nema, Visit Umi and Find Rowan. F5 -> Continue -> F10 -> SANCTUARY REVIEW or the launcher reaches it; saves stay suppressed until restart. Owner feel review, interiors and campaign promotion remain pending.
+**Continue Sanctuary (2026-10-01):** Read CONTINUE_SANCTUARY.md and docs/design/sanctuary-interface-renewal.md. Latest correction replaces rejected diagonal Nema/Umi houses with overhead stone/timber houses and left-positioned entrances, adds a persistent top-right parchment minimap, compact action frame and shared generated modal/inventory theme. Earlier courier, teaching-nook, artisan and ambient-life improvements remain. F5 -> Continue -> F10 -> SANCTUARY REVIEW reaches this optional candidate; saving stays suppressed until restart. Owner review, interiors and campaign promotion remain pending.
 
 **Active Sanctuary renewal (2026-10-01):** The optional study retains Orren/workshop and Eira/trainer lodge and adds Decision163's town life. Services and King remain authoritative and unchanged; Orren is dialogue-only. Review suppresses saves until process restart, even in old comparison. Read `docs/design/sanctuary-environment-renewal.md`.
 

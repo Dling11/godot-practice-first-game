@@ -6,6 +6,7 @@ const OrrenReview = preload("res://levels/sanctuary/review/orren_workshop_review
 const EiraReview = preload("res://levels/sanctuary/review/eira_renewal_review.gd")
 const ArtisanReview = preload("res://levels/sanctuary/review/artisan_renewal_review.gd")
 const Birds = preload("res://levels/sanctuary/review/garden_birds.gd")
+const InterfaceReview = preload("res://levels/sanctuary/review/sanctuary_ui_review.gd")
 const TownDressing = preload("res://levels/sanctuary/review/town_dressing.gd")
 const Beacon = preload("res://entities/npcs/presentation/service_beacon.gd")
 const TownMap = preload("res://levels/sanctuary/review/town_map.gd")
@@ -22,6 +23,7 @@ var eira_review: Node
 var nema_review: Node
 var umi_review: Node
 var birds: Node2D
+var interface_review: Node
 var dressing: Node
 var town_map: CanvasLayer
 var courier: CharacterBody2D
@@ -68,6 +70,9 @@ func _ready() -> void:
 	props.add_child(birds)
 	_build_town_life()
 	_build_controls()
+	interface_review = InterfaceReview.new()
+	add_child(interface_review)
+	interface_review.configure(hub,_panel)
 	set_review_enabled(true)
 
 func _build_lodge() -> void:
@@ -194,6 +199,7 @@ func set_review_enabled(value: bool) -> void:
 	town_map.set_enabled(value)
 	courier.set_enabled(value)
 	birds.set_enabled(value)
+	interface_review.set_enabled(value)
 	hub.get_node("World/Level/Ground").visible = not value
 	var original := hub.get_node("World/Actors/SkillkeeperLodge")
 	original.visible = not value

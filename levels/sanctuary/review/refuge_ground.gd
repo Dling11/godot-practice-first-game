@@ -6,7 +6,8 @@ const MAP_SIZE := Vector2i(36,24)
 var routes: Array[PackedVector2Array] = [
 	PackedVector2Array([Vector2(576,752),Vector2(560,608),Vector2(576,520),Vector2(576,304)]),
 	PackedVector2Array([Vector2(224,400),Vector2(224,464),Vector2(352,496),Vector2(480,488),Vector2(576,480),Vector2(688,488),Vector2(864,472),Vector2(928,400)]),
-	PackedVector2Array([Vector2(272,672),Vector2(368,672),Vector2(464,592),Vector2(560,608),Vector2(704,688),Vector2(800,688),Vector2(800,584),Vector2(928,472)]),
+	PackedVector2Array([Vector2(194,672),Vector2(368,672),Vector2(464,592),Vector2(560,608),Vector2(704,688),Vector2(800,688),Vector2(800,584),Vector2(928,472)]),
+	PackedVector2Array([Vector2(800,688),Vector2(886,688)]),
 	PackedVector2Array([Vector2(352,496),Vector2(352,464)]),
 	PackedVector2Array([Vector2(912,472),Vector2(992,464),Vector2(992,416)]),
 ]

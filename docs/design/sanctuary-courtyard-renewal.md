@@ -1,5 +1,7 @@
 # Sanctuary courtyards and working residents
 
+**Perspective correction:** The owner subsequently rejected the diagonal artisan-house projection. Current Nema/Umi houses match the overhead Orren baseline with left-positioned entrances. The corner map, compact HUD and shared menu theme are documented in sanctuary-interface-renewal.md. Angled-house descriptions below record the superseded iteration; NPC/gait/ambient behavior remains current.
+
 2026-10-01 follow-up to Decision 163. Implemented in the optional no-save study; owner visual/feel acceptance and campaign promotion remain open. This supersedes the earlier handoff that left Nema and Umi pending.
 
 ## Owner feedback and resulting behavior

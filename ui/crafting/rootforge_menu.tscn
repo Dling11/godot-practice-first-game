@@ -137,79 +137,87 @@ text = "ACCESSORIES"
 [node name="PreviewNotice" type="Label" parent="Panel/Margin/Root/Filters"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "CRAFTING  •  VALIDATED MATERIAL SPEND  •  SAFE-POINT SAVE"
+text = "FOREST BLUEPRINTS  •  EQUIPMENT AND RELICS"
 horizontal_alignment = 2
 vertical_alignment = 1
 theme_override_colors/font_color = Color(0.52, 0.54, 0.5, 1)
 theme_override_font_sizes/font_size = 8
 
-[node name="Body" type="HBoxContainer" parent="Panel/Margin/Root"]
+[node name="BodyScroll" type="ScrollContainer" parent="Panel/Margin/Root"]
+custom_minimum_size = Vector2(0, 310)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+follow_focus = true
+
+[node name="Body" type="HBoxContainer" parent="Panel/Margin/Root/BodyScroll"]
+size_flags_horizontal = 3
 custom_minimum_size = Vector2(0, 310)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 12
 
-[node name="RecipesPanel" type="PanelContainer" parent="Panel/Margin/Root/Body"]
+[node name="RecipesPanel" type="PanelContainer" parent="Panel/Margin/Root/BodyScroll/Body"]
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 2
 
-[node name="RecipesMargin" type="MarginContainer" parent="Panel/Margin/Root/Body/RecipesPanel"]
+[node name="RecipesMargin" type="MarginContainer" parent="Panel/Margin/Root/BodyScroll/Body/RecipesPanel"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Recipes" type="VBoxContainer" parent="Panel/Margin/Root/Body/RecipesPanel/RecipesMargin"]
+[node name="Recipes" type="VBoxContainer" parent="Panel/Margin/Root/BodyScroll/Body/RecipesPanel/RecipesMargin"]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="RecipesTitle" type="Label" parent="Panel/Margin/Root/Body/RecipesPanel/RecipesMargin/Recipes"]
+[node name="RecipesTitle" type="Label" parent="Panel/Margin/Root/BodyScroll/Body/RecipesPanel/RecipesMargin/Recipes"]
 layout_mode = 2
 text = "FOREST FORMULAE"
 theme_override_colors/font_color = Color(0.76, 0.69, 0.88, 1)
 theme_override_font_sizes/font_size = 10
 
-[node name="RecipeList" type="VBoxContainer" parent="Panel/Margin/Root/Body/RecipesPanel/RecipesMargin/Recipes"]
+[node name="RecipeList" type="VBoxContainer" parent="Panel/Margin/Root/BodyScroll/Body/RecipesPanel/RecipesMargin/Recipes"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 6
 
-[node name="DetailPanel" type="PanelContainer" parent="Panel/Margin/Root/Body"]
+[node name="DetailPanel" type="PanelContainer" parent="Panel/Margin/Root/BodyScroll/Body"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DetailMargin" type="MarginContainer" parent="Panel/Margin/Root/Body/DetailPanel"]
+[node name="DetailMargin" type="MarginContainer" parent="Panel/Margin/Root/BodyScroll/Body/DetailPanel"]
 layout_mode = 2
 theme_override_constants/margin_left = 14
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 14
 theme_override_constants/margin_bottom = 12
 
-[node name="Detail" type="VBoxContainer" parent="Panel/Margin/Root/Body/DetailPanel/DetailMargin"]
+[node name="Detail" type="VBoxContainer" parent="Panel/Margin/Root/BodyScroll/Body/DetailPanel/DetailMargin"]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="RecipeNameLabel" type="Label" parent="Panel/Margin/Root/Body/DetailPanel/DetailMargin/Detail"]
+[node name="RecipeNameLabel" type="Label" parent="Panel/Margin/Root/BodyScroll/Body/DetailPanel/DetailMargin/Detail"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "ROOTFIBER WRAPS"
 theme_override_font_sizes/font_size = 15
 
-[node name="RecipeMetaLabel" type="Label" parent="Panel/Margin/Root/Body/DetailPanel/DetailMargin/Detail"]
+[node name="RecipeMetaLabel" type="Label" parent="Panel/Margin/Root/BodyScroll/Body/DetailPanel/DetailMargin/Detail"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "FOREST  •  TIER 1  •  ARMOR"
 theme_override_colors/font_color = Color(0.54, 0.72, 0.84, 1)
 theme_override_font_sizes/font_size = 9
 
-[node name="OutputPreview" type="HBoxContainer" parent="Panel/Margin/Root/Body/DetailPanel/DetailMargin/Detail"]
+[node name="OutputPreview" type="HBoxContainer" parent="Panel/Margin/Root/BodyScroll/Body/DetailPanel/DetailMargin/Detail"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="OutputIcon" type="TextureRect" parent="Panel/Margin/Root/Body/DetailPanel/DetailMargin/Detail/OutputPreview"]
+[node name="OutputIcon" type="TextureRect" parent="Panel/Margin/Root/BodyScroll/Body/DetailPanel/DetailMargin/Detail/OutputPreview"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
@@ -217,20 +225,20 @@ texture_filter = 1
 expand_mode = 1
 stretch_mode = 5
 
-[node name="OutputCopy" type="VBoxContainer" parent="Panel/Margin/Root/Body/DetailPanel/DetailMargin/Detail/OutputPreview"]
+[node name="OutputCopy" type="VBoxContainer" parent="Panel/Margin/Root/BodyScroll/Body/DetailPanel/DetailMargin/Detail/OutputPreview"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 theme_override_constants/separation = 2
 
-[node name="OutputSlotLabel" type="Label" parent="Panel/Margin/Root/Body/DetailPanel/DetailMargin/Detail/OutputPreview/OutputCopy"]
+[node name="OutputSlotLabel" type="Label" parent="Panel/Margin/Root/BodyScroll/Body/DetailPanel/DetailMargin/Detail/OutputPreview/OutputCopy"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "WEAPON  •  RARE"
 theme_override_colors/font_color = Color(0.54, 0.72, 0.84, 1)
 theme_override_font_sizes/font_size = 8
 
-[node name="OutputStatsLabel" type="Label" parent="Panel/Margin/Root/Body/DetailPanel/DetailMargin/Detail/OutputPreview/OutputCopy"]
+[node name="OutputStatsLabel" type="Label" parent="Panel/Margin/Root/BodyScroll/Body/DetailPanel/DetailMargin/Detail/OutputPreview/OutputCopy"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "BASIC HIT 16-20  •  SKILL POWER 38  •  CRIT 8%"
@@ -238,7 +246,7 @@ autowrap_mode = 2
 theme_override_colors/font_color = Color(0.82, 0.84, 0.76, 1)
 theme_override_font_sizes/font_size = 9
 
-[node name="RecipeDescriptionLabel" type="Label" parent="Panel/Margin/Root/Body/DetailPanel/DetailMargin/Detail"]
+[node name="RecipeDescriptionLabel" type="Label" parent="Panel/Margin/Root/BodyScroll/Body/DetailPanel/DetailMargin/Detail"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
@@ -247,25 +255,25 @@ autowrap_mode = 2
 theme_override_colors/font_color = Color(0.68, 0.69, 0.65, 1)
 theme_override_font_sizes/font_size = 9
 
-[node name="RecipeStateLabel" type="Label" parent="Panel/Margin/Root/Body/DetailPanel/DetailMargin/Detail"]
+[node name="RecipeStateLabel" type="Label" parent="Panel/Margin/Root/BodyScroll/Body/DetailPanel/DetailMargin/Detail"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "BLUEPRINT NOT REMEMBERED  •  RECIPE PREVIEW"
 theme_override_font_sizes/font_size = 9
 
-[node name="IngredientTitle" type="Label" parent="Panel/Margin/Root/Body/DetailPanel/DetailMargin/Detail"]
+[node name="IngredientTitle" type="Label" parent="Panel/Margin/Root/BodyScroll/Body/DetailPanel/DetailMargin/Detail"]
 layout_mode = 2
 text = "MATERIAL MEMORY"
 theme_override_colors/font_color = Color(0.76, 0.69, 0.88, 1)
 theme_override_font_sizes/font_size = 10
 
-[node name="IngredientList" type="VBoxContainer" parent="Panel/Margin/Root/Body/DetailPanel/DetailMargin/Detail"]
+[node name="IngredientList" type="VBoxContainer" parent="Panel/Margin/Root/BodyScroll/Body/DetailPanel/DetailMargin/Detail"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 2
 
-[node name="MilestoneLabel" type="Label" parent="Panel/Margin/Root/Body/DetailPanel/DetailMargin/Detail"]
+[node name="MilestoneLabel" type="Label" parent="Panel/Margin/Root/BodyScroll/Body/DetailPanel/DetailMargin/Detail"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
@@ -275,7 +283,7 @@ autowrap_mode = 2
 theme_override_colors/font_color = Color(0.78, 0.55, 0.34, 1)
 theme_override_font_sizes/font_size = 8
 
-[node name="PrimaryActionButton" type="Button" parent="Panel/Margin/Root/Body/DetailPanel/DetailMargin/Detail"]
+[node name="PrimaryActionButton" type="Button" parent="Panel/Margin/Root/BodyScroll/Body/DetailPanel/DetailMargin/Detail"]
 unique_name_in_owner = true
 layout_mode = 2
 disabled = true
@@ -293,4 +301,4 @@ theme_override_font_sizes/font_size = 8
 [connection signal="pressed" from="Panel/Margin/Root/Filters/WeaponsFilterButton" to="." method="set_category_filter" binds= [1]]
 [connection signal="pressed" from="Panel/Margin/Root/Filters/ArmorFilterButton" to="." method="set_category_filter" binds= [0]]
 [connection signal="pressed" from="Panel/Margin/Root/Filters/AccessoriesFilterButton" to="." method="set_category_filter" binds= [2]]
-[connection signal="pressed" from="Panel/Margin/Root/Body/DetailPanel/DetailMargin/Detail/PrimaryActionButton" to="." method="_craft_selected_recipe"]
+[connection signal="pressed" from="Panel/Margin/Root/BodyScroll/Body/DetailPanel/DetailMargin/Detail/PrimaryActionButton" to="." method="_craft_selected_recipe"]

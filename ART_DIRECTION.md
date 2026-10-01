@@ -1,6 +1,6 @@
 # Art Direction
 
-**Sanctuary courtyards (2026-10-01):** Retain Orren's outline/human scale and the stone/timber/slate family. Nema keeps her auburn-braided human smith identity; Umi keeps her blue-haired witch identity. Angled west/east artisan cottages face the shared town, with readable work yards and roads. Keep tree motion small at fixed roots, swallows sparse, and work motion in hands/tools. Current provenance: `docs/design/sanctuary-courtyard-renewal.md`.
+**Sanctuary perspective and interface (2026-10-01):** Match the accepted Orren workshop: horizontal ground/facade lines, upright walls, overhead visible roof and stone/timber/slate materials. A left-positioned entrance does not justify diagonal isometric foundations or a different camera. New Nema/Umi houses replace the rejected angled candidates. Menus and map share dark slate, aged gold, ivory feather corners and restrained amethyst; keep functional controls live and readable. Current provenance: docs/design/sanctuary-interface-renewal.md.
 
 This document is the visual source of truth for Battle of Gods. It governs handmade, generated, downloaded, and purchased assets before they become runtime content. `ASSET_CATALOG.md` records the concrete files that follow these rules.
 

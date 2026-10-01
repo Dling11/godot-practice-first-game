@@ -1,8 +1,8 @@
 # Roadmap
 
-**Latest Sanctuary handoff (2026-10-01):** Implemented gait/layout corrections, Nema and Umi renewals with angled artisan houses, foliage wind and swallows, and civilian Rowan dialogue. Eira's lectern is off-road. Next: owner native-scale gait/composition review, one interior proof, phone profiling and deliberate campaign promotion. Continue via `CONTINUE_SANCTUARY.md`.
+**Latest Sanctuary handoff (2026-10-01):** Implemented house-perspective correction, corner minimap, compact action frame, shared dialogue/service/inventory theme and bounded scrolling crafting body. Prior gait, off-road teaching nook, four artisans, foliage/birds and Rowan dialogue remain. Next: owner native-scale review, interiors, phone profiling and deliberate campaign promotion. Current source: docs/design/sanctuary-interface-renewal.md; continuation: CONTINUE_SANCTUARY.md.
 
-**Active milestone — Sanctuary renewal (2026-10-01):** Orren/workshop and Eira/lodge are retained; Nema and Umi now have eight-pose working presentations and side-elevation houses in the optional town study. All four retain existing service authority. Current scope and evidence: `docs/design/sanctuary-courtyard-renewal.md`; earlier stages are recorded in `docs/design/sanctuary-environment-renewal.md`.
+**Active milestone — Sanctuary renewal (2026-10-01):** Orren/workshop and Eira/lodge are retained; Nema and Umi now have eight-pose working presentations and overhead houses with left-positioned entrances in the optional town study. All four retain existing service authority. Current scope and evidence: `docs/design/sanctuary-courtyard-renewal.md`; earlier stages are recorded in `docs/design/sanctuary-environment-renewal.md`.
 
 **Owner milestone accepted (2026-09-27):** King Skills 1–5 are accepted as the current design/visual baseline after the Worldsplitter momentum review. Preserve this baseline for subsequent work. Campaign progression completion, whole-kit balance, cleanup and mobile profiling remain separate follow-ups; acceptance does not mark those finished.
 

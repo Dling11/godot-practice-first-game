@@ -1,15 +1,19 @@
 extends CanvasLayer
 
 const MapDrawing = preload("res://levels/sanctuary/review/town_map_drawing.gd")
+const ThemeKit = preload("res://ui/themes/sanctuary_theme.gd")
 var entries: Array[Dictionary] = []
 var player: Node2D
 var hub: Node
 var panel: PanelContainer
+var mini: PanelContainer
+var mini_drawing: Control
 var drawing: Control
 var guidance: Label
 var selected_id := ""
 var enabled := false
 var _timer: Timer
+var _modals: Array[Control] = []
 
 func configure(owner_hub: Node, service_entries: Array[Dictionary], path_routes: Array[PackedVector2Array]) -> void:
 	hub = owner_hub
@@ -17,14 +21,10 @@ func configure(owner_hub: Node, service_entries: Array[Dictionary], path_routes:
 	entries = service_entries
 	layer = 16
 	panel = PanelContainer.new()
-	panel.position = Vector2(702, 82)
-	panel.custom_minimum_size = Vector2(244, 0)
-	var style := StyleBoxFlat.new()
-	style.bg_color = Color(.045,.065,.075,.97)
-	style.border_color = Color(.48,.43,.28)
-	style.set_border_width_all(1)
-	style.set_content_margin_all(10)
-	panel.add_theme_stylebox_override("panel",style)
+	panel.custom_minimum_size = Vector2(292, 0)
+	panel.theme = ThemeKit.build()
+	panel.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	panel.add_theme_stylebox_override("panel",ThemeKit.frame(12))
 	add_child(panel)
 	var stack := VBoxContainer.new()
 	stack.add_theme_constant_override("separation",4)
@@ -38,10 +38,15 @@ func configure(owner_hub: Node, service_entries: Array[Dictionary], path_routes:
 	heading.add_child(title)
 	var close := Button.new()
 	close.text = "×"
-	close.pressed.connect(func() -> void: panel.hide())
+	close.custom_minimum_size = Vector2(22,22)
+	close.pressed.connect(func() -> void:
+		panel.hide()
+		_refresh())
 	heading.add_child(close)
 	drawing = MapDrawing.new()
-	drawing.custom_minimum_size = Vector2(220,120)
+	drawing.custom_minimum_size = Vector2(268,156)
+	drawing.interactive = true
+	drawing.destination_selected.connect(select_destination)
 	drawing.player = player
 	drawing.entries = entries
 	drawing.routes = path_routes
@@ -49,6 +54,7 @@ func configure(owner_hub: Node, service_entries: Array[Dictionary], path_routes:
 	for entry in entries:
 		var button := Button.new()
 		button.text = str(entry.name) + " · " + str(entry.role)
+		button.custom_minimum_size.y = 20
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		button.add_theme_font_size_override("font_size",12)
 		button.add_theme_color_override("font_color",entry.color)
@@ -56,11 +62,12 @@ func configure(owner_hub: Node, service_entries: Array[Dictionary], path_routes:
 		stack.add_child(button)
 	var clear := Button.new()
 	clear.text = "Clear destination"
+	clear.custom_minimum_size.y = 20
 	clear.add_theme_font_size_override("font_size",11)
 	clear.pressed.connect(clear_destination)
 	stack.add_child(clear)
 	guidance = Label.new()
-	guidance.position = Vector2(348,80)
+	guidance.position = Vector2(348,108)
 	guidance.size = Vector2(300,24)
 	guidance.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	guidance.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -72,22 +79,33 @@ func configure(owner_hub: Node, service_entries: Array[Dictionary], path_routes:
 	_timer.wait_time = .15
 	_timer.timeout.connect(_refresh)
 	add_child(_timer)
+	_build_mini(path_routes)
+	get_viewport().size_changed.connect(_layout)
+	_layout()
 	panel.hide()
 	guidance.hide()
-	for modal: Control in [hub.dialogue_panel,hub.character_menu,hub.rootforge_menu,hub.umi_exchange_menu,hub.expedition_menu,hub.get_node("UI/PauseMenu")]:
+	_modals.assign([hub.dialogue_panel,hub.character_menu,hub.rootforge_menu,hub.umi_exchange_menu,hub.expedition_menu,hub.get_node("UI/PauseMenu")])
+	for modal in _modals:
 		modal.visibility_changed.connect(_on_modal_visibility_changed.bind(modal))
 
 func _on_modal_visibility_changed(modal: Control) -> void:
 	if modal.visible:
-		panel.hide()
-		guidance.hide()
+		hide_for_modal()
+
+func hide_for_modal() -> void:
+	panel.hide()
+	mini.hide()
+	guidance.hide()
 
 func set_enabled(value: bool) -> void:
 	enabled = value
-	if value: _timer.start()
+	if value:
+		_timer.start()
+		_refresh()
 	else:
 		_timer.stop()
 		panel.hide()
+		mini.hide()
 		clear_destination()
 
 func toggle() -> void:
@@ -111,6 +129,8 @@ func clear_destination() -> void:
 	if is_instance_valid(drawing):
 		drawing.selected_id = ""
 		drawing.queue_redraw()
+		mini_drawing.selected_id = ""
+		mini_drawing.queue_redraw()
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_M and enabled and not hub.dialogue_panel.visible:
@@ -119,11 +139,17 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func _refresh() -> void:
 	if not enabled: return
-	if hub.dialogue_panel.visible or get_tree().paused:
+	var modal_open := get_tree().paused
+	for modal in _modals: modal_open = modal_open or modal.visible
+	if modal_open:
 		panel.hide()
+		mini.hide()
 		guidance.hide()
 		return
 	drawing.selected_id = selected_id
+	mini.visible = not panel.visible
+	mini_drawing.selected_id = selected_id
+	if mini.visible: mini_drawing.queue_redraw()
 	if panel.visible: drawing.queue_redraw()
 	guidance.visible = not selected_id.is_empty()
 	for entry in entries:
@@ -136,3 +162,39 @@ func _refresh() -> void:
 		guidance.text = direction + "  " + str(entry.name) + " · " + str(entry.role)
 		guidance.modulate = entry.color
 		return
+
+func _layout() -> void:
+	var width := get_viewport().get_visible_rect().size.x
+	panel.position = Vector2(width-304,48)
+	mini.position = Vector2(width-212,48)
+	guidance.position.x = (width-guidance.size.x)/2
+
+func _build_mini(routes: Array[PackedVector2Array]) -> void:
+	mini = PanelContainer.new()
+	mini.custom_minimum_size.x = 200
+	mini.theme = panel.theme
+	mini.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	mini.add_theme_stylebox_override("panel",ThemeKit.frame(12))
+	mini.tooltip_text = "Town directory · Click or press M"
+	add_child(mini)
+	var stack := VBoxContainer.new()
+	stack.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	mini.add_child(stack)
+	var heading := Label.new()
+	heading.text = "SANCTUARY · [M]"
+	heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	heading.add_theme_font_size_override("font_size",11)
+	heading.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	stack.add_child(heading)
+	mini_drawing = MapDrawing.new()
+	mini_drawing.custom_minimum_size = Vector2(176,114)
+	mini_drawing.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	mini_drawing.player = player
+	mini_drawing.entries = entries
+	mini_drawing.routes = routes
+	stack.add_child(mini_drawing)
+	mini.gui_input.connect(func(event: InputEvent) -> void:
+		if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+			mini.accept_event()
+			toggle())
+	mini.hide()

@@ -1,5 +1,7 @@
 # Decision 163: Make the Sanctuary study an inhabited settlement
 
+**2026-10-01 follow-up:** Owner feedback rejects diagonal artisan buildings and requests clearer screen UI. The same optional study now uses overhead houses with left-positioned entrances, a persistent corner minimap, compact action frame and reversible generated nine-slice modal theme. Reuse actual menu/service controls and live map coordinates; preserve old assets. Only the crafting-body overflow fix also applies outside the study. See ../design/sanctuary-interface-renewal.md. Campaign promotion and final visual acceptance remain pending.
+
 - Date: 2026-10-01
 - Status: Implemented in optional review; owner visual/feel review pending.
 

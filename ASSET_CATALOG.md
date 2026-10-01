@@ -1,5 +1,7 @@
 # Asset Catalog
 
+**Current Sanctuary house/UI assets (2026-10-01):** Built-in imagegen sources/prompts under art_source/generated/environment/sanctuary/orthographic_2026_10_01/ and art_source/generated/ui/sanctuary_theme_2026_10_01/ produce assets/environment/sanctuary/orthographic/{nema,umi}.png and assets/ui/sanctuary_theme/{panel,map_paper}.png. tools/build_sanctuary_interface_art.gd owns deterministic normalization. Native evidence: art_source/review/ui/sanctuary_theme_2026_10_01/. Earlier angled houses below are preserved rejected variants; the swallow and NPC art remain active.
+
 ## Sanctuary courtyard correction — 2026-10-01
 
 Built-in imagegen assets: Nema/Umi atlases and96px portraits in `assets/characters/npcs/rootweaver/renewal/` and `assets/characters/npcs/umi/renewal/`; Rowan's `walk_v2.png` and `portrait.png` in `assets/characters/npcs/courier/`; angled houses and swallow in `assets/environment/sanctuary/courtyards/`. Existing courier standing poses remain.

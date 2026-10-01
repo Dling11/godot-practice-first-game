@@ -1,5 +1,15 @@
 # Continue Sanctuary renewal
 
+## Current continuation - house perspective and interface, 2026-10-01
+
+Read the required project docs, then `docs/design/sanctuary-interface-renewal.md`. The owner rejected diagonal artisan-house perspective. New Nema/Umi houses preserve the overhead Orren baseline with entrances positioned left. Added a top-right parchment minimap, smaller action frame and generated slate/gold/ivory/amethyst theme for dialogue, inventory, skills, technique collection and service/pause menus. Nema recipe overflow is fixed through a bounded scrolling body. Previous NPC, courier, foliage and bird work remains.
+
+**Test:** F5 -> Continue -> F10 -> SANCTUARY REVIEW, or the existing launcher. Visit Nema/Umi, click the corner map or press M, F talk, Tab inventory; complete Eira dialogue for skills. Compare restores previous presentation. Saving stays suppressed until process restart; campaign art/theme is not promoted. The smaller-skills request was interpreted as the bottom HUD, retaining native button/icon sizes and combat effects.
+
+**Verified:** 63 rendered interface checks, 99 courtyard checks, 95 town-life checks, 108 existing study checks, production hub and crafting-service smoke pass. Native UI evidence: `art_source/review/ui/sanctuary_theme_2026_10_01/`. Shared GPU teardown warnings remain.
+
+**Next:** owner perspective/UI judgment, interiors and phone profiling before deliberate campaign promotion. Preserve user changes; do not commit/push. Earlier sections below describe superseded house/UI iterations.
+
 ## Current continuation — courtyard correction and Nema/Umi, 2026-10-01
 
 Read the required project docs, then `docs/design/sanctuary-courtyard-renewal.md`. The owner authorized continuing after rejecting gliding courier legs, Eira's road placement and static surroundings. Implemented: contact/passing gait driven by distance, an off-road teaching nook, Nema and Umi working sprites/portraits and angled houses, foliage wind, two occasional swallows, and F dialogue with Rowan. NPC service authority and King are retained.
