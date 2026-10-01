@@ -4,7 +4,13 @@ This document is the visual source of truth for Battle of Gods. It governs handm
 
 ## Visual Promise
 
+### Inhabited Sanctuary — October 1
+
+Keep the accepted gray-stone/timber workshop and blue-roof lodge as anchors. The optional town-life pass removes the old red cart and replaces old trees with maintained linden/cedar silhouettes in modest stone planting beds. Intact low limestone walls form connected garden edges with capped corners/openings; do not scatter independent broken fragments. Small anvil/tool, lectern and noticeboard props explain activity without another competing roof/building. Keep NPC approach paths clear and tree crowns away from their work silhouettes; canopy fade protects King behind foliage. Subtle service-colored ground ellipses, brief greetings and one selected destination pointer complement readable labels. The teal-clad courier uses generated four-direction walk/rest frames at compact human scale, not translated static art. All new output remains review-only until owner acceptance.
+
 ### Sanctuary NPC renewal candidate — September 30
+
+October 1 continuation: Orren V2 remains the scale/outline reference. Eira now accompanies the trainer lodge in the optional study: chestnut hair, short plum-violet hood/coat, restrained gold trim, cream collar and held book. Eight generated hand/page/gaze poses replace her disconnected floating props and body-wobble helper in that study. One shared source scale gives60–61px bodies at half scale,96px cells/y80 feet, plus a matching96px portrait and name/role label. Eira visual acceptance remains pending; the paragraph below records Orren's earlier review state.
 
 Orren is the first remodeled NPC in the optional Sanctuary study: a mature working artisan, rolled charcoal sleeves, russet leather apron, short brown hair with a silver streak and trimmed beard. Eight generated blade-inspection poses and a matching96px portrait replace his old art only in that review. The owner found the first55–56px body/head too small and faint beside King. V2 uses a60px body at half scale, larger head, broader shoulders and stronger dark contours; visible silhouette matters alongside numerical height. Feet remain registered and the whole-body translation helper is disabled. Nearest filtering, binary alpha and padded cells preserve readability. Outlined name/role labels add MMORPG-style NPC identity. The owner loves the stone/timber workshop and fantasy theme; V2 NPC review remains pending.
 

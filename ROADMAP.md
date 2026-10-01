@@ -1,8 +1,8 @@
 # Roadmap
 
-**Latest Sanctuary handoff (2026-09-30):** Workshop/theme accepted. Orren readability V2 (larger head, stronger silhouette/outline, name/role label) is implemented in the study and awaiting owner review;78 rendered checks pass. Continue via `CONTINUE_SANCTUARY.md`, then Eira's remodel.
+**Latest Sanctuary handoff (2026-10-01, Decision163):** Town-life pass implemented in the optional study: old red cart/trees replaced, purposeful workstations and intact walls, reactive service markers/greetings, M map and F noticeboard, walking/resting courier, F10 entry after normal Continue. Next: owner town/interaction/route feel review, then Nema/Umi individually. Continue via `CONTINUE_SANCTUARY.md`.
 
-**Active milestone — Sanctuary renewal (2026-09-30):** First terrain/lodge direction accepted; Orren and his workshop are now a playable review candidate together, including a new portrait and eight-pose working idle. Next: owner review, Eira's matching character/portrait/idle, Nema and Umi with their buildings, then one enter/exit interior proof and campaign promotion before resuming skill progression. All NPC replacements remain in scope; only Orren is remodeled so far. Full phased scope: `docs/design/sanctuary-environment-renewal.md`.
+**Active milestone — Sanctuary renewal (2026-10-01):** First terrain/lodge/workshop direction accepted; Orren and Eira retain individual portraits/eight-pose working idles, now within the inhabited-town pass. Next: town feel review, Nema and Umi with their buildings, then one enter/exit interior proof and campaign promotion before resuming skill progression. Full phased scope: `docs/design/sanctuary-environment-renewal.md`.
 
 **Owner milestone accepted (2026-09-27):** King Skills 1–5 are accepted as the current design/visual baseline after the Worldsplitter momentum review. Preserve this baseline for subsequent work. Campaign progression completion, whole-kit balance, cleanup and mobile profiling remain separate follow-ups; acceptance does not mark those finished.
 

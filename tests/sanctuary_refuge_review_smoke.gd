@@ -2,7 +2,7 @@ extends SceneTree
 
 const HUB = preload("res://levels/sanctuary/sanctuary.tscn")
 const Study = preload("res://levels/sanctuary/review/refuge_study.gd")
-const OUT := "res://art_source/review/environment/orren_readability_2026_09_30/"
+const OUT := "res://art_source/review/environment/sanctuary_life_2026_10_01/"
 var failures := 0
 var checks := 0
 
@@ -24,6 +24,11 @@ func _run() -> void:
 	var old_frames: SpriteFrames = orren.get_node("Sprite").sprite_frames
 	var old_position := orren.position
 	var old_collision: Shape2D = orren.get_node("Body/Collision").shape
+	var eira: DialogueNpc = hub.get_node("World/Actors/Skillkeeper")
+	var eira_old_frames: SpriteFrames = eira.get_node("Sprite").sprite_frames
+	var eira_old_position := eira.position
+	var eira_body: Shape2D = eira.get_node("Body/Collision").shape
+	var eira_trigger: Shape2D = eira.get_node("Trigger").shape
 	for name in ["Skillkeeper","WeaponMerchant","Rootweaver","Umi"]:
 		portraits.append(hub.get_node("World/Actors/"+name).dialogue_portrait)
 	var study := Study.new()
@@ -47,8 +52,12 @@ func _run() -> void:
 	check(orren.get_node("IdleBreath").is_stopped(),"Old whole-body bob still active")
 	check(study.orren_review.nameplate.visible and study.orren_review.nameplate.npc_name == "Orren" and study.orren_review.nameplate.role_name == "Armskeeper","NPC name/role missing")
 	_check_orren_art(study.orren_review)
+	_check_eira_art(study.eira_review)
+	check(eira.get_node("Body/Collision").shape == eira_body and eira.get_node("Trigger").shape == eira_trigger,"Eira interaction/body authority replaced")
+	check(eira.get_node("IdleBreath").is_stopped() and not eira.idle_aura.visible,"Eira's old body wobble or floating aura is active")
+	check(study.eira_review.nameplate.visible and study.eira_review.nameplate.npc_name == "Eira" and study.eira_review.nameplate.role_name == "Skillkeeper","Eira identity label missing")
 	var reachable := _reachable(space,Vector2i(36,42))
-	for destination in [Vector2(224,434),Vector2(360,548),Vector2(376,630),Vector2(808,670),Vector2(984,474),Vector2(928,426),Vector2(576,328)]:
+	for destination in [Vector2(224,434),Vector2(288,474),Vector2(360,548),Vector2(376,630),Vector2(808,670),Vector2(984,474),Vector2(928,426),Vector2(576,328)]:
 		check(reachable.has(Vector2i(destination/16)),"An existing service/door/gate route is blocked: "+str(destination))
 	study.visit_orren()
 	await create_timer(.3).timeout
@@ -77,6 +86,34 @@ func _run() -> void:
 	camera.zoom = Vector2(2,2)
 	camera.reset_smoothing()
 	await capture("orren_detail_2x.png")
+	study.visit_eira()
+	await create_timer(.3).timeout
+	await capture("eira_native.png")
+	check(eira._player_inside and not orren._player_inside,"Visit Eira does not reach her exclusive F interaction")
+	root.push_input(interaction)
+	await process_frame
+	check(hub.dialogue_panel.visible and not study.eira_review.sprite.is_playing() and study.eira_review.sprite.frame == 0,"Eira does not face the player during real F dialogue")
+	await capture("eira_dialogue.png")
+	hub.dialogue_panel.close_dialogue(false)
+	check(not hub.character_menu.visible and study.eira_review.sprite.is_playing(),"Canceling Eira dialogue opens skills or fails to resume reading")
+	root.push_input(interaction)
+	await process_frame
+	hub.dialogue_panel.close_dialogue(true)
+	check(hub.character_menu.visible,"Completing Eira dialogue does not retain skill training service")
+	await capture("eira_skills.png")
+	hub.character_menu.close_menu()
+	check(not paused,"Eira skill menu left the hub paused")
+	var eira_observed := {}
+	for tick in 30:
+		await create_timer(.1).timeout
+		eira_observed[study.eira_review.sprite.frame] = true
+	check(eira_observed.size() == 8,"Eira reading idle fails to play all eight poses after service")
+	check(study.eira_review.sprite.position == Vector2(0,-16) and eira.position == Vector2(288,438),"Eira reading moves body/interaction roots")
+	study.set_overview(true)
+	camera.position = Vector2(256,424)
+	camera.zoom = Vector2(2,2)
+	camera.reset_smoothing()
+	await capture("eira_detail_2x.png")
 	study.set_overview(false)
 	player.position = Vector2(928,280)
 	for tick in 10:
@@ -108,13 +145,19 @@ func _run() -> void:
 	check(orren.dialogue_portrait == portraits[1] and orren.get_node("Sprite").sprite_frames == old_frames,"Comparison did not restore Orren art")
 	check(orren.position == old_position and not orren.get_node("IdleBreath").is_stopped(),"Comparison did not restore original NPC placement/idle")
 	check(not study.orren_review.nameplate.visible,"New nameplate remains in original comparison")
+	check(eira.position == eira_old_position and eira.get_node("Sprite").sprite_frames == eira_old_frames and eira.dialogue_portrait == portraits[0],"Comparison did not restore Eira position/frames/portrait")
+	check(not study.eira_review.nameplate.visible and not eira.get_node("IdleBreath").is_stopped() and eira.idle_aura.visible,"Comparison did not restore Eira idle/aura or hide nameplate")
 	check(not _blocked(space,Vector2(1040,370)),"Review workshop collision remains in original mode")
 	await capture("study_compare_old.png")
 	study.set_review_enabled(true)
+	check(eira.get_node("Sprite").sprite_frames == study.eira_review.frames and eira.dialogue_portrait == study.eira_review.PORTRAIT and eira.position == Vector2(288,438),"Re-enabling study failed to restore Eira candidate")
 	var index := 0
 	for name in ["Skillkeeper","WeaponMerchant","Rootweaver","Umi"]:
 		var npc: DialogueNpc = hub.get_node("World/Actors/"+name)
-		check(npc.dialogue_portrait == (study.orren_review.PORTRAIT if name == "WeaponMerchant" else portraits[index]),"Wrong portrait bound to NPC")
+		var expected_portrait: Texture2D = portraits[index]
+		if name == "WeaponMerchant": expected_portrait = study.orren_review.PORTRAIT
+		if name == "Skillkeeper": expected_portrait = study.eira_review.PORTRAIT
+		check(npc.dialogue_portrait == expected_portrait,"Wrong portrait bound to NPC")
 		npc.dialogue_requested.emit(npc.speaker_name,npc.dialogue_lines,npc.dialogue_portrait)
 		check(hub.dialogue_panel.visible,"NPC lost dialogue: "+name)
 		hub.dialogue_panel.close_dialogue(true)
@@ -125,6 +168,8 @@ func _run() -> void:
 			menu.close_menu()
 		index += 1
 	check(not paused,"Service menu left the review paused")
+	eira_body = null
+	eira_trigger = null
 	hub.queue_free()
 	current_scene = null
 	await process_frame
@@ -149,6 +194,26 @@ func _check_orren_art(review: Node) -> void:
 		check(bounds.position.x > 4 and bounds.end.x < 92,"Orren blade or hands clipped")
 		hashes[frame.get_data().hex_encode().sha256_text()] = true
 	check(hashes.size() == 8,"Generated poses are duplicated")
+
+func _check_eira_art(review: Node) -> void:
+	var atlas: Image = review.IDLE.get_image()
+	check(atlas.get_size() == Vector2i(384,192) and review.frames.get_frame_count(&"idle_down") == 8,"Eira grid or frame contract incorrect")
+	var hard_alpha := true
+	for texture: Texture2D in [review.IDLE,review.PORTRAIT]:
+		var image := texture.get_image()
+		for y in image.get_height():
+			for x in image.get_width():
+				var alpha := image.get_pixel(x,y).a
+				if alpha != 0.0 and alpha != 1.0: hard_alpha = false
+	check(hard_alpha,"Eira body or portrait has soft alpha")
+	check(review.PORTRAIT.get_size() == Vector2(96,96),"Eira portrait is not native 96px")
+	var hashes := {}
+	for index in 8:
+		var frame := atlas.get_region(Rect2i(Vector2i(index%4,index/4)*96,Vector2i(96,96)))
+		var bounds := frame.get_used_rect()
+		check(bounds.end.y == 80 and bounds.size.y >= 58 and bounds.size.y <= 62 and bounds.position.x > 4 and bounds.end.x < 92,"Eira frame registration/scale/clipping mismatch")
+		hashes[frame.get_data().hex_encode().sha256_text()] = true
+	check(hashes.size() == 8,"Eira repeats drawings instead of authored idle poses")
 
 func _blocked(space: PhysicsDirectSpaceState2D, point: Vector2) -> bool:
 	var shape := CircleShape2D.new()

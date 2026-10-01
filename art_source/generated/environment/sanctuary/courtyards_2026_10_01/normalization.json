@@ -1,0 +1,202 @@
+[
+	{
+		"bounds": "[P: (28, 21), S: (35, 59)]",
+		"frame": 0,
+		"identity": "nema",
+		"scale": 0.154241645244216
+	},
+	{
+		"bounds": "[P: (30, 21), S: (33, 59)]",
+		"frame": 1,
+		"identity": "nema",
+		"scale": 0.154241645244216
+	},
+	{
+		"bounds": "[P: (24, 22), S: (39, 58)]",
+		"frame": 2,
+		"identity": "nema",
+		"scale": 0.154241645244216
+	},
+	{
+		"bounds": "[P: (23, 16), S: (41, 64)]",
+		"frame": 3,
+		"identity": "nema",
+		"scale": 0.154241645244216
+	},
+	{
+		"bounds": "[P: (26, 22), S: (40, 58)]",
+		"frame": 4,
+		"identity": "nema",
+		"scale": 0.154241645244216
+	},
+	{
+		"bounds": "[P: (30, 22), S: (36, 58)]",
+		"frame": 5,
+		"identity": "nema",
+		"scale": 0.154241645244216
+	},
+	{
+		"bounds": "[P: (28, 21), S: (37, 59)]",
+		"frame": 6,
+		"identity": "nema",
+		"scale": 0.154241645244216
+	},
+	{
+		"bounds": "[P: (28, 21), S: (36, 59)]",
+		"frame": 7,
+		"identity": "nema",
+		"scale": 0.154241645244216
+	},
+	{
+		"bounds": "[P: (26, 14), S: (46, 66)]",
+		"frame": 0,
+		"identity": "umi",
+		"scale": 0.160975609756098
+	},
+	{
+		"bounds": "[P: (26, 14), S: (45, 66)]",
+		"frame": 1,
+		"identity": "umi",
+		"scale": 0.160975609756098
+	},
+	{
+		"bounds": "[P: (27, 14), S: (45, 66)]",
+		"frame": 2,
+		"identity": "umi",
+		"scale": 0.160975609756098
+	},
+	{
+		"bounds": "[P: (28, 14), S: (44, 66)]",
+		"frame": 3,
+		"identity": "umi",
+		"scale": 0.160975609756098
+	},
+	{
+		"bounds": "[P: (25, 15), S: (47, 65)]",
+		"frame": 4,
+		"identity": "umi",
+		"scale": 0.160975609756098
+	},
+	{
+		"bounds": "[P: (25, 16), S: (46, 64)]",
+		"frame": 5,
+		"identity": "umi",
+		"scale": 0.160975609756098
+	},
+	{
+		"bounds": "[P: (27, 16), S: (45, 64)]",
+		"frame": 6,
+		"identity": "umi",
+		"scale": 0.160975609756098
+	},
+	{
+		"bounds": "[P: (27, 15), S: (45, 65)]",
+		"frame": 7,
+		"identity": "umi",
+		"scale": 0.160975609756098
+	},
+	{
+		"bounds": "[P: (33, 22), S: (31, 58)]",
+		"frame": 0,
+		"identity": "courier_v2",
+		"scale": 0.237704918032787
+	},
+	{
+		"bounds": "[P: (34, 23), S: (29, 57)]",
+		"frame": 1,
+		"identity": "courier_v2",
+		"scale": 0.237704918032787
+	},
+	{
+		"bounds": "[P: (33, 22), S: (31, 58)]",
+		"frame": 2,
+		"identity": "courier_v2",
+		"scale": 0.237704918032787
+	},
+	{
+		"bounds": "[P: (34, 22), S: (28, 58)]",
+		"frame": 3,
+		"identity": "courier_v2",
+		"scale": 0.237704918032787
+	},
+	{
+		"bounds": "[P: (31, 21), S: (34, 59)]",
+		"frame": 4,
+		"identity": "courier_v2",
+		"scale": 0.237704918032787
+	},
+	{
+		"bounds": "[P: (33, 21), S: (30, 59)]",
+		"frame": 5,
+		"identity": "courier_v2",
+		"scale": 0.237704918032787
+	},
+	{
+		"bounds": "[P: (31, 21), S: (34, 59)]",
+		"frame": 6,
+		"identity": "courier_v2",
+		"scale": 0.237704918032787
+	},
+	{
+		"bounds": "[P: (33, 21), S: (31, 59)]",
+		"frame": 7,
+		"identity": "courier_v2",
+		"scale": 0.237704918032787
+	},
+	{
+		"bounds": "[P: (31, 22), S: (34, 58)]",
+		"frame": 8,
+		"identity": "courier_v2",
+		"scale": 0.237704918032787
+	},
+	{
+		"bounds": "[P: (32, 22), S: (33, 58)]",
+		"frame": 9,
+		"identity": "courier_v2",
+		"scale": 0.237704918032787
+	},
+	{
+		"bounds": "[P: (31, 22), S: (34, 58)]",
+		"frame": 10,
+		"identity": "courier_v2",
+		"scale": 0.237704918032787
+	},
+	{
+		"bounds": "[P: (32, 21), S: (33, 59)]",
+		"frame": 11,
+		"identity": "courier_v2",
+		"scale": 0.237704918032787
+	},
+	{
+		"bounds": "[P: (33, 21), S: (31, 59)]",
+		"frame": 12,
+		"identity": "courier_v2",
+		"scale": 0.237704918032787
+	},
+	{
+		"bounds": "[P: (34, 20), S: (29, 60)]",
+		"frame": 13,
+		"identity": "courier_v2",
+		"scale": 0.237704918032787
+	},
+	{
+		"bounds": "[P: (32, 20), S: (32, 60)]",
+		"frame": 14,
+		"identity": "courier_v2",
+		"scale": 0.237704918032787
+	},
+	{
+		"bounds": "[P: (34, 20), S: (29, 60)]",
+		"frame": 15,
+		"identity": "courier_v2",
+		"scale": 0.237704918032787
+	},
+	{
+		"building": "nema_side",
+		"size": "(200, 184)"
+	},
+	{
+		"building": "umi_side",
+		"size": "(176, 167)"
+	}
+]

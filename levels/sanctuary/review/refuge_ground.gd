@@ -6,8 +6,8 @@ const MAP_SIZE := Vector2i(36,24)
 var routes: Array[PackedVector2Array] = [
 	PackedVector2Array([Vector2(576,752),Vector2(560,608),Vector2(576,520),Vector2(576,304)]),
 	PackedVector2Array([Vector2(224,400),Vector2(224,464),Vector2(352,496),Vector2(480,488),Vector2(576,480),Vector2(688,488),Vector2(864,472),Vector2(928,400)]),
-	PackedVector2Array([Vector2(256,640),Vector2(368,640),Vector2(464,592),Vector2(560,608),Vector2(704,656),Vector2(800,656),Vector2(912,592),Vector2(928,472)]),
-	PackedVector2Array([Vector2(352,496),Vector2(360,528)]),
+	PackedVector2Array([Vector2(272,672),Vector2(368,672),Vector2(464,592),Vector2(560,608),Vector2(704,688),Vector2(800,688),Vector2(800,584),Vector2(928,472)]),
+	PackedVector2Array([Vector2(352,496),Vector2(352,464)]),
 	PackedVector2Array([Vector2(912,472),Vector2(992,464),Vector2(992,416)]),
 ]
 var path_cells: Dictionary = {}
@@ -40,7 +40,7 @@ func _ready() -> void:
 				for index in 4:
 					if path_cells.has(cell+[Vector2i.UP,Vector2i.RIGHT,Vector2i.DOWN,Vector2i.LEFT][index]): mask |= 1<<index
 				coordinate = Vector2i(mask%4,4+mask/4) if mask != 15 else Vector2i(variant,3 if (x+y)%7 == 0 else 2)
-			elif Rect2(144,400,160,128).has_point(p):
+			elif Rect2(320,384,96,80).has_point(p) or Rect2(304,592,80,64).has_point(p) or Rect2(744,600,80,64).has_point(p):
 				coordinate = Vector2i(variant,1)
 			set_cell(cell,0,coordinate)
 

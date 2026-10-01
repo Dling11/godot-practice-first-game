@@ -99,6 +99,7 @@ func _ready() -> void:
 	umi_exchange_menu.menu_closed.connect(echo_melder.restore_prompt)
 	admin_stage_6_button.pressed.connect(_open_stage_6_environment)
 	admin_lab_button.pressed.connect(_open_combat_lab)
+	get_node("UI/AdminPanel/Margin/Stack/OpenSanctuaryStudy").pressed.connect(_open_sanctuary_study)
 	var admin_state := get_node_or_null("/root/DebugAdminState")
 	if admin_state != null:
 		admin_state.connect("enabled_changed", _update_admin_visibility)
@@ -128,6 +129,18 @@ func _open_combat_lab() -> void:
 	if _is_admin_enabled():
 		_transition_to("res://levels/combat_lab/combat_lab.tscn")
 
+
+func _open_sanctuary_study() -> void:
+	if not _is_admin_enabled(): return
+	get_node("/root/SaveService").suppress_autosave_for_debug_session()
+	var study := get_node_or_null("SanctuaryStudy")
+	if study == null:
+		study = load("res://levels/sanctuary/review/refuge_study.gd").new()
+		study.hub = self
+		add_child(study)
+	study.set_review_enabled(true)
+	study.visit_orren()
+	get_node("/root/DebugAdminState").set_enabled(false)
 
 func _open_stage_6_environment() -> void:
 	if _is_admin_enabled():

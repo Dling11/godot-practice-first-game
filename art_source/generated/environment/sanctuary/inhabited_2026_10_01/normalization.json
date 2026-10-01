@@ -1,0 +1,42 @@
+[
+	{
+		"asset": "linden",
+		"size": "(128, 156)",
+		"source_rect": "[P: (0, 0), S: (490, 620)]"
+	},
+	{
+		"asset": "cedar",
+		"size": "(93, 176)",
+		"source_rect": "[P: (490, 0), S: (325, 620)]"
+	},
+	{
+		"asset": "anvil_station",
+		"size": "(69, 48)",
+		"source_rect": "[P: (815, 240), S: (365, 380)]"
+	},
+	{
+		"asset": "lectern",
+		"size": "(38, 44)",
+		"source_rect": "[P: (1180, 220), S: (356, 400)]"
+	},
+	{
+		"asset": "wall_horizontal",
+		"size": "(96, 32)",
+		"source_rect": "[P: (0, 720), S: (600, 290)]"
+	},
+	{
+		"asset": "wall_vertical",
+		"size": "(32, 96)",
+		"source_rect": "[P: (620, 620), S: (185, 404)]"
+	},
+	{
+		"asset": "pillar",
+		"size": "(28, 39)",
+		"source_rect": "[P: (880, 720), S: (235, 304)]"
+	},
+	{
+		"asset": "noticeboard",
+		"size": "(64, 69)",
+		"source_rect": "[P: (1160, 620), S: (376, 404)]"
+	}
+]

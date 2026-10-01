@@ -1,5 +1,18 @@
 # Asset Catalog
 
+## Inhabited Sanctuary — 2026-10-01
+
+- Runtime environment: `assets/environment/sanctuary/inhabited/` contains linden128x156, cedar93x176, anvil station69x48, lectern38x44, horizontal wall96x32, vertical wall32x96, pillar28x39 and noticeboard64x69 PNGs. Binary alpha/nearest, separate footprints/canopy fade, no baked actors.
+- Environment source, exact built-in imagegen prompt and crop/size manifest: `art_source/generated/environment/sanctuary/inhabited_2026_10_01/`. Generated source layout required explicit object crops; runtime assets are individual props.
+- Courier: `assets/characters/npcs/courier/walk.png` (384x384,4x4) and `idle.png` (384x96,4x1),96px cells/y80 feet/.5 presentation. Down/left/right/up order, four walk poses and one rest per direction. Sources/exact prompts: `art_source/generated/characters/npcs/courier/inhabited_2026_10_01/`. Walk source1254px requires rounded source-cell recovery; all runtime cells are exact.
+- Builder: `tools/build_sanctuary_life_art.gd`. Consumers: `town_dressing.gd` and `sanctuary_courier.gd`. Evidence: `art_source/review/environment/sanctuary_life_2026_10_01/`. Legacy cart/trees retained for comparison and campaign.
+
+## Eira renewal study — 2026-10-01
+
+- Candidate atlas/portrait: `assets/characters/npcs/skillkeeper/renewal/idle_read.png` (384x192, eight96px cells,60–61px body/y80 feet) and `portrait.png` (96x96), binary alpha/nearest, .5 body presentation.
+- Built-in imagegen sources/exact prompts/normalization manifest: `art_source/generated/characters/npcs/eira/renewal_2026_10_01/`; builder `tools/build_eira_renewal.gd`.
+- Consumer: `levels/sanctuary/review/eira_renewal_review.gd`; native GPU evidence `art_source/review/environment/eira_renewal_2026_10_01/`. Optional candidate only; original campaign art retained.
+
 ## Orren and workshop review — 2026-09-30
 
 - Runtime candidate: `assets/characters/npcs/armskeeper/renewal/idle_work_v2.png` (384x192; eight96px cells;60px body; foot baseline80), `portrait.png` (96x96); `assets/environment/sanctuary/refuge_review/orren_workshop.png` (320x224, doorway anchor160,208). Prior `idle_work.png` retained; owner requested larger head and bolder outlines.

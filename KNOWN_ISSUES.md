@@ -1,6 +1,6 @@
 # Known Issues
 
-**Sanctuary review (2026-09-30):** Orren readability V2 study passes78 GPU checks; production hub smoke passes. Workshop/theme accepted; the initial NPC looked too small/faint beside King. Revised larger-head60px body, bolder outline and nameplate await owner review. Eight-pose idle and portrait are optional-review-only. Eira/Nema/Umi, interiors, mobile profiling and campaign promotion remain unfinished. Shared GPU teardown warnings persist. Continue via `CONTINUE_SANCTUARY.md`.
+**Sanctuary review (2026-10-01, Decision163):** Town-life checks pass91 rendered/82 headless assertions; the108-check rendered study and production hub smoke also pass. Old red cart/trees are hidden and noncolliding in the study; replacement trees, workstations, connected walls, greetings/beacons, map/noticeboard and courier are implemented. Owner town/animation feel, Nema/Umi remodeling, interiors, mobile profiling and campaign promotion remain unfinished. F10 review entry suppresses saves for the rest of that process; old comparison does not restore saving. Shared GPU texture teardown warnings persist. Continue via `CONTINUE_SANCTUARY.md`.
 
 **Worldsplitter correction (Decision 162, 2026-09-27):** The rejected bouncing sword and narrow sideways splash are replaced by fresh summoned blades and broad radial detonations. Distinct-blade, burial, all-direction AOE and control checks pass. Owner art/audio acceptance and mobile profiling remain open. Existing shared GPU shutdown warnings persist.
 

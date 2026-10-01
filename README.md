@@ -1,8 +1,8 @@
 # Battle of Gods
 
-Continuing this project in a new chat: start with `CONTINUE_SANCTUARY.md` after the required context docs. The latest Sanctuary review includes Orren's larger, bolder V2 sprite and name/role label.
+Continuing this project in a new chat: start with `CONTINUE_SANCTUARY.md` after the required context docs. The living Sanctuary study includes Orren/Eira, replacement trees/workstations/walls, NPC discovery and a walking courier.
 
-**Sanctuary redesign review:** Run `tools/launch_sanctuary_study.ps1`. It starts beside the remodeled Orren and workshop. Press F for his matching portrait/dialogue; top buttons compare old/new, visit Orren/the lodge, or switch overview/walking. This optional review suppresses autosaving. Eira/Nema/Umi and interiors are future passes; the campaign still uses its existing art. See `docs/design/sanctuary-environment-renewal.md`.
+**Sanctuary redesign review:** **F5 → Continue → F10 → SANCTUARY REVIEW · NO SAVES**, or run `tools/launch_sanctuary_study.ps1`. Both open beside Orren. **M** opens the town map; choose a destination to highlight its NPC and show direction. **F** talks to NPCs or opens the map at the noticeboard south-west of the fountain. Completing Eira's dialogue opens existing skills. Top controls compare old/new, visit Orren/Eira and switch overview/walk. Saving stays suppressed for the rest of this process, including old comparison; restart normal play to resume saving. Normal Continue retains campaign art until promotion. See `docs/design/sanctuary-environment-renewal.md`.
 
 **Worldsplitter summoned-sword review:** Run `tools/launch_king_skills.ps1` for three fresh crimson blades that bury and detonate across the target area. Press **5**, aim/click, then move or dodge. **F7 -> Skills -> Worldsplitter** compares one/two/three swords; F9 refills the kit. The selected rank is a session-only preview. Current design: `docs/design/worldsplitter-fractured-light.md`.
 

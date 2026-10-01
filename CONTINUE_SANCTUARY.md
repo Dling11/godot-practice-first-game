@@ -1,5 +1,29 @@
 # Continue Sanctuary renewal
 
+## Current continuation — inhabited town, 2026-10-01
+
+Verified: town-life suite91 rendered/82 headless checks, existing Sanctuary review108 rendered checks, production hub smoke and `git diff --check` pass. Shared GPU texture shutdown warnings remain. No commit, branch switch or push was performed.
+
+Owner's latest screenshot request: remove Orren's obsolete red cart, replace old trees in the approved theme, give walls intentional layout, make NPCs stand out/react and add a walking civilian. Decision163 implements this **only in the optional study**. Accepted workshop/lodge, King, services and saves remain the boundaries.
+
+**Test directly from Godot:** F5 → Continue → F10 → **SANCTUARY REVIEW · NO SAVES**. Or run `tools/launch_sanctuary_study.ps1`. Both start beside Orren. **M** opens the town map; choose an NPC/gate for a direction cue and highlighted ground ring. **F** talks or opens the map at the noticeboard south-west of the fountain. Top buttons compare old/new, visit Orren/Eira and switch overview/walk. Saving is suppressed until process restart, including old comparison.
+
+The new view replaces the red cart and six legacy trees with planted linden/cedar trees, anvil/tool station, Eira lectern, noticeboard and connected intact limestone boundaries. Trees fade when King walks behind their canopy; small separate footprints preserve access. All four service NPCs have labels, role-colored rings and20-second-throttled greetings. Orren/Eira look up for1.1seconds, then resume work. The generated teal courier walks a fixed circuit, rests near Eira/Orren with dedicated standing frames and yields near King. No shop, interior, reward or new service authority was added.
+
+Implementation: `town_dressing.gd`, `town_map.gd`, `town_map_drawing.gd`, `town_noticeboard.gd` under `levels/sanctuary/review/`; reusable `entities/npcs/presentation/service_beacon.gd`; `entities/npcs/courier/sanctuary_courier.gd`. Art builder `tools/build_sanctuary_life_art.gd`; assets under `assets/environment/sanctuary/inhabited/` and `assets/characters/npcs/courier/`. Sources/exact prompts retained in identity-owned `art_source/generated/.../inhabited_2026_10_01/` folders. Native evidence: `art_source/review/environment/sanctuary_life_2026_10_01/`.
+
+**Next:** owner native-scale review of composition, discovery, greetings and courier gait/pacing; then Nema/Umi individually, one interior proof and deliberate campaign promotion. Do not automatically promote or batch-redesign remaining service characters. Read `docs/design/sanctuary-environment-renewal.md` and Decision163. Earlier handoff sections below are historical where they say Eira is next, the old cart/trees remain, or launch starts beside Eira.
+
+## Earlier Eira continuation — 2026-10-01
+
+Orren V2 was reviewed at native/2x scale beside King and retained as Eira's scale reference following the owner's confirmation. Eira now has eight generated reading/page-turn poses, a matching96px portrait and Eira/Skillkeeper nameplate beside the accepted lodge at288,438. Her feet stay registered at y80 in96px cells;60–61px body, half-scale presentation, binary alpha and nearest filtering. Her actual hands/page/head animate; the old whole-body idle helper and floating aura are disabled only in the study.
+
+`tools/launch_sanctuary_study.ps1` now opens beside **Eira**. Press **F** for the portrait/dialogue, finish dialogue for existing skills, or cancel to resume reading. Top buttons: Compare old environment, Visit Orren, Visit Eira, Overview/walk. Original Eira position/art/portrait/aura/idle return in old comparison. Services, body/trigger resources, saves, King and approved buildings are preserved.
+
+New files: `levels/sanctuary/review/eira_renewal_review.gd`, `tools/build_eira_renewal.gd`, `assets/characters/npcs/skillkeeper/renewal/`, and `art_source/generated/characters/npcs/eira/renewal_2026_10_01/` (sources, exact prompts, manifest). Current captures: `art_source/review/environment/eira_renewal_2026_10_01/`;108 rendered checks/94 headless checks pass, including real F, canceled/completed dialogue, service resume, all-eight playback, body/trigger preservation and old/new restoration. Production hub smoke passes. Shared GPU texture teardown warnings remain.
+
+**Next:** Owner visual review of Eira before moving to Nema and Umi individually. Interiors and campaign promotion remain planned. The September30 handoff below is historical where it says Eira is unimplemented, Orren approval is next, or the launcher starts beside Orren.
+
 Handoff requested by the owner on 2026-09-30 for a new chat in the SAME project: `D:\React_ONLY_2026\GODOT-BATTLE-OF-GODS`.
 
 Read `PROJECT_CONTEXT.md`, `ROADMAP.md`, `KNOWN_ISSUES.md`, then this file and `docs/design/sanctuary-environment-renewal.md`. Inspect live files before acting. The working tree contains this work and the previous portal collision/test repair; preserve it. Do not commit or push for the owner.

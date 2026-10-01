@@ -3,18 +3,38 @@ extends Node
 ## Optional environment review on the real hub, without changing service authority.
 const Ground = preload("res://levels/sanctuary/review/refuge_ground.gd")
 const OrrenReview = preload("res://levels/sanctuary/review/orren_workshop_review.gd")
+const EiraReview = preload("res://levels/sanctuary/review/eira_renewal_review.gd")
+const ArtisanReview = preload("res://levels/sanctuary/review/artisan_renewal_review.gd")
+const Birds = preload("res://levels/sanctuary/review/garden_birds.gd")
+const TownDressing = preload("res://levels/sanctuary/review/town_dressing.gd")
+const Beacon = preload("res://entities/npcs/presentation/service_beacon.gd")
+const TownMap = preload("res://levels/sanctuary/review/town_map.gd")
+const Courier = preload("res://entities/npcs/courier/sanctuary_courier.gd")
+const Nameplate = preload("res://entities/npcs/presentation/npc_nameplate.gd")
+const Noticeboard = preload("res://levels/sanctuary/review/town_noticeboard.gd")
 const ART := "res://assets/environment/sanctuary/refuge_review/"
 var hub: Node
 var ground: TileMapLayer
 var props: Node2D
 var lodge: StaticBody2D
 var orren_review: Node
+var eira_review: Node
+var nema_review: Node
+var umi_review: Node
+var birds: Node2D
+var dressing: Node
+var town_map: CanvasLayer
+var courier: CharacterBody2D
+var noticeboard: Area2D
+var beacons: Array[Node2D] = []
+var extra_nameplates: Array[Node2D] = []
 var review_enabled := true
 var overview := false
 var _button: Button
 var _panel: PanelContainer
 
 func _ready() -> void:
+	name = "SanctuaryStudy"
 	ground = Ground.new()
 	ground.name = "RefugeGround32"
 	hub.get_node("World/Level").add_child(ground)
@@ -26,14 +46,27 @@ func _ready() -> void:
 	orren_review = OrrenReview.new()
 	add_child(orren_review)
 	orren_review.configure(hub,props)
-	for position in [Vector2(128,432),Vector2(344,432),Vector2(464,388),Vector2(688,388),Vector2(464,564),Vector2(672,584),Vector2(512,720),Vector2(624,720)]:
+	eira_review = EiraReview.new()
+	add_child(eira_review)
+	eira_review.configure(hub)
+	nema_review = ArtisanReview.new()
+	add_child(nema_review)
+	nema_review.configure(hub,"Rootweaver","rootweaver","Nema","Grove Smith")
+	umi_review = ArtisanReview.new()
+	add_child(umi_review)
+	umi_review.configure(hub,"Umi","umi","Umi","Echo Melder")
+	for position in [Vector2(168,448),Vector2(424,432),Vector2(464,388),Vector2(688,388),Vector2(464,564),Vector2(672,584),Vector2(512,720),Vector2(624,720)]:
 		_prop("lantern",position,Vector2(18,12))
-	for position in [Vector2(384,408),Vector2(752,408),Vector2(400,584),Vector2(720,584)]:
+	for position in [Vector2(392,384),Vector2(752,408),Vector2(400,584),Vector2(720,584)]:
 		_prop("planter",position,Vector2(54,18))
 	for position in [Vector2(408,352),Vector2(752,352)]:
 		_prop("bench",position,Vector2(56,14))
-	for position in [Vector2(184,192),Vector2(264,192),Vector2(344,208),Vector2(808,208),Vector2(888,192),Vector2(968,192),Vector2(152,560),Vector2(152,640),Vector2(936,696)]:
-		_prop("wall",position,Vector2(72,18))
+	dressing = TownDressing.new()
+	add_child(dressing)
+	dressing.configure(hub, props)
+	birds = Birds.new()
+	props.add_child(birds)
+	_build_town_life()
 	_build_controls()
 	set_review_enabled(true)
 
@@ -118,22 +151,25 @@ func _build_controls() -> void:
 	var column := VBoxContainer.new()
 	_panel.add_child(column)
 	var title := Label.new()
-	title.text = "SANCTUARY STUDY · ORREN + WORKSHOP"
+	title.text = "SANCTUARY · LIVING TOWN STUDY"
 	title.add_theme_font_size_override("font_size",12)
 	column.add_child(title)
 	var caption := Label.new()
-	caption.text = "New Orren portrait + working idle. Other NPCs / interiors follow."
+	caption.text = "NO SAVES · F to talk · M for town map · Follow the courier"
 	caption.add_theme_font_size_override("font_size",11)
 	column.add_child(caption)
 	var row := HBoxContainer.new()
 	column.add_child(row)
 	_button = _action(row,"Compare old environment",func() -> void: set_review_enabled(not review_enabled))
 	_action(row,"Visit Orren",visit_orren)
-	_action(row,"Visit lodge",func() -> void:
-		set_overview(false)
-		hub.get_node("World/Actors/Player").global_position = Vector2(224,434)
-		hub.get_node("World/Actors/Player/Camera2D").reset_smoothing())
-	_action(row,"Overview / walk",func() -> void: set_overview(not overview))
+	_action(row,"Visit Eira",visit_eira)
+	_action(row,"Visit Nema",visit_nema)
+	_action(row,"Visit Umi",visit_umi)
+	var navigation := HBoxContainer.new()
+	column.add_child(navigation)
+	_action(navigation,"Overview / walk",func() -> void: set_overview(not overview))
+	_action(navigation,"Town map [M]",town_map.toggle)
+	_action(navigation,"Find Rowan",visit_courier)
 
 func _action(row: HBoxContainer, title: String, action: Callable) -> Button:
 	var button := Button.new()
@@ -149,15 +185,86 @@ func set_review_enabled(value: bool) -> void:
 	props.visible = value
 	props.process_mode = Node.PROCESS_MODE_INHERIT if value else Node.PROCESS_MODE_DISABLED
 	orren_review.set_enabled(value)
+	eira_review.set_enabled(value)
+	nema_review.set_enabled(value)
+	umi_review.set_enabled(value)
+	dressing.set_enabled(value)
+	for beacon in beacons: beacon.set_enabled(value)
+	for nameplate in extra_nameplates: nameplate.visible = value
+	town_map.set_enabled(value)
+	courier.set_enabled(value)
+	birds.set_enabled(value)
 	hub.get_node("World/Level/Ground").visible = not value
 	var original := hub.get_node("World/Actors/SkillkeeperLodge")
 	original.visible = not value
 	original.process_mode = Node.PROCESS_MODE_DISABLED if value else Node.PROCESS_MODE_INHERIT
 	_button.text = "Compare old environment" if value else "Return to new study"
 
+func _build_town_life() -> void:
+	var entries: Array[Dictionary] = []
+	var recipes := [
+		["orren","WeaponMerchant","Orren","Armskeeper",Color(.96,.75,.4),"Keeping that edge true, King?",orren_review],
+		["eira","Skillkeeper","Eira","Skills",Color(.8,.69,.98),"Ready to practice, King?",eira_review],
+		["nema","Rootweaver","Nema","Crafting",Color(.66,.86,.51),"Bring your finds. We'll make use of them.",nema_review],
+		["umi","Umi","Umi","Exchange",Color(.49,.82,.95),"Every fragment holds a memory.",umi_review],
+	]
+	for recipe in recipes:
+		var npc: DialogueNpc = hub.get_node("World/Actors/" + str(recipe[1]))
+		var beacon := Beacon.new()
+		beacon.name = "ServiceBeacon"
+		beacon.configure(npc,recipe[4],recipe[5],recipe[6])
+		beacons.append(beacon)
+		entries.append({"id":recipe[0],"node":npc,"name":recipe[2],"role":recipe[3],"color":recipe[4],"beacon":beacon})
+		if recipe[6] == null:
+			var nameplate := Nameplate.new()
+			nameplate.npc_name = recipe[2]
+			nameplate.role_name = recipe[3]
+			nameplate.position = Vector2(0,-64)
+			npc.add_child(nameplate)
+			extra_nameplates.append(nameplate)
+	entries.append({"id":"gate","node":hub.get_node("World/Actors/ExpeditionAltar"),"name":"Veil Gate","role":"Expeditions","color":Color(.85,.77,.97)})
+	town_map = TownMap.new()
+	add_child(town_map)
+	town_map.configure(hub,entries,ground.routes)
+	noticeboard = Noticeboard.new()
+	noticeboard.hub = hub
+	noticeboard.town_map = town_map
+	dressing.stations[2].add_child(noticeboard)
+	courier = Courier.new()
+	courier.name = "TownCourier"
+	courier.player = hub.get_node("World/Actors/Player")
+	courier.hub = hub
+	courier.route = PackedVector2Array([Vector2(720,496),Vector2(928,496),Vector2(968,484),Vector2(928,496),Vector2(704,496),Vector2(704,552),Vector2(576,552),Vector2(416,520),Vector2(288,492),Vector2(416,520),Vector2(576,552),Vector2(704,552)])
+	courier.stop_indices.assign([2,8])
+	hub.get_node("World/Actors").add_child(courier)
+
 func visit_orren() -> void:
 	set_overview(false)
 	hub.get_node("World/Actors/Player").global_position = Vector2(984,474) if review_enabled else Vector2(916,616)
+	hub.get_node("World/Actors/Player/Camera2D").reset_smoothing()
+
+func visit_eira() -> void:
+	set_overview(false)
+	hub.get_node("World/Actors/Player").global_position = Vector2(344,474) if review_enabled else Vector2(360,556)
+	hub.get_node("World/Actors/Player/Camera2D").reset_smoothing()
+
+func visit_nema() -> void:
+	_visit(Vector2(374,658))
+
+func visit_umi() -> void:
+	_visit(Vector2(784,686))
+
+func visit_courier() -> void:
+	if not review_enabled: return
+	# Use an authored open delivery stop; avoid teleporting King into a nearby prop.
+	courier.position = Vector2(704,552)
+	courier.destination_index = 6
+	courier._stop_remaining = 0
+	_visit(Vector2(724,552))
+
+func _visit(point: Vector2) -> void:
+	set_overview(false)
+	hub.get_node("World/Actors/Player").global_position = point
 	hub.get_node("World/Actors/Player/Camera2D").reset_smoothing()
 
 func set_overview(value: bool) -> void:

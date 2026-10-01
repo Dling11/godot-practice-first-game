@@ -15,6 +15,7 @@ var _old: Dictionary
 var _original_workshop: Node2D
 var _enabled := false
 var _talking := false
+var _attention_timer: Timer
 
 func configure(hub: Node, props: Node2D) -> void:
 	npc = hub.get_node("World/Actors/WeaponMerchant")
@@ -25,6 +26,12 @@ func configure(hub: Node, props: Node2D) -> void:
 		"scale":sprite.scale,"sprite_position":sprite.position,"portrait":npc.dialogue_portrait,
 		"aura":npc.get_node("LanternAura").visible}
 	_original_workshop = hub.get_node("World/Actors/ArmskeeperWorkshop")
+	_attention_timer = Timer.new()
+	_attention_timer.one_shot = true
+	_attention_timer.wait_time = 1.1
+	_attention_timer.timeout.connect(func() -> void:
+		if _enabled and not _talking: sprite.play(&"idle_down"))
+	add_child(_attention_timer)
 	nameplate = Nameplate.new()
 	nameplate.name = "ReviewNameplate"
 	nameplate.npc_name = "Orren"
@@ -55,6 +62,7 @@ func configure(hub: Node, props: Node2D) -> void:
 
 func set_enabled(value: bool) -> void:
 	_enabled = value
+	_attention_timer.stop()
 	nameplate.visible = value
 	_original_workshop.visible = not value
 	_original_workshop.process_mode = Node.PROCESS_MODE_DISABLED if value else Node.PROCESS_MODE_INHERIT
@@ -73,6 +81,12 @@ func set_enabled(value: bool) -> void:
 	elif _talking:
 		sprite.pause()
 		sprite.frame = 0
+
+func greet() -> void:
+	if not _enabled or _talking: return
+	sprite.pause()
+	sprite.frame = 0
+	_attention_timer.start()
 
 func _build_workshop(props: Node2D) -> void:
 	workshop = StaticBody2D.new()

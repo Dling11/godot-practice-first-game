@@ -14,4 +14,4 @@ func _run() -> void:
 	study.hub = hub
 	hub.add_child(study)
 	study.visit_orren()
-	root.title = "Battle of Gods — Sanctuary Orren & Workshop Review"
+	root.title = "Battle of Gods — Living Sanctuary Review"
