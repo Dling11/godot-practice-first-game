@@ -53,9 +53,9 @@ collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_script")
 interaction_icon = ExtResource("3_icon")
-prompt_text = "PRESS F TO DISCUSS SKILLS"
+prompt_text = "PRESS F · TRAIN & ARRANGE SKILLS"
 speaker_name = "SKILLKEEPER EIRA"
-dialogue_lines = Array[String](["The veil answers a sovereign who can survive the truth behind power.", "Your four combat techniques are awake: Sever, Riftbreak, Pursuit, and Worldsplitter.", "I can show what your spirit currently remembers."])
+dialogue_lines = Array[String](["Earthsplitter, Molten Crash, Sovereign Pursuit, Unbroken Vow, and Worldsplitter are yours to command.", "Arrange your combat slots, or choose a technique to see the next rank and its training requirements."])
 idle_aura = NodePath("IdleAura")
 
 [node name="EditorPreviewBackdrop" parent="." unique_id=724842116 instance=ExtResource("99_preview")]

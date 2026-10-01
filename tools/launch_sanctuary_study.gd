@@ -14,5 +14,6 @@ func _run() -> void:
 	study.hub = hub
 	hub.add_child(study)
 	if "--workshop-door" in OS.get_cmdline_user_args(): study.visit_workshop()
+	elif "--eira" in OS.get_cmdline_user_args(): study.visit_eira()
 	else: study.visit_orren()
 	root.title = "Battle of Gods — Living Sanctuary Review"

@@ -57,7 +57,7 @@ func _run() -> void:
 	check(eira.get_node("IdleBreath").is_stopped() and not eira.idle_aura.visible,"Eira's old body wobble or floating aura is active")
 	check(study.eira_review.nameplate.visible and study.eira_review.nameplate.npc_name == "Eira" and study.eira_review.nameplate.role_name == "Skillkeeper","Eira identity label missing")
 	var reachable := _reachable(space,Vector2i(36,42))
-	for destination in [Vector2(224,434),Vector2(344,474),Vector2(360,548),Vector2(376,630),Vector2(808,670),Vector2(984,474),Vector2(928,426),Vector2(576,328)]:
+	for destination in [Vector2(224,434),study.eira_review.APPROACH,Vector2(360,548),Vector2(376,630),Vector2(808,670),Vector2(984,474),Vector2(928,426),Vector2(576,328)]:
 		check(reachable.has(Vector2i(destination/16)),"An existing service/door/gate route is blocked: "+str(destination))
 	study.visit_orren()
 	await create_timer(.3).timeout
@@ -108,7 +108,7 @@ func _run() -> void:
 		await create_timer(.1).timeout
 		eira_observed[study.eira_review.sprite.frame] = true
 	check(eira_observed.size() == 8,"Eira reading idle fails to play all eight poses after service")
-	check(study.eira_review.sprite.position == Vector2(0,-16) and eira.position == Vector2(344,438),"Eira reading moves body/interaction roots")
+	check(study.eira_review.sprite.position == Vector2(0,-16) and eira.position == study.eira_review.EIRA_POSITION,"Eira reading moves body/interaction roots")
 	study.set_overview(true)
 	camera.position = Vector2(256,424)
 	camera.zoom = Vector2(2,2)
@@ -150,7 +150,7 @@ func _run() -> void:
 	check(not _blocked(space,Vector2(1040,370)),"Review workshop collision remains in original mode")
 	await capture("study_compare_old.png")
 	study.set_review_enabled(true)
-	check(eira.get_node("Sprite").sprite_frames == study.eira_review.frames and eira.dialogue_portrait == study.eira_review.PORTRAIT and eira.position == Vector2(344,438),"Re-enabling study failed to restore Eira candidate")
+	check(eira.get_node("Sprite").sprite_frames == study.eira_review.frames and eira.dialogue_portrait == study.eira_review.PORTRAIT and eira.position == study.eira_review.EIRA_POSITION,"Re-enabling study failed to restore Eira candidate")
 	var index := 0
 	for name in ["Skillkeeper","WeaponMerchant","Rootweaver","Umi"]:
 		var npc: DialogueNpc = hub.get_node("World/Actors/"+name)

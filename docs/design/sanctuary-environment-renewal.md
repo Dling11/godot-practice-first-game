@@ -1,5 +1,7 @@
 # Sanctuary renewal — staged environment and NPC work
 
+**2026-10-02 NPC usability priority:** Owner deferred further houses/interiors and requested NPC function, layout and skill arrangement. Current Eira work-corner and shared training/loadout corrections are in sanctuary-npc-usability.md. Earlier interior-first recommendations are superseded.
+
 **2026-10-02 current interior status:** Orren now has one walkable optional interior, documented in sanctuary-workshop-interior.md. Eira/Nema/Umi interiors remain planned. Earlier descriptions of all Doorway markers as planning-only are historical for Orren. Current house/interface state is in sanctuary-interface-renewal.md.
 
 **Latest continuation (2026-10-01):** The owner rejected the courier's sliding feel and lectern placement, then authorized Nema and Umi. Their working sprites/portraits and angled houses are now integrated, alongside distance-driven courier poses, an off-road teaching nook, foliage wind, swallows and Rowan dialogue. Current layout, sources and verification are in `sanctuary-courtyard-renewal.md`. Earlier sections below describe prior iterations where positions or pending status differ.

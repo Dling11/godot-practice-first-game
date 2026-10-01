@@ -4,7 +4,8 @@ extends Node
 const IDLE = preload("res://assets/characters/npcs/skillkeeper/renewal/idle_read.png")
 const PORTRAIT = preload("res://assets/characters/npcs/skillkeeper/renewal/portrait.png")
 const Nameplate = preload("res://entities/npcs/presentation/npc_nameplate.gd")
-const EIRA_POSITION := Vector2(344, 438)
+const EIRA_POSITION := Vector2(400, 450)
+const APPROACH := EIRA_POSITION + Vector2(0, 36)
 
 var npc: DialogueNpc
 var sprite: AnimatedSprite2D

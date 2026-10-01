@@ -59,7 +59,7 @@ func _ready() -> void:
 	umi_review = ArtisanReview.new()
 	add_child(umi_review)
 	umi_review.configure(hub,"Umi","umi","Umi","Echo Melder")
-	for position in [Vector2(168,448),Vector2(424,432),Vector2(464,388),Vector2(688,388),Vector2(464,564),Vector2(672,584),Vector2(512,720),Vector2(624,720)]:
+	for position in [Vector2(168,448),Vector2(456,432),Vector2(464,388),Vector2(688,388),Vector2(464,564),Vector2(672,584),Vector2(512,720),Vector2(624,720)]:
 		_prop("lantern",position,Vector2(18,12))
 	for position in [Vector2(392,384),Vector2(752,408),Vector2(400,584),Vector2(720,584)]:
 		_prop("planter",position,Vector2(54,18))
@@ -262,7 +262,7 @@ func visit_workshop() -> void:
 
 func visit_eira() -> void:
 	set_overview(false)
-	hub.get_node("World/Actors/Player").global_position = Vector2(344,474) if review_enabled else Vector2(360,556)
+	hub.get_node("World/Actors/Player").global_position = EiraReview.APPROACH if review_enabled else Vector2(360,556)
 	hub.get_node("World/Actors/Player/Camera2D").reset_smoothing()
 
 func visit_nema() -> void:

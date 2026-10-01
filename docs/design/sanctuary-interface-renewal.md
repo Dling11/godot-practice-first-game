@@ -1,5 +1,7 @@
 # Sanctuary perspective and interface correction
 
+**2026-10-02 NPC usability:** Further house/interior work is deferred by owner direction. Eira placement and shared skill/training arrangement are improved; current behavior and native checks are in `sanctuary-npc-usability.md`. The generated theme remains the baseline.
+
 **2026-10-02 follow-up:** This UI/house baseline is retained. One Orren interior now suspends the outdoor minimap and study controls, restores them on exit, and uses the same themed dialogue. See sanctuary-workshop-interior.md; other interiors remain planned.
 
 2026-10-01. Implemented candidate in the optional, save-suppressed Sanctuary study. The owner liked the town improvements but rejected the diagonal artisan houses; they requested left-positioned entrances in the existing overhead perspective, a smaller skill display, an on-screen themed map and cohesive NPC/inventory modals.

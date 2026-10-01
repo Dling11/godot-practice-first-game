@@ -1,14 +1,24 @@
 # Continue Sanctuary renewal
 
+## Current continuation - NPC service usability, 2026-10-02
+
+Owner redirected work away from further houses/interiors toward NPC function, layout and skill arrangement. Read required project docs, then `docs/design/sanctuary-npc-usability.md`. Eira is now right of her lectern at400,450 with a400,486 approach; labels clear the books and the nearby lamp moves to456,432. Current five-skill dialogue replaces retired names. Shared Skills has two rows of five capped icons, TRAIN & ARRANGE through Eira, ARRANGE SKILLS through ordinary inventory, explicit training requirements and swap/clear/restore feedback with retained focus. Existing authority and progression remain.
+
+**Test:** F5 -> Continue -> F10 -> SANCTUARY REVIEW -> Visit Eira -> F -> finish/skip dialogue -> TRAIN & ARRANGE. Select a technique, click a slot to swap/assign, right-click or Clear selected slot to clear, Restore core layout to restore. Esc returns, then closes Skills. The launcher accepts `--eira` after `--`. Review saving stays suppressed until restart.
+
+**Verified:** 43 rendered functional checks, 64 rendered interface checks, character menu/Pursuit trainer persistence smoke, 14 each Vow/Worldsplitter training checks, 90/94 headless courtyard/study checks. Evidence: `art_source/review/ui/sanctuary_functionality_2026_10_02/`. Existing shared GPU teardown warnings remain.
+
+**Next:** owner service-flow review, then Nema crafting and Umi exchange clarity/requirements/result feedback and skill-menu polish. Additional houses/interiors are deferred by owner direction; earlier interior-first recommendations are superseded. Retain accepted furniture scale, F-required workshop entry, user changes and no-commit/no-push boundary. Campaign promotion and phone profiling remain separate work.
+
 ## Current continuation - first workshop interior, 2026-10-02
 
-Read the required docs, then `docs/design/sanctuary-workshop-interior.md`. One walkable Orren workshop now connects to the accepted courtyard exterior. It has separate generated room/furniture sprites, measured collision, mouse navigation around the bench, forge embers and three F inspection points. Orren remains outside at his station. The owner-reported oversized furniture is corrected in V2, with a smaller room and furniture calibrated against unchanged King. Owner accepted the current furniture size for now; retain it. Door wording is now Enter workshop. Previous house/UI/NPC/ambient changes remain.
+Read the required docs, then `docs/design/sanctuary-workshop-interior.md`. One walkable Orren workshop now connects to the accepted courtyard exterior. It has separate generated room/furniture sprites, measured collision, mouse navigation around the bench, forge embers and three F inspection points. Orren remains outside at his station. The owner-reported oversized furniture is corrected in V2, with a smaller room and furniture calibrated against unchanged King. Owner accepted the current furniture size for now; retain it. Entry requires F, with the restored PRESS F · ENTER WORKSHOP prompt available even at the doorstep; walking alone does not enter. Previous house/UI/NPC/ambient changes remain.
 
-**Test:** F5 -> Continue -> F10 -> SANCTUARY REVIEW -> **Workshop door**, then walk to the doorstep to enter automatically. WASD walks; right click routes to a spot; F inspects the bench/forge/rack; F at the south opening returns. Tab inventory and Esc pause work indoors. Review saves remain suppressed until restart. Other interiors and campaign promotion remain pending.
+**Test:** F5 -> Continue -> F10 -> SANCTUARY REVIEW -> **Workshop door**, then approach the door and press F to enter. WASD walks; right click routes to a spot; F inspects the bench/forge/rack; F at the south opening returns. Tab inventory and Esc pause work indoors. Review saves remain suppressed until restart. Other interiors and campaign promotion remain pending.
 
-**Verified:** 57 rendered interior checks, 63 rendered interface checks, 90 headless courtyard checks, 94 headless study checks and production hub smoke pass. Native images: `art_source/review/environment/orren_interior_scale_v2_2026_10_02/`. Shared GPU teardown warnings remain.
+**Verified:** 60 rendered interior checks, 63 rendered interface checks, 90 headless courtyard checks, 94 headless study checks and production hub smoke pass. Native images: `art_source/review/environment/orren_interior_manual_entry_2026_10_02/`. Shared GPU teardown warnings remain.
 
-**Next:** recommend Eira training-lodge interior using the current character/furniture scale and overhead perspective, then Nema and Umi interiors. Indoor audio, phone profiling and deliberate campaign promotion remain pending. Scale approval does not approve the whole room or promote it to campaign. Preserve user changes and do not commit/push. Earlier all-interiors-planned descriptions below are superseded for Orren only.
+**Next:** follow the NPC-usability priority above. Further Eira/Nema/Umi interiors are deferred; indoor audio, phone profiling and deliberate campaign promotion remain pending. Scale approval does not approve the whole room or promote it to campaign. Preserve user changes and do not commit/push. Earlier all-interiors-planned descriptions below are superseded for Orren only.
 
 ## Current continuation - house perspective and interface, 2026-10-01
 

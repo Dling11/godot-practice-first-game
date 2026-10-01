@@ -1,6 +1,15 @@
 # Changelog
 
+## 2026-10-02 - NPC services and skill arrangement
+
+- Owner redirected work from further houses/interiors to NPC function and menu usability. Moved Eira right of the lectern, cleared the neighboring lamp/name overlap and updated her visit point. Replaced retired four-skill dialogue with the current five techniques and a training/arrangement prompt.
+- Fixed oversized Vow icon stretching the skill row: two rows of five slots, capped icons, matching arrow navigation and separate future-tier previews. Eira exposes TRAIN & ARRANGE; ordinary inventory exposes ARRANGE SKILLS without trainer permission.
+- Improved the shared training/loadout window with ordered techniques, current/next-rank requirements, slot swap/clear/core controls, action feedback and focus retention. Existing skill/save authority remains unchanged. Added --eira review launch and separate native evidence.
+- 43 rendered functional checks and 64 interface checks pass; character menu, Pursuit trainer persistence, Vow/Worldsplitter training and 90/94 courtyard/study regressions pass. Shared GPU shutdown warnings remain. Owner usability and phone profiling remain pending.
+
 ## 2026-10-02 - Walkable Orren workshop review
+
+- Restored F-required workshop entry after owner clarification. Walking to the doorstep only shows PRESS F · ENTER WORKSHOP; the shared door apron keeps F available at close range. Removed automatic entry while retaining busy/modal guards and accepted furniture scale. 60 rendered workshop checks pass; manual-entry captures are preserved separately.
 
 - Owner accepted the current furniture size for now. Retain V2 proportions; simplified doorway wording to Enter workshop. Broader room acceptance and campaign promotion remain pending.
 

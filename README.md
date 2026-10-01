@@ -1,6 +1,8 @@
 # Battle of Gods
 
-**Latest Sanctuary review:** F5 -> Continue -> F10 -> **SANCTUARY REVIEW · NO SAVES** -> **Workshop door**, then walk up to the doorstep to enter the new Orren workshop automatically. WASD walks, right click moves around furniture, F inspects bench/forge/rack, and F at the south opening returns to the courtyard. Tab inventory and Esc pause work indoors. Previous town improvements remain available through Visit buttons and the M map. Saving stays suppressed until normal-play restart. Details: docs/design/sanctuary-workshop-interior.md.
+**NPC/skill testing:** F5 -> Continue -> F10 -> SANCTUARY REVIEW -> Visit Eira -> F -> finish/skip dialogue -> TRAIN & ARRANGE. Select a technique, then click a slot to assign/swap; right-click or Clear selected slot clears; Restore core layout restores 1–5. Esc returns, then closes Skills. Tab -> Active Skills -> ARRANGE SKILLS uses ordinary loadout access. The direct review launcher accepts --eira after --. Current route and verification: docs/design/sanctuary-npc-usability.md.
+
+**Latest Sanctuary review:** F5 -> Continue -> F10 -> **SANCTUARY REVIEW · NO SAVES** -> **Workshop door**, then approach the door and press F to enter the new Orren workshop. WASD walks, right click moves around furniture, F inspects bench/forge/rack, and F at the south opening returns to the courtyard. Tab inventory and Esc pause work indoors. Previous town improvements remain available through Visit buttons and the M map. Saving stays suppressed until normal-play restart. Details: docs/design/sanctuary-workshop-interior.md.
 
 Continuing this project in a new chat: start with `CONTINUE_SANCTUARY.md` after the required context docs. The living Sanctuary study includes Orren/Eira, replacement trees/workstations/walls, NPC discovery and a walking courier.
 

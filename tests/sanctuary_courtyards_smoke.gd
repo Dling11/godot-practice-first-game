@@ -21,7 +21,7 @@ func _run() -> void:
 	check(_blocked(space,Vector2(298,632)) and _blocked(space,Vector2(840,648)),"Outdoor forge/crucible benches lack collision")
 	check(not _blocked(space,Vector2(262,676)) and not _blocked(space,Vector2(884,696)),"Reserved house approaches are blocked")
 	var reachable := _reachable(space,Vector2i(36,43))
-	for point in [Vector2(344,474),Vector2(366,658),Vector2(784,686),Vector2(262,676),Vector2(884,696)]:
+	for point in [study.eira_review.APPROACH,Vector2(366,658),Vector2(784,686),Vector2(262,676),Vector2(884,696)]:
 		check(reachable.has(Vector2i(point/16)),"Town approach is unreachable: "+str(point))
 	check(not study.ground.path_cells.has(Vector2i(344/32,410/32)),"Eira lectern is still on the road")
 	for y in range(400,465,8):

@@ -1,6 +1,6 @@
 extends "res://tests/sanctuary_refuge_review_smoke.gd"
 
-const EVIDENCE := "res://art_source/review/ui/sanctuary_theme_2026_10_02/"
+const EVIDENCE := "res://art_source/review/ui/sanctuary_functionality_2026_10_02/"
 
 func _run() -> void:
 	root.size = Vector2i(960,540)
@@ -87,6 +87,8 @@ func _run() -> void:
 	for child in library._collection.get_children():
 		if child is PanelContainer: collection_panel = child
 	check(collection_panel != null and collection_panel.get_theme_stylebox("panel") is StyleBoxTexture,"Technique collection escaped shared generated theme")
+	await process_frame
+	check(Rect2(Vector2.ZERO,Vector2(960,540)).encloses(collection_panel.get_global_rect()),"Training/loadout collection overflows the viewport")
 	check(not study._panel.visible and not study.town_map.mini.visible,"Study controls or minimap cover technique collection")
 	await capture("technique_collection.png")
 	library._collection._close()

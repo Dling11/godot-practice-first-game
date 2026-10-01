@@ -70,6 +70,9 @@ const FUTURE_SKILL_TIERS := [
 signal menu_closed
 
 var _skillkeeper_access := false
+var collection_button: Button
+var _skill_context: Label
+var _future_tiers: HBoxContainer
 
 @export var player: Player
 
@@ -147,12 +150,17 @@ func _ready() -> void:
 	sort_button.pressed.connect(_cycle_inventory_sort)
 	equipment_detail_panel.equip_requested.connect(_on_equipment_equip_requested)
 	_build_character_bag()
+	collection_button = Button.new()
+	collection_button.add_theme_font_size_override("font_size",11)
+	collection_button.pressed.connect(func() -> void: player.get_node("KingSkillLibrary").open_collection(_skillkeeper_access))
+	skills_page.get_node("SkillHeader").add_child(collection_button)
+	_skill_context = Label.new()
+	_skill_context.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_skill_context.add_theme_font_size_override("font_size",11)
+	skills_page.add_child(_skill_context)
+	skills_page.move_child(_skill_context, 0)
+	_refresh_skill_context()
 	_build_skill_cards()
-	var collection := Button.new()
-	collection.text="TECHNIQUE COLLECTION"
-	collection.add_theme_font_size_override("font_size",11)
-	collection.pressed.connect(func() -> void: player.get_node("KingSkillLibrary").open_collection(_skillkeeper_access))
-	skills_page.get_node("SkillHeader").add_child(collection)
 	_show_page(&"gear", false)
 	_start_portrait_aura()
 	hide()
@@ -186,9 +194,11 @@ func open_menu() -> void:
 func open_skillkeeper_menu() -> void:
 	if visible or get_tree().paused:
 		return
+	_skillkeeper_access = true
+	_refresh_skill_context()
 	_show_page(&"skills", false)
 	open_menu()
-	_skillkeeper_access = true
+	collection_button.grab_focus()
 
 
 func close_menu() -> void:
@@ -196,6 +206,7 @@ func close_menu() -> void:
 		return
 	hide()
 	_skillkeeper_access = false
+	_refresh_skill_context()
 	if _owns_pause:
 		get_tree().paused = false
 	_owns_pause = false
@@ -617,6 +628,14 @@ func _build_skill_cards() -> void:
 	_clear_children(skills_container)
 	_skill_cards.clear()
 	_future_skill_cards.clear()
+	if _future_tiers == null:
+		_future_tiers = HBoxContainer.new()
+		_future_tiers.name = "FutureTiers"
+		_future_tiers.add_theme_constant_override("separation",8)
+		skills_page.add_child(_future_tiers)
+		skills_page.move_child(_future_tiers,skills_page.get_node("SkillDetail").get_index()+1)
+	else:
+		_clear_children(_future_tiers)
 	if player.skill_loadout == null or not player.skill_loadout.has_complete_layout():
 		push_error("CharacterMenu requires a complete ten-slot skill loadout.")
 		return
@@ -631,12 +650,15 @@ func _build_skill_cards() -> void:
 		_skill_cards.append(card)
 	for tier: Dictionary in FUTURE_SKILL_TIERS:
 		var preview := SkillSlotCardScene.instantiate() as SkillSlotCard
-		skills_container.add_child(preview)
+		_future_tiers.add_child(preview)
 		preview.configure_locked_preview(
 			tier["node_name"],
 			tier["display_name"],
 			tier["description"]
 		)
+		preview.custom_minimum_size = Vector2(144,30)
+		preview.add_theme_font_size_override("font_size",8)
+		preview.add_theme_constant_override("icon_max_width",16)
 		_future_skill_cards.append(preview)
 	_configure_skill_focus()
 	if not _skill_cards.is_empty():
@@ -656,14 +678,15 @@ func _configure_skill_focus() -> void:
 		return
 	for index in _skill_cards.size():
 		var card := _skill_cards[index]
-		var previous := _skill_cards[posmod(index - 1, _skill_cards.size())]
-		var next := _skill_cards[(index + 1) % _skill_cards.size()]
+		var row_start: int = index / skills_container.columns * skills_container.columns
+		var previous := _skill_cards[row_start+posmod(index-row_start-1,skills_container.columns)]
+		var next := _skill_cards[row_start+posmod(index-row_start+1,skills_container.columns)]
 		card.focus_neighbor_left = card.get_path_to(previous)
 		card.focus_neighbor_right = card.get_path_to(next)
-		card.focus_neighbor_top = card.get_path_to(skills_tab_button)
-		card.focus_neighbor_bottom = card.get_path_to(close_button)
+		card.focus_neighbor_top = card.get_path_to(_skill_cards[index-skills_container.columns] if index >= skills_container.columns else skills_tab_button)
+		card.focus_neighbor_bottom = card.get_path_to(_skill_cards[index+skills_container.columns] if index+skills_container.columns < _skill_cards.size() else collection_button)
 	skills_tab_button.focus_neighbor_bottom = skills_tab_button.get_path_to(_skill_cards[0])
-	close_button.focus_neighbor_top = close_button.get_path_to(_skill_cards[-1])
+	close_button.focus_neighbor_top = close_button.get_path_to(collection_button)
 
 
 func _focus_default_control() -> void:
@@ -698,6 +721,12 @@ func _on_skill_slot_selected(definition: SkillSlotDefinition) -> void:
 
 
 var _selected_skill: SkillSlotDefinition
+
+
+func _refresh_skill_context() -> void:
+	if collection_button == null: return
+	collection_button.text = "TRAIN & ARRANGE" if _skillkeeper_access else "ARRANGE SKILLS"
+	_skill_context.text = "EIRA · SKILL TRAINING   Select a technique to check its next upgrade and arrange your combat slots." if _skillkeeper_access else "COMBAT LOADOUT   Arrange learned techniques in Sanctuary. Visit Eira for skill upgrades."
 
 
 func _start_portrait_aura() -> void:

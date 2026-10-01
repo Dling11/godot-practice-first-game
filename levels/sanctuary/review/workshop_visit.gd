@@ -5,7 +5,6 @@ const Room = preload("res://levels/sanctuary/review/workshop_interior.gd")
 const ThemeKit = preload("res://ui/themes/sanctuary_theme.gd")
 const ROOM_ORIGIN := Vector2(2400,1920)
 const ENTRY_APRON := Rect2(-28,-4,56,76)
-const AUTO_ENTRY := Rect2(-24,-4,48,30)
 var study: Node
 var hub: Node
 var player: Player
@@ -29,7 +28,7 @@ func configure(owner_study: Node) -> void:
 	hub.get_node("World/Actors").add_child(room)
 	study.orren_review.workshop.set_meta("interior_status",&"review_playable")
 	door_label = Label.new()
-	door_label.text = "ENTER WORKSHOP"
+	door_label.text = "WORKSHOP · [F]"
 	door_label.position = Vector2(-72,14)
 	door_label.add_theme_font_size_override("font_size",10)
 	door_label.add_theme_color_override("font_color",Color(.98,.8,.46))
@@ -145,11 +144,7 @@ func _reset_movement() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_action_pressed("player_interact") or event.is_echo() or not _can_transfer(): return
-	var was_inside := inside
 	_refresh()
-	if not was_inside and inside:
-		get_viewport().set_input_as_handled()
-		return
 	if _target.is_empty(): return
 	get_viewport().set_input_as_handled()
 	match _target:
@@ -180,11 +175,8 @@ func _refresh() -> void:
 				_prompt = ""
 				_target = ""
 				return
-		if _at_door(AUTO_ENTRY) and _can_transfer():
-			enter()
-			return
 		if _at_door():
-			_set_prompt("enter","ENTER WORKSHOP [F]")
+			_set_prompt("enter","PRESS F · ENTER WORKSHOP")
 		else: _set_prompt("","")
 		return
 	var point := player.global_position-ROOM_ORIGIN

@@ -1,5 +1,7 @@
 # Asset Catalog
 
+**NPC usability evidence (2026-10-02):** Native Eira work-corner, shared skill grid, training requirements, pointer swap and ordinary loadout captures are under art_source/review/ui/sanctuary_functionality_2026_10_02/. This pass reuses existing sprites/icons/generated menu frames; no new artwork was generated. Earlier theme captures are preserved.
+
 **Orren interior assets (2026-10-02):** Built-in imagegen original/alpha kits and exact PROMPTS.md are under art_source/generated/environment/sanctuary/orren_interior_2026_10_02/. tools/build_orren_interior_art.gd crops/normalizes the existing kit to assets/environment/sanctuary/interiors/orren/v2/: shell 480x168, forge 56x60, workbench 56x30, rack 48x39. normalization_v2.json is beside sources; native captures, including King beside the bench at the same floor baseline, are under art_source/review/environment/orren_interior_scale_v2_2026_10_02/. Oversized original assets under orren/ and original captures are preserved.
 
 **Current Sanctuary house/UI assets (2026-10-01):** Built-in imagegen sources/prompts under art_source/generated/environment/sanctuary/orthographic_2026_10_01/ and art_source/generated/ui/sanctuary_theme_2026_10_01/ produce assets/environment/sanctuary/orthographic/{nema,umi}.png and assets/ui/sanctuary_theme/{panel,map_paper}.png. tools/build_sanctuary_interface_art.gd owns deterministic normalization. Native evidence: art_source/review/ui/sanctuary_theme_2026_10_01/. Earlier angled houses below are preserved rejected variants; the swallow and NPC art remain active.

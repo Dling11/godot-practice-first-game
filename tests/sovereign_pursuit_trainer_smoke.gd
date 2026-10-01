@@ -30,10 +30,7 @@ func _run() -> void:
 	var menu: CharacterMenu = sanctuary.character_menu
 	menu.open_skillkeeper_menu()
 	check(menu._skillkeeper_access, "Eira did not open the trainer context")
-	var collection_button: Button
-	for child in menu.skills_page.get_node("SkillHeader").get_children():
-		if child is Button and child.text == "TECHNIQUE COLLECTION":
-			collection_button = child
+	var collection_button: Button = menu.collection_button
 	check(collection_button != null, "Eira's skills page has no collection entry")
 	if collection_button != null:
 		collection_button.pressed.emit()

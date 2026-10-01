@@ -205,8 +205,8 @@ func _run() -> void:
 		return
 	if (
 		menu._future_skill_cards.size() != 2
-		or not menu.has_node("Panel/Margin/Root/PageHost/SkillsPage/Skills/UltimateSlot")
-		or not menu.has_node("Panel/Margin/Root/PageHost/SkillsPage/Skills/RealityBreakingSlot")
+		or not menu.has_node("Panel/Margin/Root/PageHost/SkillsPage/FutureTiers/UltimateSlot")
+		or not menu.has_node("Panel/Margin/Root/PageHost/SkillsPage/FutureTiers/RealityBreakingSlot")
 		or not menu._future_skill_cards[0].disabled
 		or not menu._future_skill_cards[1].disabled
 		or not menu._future_skill_cards[0].text.contains("ULTIMATE")

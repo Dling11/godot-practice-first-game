@@ -1,6 +1,6 @@
 extends "res://tests/sanctuary_refuge_review_smoke.gd"
 
-const EVIDENCE := "res://art_source/review/environment/orren_interior_scale_v2_2026_10_02/"
+const EVIDENCE := "res://art_source/review/environment/orren_interior_manual_entry_2026_10_02/"
 
 func _run() -> void:
 	root.size = Vector2i(960,540)
@@ -33,12 +33,17 @@ func _run() -> void:
 	player.position = approach
 	visit._refresh()
 	study.town_map.select_destination("eira")
-	# Real walking into the doorstep must enter without F.
+	# Walking all the way to the door must keep F available without entering.
 	Input.action_press("player_move_up")
 	await create_timer(.3).timeout
 	Input.action_release("player_move_up")
-	check(visit.inside and visit.room.visible and visit.room.navigation.enabled,"Walking to the doorstep fails to enter automatically")
-	check(visit.Room.FLOOR.has_point(player.global_position-visit.ROOM_ORIGIN),"Automatic entry does not place King on the interior floor")
+	await create_timer(.2).timeout
+	check(not visit.inside and not visit.room.visible and not visit.room.navigation.enabled,"Walking to the doorstep enters without F")
+	check(visit._target == "enter" and visit._prompt == "PRESS F · ENTER WORKSHOP" and hub.combat_hud.interaction_panel.visible,"F prompt disappears close to the door")
+	await capture("close_door_prompt.png")
+	await press_interact()
+	check(visit.inside and visit.room.visible and visit.room.navigation.enabled,"Physical F at the doorstep fails to enter")
+	check(visit.Room.FLOOR.has_point(player.global_position-visit.ROOM_ORIGIN),"F entry does not place King on the interior floor")
 	check(player.movement_bounds != bounds and not player.is_cinematic_locked(),"Entry fails to give room bounds and player control")
 	check(not study.town_map.mini.visible and not study._panel.visible and visit.title.visible,"Outdoor overlays cover workshop")
 	study.town_map.toggle()
@@ -110,12 +115,12 @@ func _run() -> void:
 	study.visit_workshop()
 	await create_timer(.2).timeout
 	await press_interact()
-	check(visit.inside,"Optional physical F entry no longer works from the lower approach")
+	check(visit.inside,"Physical F entry no longer works from the lower approach")
 	visit.leave()
 	study.visit_workshop()
 	player.position = study.orren_review.workshop.get_node("Doorway").global_position+Vector2(0,10)
 	await press_interact()
-	check(visit.inside,"Pressing F at the automatic-entry threshold enters and exits in the same event")
+	check(visit.inside,"Pressing F close to the door fails to enter or exits in the same event")
 	visit.leave()
 	study.visit_workshop()
 	player.request_evade(Vector2.LEFT)
@@ -131,7 +136,7 @@ func _run() -> void:
 	check(visit.enter(),"Workshop cannot reopen after comparison")
 	study.visit_eira()
 	await create_timer(.2).timeout
-	check(not visit.inside and player.position.distance_to(Vector2(344,474))<2,"Visit button strands player/camera indoors")
+	check(not visit.inside and player.position.distance_to(study.eira_review.APPROACH)<2,"Visit button strands player/camera indoors")
 	await press_interact()
 	check(hub.dialogue_panel.visible and hub.dialogue_panel.speaker_label.text == hub.skillkeeper.speaker_name,"Workshop input steals Eira service F")
 	hub.dialogue_panel.close_dialogue(true)
