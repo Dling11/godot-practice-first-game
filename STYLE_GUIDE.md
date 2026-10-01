@@ -1,8 +1,8 @@
 # Style Guide
 
-## Owner UI preference: Slim Runic
+## Owner UI preference: Portrait Link and Slim Runic
 
-2026-10-02: the owner selected Slim Runic for its simplicity and wants this approach used often. Favor compact horizontal readouts, restrained gold borders, small violet accents and clear native text over large decorative surrounds. Keep important state legible through text and color. Separate unrelated information into quiet rows; decoration must leave health fills, numbers and input targets unobstructed. This guides future UI work; existing accepted art is not automatically replaced. Runtime labels/fills remain Godot controls; review at960x540 with nearest sampling and binary-alpha generated frames.
+2026-10-02: the owner selected Slim Runic simplicity, then C Portrait Link, then requested a smaller footprint and XP digits INSIDE its bar. Favor compact gold-edged rails, small violet accents and a bounded portrait. Use outlined native HP/XP text above fills rather than separate raised plaques; show level beneath the portrait and exact grouped XP without changing progression. Important state remains legible through text and color; separate unrelated status into small quiet rows. Keep portrait bodies aligned to the actual content-canvas center, accounting for borders and resize anchors. Review at960x540 with nearest sampling and binary-alpha art. Future layout concepts require owner choice before replacing the live equipment UI.
 
 **Status/inventory convention (2026-10-02):** Show authoritative HP immediately; animate a separate recent-loss trail. Pair critical color with readable text and keep shield/level notices clear of bag access. Share XP/cap copy and derive named requirements from data, including preserved legacy levels. Show filtered results and equipment/pouch totals separately; never imply materials consume gear capacity. Bound inventory bodies, preserve typing/item focus, clamp raster icons explicitly and present empty states without stale equip actions. Tight-crop transparent sources after alpha normalization; keep source/prompt/manifest provenance.
 

@@ -2,6 +2,8 @@ extends CanvasLayer
 
 const MapDrawing = preload("res://levels/sanctuary/town/town_map_drawing.gd")
 const ThemeKit = preload("res://ui/themes/sanctuary_theme.gd")
+## Owner requested temporary map withdrawal during layout iteration.
+const PRESENTATION_ENABLED := false
 var entries: Array[Dictionary] = []
 var player: Node2D
 var hub: Node
@@ -99,8 +101,9 @@ func hide_for_modal() -> void:
 	guidance.hide()
 
 func set_enabled(value: bool) -> void:
-	enabled = value
-	if value:
+	enabled = value and PRESENTATION_ENABLED
+	set_process_unhandled_key_input(enabled)
+	if enabled:
 		_timer.start()
 		_refresh()
 	else:

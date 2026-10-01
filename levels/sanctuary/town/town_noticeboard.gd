@@ -17,16 +17,16 @@ func _ready() -> void:
 	body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body: Node2D) -> void:
-	if not body is Player: return
+	if not body is Player or not town_map.enabled: return
 	player_inside = true
 	hub.combat_hud.show_interaction_prompt(true,"PRESS F · TOWN MAP",null)
 
 func _on_body_exited(body: Node2D) -> void:
-	if not body is Player: return
+	if not body is Player or not player_inside: return
 	player_inside = false
 	hub.combat_hud.show_interaction_prompt(false,"",null)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if player_inside and event.is_action_pressed("player_interact") and not hub.dialogue_panel.visible:
+	if town_map.enabled and player_inside and event.is_action_pressed("player_interact") and not hub.dialogue_panel.visible:
 		town_map.toggle()
 		get_viewport().set_input_as_handled()

@@ -28,7 +28,7 @@ func _run() -> void:
 	if progression.level != 1 or progression.total_experience != 149 or progression.coins != 2:
 		_fail("XP or coin rewards did not update session state correctly.")
 		return
-	if hud.get_node("ProgressPanel/Margin/Stack/Header/LevelLabel").text != "LEVEL 1":
+	if hud.level_label.text != "LV. 1":
 		_fail("Progression HUD did not display the current level.")
 		return
 	if not progression.spend_coins(1) or progression.coins != 1 or progression.spend_coins(2):
@@ -80,7 +80,7 @@ func _run() -> void:
 	if progression.level != 10 or not is_equal_approx(player.health_component.maximum_health, 248.0):
 		_fail("Progression or level-scaled vitality failed to reach the Level-10 cap.")
 		return
-	if hud.get_node("ProgressPanel/Margin/Stack/ExperienceLabel").text != "MAX LEVEL":
+	if hud.experience_label.text != "MAX LEVEL":
 		_fail("Progression HUD did not show maximum-level state.")
 		return
 

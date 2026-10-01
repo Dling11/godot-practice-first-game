@@ -12,7 +12,7 @@ F5 -> Continue loads the renewed Sanctuary directly, with normal recovery/save b
 - Umi retains canonical sale/reconstruction service, material metadata, encounter memory and transaction rules. No new exchange economy is introduced.
 - All four NPCs retain their original dialogue/body/interaction authority, current portraits, role markers, names, work poses and proximity greetings.
 - Current overhead houses, planted trees, intentional wall runs, courier footfalls/yield/rest/dialogue, foliage motion and occasional birds remain. Other house interiors are deferred.
-- M or clicking the corner minimap opens the service directory. Selecting a destination highlights its service and shows direction. F at the noticeboard opens the same map. Modal/interior visits hide outdoor map presentation.
+- Map/minimap/directory are temporarily withdrawn at the owner's request during further layout iteration. TownMap.PRESENTATION_ENABLED=false stops polling and blocks M/toggle/destination entry; the noticeboard stays a prop without map prompt or F consumption. The map modules/art remain for later restoration. NPC service beacons and F dialogues are unaffected.
 - Shared HP loss trail/critical label, exact XP/cap copy and searchable Character & Bag remain. Tab or the bag button opens inventory; Esc closes menus. The town uses the compact action frame and generated modal theme. Expeditions retain their existing battle frame.
 
 ## Ownership

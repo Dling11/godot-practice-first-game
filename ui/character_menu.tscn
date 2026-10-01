@@ -334,9 +334,11 @@ layout_mode = 2
 [node name="Portrait" type="PanelContainer" parent="Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/PaperDollMargin/PaperDollRoot/EquipmentLayout"]
 layout_mode = 1
 anchors_preset = 0
-offset_left = 190.0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -76.0
 offset_top = 28.0
-offset_right = 342.0
+offset_right = 76.0
 offset_bottom = 151.0
 theme_override_styles/panel = SubResource("portrait_panel")
 
@@ -346,23 +348,23 @@ clip_contents = true
 
 [node name="PortraitAura" type="Polygon2D" parent="Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas"]
 unique_name_in_owner = true
-position = Vector2(76, 68)
+position = Vector2(75, 68)
 polygon = PackedVector2Array(0, -54, 40, -33, 55, 0, 40, 33, 0, 54, -40, 33, -55, 0, -40, -33)
 color = Color(0.463, 0.353, 0.639, 0.34)
 
 [node name="PortraitAuraCore" type="Polygon2D" parent="Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas"]
-position = Vector2(76, 68)
+position = Vector2(75, 68)
 polygon = PackedVector2Array(0, -43, 32, -26, 44, 0, 32, 26, 0, 43, -32, 26, -44, 0, -32, -26)
 color = Color(0.027, 0.034, 0.052, 0.96)
 
 [node name="PortraitShadow" type="Polygon2D" parent="Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas"]
-position = Vector2(76, 117)
+position = Vector2(75, 117)
 polygon = PackedVector2Array(-25, 0, -15, -5, 15, -5, 25, 0, 15, 5, -15, 5)
 color = Color(0.01, 0.015, 0.025, 0.68)
 
 [node name="Body" type="AnimatedSprite2D" parent="Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas"]
 material = SubResource("ShaderMaterial_king_outline")
-position = Vector2(55, 60)
+position = Vector2(75, 60)
 scale = Vector2(1.75, 1.75)
 sprite_frames = ExtResource("7_frames")
 animation = &"idle_down"

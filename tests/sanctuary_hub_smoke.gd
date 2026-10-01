@@ -1,7 +1,7 @@
 extends "res://tests/sanctuary_test_base.gd"
 
 const PROFILE := "user://sanctuary_closeout_smoke.json"
-const EVIDENCE := "res://art_source/review/environment/sanctuary_closeout_2026_10_02/"
+const EVIDENCE := "res://art_source/review/environment/sanctuary_compact_ui_2026_10_02/"
 
 func _run() -> void:
 	root.size = Vector2i(960,540)
@@ -20,7 +20,11 @@ func _run() -> void:
 	check(save.has_valid_profile(),"Normal Sanctuary no longer writes a recovery checkpoint")
 	check(not town.test_controls_enabled and not town._panel.visible,"Normal town exposes review controls")
 	check(town.ground.get_used_cells().size() == 36*24,"Current ground does not cover Sanctuary")
-	check(town.town_map.mini.visible and not town.town_map.panel.visible,"Normal play lacks the minimap")
+	check(not town.town_map.enabled and not town.town_map.mini.visible and not town.town_map.panel.visible and town.town_map._timer.is_stopped(),"Withdrawn map is visible or still polling")
+	town.town_map.set_enabled(true)
+	town.town_map.toggle()
+	town.town_map.select_destination("eira")
+	check(not town.town_map.enabled and not town.town_map.panel.visible and town.town_map.selected_id.is_empty(),"Activation or selection revives the withdrawn map")
 	check(town.dressing.trees.size() == 6 and town.dressing.buildings.size() == 2,"Current town dressing missing")
 	check(town.beacons.size() == 4,"NPC discovery markers missing")
 	for obsolete in ["ArmskeeperCart","SkillkeeperLodge","ArmskeeperWorkshop","TreeWest","LivingRootforge","EchoCrucible"]:

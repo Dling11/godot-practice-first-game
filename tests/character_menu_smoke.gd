@@ -63,7 +63,7 @@ func _run() -> void:
 		"Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/"
 		+ "PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas/Body"
 	) as AnimatedSprite2D
-	if preview_body.sprite_frames != KingFrames or preview_body.position != Vector2(55, 60) or preview_body.scale != Vector2(1.75, 1.75):
+	if preview_body.sprite_frames != KingFrames or preview_body.position != Vector2(75, 60) or preview_body.scale != Vector2(1.75, 1.75):
 		_fail("Character menu preview is not using King's body-centered active model.")
 		return
 	var preview_grip := menu.get_node(

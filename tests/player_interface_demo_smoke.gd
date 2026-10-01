@@ -16,9 +16,9 @@ func _run() -> void:
 	var row: Control = study._panel.get_child(0).get_node("InterfaceDemoControls")
 	check(root.get_node("SaveService").is_autosave_suppressed_for_debug(),"Demo permits normal profile writes")
 	check(hub.player.progression_component.total_experience == 100 and hub.player.progression_component.coins == 750,"Demo fixture did not apply")
-	check(Rect2(Vector2.ZERO,Vector2(960,540)).encloses(row.get_global_rect()) and not row.get_global_rect().intersects(study.town_map.mini.get_global_rect()),"Demo controls overflow or cover the map")
+	check(Rect2(Vector2.ZERO,Vector2(960,540)).encloses(row.get_global_rect()) and not row.get_global_rect().intersects(hub.combat_hud.status_presenter.frame.get_global_rect()) and not study.town_map.enabled and not study.town_map.mini.visible,"Demo controls cover the compact HUD or revive the withdrawn map")
 	await click(button(row,"+75 XP"))
-	check(hub.player.progression_component.level == 2 and hub.combat_hud.status_presenter.level_toast.visible,"XP preview fails actual level-up")
+	check(hub.player.progression_component.level == 2 and hub.combat_hud.status_presenter.level_toast.visible and hub.combat_hud.experience_label.text == "XP 25 / 250" and hub.combat_hud.experience_bar.value == 25 and hub.combat_hud.experience_bar.max_value == 250,"XP preview fails actual level-up or carries the previous level's XP into the bar")
 	for _hit in 4: await click(button(row,"Lose 35 HP"))
 	check(hub.player.health_component.current_health == 12 and hub.combat_hud.status_presenter.health_state.text == "CRITICAL","Repeated demo damage cannot show critical health")
 	await capture_demo("interface_demo_critical.png")
@@ -27,7 +27,7 @@ func _run() -> void:
 	for _reward in 4: await click(button(row,"+75 XP"))
 	check(hub.player.progression_component.level == 3 and hub.combat_hud.experience_label.text.begins_with("STAGE CAP"),"Demo bypasses the actual progression ceiling")
 	await click(button(row,"Next stage cap"))
-	check(hub.player.progression_component.get_current_level_cap() == 4 and hub.combat_hud.experience_label.text.contains("350 to Lv.4"),"Demo stage control does not unlock the real next gate")
+	check(hub.player.progression_component.get_current_level_cap() == 4 and hub.combat_hud.experience_label.text == "XP 0 / 350" and hub.combat_hud.experience_label.tooltip_text.contains("350 to Lv.4"),"Demo stage control does not unlock the real next gate")
 	await capture_demo("interface_demo_growth.png")
 	await create_timer(.5,false,true).timeout
 	var event := InputEventKey.new()
@@ -78,7 +78,7 @@ func capture_demo(file: String) -> void:
 	if DisplayServer.get_name() == "headless": return
 	await process_frame
 	await RenderingServer.frame_post_draw
-	var folder := "res://art_source/review/ui/slim_runic_hp_2026_10_02/demo/"
+	var folder := "res://art_source/review/ui/portrait_link_compact_2026_10_02/demo/"
 	DirAccess.make_dir_recursive_absolute(folder)
 	check(root.get_texture().get_image().save_png(folder+file) == OK,"Demo capture failed")
 

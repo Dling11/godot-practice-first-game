@@ -5,7 +5,7 @@ const Study = preload("res://levels/sanctuary/town/sanctuary_town.gd")
 const MATERIALS = preload("res://data/items/materials/material_catalog.tres")
 const GEAR = preload("res://data/items/equipment/forest/stage_5_core_catalog.tres")
 const PROFILE := "user://player_interface_readability_smoke.json"
-const EVIDENCE := "res://art_source/review/ui/slim_runic_hp_2026_10_02/"
+const EVIDENCE := "res://art_source/review/ui/portrait_link_compact_2026_10_02/"
 var checks := 0
 var failures := 0
 
@@ -28,13 +28,18 @@ func _run() -> void:
 	var hud: CombatHUD = hub.combat_hud
 	var presenter: Node = hud.status_presenter
 	check(presenter.frame.get_theme_stylebox("panel") is StyleBoxTexture,"HUD does not use the new generated frame")
-	check(presenter.frame.size == Vector2(248,38) and presenter.frame.get_theme_stylebox("panel").texture.resource_path.ends_with("slim_runic_hp.png"),"HUD loses the selected slim frame")
-	check(presenter.frame.get_global_rect().encloses(hud.health_label.get_global_rect()) and presenter.frame.get_global_rect().encloses(hud.health_bar.get_global_rect()) and not hud.health_label.get_global_rect().intersects(hud.health_bar.get_global_rect()),"Native HP numbers overlap or escape the health fill")
-	check(not presenter.frame.get_global_rect().intersects(hud.get_node("ProgressPanel").get_global_rect()) and not presenter.health_state.get_global_rect().intersects(hud.get_node("ProgressPanel").get_global_rect()),"Slim health/critical readout overlaps progression")
+	check(presenter.frame.size == Vector2(248,64) and presenter.frame.get_theme_stylebox("panel").texture.resource_path.ends_with("portrait_link_compact.png"),"HUD loses the compact Portrait Link frame")
+	check(presenter.frame.get_global_rect().encloses(hud.health_bar.get_global_rect()) and hud.health_bar.get_global_rect().encloses(hud.health_label.get_global_rect()) and hud.health_label.get_index() > hud.health_bar.get_parent().get_index(),"HP digits escape the bar or draw beneath its fill")
+	check(presenter.frame.get_global_rect().encloses(hud.experience_bar.get_global_rect()) and hud.experience_bar.get_global_rect().encloses(hud.experience_label.get_global_rect()) and hud.experience_label.get_index() > hud.experience_bar.get_index(),"XP digits escape the bar or draw beneath its fill")
+	check(not hud.get_node("ProgressPanel").visible and not presenter.health_state.get_global_rect().intersects(hud.coin_label.get_global_rect()) and not presenter.frame.get_global_rect().intersects(hud.character_menu_button.get_global_rect()),"Legacy panel or status/currency/bag overlap remains")
+	check(hud.get_node("%LevelLabel") == hud.level_label and hud.get_node("%ExperienceBar") == hud.experience_bar and hud.get_node("%ExperienceLabel") == hud.experience_label and hud.get_node("%CoinLabel") == hud.coin_label,"Portrait composition loses unique progression controls")
+	var font := hud.experience_label.get_theme_font("font")
+	check(font.get_string_size("XP 3,250 / 10,000",HORIZONTAL_ALIGNMENT_LEFT,-1,hud.experience_label.get_theme_font_size("font_size")).x <= hud.experience_label.size.x,"Five-digit XP values will clip in the approved plaque")
+	check(CombatHUD.ProgressionReadout.format_number(10000) == "10,000" and CombatHUD.ProgressionReadout.format_number(3250) == "3,250" and CombatHUD.ProgressionReadout.format_number(0) == "0","XP/currency digits are incorrectly grouped")
 	check(hud.get_node("%HealthBar") == hud.health_bar,"Status composition loses the scene's unique health control")
 	check(hud.health_bar.value == 140 and hud.health_label.text.contains("140 / 140"),"Initial vitality is inaccurate")
 	check(hud.health_label.tooltip_text.contains("100%") and hud.health_label.tooltip_text.contains("5"),"Vitality tooltip is missing or disagrees with regeneration data")
-	check(hud.experience_label.text.contains("150 to Lv.2"),"Next level XP is unclear")
+	check(hud.level_label.text == "LV. 1" and hud.experience_label.text == "XP 0 / 150" and hud.experience_label.tooltip_text.contains("150 to Lv.2"),"Actual level and exact XP digits are unclear")
 	await capture("hud_normal.png")
 	actor.health_component.set_current_health(70)
 	check(hud.health_bar.value == 70 and presenter.health_trail.value == 140,"HP delays damage instead of only animating the trail")
@@ -47,20 +52,20 @@ func _run() -> void:
 	actor.health_component.set_current_health(140)
 	check(presenter.health_state.text.is_empty() and presenter.health_trail.value == 140,"Healing leaves a false critical/damage display")
 	actor.progression_component.grant_rewards(150,0)
-	check(actor.progression_component.level == 2 and actor.health_component.maximum_health == 152,"Presentation changed the real level/HP curve")
+	check(actor.progression_component.level == 2 and actor.health_component.maximum_health == 152 and hud.level_label.text == "LV. 2" and hud.experience_label.text == "XP 0 / 250" and hud.experience_bar.max_value == 250 and hud.experience_bar.value == 0,"Real level-up disagrees with HUD level/HP/XP or changes the curve")
 	check(presenter.level_toast.visible and presenter._toast_text.text.contains("Earthsplitter"),"Real level-up does not announce Eira training")
 	await capture("hud_level_up.png")
 	var session := root.get_node("RunSession")
 	session.update_progression(400,0)
-	check(hud.experience_label.text == "STAGE CAP · LEVEL 3" and hud.experience_label.tooltip_text.contains("Stage I") and hud.experience_label.tooltip_text.contains("Level 4"),"Stage cap fails to name its real unlock")
+	check(hud.experience_label.text == "STAGE CAP" and hud.level_label.text == "LV. 3" and hud.experience_label.tooltip_text.contains("Stage I") and hud.experience_label.tooltip_text.contains("Level 4"),"Stage cap fails to name its real unlock")
 	actor.progression_component.grant_rewards(999,10)
 	check(session.total_experience == 400 and session.coins == 10,"Stage-cap copy changed reward authority")
 	await capture("hud_stage_cap.png")
 	var story := root.get_node("StoryState")
 	story.remember_story(&"forgotten_grove_stage_1_cleared")
-	check(hud.experience_label.text.contains("350 to Lv.4"),"Unlocking a cap leaves the HUD stuck")
+	check(hud.experience_label.text == "XP 0 / 350" and hud.experience_label.tooltip_text.contains("350 to Lv.4"),"Unlocking a cap leaves the HUD stuck")
 	session.update_progression(1750,10)
-	check(hud.experience_label.text == "STAGE CAP · LEVEL 6" and hud.experience_label.tooltip_text.contains("Stage IV") and hud.experience_label.tooltip_text.contains("Level 7"),"Older earned levels are given an obsolete lower cap requirement")
+	check(hud.experience_label.text == "STAGE CAP" and hud.level_label.text == "LV. 6" and hud.experience_label.tooltip_text.contains("Stage IV") and hud.experience_label.tooltip_text.contains("Level 7"),"Older earned levels are given an obsolete lower cap requirement")
 	session.update_progression(400,10)
 	check(actor.request_ability(4),"HUD rearrangement blocks Unbroken Vow")
 	await create_timer(.2,false,true).timeout
@@ -118,6 +123,9 @@ func _run() -> void:
 	check(not menu.consumables_filter_button.visible and not menu.key_filter_button.visible,"Unimplemented bag categories are offered as working filters")
 	check(menu.visible and paused,"HUD bag button does not open the inventory")
 	await process_frame
+	var portrait: Control = menu.portrait_aura.get_parent().get_parent()
+	var body: AnimatedSprite2D = portrait.get_node("PortraitCanvas/Body")
+	check(is_equal_approx(body.position.x,portrait.get_node("PortraitCanvas").size.x/2) and is_equal_approx(portrait.position.x+portrait.size.x/2,portrait.get_parent().size.x/2),"King or his paperdoll field is not horizontally centered")
 	check(Rect2(Vector2.ZERO,Vector2(960,540)).encloses(menu.get_node("Panel").get_global_rect()),"Bag exceeds native viewport")
 	check(menu.bag_footer.text.contains("15 material types") and menu.bag_footer.text.contains("7 equipment"),"Bag merges material pouch with equipment counts")
 	check(menu._selectable_inventory_slots.size() == 22 and menu.bag_capacity_label.text == "SHOWING 22","Combined bag loses owned items")

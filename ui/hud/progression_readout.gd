@@ -6,18 +6,29 @@ const Training = preload("res://data/abilities/king/king_training_catalog.gd")
 static func describe(progression: PlayerProgressionComponent) -> Dictionary:
 	var level := progression.level
 	var maximum := progression.definition.maximum_level
-	var result := {"level":"LEVEL %d" % level,"maximum":1,"value":1,"text":"MAX LEVEL","help":"All current levels reached. Visit Eira to finish eligible technique training."}
+	var result := {"level":"LEVEL %d" % level,"hud_level":"LV. %d" % level,"maximum":1,"value":1,"text":"MAX LEVEL","hud_text":"MAX LEVEL","help":"All current levels reached. Visit Eira to finish eligible technique training."}
 	if level >= maximum: return result
 	if level >= progression.get_current_level_cap():
 		var requirement := progression.definition.next_cap_requirement(progression.get_node_or_null("/root/StoryState"),progression.get_current_level_cap())
 		result.text = "STAGE CAP · LEVEL %d" % level
+		result.hud_text = "STAGE CAP"
 		result.help = "Clear %s to unlock Level %d. XP pauses at this cap; gold and loot still count." % [requirement.get("name","the next expedition"),requirement.get("cap",maximum)]
 		return result
 	result.maximum = progression.experience_required_for_current_level()
 	result.value = progression.experience_into_current_level()
 	result.text = "%d / %d XP · %d to Lv.%d" % [result.value,result.maximum,result.maximum-result.value,level+1]
+	result.hud_text = "XP %s / %s" % [format_number(result.value),format_number(result.maximum)]
 	result.help = "Gain experience from expeditions. Each level increases vitality and skill mastery. "+next_training(level)
 	return result
+
+static func format_number(value: int) -> String:
+	var digits := str(value)
+	var groups: Array[String] = []
+	while digits.length() > 3:
+		groups.push_front(digits.right(3))
+		digits = digits.left(digits.length()-3)
+	groups.push_front(digits)
+	return ",".join(groups)
 
 static func next_training(level: int) -> String:
 	var next_level := 100

@@ -1,6 +1,6 @@
 # Battle of Gods
 
-Sanctuary is temporarily complete for this pass. **F5 -> Continue** now loads the renewed town directly with normal saving. **F** talks to NPCs; finish Eira's dialogue for Training, Nema's for crafting and Umi's for exchange. **M** or the corner minimap opens the service directory. **Tab** opens the searchable Character & Bag; **Esc** closes menus. Approach Orren's workshop door and press **F** to enter; F inspects or leaves indoors. Walking alone does not enter.
+Sanctuary is temporarily complete for this pass. **F5 -> Continue** loads the renewed town directly with normal saving and compact Portrait Link HUD. **F** talks to NPCs; finish Eira's dialogue for Training, Nema's for crafting and Umi's for exchange. The map/minimap/directory, **M** shortcut and noticeboard map interaction are temporarily hidden during layout iteration. **Tab** opens the searchable Character & Bag; **Esc** closes menus. Approach Orren's workshop door and press **F** to enter; F inspects or leaves indoors. Walking alone does not enter.
 
 Eira's free manual training gates: Earth2, Molten3/6/9, Pursuit5/8, Vow7/10, World8/10. Training improves ranks; Loadout arranges ten keys. XP/caps/rewards remain unchanged. Current HUD has immediate HP, damage trail, critical text and exact XP/stage help.
 

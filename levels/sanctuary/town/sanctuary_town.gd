@@ -158,7 +158,7 @@ func _build_controls() -> void:
 	layer.layer = 15
 	add_child(layer)
 	_panel = PanelContainer.new()
-	_panel.position = Vector2(280,8)
+	_panel.position = Vector2(324,8)
 	layer.add_child(_panel)
 	var column := VBoxContainer.new()
 	_panel.add_child(column)
@@ -167,7 +167,7 @@ func _build_controls() -> void:
 	title.add_theme_font_size_override("font_size",12)
 	column.add_child(title)
 	var caption := Label.new()
-	caption.text = "NO SAVES · F to talk · M for town map · Follow the courier"
+	caption.text = "NO SAVES · F to talk · Follow the courier"
 	caption.add_theme_font_size_override("font_size",11)
 	column.add_child(caption)
 	var row := HBoxContainer.new()
@@ -179,7 +179,8 @@ func _build_controls() -> void:
 	var navigation := HBoxContainer.new()
 	column.add_child(navigation)
 	_action(navigation,"Overview / walk",func() -> void: set_overview(not overview))
-	_action(navigation,"Town map [M]",town_map.toggle)
+	if TownMap.PRESENTATION_ENABLED:
+		_action(navigation,"Town map [M]",town_map.toggle)
 	_action(navigation,"Find Rowan",visit_courier)
 	_action(navigation,"Workshop door",visit_workshop)
 

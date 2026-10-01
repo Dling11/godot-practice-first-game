@@ -106,7 +106,7 @@ func bind_player(player: Player) -> void:
 		var vow_status := preload("res://ui/skills/vow_status.gd").new()
 		vow_status.actor = player
 		add_child(vow_status)
-		vow_status.position = Vector2(12,168)
+		vow_status.position = Vector2(12,130)
 	var mastery := player.get_node_or_null("KingMastery") as KingMasteryComponent
 	if mastery != null:
 		mastery.resolve_changed.connect(_update_resolve)
@@ -525,16 +525,16 @@ func _update_progression(_level: int, _total_experience: int, _next_level_experi
 		return
 	var progression := _player.progression_component
 	var readout := ProgressionReadout.describe(progression)
-	level_label.text = readout.level
+	level_label.text = readout.hud_level
 	experience_bar.max_value = readout.maximum
 	experience_bar.value = readout.value
-	experience_label.text = readout.text
-	experience_label.tooltip_text = readout.help
+	experience_label.text = readout.hud_text
+	experience_label.tooltip_text = readout.text+"\n"+readout.help
 	level_label.tooltip_text = readout.help
 
 
 func _update_coins(total_coins: int) -> void:
-	coin_label.text = "COINS %d" % total_coins
+	coin_label.text = "COINS %s" % ProgressionReadout.format_number(total_coins)
 
 
 func _show_testing_preset(level: int, coins: int) -> void:

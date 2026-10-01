@@ -1,5 +1,7 @@
 # Known Issues
 
+**Compact HUD and bag review (2026-10-02):** Owner's large HUD/outside-XP and off-center King corrections are implemented:248x64 Portrait Link, inside-bar numbers, smaller related rows and centered bag model. 74 rendered interface/14 demo/68 town checks pass. Map/minimap/directory are intentionally hidden pending layout revision, including M and noticeboard prompts; map timer stays stopped. Equipment layout A/B/C remains unselected concept work. Representative-phone readability and owner runtime feel remain unverified. Existing GPU shutdown texture warnings persist.
+
 **Sanctuary closeout (Decision 165, 2026-10-02):** Normal Continue reverting to the old town, duplicate optional layouts/idle helpers and conflicting handoff instructions are resolved. The renewed town now runs with normal saving; debug fixtures remain explicitly no-save. Retired material is recoverable and has no live references. Further interiors/indoor audio, representative-phone profiling and whole-kit balance remain deferred. Existing GPU shutdown texture warnings persist. Consumable/key bag filters stay unimplemented and hidden. See docs/design/sanctuary-closeout.md.
 
 

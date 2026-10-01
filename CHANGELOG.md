@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-10-02 - Compact portrait HUD, map withdrawal and centered bag
+
+- Reduce Portrait Link from300x96 to248x64 (about45% less frame area), remove raised HP/XP plaques, and draw outlined live digits inside both rails above the fills. Shrink bag/status rows and move shield/level notice upward without overlap. Keep health/trail/progression/XP/caps/saves unchanged.
+- Temporarily withdraw map/minimap/directory with TownMap.PRESENTATION_ENABLED=false. Stop polling, guard activation and M input, remove debug map control/hint and noticeboard map prompt/input; preserve modules/art for future restoration. Other NPC markers and F services remain.
+- Center King from old body x55 to actual150px canvas center x75, align aura/shadow and use center anchors for the152px portrait field. Keep approved body/art/scale, equipment transactions and bag behavior.
+- Built-in imagegen compact frame edits and exact prompts/normalization are preserved under portrait_link_compact_2026_10_02/. Generate unselected equipment layouts A Centered Paperdoll, B Hero Column, C Armory Desk with exact prompts under loadout_choices_2026_10_02/; generated sample counts are not new game rules.
+- 156 rendered checks pass:74 interface,14 actual demo,68 normal-town/map-withdrawal/save/service checks. CharacterMenu/player-progression/UI-icon smoke pass. Evidence: art_source/review/ui/portrait_link_compact_2026_10_02/ and art_source/review/environment/sanctuary_compact_ui_2026_10_02/. Existing GPU shutdown warnings and owner/phone review remain.
+
+## 2026-10-02 - Owner-selected Portrait Link HUD
+
+- Apply combined HP/XP concept C to shared normal-play CombatHUD: circular King portrait, LV badge beneath it, linked gold/violet HP and XP rails, native numbers and live fills. Coins/critical sit above bag access; shield and level notices remain separate. Shift explicit town review controls right to clear the new300x96 HUD.
+- Readout shows compact exact current-level XP / requirement, with grouped large digits. Keep detailed next-level/training/cap copy in hover and CharacterMenu. Preserve actual XP thresholds, growth, health/trail/heal/shield and save rules; the10,000XP preview example remains illustrative.
+- Built-in imagegen creates blank transparent production chrome while retaining the selected portrait. Preserve exact source/prompt, binary-alpha/crop/nearest Godot builder and slot manifest. Record the owner's preferred art direction; retain prior Slim Runic art/evidence as history.
+- 73 rendered interface and14 actual demo checks pass, including unique-control ownership, numeric plaque/fill bounds, five-digit XP fit, exact XP reset/fill on real level-up, cap copy, Nema transactions and bag/equip. UI-icon and player-progression smoke pass. Native evidence: art_source/review/ui/portrait_link_2026_10_02/. Existing GPU shutdown warnings and phone/owner runtime review remain.
+
 ## 2026-10-02 - Owner-selected Slim Runic HP
 
 - Replace the large shared vitality surround with A Slim Runic: 248x38 HP-only generated frame, native centered HP plaque, separate quiet growth row and explicit critical line. Preserve immediate health, finite damage trail, healing, shield-only hits, growth/cap notices and bag access.
