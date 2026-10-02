@@ -8,8 +8,8 @@ extends Control
 const SkillSlotCardScene = preload("res://ui/skills/skill_slot_card.tscn")
 const InventorySlotButtonScene = preload("res://ui/inventory/inventory_slot_button.tscn")
 const EquipmentSlotCardScene = preload("res://ui/equipment/equipment_slot_card.tscn")
-const EmptySlotIcon = preload("res://assets/ui/icons/states/icon_slot_locked_16x16.png")
 const ProgressionReadout = preload("res://ui/hud/progression_readout.gd")
+const PaperdollPresenter = preload("res://ui/inventory/centered_paperdoll_presenter.gd")
 const MaterialCatalog: MaterialCatalogDefinition = preload(
 	"res://data/items/materials/material_catalog.tres"
 )
@@ -29,18 +29,6 @@ const EQUIPMENT_SLOT_NAMES := [
 	"Amulet",
 	"Ring",
 	"Talisman",
-]
-const EQUIPMENT_SLOT_POSITIONS := [
-	Vector2(70, 0),
-	Vector2(221, 0),
-	Vector2(70, 30),
-	Vector2(70, 60),
-	Vector2(70, 90),
-	Vector2(70, 120),
-	Vector2(372, 0),
-	Vector2(372, 40),
-	Vector2(372, 80),
-	Vector2(372, 120),
 ]
 const EQUIPMENT_SLOT_TYPES := [
 	EquipmentDefinition.Slot.HEAD,
@@ -127,6 +115,8 @@ var _search_query := ""
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	PaperdollPresenter.apply_skin(self)
+	equipment_slots.resized.connect(_layout_equipment_slots)
 	if player == null:
 		push_error("CharacterMenu requires a Player reference.")
 		return
@@ -351,16 +341,20 @@ func _build_equipment_slots() -> void:
 		)
 		var slot_card := EquipmentSlotCardScene.instantiate() as EquipmentSlotCard
 		equipment_slots.add_child(slot_card)
-		slot_card.position = EQUIPMENT_SLOT_POSITIONS[index]
-		slot_card.size = Vector2(90, 28)
 		slot_card.configure(
 			EQUIPMENT_SLOT_NAMES[index],
 			slot_type,
 			equipped_item,
-			EmptySlotIcon
+			PaperdollPresenter.EMPTY_ICONS[index]
 		)
 		slot_card.equipment_dropped.connect(_on_equipment_equip_requested)
+		slot_card.equipment_inspected.connect(_on_equipment_selected)
 		_equipment_slot_cards.append(slot_card)
+	_layout_equipment_slots()
+
+
+func _layout_equipment_slots() -> void:
+	PaperdollPresenter.arrange(equipment_slots, _equipment_slot_cards)
 
 
 func _build_inventory_grid() -> void:
@@ -615,7 +609,7 @@ func _refresh_equipment_presentation(selected: EquipmentDefinition) -> void:
 			"Weapon Essence",
 			EquipmentDefinition.Slot.WEAPON,
 			equipped,
-			EmptySlotIcon
+			PaperdollPresenter.EMPTY_ICONS[WEAPON_ESSENCE_SLOT_INDEX]
 		)
 	weapon_preview.texture = equipped.weapon_definition.world_texture
 	weapon_preview.position = equipped.weapon_definition.sprite_offset_from_grip

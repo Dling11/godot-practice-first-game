@@ -63,7 +63,7 @@ func _run() -> void:
 		"Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/"
 		+ "PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas/Body"
 	) as AnimatedSprite2D
-	if preview_body.sprite_frames != KingFrames or preview_body.position != Vector2(75, 60) or preview_body.scale != Vector2(1.75, 1.75):
+	if preview_body.sprite_frames != KingFrames or preview_body.position != Vector2(76, 101) or preview_body.scale != Vector2(2, 2):
 		_fail("Character menu preview is not using King's body-centered active model.")
 		return
 	var preview_grip := menu.get_node(
@@ -97,11 +97,11 @@ func _run() -> void:
 			_fail("Character menu equipment slot %d did not match the finalized model." % index)
 			return
 	if (
-		menu._equipment_slot_cards[0].position != Vector2(70, 0)
-		or menu._equipment_slot_cards[CharacterMenu.WEAPON_ESSENCE_SLOT_INDEX].position
-		!= Vector2(221, 0)
+		menu._equipment_slot_cards[0].position.x >= menu.equipment_slots.size.x / 2
+		or menu._equipment_slot_cards[CharacterMenu.WEAPON_ESSENCE_SLOT_INDEX].position.x
+		<= menu.equipment_slots.size.x / 2
 	):
-		_fail("Head and Weapon Essence did not use the compact armor/upper-body placement.")
+		_fail("Head and Weapon Essence did not flank the centered paperdoll.")
 		return
 	if (
 		menu._equipment_slot_cards[CharacterMenu.WEAPON_ESSENCE_SLOT_INDEX].item_label.text
@@ -125,7 +125,7 @@ func _run() -> void:
 		return
 	if (
 		(menu.get_node("Panel") as Control).size != Vector2(840, 490)
-		or menu.equipment_detail_panel.custom_minimum_size != Vector2(225, 188)
+		or menu.equipment_detail_panel.custom_minimum_size != Vector2(280, 232)
 	):
 		_fail("Character & Bag did not adopt the approved compact modal and detail dimensions.")
 		return
@@ -187,7 +187,7 @@ func _run() -> void:
 		or not page_host_rect.encloses(menu.gear_page.get_global_rect())
 		or not page_host_rect.encloses(menu.equipment_detail_panel.get_global_rect())
 	):
-		_fail("Combined Character & Bag page overflowed its 960x540 modal bounds.")
+		_fail("Combined Character & Bag page overflowed its 960x540 modal bounds: viewport %s, panel %s, host %s, gear %s, detail %s." % [viewport_rect, panel_rect, page_host_rect, menu.gear_page.get_global_rect(), menu.equipment_detail_panel.get_global_rect()])
 		return
 	menu.all_filter_button.pressed.emit()
 	menu.skills_tab_button.pressed.emit()

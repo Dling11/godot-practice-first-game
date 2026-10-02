@@ -78,7 +78,7 @@ func capture_demo(file: String) -> void:
 	if DisplayServer.get_name() == "headless": return
 	await process_frame
 	await RenderingServer.frame_post_draw
-	var folder := "res://art_source/review/ui/portrait_link_compact_2026_10_02/demo/"
+	var folder := "res://art_source/review/ui/centered_paperdoll_2026_10_02/demo/"
 	DirAccess.make_dir_recursive_absolute(folder)
 	check(root.get_texture().get_image().save_png(folder+file) == OK,"Demo capture failed")
 

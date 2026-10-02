@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3]
+[gd_scene load_steps=21 format=3]
 
 [ext_resource type="Script" path="res://ui/character_menu.gd" id="1_script"]
 [ext_resource type="Theme" path="res://assets/ui/themes/battle_of_gods_theme.tres" id="2_theme"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" path="res://assets/ui/icons/status/icon_status_health_16x16.png" id="11_health"]
 
 [ext_resource type="Texture2D" path="res://assets/ui/player_readability/satchel.png" id="12_satchel"]
+
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/portraits/king_portrait_96x96.png" id="13_portrait"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_king_outline"]
 shader = ExtResource("king_outline")
@@ -148,15 +150,23 @@ layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 7
+theme_override_constants/margin_bottom = 5
 
 [node name="Root" type="VBoxContainer" parent="Panel/Margin"]
 layout_mode = 2
-theme_override_constants/separation = 6
+theme_override_constants/separation = 2
 
 [node name="Header" type="HBoxContainer" parent="Panel/Margin/Root"]
 layout_mode = 2
 theme_override_constants/separation = 10
+
+[node name="KingPortrait" type="TextureRect" parent="Panel/Margin/Root/Header"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("13_portrait")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
 
 [node name="Identity" type="VBoxContainer" parent="Panel/Margin/Root/Header"]
 layout_mode = 2
@@ -165,7 +175,7 @@ theme_override_constants/separation = 1
 [node name="Title" type="Label" parent="Panel/Margin/Root/Header/Identity"]
 layout_mode = 2
 text = "KING"
-theme_override_colors/font_color = Color(0.84, 0.76, 1, 1)
+theme_override_colors/font_color = Color(0.85, 0.76, 0.57, 1)
 theme_override_font_sizes/font_size = 16
 
 [node name="Subtitle" type="Label" parent="Panel/Margin/Root/Header/Identity"]
@@ -283,6 +293,7 @@ theme_override_colors/font_color = Color(0.45, 0.5, 0.42, 1)
 theme_override_font_sizes/font_size = 7
 
 [node name="PageDivider" type="HSeparator" parent="Panel/Margin/Root"]
+visible = false
 layout_mode = 2
 
 [node name="PageHost" type="Control" parent="Panel/Margin/Root"]
@@ -301,12 +312,12 @@ grow_vertical = 2
 theme_override_constants/separation = 6
 
 [node name="LoadoutRow" type="HBoxContainer" parent="Panel/Margin/Root/PageHost/GearPage"]
-custom_minimum_size = Vector2(0, 188)
+custom_minimum_size = Vector2(0, 232)
 layout_mode = 2
 theme_override_constants/separation = 8
 
 [node name="PaperDollPanel" type="PanelContainer" parent="Panel/Margin/Root/PageHost/GearPage/LoadoutRow"]
-custom_minimum_size = Vector2(560, 188)
+custom_minimum_size = Vector2(520, 232)
 layout_mode = 2
 theme_override_styles/panel = SubResource("inner_panel")
 
@@ -324,11 +335,11 @@ theme_override_constants/separation = 2
 [node name="LoadoutTitle" type="Label" parent="Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/PaperDollMargin/PaperDollRoot"]
 layout_mode = 2
 text = "EQUIPPED LOADOUT  •  1 WEAPON  •  5 ARMOR  •  4 ACCESSORIES"
-theme_override_colors/font_color = Color(0.84, 0.76, 1, 1)
+theme_override_colors/font_color = Color(0.85, 0.76, 0.57, 1)
 theme_override_font_sizes/font_size = 9
 
 [node name="EquipmentLayout" type="Control" parent="Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/PaperDollMargin/PaperDollRoot"]
-custom_minimum_size = Vector2(532, 153)
+custom_minimum_size = Vector2(502, 206)
 layout_mode = 2
 
 [node name="Portrait" type="PanelContainer" parent="Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/PaperDollMargin/PaperDollRoot/EquipmentLayout"]
@@ -337,9 +348,9 @@ anchors_preset = 0
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -76.0
-offset_top = 28.0
+offset_top = 0.0
 offset_right = 76.0
-offset_bottom = 151.0
+offset_bottom = 206.0
 theme_override_styles/panel = SubResource("portrait_panel")
 
 [node name="PortraitCanvas" type="Control" parent="Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait"]
@@ -348,24 +359,24 @@ clip_contents = true
 
 [node name="PortraitAura" type="Polygon2D" parent="Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas"]
 unique_name_in_owner = true
-position = Vector2(75, 68)
+position = Vector2(76, 103)
 polygon = PackedVector2Array(0, -54, 40, -33, 55, 0, 40, 33, 0, 54, -40, 33, -55, 0, -40, -33)
 color = Color(0.463, 0.353, 0.639, 0.34)
 
 [node name="PortraitAuraCore" type="Polygon2D" parent="Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas"]
-position = Vector2(75, 68)
+position = Vector2(76, 103)
 polygon = PackedVector2Array(0, -43, 32, -26, 44, 0, 32, 26, 0, 43, -32, 26, -44, 0, -32, -26)
 color = Color(0.027, 0.034, 0.052, 0.96)
 
 [node name="PortraitShadow" type="Polygon2D" parent="Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas"]
-position = Vector2(75, 117)
+position = Vector2(76, 157)
 polygon = PackedVector2Array(-25, 0, -15, -5, 15, -5, 25, 0, 15, 5, -15, 5)
 color = Color(0.01, 0.015, 0.025, 0.68)
 
 [node name="Body" type="AnimatedSprite2D" parent="Panel/Margin/Root/PageHost/GearPage/LoadoutRow/PaperDollPanel/PaperDollMargin/PaperDollRoot/EquipmentLayout/Portrait/PortraitCanvas"]
 material = SubResource("ShaderMaterial_king_outline")
-position = Vector2(75, 60)
-scale = Vector2(1.75, 1.75)
+position = Vector2(76, 101)
+scale = Vector2(2, 2)
 sprite_frames = ExtResource("7_frames")
 animation = &"idle_down"
 
@@ -398,6 +409,7 @@ grow_vertical = 2
 
 [node name="EquipmentDetailPanel" parent="Panel/Margin/Root/PageHost/GearPage/LoadoutRow" instance=ExtResource("8_detail")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 232)
 layout_mode = 2
 size_flags_horizontal = 3
 

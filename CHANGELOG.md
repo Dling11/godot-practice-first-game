@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-02 - Selected A centered paperdoll implemented
+
+- Apply owner-selected A to the shared 840x490 Character & Bag menu: five armor rows on the left, weapon/accessories on the right, centered approved King model, right-hand real item details and full-width two-row bag below. Keep compact Portrait Link and hidden map.
+- Add a generated nine-slice gold/violet frame, ten recognizable slot silhouettes and a dedicated King's Sword inventory icon. Preserve original sources, exact prompts and normalization manifests under art_source/generated/ui/centered_paperdoll_2026_10_02/. Native controls render all text, counts and stats.
+- Compose geometry and skin through centered_paperdoll_presenter.gd on resize/build events. Sanctuary no longer replaces this menu's selected skin. Clicking equipped cards inspects their real item; existing inventory selection, explicit equip, slot-validated drag, search, sorting, focus, training and save authority remain.
+- Reduce redundant outer spacing so both headless and rendered layouts fit the existing modal. Verify 87 rendered interface checks, 14 demo checks and 68 normal-town checks (169 total), plus CharacterMenu/UI-icon smoke and 73 headless Sanctuary skills-flow checks. Native evidence: art_source/review/ui/centered_paperdoll_2026_10_02/. Existing GPU shutdown warnings persist; phone readability and subjective feel remain open.
+
 ## 2026-10-02 - Compact portrait HUD, map withdrawal and centered bag
 
 - Reduce Portrait Link from300x96 to248x64 (about45% less frame area), remove raised HP/XP plaques, and draw outlined live digits inside both rails above the fills. Shrink bag/status rows and move shield/level notice upward without overlap. Keep health/trail/progression/XP/caps/saves unchanged.

@@ -1,0 +1,7 @@
+# Centered Paperdoll production frame
+
+Mode: image edit. Reference: `../loadout_choices_2026_10_02/A_centered_paperdoll.png` (owner-selected A).
+Runtime: `assets/ui/inventory/centered_paperdoll_frame.png`; normalization: `tools/build_centered_paperdoll_frame.gd`.
+Generated border only. All text, item icons, counts, character art and controls remain native Godot content.
+
+Create a production reusable pixel-art UI panel frame for the Battle of Gods equipment menu, matching the attached selected A centered paperdoll concept. ONE rectangular frame only, large horizontal rectangle, front-on flat 2D, absolutely no text, letters, numbers, characters, items, icons or mockup scene. Thin aged warm gold double bevel outer border, tiny faceted violet corner gems confined to small square corner patches, otherwise long perfectly straight repeatable edges suitable for nine-slicing. Very dark midnight navy interior, completely flat solid #0b111c fill across the entire inner rectangular region (no decorative texture, motifs, gradients or glow). Transparent exterior with neat rectangular bounds, pixel crisp deliberate chunky pixel steps, 2D RPG inventory frame. Keep the frame thin and understated, tiny gems, no extravagant protruding ornament. The gold rim and violet gems should be confined to the outer 6 percent of image. This asset will be resized with nearest neighbor to 256x160 and nine-sliced at 16 pixels.

@@ -5,7 +5,7 @@ const Study = preload("res://levels/sanctuary/town/sanctuary_town.gd")
 const MATERIALS = preload("res://data/items/materials/material_catalog.tres")
 const GEAR = preload("res://data/items/equipment/forest/stage_5_core_catalog.tres")
 const PROFILE := "user://player_interface_readability_smoke.json"
-const EVIDENCE := "res://art_source/review/ui/portrait_link_compact_2026_10_02/"
+const EVIDENCE := "res://art_source/review/ui/centered_paperdoll_2026_10_02/"
 var checks := 0
 var failures := 0
 
@@ -126,6 +126,12 @@ func _run() -> void:
 	var portrait: Control = menu.portrait_aura.get_parent().get_parent()
 	var body: AnimatedSprite2D = portrait.get_node("PortraitCanvas/Body")
 	check(is_equal_approx(body.position.x,portrait.get_node("PortraitCanvas").size.x/2) and is_equal_approx(portrait.position.x+portrait.size.x/2,portrait.get_parent().size.x/2),"King or his paperdoll field is not horizontally centered")
+	for row in 5:
+		var left: Control = menu._equipment_slot_cards[[0,2,3,4,5][row]]
+		var right: Control = menu._equipment_slot_cards[[1,6,7,8,9][row]]
+		check(left.size == right.size and is_equal_approx(left.position.y,right.position.y) and is_equal_approx(left.position.x,menu.equipment_slots.size.x-right.position.x-right.size.x),"Paperdoll row %d is unbalanced" % row)
+		check(not portrait.get_global_rect().intersects(left.get_global_rect()) and not portrait.get_global_rect().intersects(right.get_global_rect()),"Paperdoll row %d covers King" % row)
+	check(menu.get_node("Panel").get_theme_stylebox("panel").texture.resource_path.ends_with("centered_paperdoll_frame.png"),"Sanctuary overwrites the chosen A frame")
 	check(Rect2(Vector2.ZERO,Vector2(960,540)).encloses(menu.get_node("Panel").get_global_rect()),"Bag exceeds native viewport")
 	check(menu.bag_footer.text.contains("15 material types") and menu.bag_footer.text.contains("7 equipment"),"Bag merges material pouch with equipment counts")
 	check(menu._selectable_inventory_slots.size() == 22 and menu.bag_capacity_label.text == "SHOWING 22","Combined bag loses owned items")
@@ -139,6 +145,10 @@ func _run() -> void:
 	await capture("bag_all.png")
 	await click(menu.materials_filter_button.get_global_rect().get_center())
 	check(menu._material_cards.size() == 15 and menu._equipment_cards.is_empty(),"Material filter leaks equipment")
+	await click(menu._material_cards[0].get_global_rect().get_center())
+	check(menu.equipment_detail_panel.current_material_definition != null,"Material inspection did not prepare equipment-slot click proof")
+	await click(menu._equipment_slot_cards[CharacterMenu.WEAPON_ESSENCE_SLOT_INDEX].get_global_rect().get_center())
+	check(menu.equipment_detail_panel.current_definition == actor.get_equipped_weapon_item() and menu.equipment_detail_panel.equip_button.disabled,"Clicking an equipped paperdoll item does not inspect its real equipped state")
 	await click(menu.bag_search.get_global_rect().get_center())
 	menu.bag_search.text = "VaRkUuN"
 	menu.bag_search.text_changed.emit(menu.bag_search.text)

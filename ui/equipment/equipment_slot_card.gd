@@ -4,12 +4,14 @@ extends PanelContainer
 ## Small reusable loadout slot. Empty slots are honest presentation, not items.
 
 signal equipment_dropped(item: EquipmentDefinition)
+signal equipment_inspected(item: EquipmentDefinition)
 
 @onready var slot_icon: TextureRect = %SlotIcon
 @onready var slot_label: Label = %SlotLabel
 @onready var item_label: Label = %ItemLabel
 
 var accepted_slot := EquipmentDefinition.Slot.WEAPON
+var _item: EquipmentDefinition
 
 
 func configure(
@@ -19,6 +21,8 @@ func configure(
 	empty_icon: Texture2D = null
 ) -> void:
 	accepted_slot = slot
+	_item = item
+	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND if item != null else Control.CURSOR_ARROW
 	slot_label.text = slot_name.to_upper()
 	if item != null:
 		slot_icon.texture = item.icon
@@ -42,6 +46,12 @@ func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 		and data.get("equipment") is EquipmentDefinition
 		and (data.get("equipment") as EquipmentDefinition).slot == accepted_slot
 	)
+
+
+func _gui_input(event: InputEvent) -> void:
+	if _item != null and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		equipment_inspected.emit(_item)
+		accept_event()
 
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:

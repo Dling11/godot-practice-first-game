@@ -20,8 +20,9 @@ func configure(hub: Node, test_controls: Control) -> void:
 			child.ready.connect(_on_collection_ready.bind(child),CONNECT_ONE_SHOT))
 	for modal: Control in [hub.dialogue_panel,hub.character_menu,hub.rootforge_menu,hub.umi_exchange_menu,hub.expedition_menu,hub.get_node("UI/PauseMenu")]:
 		_modals.append(modal)
-		modal.theme = _theme
-		modal.get_node("Panel").add_theme_stylebox_override("panel",ThemeKit.frame())
+		if modal != hub.character_menu:
+			modal.theme = _theme
+			modal.get_node("Panel").add_theme_stylebox_override("panel",ThemeKit.frame())
 		modal.visibility_changed.connect(_sync_review_controls)
 	for recipe in [[hub.dialogue_panel.skip_button,11],[hub.dialogue_panel.continue_button,10],[hub.dialogue_panel.body_label,12]]:
 		recipe[0].add_theme_font_size_override("font_size",recipe[1])
