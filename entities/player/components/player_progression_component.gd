@@ -6,6 +6,7 @@ extends Node
 signal progression_changed(level: int, total_experience: int, next_level_experience: int)
 signal coins_changed(total_coins: int)
 signal leveled_up(new_level: int)
+signal rewards_granted(credited_experience: int, credited_coins: int)
 
 @export var definition: ProgressionDefinition
 
@@ -35,6 +36,8 @@ func _ready() -> void:
 
 
 func grant_rewards(experience: int, coin_amount: int) -> void:
+	var previous_experience := total_experience
+	var previous_coins := coins
 	if experience > 0:
 		var cap := get_current_level_cap()
 		var cap_experience := definition.total_experience_by_level[cap - 1]
@@ -50,6 +53,7 @@ func grant_rewards(experience: int, coin_amount: int) -> void:
 		coins += coin_amount
 		coins_changed.emit(coins)
 	_sync_run_session()
+	rewards_granted.emit(total_experience - previous_experience, coins - previous_coins)
 
 
 func spend_coins(amount: int) -> bool:

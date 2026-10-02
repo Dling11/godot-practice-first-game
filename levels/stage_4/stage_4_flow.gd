@@ -1,5 +1,9 @@
 extends Node
 
+const ExpeditionFeedbackScript = preload("res://ui/expeditions/expedition_feedback.gd")
+const ExpeditionRoute = preload("res://data/expeditions/eastern_rot.tres")
+var expedition_feedback: Node
+
 const ExpeditionDefeatReturnScript = preload(
 	"res://gameplay/expeditions/expedition_defeat_return.gd"
 )
@@ -28,6 +32,7 @@ func _ready() -> void:
 		loot_service.begin_expedition()
 	combat_hud.bind_player(player)
 	combat_hud.character_menu_requested.connect(character_menu.open_menu)
+	expedition_feedback = ExpeditionFeedbackScript.install(self, ExpeditionRoute)
 	player.defeated.connect(_on_player_defeated)
 	encounter_controller.stage_cleared.connect(_on_stage_cleared)
 	_begin_stage()

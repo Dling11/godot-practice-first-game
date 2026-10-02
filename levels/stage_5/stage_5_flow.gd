@@ -3,6 +3,10 @@ extends Node
 const PortalScene = preload("res://gameplay/encounters/stage_portal.tscn")
 const RewardChestScene = preload("res://gameplay/loot/stage_reward_chest.tscn")
 const NEXT_STAGE_PATH := "res://levels/stage_6/stage_6.tscn"
+const ExpeditionFeedbackScript = preload("res://ui/expeditions/expedition_feedback.gd")
+const ExpeditionRoute = preload("res://data/expeditions/dead_forest.tres")
+var expedition_feedback: Node
+
 const ExpeditionDefeatReturnScript = preload(
 	"res://gameplay/expeditions/expedition_defeat_return.gd"
 )
@@ -25,6 +29,7 @@ const ExpeditionDefeatReturnScript = preload(
 @export var entrance_landing: AudioStreamPlayer
 
 var _boss_started := false
+var stage_completed := false
 var _restart_enabled := false
 var _boss_defeat_position := Vector2.ZERO
 
@@ -53,6 +58,7 @@ func _ready() -> void:
 		loot_service.begin_expedition()
 	combat_hud.bind_player(player)
 	combat_hud.character_menu_requested.connect(character_menu.open_menu)
+	expedition_feedback = ExpeditionFeedbackScript.install(self, ExpeditionRoute)
 	player.defeated.connect(_on_player_defeated)
 	boss.health_component.died.connect(_on_boss_died)
 	boss.target = null
@@ -127,6 +133,7 @@ func _run_boss_entrance() -> void:
 
 
 func _on_boss_dialogue_closed(_completed: bool) -> void:
+	expedition_feedback.boss_started()
 	var audio_director := get_node_or_null("/root/AudioDirector")
 	if audio_director != null:
 		audio_director.play_music(boss_music, -7.0)
@@ -137,6 +144,7 @@ func _on_boss_dialogue_closed(_completed: bool) -> void:
 
 
 func _on_boss_died() -> void:
+	expedition_feedback.boss_defeated()
 	_boss_defeat_position = boss.global_position
 	combat_hud.show_story_message("THE LORD REFUSES TO FALL", 1.6)
 	dialogue_panel.dialogue_closed.connect(
@@ -197,6 +205,8 @@ func _on_reward_claimed(_result: Dictionary) -> void:
 		save_service.save_profile()
 	combat_hud.show_story_message("THE LORD'S SEAL IS YOURS  •  THE DEAD FOREST FALLS SILENT", 3.2)
 	_spawn_forward_portal()
+	stage_completed = true
+	expedition_feedback.boss_reward_claimed()
 
 
 func _spawn_forward_portal() -> void:

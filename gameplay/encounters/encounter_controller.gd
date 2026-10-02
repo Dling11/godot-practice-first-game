@@ -12,6 +12,7 @@ signal inter_wave_gate_requested(next_wave_number: int)
 signal inter_wave_gate_released
 signal reward_chest_spawned(global_position: Vector2)
 signal stage_reward_claimed(result: Dictionary)
+signal progress_changed(snapshot: Dictionary)
 
 enum CompletionRewardMode {
 	DIRECT_PORTAL,
@@ -60,6 +61,28 @@ var _initial_batch_active := false
 var _reinforcement_pending := false
 var _inter_wave_gate_active := false
 var _completion_spawned := false
+var _portal_opened := false
+var _wave_defeated := 0
+
+
+func get_progress() -> Dictionary:
+	var state := "preparing"
+	if _portal_opened: state = "complete"
+	elif _completion_spawned: state = "claim_reward"
+	elif _inter_wave_gate_active: state = "dialogue"
+	elif _transition_pending: state = "wave_clear"
+	elif _reinforcement_pending: state = "reinforcements"
+	elif _current_wave != null: state = "combat"
+	return {"state": state, "wave": mini(wave_index + 1, waves.size()), "waves": waves.size(), "title": _current_wave.title if _current_wave != null else "Prepare for the encounter", "defeated": _wave_defeated, "total": _current_wave.total_enemy_count() if _current_wave != null else 0}
+
+
+func _emit_progress() -> void:
+	progress_changed.emit(get_progress())
+
+
+func _on_enemy_defeated() -> void:
+	_wave_defeated += 1
+	_emit_progress()
 
 
 func _ready() -> void:
@@ -99,7 +122,9 @@ func _advance_wave() -> void:
 		return
 	var wave := waves[wave_index] as EncounterWaveDefinition
 	_current_wave = wave
+	_wave_defeated = 0
 	wave_changed.emit(wave_index + 1, waves.size(), wave.title)
+	_emit_progress()
 	_spawning = true
 	_pending_enemies.clear()
 	wave.append_spawn_scenes(_pending_enemies)
@@ -133,6 +158,7 @@ func _queue_reinforcements() -> void:
 		return
 	_reinforcement_pending = true
 	_spawning = true
+	_emit_progress()
 	reinforcement_announced.emit(_current_wave.reinforcement_delay)
 	await get_tree().create_timer(_current_wave.reinforcement_delay).timeout
 	if not is_inside_tree():
@@ -141,6 +167,7 @@ func _queue_reinforcements() -> void:
 		_spawn_enemy(_pending_enemies.pop_front())
 	_reinforcement_pending = false
 	_spawning = not _pending_enemies.is_empty()
+	_emit_progress()
 	_try_finish_stage()
 
 
@@ -149,6 +176,9 @@ func _spawn_enemy(scene: PackedScene) -> void:
 	var enemy := scene.instantiate()
 	enemy.target = player
 	actors.add_child(enemy)
+	var health := enemy.get("health_component") as HealthComponent
+	if health != null:
+		health.died.connect(_on_enemy_defeated, CONNECT_ONE_SHOT)
 	if enemy.has_method("set_projectile_parent"):
 		enemy.set_projectile_parent(projectiles_parent)
 	var spawn_position := _choose_spawn_position()
@@ -195,11 +225,13 @@ func _try_finish_stage() -> void:
 	if not is_inside_tree() or _transition_pending: return
 	if not _spawning and _pending_enemies.is_empty() and _active_enemies == 0:
 		_transition_pending = true
+		_emit_progress()
 		wave_cleared.emit(wave_index + 1, waves.size())
 		await get_tree().create_timer(inter_wave_delay).timeout
 		var next_wave_number := wave_index + 2
 		if next_wave_number in gated_wave_numbers:
 			_inter_wave_gate_active = true
+			_emit_progress()
 			inter_wave_gate_requested.emit(next_wave_number)
 			await inter_wave_gate_released
 			if not is_inside_tree():
@@ -223,7 +255,9 @@ func _spawn_portal() -> void:
 	portal.proximity_changed.connect(func(is_near: bool, prompt_text: String, prompt_icon: Texture2D) -> void:
 		portal_prompt_changed.emit(is_near, prompt_text, prompt_icon)
 	)
+	_portal_opened = true
 	stage_cleared.emit()
+	_emit_progress()
 
 
 func _complete_encounter() -> void:
@@ -233,6 +267,7 @@ func _complete_encounter() -> void:
 		_spawn_stage_reward()
 		return
 	_completion_spawned = true
+	_emit_progress()
 	var loot_service := get_node_or_null("/root/LootService")
 	if loot_service != null:
 		loot_service.commit_expedition_rewards()
@@ -265,6 +300,7 @@ func _spawn_stage_reward() -> void:
 	)
 	chest.reward_claimed.connect(_on_stage_reward_claimed)
 	reward_chest_spawned.emit(chest.global_position)
+	_emit_progress()
 
 
 func _on_stage_reward_claimed(result: Dictionary) -> void:

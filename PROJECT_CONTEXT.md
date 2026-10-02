@@ -1,5 +1,7 @@
 # Project Context
 
+**Expedition objectives and receipts (Decision 166, 2026-10-02):** All six current stage flows install an event-driven objective tracker and opt-in VIEW REWARDS receipt. Credited XP/gold, collected materials, first/replay chest status and actual route/cap/crafting unlocks come from existing authorities. Required Stage III/V chest claims still use F. Completed/banked stages offer Keep Exploring or normal Return to Sanctuary. Rendered integration passed81 checks including Nema craft, bag equip, Eira training and isolated save/Continue. Read docs/design/expedition-objectives-and-receipts.md. No-save review: tools/launch_expedition_review.ps1. Sanctuary remains temporarily complete; Hunts, balance and phone profiling remain follow-ups.
+
 **Compact Portrait Link HUD (2026-10-02):** Shared normal-play HUD now uses the smaller248x64 King portrait frame with HP/XP digits INSIDE the rails, LV badge, smaller bag/status rows and unchanged progression. King is centered in Character & Bag. The Sanctuary map/directory, M and noticeboard map prompt are temporarily withdrawn through TownMap.PRESENTATION_ENABLED=false; sources remain recoverable. Owner-selected A Centered Paperdoll is implemented: five matched equipment rows per side, centered King, real item details at right and the bag below. Generated frame/slot icons use assets/ui/inventory/; native proof is under art_source/review/ui/centered_paperdoll_2026_10_02/. See docs/design/player-interface-readability.md and STYLE_GUIDE.md. Sanctuary remains temporarily complete.
 
 **Sanctuary temporarily complete (Decision 165, 2026-10-02):** The renewed town is the normal F5/Continue/expedition-return baseline, mounted once under SanctuaryTown by SanctuaryFlow. Normal saves remain active; only explicit debug entry/launchers suppress saving and grant fixtures. Retired town/NPC art, idle helpers, comparison code/tests and prior docs are recoverable in art_source/archive/sanctuary_retired_2026_10_02/ (.gdignore). Read CONTINUE_SANCTUARY.md and docs/design/sanctuary-closeout.md. Current King/skills/furniture and canonical NPC services remain. Further interiors/audio, phone profiling and balance are deferred; move to expedition objective/reward work.
@@ -101,7 +103,7 @@ This is the compact entry point for routine work. It records current runtime tru
 
 ## Current Priority
 
-King is the sole production player. Atomic Stage V crafting is implemented; the immediate production priorities are owner feel-testing of combat/portal/crafting presentation followed by replayable Hunts. Skill 4 is Worldsplitter, the existing ground-targeted two-stage boss-damage skill—not a new or fifth skill.
+King is the sole production player with accepted Skills1–5 (Vow4, Worldsplitter5). Sanctuary, atomic Stage V crafting and current-stage objective/reward feedback are implemented. Next priorities are owner runtime review of the expedition-to-town loop, measured economy/combat balance and replayable Hunts; representative-phone profiling and later campaign content remain open.
 
 The Character menu also reserves two visibly locked post-kit tiers: `Ultimate` and the distinct stronger finisher tier `Reality Breaking`. Neither preview has an input, ability definition, cooldown, animation, unlock, or save authority.
 

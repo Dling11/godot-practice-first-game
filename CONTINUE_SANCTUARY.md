@@ -26,6 +26,6 @@ Temporary XP/gold/materials at Nema; controls test XP, damage, heal and stage ca
 
 ## Next work and limits
 
-Move to expedition objective/reward feedback, then verify fight -> loot -> craft -> equip -> train. Sanctuary stays temporarily complete unless a concrete regression is reported. Further interiors/indoor audio, representative-phone performance and whole-kit balance are deferred. Existing GPU shutdown warnings remain.
+Expedition objectives/reward receipts are implemented for Stages I–VI;81 rendered checks verify fight -> loot -> return -> craft -> equip -> train -> save/Continue with explicit fixtures. Use tools/launch_expedition_review.ps1 for a no-save interactive review and read docs/design/expedition-objectives-and-receipts.md. Next: owner loop review, measured balance and replayable Hunts. Sanctuary stays temporarily complete unless a concrete regression is reported. Further interiors/indoor audio, representative-phone performance and whole-kit balance are deferred. Existing GPU shutdown warnings remain.
 
 Tests/evidence: CHANGELOG.md and docs/design/sanctuary-closeout.md. Temporary completion does not claim phone profiling or final balance approval.

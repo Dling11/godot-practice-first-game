@@ -1,5 +1,9 @@
 # Battle of Gods
 
+**Expedition objectives and rewards:** Current Stages I–VI show wave progress and the exit condition. After clear/required F chest claim, click **VIEW REWARDS** for actual XP/gold, materials and unlocks. **KEEP EXPLORING** resumes collection; **RETURN TO SANCTUARY** uses normal hub travel. Forward portals still use **F**. **Esc/Tab** closes; **PageUp/Down/Home/End** scrolls rewards.
+
+Quick no-save review: `powershell -NoProfile -ExecutionPolicy Bypass -File ./tools/launch_expedition_review.ps1`. Click **Finish encounter**, continue/skip dialogue, **Visit reward chest** after it appears, **F**, then **VIEW REWARDS**. King is safe in this review. Add `-Stage5` for Varkuun (enter the clearing and finish the intro first). Restart normal F5 to resume normal saving. Design/verification: docs/design/expedition-objectives-and-receipts.md.
+
 Sanctuary is temporarily complete for this pass. **F5 -> Continue** loads the renewed town directly with normal saving and compact Portrait Link HUD. **F** talks to NPCs; finish Eira's dialogue for Training, Nema's for crafting and Umi's for exchange. The map/minimap/directory, **M** shortcut and noticeboard map interaction are temporarily hidden during layout iteration. **Tab** opens the searchable Character & Bag; **Esc** closes menus. Approach Orren's workshop door and press **F** to enter; F inspects or leaves indoors. Walking alone does not enter.
 
 Eira's free manual training gates: Earth2, Molten3/6/9, Pursuit5/8, Vow7/10, World8/10. Training improves ranks; Loadout arranges ten keys. XP/caps/rewards remain unchanged. Current HUD has immediate HP, damage trail, critical text and exact XP/stage help.

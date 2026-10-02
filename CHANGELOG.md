@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-02 — Expedition objectives, collected rewards and town service loop
+
+- Added persistent event-driven objectives to current Stages I–VI, including queued enemies, reinforcement/wave states, chest claims and open exits.
+- Added opt-in gold/violet completion receipts with actual XP/gold, collected material icons/counts, level changes, first/replay claims and real route/cap/Nema unlocks. Keep Exploring preserves collection; Return to Sanctuary rechecks authoritative completion and banking. Existing F gates and economy remain.
+- Separated objective/roster/toast rectangles, drew reports above boss HUD and preserved dialogue/bag/pause input boundaries.
+- Added tools/launch_expedition_review.ps1: explicit no-save Stage III review, optional -Stage5, safe King, fast cloned waves, real-health Finish encounter and chest visit helpers.
+- Verification:81 rendered checks at960x540, including cap-clipped XP, first/replay, actual chest F, boss seal, return, Nema craft, bag equip, Eira training and isolated profile save/Continue. Stage II/III/IV encounter, VI Crag Bear, Varkuun collapse/chest, reinforcement, progression, loot and defeat-return regressions pass; editor import passes. Native evidence: art_source/review/ui/expedition_feedback_2026_10_02/.
+- Limits: fixtures accelerate combat and supply earlier ingredients/eligibility. Owner feel, phone profiling, balance, Hunts and later stages remain open. Existing GPU teardown warnings persist. Decision166 and docs/design/expedition-objectives-and-receipts.md own this pass.
+
 ## 2026-10-02 - Selected A centered paperdoll implemented
 
 - Apply owner-selected A to the shared 840x490 Character & Bag menu: five armor rows on the left, weapon/accessories on the right, centered approved King model, right-hand real item details and full-width two-row bag below. Keep compact Portrait Link and hidden map.
