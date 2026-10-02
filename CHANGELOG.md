@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-02 — Stage I woodland environment pilot
+
+- Replaced Stage I's64px/540-cell ground with32px/2160 baked cells over the same1920x1152 world. Authored winding trails, grass/dirt edge masks and a compact shrine apron replace the coarse repeating pattern.
+- Generated eight compact woodland prop families;88 placed props form edge woods, glade pockets and paired exit markers. Added separate root/rock/log footprints and navigation cutouts, nonblocking small plants, canopy fade, planted foliage wind and actual four-frame bird flights.
+- Added tools/launch_stage_1_renewal.ps1 for peaceful no-save exploration, view shortcuts, overview and optional normal waves with safe King. Normal Stage I uses the same design. II–VI remain unchanged pending owner review.
+- Archived only the prior Stage I scene/layout/navigation-test snapshots under art_source/archive/stage_1_pre_renewal_2026_10_02/ (.gdignore). Shared old assets remain live in other stages.
+- Verified183 environment/navigation checks,81 rendered expedition reward/craft/equip/train/save checks, wave structure, reinforcement and defeat return. Native captures: art_source/review/environment/stage_1_renewal_2026_10_02/. Owner acceptance, balance and phone profiling remain open; shared GPU shutdown warnings persist. Decision167 and docs/design/stage-1-woodland-renewal.md own this pilot.
+
 ## 2026-10-02 — Expedition objectives, collected rewards and town service loop
 
 - Added persistent event-driven objectives to current Stages I–VI, including queued enemies, reinforcement/wave states, chest claims and open exits.

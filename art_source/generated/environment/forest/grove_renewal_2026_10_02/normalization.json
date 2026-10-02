@@ -1,0 +1,50 @@
+[
+	{
+		"alpha_threshold": 0.7,
+		"asset": "oak",
+		"crop": "[P: (0, 40), S: (384, 540)]",
+		"native_size": "(93, 112)"
+	},
+	{
+		"alpha_threshold": 0.7,
+		"asset": "fir",
+		"crop": "[P: (392, 40), S: (384, 540)]",
+		"native_size": "(71, 128)"
+	},
+	{
+		"alpha_threshold": 0.7,
+		"asset": "waystone",
+		"crop": "[P: (800, 150), S: (336, 430)]",
+		"native_size": "(38, 50)"
+	},
+	{
+		"alpha_threshold": 0.7,
+		"asset": "boulder",
+		"crop": "[P: (1160, 260), S: (376, 320)]",
+		"native_size": "(42, 30)"
+	},
+	{
+		"alpha_threshold": 0.7,
+		"asset": "log",
+		"crop": "[P: (0, 640), S: (384, 384)]",
+		"native_size": "(53, 36)"
+	},
+	{
+		"alpha_threshold": 0.7,
+		"asset": "masonry",
+		"crop": "[P: (408, 640), S: (368, 384)]",
+		"native_size": "(58, 36)"
+	},
+	{
+		"alpha_threshold": 0.7,
+		"asset": "fern",
+		"crop": "[P: (800, 640), S: (336, 384)]",
+		"native_size": "(32, 24)"
+	},
+	{
+		"alpha_threshold": 0.7,
+		"asset": "mushrooms",
+		"crop": "[P: (1192, 640), S: (344, 384)]",
+		"native_size": "(24, 20)"
+	}
+]

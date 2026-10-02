@@ -1,5 +1,7 @@
 # Battle of Gods
 
+**Stage I woodland review:** `powershell -NoProfile -ExecutionPolicy Bypass -File ./tools/launch_stage_1_renewal.ps1` opens the renewed Forgotten Grove peacefully with no saving and safe King. WASD explores; Entrance/Glade/Old shrine visit the main views; Overview/gameplay changes scale; Start normal waves runs the real encounter. Normal F5/Stage I uses the same new environment with ordinary saving/combat. This is the review pilot before II–VI. See docs/design/stage-1-woodland-renewal.md.
+
 **Expedition objectives and rewards:** Current Stages I–VI show wave progress and the exit condition. After clear/required F chest claim, click **VIEW REWARDS** for actual XP/gold, materials and unlocks. **KEEP EXPLORING** resumes collection; **RETURN TO SANCTUARY** uses normal hub travel. Forward portals still use **F**. **Esc/Tab** closes; **PageUp/Down/Home/End** scrolls rewards.
 
 Quick no-save review: `powershell -NoProfile -ExecutionPolicy Bypass -File ./tools/launch_expedition_review.ps1`. Click **Finish encounter**, continue/skip dialogue, **Visit reward chest** after it appears, **F**, then **VIEW REWARDS**. King is safe in this review. Add `-Stage5` for Varkuun (enter the clearing and finish the intro first). Restart normal F5 to resume normal saving. Design/verification: docs/design/expedition-objectives-and-receipts.md.

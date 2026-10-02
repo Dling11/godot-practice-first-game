@@ -1,5 +1,7 @@
 # Style Guide
 
+**Stage I finer terrain (2026-10-02):** This pilot deliberately uses32px cells while retaining world/actor scale. Normalize new forest art to native dimensions with nearest filtering and binary alpha; floor bases own collision/cutouts, crowns may move visually and fade around King. Keep low decorative plants nonblocking. Author visible routes/landmark grounds and bake them with AuthoredGroundLayout; never scatter obstacles or regenerate terrain per frame. II–VI retain their current density pending Stage I review. See docs/design/stage-1-woodland-renewal.md.
+
 **Objective/receipt convention (2026-10-02):** Reuse the approved gold/violet centered-paperdoll frame with nearest filtering and native controls. At960x540 keep objective y90..196, roster y204..354 and toast y366..410; reduce ScrollContainer minimum before moving the roster. Receipt640x420 uses a bounded scroll area and fixed bottom actions. Draw above boss HUD (CanvasLayer5), hide the tracker behind dialogue/pause/bag, and restore only pause/input owned by the report. Display observed credited amounts, never estimates from reward definitions. Detailed contract: docs/design/expedition-objectives-and-receipts.md.
 
 ## Owner UI preference: Portrait Link and Slim Runic

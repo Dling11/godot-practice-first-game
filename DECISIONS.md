@@ -183,6 +183,7 @@ Current Sanctuary baseline: [Decision165](docs/decisions/165-finalize-sanctuary-
 | 164 | [Eira reachable curriculum](docs/decisions/164-eira-reachable-curriculum.md) | Direct mentor Training/Loadout, free five-technique upgrades within cap10 and compatible Earth/Molten saving |
 | 165 | [Finalize Sanctuary and archive legacy town](docs/decisions/165-finalize-sanctuary-and-archive-legacy-town.md) | Normal renewed town, recoverable cleanup, normal vs debug saving and temporary closeout |
 | 166 | [Observe expedition objectives and collected rewards](docs/decisions/166-observe-expedition-objectives-and-collected-rewards.md) | Current-stage tracker, actual credited receipt and banked-clear Sanctuary return |
+| 167 | [Review Stage I woodland at finer terrain scale](docs/decisions/167-review-stage-1-woodland-at-finer-terrain-scale.md) | Stage I32px environment pilot, compact props, foliage/birds and owner gate before II–VI |
 
 ## New Decisions
 
