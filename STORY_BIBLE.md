@@ -26,6 +26,8 @@ The portal sequence is provisionally called the **Hundredfold Ascent**. Mortals 
 
 This section is internal spoiler authority and must not be copied into early player-facing dialogue or route descriptions.
 
+**Owner expansion (Decision172,2026-10-03):** Monsters and demons may initially appear to be an invading threat while divine patrons provide credible guidance and real power. Late-game evidence challenges those patrons' stated motives and exposes responsible benefactors as adversaries. Preserve differing divine motives and genuine hostile creatures; exact manufactured/exploited breach mechanisms, altered-victim origins and gift resonance remain proposals in [the internal expansion](docs/design/divine-patrons-and-manufactured-invasion.md). It does not relabel all existing Forest creatures, fix the ending or add named gods/demons. A gift can remain useful after its patron is exposed; automatic removal of earned powers is not accepted.
+
 King is one of the Game's selected **Champions**. The One Above did not merely discover him after the family tragedy; the accepted long-term direction is that he selected King before or during it and materially helped create or exploit the conditions that produced King's loss, grief, hope, struggle, rage, and growth. The exact mechanism remains open.
 
 King's family is actually dead. The gods promise that reaching Stage 100 will let him save or reunite with them, using grief and false hope to keep their Champion climbing. No authentic surviving soul, resurrection, or preserved identity is confirmed. A later twist remains open; possible endings must not silently undo the established deaths.
@@ -74,7 +76,7 @@ The Grove is the first available expedition. Its corruption has begun to imitate
 
 ### Implemented Mini-Boss Expedition — The Rootbound Hollow
 
-A corrupted hollow reveals that the small Rootlings behave as the Rootbound Husk's brood. After King cuts through ten of them, the ancient guardian names the deaths as a trespass before confronting him as the first mini-boss.
+A corrupted hollow reveals that the small Rootlings behave as the Rootbound Husk's brood. After King cuts through the guarded brood, the ancient guardian names the deaths as a trespass before confronting him as the first mini-boss. Decision171 adds Rotcaller to that approach without replacing the solo Husk.
 
 ### Stage VII — Revised placement
 

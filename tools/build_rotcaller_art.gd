@@ -1,7 +1,7 @@
 extends SceneTree
 
 ## Offline technical normalization; authored poses come from imagegen.
-const SOURCE := "res://art_source/generated/characters/enemies/rotcaller_2026_10_03/"
+const SOURCE := "res://art_source/generated/characters/enemies/rotcaller_v2_2026_10_03/"
 const OUTPUT := "res://assets/characters/enemies/rotcaller/"
 var manifest: Array[Dictionary] = []
 
@@ -23,17 +23,20 @@ func _cell(source: Image, column: int, row: int, columns: int, rows: int) -> Ima
 
 func _build() -> void:
 	var walk := Image.load_from_file(SOURCE+"walk_source.png")
-	var south := Image.load_from_file(SOURCE+"south_walk_source.png")
-	var actions := Image.load_from_file(SOURCE+"actions_source.png")
+	var frontback := Image.load_from_file(SOURCE+"frontback_source.png")
+	var opposite := Image.load_from_file(SOURCE+"opposite_south_source.png")
+	var actions := Image.load_from_file("res://art_source/generated/characters/enemies/rotcaller_2026_10_03/actions_source.png")
 	var walk_cells: Array[Image] = []
 	var action_cells: Array[Image] = []
 	var heights: Array[int] = []
 	var action_heights: Array[int] = []
 	for row in 4:
 		for col in 4:
-			var image := _cell(south,col,0,4,1) if row == 0 else _cell(walk,col,row,4,4)
+			var image := _cell(walk,col,row,4,4)
+			if row == 0: image = _cell(frontback,col,0,4,2) if col < 2 else _cell(opposite,col-2,0,2,1)
+			if row == 2: image = _cell(frontback,col,1,4,2)
 			walk_cells.append(image)
-			if row != 0: heights.append(image.get_height())
+			if row in [1,3]: heights.append(image.get_height())
 			var pose := _cell(actions,col,row,4,4)
 			action_cells.append(pose)
 			if col == 2: action_heights.append(pose.get_height())
@@ -42,12 +45,16 @@ func _build() -> void:
 	var walk_ratio := 40.0/heights[heights.size()/2]
 	# A separate source-resolution factor keeps recovery bodies at walk height.
 	var action_ratio := 40.0/action_heights[2]
-	var south_ratio := 40.0/float(walk_cells[0].get_height())
+	var frontback_ratio := 40.0/float(walk_cells[0].get_height())
+	var opposite_ratio := 40.0/float(walk_cells[2].get_height())
 	for spec in [["walk",walk_cells,walk_ratio],["actions",action_cells,action_ratio]]:
 		var atlas := Image.create(256,256,false,Image.FORMAT_RGBA8)
 		for index in 16:
 			var image: Image = spec[1][index]
-			var ratio: float = south_ratio if spec[0] == "walk" and index < 4 else spec[2]
+			var ratio: float = spec[2]
+			if spec[0] == "walk":
+				if index in [0,1] or index in [8,9,10,11]: ratio = frontback_ratio
+				elif index in [2,3]: ratio = opposite_ratio
 			image.resize(roundi(image.get_width()*ratio),roundi(image.get_height()*ratio),Image.INTERPOLATE_NEAREST)
 			assert(image.get_height() <= 56 and image.get_width() <= 64,"Rotcaller pose exceeds its native canvas")
 			var origin := Vector2i(index%4*64+(64-image.get_width())/2,index/4*64+56-image.get_height())
@@ -68,7 +75,12 @@ func _save_frames() -> void:
 			var name := StringName(action+"_"+suffix)
 			frames.add_animation(name)
 			frames.set_animation_loop(name,action == "walk")
-			frames.set_animation_speed(name,8.0)
+			frames.set_animation_speed(name,5.0 if action == "windup" else 8.0)
+			if action == "windup":
+				var anticipation := AtlasTexture.new()
+				anticipation.atlas = load(OUTPUT+"walk.png")
+				anticipation.region = Rect2(0,row*64,64,64)
+				frames.add_frame(name,anticipation)
 			var columns: Array = [0,1,2,3] if action == "walk" else [0 if action in ["idle","windup"] else (1 if action == "release" else (2 if action == "recovery" else 3))]
 			for column: int in columns:
 				var texture := AtlasTexture.new()

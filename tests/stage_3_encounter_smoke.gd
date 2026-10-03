@@ -19,15 +19,15 @@ func _run() -> void:
 		_fail("Stage 3 must wait for arrival lore and retain its authored two-wave structure.")
 		return
 	var brood_wave := controller.waves[0] as EncounterWaveDefinition
-	if brood_wave.rootling_count != 10 or brood_wave.total_enemy_count() != 10:
-		_fail("Stage 3's approach must tell the Husk-brood story with ten Rootlings.")
+	if brood_wave.rootling_count != 13 or brood_wave.total_enemy_count() != 14 or brood_wave.spawn_entries.size() != 1:
+		_fail("Stage 3's approach requires thirteen Rootlings and one Rotcaller.")
 		return
 	var boss_wave := controller.waves[1] as EncounterWaveDefinition
 	if boss_wave.rootbound_husk_count != 1 or boss_wave.total_enemy_count() != 1:
 		_fail("Stage 3's finale must be a solo Rootbound Husk encounter.")
 		return
-	if controller.rootbound_husk_scene == null or controller.max_active_enemies != 4:
-		_fail("Stage 3 lost its Husk scene or the shared four-enemy cap.")
+	if controller.rootbound_husk_scene == null or controller.max_active_enemies != 5:
+		_fail("Stage 3 lost its Husk scene or the five-enemy cap.")
 		return
 	if controller.portal_target_scene != "res://levels/stage_4/stage_4.tscn":
 		_fail("Stage 3's post-mini-boss portal must continue into Stage 4.")

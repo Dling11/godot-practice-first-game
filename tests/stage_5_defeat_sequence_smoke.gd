@@ -8,7 +8,9 @@ func _initialize() -> void:
 
 
 func _run() -> void:
+	root.get_node("SaveService").suppress_autosave_for_debug_session()
 	var stage := Stage5Scene.instantiate()
+	stage.review_hold_approach = true
 	root.add_child(stage)
 	await process_frame
 	stage.call("_spawn_forward_portal")

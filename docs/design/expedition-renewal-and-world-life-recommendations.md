@@ -10,8 +10,9 @@
 | Stage II bramble art, layout and Stage I/II outdoor audio / shared music handoff | Implemented; owner visual/mix review open |
 | Stage III Hollow renewal, wind/wood ambience and optional pressure review | Implemented; owner visual/mix/difficulty review open |
 | Stage IV Eastern Rot renewal and regional sound | Implemented; owner art/mix review open |
-| Stage V/VI distinct biome renewal and sound | Approved; planned |
-| Rotcaller / Burrowkin fresh mechanics | Rotcaller isolated trial implemented; campaign insertion and Burrowkin planned |
+| Stage V Dead Forest renewal, sentries and sound | Implemented under Decision171; owner review open |
+| Stage VI Elder Ascent renewal and sound | Approved; planned |
+| Rotcaller / Burrowkin fresh mechanics | Rotcaller trial and bounded III/IV/V campaign placement implemented; Burrowkin planned |
 | Field scout with real walk frames and Sanctuary milestone reactions | Approved; planned |
 | Authored lore marker, limited cache and breakable supplies | Approved; planned |
 | Optional Hunts with known crafting rewards and saved receipts | Approved; planned |
@@ -41,7 +42,7 @@ Stage VI is a deliberate ecological/altitude contrast after V, not simply more d
 
 ## Suggested next concrete build
 
-Stage II, [Stage III Hollow](stage-3-hollow-and-enemy-pressure.md) and [Stage IV with a playable Rotcaller trial](stage-4-eastern-rot-and-rotcaller-trial.md) are implemented. Next review the IV/caster slice and renew V/VI, then introduce the scout with one real optional Hunt and complete campaign/replay/save audits. The additions are authorized; specific NPC identity, exploration reward budgets and Hunt rules still need concrete design before their first playable slice. More crowd pressure remains an opt-in14/five review, not a blanket campaign increase.
+Stages II–V are renewed; Rotcaller now appears in III/IV/V and expeditions have distinct music. [Decision171 delivery and ordered next work](stage-5-renewal-and-combat-polish.md) puts loading/start UI, portal/spawn presentation, hit audio, pointer/movement and measured performance before VI/scout/Hunts. III uses13+1/five live; IV60/eight; V six/five sentries, then a solo boss. The optional III18+1/six review remains separate. Specific NPC identity, exploration reward budgets and Hunt rules still need concrete design before implementation.
 
 ## Verification boundaries
 

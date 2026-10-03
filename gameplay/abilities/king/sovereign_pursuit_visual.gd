@@ -19,13 +19,11 @@ func _ready() -> void:
 		var actor := ability_component.owner as Player
 		if not actor.defeated.is_connected(_clear_visual):
 			actor.defeated.connect(_clear_visual)
-	var ancestor: Node = self
-	while ancestor != null and _feedback == null:
-		_feedback = ancestor.get_node_or_null("Services/CombatFeedback") as CombatFeedbackPresenter
-		ancestor = ancestor.get_parent()
 
 
 func play_phase(phase: int, _duration_seconds: float) -> void:
+	if not is_instance_valid(_feedback) and ability_component != null:
+		_feedback = CombatFeedbackPresenter.find_for_player(ability_component.owner as Player)
 	if not _is_pursuit() or effect_sprite == null:
 		return
 	if phase == AbilityComponent.Phase.ACTIVE:

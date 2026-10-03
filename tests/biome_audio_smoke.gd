@@ -11,7 +11,9 @@ func _run() -> void:
 	root.get_node("SaveService").suppress_autosave_for_debug_session()
 	native = DisplayServer.get_name() != "headless"
 	var director := root.get_node("AudioDirector")
-	var grove := load("res://assets/audio/music/cathedral_in_the_forest.ogg") as AudioStream
+	var grove := load("res://assets/audio/music/expedition_dark_forest.mp3") as AudioStream
+	_check(grove.get_length() > 60 and grove.loop,"New expedition theme is not a complete imported loop")
+	_check(grove != load("res://assets/audio/music/cathedral_in_the_forest.ogg"),"Expedition theme still equals the Sanctuary composition")
 	var boss := load("res://assets/audio/music/boss/varkuun_battle_rpg_theme_loop.ogg") as AudioStream
 	director.stop_music()
 	director.play_music(grove)

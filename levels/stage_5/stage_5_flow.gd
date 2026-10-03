@@ -27,6 +27,9 @@ const ExpeditionDefeatReturnScript = preload(
 @export var boss_music: AudioStream
 @export var entrance_descent: AudioStreamPlayer
 @export var entrance_landing: AudioStreamPlayer
+@export var approach_encounter: EncounterController
+@export var review_hold_approach := false
+@export var outdoor_audio: Node2D
 
 var _boss_started := false
 var stage_completed := false
@@ -62,14 +65,32 @@ func _ready() -> void:
 	player.defeated.connect(_on_player_defeated)
 	boss.health_component.died.connect(_on_boss_died)
 	boss.target = null
+	boss.health_component.is_damage_immune = true
 	boss.set_physics_process(false)
 	boss.visible = false
 	boss_trigger.body_entered.connect(_on_boss_trigger_entered)
 	combat_hud.show_story_message("STAGE V  •  THE DEAD FOREST", 3.0)
+	if approach_encounter != null:
+		approach_encounter.stage_cleared.connect(_on_approach_cleared)
+		if not review_hold_approach:
+			_start_approach()
+
+
+func _start_approach() -> void:
+	await get_tree().create_timer(2.0).timeout
+	if not player.is_defeated: approach_encounter.start_encounter()
+
+
+func _on_approach_cleared() -> void:
+	combat_hud.show_story_message("THE SENTRIES FALL · REACH THE NORTHERN BASIN",3.0)
+	# Crossing the basin during the guard fight must not require leaving/reentering.
+	if boss_trigger.overlaps_body(player): _on_boss_trigger_entered(player)
 
 
 func _on_boss_trigger_entered(body: Node2D) -> void:
-	if _boss_started or body != player:
+	if _boss_started or body != player or player.is_defeated:
+		return
+	if approach_encounter != null and not approach_encounter._completion_spawned:
 		return
 	_boss_started = true
 	boss_trigger.set_deferred("monitoring", false)
@@ -134,6 +155,8 @@ func _run_boss_entrance() -> void:
 
 func _on_boss_dialogue_closed(_completed: bool) -> void:
 	expedition_feedback.boss_started()
+	boss.health_component.is_damage_immune = false
+	if outdoor_audio != null: outdoor_audio.set_combat_active(true)
 	var audio_director := get_node_or_null("/root/AudioDirector")
 	if audio_director != null:
 		audio_director.play_music(boss_music, -7.0)
@@ -145,6 +168,7 @@ func _on_boss_dialogue_closed(_completed: bool) -> void:
 
 func _on_boss_died() -> void:
 	expedition_feedback.boss_defeated()
+	if outdoor_audio != null: outdoor_audio.set_combat_active(false)
 	_boss_defeat_position = boss.global_position
 	combat_hud.show_story_message("THE LORD REFUSES TO FALL", 1.6)
 	dialogue_panel.dialogue_closed.connect(

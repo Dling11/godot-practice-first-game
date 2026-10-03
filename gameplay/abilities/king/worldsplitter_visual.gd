@@ -31,10 +31,7 @@ var _feedback: CombatFeedbackPresenter
 func _ready() -> void:
 	add_to_group("worldsplitter_effects")
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	var ancestor := source.get_parent()
-	while ancestor != null and _feedback == null:
-		_feedback = ancestor.get_node_or_null("Services/CombatFeedback") as CombatFeedbackPresenter
-		ancestor = ancestor.get_parent()
+	_feedback = CombatFeedbackPresenter.find_for_player(source)
 	_spawn_blade(0)
 	_select_contact_blade(0)
 

@@ -27,7 +27,7 @@ func _run() -> void:
 		_fail("Title screen is not using the shared UI theme.")
 		return
 	var background := title.get_node("Background")
-	for layer_name in ["Base", "DistantSilhouette", "Atmosphere", "Vignette"]:
+	for layer_name in ["Base", "SealLayer", "Atmosphere", "Vignette"]:
 		if not background.has_node(layer_name):
 			_fail("Replaceable title background is missing layer: %s" % layer_name)
 			return

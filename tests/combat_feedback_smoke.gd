@@ -30,7 +30,7 @@ func _run() -> void:
 		or not is_equal_approx(feedback._resolve_basic_hitstop(999.0), 0.034)
 		or not is_equal_approx(
 			feedback._resolve_ability_hitstop(player.ability_1_component),
-			CombatFeedbackPresenter.MEDIUM_HITSTOP_SECONDS
+			CombatFeedbackPresenter.HEAVY_HITSTOP_SECONDS
 		)
 		or not is_equal_approx(
 			feedback._resolve_ability_hitstop(player.ability_2_component),

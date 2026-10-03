@@ -6,7 +6,7 @@
 script = ExtResource("1")
 title = "The Crowd Gathers"
 mireling_count = 1
-rootling_count = 2
+rootling_count = 4
 thrall_count = 2
 armored_hog_count = 1
 spawn_interval = 0.45

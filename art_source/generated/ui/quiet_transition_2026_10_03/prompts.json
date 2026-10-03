@@ -1,0 +1,16 @@
+[
+  {
+    "key": "loading_background",
+    "prompt": "Edit this approved Battle of Gods quiet loading reference into ONLY its background artwork. Remove ALL text, symbols, central seal, progress bar, gold lines and ornaments. Keep the same extremely dark navy charcoal atmospheric pixel-art background with subtle textured vignette and barely visible dither dust at corners. Generic timeless empty mysterious space, no forest, figures, landscape, spoilers, gradients of bright light. 16:9 landscape full background, opaque. Crisp dark pixel clusters, restrained low contrast. Intended game canvas 960x540; all typography and animated elements will be separate in game.",
+    "reference": "art_source/generated/ui/quiet_threshold_previews_2026_10_03/loading_quiet_threshold.png",
+    "source": "loading_background_source.png",
+    "transparent_background": false
+  },
+  {
+    "key": "loading_seal",
+    "prompt": "Using the central circular seal in this approved quiet mysterious Battle of Gods loading reference, create a production PIXEL ART animation sprite sheet with 8 frames in EXACTLY 4 columns and 2 rows, equal cells, no labels or numbers. Each cell contains the SAME small thin antique pale gold broken-circle seal on genuinely transparent background. Circular runic marks, restrained quiet glimmers, NO eye or face or lore imagery. Ring and inner marks remain perfectly fixed in size and center across frames; alternate small spark points and subtle rune illumination to create a looping quiet magical hum. Dark strong pixel edges, minimal gold highlights, discrete pixel clusters, designed to read at 80 pixels diameter. No scenery, no typography, no bar, no bloom filling empty background. Complete seal visible in every cell with padding. All eight cells must share identical alignment; eighth leads back to first.",
+    "reference": "art_source/generated/ui/quiet_threshold_previews_2026_10_03/loading_quiet_threshold.png",
+    "source": "loading_seal_source.png",
+    "transparent_background": true
+  }
+]

@@ -212,3 +212,9 @@ Four original deterministic cues: `sfx/abilities/king/worldsplitter_{gather,desc
 ### Worldsplitter fractured-light accent (2026-09-27)
 
 `worldsplitter_light_shards.wav` is an original 0.48s deterministic synthesis from `tools/build_worldsplitter_audio.js`, combining restrained decaying partials and filtered air. No external samples. Peak -2.16dBFS before runtime gain (-23dB final, -28dB early), with smooth onset/tail to complement the grounded contact.
+## Expedition forest music (2026-10-03)
+
+- `music/expedition_dark_forest.mp3`: **Dark Forest Theme**, cynicmusic / The Cynic Project. [Primary source and CC0 dedication](https://opengameart.org/node/80219); [original download](https://opengameart.org/sites/default/files/GameMusic_ForestTheme_24_0.mp3). SHA256 `C9E83D01741E97A462C44963AFF81645A9C2AA3A7A33E5849114A1399D1B0914`. Normal I–IV exploration uses this complete recording; Sanctuary retains Cathedral. Godot looping is enabled; MP3 encoding does not establish a gap-free musical seam.
+- `music/dead_forest_dark_place.ogg`: **Dark Place (loop)**, SkyleTheFrench. [Primary source and CC0 dedication](https://opengameart.org/content/dark-place-loop); [original download](https://opengameart.org/sites/default/files/dark_place.ogg). SHA256 `C78A433139ACE4A050B5D4A1B9B94BCF1F04D059345C849C7C234A2FE0EDA102`. Complete looping OGG for Stage V exploration/sentries; the existing Varkuun track still owns boss combat.
+
+Downloaded 2026-10-03. Both are external licensed compositions, not generated/original music authored by this project. Credits are retained although their CC0 dedication does not require attribution. Subjective mix and musical seams remain owner listening checks.

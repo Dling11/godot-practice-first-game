@@ -107,6 +107,7 @@ func _run() -> void:
 	await _capture("walking.png")
 	for direction: String in ["south","east","north","west"]:
 		_check(body.sprite_frames.get_frame_count(StringName("walk_"+direction)) == 4,"Missing directional walk poses: "+direction)
+		_check(body.sprite_frames.get_frame_count(StringName("windup_"+direction)) == 2,"Missing anticipation/staff-rise transition: "+direction)
 	# Cancel a pending cast on death and observe ordinary slot completion.
 	player.global_position = caster.global_position+Vector2(0,100)
 	caster._cooldown.stop()

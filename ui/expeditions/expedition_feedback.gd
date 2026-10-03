@@ -76,6 +76,21 @@ func configure(flow: Node, route: ExpeditionDefinition) -> void:
 		_update_encounter(_encounter.get_progress())
 	else:
 		view.update_objective(_route, "Reach Varkuun's clearing", "Enter the grove to face its lord", 0, 1, false)
+		if "approach_encounter" in flow and flow.approach_encounter != null:
+			var approach: EncounterController = flow.approach_encounter
+			approach.progress_changed.connect(_update_approach)
+			_update_approach(approach.get_progress())
+
+func _update_approach(snapshot: Dictionary) -> void:
+	if _defeated: return
+	if snapshot.state == "preparing":
+		var total: int = _flow.approach_encounter.waves[0].total_enemy_count()
+		view.update_objective(_route,"Defeat the grove's sentries","%d sentries ahead · Interrupt the Rotcaller" % total,0,total,false)
+		return
+	if snapshot.state == "complete":
+		view.update_objective(_route,"Reach Varkuun's clearing","Sentries defeated · Enter the northern basin",0,1,false)
+	else:
+		view.update_objective(_route,"Defeat the grove's sentries","%d / %d defeated · Interrupt the Rotcaller" % [snapshot.defeated,snapshot.total],snapshot.defeated,maxi(1,snapshot.total),false)
 
 func _on_rewards(experience: int, coins: int) -> void:
 	if _defeated: return

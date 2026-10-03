@@ -132,18 +132,34 @@ atlas = ExtResource("2_tu1v7")
 region = Rect2(192, 192, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iv4de"]
-atlas = ExtResource("1_t1o53")
+atlas = ExtResource("2_tu1v7")
 region = Rect2(0, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ieb1x"]
 atlas = ExtResource("1_t1o53")
-region = Rect2(0, 128, 64, 64)
+region = Rect2(0, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rt1sw"]
+atlas = ExtResource("2_tu1v7")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knb6x"]
+atlas = ExtResource("1_t1o53")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agbg6"]
+atlas = ExtResource("2_tu1v7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykkc4"]
 atlas = ExtResource("1_t1o53")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_knb6x"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsilq"]
+atlas = ExtResource("2_tu1v7")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uduqi"]
 atlas = ExtResource("1_t1o53")
 region = Rect2(0, 192, 64, 64)
 
@@ -348,32 +364,44 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_iv4de")
-}],
-"loop": 0,
-"name": &"windup_east",
-"speed": 8.0
 }, {
-"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ieb1x")
 }],
 "loop": 0,
-"name": &"windup_north",
-"speed": 8.0
+"name": &"windup_east",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rt1sw")
-}],
-"loop": 0,
-"name": &"windup_south",
-"speed": 8.0
 }, {
-"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_knb6x")
 }],
 "loop": 0,
+"name": &"windup_north",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agbg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykkc4")
+}],
+"loop": 0,
+"name": &"windup_south",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsilq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uduqi")
+}],
+"loop": 0,
 "name": &"windup_west",
-"speed": 8.0
+"speed": 5.0
 }]

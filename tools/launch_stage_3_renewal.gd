@@ -31,8 +31,8 @@ func _run() -> void:
 	_button(column,"Ritual seal",func() -> void: _visit(Vector2(768,424)))
 	_button(column,"Overview / gameplay",_toggle_overview)
 	var mode := OptionButton.new()
-	mode.add_item("Normal: 10 roots / 4 live")
-	mode.add_item("Pressure: 14 roots / 5 live")
+	mode.add_item("Normal: 13 roots + caster / 5 live")
+	mode.add_item("Pressure: 18 roots + caster / 6 live")
 	mode.focus_mode = Control.FOCUS_NONE
 	mode.add_theme_font_size_override("font_size",11)
 	column.add_child(mode)

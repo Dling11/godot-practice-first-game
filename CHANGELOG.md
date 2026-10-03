@@ -1,5 +1,28 @@
 # Changelog
 
+## 2026-10-03 — Native threat portals, quiet transitions, title and chest renewal
+
+- Integrated six generated eight-frame portal bodies under the existing five destination tiers, including Grasp/Maw Boss variants. Kept tier lightning separate and readable behind the body; current IV→V uses Grasp. F range, routes and required claims remain.
+- Replaced synchronous next-scene resource loading with background IO and actual progress. New generic layered loading animates the gold seal and current King during pause, rejects concurrent travel and restores old scene/pause/control state on failure. No mascot wait or narrative spoilers.
+- Renewed actual title backdrop/seal/glimmers and existing Forest/Rootbound/Varkuun chest closed/open states while preserving native controls, valid-save Continue, overwrite confirmation, rewards, footprints and save authority.
+- Added isolated interactive review, native captures/motion GIF tooling, source prompts/normalization builders, recovery snapshots, focused failure/animation checks and CONTINUE_PROGRESS.md. Native54 presentation and108 expedition assertions pass; headless interaction/real route/title/Continue checks pass. Ordinary profile unchanged. Owner feel/art acceptance, phone/cold-frame profiling, enemy emergence/hit audio and existing GPU teardown warnings remain open.
+- See Decision173 and docs/design/stage-exits-and-quiet-transitions.md. Decision172 story mechanisms remain proposals; no new gods, powers or ending implemented.
+
+
+## 2026-10-03 — Divine patron story expansion and portal-family selection
+
+- Recorded the owner's selection of all six latest portal concepts: five existing destination threat tiers with two red Boss variants. Native art/loops and runtime integration remain pending; destination routing and F chest/save gates remain unchanged.
+- Added an internal apparent-invasion/divine-aid/late-patron-reversal pitch with genuine helpful gifts, varied monster origins, alternative breach mechanisms, sparse evidence, spoiler boundaries and proposed future encounters. Preserved King's motive, established family deaths, StageXX divine false mentor and unresolved ending/hierarchy. No narrative gameplay, powers, factions or saves changed.
+- Updated canonical narrative/design routing and Decision172; retained animated reusable loading, title/homepage and existing chest renewal in the production plan.
+
+## 2026-10-03 — Campaign Rotcaller, Dead Forest and crowd-feedback correction
+
+- Added new directional step drawings, King-style dark outline and anticipation→staff-rise transitions. Normal III now13 Rootlings + caster/five live before solo Husk; IV60/eight with one caster in waves2–5 and unchanged Hog totals. Caster rewards12XP/2 coins and root materials use existing one-shot authority; isolated trial remains reward/save-free.
+- Renewed normal V with1728 baked32px ash-soil/path cells, eight generated families,50 placements plus animated carrion,24 coherent edge trees, compact collision/navigation, branch sway/fade and separate gateway pillars. Added finite six/five sentries; gate/dormant immunity protect the boss, and clearing inside the basin needs no reentry. Boss death/F chest/bank/unlocks/forward route remain authoritative.
+- Added licensed CC0 expedition and V exploration recordings distinct from Sanctuary, through the existing single music player; retained Varkuun's battle track. Quiet wind/creaks duck on guard/boss events.
+- Reproduced Skill1 crowd stutter: native8 hits/7 contact ticks caused6 whole-tree pauses/369.85ms. Earthsplitter now owns bounded shared feedback while keeping each target's flash/number/burst:8 contacts/0 pauses/0ms; Fan16 and Cascade24 contacts also retain0 pauses. Reused wave queries/shapes and fixed player-specific camera lookup across campaign service paths.
+- Added ready no-save V review with bounded two-column controls, safety, actual start, full-health reset, Tab/Esc and IV/trial shortcut.139 headless/rendered V,42 rendered V review,47 rendered caster,27 device audio,137/153 navigation,10 pressure,49 Vow/Worldsplitter and108 rendered expedition/service/save checks pass; basic feedback, King kit and III/IV resources pass. Owner feel/mix/balance/phone and existing shutdown warnings remain open. Ordered loading/start/portal/spawn/audio/pointer/walk/performance follow-ups are documented under Decision171.
+
 ## 2026-10-03 — Eastern Rot renewal and playable Rotcaller trial
 
 - Renewed normal IV with1344 baked32px cells,70 authored placements/eight generated families,36.90% eastern incursion, living western bird routes, rooted foliage and compact separate-body gateway pillars.12px baked navigation passes Hog-sized routes. Canonical five waves/50 enemies/eight live, Hogs, F route, rewards/story and normal saves remain.

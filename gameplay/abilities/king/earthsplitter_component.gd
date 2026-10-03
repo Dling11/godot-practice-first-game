@@ -13,6 +13,9 @@ var _plans: Array[Dictionary] = []
 var _preview_definition: AbilityDefinition
 var _wave_templates: Array[Dictionary] = []
 
+func owns_contact_feedback() -> bool:
+	return true
+
 func supports_ground_targeting() -> bool:
 	return true
 

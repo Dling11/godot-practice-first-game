@@ -9,6 +9,7 @@ func _initialize() -> void:
 
 
 func _run() -> void:
+	root.get_node("SaveService").suppress_autosave_for_debug_session()
 	var stage_one := Stage1Scene.instantiate()
 	var stage_one_controller := stage_one.get_node("GameplayServices/EncounterController") as EncounterController
 	if (
@@ -26,20 +27,8 @@ func _run() -> void:
 	if transition_service == null:
 		_fail("SceneTransition autoload is unavailable.")
 		return
-	transition_service._apply_loading_portal_presentation(
-		StagePortal.TIER_PRESENTATION[StagePortal.PortalTier.NORMAL]
-	)
-	if transition_service._loading_portal_fx.visible:
-		_fail("The loading veil adds lightning to a Normal portal transition.")
-		return
-	transition_service._apply_loading_portal_presentation(
-		StagePortal.TIER_PRESENTATION[StagePortal.PortalTier.TRANSCENDENT]
-	)
-	if (
-		not transition_service._loading_portal_fx.visible
-		or transition_service._loading_portal_fx.scale.x < 1.4
-	):
-		_fail("The loading veil does not preserve the highest tier's extreme lightning reach.")
+	if transition_service._loading_view.seal.sprite_frames.get_frame_count(&"active") != 8:
+		_fail("Quiet loading seal is missing its eight poses.")
 		return
 	var result: bool = await transition_service.transition_to(STAGE_2)
 	if not result:

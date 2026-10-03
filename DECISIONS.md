@@ -187,6 +187,9 @@ Current Sanctuary baseline: [Decision165](docs/decisions/165-finalize-sanctuary-
 | 168 | [Renew distinct biomes and stage audio](docs/decisions/168-renew-distinct-biomes-and-stage-audio.md) | Approved five-part world-life program; Stage II bramble kit and shared music/outdoor ambience |
 | 169 | [Renew Rootbound Hollow and preview enemy pressure](docs/decisions/169-renew-rootbound-hollow-and-preview-enemy-pressure.md) | Stage III compact root kit/audio, optional14/five comparison and proposed enemy roles |
 | 170 | [Renew Eastern Rot and prototype Rotcaller](docs/decisions/170-renew-eastern-rot-and-prototype-rotcaller.md) | Normal IV compact eastern biome/regional ambience and isolated playable caster trial |
+| 171 | [Campaign Rotcaller, Dead Forest and bounded wave feedback](docs/decisions/171-add-campaign-rotcaller-renew-dead-forest-and-bound-wave-feedback.md) | Current III14/five, IV60/eight, finite V guards/renewal/music, Skill1 stutter and post-V polish |
+| 172 | [Divine patron reversal and complete threat portal family](docs/decisions/172-expand-divine-patron-reversal-and-select-threat-portals.md) | All-six portal concept selection, apparent invasion/divine aid, late patron betrayal and proposed monster origins/clues |
+| 173 | [Threat portals and quiet stage presentation](docs/decisions/173-promote-threat-portals-and-quiet-stage-presentation.md) | Native six-family animation, actual threaded loading, title/chest art and isolated continuation review |
 
 ## New Decisions
 

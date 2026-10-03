@@ -39,6 +39,11 @@ func is_ready() -> bool:
 	return phase == Phase.IDLE and cooldown_remaining <= 0.0
 
 
+func owns_contact_feedback() -> bool:
+	## Released sequences can supply bounded shared feedback independently of contacts.
+	return false
+
+
 func can_queue_cast() -> bool:
 	return cooldown_remaining <= 0.0
 

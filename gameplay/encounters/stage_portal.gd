@@ -52,6 +52,7 @@ const TIER_PRESENTATION := {
 
 @export_file("*.tscn") var target_scene_path := ""
 @export var portal_tier: PortalTier = PortalTier.NORMAL
+@export_enum("Grasp", "Maw") var boss_variant := 0
 @export var portal_visual: AnimatedSprite2D
 @export var portal_fx: AnimatedSprite2D
 @export var guidance_arrow: Label
@@ -63,7 +64,6 @@ const TIER_PRESENTATION := {
 var _player_inside := false
 var _nearby_player: Player
 var _travel_started := false
-var _tier_color := Color.WHITE
 var _fx_color := Color.WHITE
 var _fx_alpha := 0.0
 var _portal_scale := Vector2.ONE
@@ -88,7 +88,6 @@ func _process(_delta: float) -> void:
 
 func _apply_tier_presentation() -> void:
 	var presentation: Dictionary = TIER_PRESENTATION.get(portal_tier, TIER_PRESENTATION[PortalTier.NORMAL])
-	_tier_color = presentation["color"] as Color
 	_fx_color = presentation["fx_color"] as Color
 	var scale_factor: float = presentation["scale"]
 	var fx_reach: float = presentation["fx_reach"]
@@ -97,12 +96,15 @@ func _apply_tier_presentation() -> void:
 	_fx_alpha = presentation["fx_alpha"]
 	_portal_scale = Vector2.ONE * scale_factor
 	if portal_visual != null:
+		portal_visual.sprite_frames = StagePortalArt.frames_for(portal_tier, boss_variant)
+		portal_visual.play(&"active")
+		portal_visual.position.y = -71.0 * scale_factor
 		portal_visual.speed_scale = base_speed
 		portal_visual.scale = _portal_scale * 0.18
-		portal_visual.modulate = Color(_tier_color, 0.0)
+		portal_visual.modulate = Color(1, 1, 1, 0)
 		var appearance := create_tween().set_parallel(true)
 		appearance.tween_property(portal_visual, "scale", _portal_scale, 0.48).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-		appearance.tween_property(portal_visual, "modulate", Color(_tier_color, 1.0), 0.3)
+		appearance.tween_property(portal_visual, "modulate", Color.WHITE, 0.3)
 		if portal_fx != null:
 			portal_fx.visible = _fx_alpha > 0.0
 			portal_fx.speed_scale = fx_speed
@@ -120,6 +122,7 @@ func _apply_tier_presentation() -> void:
 		appearance.chain().tween_callback(_start_energy_pulse)
 	var guide_color: Color = presentation["guide_color"] as Color
 	if guidance_arrow != null:
+		guidance_arrow.position.y = -132.0 * scale_factor - 30.0
 		guidance_arrow.add_theme_color_override("font_color", guide_color)
 	if offscreen_guide != null:
 		offscreen_guide.add_theme_color_override("font_color", guide_color)
@@ -133,10 +136,9 @@ func _start_energy_pulse() -> void:
 		_base_pulse.kill()
 	if _fx_pulse != null and _fx_pulse.is_valid():
 		_fx_pulse.kill()
-	var bright := _tier_color.lightened(0.18)
 	_base_pulse = create_tween().set_loops()
-	_base_pulse.tween_property(portal_visual, "modulate", Color(bright, 1.0), 0.62).set_trans(Tween.TRANS_SINE)
-	_base_pulse.tween_property(portal_visual, "modulate", Color(_tier_color, 1.0), 0.78).set_trans(Tween.TRANS_SINE)
+	_base_pulse.tween_property(portal_visual, "modulate", Color(0.92, 0.92, 0.92), 0.62).set_trans(Tween.TRANS_SINE)
+	_base_pulse.tween_property(portal_visual, "modulate", Color.WHITE, 0.78).set_trans(Tween.TRANS_SINE)
 	if portal_fx != null and is_instance_valid(portal_fx) and _fx_alpha > 0.0:
 		_fx_pulse = create_tween().set_loops()
 		_fx_pulse.tween_property(
@@ -216,6 +218,10 @@ func _restore_player_after_failed_travel(player: Player) -> void:
 	player.scale = Vector2.ONE
 	player.set_physics_process(true)
 	player.set_process_unhandled_input(true)
+	# Restore F even when the player remains inside after a failed load.
+	_player_inside = overlaps_body(player)
+	_nearby_player = player if _player_inside else null
+	proximity_changed.emit(_player_inside, interaction_text if _player_inside else "", interaction_icon if _player_inside else null)
 
 
 func _on_body_entered(body: Node2D) -> void:

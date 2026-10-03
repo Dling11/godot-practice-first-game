@@ -14,6 +14,8 @@ Use these labels throughout this roadmap:
 
 ## Accepted Story Foundation
 
+Decision172 expands the apparent invasion/divine aid/late patron reversal direction and selects the complete destination-threat portal concept family. [Divine patrons and the manufactured invasion](divine-patrons-and-manufactured-invasion.md) develops proposed monster origins, breach explanations and clues without changing the canonical family truth, StageXX Examiner placement or open ending. Exact mechanisms and gameplay remain proposed; no new production stage or power is implemented.
+
 ### The universe and the Game are different things
 
 Reality, the gods, and mortal worlds exist beyond the Game. The Game is a constructed system within that larger existence. It organizes Champions, stages, trials, monsters, rewards, materials, Sanctuary access, resurrection, progression, and divine interference, but it is not automatically the whole universe.

@@ -17,6 +17,9 @@ var _last := Vector2.ZERO
 var _ended := false
 # Fan siblings share this cast-owned ledger; other waves receive their own.
 var shared_targets: Dictionary = {}
+var _terrain_query: PhysicsShapeQueryParameters2D
+var _contact_query: PhysicsShapeQueryParameters2D
+var _capsule: CapsuleShape2D
 
 func _ready() -> void:
 	add_to_group("earthsplitter_attacks")
@@ -27,10 +30,10 @@ func _ready() -> void:
 	_contact.collision_layer = 0
 	_contact.collision_mask = 0
 	var shape := CollisionShape2D.new()
-	var capsule := CapsuleShape2D.new()
-	capsule.radius = tuning.lane_radius
-	capsule.height = tuning.lane_radius * 2.0
-	shape.shape = capsule
+	_capsule = CapsuleShape2D.new()
+	_capsule.radius = tuning.lane_radius
+	_capsule.height = tuning.lane_radius * 2.0
+	shape.shape = _capsule
 	_contact.add_child(shape)
 	add_child(_contact)
 	_contact.global_position = origin
@@ -38,6 +41,17 @@ func _ready() -> void:
 	_contact._hit_targets = shared_targets
 	_contact.set_physics_process(false)
 	_contact.hit_landed.connect(func(hurtbox: HurtboxComponent, info: DamageInfo) -> void: hit_landed.emit(hurtbox, info))
+	_terrain_query = PhysicsShapeQueryParameters2D.new()
+	var terrain_shape := CircleShape2D.new()
+	terrain_shape.radius = tuning.lane_radius
+	_terrain_query.shape = terrain_shape
+	_terrain_query.collision_mask = 1
+	_terrain_query.exclude = [source.get_rid()]
+	_contact_query = PhysicsShapeQueryParameters2D.new()
+	_contact_query.shape = _capsule
+	_contact_query.collision_mask = 16
+	_contact_query.collide_with_areas = true
+	_contact_query.collide_with_bodies = false
 	front_advanced.emit(origin)
 
 func _physics_process(delta: float) -> void:
@@ -48,33 +62,22 @@ func _physics_process(delta: float) -> void:
 	var point := origin.lerp(target, minf(_age / tuning.travel_seconds, 1.0))
 	# Recheck new geometry while the wave travels. Radius-wide terrain sweep
 	# prevents the hurtbox radius reaching through a wall beside the center ray.
-	var terrain := PhysicsShapeQueryParameters2D.new()
-	var terrain_shape := CircleShape2D.new()
-	terrain_shape.radius = tuning.lane_radius
-	terrain.shape = terrain_shape
-	terrain.transform = Transform2D(0, _last)
-	terrain.collision_mask = 1
-	terrain.exclude = [source.get_rid()]
-	if not get_world_2d().direct_space_state.intersect_shape(terrain, 1).is_empty():
+	_terrain_query.transform = Transform2D(0, _last)
+	_terrain_query.motion = Vector2.ZERO
+	if not get_world_2d().direct_space_state.intersect_shape(_terrain_query, 1).is_empty():
 		_cancel()
 		return
-	terrain.motion = point - _last
-	var fractions := get_world_2d().direct_space_state.cast_motion(terrain)
+	_terrain_query.motion = point - _last
+	var fractions := get_world_2d().direct_space_state.cast_motion(_terrain_query)
 	var stopped := fractions[0] < 1.0
 	if stopped:
-		point = _last + terrain.motion * fractions[0]
+		point = _last + _terrain_query.motion * fractions[0]
 	var distance := _last.distance_to(point)
-	var capsule := _contact.get_child(0).shape as CapsuleShape2D
-	capsule.height = tuning.lane_radius * 2.0 + distance
+	_capsule.height = tuning.lane_radius * 2.0 + distance
 	_contact.global_position = (_last + point) * .5
 	_contact.rotation = (point - _last).angle() + PI * .5
-	var query := PhysicsShapeQueryParameters2D.new()
-	query.shape = capsule
-	query.transform = _contact.global_transform
-	query.collision_mask = 16
-	query.collide_with_areas = true
-	query.collide_with_bodies = false
-	for result in get_world_2d().direct_space_state.intersect_shape(query, 128):
+	_contact_query.transform = _contact.global_transform
+	for result in get_world_2d().direct_space_state.intersect_shape(_contact_query, 128):
 		_contact._try_hit(result.collider)
 	front_advanced.emit(point)
 	_last = point

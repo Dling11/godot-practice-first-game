@@ -122,6 +122,20 @@ func _run() -> void:
 	root.get_node("RunSession").update_progression(1750,750)
 	stage = await load_stage(STAGE5)
 	check(not CompletionReturn.can_return(stage), "Boss stage can return before its chest claim")
+	var approach: EncounterController = stage.approach_encounter
+	approach.waves = [approach.waves[0].duplicate(true)]
+	approach.waves[0].spawn_interval = .05
+	approach.waves[0].reinforcement_delay = .05
+	approach.inter_wave_delay = .05
+	approach.start_encounter()
+	var approach_deadline := Time.get_ticks_msec()+6000
+	while not approach._completion_spawned and Time.get_ticks_msec()<approach_deadline:
+		for sentry in approach.actors.get_children():
+			if sentry != stage.player and sentry != stage.boss and sentry.get("health_component") != null:
+				sentry.set_physics_process(false)
+				kill(sentry,stage.player)
+		await process_frame
+	check(approach._completion_spawned and not CompletionReturn.can_return(stage),"Guard clear skipped the required boss/chest")
 	stage._on_boss_trigger_entered(stage.player)
 	await create_timer(1.7).timeout
 	if stage.dialogue_panel.visible: await click(stage.dialogue_panel.skip_button.get_global_rect().get_center())
@@ -199,6 +213,7 @@ func load_stage(scene: PackedScene) -> Node:
 	root.get_node("LootService").reset_expedition_tracking()
 	var stage := scene.instantiate()
 	if "review_hold_encounter" in stage: stage.review_hold_encounter = true
+	if "review_hold_approach" in stage: stage.review_hold_approach = true
 	if "encounter_controller" in stage:
 		var encounter: EncounterController = stage.encounter_controller
 		encounter.auto_start = false

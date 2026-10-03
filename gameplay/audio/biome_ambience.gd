@@ -74,6 +74,11 @@ func _on_stage_cleared() -> void:
 	_combat = false
 	_update_mix()
 
+func set_combat_active(active: bool) -> void:
+	## Boss flows have an entrance event rather than another ordinary wave.
+	_combat = active
+	_update_mix()
+
 
 func _update_mix() -> void:
 	if _mix != null: _mix.kill()

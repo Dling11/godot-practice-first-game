@@ -30,7 +30,7 @@ func _run() -> void:
 	_check(ground.get_used_rect().size*ground.tile_set.tile_size == (Vector2i(1536,896) if compact else Vector2i(1920,1152)),"Terrain density changed the playable map extent")
 	_check(ground.layout != null and ground.layout.map_size == (Vector2i(48,28) if compact else Vector2i(60,36)),"Baked terrain lost its authored layout")
 	_check(actors.y_sort_enabled,"Props and King no longer share floor-depth sorting")
-	_check(arena.encounter_controller.waves.size() == (5 if stage_4 else (2 if stage_3 else (7 if stage_2 else 6))) and arena.encounter_controller.max_active_enemies == (8 if stage_4 else (6 if stage_2 else 4)),"Environment changed the combat baseline")
+	_check(arena.encounter_controller.waves.size() == (5 if stage_4 else (2 if stage_3 else (7 if stage_2 else 6))) and arena.encounter_controller.max_active_enemies == (8 if stage_4 else (5 if stage_3 else (6 if stage_2 else 4))),"Environment changed the combat baseline")
 	var map := player.get_world_2d().get_navigation_map()
 	var space := player.get_world_2d().direct_space_state
 	var origin := player.global_position

@@ -37,10 +37,7 @@ void fragment() {
 func _ready() -> void:
 	add_to_group("molten_crash_effects")
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	var ancestor := source.get_parent()
-	while ancestor != null and _feedback == null:
-		_feedback = ancestor.get_node_or_null("Services/CombatFeedback") as CombatFeedbackPresenter
-		ancestor = ancestor.get_parent()
+	_feedback = CombatFeedbackPresenter.find_for_player(source)
 	_sword = _sprite(Sword,.48)
 	_sword.z_index = -1
 	_burst = _sprite(Burst,radius*2.0/180.0)

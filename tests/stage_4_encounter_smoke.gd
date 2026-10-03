@@ -12,7 +12,7 @@ func _initialize() -> void:
 
 func _run() -> void:
 	root.get_node("SaveService").suppress_autosave_for_debug_session()
-	var expected_early_caps := [4, 6, 4]
+	var expected_early_caps := [4, 6, 5]
 	var early_scenes: Array[PackedScene] = [Stage1Scene, Stage2Scene, Stage3Scene]
 	for scene_index in early_scenes.size():
 		var early_stage := early_scenes[scene_index].instantiate()
@@ -33,7 +33,7 @@ func _run() -> void:
 	if controller.max_active_enemies != 8:
 		_fail("Stage 4 must raise the live-enemy ceiling to eight.")
 		return
-	var expected_totals := [6, 8, 10, 12, 14]
+	var expected_totals := [8, 10, 12, 14, 16]
 	var expected_hogs := [1, 1, 2, 2, 2]
 	for index in controller.waves.size():
 		var wave := controller.waves[index] as EncounterWaveDefinition
@@ -42,6 +42,9 @@ func _run() -> void:
 			return
 		if wave.armored_hog_count != expected_hogs[index]:
 			_fail("Stage 4 wave %d lost its authored Armored Hog pressure." % [index + 1])
+			return
+		if wave.spawn_entries.size() != (0 if index == 0 else 1):
+			_fail("Stage IV must introduce one Rotcaller per wave after its opener.")
 			return
 	if controller.armored_hog_scene == null:
 		_fail("Stage 4 did not wire the Armored Hog runtime scene.")

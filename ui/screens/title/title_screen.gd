@@ -25,6 +25,9 @@ var _transitioning := false
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	var transition_service := get_node_or_null("/root/SceneTransition")
+	if transition_service != null:
+		transition_service.transition_failed.connect(_on_transition_failed)
 	settings_panel.hide()
 	_refresh_audio_labels()
 	_refresh_continue_state()
@@ -48,6 +51,13 @@ func begin_new_journey() -> void:
 		new_journey_confirmation.popup_centered()
 		return
 	_commit_new_journey()
+
+
+func _on_transition_failed(_destination: String) -> void:
+	_transitioning = false
+	_set_main_buttons_disabled(false)
+	_refresh_continue_state()
+	start_button.grab_focus()
 
 
 func _commit_new_journey() -> void:

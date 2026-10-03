@@ -1,6 +1,6 @@
 # Stage II bramble renewal and outdoor audio
 
-Implemented 2026-10-03 under Decision168. All five world-life recommendations are approved; this is their first delivery after the accepted Stage I pilot. Stage IV–VI, the scout, reactions, exploration and Hunts remain planned. Stage II visual/mix acceptance and phone profiling remain open.
+Implemented 2026-10-03 under Decision168. All five world-life recommendations are approved; this is their first delivery after the accepted Stage I pilot. Current Decision171 adds IV/V renewal, campaign Rotcaller and new Dark Forest Theme music to normal I–IV. VI, the scout, reactions, exploration and Hunts remain planned. Stage II visual/mix acceptance and phone profiling remain open.
 
 ## Playable environment
 

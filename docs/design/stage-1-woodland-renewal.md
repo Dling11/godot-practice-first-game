@@ -2,6 +2,8 @@
 
 2026-10-02. Implemented in the normal Forgotten Grove scene; owner accepted the current visual direction on2026-10-03; precise combat feel/economy and phone profiling remain open. This is the Stage I pilot requested before extending the direction to II–VI. See Decision 167.
 
+Current audio update (Decision171,2026-10-03): normal I–IV now use the attributed Dark Forest Theme recording, distinct from Sanctuary. Stage I art remains the accepted baseline. See [current campaign and next work](stage-5-renewal-and-combat-polish.md).
+
 ## Direction
 
 Match the accepted Sanctuary's restrained olive meadow, grey mossy stone, defined pixel outlines and overhead view. Replace the old repeating 64px path tiles with a 32px grid: 60x36 / 2160 baked cells over the same 1920x1152 stage. One winding approach has side trails toward woodland pockets and ends at a compact old shrine apron. Dirt uses sixteen corner masks with irregular grass edges; the stone apron uses the approved connected edge tiles. Ground is still editable TileMap data with an explicit AuthoredGroundLayout, not a flattened background or runtime random fill.

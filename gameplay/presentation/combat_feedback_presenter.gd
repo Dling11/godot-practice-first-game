@@ -39,6 +39,7 @@ func _ready() -> void:
 		push_error("CombatFeedbackPresenter requires damage-number and hit-burst scenes.")
 		return
 	_camera_base_offset = camera.offset
+	add_to_group(&"combat_feedback")
 	_hit_flash_material = ShaderMaterial.new()
 	_hit_flash_material.shader = HIT_FLASH_SHADER
 	_hit_flash_material.set_shader_parameter("flash_amount", 1.0)
@@ -47,6 +48,15 @@ func _ready() -> void:
 	for ability in player.get_all_ability_components():
 		ability.hit_landed.connect(_on_player_ability_hit_landed.bind(ability))
 	player.health_component.damaged.connect(_on_player_damaged)
+
+
+static func find_for_player(actor: Player) -> CombatFeedbackPresenter:
+	if not is_instance_valid(actor) or not actor.is_inside_tree():
+		return null
+	for candidate: Node in actor.get_tree().get_nodes_in_group(&"combat_feedback"):
+		if candidate is CombatFeedbackPresenter and candidate.player == actor:
+			return candidate
+	return null
 
 
 func _on_player_hit_landed(target: HurtboxComponent, info: DamageInfo) -> void:
@@ -82,10 +92,10 @@ func _on_player_ability_hit_landed(
 	info: DamageInfo,
 	active_ability: AbilityComponent
 ) -> void:
-	## One thrust can land on several enemies in the same physics tick. Preserve
-	## each target's flash/number/burst, but coalesce shared camera, hitstop, and
-	## audio work so a clustered hit does not repeatedly rebuild those effects.
-	var is_first_impact_this_frame := Engine.get_physics_frames() != _last_ability_impact_physics_frame
+	## A travelling wave lands across multiple ticks. Its authored sequence owns
+	## bounded shared impacts; per-target global pauses would freeze that travel.
+	var owns_sequence_feedback := active_ability != null and active_ability.owns_contact_feedback()
+	var is_first_impact_this_frame := not owns_sequence_feedback and Engine.get_physics_frames() != _last_ability_impact_physics_frame
 	if is_first_impact_this_frame:
 		_last_ability_impact_physics_frame = Engine.get_physics_frames()
 	_show_hit(

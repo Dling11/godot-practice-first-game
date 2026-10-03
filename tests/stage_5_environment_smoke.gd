@@ -1,228 +1,125 @@
 extends SceneTree
 
-const ARENA_PATH := "res://levels/stage_5_boss_test/stage_5_boss_test.tscn"
-const STAGE_5_PATH := "res://levels/stage_5/stage_5.tscn"
-const STAGE_4_PATH := "res://levels/stage_4/stage_4.tscn"
-const TERRAIN_PATH := "res://assets/environment/forest/stage_5/tiles/stage_5_decay_ground_atlas_4x4.png"
-const SHRINE_PATH := "res://assets/environment/forest/stage_5/props/stage_5_broken_shrine_320x192.png"
-const TALL_TREE_PATH := "res://assets/environment/forest/stage_5/props/stage_5_tall_dead_tree_144x192.png"
-const SNAG_PATH := "res://assets/environment/forest/stage_5/props/stage_5_dead_tree_snag_128x160.png"
-const FALLEN_LOG_PATH := "res://assets/environment/forest/stage_5/props/stage_5_fallen_log_192x96.png"
-const UPROOTED_LOG_PATH := "res://assets/environment/forest/stage_5/props/stage_5_uprooted_log_192x128.png"
-const DEAD_ANIMAL_PATH := "res://assets/environment/forest/stage_5/props/stage_5_tiny_carrion_remains_48x32.png"
-const EDGE_THICKET_PATH := "res://assets/environment/forest/stage_5/props/stage_5_edge_thicket_256x192.png"
-const REJECTED_STUMP_PATH := "res://assets/environment/forest/stage_5/props/stage_5_dead_tree_112x144.png"
+## Production dead forest. Legacy boss proof remains separately playable.
+var checks := 0
+var failures := 0
+var stage: Node
 
-
-func _initialize() -> void:
-	call_deferred("_run")
-
+func _initialize() -> void: call_deferred("_run")
 
 func _run() -> void:
-	root.get_node("SaveService").suppress_autosave_for_debug_session()
-	if not _verify_image(TERRAIN_PATH, Vector2i(256, 256), false):
-		return
-	if not _verify_image(SHRINE_PATH, Vector2i(320, 192), true):
-		return
-	if not _verify_image(TALL_TREE_PATH, Vector2i(144, 192), true):
-		return
-	if not _verify_image(SNAG_PATH, Vector2i(128, 160), true):
-		return
-	if not _verify_image(FALLEN_LOG_PATH, Vector2i(192, 96), true):
-		return
-	if not _verify_image(UPROOTED_LOG_PATH, Vector2i(192, 128), true):
-		return
-	if not _verify_image(DEAD_ANIMAL_PATH, Vector2i(48, 32), true):
-		return
-	if not _verify_image(EDGE_THICKET_PATH, Vector2i(256, 192), true):
-		return
-	if FileAccess.file_exists(REJECTED_STUMP_PATH):
-		_fail("The owner-rejected Stage 5 stump runtime asset was restored.")
-		return
-
-	var arena_scene := load(ARENA_PATH) as PackedScene
-	var arena := arena_scene.instantiate() if arena_scene != null else null
-	if arena == null:
-		_fail("Stage 5 environment proof did not instantiate.")
-		return
-	var ground := arena.get_node_or_null("World/Level/Ground") as TileMapLayer
-	if ground == null or ground.layout == null:
-		_fail("Stage 5 environment lost its authored ground layout.")
-		return
-	if ground.layout.map_size != Vector2i(15, 9) or ground.layout.rows.size() != 9:
-		_fail("Stage 5 environment ground contract drifted from its authored 15x9 basin.")
-		return
-	for row in ground.layout.rows:
-		if row.length() != 15:
-			_fail("Stage 5 environment contains a malformed authored terrain row: %s." % row)
-			return
-	if arena.get_node_or_null("World/Actors/BrokenShrineNorth") == null:
-		_fail("Stage 5 environment lost its dormant broken shrine focal point.")
-		return
-	for prop_name in ["TallDeadTreeNorthWest", "DeadTreeSnagNorthEast", "FallenLogNorthWest", "FallenLogSouthEast", "UprootedLogWest"]:
-		if arena.get_node_or_null("World/Actors/" + prop_name) == null:
-			_fail("Stage 5 environment lost authored dead-forest obstacle %s." % prop_name)
-			return
-	if arena.get_node_or_null("World/NavigationRegion2D") == null:
-		_fail("Stage 5 environment lost navigation ownership around its authored obstacles.")
-		return
-	root.add_child(arena)
-	await process_frame
-	var player := arena.get_node_or_null("World/Actors/Player") as Player
-	var boss := arena.get_node_or_null("World/Actors/Stage5Boss") as Stage5Boss
-	if player == null or boss == null:
-		_fail("Stage 5 environment proof lost its playable combat actors.")
-		return
-	boss.set_physics_process(false)
-	var start_position := player.global_position
-	Input.action_press(&"player_move_right")
-	for tick in 20:
-		await physics_frame
-	Input.action_release(&"player_move_right")
-	if player.global_position.x <= start_position.x + 4.0:
-		_fail("King cannot traverse the Stage 5 F8 combat rectangle.")
-		return
-	arena.queue_free()
-	await process_frame
-
-	var stage_4_scene := load(STAGE_4_PATH) as PackedScene
-	var stage_4 := stage_4_scene.instantiate() if stage_4_scene != null else null
-	if stage_4 == null:
-		_fail("Stage 4 did not instantiate while checking its existing exit portal.")
-		return
-	var controller := stage_4.get_node_or_null("GameplayServices/EncounterController")
-	if controller == null or controller.portal_target_scene != STAGE_5_PATH:
-		_fail("Stage 4's eastern gateway no longer routes into the production Stage 5 scene.")
-		return
-	var stage_4_ruin := stage_4.get_node_or_null("World/Actors/EastRuin") as Node2D
-	var stage_4_exit := stage_4.get_node_or_null("SpawnPoints/StageExit") as Marker2D
-	if stage_4_ruin == null or stage_4_ruin.get_node_or_null("Shrine") == null:
-		_fail("Stage 4's eastern route marker must share the broken-shrine architecture used by Stage 5.")
-		return
-	if stage_4_exit == null or not stage_4_exit.position.is_equal_approx(stage_4_ruin.position):
-		_fail("Stage 4's clear portal must activate inside its eastern broken gateway.")
-		return
-	stage_4.free()
-
-	var stage_5_scene := load(STAGE_5_PATH) as PackedScene
-	var stage_5 := stage_5_scene.instantiate() if stage_5_scene != null else null
-	if stage_5 == null:
-		_fail("Production Stage 5 did not instantiate.")
-		return
-	var production_ground := stage_5.get_node_or_null("World/Level/Ground") as TileMapLayer
-	if production_ground == null or production_ground.layout == null or production_ground.layout.map_size != Vector2i(24, 18):
-		_fail("Production Stage 5 lost its authored 24x18 scrolling ground.")
-		return
-	var production_actors := stage_5.get_node_or_null("World/Actors")
-	var edge_count := 0
-	for child in production_actors.get_children():
-		if child.name.begins_with("Edge"):
-			edge_count += 1
-	if edge_count < 18:
-		_fail("Production Stage 5 no longer has a dense authored dead-tree edge wall.")
-		return
-	for child in production_actors.get_children():
-		if not child.name.begins_with("Edge"):
-			continue
-		var edge_position := (child as Node2D).position
-		if edge_position.x > 96.0 and edge_position.x < 1440.0 and edge_position.y > 160.0 and edge_position.y < 1092.0:
-			_fail("Stage 5 edge thicket %s drifted into the playable field." % child.name)
-			return
-	var carcass := stage_5.get_node_or_null("World/Actors/DeadAnimalLandmark")
-	if carcass == null or carcass.get_node_or_null("Flies") == null or carcass.get_node("Flies").get_child_count() != 4:
-		_fail("Production Stage 5 lost its animated dead-animal landmark.")
-		return
-	if stage_5.get_node_or_null("World/Actors/ArrivalGateway") == null:
-		_fail("Production Stage 5 lost the destination-side eastern gateway.")
-		return
-	root.add_child(stage_5)
-	await process_frame
-	var production_player := stage_5.get_node("World/Actors/Player") as Player
-	var production_boss := stage_5.get_node("World/Actors/Stage5Boss") as Stage5Boss
-	if production_boss.arena_bounds.position.x > 80.0 or production_boss.arena_bounds.position.y > 80.0 or production_boss.arena_bounds.end.x < 1460.0 or production_boss.arena_bounds.end.y < 1080.0:
-		_fail("Varkuun remains clamped to the northern basin instead of pursuing across Stage 5 after activation.")
-		return
-	if production_boss.is_physics_processing() or production_boss.target != null:
-		_fail("Production Stage 5 boss activated before King reached its northern basin.")
-		return
-	var production_start := production_player.global_position
-	Input.action_press(&"player_move_up")
-	for tick in 20:
-		await physics_frame
-	Input.action_release(&"player_move_up")
-	if production_player.global_position.y >= production_start.y - 4.0:
-		_fail("King cannot traverse the production Stage 5 approach.")
-		return
-	production_player.global_position = Vector2(768, 575)
-	await create_timer(1.8).timeout
-	# Headless flow closes this conversation automatically; rendered verification
-	# must finish the same intro before checking combat/music ownership.
-	if stage_5.dialogue_panel.visible:
-		stage_5.dialogue_panel.close_dialogue(true)
+	var save := root.get_node("SaveService")
+	var profile_before := FileAccess.get_sha256(save.get_profile_path())
+	save.suppress_autosave_for_debug_session()
+	root.size = Vector2i(960,540)
+	stage = load("res://levels/stage_5/stage_5.tscn").instantiate()
+	stage.review_hold_approach = true
+	root.add_child(stage)
+	current_scene = stage
+	stage.player.health_component.is_damage_immune = true
+	var ground: TileMapLayer = stage.get_node("World/Level/Ground")
+	_check(ground.get_used_cells().size() == 1728 and ground.tile_set.tile_size == Vector2i(32,32),"Dead Forest lost its 48x36 compact ground")
+	_check(stage.boss.arena_bounds == Rect2(72,72,1392,1008),"Boss pursuit bounds changed")
+	_check(not stage.boss.visible and not stage.boss.is_physics_processing(),"Boss begins before its guard gate")
+	_check(not stage.boss.health_component.apply_damage(DamageInfo.new(10,stage.player,Vector2.ZERO)),"Invisible dormant boss can take guard-fight damage")
+	var actors: Node2D = stage.get_node("World/Actors")
+	_check(actors.get_node("DeadAnimalLandmark/Flies").get_child_count() == 4,"Animated carrion flies were lost")
+	var edges := 0
+	for actor in actors.get_children():
+		if actor.name.begins_with("Edge"): edges += 1
+		if actor is StaticBody2D and actor.has_node("Sprite"):
+			var sprite: Sprite2D = actor.get_node("Sprite")
+			_check(sprite.texture.get_height() <= 118 and actor.scale == Vector2.ONE,"Prop is oversized or stretched")
+			_check(actor.has_node("NavigationCutout") or actor.collision_layer == 0,"Solid prop has no navigation exclusion")
+	_check(edges == 24,"Dead forest needs a coherent dense edge around the open basin")
+	var region: NavigationRegion2D = stage.get_node("World/NavigationRegion2D")
+	await create_timer(0.6).timeout
+	var music: AudioStream = load("res://assets/audio/music/dead_forest_dark_place.ogg")
+	_check(music.get_length() > 20 and music.loop,"Dead Forest music is incomplete or does not loop")
+	_check(root.get_node("AudioDirector").music_player.stream == music,"Stage V uses the old exploration theme")
+	var map := region.get_world_2d().get_navigation_map()
+	var start: Vector2 = stage.player.global_position
+	for point in stage.get_node("ApproachSpawnPoints").get_children():
+		var route := NavigationServer2D.map_get_path(map,start,point.global_position,true)
+		_check(route.size() >= 2 and route[-1].distance_to(point.global_position)<4,"Guard spawn is disconnected")
+	var route := NavigationServer2D.map_get_path(map,start,Vector2(768,260),true)
+	_check(route.size() >= 2 and route[-1].distance_to(Vector2(768,260))<4,"Boss clearing disconnected from arrival")
+	var gate: Node2D = actors.get_node("ArrivalGateway")
+	_check(gate.get_child_count() == 3 and gate.get_node("WestPillar") != gate.get_node("EastPillar"),"Gateway lost separate pillar bodies")
+	var query := PhysicsShapeQueryParameters2D.new()
+	var circle := CircleShape2D.new()
+	circle.radius = 9
+	query.shape = circle
+	query.collision_mask = 1
+	for y in range(1060,1104,4):
+		query.transform = Transform2D(0,Vector2(768,y))
+		_check(stage.player.get_world_2d().direct_space_state.intersect_shape(query).is_empty(),"Arrival doorway blocks movement")
+	await _capture("arrival.png")
+	var encounter: EncounterController = stage.approach_encounter
+	encounter.waves = [encounter.waves[0].duplicate(true)]
+	encounter.waves[0].spawn_interval = 0.05
+	encounter.waves[0].reinforcement_delay = 0.05
+	encounter.inter_wave_delay = 0.05
+	var spawned := [0]
+	var casters := [0]
+	var coins_before: int = stage.player.progression_component.coins
+	var xp_before: int = stage.player.progression_component.total_experience
+	encounter.enemy_spawned.connect(func(_point: Vector2) -> void: spawned[0] += 1)
+	encounter.start_encounter()
+	await create_timer(0.5).timeout
+	_check(encounter._active_enemies == 5,"First guard batch must fill exactly five slots")
+	_check(stage.expedition_feedback.view.status.text.contains("/ 6"),"Sentry objective does not include queued enemies")
+	stage.player.global_position = Vector2(768,575)
+	await physics_frame
+	await physics_frame
+	_check(not stage._boss_started,"Basin can skip living sentries")
+	_check(not stage.expedition_feedback._completed,"Guard encounter completed the boss stage")
+	await _capture("sentries.png")
+	var deadline := Time.get_ticks_msec()+5000
+	var exceeded_cap := false
+	while not encounter._completion_spawned and Time.get_ticks_msec() < deadline:
+		exceeded_cap = exceeded_cap or encounter._active_enemies > 5
+		for actor in actors.get_children():
+			if actor == stage.player or actor == stage.boss or actor.get("health_component") == null: continue
+			if actor.health_component.current_health <= 0: continue
+			if actor is Rotcaller:
+				casters[0] += 1
+				_check(actor.has_node("EnemyRewardComponent"),"Campaign caster has no reward observer")
+			actor.set_physics_process(false)
+			var damage := DamageInfo.new(10000,stage.player,Vector2.ZERO)
+			damage.ignores_invulnerability = true
+			actor.health_component.apply_damage(damage)
 		await process_frame
-	if production_boss.target != production_player or not production_boss.is_physics_processing():
-		_fail("Production Stage 5 did not activate the boss at the authored basin threshold.")
-		return
-	var production_flow := stage_5 as Node
-	if DisplayServer.get_name() != "headless":
-		await create_timer(1.1).timeout
-	var audio_director := root.get_node_or_null("AudioDirector")
-	var expected_boss_music := load("res://assets/audio/music/boss/varkuun_battle_rpg_theme_loop.ogg") as AudioStream
-	if production_flow.get("boss_music") != expected_boss_music or audio_director == null or audio_director.music_player.stream != expected_boss_music:
-		_fail("Varkuun's entrance did not replace Stage 5 ambience with the active fantasy boss loop.")
-		return
-	if not is_equal_approx(audio_director.music_player.volume_db, -7.0):
-		_fail("Varkuun's boss loop did not receive its dedicated audible encounter level.")
-		return
-
-	# Reproduce the reported production wedge: King and Varkuun stand on
-	# opposite sides of the carrion landmark. The boss must route around its
-	# solid footprint instead of walking directly into it forever.
-	var production_carcass := stage_5.get_node("World/Actors/DeadAnimalLandmark") as Node2D
-	var unsafe_landing := production_carcass.global_position
-	var safe_landing := production_boss.resolve_navigation_safe_position(unsafe_landing)
-	if safe_landing.distance_to(unsafe_landing) < 18.0:
-		_fail("Varkuun's committed landing resolver still accepts the carcass collision cutout.")
-		return
-	production_player.global_position = Vector2(600.0, 650.0)
-	production_boss.global_position = Vector2(600.0, 820.0)
-	production_boss.state = Stage5Boss.State.CHASE
-	production_boss._root_ready = false
-	production_boss._jump_cooldown = 999.0
-	production_boss._attacks_since_jump = 0
-	var initial_boss_distance := production_boss.global_position.distance_to(production_player.global_position)
-	var largest_lateral_detour := 0.0
-	for tick in 210:
-		await physics_frame
-		largest_lateral_detour = maxf(
-			largest_lateral_detour,
-			absf(production_boss.global_position.x - 600.0)
-		)
-	var final_boss_distance := production_boss.global_position.distance_to(production_player.global_position)
-	if largest_lateral_detour < 12.0 or final_boss_distance > initial_boss_distance - 55.0:
-		_fail(
-			"Varkuun remained wedged on the carrion landmark (detour=%.1f distance %.1f -> %.1f)."
-			% [largest_lateral_detour, initial_boss_distance, final_boss_distance]
-		)
-		return
-	stage_5.queue_free()
+	_check(encounter._completion_spawned and spawned[0] == 6 and casters[0] == 1,"Guard queue lost or duplicated enemies")
+	_check(not exceeded_cap,"Guard reinforcement exceeds live cap")
+	_check(stage.player.progression_component.coins-coins_before == 7,"Sentries did not grant their real 2 + 5 coins once")
+	_check(stage.player.progression_component.total_experience-xp_before == 57,"Sentries did not grant their real 12 + 45 XP once")
+	_check(root.get_node("LootService").has_active_expedition() and not stage.stage_completed and not stage.expedition_feedback._completed,"Sentry clear banked/unlocked the entire boss stage")
+	_check(stage._boss_started,"Finishing guards inside the basin incorrectly requires leaving/reentering")
+	await create_timer(1.8).timeout
+	if stage.dialogue_panel.visible: stage.dialogue_panel.close_dialogue(true)
 	await process_frame
+	_check(stage.boss.target == stage.player and stage.boss.is_physics_processing(),"Boss entrance did not activate ordinary combat")
+	_check(not stage.boss.health_component.is_damage_immune,"Boss stays invulnerable after its entrance")
+	_check(stage.outdoor_audio._combat,"Boss activation does not duck its outdoor audio")
+	await _capture("boss_basin.png")
+	_check(FileAccess.get_sha256(save.get_profile_path()) == profile_before,"Test wrote the normal profile")
+	stage.queue_free()
+	await process_frame
+	print("STAGE_5_RENEWAL: ",checks," checks, ",failures," failures")
+	quit(1 if failures else 0)
 
-	print("PASS: Stage 4 routes into the scrolling Stage 5 dead forest with edge thickets, animated carcass, traversal, and gated boss basin.")
-	quit(0)
+func _capture(name: String) -> void:
+	if DisplayServer.get_name() == "headless": return
+	root.mode = Window.MODE_WINDOWED
+	root.grab_focus()
+	await RenderingServer.frame_post_draw
+	var directory := "res://art_source/review/environment/stage_5_renewal_2026_10_03/"
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(directory))
+	root.get_texture().get_image().save_png(directory+name)
 
-
-func _verify_image(path: String, expected_size: Vector2i, requires_alpha: bool) -> bool:
-	var image := Image.load_from_file(ProjectSettings.globalize_path(path))
-	if image == null or image.is_empty() or image.get_size() != expected_size:
-		_fail("Stage 5 environment image has the wrong runtime contract: %s." % path)
-		return false
-	if requires_alpha and image.detect_alpha() == Image.ALPHA_NONE:
-		_fail("Stage 5 prop lost transparency: %s." % path)
-		return false
-	return true
-
-
-func _fail(message: String) -> void:
-	push_error(message)
-	quit(1)
+func _check(ok: bool,message: String) -> void:
+	checks += 1
+	if not ok:
+		failures += 1
+		push_error(message)

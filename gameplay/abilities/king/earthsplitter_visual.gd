@@ -24,10 +24,7 @@ var _wave_contacts: Array[Vector2] = []
 var _finished_after := -1.0
 
 func _ready() -> void:
-	var ancestor := source.get_parent()
-	while ancestor != null and _feedback == null:
-		_feedback = ancestor.get_node_or_null("Services/CombatFeedback") as CombatFeedbackPresenter
-		ancestor = ancestor.get_parent()
+	_feedback = CombatFeedbackPresenter.find_for_player(source)
 	add_to_group("earthsplitter_effects")
 	global_position = contact
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
