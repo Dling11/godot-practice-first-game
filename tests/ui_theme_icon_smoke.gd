@@ -19,9 +19,9 @@ const ICON_SIZES := {
 
 const GENERATED_ICON_SIZES := {
 	"res://assets/ui/icons/combat/combat_action_atlas_bc_6x1_24.png": Vector2i(144, 24),
-	"res://assets/ui/cursors/generated/cursor_royal_pointer_generated_32.png": Vector2i(32, 32),
-	"res://assets/ui/cursors/generated/cursor_royal_interact_generated_32.png": Vector2i(32, 32),
-	"res://assets/ui/cursors/generated/cursor_royal_target_generated_32.png": Vector2i(32, 32),
+	"res://assets/ui/targeting/pointer.png": Vector2i(24, 24),
+	"res://assets/ui/targeting/interact.png": Vector2i(24, 24),
+	"res://assets/ui/targeting/selected.png": Vector2i(24, 24),
 }
 
 const ACTION_ICON_REGIONS := {

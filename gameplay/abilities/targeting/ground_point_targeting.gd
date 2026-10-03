@@ -10,10 +10,21 @@ var _target_local := Vector2.DOWN * 80.0
 var _range := 220.0
 var _radius := 52.0
 var _lane_preview: Dictionary = {}
+var _last_pointer := Vector2.INF
+var _last_origin := Vector2.INF
+var _last_stick := Vector2.INF
 
 
 func _ready() -> void:
 	visible = false
+	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	set_process(false)
+
+
+func _process(_delta: float) -> void:
+	var actor := _component.owner as Player if _component != null else null
+	if actor != null:
+		update_aim(get_global_mouse_position(), actor.input_source.get_aim_direction())
 
 
 func _exit_tree() -> void:
@@ -40,6 +51,8 @@ func begin_targeting(component: AbilityComponent, initial_direction: Vector2) ->
 	_target_local = component.resolve_ground_target(_aim_origin()+_target_local) - _aim_origin()
 	_update_lane_preview()
 	visible = true
+	_last_pointer = Vector2.INF
+	set_process(true)
 	_set_cursor_targeting(true)
 	queue_redraw()
 	targeting_started.emit(component)
@@ -49,6 +62,12 @@ func begin_targeting(component: AbilityComponent, initial_direction: Vector2) ->
 func update_aim(pointer_global_position: Vector2, stick_direction: Vector2) -> void:
 	if not is_targeting():
 		return
+	var origin := _aim_origin()
+	if pointer_global_position == _last_pointer and origin == _last_origin and stick_direction == _last_stick:
+		return
+	_last_pointer = pointer_global_position
+	_last_origin = origin
+	_last_stick = stick_direction
 	var next_local := pointer_global_position - _aim_origin()
 	if stick_direction.length_squared() > 0.16:
 		next_local = stick_direction.normalized() * _range
@@ -84,6 +103,7 @@ func _clear() -> void:
 	_component = null
 	_lane_preview.clear()
 	visible = false
+	set_process(false)
 	_set_cursor_targeting(false)
 	queue_redraw()
 
@@ -94,15 +114,33 @@ func _draw() -> void:
 	if _component.is_fixed_length_line_targeted():
 		_draw_lane()
 		return
-	draw_dashed_line(Vector2.ZERO, _target_local, Color(0.42, 0.74, 0.96, 0.72), 1.0, 8.0, false)
-	draw_arc(Vector2.ZERO, _range, 0.0, TAU, 64, Color(0.22, 0.45, 0.68, 0.32), 1.0, false)
-	draw_circle(_target_local, _radius, Color(0.05, 0.19, 0.31, 0.18))
-	draw_arc(_target_local, _radius, 0.0, TAU, 48, Color(0.75, 0.91, 1.0, 0.88), 2.0, false)
+	var origin := to_local(_aim_origin())
+	var center := to_local(_aim_origin() + _target_local + _component.get_target_center_offset())
+	draw_dashed_line(origin, center, Color("afb7c8", .12), 1.0, 6.0, false)
+	# Short, quiet range arcs keep the large cast range from framing the screen.
+	var near_limit := _target_local.length() >= _range*.9
+	for index in 4:
+		var angle := index*PI*.5
+		draw_arc(origin, _range, angle-.14, angle+.14, 12, Color("aea7c4", .15 if near_limit else .07), 1.0, false)
+	draw_circle(center, _radius, Color("655386", .025))
+	# One exact, thin boundary; no decorative frame extending beyond the radius.
+	draw_arc(center, _radius, 0.0, TAU, 96, Color("bac2d2", .44), 1.0, false)
+	for index in 4:
+		var direction := Vector2.from_angle(index*PI*.5)
+		draw_line(center+direction*(_radius-2.0), center+direction*(_radius+2.0), Color("c3c9da", .48), 1.0)
 	var core := _component.get_target_core_radius_pixels()
-	if core>0.0:
-		draw_arc(_target_local,core,0.0,TAU,32,Color(1.0,.78,.31,.8),1.0,false)
-	draw_line(_target_local + Vector2(-10, 0), _target_local + Vector2(10, 0), Color(1.0, 0.78, 0.31, 0.95), 2.0)
-	draw_line(_target_local + Vector2(0, -10), _target_local + Vector2(0, 10), Color(1.0, 0.78, 0.31, 0.95), 2.0)
+	# Foundation Worldsplitter's core equals the outer radius. Drawing it again
+	# previously compounded opacity and made the same boundary too bright.
+	if core>0.0 and core<_radius-1.0:
+		for index in 8:
+			var angle := index*TAU/8.0
+			draw_arc(center,core,angle+.08,angle+TAU/8.0-.08,8,Color("afa4c7",.16),1.0,false)
+	_draw_target_mark(center)
+
+
+func _draw_target_mark(center: Vector2) -> void:
+	for direction in [Vector2.UP,Vector2.RIGHT,Vector2.DOWN,Vector2.LEFT]:
+		draw_line(center+direction*2.0, center+direction*5.0, Color("c3c9da",.60),1.0)
 
 
 func _update_lane_preview() -> void:
@@ -110,9 +148,8 @@ func _update_lane_preview() -> void:
 
 
 func _aim_origin() -> Vector2:
-	# The legacy circle marker sits 16px above the feet. A ground lane must
-	# measure cursor direction from the same origin as its committed attack.
-	if _component != null and _component.is_fixed_length_line_targeted() and _component.owner is Node2D:
+	# Every preview measures from the same physical feet as its committed cast.
+	if _component != null and _component.owner is Node2D:
 		return (_component.owner as Node2D).global_position
 	return global_position
 
@@ -132,26 +169,26 @@ func _draw_lane_shape(path: Dictionary, primary: bool) -> void:
 	var end: Vector2 = to_local(path.end)
 	var forward: Vector2 = path.direction
 	var side := forward.orthogonal()
-	var color := Color("8bdcff")
+	var color := Color("c3c9da")
 	var points := PackedVector2Array()
 	# Capsule caps match the swept front radius used by combat authority.
 	for index in 13:
 		points.append(end + forward.rotated(-PI*.5 + PI*index/12.0) * lane_radius)
 	for index in 13:
 		points.append(start + forward.rotated(PI*.5 + PI*index/12.0) * lane_radius)
-	draw_colored_polygon(points, Color(color, .12 if primary else .035))
+	draw_colored_polygon(points, Color(color, .035 if primary else .008))
 	points.append(points[0])
-	draw_polyline(points, Color(color,.85 if primary else .35), 1.0)
+	draw_polyline(points, Color(color,.40 if primary else .16), 1.0)
 	if not primary:
-		draw_line(end-side*lane_radius,end+side*lane_radius,Color(color,.45),1.0)
+		draw_line(end-side*lane_radius,end+side*lane_radius,Color(color,.18),1.0)
 	if primary:
-		draw_line(start,end,Color(color,.40),1.0)
+		draw_line(start,end,Color(color,.14),1.0)
 	if primary and start.distance_to(end) > 12.0:
-		for fraction in [.3,.6,.85]:
-			var tip := start.lerp(end,fraction)
-			draw_polyline(PackedVector2Array([tip-forward*5.0+side*4.0,tip,tip-forward*5.0-side*4.0]),Color(color,.9),1.0)
+		var tip := start.lerp(end,.6)
+		draw_polyline(PackedVector2Array([tip-forward*3.0+side*2.0,tip,tip-forward*3.0-side*2.0]),Color(color,.38),1.0)
+		_draw_target_mark(end)
 	if path.blocked:
-		draw_line(end-side*lane_radius,end+side*lane_radius,Color("efb86c"),2.0)
+		draw_line(end-side*lane_radius,end+side*lane_radius,Color("bea9de"),2.0)
 
 
 func _set_cursor_targeting(active: bool) -> void:

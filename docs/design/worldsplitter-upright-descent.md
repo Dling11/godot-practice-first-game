@@ -1,5 +1,7 @@
 # Worldsplitter — upright descent
 
+**Current terrain/aim correction (2026-10-03,Decision177):** Slot1/5 keep full authored reach through scenery; Slot3 flies over any intervening obstacle to clear, real-foot/nav/bounds-valid ground. Silver/slate/violet circles and hardware pointers replace gold/blue targeting and use actor feet/render-frame aim. This supersedes earlier terrain-aware/clipped or LOS-stopped descriptions below. Current rule/validation: king-targeting-and-terrain.md.
+
 **Current correction (Decision 164, 2026-10-02):** Eira training gates are now Level8/10, both reachable by cap10; previous10/15 statements below are historical. Decision162 and worldsplitter-fractured-light.md own the current fresh-sword/radial-blast presentation. Saved ranks remain compatible; no damage/cooldown/art changed in the curriculum pass.
 
 **Superseded by implemented Decision161:** The owner approved fractured-light impacts and three consecutive same-point Mature plunges with burial/extraction. The triangle and former stone/two-contact progression below are historical. See `worldsplitter-fractured-light.md`.
@@ -10,7 +12,7 @@ Implemented 2026-09-27, owner feel/balance review pending. Replaces the X-fault 
 
 King's existing approved directional command frames take .18s windup, .03s active release and .11s recovery. The independent released sword stays upright, briefly lifts, accelerates straight down and impacts the committed point .42 s after release (about .60s from cast). King can move, dodge or attack after .32s, before either hit. Ordinary post-release cancellation does not retract the sword; cancellation before release prevents it. Defeat, scene exit and Lab clear remove pending authority and presentation.
 
-The first hit is concentrated at blade contact. One wider pressure hit follows .24s later, carrying the existing .5s designated stun. Shattered slabs rise, rotate outward, fall and settle for about another second. There are exactly two damage opportunities, regardless of frame count or number of fragments. Every pulse checks target feet and terrain LOS. Preview and commit share the terrain-clamped target. Cooldown is 20s; existing weapon, level, critical and mastery modifiers remain authoritative. No new invulnerability or movement bonus.
+The first hit is concentrated at blade contact. One wider pressure hit follows .24s later, carrying the existing .5s designated stun. Shattered slabs rise, rotate outward, fall and settle for about another second. There are exactly two damage opportunities, regardless of frame count or number of fragments. Every pulse checks target foot radius; Decision177 removes terrain LOS. Preview and commit share the terrain-clamped target. Cooldown is 20s; existing weapon, level, critical and mastery modifiers remain authoritative. No new invulnerability or movement bonus.
 
 ## Upgrades
 

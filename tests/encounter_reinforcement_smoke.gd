@@ -8,6 +8,8 @@ func _initialize() -> void:
 
 
 func _run() -> void:
+	root.get_node("SaveService").configure_storage_path_for_testing("user://reinforcement_smoke.json")
+	root.get_node("SaveService").suppress_autosave_for_debug_session()
 	var arena := ArenaScene.instantiate()
 	var controller: EncounterController = arena.get_node("GameplayServices/EncounterController")
 	controller.auto_start = false
@@ -63,7 +65,7 @@ func _run() -> void:
 		_fail("Reinforcement queue exceeded the configured active-enemy cap.")
 		return
 	if state.reinforcements != expected_reinforcements:
-		_fail("Each pending enemy must receive its own reinforcement warning.")
+		_fail("Each pending enemy must receive its own reinforcement warning: actual=%d expected=%d." % [state.reinforcements,expected_reinforcements])
 		return
 	if state.released_too_early:
 		_fail("A reinforcement arrived before its readable warning window elapsed.")

@@ -159,8 +159,6 @@ func _physics_process(delta: float) -> void:
 			get_global_mouse_position() - directional_wedge_targeting.global_position,
 			input_source.get_aim_direction()
 		)
-	if ground_point_targeting.is_targeting():
-		ground_point_targeting.update_aim(get_global_mouse_position(), input_source.get_aim_direction())
 	if not manual_move_direction.is_zero_approx() and not is_restrained() and not is_in_hit_recovery():
 		_cancel_combat_intent_for_manual_movement()
 	if not move_direction.is_zero_approx() and not is_restrained() and not is_in_hit_recovery():
@@ -245,6 +243,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			if directional_wedge_targeting.is_targeting():
 				directional_wedge_targeting.confirm_targeting()
 			else:
+				ground_point_targeting.update_aim(get_global_mouse_position(), input_source.get_aim_direction())
 				ground_point_targeting.confirm_targeting()
 			get_viewport().set_input_as_handled()
 			return

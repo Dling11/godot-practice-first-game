@@ -43,10 +43,9 @@ func play_state(state: Rootling.State, duration_seconds: float) -> void:
 			body.texture = walk_texture
 			_show_walk_frame(0)
 			body.modulate = Color(1.0, 1.0, 1.0, 0.0)
-			body.scale = Vector2(0.45, 0.25)
-			_body_tween = create_tween().set_parallel(true)
-			_body_tween.tween_property(body, "modulate:a", 1.0, duration_seconds)
-			_body_tween.tween_property(body, "scale", Vector2.ONE, duration_seconds).set_trans(Tween.TRANS_BACK)
+			body.scale = Vector2.ONE
+			_body_tween = create_tween()
+			_body_tween.tween_property(body, "modulate:a", 1.0, minf(.22, duration_seconds))
 		Rootling.State.CHASE:
 			body.texture = walk_texture
 			body.modulate = Color.WHITE

@@ -3,6 +3,7 @@ extends Control
 
 const BACKGROUND := preload("res://assets/ui/quiet_transition/background.png")
 const SEAL_FRAMES := preload("res://assets/ui/quiet_transition/seal_frames.tres")
+const SealAnimation := preload("res://ui/presentation/quiet_seal_animation.gd")
 const KING_FRAMES := preload("res://assets/characters/playable/king/spellward/spellward_frames.tres")
 const GOLD := Color(0.78, 0.68, 0.44)
 
@@ -33,6 +34,7 @@ func _ready() -> void:
 	_group.size = Vector2(360, 300)
 	add_child(_group)
 	seal = AnimatedSprite2D.new()
+	seal.set_script(SealAnimation)
 	seal.sprite_frames = SEAL_FRAMES
 	seal.position = Vector2(180, 92)
 	_group.add_child(seal)

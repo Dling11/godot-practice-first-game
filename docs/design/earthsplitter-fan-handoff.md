@@ -1,5 +1,7 @@
 # Earthsplitter: owner correction and next-session handoff
 
+**Current terrain/aim correction (2026-10-03,Decision177):** Slot1/5 keep full authored reach through scenery; Slot3 flies over any intervening obstacle to clear, real-foot/nav/bounds-valid ground. Silver/slate/violet circles and hardware pointers replace gold/blue targeting and use actor feet/render-frame aim. This supersedes earlier terrain-aware/clipped or LOS-stopped descriptions below. Current rule/validation: king-targeting-and-terrain.md.
+
 **Skill 1 accepted direction (2026-09-26):** Earthsplitter Fan now releases three simultaneous lanes at center and +/-20 degrees, followed .22s later by one stronger, longer center wave. One sword smash and .36s base commitment remain. Initial lanes reach 196px (19px radius), deal 100% weapon damage once per enemy across the fan, and use light push/flinch. The follow-up reaches 228px (21px radius), deals 140% once more, and has heavier impact/55 knockback. Maximum unmitigated noncritical weapon budget is 240% per target; side targets usually receive only the fan. No stun. Foundation and Cascade remain separate Lab comparisons. Campaign promotion, upgrade gates, phone testing and the requested later cleanup remain pending.
 
 **Handoff complete:** the owner approved fan then one stronger center wave. That combination is now implemented in the existing Fan form. Next planned skill work is Molten Crash; campaign promotion/upgrade gates and deferred cleanup remain separate. Historical September 14 handoff follows for reference.
@@ -33,7 +35,7 @@ The current cascading prototype misunderstood that request. Preserve it: the own
 
 - `data/abilities/king/earthsplitter_definition.gd`: current two-form configuration and wave recipes. Replace the binary form choice with explicit identities when adding the third comparison; keep existing behavior available.
 - `gameplay/abilities/king/earthsplitter_component.gd`: cached templates, path snapshots and release wiring. Currently resolves every recipe toward the same point; fan needs per-lane headings while the sword/body retain the center heading.
-- `gameplay/abilities/king/earthsplitter_path.gd`: shared fixed-range, terrain-aware resolver.
+- `gameplay/abilities/king/earthsplitter_path.gd`: shared fixed-range, scenery-independent resolver.
 - `gameplay/abilities/king/earthsplitter_sequence.gd`: released-wave scheduler and combat-stat snapshots. Child attacks currently deduplicate individually; fan cross-lane accounting needs explicit ownership.
 - `gameplay/abilities/king/earthsplitter_visual.gd` and `earthsplitter_ground_visual.gd`: preserve approved sword atlas clipping and upright eruption presentation.
 - `levels/combat_lab/earthsplitter_review.gd`: reversible adapter; replacing definitions must refresh loadout references or hotkey 1 loses its binding.

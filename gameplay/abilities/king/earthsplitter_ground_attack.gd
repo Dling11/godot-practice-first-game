@@ -17,7 +17,6 @@ var _last := Vector2.ZERO
 var _ended := false
 # Fan siblings share this cast-owned ledger; other waves receive their own.
 var shared_targets: Dictionary = {}
-var _terrain_query: PhysicsShapeQueryParameters2D
 var _contact_query: PhysicsShapeQueryParameters2D
 var _capsule: CapsuleShape2D
 
@@ -26,7 +25,7 @@ func _ready() -> void:
 	_last = origin
 	_contact = MeleeHitbox.new()
 	# Queries own the swept shape; disable Area monitoring to avoid a second,
-	# stale overlap path after the front has advanced or stopped at terrain.
+	# stale overlap path after the front has advanced.
 	_contact.collision_layer = 0
 	_contact.collision_mask = 0
 	var shape := CollisionShape2D.new()
@@ -41,12 +40,6 @@ func _ready() -> void:
 	_contact._hit_targets = shared_targets
 	_contact.set_physics_process(false)
 	_contact.hit_landed.connect(func(hurtbox: HurtboxComponent, info: DamageInfo) -> void: hit_landed.emit(hurtbox, info))
-	_terrain_query = PhysicsShapeQueryParameters2D.new()
-	var terrain_shape := CircleShape2D.new()
-	terrain_shape.radius = tuning.lane_radius
-	_terrain_query.shape = terrain_shape
-	_terrain_query.collision_mask = 1
-	_terrain_query.exclude = [source.get_rid()]
 	_contact_query = PhysicsShapeQueryParameters2D.new()
 	_contact_query.shape = _capsule
 	_contact_query.collision_mask = 16
@@ -60,18 +53,6 @@ func _physics_process(delta: float) -> void:
 		return
 	_age += delta
 	var point := origin.lerp(target, minf(_age / tuning.travel_seconds, 1.0))
-	# Recheck new geometry while the wave travels. Radius-wide terrain sweep
-	# prevents the hurtbox radius reaching through a wall beside the center ray.
-	_terrain_query.transform = Transform2D(0, _last)
-	_terrain_query.motion = Vector2.ZERO
-	if not get_world_2d().direct_space_state.intersect_shape(_terrain_query, 1).is_empty():
-		_cancel()
-		return
-	_terrain_query.motion = point - _last
-	var fractions := get_world_2d().direct_space_state.cast_motion(_terrain_query)
-	var stopped := fractions[0] < 1.0
-	if stopped:
-		point = _last + _terrain_query.motion * fractions[0]
 	var distance := _last.distance_to(point)
 	_capsule.height = tuning.lane_radius * 2.0 + distance
 	_contact.global_position = (_last + point) * .5
@@ -81,7 +62,7 @@ func _physics_process(delta: float) -> void:
 		_contact._try_hit(result.collider)
 	front_advanced.emit(point)
 	_last = point
-	if stopped or _age >= tuning.travel_seconds:
+	if _age >= tuning.travel_seconds:
 		_cancel()
 
 func _cancel() -> void:

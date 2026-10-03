@@ -5,6 +5,10 @@ extends AbilityComponent
 ## contact at the actual collision-safe landing position.
 
 var _target_global_position := Vector2.ZERO
+const Landing = preload("res://gameplay/abilities/king/pursuit_landing.gd")
+var _world_collision_before_jump := true
+var _last_safe_position := Vector2.ZERO
+var _jump_in_progress := false
 signal charges_changed(available: int, maximum: int)
 var charges_available := 1
 
@@ -72,15 +76,21 @@ func request_cast_at(target_global_position: Vector2, equipped_weapon_damage := 
 	var pursuit := definition as SovereignPursuitDefinition
 	if pursuit == null or owner == null or not is_ready():
 		return false
-	var actor := owner as Node2D
+	var actor := owner as Player
 	if actor == null:
 		return false
 	var origin: Vector2 = actor.global_position
 	var offset := target_global_position - origin
 	if offset.length() > pursuit.target_range_pixels:
 		offset = offset.normalized() * pursuit.target_range_pixels
-	_target_global_position = origin + offset
+	_target_global_position = resolve_ground_target(origin + offset)
+	offset = _target_global_position - origin
 	return request_cast(offset, equipped_weapon_damage)
+
+
+func resolve_ground_target(point: Vector2) -> Vector2:
+	var actor := owner as Player
+	return Landing.resolve(actor, point, get_target_range_pixels()) if actor != null else point
 
 
 func supports_ground_targeting() -> bool:
@@ -97,12 +107,18 @@ func get_target_radius_pixels() -> float:
 	return pursuit.landing_radius_pixels if pursuit != null else 0.0
 
 
+func get_target_center_offset() -> Vector2:
+	return Vector2(0.0, (definition as SovereignPursuitDefinition).ground_center_offset_y)
+
+
 func get_active_velocity() -> Vector2:
 	if phase != Phase.ACTIVE or owner == null:
 		return Vector2.ZERO
-	var actor := owner as Node2D
+	var actor := owner as Player
 	if actor == null:
 		return Vector2.ZERO
+	if Landing.is_clear(actor, actor.global_position):
+		_last_safe_position = actor.global_position
 	var remaining: Vector2 = _target_global_position - actor.global_position
 	if remaining.length_squared() <= 4.0:
 		return Vector2.ZERO
@@ -116,17 +132,44 @@ func has_active_movement() -> bool:
 func cancel_cast() -> void:
 	if phase == Phase.ACTIVE:
 		invulnerability_changed.emit(false)
+	_finish_jump()
 	_reset_hitbox_position()
 	super.cancel_cast()
+
+
+func _exit_tree() -> void:
+	_finish_jump()
+
+
+func _start_jump() -> void:
+	var actor := owner as Player
+	_jump_in_progress = true
+	_last_safe_position = actor.global_position
+	_world_collision_before_jump = actor.get_collision_mask_value(1)
+	actor.set_collision_mask_value(1, false)
+
+
+func _finish_jump() -> void:
+	var actor := owner as Player
+	if is_instance_valid(actor) and actor.is_inside_tree() and _jump_in_progress:
+		if not Landing.is_clear(actor, actor.global_position):
+			actor.global_position = _last_safe_position
+	if is_instance_valid(actor) and _jump_in_progress:
+		actor.set_collision_mask_value(1, _world_collision_before_jump)
+	_jump_in_progress = false
 
 
 func _advance_phase() -> void:
 	match phase:
 		Phase.WIND_UP:
+			# Revalidate after wind-up in case a world obstacle changed.
+			_target_global_position = resolve_ground_target(_target_global_position)
+			_start_jump()
 			_enter_phase(Phase.ACTIVE, definition.active_seconds)
 			invulnerability_changed.emit(true)
 		Phase.ACTIVE:
 			invulnerability_changed.emit(false)
+			_finish_jump()
 			_land()
 			_enter_phase(Phase.RECOVERY, definition.recovery_seconds)
 		Phase.RECOVERY:

@@ -6,7 +6,8 @@ const SOURCE_ROOT := "res://art_source/generated/ui/king_combat_ui/"
 const KING_SKILL_SOURCE_ROOT := "res://art_source/generated/ui/king_skill_icons_bc_hybrid/"
 const ACTION_SOURCE_ROOT := "res://art_source/generated/ui/combat_action_atlas_bc/"
 const ACTION_ATLAS_PATH := "res://assets/ui/icons/combat/combat_action_atlas_bc_6x1_24.png"
-const CURSOR_OUTPUT_ROOT := "res://assets/ui/cursors/generated/"
+# Historical gold cursors are rebuildable references, not active UI outputs.
+const CURSOR_OUTPUT_ROOT := "res://art_source/archive/gold_cursors_2026_10_03/"
 const ACTION_CELL_SIZE := 24
 const ACTION_CELL_COUNT := 6
 

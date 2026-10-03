@@ -190,6 +190,10 @@ Current Sanctuary baseline: [Decision165](docs/decisions/165-finalize-sanctuary-
 | 171 | [Campaign Rotcaller, Dead Forest and bounded wave feedback](docs/decisions/171-add-campaign-rotcaller-renew-dead-forest-and-bound-wave-feedback.md) | Current III14/five, IV60/eight, finite V guards/renewal/music, Skill1 stutter and post-V polish |
 | 172 | [Divine patron reversal and complete threat portal family](docs/decisions/172-expand-divine-patron-reversal-and-select-threat-portals.md) | All-six portal concept selection, apparent invasion/divine aid, late patron betrayal and proposed monster origins/clues |
 | 173 | [Threat portals and quiet stage presentation](docs/decisions/173-promote-threat-portals-and-quiet-stage-presentation.md) | Native six-family animation, actual threaded loading, title/chest art and isolated continuation review |
+| 174 | [Upgrade engine to Godot 4.7.2](docs/decisions/174-upgrade-engine-to-4-7-2.md) | Current engine pin, preserved launcher paths, backups, compatibility evidence and rollback |
+| 175 | [Warn and safely materialize enemy arrivals](docs/decisions/175-warn-and-safely-materialize-enemy-arrivals.md) | Reserved warning slots, safe placement/retry, original bounded SFX and focused horde profiling |
+| 176 | [Use one generic underfoot monster arrival](docs/decisions/176-use-one-generic-underfoot-monster-arrival.md) | Shared four-drawing raster spawn; promoted through normal I–VI common scene after owner testing |
+| 177 | [Preserve skill reach and clear leap landings](docs/decisions/177-preserve-skill-reach-and-clear-leap-landings.md) | Full-range Skills1/5, any-obstacle Pursuit with safe feet, silver/violet render-frame targeting and hardware cursors |
 
 ## New Decisions
 

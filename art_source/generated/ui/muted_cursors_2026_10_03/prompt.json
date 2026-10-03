@@ -1,0 +1,5 @@
+{
+  "tool": "builtin image_gen",
+  "prompt": "Create exactly three small pixel-art hardware mouse cursor assets in one transparent image, arranged in ONE ROW of THREE EQUAL SQUARE CELLS, generous padding, no text. Match the three attached reference cursor silhouettes in order: left a diagonal standard pointer arrow whose hotspot is its upper left tip, middle a tiny diagonal fantasy interaction pointer with diamond tip, right a tiny diagonal sword for selected combat target with hotspot at its upper left tip. Preserve their simple sharp outlined pixel style. Use cool SILVER, SLATE GREY, small MUTED VIOLET details and dark outline; absolutely NO gold, yellow, orange or warm hues. Genuine transparent background. Each cursor is compact, occupies about 75 percent of its cell, complete unclipped tip and tail. High contrast yet restrained RPG cursors. No circle frames, glow, perspective or shadows.",
+  "transparent_background": true
+}

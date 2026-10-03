@@ -1,5 +1,39 @@
 # Changelog
 
+**Targeting refinement (2026-10-03,Decision177):** Owner finds the ornate frames oversized/distracting. Current targeting uses a single1px translucent AOE boundary, nearly transparent fill, small open target mark and faint short range arcs; the coincident inner/outer Worldsplitter circle is no longer drawn twice. Skill ranges/radii stay unchanged. All four cursors use24px canvases (20px maximum content,16px aim). Retired ornate ring/glyph assets and builder outputs are archived. Native39 visual/state checks and current UI/icon smoke pass, with six Stage IV grass/dark captures in art_source/review/ui/targeting_subtle_2026_10_03/. CursorService clears its hardware bindings on exit; the focused native check exits without the preceding two texture/RID or RenderingServer-null warnings. Full-session/phone profiling and owner feel remain open.
+
+**2026-10-03 — Decision177 / generic production:** Removed Skill1 lane/front terrain clipping and Skill5 aim/radial terrain LOS; verified existing sword reach. Pursuit crosses any obstacle to clear real-foot/nav/bounds-valid landings, with safe cancellation and restored walking collision. Added generated silver/slate/violet RPG range/AOE glyphs and all four hardware cursors; corrected physical-foot aim origin, render-frame active aiming and confirmation refresh. Promoted the tested four-drawing common arrival into normal I–VI; archived procedural code and old gold cursors, redirected the historical cursor builder to the archive. Native terrain33/art45/arrival40 checks pass, Worldsplitter118 headless plus charge/explicit-target/Fan/Cascade checks pass. Separate native eight-target first/repeated Foundation:8 contacts/7 ticks/zero pauses each; physics peaks2.756/2.111ms in stationary-AI-off fixture. Existing shutdown warnings and full campaign/phone profiling remain open.
+
+**2026-10-03 — Generic underfoot spawn prototype:** Replaced the primary per-size/tier arrival-art proposal with one reusable low raster ground cue. Generated four drawings total, registered a single shared atlas/SpriteFrames and added an isolated real Rootling/Thrall/Crag Bear/Husk review with normal sound,1/3/8 crowds, grass/dark and bag/pause. Native61 checks pass, including resource identity and no effect scaling between bodies. Production campaign and body visuals remain unchanged pending owner art/feel review. See Decision176 and art_source/review/encounters/generic_spawn_2026_10_03/README.md.
+
+**2026-10-03 — Playable raster spawn choices:** Generated three transparent six-drawing A/B/C families with built-in imagegen and retained exact prompts/originals. Added nearest/binary-alpha64px registered atlases, warning/release SpriteFrames and an isolated actual Stage IV selector/replay with1/3/8 crowds, grass/dark ground, real sound and bag/pause. Avoided the tall gate hiding the dark-ground preview. Native art-review57 checks pass; campaign art has not been promoted or selected. Sound/arrival authority/rewards remain their existing owners. See art_source/review/encounters/arrival_art_2026_10_03/README.md.
+
+**2026-10-03 — Safe enemy arrival and focused profiling:** Promoted compact ground warning/materialization and original restrained positional SFX into normal I–VI encounters; reserve cap/space, check navigation/body collision twice, defer unsafe placements, wait for initial navigation and preserve ordered reinforcement/pause/defeat/teardown behavior. Fixed flattened Rootling/Mireling spawn silhouettes. Added rewardless1/3/8 playable review and archived old summon effect. Native arrival 39 and review 30/0, headless expedition 101/0 and queue/combat regressions pass; first/repeated1/5/8 Skill 1 contacts retain zero global pauses with a first five-target 16.82ms physics peak documented. Updated obsolete audio-test fields/dash data to current owners. Loading/title remain their accepted implementations. See docs/design/enemy-arrival-and-horde-profiling.md.
+
+**Engine maintenance (2026-10-03):** Godot 4.7.2 stable replaces the local 4.7 installation with full engine/project/user-data backups. Existing executable paths remain working aliases. Import, movement, melee, isolated Continue and native title72/portal144/loading27/expedition108 checks pass. Existing shutdown warnings, exports and phone/full-session verification remain open. See [Decision174](docs/decisions/174-upgrade-engine-to-4-7-2.md) for backup and rollback details.
+
+## 2026-10-03 — Random A/B/C homepage, still King
+
+- Promoted three new full-size illustrations: breach, seated campfire and sword-ready clash. Removed title seal and walking King presentation; moved native menu into the artwork's dark left space.
+- Added one random pick with a tiny cosmetic last-index config to prevent consecutive repeats after quitting. Profile-scoped history isolates reviews/tests; no game save mutation, manager or frame polling.
+- Native 72/restarted headless 66 title checks, menu/Continue and 27 native loading checks pass. Source art/prompts/builder and native A/B/C captures saved. Retired title-seal checks now cover loading only; old campfire preview pacing removed. Matching loading redesign and existing cleanup warnings remain separate.
+
+## 2026-10-03 — Selected campfire title prototype
+
+- Owner selects B campfire/King/watchers after finding the quiet fixed-engraving title boring. Generated three-option board, clean background and eight genuinely changing flame drawings; preserved exact prompts and technical shared-scale/base registration.
+- Assembled native960x540 isolated title preview with existing King idle/steps, two Rootling gait/displacement loops and actual menu controls.80 captures verify8 flame frames,19 King poses,8 first-watcher poses, displacement and fixed backdrop. Added interactive launcher and GIF option.
+- Prototype only: no production title/loading, stage enemies, rewards or normal profile changed. Final illustration/expressive clips, contrast/occlusion, production layout and loading animation remain next work.
+
+## 2026-10-03 — Stabilize homepage and loading seal
+
+- Confirmed shared seal frame drift (666–1736 alpha pixels changed per pose). Both screens now use a fixed engraving with smooth Sprite-clock lighting and independent materials. Homepage specks fade in place; removed their pixel-snapped drift/loop jump. Hidden seals stop processing; paused loading/menu stay animated.
+- Added native actual-screen silhouette/halfway/light/seam/pause/hidden checks and current GIFs:195/0. Native integrated transition55/0, title menu and headless saved Continue pass; real progress and King walk remain. GIF encoder now parses actual blocks, avoiding accidental matches inside compressed pixel bytes. Existing shutdown warnings remain.
+
+## 2026-10-03 — Correct portal frame wobble
+
+- Reproduced source geometry drift despite shared canvas normalization: Calm moves about6.3 source pixels sideways and7 at its feet. Fixed all six rendered portal silhouettes with reference-frame alpha/rim and registered interior currents; smoothed transitions using the real AnimatedSprite frame clock, including pause and the loop seam. Existing atlas art, tier/FX, F, collision and routes remain.
+- Added source geometry audit, native frame/halfway/loop/pause stability test, and same-scale before/after capture. Native144 stability and54 integration checks pass; focused headless portal interaction/real stage travel pass. Refreshed gallery captures and portal GIFs; handoff/conventions describe stable outlines with moving inner detail. Existing GPU shutdown warnings remain.
+
 ## 2026-10-03 — Native threat portals, quiet transitions, title and chest renewal
 
 - Integrated six generated eight-frame portal bodies under the existing five destination tiers, including Grasp/Maw Boss variants. Kept tier lightning separate and readable behind the body; current IV→V uses Grasp. F range, routes and required claims remain.

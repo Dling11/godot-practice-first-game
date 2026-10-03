@@ -28,7 +28,7 @@ func _run() -> void:
 	check(not CompletionReturn.request(stage), "UI can return/bank rewards before completion")
 	check(not feedback.view.report_button.visible, "Unfinished encounter offers a completed reward screen")
 	encounter.start_encounter()
-	await create_timer(.25).timeout
+	await create_timer(encounter.arrival_warning_seconds + .2).timeout
 	check(encounter.get_progress().total == encounter.waves[0].total_enemy_count(), "Objective ignores queued reinforcements")
 	var first: Node = encounter.actors.get_children().filter(func(node: Node) -> bool: return node != actor and node.get("health_component") != null)[0]
 	kill(first,actor)
@@ -230,7 +230,10 @@ func load_stage(scene: PackedScene) -> Node:
 
 func clear_waves(stage: Node) -> void:
 	var encounter: EncounterController = stage.encounter_controller
-	var deadline := Time.get_ticks_msec()+20000
+	var arrival_budget := 0.0
+	for wave: EncounterWaveDefinition in encounter.waves:
+		arrival_budget += wave.total_enemy_count() * encounter.arrival_warning_seconds
+	var deadline := Time.get_ticks_msec()+20000+int(arrival_budget*1000)
 	while encounter.wave_index < encounter.waves.size() and Time.get_ticks_msec() < deadline:
 		if "dialogue_panel" in stage and stage.dialogue_panel.visible:
 			await click(stage.dialogue_panel.skip_button.get_global_rect().get_center())

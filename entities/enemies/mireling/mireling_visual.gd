@@ -15,6 +15,7 @@ func _ready() -> void:
 
 func set_facing(direction: Vector2) -> void:
 	_direction = ("right" if direction.x > 0.0 else "left") if absf(direction.x) > absf(direction.y) else ("down" if direction.y > 0.0 else "up")
+	if body.animation.begins_with("idle_"): body.play("idle_" + _direction)
 
 
 func play_state(state: Mireling.State, duration: float) -> void:
@@ -23,10 +24,9 @@ func play_state(state: Mireling.State, duration: float) -> void:
 		Mireling.State.SPAWNING:
 			body.play("idle_down")
 			body.modulate.a = 0.0
-			body.scale = Vector2(0.35, 0.15)
-			var tween := create_tween().set_parallel(true)
-			tween.tween_property(body, "modulate:a", 1.0, duration)
-			tween.tween_property(body, "scale", Vector2.ONE, duration).set_trans(Tween.TRANS_BACK)
+			body.scale = Vector2.ONE
+			var tween := create_tween()
+			tween.tween_property(body, "modulate:a", 1.0, minf(.22, duration))
 		Mireling.State.CHASE:
 			body.position = Vector2(0, -16)
 			body.modulate = Color.WHITE

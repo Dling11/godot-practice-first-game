@@ -50,6 +50,5 @@ func _pulse(radius: float, multiplier: float, stun: float, force: float) -> void
 		if hurtbox == null: continue
 		var foot: Vector2 = hurtbox.owner.global_position if hurtbox.owner is CharacterBody2D else hurtbox.global_position
 		if foot.distance_to(global_position) > radius: continue
-		var ray := PhysicsRayQueryParameters2D.create(global_position, foot, 1, [source.get_rid()])
-		if space.intersect_ray(ray).is_empty(): _hitbox._try_hit(hurtbox)
+		_hitbox._try_hit(hurtbox)
 	_hitbox.deactivate()

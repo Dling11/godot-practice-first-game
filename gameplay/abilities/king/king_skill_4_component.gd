@@ -87,13 +87,15 @@ func _reset_hitbox_position() -> void:
 
 func resolve_ground_target(point: Vector2) -> Vector2:
 	var actor := owner as Player
+	if actor == null: return point
 	var offset := (point-actor.global_position).limit_length(get_target_range_pixels())
-	var ray := PhysicsRayQueryParameters2D.create(actor.global_position,actor.global_position+offset,1,[actor.get_rid()])
-	var block := actor.get_world_2d().direct_space_state.intersect_ray(ray)
-	return actor.global_position+offset if block.is_empty() else block.position-offset.normalized()*4.0
+	return actor.global_position+offset
 
 func get_target_core_radius_pixels() -> float:
 	return (definition as KingSkill4Definition).contact_radius(0)
+
+func get_target_center_offset() -> Vector2:
+	return Vector2(0.0, (definition as KingSkill4Definition).ground_center_offset_y)
 
 func apply_rank(value: int) -> void:
 	if is_casting(): return

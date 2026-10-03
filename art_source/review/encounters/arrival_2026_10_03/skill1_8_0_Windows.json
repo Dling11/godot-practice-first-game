@@ -1,0 +1,39 @@
+{
+	"display": "Windows",
+	"engine": "4.7.2-stable (official)",
+	"fixture": "stationary high-HP targets, no enemy AI; first/repeated cast, not a full cold campaign or phone GPU profile",
+	"results": [
+		{
+			"contact_ticks": 7,
+			"contacts": 8,
+			"draw_calls_peak": 225,
+			"form": 0,
+			"frame_max_ms": 15.086,
+			"frame_p50_ms": 13.287,
+			"frame_p95_ms": 14.22,
+			"global_pauses": 0,
+			"nodes_peak": 396,
+			"pass": "first",
+			"paused_ms": 0.0,
+			"physics_peak_ms": 2.756,
+			"process_peak_ms": 14.049,
+			"targets": 8
+		},
+		{
+			"contact_ticks": 7,
+			"contacts": 8,
+			"draw_calls_peak": 225,
+			"form": 0,
+			"frame_max_ms": 15.317,
+			"frame_p50_ms": 13.316,
+			"frame_p95_ms": 14.78,
+			"global_pauses": 0,
+			"nodes_peak": 392,
+			"pass": "repeat",
+			"paused_ms": 0.0,
+			"physics_peak_ms": 2.111,
+			"process_peak_ms": 14.414,
+			"targets": 8
+		}
+	]
+}

@@ -97,6 +97,7 @@ func _apply_tier_presentation() -> void:
 	_portal_scale = Vector2.ONE * scale_factor
 	if portal_visual != null:
 		portal_visual.sprite_frames = StagePortalArt.frames_for(portal_tier, boss_variant)
+		portal_visual.material = StagePortalArt.surface_for(portal_tier, boss_variant)
 		portal_visual.play(&"active")
 		portal_visual.position.y = -71.0 * scale_factor
 		portal_visual.speed_scale = base_speed

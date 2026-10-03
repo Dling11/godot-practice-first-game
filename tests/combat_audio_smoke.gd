@@ -6,7 +6,9 @@ const MirelingScene = preload("res://entities/enemies/mireling/mireling.tscn")
 const SpitterScene = preload("res://entities/enemies/bramble_spitter/bramble_spitter.tscn")
 const ImpactScene = preload("res://gameplay/projectiles/bramble_seed_impact.tscn")
 const ArenaScene = preload("res://levels/test_arena/test_arena.tscn")
-const PlayerDashLightSwoosh = preload("res://assets/audio/sfx/player_dash_light_swoosh.wav")
+const PlayerDashGrounded = preload("res://assets/audio/sfx/player_dash_grounded.wav")
+const EarthsplitterVisual = preload("res://gameplay/abilities/king/earthsplitter_visual.gd")
+const MoltenCrashVisual = preload("res://gameplay/abilities/king/molten_crash_visual.gd")
 const PlayerHurtImpact = preload("res://assets/audio/sfx/player_hurt_impact.wav")
 const PlayerActionDenied = preload("res://assets/audio/sfx/ui/player_action_denied.mp3")
 
@@ -27,20 +29,19 @@ func _run() -> void:
 	if (
 		not _valid_sfx_player(player_sfx.sword_swing_player)
 		or not _valid_sfx_player(player_sfx.dash_player)
-		or not _valid_sfx_player(player_sfx.echoing_sever_fracture_player)
-		or not _valid_sfx_player(player_sfx.riftbreak_ground_slam_player)
 		or not _valid_sfx_player(player_sfx.sovereign_pursuit_launch_player)
 		or not _valid_sfx_player(player_sfx.sovereign_pursuit_landing_player)
 		or not _valid_sfx_player(player_sfx.skill_4_formation_player)
 		or not _valid_sfx_player(player_sfx.skill_4_first_impact_player)
 		or not _valid_sfx_player(player_sfx.skill_4_explosion_player)
 		or not _valid_sfx_player(player_sfx.action_denied_player)
-		or player_sfx.echoing_sever_fracture_player.stream == player_sfx.sword_swing_player.stream
+		or EarthsplitterVisual.Impact == null or EarthsplitterVisual.Swing == null
+		or MoltenCrashVisual.Impact == null or MoltenCrashVisual.Swing == null
 	):
 		_fail("King's attack, four skills, dash, and denied-action SFX are not fully assigned to the SFX bus.")
 		return
-	if player_sfx.dash_player.stream != PlayerDashLightSwoosh or player_sfx.dash_player.volume_db > -12.0:
-		_fail("Player dash does not use the dedicated light swoosh at a safe volume.")
+	if player_sfx.dash_player.stream != PlayerDashGrounded or player_sfx.dash_player.volume_db > -11.0:
+		_fail("Player dash does not use the accepted grounded swoosh at a safe volume.")
 		return
 	if player_sfx.action_denied_player.stream != PlayerActionDenied:
 		_fail("Cooldown rejection does not use the dedicated real CC0 denied-action recording.")

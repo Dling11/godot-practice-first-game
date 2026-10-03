@@ -143,6 +143,10 @@ func get_target_core_radius_pixels() -> float:
 	return 0.0
 
 
+func get_target_center_offset() -> Vector2:
+	return Vector2.ZERO
+
+
 func is_fixed_length_line_targeted() -> bool:
 	return false
 

@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://ui/screens/title/title_background.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://assets/ui/quiet_transition/background.png" id="2_base"]
-[ext_resource type="SpriteFrames" path="res://assets/ui/quiet_transition/seal_frames.tres" id="3_seal"]
+[ext_resource type="Texture2D" path="res://assets/ui/title/trio/b.png" id="2_base"]
 
 [sub_resource type="Gradient" id="Gradient_vignette"]
 offsets = PackedFloat32Array(0, 0.65, 1)
@@ -39,22 +38,6 @@ texture = ExtResource("2_base")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="SealLayer" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Seal" type="AnimatedSprite2D" parent="SealLayer"]
-unique_name_in_owner = true
-position = Vector2(480, 193)
-sprite_frames = ExtResource("3_seal")
-animation = &"active"
-autoplay = "active"
-
 [node name="Atmosphere" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -75,34 +58,34 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Glimmer1" type="ColorRect" parent="Atmosphere/Glimmers"]
-offset_left = 284.0
-offset_top = 340.0
-offset_right = 285.0
-offset_bottom = 341.0
+offset_left = 570
+offset_top = 190
+offset_right = 571
+offset_bottom = 191
 mouse_filter = 2
 color = Color(0.74, 0.68, 0.50, 1)
 
 [node name="Glimmer2" type="ColorRect" parent="Atmosphere/Glimmers"]
-offset_left = 670.0
-offset_top = 377.0
-offset_right = 671.0
-offset_bottom = 378.0
+offset_left = 820
+offset_top = 220
+offset_right = 821
+offset_bottom = 221
 mouse_filter = 2
 color = Color(0.74, 0.68, 0.50, 1)
 
 [node name="Glimmer3" type="ColorRect" parent="Atmosphere/Glimmers"]
-offset_left = 217.0
-offset_top = 418.0
-offset_right = 218.0
-offset_bottom = 419.0
+offset_left = 890
+offset_top = 365
+offset_right = 891
+offset_bottom = 366
 mouse_filter = 2
 color = Color(0.74, 0.68, 0.50, 1)
 
 [node name="Glimmer4" type="ColorRect" parent="Atmosphere/Glimmers"]
-offset_left = 746.0
-offset_top = 326.0
-offset_right = 747.0
-offset_bottom = 327.0
+offset_left = 650
+offset_top = 400
+offset_right = 651
+offset_bottom = 401
 mouse_filter = 2
 color = Color(0.74, 0.68, 0.50, 1)
 

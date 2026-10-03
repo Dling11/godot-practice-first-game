@@ -1,5 +1,7 @@
 # King Sword Combat and Skill Kit
 
+**Current terrain/aim correction (2026-10-03,Decision177):** Slot1/5 keep full authored reach through scenery; Slot3 flies over any intervening obstacle to clear, real-foot/nav/bounds-valid ground. Silver/slate/violet circles and hardware pointers replace gold/blue targeting and use actor feet/render-frame aim. This supersedes earlier terrain-aware/clipped or LOS-stopped descriptions below. Current rule/validation: king-targeting-and-terrain.md.
+
 ## Current status
 
 Decision 143 installs owner-selected compact greatsword **C**. This documents the default four-technique loadout; [Decision 144’s collection extension](king-unwritten-oath.md) adds four alternatives and evolving forms. Earlier tap/hold proposals are archived under `art_source/archive/retired_docs_2026-09-12/`; they do not describe active controls.

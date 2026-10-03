@@ -1,6 +1,75 @@
 # Continue Battle of Gods
 
+**Targeting refinement (2026-10-03,Decision177):** Owner finds the ornate frames oversized/distracting. Current targeting uses a single1px translucent AOE boundary, nearly transparent fill, small open target mark and faint short range arcs; the coincident inner/outer Worldsplitter circle is no longer drawn twice. Skill ranges/radii stay unchanged. All four cursors use24px canvases (20px maximum content,16px aim). Retired ornate ring/glyph assets and builder outputs are archived. Native39 visual/state checks and current UI/icon smoke pass, with six Stage IV grass/dark captures in art_source/review/ui/targeting_subtle_2026_10_03/. CursorService clears its hardware bindings on exit; the focused native check exits without the preceding two texture/RID or RenderingServer-null warnings. Full-session/phone profiling and owner feel remain open.
+
+## Latest delivery: skill reach, any-obstacle leaps and silver/violet aim
+
+2026-10-03. Owner explicitly chooses Skill3 jumping over ANY intervening obstacle to a clear landing, and rejects gold circles/pointers. Decision177 is implemented: Slot1 full Foundation/Fan/Cascade scenery-independent lanes/fronts; Slot5 range-clamped chosen point and radial contacts across scenery; basic sword fan already full reach. Pursuit validates real feet, authored navigation ground and bounds, retreats occupied destinations, revalidates after wind-up, temporarily disables only world-mask bit1 in flight, then restores it and safe feet on landing/cancel/exit.
+
+New generated silver/slate/violet range/AOE rings, landing sigil and four hardware cursor states are installed. All previews use actor feet/data-owned offsets. Active aim runs on render frames, caches unchanged input, stops when hidden, refreshes on confirmation; gameplay targets remain component authority. Sources/prompts/manifests: art_source/generated/ui/targeting_2026_10_03/ and muted_cursors_2026_10_03/. Builders: build_targeting_art.gd, build_muted_cursors.gd. Old gold cursor outputs are archived, including historical builder routing.
+
+Native terrain33/art45/normal-arrival40 checks pass; native generic61 shared-resource/four-body review also passes after production preload. Worldsplitter118 headless, Pursuit charges, explicit selected-target ownership and eight-target Fan16/Cascade24 contacts pass. Six native Stage IV targeting PNGs: art_source/review/ui/targeting_2026_10_03/. Logs under generated/ui/targeting_2026_10_03/. Separate native eight-target Foundation first/repeat:8 contacts across7 ticks/zero global pauses, physics peaks2.756/2.111ms; stationary AI-off fixture is not full campaign/phone profiling. Earlier five-target16.82ms concern remains a separate investigation. Existing two5460-byte texture/RID shutdown warnings remain.
+
+The generic arrival owner tested is NOW NORMAL I–VI via common summon_effect.tscn. GenericEnemyArrival owns four raster drawings; SummonEffect is only its release contract. Old procedural seam/clock are archived. Prototype controls remain available and isolated, but campaign promotion is no longer pending.
+
+Try: restart F5, enter combat and aim1/3/5 (left click confirm, right click/Esc cancel). F7 Combat Lab can test otherwise progression-gated skills. Next: owner feel/legibility, blade/wood/armor/guard/interruption sound and four-direction contact readability, measured cold/warm campaign/phone profiling; then planned walk/world-life/VI slices. Loading is done, no per-size spawn frames, no gold aiming UI, no automatic saves from reviews. No commits/pushes/branch reset/normal profile restore. Read docs/design/king-targeting-and-terrain.md.
+
+
+**Historical generic prototype (superseded by production above,Decision176,2026-10-03):** Owner rejects expanding arrival art into size/tier-specific frame sets and requests one reusable monster spawn. A new low underfoot shadow/dust cue uses FOUR generated raster drawings total, the same cached atlas/native scale/floor pivot for Rootling, Thrall, Crag Bear and Husk. Playable prototype: tools/launch_generic_spawn_review.ps1 (enemy picker,1/3/8, grass/dark, real sound/AI/bag/pause, no rewards/saves). Native61 checks pass. Existing actor visual transitions and scripted boss intros are preserved; campaign art promotion is now completed as described above. Generic direction supersedes choosing A/B/C as the primary next step; those previews remain references. Sources/prompts/registration: art_source/generated/vfx/generic_spawn_2026_10_03/. Evidence: art_source/review/encounters/generic_spawn_2026_10_03/. Owner native feel is next; do not create per-size frame sets.
+
+**Playable spawn-art comparison (2026-10-03):** Owner accepts the arrival sound, rejects the code-drawn appearance, and needs actual gameplay before choosing A Veil Tear / B Earthwake / C Shadow Cocoon. Six transparent raster drawings per family are now playable in an isolated Stage IV review: tools/launch_enemy_arrival_art_review.ps1. A/B/C switch and replay the same 1/3/8 batch; grass/dark-ground toggle, native King/AI, real sound, bag/pause and rewardless/suppressed saving remain. Native57 checks pass. Authored origins, one uniform density and64px cells/y52 floor are registered; source/prompts/manifest are in art_source/generated/vfx/enemy_arrival_runtime_preview_2026_10_03/. Native captures: art_source/review/encounters/arrival_art_2026_10_03/. No family is selected or promoted into F5 campaign; its procedural effect remains runtime truth until the owner chooses. See docs/design/enemy-arrival-and-horde-profiling.md.
+
+## Historical delivery: enemy arrival and focused horde profiling
+
+Owner accepts title A/B/C, says loading is done and authorizes the next spawn/sound/performance slice. Decision175 promotes planted 0.3s warnings/materialization into normal I–VI with reserved live slots, navigation/body/pending spacing, final revalidation/retry, defeat/pause/teardown and ordered reinforcements. Original bounded positional SFX; Rootling/Mireling full-scale fade corrects old flattening. Prior lightning source is archived.
+
+- Runtime owners: gameplay/encounters/encounter_controller.gd, summon_effect.gd/.tscn, small Rootling/Mireling/Rotcaller visual corrections. Original audio builder: tools/build_enemy_arrival_audio.js. No new global manager, pool, gameplay damage or economy.
+- Ready test: tools/launch_enemy_arrival_review.ps1 →1/3/8/reset/safety, then Normal Stage IV. Rewardless trial uses user://enemy_arrival_review.json with saves suppressed; normal review also stays isolated. Native controls 30/0; headless expedition101/0; reinforcement, Stage IV, combat feedback/current audio checks pass. Final native arrival39/0 verifies device playback and cleanup; evidence README/log retain exact records.
+- Skill 1 focused first/repeated Foundation 1/5/8 casts preserve1/5/8 contacts and 0 global pauses; eight contacts span seven ticks. A16.82ms first five-target physics peak remains versus2.55ms repeat. JSON/logs/captures: art_source/review/encounters/arrival_2026_10_03/. These fixtures disable enemy AI and are not full cold campaign/GPU/phone profiling.
+- Next: material hit/guard/interruption sound and contact/reach readability in four directions, measured cold/warm campaign/phone performance, pointer/walk then muted-teal VI and approved world-life slices. Loading implementation is complete; matching illustrated re-art is optional/deferred.
+- Existing two 5460-byte Texture/RID shutdown warnings remain. No commit/push/branch reset/ordinary-profile restore. [Current design/limits](docs/design/enemy-arrival-and-horde-profiling.md). Earlier entries below retain their historical counts and superseded pending statements.
+
 Updated 2026-10-03. Workspace: D:/React_ONLY_2026/GODOT-BATTLE-OF-GODS.
+
+## Historical delivery: random A/B/C homepage
+
+Owner now accepts all A/B/C, asks lightweight random each quit/relaunch, and rejects walking King. Production F5 uses new full-size still illustrations: A breach/B seated campfire/C sword-ready clash. Native controls/text are left aligned; title actor movement and seal removed. Legacy prototype pacing is removed as well.
+
+- TitleBackground._pick_art makes one random pick excluding the previous valid choice. The only persisted data is a cosmetic last index at profile-basename+"_title_art.cfg". It never changes game progression/profile bytes. Review/test history follows their isolated profile path. No new manager/autoload or per-frame selection.
+- Native tests/title_trio_smoke.gd: 72/0; fresh headless process 66/0 reads retained history. title_screen_smoke/title_continue_smoke pass. Retired title-seal check now verifies loading only:27 native checks pass.
+- Source/prompts: art_source/generated/ui/title_trio_2026_10_03/. Runtime imported 960x540 PNGs: assets/ui/title/trio/. Builder: tools/build_title_trio_art.gd. Actual native A/B/C captures/logs: art_source/review/ui/title_trio_2026_10_03/.
+- Old campfire/quiet title captures and counts below are history, not current runtime. Matching generic loading redesign remains future; do not reintroduce walking King to the homepage. Existing cleanup warnings remain. No commit/push/profile restore.
+
+## Previous owner direction: campfire title
+
+Owner clarifies they wanted consistent animation frames rather than a frozen engraving, then finds the quiet title boring. Selected B via explicit reply: King beside a campfire with small enemies moving in darkness.
+
+- Native prototype: new generated background and8 flame poses; actual approved King idle/walk, two Rootlings with real gait/displacement, left-side actual TitleScreen controls, stable scenery. Art board is illustrative; preview reuses actual sprites rather than pretending generated seated King is animated.
+- Launch tools/launch_campfire_title_preview.ps1; profile is user://campfire_title_review.json, including real menu/Continue/New Journey. Normal F5 title/loading are not promoted to this prototype.
+- Captured80 native frames,8 flame poses,19 King poses and8 first-watcher poses; actual watcher displacement and fixed backdrop assertions pass. Native GIF: art_source/review/ui/campfire_title_2026_10_03/campfire_native.gif. Existing known two Texture/RID warnings remain.
+- Sources/full built-in imagegen prompts/normalization: art_source/generated/ui/campfire_title_2026_10_03/. Owners: tools/build_campfire_title_preview.gd, campfire_title_preview.gd, launch_campfire_title_preview.gd/.ps1; GIF helper -CampfireTitle.
+- Historical next step (superseded above): owner native look/motion feedback, then layered production title with correct art density, responsive menu, occlusion, coherent expressive King/watchers/fire and isolated control/save checks. Rebuild consistently animated generic loading next; keep real loader progress/no artificial delay. Read docs/design/campfire-title-direction.md.
+- Old zero-geometry-change checks establish technical stability, not visual acceptance. Do not describe frozen engraving as satisfying rebuilt motion or this preview as released title.
+
+## Previous correction: homepage and loading wobble
+
+Owner follow-up: the homepage/loading are also wobbly. Both share the same generated seal; source alpha changes666–1736 pixels and ornament bounds shift. Corrected both with ui/presentation/quiet_seal_animation.gd + quiet_seal_surface.gdshader: canonical frame0 engraving, smooth cyclic light on Sprite clock, independent material per seal. Hidden UI disables processing; paused menu/loading keep advancing. Homepage six glimmers fade at fixed pixels instead of snapped translation/reset.
+
+- Native quiet_ui_stability_smoke:195 checks,0 failures. Actual title/loading frame/halfway silhouette, moving light, exact seam, paused UI, hidden suspension, independent materials, fixed glimmers and King/progress behavior.
+- Native integrated stage_transition_presentation_smoke rerun:55/0; real loading seal/King7/13. Native title_screen_smoke and headless title_continue_smoke pass. Broad expedition results remain historical.
+- Current native title/loading GIFs and source/render geometry/logs: art_source/review/ui/quiet_ui_stability_2026_10_03/. Existing gallery captures/loading GIF refreshed. Reproduce native tests/quiet_ui_stability_smoke.gd then tools/build_stage_presentation_gifs.ps1 -QuietUiStability. Loading GIF is labelled37% rehearsal. Restart game to see the fix.
+- Source atlases are retained unchanged; do not remove fixed-surface materials on the assumption that shared cells guarantee consistent drawings. Existing shutdown warnings remain. No normal-profile restoration/commit/push.
+
+## Previous correction: portal wobble
+
+2026-10-03 owner feedback: double-check wobbling portal frames. Corrected all six runtime silhouettes with the existing source art: fixed reference alpha/rim/ground anchor, whole-pixel registered interior colors, real AnimatedSprite frame_progress interpolation and pause. Grasp hand shading moves within a planted outline. Raw atlas geometry still drifts; do not remove the shader or claim canvas normalization alone solves it.
+
+- Native portal_surface_stability_smoke:144/0; zero silhouette changes across8 frames and halfway blends for every family, real inner movement, exact loop seam and pause.
+- Native stage_transition_presentation_smoke rerun:54/0; real loading seal/King changed7/13 frames. Focused headless portal_interaction_smoke and scene_transition_smoke pass.
+- Current before/after GIF, raw/render geometry, logs and captures: art_source/review/ui/portal_stability_2026_10_03/. Same native scale, left raw/right corrected; lightning hidden only for this diagnostic. Full production gallery PNGs and Grasp/Maw GIFs refreshed. Restart playtest/relaunch gallery to reload.
+- New runtime owners: stage_portal_stable_surface.gdshader, stage_portal_surface_animation.gd and StagePortalArt.surface_for/SURFACES. Unique per-instance materials, no independent TIME, no gameplay mutation.
+- Reproduce: native tests/portal_surface_stability_smoke.gd; native tools/capture_portal_stability_review.gd; tools/build_stage_presentation_gifs.ps1 -PortalStability. Re-audit SURFACES if atlas art changes. Existing teardown warnings remain.
+- Final ordinary profile observation at15:08: SHA2564339BEB82D7768D753A5333ADE80AF23D6591FC4DA14C8B0F243F2EBD2A4FFE6, last write14:54:51; a separate normal game is running. Earlier61064... hash below is historical. No profile bytes were restored; latest verification uses suppressed saves/isolated storage. Do not claim the ordinary profile remained byte-identical across this follow-up.
 
 ## Read first
 
@@ -10,7 +79,7 @@ Do not commit, push, change branches or reset the dirty tree. This checkout cont
 
 ## Owner's latest request and approvals
 
-Owner asks to begin implementation and leave a reliable handoff because this may be the last prompt in this chat.
+Owner latest request also includes homepage/loading wobble; both corrections above are complete and documented. Earlier instruction was to begin implementation and leave a reliable handoff.
 
 - All SIX threat portal concepts are selected. This is five existing destination tiers with TWO red Boss variants, not six new playable tiers.
 - Normal blue/calm; Mini Boss purple/ominous; Boss red with grasping-hand or hungry-rim design; future God white-gold; future Transcendent near-black/violet.
@@ -25,7 +94,7 @@ Owner asks to begin implementation and leave a reliable handoff because this may
 Decision173 promotes the chosen portal/loading/title/chest presentation. Read docs/design/stage-exits-and-quiet-transitions.md for the detailed contract and docs/decisions/173-promote-threat-portals-and-quiet-stage-presentation.md for rationale.
 
 - Six real eight-frame portal bodies are integrated under five tiers; Grasp/Maw are two red Boss variants. Current IV→V uses Grasp. Maw is a selectable review/authored alternate. God/Transcendent remain future-content artwork, not new playable routes.
-- The existing separate16-frame lightning field stays active. It draws ABOVE terrain and BEHIND the body. Colored bodies are white-modulated to avoid double tint. One union/scale/origin per source loop preserves pose motion and ground anchors.
+- The existing separate16-frame lightning field stays active. It draws ABOVE terrain and BEHIND the body. Colored bodies are white-modulated to avoid double tint. One union/scale/origin per source loop preserves source offsets; the new stable-surface shader is required to correct shape drift and ground anchors.
 - QuietLoadingView composes a new generic navy background, animated gold seal, current outlined Spellward King walk, native labels and a280x16 rail. Actual resource fractions appear inside the bar. Loading does not wait for a mascot cycle.
 - SceneTransition starts threaded resource IO before fading, polls only while pending, gets only a LOADED PackedScene, then installs/waits/reveals. Concurrent requests are rejected. Failure preserves the old scene/previous pause; title controls and nearby F prompts recover. Main-thread scene instantiation/GPU upload still need profiling.
 - Normal title startup is re-arted to the same quiet seal palette. Native Continue/New Journey/Settings/Quit, valid-save gating, overwrite confirmation and focus remain.
@@ -43,6 +112,8 @@ It uses user://stage_presentation_review.json, including title/New Journey/real 
 F5 still opens normal title and ordinary Continue. Campaign clear exits require F; III/V require their chests first. Sanctuary portal is unchanged.
 
 ## Current verification
+
+Latest wobble correction checks are recorded above. Broad expedition/title results below are the preceding baseline, not rerun for this isolated visual fix.
 
 - Native stage_transition_presentation_smoke:54 checks,0 failures; actual paused transition advances seal/King6/12 frames. Headless focused presentation:45/0 with5/10 frames. Counts may vary with loader progress events.
 - Native expedition_feedback_smoke:108 checks,0 failures after final runtime changes; ordinary I–IV and V guard/boss/chest/receipt/return/service/save/Continue flow retained.
@@ -76,7 +147,8 @@ Godot4.7 console: D:/WORK_APP/godot/Godot_v4.7-stable_win64_console.exe. GUI: D:
 
 ## Runtime owners to inspect
 
-- gameplay/encounters/stage_portal_art.gd: immutable six-family resource selection.
+- gameplay/encounters/stage_portal_art.gd: six-family selection, measured reference/registration data and per-instance stable-surface material.
+- gameplay/encounters/stage_portal_stable_surface.gdshader and stage_portal_surface_animation.gd: stable outline and frame-progress interpolation.
 - gameplay/encounters/stage_portal.gd and .tscn: F proximity, destination tier, base/FX animation, player departure, travel failure restoration.
 - autoload/scene_transition.gd: long-lived transition and input/pause ownership; threaded resource loading, generic QuietLoadingView, actual progress and failure restoration.
 - gameplay/loot/stage_reward_chest.gd and .tscn: one-shot LootService claim, real closed/open state and footprint release.

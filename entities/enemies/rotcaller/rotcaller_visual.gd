@@ -12,6 +12,7 @@ var _pose_tween: Tween
 func set_facing(direction: Vector2) -> void:
 	_direction = ("east" if direction.x > 0 else "west") if absf(direction.x) > absf(direction.y) else ("south" if direction.y > 0 else "north")
 	if _state == Rotcaller.State.POSITIONING: _show("walk" if _moving else "idle")
+	elif _state == Rotcaller.State.SPAWNING: _show("idle")
 
 func set_moving(moving: bool) -> void:
 	_moving = moving

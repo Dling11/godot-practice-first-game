@@ -1,5 +1,23 @@
 # Battle of Gods
 
+**Targeting size update (2026-10-03):** Restart F5 for slim translucent skill rings and smaller24px cursors. Actual skill reach and damage radii stay unchanged. Current screenshots: art_source/review/ui/targeting_subtle_2026_10_03/.
+
+**2026-10-03 gameplay update:** Restart F5 to load the shared four-drawing enemy arrival and silver/violet targeting/cursors. In a stage use1/3/5, aim and left click to confirm; right click/Esc cancel. Skill1 and5 retain range across scenery; Skill3 can fly over any obstacle to clear valid ground. Existing progression gates still apply; F7 Combat Lab offers isolated skill testing. Details and verification: docs/design/king-targeting-and-terrain.md.
+
+**Universal spawn prototype:** Run `powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\launch_generic_spawn_review.ps1`. Pick Rootling, Thrall, Crag Bear or Husk, then **Spawn selected foe** or **Replay**: all use the same four-drawing ground effect.1/3/8 batches, Reset, grass/dark, normal movement/skills/bag/pause remain. Saves are isolated/suppressed; trial enemies grant no rewards. This is a prototype, not normal F5 campaign promotion. [Generated art/prompt](art_source/generated/vfx/generic_spawn_2026_10_03/README.md) · [Native review evidence](art_source/review/encounters/generic_spawn_2026_10_03/README.md).
+
+**Choose spawn art in-game:** Run `powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\launch_enemy_arrival_art_review.ps1`. A/B/C switch and replay six-frame raster candidates beside King; choose1/3/8 enemies, Reset between batch sizes, Replay, or grass/dark ground. WASD/attack/skills/Tab/Esc work normally. Separate profile, suppressed saves and rewardless enemies protect campaign progress. This is a choice preview; normal F5 has not adopted a family. [Art, prompts and verification](art_source/review/encounters/arrival_art_2026_10_03/README.md).
+
+**Enemy arrival updated:** F5 encounter stages now show a small ground warning before foes emerge, with restrained spawn sound and safe placement. For quick1/3/8 testing run `powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\launch_enemy_arrival_review.ps1`; reset between batches, toggle King safety, or open normal Stage IV. Trial enemies grant no rewards and saving is isolated/suppressed. [Details and profile evidence](docs/design/enemy-arrival-and-horde-profiling.md). Existing loading screen is implemented; further re-art is optional.
+
+**Homepage updated:** Normal **F5** now opens one of A/B/C (breach, seated campfire, clash), picked randomly without consecutive repeats across launches. King stays still. Normal Continue/New Journey/Settings/Quit remain. [Native captures](art_source/review/ui/title_trio_2026_10_03/README.md).
+
+**Selected campfire title preview:** `powershell -NoProfile -ExecutionPolicy Bypass -File ./tools/launch_campfire_title_preview.ps1` opens King/fire/walking-watchers with actual menu controls and isolated review storage. [Native motion GIF](art_source/review/ui/campfire_title_2026_10_03/campfire_native.gif). This is a prototype; normal F5 uses the current production title. [Direction and next work](docs/design/campfire-title-direction.md).
+
+**Homepage/loading wobble fixed:** Restart playtest to reload fixed gold engravings with moving light and fading title specks. [Homepage GIF](art_source/review/ui/quiet_ui_stability_2026_10_03/title_native.gif) / [loading GIF](art_source/review/ui/quiet_ui_stability_2026_10_03/loading_native.gif); loading clip is a labelled37% rehearsal. Native195 stability and55 integration checks pass.
+
+**Portal wobble correction:** Restart the playtest to load the stable doorway outlines and smoother inner currents. [Native before/after GIF](art_source/review/ui/portal_stability_2026_10_03/comparison_native.gif) shows raw frames on the left and the corrected material on the right; diagnostic lightning is hidden. All six variants pass144 rendered stability checks.
+
 **2026-10-03 stage presentation review:** Run `powershell -ExecutionPolicy Bypass -File .\tools\launch_stage_presentation.ps1` for all six animated threat gates, new closed/open chests, loading motion, actual StageI loading and the refreshed title. Review uses an isolated profile; Esc closes its motion preview. F5 starts the normal refreshed title and ordinary Continue. Campaign exits still require stage clear/F and required III/V chest claims. Handoff: [CONTINUE_PROGRESS.md](CONTINUE_PROGRESS.md). Implementation/captures/next work: [stage presentation](docs/design/stage-exits-and-quiet-transitions.md).
 
 **Stage V Dead Forest and campaign Rotcaller:** `powershell -NoProfile -ExecutionPolicy Bypass -File ./tools/launch_stage_5_renewal.ps1` opens the renewed dead woodland with no saves and safe King. **Start six sentries** runs five Rootlings plus one Rotcaller, at most five alive. Clear them before entering Varkuun's basin; the solo boss, required F chest and Stage VI unlock remain intact. Arrival/approach/basin/Overview inspect the new layout; **King safe** permits vulnerable combat; **Reset Stage V** restores full HP. The Stage IV shortcut also exposes the isolated caster trial. WASD/attack/skills work normally; Tab opens the bag and Esc closes it or opens pause. New forest music separates expeditions from Sanctuary. See [current implementation and next work](docs/design/stage-5-renewal-and-combat-polish.md).
@@ -48,7 +66,7 @@ Pre-alpha title-to-Sanctuary-to-six-stage prototype. F5 opens a mouse/keyboard/g
 
 ## Intended Technology
 
-- Engine: Godot 4.7 stable
+- Engine: Godot 4.7.2 stable
 - Language: GDScript unless a measured performance need justifies another option
 - Game format: 2D top-down pixel action
 - Initial development target: desktop; release platform priorities are not yet decided
@@ -70,7 +88,7 @@ The prototype uses a 960x540 logical viewport displayed at 1920x1080 for exact 2
 
 ## Setup
 
-1. Install Godot 4.7 stable. The standard build is sufficient; .NET is not required.
+1. Install Godot 4.7.2 stable. The standard build is sufficient; .NET is not required.
 2. Import `project.godot` from this repository in the Godot Project Manager.
 3. Open the project and press **F6** for the current scene or **F5** for the project.
 
