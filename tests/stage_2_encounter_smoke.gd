@@ -8,6 +8,7 @@ func _initialize() -> void:
 
 
 func _run() -> void:
+	root.get_node("SaveService").suppress_autosave_for_debug_session()
 	var stage := Stage2Scene.instantiate()
 	var controller: EncounterController = stage.get_node("GameplayServices/EncounterController")
 	root.add_child(stage)
@@ -67,7 +68,7 @@ func _run() -> void:
 	if controller.rootling_scene == null:
 		_fail("Stage 2 Rootling waves require the dedicated Rootling scene.")
 		return
-	if ground.map_size != Vector2i(24, 14) or not actors.y_sort_enabled:
+	if ground.map_size != Vector2i(48, 28) or not actors.y_sort_enabled:
 		_fail("Stage 2 grove layout or Y-sorted actor ownership is not configured.")
 		return
 	if ground.layout == null or ground.layout.resource_path != "res://data/environment/layouts/stage_2_forest_ground.tres":
@@ -81,8 +82,8 @@ func _run() -> void:
 		return
 	for frame in range(3):
 		await physics_frame
-	if ground.get_used_cells().size() != 336:
-		_fail("Stage 2 ground did not populate the expected 24x14 tile area.")
+	if ground.get_used_cells().size() != 1344 or ground.tile_set.tile_size != Vector2i(32,32):
+		_fail("Stage 2 ground did not populate the finer 48x28 tile area.")
 		return
 	var navigation_map := navigation_region.get_world_2d().get_navigation_map()
 	var path := PackedVector2Array()

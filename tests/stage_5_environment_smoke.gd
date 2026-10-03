@@ -19,6 +19,7 @@ func _initialize() -> void:
 
 
 func _run() -> void:
+	root.get_node("SaveService").suppress_autosave_for_debug_session()
 	if not _verify_image(TERRAIN_PATH, Vector2i(256, 256), false):
 		return
 	if not _verify_image(SHRINE_PATH, Vector2i(320, 192), true):
@@ -154,10 +155,17 @@ func _run() -> void:
 		return
 	production_player.global_position = Vector2(768, 575)
 	await create_timer(1.8).timeout
+	# Headless flow closes this conversation automatically; rendered verification
+	# must finish the same intro before checking combat/music ownership.
+	if stage_5.dialogue_panel.visible:
+		stage_5.dialogue_panel.close_dialogue(true)
+		await process_frame
 	if production_boss.target != production_player or not production_boss.is_physics_processing():
 		_fail("Production Stage 5 did not activate the boss at the authored basin threshold.")
 		return
 	var production_flow := stage_5 as Node
+	if DisplayServer.get_name() != "headless":
+		await create_timer(1.1).timeout
 	var audio_director := root.get_node_or_null("AudioDirector")
 	var expected_boss_music := load("res://assets/audio/music/boss/varkuun_battle_rpg_theme_loop.ogg") as AudioStream
 	if production_flow.get("boss_music") != expected_boss_music or audio_director == null or audio_director.music_player.stream != expected_boss_music:

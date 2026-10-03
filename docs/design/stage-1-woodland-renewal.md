@@ -1,6 +1,6 @@
 # Stage I woodland renewal — review pass
 
-2026-10-02. Implemented in the normal Forgotten Grove scene; owner appearance/feel review remains pending. This is the Stage I pilot requested before extending the direction to II–VI. See Decision 167.
+2026-10-02. Implemented in the normal Forgotten Grove scene; owner accepted the current visual direction on2026-10-03; precise combat feel/economy and phone profiling remain open. This is the Stage I pilot requested before extending the direction to II–VI. See Decision 167.
 
 ## Direction
 
@@ -19,7 +19,7 @@ The accepted Sanctuary wind shader shifts only the upper foliage in pixel steps.
 - Offline builder: tools/build_stage_1_renewal.gd. Run --art-only, import through Godot, then run the builder normally. The second pass writes generated prop scenes, layout and baked Stage I. Ground derivatives reuse assets/environment/sanctuary/refuge_review/ground_32.png; the town and shared forest source remain untouched.
 - Recovery snapshots: art_source/archive/stage_1_pre_renewal_2026_10_02/ (.gdignore). Old shared trees/statues/terrain remain because other stages use them. Do not delete them as unused Stage I assets.
 
-The player scale, world bounds, six authored waves, four-live-enemy ceiling, rewards, portal destination and save rules are preserved. The layout can still affect combat positioning, so owner feel testing remains necessary. Do not propagate this art to II–VI until the owner accepts Stage I.
+The player scale, world bounds, six authored waves, four-live-enemy ceiling, rewards, portal destination and save rules are preserved. The layout can still affect combat positioning, so owner feel testing remains necessary. The owner accepted Stage I on2026-10-03. Renew II–VI using this quality/density as reference while preserving their own established biome identities; the props are not a replacement for every stage theme.
 
 ## Ready review
 
@@ -31,4 +31,4 @@ The visible no-save review starts with peaceful exploration. WASD moves King; En
 
 ## Validation and remaining review
 
-The environment/navigation smoke passed183 checks: preserved world extent, authored grid, six-wave/four-live contract, all spawn/exit approaches, sampled collision-free routes, every physical obstacle's cutout, decorative nonblocking plants, tree routing, canopy fade/restore, fixed root position and moving four-frame birds. Headless wave-structure, reinforcement and defeat-return regressions pass. The81-check rendered expedition test also passes through actual rewards, ordinary and milestone completion, Sanctuary return, Nema crafting, bag equip, Eira training and isolated save/Continue. Native GPU captures verify the new material scale and placement. Automated accelerated encounter tests establish integration, not final balance or player success. Owner visual/feel acceptance, representative-phone performance and Stages II–VI renewal remain pending. Previously observed shared GPU shutdown texture/RID warnings persist.
+The environment/navigation smoke passed183 checks: preserved world extent, authored grid, six-wave/four-live contract, all spawn/exit approaches, sampled collision-free routes, every physical obstacle's cutout, decorative nonblocking plants, tree routing, canopy fade/restore, fixed root position and moving four-frame birds. Headless wave-structure, reinforcement and defeat-return regressions pass. The81-check rendered expedition test also passes through actual rewards, ordinary and milestone completion, Sanctuary return, Nema crafting, bag equip, Eira training and isolated save/Continue. Native GPU captures verify the new material scale and placement. Automated accelerated encounter tests establish integration, not final balance or player success. Owner accepted the current visual direction2026-10-03. Stage II is now renewed under Decision168. Precise combat feel, representative-phone performance and Stages III–VI renewal remain pending. Previously observed shared GPU shutdown texture/RID warnings persist.

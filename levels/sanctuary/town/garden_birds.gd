@@ -2,6 +2,7 @@ extends Node2D
 
 ## Bounded occasional flights, driven by Tween/Timer; no collision or gameplay authority.
 const SHEET = preload("res://assets/environment/sanctuary/courtyards/swallow.png")
+@export var flight_bounds := Rect2(48,260,1052,290)
 var birds: Array[AnimatedSprite2D] = []
 var _timer: Timer
 var _flight: Tween
@@ -44,8 +45,8 @@ func set_enabled(value: bool) -> void:
 func _begin_flight() -> void:
 	if not _enabled: return
 	var east := _pass%2 == 0
-	var start := Vector2(48,260 if east else 550) if east else Vector2(1100,550)
-	var finish := Vector2(1100,340) if east else Vector2(48,400)
+	var start := flight_bounds.position if east else flight_bounds.end
+	var finish := Vector2(flight_bounds.end.x,flight_bounds.position.y+80) if east else Vector2(flight_bounds.position.x,flight_bounds.end.y-150)
 	_flight = create_tween().set_parallel(true)
 	for index in birds.size():
 		var bird := birds[index]

@@ -175,6 +175,7 @@ func _spawn_enemy(scene: PackedScene) -> void:
 	if scene == null or _spawn_points.is_empty(): return
 	var enemy := scene.instantiate()
 	enemy.target = player
+	_prepare_enemy(enemy)
 	actors.add_child(enemy)
 	var health := enemy.get("health_component") as HealthComponent
 	if health != null:
@@ -187,6 +188,11 @@ func _spawn_enemy(scene: PackedScene) -> void:
 	enemy_spawned.emit(enemy.global_position)
 	_active_enemies += 1
 	enemy.tree_exited.connect(_on_enemy_removed)
+
+
+func _prepare_enemy(_enemy: Node) -> void:
+	# Review encounters can remove reward components before their ready hooks.
+	pass
 
 
 func _spawn_summon_effect(global_position: Vector2) -> void:

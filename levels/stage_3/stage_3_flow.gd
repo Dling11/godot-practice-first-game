@@ -14,6 +14,7 @@ const ExpeditionDefeatReturnScript = preload(
 @export var encounter_controller: EncounterController
 @export var dialogue_panel: DialoguePanel
 @export var rootbound_husk_portrait: Texture2D
+@export var review_hold_encounter := false
 
 var _restart_enabled := false
 
@@ -35,6 +36,8 @@ func _ready() -> void:
 
 
 func _begin_stage() -> void:
+	if review_hold_encounter:
+		return
 	combat_hud.show_story_message("STAGE III  •  THE ROOTBOUND HOLLOW", 2.5)
 	await get_tree().create_timer(2.0).timeout
 	if is_instance_valid(encounter_controller):
@@ -49,7 +52,7 @@ func _on_inter_wave_gate_requested(next_wave_number: int) -> void:
 	dialogue_panel.show_dialogue(
 		"ROOTBOUND HUSK",
 		[
-			"Ten rootlings severed. Ten young voices returned to the soil.",
+			"Ten rootlings severed. Ten young voices returned to the soil." if encounter_controller.waves[0].rootling_count == 10 else "%d rootlings severed. Their voices returned to the soil." % encounter_controller.waves[0].rootling_count,
 			"The roots remember every trespass, little wanderer.",
 			"Kneel. The Hollow hungers—and I will feed it your bones.",
 		],

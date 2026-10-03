@@ -12,6 +12,7 @@ const ExpeditionDefeatReturnScript = preload(
 @export var combat_hud: CombatHUD
 @export var character_menu: CharacterMenu
 @export var encounter_controller: EncounterController
+@export var review_hold_encounter := false
 
 var _restart_enabled := false
 
@@ -33,6 +34,8 @@ func _ready() -> void:
 
 func _begin_stage() -> void:
 	combat_hud.show_story_message("THE THORNS REMEMBER YOUR FOOTSTEPS", 2.5)
+	if review_hold_encounter:
+		return
 	await get_tree().create_timer(2.0).timeout
 	if is_instance_valid(encounter_controller):
 		encounter_controller.start_encounter()

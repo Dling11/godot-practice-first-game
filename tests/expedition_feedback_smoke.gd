@@ -2,14 +2,19 @@ extends "res://tests/sanctuary_test_base.gd"
 
 const CompletionReturn = preload("res://gameplay/expeditions/expedition_completion_return.gd")
 const STAGE1 = preload("res://levels/test_arena/test_arena.tscn")
+const STAGE2 = preload("res://levels/stage_2/stage_2.tscn")
 const STAGE3 = preload("res://levels/stage_3/stage_3.tscn")
+const STAGE4 = preload("res://levels/stage_4/stage_4.tscn")
 const STAGE5 = preload("res://levels/stage_5/stage_5.tscn")
 const MATERIALS = preload("res://data/items/materials/material_catalog.tres")
 const PROFILE := "user://expedition_feedback_smoke.json"
-const EVIDENCE := "res://art_source/review/ui/expedition_feedback_2026_10_02/"
+const EVIDENCE := "res://art_source/review/ui/expedition_feedback_2026_10_03/"
 
 func _run() -> void:
 	root.size = Vector2i(960,540)
+	if DisplayServer.get_name() != "headless":
+		root.mode = Window.MODE_WINDOWED
+		root.grab_focus()
 	var save := root.get_node("SaveService")
 	check(save.configure_storage_path_for_testing(PROFILE), "Cannot isolate expedition test profile")
 	save.delete_profile()
@@ -52,8 +57,21 @@ func _run() -> void:
 	check(root.get_node("RunSession").coins == snapshot.run_session.coins, "Victory return loses earned coins")
 	check(current_scene.player.health_component.current_health == current_scene.player.health_component.maximum_health, "Victory return bypasses Sanctuary recovery")
 	check(save.load_profile() == CompletionReturn.SANCTUARY, "Continue cannot load the completion/recovery save")
+	stage = await load_stage(STAGE2)
+	var stage_2_start_coins: int = root.get_node("RunSession").coins
+	stage.encounter_controller.start_encounter()
+	await clear_waves(stage)
+	feedback = stage.expedition_feedback
+	check(CompletionReturn.can_return(stage) and not root.get_node("LootService").has_active_expedition(), "Renewed Stage II did not bank its actual clear")
+	check(feedback.receipt().gold == root.get_node("RunSession").coins-stage_2_start_coins, "Renewed Stage II receipt differs from earned coins")
+	check(root.get_node("StoryState").has_story_flag(&"forgotten_grove_completed"), "Renewed Stage II lost its story milestone")
+	await click(feedback.view.report_button.get_global_rect().get_center())
+	check_bounds(stage)
+	await click(feedback.view.return_button.get_global_rect().get_center())
+	await root.get_node("SceneTransition").transition_finished
+	check(current_scene.scene_file_path == CompletionReturn.SANCTUARY and save.load_profile() == CompletionReturn.SANCTUARY, "Renewed Stage II clear cannot return/save/Continue normally")
 	# Near the real stage cap: only one XP can be credited before the Husk clear.
-	root.get_node("RunSession").update_progression(749,500)
+	root.get_node("RunSession").update_progression(1199,500)
 	stage = await load_stage(STAGE3)
 	feedback = stage.expedition_feedback
 	var before_materials: Dictionary = root.get_node("MaterialInventory").create_snapshot()
@@ -63,6 +81,9 @@ func _run() -> void:
 	check(feedback.view.objective.text.contains("Reliquary") and not feedback.view.report_button.visible, "Milestone tracker falsely announces an open exit")
 	await capture("objective_chest.png")
 	await claim_chest(stage)
+	await create_timer(1.0).timeout
+	check(is_equal_approx(root.get_node("AudioDirector").music_player.volume_db,-17.0),"Claimed Husk clear did not soften the active boss music")
+	check(is_equal_approx(stage.get_node("World/OutdoorAudio").bed.volume_db,-30.0),"Claimed Husk clear did not recover Hollow ambience")
 	check(feedback.receipt().clear_kind == "FIRST CLEAR", "Reliquary receipt loses authoritative first-clear status")
 	check(feedback.receipt().xp == 1, "Receipt counts XP blocked by the stage cap")
 	check(root.get_node("StoryState").has_story_flag(&"rootbound_hollow_completed"), "Claim did not unlock the authored story progression")
@@ -78,6 +99,22 @@ func _run() -> void:
 	await clear_waves(stage)
 	await claim_chest(stage)
 	check(stage.expedition_feedback.receipt().clear_kind == "REPLAY CLEAR", "Replay uses first-clear copy/rewards")
+	stage = await load_stage(STAGE4)
+	var stage_4_start_coins: int = root.get_node("RunSession").coins
+	stage.encounter_controller.start_encounter()
+	await clear_waves(stage)
+	await create_timer(1.0).timeout
+	feedback = stage.expedition_feedback
+	check(CompletionReturn.can_return(stage) and not root.get_node("LootService").has_active_expedition(),"Renewed IV cannot bank its normal 50-enemy clear")
+	check(root.get_node("StoryState").has_story_flag(&"forest_stage_4_cleared"),"Renewed IV lost its campaign clear flag")
+	check(feedback.receipt().gold == root.get_node("RunSession").coins-stage_4_start_coins,"Renewed IV receipt differs from earned coins")
+	check(is_equal_approx(stage.get_node("World/EasternRotAudio").bed.volume_db,-30.0),"IV clear did not restore its eastern ambience")
+	await click(feedback.view.report_button.get_global_rect().get_center())
+	check_bounds(stage)
+	await capture("eastern_rot_receipt.png")
+	await click(feedback.view.return_button.get_global_rect().get_center())
+	await root.get_node("SceneTransition").transition_finished
+	check(current_scene.scene_file_path == CompletionReturn.SANCTUARY and save.load_profile() == CompletionReturn.SANCTUARY,"Renewed IV cannot return/save/Continue normally")
 	# Preceding-stage stock is a fixture; the Varkuun Core below is actually earned.
 	root.get_node("MaterialInventory").add_material(&"forest_living_bark_plate",3)
 	root.get_node("MaterialInventory").add_material(&"forest_rootbound_core",2)
@@ -161,6 +198,7 @@ func load_stage(scene: PackedScene) -> Node:
 		await process_frame
 	root.get_node("LootService").reset_expedition_tracking()
 	var stage := scene.instantiate()
+	if "review_hold_encounter" in stage: stage.review_hold_encounter = true
 	if "encounter_controller" in stage:
 		var encounter: EncounterController = stage.encounter_controller
 		encounter.auto_start = false
@@ -234,8 +272,10 @@ func capture(file: String) -> void:
 	if DisplayServer.get_name() == "headless": return
 	await process_frame
 	await RenderingServer.frame_post_draw
-	DirAccess.make_dir_recursive_absolute(EVIDENCE)
-	check(root.get_texture().get_image().save_png(EVIDENCE+file) == OK, "Evidence capture failed")
+	var evidence := "res://art_source/review/ui/expedition_feedback_stage_3_2026_10_03/" if "--stage-3-evidence" in OS.get_cmdline_user_args() else EVIDENCE
+	if "--stage-4-evidence" in OS.get_cmdline_user_args(): evidence = "res://art_source/review/ui/expedition_feedback_stage_4_2026_10_03/"
+	DirAccess.make_dir_recursive_absolute(evidence)
+	check(root.get_texture().get_image().save_png(evidence+file) == OK, "Evidence capture failed")
 
 func key(code: Key) -> void:
 	var event := InputEventKey.new()

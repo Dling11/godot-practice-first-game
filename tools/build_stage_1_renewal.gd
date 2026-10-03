@@ -142,7 +142,7 @@ func _save_prop(spec: Array, size: Vector2i) -> void:
 	prop.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	var sprite := Sprite2D.new()
 	sprite.name = "Sprite"
-	sprite.texture = load(OUTPUT+spec[0]+".png")
+	sprite.texture = load(_prop_texture_directory()+spec[0]+".png")
 	sprite.position = Vector2(0,-size.y*.5+5)
 	prop.add_child(sprite)
 	sprite.owner = prop
@@ -179,8 +179,14 @@ func _save_prop(spec: Array, size: Vector2i) -> void:
 		collision.owner = prop
 	var packed := PackedScene.new()
 	assert(packed.pack(prop) == OK)
-	assert(ResourceSaver.save(packed,PROPS+spec[0]+".tscn") == OK)
+	assert(ResourceSaver.save(packed,_prop_scene_directory()+spec[0]+".tscn") == OK)
 	prop.free()
+
+func _prop_texture_directory() -> String:
+	return OUTPUT
+
+func _prop_scene_directory() -> String:
+	return PROPS
 
 func _build_ground(ground: TileMapLayer) -> void:
 	var tile_set := TileSet.new()

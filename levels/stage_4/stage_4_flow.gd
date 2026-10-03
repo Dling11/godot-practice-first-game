@@ -12,6 +12,7 @@ const ExpeditionDefeatReturnScript = preload(
 @export var combat_hud: CombatHUD
 @export var character_menu: CharacterMenu
 @export var encounter_controller: EncounterController
+@export var review_hold_encounter := false
 
 var _restart_enabled := false
 
@@ -35,7 +36,7 @@ func _ready() -> void:
 	expedition_feedback = ExpeditionFeedbackScript.install(self, ExpeditionRoute)
 	player.defeated.connect(_on_player_defeated)
 	encounter_controller.stage_cleared.connect(_on_stage_cleared)
-	_begin_stage()
+	if not review_hold_encounter: _begin_stage()
 
 
 func _begin_stage() -> void:

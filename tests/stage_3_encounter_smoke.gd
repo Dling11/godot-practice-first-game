@@ -8,7 +8,9 @@ func _initialize() -> void:
 
 
 func _run() -> void:
+	root.get_node("SaveService").suppress_autosave_for_debug_session()
 	var stage := Stage3Scene.instantiate()
+	stage.review_hold_encounter = true
 	var controller: EncounterController = stage.get_node("GameplayServices/EncounterController")
 	root.add_child(stage)
 	var ground := stage.get_node("World/Level/Ground") as TileMapLayer
@@ -52,11 +54,11 @@ func _run() -> void:
 	if ground.layout == null or ground.layout.resource_path != "res://data/environment/layouts/stage_3_rootbound_ground.tres":
 		_fail("Stage 3 is not using its authored Rootbound Hollow ground layout.")
 		return
-	if ground.tile_set.resource_path != "res://assets/environment/forest/rootbound_hollow/tiles/rootbound_ground_tileset.tres":
+	if ground.tile_set.resource_path != "res://assets/environment/forest/hollow_renewal/hollow_ground_tileset.tres":
 		_fail("Stage 3 is not using the organized Rootbound Hollow TileSet.")
 		return
-	if ground.get_used_cells().size() != 336:
-		_fail("Stage 3's 24x14 decaying-forest TileMap did not populate completely.")
+	if ground.get_used_cells().size() != 1344 or ground.tile_set.tile_size != Vector2i(32,32):
+		_fail("Stage 3's 48x28 decaying-forest TileMap did not populate completely.")
 		return
 	var corrupted_cells := 0
 	var living_cells := 0
@@ -70,10 +72,10 @@ func _run() -> void:
 			2:
 				transition_cells += 1
 	var affected_ratio := float(corrupted_cells + transition_cells) / float(ground.get_used_cells().size())
-	if affected_ratio < 0.24 or affected_ratio > 0.3 or transition_cells != 14:
-		_fail("Stage 3 decay must remain a restrained 24-30%% incursion with one transition tile per row; received %.2f%%." % (affected_ratio * 100.0))
+	if affected_ratio < 0.24 or affected_ratio > 0.3 or transition_cells != 56:
+		_fail("Stage 3 decay must remain a restrained 24-30%% incursion with two transition tiles per row; received %.2f%%." % (affected_ratio * 100.0))
 		return
-	if living_cells + corrupted_cells + transition_cells != 336:
+	if living_cells + corrupted_cells + transition_cells != 1344:
 		_fail("Stage 3 contains cells outside its living, Rootbound, and transition terrain sources.")
 		return
 	var left_corruption := 0
@@ -82,13 +84,13 @@ func _run() -> void:
 	for cell in ground.get_used_cells():
 		if ground.get_cell_source_id(cell) not in [0, 2]:
 			continue
-		if cell.x < 8:
+		if cell.x < 16:
 			left_corruption += 1
-		elif cell.x < 16:
+		elif cell.x < 32:
 			center_corruption += 1
 		else:
 			right_corruption += 1
-	if left_corruption < 80 or center_corruption > 8 or right_corruption > 0:
+	if left_corruption < 300 or center_corruption > 16 or right_corruption > 0:
 		_fail("Stage 3 decay must enter from the west and taper before overtaking the living center/east.")
 		return
 	var arena_seal := stage.get_node_or_null("World/Actors/RootboundArenaSeal") as StaticBody2D
@@ -114,7 +116,12 @@ func _run() -> void:
 	if seal_route.size() < 3:
 		_fail("The Husk cannot obtain a route around the central Rootbound seal.")
 		return
-	var husk_clearance := Rect2(591.5, 202.0, 345.0, 88.0).grow(16.0)
+	var seal_base := arena_seal.get_node("Footprint") as CollisionShape2D
+	var seal_shape := seal_base.shape as RectangleShape2D
+	if seal_shape.size.x > 160 or seal_shape.size.y > 48:
+		_fail("Renewed seal footprint is too large for compact fighting lanes.")
+		return
+	var husk_clearance := Rect2(seal_base.global_position-seal_shape.size*.5,seal_shape.size).grow(16.0)
 	for point_index in range(seal_route.size() - 1):
 		var start := seal_route[point_index]
 		var finish := seal_route[point_index + 1]

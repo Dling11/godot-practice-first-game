@@ -1,0 +1,50 @@
+[
+	{
+		"alpha_threshold": 0.7,
+		"asset": "blighted_ash",
+		"crop": "[P: (0, 60), S: (484, 580)]",
+		"native_size": "(106, 118)"
+	},
+	{
+		"alpha_threshold": 0.7,
+		"asset": "root_elm",
+		"crop": "[P: (488, 60), S: (366, 580)]",
+		"native_size": "(88, 118)"
+	},
+	{
+		"alpha_threshold": 0.7,
+		"asset": "seal",
+		"crop": "[P: (856, 300), S: (424, 350)]",
+		"native_size": "(129, 90)"
+	},
+	{
+		"alpha_threshold": 0.7,
+		"asset": "memory_tablet",
+		"crop": "[P: (1284, 320), S: (252, 330)]",
+		"native_size": "(32, 35)"
+	},
+	{
+		"alpha_threshold": 0.7,
+		"asset": "fallen_root",
+		"crop": "[P: (0, 675), S: (484, 349)]",
+		"native_size": "(66, 31)"
+	},
+	{
+		"alpha_threshold": 0.7,
+		"asset": "root_mound",
+		"crop": "[P: (488, 670), S: (366, 354)]",
+		"native_size": "(44, 31)"
+	},
+	{
+		"alpha_threshold": 0.7,
+		"asset": "fungi",
+		"crop": "[P: (858, 700), S: (318, 324)]",
+		"native_size": "(26, 19)"
+	},
+	{
+		"alpha_threshold": 0.7,
+		"asset": "masonry",
+		"crop": "[P: (1180, 670), S: (356, 354)]",
+		"native_size": "(44, 36)"
+	}
+]

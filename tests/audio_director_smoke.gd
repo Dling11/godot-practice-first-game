@@ -19,6 +19,8 @@ func _run() -> void:
 	var grove_music := load("res://assets/audio/music/cathedral_in_the_forest.ogg") as AudioStream
 	audio_director.play_music(grove_music)
 	await process_frame
+	if DisplayServer.get_name() != "headless":
+		await create_timer(1.1).timeout
 	if audio_director.music_player.stream != grove_music:
 		_fail("AudioDirector did not assign the approved Grove music stream.")
 		return
@@ -35,6 +37,8 @@ func _run() -> void:
 		return
 	paused = false
 	audio_director.play_music(grove_music, -7.0)
+	if DisplayServer.get_name() != "headless":
+		await create_timer(.6).timeout
 	if not is_equal_approx(audio_director.music_player.volume_db, -7.0):
 		_fail("A boss encounter cannot request its dedicated louder music level.")
 		return

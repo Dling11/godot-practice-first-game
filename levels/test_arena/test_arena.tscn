@@ -40,6 +40,8 @@
 [ext_resource type="Resource" path="res://data/encounters/wave_5.tres" id="32_wave5"]
 [ext_resource type="Resource" path="res://data/encounters/wave_6.tres" id="33_wave6"]
 [ext_resource type="Resource" path="res://data/environment/layouts/stage_1_forest_ground.tres" id="34_layout"]
+[ext_resource type="Script" path="res://gameplay/audio/biome_ambience.gd" id="35_ambience"]
+[ext_resource type="Resource" path="res://data/environment/woodland_audio.tres" id="36_ambience_profile"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.035, 0.043, 0.063, 0.96)
@@ -813,9 +815,16 @@ navigation_bounds = Rect2(48, 48, 1824, 1056)
 [node name="GroveAmbience" type="Node2D" parent="World" unique_id=127981977]
 script = ExtResource("16_hykg0")
 
-[node name="StageMusic" type="Node" parent="." unique_id=1514785426]
+[node name="OutdoorAudio" type="Node2D" parent="World" node_paths=PackedStringArray("encounter")]
+script = ExtResource("35_ambience")
+profile = ExtResource("36_ambience_profile")
+encounter = NodePath("../../GameplayServices/EncounterController")
+cue_positions = PackedVector2Array(510, 340, 1420, 360, 680, 130, 1250, 140, 390, 740, 1520, 736)
+
+[node name="StageMusic" type="Node" parent="." unique_id=1514785426 node_paths=PackedStringArray("encounter")]
 script = ExtResource("19_music")
 music_stream = ExtResource("20_music_stream")
+encounter = NodePath("../GameplayServices/EncounterController")
 
 [node name="GameplayServices" type="Node" parent="." unique_id=2131027442]
 

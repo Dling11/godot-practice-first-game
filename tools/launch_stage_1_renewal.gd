@@ -57,6 +57,7 @@ func _run() -> void:
 
 func _button(parent: Node,text: String,action: Callable) -> Button:
 	var button := Button.new()
+	button.focus_mode = Control.FOCUS_NONE
 	button.text = text
 	button.custom_minimum_size = Vector2(164,25)
 	button.add_theme_font_size_override("font_size",11)

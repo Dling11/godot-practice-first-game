@@ -11,6 +11,7 @@ func _initialize() -> void:
 
 
 func _run() -> void:
+	root.get_node("SaveService").suppress_autosave_for_debug_session()
 	var expected_early_caps := [4, 6, 4]
 	var early_scenes: Array[PackedScene] = [Stage1Scene, Stage2Scene, Stage3Scene]
 	for scene_index in early_scenes.size():
@@ -22,6 +23,7 @@ func _run() -> void:
 		early_stage.free()
 
 	var stage := Stage4Scene.instantiate()
+	stage.review_hold_encounter = true
 	root.add_child(stage)
 	var controller := stage.get_node("GameplayServices/EncounterController") as EncounterController
 	var ground := stage.get_node("World/Level/Ground") as TileMapLayer
@@ -53,8 +55,8 @@ func _run() -> void:
 	if ground.layout == null or ground.layout.resource_path != "res://data/environment/layouts/stage_4_eastern_rot_ground.tres":
 		_fail("Stage 4 is not using its authored eastern-rot layout.")
 		return
-	if ground.get_used_cells().size() != 336:
-		_fail("Stage 4's 24x14 authored TileMap did not populate completely.")
+	if ground.get_used_cells().size() != 1344 or ground.tile_set.tile_size != Vector2i(32,32):
+		_fail("Stage 4's 48x28 authored TileMap did not populate completely.")
 		return
 	var source_counts := {0: 0, 1: 0, 2: 0, 3: 0}
 	for cell in ground.get_used_cells():
@@ -63,10 +65,10 @@ func _run() -> void:
 			_fail("Stage 4 contains an unexpected terrain source %d." % source_id)
 			return
 		source_counts[source_id] += 1
-		if source_id in [0, 3] and cell.x < 14:
+		if source_id in [0, 3] and cell.x < 28:
 			_fail("Stage 4 decay escaped the authored eastern edge at %s." % cell)
 			return
-	if source_counts[0] != 110 or source_counts[1] != 212 or source_counts[2] != 0 or source_counts[3] != 14:
+	if source_counts[0] != 440 or source_counts[1] != 848 or source_counts[2] != 0 or source_counts[3] != 56:
 		_fail("Stage 4 terrain mix changed: %s." % source_counts)
 		return
 	for required_node in ["RottedTreeSouthEast", "RottedTreeEast", "RottedTreeNorthEast", "EastRuin"]:

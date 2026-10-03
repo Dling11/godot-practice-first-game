@@ -184,6 +184,9 @@ Current Sanctuary baseline: [Decision165](docs/decisions/165-finalize-sanctuary-
 | 165 | [Finalize Sanctuary and archive legacy town](docs/decisions/165-finalize-sanctuary-and-archive-legacy-town.md) | Normal renewed town, recoverable cleanup, normal vs debug saving and temporary closeout |
 | 166 | [Observe expedition objectives and collected rewards](docs/decisions/166-observe-expedition-objectives-and-collected-rewards.md) | Current-stage tracker, actual credited receipt and banked-clear Sanctuary return |
 | 167 | [Review Stage I woodland at finer terrain scale](docs/decisions/167-review-stage-1-woodland-at-finer-terrain-scale.md) | Stage I32px environment pilot, compact props, foliage/birds and owner gate before II–VI |
+| 168 | [Renew distinct biomes and stage audio](docs/decisions/168-renew-distinct-biomes-and-stage-audio.md) | Approved five-part world-life program; Stage II bramble kit and shared music/outdoor ambience |
+| 169 | [Renew Rootbound Hollow and preview enemy pressure](docs/decisions/169-renew-rootbound-hollow-and-preview-enemy-pressure.md) | Stage III compact root kit/audio, optional14/five comparison and proposed enemy roles |
+| 170 | [Renew Eastern Rot and prototype Rotcaller](docs/decisions/170-renew-eastern-rot-and-prototype-rotcaller.md) | Normal IV compact eastern biome/regional ambience and isolated playable caster trial |
 
 ## New Decisions
 

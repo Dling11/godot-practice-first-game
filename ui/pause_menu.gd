@@ -97,7 +97,7 @@ func _toggle_bus(bus_name: String) -> void:
 
 
 func _refresh_audio_labels() -> void:
-	music_button.text = _bus_label("MUSIC", AudioDirector.MUSIC_BUS)
+	music_button.text = _bus_label("MUSIC & AMBIENCE", AudioDirector.MUSIC_BUS)
 	sfx_button.text = _bus_label("COMBAT SOUND", AudioDirector.SFX_BUS)
 	ui_audio_button.text = _bus_label("MENU SOUND", AudioDirector.UI_BUS)
 

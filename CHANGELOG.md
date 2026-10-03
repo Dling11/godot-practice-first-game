@@ -1,5 +1,35 @@
 # Changelog
 
+## 2026-10-03 — Eastern Rot renewal and playable Rotcaller trial
+
+- Renewed normal IV with1344 baked32px cells,70 authored placements/eight generated families,36.90% eastern incursion, living western bird routes, rooted foliage and compact separate-body gateway pillars.12px baked navigation passes Hog-sized routes. Canonical five waves/50 enemies/eight live, Hogs, F route, rewards/story and normal saves remain.
+- Added regional bird/wind beds and sparse local calls/creaks using existing attributed recordings. Combat ducks ambience6dB; actual clear restores ambience and softens the one active forest composition.
+- Implemented a composed Rotcaller actor, definition, real directional walk/action atlases, fixed1.1s/32px warning, accepted-hit interruption, one10-damage contact, .8s recovery,5s cadence and pause/death cleanup. Generic trial spawn entry initially mixes one caster with two Rootlings; optional Spitter uses four slots. Pre-ready reward removal and test completion exclude campaign progression.
+- Added one-window no-save IV/trial review, vulnerable entry, explicit safety, interruption count, full-health reset and bag/pause ownership. Fixed controls being briefly unavailable during hitstop; modal visibility hides the review surface. Preserved old IV scene/layout/test in .gdignore recovery.
+-153 environment/navigation,43 rendered caster,18 rendered UI,21 headless/25 rendered audio and107 rendered reward/service/save checks pass. Stage III navigation137/pressure10 and Hog behavior pass. Owner art/mix/balance and phone review remain open. Shared GPU shutdown texture/RID warnings persist.
+
+## 2026-10-03 — Stage III Hollow, sound and enemy-pressure review
+
+- Renewed normal III with1344 baked32px cells, a softer64px western transition (27.08% affected), eight generated prop families/66 placements, a smaller ritual seal and authored eastern bird routes. Preserve all entries,20px Husk clearance, canonical10/four brood, dialogue/solo280HP Husk, F Reliquary, portal, rewards and saves.
+- Added attributed CC0 wind and sparse positional woody creaks,6dB combat ducking and actual claimed-clear recovery. Forest music rises for the brood; the active Husk track softens on clear through the existing single music owner.
+- Added a peaceful no-save review selector for normal10/four versus optional14/five pressure using a duplicated brood resource. Verified real reinforcements/live cap, unchanged campaign resources and solo-boss dialogue gate. Generated Rotcaller/Burrowkin concept board and bounded mechanic recommendations; neither actor is implemented.
+- Preserved prior Stage III scene/layout/test under .gdignore recovery; retained shared old assets.137 environment/navigation and10 pressure checks plus Stage III encounter/Husk behavior pass. Rendered reward/service/save integration passed95 checks using separate Stage III evidence to preserve Stage II captures. Stage I/II navigation regressions passed183/178 checks. Owner art/listening, vulnerable difficulty and phone performance remain open; known shared GPU shutdown warnings persist.
+
+## 2026-10-03 — approved world-life program, Stage II bramble and audio
+
+- Owner approved all five recommendations. Documented explicit implemented/planned boundaries in the work program and Decision168; III–VI, scout/reactions, exploration and Hunts remain planned.
+- Renewed normal Stage II with1344 baked32px cells over existing1536x896 bounds, eight distinct generated native prop families and83 authored placements. Two worn ruin lanes and bramble pockets preserve spawn/exit access, seven waves/32 enemies, six-live cap and normal rewards/story/F portal/save rules.
+- Added attributed recorded CC0 woodland bed/local calls for I/II, data profiles, sparse positional Timer cues,6dB combat ducking and scene-owned cleanup. Music & Ambience controls atmosphere separately from combat SFX.
+- AudioDirector keeps one music player with .28s fade-out/.65s fade-in, cancel-safe newest requests/stop, .45s same-track gain changes and stale-scene protection. Existing compositions/boss gains remain; no new score is claimed.
+- Added peaceful no-save Stage II review with real waves and separate sound controls/handoff demonstration; archived only the prior Stage II scene/layout/test and retained shared legacy assets still used elsewhere.
+- Navigation checks passed178 for II/183 for I; audio passed18 headless/22 rendered checks including measured device output. Extended rendered expedition integration passed91 checks including actual Stage II clear/receipt/return/save; corrected the near-cap fixture to1199 XP because Stage II unlocks Level5. Native proof is under art_source/review/environment/stage_2_renewal_2026_10_03/ and art_source/review/ui/expedition_feedback_2026_10_03/; prior evidence is preserved. Mix/visual acceptance, phone profiling and balance remain open.
+
+## 2026-10-03 — Stage I visual acceptance and world-life recommendations
+
+- Owner accepted Stage I's current visual direction and confirmed that the later stages must keep their unique biome progression, including the shift toward full decay at V and the contrasting ascent at VI.
+- Updated Stage I status/next-work documentation and prepared docs/design/expedition-renewal-and-world-life-recommendations.md: staged biome renewal, outdoor sound/music transitions, one purposeful field scout, small exploration interactions and planned Hunts. These are recommendations; no new runtime system, art or audio was added in this documentation pass.
+
+
 ## 2026-10-02 — Stage I woodland environment pilot
 
 - Replaced Stage I's64px/540-cell ground with32px/2160 baked cells over the same1920x1152 world. Authored winding trails, grass/dirt edge masks and a compact shrine apron replace the coarse repeating pattern.
