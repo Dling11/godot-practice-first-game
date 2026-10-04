@@ -1,0 +1,10 @@
+2026-10-04 Godot4.7.2.stable.official.ed1daf0bf / native Compatibility AMD Radeon
+KING_HUGE_GREATSWORD_REVIEW checks=447 failures=0 (frame-dependent count)
+Melee combat smoke test passed.
+Sword attack style smoke test passed.
+Combat feedback smoke test passed.
+AXE_TRAIL_EDGE checks=25 failures=0
+HUGE_GREATSWORD_MOTION_CAPTURE frames=110 actual melee/body clock
+GIF decoded110 frames; stored delays from real capture timeline; infinite loop.
+Gallery + active slash, tucked-knee apex and corrected blade-tip impact frames visually inspected.
+This is presentation/runtime behavior evidence, not campaign/device profiling.

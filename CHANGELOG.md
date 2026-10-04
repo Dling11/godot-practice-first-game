@@ -2,6 +2,22 @@
 
 ## 2026-10-04
 
+- Corrected hidden greatsword run handle with glove-color registration and body/weapon/glove layering. Raised and straightened axe back mount, removed attack-edge reflection from stowed run clip.
+- Replaced excessively deep diagonal planting with reusable upright side stance: shared action resource, weapon-specific grip/tip,5 world pixels burial, hand-aligned preparation/reverse retrieval and released crossed arms. Body-only lift reaches tall hilts without moving collision or resizing weapons.
+- Native confidence101, axe20 and plant21 checks pass; two unequal blade-length fixtures validate reuse and shallow ground/palette behavior. New V4/V6 run/idle evidence is saved separately; owner feel and normal gear integration remain pending.
+
+- Corrected owner-rejected weapon review gait: stable face registration replaces support-foot X rebasing, new passing art and steady shoulder attachment reduce jumping, and actual travel drives a48px cycle that stops at collision. Existing launchers open greatsword V3 and axe V5.
+- Preserved crossed-arm idle while planting steel down-left beside King, hiding buried blade below the registered foot plane and mirroring the visible ground-seam marker. Canonical weapon, slam, contact/tuning and draw cancellation remain.
+- Native confidence93, axe11, planted raster11 and edge25 checks pass; melee passes. Saved original generation/prompts, all-eight-key contact sheet,64-frame run loop and200-frame action/pride capture. Owner visual acceptance remains pending; earlier unique-frame checks did not establish gait quality.
+
+- Added32 new body poses for a loaded greatsword opening, one-hand proud shoulder carry, plant/arms-crossed rest and genuine alternating run for both weapon reviews. A/D moves with collision, speed-matched cadence and mirrored horizontal facing; axe sits on back.
+- Added fixed released ground anchors, readable crossed arms, dust marker and0.28s retrieval before attack/run. Stronger opening tuning preserves contact shapes and intentional steps. Slam raster UVs follow the outer blade, discard neighboring atlas-cell samples and mirror left ground contact correctly.
+- Native confidence82, axe run10, atlas6, old axe495 and edge25 checks pass; melee/style regressions pass. Inspected native galleries/frames and recorded200-frame real-clock action/run/pride GIF. Preserved original generation/prompts/checksums and documented horizontal-only, isolated scope.
+
+- Added isolated huge greatsword review with one rigid steel blade, 32 body poses, 16 slash frames and 8 contact/ground impact drawings. Four attacks include collision-checked 8/10/12/8px steps and an 18px tucked-knee meteor jump that lands before damage.
+- Registered complete source silhouettes across nominal grid boundaries, support feet, glove edges and blade-tip ground impact. Added opt-in step authority, finite pausable impact observer and authored lift limits. Review disables global hitstop through a default-true flag; normal weapon/skills/recipes/saves remain unchanged.
+- Native 447 checks pass; melee/style/feedback regressions and axe edge 25/0 pass. Inspected native gallery/contact/jump, recorded 110 real-clock frames and verified looping GIF decode. Preserved five unchanged sources, exact prompts/checksums and continuation docs. Owner feel/full directions/gait/equipment integration remain pending.
+
 - Corrected axe cutting-edge handedness about its shaft while retaining both grips and the same rigid weapon. Generated16 new body poses and12 white slash drawings for distinct down/rising/hop actions.
 - Added review-only three-cut chain, one buffered input and pausable continuation; cancel/reset clears pending work. Real ACTIVE phases drive raster FX clipped to existing contact reach. Hop uses tucked knees/5-8px visual lift and plants before damage.
 - Native168 combo checks and62 grip/real-Rootling regressions pass. Inspected contact gallery and recorded/decoded82-frame real-clock GIF. Updated continuation/design/source docs; normal F5 equipment, recipes and saves remain unchanged.

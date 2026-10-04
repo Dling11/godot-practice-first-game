@@ -24,6 +24,8 @@ const DEVASTATING_HITSTOP_SECONDS := 0.065
 @export var sword_hit_sound: AudioStream
 @export var ability_hit_sound: AudioStream
 @export var player_hurt_sound: AudioStream
+## Opt out for isolated motion reviews; production keeps its current hitstop.
+@export var hitstop_enabled := true
 
 var _camera_base_offset := Vector2.ZERO
 var _camera_tween: Tween
@@ -208,6 +210,7 @@ func _flash_target(target: HurtboxComponent) -> void:
 
 
 func _request_hitstop(duration_seconds: float) -> void:
+	if not hitstop_enabled: return
 	if _hitstop_active or get_tree().paused:
 		return
 	_hitstop_active = true

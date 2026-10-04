@@ -1,0 +1,7 @@
+2026-10-04 — Godot 4.7.2 native Compatibility / AMD Radeon Graphics
+KING_CONFIDENCE_V2 checks=101 failures=0 (current V4 launcher; legacy test name)
+KING_AXE_RUN checks=20 failures=0 (current V6 rear mount, shaft/head/handle checks)
+KING_PLANTED_WEAPON checks=21 failures=0
+Plant proof uses the actual blade and two unequal blade-length fixtures: canonical grip heights113,75,145. Same body/action resources, fixed ground plane,5 world pixels burial, hand-bound preparation, unchanged rigid texture/colors, mirrored side seam. Actor root remains fixed.
+Action/idle/movement capture200 actual-clock frames and separate run64 frames; GIF decoders verify both. All eight run keys inspected with exposed greatsword handle and rear axe head/shaft.
+Owner visual acceptance, individual new variant fit, up/down and normal equipment/skill/crafting integration remain pending. Captures are presentation evidence, not device profiling.

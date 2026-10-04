@@ -1,0 +1,370 @@
+[
+	{
+		"clip": "axe_run",
+		"density": 0.208092485549133,
+		"face_origin": [
+			176.075180053711,
+			91.4877624511719
+		],
+		"ground_bounds": [
+			42,
+			96
+		],
+		"pose": 0,
+		"primary": [
+			87.0,
+			61.0
+		],
+		"registered_face": [
+			107,
+			61
+		],
+		"source": "run_source.png",
+		"source_index": 0
+	},
+	{
+		"clip": "axe_run",
+		"density": 0.208092485549133,
+		"face_origin": [
+			163.273056030273,
+			92.8226928710938
+		],
+		"ground_bounds": [
+			43,
+			98
+		],
+		"pose": 1,
+		"primary": [
+			87.0,
+			62.0
+		],
+		"registered_face": [
+			107,
+			62
+		],
+		"source": "run_source.png",
+		"source_index": 1
+	},
+	{
+		"clip": "axe_run",
+		"density": 0.122033898305085,
+		"face_origin": [
+			289.836883544922,
+			151.138946533203
+		],
+		"ground_bounds": [
+			43,
+			97
+		],
+		"pose": 2,
+		"primary": [
+			87.0,
+			61.0
+		],
+		"registered_face": [
+			107,
+			61
+		],
+		"source": "passing_source.png",
+		"source_index": 0
+	},
+	{
+		"clip": "axe_run",
+		"density": 0.208092485549133,
+		"face_origin": [
+			170.0,
+			91.4970092773438
+		],
+		"ground_bounds": [
+			41,
+			94
+		],
+		"pose": 3,
+		"primary": [
+			87.0,
+			60.0
+		],
+		"registered_face": [
+			107,
+			60
+		],
+		"source": "run_source.png",
+		"source_index": 3
+	},
+	{
+		"clip": "axe_run",
+		"density": 0.208092485549133,
+		"face_origin": [
+			178.637329101563,
+			89.3657073974609
+		],
+		"ground_bounds": [
+			42,
+			96
+		],
+		"pose": 4,
+		"primary": [
+			87.0,
+			61.0
+		],
+		"registered_face": [
+			107,
+			61
+		],
+		"source": "run_source.png",
+		"source_index": 4
+	},
+	{
+		"clip": "axe_run",
+		"density": 0.208092485549133,
+		"face_origin": [
+			164.391174316406,
+			89.9330291748047
+		],
+		"ground_bounds": [
+			43,
+			97
+		],
+		"pose": 5,
+		"primary": [
+			87.0,
+			62.0
+		],
+		"registered_face": [
+			107,
+			62
+		],
+		"source": "run_source.png",
+		"source_index": 5
+	},
+	{
+		"clip": "axe_run",
+		"density": 0.122033898305085,
+		"face_origin": [
+			289.861633300781,
+			154.249160766602
+		],
+		"ground_bounds": [
+			42,
+			96
+		],
+		"pose": 6,
+		"primary": [
+			87.0,
+			61.0
+		],
+		"registered_face": [
+			107,
+			61
+		],
+		"source": "passing_source.png",
+		"source_index": 1
+	},
+	{
+		"clip": "axe_run",
+		"density": 0.208092485549133,
+		"face_origin": [
+			168.670837402344,
+			88.2125015258789
+		],
+		"ground_bounds": [
+			42,
+			94
+		],
+		"pose": 7,
+		"primary": [
+			87.0,
+			60.0
+		],
+		"registered_face": [
+			107,
+			60
+		],
+		"source": "run_source.png",
+		"source_index": 7
+	},
+	{
+		"clip": "greatsword_run",
+		"density": 0.208092485549133,
+		"face_origin": [
+			181.077239990234,
+			92.4248275756836
+		],
+		"ground_bounds": [
+			42,
+			98
+		],
+		"pose": 0,
+		"primary": [
+			93.0,
+			60.0
+		],
+		"registered_face": [
+			107,
+			61
+		],
+		"source": "run_source.png",
+		"source_index": 8
+	},
+	{
+		"clip": "greatsword_run",
+		"density": 0.208092485549133,
+		"face_origin": [
+			171.358261108398,
+			91.6526489257813
+		],
+		"ground_bounds": [
+			43,
+			98
+		],
+		"pose": 1,
+		"primary": [
+			93.0,
+			61.0
+		],
+		"registered_face": [
+			107,
+			62
+		],
+		"source": "run_source.png",
+		"source_index": 9
+	},
+	{
+		"clip": "greatsword_run",
+		"density": 0.122033898305085,
+		"face_origin": [
+			279.382446289063,
+			150.180572509766
+		],
+		"ground_bounds": [
+			43,
+			97
+		],
+		"pose": 2,
+		"primary": [
+			94.0,
+			61.0
+		],
+		"registered_face": [
+			107,
+			61
+		],
+		"source": "passing_source.png",
+		"source_index": 2
+	},
+	{
+		"clip": "greatsword_run",
+		"density": 0.208092485549133,
+		"face_origin": [
+			169.684555053711,
+			91.3317108154297
+		],
+		"ground_bounds": [
+			41,
+			95
+		],
+		"pose": 3,
+		"primary": [
+			93.0,
+			59.0
+		],
+		"registered_face": [
+			107,
+			60
+		],
+		"source": "run_source.png",
+		"source_index": 11
+	},
+	{
+		"clip": "greatsword_run",
+		"density": 0.208092485549133,
+		"face_origin": [
+			182.144088745117,
+			91.2229843139648
+		],
+		"ground_bounds": [
+			42,
+			96
+		],
+		"pose": 4,
+		"primary": [
+			94.0,
+			60.0
+		],
+		"registered_face": [
+			107,
+			61
+		],
+		"source": "run_source.png",
+		"source_index": 12
+	},
+	{
+		"clip": "greatsword_run",
+		"density": 0.208092485549133,
+		"face_origin": [
+			172.531692504883,
+			93.5316925048828
+		],
+		"ground_bounds": [
+			43,
+			98
+		],
+		"pose": 5,
+		"primary": [
+			94.0,
+			61.0
+		],
+		"registered_face": [
+			107,
+			62
+		],
+		"source": "run_source.png",
+		"source_index": 13
+	},
+	{
+		"clip": "greatsword_run",
+		"density": 0.122033898305085,
+		"face_origin": [
+			286.943634033203,
+			152.283798217773
+		],
+		"ground_bounds": [
+			42,
+			96
+		],
+		"pose": 6,
+		"primary": [
+			94.0,
+			60.0
+		],
+		"registered_face": [
+			107,
+			61
+		],
+		"source": "passing_source.png",
+		"source_index": 3
+	},
+	{
+		"clip": "greatsword_run",
+		"density": 0.208092485549133,
+		"face_origin": [
+			176.117645263672,
+			91.0776443481445
+		],
+		"ground_bounds": [
+			41,
+			94
+		],
+		"pose": 7,
+		"primary": [
+			93.0,
+			59.0
+		],
+		"registered_face": [
+			107,
+			60
+		],
+		"source": "run_source.png",
+		"source_index": 15
+	}
+]

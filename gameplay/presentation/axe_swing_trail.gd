@@ -15,6 +15,12 @@ var world_origin := Vector2.ZERO
 ## Fade within the authoritative boundary; never enlarge damage or visible reach.
 var edge_feather_pixels := 0.0
 var _mesh_frames: Array[ArrayMesh] = []
+## Optional registered actor-to-cell samples; geometry/damage remain unchanged.
+var frame_sample_transforms: Array[Transform2D] = []
+
+func _sample_uv(point: Vector2,frame: int,cell: Vector2) -> Vector2:
+	var sample_point := frame_sample_transforms[frame]*point if frame_sample_transforms.size()==4 else origins[_row]+(point-world_origin)/world_pixels_per_texel
+	return (Vector2(frame*cell.x,_row*cell.y)+sample_point)/atlas.get_size()
 
 func configure(attack: MeleeAttackComponent, texture: Texture2D) -> void:
 	_attack = attack
@@ -61,7 +67,7 @@ func _draw() -> void:
 	var cell := Vector2(atlas.get_width()/4.0,atlas.get_height()/float(rows))
 	for point in _points:
 		# Registered origin and scale keep wider contact inside its own atlas cell.
-		uvs.append((Vector2(_frame*cell.x,_row*cell.y)+origins[_row]+(point-world_origin)/world_pixels_per_texel)/atlas.get_size())
+		uvs.append(_sample_uv(point,_frame,cell))
 	draw_polygon(_points,PackedColorArray([Color(1,1,1,0.92)]),uvs,atlas)
 
 func prepare_edge_feather() -> void:
@@ -104,7 +110,7 @@ func prepare_edge_feather() -> void:
 		var uvs := PackedVector2Array()
 		for vertex in vertices:
 			var point := Vector2(vertex.x,vertex.y)
-			uvs.append((Vector2(frame*cell.x,_row*cell.y)+origins[_row]+(point-world_origin)/world_pixels_per_texel)/atlas.get_size())
+			uvs.append(_sample_uv(point,frame,cell))
 		var arrays := []
 		arrays.resize(Mesh.ARRAY_MAX)
 		arrays[Mesh.ARRAY_VERTEX] = vertices

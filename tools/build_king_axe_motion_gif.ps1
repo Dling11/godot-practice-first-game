@@ -1,6 +1,6 @@
-param([switch]$Combo,[switch]$Expanded)
+param([switch]$Combo,[switch]$Expanded,[switch]$Greatsword,[switch]$Confidence,[switch]$GaitRepair,[switch]$GaitLoop,[switch]$GripPlant,[switch]$GripLoop)
 Add-Type -AssemblyName PresentationCore
-$folder = if ($Expanded) { 'king_axe_expanded_v3_2026_10_04' } elseif ($Combo) { 'king_axe_combo_v2_2026_10_04' } else { 'king_axe_grip_2026_10_04' }
+$folder = if ($GripLoop) { 'king_grip_loop_v4_2026_10_04' } elseif ($GripPlant) { 'king_grip_plant_v4_2026_10_04' } elseif ($GaitLoop) { 'king_gait_loop_v3_2026_10_04' } elseif ($GaitRepair) { 'king_gait_repair_v3_2026_10_04' } elseif ($Confidence) { 'king_confidence_v2_2026_10_04' } elseif ($Greatsword) { 'king_huge_greatsword_2026_10_04' } elseif ($Expanded) { 'king_axe_expanded_v3_2026_10_04' } elseif ($Combo) { 'king_axe_combo_v2_2026_10_04' } else { 'king_axe_grip_2026_10_04' }
 $reviewPath = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot ('..\art_source\review\combat\'+$folder)))
 $timeline = @(Get-Content -LiteralPath (Join-Path $reviewPath 'motion_timeline.json') -Raw | ConvertFrom-Json)
 $encoder = [System.Windows.Media.Imaging.GifBitmapEncoder]::new()
