@@ -23,6 +23,8 @@ var _combo_timer: Timer
 var committed_damage_multiplier := 1.0
 var committed_animation_key := ""
 var committed_vow_finisher := false
+var committed_damage_type := DamageInfo.DamageType.PHYSICAL
+var committed_perfect_counter := false
 
 
 func _ready() -> void:
@@ -62,10 +64,13 @@ func request_attack(direction: Vector2) -> bool:
 		return false
 	_attack_direction = direction.normalized() if not direction.is_zero_approx() else Vector2.RIGHT
 	combo_step = _next_combo_step
+	collision_shape.shape = weapon.combo.hitbox_shape(combo_step,weapon.melee_hitbox_shape) if _has_combo() else weapon.melee_hitbox_shape
 	_combo_timer.stop()
 	committed_damage_multiplier = 1.0
 	committed_animation_key = ""
 	committed_vow_finisher = false
+	committed_damage_type = weapon.damage_type
+	committed_perfect_counter = false
 	attack_started.emit()
 	_enter_phase(Phase.WIND_UP, _scaled_duration(_step_duration(Phase.WIND_UP)))
 	set_physics_process(true)
@@ -99,15 +104,16 @@ func _advance_phase() -> void:
 	match phase:
 		Phase.WIND_UP:
 			_enter_phase(Phase.ACTIVE, _scaled_duration(_step_duration(Phase.ACTIVE)))
-			hitbox.activate(
-			weapon.roll_basic_damage(_random) * committed_damage_multiplier * (weapon.combo.damage_multipliers[combo_step] if _has_combo() else 1.0),
-			owner,
-			_attack_direction,
-			weapon.knockback_strength * (weapon.combo.knockback_multipliers[combo_step] if _has_combo() else 1.0),
-			weapon.basic_stagger_seconds,
-			weapon.critical_chance_ratio,
-			weapon.critical_damage_multiplier
-		)
+			var damage := weapon.roll_basic_damage(_random) * committed_damage_multiplier * (weapon.combo.damage_multipliers[combo_step] if _has_combo() else 1.0)
+			var knockback := weapon.knockback_strength * (weapon.combo.knockback_multipliers[combo_step] if _has_combo() else 1.0)
+			if _has_combo() and weapon.combo.is_radial(combo_step):
+				hitbox.activate_radial(damage,owner,(owner as Node2D).global_position,knockback,weapon.basic_stagger_seconds,weapon.critical_chance_ratio,weapon.critical_damage_multiplier,0.0,committed_damage_type)
+			else:
+				hitbox.activate(
+					damage, owner, _attack_direction, knockback,
+					weapon.basic_stagger_seconds, weapon.critical_chance_ratio,
+					weapon.critical_damage_multiplier, 0.0, committed_damage_type
+				)
 		Phase.ACTIVE:
 			hitbox.deactivate()
 			_enter_phase(Phase.RECOVERY, _scaled_duration(_step_duration(Phase.RECOVERY)))

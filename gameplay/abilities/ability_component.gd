@@ -240,7 +240,8 @@ func _start_current_strike() -> void:
 		definition.resolve_strike_stagger(_current_strike_index),
 		_critical_chance_ratio,
 		_critical_damage_multiplier,
-		definition.resolve_strike_stun(_current_strike_index)
+		definition.resolve_strike_stun(_current_strike_index),
+		definition.damage_type
 	)
 	strike_started.emit(_current_strike_index, strike_count, _strike_time_remaining)
 

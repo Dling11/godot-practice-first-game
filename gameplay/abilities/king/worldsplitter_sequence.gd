@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	if _next_contact == tuning.strike_count(): queue_free()
 
 func _pulse(radius: float, multiplier: float, stun: float, force: float) -> void:
-	_hitbox.activate_radial(damage*multiplier, source, global_position, force, .10, critical_chance, critical_multiplier, stun)
+	_hitbox.activate_radial(damage*multiplier, source, global_position, force, .10, critical_chance, critical_multiplier, stun, tuning.damage_type)
 	_hitbox.set_physics_process(false)
 	var shape := CircleShape2D.new()
 	shape.radius = radius

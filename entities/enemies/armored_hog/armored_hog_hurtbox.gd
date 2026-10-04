@@ -17,12 +17,11 @@ func receive_hit(info: DamageInfo) -> bool:
 	var guard_cosine := cos(deg_to_rad(hog.definition.front_guard_half_angle_degrees))
 	if hog.facing_direction.dot(from_source) < guard_cosine:
 		return super.receive_hit(info)
-	var guarded := DamageInfo.new(
-		info.amount * hog.definition.braced_front_damage_multiplier,
-		info.source,
-		info.direction,
-		info.knockback_strength * 0.2,
-		info.stagger_seconds * 0.2
-	)
-	return super.receive_hit(guarded)
+	# Preserve critical/type metadata and let accepted feedback see the same
+	# mitigated payload as health. Brace still blocks explicit hard stun.
+	info.amount *= hog.definition.braced_front_damage_multiplier
+	info.knockback_strength *= .2
+	info.stagger_seconds *= .2
+	info.stun_seconds = 0.0
+	return super.receive_hit(info)
 

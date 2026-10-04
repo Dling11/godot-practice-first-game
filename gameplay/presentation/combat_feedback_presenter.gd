@@ -3,8 +3,11 @@ extends Node
 
 ## Presents accepted hits without owning combat state, damage, or timing.
 
-const PLAYER_HIT_TINT := Color(1.0, 0.9, 0.42, 1.0)
-const CRITICAL_HIT_TINT := Color(1.0, 0.72, 0.18, 1.0)
+const PLAYER_HIT_TINT := Color("ece5d5")
+const MAGIC_HIT_TINT := Color("83c9f4")
+const PURE_HIT_TINT := Color("ded1ff")
+const CRITICAL_BURST = preload("res://gameplay/presentation/critical_hit_burst.gd")
+const CRITICAL_HIT_TINT := Color(1.0, 0.28, 0.30, 1.0)
 const PLAYER_DAMAGED_TINT := Color(1.0, 0.42, 0.42, 1.0)
 const HIT_FLASH_SHADER := preload("res://gameplay/presentation/hit_flash.gdshader")
 const HIT_FLASH_SECONDS := 0.1
@@ -148,19 +151,23 @@ func _resolve_incoming_hitstop(damage_amount: float) -> float:
 
 
 func _show_hit(position: Vector2, info: DamageInfo, tint: Color, camera_strength: float) -> void:
+	var resolved_tint := CRITICAL_HIT_TINT if info.is_critical else tint
+	if not info.is_critical and tint != PLAYER_DAMAGED_TINT:
+		if info.damage_type == DamageInfo.DamageType.MAGIC: resolved_tint = MAGIC_HIT_TINT
+		elif info.damage_type == DamageInfo.DamageType.PURE: resolved_tint = PURE_HIT_TINT
 	var number := damage_number_scene.instantiate() as DamageNumber
 	number.global_position = position
 	number.configure(
 		info.amount,
-		CRITICAL_HIT_TINT if info.is_critical else tint,
+		resolved_tint,
 		24.0 if info.is_critical else 18.0,
 		info.is_critical
 	)
 	effects_parent.add_child(number)
 
-	var burst := hit_burst_scene.instantiate() as HitBurst
+	var burst: HitBurst = CRITICAL_BURST.new() if info.is_critical else hit_burst_scene.instantiate()
 	burst.global_position = position + info.direction * 3.0
-	burst.configure(info.direction, tint)
+	burst.configure(info.direction, resolved_tint)
 	effects_parent.add_child(burst)
 	if camera_strength > 0.0:
 		_pulse_camera(camera_strength)

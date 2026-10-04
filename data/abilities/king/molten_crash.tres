@@ -6,3 +6,4 @@
 [resource]
 script = ExtResource("1_script")
 icon = ExtResource("2_icon")
+damage_type = 1

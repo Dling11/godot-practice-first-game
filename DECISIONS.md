@@ -194,6 +194,9 @@ Current Sanctuary baseline: [Decision165](docs/decisions/165-finalize-sanctuary-
 | 175 | [Warn and safely materialize enemy arrivals](docs/decisions/175-warn-and-safely-materialize-enemy-arrivals.md) | Reserved warning slots, safe placement/retry, original bounded SFX and focused horde profiling |
 | 176 | [Use one generic underfoot monster arrival](docs/decisions/176-use-one-generic-underfoot-monster-arrival.md) | Shared four-drawing raster spawn; promoted through normal I–VI common scene after owner testing |
 | 177 | [Preserve skill reach and clear leap landings](docs/decisions/177-preserve-skill-reach-and-clear-leap-landings.md) | Full-range Skills1/5, any-obstacle Pursuit with safe feet, silver/violet render-frame targeting and hardware cursors |
+| 178 | [Typed damage and registered critical impact](docs/decisions/178-typed-damage-and-critical-impact.md) | Damage families/resistance, compact raster critical animation and isolated counter/reach comparisons |
+| 179 | [Prepare visible King weapon families and equipment](docs/decisions/179-prepare-visible-king-weapon-families.md) | Owner-authorized five-family/armor samples, reusable animation, genuine gait and runtime-pending equipment presentation |
+| 180 | [Craft weapon variants with milestone blueprints](docs/decisions/180-craft-weapon-variants-with-milestone-blueprints.md) | Accepted crafting-led collection, family/variant separation and isolated first axe motion/contact proof |
 
 ## New Decisions
 

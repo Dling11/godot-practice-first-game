@@ -25,7 +25,7 @@ func get_display_name() -> String:
 
 
 func get_description() -> String:
-	return ability.description if is_equipped() else locked_description
+	return ability.get_description_with_damage_type() if is_equipped() else locked_description
 
 
 func get_icon() -> Texture2D:

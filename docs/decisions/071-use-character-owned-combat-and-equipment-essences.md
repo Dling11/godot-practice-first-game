@@ -1,6 +1,6 @@
 # Decision 071: Use Character-Owned Combat and Equipment Essences
 
-- **Status:** Accepted, with Opaw replacement/archive consequences superseded by Decision 072
+- **Status:** Accepted, with Opaw replacement/archive consequences superseded by Decision 072; future King signature-only visible-weapon restriction superseded by Decision179 (preparation, runtime pending)
 - **Date:** 2026-08-02
 
 ## Context

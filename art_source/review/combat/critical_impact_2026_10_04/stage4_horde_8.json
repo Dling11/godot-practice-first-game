@@ -1,0 +1,52 @@
+{
+	"display": "Windows",
+	"engine": "4.7.2-stable (official)",
+	"fixture": "real Stage IV, moving Rootlings and one Rotcaller for >=3; vulnerable stationary King, high HP, no rewards/saves; fresh process per batch; not a cold campaign/GPU/phone profile",
+	"results": [
+		{
+			"contact_ticks": 0,
+			"contacts": 0,
+			"draw_calls_peak": 280,
+			"frame_max_ms": 15.754,
+			"frame_p50_ms": 13.344,
+			"frame_p95_ms": 14.088,
+			"global_pauses": 0,
+			"king_health_lost": 0.0,
+			"nodes_peak": 1313,
+			"physics_peak_ms": 3.884,
+			"process_peak_ms": 13.892,
+			"sample": "moving_AI_baseline",
+			"targets": 8
+		},
+		{
+			"contact_ticks": 4,
+			"contacts": 7,
+			"draw_calls_peak": 456,
+			"frame_max_ms": 16.858,
+			"frame_p50_ms": 13.344,
+			"frame_p95_ms": 14.947,
+			"global_pauses": 1,
+			"king_health_lost": 10.0,
+			"nodes_peak": 1384,
+			"physics_peak_ms": 3.884,
+			"process_peak_ms": 15.33,
+			"sample": "first_cast",
+			"targets": 8
+		},
+		{
+			"contact_ticks": 5,
+			"contacts": 8,
+			"draw_calls_peak": 459,
+			"frame_max_ms": 16.688,
+			"frame_p50_ms": 13.239,
+			"frame_p95_ms": 14.843,
+			"global_pauses": 1,
+			"king_health_lost": 10.0,
+			"nodes_peak": 1383,
+			"physics_peak_ms": 3.874,
+			"process_peak_ms": 15.33,
+			"sample": "repeat_cast",
+			"targets": 8
+		}
+	]
+}

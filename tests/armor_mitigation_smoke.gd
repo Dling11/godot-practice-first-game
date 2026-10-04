@@ -8,6 +8,7 @@ func _initialize() -> void:
 
 
 func _run() -> void:
+	root.get_node("SaveService").suppress_autosave_for_debug_session()
 	var boss := BossScene.instantiate() as Stage5Boss
 	root.add_child(boss)
 	await process_frame

@@ -1,0 +1,4 @@
+Godot 4.7.2.stable.official.ed1daf0bf
+Native Compatibility/OpenGL AMD Radeon(TM) Graphics
+KING_AXE_GRIP_REVIEW checks=62 failures=0
+Captured all eight poses on real melee clock; WPF GIF decode verified30 frames.

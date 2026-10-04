@@ -17,6 +17,7 @@ extends Resource
 ## reviewed shape and style without changing player code.
 @export var attack_style: SwordAttackStyleDefinition
 @export var combo: SwordComboDefinition
+@export var damage_type := DamageInfo.DamageType.PHYSICAL
 ## Local Sprite2D offset that places the texture's authored grip on the
 ## WeaponVisual pivot. This keeps short swords and future greatswords on the
 ## same hand-driven swing rig without assuming their texture centers match.

@@ -15,9 +15,14 @@ static func query_for(actor: Player, point: Vector2) -> PhysicsShapeQueryParamet
 
 static func is_clear(actor: Player, point: Vector2) -> bool:
 	var map := actor.get_world_2d().get_navigation_map()
-	if NavigationServer2D.map_get_iteration_id(map) > 0 and not NavigationServer2D.map_get_regions(map).is_empty():
-		if NavigationServer2D.map_get_closest_point(map, point).distance_to(point) > 1.0:
-			return false
+	if NavigationServer2D.map_get_iteration_id(map) > 0:
+		# Disabled offscreen rooms remain registered on Sanctuary's shared map.
+		# Only enabled regions establish ground; outdoors uses physics and bounds.
+		for region in NavigationServer2D.map_get_regions(map):
+			if NavigationServer2D.region_get_enabled(region):
+				if NavigationServer2D.map_get_closest_point(map, point).distance_to(point) > 1.0:
+					return false
+				break
 	return actor.get_world_2d().direct_space_state.intersect_shape(query_for(actor, point), 1).is_empty()
 
 static func resolve(actor: Player, point: Vector2, reach: float) -> Vector2:

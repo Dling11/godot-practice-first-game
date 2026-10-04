@@ -16,10 +16,10 @@ func _ready() -> void:
 func begin_warning(seconds: float) -> void:
 	warning_started.emit(seconds)
 
-func erupt(damage: float,source: Node,seconds: float) -> void:
+func erupt(damage: float,source: Node,seconds: float,damage_type := DamageInfo.DamageType.PHYSICAL) -> void:
 	if _released or _cancelled: return
 	_released = true
-	hitbox.activate_radial(damage,source,global_position)
+	hitbox.activate_radial(damage,source,global_position,0.0,0.0,0.0,1.5,0.0,damage_type)
 	erupted.emit(seconds)
 	get_tree().create_timer(seconds,false).timeout.connect(cancel)
 

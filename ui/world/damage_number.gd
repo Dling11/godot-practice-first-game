@@ -24,7 +24,12 @@ func _ready() -> void:
 	label.text = "CRIT %d" % roundi(_amount) if _is_critical else str(roundi(_amount))
 	label.modulate = _tint
 	if _is_critical:
-		label.add_theme_font_size_override("font_size", 15)
+		# LabelSettings takes priority over theme overrides. Keep each critical's
+		# larger font local so the shared ordinary-number settings stay unchanged.
+		label.label_settings = label.label_settings.duplicate()
+		label.label_settings.font_size = 17
+	label.size = label.get_minimum_size()
+	label.position = -label.size*.5
 	var tween := create_tween().set_parallel(true)
 	tween.tween_property(self, "position:y", position.y - _rise_pixels, lifetime_seconds)
 	tween.tween_property(label, "modulate:a", 0.0, lifetime_seconds * 0.6).set_delay(lifetime_seconds * 0.4)

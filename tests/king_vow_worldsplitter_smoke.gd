@@ -136,20 +136,20 @@ func _run() -> void:
 	world.clear_cooldown()
 	check(world.request_cast_at(cast_point,25.0), "Terrain test cast refused")
 	await create_timer(.95,false,true).timeout
-	check(hits == [2,1,0], "Worldsplitter damaged through blocking terrain")
+	check(hits == [2,2,0], "Worldsplitter lost authored range through scenery")
 	world.clear_cooldown()
 	check(actor.request_ability(5), "Terrain preview could not open")
 	actor.ground_point_targeting.update_aim(cast_point+Vector2(300,0),Vector2.ZERO)
 	var marker := actor.ground_point_targeting._aim_origin()+actor.ground_point_targeting._target_local
 	actor.ground_point_targeting.confirm_targeting()
-	check(world.get_target_global_position().distance_to(marker) < .01, "Wall-clipped marker and committed impact disagree")
+	check(world.get_target_global_position().distance_to(marker) < .01, "Full-range marker and committed impact disagree")
 	world.cancel_cast()
 	wall.queue_free()
 	world.clear_cooldown()
 	check(world.request_cast_at(cast_point,25.0), "Interrupted cast refused")
 	world.cancel_cast()
 	await create_timer(.5,false,true).timeout
-	check(hits == [2,1,0], "Cancelled startup still released damage")
+	check(hits == [2,2,0], "Cancelled startup still released damage")
 	vow.apply_rank(2)
 	check(vow.request_cast(Vector2.LEFT), "Left-facing buff cast failed")
 	await create_timer(.36, false, true).timeout

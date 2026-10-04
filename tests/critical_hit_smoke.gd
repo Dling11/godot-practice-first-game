@@ -10,6 +10,9 @@ func _initialize() -> void:
 
 
 func _run() -> void:
+	root.get_node("SaveService").configure_storage_path_for_testing("user://critical_hit_smoke.json")
+	root.get_node("SaveService").suppress_autosave_for_debug_session()
+	root.get_node("RunSession").reset_run()
 	var hitbox := MeleeHitbox.new()
 	var critical_seed := -1
 	for seed in 10000:
@@ -43,7 +46,7 @@ func _run() -> void:
 	number.configure(critical_info.amount, Color.WHITE, 24.0, critical_info.is_critical)
 	root.add_child(number)
 	await process_frame
-	if number.label.text != "CRIT 30" or number.label.get_theme_font_size("font_size") != 15:
+	if number.label.text != "CRIT 30" or number.label.label_settings.font_size != 17:
 		_fail("Critical-hit world feedback is not explicit and visually stronger.")
 		return
 	number.queue_free()

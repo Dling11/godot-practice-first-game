@@ -1,0 +1,10 @@
+2026-10-04; Godot 4.7.2.stable.official.ed1daf0bf; native Compatibility / AMD Radeon.
+V3: 496 checks, 0 failures (raw native.log).
+Previous grip/real Rootling: 62 checks, 0 failures (grip_regression.log).
+Previous 3-cut combo: 168 checks, 0 failures (combo_regression.log).
+Existing melee combat / sword attack style headless smoke tests: passed.
+190-frame real-clock native GIF captured; WPF encoder decoder verified190 frames.
+Inspected full gallery, low carry, arms-down back stow, enlarged side/spin and native contacts.
+Normal F5 equipment/recipes remain unchanged. Capture is not a performance benchmark.
+
+Edge correction follow-up2026-10-04: native edge proof25/0 (edge_native.log), expanded review492/0 (native.log); previous496 count was the earlier delivery and varies with per-physics-frame assertions.3px inward fade; unchanged contact/skill rules. Original sources/registration unchanged.

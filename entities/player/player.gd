@@ -675,6 +675,7 @@ func _on_gear_equipped(
 func _apply_equipment_stats() -> void:
 	var health_bonus := 0.0
 	var armor_bonus := 0.0
+	var magic_resistance_bonus := 0.0
 	var regeneration_bonus := 0.0
 	var ward_bonus := 0.0
 	var attack_speed_bonus := 0.0
@@ -695,12 +696,13 @@ func _apply_equipment_stats() -> void:
 			continue
 		health_bonus += item.flat_health_bonus
 		armor_bonus += item.armor_bonus
+		magic_resistance_bonus += item.magic_resistance_bonus
 		regeneration_bonus += item.regeneration_bonus
 		ward_bonus += item.ward_reduction_ratio
 		attack_speed_bonus += item.attack_speed_bonus_ratio
 		movement_speed_bonus += item.movement_speed_bonus_ratio
 	vitality_component.set_equipment_health_bonus(health_bonus)
-	health_component.set_equipment_defenses(armor_bonus, ward_bonus)
+	health_component.set_equipment_defenses(armor_bonus, ward_bonus, magic_resistance_bonus)
 	health_regeneration_component.set_flat_regeneration_bonus(regeneration_bonus)
 	attack_component.set_equipment_attack_speed_bonus(attack_speed_bonus)
 	movement_component.set_equipment_speed_bonus(movement_speed_bonus)

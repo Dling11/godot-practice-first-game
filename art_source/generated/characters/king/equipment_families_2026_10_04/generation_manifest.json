@@ -1,0 +1,133 @@
+{
+  "date": "2026-10-04",
+  "mode": "built-in image_gen",
+  "runtime_promoted": false,
+  "reference": "art_source/generated/characters/king/unbroken_vow_activation_2026_09_27/exact_king_reference.png",
+  "identity_runtime": "assets/characters/playable/king/spellward/spellward_frames.tres",
+  "sources": [
+    {
+      "family": "sword",
+      "original_generated_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a0eed4-5878-7032-a315-e493f92ce97a\\exec-660252ce-ddb8-4025-b550-73aa16199e46.png",
+      "preserved_source": "sword/source.png",
+      "exact_prompt": "sword/prompt.txt",
+      "requested_size": [
+        2048,
+        1536
+      ],
+      "actual_size": [
+        1448,
+        1086
+      ],
+      "requested_grid": [
+        4,
+        3
+      ],
+      "status": "concept; not runtime registered",
+      "sha256": "54d142549a0326ff4bb91703f39a1e8ce9c600ff2202a97b1c345966c4b9951b"
+    },
+    {
+      "family": "greatsword",
+      "original_generated_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a0eed4-5878-7032-a315-e493f92ce97a\\exec-ef910329-dac8-421a-88cb-e49a5375e4f2.png",
+      "preserved_source": "greatsword/source.png",
+      "exact_prompt": "greatsword/prompt.txt",
+      "requested_size": [
+        2048,
+        1536
+      ],
+      "actual_size": [
+        1448,
+        1086
+      ],
+      "requested_grid": [
+        4,
+        3
+      ],
+      "status": "concept; not runtime registered",
+      "sha256": "b115ffb011ce1c1e3892e9c8f8beaa58bc4e69f2bcdcb0e18ac5d54fe4a46f24"
+    },
+    {
+      "family": "dual_swords",
+      "original_generated_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a0eed4-5878-7032-a315-e493f92ce97a\\exec-dd6326aa-dad8-41e7-bbb0-1b85565bfbb2.png",
+      "preserved_source": "dual_swords/source.png",
+      "exact_prompt": "dual_swords/prompt.txt",
+      "requested_size": [
+        2048,
+        1536
+      ],
+      "actual_size": [
+        1448,
+        1086
+      ],
+      "requested_grid": [
+        4,
+        3
+      ],
+      "status": "concept; not runtime registered",
+      "sha256": "80d4db0dbcc50baab0c0afe41c518332b5f3708c74dc38406c6ee911bbfa1658"
+    },
+    {
+      "family": "axe",
+      "original_generated_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a0eed4-5878-7032-a315-e493f92ce97a\\exec-b8054c6a-ecc6-418f-9bbb-30719d4771ce.png",
+      "preserved_source": "axe/source.png",
+      "exact_prompt": "axe/prompt.txt",
+      "requested_size": [
+        2048,
+        1536
+      ],
+      "actual_size": [
+        1448,
+        1086
+      ],
+      "requested_grid": [
+        4,
+        3
+      ],
+      "status": "rejected concept; replacement starts with weapon-only design",
+      "sha256": "46bd9211ddc3dcbec8b8635403917fceb9af6f8e955de802437ff389b9149479",
+      "owner_review": "rejected",
+      "owner_review_date": "2026-10-04"
+    },
+    {
+      "family": "scythe",
+      "original_generated_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a0eed4-5878-7032-a315-e493f92ce97a\\exec-f14ba9e5-a91a-49e5-94fa-f1c46a8c34f7.png",
+      "preserved_source": "scythe/source.png",
+      "exact_prompt": "scythe/prompt.txt",
+      "requested_size": [
+        2048,
+        1536
+      ],
+      "actual_size": [
+        1448,
+        1086
+      ],
+      "requested_grid": [
+        4,
+        3
+      ],
+      "status": "rejected concept; replacement starts with weapon-only design",
+      "sha256": "2a7fccb9c509ad12a336abdf36c388cb6787e47f6920ae453bf3849bf88374ee",
+      "owner_review": "rejected",
+      "owner_review_date": "2026-10-04"
+    },
+    {
+      "family": "armor",
+      "original_generated_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a0eed4-5878-7032-a315-e493f92ce97a\\exec-57b88754-33c1-4951-8cc5-c60b6f2d1442.png",
+      "preserved_source": "armor/source.png",
+      "exact_prompt": "armor/prompt.txt",
+      "requested_size": [
+        1536,
+        1536
+      ],
+      "actual_size": [
+        1254,
+        1254
+      ],
+      "requested_grid": [
+        3,
+        3
+      ],
+      "status": "concept; not runtime registered",
+      "sha256": "209ca28c05895c38e9d3ba3bf9a2f3d911e43f9685178d54b8976f19ba88a2b2"
+    }
+  ]
+}

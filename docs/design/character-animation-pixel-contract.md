@@ -6,8 +6,9 @@ This contract applies to generated, downloaded, and hand-authored character anim
 
 | Actor or effect | Runtime cell | Direction and frame contract |
 |---|---:|---|
-| King simple reboot | 32x32 locomotion target, expandable for authored attack reach | Production `down/left/right/up` identity with chunky hair, plain face, crimson scarf, compact body, mitten hands, tiny feet, and short broad rigid signature sword; preserve the reviewed y=30 foot baseline |
-| King extended greatsword actions (provisional) | 96x80 or 128x96 | Preserve the approved body scale; use canvas width/height for integrated greatsword reach and exaggerated combo silhouettes without clipping |
+| King current Spellward | 192x128, Body scene scale0.5 | Current player.tscn/Spellward SpriteFrames runtime truth; retain the approved visible body scale, cardinal directions, connected limbs and integrated sword |
+| King simple reboot (historical) | 32x32 locomotion target | Historical turnaround/foot reference; not the active player sheet or a new equipment-family canvas requirement |
+| King future equipment families | Unset; native-scale proof first | Concept boards are not runtime cells. Preserve current visible body scale, shared feet and sufficient rigid-weapon margins before choosing registered canvases |
 | Small forest creatures | 32x32 | Fixed scale and foot baseline across all direction rows |
 | Existing extended enemy attacks | 64x48 | Use only when a validated action cannot fit the locomotion cell |
 | Examiner locomotion/idle | `192x128` debug cell | Six-column source with two idle plus four walk poses across `down/left/right/up`; compact-pixel V3 style, `0.42` scale, `y=120` cell baseline, and `-56 px` visual origin are the current F7 proof values |

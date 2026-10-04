@@ -1,0 +1,1219 @@
+{
+	"bounds_alpha_threshold": 0.65,
+	"method": "raw alpha counts; occupied bounds at alpha >= 0.65 in equal nominal cells; no anatomical segmentation or registration",
+	"sources": [
+		{
+			"cells": [
+				{
+					"index": 0,
+					"nominal_crop": [
+						0,
+						0,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						80,
+						95,
+						190,
+						267
+					]
+				},
+				{
+					"index": 1,
+					"nominal_crop": [
+						362,
+						0,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						53,
+						97,
+						207,
+						265
+					]
+				},
+				{
+					"index": 2,
+					"nominal_crop": [
+						724,
+						0,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						95,
+						95,
+						211,
+						267
+					]
+				},
+				{
+					"index": 3,
+					"nominal_crop": [
+						1086,
+						0,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						92,
+						95,
+						189,
+						267
+					]
+				},
+				{
+					"index": 4,
+					"nominal_crop": [
+						0,
+						362,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						97,
+						0,
+						172,
+						342
+					]
+				},
+				{
+					"index": 5,
+					"nominal_crop": [
+						362,
+						362,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						21,
+						0,
+						264,
+						342
+					]
+				},
+				{
+					"index": 6,
+					"nominal_crop": [
+						724,
+						362,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						62,
+						0,
+						208,
+						342
+					]
+				},
+				{
+					"index": 7,
+					"nominal_crop": [
+						1086,
+						362,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						66,
+						0,
+						260,
+						342
+					]
+				},
+				{
+					"index": 8,
+					"nominal_crop": [
+						0,
+						724,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						56,
+						77,
+						306,
+						231
+					]
+				},
+				{
+					"index": 9,
+					"nominal_crop": [
+						362,
+						724,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						0,
+						77,
+						362,
+						231
+					]
+				},
+				{
+					"index": 10,
+					"nominal_crop": [
+						724,
+						724,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						0,
+						71,
+						295,
+						237
+					]
+				},
+				{
+					"index": 11,
+					"nominal_crop": [
+						1086,
+						724,
+						362,
+						362
+					],
+					"touches_nominal_edge": false,
+					"used_bounds": [
+						92,
+						65,
+						168,
+						244
+					]
+				}
+			],
+			"exact_grid_divisibility": true,
+			"family": "sword",
+			"fractional_alpha_pixels": 481652,
+			"nominal_grid": [
+				4,
+				3
+			],
+			"opaque_pixels": 880,
+			"runtime_ready": false,
+			"source_size": [
+				1448,
+				1086
+			],
+			"transparent_pixels": 1089996
+		},
+		{
+			"cells": [
+				{
+					"index": 0,
+					"nominal_crop": [
+						0,
+						0,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						57,
+						129,
+						253,
+						233
+					]
+				},
+				{
+					"index": 1,
+					"nominal_crop": [
+						362,
+						0,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						59,
+						130,
+						250,
+						232
+					]
+				},
+				{
+					"index": 2,
+					"nominal_crop": [
+						724,
+						0,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						59,
+						130,
+						262,
+						232
+					]
+				},
+				{
+					"index": 3,
+					"nominal_crop": [
+						1086,
+						0,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						58,
+						131,
+						244,
+						231
+					]
+				},
+				{
+					"index": 4,
+					"nominal_crop": [
+						0,
+						362,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						67,
+						0,
+						283,
+						351
+					]
+				},
+				{
+					"index": 5,
+					"nominal_crop": [
+						362,
+						362,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						17,
+						0,
+						293,
+						351
+					]
+				},
+				{
+					"index": 6,
+					"nominal_crop": [
+						724,
+						362,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						23,
+						0,
+						265,
+						351
+					]
+				},
+				{
+					"index": 7,
+					"nominal_crop": [
+						1086,
+						362,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						77,
+						0,
+						274,
+						354
+					]
+				},
+				{
+					"index": 8,
+					"nominal_crop": [
+						0,
+						724,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						20,
+						108,
+						342,
+						206
+					]
+				},
+				{
+					"index": 9,
+					"nominal_crop": [
+						362,
+						724,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						0,
+						104,
+						362,
+						210
+					]
+				},
+				{
+					"index": 10,
+					"nominal_crop": [
+						724,
+						724,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						0,
+						47,
+						362,
+						267
+					]
+				},
+				{
+					"index": 11,
+					"nominal_crop": [
+						1086,
+						724,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						0,
+						47,
+						336,
+						270
+					]
+				}
+			],
+			"exact_grid_divisibility": true,
+			"family": "greatsword",
+			"fractional_alpha_pixels": 466899,
+			"nominal_grid": [
+				4,
+				3
+			],
+			"opaque_pixels": 935,
+			"runtime_ready": false,
+			"source_size": [
+				1448,
+				1086
+			],
+			"transparent_pixels": 1104694
+		},
+		{
+			"cells": [
+				{
+					"index": 0,
+					"nominal_crop": [
+						0,
+						0,
+						362,
+						362
+					],
+					"touches_nominal_edge": false,
+					"used_bounds": [
+						65,
+						101,
+						253,
+						253
+					]
+				},
+				{
+					"index": 1,
+					"nominal_crop": [
+						362,
+						0,
+						362,
+						362
+					],
+					"touches_nominal_edge": false,
+					"used_bounds": [
+						81,
+						101,
+						201,
+						257
+					]
+				},
+				{
+					"index": 2,
+					"nominal_crop": [
+						724,
+						0,
+						362,
+						362
+					],
+					"touches_nominal_edge": false,
+					"used_bounds": [
+						80,
+						102,
+						203,
+						256
+					]
+				},
+				{
+					"index": 3,
+					"nominal_crop": [
+						1086,
+						0,
+						362,
+						362
+					],
+					"touches_nominal_edge": false,
+					"used_bounds": [
+						44,
+						102,
+						253,
+						251
+					]
+				},
+				{
+					"index": 4,
+					"nominal_crop": [
+						0,
+						362,
+						362,
+						362
+					],
+					"touches_nominal_edge": false,
+					"used_bounds": [
+						84,
+						100,
+						234,
+						236
+					]
+				},
+				{
+					"index": 5,
+					"nominal_crop": [
+						362,
+						362,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						68,
+						72,
+						294,
+						264
+					]
+				},
+				{
+					"index": 6,
+					"nominal_crop": [
+						724,
+						362,
+						362,
+						362
+					],
+					"touches_nominal_edge": false,
+					"used_bounds": [
+						44,
+						104,
+						252,
+						232
+					]
+				},
+				{
+					"index": 7,
+					"nominal_crop": [
+						1086,
+						362,
+						362,
+						362
+					],
+					"touches_nominal_edge": false,
+					"used_bounds": [
+						44,
+						107,
+						283,
+						229
+					]
+				},
+				{
+					"index": 8,
+					"nominal_crop": [
+						0,
+						724,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						70,
+						53,
+						292,
+						238
+					]
+				},
+				{
+					"index": 9,
+					"nominal_crop": [
+						362,
+						724,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						0,
+						49,
+						362,
+						235
+					]
+				},
+				{
+					"index": 10,
+					"nominal_crop": [
+						724,
+						724,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						0,
+						63,
+						362,
+						228
+					]
+				},
+				{
+					"index": 11,
+					"nominal_crop": [
+						1086,
+						724,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						0,
+						50,
+						338,
+						241
+					]
+				}
+			],
+			"exact_grid_divisibility": true,
+			"family": "dual_swords",
+			"fractional_alpha_pixels": 492747,
+			"nominal_grid": [
+				4,
+				3
+			],
+			"opaque_pixels": 916,
+			"runtime_ready": false,
+			"source_size": [
+				1448,
+				1086
+			],
+			"transparent_pixels": 1078865
+		},
+		{
+			"cells": [
+				{
+					"index": 0,
+					"nominal_crop": [
+						0,
+						0,
+						362,
+						362
+					],
+					"touches_nominal_edge": false,
+					"used_bounds": [
+						64,
+						96,
+						274,
+						262
+					]
+				},
+				{
+					"index": 1,
+					"nominal_crop": [
+						362,
+						0,
+						362,
+						362
+					],
+					"touches_nominal_edge": false,
+					"used_bounds": [
+						54,
+						95,
+						279,
+						265
+					]
+				},
+				{
+					"index": 2,
+					"nominal_crop": [
+						724,
+						0,
+						362,
+						362
+					],
+					"touches_nominal_edge": false,
+					"used_bounds": [
+						48,
+						102,
+						289,
+						253
+					]
+				},
+				{
+					"index": 3,
+					"nominal_crop": [
+						1086,
+						0,
+						362,
+						362
+					],
+					"touches_nominal_edge": false,
+					"used_bounds": [
+						27,
+						103,
+						291,
+						255
+					]
+				},
+				{
+					"index": 4,
+					"nominal_crop": [
+						0,
+						362,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						89,
+						131,
+						273,
+						227
+					]
+				},
+				{
+					"index": 5,
+					"nominal_crop": [
+						362,
+						362,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						0,
+						89,
+						318,
+						268
+					]
+				},
+				{
+					"index": 6,
+					"nominal_crop": [
+						724,
+						362,
+						362,
+						362
+					],
+					"touches_nominal_edge": false,
+					"used_bounds": [
+						25,
+						9,
+						253,
+						347
+					]
+				},
+				{
+					"index": 7,
+					"nominal_crop": [
+						1086,
+						362,
+						362,
+						362
+					],
+					"touches_nominal_edge": false,
+					"used_bounds": [
+						49,
+						74,
+						247,
+						284
+					]
+				},
+				{
+					"index": 8,
+					"nominal_crop": [
+						0,
+						724,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						48,
+						61,
+						314,
+						242
+					]
+				},
+				{
+					"index": 9,
+					"nominal_crop": [
+						362,
+						724,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						0,
+						82,
+						362,
+						222
+					]
+				},
+				{
+					"index": 10,
+					"nominal_crop": [
+						724,
+						724,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						0,
+						65,
+						362,
+						237
+					]
+				},
+				{
+					"index": 11,
+					"nominal_crop": [
+						1086,
+						724,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						0,
+						67,
+						341,
+						235
+					]
+				}
+			],
+			"exact_grid_divisibility": true,
+			"family": "axe",
+			"fractional_alpha_pixels": 565302,
+			"nominal_grid": [
+				4,
+				3
+			],
+			"opaque_pixels": 1468,
+			"runtime_ready": false,
+			"source_size": [
+				1448,
+				1086
+			],
+			"transparent_pixels": 1005758
+		},
+		{
+			"cells": [
+				{
+					"index": 0,
+					"nominal_crop": [
+						0,
+						0,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						25,
+						76,
+						248,
+						286
+					]
+				},
+				{
+					"index": 1,
+					"nominal_crop": [
+						362,
+						0,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						106,
+						73,
+						183,
+						289
+					]
+				},
+				{
+					"index": 2,
+					"nominal_crop": [
+						724,
+						0,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						61,
+						78,
+						191,
+						284
+					]
+				},
+				{
+					"index": 3,
+					"nominal_crop": [
+						1086,
+						0,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						89,
+						74,
+						247,
+						288
+					]
+				},
+				{
+					"index": 4,
+					"nominal_crop": [
+						0,
+						362,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						65,
+						0,
+						292,
+						359
+					]
+				},
+				{
+					"index": 5,
+					"nominal_crop": [
+						362,
+						362,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						26,
+						0,
+						284,
+						337
+					]
+				},
+				{
+					"index": 6,
+					"nominal_crop": [
+						724,
+						362,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						26,
+						0,
+						336,
+						337
+					]
+				},
+				{
+					"index": 7,
+					"nominal_crop": [
+						1086,
+						362,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						0,
+						0,
+						320,
+						337
+					]
+				},
+				{
+					"index": 8,
+					"nominal_crop": [
+						0,
+						724,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						21,
+						72,
+						341,
+						227
+					]
+				},
+				{
+					"index": 9,
+					"nominal_crop": [
+						362,
+						724,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						0,
+						65,
+						362,
+						234
+					]
+				},
+				{
+					"index": 10,
+					"nominal_crop": [
+						724,
+						724,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						0,
+						65,
+						362,
+						232
+					]
+				},
+				{
+					"index": 11,
+					"nominal_crop": [
+						1086,
+						724,
+						362,
+						362
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						0,
+						62,
+						345,
+						225
+					]
+				}
+			],
+			"exact_grid_divisibility": true,
+			"family": "scythe",
+			"fractional_alpha_pixels": 513723,
+			"nominal_grid": [
+				4,
+				3
+			],
+			"opaque_pixels": 692,
+			"runtime_ready": false,
+			"source_size": [
+				1448,
+				1086
+			],
+			"transparent_pixels": 1058113
+		},
+		{
+			"cells": [
+				{
+					"index": 0,
+					"nominal_crop": [
+						0,
+						0,
+						418,
+						418
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						99,
+						14,
+						277,
+						404
+					]
+				},
+				{
+					"index": 1,
+					"nominal_crop": [
+						418,
+						0,
+						418,
+						418
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						73,
+						14,
+						279,
+						404
+					]
+				},
+				{
+					"index": 2,
+					"nominal_crop": [
+						836,
+						0,
+						418,
+						418
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						47,
+						14,
+						278,
+						404
+					]
+				},
+				{
+					"index": 3,
+					"nominal_crop": [
+						0,
+						418,
+						418,
+						418
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						99,
+						0,
+						271,
+						418
+					]
+				},
+				{
+					"index": 4,
+					"nominal_crop": [
+						418,
+						418,
+						418,
+						418
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						70,
+						0,
+						283,
+						418
+					]
+				},
+				{
+					"index": 5,
+					"nominal_crop": [
+						836,
+						418,
+						418,
+						418
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						47,
+						0,
+						280,
+						418
+					]
+				},
+				{
+					"index": 6,
+					"nominal_crop": [
+						0,
+						836,
+						418,
+						418
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						100,
+						0,
+						271,
+						405
+					]
+				},
+				{
+					"index": 7,
+					"nominal_crop": [
+						418,
+						836,
+						418,
+						418
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						70,
+						0,
+						282,
+						405
+					]
+				},
+				{
+					"index": 8,
+					"nominal_crop": [
+						836,
+						836,
+						418,
+						418
+					],
+					"touches_nominal_edge": true,
+					"used_bounds": [
+						47,
+						0,
+						280,
+						405
+					]
+				}
+			],
+			"exact_grid_divisibility": true,
+			"family": "armor",
+			"fractional_alpha_pixels": 764002,
+			"nominal_grid": [
+				3,
+				3
+			],
+			"opaque_pixels": 3794,
+			"runtime_ready": false,
+			"source_size": [
+				1254,
+				1254
+			],
+			"transparent_pixels": 804720
+		}
+	],
+	"status": "concept studies, not runtime sprites"
+}

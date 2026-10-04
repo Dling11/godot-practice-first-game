@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-04",
+  "mode": "built-in image_gen",
+  "status": "art style approved; specific designs and runtime implementation pending",
+  "runtime_promoted": false,
+  "reference": "art_source/generated/characters/king/unbroken_vow_activation_2026_09_27/exact_king_reference.png",
+  "native_comparison": {
+    "engine": "4.7.2.stable.official.ed1daf0bf",
+    "renderer": "Compatibility / OpenGL AMD",
+    "viewport": [
+      960,
+      540
+    ],
+    "source_scale": 0.0625,
+    "current_king_body_scale": 0.5,
+    "review_only": true
+  },
+  "studies": [
+    {
+      "family": "armor",
+      "original_generated_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a0eed4-5878-7032-a315-e493f92ce97a\\exec-fe170929-0c34-4e52-8c70-0c97e8bb492f.png",
+      "source": "armor/source.png",
+      "exact_prompt": "armor/prompt.txt",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "owner_selected": false,
+      "artistic_edits": false,
+      "alpha_binary": false,
+      "sha256": "9892ade0ae37af99ee78b7e508c47a1908cc33a9cb985a5084e608662b4a68a2"
+    },
+    {
+      "family": "axe",
+      "original_generated_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a0eed4-5878-7032-a315-e493f92ce97a\\exec-3a7292ec-0ece-40db-bfb7-93ca55526547.png",
+      "source": "axe/source.png",
+      "exact_prompt": "axe/prompt.txt",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "owner_selected": false,
+      "artistic_edits": false,
+      "alpha_binary": false,
+      "sha256": "e87b87d30b19b59f7a1e98183d3024df212bd09dcf77177b6229dc9957f5b116"
+    },
+    {
+      "family": "scythe",
+      "original_generated_path": "C:\\Users\\Administrator\\.codex\\generated_images\\01a0eed4-5878-7032-a315-e493f92ce97a\\exec-855d850d-c6ed-4a01-aeaa-3a1aeca70cb0.png",
+      "source": "scythe/source.png",
+      "exact_prompt": "scythe/prompt.txt",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "owner_selected": false,
+      "artistic_edits": false,
+      "alpha_binary": false,
+      "sha256": "76f600a7d3ddd491f892d487ba30e50e830fc0b9dff542b5f4a1d166a9e40274"
+    }
+  ],
+  "art_style_owner_approved": true,
+  "art_style_approval_date": "2026-10-04"
+}

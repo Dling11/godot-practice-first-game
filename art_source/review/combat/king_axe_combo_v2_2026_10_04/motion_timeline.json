@@ -1,0 +1,740 @@
+[
+	{
+		"elapsed_ms": 73,
+		"file": "motion_frames/frame_000.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 99,
+		"file": "motion_frames/frame_001.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 140,
+		"file": "motion_frames/frame_002.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 166,
+		"file": "motion_frames/frame_003.png",
+		"lift": 0.0,
+		"phase": 1,
+		"pose": 0,
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 219,
+		"file": "motion_frames/frame_004.png",
+		"lift": 0.0,
+		"phase": 1,
+		"pose": 1,
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 259,
+		"file": "motion_frames/frame_005.png",
+		"lift": 0.0,
+		"phase": 1,
+		"pose": 1,
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 286,
+		"file": "motion_frames/frame_006.png",
+		"lift": 0.0,
+		"phase": 1,
+		"pose": 2,
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 339,
+		"file": "motion_frames/frame_007.png",
+		"lift": 0.0,
+		"phase": 1,
+		"pose": 3,
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 379,
+		"file": "motion_frames/frame_008.png",
+		"lift": 0.0,
+		"phase": 1,
+		"pose": 3,
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 419,
+		"file": "motion_frames/frame_009.png",
+		"lift": 0.0,
+		"phase": 2,
+		"pose": 4,
+		"step": 0,
+		"trail_frame": 0
+	},
+	{
+		"elapsed_ms": 447,
+		"file": "motion_frames/frame_010.png",
+		"lift": 0.0,
+		"phase": 2,
+		"pose": 4,
+		"step": 0,
+		"trail_frame": 1
+	},
+	{
+		"elapsed_ms": 499,
+		"file": "motion_frames/frame_011.png",
+		"lift": 0.0,
+		"phase": 2,
+		"pose": 5,
+		"step": 0,
+		"trail_frame": 2
+	},
+	{
+		"elapsed_ms": 538,
+		"file": "motion_frames/frame_012.png",
+		"lift": 0.0,
+		"phase": 2,
+		"pose": 5,
+		"step": 0,
+		"trail_frame": 3
+	},
+	{
+		"elapsed_ms": 579,
+		"file": "motion_frames/frame_013.png",
+		"lift": 0.0,
+		"phase": 3,
+		"pose": 6,
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 606,
+		"file": "motion_frames/frame_014.png",
+		"lift": 0.0,
+		"phase": 3,
+		"pose": 6,
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 659,
+		"file": "motion_frames/frame_015.png",
+		"lift": 0.0,
+		"phase": 3,
+		"pose": 7,
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 699,
+		"file": "motion_frames/frame_016.png",
+		"lift": 0.0,
+		"phase": 3,
+		"pose": 7,
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 741,
+		"file": "motion_frames/frame_017.png",
+		"lift": 0.0,
+		"phase": 3,
+		"pose": 7,
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 766,
+		"file": "motion_frames/frame_018.png",
+		"lift": 0.0,
+		"phase": 3,
+		"pose": 7,
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 819,
+		"file": "motion_frames/frame_019.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 859,
+		"file": "motion_frames/frame_020.png",
+		"lift": 0.0,
+		"phase": 1,
+		"pose": 0,
+		"step": 1,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 886,
+		"file": "motion_frames/frame_021.png",
+		"lift": 0.0,
+		"phase": 1,
+		"pose": 0,
+		"step": 1,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 940,
+		"file": "motion_frames/frame_022.png",
+		"lift": 0.0,
+		"phase": 1,
+		"pose": 0,
+		"step": 1,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 980,
+		"file": "motion_frames/frame_023.png",
+		"lift": 0.0,
+		"phase": 1,
+		"pose": 1,
+		"step": 1,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 1008,
+		"file": "motion_frames/frame_024.png",
+		"lift": 0.0,
+		"phase": 1,
+		"pose": 1,
+		"step": 1,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 1047,
+		"file": "motion_frames/frame_025.png",
+		"lift": 0.0,
+		"phase": 2,
+		"pose": 2,
+		"step": 1,
+		"trail_frame": 0
+	},
+	{
+		"elapsed_ms": 1100,
+		"file": "motion_frames/frame_026.png",
+		"lift": 0.0,
+		"phase": 2,
+		"pose": 2,
+		"step": 1,
+		"trail_frame": 0
+	},
+	{
+		"elapsed_ms": 1140,
+		"file": "motion_frames/frame_027.png",
+		"lift": 0.0,
+		"phase": 2,
+		"pose": 3,
+		"step": 1,
+		"trail_frame": 1
+	},
+	{
+		"elapsed_ms": 1168,
+		"file": "motion_frames/frame_028.png",
+		"lift": 0.0,
+		"phase": 2,
+		"pose": 4,
+		"step": 1,
+		"trail_frame": 3
+	},
+	{
+		"elapsed_ms": 1222,
+		"file": "motion_frames/frame_029.png",
+		"lift": 0.0,
+		"phase": 3,
+		"pose": 5,
+		"step": 1,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 1260,
+		"file": "motion_frames/frame_030.png",
+		"lift": 0.0,
+		"phase": 3,
+		"pose": 5,
+		"step": 1,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 1288,
+		"file": "motion_frames/frame_031.png",
+		"lift": 0.0,
+		"phase": 3,
+		"pose": 6,
+		"step": 1,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 1339,
+		"file": "motion_frames/frame_032.png",
+		"lift": 0.0,
+		"phase": 3,
+		"pose": 6,
+		"step": 1,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 1367,
+		"file": "motion_frames/frame_033.png",
+		"lift": 0.0,
+		"phase": 3,
+		"pose": 6,
+		"step": 1,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 1423,
+		"file": "motion_frames/frame_034.png",
+		"lift": 0.0,
+		"phase": 3,
+		"pose": 7,
+		"step": 1,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 1461,
+		"file": "motion_frames/frame_035.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 1,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 1500,
+		"file": "motion_frames/frame_036.png",
+		"lift": 0.0,
+		"phase": 1,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 1529,
+		"file": "motion_frames/frame_037.png",
+		"lift": 0.0,
+		"phase": 1,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 1580,
+		"file": "motion_frames/frame_038.png",
+		"lift": 0.0,
+		"phase": 1,
+		"pose": 1,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 1606,
+		"file": "motion_frames/frame_039.png",
+		"lift": 0.0,
+		"phase": 1,
+		"pose": 1,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 1661,
+		"file": "motion_frames/frame_040.png",
+		"lift": -5.0,
+		"phase": 1,
+		"pose": 2,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 1687,
+		"file": "motion_frames/frame_041.png",
+		"lift": -5.0,
+		"phase": 1,
+		"pose": 2,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 1739,
+		"file": "motion_frames/frame_042.png",
+		"lift": -5.0,
+		"phase": 1,
+		"pose": 2,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 1779,
+		"file": "motion_frames/frame_043.png",
+		"lift": -8.0,
+		"phase": 1,
+		"pose": 3,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 1806,
+		"file": "motion_frames/frame_044.png",
+		"lift": -8.0,
+		"phase": 1,
+		"pose": 3,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 1859,
+		"file": "motion_frames/frame_045.png",
+		"lift": 0.0,
+		"phase": 2,
+		"pose": 4,
+		"step": 2,
+		"trail_frame": 0
+	},
+	{
+		"elapsed_ms": 1899,
+		"file": "motion_frames/frame_046.png",
+		"lift": 0.0,
+		"phase": 2,
+		"pose": 4,
+		"step": 2,
+		"trail_frame": 0
+	},
+	{
+		"elapsed_ms": 1939,
+		"file": "motion_frames/frame_047.png",
+		"lift": 0.0,
+		"phase": 2,
+		"pose": 4,
+		"step": 2,
+		"trail_frame": 1
+	},
+	{
+		"elapsed_ms": 1979,
+		"file": "motion_frames/frame_048.png",
+		"lift": 0.0,
+		"phase": 2,
+		"pose": 5,
+		"step": 2,
+		"trail_frame": 2
+	},
+	{
+		"elapsed_ms": 2021,
+		"file": "motion_frames/frame_049.png",
+		"lift": 0.0,
+		"phase": 2,
+		"pose": 5,
+		"step": 2,
+		"trail_frame": 3
+	},
+	{
+		"elapsed_ms": 2074,
+		"file": "motion_frames/frame_050.png",
+		"lift": 0.0,
+		"phase": 2,
+		"pose": 5,
+		"step": 2,
+		"trail_frame": 3
+	},
+	{
+		"elapsed_ms": 2098,
+		"file": "motion_frames/frame_051.png",
+		"lift": 0.0,
+		"phase": 3,
+		"pose": 6,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2152,
+		"file": "motion_frames/frame_052.png",
+		"lift": 0.0,
+		"phase": 3,
+		"pose": 6,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2192,
+		"file": "motion_frames/frame_053.png",
+		"lift": 0.0,
+		"phase": 3,
+		"pose": 6,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2219,
+		"file": "motion_frames/frame_054.png",
+		"lift": 0.0,
+		"phase": 3,
+		"pose": 7,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2274,
+		"file": "motion_frames/frame_055.png",
+		"lift": 0.0,
+		"phase": 3,
+		"pose": 7,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2313,
+		"file": "motion_frames/frame_056.png",
+		"lift": 0.0,
+		"phase": 3,
+		"pose": 7,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2344,
+		"file": "motion_frames/frame_057.png",
+		"lift": 0.0,
+		"phase": 3,
+		"pose": 7,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2380,
+		"file": "motion_frames/frame_058.png",
+		"lift": 0.0,
+		"phase": 3,
+		"pose": 7,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2420,
+		"file": "motion_frames/frame_059.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2447,
+		"file": "motion_frames/frame_060.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2499,
+		"file": "motion_frames/frame_061.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2540,
+		"file": "motion_frames/frame_062.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2570,
+		"file": "motion_frames/frame_063.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2607,
+		"file": "motion_frames/frame_064.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2634,
+		"file": "motion_frames/frame_065.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2686,
+		"file": "motion_frames/frame_066.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2727,
+		"file": "motion_frames/frame_067.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2754,
+		"file": "motion_frames/frame_068.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2809,
+		"file": "motion_frames/frame_069.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2845,
+		"file": "motion_frames/frame_070.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2872,
+		"file": "motion_frames/frame_071.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2925,
+		"file": "motion_frames/frame_072.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 2965,
+		"file": "motion_frames/frame_073.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 3006,
+		"file": "motion_frames/frame_074.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 3045,
+		"file": "motion_frames/frame_075.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 3086,
+		"file": "motion_frames/frame_076.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 3126,
+		"file": "motion_frames/frame_077.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 3153,
+		"file": "motion_frames/frame_078.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 3206,
+		"file": "motion_frames/frame_079.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 3245,
+		"file": "motion_frames/frame_080.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	},
+	{
+		"elapsed_ms": 3273,
+		"file": "motion_frames/frame_081.png",
+		"lift": 0.0,
+		"phase": 0,
+		"pose": 0,
+		"step": 2,
+		"trail_frame": -1
+	}
+]

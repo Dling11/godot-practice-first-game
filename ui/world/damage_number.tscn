@@ -4,7 +4,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_damage"]
 font_size = 11
-font_color = Color(1, 0.93, 0.55, 1)
+font_color = Color(1, 1, 1, 1)
 outline_size = 3
 outline_color = Color(0.06, 0.035, 0.02, 1)
 

@@ -1,0 +1,131 @@
+extends Node2D
+
+## Generated raster sequence clipped to the real contact shape. No damage authority.
+var atlas: Texture2D
+var _attack: MeleeAttackComponent
+var _frame := -1
+var _row := 0
+var _tween: Tween
+var _points := PackedVector2Array()
+const ORIGINS := [Vector2(48,48),Vector2(48,64),Vector2(48,48)]
+var origins := PackedVector2Array(ORIGINS)
+var world_pixels_per_texel := 1.0
+var rows := 3
+var world_origin := Vector2.ZERO
+## Fade within the authoritative boundary; never enlarge damage or visible reach.
+var edge_feather_pixels := 0.0
+var _mesh_frames: Array[ArrayMesh] = []
+
+func configure(attack: MeleeAttackComponent, texture: Texture2D) -> void:
+	_attack = attack
+	atlas = texture
+
+func _ready() -> void:
+	assert(_attack!=null and atlas!=null)
+	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	z_index = 3
+	_attack.phase_changed.connect(_phase)
+	_attack.attack_finished.connect(_finished)
+	set_process(false)
+	set_physics_process(false)
+
+func _phase(phase: int,duration: float) -> void:
+	clear()
+	if phase!=MeleeAttackComponent.Phase.ACTIVE: return
+	var shape: Shape2D = _attack.collision_shape.shape
+	_points.clear()
+	var actor := _attack.owner as Node2D
+	if actor==null: return
+	var transform := actor.global_transform.affine_inverse()*_attack.collision_shape.global_transform
+	if shape is ConvexPolygonShape2D:
+		for point in shape.points: _points.append(transform*point)
+	elif shape is CircleShape2D:
+		for index in 64: _points.append(transform*(Vector2.from_angle(index*TAU/64.0)*shape.radius))
+	else: return
+	_row = clampi(_attack.combo_step,0,rows-1)
+	prepare_edge_feather()
+	_set_frame(0)
+	_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	_tween.tween_method(_set_frame,0.0,3.999,maxf(duration,0.0001))
+
+func _set_frame(value: float) -> void:
+	_frame = clampi(int(value),0,3)
+	queue_redraw()
+
+func _draw() -> void:
+	if _frame<0 or _points.is_empty(): return
+	if _mesh_frames.size()==4:
+		draw_mesh(_mesh_frames[_frame],atlas)
+		return
+	var uvs := PackedVector2Array()
+	var cell := Vector2(atlas.get_width()/4.0,atlas.get_height()/float(rows))
+	for point in _points:
+		# Registered origin and scale keep wider contact inside its own atlas cell.
+		uvs.append((Vector2(_frame*cell.x,_row*cell.y)+origins[_row]+(point-world_origin)/world_pixels_per_texel)/atlas.get_size())
+	draw_polygon(_points,PackedColorArray([Color(1,1,1,0.92)]),uvs,atlas)
+
+func prepare_edge_feather() -> void:
+	# Cache four meshes on a contact/gallery transition, not every rendered frame.
+	_mesh_frames.clear()
+	if edge_feather_pixels<=0 or _points.size()<3: return
+	var count := _points.size()
+	var area := 0.0
+	for index in count: area += _points[index].cross(_points[(index+1)%count])
+	var sign := 1.0 if area>0 else -1.0
+	var inside := PackedVector2Array()
+	for index in count:
+		var point := _points[index]
+		var incoming := (point-_points[(index+count-1)%count]).normalized()
+		var outgoing := (_points[(index+1)%count]-point).normalized()
+		var a := Vector2(-incoming.y,incoming.x)*sign
+		var b := Vector2(-outgoing.y,outgoing.x)*sign
+		var determinant := a.cross(b)
+		if absf(determinant)<0.00001: return
+		var d_a := a.dot(point)+edge_feather_pixels
+		var d_b := b.dot(point)+edge_feather_pixels
+		inside.append(Vector2(d_a*b.y-a.y*d_b,a.x*d_b-d_a*b.x)/determinant)
+	var inner_indices := Geometry2D.triangulate_polygon(inside)
+	if inner_indices.is_empty(): return
+	var vertices := PackedVector3Array()
+	var colors := PackedColorArray()
+	for point in _points:
+		vertices.append(Vector3(point.x,point.y,0))
+		colors.append(Color(1,1,1,0))
+	for point in inside:
+		vertices.append(Vector3(point.x,point.y,0))
+		colors.append(Color(1,1,1,0.92))
+	var indices := PackedInt32Array()
+	for index in inner_indices: indices.append(index+count)
+	for index in count:
+		var next := (index+1)%count
+		indices.append_array(PackedInt32Array([index,next,next+count,index,next+count,index+count]))
+	var cell := Vector2(atlas.get_width()/4.0,atlas.get_height()/float(rows))
+	for frame in 4:
+		var uvs := PackedVector2Array()
+		for vertex in vertices:
+			var point := Vector2(vertex.x,vertex.y)
+			uvs.append((Vector2(frame*cell.x,_row*cell.y)+origins[_row]+(point-world_origin)/world_pixels_per_texel)/atlas.get_size())
+		var arrays := []
+		arrays.resize(Mesh.ARRAY_MAX)
+		arrays[Mesh.ARRAY_VERTEX] = vertices
+		arrays[Mesh.ARRAY_COLOR] = colors
+		arrays[Mesh.ARRAY_TEX_UV] = uvs
+		arrays[Mesh.ARRAY_INDEX] = indices
+		var mesh := ArrayMesh.new()
+		mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES,arrays)
+		_mesh_frames.append(mesh)
+
+func _finished() -> void:
+	if _attack.phase==MeleeAttackComponent.Phase.IDLE: clear()
+
+func clear() -> void:
+	if _tween!=null and _tween.is_valid(): _tween.kill()
+	_frame = -1
+	_mesh_frames.clear()
+	queue_redraw()
+
+func _exit_tree() -> void:
+	if _tween!=null and _tween.is_valid(): _tween.kill()
+	if is_instance_valid(_attack):
+		if _attack.phase_changed.is_connected(_phase): _attack.phase_changed.disconnect(_phase)
+		if _attack.attack_finished.is_connected(_finished): _attack.attack_finished.disconnect(_finished)

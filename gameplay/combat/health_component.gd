@@ -17,7 +17,8 @@ var shield_maximum := 0.0
 ## Keeping mitigation here makes the same rule available to enemies, players,
 ## and future equipment without coupling damage sources to armor ownership.
 @export_range(0.0, 9999.0, 1.0) var armor_rating: float = 0.0
-## Ward is a separate all-damage equipment layer applied after armor.
+@export_range(0.0, 9999.0, 1.0) var magic_resistance_rating: float = 0.0
+## Universal ward follows physical/magic resistance. Pure damage bypasses it.
 @export_range(0.0, 0.75, 0.01) var ward_reduction_ratio: float = 0.0
 
 var current_health: float
@@ -66,7 +67,7 @@ func apply_damage(info: DamageInfo) -> bool:
 		return false
 
 	info.raw_amount = info.amount
-	info.amount = resolve_damage(info.amount)
+	info.amount = resolve_damage(info.amount, info.damage_type)
 	if damage_absorber.is_valid() and damage_absorber.call(info):
 		damage_absorbed.emit(info)
 		return true
@@ -97,17 +98,22 @@ func set_temporary_shield(amount: float) -> void:
 	shield_changed.emit(shield_health, shield_maximum)
 
 
-func resolve_damage(raw_damage: float) -> float:
+func resolve_damage(raw_damage: float, damage_type := DamageInfo.DamageType.PHYSICAL) -> float:
 	if raw_damage <= 0.0:
 		return 0.0
-	var after_armor := raw_damage * 100.0 / (100.0 + maxf(armor_rating, 0.0))
-	return after_armor * (1.0 - clampf(ward_reduction_ratio, 0.0, 0.75))
+	var kind := DamageInfo.normalize_type(damage_type)
+	if kind == DamageInfo.DamageType.PURE:
+		return raw_damage
+	var resistance := magic_resistance_rating if kind == DamageInfo.DamageType.MAGIC else armor_rating
+	var after_resistance := raw_damage * 100.0 / (100.0 + maxf(resistance, 0.0))
+	return after_resistance * (1.0 - clampf(ward_reduction_ratio, 0.0, 0.75))
 
 
 func get_armor_reduction_ratio() -> float:
 	return 1.0 - 100.0 / (100.0 + maxf(armor_rating, 0.0))
 
 
-func set_equipment_defenses(armor: float, ward_ratio: float) -> void:
+func set_equipment_defenses(armor: float, ward_ratio: float, magic_resistance := 0.0) -> void:
 	armor_rating = maxf(armor, 0.0)
+	magic_resistance_rating = maxf(magic_resistance, 0.0)
 	ward_reduction_ratio = clampf(ward_ratio, 0.0, 0.75)

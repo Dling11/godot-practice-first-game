@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-04",
+  "generator": "built-in image_gen via imagegen skill",
+  "sources": [
+    {
+      "file": "carry_source.png",
+      "original_path": "C:/Users/Administrator/.codex/generated_images/01a0eed4-5878-7032-a315-e493f92ce97a/exec-7da7f9f6-8057-4586-9868-18f15350dec1.png",
+      "sha256": "08375b0936ca4638b6b1ce0508b27632902defd31626fbc6a5ae5dc508ac55e5",
+      "source_unchanged": true
+    },
+    {
+      "file": "actions_source.png",
+      "original_path": "C:/Users/Administrator/.codex/generated_images/01a0eed4-5878-7032-a315-e493f92ce97a/exec-81187f63-30f5-4df4-9302-9017c2a2d940.png",
+      "sha256": "8dde3ac39e87daf5331af6c280a38f7241f320b40e160b40d69f30365e8d57bd",
+      "source_unchanged": true
+    },
+    {
+      "file": "trail_source.png",
+      "original_path": "C:/Users/Administrator/.codex/generated_images/01a0eed4-5878-7032-a315-e493f92ce97a/exec-1d2e0c82-4231-4568-ad73-a61eee315587.png",
+      "sha256": "ff255c67513b10a96cc912c3748df26f64d0c8a70e007504a99c7d995bef7d64",
+      "source_unchanged": true
+    }
+  ],
+  "references": [
+    "art_source/generated/characters/king/iron_beard_motion_proof_2026_10_04/references/light_leather_king.png",
+    "art_source/generated/characters/king/axe_combo_v2_2026_10_04/body_source.png"
+  ],
+  "runtime_folder": "assets/characters/playable/king/axe_proof_v3/",
+  "status": "native-tested isolated stationary review; owner feel and normal equipment promotion pending"
+}

@@ -9,6 +9,8 @@ func _initialize() -> void:
 
 
 func _run() -> void:
+	root.get_node("SaveService").configure_storage_path_for_testing("user://enemy_crowd_control_smoke.json")
+	root.get_node("SaveService").suppress_autosave_for_debug_session()
 	var player := PlayerScene.instantiate() as Player
 	var thrall := ThrallScene.instantiate() as ForsakenThrall
 	thrall.target = player

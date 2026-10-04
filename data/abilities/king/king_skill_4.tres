@@ -8,6 +8,7 @@
 [resource]
 script = ExtResource("1_script")
 ability_id = &"king_skill_4"
+damage_type = 1
 display_name = "Worldsplitter"
 hud_name = "WORLDSPLITTER"
 description = "Summon a blue-white sword that drives deep into the target and shatters into a radial blast. Move after the short command. The detonation can stun.\n520% weapon damage · 260px reach · 88px radius · 0.32s command"

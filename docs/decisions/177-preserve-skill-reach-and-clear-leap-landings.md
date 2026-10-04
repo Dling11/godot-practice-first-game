@@ -1,6 +1,6 @@
 # Decision177: Preserve skill reach and clear leap landings
 
-**Owner refinement (2026-10-03):** Ornate silver rings are rejected as too wide/huge/distracting. Current presentation is a single1px blended boundary with small ticks/open center, quiet range arcs and24px hardware cursors. It retains authored hit geometry and all terrain rules. Decorative PNGs are archived and only the four generated cursor assets stay active. Native39 current-art checks and UI/icon smoke pass. Clearing native hardware bindings at teardown removes the two texture/RID and RenderingServer-null warnings in the focused test; broad full-session verification remains open.
+**Owner refinement/correction (2026-10-04):** Ornate silver rings are rejected as oversized, then the1px boundary is too faint. Current circle uses one2px/62% boundary and6% fill with the same small marks, quiet range arcs and24px cursors. Existing skill animation/VFX remains. Sanctuary's disabled offscreen workshop must not establish outdoor navigation ground; only enabled regions constrain landing. Native real-scene landing45, terrain33 and art39 checks pass; current evidence is under art_source/review/ui/targeting_recovery_2026_10_04/. Owner feel and representative campaign/phone profiling remain open.
 
 Date: 2026-10-03. Status: Implemented; owner feel review remains open.
 
@@ -14,7 +14,7 @@ Earthsplitter keeps authored full lanes through world scenery, both in preview a
 
 Pursuit validates its real foot shape and authored navigation ground at the destination, within range and playable bounds. Flight temporarily disables only King's world-collision mask bit; other collision bits stay intact. Intervening walls, trees and rocks can all be crossed. An occupied destination retreats up to 32px toward the origin before a safe approach/in-place fallback. Revalidate at wind-up release. Landing, cancellation and teardown restore the previous mask bit; interrupted flight inside scenery returns to the last safe feet. Charges, travel-only invulnerability and normal movement remain component-owned.
 
-Ground aiming uses King's physical feet for preview and commit. Generated silver/slate/violet rings, landing glyph and hardware cursors replace plain blue/gold targeting presentation. Render-frame aim updates run only while targeting; unchanged pointer/origin/stick skips redraw/queries. Confirmation refreshes current aim and each cast resolves its own target. Exact circle/lane geometry remains visible alongside decorative sprites; no visual easing delays the actual chosen point.
+Ground aiming uses King's physical feet for preview and commit. Native silver/slate/violet circle/lane geometry and four generated hardware cursors replace plain blue/gold presentation; decorative ring/glyph sprites are archived. Render-frame aim updates run only while targeting; unchanged pointer/origin/stick skips redraw/queries. Confirmation refreshes current aim and each cast resolves its own target. No visual easing delays the actual chosen point. Navigation ground validation applies only when a shared-map region is enabled, preserving outdoor physics/bounds checks when offscreen rooms are inactive.
 
 ## Alternatives and consequences
 

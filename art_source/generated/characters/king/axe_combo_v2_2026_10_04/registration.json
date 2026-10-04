@@ -1,0 +1,460 @@
+{
+	"alpha_threshold": 0.65,
+	"body_source_size": [
+		1086,
+		1448
+	],
+	"frames": [
+		{
+			"action": "return",
+			"offset": [
+				68,
+				25
+			],
+			"pose": 0,
+			"primary_hand": [
+				90.0,
+				82.0
+			],
+			"secondary_hand": [
+				85.0,
+				78.0
+			],
+			"source_crop": [
+				0,
+				0,
+				271,
+				362
+			],
+			"source_floor": [
+				141.5,
+				353.0
+			]
+		},
+		{
+			"action": "return",
+			"offset": [
+				67,
+				25
+			],
+			"pose": 1,
+			"primary_hand": [
+				108.0,
+				84.0
+			],
+			"secondary_hand": [
+				100.0,
+				79.0
+			],
+			"source_crop": [
+				271,
+				0,
+				271,
+				362
+			],
+			"source_floor": [
+				144.5,
+				356.0
+			]
+		},
+		{
+			"action": "return",
+			"offset": [
+				67,
+				25
+			],
+			"pose": 2,
+			"primary_hand": [
+				115.0,
+				68.0
+			],
+			"secondary_hand": [
+				111.0,
+				72.0
+			],
+			"source_crop": [
+				543,
+				0,
+				271,
+				362
+			],
+			"source_floor": [
+				144.0,
+				354.0
+			]
+		},
+		{
+			"action": "return",
+			"offset": [
+				67,
+				25
+			],
+			"pose": 3,
+			"primary_hand": [
+				112.0,
+				55.0
+			],
+			"secondary_hand": [
+				104.0,
+				62.0
+			],
+			"source_crop": [
+				814,
+				0,
+				271,
+				362
+			],
+			"source_floor": [
+				142.5,
+				353.0
+			]
+		},
+		{
+			"action": "return",
+			"offset": [
+				66,
+				26
+			],
+			"pose": 4,
+			"primary_hand": [
+				113.0,
+				43.0
+			],
+			"secondary_hand": [
+				108.0,
+				49.0
+			],
+			"source_crop": [
+				0,
+				362,
+				271,
+				362
+			],
+			"source_floor": [
+				152.0,
+				348.0
+			]
+		},
+		{
+			"action": "return",
+			"offset": [
+				66,
+				26
+			],
+			"pose": 5,
+			"primary_hand": [
+				113.0,
+				50.0
+			],
+			"secondary_hand": [
+				108.0,
+				54.0
+			],
+			"source_crop": [
+				271,
+				362,
+				271,
+				362
+			],
+			"source_floor": [
+				147.5,
+				348.0
+			]
+		},
+		{
+			"action": "return",
+			"offset": [
+				67,
+				27
+			],
+			"pose": 6,
+			"primary_hand": [
+				115.0,
+				79.0
+			],
+			"secondary_hand": [
+				106.0,
+				74.0
+			],
+			"source_crop": [
+				543,
+				362,
+				271,
+				362
+			],
+			"source_floor": [
+				142.5,
+				344.0
+			]
+		},
+		{
+			"action": "return",
+			"offset": [
+				67,
+				26
+			],
+			"pose": 7,
+			"primary_hand": [
+				89.0,
+				83.0
+			],
+			"secondary_hand": [
+				84.0,
+				78.0
+			],
+			"source_crop": [
+				814,
+				362,
+				271,
+				362
+			],
+			"source_floor": [
+				145.5,
+				352.0
+			]
+		},
+		{
+			"action": "finisher",
+			"offset": [
+				65,
+				25
+			],
+			"pose": 0,
+			"primary_hand": [
+				87.0,
+				46.0
+			],
+			"secondary_hand": [
+				87.0,
+				52.0
+			],
+			"source_crop": [
+				0,
+				724,
+				271,
+				362
+			],
+			"source_floor": [
+				153.0,
+				354.0
+			]
+		},
+		{
+			"action": "finisher",
+			"offset": [
+				65,
+				25
+			],
+			"pose": 1,
+			"primary_hand": [
+				91.0,
+				55.0
+			],
+			"secondary_hand": [
+				90.0,
+				61.0
+			],
+			"source_crop": [
+				271,
+				724,
+				271,
+				362
+			],
+			"source_floor": [
+				153.5,
+				356.0
+			]
+		},
+		{
+			"action": "finisher",
+			"offset": [
+				67,
+				35
+			],
+			"pose": 2,
+			"primary_hand": [
+				86.0,
+				47.0
+			],
+			"secondary_hand": [
+				85.0,
+				53.0
+			],
+			"source_crop": [
+				543,
+				724,
+				271,
+				362
+			],
+			"source_floor": [
+				145.0,
+				305.0
+			]
+		},
+		{
+			"action": "finisher",
+			"offset": [
+				65,
+				37
+			],
+			"pose": 3,
+			"primary_hand": [
+				94.0,
+				47.0
+			],
+			"secondary_hand": [
+				86.0,
+				46.0
+			],
+			"source_crop": [
+				814,
+				724,
+				271,
+				362
+			],
+			"source_floor": [
+				152.5,
+				296.0
+			]
+		},
+		{
+			"action": "finisher",
+			"offset": [
+				68,
+				32
+			],
+			"pose": 4,
+			"primary_hand": [
+				116.0,
+				84.0
+			],
+			"secondary_hand": [
+				108.0,
+				77.0
+			],
+			"source_crop": [
+				0,
+				1086,
+				271,
+				362
+			],
+			"source_floor": [
+				141.0,
+				319.0
+			]
+		},
+		{
+			"action": "finisher",
+			"offset": [
+				66,
+				32
+			],
+			"pose": 5,
+			"primary_hand": [
+				114.0,
+				84.0
+			],
+			"secondary_hand": [
+				107.0,
+				78.0
+			],
+			"source_crop": [
+				271,
+				1086,
+				271,
+				362
+			],
+			"source_floor": [
+				148.5,
+				319.0
+			]
+		},
+		{
+			"action": "finisher",
+			"offset": [
+				68,
+				32
+			],
+			"pose": 6,
+			"primary_hand": [
+				115.0,
+				74.0
+			],
+			"secondary_hand": [
+				107.0,
+				72.0
+			],
+			"source_crop": [
+				543,
+				1086,
+				271,
+				362
+			],
+			"source_floor": [
+				141.0,
+				319.0
+			]
+		},
+		{
+			"action": "finisher",
+			"offset": [
+				69,
+				32
+			],
+			"pose": 7,
+			"primary_hand": [
+				113.0,
+				83.0
+			],
+			"secondary_hand": [
+				105.0,
+				77.0
+			],
+			"source_crop": [
+				814,
+				1086,
+				271,
+				362
+			],
+			"source_floor": [
+				136.5,
+				322.0
+			]
+		}
+	],
+	"lift_logical_pixels": [
+		0,
+		0,
+		-10,
+		-16,
+		0,
+		0,
+		0,
+		0
+	],
+	"trail_cell_size": 96,
+	"trail_origins": [
+		[
+			48,
+			48
+		],
+		[
+			48,
+			64
+		],
+		[
+			48,
+			48
+		]
+	],
+	"trail_source_size": [
+		1448,
+		1086
+	],
+	"trail_uniform_size": [
+		84,
+		84
+	],
+	"uniform_body_scale": 0.2,
+	"visible_blue_pixels": 0
+}

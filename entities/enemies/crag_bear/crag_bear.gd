@@ -62,6 +62,7 @@ func _ready() -> void:
 	health_component.maximum_health = definition.maximum_health
 	health_component.current_health = definition.maximum_health
 	health_component.armor_rating = definition.armor_rating
+	health_component.magic_resistance_rating = definition.magic_resistance_rating
 	health_component.died.connect(_on_died)
 	knockback_component.configure(definition)
 	stagger_component.configure(definition)

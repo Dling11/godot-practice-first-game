@@ -60,6 +60,8 @@ func configure(definition: SkillSlotDefinition) -> void:
 	key_label.text = definition.get_key_label()
 	ability_icon.texture = definition.get_icon()
 	tooltip_text = "%s — %s" % [definition.get_display_name(), definition.get_status_text()]
+	if definition.is_equipped():
+		tooltip_text += "\n"+definition.get_description()
 	activation_button.tooltip_text = tooltip_text
 	if definition.is_equipped():
 		ability_name.text = definition.ability.hud_name
@@ -215,6 +217,7 @@ func _show_pursuit_charges(_available: int, _maximum: int) -> void:
 	else:
 		cooldown_tick.stop()
 	tooltip_text = "%s — %d/%d uses; next refill in %.1fs" % [slot_definition.get_display_name(), pursuit.charges_available, pursuit.get_max_charges(), pursuit.cooldown_remaining] if pursuit.cooldown_remaining > 0.0 else "%s — %d/%d uses ready" % [slot_definition.get_display_name(), pursuit.charges_available, pursuit.get_max_charges()]
+	tooltip_text += "\n"+pursuit.definition.get_description_with_damage_type()
 	activation_button.tooltip_text = tooltip_text
 	queue_redraw()
 

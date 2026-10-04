@@ -10,6 +10,7 @@ display_name = "Crag Bear"
 portrait = ExtResource("2_portrait")
 maximum_health = 210.0
 armor_rating = 12.0
+magic_resistance_rating = 12.0
 move_speed = 50.0
 acceleration = 460.0
 movement_footprint_radius = 11.0

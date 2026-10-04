@@ -36,7 +36,7 @@ func _ready() -> void:
 	_contact.add_child(shape)
 	add_child(_contact)
 	_contact.global_position = origin
-	_contact.activate(damage, source, (target-origin).normalized(), tuning.knockback_strength, tuning.stagger_seconds, critical_chance, critical_multiplier, 0.0)
+	_contact.activate(damage, source, (target-origin).normalized(), tuning.knockback_strength, tuning.stagger_seconds, critical_chance, critical_multiplier, 0.0, tuning.damage_type)
 	_contact._hit_targets = shared_targets
 	_contact.set_physics_process(false)
 	_contact.hit_landed.connect(func(hurtbox: HurtboxComponent, info: DamageInfo) -> void: hit_landed.emit(hurtbox, info))

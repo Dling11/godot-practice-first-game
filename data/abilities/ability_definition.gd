@@ -15,6 +15,7 @@ enum ImpactWeight { LIGHT, MEDIUM, HEAVY, DEVASTATING }
 @export var activation_mode := ActivationMode.IMMEDIATE_DIRECTIONAL
 @export var presentation_style := PresentationStyle.SWEEP
 @export var impact_weight := ImpactWeight.MEDIUM
+@export var damage_type := DamageInfo.DamageType.PHYSICAL
 @export var hitbox_shape: Shape2D
 @export_range(0.0, 9999.0, 1.0) var damage := 0.0
 @export_range(0.0, 10.0, 0.05) var weapon_damage_multiplier := 0.0
@@ -36,6 +37,14 @@ enum ImpactWeight { LIGHT, MEDIUM, HEAVY, DEVASTATING }
 ## flash, audio, and hit-pause still resolve normally.
 @export var grants_super_armor := false
 @export var dash_cancelable := false
+
+
+func get_damage_type_label() -> String:
+	return DamageInfo.type_name(damage_type)+" DAMAGE" if damage > 0.0 or weapon_damage_multiplier > 0.0 else "SELF BUFF"
+
+
+func get_description_with_damage_type() -> String:
+	return get_damage_type_label()+"\n"+description
 
 
 func resolve_damage(equipped_weapon_damage: float) -> float:

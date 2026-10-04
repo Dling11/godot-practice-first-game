@@ -42,7 +42,7 @@ func _run() -> void:
 		or not is_equal_approx(varkuun_edge.weapon_definition.wind_up_seconds, KingSword.wind_up_seconds)
 		or not is_equal_approx(varkuun_edge.weapon_definition.active_seconds, KingSword.active_seconds)
 		or not is_equal_approx(varkuun_edge.weapon_definition.recovery_seconds, KingSword.recovery_seconds)
-		or varkuun_edge.get_stat_summary() != "BASIC HIT 16-20  •  SKILL POWER 38  •  CRIT 8%"
+		or varkuun_edge.get_stat_summary() != "BASIC HIT 16-20  •  SKILL POWER 38  •  CRIT 8%  •  PHYSICAL"
 		or varkuun_edge.get_comparison_summary(KingCatalog.default_weapon)
 		!= "+6 MIN HIT  •  +8 MAX HIT  •  +13 SKILL POWER  •  +8% CRIT"
 		or not varkuun_edge.synergy_description.contains("150% damage")

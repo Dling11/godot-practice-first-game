@@ -28,7 +28,10 @@ func _run() -> void:
 	await create_timer(.3).timeout
 	var before := root.get_node("SaveService").create_profile_snapshot() as Dictionary
 	stage.encounter_controller.start_encounter()
-	await create_timer(.4).timeout
+	# Reserved arrivals may retry occupied footing; await materialized actors.
+	var arrival_deadline := Time.get_ticks_msec()+3000
+	while stage.encounter_controller.actors.get_children().filter(func(actor: Node) -> bool: return actor != player and actor.get("health_component") != null).size()<3 and Time.get_ticks_msec()<arrival_deadline:
+		await physics_frame
 	var foes: Array = stage.encounter_controller.actors.get_children().filter(func(actor: Node) -> bool: return actor != player and actor.get("health_component") != null)
 	_check(foes.size() == 3 and stage.encounter_controller.max_active_enemies == 3,"Trial does not have exactly three ordinary enemy slots")
 	for actor: Node in foes:
@@ -78,7 +81,7 @@ func _run() -> void:
 	await create_timer(1.18).timeout
 	await _capture("eruption.png")
 	await create_timer(.38).timeout
-	var expected: float = player.health_component.resolve_damage(caster.definition.attack_damage)
+	var expected: float = player.health_component.resolve_damage(caster.definition.attack_damage,caster.definition.damage_type)
 	_check(is_equal_approx(old_health-player.health_component.current_health,expected),"A full warning does not produce exactly one 10-damage mitigated contact")
 	_check(caster.state == Rotcaller.State.RECOVERY,"Cast release does not expose recovery")
 	_check(not is_instance_valid(zone) or zone.is_queued_for_deletion(),"Released zone outlives its one contact window")

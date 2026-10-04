@@ -8,6 +8,7 @@ func _initialize() -> void:
 
 
 func _run() -> void:
+	root.get_node("SaveService").suppress_autosave_for_debug_session()
 	var target := CharacterBody2D.new()
 	target.position = Vector2(180.0, 0.0)
 	root.add_child(target)

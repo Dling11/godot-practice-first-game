@@ -10,6 +10,7 @@ display_name = "Varkuun, Lord of the Withered Grove"
 portrait = ExtResource("2_portrait")
 maximum_health = 900.0
 armor_rating = 30.0
+magic_resistance_rating = 30.0
 move_speed = 58.0
 acceleration = 480.0
 movement_footprint_radius = 18.0

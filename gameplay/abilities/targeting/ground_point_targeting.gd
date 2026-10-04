@@ -122,12 +122,12 @@ func _draw() -> void:
 	for index in 4:
 		var angle := index*PI*.5
 		draw_arc(origin, _range, angle-.14, angle+.14, 12, Color("aea7c4", .15 if near_limit else .07), 1.0, false)
-	draw_circle(center, _radius, Color("655386", .025))
-	# One exact, thin boundary; no decorative frame extending beyond the radius.
-	draw_arc(center, _radius, 0.0, TAU, 96, Color("bac2d2", .44), 1.0, false)
+	draw_circle(center, _radius, Color("655386", .06))
+	# One clear boundary follows the hit radius without a decorative outer frame.
+	draw_arc(center, _radius, 0.0, TAU, 96, Color("bac2d2", .62), 2.0, false)
 	for index in 4:
 		var direction := Vector2.from_angle(index*PI*.5)
-		draw_line(center+direction*(_radius-2.0), center+direction*(_radius+2.0), Color("c3c9da", .48), 1.0)
+		draw_line(center+direction*(_radius-2.0), center+direction*(_radius+2.0), Color("c3c9da", .62), 2.0)
 	var core := _component.get_target_core_radius_pixels()
 	# Foundation Worldsplitter's core equals the outer radius. Drawing it again
 	# previously compounded opacity and made the same boundary too bright.

@@ -9,6 +9,7 @@ var radius := 86.0
 var damage := 0.0
 var critical_chance := 0.0
 var critical_multiplier := 1.5
+var damage_type := DamageInfo.DamageType.PHYSICAL
 var _age := 0.0
 var _prepared := false
 var _hitbox: MeleeHitbox
@@ -39,7 +40,7 @@ func _physics_process(delta: float) -> void:
 	queue_free()
 
 func _pulse() -> void:
-	_hitbox.activate_radial(damage,source,global_position,20.0,0.0,critical_chance,critical_multiplier,0.0)
+	_hitbox.activate_radial(damage,source,global_position,20.0,0.0,critical_chance,critical_multiplier,0.0,damage_type)
 	_hitbox.set_physics_process(false)
 	var circle := CircleShape2D.new()
 	circle.radius = radius

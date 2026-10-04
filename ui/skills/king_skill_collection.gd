@@ -196,6 +196,7 @@ func _refresh() -> void:
 		var key := library.actor.skill_loadout.get_slot(assigned).get_key_label() if assigned > 0 else "—"
 		var course := library.training_info(id)
 		var subtitle: String = course.ranks[course.rank] if _training_mode else ("Slot "+key if assigned > 0 else "Not equipped")
+		subtitle += " · "+ability.definition.get_damage_type_label()
 		button.text = "%s\n%s" % [course.name,subtitle]
 		button.icon = ability.definition.icon
 		button.expand_icon = true
@@ -208,7 +209,7 @@ func _refresh() -> void:
 		button.pressed.connect(func() -> void: _selected = id; _refresh())
 		_list.add_child(button)
 		if id == _selected:
-			_detail.text = "[b]"+course.name+"[/b] · "+course.role+"\n"+ability.definition.description
+			_detail.text = "[b]"+course.name+"[/b] · "+course.role+"\n"+ability.definition.get_description_with_damage_type()
 			_detail.text += "\n\n[b]Equipped:[/b] "+("slot "+key if assigned > 0 else "not assigned")
 	_refresh_training()
 	for index in SkillLoadoutDefinition.SLOT_COUNT:

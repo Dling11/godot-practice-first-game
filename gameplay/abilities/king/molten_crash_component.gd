@@ -33,7 +33,7 @@ func _start_current_strike() -> void:
 	hitbox.set("damage_core_radius",tuning.damage_core_radius_pixels)
 	hitbox.set("outer_damage_ratio",tuning.outer_damage_ratio)
 	var total_damage := definition.resolve_damage(_equipped_weapon_damage)
-	hitbox.activate_radial(total_damage*(1.0-tuning.aftershock_damage_share),actor,contact_position,definition.knockback_strength,definition.stagger_seconds,_critical_chance_ratio,_critical_damage_multiplier,definition.stun_seconds)
+	hitbox.activate_radial(total_damage*(1.0-tuning.aftershock_damage_share),actor,contact_position,definition.knockback_strength,definition.stagger_seconds,_critical_chance_ratio,_critical_damage_multiplier,definition.stun_seconds,definition.damage_type)
 	# One explicit pulse: no persistent Area overlap or hidden aftermath damage.
 	hitbox.set_physics_process(false)
 	var query := PhysicsShapeQueryParameters2D.new()
@@ -68,6 +68,7 @@ func _start_current_strike() -> void:
 		pulse.damage = total_damage*tuning.aftershock_damage_share
 		pulse.critical_chance = _critical_chance_ratio
 		pulse.critical_multiplier = _critical_damage_multiplier
+		pulse.damage_type = definition.damage_type
 		actor.get_parent().add_child(pulse)
 		pulse.global_position = contact_position
 	strike_started.emit(0,1,definition.active_seconds)

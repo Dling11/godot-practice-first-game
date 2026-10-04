@@ -39,6 +39,7 @@ enum Rarity {
 @export_range(0, 999, 1) var preview_power := 0
 @export_range(0.0, 9999.0, 1.0) var flat_health_bonus := 0.0
 @export_range(0.0, 9999.0, 1.0) var armor_bonus := 0.0
+@export_range(0.0, 9999.0, 1.0) var magic_resistance_bonus := 0.0
 @export_range(0.0, 99.0, 0.05, "suffix:/s") var regeneration_bonus := 0.0
 @export_range(0.0, 0.75, 0.01, "suffix:%") var ward_reduction_ratio := 0.0
 @export_range(0.0, 2.0, 0.01, "suffix:%") var attack_speed_bonus_ratio := 0.0
@@ -105,12 +106,14 @@ func get_stat_summary() -> String:
 			weapon_summary += "  •  CRIT %d%%" % roundi(
 				weapon_definition.critical_chance_ratio * 100.0
 			)
-		return weapon_summary
+		return weapon_summary+"  •  "+DamageInfo.type_name(weapon_definition.damage_type)
 	var parts := PackedStringArray()
 	if flat_health_bonus > 0.0:
 		parts.append("HP +%d" % roundi(flat_health_bonus))
 	if armor_bonus > 0.0:
 		parts.append("ARMOR +%d" % roundi(armor_bonus))
+	if magic_resistance_bonus > 0.0:
+		parts.append("MAGIC RESIST +%d" % roundi(magic_resistance_bonus))
 	if regeneration_bonus > 0.0:
 		parts.append("REGEN +%.2f/s" % regeneration_bonus)
 	if ward_reduction_ratio > 0.0:
@@ -143,6 +146,7 @@ func get_comparison_summary(reference: EquipmentDefinition) -> String:
 	else:
 		_append_signed_stat(parts, flat_health_bonus - _reference_stat(reference, "flat_health_bonus"), "HP")
 		_append_signed_stat(parts, armor_bonus - _reference_stat(reference, "armor_bonus"), "ARMOR")
+		_append_signed_stat(parts, magic_resistance_bonus - _reference_stat(reference, "magic_resistance_bonus"), "MAGIC RESIST")
 		_append_signed_stat(
 			parts,
 			regeneration_bonus - _reference_stat(reference, "regeneration_bonus"),
