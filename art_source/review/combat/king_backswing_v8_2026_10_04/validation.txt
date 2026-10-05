@@ -1,0 +1,25 @@
+Greatsword V8 returning backswing - 2026-10-04
+Godot4.7.2 native Compatibility / AMD Radeon renderer.
+tests/king_five_cut_smoke.gd: 165 checks, 0 failures.
+
+Owner accepts V7 King appearance, corrects fifth to front-to-back.
+Existing accepted eight body cells and original leading anchors are unchanged.
+Review-local clone phase windows: WIND0..4 / ACTIVE5..6 / RECOVERY7.
+Rear polygon96px, close-front26px, half-height64px; not a360-degree circle.
+Existing radial_steps mode supplies outward impact direction per victim.
+Committed facing and first four cuts remain unchanged.
+White sample rotations: -100/-120/-140/-160 degrees, rear clipped.
+
+Native checks include every actual FX frame and real contact on both sides,
+rear target health/damage and outward direction, distant-front and beyond-
+rear-range misses, original body pixels, exact joins, pause/cancel/reset/wrap,
+46px actual steps and unchanged4.90s/8.45 nominal aggregate damage budget.
+Aggregate damage assumes victims on each respective lane, not one far-front
+target taking all five hits.
+
+return_keys.png: native eight keys, both sides, phase labels.
+motion_frames/ and timeline:240 actual-clock frames including a rear victim.
+motion.gif: timeline delays, verified240 decoded frames.
+Evidence is not campaign/phone performance profiling.
+Existing PS opens V8 RETURNING BACKSWING; Try returning backswing isolates5.
+Normal equipment/recipes/save/rewards/up-down art remain unchanged.

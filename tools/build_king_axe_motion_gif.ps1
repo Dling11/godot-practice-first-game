@@ -1,12 +1,24 @@
-param([switch]$Combo,[switch]$Expanded,[switch]$Greatsword,[switch]$Confidence,[switch]$GaitRepair,[switch]$GaitLoop,[switch]$GripPlant,[switch]$GripLoop)
+param([switch]$Combo,[switch]$Expanded,[switch]$Greatsword,[switch]$Confidence,[switch]$GaitRepair,[switch]$GaitLoop,[switch]$GripPlant,[switch]$GripLoop,[switch]$LowReturn,[switch]$FinalMotion,[switch]$ConnectedMotion,[switch]$ResponsiveMotion,[switch]$OathboundMotion,[switch]$NeckRepair,[switch]$Readability,[string]$ReviewFolder)
 Add-Type -AssemblyName PresentationCore
-$folder = if ($GripLoop) { 'king_grip_loop_v4_2026_10_04' } elseif ($GripPlant) { 'king_grip_plant_v4_2026_10_04' } elseif ($GaitLoop) { 'king_gait_loop_v3_2026_10_04' } elseif ($GaitRepair) { 'king_gait_repair_v3_2026_10_04' } elseif ($Confidence) { 'king_confidence_v2_2026_10_04' } elseif ($Greatsword) { 'king_huge_greatsword_2026_10_04' } elseif ($Expanded) { 'king_axe_expanded_v3_2026_10_04' } elseif ($Combo) { 'king_axe_combo_v2_2026_10_04' } else { 'king_axe_grip_2026_10_04' }
+$ErrorActionPreference = 'Stop'
+$folder = if ($FinalMotion) { 'king_greatsword_final_motion_2026_10_05' } elseif ($LowReturn) { 'king_low_return_pair_2026_10_05' } elseif ($GripLoop) { 'king_grip_loop_v4_2026_10_04' } elseif ($GripPlant) { 'king_grip_plant_v4_2026_10_04' } elseif ($GaitLoop) { 'king_gait_loop_v3_2026_10_04' } elseif ($GaitRepair) { 'king_gait_repair_v3_2026_10_04' } elseif ($Confidence) { 'king_confidence_v2_2026_10_04' } elseif ($Greatsword) { 'king_huge_greatsword_2026_10_04' } elseif ($Expanded) { 'king_axe_expanded_v3_2026_10_04' } elseif ($Combo) { 'king_axe_combo_v2_2026_10_04' } else { 'king_axe_grip_2026_10_04' }
 $reviewPath = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot ('..\art_source\review\combat\'+$folder)))
-$timeline = @(Get-Content -LiteralPath (Join-Path $reviewPath 'motion_timeline.json') -Raw | ConvertFrom-Json)
+if ($ConnectedMotion) { $reviewPath = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\art_source\review\combat\king_greatsword_connected_2026_10_05')) }
+if ($ResponsiveMotion) { $reviewPath = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\art_source\review\combat\king_greatsword_responsive_2026_10_05')) }
+if ($OathboundMotion) { $reviewPath = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\art_source\review\combat\king_greatsword_oathbound_2026_10_05')) }
+if ($NeckRepair) { $reviewPath = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\art_source\review\combat\king_oathbound_neck_2026_10_05')) }
+if ($Readability) { $reviewPath = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\art_source\review\combat\king_greatsword_readability_2026_10_05')) }
+if ($ReviewFolder) {
+    $combatReviewRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\art_source\review\combat'))
+    $reviewPath = [IO.Path]::GetFullPath((Join-Path $combatReviewRoot $ReviewFolder))
+    if (-not $reviewPath.StartsWith($combatReviewRoot + [IO.Path]::DirectorySeparatorChar,[StringComparison]::OrdinalIgnoreCase)) { throw 'ReviewFolder must stay inside combat review artifacts.' }
+}
+$timeline = Get-Content -LiteralPath (Join-Path $reviewPath 'motion_timeline.json') -Raw | ConvertFrom-Json
 $encoder = [System.Windows.Media.Imaging.GifBitmapEncoder]::new()
 $delays = @()
 for ($index = 0; $index -lt $timeline.Count; $index++) {
-    $delay = if ($index + 1 -lt $timeline.Count) { [Math]::Max(1,[Math]::Round(($timeline[$index+1].elapsed_ms-$timeline[$index].elapsed_ms)/10)) } else { 30 }
+    # Quantize absolute boundaries so rounding cannot stretch every60fps frame.
+    $delay = if ($index + 1 -lt $timeline.Count) { [Math]::Max(1,[Math]::Round($timeline[$index+1].elapsed_ms/10)-[Math]::Round($timeline[$index].elapsed_ms/10)) } else { 30 }
     $delays += [UInt16]$delay
     $stream = [IO.File]::OpenRead((Join-Path $reviewPath $timeline[$index].file))
     try {

@@ -1,6 +1,141 @@
 # Changelog
 
+**2026-10-05 — Small upward Greatsword body centering:** At the owner's request, reduced the existing up attack torso/head lean together with a small offline row adjustment:50% toward carry center, maximum4 logical texels, tapering to unchanged boots. Foreground fists and final sword grips follow the adjusted drawing. Preserved side/down art, white effects, steel, input, timing/damage/reach and movement. Native full combo2901/0, movement158/0 and anatomical registration216/0 pass;40 accepted other-facing/idle/run files remain byte-identical. New native before/after and130-frame GIF: `art_source/review/combat/king_upward_centering_2026_10_05/`.
+
+**2026-10-05 — Upward Greatsword head/torso alignment and cleanup:** Owner clarifies that the prior FX-only fix missed a sideways head/collar transplant and rejects its smaller white arcs. Attach only original hair to each source scalp center/bottom; preserve the drawn torso/collar and foreground fists. Restore shared ordinary FX scale and remove the upward-only maps/adapter path. Archive ten unused cardinal attack sets, the old low-return assets/tools and the rejected FX calibration/test with path/hash manifests and import exclusion. Cardinal builder now reproduces retained carry/run only, byte-identically. Side/down attacks, proud idle, huge steel, movement, timing/damage/reach remain. Native motion2901/0, anatomy216/0, style84/0, movement158/0 and gameplay151/0 pass; fresh130-frame GIF and46-pose upward capture are recorded. [Current guide](docs/design/king-greatsword-oathbound-motion.md).
+
+**2026-10-05 — Historical upward slash fit, owner-rejected and removed:** Added upward-only maps fitting full white envelopes inside the contact mesh. Native48/0 proved complete fitted coverage, but did not resolve the head/torso defect and changed directional visual scale. This path, tool and test are now archived; current gameplay uses shared ordinary sampling. Historical proof remains under `king_upward_cut_2026_10_05/`.
+
+**2026-10-05 — Greatsword remaining art/movement polish:** Registered complete attack cels by soles to remove unintended bounce; put upward white FX before the body without changing world depth. Added centered front/back carry and generated proud planted idle/retrieval; matched side gait head/hair to accepted idle. Greatsword now allows25% walking in wind-up, plants during contact and restores60% in recovery, with legacy weapons at full speed and independent collision steps/knockback/dodge. Five-hit pattern, huge steel,3.00s timing, damage and reach remain. Native motion2901/0, readability/actual movement158/0, gameplay151/0, contacts60/0 and confidence101/0 pass;130-frame GIF metadata verified. Original sources/accepted art retained; updated handoff/provenance. [Guide](docs/design/king-greatsword-oathbound-motion.md).
+
+**2026-10-05 — Greatsword head/neck attachment:** Corrected clipped/floating heads by replacing the expanded fixed head rectangle with per-pose neck-anchored silhouette composition. Preserved cool cloth/arms and raised foreground fists; removed discarded scalp specks. Added source/target identity metadata, crown coverage and flood-fill head/torso/glove checks; native2381/0 passes. Earlier unchanged-pixel tests missed anatomical gaps. Existing cut pattern/timing, damage/reach, huge steel, physical motion and carry/run/pride remain. Current evidence: `art_source/review/combat/king_oathbound_neck_2026_10_05/`.
+
+**2026-10-05 — Oathbound five-cut Greatsword:** Replaced owner-rejected mixed-sheet attacks with newly generated complete side/front/back bodies while protecting installed face/hair, carry/run/proud idle and huge steel. Fourth/fifth each0.54s within3.00s. Fixed broad ordinary white arcs and frontal tip-aligned slam dust. Archived166 rejected asset/tool/test files with original paths/hashes and `.gdignore`; removed unused detached-arm runtime tracks/solver. Historical smoke commands route to current proof. Sources/prompts, registration, native captures and handoff are retained. [Details](docs/design/king-greatsword-oathbound-motion.md).
+
+## 2026-10-05 - Responsive Greatsword after owner rejection
+
+- Owner rejects modular-arm body motion, grip/rotation and slow pacing, citing the accepted axe. Replaced installed art with complete existing body/hand cels; current rigs allocate no detached limbs.
+- Shortened the five cuts4.26→3.00s, with slam preparation0.64→0.32s. Retained canonical30x140 steel, damage/contact rules,46px steps and original carry/run/planted idle. Faster throughput still requires comparative balance review.
+- Added authored buffered/released recovery windows and inheritance of the actual complete rendered opening for standalone/late inputs. Rising setup omits its old reverse-facing preparation; slam lands and directs side steel downward at ACTIVE.
+- Captured actual Greatsword/unchanged axe input on the same engine clock; current native motion1230/0. Final evidence: docs/design/king-greatsword-responsive-motion.md. Decision181 is owner-rejected;182 owns the replacement. Test counts remain separate from owner feel approval.
+
+## 2026-10-05 - Connected Greatsword two-hand motion
+
+- Replaced all five basic attack presentations with connected twenty-key side/front/back tracks, directed unwrapped blade angles, exposure-aware monotone interpolation and fixed hilt-derived wrists. Recovery travels into the next chamber; released chains brake into existing carry, with interruptible late-input handoff.
+- Added modular textured two-bone arms and complete clip validation. Canonical 30x140 steel, carry/run/planted idle and 4.26s/8.45-unit/46px combat tuning remain. Existing raster trails follow current directional clips without adding rear damage.
+- Rejected initial generated metal-armor style drift after owner feedback. Exported installed Spellward references; bounded torso/arm edits protect original head/boot pixels and retain compact cloth/leather styling.
+- Corrected family skill visibility to observe committed ability phases/finish. Updated current motion/contact tests and documented Decision 181. Native evidence and final verification counts: docs/design/king-greatsword-motion-polish.md and art_source/review/combat/king_greatsword_connected_2026_10_05/.
+- Kept far-arm/body/near-arm/glove depth consistent and repaired legacy held-weapon ordering around optional rig/timer siblings. The preserved run fixture now measures actual physics ticks and saves current captures separately from earlier review evidence.
+
+## 2026-10-05 - Greatsword linked motion and authored front/back directions
+
+- Matched fourth/fifth at 0.70s total and 0.22s contact; fifth 0.08/0.22/0.40s, full chain 4.26s. Redistributed existing 16-key low return: 0.128s rear stroke, 0.272s carry settle. Damage/range/knockback remain unchanged.
+- Added optional weighted pose exposure and registered rigid-blade interpolation, with grip pinned to drawn body cels. Linked contact endpoints stop interpolation before unqueued recovery, preventing a new hold/reset snap.
+- Generated and retained two 48-key front/back body sheets with exact prompts/provenance. New up/down five-cut, carry and actual-travel run assets are selected by the production Player adapter. All eight vertical queued boundaries clone actual preceding contact-end body/grip.
+- Preserved original huge steel, first four side drawings and proud planted side idle. Skills/reactions and axe vertical art retain established fallbacks; vertical planted AFK, armor, campaign acquisition and comparative balance remain pending.
+- Native final gameplay151/0, motion143/0, practice input17/0; this-turn preserved side-chain240/0, plant21/0 and axe114/0. Native 100-frame GIF uses a fixed engine clock and 30fps capture to avoid readback stretching; real-time gameplay/input tests run separately. Existing exit-only transition diagnostics remain recorded.
+- Updated current design/handoff/art/architecture docs. Owner subjective feel and phone profiling are not claimed complete; the previous recovery-only timing adjustment was rejected by owner.
+
+## 2026-10-05 - Faster fifth recovery and playable Iron Beard Axe
+
+- Shortened Royal Greatsword fifth recovery0.98→0.42s: final cut0.78s, full chain4.34s. Kept all16 accepted drawings, first four, steel/carry/idle, contact and damage unchanged.
+- Added accepted Iron Beard Axe to catalog/F9/Bag and actual Player presentation. Preserved five cuts, radial68px whirlwind/outward knockback,72px front reach, approved back-mounted run and back-stowed idle.
+- Made raster/SFX and optional effects profile-owned; axe avoids greatsword plant/meteor/return effects. Reviews and production share combo authority instead of duplicated axe timing/shape arrays.
+- Either review now enters actual Lab via Tab with both accepted weapons selectable. Normal campaign crafting/default equipment remain unchanged.
+- Native greatsword gameplay127/0 and new axe gameplay114/0 pass; screenshots/logs under art_source/review/combat/king_weapon_availability_2026_10_05/. Existing exit-only transition diagnostic remains recorded; art/balance/acquisition limits documented.
+- Native accepted chain239/0 and greatsword→practice17/0 pass. Headless equipment/menu, melee, repeated attack, ability buffer and atomic crafting regressions pass.
+
+## 2026-10-05 - Practice Tab and invisible pause repaired
+
+- Reproduced Tab opening the isolated review's hidden CharacterMenu and pausing gameplay; disabled that hidden listener.
+- Added actual CharacterMenu/HUD Bag binding to Combat Lab, which previously lacked the panel.
+- Greatsword review Tab/new toolbar button now enter full playable practice with approved gear equipped and a visible Bag. Esc resumes gameplay; old review fixtures leave with their scene.
+- Native physical-input/playable-practice17/0, Lab sidebar26/0 and CharacterMenu regressions pass. Scene-transition exit-only RefCounted diagnostic remains recorded in KNOWN_ISSUES.
+
+## 2026-10-05 - Accepted greatsword installed and obsolete returns archived
+
+- Added Royal Greatsword as a catalog/Bag-equipped Player family using the accepted five-cut clip, original huge steel, side run and shallow proud idle. F9 grants it through the existing non-saving preset; old defaults/IDs/snapshot restoration and crafting remain compatible.
+- Shared immutable combo/pose resources between normal gameplay and review; added scene-owned presentation adapter, actual-travel gait, action fallback and planted retrieval. Slow committed cuts retain one primary buffer; deferred finish dispatch avoids overlapping presentation cleanup.
+- Bag shows the equipped planted greatsword within its portrait; corrected five-step SFX lookup and player-scene teardown.
+- Archived four rejected return runtime folders plus ten unused tools with .gdignore/manifest. Extracted required sprite helper, removed unused return-trail branch and obsolete GIF switches; builder reproduces all accepted runtime hashes.
+- Native Godot4.7.2: gameplay127/0 (actual Sanctuary/F9/Bag/StageI), accepted chain236/0, confidence101/0 and planted21/0. Equipment/menu, melee/style, repeat/buffer and atomic crafting regressions pass; import/rebuild/audit checks pass.
+- Vertical/skill/reaction art remains the current directional fallback; family crafting, armor visuals and balance remain pending. Handoff: docs/design/king-greatsword-gameplay.md and CONTINUE_PROGRESS.md. Next owner playtest, then third weapon design preview.
+
+## 2026-10-05 - Existing greatsword fifth low return implemented
+
+- Replaced the isolated review's old reversed-frame fifth with a16-key chronological return using the owner's B3 motion reference. Exact actual fourth/carry endpoints and original30x140 steel remain; first-four artwork, gait/carry and proud planted idle are preserved.
+- Registered generated torso/arm patches over the original stance with protected head pixels; retained original white contact art and added faint blade-attached rear follow-through during RECOVERY only. Front damage/range/direction/timing remain unchanged.
+- Added optional pose_count (eight by default) for longer attacks and count-aware pose clamp/continuation hold.
+- Native five-cut239/0, preserved confidence101/0, planted21/0 and melee/style smoke pass. Stabilized pause-gap fixture with an attack_finished observer and bounded watchdog. Delivered right/left32-key gallery, real-clock120-frame paired GIF/timeline and exact source/prompt/hash/registration.
+- Existing greatsword launcher now opens LOW RETURN4→5. Actual motion feel remains for owner review; no normal F5/crafting/equipment promotion.
+
+## 2026-10-05 - Clarify preservation scope for fifth repair
+
+- Owner explicitly preserves the existing huge greatsword, accepted idle, King appearance, gait/carry and first four attacks. B panel3 “Return swing” supplies only the missing fifth motion/art reference.
+- Corrected active/handoff/design documentation to use the actual runtime fourth endpoint and existing canonical weapon/body, rather than promote A/B concept artwork or a new whole combo.
+- Verified current launcher still loads the original confidence/idle/run resources and old V10 fifth. No runtime or artwork edits in this scope clarification; fifth implementation remains pending.
+
+## 2026-10-05 - Owner selects low greatsword return reference
+
+- Recorded explicit selection of B's named “Return swing” pose from the still comparison: King faces the front enemy while the blade returns across waist height toward his backside.
+- Corrected active routing/handoff and art/design notes: low return motion is selected; connected production frames, grip/identity/contact and timing validation remain pending.
+- This records motion selection only; no runtime or artwork changes.
+
+## 2026-10-05 - Greatsword return-path still comparison
+
+- Corrected the documented interpretation: enemy-facing King and rearward sword follow-through are separate directions; owner rejects the prior all-front finish.
+- Generated numbered shoulder-height and low return stills from the fourth endpoint reference, preserving exact prompt, source and hash. Visually checked facing/right-head and left-rear blade endpoints.
+- Route selection and animation continuity remain pending. No gameplay or source code changes.
+
+## 2026-10-04 - Focused A frontal fifth motion preview
+
+- Owner clarifies that A's fifth turns backwards. Generated a nine-key frontal follow-up from fourth's raised front-up endpoint down through the same enemy, with unchanged facing and ivory/grey front trails.
+- Retained A's original first four drawings, cloned the fourth endpoint exactly as fifth entry, and registered eight subsequent keys at one density with shared face-X and boot-ground placement.
+- Delivered13-key focused4–5 and25-key full looping GIFs, native galleries, exact prompt/source/reference/hashes and frame audits. Native entry/bounds checks and decoded GIF frame counts pass.
+- Concept only; owner feel/identity approval and gameplay implementation remain pending. No damage, reach, equipment, crafting or normal F5 change.
+
+## 2026-10-04 - Three greatsword combo and slash art GIF choices
+
+- Returned to motion/art concept selection after the owner rejected V10 feel. Generated A Crosscut, B Breaker and C Royal Whirl with distinct five-strike patterns, body movement and slash designs.
+- Preserved all original/spacing-edited sheets, exact built-in imagegen prompts and source hashes. Delivered three looping640x480 GIFs with20 new keys each and full-key galleries.
+- Registered complete raster components across nominal cell edges, added ample padding and aligned planted boot heights with explicit jump offsets. Native60-frame render audit and20-frame GIF decode/delay/loop verification pass.
+- These are owner-choice animated art storyboards; no gameplay combo, equipment, crafting, save or F5 promotion. Next select movement and slash style before production frame/hand/weapon/contact work.
+
+## 2026-10-04 - Greatsword linked fourth-to-fifth stroke
+
+- Fixed the actual guard reset: queued fourth retains its last attacking pose; fifth starts at that exact body/blade position and returns through the opposite stroke.
+- Added optional endpoint metadata and recovery-time controller query without changing default family recovery or moving damage authority into presentation.
+- Shortened the interstroke pause and moved commitment into final settling, preserving total combo timing/damage/travel and accepted source pixels.
+- Added a paired 4 -> 5 button and native right/left120-frame preview. Native five-cut190/0 and planted21/0 pass, including real buffered input, unbuffered fourth and pause/cancel. Owner feel remains pending.
+
+## 2026-10-04 — Greatsword V9 return slash clarification
+
+- Corrected the rejected rear-enemy interpretation: fifth reverses only cut4 contact cells across the same frontal lane, then separately settles into shoulder carry. Removed V8 rear geometry, outward knockback and rear raster rotations from the active review.
+- Preserved accepted King pixels/leading gloves and first four strikes. Faster0.20s reply,0.28s contact and0.64s settling retain1.12s total and existing damage tuning.
+- Native proof covers exact source artwork, opposite contact progression, front hits/forward knockback, rear/range misses and prior effects/continuity/cancellation. V9 preview and provenance are separate; normal equipment remains pending.
+
+## 2026-10-04 — Greatsword V8 returns through the rear
+
+- Corrected fifth from repeated frontal rise to a front-to-back backswing: front anticipation, rear active poses and shoulder-carry settle. Preserved accepted King pixels and first four strikes.
+- Authored rear-biased contact and registered rear white arc; reused outward per-victim knockback, preserving facing, phase duration and physical tuning. Added rear-target fifth and front/rear crowd controls.
+- Native165/0 verifies actual rear hits/knockback, far-front/range misses, both directions, pixels, effects and continuity/cancellation. Evidence and actual-clock preview are versioned separately; campaign equipment remains pending.
+
+## 2026-10-04 — Greatsword V7 restores accepted King appearance
+
+- Removed rejected V6 body artwork from the current fifth cut; copied accepted turn/rise/carry cells without repainting, resizing or changing colors. Restored original leading glove registration; retained chronological movement, queued follow-through and gameplay tuning.
+- Added exact source-pixel comparisons for every fifth body cell. Preserved V6 sources/evidence as rejected history; V7 registration and native captures have separate paths. Owner appearance/motion approval remains pending.
+
+## 2026-10-04 — Greatsword V6 combo continuity
+
+- Replaced V5's reverse recovery sequence with a registered chronological upward return using five new raster body drawings and exact old turn/carry boundaries. Canonical sword, accepted idle/run, range, damage and phase timing remain.
+- Queued review cuts retain terminal follow-through across controller gaps; ordinary presenter callers keep existing finish behavior. Return white samples rotate with upward motion within unchanged real contact.
+- Native all-five/two-direction raster/contact, continuity, pause/cancel/reset/wrap and planted checks pass. Source prompt/registration and actual-clock240-frame preview are preserved. Owner feel and normal equipment promotion remain pending.
+
 ## 2026-10-04
+
+- Fixed missing left-facing white art: ordinary actor-space raster samples now mirror X, and blade-bound meteor mapping reflects full cross-axis handedness. Native GPU comparison confirms all four FX drawings for five strikes on both sides.
+- Owner-approved shallow upright idle retained. Greatsword V5 adds a fifth reverse finishing sweep by reusing/reordering turn body/grip/layer/FX frames, keeping front-facing contact. Added8px collision-checked step and stronger per-hit physical tuning with roughly axe-comparable nominal sustained output.
+- Native five-cut112, atlas6 and edge25 checks pass: real left/right pixels, all five contacts/damage multipliers,46px movement, reverse grip/frame registration, autoplay/reset/wrap. Up/down running remains unimplemented; fifth/speed/balance remain owner review, normal equipment unchanged.
 
 - Corrected hidden greatsword run handle with glove-color registration and body/weapon/glove layering. Raised and straightened axe back mount, removed attack-edge reflection from stowed run clip.
 - Replaced excessively deep diagonal planting with reusable upright side stance: shared action resource, weapon-specific grip/tip,5 world pixels burial, hand-aligned preparation/reverse retrieval and released crossed arms. Body-only lift reaches tall hilts without moving collision or resizing weapons.

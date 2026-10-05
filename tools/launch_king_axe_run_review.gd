@@ -2,6 +2,7 @@ extends "res://tools/launch_king_axe_expanded_review.gd"
 
 const RUN_POSES = preload("res://assets/characters/playable/king/greatsword_confidence_v2/axe_run.tres")
 const HorizontalMotion = preload("res://gameplay/movement/weapon_review_horizontal_motion.gd")
+const GAME_ITEM = preload("res://data/items/equipment/king_iron_beard_axe.tres")
 var horizontal_motion: HorizontalMotion
 
 func open_review() -> void:
@@ -15,7 +16,13 @@ func open_review() -> void:
 	horizontal_motion.running_clip = RUN_POSES
 	stage.player.add_child(horizontal_motion)
 	var column: VBoxContainer = toolbar.get_child(0)
-	(column.get_child(0) as Label).text = "AXE V6 · BACK MOUNT\nA / D: side-facing run, axe at back\nSPACE / click: draw / cut\nFive-move combo / AFK back rest\nSide directions only · NO SAVES"
+	(column.get_child(0) as Label).text = "AXE V6 · BACK MOUNT\nA / D: side-facing run, axe at back\nSPACE / click: draw / cut\nTAB: playable practice / Bag\nFive-move combo · NO SAVES"
+	_button(column,"Playable practice / Bag [TAB]",open_playable_practice)
+	for child in stage.get_children():
+		if child is ReviewInput: child.practice = open_playable_practice
+
+func open_playable_practice() -> void:
+	await open_playable_practice_with(GAME_ITEM)
 
 func strike() -> void:
 	if paused: return

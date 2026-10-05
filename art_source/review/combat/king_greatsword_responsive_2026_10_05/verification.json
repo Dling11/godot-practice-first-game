@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-05",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "native Compatibility OpenGL / AMD",
+  "owner_motion_accepted": false,
+  "previous_modular_motion": "owner-rejected",
+  "native": {
+    "king_responsive_greatsword_smoke": {"checks": 1230, "failures": 0, "captured_frames": 130},
+    "king_greatsword_gameplay_smoke": {"checks": 151, "failures": 0},
+    "king_greatsword_contact_smoke": {"checks": 60, "failures": 0},
+    "king_confidence_v2_smoke": {"checks": 101, "failures": 0}
+  },
+  "headless_passed": ["melee_combat_smoke", "sword_attack_style_smoke"],
+  "greatsword_phase_budget_seconds": 3.0,
+  "previous_phase_budget_seconds": 4.26,
+  "axe_phase_budget_seconds": 3.6,
+  "steel_size": [30, 140],
+  "base_hit_units": 8.45,
+  "rebuild_sha256": {"files": 46, "differences": 0},
+  "limitations": ["Owner comparison pending", "Vertical visual judgement pending", "Faster-combo comparative balance pending", "Phone profiling unverified"]
+}

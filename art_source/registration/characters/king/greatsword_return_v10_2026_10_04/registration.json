@@ -1,0 +1,130 @@
+[
+	{
+		"accepted_body": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"accepted_cell": 5,
+		"accepted_clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn.tres",
+		"pose": 0,
+		"primary": [
+			122.0,
+			73.0
+		],
+		"secondary": [
+			116.0,
+			72.0
+		],
+		"single_hand": false,
+		"verbatim_body_pixels": true
+	},
+	{
+		"accepted_body": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"accepted_cell": 5,
+		"accepted_clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn.tres",
+		"pose": 1,
+		"primary": [
+			122.0,
+			73.0
+		],
+		"secondary": [
+			116.0,
+			72.0
+		],
+		"single_hand": false,
+		"verbatim_body_pixels": true
+	},
+	{
+		"accepted_body": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"accepted_cell": 5,
+		"accepted_clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn.tres",
+		"pose": 2,
+		"primary": [
+			122.0,
+			73.0
+		],
+		"secondary": [
+			116.0,
+			72.0
+		],
+		"single_hand": false,
+		"verbatim_body_pixels": true
+	},
+	{
+		"accepted_body": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"accepted_cell": 4,
+		"accepted_clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn.tres",
+		"pose": 3,
+		"primary": [
+			122.0,
+			77.0
+		],
+		"secondary": [
+			117.0,
+			76.0
+		],
+		"single_hand": false,
+		"verbatim_body_pixels": true
+	},
+	{
+		"accepted_body": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"accepted_cell": 3,
+		"accepted_clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn.tres",
+		"pose": 4,
+		"primary": [
+			121.0,
+			76.0
+		],
+		"secondary": [
+			118.0,
+			74.0
+		],
+		"single_hand": false,
+		"verbatim_body_pixels": true
+	},
+	{
+		"accepted_body": "res://assets/characters/playable/king/huge_greatsword_proof/rise_body.png",
+		"accepted_cell": 3,
+		"accepted_clip": "res://assets/characters/playable/king/huge_greatsword_proof/rise.tres",
+		"pose": 5,
+		"primary": [
+			115.0,
+			64.0
+		],
+		"secondary": [
+			108.0,
+			68.0
+		],
+		"single_hand": true,
+		"verbatim_body_pixels": true
+	},
+	{
+		"accepted_body": "res://assets/characters/playable/king/huge_greatsword_proof/rise_body.png",
+		"accepted_cell": 5,
+		"accepted_clip": "res://assets/characters/playable/king/huge_greatsword_proof/rise.tres",
+		"pose": 6,
+		"primary": [
+			112.0,
+			46.0
+		],
+		"secondary": [
+			114.0,
+			54.0
+		],
+		"single_hand": true,
+		"verbatim_body_pixels": true
+	},
+	{
+		"accepted_body": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"accepted_cell": 0,
+		"accepted_clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle.tres",
+		"pose": 7,
+		"primary": [
+			84.0,
+			58.0
+		],
+		"secondary": [
+			92.0,
+			62.0
+		],
+		"single_hand": true,
+		"verbatim_body_pixels": true
+	}
+]

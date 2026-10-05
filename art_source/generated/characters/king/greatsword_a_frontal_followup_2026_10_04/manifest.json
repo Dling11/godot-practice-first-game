@@ -1,0 +1,13 @@
+{
+  "generator": "built-in image_gen",
+  "original_output": "exec-98aded98-716f-4ee8-9123-f3e9129bb5ed.png",
+  "intent": "Nine-key forward-facing fifth after A fourth front-up ending",
+  "source_sha256": "4DC030F43DE1CE0527E9989421BA869F17B355E6712A9CE1005E1B785718F2C5",
+  "reference_sha256": "2D977C040436A186F751D2B9050D3432051D43FF2A7CD4578445CB8811506178",
+  "prompt": "prompt.txt",
+  "nominal_grid": [
+    3,
+    3
+  ],
+  "status": "Motion concept only; owner review pending; gameplay unchanged"
+}

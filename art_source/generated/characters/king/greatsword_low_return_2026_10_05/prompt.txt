@@ -1,0 +1,21 @@
+Use case: stylized-concept. Asset type: TWELVE chronological BODY-ONLY pixel animation drawings for a repair to an existing King greatsword fifth stroke.
+Input image1 is the exact existing King's fourth-strike body, enlarged nearest-neighbor. This is the PRIMARY identity/style/palette reference. Keep this original small King, dark slate tunic, cream trim, red scarf, brown leather gloves/boots, black spiky hair, pale face, dark outlines. Do not adopt the larger/refined body or sword from image2.
+Input image2 is a motion reference ONLY. The approved missing piece is bottom row B, panel3 "Return swing": King looks FRONT to the RIGHT while his arms pull a low sword swing back across his waist to the LEFT/rear. Do not recreate the whole board.
+Output one transparent PNG sheet with EXACTLY FOUR COLUMNS, THREE ROWS, twelve equal square cells, left-to-right row-by-row. No text, grid, labels, background, sword blade, weapons, effects, shadows or environment. BODY ONLY; his two gloves pose as if gripping an invisible handle. Both gloves must remain distinct and visible for registration. The weapon is a separate existing rigid sprite and will be attached later. Never draw a handle, sword, axe or magic.
+Image1 body pose is already front-extended hands at chest height; this is the preceding fourth endpoint. Start slightly lowering those hands and continue one smooth low return. Face and head ALWAYS look to screen RIGHT, feet planted apart. Head/legs keep same proportions and stationary baseline, do not turn the head left, spin or jump. Slight natural waist/shoulder torsion and knee compression into the return are okay; same camera in all twelve.
+All cells same body pixel density and size: a compact approximately 170px-tall King centered in each cell, opaque body fits generously with80px blank padding. Same head shape, garment, colors, pixel size, upper-left lighting. Feet horizontal plane consistent in each cell. No zoom or larger forearms halfway.
+The imaginary blade tip turns clockwise from front-right toward down-right, straight down, then rear-left low, then rises into existing left-shoulder carry. The invisible handle extends from primary/front glove toward secondary/rear glove OPPOSITE the blade's direction. Pose real glove pairs consistently along that handle axis, about20px apart at this source density. Empty gloves should look like fists wrapped around a narrow missing grip, not holding a ball or crossed random hands.
+Draw these twelve consecutive keys:
+0: hands still front-right near chest, slightly down from image1; primary/front glove and secondary glove together; primary→secondary axis points up-left at205deg (blade would down-right25deg).
+1: hands move inward/down a few px toward upper waist, primary→secondary axis225deg (blade45deg).
+2: hands front-right upper waist, primary→secondary axis245deg (blade65deg).
+3: hands move toward center waist, primary→secondary axis265deg (blade85deg straight down).
+4: hands near center belt, primary→secondary axis290deg (blade110deg down-left).
+5: hands across belt toward left hip, primary→secondary axis315deg (blade135deg rear-left/down).
+6: APPROVED B3 low return pose: both wrists gathered just left of belt center, primary→secondary axis335deg (blade155deg left/down), shoulders engaged while face still right. Match B3 MOTION ONLY with original image1 body style.
+7: continue rear-left, hands near left waist, primary→secondary axis345deg (blade165deg), knees start recovering.
+8: hands draw a little left/up toward lower ribs, primary→secondary axis355deg (blade175deg left nearly horizontal).
+9: hands toward left ribs, primary→secondary axis5deg (blade185deg left/up).
+10: begin one-hand lift of weapon at left shoulder, raised left glove near jaw-left, primary→secondary axis18deg (blade198deg left/up); other glove relaxed toward belt. Face right.
+11: approach original one-handed shoulder carry: raised glove behind/left of head, other glove lowered at side, blade would rear-left/up at207deg. Hair/head/face and proportions remain original King. No planted/crossed-arm idle here.
+Hands remain readable with charcoal-outline brown leather and cream cuffs. Highest priority is original identity plus continuous waist-level return mechanics in0–9 and gentle lift into carry10–11. Body-only transparent isolated cells. No copied text from image2.

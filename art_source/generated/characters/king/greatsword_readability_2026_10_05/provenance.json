@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-05",
+  "mode": "built-in imagegen",
+  "raw_output": "exec-a74f652e-c1b4-49af-a89c-19bfa9da197a.png",
+  "source": "vertical_pride_source.png",
+  "source_sha256": "B4292BF287FE04FEBBA3990DF14EF10DC9A88A8480CEAA7F07278116181CB721",
+  "prompt": "pride_prompt.txt",
+  "reference_images": [
+    "art_source/generated/characters/king/greatsword_oathbound_2026_10_05/installed_identity_reference.png",
+    "art_source/generated/characters/king/greatsword_oathbound_2026_10_05/up_body_source.png"
+  ],
+  "generated_layout": "2 rows x 4 complete bodies; front then back",
+  "runtime_builder": "tools/build_king_greatsword_readability.gd",
+  "original_side_run": "assets/characters/playable/king/greatsword_confidence_v2/greatsword_run.tres",
+  "owner_approval": "art and feel judgement pending"
+}

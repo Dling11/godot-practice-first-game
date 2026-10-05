@@ -1,5 +1,7 @@
 # Decisions Index
 
+**183 — Fresh complete Greatsword motion with protected installed identity (2026-10-05):** Implemented; owner art/feel judgement pending. Latest follow-up corrects upward hair/collar alignment and restores shared ordinary white-effect scale; the rejected upward-only fit and obsolete cardinal/low-return paths are archived. Huge steel/3.00s authority, grounded registration, proud idle, gait and provisional.25/0/.6 walking remain. [Decision](docs/decisions/183-protect-king-identity-in-fresh-greatsword-motion.md), [implementation](docs/design/king-greatsword-oathbound-motion.md).
+
 Architecture decisions are stored as durable ADR history. Read this compact index first, then open only the decision relevant to the current task.
 
 The complete text of Decisions 001-025 is preserved in [`docs/decisions/001-025-archive.md`](docs/decisions/001-025-archive.md).
@@ -197,6 +199,8 @@ Current Sanctuary baseline: [Decision165](docs/decisions/165-finalize-sanctuary-
 | 178 | [Typed damage and registered critical impact](docs/decisions/178-typed-damage-and-critical-impact.md) | Damage families/resistance, compact raster critical animation and isolated counter/reach comparisons |
 | 179 | [Prepare visible King weapon families and equipment](docs/decisions/179-prepare-visible-king-weapon-families.md) | Owner-authorized five-family/armor samples, reusable animation, genuine gait and runtime-pending equipment presentation |
 | 180 | [Craft weapon variants with milestone blueprints](docs/decisions/180-craft-weapon-variants-with-milestone-blueprints.md) | Accepted crafting-led collection, family/variant separation and isolated first axe motion/contact proof |
+| 181 | [Drive Greatsword with connected two-hand motion](docs/decisions/181-drive-greatsword-with-connected-two-hand-motion.md) | Owner-rejected motion; superseded by182 |
+| 182 | [Use responsive complete body poses for Greatsword](docs/decisions/182-return-greatsword-to-responsive-full-body-poses.md) | Full-body cel recovery branches, actual opening inheritance and3.00s axe-benchmarked pacing |
 
 ## New Decisions
 

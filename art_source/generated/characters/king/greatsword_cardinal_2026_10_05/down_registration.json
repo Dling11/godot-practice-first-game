@@ -1,0 +1,83 @@
+{
+	"cell_size": [
+		192,
+		128
+	],
+	"density": 0.397058823529412,
+	"ground_y": 95,
+	"keys": [
+		{
+			"body_bounds": "Rect2i(76, 49, 41, 45)",
+			"primary": [
+				96.0,
+				80.0
+			],
+			"source_key": 7
+		},
+		{
+			"body_bounds": "Rect2i(78, 41, 35, 53)",
+			"primary": [
+				103.0,
+				66.0
+			],
+			"source_key": 40
+		},
+		{
+			"body_bounds": "Rect2i(77, 47, 35, 50)",
+			"primary": [
+				103.0,
+				66.0
+			],
+			"source_key": 41
+		},
+		{
+			"body_bounds": "Rect2i(80, 41, 31, 53)",
+			"primary": [
+				103.0,
+				66.0
+			],
+			"source_key": 42
+		},
+		{
+			"body_bounds": "Rect2i(77, 42, 36, 52)",
+			"primary": [
+				103.0,
+				66.0
+			],
+			"source_key": 43
+		},
+		{
+			"body_bounds": "Rect2i(80, 42, 34, 52)",
+			"primary": [
+				103.0,
+				66.0
+			],
+			"source_key": 44
+		},
+		{
+			"body_bounds": "Rect2i(79, 44, 35, 51)",
+			"primary": [
+				103.0,
+				66.0
+			],
+			"source_key": 45
+		},
+		{
+			"body_bounds": "Rect2i(80, 42, 32, 52)",
+			"primary": [
+				103.0,
+				66.0
+			],
+			"source_key": 46
+		},
+		{
+			"body_bounds": "Rect2i(78, 44, 34, 50)",
+			"primary": [
+				103.0,
+				66.0
+			],
+			"source_key": 47
+		}
+	],
+	"rigid_steel": "res://assets/characters/playable/king/huge_greatsword_proof/greatsword.png"
+}

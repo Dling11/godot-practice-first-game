@@ -1,0 +1,114 @@
+[
+	{
+		"density": 0.128571428571429,
+		"foot": "Vector2(96.5, 95)",
+		"head": "Rect2i(81, 42, 32, 29)",
+		"key": 4,
+		"view": "down"
+	},
+	{
+		"density": 0.128571428571429,
+		"foot": "Vector2(96, 95)",
+		"head": "Rect2i(81, 43, 32, 29)",
+		"key": 5,
+		"view": "down"
+	},
+	{
+		"density": 0.128571428571429,
+		"foot": "Vector2(96.5, 95)",
+		"head": "Rect2i(81, 43, 32, 29)",
+		"key": 6,
+		"view": "down"
+	},
+	{
+		"density": 0.128571428571429,
+		"foot": "Vector2(96, 95)",
+		"head": "Rect2i(80, 42, 32, 29)",
+		"key": 7,
+		"view": "down"
+	},
+	{
+		"density": 0.130177514792899,
+		"foot": "Vector2(96.5, 95)",
+		"head": "Rect2i(83, 46, 28, 27)",
+		"key": 4,
+		"view": "up"
+	},
+	{
+		"density": 0.130177514792899,
+		"foot": "Vector2(96.5, 95)",
+		"head": "Rect2i(83, 45, 28, 27)",
+		"key": 5,
+		"view": "up"
+	},
+	{
+		"density": 0.130177514792899,
+		"foot": "Vector2(96, 95)",
+		"head": "Rect2i(82, 46, 28, 27)",
+		"key": 6,
+		"view": "up"
+	},
+	{
+		"density": 0.130177514792899,
+		"foot": "Vector2(96, 95)",
+		"head": "Rect2i(82, 46, 28, 27)",
+		"key": 7,
+		"view": "up"
+	},
+	{
+		"foot": "Vector2(95.5, 97)",
+		"grip": "Vector2(93, 60)",
+		"head": "Rect2i(91, 41, 25, 24)",
+		"key": 0,
+		"view": "side_run"
+	},
+	{
+		"foot": "Vector2(93.5, 97)",
+		"grip": "Vector2(93, 61)",
+		"head": "Rect2i(91, 42, 25, 24)",
+		"key": 1,
+		"view": "side_run"
+	},
+	{
+		"foot": "Vector2(97.5, 96)",
+		"grip": "Vector2(94, 61)",
+		"head": "Rect2i(93, 41, 25, 24)",
+		"key": 2,
+		"view": "side_run"
+	},
+	{
+		"foot": "Vector2(95, 94)",
+		"grip": "Vector2(93, 59)",
+		"head": "Rect2i(92, 40, 25, 24)",
+		"key": 3,
+		"view": "side_run"
+	},
+	{
+		"foot": "Vector2(94.5, 95)",
+		"grip": "Vector2(94, 60)",
+		"head": "Rect2i(89, 39, 25, 24)",
+		"key": 4,
+		"view": "side_run"
+	},
+	{
+		"foot": "Vector2(91, 97)",
+		"grip": "Vector2(94, 61)",
+		"head": "Rect2i(91, 42, 25, 24)",
+		"key": 5,
+		"view": "side_run"
+	},
+	{
+		"foot": "Vector2(97, 95)",
+		"grip": "Vector2(94, 60)",
+		"head": "Rect2i(92, 40, 25, 24)",
+		"key": 6,
+		"view": "side_run"
+	},
+	{
+		"foot": "Vector2(94, 93)",
+		"grip": "Vector2(93, 59)",
+		"head": "Rect2i(88, 38, 25, 24)",
+		"key": 7,
+		"view": "side_run"
+	}
+]

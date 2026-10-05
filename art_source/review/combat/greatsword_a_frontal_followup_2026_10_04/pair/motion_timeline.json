@@ -1,0 +1,67 @@
+[
+	{
+		"elapsed_ms": 0,
+		"file": "motion_frames/frame_000.png",
+		"source_key": 12
+	},
+	{
+		"elapsed_ms": 160,
+		"file": "motion_frames/frame_001.png",
+		"source_key": 13
+	},
+	{
+		"elapsed_ms": 270,
+		"file": "motion_frames/frame_002.png",
+		"source_key": 14
+	},
+	{
+		"elapsed_ms": 370,
+		"file": "motion_frames/frame_003.png",
+		"source_key": 15
+	},
+	{
+		"elapsed_ms": 440,
+		"file": "motion_frames/frame_004.png",
+		"source_key": 16
+	},
+	{
+		"elapsed_ms": 490,
+		"file": "motion_frames/frame_005.png",
+		"source_key": 17
+	},
+	{
+		"elapsed_ms": 580,
+		"file": "motion_frames/frame_006.png",
+		"source_key": 18
+	},
+	{
+		"elapsed_ms": 670,
+		"file": "motion_frames/frame_007.png",
+		"source_key": 19
+	},
+	{
+		"elapsed_ms": 760,
+		"file": "motion_frames/frame_008.png",
+		"source_key": 20
+	},
+	{
+		"elapsed_ms": 850,
+		"file": "motion_frames/frame_009.png",
+		"source_key": 21
+	},
+	{
+		"elapsed_ms": 940,
+		"file": "motion_frames/frame_010.png",
+		"source_key": 22
+	},
+	{
+		"elapsed_ms": 1030,
+		"file": "motion_frames/frame_011.png",
+		"source_key": 23
+	},
+	{
+		"elapsed_ms": 1120,
+		"file": "motion_frames/frame_012.png",
+		"source_key": 24
+	}
+]

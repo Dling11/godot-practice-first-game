@@ -1,6 +1,6 @@
 extends "res://tools/launch_king_greatsword_confidence_review.gd"
 
-const OUT := "res://art_source/review/combat/king_grip_plant_v4_2026_10_04/"
+const OUT := "res://art_source/review/combat/king_greatsword_readability_2026_10_05/preserved/"
 const AXE_RUN = preload("res://assets/characters/playable/king/greatsword_confidence_v2/axe_run.tres")
 var checks := 0
 var failures := 0
@@ -17,7 +17,7 @@ func _run() -> void:
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(OUT))
 	var actor: Player = stage.player
 	var attack: MeleeAttackComponent = actor.attack_component
-	for clip in [CONFIDENT_POSES,PRIDE_POSES,RUN_POSES,AXE_RUN]:
+	for clip in [PRIDE_POSES,RUN_POSES,AXE_RUN]:
 		check(clip.has_valid_layout(),"Invalid registered clip")
 		axe_presenter.select_clip(clip)
 		var hashes: Dictionary = {}
@@ -32,9 +32,15 @@ func _run() -> void:
 			if clip.released_poses[pose]: check(axe_presenter.hand_sprite.texture.get_image().get_used_rect().size==Vector2i.ZERO,"Crossed arms still grips blade")
 		check(hashes.size()>=7,"Run/action has duplicated stationary anatomy")
 	cancel_combo()
+	# Desktop focus loss intentionally cancels review locomotion. Regain focus
+	# after the manual cel audit before testing real timed movement.
+	root.grab_focus()
+	await process_frame
 	var origin := actor.global_position
 	horizontal_motion.set_direction(1)
-	await create_timer(0.65).timeout
+	# Locomotion is physics-driven. A render-clock timer can expire before
+	# 0.65s of physics travel on a busy native renderer (31 rather than39 ticks).
+	for tick in 40: await physics_frame
 	check(actor.global_position.x-origin.x>50 and axe_presenter.definition==RUN_POSES and axe_presenter._running,"No genuine right running")
 	check(axe_presenter.weapon_sprite.texture==GREAT_POSES.weapon_texture and axe_presenter.weapon_sprite.scale==Vector2.ONE,"Running changes sword proportions")
 	var stride := axe_presenter._locomotion_distance
@@ -101,7 +107,8 @@ func _run() -> void:
 	try_slam()
 	while attack.phase!=MeleeAttackComponent.Phase.ACTIVE: await physics_frame
 	var ground: ImpactPresenter.Burst = impact_presenter.get_child(0)
-	check(ground.row==1 and ground.global_position.distance_to(actor.global_position+Vector2(-46,32))<0.01,"Left slam rotates ground above the blade instead of mirroring it")
+	var tip: Vector2 = axe_presenter.get_parent().to_global(axe_presenter.get_contact_tip_in_parent())
+	check(ground.row==1 and ground.global_position.distance_to(tip)<0.01 and actor.to_local(tip).x<0 and actor.to_local(tip).y>0,"Left slam ground does not meet the frontal blade tip")
 	cancel_combo()
 	axe_presenter.face_horizontal(1)
 	await gallery()
@@ -119,22 +126,22 @@ func capture(name: String) -> void:
 
 func gallery() -> void:
 	toolbar.hide()
-	root.content_scale_size = Vector2i(1280,1000)
-	root.size = Vector2i(1280,1000)
+	root.content_scale_size = Vector2i(1280,750)
+	root.size = Vector2i(1280,750)
 	var layer := CanvasLayer.new()
 	layer.layer = 8
 	stage.add_child(layer)
 	var background := ColorRect.new()
-	background.size = Vector2(1280,1000)
+	background.size = Vector2(1280,750)
 	background.color = Color("202b30")
 	layer.add_child(background)
-	var clips := [CONFIDENT_POSES,PRIDE_POSES,RUN_POSES,AXE_RUN]
-	var titles := ["Loaded opening","Proud carry / plant","Greatsword run","Axe back run"]
-	for row in 4:
+	var clips := [PRIDE_POSES,RUN_POSES,AXE_RUN]
+	var titles := ["Proud carry / plant","Greatsword run","Axe back run"]
+	for row in clips.size():
 		for frame in 4:
 			var origin := Vector2(frame*320,row*250)
 			var label := Label.new()
-			label.text = titles[row]+" / "+str([0,2,4,5][frame] if row==0 else [0,4,5,7][frame] if row==1 else frame*2)
+			label.text = titles[row]+" / "+str([0,4,5,7][frame] if row==0 else frame*2)
 			label.position = origin+Vector2(8,4)
 			layer.add_child(label)
 			var body := Presenter.new()
@@ -142,7 +149,7 @@ func gallery() -> void:
 			body.position = origin+Vector2(145,180)-Vector2(0,32)
 			body.scale = Vector2.ONE
 			layer.add_child(body)
-			body.set_pose([0,2,4,5][frame] if row==0 else [0,4,5,7][frame] if row==1 else frame*2)
+			body.set_pose([0,4,5,7][frame] if row==0 else frame*2)
 	await capture("gallery.png")
 	layer.queue_free()
 	await process_frame

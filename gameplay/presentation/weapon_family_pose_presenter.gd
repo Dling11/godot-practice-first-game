@@ -4,6 +4,8 @@ signal pose_changed(index: int)
 
 ## Fixed raster follows authored hand positions; it cannot issue attacks/damage.
 const Definition = preload("res://data/weapons/weapon_family_pose_definition.gd")
+var _queued_recovery_active := false
+var _authored_entry: Dictionary = {}
 var definition: Definition
 var _default_definition: Definition
 var pose_index := 0
@@ -25,6 +27,10 @@ var _running := false
 var _locomotion_distance := 0.0
 var _stride_pixels := 48.0
 var _ground_material: ShaderMaterial
+## Optional controller query: hold follow-through only for a queued cut.
+var continuation_requested: Callable
+## Query before recovery begins; the input controller still owns the buffer.
+var continuation_pending: Callable
 
 func face_horizontal(direction: float) -> void:
 	scale.x = absf(scale.x)*(-1.0 if direction<0 else 1.0)
@@ -153,31 +159,51 @@ func _bind_attack() -> void:
 
 func set_pose(index: int) -> void:
 	var previous := pose_index
-	pose_index = clampi(index, 0, 7)
-	var cell := Vector2i(pose_index % definition.columns, pose_index / definition.columns)
+	pose_index = clampi(index, 0, definition.pose_count-1)
+	var atlas_pose: int = definition.pose_order[pose_index]
+	var cell := Vector2i(atlas_pose % definition.columns, atlas_pose / definition.columns)
 	var region := Rect2(Vector2(cell * definition.cell_size), Vector2(definition.cell_size))
 	_body_frame.region = region
 	_hand_frame.region = region
+	body_sprite.texture = _body_frame
+	hand_sprite.texture = _hand_frame
 	position = _base_position + Vector2(0,definition.lift_pixels[pose_index]*scale.y)
 	body_sprite.position = Vector2.ZERO
 	hand_sprite.position = Vector2.ZERO
-	var grip_position: Vector2 = definition.primary_hands[pose_index] - Vector2(definition.cell_size) * 0.5
-	var hand_axis: Vector2 = definition.secondary_hands[pose_index] - definition.primary_hands[pose_index]
-	var basis := Transform2D(hand_axis.angle()-definition.weapon_handle_axis.angle(),Vector2.ZERO)
+	hand_sprite.transform = Transform2D.IDENTITY
+	var basis := _weapon_basis_for(pose_index)
+	weapon_rig.transform = basis
+	_update_ground_material(basis)
+	# Local draw order: negative global Z can put the axe under terrain/backdrops.
+	# Timers/optional rig children must not shift the body's painter order.
+	move_child(body_sprite,0)
+	move_child(weapon_rig,0 if definition.weapon_behind_body[pose_index]>0 else 1)
+	move_child(hand_sprite,get_child_count()-1)
+	if previous!=pose_index: pose_changed.emit(pose_index)
+	hand_sprite.show()
+	if pose_index==0 and definition.queued_recovery_window.x>=0 and not _authored_entry.is_empty():
+		# Standalone/late inputs inherit the actual complete rendered pose.
+		body_sprite.texture = _authored_entry.body
+		hand_sprite.texture = _authored_entry.hand
+		weapon_rig.transform = _authored_entry.weapon
+		position = _authored_entry.position
+		move_child(weapon_rig,0 if _authored_entry.behind else 1)
+		_update_ground_material(weapon_rig.transform)
+
+func _weapon_basis_for(index: int) -> Transform2D:
+	var grip_position: Vector2 = definition.primary_hands[index] - Vector2(definition.cell_size) * 0.5
+	var hand_axis: Vector2 = definition.secondary_hands[index] - definition.primary_hands[index]
+	var angle: float = hand_axis.angle()-definition.weapon_handle_axis.angle()
+	var basis := Transform2D(angle,Vector2.ZERO)
 	if definition.mirror_cutting_edge:
 		var axis: Vector2 = definition.weapon_handle_axis.normalized()
 		# Reflection about the SHAFT, rather than screen X, keeps both grips fixed.
 		var reflection := Transform2D(Vector2(2*axis.x*axis.x-1,2*axis.x*axis.y),Vector2(2*axis.x*axis.y,2*axis.y*axis.y-1),Vector2.ZERO)
 		basis = basis * reflection
 	basis.origin = grip_position
-	if definition.planting!=null and pose_index>=definition.planting.release_pose:
+	if definition.planting!=null and index>=definition.planting.release_pose:
 		basis = _planted_basis()
-	weapon_rig.transform = basis
-	_update_ground_material(basis)
-	# Local draw order: negative global Z can put the axe under terrain/backdrops.
-	var layer_index := 0 if definition.weapon_behind_body[pose_index]>0 else 1
-	if weapon_rig.get_index()!=layer_index: move_child(weapon_rig,layer_index)
-	if previous!=pose_index: pose_changed.emit(pose_index)
+	return basis
 
 func _update_ground_material(basis: Transform2D) -> void:
 	_ground_material.set_shader_parameter("buried",definition.ground_clipped_poses[pose_index]>0)
@@ -199,6 +225,11 @@ func _planted_basis(clearance := false) -> Transform2D:
 func get_plant_ground_position() -> Vector2:
 	if definition.planting==null: return Vector2.ZERO
 	return definition.planting.ground_anchor-Vector2(definition.cell_size)*0.5
+
+func get_contact_tip_in_parent() -> Vector2:
+	var index := int(definition.phase_windows[1].x)
+	var tip := _weapon_basis_for(index)*(definition.weapon_tip-definition.weapon_primary_grip)
+	return _base_position+Vector2(0,definition.lift_pixels[index]*scale.y)+transform.basis_xform(tip)
 
 func _animate_plant(value: float) -> void:
 	var stance := definition.planting
@@ -235,15 +266,51 @@ func _on_phase(phase: int, duration: float) -> void:
 	if phase < MeleeAttackComponent.Phase.WIND_UP or phase > MeleeAttackComponent.Phase.RECOVERY:
 		return
 	if phase == MeleeAttackComponent.Phase.WIND_UP:
+		_queued_recovery_active = false
+		var entry := {"body":body_sprite.texture.duplicate(),"hand":hand_sprite.texture.duplicate(),"weapon":weapon_rig.transform,"position":position,"behind":weapon_rig.get_index()<body_sprite.get_index()}
 		var step: int = _attack.combo_step
 		select_clip(_default_definition.follow_up_clips[step-1] if step>0 and step<=_default_definition.follow_up_clips.size() else _default_definition)
+		_authored_entry = entry if definition.queued_recovery_window.x>=0 else {}
+	if phase == MeleeAttackComponent.Phase.RECOVERY and definition.linked_recovery_pose>=0 and continuation_pending.is_valid() and continuation_pending.call():
+		set_pose(definition.linked_recovery_pose)
+		return
 	var window: Vector2 = definition.phase_windows[phase - 1]
+	if phase==MeleeAttackComponent.Phase.RECOVERY and definition.queued_recovery_window.x>=0 and continuation_pending.is_valid() and continuation_pending.call():
+		window = definition.queued_recovery_window
+		_queued_recovery_active = true
 	set_pose(int(window.x))
 	_pose_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	_pose_tween.tween_method(_advance_pose, window.x, window.y + 0.999, maxf(duration, 0.0001))
+	if definition.pose_weights.is_empty():
+		_pose_tween.tween_method(_advance_pose, window.x, window.y + 0.999, maxf(duration, 0.0001))
+	else:
+		_pose_tween.tween_method(_advance_weighted_pose.bind(window), 0.0, 1.0, maxf(duration, 0.0001))
+
+func _advance_weighted_pose(progress: float, window: Vector2) -> void:
+	var total := 0.0
+	for index in range(int(window.x),int(window.y)+1): total += definition.pose_weights[index]
+	var remaining := clampf(progress,0,1)*total
+	for index in range(int(window.x),int(window.y)+1):
+		var weight := definition.pose_weights[index]
+		if remaining < weight or index == int(window.y):
+			_advance_pose(index+minf(remaining/weight,0.999))
+			return
+		remaining -= weight
 
 func _advance_pose(value: float) -> void:
 	set_pose(int(value))
+	# A linked contact endpoint must not rotate toward the unqueued recovery
+	# cel and then snap back when recovery holds it for the next cut.
+	var linked_endpoint := _attack.phase == MeleeAttackComponent.Phase.ACTIVE and pose_index == definition.linked_recovery_pose
+	if definition.interpolate_weapon and pose_index < definition.pose_count-1 and not linked_endpoint:
+		var current := _weapon_basis_for(pose_index)
+		var next := _weapon_basis_for(pose_index+1)
+		var blended := current.interpolate_with(next,fposmod(value,1.0))
+		# The body remains a crisp cel. Keep its grip attached to that cel;
+		# translating the hand overlay independently creates a second/floating hand.
+		blended.origin = current.origin
+		weapon_rig.transform = blended
+		hand_sprite.transform = blended*current.affine_inverse()
+		_update_ground_material(blended)
 	_animate_plant(value)
 
 func _on_finished() -> void:
@@ -252,6 +319,9 @@ func _on_finished() -> void:
 	_stop_tween()
 	_drawing = false
 	_running = false
+	if continuation_requested.is_valid() and continuation_requested.call():
+		set_pose(int(definition.queued_recovery_window.y) if _queued_recovery_active else (definition.linked_recovery_pose if definition.linked_recovery_pose>=0 else int(definition.phase_windows[2].y)))
+		return
 	if idle_definition!=null:
 		_carry()
 		return
@@ -259,10 +329,12 @@ func _on_finished() -> void:
 	set_pose(0)
 
 func _carry() -> void:
+	_authored_entry.clear()
 	_resting = false
 	select_clip(idle_definition)
 	set_pose(0)
-	_rest_timer.start()
+	if idle_definition.allow_rest: _rest_timer.start()
+	else: _rest_timer.stop()
 
 func _rest() -> void:
 	if not is_instance_valid(_attack) or _attack.phase!=MeleeAttackComponent.Phase.IDLE: return

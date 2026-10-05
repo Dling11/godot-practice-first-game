@@ -1,0 +1,32 @@
+[gd_resource type="Resource" load_steps=9 format=3]
+[ext_resource type="Script" path="res://data/weapons/weapon_family_pose_definition.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/greatsword_responsive/side/sweep_body.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/greatsword_responsive/side/sweep_hands.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/huge_greatsword_proof/greatsword.png" id="4"]
+[ext_resource type="Resource" path="res://assets/characters/playable/king/greatsword_responsive/side/rise.tres" id="5"]
+[ext_resource type="Resource" path="res://assets/characters/playable/king/greatsword_responsive/side/slam.tres" id="6"]
+[ext_resource type="Resource" path="res://assets/characters/playable/king/greatsword_responsive/side/turn.tres" id="7"]
+[ext_resource type="Resource" path="res://assets/characters/playable/king/greatsword_responsive/side/return.tres" id="8"]
+[resource]
+script = ExtResource("1")
+body_atlas = ExtResource("2")
+hand_atlas = ExtResource("3")
+weapon_texture = ExtResource("4")
+pose_count = 12
+pose_order = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+primary_hands = PackedVector2Array(84, 58, 86, 64, 86, 53, 114, 65, 114, 65, 115, 66, 113, 79, 102, 77, 102, 76, 84, 58, 113, 79, 98, 80)
+secondary_hands = PackedVector2Array(92, 62, 95, 65, 106, 57, 107, 67, 107, 67, 109, 72, 108, 74, 96, 73, 96, 72, 92, 62, 108, 74, 93, 76)
+weapon_primary_grip = Vector2(15, 113)
+weapon_tip = Vector2(15, 0)
+mirror_cutting_edge = false
+phase_windows = PackedVector2Array(0, 2, 3, 6, 7, 9)
+queued_recovery_window = Vector2(10, 11)
+weapon_behind_body = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+single_hand_poses = PackedByteArray(1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0)
+stowed_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+released_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+ground_clipped_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+lift_pixels = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+maximum_lift_pixels = 48.0
+pose_weights = PackedFloat32Array(0.3, 0.8, 1, 0.5, 0.7, 1, 1, 0.6, 0.6, 1, 0.35, 1)
+follow_up_clips = Array[Resource]([ExtResource("5"),ExtResource("6"),ExtResource("7"),ExtResource("8")])

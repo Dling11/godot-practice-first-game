@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3]
+[gd_scene load_steps=20 format=3]
 
 [ext_resource type="Script" path="res://levels/combat_lab/combat_lab.gd" id="1"]
 [ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="2"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" path="res://environment/arenas/divine_order/court_of_first_measure/court_of_first_measure.tscn" id="12"]
 [ext_resource type="PackedScene" path="res://ui/dialogue/dialogue_panel.tscn" id="13"]
 [ext_resource type="Script" path="res://entities/enemies/examiner/examiner_encounter_director.gd" id="14"]
+[ext_resource type="PackedScene" path="res://ui/character_menu.tscn" id="character_menu"]
 
 [sub_resource type="StyleBoxFlat" id="panel"]
 bg_color = Color(0.025, 0.028, 0.038, 0.96)
@@ -318,3 +319,6 @@ text = "LIVE: 0 | AI: ON | KING: INVINCIBLE"
 horizontal_alignment = 1
 
 [node name="DialoguePanel" parent="UI" instance=ExtResource("13")]
+
+[node name="CharacterMenu" parent="UI" node_paths=PackedStringArray("player") instance=ExtResource("character_menu")]
+player = NodePath("../../World/Actors/Player")

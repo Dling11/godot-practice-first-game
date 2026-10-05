@@ -1,0 +1,42 @@
+[gd_resource type="Resource" load_steps=12 format=3]
+[ext_resource type="Script" path="res://data/weapons/weapon_family_pose_definition.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/greatsword_connected/down/sweep_body.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/greatsword_connected/down/sweep_hands.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/huge_greatsword_proof/greatsword.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/greatsword_connected/upper.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/greatsword_connected/forearm.png" id="6"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/greatsword_connected/glove.png" id="7"]
+[ext_resource type="Resource" path="res://assets/characters/playable/king/greatsword_connected/down/rise.tres" id="8"]
+[ext_resource type="Resource" path="res://assets/characters/playable/king/greatsword_connected/down/slam.tres" id="9"]
+[ext_resource type="Resource" path="res://assets/characters/playable/king/greatsword_connected/down/turn.tres" id="10"]
+[ext_resource type="Resource" path="res://assets/characters/playable/king/greatsword_connected/down/return.tres" id="11"]
+[resource]
+script = ExtResource("1")
+body_atlas = ExtResource("2")
+hand_atlas = ExtResource("3")
+weapon_texture = ExtResource("4")
+arm_upper_texture = ExtResource("5")
+arm_forearm_texture = ExtResource("6")
+arm_hand_texture = ExtResource("7")
+pose_count = 20
+pose_order = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19)
+primary_hands = PackedVector2Array(96, 80, 94.7, 75.4, 94.18, 69.2, 94.44, 61.4, 96, 54.4, 99.09495, 51.098637, 99.09495, 51.098637, 100.55, 54, 103.15, 60, 105.1, 67, 105.1, 72, 103.8, 76, 103.8, 76, 102.5, 77, 101.2, 77, 99.9, 77, 99.25, 77, 98.6, 77, 98.6, 77, 98.6, 77)
+secondary_hands = PackedVector2Array(105.19239, 89.19239, 97.84498, 88.01385, 90.379166, 81.63196, 84.77912, 70.0987, 83.238846, 56.880516, 86.878944, 46.652374, 86.878944, 46.652374, 92.19376, 44.04142, 102.016975, 47.04947, 111.6, 55.74167, 116.882, 66.50597, 116.60251, 73.74258, 116.60251, 73.74258, 115.5, 77, 114.002495, 79.25742, 112.45704, 80.36465, 111.466, 81.44626, 110.61043, 81.974884, 110.47609, 82.28758, 110.381996, 82.49404)
+weapon_primary_grip = Vector2(15, 113)
+weapon_support_grip = Vector2(15, 126)
+weapon_tip = Vector2(15, 0)
+mirror_cutting_edge = false
+phase_windows = PackedVector2Array(0, 5, 6, 11, 12, 19)
+weapon_behind_body = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+single_hand_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+stowed_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+released_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+ground_clipped_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+lift_pixels = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+maximum_lift_pixels = 48.0
+pose_weights = PackedFloat32Array(1.1, 1.1, 1.2, 1.2, 0.9, 0.5, 0.5, 0.8, 1.2, 1.3, 1.3, 0.9, 1.1, 1.1, 1.1, 1.1, 1, 1, 0.8, 0.8)
+weapon_angles = PackedFloat32Array(-0.7853981, -0.24434608, 0.296706, 0.83775806, 1.3788102, 1.9198622, 1.9198622, 2.443461, 3.0543263, 3.6651914, 4.276057, 4.537856, 4.537856, 4.712389, 4.886922, 4.9741883, 5.061455, 5.105088, 5.131268, 5.148721)
+near_shoulders = PackedVector2Array(89, 68, 89, 68, 91, 65, 91, 65, 91, 65, 91, 65, 91, 65, 90, 66, 90, 66, 90, 66, 90, 68, 90, 68, 90, 68, 90, 68, 90, 68, 90, 68, 90, 68, 90, 68, 90, 68, 90, 68)
+far_shoulders = PackedVector2Array(105, 68, 105, 68, 106, 65, 106, 65, 106, 65, 106, 65, 106, 65, 105, 66, 105, 66, 105, 66, 106, 68, 106, 68, 106, 68, 106, 68, 106, 68, 106, 68, 106, 68, 106, 68, 106, 68, 106, 68)
+support_weights = PackedFloat32Array(0, 0.35, 0.7, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+follow_up_clips = Array[Resource]([ExtResource("8"),ExtResource("9"),ExtResource("10"),ExtResource("11")])

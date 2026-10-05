@@ -1,0 +1,50 @@
+[
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_cardinal\\up\\idle_body.png",
+    "same": true
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_cardinal\\up\\idle_hands.png",
+    "same": true
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_cardinal\\up\\idle.tres",
+    "same": true
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_cardinal\\up\\run_body.png",
+    "same": true
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_cardinal\\up\\run_hands.png",
+    "same": true
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_cardinal\\up\\run.tres",
+    "same": true
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_cardinal\\down\\idle_body.png",
+    "same": true
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_cardinal\\down\\idle_hands.png",
+    "same": true
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_cardinal\\down\\idle.tres",
+    "same": true
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_cardinal\\down\\run_body.png",
+    "same": true
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_cardinal\\down\\run_hands.png",
+    "same": true
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_cardinal\\down\\run.tres",
+    "same": true
+  }
+]

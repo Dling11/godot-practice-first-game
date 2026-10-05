@@ -1,0 +1,38 @@
+[
+	{
+		"anchor_gap_pixels": 43.1653785705566,
+		"clip": "res://assets/characters/playable/king/greatsword_responsive/side/slam.tres",
+		"direction": "Vector2(1, 0)",
+		"ground_burst_actor_local": "Vector2(46, 32)",
+		"horizontal_gap_pixels": 39.0,
+		"pose": 3,
+		"steel_tip_actor_local": "Vector2(7, 50.5)"
+	},
+	{
+		"anchor_gap_pixels": 43.1653785705566,
+		"clip": "res://assets/characters/playable/king/greatsword_responsive/side/slam.tres",
+		"direction": "Vector2(-1, 0)",
+		"ground_burst_actor_local": "Vector2(-46, 32)",
+		"horizontal_gap_pixels": 39.0,
+		"pose": 3,
+		"steel_tip_actor_local": "Vector2(-7, 50.5)"
+	},
+	{
+		"anchor_gap_pixels": 76.5408401489258,
+		"clip": "res://assets/characters/playable/king/greatsword_responsive/up/slam.tres",
+		"direction": "Vector2(0, -1)",
+		"ground_burst_actor_local": "Vector2(0, -46)",
+		"horizontal_gap_pixels": 2.5,
+		"pose": 3,
+		"steel_tip_actor_local": "Vector2(2.5, 30.5)"
+	},
+	{
+		"anchor_gap_pixels": 129.0009765625,
+		"clip": "res://assets/characters/playable/king/greatsword_responsive/down/slam.tres",
+		"direction": "Vector2(0, 1)",
+		"ground_burst_actor_local": "Vector2(0, 46)",
+		"horizontal_gap_pixels": 0.5,
+		"pose": 3,
+		"steel_tip_actor_local": "Vector2(0.5, -83)"
+	}
+]

@@ -1,0 +1,167 @@
+{
+	"checks": 84,
+	"failures": 0,
+	"frames": [
+		{
+			"cut": 0,
+			"frame": 0,
+			"opaque_pixels_right_left_up_down": [
+				12080,
+				12080,
+				12080,
+				12080
+			]
+		},
+		{
+			"cut": 0,
+			"frame": 1,
+			"opaque_pixels_right_left_up_down": [
+				36635,
+				36635,
+				36635,
+				36635
+			]
+		},
+		{
+			"cut": 0,
+			"frame": 2,
+			"opaque_pixels_right_left_up_down": [
+				60369,
+				60369,
+				60369,
+				60369
+			]
+		},
+		{
+			"cut": 0,
+			"frame": 3,
+			"opaque_pixels_right_left_up_down": [
+				24293,
+				24293,
+				24293,
+				24293
+			]
+		},
+		{
+			"cut": 1,
+			"frame": 0,
+			"opaque_pixels_right_left_up_down": [
+				6709,
+				6709,
+				6709,
+				6709
+			]
+		},
+		{
+			"cut": 1,
+			"frame": 1,
+			"opaque_pixels_right_left_up_down": [
+				31089,
+				31089,
+				31089,
+				31089
+			]
+		},
+		{
+			"cut": 1,
+			"frame": 2,
+			"opaque_pixels_right_left_up_down": [
+				55563,
+				55563,
+				55563,
+				55563
+			]
+		},
+		{
+			"cut": 1,
+			"frame": 3,
+			"opaque_pixels_right_left_up_down": [
+				17677,
+				17677,
+				17677,
+				17677
+			]
+		},
+		{
+			"cut": 3,
+			"frame": 0,
+			"opaque_pixels_right_left_up_down": [
+				10856,
+				10856,
+				10856,
+				10856
+			]
+		},
+		{
+			"cut": 3,
+			"frame": 1,
+			"opaque_pixels_right_left_up_down": [
+				34699,
+				34698,
+				34699,
+				34699
+			]
+		},
+		{
+			"cut": 3,
+			"frame": 2,
+			"opaque_pixels_right_left_up_down": [
+				64357,
+				64356,
+				64357,
+				64357
+			]
+		},
+		{
+			"cut": 3,
+			"frame": 3,
+			"opaque_pixels_right_left_up_down": [
+				22885,
+				22884,
+				22885,
+				22885
+			]
+		},
+		{
+			"cut": 4,
+			"frame": 0,
+			"opaque_pixels_right_left_up_down": [
+				10856,
+				10856,
+				10856,
+				10856
+			]
+		},
+		{
+			"cut": 4,
+			"frame": 1,
+			"opaque_pixels_right_left_up_down": [
+				34699,
+				34698,
+				34699,
+				34699
+			]
+		},
+		{
+			"cut": 4,
+			"frame": 2,
+			"opaque_pixels_right_left_up_down": [
+				64357,
+				64356,
+				64357,
+				64357
+			]
+		},
+		{
+			"cut": 4,
+			"frame": 3,
+			"opaque_pixels_right_left_up_down": [
+				22885,
+				22884,
+				22885,
+				22885
+			]
+		}
+	],
+	"native": true
+}

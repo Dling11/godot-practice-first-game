@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-04",
+  "renderer": "Godot 4.7.2 Compatibility native raster storyboard renderer",
+  "gameplay_authority_tested": false,
+  "owner_approval": "pending",
+  "frames_rendered": 60,
+  "gif_checks": [
+    {
+      "choice": "a",
+      "decoded_frames": 20,
+      "canvas": [
+        640,
+        480
+      ],
+      "loop_extension": true,
+      "total_seconds": 3.42,
+      "minimum_source_margin": 74.0,
+      "sha256": "ED4B18DA0AA722F1621926B877B1905FEC966B380F73D23FF8DB3F10A06A9C0A",
+      "status": "passed"
+    },
+    {
+      "choice": "b",
+      "decoded_frames": 20,
+      "canvas": [
+        640,
+        480
+      ],
+      "loop_extension": true,
+      "total_seconds": 4.38,
+      "minimum_source_margin": 77.0,
+      "sha256": "DE2E428EA5224C66B05618CC99A1DC688E83905516983797E90DF816FC9F36E5",
+      "status": "passed"
+    },
+    {
+      "choice": "c",
+      "decoded_frames": 20,
+      "canvas": [
+        640,
+        480
+      ],
+      "loop_extension": true,
+      "total_seconds": 3.15,
+      "minimum_source_margin": 97.0,
+      "sha256": "E358878DBEA83DA450B83AC64E05A2298CD5F458989DD73DEA0271F370338BCA",
+      "status": "passed"
+    }
+  ]
+}

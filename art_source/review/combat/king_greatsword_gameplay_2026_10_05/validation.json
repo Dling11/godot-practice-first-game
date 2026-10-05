@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-05",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "Compatibility OpenGL / AMD",
+  "owner_motion_accepted": true,
+  "installed_in_player_catalog_and_bag": true,
+  "access": "F5 -> Sanctuary -> F9 -> Tab -> Royal Greatsword -> Equip",
+  "saving": "Existing F9 debug preset suppresses autosave; baseline defaults/IDs unchanged",
+  "native": {
+    "king_five_cut_smoke": {
+      "failures": 0,
+      "checks": 236
+    },
+    "king_planted_weapon_smoke": {
+      "failures": 0,
+      "checks": 21
+    },
+    "king_greatsword_gameplay_smoke": {
+      "scripted_intent": true,
+      "actual_stage_1": true,
+      "failures": 0,
+      "actual_sanctuary": true,
+      "checks": 127
+    },
+    "king_confidence_v2_smoke": {
+      "failures": 0,
+      "checks": 101
+    }
+  },
+  "headless_passed": [
+    "equipment_preview_smoke",
+    "character_menu_smoke",
+    "melee_combat_smoke",
+    "sword_attack_style_smoke",
+    "basic_attack_repeat_smoke",
+    "ability_input_buffer_smoke",
+    "crafting_service_smoke"
+  ],
+  "rebuild_runtime_sha256_unchanged": true,
+  "rejected_runtime_folders_archived": 4,
+  "obsolete_tools_archived": 10,
+  "active_archived_references": 0,
+  "limitations": [
+    "New family artwork covers side-facing movement/attacks/idle",
+    "Vertical/skill/evade/reaction art retains directional fallback",
+    "Campaign acquisition, final balance, armor overlays and family skill art pending",
+    "Existing global hitstop/manual-pause limitation unchanged",
+    "Not device profiling"
+  ]
+}

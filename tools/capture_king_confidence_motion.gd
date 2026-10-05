@@ -1,6 +1,6 @@
 extends "res://tools/launch_king_greatsword_confidence_review.gd"
 
-const OUT := "res://art_source/review/combat/king_grip_plant_v4_2026_10_04/"
+const OUT := "res://art_source/review/combat/king_linked_return_v10_2026_10_04/"
 
 func _run() -> void:
 	await super._run()
@@ -25,7 +25,9 @@ func _run() -> void:
 	group.scale = Vector2.ONE*1.25
 	layer.add_child(group)
 	var body := Presenter.new()
-	assert(body.configure(CONFIDENT_POSES,stage.player.attack_component))
+	body.continuation_requested = has_queued_cut
+	body.continuation_pending = has_pending_cut
+	assert(body.configure(reviewed_poses,stage.player.attack_component))
 	assert(body.configure_idle(PRIDE_POSES))
 	body.position = Vector2(0,-16)
 	body.scale = Vector2.ONE*0.5
@@ -65,7 +67,7 @@ func _run() -> void:
 	var started := Time.get_ticks_msec()
 	var origin: Vector2 = stage.player.global_position
 	var previous_position := origin
-	for index in 200:
+	for index in 240:
 		if index==10:
 			horizontal_motion.set_direction(1)
 			body.play_locomotion(RUN_POSES,48.0/horizontal_motion.speed,true)
@@ -74,18 +76,18 @@ func _run() -> void:
 			body.stop_locomotion()
 			place_target()
 		if index==32: play_combo()
-		if index==115:
+		if index==135:
 			proud_idle()
 			body._rest_timer.stop()
 			body._rest()
-		if index==147:
+		if index==165:
 			strike()
 			body.retrieve_from_rest(func() -> void: pass)
-		if index==172:
+		if index==195:
 			horizontal_motion.set_direction(-1)
 			body.face_horizontal(-1)
 			body.play_locomotion(RUN_POSES,48.0/horizontal_motion.speed,true)
-		if index==192:
+		if index==225:
 			horizontal_motion.stop_and_clear()
 			body.stop_locomotion()
 		await create_timer(1.0/20.0).timeout
@@ -93,7 +95,7 @@ func _run() -> void:
 		previous_position = stage.player.global_position
 		var attack: MeleeAttackComponent = stage.player.attack_component
 		group.position = Vector2(630,390)+(stage.player.global_position-origin)*1.25
-		label.text = "GREATSWORD V4 / GRIP + SHALLOW PRIDE\n"+("One-hand shoulder run" if axe_presenter._running else "Retrieving planted sword" if axe_presenter._drawing else "Plant / proud crossed arms" if axe_presenter._resting else NAMES[attack.combo_step] if attack.phase!=MeleeAttackComponent.Phase.IDLE else "Confident one-hand carry")
+		label.text = "GREATSWORD / LINKED 4 → 5\n"+("One-hand shoulder run" if axe_presenter._running else "Retrieving planted sword" if axe_presenter._drawing else "Plant / proud crossed arms" if axe_presenter._resting else move_names[attack.combo_step] if attack.phase!=MeleeAttackComponent.Phase.IDLE else "Confident one-hand carry")
 		await RenderingServer.frame_post_draw
 		var name := "motion_frames/frame_%03d.png" % index
 		assert(root.get_texture().get_image().get_region(Rect2i(362,66,588,458)).save_png(OUT+name)==OK)

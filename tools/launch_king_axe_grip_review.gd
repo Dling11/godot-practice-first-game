@@ -15,10 +15,12 @@ var contact_target: Node2D
 var _queued_cut := false
 var _auto_cuts_left := 0
 var _continuation: Timer
+var _practice_opening := false
 
 class ReviewInput extends Node:
 	var strike: Callable
 	var pause: Callable
+	var practice: Callable
 	func _unhandled_input(event: InputEvent) -> void:
 		if event is InputEventKey and event.pressed and not event.echo:
 			if event.keycode == KEY_ESCAPE:
@@ -26,6 +28,9 @@ class ReviewInput extends Node:
 				get_viewport().set_input_as_handled()
 			elif event.keycode == KEY_SPACE and not get_tree().paused:
 				strike.call()
+				get_viewport().set_input_as_handled()
+			elif event.keycode == KEY_TAB and practice.is_valid() and not get_tree().paused:
+				practice.call()
 				get_viewport().set_input_as_handled()
 		elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and not get_tree().paused:
 			strike.call()
@@ -67,6 +72,8 @@ func open_review() -> void:
 	actor.get_node("GreatswordEffects").hide()
 	actor.get_node("VisualRoot/Body").hide()
 	stage.get_node("UI").hide()
+	# Hidden HUD menus must not claim a pause from an invisible Tab action.
+	stage.character_menu.set_process_input(false)
 	axe_presenter = Presenter.new()
 	assert(axe_presenter.configure(POSES,actor.attack_component))
 	axe_presenter.position = Vector2(0,-16)
@@ -118,6 +125,26 @@ func strike() -> void:
 		_queued_cut = true
 		return
 	stage.player.attack_component.request_attack(Vector2.RIGHT)
+
+func open_playable_practice_with(item: EquipmentDefinition) -> void:
+	if _practice_opening: return
+	_practice_opening = true
+	cancel_combo()
+	paused = false
+	root.get_node("SaveService").suppress_autosave_for_debug_session()
+	var inventory := root.get_node("WeaponInventory")
+	# Both accepted families are selectable on arrival, without another F9.
+	for candidate in stage.player.weapon_catalog.weapons:
+		if candidate.weapon_definition.family_presentation != null:
+			inventory.acquire_weapon(candidate)
+	if not inventory.equip_weapon(&"king",&"warrior",item):
+		_practice_opening = false
+		return
+	if await root.get_node("SceneTransition").transition_to("res://levels/combat_lab/combat_lab.tscn"):
+		root.title = "Battle of Gods — Weapon practice (NO SAVES / REWARDS)"
+		current_scene.get_node("UI/CharacterMenu").open_menu()
+	else:
+		_practice_opening = false
 
 func play_combo() -> void:
 	if paused or stage.player.attack_component.phase!=MeleeAttackComponent.Phase.IDLE or not _continuation.is_stopped(): return

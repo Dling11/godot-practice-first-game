@@ -1,0 +1,251 @@
+[
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\return_body.png",
+    "sha256": "862D1BCB4298D6839321730B3395C99F0B8AD424D85005BD1703A33761DA3CCD"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\return_body.png.import",
+    "sha256": "44D0CBE1A3017294E9DB3E3D7E95512181494E1D97477B0A96EB881E5BB76BF4"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\return_hands.png",
+    "sha256": "688B8137A4090D7B7328D6A4C991A6AE92277E167CE34787C093BAEAF11A57CE"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\return_hands.png.import",
+    "sha256": "D5895C5407B0CF17F056D6B0E8C7E491FEDBF93176C5845BD7FE401CE0A1FD0A"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\return.tres",
+    "sha256": "44BC2FCD773B518D06E9F6B33EE181D07746A0FCDE94C01C6625BF204623CE41"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\rise_body.png",
+    "sha256": "3F000F6C38A40139250B5A0A444C15F31D65ECF069DBC6A825082CCAF4B5D9C9"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\rise_body.png.import",
+    "sha256": "BD746F2EDD15163D542ED3C35640F8AC159154D03C766E3F04E2AC00FBBBCBC7"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\rise_hands.png",
+    "sha256": "2A3D147D015ED3C715241D3A1A5BB4106445CC2408E4A54E6CA5ED88E73C0A5C"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\rise_hands.png.import",
+    "sha256": "1C6292128129B19CCBE47CDC19B12FD1A41AAA56DC3FC8D83160219539CC7479"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\rise.tres",
+    "sha256": "FF3E1096C044291F91E4045460705AED4D39F7790BB6E9E2342A9577F38232FC"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\slam_body.png",
+    "sha256": "0BE41BA8CC077FA475EB6214627761083DF4CE294CC3843A84CCD918DED57077"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\slam_body.png.import",
+    "sha256": "6E40986AEB4BA151B5E5A155487E757F0690685A979AC42024E69E6373B5F733"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\slam_hands.png",
+    "sha256": "5EE0F13D28379221A0145FEEFED31F78A057D7D1877E352A366698F459E54FC4"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\slam_hands.png.import",
+    "sha256": "A68F6994BADD34C9F35A9FFCA75235C4852BD7D19730E69923D735E8C6986922"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\slam.tres",
+    "sha256": "BFB2CDE00269683E0DCB05E776B1D14F9A05D570B516D07C4D42D59BE6966FD2"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\sweep_body.png",
+    "sha256": "9E16DDA5F08AB74A775192AE1ADCB6F69C3A67F599DD978C87536DD36E4152A0"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\sweep_body.png.import",
+    "sha256": "FD473A04F06D440A4EFD7D678795C46C15C98FF04B04E22A14FC6B0B0917820C"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\sweep_hands.png",
+    "sha256": "221695F763BEC3243871E25E393A0EEC5414C3857A26C23D0AC9F7A7105D6B5D"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\sweep_hands.png.import",
+    "sha256": "1D5223E5BA50F5614F34587A9E7998A1875CAFB6389C1F692831E2E6D7F318A1"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\sweep.tres",
+    "sha256": "3933637A6C42832463AF4A76B6F3EBC4BEDE693AE8957D16486E9EBF146ECBD5"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\turn_body.png",
+    "sha256": "5D11EF0326E1B8CAA3C842F5AB4F6A3282E1B5ADF8E5A2C75FB2747609760FAA"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\turn_body.png.import",
+    "sha256": "88700399B8526993A6EC7E773E6F750CF6233396EBE8D25975BD2D4A500807D5"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\turn_hands.png",
+    "sha256": "BCCC2B0C86E85F74B9E075A9AF322E285F11FB9DC4DAE18E67EC52E7D4319642"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\turn_hands.png.import",
+    "sha256": "9E78CB8B8FA6F2B369DEC69AE879B737E631DC92A64B3D049E617AE41C3410C6"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\turn.tres",
+    "sha256": "0305AA94406D3FBAF5A65B11FE68F63D66FF56F252B5D9902D3C6A73A8756AE3"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\return_body.png",
+    "sha256": "35426A1BE5650037AF8FC4E6ACC54D28194C712DBADC5B03E33F4618792B9147"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\return_body.png.import",
+    "sha256": "A0836E3B5C8488876FC4ED815AAEA079CD13C540F8D6C4B55CC3440D9D26EF20"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\return_hands.png",
+    "sha256": "6D35069438D4691750AA413BADB377E4B946D97AE86825B4D8722FF2BB7B35DD"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\return_hands.png.import",
+    "sha256": "5D7C7C3594AF77D38061600039815E885EAC8DE30380F63DE88A5A4708CB5311"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\return.tres",
+    "sha256": "BD617930D0F29BFBCA3CC64C109ACA075D9996CD1AE50B7341BD9A9ECDD22528"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\rise_body.png",
+    "sha256": "150DECCAE988CCDADEB0994A718957695731E334BEF2E45CBB02F5C3340F97B0"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\rise_body.png.import",
+    "sha256": "A0AD5845ED2DC928DCF05075B1E533DA8EECBE085DBB964F009A99EE0492DCFA"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\rise_hands.png",
+    "sha256": "B84EBE57FFB8004122B8466101DA0C1ECAF0C8755F50356A764A7D332A8A3F77"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\rise_hands.png.import",
+    "sha256": "A9E9348D32736F324622A15C2ACCF303C1A1F64E08D51A271359662D817057AF"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\rise.tres",
+    "sha256": "D81F75F101DB60FA5BBEFA2CCA4D8CE1FCB137C736158648A8D3678697DE4F3F"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\slam_body.png",
+    "sha256": "A78D605CEC127B7573858E03A530E74F6D3DE6058E8B8669CA89C0FCA89FE8DB"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\slam_body.png.import",
+    "sha256": "71E20666D9ADFDB1C22419B994EE5273E2BA3C239F98EDD2D16B9990E533C61A"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\slam_hands.png",
+    "sha256": "4EA935CA9701872F384C273AEBF7F12792761029B2311F90397904A7B36BE7C8"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\slam_hands.png.import",
+    "sha256": "D5C67D4A70A3DBF15FAEDC349DB380C38DC8240331B6A5DD719F0379C8FF7ECB"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\slam.tres",
+    "sha256": "BECB23CA2E488A39236E76E5016DFFBFBDABEFDDBDA6BA2126ADC0239E83B34F"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\sweep_body.png",
+    "sha256": "B3244773BC5A812145FF5D1A3480C52A30739BE563E35F530408CEA3D11D9736"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\sweep_body.png.import",
+    "sha256": "60B36D448D4DD4EC433EAF4B26A59552A5DFF383E0312B71D6848776E2AF002B"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\sweep_hands.png",
+    "sha256": "A2EA799632FE4922C660A8CC22321CACCF032578C36F3472C8E564833955596C"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\sweep_hands.png.import",
+    "sha256": "F9241ACAE6B06BE9C4C860C7DA057601847EFBC5F6A156E7DDCB1CC1E38F7387"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\sweep.tres",
+    "sha256": "9DF7A1B6FAEB96FCB5C92105E691410D41CB179157FF603C5AE302643CAA132C"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\turn_body.png",
+    "sha256": "B0ECA020E4B53237ADA109468E1C90827956AA0BEF9D7F8AE237EF92DDB50087"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\turn_body.png.import",
+    "sha256": "399FAD22E179E7247C855836DB6B53537A358A7F8C6614AEF650FA438ACE9383"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\turn_hands.png",
+    "sha256": "CA76665304983C37042E64EC74A167CE5A1B0AA71408C07CB4758B6210191073"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\turn_hands.png.import",
+    "sha256": "5527224EA6FA59CC50FEEBEAB04E9E941E308B033D7CCFE5658E8876C4AAE6F2"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\turn.tres",
+    "sha256": "6CE26A3CE79F4D2D80E188FB969A4EE049E7AD91F51E3A8955D97A6516DFBDFE"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_low_return\\return_body.png",
+    "sha256": "E4D5EAA5AD153FCD1AA5E35E73FEA318AD1794CA10E319A5D1C43A0ABC5DAF51"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_low_return\\return_body.png.import",
+    "sha256": "7265550380721FBE26BAA2A27A10DF31D9AC9352B9D7DDFF76EEC3C8E206DD6A"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_low_return\\return_hands.png",
+    "sha256": "77806F6511E914972C9FC3EA9DA13E8F396ED12B592ABEEA470CE754CDBACC2A"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_low_return\\return_hands.png.import",
+    "sha256": "50E571B0E547937EC02696508996F09D5C4B10DC3D82FADB59118D10983899D1"
+  },
+  {
+    "original_path": "assets\\characters\\playable\\king\\greatsword_low_return\\return.tres",
+    "sha256": "29779DD9089957555845ABC9351FACE9867C3F4AE8D7430E29605AC7D8B992CC"
+  },
+  {
+    "original_path": "tools\\build_king_greatsword_low_return.gd",
+    "sha256": "D8E1E00879EF10F6B68BF7E00FC355EDBE66F0845B6B28CC7026BE2CDA8E1A90"
+  },
+  {
+    "original_path": "tools\\build_king_greatsword_low_return.gd.uid",
+    "sha256": "F16D5A720AEC98C29036BD7345F2B727342AAD7145084C2CEBA0BCEA375589E0"
+  },
+  {
+    "original_path": "tools\\export_king_low_return_reference.gd",
+    "sha256": "904D238158D99B933C571286FA2375498C3F95A1C0A43B545D3BFB1EAB171CA2"
+  },
+  {
+    "original_path": "tools\\export_king_low_return_reference.gd.uid",
+    "sha256": "0608F0828CF0178A620BA26A7ACDBF010B3DED3B23141E620142302973E85552"
+  },
+  {
+    "original_path": "tools\\inspect_king_upward_anatomy.gd",
+    "sha256": "2520C094F12C27AADE556DB50DBFA6753FDC2363FF9022C084D8F3B5269F8C0F"
+  },
+  {
+    "original_path": "tools\\inspect_king_upward_anatomy.gd.uid",
+    "sha256": "FCE7A83E22D0C4972597F608C394ABF48C05F9C788CF78F163337C66397CFDE0"
+  },
+  {
+    "original_path": "tools/build_king_greatsword_cardinal.gd",
+    "retained_as": "tools/build_king_greatsword_cardinal_before.gd",
+    "sha256": "D52493216DAEEB39040F501AF070D8091771EC3C0CC715BE643FEFBAF858ED76"
+  }
+]

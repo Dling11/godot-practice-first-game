@@ -1,0 +1,12 @@
+{
+	"axe_seconds": 3.6,
+	"checks": 2901,
+	"failures": 0,
+	"greatsword_seconds": 3.00000004470348,
+	"modular_arms": false,
+	"rendered_frames": 130,
+	"steel_size": [
+		30,
+		140
+	]
+}

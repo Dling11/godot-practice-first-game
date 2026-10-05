@@ -1,0 +1,3202 @@
+[
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 17,
+		"file": "motion_frames/frame_000.png",
+		"fixed_capture": true,
+		"wall_ms": 107
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 50,
+		"file": "motion_frames/frame_001.png",
+		"fixed_capture": true,
+		"wall_ms": 146
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 83,
+		"file": "motion_frames/frame_002.png",
+		"fixed_capture": true,
+		"wall_ms": 174
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 117,
+		"file": "motion_frames/frame_003.png",
+		"fixed_capture": true,
+		"wall_ms": 188
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 150,
+		"file": "motion_frames/frame_004.png",
+		"fixed_capture": true,
+		"wall_ms": 206
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 183,
+		"file": "motion_frames/frame_005.png",
+		"fixed_capture": true,
+		"wall_ms": 219
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 217,
+		"file": "motion_frames/frame_006.png",
+		"fixed_capture": true,
+		"wall_ms": 245
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 250,
+		"file": "motion_frames/frame_007.png",
+		"fixed_capture": true,
+		"wall_ms": 260
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 283,
+		"file": "motion_frames/frame_008.png",
+		"fixed_capture": true,
+		"wall_ms": 278
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 317,
+		"file": "motion_frames/frame_009.png",
+		"fixed_capture": true,
+		"wall_ms": 317
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": 120.963756691571,
+				"phase": 1,
+				"pose": 0,
+				"step": 3
+			},
+			{
+				"blade_degrees": 120.963756691571,
+				"phase": 1,
+				"pose": 0,
+				"step": 3
+			},
+			{
+				"blade_degrees": -30.5453743645786,
+				"phase": 1,
+				"pose": 0,
+				"step": 3
+			},
+			{
+				"blade_degrees": -149.454634059472,
+				"phase": 1,
+				"pose": 0,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 350,
+		"file": "motion_frames/frame_010.png",
+		"fixed_capture": true,
+		"wall_ms": 340
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": 120.963756691571,
+				"phase": 1,
+				"pose": 0,
+				"step": 3
+			},
+			{
+				"blade_degrees": 120.963756691571,
+				"phase": 1,
+				"pose": 0,
+				"step": 3
+			},
+			{
+				"blade_degrees": -61.0907487291573,
+				"phase": 1,
+				"pose": 0,
+				"step": 3
+			},
+			{
+				"blade_degrees": -118.909263109988,
+				"phase": 1,
+				"pose": 0,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 383,
+		"file": "motion_frames/frame_011.png",
+		"fixed_capture": true,
+		"wall_ms": 362
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": 120.963756691571,
+				"phase": 1,
+				"pose": 0,
+				"step": 3
+			},
+			{
+				"blade_degrees": 120.963756691571,
+				"phase": 1,
+				"pose": 0,
+				"step": 3
+			},
+			{
+				"blade_degrees": -91.636106018263,
+				"phase": 1,
+				"pose": 0,
+				"step": 3
+			},
+			{
+				"blade_degrees": -88.3638989906933,
+				"phase": 1,
+				"pose": 0,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 417,
+		"file": "motion_frames/frame_012.png",
+		"fixed_capture": true,
+		"wall_ms": 387
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -80.5376838245851,
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			},
+			{
+				"blade_degrees": -80.5376838245851,
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			},
+			{
+				"blade_degrees": -105.570374944006,
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			},
+			{
+				"blade_degrees": -74.4296300649503,
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 450,
+		"file": "motion_frames/frame_013.png",
+		"fixed_capture": true,
+		"wall_ms": 405
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -80.5376838245851,
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			},
+			{
+				"blade_degrees": -80.5376838245851,
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			},
+			{
+				"blade_degrees": -94.4629642213804,
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			},
+			{
+				"blade_degrees": -85.5370407875759,
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 483,
+		"file": "motion_frames/frame_014.png",
+		"fixed_capture": true,
+		"wall_ms": 443
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -80.5376838245851,
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			},
+			{
+				"blade_degrees": -80.5376838245851,
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			},
+			{
+				"blade_degrees": -83.3555603289439,
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			},
+			{
+				"blade_degrees": -96.6444446800124,
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 517,
+		"file": "motion_frames/frame_015.png",
+		"fixed_capture": true,
+		"wall_ms": 458
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -80.5376838245851,
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			},
+			{
+				"blade_degrees": -80.5376838245851,
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			},
+			{
+				"blade_degrees": -72.2481496063183,
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			},
+			{
+				"blade_degrees": -107.751855402638,
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 550,
+		"file": "motion_frames/frame_016.png",
+		"fixed_capture": true,
+		"wall_ms": 490
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -59.036248317385,
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			},
+			{
+				"blade_degrees": -59.036248317385,
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			},
+			{
+				"blade_degrees": -54.4962898779692,
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			},
+			{
+				"blade_degrees": -125.503715130987,
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 583,
+		"file": "motion_frames/frame_017.png",
+		"fixed_capture": true,
+		"wall_ms": 504
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -59.036248317385,
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			},
+			{
+				"blade_degrees": -59.036248317385,
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			},
+			{
+				"blade_degrees": -35.0583364812999,
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			},
+			{
+				"blade_degrees": -144.941668527656,
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 617,
+		"file": "motion_frames/frame_018.png",
+		"fixed_capture": true,
+		"wall_ms": 524
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -59.036248317385,
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			},
+			{
+				"blade_degrees": -59.036248317385,
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			},
+			{
+				"blade_degrees": -15.6203728393469,
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			},
+			{
+				"blade_degrees": -164.379649245082,
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 650,
+		"file": "motion_frames/frame_019.png",
+		"fixed_capture": true,
+		"wall_ms": 540
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": 123.690067679917,
+				"phase": 2,
+				"pose": 3,
+				"step": 3
+			},
+			{
+				"blade_degrees": 123.690067679917,
+				"phase": 2,
+				"pose": 3,
+				"step": 3
+			},
+			{
+				"blade_degrees": 6.81590596379778,
+				"phase": 2,
+				"pose": 3,
+				"step": 3
+			},
+			{
+				"blade_degrees": 173.184090934309,
+				"phase": 2,
+				"pose": 3,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 683,
+		"file": "motion_frames/frame_020.png",
+		"fixed_capture": true,
+		"wall_ms": 552
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": 123.690067679917,
+				"phase": 2,
+				"pose": 3,
+				"step": 3
+			},
+			{
+				"blade_degrees": 123.690067679917,
+				"phase": 2,
+				"pose": 3,
+				"step": 3
+			},
+			{
+				"blade_degrees": 20.4477183182802,
+				"phase": 2,
+				"pose": 3,
+				"step": 3
+			},
+			{
+				"blade_degrees": 159.552276445392,
+				"phase": 2,
+				"pose": 3,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 717,
+		"file": "motion_frames/frame_021.png",
+		"fixed_capture": true,
+		"wall_ms": 573
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": 101.309921505806,
+				"phase": 2,
+				"pose": 4,
+				"step": 3
+			},
+			{
+				"blade_degrees": 101.309921505806,
+				"phase": 2,
+				"pose": 4,
+				"step": 3
+			},
+			{
+				"blade_degrees": 34.0795362222913,
+				"phase": 2,
+				"pose": 4,
+				"step": 3
+			},
+			{
+				"blade_degrees": 145.920461956476,
+				"phase": 2,
+				"pose": 4,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 750,
+		"file": "motion_frames/frame_022.png",
+		"fixed_capture": true,
+		"wall_ms": 600
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": 101.309921505806,
+				"phase": 2,
+				"pose": 4,
+				"step": 3
+			},
+			{
+				"blade_degrees": 101.309921505806,
+				"phase": 2,
+				"pose": 4,
+				"step": 3
+			},
+			{
+				"blade_degrees": 47.7113643715861,
+				"phase": 2,
+				"pose": 4,
+				"step": 3
+			},
+			{
+				"blade_degrees": 132.288633807181,
+				"phase": 2,
+				"pose": 4,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 783,
+		"file": "motion_frames/frame_023.png",
+		"fixed_capture": true,
+		"wall_ms": 610
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": 99.4623211843712,
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 99.4623211843712,
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 60.0000084998413,
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 119.999989678926,
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 817,
+		"file": "motion_frames/frame_024.png",
+		"fixed_capture": true,
+		"wall_ms": 637
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": 99.4623211843712,
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 99.4623211843712,
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 60.0000084998413,
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 119.999989678926,
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 850,
+		"file": "motion_frames/frame_025.png",
+		"fixed_capture": true,
+		"wall_ms": 665
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": 99.4623211843712,
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 99.4623211843712,
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 60.0000084998413,
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 119.999989678926,
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 883,
+		"file": "motion_frames/frame_026.png",
+		"fixed_capture": true,
+		"wall_ms": 701
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": 99.4623211843712,
+				"phase": 3,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 99.4623211843712,
+				"phase": 3,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 60.0000084998413,
+				"phase": 3,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 119.999989678926,
+				"phase": 3,
+				"pose": 5,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 917,
+		"file": "motion_frames/frame_027.png",
+		"fixed_capture": true,
+		"wall_ms": 715
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": 99.4623211843712,
+				"phase": 3,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 99.4623211843712,
+				"phase": 3,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 60.0000084998413,
+				"phase": 3,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 119.999989678926,
+				"phase": 3,
+				"pose": 5,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 950,
+		"file": "motion_frames/frame_028.png",
+		"fixed_capture": true,
+		"wall_ms": 731
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": 99.4623211843712,
+				"phase": 3,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 99.4623211843712,
+				"phase": 3,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 60.0000084998413,
+				"phase": 3,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 119.999989678926,
+				"phase": 3,
+				"pose": 5,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 983,
+		"file": "motion_frames/frame_029.png",
+		"fixed_capture": true,
+		"wall_ms": 742
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": 99.4623211843712,
+				"phase": 3,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 99.4623211843712,
+				"phase": 3,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 60.0000084998413,
+				"phase": 3,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 119.999989678926,
+				"phase": 3,
+				"pose": 5,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 1017,
+		"file": "motion_frames/frame_030.png",
+		"fixed_capture": true,
+		"wall_ms": 747
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": 99.4623211843712,
+				"phase": 1,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": 99.4623211843712,
+				"phase": 1,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": 22.5124879194696,
+				"phase": 1,
+				"pose": 1,
+				"step": 4
+			},
+			{
+				"blade_degrees": 157.487510259298,
+				"phase": 1,
+				"pose": 1,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1050,
+		"file": "motion_frames/frame_031.png",
+		"fixed_capture": true,
+		"wall_ms": 782
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": 100.694057008724,
+				"phase": 1,
+				"pose": 1,
+				"step": 4
+			},
+			{
+				"blade_degrees": 100.694057008724,
+				"phase": 1,
+				"pose": 1,
+				"step": 4
+			},
+			{
+				"blade_degrees": -14.9750002175035,
+				"phase": 1,
+				"pose": 2,
+				"step": 4
+			},
+			{
+				"blade_degrees": -165.024992838622,
+				"phase": 1,
+				"pose": 2,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1083,
+		"file": "motion_frames/frame_032.png",
+		"fixed_capture": true,
+		"wall_ms": 807
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": 107.088370826663,
+				"phase": 2,
+				"pose": 2,
+				"step": 4
+			},
+			{
+				"blade_degrees": 107.088370826663,
+				"phase": 2,
+				"pose": 2,
+				"step": 4
+			},
+			{
+				"blade_degrees": -39.0878748840407,
+				"phase": 2,
+				"pose": 3,
+				"step": 4
+			},
+			{
+				"blade_degrees": -140.912130124916,
+				"phase": 2,
+				"pose": 3,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1117,
+		"file": "motion_frames/frame_033.png",
+		"fixed_capture": true,
+		"wall_ms": 845
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": 119.078884027836,
+				"phase": 2,
+				"pose": 3,
+				"step": 4
+			},
+			{
+				"blade_degrees": 119.078884027836,
+				"phase": 2,
+				"pose": 3,
+				"step": 4
+			},
+			{
+				"blade_degrees": -57.2636366428482,
+				"phase": 2,
+				"pose": 3,
+				"step": 4
+			},
+			{
+				"blade_degrees": -122.736368366108,
+				"phase": 2,
+				"pose": 3,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1150,
+		"file": "motion_frames/frame_034.png",
+		"fixed_capture": true,
+		"wall_ms": 869
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": 133.044763069058,
+				"phase": 2,
+				"pose": 3,
+				"step": 4
+			},
+			{
+				"blade_degrees": 133.044763069058,
+				"phase": 2,
+				"pose": 3,
+				"step": 4
+			},
+			{
+				"blade_degrees": -75.4393984016558,
+				"phase": 2,
+				"pose": 4,
+				"step": 4
+			},
+			{
+				"blade_degrees": -104.560606607301,
+				"phase": 2,
+				"pose": 4,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1183,
+		"file": "motion_frames/frame_035.png",
+		"fixed_capture": true,
+		"wall_ms": 887
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": 156.949578220646,
+				"phase": 2,
+				"pose": 4,
+				"step": 4
+			},
+			{
+				"blade_degrees": 156.949578220646,
+				"phase": 2,
+				"pose": 4,
+				"step": 4
+			},
+			{
+				"blade_degrees": -93.6151601604634,
+				"phase": 2,
+				"pose": 4,
+				"step": 4
+			},
+			{
+				"blade_degrees": -86.3848448484929,
+				"phase": 2,
+				"pose": 4,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1217,
+		"file": "motion_frames/frame_036.png",
+		"fixed_capture": true,
+		"wall_ms": 909
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": 177.407770634018,
+				"phase": 2,
+				"pose": 5,
+				"step": 4
+			},
+			{
+				"blade_degrees": 177.407770634018,
+				"phase": 2,
+				"pose": 5,
+				"step": 4
+			},
+			{
+				"blade_degrees": -110.895456798326,
+				"phase": 2,
+				"pose": 5,
+				"step": 4
+			},
+			{
+				"blade_degrees": -69.1045482106307,
+				"phase": 2,
+				"pose": 5,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1250,
+		"file": "motion_frames/frame_037.png",
+		"fixed_capture": true,
+		"wall_ms": 924
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -164.99999434626,
+				"phase": 2,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": -164.99999434626,
+				"phase": 2,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": -119.983337677729,
+				"phase": 2,
+				"pose": 5,
+				"step": 4
+			},
+			{
+				"blade_degrees": -60.0166741614161,
+				"phase": 2,
+				"pose": 5,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1283,
+		"file": "motion_frames/frame_038.png",
+		"fixed_capture": true,
+		"wall_ms": 957
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -142.272744788717,
+				"phase": 2,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": -142.272744788717,
+				"phase": 2,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": -129.071204896755,
+				"phase": 2,
+				"pose": 5,
+				"step": 4
+			},
+			{
+				"blade_degrees": -50.9288035272961,
+				"phase": 2,
+				"pose": 5,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1317,
+		"file": "motion_frames/frame_039.png",
+		"fixed_capture": true,
+		"wall_ms": 979
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -114.37500104834,
+				"phase": 3,
+				"pose": 8,
+				"step": 4
+			},
+			{
+				"blade_degrees": -114.37500104834,
+				"phase": 3,
+				"pose": 8,
+				"step": 4
+			},
+			{
+				"blade_degrees": -115.840404474388,
+				"phase": 3,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": -49.1670962497693,
+				"phase": 3,
+				"pose": 6,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1350,
+		"file": "motion_frames/frame_040.png",
+		"fixed_capture": true,
+		"wall_ms": 996
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -98.7500075860198,
+				"phase": 3,
+				"pose": 9,
+				"step": 4
+			},
+			{
+				"blade_degrees": -98.7500075860198,
+				"phase": 3,
+				"pose": 9,
+				"step": 4
+			},
+			{
+				"blade_degrees": -101.680821268305,
+				"phase": 3,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": -48.3341785861483,
+				"phase": 3,
+				"pose": 6,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1383,
+		"file": "motion_frames/frame_041.png",
+		"fixed_capture": true,
+		"wall_ms": 1012
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -83.1249936331318,
+				"phase": 3,
+				"pose": 10,
+				"step": 4
+			},
+			{
+				"blade_degrees": -83.1249936331318,
+				"phase": 3,
+				"pose": 10,
+				"step": 4
+			},
+			{
+				"blade_degrees": -87.5212517225997,
+				"phase": 3,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": -47.5012609225274,
+				"phase": 3,
+				"pose": 6,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1417,
+		"file": "motion_frames/frame_042.png",
+		"fixed_capture": true,
+		"wall_ms": 1031
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -69.5757561312807,
+				"phase": 3,
+				"pose": 11,
+				"step": 4
+			},
+			{
+				"blade_degrees": -69.5757561312807,
+				"phase": 3,
+				"pose": 11,
+				"step": 4
+			},
+			{
+				"blade_degrees": -73.3616616863271,
+				"phase": 3,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": -46.6683398438118,
+				"phase": 3,
+				"pose": 6,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1450,
+		"file": "motion_frames/frame_043.png",
+		"fixed_capture": true,
+		"wall_ms": 1070
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -66.9242425445359,
+				"phase": 3,
+				"pose": 11,
+				"step": 4
+			},
+			{
+				"blade_degrees": -66.9242425445359,
+				"phase": 3,
+				"pose": 11,
+				"step": 4
+			},
+			{
+				"blade_degrees": -59.2020853104329,
+				"phase": 3,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.8354187650963,
+				"phase": 3,
+				"pose": 6,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1483,
+		"file": "motion_frames/frame_044.png",
+		"fixed_capture": true,
+		"wall_ms": 1092
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -64.2727289577911,
+				"phase": 3,
+				"pose": 11,
+				"step": 4
+			},
+			{
+				"blade_degrees": -64.2727289577911,
+				"phase": 3,
+				"pose": 11,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0425123496332,
+				"phase": 3,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0025011014753,
+				"phase": 3,
+				"pose": 6,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1517,
+		"file": "motion_frames/frame_045.png",
+		"fixed_capture": true,
+		"wall_ms": 1112
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.0785386833061,
+				"phase": 3,
+				"pose": 12,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.0785386833061,
+				"phase": 3,
+				"pose": 12,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 3,
+				"pose": 7,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 3,
+				"pose": 7,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1550,
+		"file": "motion_frames/frame_046.png",
+		"fixed_capture": true,
+		"wall_ms": 1134
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.2295609960443,
+				"phase": 3,
+				"pose": 12,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.2295609960443,
+				"phase": 3,
+				"pose": 12,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 3,
+				"pose": 7,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 3,
+				"pose": 7,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1583,
+		"file": "motion_frames/frame_047.png",
+		"fixed_capture": true,
+		"wall_ms": 1149
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.3805833087824,
+				"phase": 3,
+				"pose": 12,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.3805833087824,
+				"phase": 3,
+				"pose": 12,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 3,
+				"pose": 7,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 3,
+				"pose": 7,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1617,
+		"file": "motion_frames/frame_048.png",
+		"fixed_capture": true,
+		"wall_ms": 1176
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 3,
+				"pose": 13,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 3,
+				"pose": 13,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 3,
+				"pose": 7,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 3,
+				"pose": 7,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1650,
+		"file": "motion_frames/frame_049.png",
+		"fixed_capture": true,
+		"wall_ms": 1190
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 3,
+				"pose": 14,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 3,
+				"pose": 14,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 3,
+				"pose": 7,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 3,
+				"pose": 7,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1683,
+		"file": "motion_frames/frame_050.png",
+		"fixed_capture": true,
+		"wall_ms": 1227
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 3,
+				"pose": 15,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 3,
+				"pose": 15,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 3,
+				"pose": 7,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 3,
+				"pose": 7,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1717,
+		"file": "motion_frames/frame_051.png",
+		"fixed_capture": true,
+		"wall_ms": 1245
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1750,
+		"file": "motion_frames/frame_052.png",
+		"fixed_capture": true,
+		"wall_ms": 1284
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1783,
+		"file": "motion_frames/frame_053.png",
+		"fixed_capture": true,
+		"wall_ms": 1301
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1817,
+		"file": "motion_frames/frame_054.png",
+		"fixed_capture": true,
+		"wall_ms": 1330
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1850,
+		"file": "motion_frames/frame_055.png",
+		"fixed_capture": true,
+		"wall_ms": 1344
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1883,
+		"file": "motion_frames/frame_056.png",
+		"fixed_capture": true,
+		"wall_ms": 1387
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1917,
+		"file": "motion_frames/frame_057.png",
+		"fixed_capture": true,
+		"wall_ms": 1399
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1950,
+		"file": "motion_frames/frame_058.png",
+		"fixed_capture": true,
+		"wall_ms": 1428
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 1983,
+		"file": "motion_frames/frame_059.png",
+		"fixed_capture": true,
+		"wall_ms": 1451
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2017,
+		"file": "motion_frames/frame_060.png",
+		"fixed_capture": true,
+		"wall_ms": 1477
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2050,
+		"file": "motion_frames/frame_061.png",
+		"fixed_capture": true,
+		"wall_ms": 1522
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2083,
+		"file": "motion_frames/frame_062.png",
+		"fixed_capture": true,
+		"wall_ms": 1539
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2117,
+		"file": "motion_frames/frame_063.png",
+		"fixed_capture": true,
+		"wall_ms": 1554
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2150,
+		"file": "motion_frames/frame_064.png",
+		"fixed_capture": true,
+		"wall_ms": 1583
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2183,
+		"file": "motion_frames/frame_065.png",
+		"fixed_capture": true,
+		"wall_ms": 1605
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2217,
+		"file": "motion_frames/frame_066.png",
+		"fixed_capture": true,
+		"wall_ms": 1622
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2250,
+		"file": "motion_frames/frame_067.png",
+		"fixed_capture": true,
+		"wall_ms": 1647
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2283,
+		"file": "motion_frames/frame_068.png",
+		"fixed_capture": true,
+		"wall_ms": 1669
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2317,
+		"file": "motion_frames/frame_069.png",
+		"fixed_capture": true,
+		"wall_ms": 1689
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2350,
+		"file": "motion_frames/frame_070.png",
+		"fixed_capture": true,
+		"wall_ms": 1712
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2383,
+		"file": "motion_frames/frame_071.png",
+		"fixed_capture": true,
+		"wall_ms": 1739
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2417,
+		"file": "motion_frames/frame_072.png",
+		"fixed_capture": true,
+		"wall_ms": 1757
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2450,
+		"file": "motion_frames/frame_073.png",
+		"fixed_capture": true,
+		"wall_ms": 1813
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2483,
+		"file": "motion_frames/frame_074.png",
+		"fixed_capture": true,
+		"wall_ms": 1832
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2517,
+		"file": "motion_frames/frame_075.png",
+		"fixed_capture": true,
+		"wall_ms": 1888
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2550,
+		"file": "motion_frames/frame_076.png",
+		"fixed_capture": true,
+		"wall_ms": 1915
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2583,
+		"file": "motion_frames/frame_077.png",
+		"fixed_capture": true,
+		"wall_ms": 1945
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2617,
+		"file": "motion_frames/frame_078.png",
+		"fixed_capture": true,
+		"wall_ms": 1966
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2650,
+		"file": "motion_frames/frame_079.png",
+		"fixed_capture": true,
+		"wall_ms": 1981
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2683,
+		"file": "motion_frames/frame_080.png",
+		"fixed_capture": true,
+		"wall_ms": 1995
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2717,
+		"file": "motion_frames/frame_081.png",
+		"fixed_capture": true,
+		"wall_ms": 2025
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2750,
+		"file": "motion_frames/frame_082.png",
+		"fixed_capture": true,
+		"wall_ms": 2037
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2783,
+		"file": "motion_frames/frame_083.png",
+		"fixed_capture": true,
+		"wall_ms": 2044
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2817,
+		"file": "motion_frames/frame_084.png",
+		"fixed_capture": true,
+		"wall_ms": 2056
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2850,
+		"file": "motion_frames/frame_085.png",
+		"fixed_capture": true,
+		"wall_ms": 2070
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2883,
+		"file": "motion_frames/frame_086.png",
+		"fixed_capture": true,
+		"wall_ms": 2092
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2917,
+		"file": "motion_frames/frame_087.png",
+		"fixed_capture": true,
+		"wall_ms": 2124
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2950,
+		"file": "motion_frames/frame_088.png",
+		"fixed_capture": true,
+		"wall_ms": 2138
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2983,
+		"file": "motion_frames/frame_089.png",
+		"fixed_capture": true,
+		"wall_ms": 2178
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3017,
+		"file": "motion_frames/frame_090.png",
+		"fixed_capture": true,
+		"wall_ms": 2192
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3050,
+		"file": "motion_frames/frame_091.png",
+		"fixed_capture": true,
+		"wall_ms": 2208
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3083,
+		"file": "motion_frames/frame_092.png",
+		"fixed_capture": true,
+		"wall_ms": 2232
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3117,
+		"file": "motion_frames/frame_093.png",
+		"fixed_capture": true,
+		"wall_ms": 2251
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3150,
+		"file": "motion_frames/frame_094.png",
+		"fixed_capture": true,
+		"wall_ms": 2266
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3183,
+		"file": "motion_frames/frame_095.png",
+		"fixed_capture": true,
+		"wall_ms": 2275
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3217,
+		"file": "motion_frames/frame_096.png",
+		"fixed_capture": true,
+		"wall_ms": 2303
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3250,
+		"file": "motion_frames/frame_097.png",
+		"fixed_capture": true,
+		"wall_ms": 2317
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3283,
+		"file": "motion_frames/frame_098.png",
+		"fixed_capture": true,
+		"wall_ms": 2330
+	},
+	{
+		"directions": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3317,
+		"file": "motion_frames/frame_099.png",
+		"fixed_capture": true,
+		"wall_ms": 2370
+	}
+]

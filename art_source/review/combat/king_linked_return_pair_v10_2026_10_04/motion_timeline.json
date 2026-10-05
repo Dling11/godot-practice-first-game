@@ -1,0 +1,1682 @@
+[
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 173,
+		"facing": 1.0,
+		"file": "motion_frames/frame_000.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 257,
+		"facing": 1.0,
+		"file": "motion_frames/frame_001.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 306,
+		"facing": 1.0,
+		"file": "motion_frames/frame_002.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 365,
+		"facing": 1.0,
+		"file": "motion_frames/frame_003.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 452,
+		"facing": 1.0,
+		"file": "motion_frames/frame_004.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 560,
+		"facing": 1.0,
+		"file": "motion_frames/frame_005.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 630,
+		"facing": 1.0,
+		"file": "motion_frames/frame_006.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 701,
+		"facing": 1.0,
+		"file": "motion_frames/frame_007.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 818,
+		"facing": 1.0,
+		"file": "motion_frames/frame_008.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 929,
+		"facing": 1.0,
+		"file": "motion_frames/frame_009.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 0,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"elapsed_ms": 978,
+		"facing": 1.0,
+		"file": "motion_frames/frame_010.png",
+		"phase": 1,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 3,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"elapsed_ms": 1024,
+		"facing": 1.0,
+		"file": "motion_frames/frame_011.png",
+		"phase": 1,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 3,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"elapsed_ms": 1068,
+		"facing": 1.0,
+		"file": "motion_frames/frame_012.png",
+		"phase": 1,
+		"pose": 1,
+		"root_position": [
+			520.235168457031,
+			480.0
+		],
+		"step": 3,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"elapsed_ms": 1129,
+		"facing": 1.0,
+		"file": "motion_frames/frame_013.png",
+		"phase": 1,
+		"pose": 1,
+		"root_position": [
+			523.50537109375,
+			480.0
+		],
+		"step": 3,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"elapsed_ms": 1236,
+		"facing": 1.0,
+		"file": "motion_frames/frame_014.png",
+		"phase": 1,
+		"pose": 2,
+		"root_position": [
+			527.278503417969,
+			480.0
+		],
+		"step": 3,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"elapsed_ms": 1341,
+		"facing": 1.0,
+		"file": "motion_frames/frame_015.png",
+		"phase": 2,
+		"pose": 3,
+		"root_position": [
+			527.999938964844,
+			480.0
+		],
+		"step": 3,
+		"trail_frame": 0
+	},
+	{
+		"clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"elapsed_ms": 1381,
+		"facing": 1.0,
+		"file": "motion_frames/frame_016.png",
+		"phase": 2,
+		"pose": 4,
+		"root_position": [
+			527.999938964844,
+			480.0
+		],
+		"step": 3,
+		"trail_frame": 2
+	},
+	{
+		"clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"elapsed_ms": 1425,
+		"facing": 1.0,
+		"file": "motion_frames/frame_017.png",
+		"phase": 2,
+		"pose": 5,
+		"root_position": [
+			527.999938964844,
+			480.0
+		],
+		"step": 3,
+		"trail_frame": 3
+	},
+	{
+		"clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"elapsed_ms": 1467,
+		"facing": 1.0,
+		"file": "motion_frames/frame_018.png",
+		"phase": 2,
+		"pose": 5,
+		"root_position": [
+			527.999938964844,
+			480.0
+		],
+		"step": 3,
+		"trail_frame": 3
+	},
+	{
+		"clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"elapsed_ms": 1556,
+		"facing": 1.0,
+		"file": "motion_frames/frame_019.png",
+		"phase": 3,
+		"pose": 5,
+		"root_position": [
+			527.999938964844,
+			480.0
+		],
+		"step": 3,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 1649,
+		"facing": 1.0,
+		"file": "motion_frames/frame_020.png",
+		"phase": 1,
+		"pose": 0,
+		"root_position": [
+			527.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 1743,
+		"facing": 1.0,
+		"file": "motion_frames/frame_021.png",
+		"phase": 2,
+		"pose": 2,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": 3
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 1785,
+		"facing": 1.0,
+		"file": "motion_frames/frame_022.png",
+		"phase": 2,
+		"pose": 2,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": 2
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 1882,
+		"facing": 1.0,
+		"file": "motion_frames/frame_023.png",
+		"phase": 2,
+		"pose": 3,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": 1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 1932,
+		"facing": 1.0,
+		"file": "motion_frames/frame_024.png",
+		"phase": 2,
+		"pose": 4,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": 0
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 1982,
+		"facing": 1.0,
+		"file": "motion_frames/frame_025.png",
+		"phase": 2,
+		"pose": 4,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": 0
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 2029,
+		"facing": 1.0,
+		"file": "motion_frames/frame_026.png",
+		"phase": 3,
+		"pose": 5,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 2094,
+		"facing": 1.0,
+		"file": "motion_frames/frame_027.png",
+		"phase": 3,
+		"pose": 5,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 2196,
+		"facing": 1.0,
+		"file": "motion_frames/frame_028.png",
+		"phase": 3,
+		"pose": 5,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 2315,
+		"facing": 1.0,
+		"file": "motion_frames/frame_029.png",
+		"phase": 3,
+		"pose": 5,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 2369,
+		"facing": 1.0,
+		"file": "motion_frames/frame_030.png",
+		"phase": 3,
+		"pose": 6,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 2419,
+		"facing": 1.0,
+		"file": "motion_frames/frame_031.png",
+		"phase": 3,
+		"pose": 6,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 2508,
+		"facing": 1.0,
+		"file": "motion_frames/frame_032.png",
+		"phase": 3,
+		"pose": 6,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 2565,
+		"facing": 1.0,
+		"file": "motion_frames/frame_033.png",
+		"phase": 3,
+		"pose": 6,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 2614,
+		"facing": 1.0,
+		"file": "motion_frames/frame_034.png",
+		"phase": 3,
+		"pose": 6,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 2676,
+		"facing": 1.0,
+		"file": "motion_frames/frame_035.png",
+		"phase": 3,
+		"pose": 7,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 2772,
+		"facing": 1.0,
+		"file": "motion_frames/frame_036.png",
+		"phase": 3,
+		"pose": 7,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 2864,
+		"facing": 1.0,
+		"file": "motion_frames/frame_037.png",
+		"phase": 3,
+		"pose": 7,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 2971,
+		"facing": 1.0,
+		"file": "motion_frames/frame_038.png",
+		"phase": 3,
+		"pose": 7,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 3065,
+		"facing": 1.0,
+		"file": "motion_frames/frame_039.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 3107,
+		"facing": 1.0,
+		"file": "motion_frames/frame_040.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 3156,
+		"facing": 1.0,
+		"file": "motion_frames/frame_041.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 3258,
+		"facing": 1.0,
+		"file": "motion_frames/frame_042.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 3310,
+		"facing": 1.0,
+		"file": "motion_frames/frame_043.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 3353,
+		"facing": 1.0,
+		"file": "motion_frames/frame_044.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 3403,
+		"facing": 1.0,
+		"file": "motion_frames/frame_045.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 3503,
+		"facing": 1.0,
+		"file": "motion_frames/frame_046.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 3584,
+		"facing": 1.0,
+		"file": "motion_frames/frame_047.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 3670,
+		"facing": 1.0,
+		"file": "motion_frames/frame_048.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 3757,
+		"facing": 1.0,
+		"file": "motion_frames/frame_049.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 3862,
+		"facing": 1.0,
+		"file": "motion_frames/frame_050.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 3906,
+		"facing": 1.0,
+		"file": "motion_frames/frame_051.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 3977,
+		"facing": 1.0,
+		"file": "motion_frames/frame_052.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 4042,
+		"facing": 1.0,
+		"file": "motion_frames/frame_053.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 4144,
+		"facing": 1.0,
+		"file": "motion_frames/frame_054.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 4229,
+		"facing": 1.0,
+		"file": "motion_frames/frame_055.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 4320,
+		"facing": 1.0,
+		"file": "motion_frames/frame_056.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 4409,
+		"facing": 1.0,
+		"file": "motion_frames/frame_057.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 4469,
+		"facing": 1.0,
+		"file": "motion_frames/frame_058.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 4544,
+		"facing": 1.0,
+		"file": "motion_frames/frame_059.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 4610,
+		"facing": 1.0,
+		"file": "motion_frames/frame_060.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 4702,
+		"facing": 1.0,
+		"file": "motion_frames/frame_061.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 4774,
+		"facing": 1.0,
+		"file": "motion_frames/frame_062.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 4874,
+		"facing": 1.0,
+		"file": "motion_frames/frame_063.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 4966,
+		"facing": 1.0,
+		"file": "motion_frames/frame_064.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"elapsed_ms": 5019,
+		"facing": -1.0,
+		"file": "motion_frames/frame_065.png",
+		"phase": 1,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 3,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"elapsed_ms": 5065,
+		"facing": -1.0,
+		"file": "motion_frames/frame_066.png",
+		"phase": 1,
+		"pose": 0,
+		"root_position": [
+			535.999938964844,
+			480.0
+		],
+		"step": 3,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"elapsed_ms": 5160,
+		"facing": -1.0,
+		"file": "motion_frames/frame_067.png",
+		"phase": 1,
+		"pose": 1,
+		"root_position": [
+			534.105773925781,
+			480.0
+		],
+		"step": 3,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"elapsed_ms": 5192,
+		"facing": -1.0,
+		"file": "motion_frames/frame_068.png",
+		"phase": 1,
+		"pose": 2,
+		"root_position": [
+			530.013549804688,
+			480.0
+		],
+		"step": 3,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"elapsed_ms": 5308,
+		"facing": -1.0,
+		"file": "motion_frames/frame_069.png",
+		"phase": 1,
+		"pose": 2,
+		"root_position": [
+			528.288024902344,
+			480.0
+		],
+		"step": 3,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"elapsed_ms": 5358,
+		"facing": -1.0,
+		"file": "motion_frames/frame_070.png",
+		"phase": 2,
+		"pose": 3,
+		"root_position": [
+			528.0,
+			480.0
+		],
+		"step": 3,
+		"trail_frame": 0
+	},
+	{
+		"clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"elapsed_ms": 5408,
+		"facing": -1.0,
+		"file": "motion_frames/frame_071.png",
+		"phase": 2,
+		"pose": 4,
+		"root_position": [
+			528.0,
+			480.0
+		],
+		"step": 3,
+		"trail_frame": 1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"elapsed_ms": 5456,
+		"facing": -1.0,
+		"file": "motion_frames/frame_072.png",
+		"phase": 2,
+		"pose": 5,
+		"root_position": [
+			528.0,
+			480.0
+		],
+		"step": 3,
+		"trail_frame": 2
+	},
+	{
+		"clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"elapsed_ms": 5501,
+		"facing": -1.0,
+		"file": "motion_frames/frame_073.png",
+		"phase": 2,
+		"pose": 5,
+		"root_position": [
+			528.0,
+			480.0
+		],
+		"step": 3,
+		"trail_frame": 3
+	},
+	{
+		"clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"elapsed_ms": 5549,
+		"facing": -1.0,
+		"file": "motion_frames/frame_074.png",
+		"phase": 3,
+		"pose": 5,
+		"root_position": [
+			528.0,
+			480.0
+		],
+		"step": 3,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/huge_greatsword_proof/turn_body.png",
+		"elapsed_ms": 5618,
+		"facing": -1.0,
+		"file": "motion_frames/frame_075.png",
+		"phase": 3,
+		"pose": 5,
+		"root_position": [
+			528.0,
+			480.0
+		],
+		"step": 3,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 5733,
+		"facing": -1.0,
+		"file": "motion_frames/frame_076.png",
+		"phase": 1,
+		"pose": 0,
+		"root_position": [
+			528.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 5880,
+		"facing": -1.0,
+		"file": "motion_frames/frame_077.png",
+		"phase": 2,
+		"pose": 2,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": 2
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 5931,
+		"facing": -1.0,
+		"file": "motion_frames/frame_078.png",
+		"phase": 2,
+		"pose": 3,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": 1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 5978,
+		"facing": -1.0,
+		"file": "motion_frames/frame_079.png",
+		"phase": 2,
+		"pose": 4,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": 1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 6050,
+		"facing": -1.0,
+		"file": "motion_frames/frame_080.png",
+		"phase": 2,
+		"pose": 4,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": 0
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 6170,
+		"facing": -1.0,
+		"file": "motion_frames/frame_081.png",
+		"phase": 3,
+		"pose": 5,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 6217,
+		"facing": -1.0,
+		"file": "motion_frames/frame_082.png",
+		"phase": 3,
+		"pose": 5,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 6312,
+		"facing": -1.0,
+		"file": "motion_frames/frame_083.png",
+		"phase": 3,
+		"pose": 5,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 6360,
+		"facing": -1.0,
+		"file": "motion_frames/frame_084.png",
+		"phase": 3,
+		"pose": 5,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 6429,
+		"facing": -1.0,
+		"file": "motion_frames/frame_085.png",
+		"phase": 3,
+		"pose": 6,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 6549,
+		"facing": -1.0,
+		"file": "motion_frames/frame_086.png",
+		"phase": 3,
+		"pose": 6,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 6597,
+		"facing": -1.0,
+		"file": "motion_frames/frame_087.png",
+		"phase": 3,
+		"pose": 6,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 6691,
+		"facing": -1.0,
+		"file": "motion_frames/frame_088.png",
+		"phase": 3,
+		"pose": 6,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 6750,
+		"facing": -1.0,
+		"file": "motion_frames/frame_089.png",
+		"phase": 3,
+		"pose": 7,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 6802,
+		"facing": -1.0,
+		"file": "motion_frames/frame_090.png",
+		"phase": 3,
+		"pose": 7,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 6850,
+		"facing": -1.0,
+		"file": "motion_frames/frame_091.png",
+		"phase": 3,
+		"pose": 7,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 6919,
+		"facing": -1.0,
+		"file": "motion_frames/frame_092.png",
+		"phase": 3,
+		"pose": 7,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_return_v10/return_body.png",
+		"elapsed_ms": 7046,
+		"facing": -1.0,
+		"file": "motion_frames/frame_093.png",
+		"phase": 3,
+		"pose": 7,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 7101,
+		"facing": -1.0,
+		"file": "motion_frames/frame_094.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 7148,
+		"facing": -1.0,
+		"file": "motion_frames/frame_095.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 7193,
+		"facing": -1.0,
+		"file": "motion_frames/frame_096.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 7254,
+		"facing": -1.0,
+		"file": "motion_frames/frame_097.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 7367,
+		"facing": -1.0,
+		"file": "motion_frames/frame_098.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 7414,
+		"facing": -1.0,
+		"file": "motion_frames/frame_099.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 7498,
+		"facing": -1.0,
+		"file": "motion_frames/frame_100.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 7565,
+		"facing": -1.0,
+		"file": "motion_frames/frame_101.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 7673,
+		"facing": -1.0,
+		"file": "motion_frames/frame_102.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 7737,
+		"facing": -1.0,
+		"file": "motion_frames/frame_103.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 7847,
+		"facing": -1.0,
+		"file": "motion_frames/frame_104.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 7933,
+		"facing": -1.0,
+		"file": "motion_frames/frame_105.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 8019,
+		"facing": -1.0,
+		"file": "motion_frames/frame_106.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 8106,
+		"facing": -1.0,
+		"file": "motion_frames/frame_107.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 8170,
+		"facing": -1.0,
+		"file": "motion_frames/frame_108.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 8258,
+		"facing": -1.0,
+		"file": "motion_frames/frame_109.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 8346,
+		"facing": -1.0,
+		"file": "motion_frames/frame_110.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 8435,
+		"facing": -1.0,
+		"file": "motion_frames/frame_111.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 8546,
+		"facing": -1.0,
+		"file": "motion_frames/frame_112.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 8611,
+		"facing": -1.0,
+		"file": "motion_frames/frame_113.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 8717,
+		"facing": -1.0,
+		"file": "motion_frames/frame_114.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 8801,
+		"facing": -1.0,
+		"file": "motion_frames/frame_115.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 8865,
+		"facing": -1.0,
+		"file": "motion_frames/frame_116.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 8953,
+		"facing": -1.0,
+		"file": "motion_frames/frame_117.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 9039,
+		"facing": -1.0,
+		"file": "motion_frames/frame_118.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	},
+	{
+		"clip": "res://assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+		"elapsed_ms": 9145,
+		"facing": -1.0,
+		"file": "motion_frames/frame_119.png",
+		"phase": 0,
+		"pose": 0,
+		"root_position": [
+			520.0,
+			480.0
+		],
+		"step": 4,
+		"trail_frame": -1
+	}
+]

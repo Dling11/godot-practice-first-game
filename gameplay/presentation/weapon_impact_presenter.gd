@@ -9,6 +9,8 @@ var ground_step := 2
 var ground_offset := Vector2(46,32)
 ## Side-view review mirrors the body in X, rather than rotating its ground Y.
 var mirror_horizontal_landing := false
+## Optional authored contact landmark, already in anchor-local space.
+var ground_position_provider: Callable
 var _contact_shown := false
 var bursts_created := 0
 
@@ -55,6 +57,7 @@ func _phase(phase: int,_duration: float) -> void:
 	if phase==MeleeAttackComponent.Phase.ACTIVE and attack.combo_step==ground_step:
 		var direction := attack.get_attack_direction()
 		var landing := Vector2(ground_offset.x*(-1 if direction.x<0 else 1),ground_offset.y) if mirror_horizontal_landing else ground_offset.rotated(direction.angle())
+		if ground_position_provider.is_valid(): landing = ground_position_provider.call()
 		_spawn(1,landing,0.5,0.30)
 
 func _hit(hurtbox: HurtboxComponent,_info: DamageInfo) -> void:

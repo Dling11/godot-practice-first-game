@@ -58,6 +58,7 @@ func _ready() -> void:
 	if admin_state != null:
 		admin_state.call("set_enabled", true)
 	combat_hud.bind_player(player)
+	combat_hud.character_menu_requested.connect(get_node("UI/CharacterMenu").open_menu)
 	# Trial instructions must sit below the boss HUD, not behind its panel.
 	combat_hud.stage_label.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
 	combat_hud.stage_label.position = Vector2(55, 132)

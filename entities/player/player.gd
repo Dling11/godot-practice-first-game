@@ -10,6 +10,7 @@ signal interaction_finished
 signal defeated
 signal testing_preset_applied(level: int, coins: int)
 signal equipment_stats_changed
+signal weapon_definition_changed(weapon: WeaponDefinition)
 signal skill_loadout_changed
 signal selected_skill_changed(slot_number: int)
 signal restraint_started(source: Node, total_break_points: int)
@@ -207,10 +208,12 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity = movement_component.calculate_velocity(velocity, Vector2.ZERO, delta)
 	else:
-		velocity = movement_component.calculate_velocity(velocity, move_direction, delta)
+		var attack_walk_ratio := attack_component.weapon.get_attack_movement_ratio(attack_component.phase) if attack_component.weapon != null else 1.0
+		velocity = movement_component.calculate_velocity(velocity, move_direction, delta, attack_walk_ratio)
 	_apply_incoming_knockback()
 	var is_moving := (
 		not move_direction.is_zero_approx()
+		and velocity.length_squared() > 0.01
 		and not is_restrained()
 		and not is_in_hit_recovery()
 		and not evade_component.is_dashing()
@@ -410,6 +413,9 @@ func request_primary_attack() -> bool:
 		return attack_component.request_attack(attack_direction)
 	if not evade_component.is_ready():
 		return false
+	var family := get_node_or_null("WeaponFamilyPresentation")
+	if family != null and family.prepare_primary_attack():
+		return true
 	return attack_component.request_attack(facing_direction)
 
 
@@ -610,7 +616,10 @@ func set_weapon_definition(next_weapon: WeaponDefinition) -> bool:
 		return false
 	if not weapon_visual.set_weapon_definition(next_weapon):
 		return false
-	return attack_component.set_weapon_definition(next_weapon)
+	if not attack_component.set_weapon_definition(next_weapon):
+		return false
+	weapon_definition_changed.emit(next_weapon)
+	return true
 
 
 func get_equipped_weapon_item() -> EquipmentDefinition:
@@ -816,12 +825,16 @@ func _on_attack_phase_changed(phase: int, _duration_seconds: float) -> void:
 
 func _on_attack_finished() -> void:
 	if _buffered_action == BufferedAction.PRIMARY_ATTACK:
-		_try_execute_buffered_action()
+		if attack_component.weapon.family_presentation != null:
+			# Let all finish observers settle before the next phase dispatch.
+			_try_execute_buffered_action.call_deferred()
+		else:
+			_try_execute_buffered_action()
 
 
 func _buffer_action(action: BufferedAction, direction: Vector2, ability_slot := 0) -> bool:
-	## One latest intent survives only a short responsiveness window. It never
-	## waits through a long cooldown or stacks a sequence of future actions.
+	## One latest intent survives a short window, or the current family cut's
+	## remaining commitment. It never waits through cooldowns or stacks actions.
 	_buffered_action = action
 	_buffered_ability_slot = ability_slot
 	_buffered_action_direction = (
@@ -829,7 +842,10 @@ func _buffer_action(action: BufferedAction, direction: Vector2, ability_slot := 
 		if not direction.is_zero_approx()
 		else facing_direction
 	)
-	action_buffer_timer.start(ACTION_BUFFER_WINDOW_SECONDS)
+	var window := ACTION_BUFFER_WINDOW_SECONDS
+	if action == BufferedAction.PRIMARY_ATTACK and attack_component.weapon.family_presentation != null:
+		window = maxf(window, attack_component.get_remaining_attack_seconds() + 0.1)
+	action_buffer_timer.start(window)
 	return true
 
 
@@ -858,7 +874,7 @@ func _try_execute_buffered_action() -> bool:
 	_clear_buffered_action()
 	if action == BufferedAction.PRIMARY_ATTACK:
 		_set_facing_direction(action_direction)
-		return attack_component.request_attack(action_direction)
+		return request_primary_attack()
 	if action == BufferedAction.EVADE:
 		return evade_component.request_evade(action_direction)
 	var component := get_ability_component_for_slot(ability_slot)

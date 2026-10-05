@@ -9,6 +9,7 @@ extends Resource
 ## Character-authored signature weapons may be drawn inside body action frames
 ## instead of requiring a second detached world sprite.
 @export var uses_integrated_visual := false
+@export var family_presentation: WeaponFamilyPresentationDefinition
 ## Authoritative right-facing melee contact area. The player's combat pivot
 ## rotates this shape for the other directions; VFX may read its bounds.
 @export var melee_hitbox_shape: Shape2D
@@ -17,6 +18,9 @@ extends Resource
 ## reviewed shape and style without changing player code.
 @export var attack_style: SwordAttackStyleDefinition
 @export var combo: SwordComboDefinition
+## Walk speed during WIND_UP, ACTIVE and RECOVERY. Damage/presentation do not
+## own locomotion. Defaults preserve unrestricted legacy weapon movement.
+@export var attack_movement_ratios := PackedFloat32Array([1.0, 1.0, 1.0])
 @export var damage_type := DamageInfo.DamageType.PHYSICAL
 ## Local Sprite2D offset that places the texture's authored grip on the
 ## WeaponVisual pivot. This keeps short swords and future greatswords on the
@@ -39,6 +43,12 @@ extends Resource
 @export_range(0.0, 2.0, 0.01, "suffix:s") var wind_up_seconds: float = 0.1
 @export_range(0.01, 2.0, 0.01, "suffix:s") var active_seconds: float = 0.1
 @export_range(0.0, 3.0, 0.01, "suffix:s") var recovery_seconds: float = 0.2
+
+
+func get_attack_movement_ratio(phase: int) -> float:
+	if phase < 1 or phase > 3 or attack_movement_ratios.size() != 3:
+		return 1.0
+	return clampf(attack_movement_ratios[phase - 1], 0.0, 1.0)
 
 
 func get_melee_forward_reach_pixels() -> float:

@@ -7,6 +7,8 @@ const IMPACT_ART = preload("res://assets/characters/playable/king/huge_greatswor
 const StepMotion = preload("res://gameplay/movement/melee_step_motion.gd")
 const ImpactPresenter = preload("res://gameplay/presentation/weapon_impact_presenter.gd")
 const NAMES := ["Stepping sweep","Rising cut","Meteor slam","Turning cleave"]
+var move_names := PackedStringArray(NAMES)
+var move_sounds := PackedInt32Array([0,1,2,2])
 const SOUNDS := [preload("res://assets/audio/sfx/player/greatsword/cut.wav"),preload("res://assets/audio/sfx/player/greatsword/return.wav"),preload("res://assets/audio/sfx/player/greatsword/cleave.wav")]
 var step_motion: StepMotion
 var impact_presenter: ImpactPresenter
@@ -147,9 +149,9 @@ func place_crowd() -> void:
 	for offset in [Vector2(72,-24),Vector2(72,24)]: extra_targets.append(make_target(offset))
 
 func _phase(phase: int,_duration: float) -> void:
-	_status.text = "%s · %s · hits: %d" % [NAMES[stage.player.attack_component.combo_step],["Guard","Wind-up","Contact","Recovery"][phase],_contacts]
+	_status.text = "%s · %s · hits: %d" % [move_names[stage.player.attack_component.combo_step],["Guard","Wind-up","Contact","Recovery"][phase],_contacts]
 	if phase==MeleeAttackComponent.Phase.ACTIVE and is_instance_valid(_cut_audio) and DisplayServer.get_name()!="headless":
-		_cut_audio.stream = SOUNDS[[0,1,2,2][stage.player.attack_component.combo_step]]
+		_cut_audio.stream = SOUNDS[move_sounds[stage.player.attack_component.combo_step]]
 		_cut_audio.pitch_scale = 0.78 if stage.player.attack_component.combo_step==2 else 0.88
 		_cut_audio.play()
 

@@ -1,7 +1,7 @@
 extends Node
 
 ## Opt-in physical attack steps. Presentation never writes the player's position.
-## Currently mounted only by the greatsword review, not normal equipment.
+## Mounted by opt-in weapon profiles and the isolated greatsword review.
 var actor: Player
 var attack: MeleeAttackComponent
 var step_distances := PackedFloat32Array([8,10,12,8])

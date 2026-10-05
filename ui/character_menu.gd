@@ -104,6 +104,7 @@ var _active_page := &"gear"
 var _active_inventory_filter := &"all"
 var _inventory_sort_mode := &"slot"
 var _portrait_rotation_tween: Tween
+var _family_portrait: Node2D
 var _portrait_pulse_tween: Tween
 var _selected_equipment: EquipmentDefinition
 var _selected_material: MaterialDefinition
@@ -613,8 +614,31 @@ func _refresh_equipment_presentation(selected: EquipmentDefinition) -> void:
 		)
 	weapon_preview.texture = equipped.weapon_definition.world_texture
 	weapon_preview.position = equipped.weapon_definition.sprite_offset_from_grip
+	_refresh_family_portrait(equipped.weapon_definition)
 	attack_label.text = "MOUSE: %s" % equipped.display_name.to_upper()
 	_refresh_equipment_detail(selected)
+
+
+func _refresh_family_portrait(weapon: WeaponDefinition) -> void:
+	var canvas := weapon_preview.get_parent().get_parent()
+	var body := canvas.get_node("Body") as AnimatedSprite2D
+	if is_instance_valid(_family_portrait) and weapon.family_presentation != null and _family_portrait.definition == weapon.family_presentation.idle_poses:
+		return
+	if is_instance_valid(_family_portrait):
+		canvas.remove_child(_family_portrait)
+		_family_portrait.queue_free()
+		_family_portrait = null
+	body.visible = weapon.family_presentation == null
+	if weapon.family_presentation == null:
+		return
+	var pose := preload("res://gameplay/presentation/weapon_family_pose_presenter.gd").new()
+	pose.configure(weapon.family_presentation.idle_poses, player.attack_component, false)
+	pose.position = Vector2(76, 120)
+	# One native texel per screen pixel fits the huge blade inside the paper doll.
+	pose.scale = Vector2.ONE
+	canvas.add_child(pose)
+	pose.set_pose(7) # Family rest pose: planted greatsword or back-stowed axe.
+	_family_portrait = pose
 
 
 func _refresh_equipment_detail(selected: EquipmentDefinition) -> void:
@@ -623,6 +647,7 @@ func _refresh_equipment_detail(selected: EquipmentDefinition) -> void:
 		return
 	weapon_preview.texture = equipped.weapon_definition.world_texture
 	weapon_preview.position = equipped.weapon_definition.sprite_offset_from_grip
+	_refresh_family_portrait(equipped.weapon_definition)
 	attack_label.text = "MOUSE: %s" % equipped.display_name.to_upper()
 	equipment_detail_panel.configure(
 		selected,

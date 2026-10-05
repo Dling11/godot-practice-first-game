@@ -1,0 +1,258 @@
+[
+	{
+		"direction": 0,
+		"grip_color": "Color(0.61960787, 0.3019608, 0.13725491, 1)",
+		"pose": 0,
+		"primary": "Vector2i(93, 60)",
+		"stowed": false,
+		"weapon_behind_body": false
+	},
+	{
+		"direction": 1,
+		"grip_color": "Color(0.61960787, 0.3019608, 0.13725491, 1)",
+		"pose": 0,
+		"primary": "Vector2i(93, 60)",
+		"stowed": false,
+		"weapon_behind_body": false
+	},
+	{
+		"direction": 2,
+		"grip_color": "Color(0.15294118, 0.14509805, 0.14901961, 1)",
+		"pose": 0,
+		"primary": "Vector2i(102, 67)",
+		"stowed": true,
+		"weapon_behind_body": true
+	},
+	{
+		"direction": 3,
+		"grip_color": "Color(0.11764706, 0.14509805, 0.1882353, 1)",
+		"pose": 0,
+		"primary": "Vector2i(102, 67)",
+		"stowed": true,
+		"weapon_behind_body": true
+	},
+	{
+		"direction": 0,
+		"grip_color": "Color(0.6313726, 0.30980393, 0.14117648, 1)",
+		"pose": 1,
+		"primary": "Vector2i(93, 61)",
+		"stowed": false,
+		"weapon_behind_body": false
+	},
+	{
+		"direction": 1,
+		"grip_color": "Color(0.6313726, 0.30980393, 0.14117648, 1)",
+		"pose": 1,
+		"primary": "Vector2i(93, 61)",
+		"stowed": false,
+		"weapon_behind_body": false
+	},
+	{
+		"direction": 2,
+		"grip_color": "Color(0.16470589, 0.1764706, 0.1882353, 1)",
+		"pose": 1,
+		"primary": "Vector2i(102, 67)",
+		"stowed": true,
+		"weapon_behind_body": true
+	},
+	{
+		"direction": 3,
+		"grip_color": "Color(0.5764706, 0.03529412, 0.08627451, 1)",
+		"pose": 1,
+		"primary": "Vector2i(102, 67)",
+		"stowed": true,
+		"weapon_behind_body": true
+	},
+	{
+		"direction": 0,
+		"grip_color": "Color(0.5882353, 0.28235295, 0.11764706, 1)",
+		"pose": 2,
+		"primary": "Vector2i(94, 61)",
+		"stowed": false,
+		"weapon_behind_body": false
+	},
+	{
+		"direction": 1,
+		"grip_color": "Color(0.5882353, 0.28235295, 0.11764706, 1)",
+		"pose": 2,
+		"primary": "Vector2i(94, 61)",
+		"stowed": false,
+		"weapon_behind_body": false
+	},
+	{
+		"direction": 2,
+		"grip_color": "Color(0.15686275, 0.15686275, 0.16470589, 1)",
+		"pose": 2,
+		"primary": "Vector2i(102, 67)",
+		"stowed": true,
+		"weapon_behind_body": true
+	},
+	{
+		"direction": 3,
+		"grip_color": "Color(0.003921569, 0.007843138, 0.015686275, 1)",
+		"pose": 2,
+		"primary": "Vector2i(102, 67)",
+		"stowed": true,
+		"weapon_behind_body": true
+	},
+	{
+		"direction": 0,
+		"grip_color": "Color(0.64705884, 0.32156864, 0.14509805, 1)",
+		"pose": 3,
+		"primary": "Vector2i(93, 59)",
+		"stowed": false,
+		"weapon_behind_body": false
+	},
+	{
+		"direction": 1,
+		"grip_color": "Color(0.64705884, 0.32156864, 0.14509805, 1)",
+		"pose": 3,
+		"primary": "Vector2i(93, 59)",
+		"stowed": false,
+		"weapon_behind_body": false
+	},
+	{
+		"direction": 2,
+		"grip_color": "Color(0.2, 0.18431373, 0.18431373, 1)",
+		"pose": 3,
+		"primary": "Vector2i(102, 67)",
+		"stowed": true,
+		"weapon_behind_body": true
+	},
+	{
+		"direction": 3,
+		"grip_color": "Color(0.12156863, 0.16470589, 0.20392157, 1)",
+		"pose": 3,
+		"primary": "Vector2i(102, 67)",
+		"stowed": true,
+		"weapon_behind_body": true
+	},
+	{
+		"direction": 0,
+		"grip_color": "Color(0.60784316, 0.2901961, 0.12941177, 1)",
+		"pose": 4,
+		"primary": "Vector2i(94, 60)",
+		"stowed": false,
+		"weapon_behind_body": false
+	},
+	{
+		"direction": 1,
+		"grip_color": "Color(0.60784316, 0.2901961, 0.12941177, 1)",
+		"pose": 4,
+		"primary": "Vector2i(94, 60)",
+		"stowed": false,
+		"weapon_behind_body": false
+	},
+	{
+		"direction": 2,
+		"grip_color": "Color(0.19215687, 0.20392157, 0.21568628, 1)",
+		"pose": 4,
+		"primary": "Vector2i(102, 67)",
+		"stowed": true,
+		"weapon_behind_body": true
+	},
+	{
+		"direction": 3,
+		"grip_color": "Color(0.05490196, 0.0627451, 0.06666667, 1)",
+		"pose": 4,
+		"primary": "Vector2i(102, 67)",
+		"stowed": true,
+		"weapon_behind_body": true
+	},
+	{
+		"direction": 0,
+		"grip_color": "Color(0.64705884, 0.3137255, 0.13725491, 1)",
+		"pose": 5,
+		"primary": "Vector2i(94, 61)",
+		"stowed": false,
+		"weapon_behind_body": false
+	},
+	{
+		"direction": 1,
+		"grip_color": "Color(0.64705884, 0.3137255, 0.13725491, 1)",
+		"pose": 5,
+		"primary": "Vector2i(94, 61)",
+		"stowed": false,
+		"weapon_behind_body": false
+	},
+	{
+		"direction": 2,
+		"grip_color": "Color(0.27450982, 0.27058825, 0.28627452, 1)",
+		"pose": 5,
+		"primary": "Vector2i(102, 67)",
+		"stowed": true,
+		"weapon_behind_body": true
+	},
+	{
+		"direction": 3,
+		"grip_color": "Color(0.11764706, 0.14509805, 0.1882353, 1)",
+		"pose": 5,
+		"primary": "Vector2i(102, 67)",
+		"stowed": true,
+		"weapon_behind_body": true
+	},
+	{
+		"direction": 0,
+		"grip_color": "Color(0.5019608, 0.25490198, 0.11764706, 1)",
+		"pose": 6,
+		"primary": "Vector2i(94, 60)",
+		"stowed": false,
+		"weapon_behind_body": false
+	},
+	{
+		"direction": 1,
+		"grip_color": "Color(0.5019608, 0.25490198, 0.11764706, 1)",
+		"pose": 6,
+		"primary": "Vector2i(94, 60)",
+		"stowed": false,
+		"weapon_behind_body": false
+	},
+	{
+		"direction": 2,
+		"grip_color": "Color(0.21960784, 0.23921569, 0.24705882, 1)",
+		"pose": 6,
+		"primary": "Vector2i(102, 67)",
+		"stowed": true,
+		"weapon_behind_body": true
+	},
+	{
+		"direction": 3,
+		"grip_color": "Color(0.12156863, 0.15294118, 0.1882353, 1)",
+		"pose": 6,
+		"primary": "Vector2i(102, 67)",
+		"stowed": true,
+		"weapon_behind_body": true
+	},
+	{
+		"direction": 0,
+		"grip_color": "Color(0.627451, 0.31764707, 0.13725491, 1)",
+		"pose": 7,
+		"primary": "Vector2i(93, 59)",
+		"stowed": false,
+		"weapon_behind_body": false
+	},
+	{
+		"direction": 1,
+		"grip_color": "Color(0.627451, 0.31764707, 0.13725491, 1)",
+		"pose": 7,
+		"primary": "Vector2i(93, 59)",
+		"stowed": false,
+		"weapon_behind_body": false
+	},
+	{
+		"direction": 2,
+		"grip_color": "Color(0.23137255, 0.23137255, 0.23921569, 1)",
+		"pose": 7,
+		"primary": "Vector2i(102, 67)",
+		"stowed": true,
+		"weapon_behind_body": true
+	},
+	{
+		"direction": 3,
+		"grip_color": "Color(0.11372549, 0.14901961, 0.21568628, 1)",
+		"pose": 7,
+		"primary": "Vector2i(102, 67)",
+		"stowed": true,
+		"weapon_behind_body": true
+	}
+]

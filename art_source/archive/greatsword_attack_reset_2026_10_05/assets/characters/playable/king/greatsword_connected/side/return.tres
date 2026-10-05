@@ -1,0 +1,37 @@
+[gd_resource type="Resource" load_steps=8 format=3]
+[ext_resource type="Script" path="res://data/weapons/weapon_family_pose_definition.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/greatsword_connected/side/return_body.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/greatsword_connected/side/return_hands.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/huge_greatsword_proof/greatsword.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/greatsword_connected/upper.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/greatsword_connected/forearm.png" id="6"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/greatsword_connected/glove.png" id="7"]
+[resource]
+script = ExtResource("1")
+body_atlas = ExtResource("2")
+hand_atlas = ExtResource("3")
+weapon_texture = ExtResource("4")
+arm_upper_texture = ExtResource("5")
+arm_forearm_texture = ExtResource("6")
+arm_hand_texture = ExtResource("7")
+pose_count = 20
+pose_order = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19)
+primary_hands = PackedVector2Array(109, 69, 109, 69, 109, 69, 109, 69, 109, 69, 109, 69, 109, 69, 110, 71, 109, 74, 106, 77, 102, 78, 98, 77, 98, 77, 93, 76, 89, 73, 86, 69, 84, 64, 84, 60, 84, 58, 84, 58)
+secondary_hands = PackedVector2Array(96.04947, 67.86698, 96.04947, 67.866974, 96.04947, 67.866974, 96.12652, 67.19075, 96.28408, 66.29715, 96.44296, 65.63535, 96.44296, 65.63535, 98.97537, 64.11105, 100.9964, 63.75586, 102.635345, 64.44296, 103.13302, 65.04947, 102.44626, 64.784, 102.44626, 64.784, 102.19239, 66.80762, 101.216, 68.553734, 99, 69, 96.55704, 67.36465, 95.782, 65.49404, 95.627556, 63.813774, 95.627556, 63.813774)
+weapon_primary_grip = Vector2(15, 113)
+weapon_support_grip = Vector2(15, 126)
+weapon_tip = Vector2(15, 0)
+mirror_cutting_edge = false
+phase_windows = PackedVector2Array(0, 5, 6, 11, 12, 19)
+weapon_behind_body = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+single_hand_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+stowed_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+released_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+ground_clipped_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+lift_pixels = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+maximum_lift_pixels = 48.0
+pose_weights = PackedFloat32Array(1.1, 1.1, 1.2, 1.2, 0.9, 0.5, 0.5, 0.8, 1.2, 1.3, 1.3, 0.9, 1.1, 1.1, 1.1, 1.1, 1, 1, 0.8, 0.8)
+weapon_angles = PackedFloat32Array(7.941248, 7.941248, 7.941248, 7.993608, 8.063421, 8.115781, 8.115781, 8.412487, 8.761553, 9.162978, 9.512044, 9.773844, 9.773844, 10.210176, 10.646508, 10.995574, 11.257374, 11.431907, 11.459222, 11.459222)
+near_shoulders = PackedVector2Array(101, 69, 101, 69, 101, 69, 101, 69, 101, 69, 101, 69, 101, 69, 101, 69, 101, 69, 98, 67, 98, 67, 98, 67, 98, 67, 98, 67, 98, 67, 98, 67, 91, 65, 91, 65, 91, 65, 91, 65)
+far_shoulders = PackedVector2Array(110, 67, 110, 67, 110, 67, 110, 67, 110, 67, 110, 67, 110, 67, 110, 67, 110, 67, 110, 66, 110, 66, 110, 66, 110, 66, 110, 66, 110, 66, 110, 66, 103, 64, 103, 64, 103, 64, 103, 64)
+support_weights = PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0.1, 0)

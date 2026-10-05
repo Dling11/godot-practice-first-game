@@ -1,0 +1,154 @@
+[
+	{
+		"boundary": true,
+		"density": 0.219066937119675,
+		"pose": 0,
+		"primary": [
+			99.0,
+			85.0
+		],
+		"secondary": [
+			94.0,
+			84.0
+		],
+		"source_rect": [
+			170,
+			106,
+			238,
+			236
+		]
+	},
+	{
+		"boundary": false,
+		"density": 0.219066937119675,
+		"pose": 1,
+		"primary": [
+			102.0,
+			83.0
+		],
+		"secondary": [
+			97.0,
+			82.0
+		],
+		"source_rect": [
+			696,
+			112,
+			245,
+			230
+		]
+	},
+	{
+		"boundary": false,
+		"density": 0.219066937119675,
+		"pose": 2,
+		"primary": [
+			119.0,
+			67.0
+		],
+		"secondary": [
+			105.0,
+			69.0
+		],
+		"source_rect": [
+			1247,
+			96,
+			251,
+			246
+		]
+	},
+	{
+		"boundary": false,
+		"density": 0.219066937119675,
+		"pose": 3,
+		"primary": [
+			121.0,
+			65.0
+		],
+		"secondary": [
+			113.0,
+			73.0
+		],
+		"source_rect": [
+			1777,
+			91,
+			274,
+			251
+		]
+	},
+	{
+		"boundary": false,
+		"density": 0.219066937119675,
+		"pose": 4,
+		"primary": [
+			100.0,
+			38.0
+		],
+		"secondary": [
+			100.0,
+			46.0
+		],
+		"source_rect": [
+			142,
+			385,
+			255,
+			282
+		]
+	},
+	{
+		"boundary": false,
+		"density": 0.219066937119675,
+		"pose": 5,
+		"primary": [
+			82.0,
+			45.0
+		],
+		"secondary": [
+			89.0,
+			50.0
+		],
+		"source_rect": [
+			707,
+			412,
+			251,
+			255
+		]
+	},
+	{
+		"boundary": true,
+		"density": 0.219066937119675,
+		"pose": 6,
+		"primary": [
+			82.0,
+			58.0
+		],
+		"secondary": [
+			90.0,
+			62.0
+		],
+		"source_rect": [
+			1244,
+			423,
+			240,
+			244
+		]
+	},
+	{
+		"boundary": true,
+		"density": 0.219066937119675,
+		"pose": 7,
+		"primary": [
+			84.0,
+			58.0
+		],
+		"secondary": [
+			92.0,
+			62.0
+		],
+		"source_rect": [
+			1789,
+			439,
+			239,
+			228
+		]
+	}
+]

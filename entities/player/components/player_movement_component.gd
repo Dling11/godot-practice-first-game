@@ -36,8 +36,12 @@ func _refresh_speed() -> void:
 func calculate_velocity(
 	current_velocity: Vector2,
 	move_direction: Vector2,
-	delta: float
+	delta: float,
+	speed_ratio: float = 1.0
 ) -> Vector2:
-	var target_velocity := move_direction.limit_length(1.0) * max_speed
+	var allowed_speed := max_speed * clampf(speed_ratio, 0.0, 1.0)
+	var target_velocity := move_direction.limit_length(1.0) * allowed_speed
 	var change_rate := acceleration if not move_direction.is_zero_approx() else deceleration
-	return current_velocity.move_toward(target_velocity, change_rate * delta)
+	# Entering a committed cut must not coast at the previous full run speed.
+	var starting_velocity := current_velocity.limit_length(allowed_speed) if speed_ratio < 1.0 else current_velocity
+	return starting_velocity.move_toward(target_velocity, change_rate * delta)

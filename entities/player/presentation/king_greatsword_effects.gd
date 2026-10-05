@@ -48,7 +48,14 @@ func _on_attack_phase(phase: int, duration: float) -> void:
 	_clear_trail()
 	if phase != MeleeAttackComponent.Phase.ACTIVE:
 		return
-	_play(_sound,Sounds[_actor.attack_component.combo_step],1.0)
+	var family := _actor.get_node_or_null("WeaponFamilyPresentation")
+	if family != null and family.uses_family_clip():
+		return # Approved family presenter owns these contact rasters and cues.
+	var step := _actor.attack_component.combo_step
+	var sound_index: int = [0,1,2,2,1][clampi(step,0,4)]
+	if _actor.attack_component.weapon.family_presentation != null:
+		sound_index = _actor.attack_component.weapon.family_presentation.sound_index(step)
+	_play(_sound,Sounds[sound_index],1.0)
 	_trail_frame = 1.0
 	_trail_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	_trail_tween.tween_method(_set_trail,1.0,4.0,duration)

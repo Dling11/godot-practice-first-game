@@ -17,9 +17,20 @@ var edge_feather_pixels := 0.0
 var _mesh_frames: Array[ArrayMesh] = []
 ## Optional registered actor-to-cell samples; geometry/damage remain unchanged.
 var frame_sample_transforms: Array[Transform2D] = []
+## Ordinary atlas samples mirror with side-facing contact; registered maps own it.
+var _sampling_facing := 1.0
+var reverse_steps := PackedByteArray()
+var rotate_vertical_sampling := false
 
 func _sample_uv(point: Vector2,frame: int,cell: Vector2) -> Vector2:
-	var sample_point := frame_sample_transforms[frame]*point if frame_sample_transforms.size()==4 else origins[_row]+(point-world_origin)/world_pixels_per_texel
+	var delta := point-world_origin
+	if rotate_vertical_sampling and absf(_attack.get_attack_direction().y) >= absf(_attack.get_attack_direction().x):
+		delta = delta.rotated(-_attack.get_attack_direction().angle())
+	else:
+		delta.x *= _sampling_facing
+	var sample_point := origins[_row]+delta/world_pixels_per_texel
+	if frame_sample_transforms.size()==4:
+		sample_point = frame_sample_transforms[frame]*point
 	return (Vector2(frame*cell.x,_row*cell.y)+sample_point)/atlas.get_size()
 
 func configure(attack: MeleeAttackComponent, texture: Texture2D) -> void:
@@ -38,6 +49,7 @@ func _ready() -> void:
 func _phase(phase: int,duration: float) -> void:
 	clear()
 	if phase!=MeleeAttackComponent.Phase.ACTIVE: return
+	_sampling_facing = -1.0 if _attack.get_attack_direction().x<0 else 1.0
 	var shape: Shape2D = _attack.collision_shape.shape
 	_points.clear()
 	var actor := _attack.owner as Node2D
@@ -56,6 +68,7 @@ func _phase(phase: int,duration: float) -> void:
 
 func _set_frame(value: float) -> void:
 	_frame = clampi(int(value),0,3)
+	if _attack.combo_step<reverse_steps.size() and reverse_steps[_attack.combo_step]>0: _frame = 3-_frame
 	queue_redraw()
 
 func _draw() -> void:

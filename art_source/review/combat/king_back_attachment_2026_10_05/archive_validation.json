@@ -1,0 +1,332 @@
+[
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\return_body.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\return_body.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\return_hands.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\return_hands.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\return.tres",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\rise_body.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\rise_body.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\rise_hands.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\rise_hands.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\rise.tres",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\slam_body.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\slam_body.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\slam_hands.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\slam_hands.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\slam.tres",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\sweep_body.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\sweep_body.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\sweep_hands.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\sweep_hands.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\sweep.tres",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\turn_body.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\turn_body.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\turn_hands.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\turn_hands.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\up\\turn.tres",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\return_body.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\return_body.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\return_hands.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\return_hands.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\return.tres",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\rise_body.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\rise_body.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\rise_hands.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\rise_hands.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\rise.tres",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\slam_body.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\slam_body.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\slam_hands.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\slam_hands.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\slam.tres",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\sweep_body.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\sweep_body.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\sweep_hands.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\sweep_hands.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\sweep.tres",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\turn_body.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\turn_body.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\turn_hands.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\turn_hands.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_cardinal\\down\\turn.tres",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_low_return\\return_body.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_low_return\\return_body.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_low_return\\return_hands.png",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_low_return\\return_hands.png.import",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "assets\\characters\\playable\\king\\greatsword_low_return\\return.tres",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "tools\\build_king_greatsword_low_return.gd",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "tools\\build_king_greatsword_low_return.gd.uid",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "tools\\export_king_low_return_reference.gd",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "tools\\export_king_low_return_reference.gd.uid",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "tools\\inspect_king_upward_anatomy.gd",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "tools\\inspect_king_upward_anatomy.gd.uid",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/greatsword_back_attachment_cleanup_2026_10_05",
+    "path": "tools/build_king_greatsword_cardinal_before.gd",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/upward_slash_fit_rejected_2026_10_05",
+    "path": "tools/register_king_vertical_slashes.gd",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/upward_slash_fit_rejected_2026_10_05",
+    "path": "tools/register_king_vertical_slashes.gd.uid",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/upward_slash_fit_rejected_2026_10_05",
+    "path": "tests/king_upward_slash_smoke.gd",
+    "matches": true
+  },
+  {
+    "archive": "art_source/archive/upward_slash_fit_rejected_2026_10_05",
+    "path": "tests/king_upward_slash_smoke.gd.uid",
+    "matches": true
+  }
+]

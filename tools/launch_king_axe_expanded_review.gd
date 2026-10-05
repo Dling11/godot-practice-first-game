@@ -6,6 +6,7 @@ const CARRY_POSES = preload("res://assets/characters/playable/king/axe_proof_v3/
 const EXPANDED_SWING = preload("res://assets/characters/playable/king/axe_proof_v3/swing.png")
 const NAMES := ["Side sweep","Rising cut","Down cut","Hop slam","Whirlwind"]
 const CUT_SOUNDS := [preload("res://assets/audio/sfx/player/greatsword/cut.wav"),preload("res://assets/audio/sfx/player/greatsword/return.wav"),preload("res://assets/audio/sfx/player/greatsword/cleave.wav")]
+const GAME_WEAPON = preload("res://data/weapons/king_iron_beard_axe.tres")
 var _cut_audio: AudioStreamPlayer2D
 var extra_targets: Array[Node2D] = []
 
@@ -14,23 +15,9 @@ func open_review() -> void:
 	root.title = "Battle of Gods — Iron Beard V3 HUGE / CARRY / SPIN (NO SAVES / REWARDS)"
 	var actor: Player = stage.player
 	var attack: MeleeAttackComponent = actor.attack_component
-	var weapon := attack.weapon.duplicate(true) as WeaponDefinition
-	var fan := ConvexPolygonShape2D.new()
-	fan.points = PackedVector2Array([Vector2(2,-14),Vector2(20,-40),Vector2(56,-34),Vector2(72,0),Vector2(56,34),Vector2(20,40),Vector2(2,14)])
-	var sweep := ConvexPolygonShape2D.new()
-	sweep.points = PackedVector2Array([Vector2(-12,-36),Vector2(30,-54),Vector2(64,-42),Vector2(72,0),Vector2(64,42),Vector2(30,54),Vector2(-12,36)])
-	var spin := CircleShape2D.new()
-	spin.radius = 68
+	var weapon := GAME_WEAPON.duplicate(true) as WeaponDefinition
+	weapon.family_presentation = null # Isolated fixture mounts its own observers.
 	weapon.weapon_id = &"review_iron_beard_axe_v3"
-	weapon.melee_hitbox_shape = fan
-	weapon.combo.animation_keys = PackedStringArray(["attack","return_cut","attack","heavy_cleave","return_cut"])
-	weapon.combo.windups = PackedFloat32Array([0.20,0.20,0.24,0.36,0.30])
-	weapon.combo.contacts = PackedFloat32Array([0.18,0.16,0.18,0.20,0.32])
-	weapon.combo.recoveries = PackedFloat32Array([0.20,0.20,0.22,0.28,0.36])
-	weapon.combo.damage_multipliers = PackedFloat32Array([1.0,1.10,1.15,1.50,1.35])
-	weapon.combo.knockback_multipliers = PackedFloat32Array([1.0,1.1,1.3,1.8,1.5])
-	weapon.combo.hitbox_shapes = [sweep,fan,fan,fan,spin]
-	weapon.combo.radial_steps = PackedByteArray([0,0,0,0,1])
 	assert(actor.set_weapon_definition(weapon))
 	# The old sword's three-element audio/trail observer is not a five-cut rig.
 	var effects := actor.get_node("GreatswordEffects")

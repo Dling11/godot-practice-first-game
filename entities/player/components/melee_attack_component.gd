@@ -154,6 +154,15 @@ func reset_combo() -> void:
 		_combo_timer.stop()
 
 
+func get_remaining_attack_seconds() -> float:
+	if phase == Phase.IDLE:
+		return 0.0
+	var remaining := maxf(_phase_time_remaining, 0.0)
+	for next_phase in range(phase + 1, Phase.RECOVERY + 1):
+		remaining += _scaled_duration(_step_duration(next_phase))
+	return remaining
+
+
 func get_animation_key() -> String:
 	if not committed_animation_key.is_empty():
 		return committed_animation_key

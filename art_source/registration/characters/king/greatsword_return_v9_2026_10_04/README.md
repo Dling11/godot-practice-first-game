@@ -1,0 +1,9 @@
+# Return slash V9 — 2026-10-04
+
+Owner rejects the V8 rear-enemy interpretation. A return slash reverses the fourth strike across the SAME frontal enemy; it does not mean changing facing or hitting behind King. V8 is superseded and must not be treated as approved choreography.
+
+Current eight body cells, copied verbatim: turn7, turn6, turn5, turn4, turn3, rise3, rise5, idle0. WIND0–1, ACTIVE2–4, RECOVERY5–7. ACTIVE is exactly cut4 cells5/4/3, the reverse of its3/4/5 contact; recovery is authored separately, not reversed old wind-up cells. Original body colors, silhouette, cell density and leading glove positions are preserved. One-hand settling keys5/6 use explicit shaft axes at the original upper/front glove; only that gripping glove masks the steel. Last cell is exact existing carry0.
+
+Fifth uses the same104px frontal/full116 contact polygon as cut4, normal forward knockback, committed facing and four existing white cells in reverse. V8 rear polygon, outward mode and rear UV rotations are removed from the active review. Fifth timing0.20/0.28/0.64 gives a quicker return with readable contact and unhurried settling; total1.12s, physical190%, knockback220% and8px step remain. First four are unchanged.
+
+Build: Godot --headless --path . --script res://tools/build_king_greatsword_return_v9.gd; then --headless --editor --quit. Runtime: assets/characters/playable/king/greatsword_return_v9/return.tres. Existing PS opens V9 RETURN SLASH. Try return slash demonstrates5 against a front target. Evidence: art_source/review/combat/king_return_slash_v9_2026_10_04/; GIF build switch -ReturnSlash. Native test verifies source pixels, opposite contact direction, real frontal hits/forward knockback, rear and beyond-range misses, effects on both sides and queue/pause/cancel/reset behavior. Normal equipment and saves are unchanged; owner feel remains pending.

@@ -74,6 +74,8 @@
 [ext_resource type="Script" path="res://entities/player/king/king_skill_library.gd" id="90_library"]
 [ext_resource type="Shader" path="res://entities/player/presentation/king_spellward_outline.gdshader" id="king_outline"]
 
+[ext_resource type="Script" path="res://entities/player/presentation/player_weapon_family_presentation.gd" id="family_presentation"]
+
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_sweep"]
 points = PackedVector2Array(3, -9, 14, -28, 39, -24, 48, 0, 39, 24, 14, 28, 3, 9)
 
@@ -508,6 +510,9 @@ script = ExtResource("90_library")
 [node name="StunIndicator" parent="." instance=ExtResource("stun_indicator")]
 position = Vector2(0, -36)
 orbit_radius = Vector2(9, 3)
+
+[node name="WeaponFamilyPresentation" type="Node" parent="."]
+script = ExtResource("family_presentation")
 
 [connection signal="defeated" from="." to="VisualRoot/Body" method="play_defeat"]
 [connection signal="defeated" from="." to="VisualRoot/WeaponVisual" method="play_defeat"]
