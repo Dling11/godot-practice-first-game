@@ -1,0 +1,27 @@
+Greatsword V7 matched King - 2026-10-04
+Godot 4.7.2 native Compatibility renderer / AMD Radeon.
+tests/king_five_cut_smoke.gd: 155 checks, 0 failures.
+Headless editor import: passed.
+
+All eight fifth body cells match accepted turn/rise/idle source bytes exactly.
+Original leading-glove anchors also match. No new body colors, costume,
+anatomy, resampling, recoloring or generated-sheet dependency is introduced.
+Registration manifests identify every accepted source texture and cell.
+
+Coverage also includes five real contacts and physical multipliers, all four
+white effect drawings on both sides, mirrored raster opacity, chronological
+cells, original gripping-hand opacity, monotonic active blade arc and
+adjacent headings within60 degrees, exact fourth/fifth/carry body/blade
+boundaries, queued-gap follow-through, pause/cancel at the fourth/fifth gap,
+46px actual movement, reset/wrap and unchanged4.90s/8.45-hit timing/damage.
+
+return_keys.png is the native eight-key left/right gallery.
+fx_left/right_0..4.png are native effect samples.
+motion_frames/ and motion_timeline.json preserve240 actual-clock screenshots.
+motion.gif encodes captured elapsed times; decode confirms240 frames.
+This is appearance/motion evidence, not phone/campaign performance profiling.
+
+V6 generated fifth appearance is rejected history. Current launcher is
+tools/launch_king_greatsword_review.ps1, title V7 MATCHED KING.
+No normal saves/rewards/equipment/recipes/up-down art is changed.
+Final owner appearance/motion approval remains pending.

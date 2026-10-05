@@ -1,0 +1,135 @@
+{
+	"checks": 48,
+	"failures": 0,
+	"frames": [
+		{
+			"cut": 0,
+			"frame": 0,
+			"lost_pixels": 0,
+			"minimum_contact_margin": 4.0715012550354,
+			"reference_pixels": 2533,
+			"source_texels": 10669
+		},
+		{
+			"cut": 0,
+			"frame": 1,
+			"lost_pixels": 0,
+			"minimum_contact_margin": 4.0715012550354,
+			"reference_pixels": 8332,
+			"source_texels": 10669
+		},
+		{
+			"cut": 0,
+			"frame": 2,
+			"lost_pixels": 0,
+			"minimum_contact_margin": 4.0715012550354,
+			"reference_pixels": 17566,
+			"source_texels": 10669
+		},
+		{
+			"cut": 0,
+			"frame": 3,
+			"lost_pixels": 0,
+			"minimum_contact_margin": 4.0715012550354,
+			"reference_pixels": 7216,
+			"source_texels": 10669
+		},
+		{
+			"cut": 1,
+			"frame": 0,
+			"lost_pixels": 0,
+			"minimum_contact_margin": 4.04141330718994,
+			"reference_pixels": 2764,
+			"source_texels": 12303
+		},
+		{
+			"cut": 1,
+			"frame": 1,
+			"lost_pixels": 0,
+			"minimum_contact_margin": 4.04141330718994,
+			"reference_pixels": 10779,
+			"source_texels": 12303
+		},
+		{
+			"cut": 1,
+			"frame": 2,
+			"lost_pixels": 0,
+			"minimum_contact_margin": 4.04141330718994,
+			"reference_pixels": 20686,
+			"source_texels": 12303
+		},
+		{
+			"cut": 1,
+			"frame": 3,
+			"lost_pixels": 0,
+			"minimum_contact_margin": 4.04141330718994,
+			"reference_pixels": 7814,
+			"source_texels": 12303
+		},
+		{
+			"cut": 3,
+			"frame": 0,
+			"lost_pixels": 0,
+			"minimum_contact_margin": 4.05826377868652,
+			"reference_pixels": 2295,
+			"source_texels": 10843
+		},
+		{
+			"cut": 3,
+			"frame": 1,
+			"lost_pixels": 0,
+			"minimum_contact_margin": 4.05826377868652,
+			"reference_pixels": 8352,
+			"source_texels": 10843
+		},
+		{
+			"cut": 3,
+			"frame": 2,
+			"lost_pixels": 0,
+			"minimum_contact_margin": 4.05826377868652,
+			"reference_pixels": 18707,
+			"source_texels": 10843
+		},
+		{
+			"cut": 3,
+			"frame": 3,
+			"lost_pixels": 0,
+			"minimum_contact_margin": 4.05826377868652,
+			"reference_pixels": 6932,
+			"source_texels": 10843
+		},
+		{
+			"cut": 4,
+			"frame": 0,
+			"lost_pixels": 0,
+			"minimum_contact_margin": 4.05826377868652,
+			"reference_pixels": 2295,
+			"source_texels": 10843
+		},
+		{
+			"cut": 4,
+			"frame": 1,
+			"lost_pixels": 0,
+			"minimum_contact_margin": 4.05826377868652,
+			"reference_pixels": 8352,
+			"source_texels": 10843
+		},
+		{
+			"cut": 4,
+			"frame": 2,
+			"lost_pixels": 0,
+			"minimum_contact_margin": 4.05826377868652,
+			"reference_pixels": 18707,
+			"source_texels": 10843
+		},
+		{
+			"cut": 4,
+			"frame": 3,
+			"lost_pixels": 0,
+			"minimum_contact_margin": 4.05826377868652,
+			"reference_pixels": 6932,
+			"source_texels": 10843
+		}
+	],
+	"native": true
+}

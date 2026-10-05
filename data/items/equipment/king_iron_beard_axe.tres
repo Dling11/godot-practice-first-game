@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EquipmentDefinition" load_steps=4 format=3]
+[ext_resource type="Script" path="res://data/items/equipment_definition.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/axe_proof/iron_beard.png" id="2"]
+[ext_resource type="Resource" path="res://data/weapons/king_iron_beard_axe.tres" id="3"]
+[resource]
+script = ExtResource("1")
+item_id = &"weapon_king_iron_beard_axe"
+display_name = "Iron Beard Axe"
+icon = ExtResource("2")
+compatible_classes = PackedStringArray("warrior")
+weapon_definition = ExtResource("3")
+preview_power = 25
+lore = "Broad iron, worn wood. King's five-cut axe exchange ends in a whirlwind."
+synergy_name = "Five-Cut Axe"
+synergy_description = "Sweep, rise, chop and hop slam lead into a 68px whirlwind. Back-carried run and relaxed idle. Same base Skill Power as King's Sword. F9 grants this prototype for a non-saving playtest; crafting is not unlocked yet."

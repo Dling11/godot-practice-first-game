@@ -1,0 +1,5462 @@
+[
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 0,
+		"file": "motion_frames/frame_000.png",
+		"frame": 0
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 33,
+		"file": "motion_frames/frame_001.png",
+		"frame": 1
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 67,
+		"file": "motion_frames/frame_002.png",
+		"frame": 2
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 100,
+		"file": "motion_frames/frame_003.png",
+		"frame": 3
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 133,
+		"file": "motion_frames/frame_004.png",
+		"frame": 4
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 167,
+		"file": "motion_frames/frame_005.png",
+		"frame": 5
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 200,
+		"file": "motion_frames/frame_006.png",
+		"frame": 6
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 233,
+		"file": "motion_frames/frame_007.png",
+		"frame": 7
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -74.999978181403,
+				"grip": "Vector2(6, 9)",
+				"phase": 1,
+				"pose": 1,
+				"step": 0
+			},
+			{
+				"blade_degrees": -74.999978181403,
+				"grip": "Vector2(6, 9)",
+				"phase": 1,
+				"pose": 1,
+				"step": 0
+			},
+			{
+				"blade_degrees": -165.000035327395,
+				"grip": "Vector2(4, 12)",
+				"phase": 1,
+				"pose": 1,
+				"step": 0
+			},
+			{
+				"blade_degrees": 15.0000243230751,
+				"grip": "Vector2(-13, 10)",
+				"phase": 1,
+				"pose": 1,
+				"step": 0
+			},
+			{
+				"blade_degrees": -66.8014084225024,
+				"grip": "Vector2(-10, 13)",
+				"phase": 1,
+				"pose": 0,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 267,
+		"file": "motion_frames/frame_008.png",
+		"frame": 8
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -55.0000026688793,
+				"grip": "Vector2(-11, -10)",
+				"phase": 1,
+				"pose": 2,
+				"step": 0
+			},
+			{
+				"blade_degrees": -55.0000026688793,
+				"grip": "Vector2(-11, -10)",
+				"phase": 1,
+				"pose": 2,
+				"step": 0
+			},
+			{
+				"blade_degrees": -144.999971022412,
+				"grip": "Vector2(-5, 10)",
+				"phase": 1,
+				"pose": 2,
+				"step": 0
+			},
+			{
+				"blade_degrees": 35.0000271563556,
+				"grip": "Vector2(2, 15)",
+				"phase": 1,
+				"pose": 2,
+				"step": 0
+			},
+			{
+				"blade_degrees": -66.8014084225024,
+				"grip": "Vector2(-10, 13)",
+				"phase": 1,
+				"pose": 0,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 300,
+		"file": "motion_frames/frame_009.png",
+		"frame": 9
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -55.0000026688793,
+				"grip": "Vector2(-11, -10)",
+				"phase": 1,
+				"pose": 2,
+				"step": 0
+			},
+			{
+				"blade_degrees": -55.0000026688793,
+				"grip": "Vector2(-11, -10)",
+				"phase": 1,
+				"pose": 2,
+				"step": 0
+			},
+			{
+				"blade_degrees": -144.999971022412,
+				"grip": "Vector2(-5, 10)",
+				"phase": 1,
+				"pose": 2,
+				"step": 0
+			},
+			{
+				"blade_degrees": 35.0000271563556,
+				"grip": "Vector2(2, 15)",
+				"phase": 1,
+				"pose": 2,
+				"step": 0
+			},
+			{
+				"blade_degrees": -66.8014084225024,
+				"grip": "Vector2(-10, 13)",
+				"phase": 1,
+				"pose": 0,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 333,
+		"file": "motion_frames/frame_010.png",
+		"frame": 10
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -20.0000028332804,
+				"grip": "Vector2(18, -1)",
+				"phase": 1,
+				"pose": 3,
+				"step": 0
+			},
+			{
+				"blade_degrees": -20.0000028332804,
+				"grip": "Vector2(18, -1)",
+				"phase": 1,
+				"pose": 3,
+				"step": 0
+			},
+			{
+				"blade_degrees": -110.000005337759,
+				"grip": "Vector2(15, 4)",
+				"phase": 1,
+				"pose": 3,
+				"step": 0
+			},
+			{
+				"blade_degrees": 69.9999928410086,
+				"grip": "Vector2(11, 14)",
+				"phase": 1,
+				"pose": 3,
+				"step": 0
+			},
+			{
+				"blade_degrees": -66.8014084225024,
+				"grip": "Vector2(-14, 11)",
+				"phase": 1,
+				"pose": 1,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 367,
+		"file": "motion_frames/frame_011.png",
+		"frame": 11
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -20.0000028332804,
+				"grip": "Vector2(18, -1)",
+				"phase": 1,
+				"pose": 3,
+				"step": 0
+			},
+			{
+				"blade_degrees": -20.0000028332804,
+				"grip": "Vector2(18, -1)",
+				"phase": 1,
+				"pose": 3,
+				"step": 0
+			},
+			{
+				"blade_degrees": -110.000005337759,
+				"grip": "Vector2(15, 4)",
+				"phase": 1,
+				"pose": 3,
+				"step": 0
+			},
+			{
+				"blade_degrees": 69.9999928410086,
+				"grip": "Vector2(11, 14)",
+				"phase": 1,
+				"pose": 3,
+				"step": 0
+			},
+			{
+				"blade_degrees": -66.8014084225024,
+				"grip": "Vector2(-14, 11)",
+				"phase": 1,
+				"pose": 1,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 400,
+		"file": "motion_frames/frame_012.png",
+		"frame": 12
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -20.0000028332804,
+				"grip": "Vector2(18, -1)",
+				"phase": 1,
+				"pose": 3,
+				"step": 0
+			},
+			{
+				"blade_degrees": -20.0000028332804,
+				"grip": "Vector2(18, -1)",
+				"phase": 1,
+				"pose": 3,
+				"step": 0
+			},
+			{
+				"blade_degrees": -110.000005337759,
+				"grip": "Vector2(15, 4)",
+				"phase": 1,
+				"pose": 3,
+				"step": 0
+			},
+			{
+				"blade_degrees": 69.9999928410086,
+				"grip": "Vector2(11, 14)",
+				"phase": 1,
+				"pose": 3,
+				"step": 0
+			},
+			{
+				"blade_degrees": -66.8014084225024,
+				"grip": "Vector2(-14, 11)",
+				"phase": 1,
+				"pose": 1,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 433,
+		"file": "motion_frames/frame_013.png",
+		"frame": 13
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 29.9999871744477,
+				"grip": "Vector2(19, -1)",
+				"phase": 2,
+				"pose": 4,
+				"step": 0
+			},
+			{
+				"blade_degrees": 29.9999871744477,
+				"grip": "Vector2(19, -1)",
+				"phase": 2,
+				"pose": 4,
+				"step": 0
+			},
+			{
+				"blade_degrees": -60.0000084998413,
+				"grip": "Vector2(15, 3)",
+				"phase": 2,
+				"pose": 4,
+				"step": 0
+			},
+			{
+				"blade_degrees": 119.999989678926,
+				"grip": "Vector2(3, 17)",
+				"phase": 2,
+				"pose": 4,
+				"step": 0
+			},
+			{
+				"blade_degrees": -128.190943776902,
+				"grip": "Vector2(25, 2)",
+				"phase": 2,
+				"pose": 2,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 467,
+		"file": "motion_frames/frame_014.png",
+		"frame": 14
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 84.999989843327,
+				"grip": "Vector2(22, 3)",
+				"phase": 2,
+				"pose": 5,
+				"step": 0
+			},
+			{
+				"blade_degrees": 84.999989843327,
+				"grip": "Vector2(22, 3)",
+				"phase": 2,
+				"pose": 5,
+				"step": 0
+			},
+			{
+				"blade_degrees": -5.00001949134032,
+				"grip": "Vector2(17, 5)",
+				"phase": 2,
+				"pose": 5,
+				"step": 0
+			},
+			{
+				"blade_degrees": 174.999978687427,
+				"grip": "Vector2(0, 19)",
+				"phase": 2,
+				"pose": 5,
+				"step": 0
+			},
+			{
+				"blade_degrees": -119.931510202307,
+				"grip": "Vector2(25, 1)",
+				"phase": 2,
+				"pose": 3,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 500,
+		"file": "motion_frames/frame_015.png",
+		"frame": 15
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 84.999989843327,
+				"grip": "Vector2(22, 3)",
+				"phase": 2,
+				"pose": 5,
+				"step": 0
+			},
+			{
+				"blade_degrees": 84.999989843327,
+				"grip": "Vector2(22, 3)",
+				"phase": 2,
+				"pose": 5,
+				"step": 0
+			},
+			{
+				"blade_degrees": -5.00001949134032,
+				"grip": "Vector2(17, 5)",
+				"phase": 2,
+				"pose": 5,
+				"step": 0
+			},
+			{
+				"blade_degrees": 174.999978687427,
+				"grip": "Vector2(0, 19)",
+				"phase": 2,
+				"pose": 5,
+				"step": 0
+			},
+			{
+				"blade_degrees": -136.245362393369,
+				"grip": "Vector2(28, -3)",
+				"phase": 2,
+				"pose": 4,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 533,
+		"file": "motion_frames/frame_016.png",
+		"frame": 16
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 134.999986681244,
+				"grip": "Vector2(13, 13)",
+				"phase": 2,
+				"pose": 6,
+				"step": 0
+			},
+			{
+				"blade_degrees": 134.999986681244,
+				"grip": "Vector2(13, 13)",
+				"phase": 2,
+				"pose": 6,
+				"step": 0
+			},
+			{
+				"blade_degrees": 44.9999978371445,
+				"grip": "Vector2(10, 17)",
+				"phase": 2,
+				"pose": 6,
+				"step": 0
+			},
+			{
+				"blade_degrees": -135.000000341623,
+				"grip": "Vector2(-10, 15)",
+				"phase": 2,
+				"pose": 6,
+				"step": 0
+			},
+			{
+				"blade_degrees": -136.245362393369,
+				"grip": "Vector2(28, -3)",
+				"phase": 2,
+				"pose": 4,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 567,
+		"file": "motion_frames/frame_017.png",
+		"frame": 17
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 134.999986681244,
+				"grip": "Vector2(13, 13)",
+				"phase": 2,
+				"pose": 6,
+				"step": 0
+			},
+			{
+				"blade_degrees": 134.999986681244,
+				"grip": "Vector2(13, 13)",
+				"phase": 2,
+				"pose": 6,
+				"step": 0
+			},
+			{
+				"blade_degrees": 44.9999978371445,
+				"grip": "Vector2(10, 17)",
+				"phase": 2,
+				"pose": 6,
+				"step": 0
+			},
+			{
+				"blade_degrees": -135.000000341623,
+				"grip": "Vector2(-10, 15)",
+				"phase": 2,
+				"pose": 6,
+				"step": 0
+			},
+			{
+				"blade_degrees": -138.36645031936,
+				"grip": "Vector2(29, 4)",
+				"phase": 2,
+				"pose": 5,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 600,
+		"file": "motion_frames/frame_018.png",
+		"frame": 18
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 159.999981685108,
+				"grip": "Vector2(2, 8)",
+				"phase": 3,
+				"pose": 10,
+				"step": 0
+			},
+			{
+				"blade_degrees": 159.999981685108,
+				"grip": "Vector2(2, 8)",
+				"phase": 3,
+				"pose": 10,
+				"step": 0
+			},
+			{
+				"blade_degrees": 69.9999928410086,
+				"grip": "Vector2(2, 13)",
+				"phase": 3,
+				"pose": 10,
+				"step": 0
+			},
+			{
+				"blade_degrees": -110.000005337759,
+				"grip": "Vector2(12, 16)",
+				"phase": 3,
+				"pose": 10,
+				"step": 0
+			},
+			{
+				"blade_degrees": -102.339073919376,
+				"grip": "Vector2(26, 9)",
+				"phase": 3,
+				"pose": 6,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 633,
+		"file": "motion_frames/frame_019.png",
+		"frame": 19
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -169.999993347032,
+				"grip": "Vector2(9, 13)",
+				"phase": 3,
+				"pose": 11,
+				"step": 0
+			},
+			{
+				"blade_degrees": -169.999993347032,
+				"grip": "Vector2(9, 13)",
+				"phase": 3,
+				"pose": 11,
+				"step": 0
+			},
+			{
+				"blade_degrees": 100.000000506024,
+				"grip": "Vector2(8, 16)",
+				"phase": 3,
+				"pose": 11,
+				"step": 0
+			},
+			{
+				"blade_degrees": -79.9999976727434,
+				"grip": "Vector2(-13, 10)",
+				"phase": 3,
+				"pose": 11,
+				"step": 0
+			},
+			{
+				"blade_degrees": -102.339073919376,
+				"grip": "Vector2(26, 9)",
+				"phase": 3,
+				"pose": 6,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 667,
+		"file": "motion_frames/frame_020.png",
+		"frame": 20
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -169.999993347032,
+				"grip": "Vector2(9, 13)",
+				"phase": 3,
+				"pose": 11,
+				"step": 0
+			},
+			{
+				"blade_degrees": -169.999993347032,
+				"grip": "Vector2(9, 13)",
+				"phase": 3,
+				"pose": 11,
+				"step": 0
+			},
+			{
+				"blade_degrees": 100.000000506024,
+				"grip": "Vector2(8, 16)",
+				"phase": 3,
+				"pose": 11,
+				"step": 0
+			},
+			{
+				"blade_degrees": -79.9999976727434,
+				"grip": "Vector2(-13, 10)",
+				"phase": 3,
+				"pose": 11,
+				"step": 0
+			},
+			{
+				"blade_degrees": -102.339073919376,
+				"grip": "Vector2(26, 9)",
+				"phase": 3,
+				"pose": 6,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 700,
+		"file": "motion_frames/frame_021.png",
+		"frame": 21
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -140.000026663152,
+				"grip": "Vector2(7, 9)",
+				"phase": 3,
+				"pose": 12,
+				"step": 0
+			},
+			{
+				"blade_degrees": -140.000026663152,
+				"grip": "Vector2(7, 9)",
+				"phase": 3,
+				"pose": 12,
+				"step": 0
+			},
+			{
+				"blade_degrees": 129.999987680472,
+				"grip": "Vector2(6, 15)",
+				"phase": 3,
+				"pose": 12,
+				"step": 0
+			},
+			{
+				"blade_degrees": -50.0000173284848,
+				"grip": "Vector2(0, 19)",
+				"phase": 3,
+				"pose": 12,
+				"step": 0
+			},
+			{
+				"blade_degrees": -66.8014084225024,
+				"grip": "Vector2(-10, 14)",
+				"phase": 3,
+				"pose": 7,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 733,
+		"file": "motion_frames/frame_022.png",
+		"frame": 22
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -140.000026663152,
+				"grip": "Vector2(7, 9)",
+				"phase": 3,
+				"pose": 12,
+				"step": 0
+			},
+			{
+				"blade_degrees": -140.000026663152,
+				"grip": "Vector2(7, 9)",
+				"phase": 3,
+				"pose": 12,
+				"step": 0
+			},
+			{
+				"blade_degrees": 129.999987680472,
+				"grip": "Vector2(6, 15)",
+				"phase": 3,
+				"pose": 12,
+				"step": 0
+			},
+			{
+				"blade_degrees": -50.0000173284848,
+				"grip": "Vector2(0, 19)",
+				"phase": 3,
+				"pose": 12,
+				"step": 0
+			},
+			{
+				"blade_degrees": -66.8014084225024,
+				"grip": "Vector2(-10, 14)",
+				"phase": 3,
+				"pose": 7,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 767,
+		"file": "motion_frames/frame_023.png",
+		"frame": 23
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -140.000026663152,
+				"grip": "Vector2(7, 9)",
+				"phase": 3,
+				"pose": 12,
+				"step": 0
+			},
+			{
+				"blade_degrees": -140.000026663152,
+				"grip": "Vector2(7, 9)",
+				"phase": 3,
+				"pose": 12,
+				"step": 0
+			},
+			{
+				"blade_degrees": 129.999987680472,
+				"grip": "Vector2(6, 15)",
+				"phase": 3,
+				"pose": 12,
+				"step": 0
+			},
+			{
+				"blade_degrees": -50.0000173284848,
+				"grip": "Vector2(0, 19)",
+				"phase": 3,
+				"pose": 12,
+				"step": 0
+			},
+			{
+				"blade_degrees": -66.8014084225024,
+				"grip": "Vector2(-10, 14)",
+				"phase": 3,
+				"pose": 7,
+				"step": 0
+			}
+		],
+		"elapsed_ms": 800,
+		"file": "motion_frames/frame_024.png",
+		"frame": 24
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -140.000026663152,
+				"grip": "Vector2(8, 15)",
+				"phase": 1,
+				"pose": 1,
+				"step": 1
+			},
+			{
+				"blade_degrees": -140.000026663152,
+				"grip": "Vector2(8, 15)",
+				"phase": 1,
+				"pose": 1,
+				"step": 1
+			},
+			{
+				"blade_degrees": 129.999987680472,
+				"grip": "Vector2(7, 16)",
+				"phase": 1,
+				"pose": 1,
+				"step": 1
+			},
+			{
+				"blade_degrees": -50.0000173284848,
+				"grip": "Vector2(-3, 15)",
+				"phase": 1,
+				"pose": 1,
+				"step": 1
+			},
+			{
+				"blade_degrees": 150.461212697835,
+				"grip": "Vector2(-6, 18)",
+				"phase": 1,
+				"pose": 0,
+				"step": 1
+			}
+		],
+		"elapsed_ms": 833,
+		"file": "motion_frames/frame_025.png",
+		"frame": 25
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -164.999967025503,
+				"grip": "Vector2(8, 14)",
+				"phase": 1,
+				"pose": 2,
+				"step": 1
+			},
+			{
+				"blade_degrees": -164.999967025503,
+				"grip": "Vector2(8, 14)",
+				"phase": 1,
+				"pose": 2,
+				"step": 1
+			},
+			{
+				"blade_degrees": 105.000019997364,
+				"grip": "Vector2(6, 15)",
+				"phase": 1,
+				"pose": 2,
+				"step": 1
+			},
+			{
+				"blade_degrees": -74.999978181403,
+				"grip": "Vector2(7, 8)",
+				"phase": 1,
+				"pose": 2,
+				"step": 1
+			},
+			{
+				"blade_degrees": 150.461212697835,
+				"grip": "Vector2(-6, 18)",
+				"phase": 1,
+				"pose": 0,
+				"step": 1
+			}
+		],
+		"elapsed_ms": 867,
+		"file": "motion_frames/frame_026.png",
+		"frame": 26
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -164.999967025503,
+				"grip": "Vector2(8, 14)",
+				"phase": 1,
+				"pose": 2,
+				"step": 1
+			},
+			{
+				"blade_degrees": -164.999967025503,
+				"grip": "Vector2(8, 14)",
+				"phase": 1,
+				"pose": 2,
+				"step": 1
+			},
+			{
+				"blade_degrees": 105.000019997364,
+				"grip": "Vector2(6, 15)",
+				"phase": 1,
+				"pose": 2,
+				"step": 1
+			},
+			{
+				"blade_degrees": -74.999978181403,
+				"grip": "Vector2(7, 8)",
+				"phase": 1,
+				"pose": 2,
+				"step": 1
+			},
+			{
+				"blade_degrees": 150.461212697835,
+				"grip": "Vector2(-6, 18)",
+				"phase": 1,
+				"pose": 0,
+				"step": 1
+			}
+		],
+		"elapsed_ms": 900,
+		"file": "motion_frames/frame_027.png",
+		"frame": 27
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 150.000011004319,
+				"grip": "Vector2(6, 8)",
+				"phase": 1,
+				"pose": 3,
+				"step": 1
+			},
+			{
+				"blade_degrees": 150.000011004319,
+				"grip": "Vector2(6, 8)",
+				"phase": 1,
+				"pose": 3,
+				"step": 1
+			},
+			{
+				"blade_degrees": 60.0000084998413,
+				"grip": "Vector2(7, 15)",
+				"phase": 1,
+				"pose": 3,
+				"step": 1
+			},
+			{
+				"blade_degrees": -120.000003339304,
+				"grip": "Vector2(5, 14)",
+				"phase": 1,
+				"pose": 3,
+				"step": 1
+			},
+			{
+				"blade_degrees": 143.806791615924,
+				"grip": "Vector2(12, 20)",
+				"phase": 1,
+				"pose": 1,
+				"step": 1
+			}
+		],
+		"elapsed_ms": 933,
+		"file": "motion_frames/frame_028.png",
+		"frame": 28
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 150.000011004319,
+				"grip": "Vector2(6, 8)",
+				"phase": 1,
+				"pose": 3,
+				"step": 1
+			},
+			{
+				"blade_degrees": 150.000011004319,
+				"grip": "Vector2(6, 8)",
+				"phase": 1,
+				"pose": 3,
+				"step": 1
+			},
+			{
+				"blade_degrees": 60.0000084998413,
+				"grip": "Vector2(7, 15)",
+				"phase": 1,
+				"pose": 3,
+				"step": 1
+			},
+			{
+				"blade_degrees": -120.000003339304,
+				"grip": "Vector2(5, 14)",
+				"phase": 1,
+				"pose": 3,
+				"step": 1
+			},
+			{
+				"blade_degrees": 143.806791615924,
+				"grip": "Vector2(12, 20)",
+				"phase": 1,
+				"pose": 1,
+				"step": 1
+			}
+		],
+		"elapsed_ms": 967,
+		"file": "motion_frames/frame_029.png",
+		"frame": 29
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 114.999990678153,
+				"grip": "Vector2(11, 6)",
+				"phase": 2,
+				"pose": 4,
+				"step": 1
+			},
+			{
+				"blade_degrees": 114.999990678153,
+				"grip": "Vector2(11, 6)",
+				"phase": 2,
+				"pose": 4,
+				"step": 1
+			},
+			{
+				"blade_degrees": 25.0000035416005,
+				"grip": "Vector2(9, 10)",
+				"phase": 2,
+				"pose": 4,
+				"step": 1
+			},
+			{
+				"blade_degrees": -154.999996344714,
+				"grip": "Vector2(2, 19)",
+				"phase": 2,
+				"pose": 4,
+				"step": 1
+			},
+			{
+				"blade_degrees": 143.806791615924,
+				"grip": "Vector2(12, 20)",
+				"phase": 1,
+				"pose": 1,
+				"step": 1
+			}
+		],
+		"elapsed_ms": 1000,
+		"file": "motion_frames/frame_030.png",
+		"frame": 30
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 69.9999928410086,
+				"grip": "Vector2(17, 1)",
+				"phase": 2,
+				"pose": 5,
+				"step": 1
+			},
+			{
+				"blade_degrees": 69.9999928410086,
+				"grip": "Vector2(17, 1)",
+				"phase": 2,
+				"pose": 5,
+				"step": 1
+			},
+			{
+				"blade_degrees": -20.0000028332804,
+				"grip": "Vector2(14, 6)",
+				"phase": 2,
+				"pose": 5,
+				"step": 1
+			},
+			{
+				"blade_degrees": 159.999981685108,
+				"grip": "Vector2(1, 15)",
+				"phase": 2,
+				"pose": 5,
+				"step": 1
+			},
+			{
+				"blade_degrees": 66.8014084225024,
+				"grip": "Vector2(19, 4)",
+				"phase": 2,
+				"pose": 2,
+				"step": 1
+			}
+		],
+		"elapsed_ms": 1033,
+		"file": "motion_frames/frame_031.png",
+		"frame": 31
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 69.9999928410086,
+				"grip": "Vector2(17, 1)",
+				"phase": 2,
+				"pose": 5,
+				"step": 1
+			},
+			{
+				"blade_degrees": 69.9999928410086,
+				"grip": "Vector2(17, 1)",
+				"phase": 2,
+				"pose": 5,
+				"step": 1
+			},
+			{
+				"blade_degrees": -20.0000028332804,
+				"grip": "Vector2(14, 6)",
+				"phase": 2,
+				"pose": 5,
+				"step": 1
+			},
+			{
+				"blade_degrees": 159.999981685108,
+				"grip": "Vector2(1, 15)",
+				"phase": 2,
+				"pose": 5,
+				"step": 1
+			},
+			{
+				"blade_degrees": 66.8014084225024,
+				"grip": "Vector2(19, 4)",
+				"phase": 2,
+				"pose": 2,
+				"step": 1
+			}
+		],
+		"elapsed_ms": 1067,
+		"file": "motion_frames/frame_032.png",
+		"frame": 32
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 25.0000035416005,
+				"grip": "Vector2(20, -3)",
+				"phase": 2,
+				"pose": 6,
+				"step": 1
+			},
+			{
+				"blade_degrees": 25.0000035416005,
+				"grip": "Vector2(20, -3)",
+				"phase": 2,
+				"pose": 6,
+				"step": 1
+			},
+			{
+				"blade_degrees": -65.0000006704249,
+				"grip": "Vector2(15, 3)",
+				"phase": 2,
+				"pose": 6,
+				"step": 1
+			},
+			{
+				"blade_degrees": 114.999990678153,
+				"grip": "Vector2(-13, 10)",
+				"phase": 2,
+				"pose": 6,
+				"step": 1
+			},
+			{
+				"blade_degrees": 70.6154816776859,
+				"grip": "Vector2(16, -9)",
+				"phase": 2,
+				"pose": 3,
+				"step": 1
+			}
+		],
+		"elapsed_ms": 1100,
+		"file": "motion_frames/frame_033.png",
+		"frame": 33
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 25.0000035416005,
+				"grip": "Vector2(20, -3)",
+				"phase": 2,
+				"pose": 6,
+				"step": 1
+			},
+			{
+				"blade_degrees": 25.0000035416005,
+				"grip": "Vector2(20, -3)",
+				"phase": 2,
+				"pose": 6,
+				"step": 1
+			},
+			{
+				"blade_degrees": -65.0000006704249,
+				"grip": "Vector2(15, 3)",
+				"phase": 2,
+				"pose": 6,
+				"step": 1
+			},
+			{
+				"blade_degrees": 114.999990678153,
+				"grip": "Vector2(-13, 10)",
+				"phase": 2,
+				"pose": 6,
+				"step": 1
+			},
+			{
+				"blade_degrees": 61.606981256816,
+				"grip": "Vector2(17, -21)",
+				"phase": 2,
+				"pose": 4,
+				"step": 1
+			}
+		],
+		"elapsed_ms": 1133,
+		"file": "motion_frames/frame_034.png",
+		"frame": 34
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -10.0000108081503,
+				"grip": "Vector2(20, -1)",
+				"phase": 3,
+				"pose": 10,
+				"step": 1
+			},
+			{
+				"blade_degrees": -10.0000108081503,
+				"grip": "Vector2(20, -1)",
+				"phase": 3,
+				"pose": 10,
+				"step": 1
+			},
+			{
+				"blade_degrees": -100.000007336213,
+				"grip": "Vector2(17, 6)",
+				"phase": 3,
+				"pose": 10,
+				"step": 1
+			},
+			{
+				"blade_degrees": 79.9999908425542,
+				"grip": "Vector2(2, 10)",
+				"phase": 3,
+				"pose": 10,
+				"step": 1
+			},
+			{
+				"blade_degrees": 61.606981256816,
+				"grip": "Vector2(17, -21)",
+				"phase": 2,
+				"pose": 4,
+				"step": 1
+			}
+		],
+		"elapsed_ms": 1167,
+		"file": "motion_frames/frame_035.png",
+		"frame": 35
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -35.0000305714501,
+				"grip": "Vector2(-10, -12)",
+				"phase": 3,
+				"pose": 11,
+				"step": 1
+			},
+			{
+				"blade_degrees": -35.0000305714501,
+				"grip": "Vector2(-10, -12)",
+				"phase": 3,
+				"pose": 11,
+				"step": 1
+			},
+			{
+				"blade_degrees": -125.000002340077,
+				"grip": "Vector2(-6, -9)",
+				"phase": 3,
+				"pose": 11,
+				"step": 1
+			},
+			{
+				"blade_degrees": 54.9999958386901,
+				"grip": "Vector2(2, -14)",
+				"phase": 3,
+				"pose": 11,
+				"step": 1
+			},
+			{
+				"blade_degrees": 73.1415998214585,
+				"grip": "Vector2(17, -14)",
+				"phase": 3,
+				"pose": 5,
+				"step": 1
+			}
+		],
+		"elapsed_ms": 1200,
+		"file": "motion_frames/frame_036.png",
+		"frame": 36
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -35.0000305714501,
+				"grip": "Vector2(-10, -12)",
+				"phase": 3,
+				"pose": 11,
+				"step": 1
+			},
+			{
+				"blade_degrees": -35.0000305714501,
+				"grip": "Vector2(-10, -12)",
+				"phase": 3,
+				"pose": 11,
+				"step": 1
+			},
+			{
+				"blade_degrees": -125.000002340077,
+				"grip": "Vector2(-6, -9)",
+				"phase": 3,
+				"pose": 11,
+				"step": 1
+			},
+			{
+				"blade_degrees": 54.9999958386901,
+				"grip": "Vector2(2, -14)",
+				"phase": 3,
+				"pose": 11,
+				"step": 1
+			},
+			{
+				"blade_degrees": 73.1415998214585,
+				"grip": "Vector2(17, -14)",
+				"phase": 3,
+				"pose": 5,
+				"step": 1
+			}
+		],
+		"elapsed_ms": 1233,
+		"file": "motion_frames/frame_037.png",
+		"frame": 37
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -60.0000084998413,
+				"grip": "Vector2(-9, -18)",
+				"phase": 3,
+				"pose": 12,
+				"step": 1
+			},
+			{
+				"blade_degrees": -60.0000084998413,
+				"grip": "Vector2(-9, -18)",
+				"phase": 3,
+				"pose": 12,
+				"step": 1
+			},
+			{
+				"blade_degrees": -150.000011004319,
+				"grip": "Vector2(-7, -11)",
+				"phase": 3,
+				"pose": 12,
+				"step": 1
+			},
+			{
+				"blade_degrees": 29.9999871744477,
+				"grip": "Vector2(2, -15)",
+				"phase": 3,
+				"pose": 12,
+				"step": 1
+			},
+			{
+				"blade_degrees": 140.856013290695,
+				"grip": "Vector2(19, 15)",
+				"phase": 3,
+				"pose": 6,
+				"step": 1
+			}
+		],
+		"elapsed_ms": 1267,
+		"file": "motion_frames/frame_038.png",
+		"frame": 38
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -60.0000084998413,
+				"grip": "Vector2(-9, -18)",
+				"phase": 3,
+				"pose": 12,
+				"step": 1
+			},
+			{
+				"blade_degrees": -60.0000084998413,
+				"grip": "Vector2(-9, -18)",
+				"phase": 3,
+				"pose": 12,
+				"step": 1
+			},
+			{
+				"blade_degrees": -150.000011004319,
+				"grip": "Vector2(-7, -11)",
+				"phase": 3,
+				"pose": 12,
+				"step": 1
+			},
+			{
+				"blade_degrees": 29.9999871744477,
+				"grip": "Vector2(2, -15)",
+				"phase": 3,
+				"pose": 12,
+				"step": 1
+			},
+			{
+				"blade_degrees": 140.856013290695,
+				"grip": "Vector2(19, 15)",
+				"phase": 3,
+				"pose": 6,
+				"step": 1
+			}
+		],
+		"elapsed_ms": 1300,
+		"file": "motion_frames/frame_039.png",
+		"frame": 39
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -60.0000084998413,
+				"grip": "Vector2(-9, -18)",
+				"phase": 3,
+				"pose": 12,
+				"step": 1
+			},
+			{
+				"blade_degrees": -60.0000084998413,
+				"grip": "Vector2(-9, -18)",
+				"phase": 3,
+				"pose": 12,
+				"step": 1
+			},
+			{
+				"blade_degrees": -150.000011004319,
+				"grip": "Vector2(-7, -11)",
+				"phase": 3,
+				"pose": 12,
+				"step": 1
+			},
+			{
+				"blade_degrees": 29.9999871744477,
+				"grip": "Vector2(2, -15)",
+				"phase": 3,
+				"pose": 12,
+				"step": 1
+			},
+			{
+				"blade_degrees": 156.801404096791,
+				"grip": "Vector2(-7, 19)",
+				"phase": 3,
+				"pose": 7,
+				"step": 1
+			}
+		],
+		"elapsed_ms": 1333,
+		"file": "motion_frames/frame_040.png",
+		"frame": 40
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -20.0000028332804,
+				"grip": "Vector2(7, 10)",
+				"phase": 1,
+				"pose": 1,
+				"step": 2
+			},
+			{
+				"blade_degrees": -20.0000028332804,
+				"grip": "Vector2(7, 10)",
+				"phase": 1,
+				"pose": 1,
+				"step": 2
+			},
+			{
+				"blade_degrees": -110.000005337759,
+				"grip": "Vector2(6, 13)",
+				"phase": 1,
+				"pose": 1,
+				"step": 2
+			},
+			{
+				"blade_degrees": 69.9999928410086,
+				"grip": "Vector2(0, 14)",
+				"phase": 1,
+				"pose": 1,
+				"step": 2
+			},
+			{
+				"blade_degrees": 156.801404096791,
+				"grip": "Vector2(-7, 19)",
+				"phase": 3,
+				"pose": 7,
+				"step": 1
+			}
+		],
+		"elapsed_ms": 1367,
+		"file": "motion_frames/frame_041.png",
+		"frame": 41
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -20.0000028332804,
+				"grip": "Vector2(7, 10)",
+				"phase": 1,
+				"pose": 1,
+				"step": 2
+			},
+			{
+				"blade_degrees": -20.0000028332804,
+				"grip": "Vector2(7, 10)",
+				"phase": 1,
+				"pose": 1,
+				"step": 2
+			},
+			{
+				"blade_degrees": -110.000005337759,
+				"grip": "Vector2(6, 13)",
+				"phase": 1,
+				"pose": 1,
+				"step": 2
+			},
+			{
+				"blade_degrees": 69.9999928410086,
+				"grip": "Vector2(0, 14)",
+				"phase": 1,
+				"pose": 1,
+				"step": 2
+			},
+			{
+				"blade_degrees": 176.63354137084,
+				"grip": "Vector2(-8, -22)",
+				"phase": 1,
+				"pose": 0,
+				"step": 2
+			}
+		],
+		"elapsed_ms": 1400,
+		"file": "motion_frames/frame_042.png",
+		"frame": 42
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -20.0000028332804,
+				"grip": "Vector2(7, 10)",
+				"phase": 1,
+				"pose": 1,
+				"step": 2
+			},
+			{
+				"blade_degrees": -20.0000028332804,
+				"grip": "Vector2(7, 10)",
+				"phase": 1,
+				"pose": 1,
+				"step": 2
+			},
+			{
+				"blade_degrees": -110.000005337759,
+				"grip": "Vector2(6, 13)",
+				"phase": 1,
+				"pose": 1,
+				"step": 2
+			},
+			{
+				"blade_degrees": 69.9999928410086,
+				"grip": "Vector2(0, 14)",
+				"phase": 1,
+				"pose": 1,
+				"step": 2
+			},
+			{
+				"blade_degrees": 158.198587593409,
+				"grip": "Vector2(-11, -12)",
+				"phase": 1,
+				"pose": 1,
+				"step": 2
+			}
+		],
+		"elapsed_ms": 1433,
+		"file": "motion_frames/frame_043.png",
+		"frame": 43
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 0.0,
+				"grip": "Vector2(-9, -12)",
+				"phase": 1,
+				"pose": 2,
+				"step": 2
+			},
+			{
+				"blade_degrees": 0.0,
+				"grip": "Vector2(-9, -12)",
+				"phase": 1,
+				"pose": 2,
+				"step": 2
+			},
+			{
+				"blade_degrees": -90.0000025044782,
+				"grip": "Vector2(-7, -9)",
+				"phase": 1,
+				"pose": 2,
+				"step": 2
+			},
+			{
+				"blade_degrees": 90.0000025044782,
+				"grip": "Vector2(-1, -15)",
+				"phase": 1,
+				"pose": 2,
+				"step": 2
+			},
+			{
+				"blade_degrees": 158.198587593409,
+				"grip": "Vector2(-11, -12)",
+				"phase": 1,
+				"pose": 1,
+				"step": 2
+			}
+		],
+		"elapsed_ms": 1467,
+		"file": "motion_frames/frame_044.png",
+		"frame": 44
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 0.0,
+				"grip": "Vector2(-9, -12)",
+				"phase": 1,
+				"pose": 2,
+				"step": 2
+			},
+			{
+				"blade_degrees": 0.0,
+				"grip": "Vector2(-9, -12)",
+				"phase": 1,
+				"pose": 2,
+				"step": 2
+			},
+			{
+				"blade_degrees": -90.0000025044782,
+				"grip": "Vector2(-7, -9)",
+				"phase": 1,
+				"pose": 2,
+				"step": 2
+			},
+			{
+				"blade_degrees": 90.0000025044782,
+				"grip": "Vector2(-1, -15)",
+				"phase": 1,
+				"pose": 2,
+				"step": 2
+			},
+			{
+				"blade_degrees": 165.323608709135,
+				"grip": "Vector2(-12, -24)",
+				"phase": 1,
+				"pose": 2,
+				"step": 2
+			}
+		],
+		"elapsed_ms": 1500,
+		"file": "motion_frames/frame_045.png",
+		"frame": 45
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 0.0,
+				"grip": "Vector2(-9, -12)",
+				"phase": 1,
+				"pose": 2,
+				"step": 2
+			},
+			{
+				"blade_degrees": 0.0,
+				"grip": "Vector2(-9, -12)",
+				"phase": 1,
+				"pose": 2,
+				"step": 2
+			},
+			{
+				"blade_degrees": -90.0000025044782,
+				"grip": "Vector2(-7, -9)",
+				"phase": 1,
+				"pose": 2,
+				"step": 2
+			},
+			{
+				"blade_degrees": 90.0000025044782,
+				"grip": "Vector2(-1, -15)",
+				"phase": 1,
+				"pose": 2,
+				"step": 2
+			},
+			{
+				"blade_degrees": 165.323608709135,
+				"grip": "Vector2(-12, -24)",
+				"phase": 1,
+				"pose": 2,
+				"step": 2
+			}
+		],
+		"elapsed_ms": 1533,
+		"file": "motion_frames/frame_046.png",
+		"frame": 46
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 20.0000028332804,
+				"grip": "Vector2(-10, -15)",
+				"phase": 1,
+				"pose": 3,
+				"step": 2
+			},
+			{
+				"blade_degrees": 20.0000028332804,
+				"grip": "Vector2(-10, -15)",
+				"phase": 1,
+				"pose": 3,
+				"step": 2
+			},
+			{
+				"blade_degrees": -69.9999996711977,
+				"grip": "Vector2(-7, -9)",
+				"phase": 1,
+				"pose": 3,
+				"step": 2
+			},
+			{
+				"blade_degrees": 109.99999167738,
+				"grip": "Vector2(0, 14)",
+				"phase": 1,
+				"pose": 3,
+				"step": 2
+			},
+			{
+				"blade_degrees": -96.8700048471629,
+				"grip": "Vector2(20, 14)",
+				"phase": 1,
+				"pose": 3,
+				"step": 2
+			}
+		],
+		"elapsed_ms": 1567,
+		"file": "motion_frames/frame_047.png",
+		"frame": 47
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 20.0000028332804,
+				"grip": "Vector2(-10, -15)",
+				"phase": 1,
+				"pose": 3,
+				"step": 2
+			},
+			{
+				"blade_degrees": 20.0000028332804,
+				"grip": "Vector2(-10, -15)",
+				"phase": 1,
+				"pose": 3,
+				"step": 2
+			},
+			{
+				"blade_degrees": -69.9999996711977,
+				"grip": "Vector2(-7, -9)",
+				"phase": 1,
+				"pose": 3,
+				"step": 2
+			},
+			{
+				"blade_degrees": 109.99999167738,
+				"grip": "Vector2(0, 14)",
+				"phase": 1,
+				"pose": 3,
+				"step": 2
+			},
+			{
+				"blade_degrees": -96.8700048471629,
+				"grip": "Vector2(20, 14)",
+				"phase": 1,
+				"pose": 3,
+				"step": 2
+			}
+		],
+		"elapsed_ms": 1600,
+		"file": "motion_frames/frame_048.png",
+		"frame": 48
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 20.0000028332804,
+				"grip": "Vector2(-10, -15)",
+				"phase": 1,
+				"pose": 3,
+				"step": 2
+			},
+			{
+				"blade_degrees": 20.0000028332804,
+				"grip": "Vector2(-10, -15)",
+				"phase": 1,
+				"pose": 3,
+				"step": 2
+			},
+			{
+				"blade_degrees": -69.9999996711977,
+				"grip": "Vector2(-7, -9)",
+				"phase": 1,
+				"pose": 3,
+				"step": 2
+			},
+			{
+				"blade_degrees": 109.99999167738,
+				"grip": "Vector2(0, 14)",
+				"phase": 1,
+				"pose": 3,
+				"step": 2
+			},
+			{
+				"blade_degrees": -75.7740366898514,
+				"grip": "Vector2(16, 19)",
+				"phase": 2,
+				"pose": 4,
+				"step": 2
+			}
+		],
+		"elapsed_ms": 1633,
+		"file": "motion_frames/frame_049.png",
+		"frame": 49
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 20.0000028332804,
+				"grip": "Vector2(-10, -15)",
+				"phase": 1,
+				"pose": 3,
+				"step": 2
+			},
+			{
+				"blade_degrees": 20.0000028332804,
+				"grip": "Vector2(-10, -15)",
+				"phase": 1,
+				"pose": 3,
+				"step": 2
+			},
+			{
+				"blade_degrees": -69.9999996711977,
+				"grip": "Vector2(-7, -9)",
+				"phase": 1,
+				"pose": 3,
+				"step": 2
+			},
+			{
+				"blade_degrees": 109.99999167738,
+				"grip": "Vector2(0, 14)",
+				"phase": 1,
+				"pose": 3,
+				"step": 2
+			},
+			{
+				"blade_degrees": -75.7740366898514,
+				"grip": "Vector2(16, 19)",
+				"phase": 2,
+				"pose": 4,
+				"step": 2
+			}
+		],
+		"elapsed_ms": 1667,
+		"file": "motion_frames/frame_050.png",
+		"frame": 50
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 114.999990678153,
+				"grip": "Vector2(19, 9)",
+				"phase": 2,
+				"pose": 4,
+				"step": 2
+			},
+			{
+				"blade_degrees": 114.999990678153,
+				"grip": "Vector2(19, 9)",
+				"phase": 2,
+				"pose": 4,
+				"step": 2
+			},
+			{
+				"blade_degrees": 0.0,
+				"grip": "Vector2(16, 10)",
+				"phase": 2,
+				"pose": 4,
+				"step": 2
+			},
+			{
+				"blade_degrees": 179.999991348578,
+				"grip": "Vector2(0, 19)",
+				"phase": 2,
+				"pose": 4,
+				"step": 2
+			},
+			{
+				"blade_degrees": -75.7740366898514,
+				"grip": "Vector2(16, 19)",
+				"phase": 2,
+				"pose": 4,
+				"step": 2
+			}
+		],
+		"elapsed_ms": 1700,
+		"file": "motion_frames/frame_051.png",
+		"frame": 51
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 125.000016000455,
+				"grip": "Vector2(18, 14)",
+				"phase": 2,
+				"pose": 5,
+				"step": 2
+			},
+			{
+				"blade_degrees": 125.000016000455,
+				"grip": "Vector2(18, 14)",
+				"phase": 2,
+				"pose": 5,
+				"step": 2
+			},
+			{
+				"blade_degrees": 0.0,
+				"grip": "Vector2(14, 15)",
+				"phase": 2,
+				"pose": 5,
+				"step": 2
+			},
+			{
+				"blade_degrees": 179.999991348578,
+				"grip": "Vector2(0, 17)",
+				"phase": 2,
+				"pose": 5,
+				"step": 2
+			},
+			{
+				"blade_degrees": -90.7638976914416,
+				"grip": "Vector2(21, 18)",
+				"phase": 2,
+				"pose": 5,
+				"step": 2
+			}
+		],
+		"elapsed_ms": 1733,
+		"file": "motion_frames/frame_052.png",
+		"frame": 52
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 125.000016000455,
+				"grip": "Vector2(18, 14)",
+				"phase": 2,
+				"pose": 5,
+				"step": 2
+			},
+			{
+				"blade_degrees": 125.000016000455,
+				"grip": "Vector2(18, 14)",
+				"phase": 2,
+				"pose": 5,
+				"step": 2
+			},
+			{
+				"blade_degrees": 0.0,
+				"grip": "Vector2(14, 15)",
+				"phase": 2,
+				"pose": 5,
+				"step": 2
+			},
+			{
+				"blade_degrees": 179.999991348578,
+				"grip": "Vector2(0, 17)",
+				"phase": 2,
+				"pose": 5,
+				"step": 2
+			},
+			{
+				"blade_degrees": -90.7638976914416,
+				"grip": "Vector2(21, 18)",
+				"phase": 2,
+				"pose": 5,
+				"step": 2
+			}
+		],
+		"elapsed_ms": 1767,
+		"file": "motion_frames/frame_053.png",
+		"frame": 53
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 125.000016000455,
+				"grip": "Vector2(18, 14)",
+				"phase": 2,
+				"pose": 5,
+				"step": 2
+			},
+			{
+				"blade_degrees": 125.000016000455,
+				"grip": "Vector2(18, 14)",
+				"phase": 2,
+				"pose": 5,
+				"step": 2
+			},
+			{
+				"blade_degrees": 0.0,
+				"grip": "Vector2(14, 15)",
+				"phase": 2,
+				"pose": 5,
+				"step": 2
+			},
+			{
+				"blade_degrees": 179.999991348578,
+				"grip": "Vector2(0, 17)",
+				"phase": 2,
+				"pose": 5,
+				"step": 2
+			},
+			{
+				"blade_degrees": -90.7638976914416,
+				"grip": "Vector2(21, 18)",
+				"phase": 2,
+				"pose": 5,
+				"step": 2
+			}
+		],
+		"elapsed_ms": 1800,
+		"file": "motion_frames/frame_054.png",
+		"frame": 54
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 134.999986681244,
+				"grip": "Vector2(12, 10)",
+				"phase": 2,
+				"pose": 6,
+				"step": 2
+			},
+			{
+				"blade_degrees": 134.999986681244,
+				"grip": "Vector2(12, 10)",
+				"phase": 2,
+				"pose": 6,
+				"step": 2
+			},
+			{
+				"blade_degrees": 0.0,
+				"grip": "Vector2(10, 15)",
+				"phase": 2,
+				"pose": 6,
+				"step": 2
+			},
+			{
+				"blade_degrees": 179.999991348578,
+				"grip": "Vector2(0, 18)",
+				"phase": 2,
+				"pose": 6,
+				"step": 2
+			},
+			{
+				"blade_degrees": -107.037759124913,
+				"grip": "Vector2(17, 10)",
+				"phase": 3,
+				"pose": 6,
+				"step": 2
+			}
+		],
+		"elapsed_ms": 1833,
+		"file": "motion_frames/frame_055.png",
+		"frame": 55
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 134.999986681244,
+				"grip": "Vector2(12, 10)",
+				"phase": 2,
+				"pose": 6,
+				"step": 2
+			},
+			{
+				"blade_degrees": 134.999986681244,
+				"grip": "Vector2(12, 10)",
+				"phase": 2,
+				"pose": 6,
+				"step": 2
+			},
+			{
+				"blade_degrees": 0.0,
+				"grip": "Vector2(10, 15)",
+				"phase": 2,
+				"pose": 6,
+				"step": 2
+			},
+			{
+				"blade_degrees": 179.999991348578,
+				"grip": "Vector2(0, 18)",
+				"phase": 2,
+				"pose": 6,
+				"step": 2
+			},
+			{
+				"blade_degrees": -107.037759124913,
+				"grip": "Vector2(17, 10)",
+				"phase": 3,
+				"pose": 6,
+				"step": 2
+			}
+		],
+		"elapsed_ms": 1867,
+		"file": "motion_frames/frame_056.png",
+		"frame": 56
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 169.999979686654,
+				"grip": "Vector2(-11, 3)",
+				"phase": 3,
+				"pose": 10,
+				"step": 2
+			},
+			{
+				"blade_degrees": 169.999979686654,
+				"grip": "Vector2(-11, 3)",
+				"phase": 3,
+				"pose": 10,
+				"step": 2
+			},
+			{
+				"blade_degrees": 79.9999908425542,
+				"grip": "Vector2(-9, 11)",
+				"phase": 3,
+				"pose": 10,
+				"step": 2
+			},
+			{
+				"blade_degrees": -100.000007336213,
+				"grip": "Vector2(6, 11)",
+				"phase": 3,
+				"pose": 10,
+				"step": 2
+			},
+			{
+				"blade_degrees": -107.037759124913,
+				"grip": "Vector2(17, 10)",
+				"phase": 3,
+				"pose": 6,
+				"step": 2
+			}
+		],
+		"elapsed_ms": 1900,
+		"file": "motion_frames/frame_057.png",
+		"frame": 57
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 169.999979686654,
+				"grip": "Vector2(-11, 3)",
+				"phase": 3,
+				"pose": 10,
+				"step": 2
+			},
+			{
+				"blade_degrees": 169.999979686654,
+				"grip": "Vector2(-11, 3)",
+				"phase": 3,
+				"pose": 10,
+				"step": 2
+			},
+			{
+				"blade_degrees": 79.9999908425542,
+				"grip": "Vector2(-9, 11)",
+				"phase": 3,
+				"pose": 10,
+				"step": 2
+			},
+			{
+				"blade_degrees": -100.000007336213,
+				"grip": "Vector2(6, 11)",
+				"phase": 3,
+				"pose": 10,
+				"step": 2
+			},
+			{
+				"blade_degrees": 166.32868470588,
+				"grip": "Vector2(-10, -22)",
+				"phase": 3,
+				"pose": 7,
+				"step": 2
+			}
+		],
+		"elapsed_ms": 1933,
+		"file": "motion_frames/frame_058.png",
+		"frame": 58
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 154.999982684336,
+				"grip": "Vector2(21, 5)",
+				"phase": 3,
+				"pose": 11,
+				"step": 2
+			},
+			{
+				"blade_degrees": 154.999982684336,
+				"grip": "Vector2(21, 5)",
+				"phase": 3,
+				"pose": 11,
+				"step": 2
+			},
+			{
+				"blade_degrees": 64.9999938402358,
+				"grip": "Vector2(17, 10)",
+				"phase": 3,
+				"pose": 11,
+				"step": 2
+			},
+			{
+				"blade_degrees": -115.000004338531,
+				"grip": "Vector2(0, 18)",
+				"phase": 3,
+				"pose": 11,
+				"step": 2
+			},
+			{
+				"blade_degrees": 166.32868470588,
+				"grip": "Vector2(-10, -22)",
+				"phase": 3,
+				"pose": 7,
+				"step": 2
+			}
+		],
+		"elapsed_ms": 1967,
+		"file": "motion_frames/frame_059.png",
+		"frame": 59
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 154.999982684336,
+				"grip": "Vector2(21, 5)",
+				"phase": 3,
+				"pose": 11,
+				"step": 2
+			},
+			{
+				"blade_degrees": 154.999982684336,
+				"grip": "Vector2(21, 5)",
+				"phase": 3,
+				"pose": 11,
+				"step": 2
+			},
+			{
+				"blade_degrees": 64.9999938402358,
+				"grip": "Vector2(17, 10)",
+				"phase": 3,
+				"pose": 11,
+				"step": 2
+			},
+			{
+				"blade_degrees": -115.000004338531,
+				"grip": "Vector2(0, 18)",
+				"phase": 3,
+				"pose": 11,
+				"step": 2
+			},
+			{
+				"blade_degrees": 166.32868470588,
+				"grip": "Vector2(-10, -22)",
+				"phase": 3,
+				"pose": 7,
+				"step": 2
+			}
+		],
+		"elapsed_ms": 2000,
+		"file": "motion_frames/frame_060.png",
+		"frame": 60
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 154.999982684336,
+				"grip": "Vector2(21, 5)",
+				"phase": 3,
+				"pose": 11,
+				"step": 2
+			},
+			{
+				"blade_degrees": 154.999982684336,
+				"grip": "Vector2(21, 5)",
+				"phase": 3,
+				"pose": 11,
+				"step": 2
+			},
+			{
+				"blade_degrees": 64.9999938402358,
+				"grip": "Vector2(17, 10)",
+				"phase": 3,
+				"pose": 11,
+				"step": 2
+			},
+			{
+				"blade_degrees": -115.000004338531,
+				"grip": "Vector2(0, 18)",
+				"phase": 3,
+				"pose": 11,
+				"step": 2
+			},
+			{
+				"blade_degrees": 158.198587593409,
+				"grip": "Vector2(-9, -18)",
+				"phase": 1,
+				"pose": 0,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2033,
+		"file": "motion_frames/frame_061.png",
+		"frame": 61
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 134.999986681244,
+				"grip": "Vector2(19, 8)",
+				"phase": 3,
+				"pose": 12,
+				"step": 2
+			},
+			{
+				"blade_degrees": 134.999986681244,
+				"grip": "Vector2(19, 8)",
+				"phase": 3,
+				"pose": 12,
+				"step": 2
+			},
+			{
+				"blade_degrees": 44.9999978371445,
+				"grip": "Vector2(16, 12)",
+				"phase": 3,
+				"pose": 12,
+				"step": 2
+			},
+			{
+				"blade_degrees": -135.000000341623,
+				"grip": "Vector2(0, 17)",
+				"phase": 3,
+				"pose": 12,
+				"step": 2
+			},
+			{
+				"blade_degrees": 158.198587593409,
+				"grip": "Vector2(-9, -18)",
+				"phase": 1,
+				"pose": 0,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2067,
+		"file": "motion_frames/frame_062.png",
+		"frame": 62
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 134.999986681244,
+				"grip": "Vector2(19, 8)",
+				"phase": 3,
+				"pose": 12,
+				"step": 2
+			},
+			{
+				"blade_degrees": 134.999986681244,
+				"grip": "Vector2(19, 8)",
+				"phase": 3,
+				"pose": 12,
+				"step": 2
+			},
+			{
+				"blade_degrees": 44.9999978371445,
+				"grip": "Vector2(16, 12)",
+				"phase": 3,
+				"pose": 12,
+				"step": 2
+			},
+			{
+				"blade_degrees": -135.000000341623,
+				"grip": "Vector2(0, 17)",
+				"phase": 3,
+				"pose": 12,
+				"step": 2
+			},
+			{
+				"blade_degrees": 158.198587593409,
+				"grip": "Vector2(-9, -18)",
+				"phase": 1,
+				"pose": 0,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2100,
+		"file": "motion_frames/frame_063.png",
+		"frame": 63
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 134.999986681244,
+				"grip": "Vector2(19, 8)",
+				"phase": 3,
+				"pose": 12,
+				"step": 2
+			},
+			{
+				"blade_degrees": 134.999986681244,
+				"grip": "Vector2(19, 8)",
+				"phase": 3,
+				"pose": 12,
+				"step": 2
+			},
+			{
+				"blade_degrees": 44.9999978371445,
+				"grip": "Vector2(16, 12)",
+				"phase": 3,
+				"pose": 12,
+				"step": 2
+			},
+			{
+				"blade_degrees": -135.000000341623,
+				"grip": "Vector2(0, 17)",
+				"phase": 3,
+				"pose": 12,
+				"step": 2
+			},
+			{
+				"blade_degrees": 167.660913103491,
+				"grip": "Vector2(-5, -9)",
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2133,
+		"file": "motion_frames/frame_064.png",
+		"frame": 64
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 134.999986681244,
+				"grip": "Vector2(19, 8)",
+				"phase": 3,
+				"pose": 12,
+				"step": 2
+			},
+			{
+				"blade_degrees": 134.999986681244,
+				"grip": "Vector2(19, 8)",
+				"phase": 3,
+				"pose": 12,
+				"step": 2
+			},
+			{
+				"blade_degrees": 44.9999978371445,
+				"grip": "Vector2(16, 12)",
+				"phase": 3,
+				"pose": 12,
+				"step": 2
+			},
+			{
+				"blade_degrees": -135.000000341623,
+				"grip": "Vector2(0, 17)",
+				"phase": 3,
+				"pose": 12,
+				"step": 2
+			},
+			{
+				"blade_degrees": 167.660913103491,
+				"grip": "Vector2(-5, -9)",
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2167,
+		"file": "motion_frames/frame_065.png",
+		"frame": 65
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 134.999986681244,
+				"grip": "Vector2(4, 11)",
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			},
+			{
+				"blade_degrees": 134.999986681244,
+				"grip": "Vector2(4, 11)",
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			},
+			{
+				"blade_degrees": 44.9999978371445,
+				"grip": "Vector2(3, 16)",
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			},
+			{
+				"blade_degrees": -135.000027662379,
+				"grip": "Vector2(-16, -3)",
+				"phase": 1,
+				"pose": 1,
+				"step": 3
+			},
+			{
+				"blade_degrees": 167.660913103491,
+				"grip": "Vector2(-10, -17)",
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2200,
+		"file": "motion_frames/frame_066.png",
+		"frame": 66
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 169.999979686654,
+				"grip": "Vector2(17, 6)",
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			},
+			{
+				"blade_degrees": 169.999979686654,
+				"grip": "Vector2(17, 6)",
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			},
+			{
+				"blade_degrees": 79.9999908425542,
+				"grip": "Vector2(14, 11)",
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			},
+			{
+				"blade_degrees": -100.000007336213,
+				"grip": "Vector2(-14, 9)",
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			},
+			{
+				"blade_degrees": 167.660913103491,
+				"grip": "Vector2(-10, -17)",
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2233,
+		"file": "motion_frames/frame_067.png",
+		"frame": 67
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 169.999979686654,
+				"grip": "Vector2(17, 6)",
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			},
+			{
+				"blade_degrees": 169.999979686654,
+				"grip": "Vector2(17, 6)",
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			},
+			{
+				"blade_degrees": 79.9999908425542,
+				"grip": "Vector2(14, 11)",
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			},
+			{
+				"blade_degrees": -100.000007336213,
+				"grip": "Vector2(-14, 9)",
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			},
+			{
+				"blade_degrees": 167.660913103491,
+				"grip": "Vector2(-10, -17)",
+				"phase": 1,
+				"pose": 2,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2267,
+		"file": "motion_frames/frame_068.png",
+		"frame": 68
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -159.999995345487,
+				"grip": "Vector2(-12, 5)",
+				"phase": 1,
+				"pose": 3,
+				"step": 3
+			},
+			{
+				"blade_degrees": -159.999995345487,
+				"grip": "Vector2(-12, 5)",
+				"phase": 1,
+				"pose": 3,
+				"step": 3
+			},
+			{
+				"blade_degrees": 109.99999167738,
+				"grip": "Vector2(-8, 9)",
+				"phase": 1,
+				"pose": 3,
+				"step": 3
+			},
+			{
+				"blade_degrees": -69.9999996711977,
+				"grip": "Vector2(-8, 10)",
+				"phase": 1,
+				"pose": 3,
+				"step": 3
+			},
+			{
+				"blade_degrees": -104.676391974111,
+				"grip": "Vector2(-2, -17)",
+				"phase": 1,
+				"pose": 3,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2300,
+		"file": "motion_frames/frame_069.png",
+		"frame": 69
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -159.999995345487,
+				"grip": "Vector2(-12, 5)",
+				"phase": 1,
+				"pose": 3,
+				"step": 3
+			},
+			{
+				"blade_degrees": -159.999995345487,
+				"grip": "Vector2(-12, 5)",
+				"phase": 1,
+				"pose": 3,
+				"step": 3
+			},
+			{
+				"blade_degrees": 109.99999167738,
+				"grip": "Vector2(-8, 9)",
+				"phase": 1,
+				"pose": 3,
+				"step": 3
+			},
+			{
+				"blade_degrees": -69.9999996711977,
+				"grip": "Vector2(-8, 10)",
+				"phase": 1,
+				"pose": 3,
+				"step": 3
+			},
+			{
+				"blade_degrees": -104.676391974111,
+				"grip": "Vector2(-2, -17)",
+				"phase": 1,
+				"pose": 3,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2333,
+		"file": "motion_frames/frame_070.png",
+		"frame": 70
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 164.999967025503,
+				"grip": "Vector2(22, -3)",
+				"phase": 2,
+				"pose": 4,
+				"step": 3
+			},
+			{
+				"blade_degrees": 164.999967025503,
+				"grip": "Vector2(22, -3)",
+				"phase": 2,
+				"pose": 4,
+				"step": 3
+			},
+			{
+				"blade_degrees": 74.9999645210247,
+				"grip": "Vector2(18, 4)",
+				"phase": 2,
+				"pose": 4,
+				"step": 3
+			},
+			{
+				"blade_degrees": -105.000026827553,
+				"grip": "Vector2(-11, 12)",
+				"phase": 2,
+				"pose": 4,
+				"step": 3
+			},
+			{
+				"blade_degrees": -104.676391974111,
+				"grip": "Vector2(-2, -17)",
+				"phase": 1,
+				"pose": 3,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2367,
+		"file": "motion_frames/frame_071.png",
+		"frame": 71
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 109.99999167738,
+				"grip": "Vector2(21, -2)",
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 109.99999167738,
+				"grip": "Vector2(21, -2)",
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 20.0000028332804,
+				"grip": "Vector2(17, 3)",
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": -159.999995345487,
+				"grip": "Vector2(0, 18)",
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": -70.6154816776859,
+				"grip": "Vector2(20, 20)",
+				"phase": 2,
+				"pose": 4,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2400,
+		"file": "motion_frames/frame_072.png",
+		"frame": 72
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 109.99999167738,
+				"grip": "Vector2(21, -2)",
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 109.99999167738,
+				"grip": "Vector2(21, -2)",
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": 20.0000028332804,
+				"grip": "Vector2(17, 3)",
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": -159.999995345487,
+				"grip": "Vector2(0, 18)",
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			},
+			{
+				"blade_degrees": -70.6154816776859,
+				"grip": "Vector2(20, 20)",
+				"phase": 2,
+				"pose": 4,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2433,
+		"file": "motion_frames/frame_073.png",
+		"frame": 73
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 44.9999705163878,
+				"grip": "Vector2(18, -10)",
+				"phase": 2,
+				"pose": 6,
+				"step": 3
+			},
+			{
+				"blade_degrees": 44.9999705163878,
+				"grip": "Vector2(18, -10)",
+				"phase": 2,
+				"pose": 6,
+				"step": 3
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(15, -1)",
+				"phase": 2,
+				"pose": 6,
+				"step": 3
+			},
+			{
+				"blade_degrees": 134.999986681244,
+				"grip": "Vector2(13, 16)",
+				"phase": 2,
+				"pose": 6,
+				"step": 3
+			},
+			{
+				"blade_degrees": -70.6154816776859,
+				"grip": "Vector2(20, 20)",
+				"phase": 2,
+				"pose": 4,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2467,
+		"file": "motion_frames/frame_074.png",
+		"frame": 74
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 44.9999705163878,
+				"grip": "Vector2(18, -10)",
+				"phase": 2,
+				"pose": 6,
+				"step": 3
+			},
+			{
+				"blade_degrees": 44.9999705163878,
+				"grip": "Vector2(18, -10)",
+				"phase": 2,
+				"pose": 6,
+				"step": 3
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(15, -1)",
+				"phase": 2,
+				"pose": 6,
+				"step": 3
+			},
+			{
+				"blade_degrees": 134.999986681244,
+				"grip": "Vector2(13, 16)",
+				"phase": 2,
+				"pose": 6,
+				"step": 3
+			},
+			{
+				"blade_degrees": -71.2001185498823,
+				"grip": "Vector2(18, 20)",
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2500,
+		"file": "motion_frames/frame_075.png",
+		"frame": 75
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 25.0000035416005,
+				"grip": "Vector2(16, -16)",
+				"phase": 3,
+				"pose": 10,
+				"step": 3
+			},
+			{
+				"blade_degrees": 25.0000035416005,
+				"grip": "Vector2(16, -16)",
+				"phase": 3,
+				"pose": 10,
+				"step": 3
+			},
+			{
+				"blade_degrees": -65.0000006704249,
+				"grip": "Vector2(13, -10)",
+				"phase": 3,
+				"pose": 10,
+				"step": 3
+			},
+			{
+				"blade_degrees": 114.999990678153,
+				"grip": "Vector2(-11, 10)",
+				"phase": 3,
+				"pose": 10,
+				"step": 3
+			},
+			{
+				"blade_degrees": -71.2001185498823,
+				"grip": "Vector2(18, 20)",
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2533,
+		"file": "motion_frames/frame_076.png",
+		"frame": 76
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 25.0000035416005,
+				"grip": "Vector2(16, -16)",
+				"phase": 3,
+				"pose": 10,
+				"step": 3
+			},
+			{
+				"blade_degrees": 25.0000035416005,
+				"grip": "Vector2(16, -16)",
+				"phase": 3,
+				"pose": 10,
+				"step": 3
+			},
+			{
+				"blade_degrees": -65.0000006704249,
+				"grip": "Vector2(13, -10)",
+				"phase": 3,
+				"pose": 10,
+				"step": 3
+			},
+			{
+				"blade_degrees": 114.999990678153,
+				"grip": "Vector2(-11, 10)",
+				"phase": 3,
+				"pose": 10,
+				"step": 3
+			},
+			{
+				"blade_degrees": -71.2001185498823,
+				"grip": "Vector2(18, 20)",
+				"phase": 2,
+				"pose": 5,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2567,
+		"file": "motion_frames/frame_077.png",
+		"frame": 77
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 10.0000056855084,
+				"grip": "Vector2(15, 4)",
+				"phase": 3,
+				"pose": 11,
+				"step": 3
+			},
+			{
+				"blade_degrees": 10.0000056855084,
+				"grip": "Vector2(15, 4)",
+				"phase": 3,
+				"pose": 11,
+				"step": 3
+			},
+			{
+				"blade_degrees": -79.9999976727434,
+				"grip": "Vector2(12, 9)",
+				"phase": 3,
+				"pose": 11,
+				"step": 3
+			},
+			{
+				"blade_degrees": 100.000000506024,
+				"grip": "Vector2(7, 15)",
+				"phase": 3,
+				"pose": 11,
+				"step": 3
+			},
+			{
+				"blade_degrees": -97.7651694397848,
+				"grip": "Vector2(19, 10)",
+				"phase": 3,
+				"pose": 6,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2600,
+		"file": "motion_frames/frame_078.png",
+		"frame": 78
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 10.0000056855084,
+				"grip": "Vector2(15, 4)",
+				"phase": 3,
+				"pose": 11,
+				"step": 3
+			},
+			{
+				"blade_degrees": 10.0000056855084,
+				"grip": "Vector2(15, 4)",
+				"phase": 3,
+				"pose": 11,
+				"step": 3
+			},
+			{
+				"blade_degrees": -79.9999976727434,
+				"grip": "Vector2(12, 9)",
+				"phase": 3,
+				"pose": 11,
+				"step": 3
+			},
+			{
+				"blade_degrees": 100.000000506024,
+				"grip": "Vector2(7, 15)",
+				"phase": 3,
+				"pose": 11,
+				"step": 3
+			},
+			{
+				"blade_degrees": -97.7651694397848,
+				"grip": "Vector2(19, 10)",
+				"phase": 3,
+				"pose": 6,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2633,
+		"file": "motion_frames/frame_079.png",
+		"frame": 79
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -5.00001949134032,
+				"grip": "Vector2(16, -17)",
+				"phase": 3,
+				"pose": 12,
+				"step": 3
+			},
+			{
+				"blade_degrees": -5.00001949134032,
+				"grip": "Vector2(16, -17)",
+				"phase": 3,
+				"pose": 12,
+				"step": 3
+			},
+			{
+				"blade_degrees": -95.0000151656293,
+				"grip": "Vector2(15, -10)",
+				"phase": 3,
+				"pose": 12,
+				"step": 3
+			},
+			{
+				"blade_degrees": 85.0000171640837,
+				"grip": "Vector2(16, -4)",
+				"phase": 3,
+				"pose": 12,
+				"step": 3
+			},
+			{
+				"blade_degrees": -97.7651694397848,
+				"grip": "Vector2(19, 10)",
+				"phase": 3,
+				"pose": 6,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2667,
+		"file": "motion_frames/frame_080.png",
+		"frame": 80
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -5.00001949134032,
+				"grip": "Vector2(16, -17)",
+				"phase": 3,
+				"pose": 12,
+				"step": 3
+			},
+			{
+				"blade_degrees": -5.00001949134032,
+				"grip": "Vector2(16, -17)",
+				"phase": 3,
+				"pose": 12,
+				"step": 3
+			},
+			{
+				"blade_degrees": -95.0000151656293,
+				"grip": "Vector2(15, -10)",
+				"phase": 3,
+				"pose": 12,
+				"step": 3
+			},
+			{
+				"blade_degrees": 85.0000171640837,
+				"grip": "Vector2(16, -4)",
+				"phase": 3,
+				"pose": 12,
+				"step": 3
+			},
+			{
+				"blade_degrees": -97.7651694397848,
+				"grip": "Vector2(19, 10)",
+				"phase": 3,
+				"pose": 6,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2700,
+		"file": "motion_frames/frame_081.png",
+		"frame": 81
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 10.0000056855084,
+				"grip": "Vector2(18, 0)",
+				"phase": 1,
+				"pose": 1,
+				"step": 4
+			},
+			{
+				"blade_degrees": 10.0000056855084,
+				"grip": "Vector2(18, 0)",
+				"phase": 1,
+				"pose": 1,
+				"step": 4
+			},
+			{
+				"blade_degrees": -79.9999976727434,
+				"grip": "Vector2(14, 6)",
+				"phase": 1,
+				"pose": 1,
+				"step": 4
+			},
+			{
+				"blade_degrees": 100.000000506024,
+				"grip": "Vector2(-15, 3)",
+				"phase": 1,
+				"pose": 1,
+				"step": 4
+			},
+			{
+				"blade_degrees": -74.9315055349737,
+				"grip": "Vector2(17, 19)",
+				"phase": 3,
+				"pose": 7,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2733,
+		"file": "motion_frames/frame_082.png",
+		"frame": 82
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 10.0000056855084,
+				"grip": "Vector2(18, 0)",
+				"phase": 1,
+				"pose": 1,
+				"step": 4
+			},
+			{
+				"blade_degrees": 10.0000056855084,
+				"grip": "Vector2(18, 0)",
+				"phase": 1,
+				"pose": 1,
+				"step": 4
+			},
+			{
+				"blade_degrees": -79.9999976727434,
+				"grip": "Vector2(14, 6)",
+				"phase": 1,
+				"pose": 1,
+				"step": 4
+			},
+			{
+				"blade_degrees": 100.000000506024,
+				"grip": "Vector2(-15, 3)",
+				"phase": 1,
+				"pose": 1,
+				"step": 4
+			},
+			{
+				"blade_degrees": -74.9315055349737,
+				"grip": "Vector2(17, 19)",
+				"phase": 3,
+				"pose": 7,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2767,
+		"file": "motion_frames/frame_083.png",
+		"frame": 83
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 39.9999851759933,
+				"grip": "Vector2(18, 0)",
+				"phase": 1,
+				"pose": 2,
+				"step": 4
+			},
+			{
+				"blade_degrees": 39.9999851759933,
+				"grip": "Vector2(18, 0)",
+				"phase": 1,
+				"pose": 2,
+				"step": 4
+			},
+			{
+				"blade_degrees": -50.0000173284848,
+				"grip": "Vector2(15, 6)",
+				"phase": 1,
+				"pose": 2,
+				"step": 4
+			},
+			{
+				"blade_degrees": 129.999987680472,
+				"grip": "Vector2(12, 11)",
+				"phase": 1,
+				"pose": 2,
+				"step": 4
+			},
+			{
+				"blade_degrees": -74.9315055349737,
+				"grip": "Vector2(17, 19)",
+				"phase": 3,
+				"pose": 7,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2800,
+		"file": "motion_frames/frame_084.png",
+		"frame": 84
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 79.9999908425542,
+				"grip": "Vector2(18, 2)",
+				"phase": 1,
+				"pose": 3,
+				"step": 4
+			},
+			{
+				"blade_degrees": 79.9999908425542,
+				"grip": "Vector2(18, 2)",
+				"phase": 1,
+				"pose": 3,
+				"step": 4
+			},
+			{
+				"blade_degrees": -10.0000108081503,
+				"grip": "Vector2(14, 8)",
+				"phase": 1,
+				"pose": 3,
+				"step": 4
+			},
+			{
+				"blade_degrees": 169.999979686654,
+				"grip": "Vector2(-1, 12)",
+				"phase": 1,
+				"pose": 3,
+				"step": 4
+			},
+			{
+				"blade_degrees": -74.9315055349737,
+				"grip": "Vector2(17, 19)",
+				"phase": 3,
+				"pose": 7,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2833,
+		"file": "motion_frames/frame_085.png",
+		"frame": 85
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 79.9999908425542,
+				"grip": "Vector2(18, 2)",
+				"phase": 1,
+				"pose": 3,
+				"step": 4
+			},
+			{
+				"blade_degrees": 79.9999908425542,
+				"grip": "Vector2(18, 2)",
+				"phase": 1,
+				"pose": 3,
+				"step": 4
+			},
+			{
+				"blade_degrees": -10.0000108081503,
+				"grip": "Vector2(14, 8)",
+				"phase": 1,
+				"pose": 3,
+				"step": 4
+			},
+			{
+				"blade_degrees": 169.999979686654,
+				"grip": "Vector2(-1, 12)",
+				"phase": 1,
+				"pose": 3,
+				"step": 4
+			},
+			{
+				"blade_degrees": -74.9315055349737,
+				"grip": "Vector2(17, 19)",
+				"phase": 3,
+				"pose": 7,
+				"step": 3
+			}
+		],
+		"elapsed_ms": 2867,
+		"file": "motion_frames/frame_086.png",
+		"frame": 86
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 104.999992676607,
+				"grip": "Vector2(21, 0)",
+				"phase": 2,
+				"pose": 4,
+				"step": 4
+			},
+			{
+				"blade_degrees": 104.999992676607,
+				"grip": "Vector2(21, 0)",
+				"phase": 2,
+				"pose": 4,
+				"step": 4
+			},
+			{
+				"blade_degrees": 15.0000243230751,
+				"grip": "Vector2(17, 6)",
+				"phase": 2,
+				"pose": 4,
+				"step": 4
+			},
+			{
+				"blade_degrees": -164.999967025503,
+				"grip": "Vector2(0, 17)",
+				"phase": 2,
+				"pose": 4,
+				"step": 4
+			},
+			{
+				"blade_degrees": -62.9873351673189,
+				"grip": "Vector2(-13, 16)",
+				"phase": 1,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2900,
+		"file": "motion_frames/frame_087.png",
+		"frame": 87
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 129.999987680472,
+				"grip": "Vector2(18, 1)",
+				"phase": 2,
+				"pose": 5,
+				"step": 4
+			},
+			{
+				"blade_degrees": 129.999987680472,
+				"grip": "Vector2(18, 1)",
+				"phase": 2,
+				"pose": 5,
+				"step": 4
+			},
+			{
+				"blade_degrees": 39.9999851759933,
+				"grip": "Vector2(14, 8)",
+				"phase": 2,
+				"pose": 5,
+				"step": 4
+			},
+			{
+				"blade_degrees": -140.000026663152,
+				"grip": "Vector2(0, 15)",
+				"phase": 2,
+				"pose": 5,
+				"step": 4
+			},
+			{
+				"blade_degrees": -62.9873351673189,
+				"grip": "Vector2(-13, 16)",
+				"phase": 1,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2933,
+		"file": "motion_frames/frame_088.png",
+		"frame": 88
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 129.999987680472,
+				"grip": "Vector2(18, 1)",
+				"phase": 2,
+				"pose": 5,
+				"step": 4
+			},
+			{
+				"blade_degrees": 129.999987680472,
+				"grip": "Vector2(18, 1)",
+				"phase": 2,
+				"pose": 5,
+				"step": 4
+			},
+			{
+				"blade_degrees": 39.9999851759933,
+				"grip": "Vector2(14, 8)",
+				"phase": 2,
+				"pose": 5,
+				"step": 4
+			},
+			{
+				"blade_degrees": -140.000026663152,
+				"grip": "Vector2(0, 15)",
+				"phase": 2,
+				"pose": 5,
+				"step": 4
+			},
+			{
+				"blade_degrees": -62.9873351673189,
+				"grip": "Vector2(-13, 16)",
+				"phase": 1,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 2967,
+		"file": "motion_frames/frame_089.png",
+		"frame": 89
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 159.999981685108,
+				"grip": "Vector2(15, 6)",
+				"phase": 2,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": 159.999981685108,
+				"grip": "Vector2(15, 6)",
+				"phase": 2,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": 69.9999928410086,
+				"grip": "Vector2(12, 11)",
+				"phase": 2,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": -110.000005337759,
+				"grip": "Vector2(12, 15)",
+				"phase": 2,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": -62.9873351673189,
+				"grip": "Vector2(-13, 16)",
+				"phase": 1,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3000,
+		"file": "motion_frames/frame_090.png",
+		"frame": 90
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 159.999981685108,
+				"grip": "Vector2(15, 6)",
+				"phase": 2,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": 159.999981685108,
+				"grip": "Vector2(15, 6)",
+				"phase": 2,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": 69.9999928410086,
+				"grip": "Vector2(12, 11)",
+				"phase": 2,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": -110.000005337759,
+				"grip": "Vector2(12, 15)",
+				"phase": 2,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": -115.61548634502,
+				"grip": "Vector2(17, 8)",
+				"phase": 1,
+				"pose": 1,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3033,
+		"file": "motion_frames/frame_091.png",
+		"frame": 91
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": 159.999981685108,
+				"grip": "Vector2(15, 6)",
+				"phase": 2,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": 159.999981685108,
+				"grip": "Vector2(15, 6)",
+				"phase": 2,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": 69.9999928410086,
+				"grip": "Vector2(12, 11)",
+				"phase": 2,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": -110.000005337759,
+				"grip": "Vector2(12, 15)",
+				"phase": 2,
+				"pose": 6,
+				"step": 4
+			},
+			{
+				"blade_degrees": -115.61548634502,
+				"grip": "Vector2(17, 8)",
+				"phase": 1,
+				"pose": 1,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3067,
+		"file": "motion_frames/frame_092.png",
+		"frame": 92
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -159.999995345487,
+				"grip": "Vector2(15, 0)",
+				"phase": 3,
+				"pose": 7,
+				"step": 4
+			},
+			{
+				"blade_degrees": -159.999995345487,
+				"grip": "Vector2(15, 0)",
+				"phase": 3,
+				"pose": 7,
+				"step": 4
+			},
+			{
+				"blade_degrees": 109.99999167738,
+				"grip": "Vector2(13, 8)",
+				"phase": 3,
+				"pose": 7,
+				"step": 4
+			},
+			{
+				"blade_degrees": -69.9999996711977,
+				"grip": "Vector2(-1, 13)",
+				"phase": 3,
+				"pose": 7,
+				"step": 4
+			},
+			{
+				"blade_degrees": -115.61548634502,
+				"grip": "Vector2(17, 8)",
+				"phase": 1,
+				"pose": 1,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3100,
+		"file": "motion_frames/frame_093.png",
+		"frame": 93
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -115.000004338531,
+				"grip": "Vector2(-10, 0)",
+				"phase": 3,
+				"pose": 8,
+				"step": 4
+			},
+			{
+				"blade_degrees": -115.000004338531,
+				"grip": "Vector2(-10, 0)",
+				"phase": 3,
+				"pose": 8,
+				"step": 4
+			},
+			{
+				"blade_degrees": 154.999982684336,
+				"grip": "Vector2(-5, 9)",
+				"phase": 3,
+				"pose": 8,
+				"step": 4
+			},
+			{
+				"blade_degrees": -25.0000086642424,
+				"grip": "Vector2(-13, 16)",
+				"phase": 3,
+				"pose": 8,
+				"step": 4
+			},
+			{
+				"blade_degrees": -115.61548634502,
+				"grip": "Vector2(17, 8)",
+				"phase": 1,
+				"pose": 1,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3133,
+		"file": "motion_frames/frame_094.png",
+		"frame": 94
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -115.000004338531,
+				"grip": "Vector2(-10, 0)",
+				"phase": 3,
+				"pose": 8,
+				"step": 4
+			},
+			{
+				"blade_degrees": -115.000004338531,
+				"grip": "Vector2(-10, 0)",
+				"phase": 3,
+				"pose": 8,
+				"step": 4
+			},
+			{
+				"blade_degrees": 154.999982684336,
+				"grip": "Vector2(-5, 9)",
+				"phase": 3,
+				"pose": 8,
+				"step": 4
+			},
+			{
+				"blade_degrees": -25.0000086642424,
+				"grip": "Vector2(-13, 16)",
+				"phase": 3,
+				"pose": 8,
+				"step": 4
+			},
+			{
+				"blade_degrees": -115.61548634502,
+				"grip": "Vector2(17, 8)",
+				"phase": 1,
+				"pose": 1,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3167,
+		"file": "motion_frames/frame_095.png",
+		"frame": 95
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 3,
+				"pose": 9,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 3,
+				"pose": 9,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 3,
+				"pose": 9,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 3,
+				"pose": 9,
+				"step": 4
+			},
+			{
+				"blade_degrees": -111.801406259647,
+				"grip": "Vector2(27, 0)",
+				"phase": 2,
+				"pose": 2,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3200,
+		"file": "motion_frames/frame_096.png",
+		"frame": 96
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 3,
+				"pose": 9,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 3,
+				"pose": 9,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 3,
+				"pose": 9,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 3,
+				"pose": 9,
+				"step": 4
+			},
+			{
+				"blade_degrees": -111.801406259647,
+				"grip": "Vector2(27, 0)",
+				"phase": 2,
+				"pose": 2,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3233,
+		"file": "motion_frames/frame_097.png",
+		"frame": 97
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 3,
+				"pose": 9,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 3,
+				"pose": 9,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 3,
+				"pose": 9,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 3,
+				"pose": 9,
+				"step": 4
+			},
+			{
+				"blade_degrees": 68.1985919191202,
+				"grip": "Vector2(-22, 0)",
+				"phase": 2,
+				"pose": 3,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3267,
+		"file": "motion_frames/frame_098.png",
+		"frame": 98
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": 68.1985919191202,
+				"grip": "Vector2(-22, 0)",
+				"phase": 2,
+				"pose": 3,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3300,
+		"file": "motion_frames/frame_099.png",
+		"frame": 99
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": 68.1985919191202,
+				"grip": "Vector2(-22, 0)",
+				"phase": 2,
+				"pose": 3,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3333,
+		"file": "motion_frames/frame_100.png",
+		"frame": 100
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": 68.1985919191202,
+				"grip": "Vector2(-25, -3)",
+				"phase": 2,
+				"pose": 4,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3367,
+		"file": "motion_frames/frame_101.png",
+		"frame": 101
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": 68.1985919191202,
+				"grip": "Vector2(-25, -3)",
+				"phase": 2,
+				"pose": 4,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3400,
+		"file": "motion_frames/frame_102.png",
+		"frame": 102
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -127.746803895933,
+				"grip": "Vector2(29, 3)",
+				"phase": 2,
+				"pose": 5,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3433,
+		"file": "motion_frames/frame_103.png",
+		"frame": 103
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -127.746803895933,
+				"grip": "Vector2(29, 3)",
+				"phase": 2,
+				"pose": 5,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3467,
+		"file": "motion_frames/frame_104.png",
+		"frame": 104
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -127.746803895933,
+				"grip": "Vector2(29, 3)",
+				"phase": 2,
+				"pose": 5,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3500,
+		"file": "motion_frames/frame_105.png",
+		"frame": 105
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -122.106256094418,
+				"grip": "Vector2(25, 4)",
+				"phase": 3,
+				"pose": 6,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3533,
+		"file": "motion_frames/frame_106.png",
+		"frame": 106
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -122.106256094418,
+				"grip": "Vector2(25, 4)",
+				"phase": 3,
+				"pose": 6,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3567,
+		"file": "motion_frames/frame_107.png",
+		"frame": 107
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -122.106256094418,
+				"grip": "Vector2(25, 4)",
+				"phase": 3,
+				"pose": 6,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3600,
+		"file": "motion_frames/frame_108.png",
+		"frame": 108
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -122.106256094418,
+				"grip": "Vector2(25, 4)",
+				"phase": 3,
+				"pose": 6,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3633,
+		"file": "motion_frames/frame_109.png",
+		"frame": 109
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -122.106256094418,
+				"grip": "Vector2(25, 4)",
+				"phase": 3,
+				"pose": 6,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3667,
+		"file": "motion_frames/frame_110.png",
+		"frame": 110
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -73.1415998214585,
+				"grip": "Vector2(16, 16)",
+				"phase": 3,
+				"pose": 7,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3700,
+		"file": "motion_frames/frame_111.png",
+		"frame": 111
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -73.1415998214585,
+				"grip": "Vector2(16, 16)",
+				"phase": 3,
+				"pose": 7,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3733,
+		"file": "motion_frames/frame_112.png",
+		"frame": 112
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -73.1415998214585,
+				"grip": "Vector2(16, 16)",
+				"phase": 3,
+				"pose": 7,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3767,
+		"file": "motion_frames/frame_113.png",
+		"frame": 113
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -73.1415998214585,
+				"grip": "Vector2(16, 16)",
+				"phase": 3,
+				"pose": 7,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3800,
+		"file": "motion_frames/frame_114.png",
+		"frame": 114
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -73.1415998214585,
+				"grip": "Vector2(16, 16)",
+				"phase": 3,
+				"pose": 7,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3833,
+		"file": "motion_frames/frame_115.png",
+		"frame": 115
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3867,
+		"file": "motion_frames/frame_116.png",
+		"frame": 116
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3900,
+		"file": "motion_frames/frame_117.png",
+		"frame": 117
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3933,
+		"file": "motion_frames/frame_118.png",
+		"frame": 118
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 3967,
+		"file": "motion_frames/frame_119.png",
+		"frame": 119
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 4000,
+		"file": "motion_frames/frame_120.png",
+		"frame": 120
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 4033,
+		"file": "motion_frames/frame_121.png",
+		"frame": 121
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 4067,
+		"file": "motion_frames/frame_122.png",
+		"frame": 122
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 4100,
+		"file": "motion_frames/frame_123.png",
+		"frame": 123
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 4133,
+		"file": "motion_frames/frame_124.png",
+		"frame": 124
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 4167,
+		"file": "motion_frames/frame_125.png",
+		"frame": 125
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 4200,
+		"file": "motion_frames/frame_126.png",
+		"frame": 126
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 4233,
+		"file": "motion_frames/frame_127.png",
+		"frame": 127
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 4267,
+		"file": "motion_frames/frame_128.png",
+		"frame": 128
+	},
+	{
+		"actors": [
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -63.4349516145757,
+				"grip": "Vector2(-12, -6)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(-5, 15)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -45.0000012522391,
+				"grip": "Vector2(0, 16)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			},
+			{
+				"blade_degrees": -125.837643079509,
+				"grip": "Vector2(13, 14)",
+				"phase": 0,
+				"pose": 0,
+				"step": 4
+			}
+		],
+		"elapsed_ms": 4300,
+		"file": "motion_frames/frame_129.png",
+		"frame": 129
+	}
+]

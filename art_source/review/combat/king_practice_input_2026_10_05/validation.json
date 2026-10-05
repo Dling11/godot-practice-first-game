@@ -1,0 +1,27 @@
+{
+  "diagnostic": "Test-process exit reports56–57 RefCounted instances with reference count0; cause unproven",
+  "date": "2026-10-05",
+  "native_practice_input": {
+    "checks": 17,
+    "failures": 0
+  },
+  "headless_lab_sidebar": {
+    "checks": 26,
+    "failures": 0
+  },
+  "character_menu_regression": "passed",
+  "reproduced": [
+    "Tab opens hidden Bag and pauses isolated review",
+    "Combat Lab had no CharacterMenu"
+  ],
+  "input_paths": [
+    "Review physical Tab -> visible Lab Bag",
+    "Esc -> unpaused controls",
+    "F9 -> equipment unlock",
+    "Bag Equip -> production weapon",
+    "Movement and live attack",
+    "HUD Bag button"
+  ],
+  "existing_motion_unchanged": true,
+  "engine": "4.7.2.stable.official.ed1daf0bf"
+}

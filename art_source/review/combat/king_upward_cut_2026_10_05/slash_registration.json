@@ -1,0 +1,70 @@
+[
+	{
+		"blade_registered_override": false,
+		"contact_margin": 4,
+		"legacy_cropped_texels": 2011,
+		"opaque_texels": 10669,
+		"row": 0,
+		"scale": 0.457,
+		"source_bounds": "Rect2(27.5, 69.5, 201, 141)",
+		"source_origin": [
+			128.0,
+			140.0
+		],
+		"world_center": [
+			52.0,
+			-9.0
+		]
+	},
+	{
+		"blade_registered_override": false,
+		"contact_margin": 4,
+		"legacy_cropped_texels": 4884,
+		"opaque_texels": 12303,
+		"row": 1,
+		"scale": 0.462,
+		"source_bounds": "Rect2(68.5, 67.5, 149, 141)",
+		"source_origin": [
+			143.0,
+			138.0
+		],
+		"world_center": [
+			49.0,
+			-6.0
+		]
+	},
+	{
+		"blade_registered_override": true,
+		"contact_margin": 4,
+		"legacy_cropped_texels": 9254,
+		"opaque_texels": 11675,
+		"row": 2,
+		"scale": 0.371,
+		"source_bounds": "Rect2(27.5, 74.5, 201, 140)",
+		"source_origin": [
+			128.0,
+			144.5
+		],
+		"world_center": [
+			44.0,
+			-10.0
+		]
+	},
+	{
+		"blade_registered_override": false,
+		"contact_margin": 4,
+		"legacy_cropped_texels": 2277,
+		"opaque_texels": 10843,
+		"row": 3,
+		"scale": 0.457,
+		"source_bounds": "Rect2(27.5, 97.5, 201, 82)",
+		"source_origin": [
+			128.0,
+			138.5
+		],
+		"world_center": [
+			52.0,
+			1.0
+		]
+	}
+]

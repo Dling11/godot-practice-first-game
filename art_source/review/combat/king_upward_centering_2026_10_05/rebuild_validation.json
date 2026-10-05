@@ -1,0 +1,222 @@
+[
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/return_body.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/return_hands.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/return.tres",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/rise_body.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/rise_hands.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/rise.tres",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/slam_body.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/slam_hands.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/slam.tres",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/sweep_body.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/sweep_hands.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/sweep.tres",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/turn_body.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/turn_hands.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/turn.tres",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/return_body.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/return_hands.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/return.tres",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/rise_body.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/rise_hands.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/rise.tres",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/slam_body.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/slam_hands.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/slam.tres",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/sweep_body.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/sweep_hands.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/sweep.tres",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/turn_body.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/turn_hands.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/turn.tres",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/return_body.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/return_hands.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/return.tres",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/rise_body.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/rise_hands.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/rise.tres",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/slam_body.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/slam_hands.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/slam.tres",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/sweep_body.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/sweep_hands.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/sweep.tres",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/turn_body.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/turn_hands.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/turn.tres",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/down/idle_body.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/down/idle_hands.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/down/idle.tres",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/side/run_body.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/side/run_hands.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/side/run.tres",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/up/idle_body.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/up/idle_hands.png",
+    "same": true
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/up/idle.tres",
+    "same": true
+  },
+  {
+    "path": "data/weapons/families/royal_greatsword/poses.tres",
+    "same": true
+  }
+]
