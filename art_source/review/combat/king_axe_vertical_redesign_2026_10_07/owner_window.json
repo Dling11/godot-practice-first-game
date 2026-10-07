@@ -1,0 +1,10 @@
+{
+  "process_id": 12076,
+  "title": "Battle of Gods — Iron Beard Axe / Combat Lab (DEBUG)",
+  "handle": 5701850,
+  "responding": true,
+  "visible": true,
+  "minimized": false,
+  "installed_up": "res://assets/characters/playable/king/axe_vertical_v2/up/chop.tres",
+  "installed_down": "res://assets/characters/playable/king/axe_vertical_v2/down/chop.tres"
+}

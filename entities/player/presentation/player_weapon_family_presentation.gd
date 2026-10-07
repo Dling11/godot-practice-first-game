@@ -61,11 +61,13 @@ func _equip(weapon: WeaponDefinition) -> void:
 	assert(presenter.configure_idle(profile.idle_poses))
 	actor.get_node("VisualRoot").add_child(presenter)
 	presenter.pose_changed.connect(_plant)
-	trail = BladeTrail.new() if profile.uses_meteor_trail else SwingTrail.new()
+	trail = profile.swing_scene.instantiate() if profile.swing_scene!=null else (BladeTrail.new() if profile.uses_meteor_trail else SwingTrail.new())
 	trail.configure(actor.attack_component, profile.swing_atlas)
+	if trail.has_method("bind_pose_presenter"): trail.bind_pose_presenter(presenter)
 	trail.rows = profile.swing_rows
 	trail.origins = profile.swing_origins
 	trail.world_pixels_per_texel = profile.swing_texel_scale
+	trail.full_frame_rows = profile.swing_full_frame_rows
 	trail.world_origin = Vector2(0,-16)
 	trail.edge_feather_pixels = 3
 	trail.rotate_vertical_sampling = true
@@ -95,6 +97,7 @@ func _equip(weapon: WeaponDefinition) -> void:
 		impacts = Impact.new()
 		impacts.attack = actor.attack_component
 		impacts.atlas = profile.impact_atlas
+		impacts.ground_step = profile.ground_impact_step
 		impacts.mirror_horizontal_landing = true
 		impacts.ground_position_provider = func() -> Vector2:
 			return actor.to_local(presenter.get_parent().to_global(presenter.get_contact_tip_in_parent()))
@@ -137,7 +140,7 @@ func _sync() -> void:
 	if not is_instance_valid(presenter): return
 	var direction := actor.attack_component.get_attack_direction() if actor.attack_component.phase != MeleeAttackComponent.Phase.IDLE else actor.facing_direction
 	var shown := uses_family_clip() and not _blocked()
-	trail.z_index = 0 if profile.uses_meteor_trail and direction.y < 0 and absf(direction.y) >= absf(direction.x) else 3
+	trail.z_index = 0 if direction.y < 0 and absf(direction.y) >= absf(direction.x) else 3
 	var next_root := profile.attack_for(direction)
 	if next_root != null and presenter._default_definition != next_root:
 		presenter.cancel_presentation_transition()

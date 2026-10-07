@@ -1,10 +1,16 @@
 extends "res://tools/launch_king_axe_run_review.gd"
 
-const GREATSWORD = preload("res://data/items/equipment/king_royal_greatsword.tres")
+const GREATSWORD = preload("res://data/items/equipment/king_royal_greatsword_v2.tres")
 const OUT := "res://art_source/review/combat/king_weapon_availability_2026_10_05/"
+var evidence_path := OUT
 var checks := 0
 var failures := 0
 var starts: Array[int] = []
+
+func _initialize() -> void:
+	for argument in OS.get_cmdline_user_args():
+		if argument.begins_with("--output=res://art_source/review/"): evidence_path=argument.trim_prefix("--output=").trim_suffix("/")+"/"
+	super._initialize()
 
 func check(ok: bool, message: String) -> void:
 	checks += 1
@@ -17,9 +23,10 @@ func _run() -> void:
 	root.size = Vector2i(960,540)
 	await key(KEY_TAB)
 	var deadline := Time.get_ticks_msec()+6000
-	while (current_scene.scene_file_path!="res://levels/combat_lab/combat_lab.tscn" or root.get_node("SceneTransition")._transitioning) and Time.get_ticks_msec()<deadline:
+	# SceneTree clears current_scene between removing and adding scenes.
+	while (current_scene==null or current_scene.scene_file_path!="res://levels/combat_lab/combat_lab.tscn" or root.get_node("SceneTransition")._transitioning) and Time.get_ticks_msec()<deadline:
 		await process_frame
-	check(current_scene.scene_file_path=="res://levels/combat_lab/combat_lab.tscn","Axe review Tab failed to enter playable practice")
+	check(current_scene!=null and current_scene.scene_file_path=="res://levels/combat_lab/combat_lab.tscn","Axe review Tab failed to enter playable practice")
 	if failures: quit(1); return
 	var lab := current_scene
 	lab.clear_simulation()
@@ -45,11 +52,11 @@ func _run() -> void:
 		attack.reset_combo()
 		starts.clear()
 		check(actor.request_primary_attack(),"Production axe cannot start")
-		for step in 5:
+		for step in GAME_ITEM.weapon_definition.combo.step_count():
 			await until_active(attack)
 			check(attack.combo_step==step and attack.get_attack_direction()==direction,"Axe chain changed step/facing")
-			if step<4: check(actor.request_primary_attack(),"Axe cannot buffer its next cut")
-			if step<4: await until_step(attack,step+1)
+			if step<GAME_ITEM.weapon_definition.combo.step_count()-1: check(actor.request_primary_attack(),"Axe cannot buffer its next cut")
+			if step<GAME_ITEM.weapon_definition.combo.step_count()-1: await until_step(attack,step+1)
 		await until_idle(attack)
 		check(starts==[0,1,2,3,4] and actor._buffered_action==Player.BufferedAction.NONE,"Axe lost/repeated a cut or left ghost input")
 	# Real hurtboxes: fifth spin hits each close target once and pushes outwards.
@@ -65,9 +72,48 @@ func _run() -> void:
 	attack.reset_combo()
 	actor.request_primary_attack()
 	await until_idle(attack)
-	check(rear_hits.is_empty() and front_hits.size()==1,"Ordinary axe sweep hits behind or duplicates contacts")
+	check(rear_hits.is_empty() and front_hits.size()==1,"Opening axe chop hits behind or duplicates contacts")
+	# Rising cut uses the forward fan; decorative full crescents do not
+	# grant rear contact or turn the other four moves into radial hits.
+	for direction in [Vector2.RIGHT,Vector2.LEFT,Vector2.UP,Vector2.DOWN]:
+		actor._set_facing_direction(direction)
+		var lane_origin := actor.to_local(attack.collision_shape.global_position)
+		var rise_front := make_practice_target(actor,lane_origin+direction*60)
+		var rise_rear := make_practice_target(actor,lane_origin-direction*50)
+		var rise_distant := make_practice_target(actor,lane_origin+direction*105)
+		await physics_frame
+		attack._next_combo_step=1
+		actor.request_primary_attack()
+		await until_idle(attack)
+		check(rise_front.get_node("HealthComponent").current_health<10000,"Rising axe blade misses its forward fan")
+		check(rise_rear.get_node("HealthComponent").current_health==10000 and rise_distant.get_node("HealthComponent").current_health==10000,"Complete rising FX enlarge the actual hitbox: "+var_to_str(direction))
+		for target in [rise_front,rise_rear,rise_distant]: target.queue_free()
+		await process_frame
+	# Third hit pushes the head along a 78px forward lane. Its broad white
+	# impact must not create rear, off-axis or distant cosmetic contacts.
+	for direction in [Vector2.RIGHT,Vector2.LEFT,Vector2.UP,Vector2.DOWN]:
+		actor._set_facing_direction(direction)
+		var lane_origin := actor.to_local(attack.collision_shape.global_position)
+		var thrust_front := make_practice_target(actor,lane_origin+direction*72)
+		var thrust_rear := make_practice_target(actor,lane_origin-direction*50)
+		var thrust_off_axis := make_practice_target(actor,lane_origin+direction*58+direction.orthogonal()*44)
+		var thrust_distant := make_practice_target(actor,lane_origin+direction*105)
+		var landed: Array[DamageInfo] = []
+		thrust_front.get_node("HealthComponent").damaged.connect(func(info: DamageInfo) -> void: landed.append(info))
+		await physics_frame
+		attack._next_combo_step=2
+		actor.request_primary_attack()
+		await until_idle(attack)
+		check(landed.size()==1 and landed[0].direction.dot(direction)>.95,"Axe-head thrust misses or repeats its forward contact")
+		check(thrust_rear.get_node("HealthComponent").current_health==10000 and thrust_off_axis.get_node("HealthComponent").current_health==10000 and thrust_distant.get_node("HealthComponent").current_health==10000,"Broad thrust FX award damage outside the authored lane")
+		for target in [thrust_front,thrust_rear,thrust_off_axis,thrust_distant]: target.queue_free()
+		await process_frame
+	actor._set_facing_direction(Vector2.RIGHT)
+	# Earlier close targets remain in the forward fan; clear their accumulated
+	# damage observations before proving the separate radial final strike.
+	rear_hits.clear()
 	front_hits.clear()
-	attack._next_combo_step = 4
+	attack._next_combo_step = GAME_ITEM.weapon_definition.combo.step_count()-1
 	actor.request_primary_attack()
 	await until_active(attack)
 	await create_timer(.12).timeout
@@ -100,7 +146,7 @@ func _run() -> void:
 	await physics_frame
 	check(actor.equip_owned_weapon(GREATSWORD),"Cannot switch from axe to greatsword")
 	await process_frame
-	check(family.profile==GREATSWORD.weapon_definition.family_presentation and is_instance_valid(family.impacts),"Axe-to-greatsword switch leaves the wrong rig")
+	check(family.profile==GREATSWORD.weapon_definition.family_presentation and is_instance_valid(family.impacts) and family.impacts.ground_step==-1 and family.trail.get_script().resource_path.ends_with("greatsword_v2_swing.gd"),"Axe-to-greatsword switch leaves the wrong rig")
 	check(actor.equip_owned_weapon(GAME_ITEM),"Cannot switch back to axe")
 	await process_frame
 	check(family.profile==GAME_ITEM.weapon_definition.family_presentation and family.impacts==null,"Greatsword-to-axe switch leaks planted impact rig")
@@ -115,6 +161,8 @@ func _run() -> void:
 	lab.queue_free()
 	await process_frame
 	await process_frame
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(evidence_path))
+	FileAccess.open(evidence_path+"validation.json",FileAccess.WRITE).store_string(JSON.stringify({"checks":checks,"failures":failures},"\t")+"\n")
 	print("Axe gameplay smoke: %d checks, %d failures" % [checks,failures])
 	quit(1 if failures else 0)
 
@@ -156,5 +204,5 @@ func key(code: Key) -> void:
 func capture(file: String) -> void:
 	if DisplayServer.get_name()=="headless": return
 	await RenderingServer.frame_post_draw
-	DirAccess.make_dir_recursive_absolute(OUT)
-	check(root.get_texture().get_image().save_png(OUT+file)==OK,"Axe native capture failed")
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(evidence_path))
+	check(root.get_texture().get_image().save_png(evidence_path+file)==OK,"Axe native capture failed")

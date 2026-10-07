@@ -1,6 +1,6 @@
 extends "res://tools/launch_king_axe_expanded_review.gd"
 
-const OUT := "res://art_source/review/combat/king_axe_expanded_v3_2026_10_04/"
+const OUT := "res://art_source/review/combat/king_axe_head_thrust_2026_10_06/side_review/"
 var checks := 0
 var failures := 0
 var contacts: Dictionary = {}
@@ -26,7 +26,7 @@ func _run() -> void:
 	clips.append(CARRY_POSES)
 	for clip in clips:
 		axe_presenter.select_clip(clip)
-		for pose in 8:
+		for pose in clip.pose_count:
 			axe_presenter.set_pose(pose)
 			var grip: Vector2 = axe_presenter.weapon_rig.transform * Vector2.ZERO
 			check(grip.distance_to(clip.primary_hands[pose]-Vector2(96,64))<0.001,"Primary grip detached")
@@ -130,7 +130,7 @@ func gallery(clips: Array[Resource]) -> void:
 	background.size = Vector2(1280,1080)
 	background.color = Color("202b30")
 	layer.add_child(background)
-	for action in 6:
+	for action in clips.size():
 		for frame in 4:
 			var origin := Vector2(frame*320,action*180)
 			var label := Label.new()

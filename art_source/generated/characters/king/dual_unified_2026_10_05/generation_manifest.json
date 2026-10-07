@@ -1,0 +1,275 @@
+{
+  "generator": "built-in imagegen",
+  "original_output": "C:/Users/Administrator/.codex/generated_images/01a0eed4-5878-7032-a315-e493f92ce97a/exec-4577597c-fdef-4cad-b5bd-5ceb593bfb76.png",
+  "source_sha256": "3437DA3F21C747A58288B9AC1BD72DCDBE610332399AF2244513BBE48CB4199C",
+  "prompt_sha256": "A6001AF5B344F8953AD45F73BB1C52311842AA1DE4F588FE2230ABD915BE47FE",
+  "reference_sha256": "5C551699FB45BD0F81CB74B70A3AE0E7DD022B9627D90F632297CB40C8AF3B3B",
+  "builder": "tools/build_king_dual_unified.gd",
+  "builder_sha256": "89A6CC5FC09E4F4303FD8093CAE6062BB389D1B4AA35AA8DD5983796563A800B",
+  "attack_ground_sole": 94,
+  "spin_lift_logical": 12,
+  "runtime_files": 66,
+  "protected_files": 92,
+  "body_calibration": "accepted native carry/gaits preserved; front thrust crown centered on drawn neck axis; original neutral crosscut sleeves restored before grip registration",
+  "source_rows": [
+    "side",
+    "down",
+    "up"
+  ],
+  "source_columns": 8,
+  "standing_heights": {
+    "down": 53,
+    "side": 54,
+    "up": 54
+  },
+  "native_front_idle": {
+    "key": 0,
+    "resource": "assets/characters/playable/king/greatsword_cardinal/down/run.tres",
+    "dimensions": [
+      35,
+      53
+    ],
+    "transform": "accepted native upper body unchanged; whole-cel sole registration; full foreground leg paired/mirrored below Y77 with distinct boots at Y94"
+  },
+  "native_side_run": {
+    "resource": "assets/characters/playable/king/greatsword_confidence_v2/axe_run.tres",
+    "keys": "0..7",
+    "transform": "accepted idle face at(91,41,25,24); intact core vest; native lower near forearm shifted(+3,+1), palm(87,74) from(84,73); rear arm/grip(91,69) occluded by torso; outlined real foreground arm composed after native legs; shared upper/grip bob",
+    "upper_bob": [
+      0,
+      1,
+      0,
+      -1,
+      0,
+      1,
+      0,
+      -1
+    ],
+    "seam_y": 77,
+    "head_reference": "assets/characters/playable/king/greatsword_confidence_v2/idle.tres"
+  },
+  "current_proof": "art_source/review/combat/king_dual_thrust_wave_2026_10_06/",
+  "cardinal_run_angles": {
+    "up": [
+      -93,
+      -87
+    ],
+    "down": [
+      93,
+      87
+    ]
+  },
+  "compact_blade": {
+    "source_size": [
+      22,
+      82
+    ],
+    "tip": [
+      8,
+      0
+    ],
+    "grip": [
+      8,
+      50
+    ],
+    "swing_atlas_unchanged": true,
+    "source": "art_source/archive/dual_existing_gait_rejected_2026_10_05/dual_twinsteel/twinsteel.png",
+    "source_sha256": "0F8E52CAE7D2492E52B3F8DE06B41A2A5679EB136343D5D5BA3800BEDE63DAF8",
+    "runtime_size": [
+      16,
+      62
+    ],
+    "outline": {
+      "extra_perimeter_texels": 1,
+      "source": "native axe_run cel0 pixel(79,74)",
+      "canvas_and_grip_unchanged": true,
+      "immutable_input_each_build": true,
+      "runtime_sha256": "C13E5ED3D12FB0A4791AFA49355CAEDBECF140289BF290E2D9AAFDFB29A4AF8B"
+    }
+  },
+  "cardinal_upper_carry": "DOWN native upper matching idle with native legs; UP fixed calibrated upper with source pelvis/legs centered beneath it per key; shared one-pixel upper/grip bob",
+  "side_run_grip": {
+    "other_state_grips": [
+      8,
+      50
+    ],
+    "point": [
+      8,
+      44
+    ],
+    "closer_logical_pixels": 6,
+    "surface": "upper leather below guard",
+    "closer_world_pixels": 3,
+    "body_unchanged": false
+  },
+  "native_front_run": {
+    "resource": "assets/characters/playable/king/greatsword_cardinal/down/run.tres",
+    "upper_key": 0,
+    "leg_keys": "0..7",
+    "head_base": [
+      84,
+      41,
+      24,
+      24
+    ],
+    "old_head_base": [
+      89,
+      41,
+      24,
+      24
+    ],
+    "seam_y": 77,
+    "transform": "whole native upper at idle sole registration; common vertical bob; native legs below seam; actual glove landmarks, no head graft"
+  },
+  "back_stride_registration": {
+    "pelvis_center_x": 96,
+    "pelvis_rows": [
+      78,
+      79
+    ],
+    "seam_y": 77,
+    "integer_x_shifts": [
+      0,
+      0,
+      -3,
+      -6,
+      -7,
+      -6,
+      -8,
+      -5
+    ],
+    "max_old_error": 7.75,
+    "max_new_error": 0.5,
+    "upper_and_weapon_pixels_unchanged": true,
+    "source_stride_preserved": true
+  },
+  "side_rear_carry": {
+    "texture": "assets/characters/playable/king/dual_twinsteel/twinsteel_side_rear.png",
+    "sha256": "67CFA1BF11664E8DE47282C2282B17FCAA746BA55B2CEC6E8455A7C73F9B78C9",
+    "size": [
+      16,
+      62
+    ],
+    "identical_canonical_rows": [
+      0,
+      42
+    ],
+    "transparent_handle_rows": [
+      43,
+      61
+    ],
+    "far_offhand_behind_body": true,
+    "near_primary_full_sword": true,
+    "near_primary_in_front_of_body": true,
+    "foreground_hand_mask": "actual outlined near forearm/fingers, including below the leg seam; no chest rectangle",
+    "actual_entry_inherits_textures": true,
+    "complete_attack_textures_restored_after_entry": true
+  },
+  "side_palm_registration": {
+    "native_source_palm": [
+      84,
+      73
+    ],
+    "near_arm_shift": [
+      3,
+      1
+    ],
+    "near_palm": [
+      87,
+      74
+    ],
+    "rear_occluded_grip": [
+      91,
+      69
+    ],
+    "carry_angles": [
+      5,
+      -8
+    ],
+    "closed_palm_pixels_preserved": true,
+    "central_chest_preserved": true,
+    "near_forearm_rotated": false,
+    "foreground_mask_keeps_complete_arm": true,
+    "source_leg_pixels_preserved_outside_foreground_arm": true
+  },
+  "presentation_polish": {
+    "date": "2026-10-06",
+    "method": "offline native pixel composition and charcoal edge polish",
+    "owner_sketch": "art_source/review/combat/king_dual_sketch_carry_2026_10_06/owner_sketch.png",
+    "owner_sketch_sha256": "4F9C9682CA61209B25F22D87D155169CE5C04730778E2CEB1F5D0D7038FFE99C",
+    "serialization_builder": "tools/build_king_dual_twinsteel.gd",
+    "serialization_builder_sha256": "A8498E03EE0089EBF8A9633C63376EBCBD6D39727764C9EB11D282F25AA11FDB",
+    "owner_approved": true,
+    "checks": {
+      "native_cardinal": 4567,
+      "cardinal_captures": 105,
+      "normal_gameplay": 220,
+      "repeat_identical_outputs": 66,
+      "failures": 0
+    },
+    "owner_approval_date": "2026-10-06",
+    "owner_approval_scope": "latest sketch-guided side carry, lower-hand grip, proportions and readable outlines"
+  },
+  "attack_frame_repairs": {
+    "date": "2026-10-06",
+    "owner_approved": false,
+    "scope": "front thrust head/scarf and side crosscut raised sleeve, including inherited queue endpoints",
+    "method": "offline composition of original raster pixels; no new source generation or runtime solver",
+    "owner_references": [
+      "owner_down_thrust.png",
+      "owner_side_crosscut.png"
+    ],
+    "source_body_sha256": "8447D7459AE79469EEAF9FB492B389D2DB26585A38699FB91A84D06A25F9FA2B",
+    "thrust_source_sha256": "3437DA3F21C747A58288B9AC1BD72DCDBE610332399AF2244513BBE48CB4199C",
+    "checks": {
+      "native_cardinal": 4586,
+      "native_gameplay": 232,
+      "captures": 105,
+      "reproducible_outputs": 66,
+      "unchanged_outputs": 56,
+      "protected_files_unchanged": 92,
+      "failures": 0
+    },
+    "final_slash": {
+      "runtime_art_changed": false,
+      "pose_sheets_include_effects": false,
+      "actual_player_bright_pixels": {
+        "right": 830,
+        "left": 827,
+        "up": 739,
+        "down": 850
+      }
+    }
+  },
+  "thrust_wave_registration": {
+    "date": "2026-10-06",
+    "owner_approved": false,
+    "builder": "tools/build_king_dual_polish_fx.gd",
+    "builder_sha256": "40B4EBCA3E5949A81D3E656AF07BC83143E3EEC2F51BD92B79697BE357B08BE7",
+    "source": "art_source/generated/characters/king/dual_polish_2026_10_05/fx_clean_source.png",
+    "source_sha256": "3D2752C1371AE3BD36E34AF6D53E80FCFCD56B7DB57C2DFC8DDF10FAAA8294F2",
+    "method": "same four generated raster cels, uniform160x16 thrust band at(112,102), original phase clock and contact clip",
+    "before_bright_pixels": {
+      "right": 7,
+      "left": 7,
+      "up": 6,
+      "down": 7
+    },
+    "after_bright_pixels": {
+      "right": 34,
+      "left": 32,
+      "up": 38,
+      "down": 31
+    },
+    "checks": {
+      "cardinal": 4586,
+      "gameplay": 244,
+      "failures": 0,
+      "repeat_outputs": 66,
+      "unchanged_runtime_assets": 65,
+      "unchanged_other_fx_rows": 4,
+      "unchanged_protected_files": 92
+    },
+    "body_and_combat_changed": false
+  }
+}

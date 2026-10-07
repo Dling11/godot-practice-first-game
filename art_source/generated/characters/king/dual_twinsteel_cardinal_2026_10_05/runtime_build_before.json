@@ -1,0 +1,170 @@
+[
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\up\\cross_finish_body.png",
+    "sha256": "15852EDE8DC6D310DD217E34840C3D46450F1C884399594D2E4D103382759F8B"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\up\\cross_finish_hands.png",
+    "sha256": "D8F56AA057B9968D27B9FC3DDD3DA7915EC12BF715BB17935CEC3520F8CD9F57"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\up\\cross_finish.tres",
+    "sha256": "63C8D70558D14806C309138C23F8EA94D7F50EB42B661C5E3C397CFD949A1A70"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\up\\descending_body.png",
+    "sha256": "E7115C5D8052129808E548F6A50CC8C6412BFD3FC0428A1B80D50B219455D1D8"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\up\\descending_hands.png",
+    "sha256": "C27BD25692C3EE1C80A2000215A66123BCE02849528D4EB55EC1747B4547C45C"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\up\\descending.tres",
+    "sha256": "B415FB2001699943471A5EBF3AE39CA5CF914E79B9D330D577E13FD9FFA7A965"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\up\\idle_body.png",
+    "sha256": "7F4E2C9A3D150CF973FD4F6C8E4F172AB841270BDEB239F22BB7DCA12A863433"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\up\\idle_hands.png",
+    "sha256": "111AB266E7BFD44D15909DE354782487D444E0F33917FE65DE1ED8E59723ABE5"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\up\\idle.tres",
+    "sha256": "15C250B3EDEFC7681344CAE2E941A6C4F324EC79F1FF6466ABABD7E6C09012B3"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\up\\rising_body.png",
+    "sha256": "0312430D0422EE4B54BDADB1527C9A3249A65068AFADB629F206EDFF9C9D2A67"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\up\\rising_hands.png",
+    "sha256": "1ECC07C68C48359DE26B8029C946FE5733E7C4C20D0181FFEA65DD703DB52ADE"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\up\\rising.tres",
+    "sha256": "C64A8F0ECEC3036B672D85CB0B9A9032086C814B4388A5BDB5964B184A7BA6B8"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\up\\run_body.png",
+    "sha256": "378AFAB65BC33362B1C291265E0A12AC269E14601D7173DD0819C0DE99B0C1BE"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\up\\run_hands.png",
+    "sha256": "EE72AF6CFE5F264850CDDF1F5345C911C6C9DBF113DFF5E3BB439C509756EC23"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\up\\run.tres",
+    "sha256": "78AAA8F39D48913C9ECCFE774440F2CF3EFE4DD63A7F5F419F927D08B5996272"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\up\\scissors_body.png",
+    "sha256": "D917BC7799AB849F65A242DC13E8866BE50B28CBB0DE25C72A1D125D95FB5E07"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\up\\scissors_hands.png",
+    "sha256": "D09761201B8CA950E1D596BC6CB8F30B1691C258D238BEA1797B385BAB2BDF9D"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\up\\scissors.tres",
+    "sha256": "C5587638AD36B6307AC792FA62AB6BFD4454DC2EB96F0E5C3F9BEA8D7A2E92C9"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\up\\spin_body.png",
+    "sha256": "639E801EB32AA2A2CE9A1DF35630E011B83589D500C7C5129FE9D5AA94F476E0"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\up\\spin_hands.png",
+    "sha256": "91F830361C18418BC37376E2C64AF0B1F1C35FE5CF2F962EED1544D828BD018F"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\up\\spin.tres",
+    "sha256": "DCA8270272E675F35BC6382DAB99490904E8A063F09850CE64F4B9A14FD3B21B"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\down\\cross_finish_body.png",
+    "sha256": "B2417749DDDF5109B11E3DA2D51C3B805307ECEA0B4CF7D65014DE8B706D40D9"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\down\\cross_finish_hands.png",
+    "sha256": "2A0DEBEA83EBA34B39600A51EB971179EB1374C91070F9914B446A4BEA428682"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\down\\cross_finish.tres",
+    "sha256": "FA9708BC62FFE297F71ED202B6E41021D86A674372630977B4772F0614E2FD71"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\down\\descending_body.png",
+    "sha256": "E669FCD19E0F353C5E54DB3CD22EBDCA3227E74532002167FB24945C5EE85D08"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\down\\descending_hands.png",
+    "sha256": "CFFC1934216A12F9A5B025069E0C2AEA4ADC7E4C27F6C5E908A6E836EF99A7D5"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\down\\descending.tres",
+    "sha256": "7AD093D68EFAE24C3859EC818E15659DE5A43C355FADC137CD3D96D5C381223E"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\down\\idle_body.png",
+    "sha256": "3D535168603EA4CC5D01F300C696D6FDA369B34EED2689FCCAFA0C9FD9D15A8B"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\down\\idle_hands.png",
+    "sha256": "DD65BAD45D3D0C55FC523B7D1C2D51BE69D90564C143F8AF08D61EE537D98099"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\down\\idle.tres",
+    "sha256": "D11B5835BE7B90C39271AAEA0D1C871F0951692C5E33BB08AA7E2B096DEB2E7A"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\down\\rising_body.png",
+    "sha256": "5C7A887D8327C43CCDDBE73F382B7CFD77BE95FC2C1A9C992493ACA257BA65FD"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\down\\rising_hands.png",
+    "sha256": "2383AD6F926390EB35CD4E65C9A7F47100F4E070658116A1F970D90C8857CAA0"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\down\\rising.tres",
+    "sha256": "508051F1758475A7A1CA06616C843BF9801152BDAFDFFE9A2F7A9B7830D14830"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\down\\run_body.png",
+    "sha256": "82CED8123D8EEB46E776C51EA87346F06ACCDACE6D87B8A456E1DCF984D186FA"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\down\\run_hands.png",
+    "sha256": "FAF44C41FEDC64982582F83215A7D68BCCB9CEDDB08C13C86ED01C5C3F611E7C"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\down\\run.tres",
+    "sha256": "0E25E8EB81BA3D2951E24C7DF62F1606E448C5AA381C7819F6199306AF237283"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\down\\scissors_body.png",
+    "sha256": "54D8309DD9C0B62A26821D95248F2EA6B0D601104E65F7D6D3457A96924A4F46"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\down\\scissors_hands.png",
+    "sha256": "BFDACD76EA5B1D95C2668FB3E1B25B0D479501094052A05D18217CC5D7675CAF"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\down\\scissors.tres",
+    "sha256": "EF2E4218E5EFA456690679ED439226C4B0DDBAE9475DB371CBC92EE159BA77DC"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\down\\spin_body.png",
+    "sha256": "7F586662B31629F0463AAD050D4E6017A08DD078E3D74A33AC30C45DBBBD316F"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\down\\spin_hands.png",
+    "sha256": "EF0B34F9E1E391285162E47BA51B24467759F2C0CBC6DE028AC44CC7DF6B4297"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\down\\spin.tres",
+    "sha256": "C3119A3235288040969EBD08A7421EC44E729DBBAE3E2E62C40755CDED69EDB1"
+  }
+]

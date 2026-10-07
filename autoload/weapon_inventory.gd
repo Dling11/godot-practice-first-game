@@ -9,6 +9,8 @@ signal inventory_reset
 
 const KingCatalog: WeaponCatalogDefinition = preload("res://data/items/king_weapon_catalog.tres")
 const SNAPSHOT_VERSION := 2
+const RETIRED_GREATSWORD_ID := &"weapon_king_royal_greatsword"
+const CURRENT_GREATSWORD_ID := &"weapon_king_royal_greatsword_v2"
 
 var _owned_weapon_ids: Dictionary = {}
 var _equipped_weapon_ids: Dictionary = {}
@@ -30,7 +32,7 @@ func owns_weapon(item_id: StringName) -> bool:
 
 
 func acquire_weapon(item: EquipmentDefinition) -> bool:
-	if item == null or not item.is_equippable_weapon() or owns_weapon(item.item_id):
+	if item == null or item.item_id == RETIRED_GREATSWORD_ID or not item.is_equippable_weapon() or owns_weapon(item.item_id):
 		return false
 	_owned_weapon_ids[item.item_id] = true
 	weapon_acquired.emit(item.item_id)
@@ -72,7 +74,7 @@ func can_restore_snapshot(snapshot: Dictionary) -> bool:
 
 	var restored_owned := {}
 	for raw_item_id: Variant in raw_owned:
-		var item_id := StringName(String(raw_item_id))
+		var item_id := _canonical_weapon_id(StringName(String(raw_item_id)))
 		if item_id.is_empty():
 			return false
 		if _find_weapon(item_id) != null:
@@ -84,7 +86,7 @@ func can_restore_snapshot(snapshot: Dictionary) -> bool:
 
 	for raw_character_id: Variant in raw_equipped:
 		var character_id := StringName(String(raw_character_id))
-		var item_id := StringName(String(raw_equipped[raw_character_id]))
+		var item_id := _canonical_weapon_id(StringName(String(raw_equipped[raw_character_id])))
 		if character_id.is_empty():
 			return false
 		if version == SNAPSHOT_VERSION and (
@@ -99,13 +101,13 @@ func restore_snapshot(snapshot: Dictionary) -> bool:
 		return false
 	reset_inventory()
 	for raw_item_id: Variant in snapshot["owned_weapon_ids"]:
-		var item_id := StringName(String(raw_item_id))
+		var item_id := _canonical_weapon_id(StringName(String(raw_item_id)))
 		if _find_weapon(item_id) != null:
 			_owned_weapon_ids[item_id] = true
 	var raw_equipped: Dictionary = snapshot["equipped_weapon_ids"]
 	for raw_character_id: Variant in raw_equipped:
 		var character_id := StringName(String(raw_character_id))
-		var item_id := StringName(String(raw_equipped[raw_character_id]))
+		var item_id := _canonical_weapon_id(StringName(String(raw_equipped[raw_character_id])))
 		if character_id == &"king" and _owned_weapon_ids.has(item_id) and _find_weapon(item_id) != null:
 			_equipped_weapon_ids[character_id] = item_id
 	inventory_reset.emit()
@@ -124,6 +126,7 @@ func try_purchase_weapon(
 ) -> bool:
 	if (
 		item == null
+		or item.item_id == RETIRED_GREATSWORD_ID
 		or progression == null
 		or not item.is_equippable_weapon()
 		or item.purchase_price <= 0
@@ -176,3 +179,10 @@ func _sorted_owned_ids() -> PackedStringArray:
 
 func _find_weapon(item_id: StringName) -> EquipmentDefinition:
 	return KingCatalog.find_weapon(item_id)
+
+
+func _canonical_weapon_id(item_id: StringName) -> StringName:
+	# Version 1 and 2 saves may own/equip the retired five-cut comparison item.
+	# Migrate both references together; all other unknown IDs keep their existing
+	# validation rules. Snapshots written afterward contain only the live ID.
+	return CURRENT_GREATSWORD_ID if item_id == RETIRED_GREATSWORD_ID else item_id

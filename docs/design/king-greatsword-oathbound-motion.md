@@ -1,6 +1,10 @@
 # Oathbound Greatsword — 2026-10-05
 
+**2026-10-07 preservation and parallel V2 playtest:** This is the original accepted Royal Greatsword item with its unchanged five-cut Oathbound art/tuning. A679-file verified snapshot protects it. The separately equipable [four-cut Greatsword V2](king-greatsword-front-combo.md) is now available in F9/F7 Weapons/Bag and preserves this steel, gait and idle; it does not replace this item's attacks. New V2 vertical art remains pending with labelled V1 fallback bodies. Scythe is deferred.
+
 ## Owner request and installed result
+
+**Owner acceptance (2026-10-05):** The owner says the centered upward pose “will do” and asks to move on; Dual swords is selected next. This Greatsword animation/art pass is accepted for now. Preserve the current clips, steel, idle, phase walking and combo. Earlier review-pending statements below describe the implementation history; final comparative balance, armor/crafting and device profiling are still separate work. [Next-family preparation](king-dual-sword-design.md).
 
 Latest follow-up: the owner asks for a small reduction in the upward body's/head's tilt. After hair-only attachment, up attack registration now moves head/neck/shoulders halfway toward the carry head center, capped at4 logical texels (2 normal world pixels). Translation tapers through the lower torso to zero at the lowest four boot rows. Foreground hands receive the same transform before final grip registration. Original pixels/pose exposure remain; this is an offline drawing adjustment with no runtime rotation or actor movement. Shared white FX, accepted side/down art, proud idle, huge steel, phase walking and combo timing remain. Current proof is `art_source/review/combat/king_upward_centering_2026_10_05/`; owner visual review remains open.
 

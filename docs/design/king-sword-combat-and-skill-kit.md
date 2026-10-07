@@ -1,5 +1,7 @@
 # King Sword Combat and Skill Kit
 
+**Current sword closure (2026-10-06):** Signature sword keeps10–12 physical rolls,25 Skill Power and three-hit1.91s phases/shape/art. Bag now has a clear approved-raster icon, per-cut ranges and21.9 base DPS; normal hits use CC0 recorded body impacts. [Closure rules/audio/proof](king-weapon-closure.md). Other weapon families own separate shapes and chains; Royal Greatsword is frozen at the owner's request.
+
 **Current terrain/aim correction (2026-10-03,Decision177):** Slot1/5 keep full authored reach through scenery; Slot3 flies over any intervening obstacle to clear, real-foot/nav/bounds-valid ground. Silver/slate/violet circles and hardware pointers replace gold/blue targeting and use actor feet/render-frame aim. This supersedes earlier terrain-aware/clipped or LOS-stopped descriptions below. Current rule/validation: king-targeting-and-terrain.md.
 
 ## Current status
@@ -20,7 +22,7 @@ The current `assets/characters/playable/king/greatsword/` set supplies four-step
 | Return | .15 / .12 / .27 s | 115% | 115% |
 | Finishing sweep (internal heavy_cleave) | .26 / .14 / .36 s | 165% | 200% |
 
-Current weapons share a 36px-forward, 44px-wide convex fan. Direction commits on acceptance. Equipment attack speed divides all phases (existing +50% cap). Base weapon roll stays 10-12, or 16-20 for Varkuun Edge; basic rolls remain separate from skill power. Each swing deduplicates per target. The next cut can be buffered using the existing single latest-intent buffer and starts after full recovery. Continuation remains available .9s after recovery; dash, skills, interruption and weapon changes reset it. Basic attacks continue to permit movement. No hold-charge action or extra queue is installed.
+King's signature sword and Varkuun Edge use a36px-forward,44px-wide convex fan; new families own their separate contact data. Direction commits on acceptance. Equipment attack speed divides all phases (existing +50% cap). Base weapon roll stays10–12, or16–20 for Varkuun Edge; basic rolls remain separate from Skill Power. Each swing deduplicates per target. The next cut can be buffered using the existing single latest-intent buffer and starts after full recovery. Continuation remains available0.9s after recovery; dash, skills, interruption and weapon changes reset it. Signature-sword basics continue to permit movement. No hold-charge action or extra queue is installed.
 
 ## Active skills
 

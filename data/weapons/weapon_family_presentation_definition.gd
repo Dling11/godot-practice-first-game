@@ -13,11 +13,16 @@ const PoseDefinition = preload("res://data/weapons/weapon_family_pose_definition
 @export var upward_running_poses: PoseDefinition
 @export var downward_running_poses: PoseDefinition
 @export var swing_atlas: Texture2D
+## Optional family-owned raster presentation; still no contact authority.
+@export var swing_scene: PackedScene
 @export var impact_atlas: Texture2D
+@export var ground_impact_step := 2
 @export var step_distances := PackedFloat32Array()
 @export var swing_rows := 4
 @export var swing_origins := PackedVector2Array([Vector2(128,128),Vector2(128,128),Vector2(128,128),Vector2(128,128)])
 @export var swing_texel_scale := 1.0
+## Optional cosmetic full raster rows. Contact/damage still belong to melee.
+@export var swing_full_frame_rows := PackedByteArray()
 @export var uses_meteor_trail := false
 @export var return_follow_through_step := -1
 @export var sound_indices := PackedInt32Array([0,1,2,2,1])
@@ -45,6 +50,10 @@ func run_for(direction: Vector2) -> PoseDefinition:
 	return running_poses
 
 func is_valid_profile() -> bool:
+	if not swing_full_frame_rows.is_empty():
+		if swing_full_frame_rows.size()!=swing_rows: return false
+		for flag in swing_full_frame_rows:
+			if flag>1: return false
 	for row in [[upward_attack_poses,upward_idle_poses,upward_running_poses],[downward_attack_poses,downward_idle_poses,downward_running_poses]]:
 		if row[0] == null:
 			if row[1] != null or row[2] != null: return false

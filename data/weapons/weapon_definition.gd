@@ -10,6 +10,10 @@ extends Resource
 ## instead of requiring a second detached world sprite.
 @export var uses_integrated_visual := false
 @export var family_presentation: WeaponFamilyPresentationDefinition
+## Optional accepted-hit layer; null preserves the legacy sound exactly.
+@export var hit_audio: WeaponHitAudioDefinition
+## Optional per-cut contact profiles. Null/missing entries use hit_audio.
+@export var combo_hit_audio: Array[WeaponHitAudioDefinition] = []
 ## Authoritative right-facing melee contact area. The player's combat pivot
 ## rotates this shape for the other directions; VFX may read its bounds.
 @export var melee_hitbox_shape: Shape2D
@@ -43,6 +47,12 @@ extends Resource
 @export_range(0.0, 2.0, 0.01, "suffix:s") var wind_up_seconds: float = 0.1
 @export_range(0.01, 2.0, 0.01, "suffix:s") var active_seconds: float = 0.1
 @export_range(0.0, 3.0, 0.01, "suffix:s") var recovery_seconds: float = 0.2
+
+
+func get_hit_audio_for_step(step: int) -> WeaponHitAudioDefinition:
+	if step >= 0 and step < combo_hit_audio.size() and combo_hit_audio[step] != null:
+		return combo_hit_audio[step]
+	return hit_audio
 
 
 func get_attack_movement_ratio(phase: int) -> float:

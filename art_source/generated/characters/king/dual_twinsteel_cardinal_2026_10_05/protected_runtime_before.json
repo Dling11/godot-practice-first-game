@@ -1,0 +1,358 @@
+[
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\cross_finish_body.png",
+    "sha256": "24477BB0AAEE8372FAF77B45A4BD97D5C4DE66F76098C5E8909391D757D9957B"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\cross_finish_hands.png",
+    "sha256": "7309531A23235721BD6CD3BF38DB781FC98CD7846C68797653B77A13FDD2BADD"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\cross_finish.tres",
+    "sha256": "98078F1EE69DF92930217238BFBB90BF988B23792DE248C578B7EB3595EB02FA"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\descending_body.png",
+    "sha256": "D8F29F0B8DF16CA20453CCCB3FD3388624E0C84388DD3DC25CE6BD974E2D82F7"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\descending_hands.png",
+    "sha256": "65217C68B7F3E72A551EE5E8FC2B7490483704452243D9A0869F4291237F70B7"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\descending.tres",
+    "sha256": "89D002D7DFCD609696B7061CA0704927C5515225A290F4ECC57A8AA9B43F3A53"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\idle_body.png",
+    "sha256": "B4BD3485EE427AE0BAE2CCC193BBB7A3F61521B7C514468B1E0F8F8FE31B56E5"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\idle_hands.png",
+    "sha256": "66D8D7EAE63029E20DC70C41DF73377D17A5140FFDFC20239565710EFE97C5CA"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\idle.tres",
+    "sha256": "68819EF247F417CD7365360D6A255DE2A21249ED53A080C14F24E2CB3B657248"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\rising_body.png",
+    "sha256": "21D4281807D91688DAC457D2FF6784D517CA222E20744174E569A182CDBD2F15"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\rising_hands.png",
+    "sha256": "D7E8124E2165532494D7A359C812FCDB4E181C2400C250CD3D9701ADF10562F1"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\rising.tres",
+    "sha256": "85A7DD5A98F2B32AB7D2DE9949CA295BC68319F85935F55025EBC2D4A0B98862"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\run_body.png",
+    "sha256": "47071C2B20BB46C0969A7827879141CCF9DD6D9392864F123D9C3879E7872B5D"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\run_hands.png",
+    "sha256": "D6D6E4264EDBE8C25D181555FD069FDD8262F1C74EF6EC5362BBC8F2472EA675"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\run.tres",
+    "sha256": "FD8306B63A2631FA2E05CC91F9685F511379F5E47076B99B05F33BCE4EECBAB4"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\scissors_body.png",
+    "sha256": "2C57190602FC1729BB1C5A7C271996F923F8E9EE9853E6A0605A9AA1B9B4A16A"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\scissors_hands.png",
+    "sha256": "DE6B374C2F8EFF1B9D6D01FA15FF1A9ACC1CE3236618D66C34FC83C86A16AEE9"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\scissors.tres",
+    "sha256": "F7A447BAC4BEB5912289110FF4826CB098B230EF24D160B6E7B782432942C285"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\spin_body.png",
+    "sha256": "FA177CAD541A74A8E84046F386F335EAFEEF9A76C50068B9BB48F73606705BFD"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\spin_hands.png",
+    "sha256": "0C8D935273ACB681800B7770366C53CE7E8B829543AE7414261AFE965EA3CC16"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\spin.tres",
+    "sha256": "DB5D87812E087B5572FECCC38DBDBA61E061B5862DA548552D16D76F98AE636C"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\swing.png",
+    "sha256": "2E19375D3EA22FEB750757F7E191DA293C1DDAE7FC49426E8F54B5B0174543F0"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_twinsteel\\twinsteel.png",
+    "sha256": "0F8E52CAE7D2492E52B3F8DE06B41A2A5679EB136343D5D5BA3800BEDE63DAF8"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\down\\return_body.png",
+    "sha256": "558ACF6BBF4C784D32FCD34DCA9959671151697CF25EDF5B50E17644C5ADE8C2"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\down\\return_hands.png",
+    "sha256": "EEE68FDFE873A70CC55D4B9877F90C3BF71CC54D06EB3BA33C5988BD3AF43D5C"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\down\\return.tres",
+    "sha256": "82B60595139B1BAD092A77D39B4868382A7C01AD415B081292E758196679444C"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\down\\rise_body.png",
+    "sha256": "0ED6CD1B0C115ABABC1E69865513FE98B632E993A6B86E6F85D379A74C10442A"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\down\\rise_hands.png",
+    "sha256": "D50CF4DA063BBCA20BE1BE9D3D4DDD4AC9BE2E299EAC3CA370186AB34E0A8C1E"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\down\\rise.tres",
+    "sha256": "9C15556093BD29D629960A82268C5232C0EC61ED95DA06CECC9BFC68E4E1A8F5"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\down\\slam_body.png",
+    "sha256": "633AF445910192551FD76FFAE3A86763EBBE129806261525984182F180589AAE"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\down\\slam_hands.png",
+    "sha256": "4F79297E0D100BABCD83500804520AA1155029979D0366692714BC659CBA0F1A"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\down\\slam.tres",
+    "sha256": "7DA5FC2A087AD877388384A5723203B22111F0E11C8F596FBA4BBC88260B38C5"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\down\\sweep_body.png",
+    "sha256": "C56DB9D4E17F63B37C1724CDBA273AC313EBD7CFF876B33AF0FFE100074DBE2F"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\down\\sweep_hands.png",
+    "sha256": "AC9E729208E820583F32596320AD5AC7B45A2A82554F361ECE69E48CA1329D31"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\down\\sweep.tres",
+    "sha256": "CDA9D633FE652DA99D493BC078A3C5245D8822947DB75950DDFCBABB0493A3C1"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\down\\turn_body.png",
+    "sha256": "43BF75979898B05017B6D35AF2D14846A95633A644B4AACFA9A5C990B9DE6A21"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\down\\turn_hands.png",
+    "sha256": "32CB0F1F840DC4FFC98DFE03691DB59C33507B71C0E2123D0B42735F70C6B434"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\down\\turn.tres",
+    "sha256": "6CFD29017C2225E08E3769DB9599C2F110BFC315C0F96BFB50241F128F65996A"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\side\\return_body.png",
+    "sha256": "07E2598159C1F30745B951DB4FE4C286382B840E7057FAF1335C9B7AA5A0F165"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\side\\return_hands.png",
+    "sha256": "6FA93914E2182AE641D119E7A9F0147188A3D363D2943952FC91CA5E7C59B6B8"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\side\\return.tres",
+    "sha256": "F92485462D4FF4403BAA69E57F50EFE48081DFD059DA6C5FAC3BD68F503FA812"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\side\\rise_body.png",
+    "sha256": "32BB5DCFCB049EE29D7F9C687B9C2E7254A08F9AC48340EEFB42824EC8870626"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\side\\rise_hands.png",
+    "sha256": "4BB1470D2596EE5E212B2F787C1651989E5261F2AF037F7642787F02695499B1"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\side\\rise.tres",
+    "sha256": "18132C3F142AAA8013ABD363D81AF6402CB82EFB342E069DB9853078B664D419"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\side\\slam_body.png",
+    "sha256": "2275DED054EF9D5D66F8DCD62AA0CC5FFF87EB1A449DB9A94F82A4D573CCB3AB"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\side\\slam_hands.png",
+    "sha256": "A22500A753C243CD9B6858EB34776CB7063BAF5760D2549EA450D0CF4677E570"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\side\\slam.tres",
+    "sha256": "303750ABEA51EB6233F5AC92AA3B3C8F2DB57B9D1C1A8A30D0E0E648D6ACC2BF"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\side\\sweep_body.png",
+    "sha256": "17A3CDD678BA339962A9B12EA8B3D8233ECFE70F2DB007D46E7FC9D73EC6CBC0"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\side\\sweep_hands.png",
+    "sha256": "E9FD3E625F8A1B4B9D1A4CFEDEB4580DBA9CD8C8432376F9DC133A302E0A68D1"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\side\\sweep.tres",
+    "sha256": "C64413AA1227286421697A704724A893707188C65F03AB01FC3F5CF02A789A86"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\side\\turn_body.png",
+    "sha256": "C68D47E7D2DC9031A2076CF59A24B39013DFF9D15F421D16FC7AA9C1B3E2FBFC"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\side\\turn_hands.png",
+    "sha256": "6330095E2C8F026B70743144E67AF1B84B8D6921690BA277F115FD226BD9A510"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\side\\turn.tres",
+    "sha256": "9F17E92427D068830315E341274751449BA71C3F58D7D484B28D4DC9CB4639D6"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\up\\return_body.png",
+    "sha256": "57F90FA16216A8CFB3147BDF6D66BF59F234E70A2F575010C626B8F41F7D3E5D"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\up\\return_hands.png",
+    "sha256": "755F2CA3FD6B6E22D32F3F043BF71C463FED8F6D83044CEB5A4D07FF49406A0D"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\up\\return.tres",
+    "sha256": "66395590188EFEDA68586DB96DFA3C11FC15799BA3E5CB93F0F07A5C948A2A8E"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\up\\rise_body.png",
+    "sha256": "0CBBC3D16C808ABD96D1D02F44BD32BE4B91ACCA08509B386B96DABA6EB25BBA"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\up\\rise_hands.png",
+    "sha256": "AD5720F440CD994492A0FB6F6E8510A4FF31B28A59BEDE16DD55A4E6C21B73B3"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\up\\rise.tres",
+    "sha256": "CBC7F9BE3AFA79CF39251840C86CE81FA54B6B6A5D2A2E49A8EC679DD614FA1A"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\up\\slam_body.png",
+    "sha256": "0050380B48D67CDFFE1CFB8829D189D2045AA7D288CB840F20281578EAC56A66"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\up\\slam_hands.png",
+    "sha256": "70F33B01CA9AF7BB00F048DF43A9E71E839FF822A8B87AF7882262B21171C1AE"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\up\\slam.tres",
+    "sha256": "BEEABDF43BCE24F6A0AF343F0C742921922758555FB6D24815F8DB457A3D45BC"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\up\\sweep_body.png",
+    "sha256": "7CB74358780D6C2A4F0CFFF94113CA947A94149F9A3AFB0761B12E8FBDF6AD81"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\up\\sweep_hands.png",
+    "sha256": "D72CD5A510E69583C380C8F7DBEC77ECAC46CB656CADFF3486645DA04E5B8EA4"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\up\\sweep.tres",
+    "sha256": "A11D94857BAFCC4F41B0B127B965AE252C8345BC07AEE1650C207A958BB4734D"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\up\\turn_body.png",
+    "sha256": "87F564A7A65F595CBB933590530A61899E8A2BE0B1F2D0D1833A8CD6E416024F"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\up\\turn_hands.png",
+    "sha256": "240BEB14C13EF6E211F1CBBF17609B73ED41023131C33ACC98A74BFC32A2116E"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_oathbound\\up\\turn.tres",
+    "sha256": "E9DB1DC950EF490BA0327BF93AE6A0D95E333D10873FAC76F7FB767F4720DD78"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_readability\\down\\idle_body.png",
+    "sha256": "06434D708364906E14D0151BC4339BEFA8D5961ECC842C9013E9B7A2FDFBB79D"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_readability\\down\\idle_hands.png",
+    "sha256": "1F9706A32BEE753D78C64A349C236F63095333C3F449B0524B2CB17378958418"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_readability\\down\\idle.tres",
+    "sha256": "EE53BC19419A204299E40849D50DBFE753D3DF241133182F0E5A76E37C1C9423"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_readability\\side\\run_body.png",
+    "sha256": "42AB29CCE07AEB3584265C83EA2B91CD5D35BCF97296BAF05984102FA19693B2"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_readability\\side\\run_hands.png",
+    "sha256": "4D97F957815921F958B337544DA18B38EC5F9B0748C3ECD411A70328D6198AA4"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_readability\\side\\run.tres",
+    "sha256": "885E50588BAA8FADCB9BA24AADAFDB4551C8371A3A4DAB4433C2CCD97B58EE97"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_readability\\up\\idle_body.png",
+    "sha256": "5B4C33EBDFEE5C4F2D20ED2CFF4AE7E464FFCE02ACB7DBBA93C09AD71C29E6AD"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_readability\\up\\idle_hands.png",
+    "sha256": "FBCB268F1891F757127BDA3137822347EA51809C3F68C709F4D3C17C9F883D8A"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_readability\\up\\idle.tres",
+    "sha256": "FD17B4FA30E3592CEDAD74B2B608D81BA6F8DBC24C6B858D318786AFE96F472A"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_confidence_v2\\axe_run_body.png",
+    "sha256": "97615B007DE280EE8A8C2C29D2125A6940085329263CAF9BB783A62C8154CBBA"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_confidence_v2\\axe_run_hands.png",
+    "sha256": "8DF9360A66B70AB63774C276E57ED13B832C6D9083DD88CF9EB276BA8042A758"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_confidence_v2\\axe_run.tres",
+    "sha256": "924562D77DFF86C1EEAC13EA8AB40ED7C959557802650AD8AC5CA57B8E22E9DB"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_confidence_v2\\greatsword_run_body.png",
+    "sha256": "9C49359187059C9F0EDBDEC6BE890876EBFCD656B602167F9C2600FD0D3BAA1D"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_confidence_v2\\greatsword_run_hands.png",
+    "sha256": "8FBDCB4A106A86148A60F86371343424817CB8B07F64D09A1882922CF68C061C"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_confidence_v2\\greatsword_run.tres",
+    "sha256": "8B7AC14100E63E20387C6C13E53C41CA5F98D1D4C2A4C4A20AC6F82BC425E048"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_confidence_v2\\idle_body.png",
+    "sha256": "27F5BA80E204751C105658BA61A18EF5DF4E2860E599431BC37E25BC5603E79B"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_confidence_v2\\idle_hands.png",
+    "sha256": "B7BAD9EC3FE5E3E63D8AB7C75F7DA02D9E6314943DA1B53784EB6E0A2339047B"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_confidence_v2\\idle.tres",
+    "sha256": "ACFC4FF3899135A5FE6CBBF8799D12DD53133CD1763A29AAF2537CDF008E2AD9"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_confidence_v2\\opening_body.png",
+    "sha256": "2AFDCDC4BCACCB9D90AC04EDB4B1DFE970ABC67C8639F03B49E5A902A99BD00B"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_confidence_v2\\opening_hands.png",
+    "sha256": "2CD5860ECF8748627E114DCBB8DBCCA587E9B60FB5571D54A25DA55521B84689"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\greatsword_confidence_v2\\opening.tres",
+    "sha256": "E55DEB1BD4A0F10236D621C3A7C7EFA83A717E858B5B536A309DBC2C7C231C30"
+  }
+]

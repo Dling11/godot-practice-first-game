@@ -1,0 +1,170 @@
+{
+	"complete_raster_rows": [
+		0,
+		1,
+		2,
+		3,
+		4
+	],
+	"cutting_edge": "Vector2(8, 30)",
+	"names": [
+		"chop",
+		"rise",
+		"thrust",
+		"slam",
+		"spin"
+	],
+	"new_body_source_cels": 0,
+	"records": [
+		{
+			"cut": "chop",
+			"direction": "side",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_proof_v3/down.tres"
+		},
+		{
+			"cut": "rise",
+			"direction": "side",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_proof/return.tres"
+		},
+		{
+			"cut": "thrust",
+			"cutting_edge_forward": true,
+			"direction": "side",
+			"native_body_pixels_reused": true,
+			"shaft_axis": "Vector2(-0.4590984, 0.8883854)",
+			"single_hand_axis_is_orientation_only": true,
+			"source": "res://art_source/generated/characters/king/axe_head_thrust_2026_10_06/side/push_body.png"
+		},
+		{
+			"cut": "slam",
+			"direction": "side",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_proof/finisher.tres"
+		},
+		{
+			"cut": "spin",
+			"direction": "side",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_proof_v3/spin.tres"
+		},
+		{
+			"cut": "chop",
+			"direction": "down",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_cardinal/down/chop.tres"
+		},
+		{
+			"cut": "rise",
+			"direction": "down",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_cardinal/down/rise.tres"
+		},
+		{
+			"cut": "thrust",
+			"cutting_edge_forward": true,
+			"direction": "down",
+			"native_body_pixels_reused": true,
+			"shaft_axis": "Vector2(0.8883854, -0.4590984)",
+			"single_hand_axis_is_orientation_only": true,
+			"source": "res://art_source/generated/characters/king/axe_head_thrust_2026_10_06/down/push_body.png"
+		},
+		{
+			"cut": "slam",
+			"direction": "down",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_cardinal/down/slam.tres"
+		},
+		{
+			"cut": "spin",
+			"direction": "down",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_cardinal/down/spin.tres"
+		},
+		{
+			"cut": "chop",
+			"direction": "up",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_cardinal/up/chop.tres"
+		},
+		{
+			"cut": "rise",
+			"direction": "up",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_cardinal/up/rise.tres"
+		},
+		{
+			"cut": "thrust",
+			"cutting_edge_forward": true,
+			"direction": "up",
+			"native_body_pixels_reused": true,
+			"shaft_axis": "Vector2(-0.88838536, 0.45909858)",
+			"single_hand_axis_is_orientation_only": true,
+			"source": "res://art_source/generated/characters/king/axe_head_thrust_2026_10_06/up/push_body.png"
+		},
+		{
+			"cut": "slam",
+			"direction": "up",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_cardinal/up/slam.tres"
+		},
+		{
+			"cut": "spin",
+			"direction": "up",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_cardinal/up/spin.tres"
+		},
+		{
+			"cell": [
+				128,
+				128
+			],
+			"common_size": "Vector2i(104, 80)",
+			"cut": "thrust_fx",
+			"new_raster_cels": 4,
+			"safe_gutters": "PackedInt32Array(0, 543, 1086, 1637, 2172)",
+			"shared_registration": true,
+			"source_union": "Rect2i(201, 311, 520, 401)",
+			"tip_registration": [
+				{
+					"key": 0,
+					"registered_tip": [
+						720,
+						512
+					],
+					"source_rectangle": "Rect2i(0, 0, 543, 724)",
+					"tip": "Vector2(496, 363)"
+				},
+				{
+					"key": 1,
+					"registered_tip": [
+						720,
+						512
+					],
+					"source_rectangle": "Rect2i(543, 0, 543, 724)",
+					"tip": "Vector2(506, 362.77777)"
+				},
+				{
+					"key": 2,
+					"registered_tip": [
+						720,
+						512
+					],
+					"source_rectangle": "Rect2i(1086, 0, 551, 724)",
+					"tip": "Vector2(545, 362.5)"
+				},
+				{
+					"key": 3,
+					"registered_tip": [
+						720,
+						512
+					],
+					"source_rectangle": "Rect2i(1637, 0, 535, 724)",
+					"tip": "Vector2(489, 364.5)"
+				}
+			]
+		}
+	],
+	"runtime_cels": 195
+}

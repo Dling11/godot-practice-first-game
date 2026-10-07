@@ -33,6 +33,8 @@ enum Rarity {
 @export var slot := Slot.WEAPON
 @export var rarity := Rarity.A_GRADE
 @export var icon: Texture2D
+## Opt-in closure pass; unselected families retain their existing Bag display.
+@export var show_combo_details := false
 @export var compatible_classes: PackedStringArray = []
 @export_range(0, 9999, 1, "suffix: coins") var purchase_price := 0
 @export var weapon_definition: WeaponDefinition
@@ -97,6 +99,8 @@ func get_rarity_color() -> Color:
 
 func get_stat_summary() -> String:
 	if weapon_definition != null:
+		if show_combo_details:
+			return WeaponCombatReadout.summary(weapon_definition)
 		var weapon_summary := "BASIC HIT %d-%d  •  SKILL POWER %d" % [
 			roundi(weapon_definition.basic_damage_minimum),
 			roundi(weapon_definition.basic_damage_maximum),

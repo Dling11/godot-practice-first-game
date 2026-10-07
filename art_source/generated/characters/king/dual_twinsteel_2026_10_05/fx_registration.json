@@ -1,0 +1,162 @@
+[
+	{
+		"center": "Vector2i(92, 64)",
+		"density_width": 80,
+		"frame": 0,
+		"row": 0,
+		"source": "Rect2i(0, 0, 281, 280)",
+		"used": "Rect2i(8, 11, 66, 64)"
+	},
+	{
+		"center": "Vector2i(92, 64)",
+		"density_width": 80,
+		"frame": 1,
+		"row": 0,
+		"source": "Rect2i(281, 0, 280, 280)",
+		"used": "Rect2i(0, 4, 79, 76)"
+	},
+	{
+		"center": "Vector2i(92, 64)",
+		"density_width": 80,
+		"frame": 2,
+		"row": 0,
+		"source": "Rect2i(561, 0, 281, 280)",
+		"used": "Rect2i(0, 5, 74, 69)"
+	},
+	{
+		"center": "Vector2i(92, 64)",
+		"density_width": 80,
+		"frame": 3,
+		"row": 0,
+		"source": "Rect2i(842, 0, 280, 280)",
+		"used": "Rect2i(6, 7, 63, 72)"
+	},
+	{
+		"center": "Vector2i(92, 64)",
+		"density_width": 80,
+		"frame": 0,
+		"row": 1,
+		"source": "Rect2i(0, 280, 281, 281)",
+		"used": "Rect2i(8, 1, 71, 79)"
+	},
+	{
+		"center": "Vector2i(92, 64)",
+		"density_width": 80,
+		"frame": 1,
+		"row": 1,
+		"source": "Rect2i(281, 280, 280, 281)",
+		"used": "Rect2i(0, 0, 78, 80)"
+	},
+	{
+		"center": "Vector2i(92, 64)",
+		"density_width": 80,
+		"frame": 2,
+		"row": 1,
+		"source": "Rect2i(561, 280, 281, 281)",
+		"used": "Rect2i(0, 0, 80, 76)"
+	},
+	{
+		"center": "Vector2i(92, 64)",
+		"density_width": 80,
+		"frame": 3,
+		"row": 1,
+		"source": "Rect2i(842, 280, 280, 281)",
+		"used": "Rect2i(0, 0, 74, 76)"
+	},
+	{
+		"center": "Vector2i(92, 64)",
+		"density_width": 80,
+		"frame": 0,
+		"row": 2,
+		"source": "Rect2i(0, 561, 281, 280)",
+		"used": "Rect2i(9, 2, 66, 77)"
+	},
+	{
+		"center": "Vector2i(92, 64)",
+		"density_width": 80,
+		"frame": 1,
+		"row": 2,
+		"source": "Rect2i(281, 561, 280, 280)",
+		"used": "Rect2i(0, 2, 71, 78)"
+	},
+	{
+		"center": "Vector2i(92, 64)",
+		"density_width": 80,
+		"frame": 2,
+		"row": 2,
+		"source": "Rect2i(561, 561, 281, 280)",
+		"used": "Rect2i(3, 3, 77, 76)"
+	},
+	{
+		"center": "Vector2i(92, 64)",
+		"density_width": 80,
+		"frame": 3,
+		"row": 2,
+		"source": "Rect2i(842, 561, 280, 280)",
+		"used": "Rect2i(0, 1, 69, 78)"
+	},
+	{
+		"center": "Vector2i(64, 64)",
+		"density_width": 104,
+		"frame": 0,
+		"row": 3,
+		"source": "Rect2i(0, 841, 281, 281)",
+		"used": "Rect2i(14, 0, 90, 103)"
+	},
+	{
+		"center": "Vector2i(64, 64)",
+		"density_width": 104,
+		"frame": 1,
+		"row": 3,
+		"source": "Rect2i(281, 841, 280, 281)",
+		"used": "Rect2i(0, 0, 103, 104)"
+	},
+	{
+		"center": "Vector2i(64, 64)",
+		"density_width": 104,
+		"frame": 2,
+		"row": 3,
+		"source": "Rect2i(561, 841, 281, 281)",
+		"used": "Rect2i(0, 1, 104, 103)"
+	},
+	{
+		"center": "Vector2i(64, 64)",
+		"density_width": 104,
+		"frame": 3,
+		"row": 3,
+		"source": "Rect2i(842, 841, 280, 281)",
+		"used": "Rect2i(0, 1, 93, 102)"
+	},
+	{
+		"center": "Vector2i(92, 64)",
+		"density_width": 80,
+		"frame": 0,
+		"row": 4,
+		"source": "Rect2i(0, 1122, 281, 280)",
+		"used": "Rect2i(12, 0, 68, 69)"
+	},
+	{
+		"center": "Vector2i(92, 64)",
+		"density_width": 80,
+		"frame": 1,
+		"row": 4,
+		"source": "Rect2i(281, 1122, 280, 280)",
+		"used": "Rect2i(1, 0, 71, 65)"
+	},
+	{
+		"center": "Vector2i(92, 64)",
+		"density_width": 80,
+		"frame": 2,
+		"row": 4,
+		"source": "Rect2i(561, 1122, 281, 280)",
+		"used": "Rect2i(0, 0, 80, 69)"
+	},
+	{
+		"center": "Vector2i(92, 64)",
+		"density_width": 80,
+		"frame": 3,
+		"row": 4,
+		"source": "Rect2i(842, 1122, 280, 280)",
+		"used": "Rect2i(0, 1, 77, 69)"
+	}
+]

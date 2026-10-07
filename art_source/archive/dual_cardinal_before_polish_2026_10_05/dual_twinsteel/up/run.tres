@@ -1,0 +1,40 @@
+[gd_resource type="Resource" load_steps=7 format=3]
+[ext_resource type="Script" path="res://data/weapons/weapon_family_pose_definition.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/dual_twinsteel/up/run_body.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/dual_twinsteel/up/run_hands.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/dual_twinsteel/twinsteel.png" id="4"]
+[ext_resource type="Script" path="res://data/weapons/offhand_pose_definition.gd" id="5"]
+[sub_resource type="Resource" id="offhand"]
+script = ExtResource("5")
+texture = ExtResource("4")
+grip = Vector2(11, 66)
+tip = Vector2(11, 0)
+handle_axis = Vector2(0, 1)
+hands = PackedVector2Array(97, 76, 103, 76, 105, 77, 110, 77, 105, 78, 111, 77, 104, 76, 98, 76)
+axes = PackedVector2Array(90.026634, 75.38991, 96.026634, 75.38991, 98.026634, 76.38991, 103.026634, 76.38991, 98.026634, 77.38991, 104.026634, 76.38991, 97.026634, 75.38991, 91.026634, 75.38991)
+behind_body = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0)
+visible_poses = PackedByteArray(1, 1, 1, 1, 1, 1, 1, 1)
+[resource]
+script = ExtResource("1")
+body_atlas = ExtResource("2")
+hand_atlas = ExtResource("3")
+weapon_texture = ExtResource("4")
+offhand = SubResource("offhand")
+pose_count = 8
+pose_order = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+primary_hands = PackedVector2Array(82, 77, 88, 76, 81, 77, 87, 78, 81, 78, 87, 77, 81, 76, 83, 77)
+secondary_hands = PackedVector2Array(88.973366, 76.38991, 94.973366, 75.38991, 87.973366, 76.38991, 93.973366, 77.38991, 87.973366, 77.38991, 93.973366, 76.38991, 87.973366, 75.38991, 89.973366, 76.38991)
+weapon_primary_grip = Vector2(11, 66)
+weapon_tip = Vector2(11, 0)
+mirror_cutting_edge = false
+phase_windows = PackedVector2Array(0, 3, 4, 5, 6, 7)
+queued_recovery_window = Vector2(-1, -1)
+weapon_behind_body = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0)
+single_hand_poses = PackedByteArray(1, 1, 1, 1, 1, 1, 1, 1)
+stowed_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0)
+released_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0)
+ground_clipped_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0)
+lift_pixels = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+pose_weights = PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1)
+identity_regions = Array[Rect2]([Rect2(84, 47, 23, 20), Rect2(89, 47, 23, 20), Rect2(83, 47, 23, 20), Rect2(89, 47, 23, 20), Rect2(83, 49, 23, 20), Rect2(89, 47, 23, 20), Rect2(82, 46, 23, 20), Rect2(84, 47, 23, 20)])
+allow_rest = false

@@ -1,11 +1,13 @@
 extends Resource
 
 const PlantingDefinition = preload("res://data/weapons/weapon_planting_definition.gd")
+const OffhandDefinition = preload("res://data/weapons/offhand_pose_definition.gd")
 
 ## Presentation data only. MeleeAttackComponent owns contact and timing.
 @export var body_atlas: Texture2D
 @export var hand_atlas: Texture2D
 @export var weapon_texture: Texture2D
+@export var offhand: OffhandDefinition
 @export var cell_size := Vector2i(192, 128)
 @export var columns := 4
 ## Older clips retain eight keys; longer attacks declare their own atlas rows.
@@ -24,6 +26,11 @@ const PlantingDefinition = preload("res://data/weapons/weapon_planting_definitio
 @export var lift_pixels := PackedFloat32Array([0,0,0,0,0,0,0,0])
 @export_range(0,96) var maximum_lift_pixels := 24.0
 @export var weapon_behind_body := PackedByteArray([0,0,0,0,0,0,0,0])
+## Optional true whole-blade occlusion in complete turning/rear cels.
+@export var primary_visible_poses := PackedByteArray()
+## Rear-facing cels can occlude both front grips behind an authored torso.
+## The hand atlas retains source-palm registration; it is hidden in these keys.
+@export var occluded_hand_poses := PackedByteArray()
 ## In a one-hand pose the secondary anchor gives shaft direction, not a grip.
 @export var single_hand_poses := PackedByteArray([0,0,0,0,0,0,0,0])
 ## Stowed frames use back attachment anchors and no foreground hand mask.
@@ -41,7 +48,18 @@ const PlantingDefinition = preload("res://data/weapons/weapon_planting_definitio
 @export var pose_weights := PackedFloat32Array()
 ## Registered weapon/hand overlays can move between crisp body cels.
 @export var interpolate_weapon := false
+## Rotate rigid blades around their current drawn grips; keep both glove
+## overlays fixed on the whole body. Safe for independent dual weapons.
+@export var interpolate_blade_angles := false
 @export var allow_rest := true
+## Optional authored idle action. Defaults preserve existing planted idles.
+@export var rest_start_pose := 4
+## Stop entry before glance keys; -1 retains the existing last-pose endpoint.
+@export_range(-1,63) var rest_transition_end_pose := -1
+@export var rest_transition_seconds := 0.48
+@export var rest_loop_window := Vector2(-1,-1)
+@export var rest_loop_seconds := 3.0
+@export var retrieval_end_pose := 3
 ## Optional provenance regions for native identity checks; no per-frame use.
 @export var identity_regions: Array[Rect2] = []
 ## The same complete head may follow different drawn neck sockets per pose.
@@ -50,6 +68,20 @@ const PlantingDefinition = preload("res://data/weapons/weapon_planting_definitio
 @export_range(-1,63) var linked_recovery_pose := -1
 
 func has_valid_layout() -> bool:
+	if not primary_visible_poses.is_empty():
+		if primary_visible_poses.size()!=pose_count: return false
+		for flag in primary_visible_poses:
+			if flag>1: return false
+	if allow_rest:
+		if rest_start_pose<0 or rest_start_pose>=pose_count or retrieval_end_pose<0 or retrieval_end_pose>=pose_count or not is_finite(rest_transition_seconds) or rest_transition_seconds<=0: return false
+		if rest_transition_end_pose < -1 or rest_transition_end_pose >= pose_count or (rest_transition_end_pose>=0 and rest_transition_end_pose<rest_start_pose): return false
+		if rest_loop_window!=Vector2(-1,-1):
+			if not rest_loop_window.is_finite() or rest_loop_window.x<0 or rest_loop_window.y<rest_loop_window.x or rest_loop_window.y>=pose_count or rest_loop_window.x!=floorf(rest_loop_window.x) or rest_loop_window.y!=floorf(rest_loop_window.y) or not is_finite(rest_loop_seconds) or rest_loop_seconds<=0: return false
+	if not occluded_hand_poses.is_empty() and occluded_hand_poses.size()!=pose_count: return false
+	if interpolate_weapon and interpolate_blade_angles: return false
+	# Two gloves share one foreground cel. Rotating that cel around one hilt
+	# would detach the other glove; dual clips use authored crisp cels instead.
+	if offhand!=null and (interpolate_weapon or not offhand.has_valid_layout(pose_count,cell_size)): return false
 	if not identity_regions.is_empty() and identity_regions.size()!=pose_count: return false
 	if not pose_weights.is_empty():
 		if pose_weights.size() != pose_count: return false
@@ -81,6 +113,7 @@ func has_valid_layout() -> bool:
 	else:
 		if not queued_recovery_window.is_finite() or queued_recovery_window.x!=first or queued_recovery_window.y!=pose_count-1 or queued_recovery_window.x!=floorf(queued_recovery_window.x) or queued_recovery_window.y<queued_recovery_window.x: return false
 	for index in pose_count:
+		if hands_are_occluded(index) and (weapon_behind_body[index]==0 or single_hand_poses[index]>0 or stowed_poses[index]>0 or released_poses[index]>0): return false
 		if not is_finite(lift_pixels[index]) or lift_pixels[index]>0 or lift_pixels[index]<-maximum_lift_pixels:
 			return false
 		if not Rect2(Vector2.ZERO,Vector2(cell_size)).has_point(primary_hands[index]) or not Rect2(Vector2.ZERO,Vector2(cell_size)).has_point(secondary_hands[index]) or primary_hands[index].distance_to(secondary_hands[index]) < 1.0:
@@ -88,3 +121,6 @@ func has_valid_layout() -> bool:
 	for clip in follow_up_clips:
 		if clip == null or clip.get_script()!=get_script() or not clip.follow_up_clips.is_empty() or not clip.has_valid_layout(): return false
 	return body_atlas.get_size() == Vector2(cell_size.x * columns, cell_size.y * ceili(pose_count/float(columns))) and hand_atlas.get_size() == body_atlas.get_size()
+
+func hands_are_occluded(index: int) -> bool:
+	return index>=0 and index<occluded_hand_poses.size() and occluded_hand_poses[index]>0

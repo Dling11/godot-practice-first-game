@@ -1,0 +1,182 @@
+[
+	{
+		"center": "Vector2i(112, 102)",
+		"density_height": 16,
+		"density_width": 160,
+		"frame": 0,
+		"row": 0,
+		"source": "Rect2i(0, 0, 384, 205)",
+		"used": "Rect2i(26, 1, 134, 15)"
+	},
+	{
+		"center": "Vector2i(112, 102)",
+		"density_height": 16,
+		"density_width": 160,
+		"frame": 1,
+		"row": 0,
+		"source": "Rect2i(384, 0, 384, 205)",
+		"used": "Rect2i(0, 1, 160, 15)"
+	},
+	{
+		"center": "Vector2i(112, 102)",
+		"density_height": 16,
+		"density_width": 160,
+		"frame": 2,
+		"row": 0,
+		"source": "Rect2i(768, 0, 384, 205)",
+		"used": "Rect2i(0, 1, 154, 15)"
+	},
+	{
+		"center": "Vector2i(112, 102)",
+		"density_height": 16,
+		"density_width": 160,
+		"frame": 3,
+		"row": 0,
+		"source": "Rect2i(1152, 0, 384, 205)",
+		"used": "Rect2i(11, 2, 136, 14)"
+	},
+	{
+		"center": "Vector2i(112, 96)",
+		"density_height": 85,
+		"density_width": 160,
+		"frame": 0,
+		"row": 1,
+		"source": "Rect2i(0, 205, 384, 205)",
+		"used": "Rect2i(20, 0, 140, 85)"
+	},
+	{
+		"center": "Vector2i(112, 96)",
+		"density_height": 85,
+		"density_width": 160,
+		"frame": 1,
+		"row": 1,
+		"source": "Rect2i(384, 205, 384, 205)",
+		"used": "Rect2i(0, 2, 160, 82)"
+	},
+	{
+		"center": "Vector2i(112, 96)",
+		"density_height": 85,
+		"density_width": 160,
+		"frame": 2,
+		"row": 1,
+		"source": "Rect2i(768, 205, 384, 205)",
+		"used": "Rect2i(0, 0, 154, 85)"
+	},
+	{
+		"center": "Vector2i(112, 96)",
+		"density_height": 85,
+		"density_width": 160,
+		"frame": 3,
+		"row": 1,
+		"source": "Rect2i(1152, 205, 384, 205)",
+		"used": "Rect2i(0, 0, 153, 83)"
+	},
+	{
+		"center": "Vector2i(112, 96)",
+		"density_height": 85,
+		"density_width": 160,
+		"frame": 0,
+		"row": 2,
+		"source": "Rect2i(0, 410, 384, 204)",
+		"used": "Rect2i(25, 0, 135, 85)"
+	},
+	{
+		"center": "Vector2i(112, 96)",
+		"density_height": 85,
+		"density_width": 160,
+		"frame": 1,
+		"row": 2,
+		"source": "Rect2i(384, 410, 384, 204)",
+		"used": "Rect2i(0, 3, 160, 82)"
+	},
+	{
+		"center": "Vector2i(112, 96)",
+		"density_height": 85,
+		"density_width": 160,
+		"frame": 2,
+		"row": 2,
+		"source": "Rect2i(768, 410, 384, 204)",
+		"used": "Rect2i(0, 0, 160, 85)"
+	},
+	{
+		"center": "Vector2i(112, 96)",
+		"density_height": 85,
+		"density_width": 160,
+		"frame": 3,
+		"row": 2,
+		"source": "Rect2i(1152, 410, 384, 204)",
+		"used": "Rect2i(0, 0, 155, 85)"
+	},
+	{
+		"center": "Vector2i(96, 96)",
+		"density_height": 103,
+		"density_width": 192,
+		"frame": 0,
+		"row": 3,
+		"source": "Rect2i(0, 614, 384, 205)",
+		"used": "Rect2i(16, 0, 176, 103)"
+	},
+	{
+		"center": "Vector2i(96, 96)",
+		"density_height": 103,
+		"density_width": 192,
+		"frame": 1,
+		"row": 3,
+		"source": "Rect2i(384, 614, 384, 205)",
+		"used": "Rect2i(0, 0, 192, 103)"
+	},
+	{
+		"center": "Vector2i(96, 96)",
+		"density_height": 103,
+		"density_width": 192,
+		"frame": 2,
+		"row": 3,
+		"source": "Rect2i(768, 614, 384, 205)",
+		"used": "Rect2i(0, 0, 190, 103)"
+	},
+	{
+		"center": "Vector2i(96, 96)",
+		"density_height": 103,
+		"density_width": 192,
+		"frame": 3,
+		"row": 3,
+		"source": "Rect2i(1152, 614, 384, 205)",
+		"used": "Rect2i(4, 0, 172, 103)"
+	},
+	{
+		"center": "Vector2i(112, 96)",
+		"density_height": 85,
+		"density_width": 160,
+		"frame": 0,
+		"row": 4,
+		"source": "Rect2i(0, 819, 384, 205)",
+		"used": "Rect2i(24, 0, 136, 73)"
+	},
+	{
+		"center": "Vector2i(112, 96)",
+		"density_height": 85,
+		"density_width": 160,
+		"frame": 1,
+		"row": 4,
+		"source": "Rect2i(384, 819, 384, 205)",
+		"used": "Rect2i(0, 0, 160, 81)"
+	},
+	{
+		"center": "Vector2i(112, 96)",
+		"density_height": 85,
+		"density_width": 160,
+		"frame": 2,
+		"row": 4,
+		"source": "Rect2i(768, 819, 384, 205)",
+		"used": "Rect2i(0, 0, 160, 78)"
+	},
+	{
+		"center": "Vector2i(112, 96)",
+		"density_height": 85,
+		"density_width": 160,
+		"frame": 3,
+		"row": 4,
+		"source": "Rect2i(1152, 819, 384, 205)",
+		"used": "Rect2i(0, 0, 155, 77)"
+	}
+]

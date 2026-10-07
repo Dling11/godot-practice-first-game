@@ -1,0 +1,18 @@
+{
+  "outputs": 37,
+  "rebuild_mismatches": [],
+  "source_cels": 30,
+  "pose_slots": 156,
+  "cuts": 4,
+  "authored_views": 3,
+  "body_cell": [
+    192,
+    128
+  ],
+  "native_checks": 2086,
+  "movement_checks": 195,
+  "lab_checks": 110,
+  "greatsword_regression_checks": 158,
+  "focused_review_checks": 474,
+  "owner_motion_approval": "pending"
+}

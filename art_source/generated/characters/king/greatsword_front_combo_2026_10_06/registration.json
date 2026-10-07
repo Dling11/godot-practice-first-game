@@ -1,0 +1,1172 @@
+{
+	"final_views": [
+		[
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side"
+		],
+		[
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side"
+		],
+		[
+			"side",
+			"side",
+			"side",
+			"side",
+			"down",
+			"left",
+			"left",
+			"up",
+			"up",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side"
+		],
+		[
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side"
+		]
+	],
+	"records": [
+		{
+			"copied_endpoint": true,
+			"cut": 0,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(84, 58)",
+			"final_head": "Rect2(87, 41, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				87.0,
+				75.0
+			],
+			"head": "Rect2i(86, 40, 25, 24)",
+			"key": 0,
+			"mirrored_source": false,
+			"source_key": 0,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(86, 63)",
+			"final_head": "Rect2(89, 40, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				86.0,
+				63.0
+			],
+			"head": "Rect2i(89, 40, 25, 24)",
+			"key": 1,
+			"mirrored_source": false,
+			"source_key": 1,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(111, 44)",
+			"final_head": "Rect2(84, 40, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				111.0,
+				44.0
+			],
+			"head": "Rect2i(84, 40, 25, 24)",
+			"key": 2,
+			"mirrored_source": false,
+			"source_key": 2,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(113, 65)",
+			"final_head": "Rect2(80, 38, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				113.0,
+				65.0
+			],
+			"head": "Rect2i(80, 38, 25, 24)",
+			"key": 3,
+			"mirrored_source": false,
+			"source_key": 3,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(113, 65)",
+			"final_head": "Rect2(80, 38, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				113.0,
+				65.0
+			],
+			"head": "Rect2i(80, 38, 25, 24)",
+			"key": 4,
+			"mirrored_source": false,
+			"source_key": 3,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(118, 67)",
+			"final_head": "Rect2(78, 39, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				118.0,
+				67.0
+			],
+			"head": "Rect2i(78, 39, 25, 24)",
+			"key": 5,
+			"mirrored_source": false,
+			"source_key": 4,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(118, 67)",
+			"final_head": "Rect2(78, 39, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				118.0,
+				67.0
+			],
+			"head": "Rect2i(78, 39, 25, 24)",
+			"key": 6,
+			"mirrored_source": false,
+			"source_key": 4,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(124, 85)",
+			"final_head": "Rect2(90, 46, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				124.0,
+				85.0
+			],
+			"head": "Rect2i(90, 46, 25, 24)",
+			"key": 7,
+			"mirrored_source": false,
+			"source_key": 5,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(124, 85)",
+			"final_head": "Rect2(90, 46, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				124.0,
+				85.0
+			],
+			"head": "Rect2i(90, 46, 25, 24)",
+			"key": 8,
+			"mirrored_source": false,
+			"source_key": 5,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(82, 76)",
+			"final_head": "Rect2(91, 50, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				82.0,
+				76.0
+			],
+			"head": "Rect2i(91, 50, 25, 24)",
+			"key": 9,
+			"mirrored_source": false,
+			"source_key": 6,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(82, 76)",
+			"final_head": "Rect2(91, 50, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				82.0,
+				76.0
+			],
+			"head": "Rect2i(91, 50, 25, 24)",
+			"key": 10,
+			"mirrored_source": false,
+			"source_key": 6,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(83, 75)",
+			"final_head": "Rect2(91, 52, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				83.0,
+				75.0
+			],
+			"head": "Rect2i(91, 52, 25, 24)",
+			"key": 11,
+			"mirrored_source": false,
+			"source_key": 7,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": true,
+			"cut": 0,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(84, 58)",
+			"final_head": "Rect2(87, 41, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				83.0,
+				75.0
+			],
+			"head": "Rect2i(91, 52, 25, 24)",
+			"key": 12,
+			"mirrored_source": false,
+			"source_key": 7,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(82, 76)",
+			"final_head": "Rect2(91, 50, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				82.0,
+				76.0
+			],
+			"head": "Rect2i(91, 50, 25, 24)",
+			"key": 13,
+			"mirrored_source": false,
+			"source_key": 6,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(83, 75)",
+			"final_head": "Rect2(91, 52, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				83.0,
+				75.0
+			],
+			"head": "Rect2i(91, 52, 25, 24)",
+			"key": 14,
+			"mirrored_source": false,
+			"source_key": 7,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": true,
+			"cut": 0,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(120, 87)",
+			"final_head": "Rect2(87, 47, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				83.0,
+				75.0
+			],
+			"head": "Rect2i(91, 52, 25, 24)",
+			"key": 15,
+			"mirrored_source": false,
+			"source_key": 7,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(120, 87)",
+			"final_head": "Rect2(87, 47, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				120.0,
+				87.0
+			],
+			"head": "Rect2i(87, 47, 25, 24)",
+			"key": 0,
+			"mirrored_source": false,
+			"source_key": 0,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(110, 74)",
+			"final_head": "Rect2(93, 45, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				110.0,
+				74.0
+			],
+			"head": "Rect2i(93, 45, 25, 24)",
+			"key": 1,
+			"mirrored_source": false,
+			"source_key": 1,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(121, 86)",
+			"final_head": "Rect2(88, 48, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				121.0,
+				86.0
+			],
+			"head": "Rect2i(88, 48, 25, 24)",
+			"key": 2,
+			"mirrored_source": false,
+			"source_key": 2,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(116, 66)",
+			"final_head": "Rect2(84, 41, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				116.0,
+				66.0
+			],
+			"head": "Rect2i(84, 41, 25, 24)",
+			"key": 3,
+			"mirrored_source": false,
+			"source_key": 3,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(116, 66)",
+			"final_head": "Rect2(84, 41, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				116.0,
+				66.0
+			],
+			"head": "Rect2i(84, 41, 25, 24)",
+			"key": 4,
+			"mirrored_source": false,
+			"source_key": 3,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(115, 49)",
+			"final_head": "Rect2(76, 43, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				115.0,
+				49.0
+			],
+			"head": "Rect2i(76, 43, 25, 24)",
+			"key": 5,
+			"mirrored_source": false,
+			"source_key": 4,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(115, 49)",
+			"final_head": "Rect2(76, 43, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				115.0,
+				49.0
+			],
+			"head": "Rect2i(76, 43, 25, 24)",
+			"key": 6,
+			"mirrored_source": false,
+			"source_key": 4,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(112, 43)",
+			"final_head": "Rect2(78, 41, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				112.0,
+				43.0
+			],
+			"head": "Rect2i(78, 41, 25, 24)",
+			"key": 7,
+			"mirrored_source": false,
+			"source_key": 5,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(112, 43)",
+			"final_head": "Rect2(78, 41, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				112.0,
+				43.0
+			],
+			"head": "Rect2i(78, 41, 25, 24)",
+			"key": 8,
+			"mirrored_source": false,
+			"source_key": 5,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(112, 59)",
+			"final_head": "Rect2(82, 40, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				112.0,
+				59.0
+			],
+			"head": "Rect2i(82, 40, 25, 24)",
+			"key": 9,
+			"mirrored_source": false,
+			"source_key": 6,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(112, 59)",
+			"final_head": "Rect2(82, 40, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				112.0,
+				59.0
+			],
+			"head": "Rect2i(82, 40, 25, 24)",
+			"key": 10,
+			"mirrored_source": false,
+			"source_key": 6,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(83, 62)",
+			"final_head": "Rect2(86, 42, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				83.0,
+				62.0
+			],
+			"head": "Rect2i(86, 42, 25, 24)",
+			"key": 11,
+			"mirrored_source": false,
+			"source_key": 7,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": true,
+			"cut": 1,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(84, 58)",
+			"final_head": "Rect2(87, 41, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				83.0,
+				62.0
+			],
+			"head": "Rect2i(86, 42, 25, 24)",
+			"key": 12,
+			"mirrored_source": false,
+			"source_key": 7,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(112, 59)",
+			"final_head": "Rect2(82, 40, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				112.0,
+				59.0
+			],
+			"head": "Rect2i(82, 40, 25, 24)",
+			"key": 13,
+			"mirrored_source": false,
+			"source_key": 6,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(83, 62)",
+			"final_head": "Rect2(86, 42, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				83.0,
+				62.0
+			],
+			"head": "Rect2i(86, 42, 25, 24)",
+			"key": 14,
+			"mirrored_source": false,
+			"source_key": 7,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": true,
+			"cut": 1,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(85, 65)",
+			"final_head": "Rect2(86, 43, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				83.0,
+				62.0
+			],
+			"head": "Rect2i(86, 42, 25, 24)",
+			"key": 15,
+			"mirrored_source": false,
+			"source_key": 7,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(85, 65)",
+			"final_head": "Rect2(86, 43, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				85.0,
+				65.0
+			],
+			"head": "Rect2i(86, 43, 25, 24)",
+			"key": 0,
+			"mirrored_source": false,
+			"source_key": 0,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(85, 65)",
+			"final_head": "Rect2(86, 43, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				85.0,
+				65.0
+			],
+			"head": "Rect2i(86, 43, 25, 24)",
+			"key": 1,
+			"mirrored_source": false,
+			"source_key": 0,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(115, 69)",
+			"final_head": "Rect2(81, 39, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				115.0,
+				69.0
+			],
+			"head": "Rect2i(81, 39, 25, 24)",
+			"key": 2,
+			"mirrored_source": false,
+			"source_key": 1,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(115, 69)",
+			"final_head": "Rect2(81, 39, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				115.0,
+				69.0
+			],
+			"head": "Rect2i(81, 39, 25, 24)",
+			"key": 3,
+			"mirrored_source": false,
+			"source_key": 1,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(112, 72)",
+			"final_head": "Rect2(78, 37, 32, 29)",
+			"final_view": "down",
+			"grip": [
+				112.0,
+				72.0
+			],
+			"head": "Rect2i(78, 37, 32, 29)",
+			"key": 4,
+			"mirrored_source": false,
+			"source_key": 2,
+			"view": "down"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(77, 76)",
+			"final_head": "Rect2(78, 39, 25, 24)",
+			"final_view": "left",
+			"grip": [
+				77.0,
+				76.0
+			],
+			"head": "Rect2i(78, 39, 25, 24)",
+			"key": 5,
+			"mirrored_source": false,
+			"source_key": 3,
+			"view": "left"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(77, 69)",
+			"final_head": "Rect2(86, 39, 25, 24)",
+			"final_view": "left",
+			"grip": [
+				77.0,
+				69.0
+			],
+			"head": "Rect2i(86, 39, 25, 24)",
+			"key": 6,
+			"mirrored_source": true,
+			"source_key": 4,
+			"view": "left"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(81, 77)",
+			"final_head": "Rect2(83, 42, 23, 20)",
+			"final_view": "up",
+			"grip": [
+				81.0,
+				77.0
+			],
+			"head": "Rect2i(83, 42, 23, 20)",
+			"key": 7,
+			"mirrored_source": false,
+			"source_key": 5,
+			"view": "up"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(119, 67)",
+			"final_head": "Rect2(84, 41, 23, 20)",
+			"final_view": "up",
+			"grip": [
+				119.0,
+				67.0
+			],
+			"head": "Rect2i(84, 41, 23, 20)",
+			"key": 8,
+			"mirrored_source": false,
+			"source_key": 6,
+			"view": "up"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(84, 65)",
+			"final_head": "Rect2(87, 42, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				84.0,
+				65.0
+			],
+			"head": "Rect2i(87, 42, 25, 24)",
+			"key": 9,
+			"mirrored_source": false,
+			"source_key": 7,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(84, 65)",
+			"final_head": "Rect2(87, 42, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				84.0,
+				65.0
+			],
+			"head": "Rect2i(87, 42, 25, 24)",
+			"key": 10,
+			"mirrored_source": false,
+			"source_key": 7,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(84, 65)",
+			"final_head": "Rect2(87, 42, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				84.0,
+				65.0
+			],
+			"head": "Rect2i(87, 42, 25, 24)",
+			"key": 11,
+			"mirrored_source": false,
+			"source_key": 7,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": true,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(84, 58)",
+			"final_head": "Rect2(87, 41, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				84.0,
+				65.0
+			],
+			"head": "Rect2i(87, 42, 25, 24)",
+			"key": 12,
+			"mirrored_source": false,
+			"source_key": 7,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(84, 65)",
+			"final_head": "Rect2(87, 42, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				84.0,
+				65.0
+			],
+			"head": "Rect2i(87, 42, 25, 24)",
+			"key": 13,
+			"mirrored_source": false,
+			"source_key": 7,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(84, 65)",
+			"final_head": "Rect2(87, 42, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				84.0,
+				65.0
+			],
+			"head": "Rect2i(87, 42, 25, 24)",
+			"key": 14,
+			"mirrored_source": false,
+			"source_key": 7,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": true,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(86, 65)",
+			"final_head": "Rect2(91, 47, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				84.0,
+				65.0
+			],
+			"head": "Rect2i(87, 42, 25, 24)",
+			"key": 15,
+			"mirrored_source": false,
+			"source_key": 7,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(86, 65)",
+			"final_head": "Rect2(91, 47, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				86.0,
+				65.0
+			],
+			"head": "Rect2i(91, 47, 25, 24)",
+			"key": 0,
+			"mirrored_source": false,
+			"source_key": 0,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(83, 81)",
+			"final_head": "Rect2(85, 53, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				83.0,
+				81.0
+			],
+			"head": "Rect2i(85, 53, 25, 24)",
+			"key": 1,
+			"mirrored_source": false,
+			"source_key": 1,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(84, 63)",
+			"final_head": "Rect2(88, 49, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				84.0,
+				63.0
+			],
+			"head": "Rect2i(88, 49, 25, 24)",
+			"key": 2,
+			"mirrored_source": false,
+			"source_key": 2,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(95, 54)",
+			"final_head": "Rect2(95, 47, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				95.0,
+				54.0
+			],
+			"head": "Rect2i(95, 47, 25, 24)",
+			"key": 3,
+			"mirrored_source": false,
+			"source_key": 3,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(131, 77)",
+			"final_head": "Rect2(97, 44, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				131.0,
+				77.0
+			],
+			"head": "Rect2i(97, 44, 25, 24)",
+			"key": 4,
+			"mirrored_source": false,
+			"source_key": 4,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(131, 77)",
+			"final_head": "Rect2(97, 44, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				131.0,
+				77.0
+			],
+			"head": "Rect2i(97, 44, 25, 24)",
+			"key": 5,
+			"mirrored_source": false,
+			"source_key": 4,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(121, 86)",
+			"final_head": "Rect2(93, 55, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				121.0,
+				86.0
+			],
+			"head": "Rect2i(93, 55, 25, 24)",
+			"key": 6,
+			"mirrored_source": false,
+			"source_key": 5,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(121, 86)",
+			"final_head": "Rect2(93, 55, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				121.0,
+				86.0
+			],
+			"head": "Rect2i(93, 55, 25, 24)",
+			"key": 7,
+			"mirrored_source": false,
+			"source_key": 5,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(85, 83)",
+			"final_head": "Rect2(90, 52, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				85.0,
+				83.0
+			],
+			"head": "Rect2i(90, 52, 25, 24)",
+			"key": 8,
+			"mirrored_source": false,
+			"source_key": 6,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(85, 83)",
+			"final_head": "Rect2(90, 52, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				85.0,
+				83.0
+			],
+			"head": "Rect2i(90, 52, 25, 24)",
+			"key": 9,
+			"mirrored_source": false,
+			"source_key": 6,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(85, 83)",
+			"final_head": "Rect2(90, 52, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				85.0,
+				83.0
+			],
+			"head": "Rect2i(90, 52, 25, 24)",
+			"key": 10,
+			"mirrored_source": false,
+			"source_key": 6,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(84, 77)",
+			"final_head": "Rect2(85, 42, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				84.0,
+				77.0
+			],
+			"head": "Rect2i(85, 42, 25, 24)",
+			"key": 11,
+			"mirrored_source": false,
+			"source_key": 7,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": true,
+			"cut": 3,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(84, 58)",
+			"final_head": "Rect2(87, 41, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				84.0,
+				77.0
+			],
+			"head": "Rect2i(85, 42, 25, 24)",
+			"key": 12,
+			"mirrored_source": false,
+			"source_key": 7,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(85, 83)",
+			"final_head": "Rect2(90, 52, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				85.0,
+				83.0
+			],
+			"head": "Rect2i(90, 52, 25, 24)",
+			"key": 13,
+			"mirrored_source": false,
+			"source_key": 6,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(84, 77)",
+			"final_head": "Rect2(85, 42, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				84.0,
+				77.0
+			],
+			"head": "Rect2i(85, 42, 25, 24)",
+			"key": 14,
+			"mirrored_source": false,
+			"source_key": 7,
+			"view": "side"
+		},
+		{
+			"copied_endpoint": true,
+			"cut": 3,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(84, 58)",
+			"final_head": "Rect2(87, 41, 25, 24)",
+			"final_view": "side",
+			"grip": [
+				84.0,
+				77.0
+			],
+			"head": "Rect2i(85, 42, 25, 24)",
+			"key": 15,
+			"mirrored_source": false,
+			"source_key": 7,
+			"view": "side"
+		}
+	],
+	"reference_heads": {
+		"down": "Rect2i(80, 47, 32, 29)",
+		"left": "Rect2i(80, 41, 25, 24)",
+		"side": "Rect2i(87, 41, 25, 24)",
+		"up": "Rect2i(87, 51, 23, 20)"
+	}
+}

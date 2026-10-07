@@ -72,6 +72,21 @@ func configure(
 	synergy_title.text = item.synergy_name.to_upper()
 	synergy_title.add_theme_color_override("font_color", rarity_color)
 	synergy_body.text = item.synergy_description
+	if item.show_combo_details and item.weapon_definition != null:
+		synergy_body.text += "\n" + WeaponCombatReadout.combo_description(item.weapon_definition)
+		synergy_body.add_theme_font_size_override("font_size",8)
+		power_label.tooltip_text = "Base roll is multiplied by each combo step. Base DPS is mean full-combo damage divided by wind-up + contact + recovery, per target. It excludes missed hits, defenses, criticals, buffs, hitstop and attack-speed gear. Skill Power feeds abilities separately."
+	else:
+		synergy_body.remove_theme_font_size_override("font_size")
+		power_label.tooltip_text = ""
+	# Only opted-in items receive a larger inspection; legacy families retain42px.
+	var icon_edge := 64.0 if item.show_combo_details else 42.0
+	item_icon.custom_minimum_size = Vector2.ONE * icon_edge
+	item_icon.offset_left = -icon_edge * 0.5
+	item_icon.offset_top = -icon_edge * 0.5
+	item_icon.offset_right = icon_edge * 0.5
+	item_icon.offset_bottom = icon_edge * 0.5
+	item_icon.get_parent().custom_minimum_size.y = icon_edge
 	state_label.text = (
 		"EQUIPPED • ACTIVE EFFECTS APPLIED"
 		if equipped
@@ -91,8 +106,16 @@ func configure(
 func configure_material(item: MaterialDefinition, quantity: int) -> void:
 	current_definition = null
 	current_material_definition = item
+	synergy_body.remove_theme_font_size_override("font_size")
+	power_label.tooltip_text = ""
 	var rarity_color := item.get_rarity_color()
 	item_icon.texture = item.icon
+	item_icon.custom_minimum_size = Vector2(42, 42)
+	item_icon.offset_left = -21
+	item_icon.offset_top = -21
+	item_icon.offset_right = 21
+	item_icon.offset_bottom = 21
+	item_icon.get_parent().custom_minimum_size.y = 42
 	item_icon.visible = item.icon != null
 	fallback_glyph.visible = item.icon == null
 	fallback_glyph.text = item.get_family_glyph()

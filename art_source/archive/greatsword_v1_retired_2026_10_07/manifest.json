@@ -1,0 +1,74 @@
+[
+  {
+    "Path": "data/weapons/king_royal_greatsword.tres",
+    "SHA256": "E92D8DD34FFD95B590050A9E33FBCAB02BB8A7F3C55C3242C729C9AB52C40EC4"
+  },
+  {
+    "Path": "data/items/equipment/king_royal_greatsword.tres",
+    "SHA256": "CD221C3F8A985D5F93F2A5B92FAACCA9A2334790F829488719A54224165560B9"
+  },
+  {
+    "Path": "tests/king_greatsword_gameplay_smoke.gd",
+    "SHA256": "3CBA1367EBD9EF45A445582F3946FAA532DA1AF75E4677B5BC27723A47ADBA57"
+  },
+  {
+    "Path": "tests/king_greatsword_gameplay_smoke.gd.uid",
+    "SHA256": "D798AC739E08FD9DCE7091B3D1846B4C0B98D8D30B3AEB271E57C1CBFBBD79ED"
+  },
+  {
+    "Path": "tests/king_oathbound_greatsword_smoke.gd",
+    "SHA256": "7F1276BDBDB10E4E6A45175FFA2F86011CE9017EDAADF8794F948C6D168C4620"
+  },
+  {
+    "Path": "tests/king_oathbound_greatsword_smoke.gd.uid",
+    "SHA256": "4C42FE9DCCF2B307E56553078FEAEBADB01258AB72E87838F768659ECF6E0811"
+  },
+  {
+    "Path": "tests/king_directional_slash_style_smoke.gd",
+    "SHA256": "AFBD2626B58D855B6935771364B4906B7A11EA7AD554D1D9AAB3585FA0FEEB0B"
+  },
+  {
+    "Path": "tests/king_directional_slash_style_smoke.gd.uid",
+    "SHA256": "9476923480345C0ED6B67096E34634E06857ED60F056316F7843A5C98106AFB9"
+  },
+  {
+    "Path": "tests/king_practice_input_smoke.gd",
+    "SHA256": "C9F81937225197B6FB3E4091FA38B8B1339068CE9116B1D34F7AB2C88B0D36BF"
+  },
+  {
+    "Path": "tests/king_practice_input_smoke.gd.uid",
+    "SHA256": "CFF8B831C0C62C964E4C030F4F87CCD95CEF7851527F521990030D16C6E9E491"
+  },
+  {
+    "Path": "tools/capture_king_directional_carry.gd",
+    "SHA256": "9A22E656ABBE7AF2948353E686510D5D325666551B06B9CF5D57B5DA6E258CF3"
+  },
+  {
+    "Path": "tools/capture_king_directional_carry.gd.uid",
+    "SHA256": "926A8C94CA4952E2F53F68E923DA2F35D0763486502B41484364399DBC053EF5"
+  },
+  {
+    "Path": "tools/capture_king_upward_cut.gd",
+    "SHA256": "DF67D858E1B8E779F1568F476CDEE4F192B8891CF766970FAF8A555F5315B59E"
+  },
+  {
+    "Path": "tools/capture_king_upward_cut.gd.uid",
+    "SHA256": "4DE423EBF112E7C8567B5E33A5BBEC7F3787A18B6B8999E92BCFB1929417C2B3"
+  },
+  {
+    "Path": "data/weapons/families/royal_greatsword/combo.tres",
+    "SHA256": "A88E75C86731EA7AB69F05CC84B8F4AAAC54794D24E7F8A4D77F85EACFE43459"
+  },
+  {
+    "Path": "data/weapons/families/royal_greatsword/linked_turn.tres",
+    "SHA256": "55B04F8E532BCDC6C64B598E9BF250931427F029DAB91646E8FAE0E6BBAF649F"
+  },
+  {
+    "Path": "data/weapons/families/royal_greatsword/poses.tres",
+    "SHA256": "C64413AA1227286421697A704724A893707188C65F03AB01FC3F5CF02A789A86"
+  },
+  {
+    "Path": "data/weapons/families/royal_greatsword/presentation.tres",
+    "SHA256": "97C67691C6467DC5BE2775633107651F6935B52BD72EFFF692DC804FBDBD5179"
+  }
+]

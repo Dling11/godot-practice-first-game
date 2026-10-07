@@ -1,5 +1,13 @@
 # Audio Attribution
 
+## King sword / axe / Twinsteel accepted hits (2026-10-06)
+
+- Runtime: `sfx/player/weapon_contact/contact_1.wav`, `contact_2.wav`, `contact_3.wav`.
+- Source: **Impact**, Iwan “qubodup” Gabovitch, [OpenGameArt source and CC0 license](https://opengameart.org/content/impact). Downloaded 2026-10-06 from the page's `qubodupImpact.7z` attachment. Only `qubodupImpactMeat01.ogg` and `qubodupImpactMeat02.ogg` supply the runtime layer; no metal sample is used.
+- Processing: mono decode, near-silence trim, short end fade, peak normalization to -4dBFS. Third variation blends the two body impacts at40/60. Family pitch and gain remain presentation-only: sword1.0/-6dB, axe0.82/-4dB, dual1.14/-8dB, with small repeating pitch offsets.
+- Original archive, extracted recordings and source license page are retained under `art_source/audio/weapon_contact_2026_10_06/` with `.gdignore`. Rebuild: `tools/build_weapon_contact_audio.gd`. Native source/hash/duration/level manifest: `art_source/review/combat/weapon_finalize_2026_10_06/audio_manifest.json`.
+- This replaces normal accepted-hit sounds for those three weapons only. Existing swing/skill/incoming-damage sounds and Royal Greatsword audio are preserved. The earlier original synthesis is archived as an unused prototype, not shipped sound.
+
 ## Hollow outdoor ambience (2026-10-03)
 
 - Runtime bed: `ambience/hollow_wind_loop.mp3`, **Ambiance_Wind_Forest_Trees_Loop_01.wav**, Nox_Sound. [Recorded source and CC0 license](https://freesound.org/people/Nox_Sound/sounds/530908/). Roughly41s forest wind loop; unmodified [public HQ MP3 preview](https://cdn.freesound.org/previews/530/530908_9250976-hq.mp3), not the original48kHz WAV.
@@ -218,3 +226,9 @@ Four original deterministic cues: `sfx/abilities/king/worldsplitter_{gather,desc
 - `music/dead_forest_dark_place.ogg`: **Dark Place (loop)**, SkyleTheFrench. [Primary source and CC0 dedication](https://opengameart.org/content/dark-place-loop); [original download](https://opengameart.org/sites/default/files/dark_place.ogg). SHA256 `C78A433139ACE4A050B5D4A1B9B94BCF1F04D059345C849C7C234A2FE0EDA102`. Complete looping OGG for Stage V exploration/sentries; the existing Varkuun track still owns boss combat.
 
 Downloaded 2026-10-03. Both are external licensed compositions, not generated/original music authored by this project. Credits are retained although their CC0 dedication does not require attribution. Subjective mix and musical seams remain owner listening checks.
+
+## Greatsword accepted-contact finisher (2026-10-07)
+
+`sfx/player/weapon_contact/greatsword_finisher.wav` reuses the retained **Impact** pack by Iwan “qubodup” Gabovitch, [source and CC0 dedication](https://opengameart.org/content/impact). Original pack SHA256 `98D72B55D6F78A32072439ED4D052FC43FDD80B8B409D18A9BB3150FC2CCD97B`; source recordings/license remain under `art_source/audio/weapon_contact_2026_10_06/`.
+
+`tools/build_greatsword_contact_audio.gd` mixes 65% Meat01 +20% Wood +30% Stone offline, trims/fades and normalizes mono44.1kHz16-bit PCM to approximately-4dBFS. No metallic recording, external download or runtime DSP is added. Normal contacts reuse existing three meat variations at0.74 pitch/-4dB; the jump uses this mix at0.9/-4dB once per accepted cleave. Existing ground sound is separate. Exact hash, duration, processing and audition are retained in `art_source/review/combat/weapon_impact_closure_2026_10_07/audio_manifest.json`.

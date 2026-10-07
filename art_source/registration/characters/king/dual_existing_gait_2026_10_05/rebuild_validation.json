@@ -1,0 +1,12 @@
+{
+  "runtime_files": 65,
+  "identical_rebuilds": 65,
+  "rebuild_mismatches": [],
+  "intentionally_changed": 63,
+  "unchanged_runtime": [
+    "assets/characters/playable/king/dual_twinsteel\\swing.png",
+    "assets/characters/playable/king/dual_twinsteel\\twinsteel.png"
+  ],
+  "protected_files": 92,
+  "protected_mismatches": []
+}

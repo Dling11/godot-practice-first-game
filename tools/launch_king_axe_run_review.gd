@@ -7,7 +7,7 @@ var horizontal_motion: HorizontalMotion
 
 func open_review() -> void:
 	await super.open_review()
-	root.title = "Battle of Gods — Axe V6 BACK MOUNT (NO SAVES / REWARDS)"
+	root.title = "Battle of Gods — Iron Beard Axe / Side Review (NO SAVES / REWARDS)"
 	var feedback := CombatFeedbackPresenter.find_for_player(stage.player)
 	if feedback!=null: feedback.hitstop_enabled = false
 	horizontal_motion = HorizontalMotion.new()
@@ -16,7 +16,7 @@ func open_review() -> void:
 	horizontal_motion.running_clip = RUN_POSES
 	stage.player.add_child(horizontal_motion)
 	var column: VBoxContainer = toolbar.get_child(0)
-	(column.get_child(0) as Label).text = "AXE V6 · BACK MOUNT\nA / D: side-facing run, axe at back\nSPACE / click: draw / cut\nTAB: playable practice / Bag\nFive-move combo · NO SAVES"
+	(column.get_child(0) as Label).text = "IRON BEARD · BACK MOUNT\nA / D: side-facing run, axe at back\nSPACE / click: draw / cut\nTAB: playable practice / Bag\nChop / rise / head push / hop / spin · NO SAVES"
 	_button(column,"Playable practice / Bag [TAB]",open_playable_practice)
 	for child in stage.get_children():
 		if child is ReviewInput: child.practice = open_playable_practice

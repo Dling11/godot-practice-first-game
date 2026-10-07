@@ -77,6 +77,10 @@ func _ready() -> void:
 	var king_review := preload("res://levels/combat_lab/king_combat_review.gd").new()
 	king_review.name = "KingCombatReview"
 	add_child(king_review)
+	var weapon_review := preload("res://levels/combat_lab/weapon_review.gd").new()
+	weapon_review.lab = self
+	weapon_review.name = "Weapons"
+	review_tabs.add_child(weapon_review)
 	review_tabs.get_tab_bar().focus_mode = Control.FOCUS_NONE
 	review_tabs.tab_changed.connect(_on_review_tab_changed)
 	player.testing_preset_applied.connect(_on_testing_preset_applied)
@@ -104,7 +108,7 @@ func _on_review_tab_changed(index: int) -> void:
 
 
 func _on_testing_preset_applied(_level: int, _coins: int) -> void:
-	show_skills_tab()
+	if review_tabs.current_tab!=2: show_skills_tab()
 
 
 func _style_review_panel() -> void:

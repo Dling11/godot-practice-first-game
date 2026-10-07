@@ -1,0 +1,17 @@
+[
+  {
+    "path": "jump_source.png",
+    "bytes": 1605612,
+    "sha256": "0394604B18AEC00BF1EA31BE246E8A4F1AC8FFD8DC6424B09C1B87CFCF4FCA63"
+  },
+  {
+    "path": "impact_source.png",
+    "bytes": 757746,
+    "sha256": "3C012476985D9F43ED5E60D51824C329D8A41AFD28E5CD97183B96DB42B5BC96"
+  },
+  {
+    "path": "prompts.json",
+    "bytes": 4629,
+    "sha256": "670A0DE3F4F4B750D486DEC5C9145BA54A9A4FECCF26B239DEADDC20FA9E3A14"
+  }
+]

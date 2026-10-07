@@ -32,6 +32,7 @@ var _camera_tween: Tween
 var _hitstop_active := false
 var _melee_shared_feedback_consumed := false
 var _last_ability_impact_physics_frame := -1
+var _weapon_impact_index := 0
 var _hit_flash_material: ShaderMaterial
 
 
@@ -76,7 +77,17 @@ func _on_player_hit_landed(target: HurtboxComponent, info: DamageInfo) -> void:
 	_flash_target(target)
 	if owns_shared_feedback:
 		_request_hitstop(_resolve_basic_hitstop(info.amount))
-		_play_sound_at(sword_hit_sound, target.global_position, 1.0)
+		_play_basic_impact(target.global_position)
+
+
+func _play_basic_impact(position: Vector2) -> void:
+	var attack := player.attack_component
+	var audio := attack.weapon.get_hit_audio_for_step(attack.combo_step)
+	if audio == null or audio.variations.is_empty():
+		_play_sound_at(sword_hit_sound, position, 1.0)
+		return
+	_play_sound_at(audio.stream_for(_weapon_impact_index), position, audio.pitch_for(_weapon_impact_index), 0.0, audio.volume_db)
+	_weapon_impact_index += 1
 
 
 func _resolve_basic_hitstop(accepted_damage: float) -> float:
@@ -230,7 +241,8 @@ func _play_sound_at(
 	stream: AudioStream,
 	position: Vector2,
 	pitch: float,
-	from_position_seconds: float = 0.0
+	from_position_seconds: float = 0.0,
+	volume_db: float = 0.0
 ) -> void:
 	if stream == null or DisplayServer.get_name() == "headless":
 		return
@@ -238,6 +250,7 @@ func _play_sound_at(
 	player_2d.stream = stream
 	player_2d.bus = AudioDirector.SFX_BUS
 	player_2d.pitch_scale = pitch
+	player_2d.volume_db = volume_db
 	effects_parent.add_child(player_2d)
 	player_2d.global_position = position
 	player_2d.finished.connect(player_2d.queue_free)

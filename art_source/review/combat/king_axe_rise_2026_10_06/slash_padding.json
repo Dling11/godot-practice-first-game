@@ -1,0 +1,182 @@
+{
+  "threshold_alpha": 16,
+  "source": "assets/characters/playable/king/axe_flow/swing.png",
+  "records": [
+    {
+      "row": 0,
+      "frame": 0,
+      "alpha_bounds": [
+        73,
+        17,
+        115,
+        112
+      ],
+      "opaque_edge_pixels": 0
+    },
+    {
+      "row": 0,
+      "frame": 1,
+      "alpha_bounds": [
+        45,
+        16,
+        113,
+        115
+      ],
+      "opaque_edge_pixels": 0
+    },
+    {
+      "row": 0,
+      "frame": 2,
+      "alpha_bounds": [
+        37,
+        16,
+        108,
+        113
+      ],
+      "opaque_edge_pixels": 0
+    },
+    {
+      "row": 0,
+      "frame": 3,
+      "alpha_bounds": [
+        45,
+        20,
+        99,
+        110
+      ],
+      "opaque_edge_pixels": 0
+    },
+    {
+      "row": 1,
+      "frame": 0,
+      "alpha_bounds": [
+        48,
+        23,
+        116,
+        119
+      ],
+      "opaque_edge_pixels": 0
+    },
+    {
+      "row": 1,
+      "frame": 1,
+      "alpha_bounds": [
+        27,
+        15,
+        119,
+        119
+      ],
+      "opaque_edge_pixels": 0
+    },
+    {
+      "row": 1,
+      "frame": 2,
+      "alpha_bounds": [
+        27,
+        20,
+        108,
+        107
+      ],
+      "opaque_edge_pixels": 0
+    },
+    {
+      "row": 1,
+      "frame": 3,
+      "alpha_bounds": [
+        35,
+        20,
+        97,
+        100
+      ],
+      "opaque_edge_pixels": 0
+    },
+    {
+      "row": 2,
+      "frame": 0,
+      "alpha_bounds": [
+        62,
+        8,
+        112,
+        102
+      ],
+      "opaque_edge_pixels": 0
+    },
+    {
+      "row": 2,
+      "frame": 1,
+      "alpha_bounds": [
+        36,
+        8,
+        119,
+        105
+      ],
+      "opaque_edge_pixels": 0
+    },
+    {
+      "row": 2,
+      "frame": 2,
+      "alpha_bounds": [
+        8,
+        10,
+        116,
+        106
+      ],
+      "opaque_edge_pixels": 0
+    },
+    {
+      "row": 2,
+      "frame": 3,
+      "alpha_bounds": [
+        33,
+        46,
+        104,
+        106
+      ],
+      "opaque_edge_pixels": 0
+    },
+    {
+      "row": 3,
+      "frame": 0,
+      "alpha_bounds": [
+        65,
+        24,
+        112,
+        69
+      ],
+      "opaque_edge_pixels": 0
+    },
+    {
+      "row": 3,
+      "frame": 1,
+      "alpha_bounds": [
+        12,
+        23,
+        116,
+        99
+      ],
+      "opaque_edge_pixels": 0
+    },
+    {
+      "row": 3,
+      "frame": 2,
+      "alpha_bounds": [
+        11,
+        20,
+        116,
+        100
+      ],
+      "opaque_edge_pixels": 0
+    },
+    {
+      "row": 3,
+      "frame": 3,
+      "alpha_bounds": [
+        11,
+        21,
+        116,
+        104
+      ],
+      "opaque_edge_pixels": 0
+    }
+  ]
+}

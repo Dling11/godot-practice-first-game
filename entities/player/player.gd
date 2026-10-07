@@ -29,6 +29,7 @@ const PRIMARY_CLICK_ENGAGE_WINDOW_MSEC := 520
 const PRIMARY_CLICK_REPEAT_RADIUS := 14.0
 
 const PlayerInputSourceScript = preload("res://entities/player/components/player_input_source.gd")
+const HeldAttackScript = preload("res://entities/player/components/player_held_attack_component.gd")
 const PlayerMovementComponentScript = preload("res://entities/player/components/player_movement_component.gd")
 const MeleeAttackComponentScript = preload("res://entities/player/components/melee_attack_component.gd")
 const EvadeComponentScript = preload("res://entities/player/components/evade_component.gd")
@@ -82,9 +83,16 @@ var _last_primary_click_world_position := Vector2.ZERO
 var _applied_knockback_velocity := Vector2.ZERO
 var _was_ability_movement_active := false
 var _cinematic_locked := false
+var held_attack: PlayerHeldAttackComponent
+var _buffered_primary_from_hold := false
 
 
 func _ready() -> void:
+	held_attack = HeldAttackScript.new()
+	held_attack.actor = self
+	held_attack.name = "HeldAttackIntent"
+	add_child(held_attack)
+	interaction_started.connect(held_attack.cancel)
 	_restore_run_health()
 	health_component.health_changed.connect(_sync_run_health)
 	health_component.died.connect(_on_died)
@@ -270,6 +278,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if request_world_primary_click(get_global_mouse_position(), event.double_click):
+			held_attack.begin_world_press()
 			get_viewport().set_input_as_handled()
 		return
 	if event.is_action_pressed("player_attack_primary"):
@@ -293,6 +302,7 @@ func set_cinematic_locked(value: bool) -> void:
 	_cinematic_locked = value
 	if not value:
 		return
+	held_attack.cancel()
 	_clear_buffered_action()
 	_cancel_all_targeting()
 	combat_targeting.clear_target()
@@ -346,6 +356,7 @@ func try_begin_root_restraint(source: Node, break_points: int) -> bool:
 	## invulnerability is deliberately cancelled and cannot bypass this mechanic.
 	if evade_component.is_dashing():
 		return false
+	held_attack.cancel()
 	_clear_buffered_action()
 	_cancel_all_targeting()
 	attack_component.cancel_attack()
@@ -424,6 +435,17 @@ func request_directional_primary_attack(world_position: Vector2) -> bool:
 	if not attack_direction.is_zero_approx():
 		_set_movement_facing_direction(attack_direction)
 	return request_primary_attack()
+
+
+func request_held_primary_attack(world_position: Vector2) -> bool:
+	# Coalesce repeated intent into one normal cut, without replacing a skill,
+	# dodge or deliberate click already in the single action buffer.
+	if _buffered_action != BufferedAction.NONE:
+		return false
+	var accepted := request_directional_primary_attack(world_position)
+	if accepted and _buffered_action == BufferedAction.PRIMARY_ATTACK:
+		_buffered_primary_from_hold = true
+	return accepted
 
 
 func request_world_primary_click(world_position: Vector2, native_multi_click := false) -> bool:
@@ -513,6 +535,7 @@ func _try_assisted_primary_attack() -> void:
 
 
 func request_evade(direction: Vector2) -> bool:
+	held_attack.cancel()
 	if is_defeated or is_in_hit_recovery():
 		return false
 	if is_restrained():
@@ -549,6 +572,7 @@ func request_ability_1() -> bool:
 
 
 func request_ability(slot_number: int) -> bool:
+	held_attack.cancel()
 	var component := get_ability_component_for_slot(slot_number)
 	var direction := facing_direction
 	if is_restrained() or is_in_hit_recovery():
@@ -836,6 +860,7 @@ func _buffer_action(action: BufferedAction, direction: Vector2, ability_slot := 
 	## One latest intent survives a short window, or the current family cut's
 	## remaining commitment. It never waits through cooldowns or stacks actions.
 	_buffered_action = action
+	_buffered_primary_from_hold = false
 	_buffered_ability_slot = ability_slot
 	_buffered_action_direction = (
 		direction.normalized()
@@ -886,6 +911,7 @@ func _try_execute_buffered_action() -> bool:
 
 func _clear_buffered_action() -> void:
 	_buffered_action = BufferedAction.NONE
+	_buffered_primary_from_hold = false
 	_buffered_ability_slot = 0
 	if not action_buffer_timer.is_stopped():
 		action_buffer_timer.stop()
@@ -905,6 +931,7 @@ func _on_hit_recovery_started(duration_seconds: float) -> void:
 	):
 		stagger_component.clear()
 		return
+	held_attack.cancel()
 	_clear_buffered_action()
 	_cancel_all_targeting()
 	attack_component.cancel_attack()
@@ -1080,6 +1107,7 @@ func _on_died() -> void:
 	if is_defeated:
 		return
 	is_defeated = true
+	held_attack.cancel()
 	if is_restrained():
 		release_root_restraint(_restraint_source, false)
 	_clear_buffered_action()

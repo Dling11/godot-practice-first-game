@@ -1,0 +1,22 @@
+[
+	{
+		"cut": 0,
+		"direction": "Vector2(0, -1)",
+		"restored_white_pixels": 4508
+	},
+	{
+		"cut": 0,
+		"direction": "Vector2(0, 1)",
+		"restored_white_pixels": 4504
+	},
+	{
+		"cut": 0,
+		"direction": "Vector2(1, 0)",
+		"restored_white_pixels": 4500
+	},
+	{
+		"cut": 0,
+		"direction": "Vector2(-1, 0)",
+		"restored_white_pixels": 4502
+	}
+]

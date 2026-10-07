@@ -1,0 +1,253 @@
+{
+	"density": 0.288770053475936,
+	"names": [
+		"chop",
+		"jab",
+		"slam",
+		"spin"
+	],
+	"new_source_cels": 30,
+	"records": [
+		{
+			"body_bounds": "Rect2i(72, 44, 49, 51)",
+			"direction": "side",
+			"grip": "Vector2(100, 74)",
+			"head": "Rect2i(92, 44, 24, 26)",
+			"key": 0,
+			"sole": "Vector2(96, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(72, 44, 49, 51)",
+			"direction": "side",
+			"grip": "Vector2(99, 74)",
+			"head": "Rect2i(92, 44, 24, 26)",
+			"key": 1,
+			"sole": "Vector2(96, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(71, 43, 51, 52)",
+			"direction": "side",
+			"grip": "Vector2(98, 74)",
+			"head": "Rect2i(93, 43, 24, 26)",
+			"key": 2,
+			"sole": "Vector2(96, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(74, 44, 46, 51)",
+			"direction": "side",
+			"grip": "Vector2(100, 75)",
+			"head": "Rect2i(94, 44, 24, 26)",
+			"key": 3,
+			"sole": "Vector2(96.5, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(73, 42, 56, 53)",
+			"direction": "side",
+			"grip": "Vector2(122, 65)",
+			"head": "Rect2i(94, 42, 24, 26)",
+			"key": 4,
+			"sole": "Vector2(96.5, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(72, 42, 57, 53)",
+			"direction": "side",
+			"grip": "Vector2(122, 65)",
+			"head": "Rect2i(94, 42, 24, 26)",
+			"key": 5,
+			"sole": "Vector2(96, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(73, 43, 56, 52)",
+			"direction": "side",
+			"grip": "Vector2(122, 65)",
+			"head": "Rect2i(95, 43, 24, 26)",
+			"key": 6,
+			"sole": "Vector2(96, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(72, 44, 50, 51)",
+			"direction": "side",
+			"grip": "Vector2(99, 75)",
+			"head": "Rect2i(91, 44, 24, 26)",
+			"key": 7,
+			"sole": "Vector2(96.5, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(74, 44, 46, 51)",
+			"direction": "side",
+			"grip": "Vector2(99, 75)",
+			"head": "Rect2i(92, 44, 24, 26)",
+			"key": 8,
+			"sole": "Vector2(96.5, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(73, 43, 47, 52)",
+			"direction": "side",
+			"grip": "Vector2(100, 75)",
+			"head": "Rect2i(92, 43, 24, 26)",
+			"key": 9,
+			"sole": "Vector2(96, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(75, 46, 42, 49)",
+			"direction": "down",
+			"grip": "Vector2(100, 74)",
+			"head": "Rect2i(84, 41, 24, 24)",
+			"key": 0,
+			"sole": "Vector2(96, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(77, 46, 40, 49)",
+			"direction": "down",
+			"grip": "Vector2(102, 72)",
+			"head": "Rect2i(85, 41, 24, 24)",
+			"key": 1,
+			"sole": "Vector2(96.5, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(76, 46, 41, 49)",
+			"direction": "down",
+			"grip": "Vector2(102, 72)",
+			"head": "Rect2i(84, 41, 24, 24)",
+			"key": 2,
+			"sole": "Vector2(96, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(76, 46, 42, 49)",
+			"direction": "down",
+			"grip": "Vector2(102, 72)",
+			"head": "Rect2i(86, 41, 24, 24)",
+			"key": 3,
+			"sole": "Vector2(96.5, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(76, 46, 41, 49)",
+			"direction": "down",
+			"grip": "Vector2(102, 72)",
+			"head": "Rect2i(85, 41, 24, 24)",
+			"key": 4,
+			"sole": "Vector2(96, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(77, 46, 40, 49)",
+			"direction": "down",
+			"grip": "Vector2(102, 72)",
+			"head": "Rect2i(84, 41, 24, 24)",
+			"key": 5,
+			"sole": "Vector2(96.5, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(76, 46, 41, 49)",
+			"direction": "down",
+			"grip": "Vector2(102, 72)",
+			"head": "Rect2i(84, 41, 24, 24)",
+			"key": 6,
+			"sole": "Vector2(96, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(76, 46, 42, 49)",
+			"direction": "down",
+			"grip": "Vector2(102, 72)",
+			"head": "Rect2i(85, 41, 24, 24)",
+			"key": 7,
+			"sole": "Vector2(96, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(76, 46, 42, 49)",
+			"direction": "down",
+			"grip": "Vector2(103, 72)",
+			"head": "Rect2i(85, 41, 24, 24)",
+			"key": 8,
+			"sole": "Vector2(96, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(76, 46, 42, 49)",
+			"direction": "down",
+			"grip": "Vector2(102, 72)",
+			"head": "Rect2i(85, 41, 24, 24)",
+			"key": 9,
+			"sole": "Vector2(96.5, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(76, 43, 41, 52)",
+			"direction": "up",
+			"grip": "Vector2(110, 71)",
+			"head": "Rect2i(86, 43, 23, 20)",
+			"key": 0,
+			"sole": "Vector2(96, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(76, 44, 42, 51)",
+			"direction": "up",
+			"grip": "Vector2(110, 71)",
+			"head": "Rect2i(86, 44, 23, 20)",
+			"key": 1,
+			"sole": "Vector2(96, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(76, 44, 42, 51)",
+			"direction": "up",
+			"grip": "Vector2(110, 71)",
+			"head": "Rect2i(86, 44, 23, 20)",
+			"key": 2,
+			"sole": "Vector2(96.5, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(76, 44, 43, 51)",
+			"direction": "up",
+			"grip": "Vector2(111, 71)",
+			"head": "Rect2i(88, 44, 23, 20)",
+			"key": 3,
+			"sole": "Vector2(96.5, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(75, 45, 43, 50)",
+			"direction": "up",
+			"grip": "Vector2(114, 62)",
+			"head": "Rect2i(87, 45, 23, 20)",
+			"key": 4,
+			"sole": "Vector2(96, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(76, 44, 42, 51)",
+			"direction": "up",
+			"grip": "Vector2(113, 62)",
+			"head": "Rect2i(86, 44, 23, 20)",
+			"key": 5,
+			"sole": "Vector2(96.5, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(75, 45, 43, 50)",
+			"direction": "up",
+			"grip": "Vector2(114, 62)",
+			"head": "Rect2i(86, 45, 23, 20)",
+			"key": 6,
+			"sole": "Vector2(96, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(76, 44, 42, 51)",
+			"direction": "up",
+			"grip": "Vector2(110, 71)",
+			"head": "Rect2i(86, 44, 23, 20)",
+			"key": 7,
+			"sole": "Vector2(96.5, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(76, 43, 42, 52)",
+			"direction": "up",
+			"grip": "Vector2(110, 71)",
+			"head": "Rect2i(86, 43, 23, 20)",
+			"key": 8,
+			"sole": "Vector2(96.5, 94)"
+		},
+		{
+			"body_bounds": "Rect2i(76, 43, 42, 52)",
+			"direction": "up",
+			"grip": "Vector2(110, 71)",
+			"head": "Rect2i(87, 43, 23, 20)",
+			"key": 9,
+			"sole": "Vector2(96, 94)"
+		}
+	],
+	"runtime_cels": 156
+}

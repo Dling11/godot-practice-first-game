@@ -1,0 +1,122 @@
+[
+	{
+		"key": 4,
+		"primary": "Vector2(96, 66)",
+		"projection_shift": "Vector2i(-22, -2)",
+		"secondary": "Vector2(94.44708, 71.795555)",
+		"source": "up_rear_source.png bottom row",
+		"source_key": 4,
+		"source_primary": "Vector2(118, 68)",
+		"source_secondary": "Vector2(116.44708, 73.795555)"
+	},
+	{
+		"key": 5,
+		"primary": "Vector2(96, 66)",
+		"projection_shift": "Vector2i(-22, -2)",
+		"secondary": "Vector2(94.44708, 71.795555)",
+		"source": "up_rear_source.png bottom row",
+		"source_key": 4,
+		"source_primary": "Vector2(118, 68)",
+		"source_secondary": "Vector2(116.44708, 73.795555)"
+	},
+	{
+		"key": 6,
+		"primary": "Vector2(96, 66)",
+		"projection_shift": "Vector2i(1, -8)",
+		"secondary": "Vector2(94.44708, 71.795555)",
+		"source": "up_rear_source.png bottom row",
+		"source_key": 5,
+		"source_primary": "Vector2(95, 74)",
+		"source_secondary": "Vector2(93.44708, 79.795555)"
+	},
+	{
+		"key": 7,
+		"primary": "Vector2(96, 66)",
+		"projection_shift": "Vector2i(1, -8)",
+		"secondary": "Vector2(94.44708, 71.795555)",
+		"source": "up_rear_source.png bottom row",
+		"source_key": 5,
+		"source_primary": "Vector2(95, 74)",
+		"source_secondary": "Vector2(93.44708, 79.795555)"
+	},
+	{
+		"key": 8,
+		"primary": "Vector2(95, 67)",
+		"projection_shift": "Vector2i(0, -7)",
+		"secondary": "Vector2(93.44708, 72.795555)",
+		"source": "up_rear_source.png bottom row",
+		"source_key": 6,
+		"source_primary": "Vector2(95, 74)",
+		"source_secondary": "Vector2(93.44708, 79.795555)"
+	},
+	{
+		"key": 9,
+		"primary": "Vector2(95, 67)",
+		"projection_shift": "Vector2i(0, -7)",
+		"secondary": "Vector2(93.44708, 72.795555)",
+		"source": "up_rear_source.png bottom row",
+		"source_key": 6,
+		"source_primary": "Vector2(95, 74)",
+		"source_secondary": "Vector2(93.44708, 79.795555)"
+	},
+	{
+		"key": 10,
+		"primary": "Vector2(95, 67)",
+		"projection_shift": "Vector2i(0, -7)",
+		"secondary": "Vector2(93.44708, 72.795555)",
+		"source": "up_rear_source.png bottom row",
+		"source_key": 6,
+		"source_primary": "Vector2(95, 74)",
+		"source_secondary": "Vector2(93.44708, 79.795555)"
+	},
+	{
+		"key": 11,
+		"primary": "Vector2(97, 66)",
+		"projection_shift": "Vector2i(2, -9)",
+		"secondary": "Vector2(95.44708, 71.795555)",
+		"source": "up_rear_source.png bottom row",
+		"source_key": 7,
+		"source_primary": "Vector2(95, 75)",
+		"source_secondary": "Vector2(93.44708, 80.795555)"
+	},
+	{
+		"key": 12,
+		"primary": "Vector2(97, 66)",
+		"projection_shift": "Vector2i(2, -9)",
+		"secondary": "Vector2(95.44708, 71.795555)",
+		"source": "up_rear_source.png bottom row",
+		"source_key": 7,
+		"source_primary": "Vector2(95, 75)",
+		"source_secondary": "Vector2(93.44708, 80.795555)"
+	},
+	{
+		"key": 13,
+		"primary": "Vector2(95, 67)",
+		"projection_shift": "Vector2i(0, -7)",
+		"secondary": "Vector2(93.44708, 72.795555)",
+		"source": "up_rear_source.png bottom row",
+		"source_key": 6,
+		"source_primary": "Vector2(95, 74)",
+		"source_secondary": "Vector2(93.44708, 79.795555)"
+	},
+	{
+		"key": 14,
+		"primary": "Vector2(97, 66)",
+		"projection_shift": "Vector2i(2, -9)",
+		"secondary": "Vector2(95.44708, 71.795555)",
+		"source": "up_rear_source.png bottom row",
+		"source_key": 7,
+		"source_primary": "Vector2(95, 75)",
+		"source_secondary": "Vector2(93.44708, 80.795555)"
+	},
+	{
+		"key": 15,
+		"primary": "Vector2(97, 66)",
+		"projection_shift": "Vector2i(2, -9)",
+		"secondary": "Vector2(95.44708, 71.795555)",
+		"source": "up_rear_source.png bottom row",
+		"source_key": 7,
+		"source_primary": "Vector2(95, 75)",
+		"source_secondary": "Vector2(93.44708, 80.795555)"
+	}
+]

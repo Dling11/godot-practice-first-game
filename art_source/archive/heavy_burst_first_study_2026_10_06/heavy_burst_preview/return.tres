@@ -1,0 +1,28 @@
+[gd_resource type="Resource" load_steps=5 format=3]
+[ext_resource type="Script" path="res://data/weapons/weapon_family_pose_definition.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/heavy_burst_preview/return_body.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/heavy_burst_preview/return_hands.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/huge_greatsword_proof/greatsword.png" id="4"]
+[resource]
+script = ExtResource("1")
+body_atlas = ExtResource("2")
+hand_atlas = ExtResource("3")
+weapon_texture = ExtResource("4")
+pose_count = 12
+pose_order = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+primary_hands = PackedVector2Array(121, 80, 118, 77, 124, 72, 84, 73, 84, 75, 84, 75, 86, 80, 86, 64, 84, 58, 86, 80, 86, 64, 84, 58)
+secondary_hands = PackedVector2Array(119.78446, 73.106346, 114.5, 70.93782, 118.26594, 67.98496, 77.93782, 76.5, 86.39414, 81.57785, 84.97421, 81.93188, 91.36231, 84.49951, 92.06218, 67.5, 92, 62, 91.36231, 84.49951, 92.06218, 67.5, 92, 62)
+weapon_primary_grip = Vector2(15, 113)
+weapon_tip = Vector2(15, 0)
+mirror_cutting_edge = false
+phase_windows = PackedVector2Array(0, 2, 3, 5, 6, 8)
+queued_recovery_window = Vector2(9, 11)
+weapon_behind_body = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+single_hand_poses = PackedByteArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+stowed_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+released_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+ground_clipped_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+lift_pixels = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+pose_weights = PackedFloat32Array(0.25, 0.75, 1, 1, 1, 1, 0.5, 0.7, 1, 0.5, 0.7, 1)
+identity_regions = Array[Rect2]([Rect2(94, 49, 25, 24), Rect2(90, 46, 25, 24), Rect2(94, 46, 25, 24), Rect2(88, 45, 25, 24), Rect2(87, 46, 25, 24), Rect2(87, 46, 25, 24), Rect2(86, 45, 25, 24), Rect2(87, 45, 25, 24), Rect2(87, 41, 25, 24), Rect2(86, 45, 25, 24), Rect2(87, 45, 25, 24), Rect2(87, 41, 25, 24)])
+identity_source_region = Rect2(87, 41, 25, 24)

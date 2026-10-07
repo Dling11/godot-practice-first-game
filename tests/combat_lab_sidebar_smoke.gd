@@ -27,7 +27,7 @@ func _run() -> void:
 	check(library.current_ids().slice(0, 5) == KingSkillCatalog.IDS, "Lab entry must equip every authored skill")
 	check(session.king_skill_slots == saved, "Lab entry overwrote the saved loadout")
 	check(actor.skill_loadout.get_slot(3).ability == actor.ability_3_component.definition, "Test kit lost trained Pursuit resource binding")
-	check(lab.review_tabs.get_tab_count() == 2 and lab.review_tabs.current_tab == 0, "AI / Skills tabs not initialized")
+	check(lab.review_tabs.get_tab_count() == 3 and lab.review_tabs.current_tab == 0, "AI / Skills / Weapons tabs not initialized")
 	check(lab.ai_toggle.is_visible_in_tree() and not review._panel.is_visible_in_tree(), "AI and Skills controls overlap")
 	check(lab.review_tabs.get_tab_bar().focus_mode == Control.FOCUS_NONE, "Tabs can swallow Space after clicking")
 	check(lab.get_node("UI/LabPanel").get_global_rect().end.y <= 438.0, "Sidebar intrudes on the action bar")

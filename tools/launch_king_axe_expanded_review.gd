@@ -1,10 +1,10 @@
 extends "res://tools/launch_king_axe_grip_review.gd"
 
-## Owner-facing V3 fixture. Same real contact authority, isolated storage/actors.
-const EXPANDED_POSES = preload("res://assets/characters/playable/king/axe_proof_v3/side.tres")
+## Owner-facing fixture follows the equipped axe profile; isolated storage.
+const AXE_PROFILE = preload("res://data/weapons/families/iron_beard/presentation.tres")
+const EXPANDED_POSES = AXE_PROFILE.attack_poses
 const CARRY_POSES = preload("res://assets/characters/playable/king/axe_proof_v3/carry.tres")
-const EXPANDED_SWING = preload("res://assets/characters/playable/king/axe_proof_v3/swing.png")
-const NAMES := ["Side sweep","Rising cut","Down cut","Hop slam","Whirlwind"]
+const NAMES := ["Down chop","Rising axe cut","Axe-head thrust","Hop slam","Whirlwind"]
 const CUT_SOUNDS := [preload("res://assets/audio/sfx/player/greatsword/cut.wav"),preload("res://assets/audio/sfx/player/greatsword/return.wav"),preload("res://assets/audio/sfx/player/greatsword/cleave.wav")]
 const GAME_WEAPON = preload("res://data/weapons/king_iron_beard_axe.tres")
 var _cut_audio: AudioStreamPlayer2D
@@ -12,14 +12,14 @@ var extra_targets: Array[Node2D] = []
 
 func open_review() -> void:
 	await super.open_review()
-	root.title = "Battle of Gods — Iron Beard V3 HUGE / CARRY / SPIN (NO SAVES / REWARDS)"
+	root.title = "Battle of Gods — Iron Beard CHOP / RISE / HOP / SPIN (NO SAVES / REWARDS)"
 	var actor: Player = stage.player
 	var attack: MeleeAttackComponent = actor.attack_component
 	var weapon := GAME_WEAPON.duplicate(true) as WeaponDefinition
 	weapon.family_presentation = null # Isolated fixture mounts its own observers.
 	weapon.weapon_id = &"review_iron_beard_axe_v3"
 	assert(actor.set_weapon_definition(weapon))
-	# The old sword's three-element audio/trail observer is not a five-cut rig.
+	# This isolated fixture mounts the current family instead of sword observers.
 	var effects := actor.get_node("GreatswordEffects")
 	if attack.phase_changed.is_connected(effects._on_attack_phase): attack.phase_changed.disconnect(effects._on_attack_phase)
 	axe_presenter.get_parent().remove_child(axe_presenter)
@@ -27,7 +27,9 @@ func open_review() -> void:
 	swing_trail.get_parent().remove_child(swing_trail)
 	swing_trail.queue_free()
 	axe_presenter = Presenter.new()
-	assert(axe_presenter.configure(EXPANDED_POSES,attack))
+	assert(axe_presenter.configure(AXE_PROFILE.attack_poses,attack))
+	axe_presenter.continuation_pending = func() -> bool: return _auto_cuts_left>0 or _queued_cut
+	axe_presenter.continuation_requested = func() -> bool: return _auto_cuts_left>0 or _queued_cut or not _continuation.is_stopped()
 	assert(axe_presenter.configure_idle(CARRY_POSES))
 	axe_presenter.position = Vector2(0,-16)
 	axe_presenter.scale = Vector2(0.5,0.5)
@@ -44,7 +46,7 @@ func open_review() -> void:
 		column.remove_child(child)
 		child.queue_free()
 	var label := Label.new()
-	label.text = "IRON BEARD V3 · 72px REACH\nSPACE / click: next cut (one buffered)\nSweep → rise → chop → hop → spin\nLow carry; back rest after 4 seconds\nStationary pose review · NO SAVES"
+	label.text = "IRON BEARD · BLADE-LED HEAD PUSH\nSPACE / click: next cut (one buffered)\nChop → rise → head thrust → hop → spin\nLow carry; back rest after 4 seconds\nStationary pose review · NO SAVES"
 	label.add_theme_font_size_override("font_size",10)
 	column.add_child(label)
 	_status = Label.new()
@@ -64,17 +66,18 @@ func open_review() -> void:
 	place_target()
 
 func configure_trail(trail: SwingTrail) -> void:
-	trail.configure(stage.player.attack_component,EXPANDED_SWING)
-	trail.rows = 5
-	trail.origins = PackedVector2Array([Vector2(64,64),Vector2(64,85.333),Vector2(64,64),Vector2(64,64),Vector2(64,64)])
-	trail.world_pixels_per_texel = 1.4
+	trail.configure(stage.player.attack_component,AXE_PROFILE.swing_atlas)
+	trail.rows = AXE_PROFILE.swing_rows
+	trail.origins = AXE_PROFILE.swing_origins
+	trail.world_pixels_per_texel = AXE_PROFILE.swing_texel_scale
+	trail.full_frame_rows = AXE_PROFILE.swing_full_frame_rows
 	trail.world_origin = Vector2(0,-16)
 	trail.edge_feather_pixels = 3.0
 
 func play_combo() -> void:
 	if paused or stage.player.attack_component.phase!=MeleeAttackComponent.Phase.IDLE or not _continuation.is_stopped(): return
 	stage.player.attack_component.reset_combo()
-	_auto_cuts_left = 4
+	_auto_cuts_left = GAME_WEAPON.combo.step_count()-1
 	strike()
 
 func try_spin() -> void:
@@ -82,7 +85,7 @@ func try_spin() -> void:
 	_continuation.stop()
 	_auto_cuts_left = 0
 	_queued_cut = false
-	stage.player.attack_component._next_combo_step = 4
+	stage.player.attack_component._next_combo_step = GAME_WEAPON.combo.step_count()-1
 	strike()
 
 func place_target() -> void:
@@ -114,8 +117,8 @@ func place_ring() -> void:
 func _phase(phase: int,_duration: float) -> void:
 	_status.text = "%s · %s · contacts: %d" % [NAMES[stage.player.attack_component.combo_step],["Carry","Wind-up","Contact","Recovery"][phase],_contacts]
 	if phase==MeleeAttackComponent.Phase.ACTIVE and is_instance_valid(_cut_audio) and DisplayServer.get_name()!="headless":
-		_cut_audio.stream = CUT_SOUNDS[[0,1,0,2,2][stage.player.attack_component.combo_step]]
-		_cut_audio.pitch_scale = 0.85 if stage.player.attack_component.combo_step==4 else 1.0
+		_cut_audio.stream = CUT_SOUNDS[AXE_PROFILE.sound_indices[stage.player.attack_component.combo_step]]
+		_cut_audio.pitch_scale = AXE_PROFILE.sound_pitches[stage.player.attack_component.combo_step]
 		_cut_audio.play()
 
 func _finished() -> void:

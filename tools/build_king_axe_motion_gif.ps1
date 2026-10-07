@@ -1,4 +1,4 @@
-param([switch]$Combo,[switch]$Expanded,[switch]$Greatsword,[switch]$Confidence,[switch]$GaitRepair,[switch]$GaitLoop,[switch]$GripPlant,[switch]$GripLoop,[switch]$LowReturn,[switch]$FinalMotion,[switch]$ConnectedMotion,[switch]$ResponsiveMotion,[switch]$OathboundMotion,[switch]$NeckRepair,[switch]$Readability,[string]$ReviewFolder)
+param([switch]$Combo,[switch]$Expanded,[switch]$Greatsword,[switch]$Confidence,[switch]$GaitRepair,[switch]$GaitLoop,[switch]$GripPlant,[switch]$GripLoop,[switch]$LowReturn,[switch]$FinalMotion,[switch]$ConnectedMotion,[switch]$ResponsiveMotion,[switch]$OathboundMotion,[switch]$NeckRepair,[switch]$Readability,[string]$ReviewFolder,[ValidateRange(10,10000)][int]$FinalDelayMs=300)
 Add-Type -AssemblyName PresentationCore
 $ErrorActionPreference = 'Stop'
 $folder = if ($FinalMotion) { 'king_greatsword_final_motion_2026_10_05' } elseif ($LowReturn) { 'king_low_return_pair_2026_10_05' } elseif ($GripLoop) { 'king_grip_loop_v4_2026_10_04' } elseif ($GripPlant) { 'king_grip_plant_v4_2026_10_04' } elseif ($GaitLoop) { 'king_gait_loop_v3_2026_10_04' } elseif ($GaitRepair) { 'king_gait_repair_v3_2026_10_04' } elseif ($Confidence) { 'king_confidence_v2_2026_10_04' } elseif ($Greatsword) { 'king_huge_greatsword_2026_10_04' } elseif ($Expanded) { 'king_axe_expanded_v3_2026_10_04' } elseif ($Combo) { 'king_axe_combo_v2_2026_10_04' } else { 'king_axe_grip_2026_10_04' }
@@ -18,7 +18,7 @@ $encoder = [System.Windows.Media.Imaging.GifBitmapEncoder]::new()
 $delays = @()
 for ($index = 0; $index -lt $timeline.Count; $index++) {
     # Quantize absolute boundaries so rounding cannot stretch every60fps frame.
-    $delay = if ($index + 1 -lt $timeline.Count) { [Math]::Max(1,[Math]::Round($timeline[$index+1].elapsed_ms/10)-[Math]::Round($timeline[$index].elapsed_ms/10)) } else { 30 }
+    $delay = if ($index + 1 -lt $timeline.Count) { [Math]::Max(1,[Math]::Round($timeline[$index+1].elapsed_ms/10)-[Math]::Round($timeline[$index].elapsed_ms/10)) } else { [Math]::Max(1,[Math]::Round($FinalDelayMs/10)) }
     $delays += [UInt16]$delay
     $stream = [IO.File]::OpenRead((Join-Path $reviewPath $timeline[$index].file))
     try {
@@ -33,9 +33,12 @@ for ($index = 0; $index -lt $timeline.Count; $index++) {
     } finally { $stream.Dispose() }
 }
 $outputPath = Join-Path $reviewPath 'motion.gif'
-$output = [IO.File]::Create($outputPath)
+$stagingPath = Join-Path $reviewPath 'motion.gif.tmp'
+# Finish timing/loop metadata before publishing the watched preview file.
+# Native importers/previews can memory-map it between the previous two writes.
+$output = [IO.File]::Create($stagingPath)
 try { $encoder.Save($output) } finally { $output.Dispose() }
-$bytes = [IO.File]::ReadAllBytes($outputPath)
+$bytes = [IO.File]::ReadAllBytes($stagingPath)
 $paletteBytes = if (($bytes[10] -band 0x80) -ne 0) { 3*[int][Math]::Pow(2,(($bytes[10] -band 7)+1)) } else { 0 }
 $insertAt = 13+$paletteBytes
 $cursor = $insertAt
@@ -73,8 +76,10 @@ try {
     $result.Write($bytes,0,$insertAt)
     $result.Write($loop,0,$loop.Length)
     $result.Write($bytes,$insertAt,$bytes.Length-$insertAt)
-    [IO.File]::WriteAllBytes($outputPath,$result.ToArray())
+    [IO.File]::WriteAllBytes($stagingPath,$result.ToArray())
 } finally { $result.Dispose() }
+if ([IO.File]::Exists($outputPath)) { [IO.File]::Replace($stagingPath,$outputPath,[NullString]::Value) }
+else { [IO.File]::Move($stagingPath,$outputPath) }
 $decodeStream = [IO.File]::OpenRead($outputPath)
 try {
     $decoder = [System.Windows.Media.Imaging.GifBitmapDecoder]::new($decodeStream,[System.Windows.Media.Imaging.BitmapCreateOptions]::PreservePixelFormat,[System.Windows.Media.Imaging.BitmapCacheOption]::OnLoad)

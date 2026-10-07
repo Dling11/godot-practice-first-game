@@ -1,6 +1,6 @@
 extends Node2D
 
-## Generated raster sequence clipped to the real contact shape. No damage authority.
+## Generated raster sequence; melee alone owns contact/damage.
 var atlas: Texture2D
 var _attack: MeleeAttackComponent
 var _frame := -1
@@ -12,7 +12,7 @@ var origins := PackedVector2Array(ORIGINS)
 var world_pixels_per_texel := 1.0
 var rows := 3
 var world_origin := Vector2.ZERO
-## Fade within the authoritative boundary; never enlarge damage or visible reach.
+## Clipped rows fade inward; complete raster rows use their painted alpha edge.
 var edge_feather_pixels := 0.0
 var _mesh_frames: Array[ArrayMesh] = []
 ## Optional registered actor-to-cell samples; geometry/damage remain unchanged.
@@ -21,6 +21,9 @@ var frame_sample_transforms: Array[Transform2D] = []
 var _sampling_facing := 1.0
 var reverse_steps := PackedByteArray()
 var rotate_vertical_sampling := false
+## Explicit family opt-in: preserve the complete painted crescent, instead
+## of cropping it to a fan. Other families retain their existing clipping.
+var full_frame_rows := PackedByteArray()
 
 func _sample_uv(point: Vector2,frame: int,cell: Vector2) -> Vector2:
 	var delta := point-world_origin
@@ -50,21 +53,25 @@ func _phase(phase: int,duration: float) -> void:
 	clear()
 	if phase!=MeleeAttackComponent.Phase.ACTIVE: return
 	_sampling_facing = -1.0 if _attack.get_attack_direction().x<0 else 1.0
-	var shape: Shape2D = _attack.collision_shape.shape
-	_points.clear()
-	var actor := _attack.owner as Node2D
-	if actor==null: return
-	var transform := actor.global_transform.affine_inverse()*_attack.collision_shape.global_transform
-	if shape is ConvexPolygonShape2D:
-		for point in shape.points: _points.append(transform*point)
-	elif shape is CircleShape2D:
-		for index in 64: _points.append(transform*(Vector2.from_angle(index*TAU/64.0)*shape.radius))
-	else: return
+	if not _prepare_contact_shape(): return
 	_row = clampi(_attack.combo_step,0,rows-1)
 	prepare_edge_feather()
 	_set_frame(0)
 	_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	_tween.tween_method(_set_frame,0.0,3.999,maxf(duration,0.0001))
+
+func _prepare_contact_shape() -> bool:
+	var shape: Shape2D = _attack.collision_shape.shape
+	_points.clear()
+	var actor := _attack.owner as Node2D
+	if actor==null: return false
+	var transform := actor.global_transform.affine_inverse()*_attack.collision_shape.global_transform
+	if shape is ConvexPolygonShape2D:
+		for point in shape.points: _points.append(transform*point)
+	elif shape is CircleShape2D:
+		for index in 64: _points.append(transform*(Vector2.from_angle(index*TAU/64.0)*shape.radius))
+	else: return false
+	return true
 
 func _set_frame(value: float) -> void:
 	_frame = clampi(int(value),0,3)
@@ -86,6 +93,9 @@ func _draw() -> void:
 func prepare_edge_feather() -> void:
 	# Cache four meshes on a contact/gallery transition, not every rendered frame.
 	_mesh_frames.clear()
+	if _row<full_frame_rows.size() and full_frame_rows[_row]>0:
+		_points=_full_frame_points()
+		return # Source alpha/padding owns its edge; no hard fan seam.
 	if edge_feather_pixels<=0 or _points.size()<3: return
 	var count := _points.size()
 	var area := 0.0
@@ -133,6 +143,19 @@ func prepare_edge_feather() -> void:
 		var mesh := ArrayMesh.new()
 		mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES,arrays)
 		_mesh_frames.append(mesh)
+
+func _full_frame_points() -> PackedVector2Array:
+	var cell := Vector2(atlas.get_width()/4.0,atlas.get_height()/float(rows))
+	var points := PackedVector2Array()
+	for texel in [Vector2.ZERO,Vector2(cell.x,0),cell,Vector2(0,cell.y)]:
+		var delta: Vector2 = (texel-origins[_row])*world_pixels_per_texel
+		# Invert the UV registration, including true up/down rotation and
+		# side mirroring. Draw one padded raster cel, not adjacent rows.
+		if rotate_vertical_sampling and absf(_attack.get_attack_direction().y)>=absf(_attack.get_attack_direction().x):
+			delta=delta.rotated(_attack.get_attack_direction().angle())
+		else: delta.x*=_sampling_facing
+		points.append(world_origin+delta)
+	return points
 
 func _finished() -> void:
 	if _attack.phase==MeleeAttackComponent.Phase.IDLE: clear()

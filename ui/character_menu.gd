@@ -483,6 +483,15 @@ func _equipment_sort_less(a: EquipmentDefinition, b: EquipmentDefinition) -> boo
 				return a.rarity > b.rarity
 		&"quantity":
 			pass
+		&"hit", &"dps":
+			var a_score := 0.0
+			var b_score := 0.0
+			if a.weapon_definition != null:
+				a_score = WeaponCombatReadout.base_dps(a.weapon_definition) if _inventory_sort_mode == &"dps" else WeaponCombatReadout.base_range(a.weapon_definition).y
+			if b.weapon_definition != null:
+				b_score = WeaponCombatReadout.base_dps(b.weapon_definition) if _inventory_sort_mode == &"dps" else WeaponCombatReadout.base_range(b.weapon_definition).y
+			if not is_equal_approx(a_score, b_score):
+				return a_score > b_score
 	if a.slot != b.slot:
 		return a.slot < b.slot
 	return a.display_name.naturalnocasecmp_to(b.display_name) < 0
@@ -506,7 +515,7 @@ func _material_sort_less(a: MaterialDefinition, b: MaterialDefinition, inventory
 
 
 func _cycle_inventory_sort() -> void:
-	var modes: Array[StringName] = [&"slot", &"name", &"rarity", &"quantity"]
+	var modes: Array[StringName] = [&"slot", &"name", &"rarity", &"quantity", &"hit", &"dps"]
 	_inventory_sort_mode = modes[(modes.find(_inventory_sort_mode) + 1) % modes.size()]
 	sort_button.text = "SORT: %s" % String(_inventory_sort_mode).to_upper()
 	_build_inventory_grid()

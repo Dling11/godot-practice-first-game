@@ -1,0 +1,11 @@
+{
+  "count": 397,
+  "changed": [
+    "data/weapons/families\\iron_beard\\presentation.tres",
+    "data/weapons/families\\iron_beard\\combo.tres"
+  ],
+  "expected_changes": [
+    "data/weapons/families\\iron_beard\\presentation.tres",
+    "data/weapons/families\\iron_beard\\combo.tres"
+  ]
+}

@@ -1,5 +1,7 @@
 # Royal Greatsword and Iron Beard gameplay — 2026-10-05
 
+**Current Iron Beard update (2026-10-06):** Equipped axe now uses five cuts: chop → rise → axe-head thrust → hop slam → spin, with all cardinal roots, connected queue endpoints and25/0/60% walking. The third pushes the actual cutting head along a78px lane and has four new broad white impact cels. Chain3.52s/6.15 base-hit units supersedes the preceding four-cut timing; native axe carry/gait, canonical steel and Greatsword remain. [Axe guide](king-axe-cardinal-motion.md). Campaign acquisition and family action art remain pending.
+
 **Current animation replacement (2026-10-05):** Equipment/authority/practice controls remain. Basics now use [Oathbound](king-greatsword-oathbound-motion.md): new complete side/front/back bodies, protected identity,3.00s and matching0.54s fourth/fifth. Earlier motion timing/source claims below are historical.
 
 **Current implementation:** [Oathbound motion](king-greatsword-oathbound-motion.md) owns the new complete body art, protected identity, queued/released branches and3.00s timing. Damage/contact, catalog/equip/input, carry/run/rest and acquisition rules remain as documented here; the older phase totals below are history. Sword size and established Spellward style remain.

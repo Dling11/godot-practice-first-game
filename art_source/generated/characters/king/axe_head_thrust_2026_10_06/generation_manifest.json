@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-06",
+  "generator": "built-in imagegen",
+  "source_png": "thrust_source.png",
+  "source_sha256": "CC59A38E21FE3A084FF79630C8F32A4EC2B8944E754D793EBD04A8072C6C3CF5",
+  "prompt": "thrust_prompt.txt",
+  "style_reference": "thrust_style_reference.png",
+  "new_body_source_cels": 0,
+  "new_effect_cels": 4,
+  "runtime_pose_slots": 195,
+  "runtime_effect_cels": 20,
+  "runtime_files": 46,
+  "rebuild_identical": 46,
+  "different": [],
+  "lossless_nearest_no_mipmap_imports": 31,
+  "bad_imports": [],
+  "cutting_edge": [
+    8,
+    30
+  ],
+  "native_graphics": "Compatibility"
+}

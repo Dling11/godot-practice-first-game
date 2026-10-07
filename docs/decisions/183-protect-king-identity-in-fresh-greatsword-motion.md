@@ -1,12 +1,14 @@
 # 183 — Fresh complete Greatsword attacks with protected identity
 
+**2026-10-05 owner acceptance:** After the small upward body/head centering adjustment, the owner accepts this pass for now and selects Dual swords next (Decision184). Preserve the current baseline. Earlier visual-review-pending statements are historical; final comparative balance and device profiling remain open.
+
 **2026-10-05 owner clarification:** The remaining upward defect is a sideways head/torso composition, not simply white-effect clipping. Back-view attacks now attach hair only to the drawn scalp center/bottom, preserving moving collar/shoulders. The previous full idle head rectangle included scarf and introduced an asymmetric anchor. Restore shared ordinary white-effect scale; archive the owner-rejected upward-only fit and unused cardinal/low-return paths. No new motion/damage authority or change to accepted side/down art. Down run retains deliberate back stow. Source-alignment216/0 and native style84/0 supplement full motion2901/0, movement158/0 and gameplay151/0; owner visual judgement remains open.
 
 **2026-10-05 owner85% follow-up:** Keep the established hit pattern while polishing upward body visibility, grounded registration, vertical proud idle and side run identity. Grounded cels share sole origins; only explicit slam lift supplies airtime. Upward FX paint before King's body at equal world depth. Generated front/back proud idle and matched-head side gait derive from accepted references. WeaponDefinition owns optional phase voluntary-walk factors (legacy1/1/1); Royal Greatsword uses.25/0/.6 to commit contact while retaining wind-up/recovery repositioning, forward collision steps, knockback and dodge. This implementation chooses partial commitment over a full attack-long lock to retain repositioning between contacts; owner feel/balance judgement remains open. Native motion2901/0, focused art/movement158/0, gameplay151/0, contact60/0 and preserved confidence101/0 pass.
 
 **2026-10-05 anatomical correction:** Owner accepts hit motion partially but rejects clipped/floating heads. Byte-preserving fixed-rectangle replacement created collar/shoulder gaps and a still head above moving torsos. The decision now requires silhouette composition at each actual drawn neck socket, with source/target identity provenance and legitimate foreground-hand occlusion. Runtime remains complete body cels; no independently animated head or new attack authority. Native2381/0 checks attached anatomy/full crown/visible identity, supplemented by enlarged samples. Original1601/0 claims are historical and did not prove connection.
 
-- Status: Implemented; owner motion judgement pending
+- Status: Implemented; current artwork/motion pass accepted for now
 - Date: 2026-10-05
 - Supersedes: Decision182 basic attack body selection; Decision181 remains rejected
 

@@ -145,7 +145,7 @@ func _verify_phase_movement(actor: Player) -> void:
 	actor.velocity = Vector2.RIGHT*actor.movement_component.max_speed
 	check(actor.request_primary_attack(),"Axe primary refused")
 	actor._physics_process(1.0/60.0)
-	check(is_equal_approx(actor.velocity.length(),actor.movement_component.max_speed),"Greatsword slowed a legacy weapon")
+	check(actor.velocity.length()<=actor.movement_component.max_speed*AXE.weapon_definition.get_attack_movement_ratio(MeleeAttackComponent.Phase.WIND_UP)+.01,"Weapon swap did not use the axe's own wind-up ratio")
 	Input.action_release("player_move_right")
 	actor.attack_component.cancel_attack()
 

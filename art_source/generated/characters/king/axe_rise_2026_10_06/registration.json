@@ -1,0 +1,90 @@
+{
+	"complete_raster_rows": [
+		0,
+		1,
+		2,
+		3
+	],
+	"names": [
+		"chop",
+		"rise",
+		"slam",
+		"spin"
+	],
+	"new_source_cels": 0,
+	"records": [
+		{
+			"cut": "chop",
+			"direction": "side",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_proof_v3/down.tres"
+		},
+		{
+			"cut": "rise",
+			"direction": "side",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_proof/return.tres"
+		},
+		{
+			"cut": "slam",
+			"direction": "side",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_proof/finisher.tres"
+		},
+		{
+			"cut": "spin",
+			"direction": "side",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_proof_v3/spin.tres"
+		},
+		{
+			"cut": "chop",
+			"direction": "down",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_cardinal/down/chop.tres"
+		},
+		{
+			"cut": "rise",
+			"direction": "down",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_cardinal/down/rise.tres"
+		},
+		{
+			"cut": "slam",
+			"direction": "down",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_cardinal/down/slam.tres"
+		},
+		{
+			"cut": "spin",
+			"direction": "down",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_cardinal/down/spin.tres"
+		},
+		{
+			"cut": "chop",
+			"direction": "up",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_cardinal/up/chop.tres"
+		},
+		{
+			"cut": "rise",
+			"direction": "up",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_cardinal/up/rise.tres"
+		},
+		{
+			"cut": "slam",
+			"direction": "up",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_cardinal/up/slam.tres"
+		},
+		{
+			"cut": "spin",
+			"direction": "up",
+			"native_pixels_reused": true,
+			"source": "res://assets/characters/playable/king/axe_cardinal/up/spin.tres"
+		}
+	],
+	"runtime_cels": 156
+}

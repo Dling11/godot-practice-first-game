@@ -1,0 +1,1620 @@
+{
+	"final_views": [
+		[
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side"
+		],
+		[
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side"
+		],
+		[
+			"side",
+			"side",
+			"side",
+			"side",
+			"down",
+			"left",
+			"left",
+			"up",
+			"up",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side"
+		],
+		[
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side",
+			"side"
+		]
+	],
+	"records": [
+		{
+			"contact_source": false,
+			"copied_endpoint": true,
+			"cut": 0,
+			"density": 0.352941176470588,
+			"final_grip": "Vector2(84, 58)",
+			"final_head": "Rect2(87, 41, 25, 24)",
+			"final_secondary_grip": "Vector2(92, 62)",
+			"final_view": "side",
+			"grip": [
+				95.0,
+				76.0
+			],
+			"head": "Rect2i(88, 41, 25, 24)",
+			"key": 0,
+			"mirrored_source": false,
+			"secondary_grip": [
+				100.734062194824,
+				80.0150375366211
+			],
+			"source_key": 0,
+			"two_hands": false,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.352941176470588,
+			"final_grip": "Vector2(87, 51)",
+			"final_head": "Rect2(90, 37, 25, 24)",
+			"final_secondary_grip": "Vector2(88.81174, 57.761482)",
+			"final_view": "side",
+			"grip": [
+				87.0,
+				51.0
+			],
+			"head": "Rect2i(90, 37, 25, 24)",
+			"key": 1,
+			"mirrored_source": false,
+			"secondary_grip": [
+				88.8117370605469,
+				57.7614822387695
+			],
+			"source_key": 1,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.352941176470588,
+			"final_grip": "Vector2(109, 33)",
+			"final_head": "Rect2(83, 33, 25, 24)",
+			"final_secondary_grip": "Vector2(107.18826, 39.761482)",
+			"final_view": "side",
+			"grip": [
+				109.0,
+				33.0
+			],
+			"head": "Rect2i(83, 33, 25, 24)",
+			"key": 2,
+			"mirrored_source": false,
+			"secondary_grip": [
+				107.188262939453,
+				39.7614822387695
+			],
+			"source_key": 2,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.352941176470588,
+			"final_grip": "Vector2(102, 32)",
+			"final_head": "Rect2(81, 36, 25, 24)",
+			"final_secondary_grip": "Vector2(98.5, 38.06218)",
+			"final_view": "side",
+			"grip": [
+				102.0,
+				32.0
+			],
+			"head": "Rect2i(81, 36, 25, 24)",
+			"key": 3,
+			"mirrored_source": false,
+			"secondary_grip": [
+				98.5,
+				38.0621795654297
+			],
+			"source_key": 3,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": true,
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.237885462555066,
+			"final_grip": "Vector2(90, 41)",
+			"final_head": "Rect2(91, 39, 25, 24)",
+			"final_secondary_grip": "Vector2(86.5, 47.06218)",
+			"final_view": "side",
+			"grip": [
+				90.0,
+				41.0
+			],
+			"head": "Rect2i(91, 39, 25, 24)",
+			"key": 4,
+			"mirrored_source": false,
+			"secondary_grip": [
+				86.5,
+				47.0621795654297
+			],
+			"source_key": 4,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": true,
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.237885462555066,
+			"final_grip": "Vector2(113, 58)",
+			"final_head": "Rect2(87, 37, 25, 24)",
+			"final_secondary_grip": "Vector2(107.33688, 62.1145)",
+			"final_view": "side",
+			"grip": [
+				113.0,
+				58.0
+			],
+			"head": "Rect2i(87, 37, 25, 24)",
+			"key": 5,
+			"mirrored_source": false,
+			"secondary_grip": [
+				107.336883544922,
+				62.1144981384277
+			],
+			"source_key": 5,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": true,
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.237885462555066,
+			"final_grip": "Vector2(120, 63)",
+			"final_head": "Rect2(88, 39, 25, 24)",
+			"final_secondary_grip": "Vector2(113.15297, 64.45538)",
+			"final_view": "side",
+			"grip": [
+				120.0,
+				63.0
+			],
+			"head": "Rect2i(88, 39, 25, 24)",
+			"key": 6,
+			"mirrored_source": false,
+			"secondary_grip": [
+				113.152969360352,
+				64.4553833007813
+			],
+			"source_key": 6,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": true,
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.237885462555066,
+			"final_grip": "Vector2(122, 66)",
+			"final_head": "Rect2(90, 40, 25, 24)",
+			"final_secondary_grip": "Vector2(115.15297, 64.54462)",
+			"final_view": "side",
+			"grip": [
+				122.0,
+				66.0
+			],
+			"head": "Rect2i(90, 40, 25, 24)",
+			"key": 7,
+			"mirrored_source": false,
+			"secondary_grip": [
+				115.152969360352,
+				64.5446166992188
+			],
+			"source_key": 7,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": true,
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.237885462555066,
+			"final_grip": "Vector2(120, 78)",
+			"final_head": "Rect2(91, 43, 25, 24)",
+			"final_secondary_grip": "Vector2(114.33688, 73.885506)",
+			"final_view": "side",
+			"grip": [
+				120.0,
+				78.0
+			],
+			"head": "Rect2i(91, 43, 25, 24)",
+			"key": 8,
+			"mirrored_source": false,
+			"secondary_grip": [
+				114.336883544922,
+				73.8855056762695
+			],
+			"source_key": 8,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": true,
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.237885462555066,
+			"final_grip": "Vector2(111, 90)",
+			"final_head": "Rect2(89, 48, 25, 24)",
+			"final_secondary_grip": "Vector2(107.5, 83.93782)",
+			"final_view": "side",
+			"grip": [
+				111.0,
+				90.0
+			],
+			"head": "Rect2i(89, 48, 25, 24)",
+			"key": 9,
+			"mirrored_source": false,
+			"secondary_grip": [
+				107.5,
+				83.9378204345703
+			],
+			"source_key": 9,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": true,
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.237885462555066,
+			"final_grip": "Vector2(111, 90)",
+			"final_head": "Rect2(89, 48, 25, 24)",
+			"final_secondary_grip": "Vector2(107.5, 83.93782)",
+			"final_view": "side",
+			"grip": [
+				111.0,
+				90.0
+			],
+			"head": "Rect2i(89, 48, 25, 24)",
+			"key": 10,
+			"mirrored_source": false,
+			"secondary_grip": [
+				107.5,
+				83.9378204345703
+			],
+			"source_key": 10,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.352941176470588,
+			"final_grip": "Vector2(111, 87)",
+			"final_head": "Rect2(86, 49, 25, 24)",
+			"final_secondary_grip": "Vector2(107.5, 80.93782)",
+			"final_view": "side",
+			"grip": [
+				111.0,
+				87.0
+			],
+			"head": "Rect2i(86, 49, 25, 24)",
+			"key": 11,
+			"mirrored_source": false,
+			"secondary_grip": [
+				107.5,
+				80.9378204345703
+			],
+			"source_key": 11,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": true,
+			"cut": 0,
+			"density": 0.352941176470588,
+			"final_grip": "Vector2(84, 58)",
+			"final_head": "Rect2(87, 41, 25, 24)",
+			"final_secondary_grip": "Vector2(92, 62)",
+			"final_view": "side",
+			"grip": [
+				111.0,
+				87.0
+			],
+			"head": "Rect2i(86, 49, 25, 24)",
+			"key": 12,
+			"mirrored_source": false,
+			"secondary_grip": [
+				107.5,
+				80.9378204345703
+			],
+			"source_key": 11,
+			"two_hands": false,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.352941176470588,
+			"final_grip": "Vector2(113, 87)",
+			"final_head": "Rect2(79, 49, 25, 24)",
+			"final_secondary_grip": "Vector2(109.5, 80.93782)",
+			"final_view": "side",
+			"grip": [
+				113.0,
+				87.0
+			],
+			"head": "Rect2i(79, 49, 25, 24)",
+			"key": 13,
+			"mirrored_source": false,
+			"secondary_grip": [
+				109.5,
+				80.9378204345703
+			],
+			"source_key": 10,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 0,
+			"density": 0.352941176470588,
+			"final_grip": "Vector2(111, 87)",
+			"final_head": "Rect2(86, 49, 25, 24)",
+			"final_secondary_grip": "Vector2(107.5, 80.93782)",
+			"final_view": "side",
+			"grip": [
+				111.0,
+				87.0
+			],
+			"head": "Rect2i(86, 49, 25, 24)",
+			"key": 14,
+			"mirrored_source": false,
+			"secondary_grip": [
+				107.5,
+				80.9378204345703
+			],
+			"source_key": 11,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": true,
+			"cut": 0,
+			"density": 0.352941176470588,
+			"final_grip": "Vector2(115, 87)",
+			"final_head": "Rect2(93, 50, 25, 24)",
+			"final_secondary_grip": "Vector2(111.5, 80.93782)",
+			"final_view": "side",
+			"grip": [
+				111.0,
+				87.0
+			],
+			"head": "Rect2i(86, 49, 25, 24)",
+			"key": 15,
+			"mirrored_source": false,
+			"secondary_grip": [
+				107.5,
+				80.9378204345703
+			],
+			"source_key": 11,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.352941176470588,
+			"final_grip": "Vector2(115, 87)",
+			"final_head": "Rect2(93, 50, 25, 24)",
+			"final_secondary_grip": "Vector2(111.5, 80.93782)",
+			"final_view": "side",
+			"grip": [
+				115.0,
+				87.0
+			],
+			"head": "Rect2i(93, 50, 25, 24)",
+			"key": 0,
+			"mirrored_source": false,
+			"secondary_grip": [
+				111.5,
+				80.9378204345703
+			],
+			"source_key": 0,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.352941176470588,
+			"final_grip": "Vector2(110, 89)",
+			"final_head": "Rect2(87, 46, 25, 24)",
+			"final_secondary_grip": "Vector2(107.60586, 82.42215)",
+			"final_view": "side",
+			"grip": [
+				110.0,
+				89.0
+			],
+			"head": "Rect2i(87, 46, 25, 24)",
+			"key": 1,
+			"mirrored_source": false,
+			"secondary_grip": [
+				107.605857849121,
+				82.4221496582031
+			],
+			"source_key": 1,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.352941176470588,
+			"final_grip": "Vector2(110, 90)",
+			"final_head": "Rect2(86, 48, 25, 24)",
+			"final_secondary_grip": "Vector2(107.04167, 83.655846)",
+			"final_view": "side",
+			"grip": [
+				110.0,
+				90.0
+			],
+			"head": "Rect2i(86, 48, 25, 24)",
+			"key": 2,
+			"mirrored_source": false,
+			"secondary_grip": [
+				107.04167175293,
+				83.6558456420898
+			],
+			"source_key": 2,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.352941176470588,
+			"final_grip": "Vector2(110, 86)",
+			"final_head": "Rect2(78, 48, 25, 24)",
+			"final_secondary_grip": "Vector2(106.5, 79.93782)",
+			"final_view": "side",
+			"grip": [
+				110.0,
+				86.0
+			],
+			"head": "Rect2i(78, 48, 25, 24)",
+			"key": 3,
+			"mirrored_source": false,
+			"secondary_grip": [
+				106.5,
+				79.9378204345703
+			],
+			"source_key": 3,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": true,
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.237885462555066,
+			"final_grip": "Vector2(109, 89)",
+			"final_head": "Rect2(89, 48, 25, 24)",
+			"final_secondary_grip": "Vector2(105.5, 82.93782)",
+			"final_view": "side",
+			"grip": [
+				109.0,
+				89.0
+			],
+			"head": "Rect2i(89, 48, 25, 24)",
+			"key": 4,
+			"mirrored_source": false,
+			"secondary_grip": [
+				105.5,
+				82.9378204345703
+			],
+			"source_key": 4,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": true,
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.237885462555066,
+			"final_grip": "Vector2(117, 70)",
+			"final_head": "Rect2(87, 41, 25, 24)",
+			"final_secondary_grip": "Vector2(111.33688, 65.885506)",
+			"final_view": "side",
+			"grip": [
+				117.0,
+				70.0
+			],
+			"head": "Rect2i(87, 41, 25, 24)",
+			"key": 5,
+			"mirrored_source": false,
+			"secondary_grip": [
+				111.336883544922,
+				65.8855056762695
+			],
+			"source_key": 5,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": true,
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.237885462555066,
+			"final_grip": "Vector2(117, 70)",
+			"final_head": "Rect2(88, 44, 25, 24)",
+			"final_secondary_grip": "Vector2(110.15297, 68.54462)",
+			"final_view": "side",
+			"grip": [
+				117.0,
+				70.0
+			],
+			"head": "Rect2i(88, 44, 25, 24)",
+			"key": 6,
+			"mirrored_source": false,
+			"secondary_grip": [
+				110.152969360352,
+				68.5446166992188
+			],
+			"source_key": 6,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": true,
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.237885462555066,
+			"final_grip": "Vector2(114, 64)",
+			"final_head": "Rect2(83, 40, 25, 24)",
+			"final_secondary_grip": "Vector2(107.15297, 65.45538)",
+			"final_view": "side",
+			"grip": [
+				114.0,
+				64.0
+			],
+			"head": "Rect2i(83, 40, 25, 24)",
+			"key": 7,
+			"mirrored_source": false,
+			"secondary_grip": [
+				107.152969360352,
+				65.4553833007813
+			],
+			"source_key": 7,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": true,
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.237885462555066,
+			"final_grip": "Vector2(117, 56)",
+			"final_head": "Rect2(82, 38, 25, 24)",
+			"final_secondary_grip": "Vector2(111.33688, 60.1145)",
+			"final_view": "side",
+			"grip": [
+				117.0,
+				56.0
+			],
+			"head": "Rect2i(82, 38, 25, 24)",
+			"key": 8,
+			"mirrored_source": false,
+			"secondary_grip": [
+				111.336883544922,
+				60.1144981384277
+			],
+			"source_key": 8,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": true,
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.237885462555066,
+			"final_grip": "Vector2(106, 44)",
+			"final_head": "Rect2(77, 37, 25, 24)",
+			"final_secondary_grip": "Vector2(102.5, 50.06218)",
+			"final_view": "side",
+			"grip": [
+				106.0,
+				44.0
+			],
+			"head": "Rect2i(77, 37, 25, 24)",
+			"key": 9,
+			"mirrored_source": false,
+			"secondary_grip": [
+				102.5,
+				50.0621795654297
+			],
+			"source_key": 9,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": true,
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.237885462555066,
+			"final_grip": "Vector2(106, 44)",
+			"final_head": "Rect2(77, 37, 25, 24)",
+			"final_secondary_grip": "Vector2(102.5, 50.06218)",
+			"final_view": "side",
+			"grip": [
+				106.0,
+				44.0
+			],
+			"head": "Rect2i(77, 37, 25, 24)",
+			"key": 10,
+			"mirrored_source": false,
+			"secondary_grip": [
+				102.5,
+				50.0621795654297
+			],
+			"source_key": 10,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.352941176470588,
+			"final_grip": "Vector2(106, 71)",
+			"final_head": "Rect2(82, 40, 25, 24)",
+			"final_secondary_grip": "Vector2(102.5, 77.06218)",
+			"final_view": "side",
+			"grip": [
+				106.0,
+				71.0
+			],
+			"head": "Rect2i(82, 40, 25, 24)",
+			"key": 11,
+			"mirrored_source": false,
+			"secondary_grip": [
+				102.5,
+				77.0621795654297
+			],
+			"source_key": 11,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": true,
+			"cut": 1,
+			"density": 0.352941176470588,
+			"final_grip": "Vector2(84, 58)",
+			"final_head": "Rect2(87, 41, 25, 24)",
+			"final_secondary_grip": "Vector2(92, 62)",
+			"final_view": "side",
+			"grip": [
+				106.0,
+				71.0
+			],
+			"head": "Rect2i(82, 40, 25, 24)",
+			"key": 12,
+			"mirrored_source": false,
+			"secondary_grip": [
+				102.5,
+				77.0621795654297
+			],
+			"source_key": 11,
+			"two_hands": false,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.352941176470588,
+			"final_grip": "Vector2(106, 27)",
+			"final_head": "Rect2(78, 27, 25, 24)",
+			"final_secondary_grip": "Vector2(102.5, 33.06218)",
+			"final_view": "side",
+			"grip": [
+				106.0,
+				27.0
+			],
+			"head": "Rect2i(78, 27, 25, 24)",
+			"key": 13,
+			"mirrored_source": false,
+			"secondary_grip": [
+				102.5,
+				33.0621795654297
+			],
+			"source_key": 10,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 1,
+			"density": 0.352941176470588,
+			"final_grip": "Vector2(106, 71)",
+			"final_head": "Rect2(82, 40, 25, 24)",
+			"final_secondary_grip": "Vector2(102.5, 77.06218)",
+			"final_view": "side",
+			"grip": [
+				106.0,
+				71.0
+			],
+			"head": "Rect2i(82, 40, 25, 24)",
+			"key": 14,
+			"mirrored_source": false,
+			"secondary_grip": [
+				102.5,
+				77.0621795654297
+			],
+			"source_key": 11,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": true,
+			"cut": 1,
+			"density": 0.352941176470588,
+			"final_grip": "Vector2(85, 65)",
+			"final_head": "Rect2(86, 43, 25, 24)",
+			"final_secondary_grip": "Vector2(81.5, 71.06218)",
+			"final_view": "side",
+			"grip": [
+				106.0,
+				71.0
+			],
+			"head": "Rect2i(82, 40, 25, 24)",
+			"key": 15,
+			"mirrored_source": false,
+			"secondary_grip": [
+				102.5,
+				77.0621795654297
+			],
+			"source_key": 11,
+			"two_hands": false,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(85, 65)",
+			"final_head": "Rect2(86, 43, 25, 24)",
+			"final_secondary_grip": "Vector2(81.5, 71.06218)",
+			"final_view": "side",
+			"grip": [
+				85.0,
+				65.0
+			],
+			"head": "Rect2i(86, 43, 25, 24)",
+			"key": 0,
+			"mirrored_source": false,
+			"secondary_grip": [
+				81.5,
+				71.0621795654297
+			],
+			"source_key": 0,
+			"two_hands": false,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(85, 65)",
+			"final_head": "Rect2(86, 43, 25, 24)",
+			"final_secondary_grip": "Vector2(78.23852, 66.81174)",
+			"final_view": "side",
+			"grip": [
+				85.0,
+				65.0
+			],
+			"head": "Rect2i(86, 43, 25, 24)",
+			"key": 1,
+			"mirrored_source": false,
+			"secondary_grip": [
+				78.2385177612305,
+				66.8117370605469
+			],
+			"source_key": 0,
+			"two_hands": false,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(115, 69)",
+			"final_head": "Rect2(81, 39, 25, 24)",
+			"final_secondary_grip": "Vector2(108, 69)",
+			"final_view": "side",
+			"grip": [
+				115.0,
+				69.0
+			],
+			"head": "Rect2i(81, 39, 25, 24)",
+			"key": 2,
+			"mirrored_source": false,
+			"secondary_grip": [
+				108.0,
+				69.0
+			],
+			"source_key": 1,
+			"two_hands": false,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(115, 69)",
+			"final_head": "Rect2(81, 39, 25, 24)",
+			"final_secondary_grip": "Vector2(108.93782, 65.5)",
+			"final_view": "side",
+			"grip": [
+				115.0,
+				69.0
+			],
+			"head": "Rect2i(81, 39, 25, 24)",
+			"key": 3,
+			"mirrored_source": false,
+			"secondary_grip": [
+				108.93782043457,
+				65.5
+			],
+			"source_key": 1,
+			"two_hands": false,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(112, 72)",
+			"final_head": "Rect2(78, 37, 32, 29)",
+			"final_secondary_grip": "Vector2(105.93782, 68.5)",
+			"final_view": "down",
+			"grip": [
+				112.0,
+				72.0
+			],
+			"head": "Rect2i(78, 37, 32, 29)",
+			"key": 4,
+			"mirrored_source": false,
+			"secondary_grip": [
+				105.93782043457,
+				68.5
+			],
+			"source_key": 2,
+			"two_hands": false,
+			"view": "down"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(77, 76)",
+			"final_head": "Rect2(78, 39, 25, 24)",
+			"final_secondary_grip": "Vector2(78.45538, 69.15297)",
+			"final_view": "left",
+			"grip": [
+				77.0,
+				76.0
+			],
+			"head": "Rect2i(78, 39, 25, 24)",
+			"key": 5,
+			"mirrored_source": false,
+			"secondary_grip": [
+				78.4553833007813,
+				69.1529693603516
+			],
+			"source_key": 3,
+			"two_hands": false,
+			"view": "left"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(77, 69)",
+			"final_head": "Rect2(86, 39, 25, 24)",
+			"final_secondary_grip": "Vector2(83.961655, 68.2683)",
+			"final_view": "left",
+			"grip": [
+				77.0,
+				69.0
+			],
+			"head": "Rect2i(86, 39, 25, 24)",
+			"key": 6,
+			"mirrored_source": true,
+			"secondary_grip": [
+				83.9616546630859,
+				68.2683029174805
+			],
+			"source_key": 4,
+			"two_hands": false,
+			"view": "left"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(81, 77)",
+			"final_head": "Rect2(83, 42, 23, 20)",
+			"final_secondary_grip": "Vector2(83.84715, 83.39482)",
+			"final_view": "up",
+			"grip": [
+				81.0,
+				77.0
+			],
+			"head": "Rect2i(83, 42, 23, 20)",
+			"key": 7,
+			"mirrored_source": false,
+			"secondary_grip": [
+				83.8471527099609,
+				83.3948211669922
+			],
+			"source_key": 5,
+			"two_hands": false,
+			"view": "up"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(119, 67)",
+			"final_head": "Rect2(84, 41, 23, 20)",
+			"final_secondary_grip": "Vector2(113.79799, 71.683914)",
+			"final_view": "up",
+			"grip": [
+				119.0,
+				67.0
+			],
+			"head": "Rect2i(84, 41, 23, 20)",
+			"key": 8,
+			"mirrored_source": false,
+			"secondary_grip": [
+				113.797988891602,
+				71.6839141845703
+			],
+			"source_key": 6,
+			"two_hands": false,
+			"view": "up"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(84, 65)",
+			"final_head": "Rect2(87, 42, 25, 24)",
+			"final_secondary_grip": "Vector2(77.93782, 61.5)",
+			"final_view": "side",
+			"grip": [
+				84.0,
+				65.0
+			],
+			"head": "Rect2i(87, 42, 25, 24)",
+			"key": 9,
+			"mirrored_source": false,
+			"secondary_grip": [
+				77.9378204345703,
+				61.5
+			],
+			"source_key": 7,
+			"two_hands": false,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(84, 65)",
+			"final_head": "Rect2(87, 42, 25, 24)",
+			"final_secondary_grip": "Vector2(77.93782, 61.5)",
+			"final_view": "side",
+			"grip": [
+				84.0,
+				65.0
+			],
+			"head": "Rect2i(87, 42, 25, 24)",
+			"key": 10,
+			"mirrored_source": false,
+			"secondary_grip": [
+				77.9378204345703,
+				61.5
+			],
+			"source_key": 7,
+			"two_hands": false,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(84, 65)",
+			"final_head": "Rect2(87, 42, 25, 24)",
+			"final_secondary_grip": "Vector2(77.93782, 61.5)",
+			"final_view": "side",
+			"grip": [
+				84.0,
+				65.0
+			],
+			"head": "Rect2i(87, 42, 25, 24)",
+			"key": 11,
+			"mirrored_source": false,
+			"secondary_grip": [
+				77.9378204345703,
+				61.5
+			],
+			"source_key": 7,
+			"two_hands": false,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": true,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(84, 58)",
+			"final_head": "Rect2(87, 41, 25, 24)",
+			"final_secondary_grip": "Vector2(92, 62)",
+			"final_view": "side",
+			"grip": [
+				84.0,
+				65.0
+			],
+			"head": "Rect2i(87, 42, 25, 24)",
+			"key": 12,
+			"mirrored_source": false,
+			"secondary_grip": [
+				77.9378204345703,
+				61.5
+			],
+			"source_key": 7,
+			"two_hands": false,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(84, 65)",
+			"final_head": "Rect2(87, 42, 25, 24)",
+			"final_secondary_grip": "Vector2(77.93782, 61.5)",
+			"final_view": "side",
+			"grip": [
+				84.0,
+				65.0
+			],
+			"head": "Rect2i(87, 42, 25, 24)",
+			"key": 13,
+			"mirrored_source": false,
+			"secondary_grip": [
+				77.9378204345703,
+				61.5
+			],
+			"source_key": 7,
+			"two_hands": false,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(84, 65)",
+			"final_head": "Rect2(87, 42, 25, 24)",
+			"final_secondary_grip": "Vector2(77.93782, 61.5)",
+			"final_view": "side",
+			"grip": [
+				84.0,
+				65.0
+			],
+			"head": "Rect2i(87, 42, 25, 24)",
+			"key": 14,
+			"mirrored_source": false,
+			"secondary_grip": [
+				77.9378204345703,
+				61.5
+			],
+			"source_key": 7,
+			"two_hands": false,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": true,
+			"cut": 2,
+			"density": 0.26865671641791,
+			"final_grip": "Vector2(92, 44)",
+			"final_head": "Rect2(93, 43, 25, 24)",
+			"final_secondary_grip": "Vector2(96.49951, 49.362312)",
+			"final_view": "side",
+			"grip": [
+				84.0,
+				65.0
+			],
+			"head": "Rect2i(87, 42, 25, 24)",
+			"key": 15,
+			"mirrored_source": false,
+			"secondary_grip": [
+				77.9378204345703,
+				61.5
+			],
+			"source_key": 7,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.174193548387097,
+			"final_grip": "Vector2(92, 44)",
+			"final_head": "Rect2(93, 43, 25, 24)",
+			"final_secondary_grip": "Vector2(96.49951, 49.362312)",
+			"final_view": "side",
+			"grip": [
+				92.0,
+				44.0
+			],
+			"head": "Rect2i(93, 43, 25, 24)",
+			"key": 0,
+			"mirrored_source": false,
+			"secondary_grip": [
+				96.49951171875,
+				49.3623123168945
+			],
+			"source_key": 0,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.174193548387097,
+			"final_grip": "Vector2(79, 64)",
+			"final_head": "Rect2(92, 53, 25, 24)",
+			"final_secondary_grip": "Vector2(85.06218, 67.5)",
+			"final_view": "side",
+			"grip": [
+				79.0,
+				64.0
+			],
+			"head": "Rect2i(92, 53, 25, 24)",
+			"key": 1,
+			"mirrored_source": false,
+			"secondary_grip": [
+				85.0621795654297,
+				67.5
+			],
+			"source_key": 1,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.174193548387097,
+			"final_grip": "Vector2(97, 41)",
+			"final_head": "Rect2(91, 43, 25, 24)",
+			"final_secondary_grip": "Vector2(101.949745, 45.94975)",
+			"final_view": "side",
+			"grip": [
+				97.0,
+				41.0
+			],
+			"head": "Rect2i(91, 43, 25, 24)",
+			"key": 2,
+			"mirrored_source": false,
+			"secondary_grip": [
+				101.949745178223,
+				45.9497489929199
+			],
+			"source_key": 2,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.174193548387097,
+			"final_grip": "Vector2(119, 47)",
+			"final_head": "Rect2(89, 39, 25, 24)",
+			"final_secondary_grip": "Vector2(115.5, 53.06218)",
+			"final_view": "side",
+			"grip": [
+				119.0,
+				47.0
+			],
+			"head": "Rect2i(89, 39, 25, 24)",
+			"key": 3,
+			"mirrored_source": false,
+			"secondary_grip": [
+				115.5,
+				53.0621795654297
+			],
+			"source_key": 3,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.174193548387097,
+			"final_grip": "Vector2(113, 79)",
+			"final_head": "Rect2(86, 46, 25, 24)",
+			"final_secondary_grip": "Vector2(106.070526, 78.00885)",
+			"final_view": "side",
+			"grip": [
+				113.0,
+				79.0
+			],
+			"head": "Rect2i(86, 46, 25, 24)",
+			"key": 4,
+			"mirrored_source": false,
+			"secondary_grip": [
+				106.070526123047,
+				78.0088500976563
+			],
+			"source_key": 4,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.174193548387097,
+			"final_grip": "Vector2(113, 79)",
+			"final_head": "Rect2(86, 46, 25, 24)",
+			"final_secondary_grip": "Vector2(106.070526, 78.00885)",
+			"final_view": "side",
+			"grip": [
+				113.0,
+				79.0
+			],
+			"head": "Rect2i(86, 46, 25, 24)",
+			"key": 5,
+			"mirrored_source": false,
+			"secondary_grip": [
+				106.070526123047,
+				78.0088500976563
+			],
+			"source_key": 4,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.174193548387097,
+			"final_grip": "Vector2(116, 80)",
+			"final_head": "Rect2(87, 46, 25, 24)",
+			"final_secondary_grip": "Vector2(109.06195, 79.07079)",
+			"final_view": "side",
+			"grip": [
+				116.0,
+				80.0
+			],
+			"head": "Rect2i(87, 46, 25, 24)",
+			"key": 6,
+			"mirrored_source": false,
+			"secondary_grip": [
+				109.061950683594,
+				79.0707931518555
+			],
+			"source_key": 5,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.174193548387097,
+			"final_grip": "Vector2(116, 80)",
+			"final_head": "Rect2(87, 46, 25, 24)",
+			"final_secondary_grip": "Vector2(109.06195, 79.07079)",
+			"final_view": "side",
+			"grip": [
+				116.0,
+				80.0
+			],
+			"head": "Rect2i(87, 46, 25, 24)",
+			"key": 7,
+			"mirrored_source": false,
+			"secondary_grip": [
+				109.061950683594,
+				79.0707931518555
+			],
+			"source_key": 5,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.174193548387097,
+			"final_grip": "Vector2(112, 75)",
+			"final_head": "Rect2(86, 40, 25, 24)",
+			"final_secondary_grip": "Vector2(105.11051, 73.76106)",
+			"final_view": "side",
+			"grip": [
+				112.0,
+				75.0
+			],
+			"head": "Rect2i(86, 40, 25, 24)",
+			"key": 8,
+			"mirrored_source": false,
+			"secondary_grip": [
+				105.110511779785,
+				73.7610626220703
+			],
+			"source_key": 6,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.174193548387097,
+			"final_grip": "Vector2(112, 75)",
+			"final_head": "Rect2(86, 40, 25, 24)",
+			"final_secondary_grip": "Vector2(105.11051, 73.76106)",
+			"final_view": "side",
+			"grip": [
+				112.0,
+				75.0
+			],
+			"head": "Rect2i(86, 40, 25, 24)",
+			"key": 9,
+			"mirrored_source": false,
+			"secondary_grip": [
+				105.110511779785,
+				73.7610626220703
+			],
+			"source_key": 6,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.174193548387097,
+			"final_grip": "Vector2(112, 75)",
+			"final_head": "Rect2(86, 40, 25, 24)",
+			"final_secondary_grip": "Vector2(105.11051, 73.76106)",
+			"final_view": "side",
+			"grip": [
+				112.0,
+				75.0
+			],
+			"head": "Rect2i(86, 40, 25, 24)",
+			"key": 10,
+			"mirrored_source": false,
+			"secondary_grip": [
+				105.110511779785,
+				73.7610626220703
+			],
+			"source_key": 6,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.174193548387097,
+			"final_grip": "Vector2(111, 72)",
+			"final_head": "Rect2(86, 37, 25, 24)",
+			"final_secondary_grip": "Vector2(104.14653, 70.57522)",
+			"final_view": "side",
+			"grip": [
+				111.0,
+				72.0
+			],
+			"head": "Rect2i(86, 37, 25, 24)",
+			"key": 11,
+			"mirrored_source": false,
+			"secondary_grip": [
+				104.146530151367,
+				70.5752182006836
+			],
+			"source_key": 7,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": true,
+			"cut": 3,
+			"density": 0.174193548387097,
+			"final_grip": "Vector2(84, 58)",
+			"final_head": "Rect2(87, 41, 25, 24)",
+			"final_secondary_grip": "Vector2(92, 62)",
+			"final_view": "side",
+			"grip": [
+				111.0,
+				72.0
+			],
+			"head": "Rect2i(86, 37, 25, 24)",
+			"key": 12,
+			"mirrored_source": false,
+			"secondary_grip": [
+				104.146530151367,
+				70.5752182006836
+			],
+			"source_key": 7,
+			"two_hands": false,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.174193548387097,
+			"final_grip": "Vector2(112, 75)",
+			"final_head": "Rect2(86, 40, 25, 24)",
+			"final_secondary_grip": "Vector2(105.11051, 73.76106)",
+			"final_view": "side",
+			"grip": [
+				112.0,
+				75.0
+			],
+			"head": "Rect2i(86, 40, 25, 24)",
+			"key": 13,
+			"mirrored_source": false,
+			"secondary_grip": [
+				105.110511779785,
+				73.7610626220703
+			],
+			"source_key": 6,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": false,
+			"cut": 3,
+			"density": 0.174193548387097,
+			"final_grip": "Vector2(111, 72)",
+			"final_head": "Rect2(86, 37, 25, 24)",
+			"final_secondary_grip": "Vector2(104.14653, 70.57522)",
+			"final_view": "side",
+			"grip": [
+				111.0,
+				72.0
+			],
+			"head": "Rect2i(86, 37, 25, 24)",
+			"key": 14,
+			"mirrored_source": false,
+			"secondary_grip": [
+				104.146530151367,
+				70.5752182006836
+			],
+			"source_key": 7,
+			"two_hands": true,
+			"view": "side"
+		},
+		{
+			"contact_source": false,
+			"copied_endpoint": true,
+			"cut": 3,
+			"density": 0.174193548387097,
+			"final_grip": "Vector2(84, 58)",
+			"final_head": "Rect2(87, 41, 25, 24)",
+			"final_secondary_grip": "Vector2(92, 62)",
+			"final_view": "side",
+			"grip": [
+				111.0,
+				72.0
+			],
+			"head": "Rect2i(86, 37, 25, 24)",
+			"key": 15,
+			"mirrored_source": false,
+			"secondary_grip": [
+				104.146530151367,
+				70.5752182006836
+			],
+			"source_key": 7,
+			"two_hands": false,
+			"view": "side"
+		}
+	],
+	"reference_heads": {
+		"down": "Rect2i(80, 47, 32, 29)",
+		"left": "Rect2i(80, 41, 25, 24)",
+		"side": "Rect2i(87, 41, 25, 24)",
+		"up": "Rect2i(87, 51, 23, 20)"
+	}
+}
