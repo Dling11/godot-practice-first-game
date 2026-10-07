@@ -1,0 +1,1682 @@
+[
+	{
+		"cut": -1,
+		"elapsed_ms": 0,
+		"file": "motion_frames/frame_000.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 17,
+		"file": "motion_frames/frame_001.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 33,
+		"file": "motion_frames/frame_002.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 50,
+		"file": "motion_frames/frame_003.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 67,
+		"file": "motion_frames/frame_004.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 83,
+		"file": "motion_frames/frame_005.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 100,
+		"file": "motion_frames/frame_006.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 117,
+		"file": "motion_frames/frame_007.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 133,
+		"file": "motion_frames/frame_008.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 150,
+		"file": "motion_frames/frame_009.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 167,
+		"file": "motion_frames/frame_010.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 183,
+		"file": "motion_frames/frame_011.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 200,
+		"file": "motion_frames/frame_012.png",
+		"fx": -1,
+		"phase": "ACCEPTED RUN",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 217,
+		"file": "motion_frames/frame_013.png",
+		"fx": -1,
+		"phase": "ACCEPTED RUN",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 233,
+		"file": "motion_frames/frame_014.png",
+		"fx": -1,
+		"phase": "ACCEPTED RUN",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 250,
+		"file": "motion_frames/frame_015.png",
+		"fx": -1,
+		"phase": "ACCEPTED RUN",
+		"pose": 1
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 267,
+		"file": "motion_frames/frame_016.png",
+		"fx": -1,
+		"phase": "ACCEPTED RUN",
+		"pose": 1
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 283,
+		"file": "motion_frames/frame_017.png",
+		"fx": -1,
+		"phase": "ACCEPTED RUN",
+		"pose": 1
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 300,
+		"file": "motion_frames/frame_018.png",
+		"fx": -1,
+		"phase": "ACCEPTED RUN",
+		"pose": 2
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 317,
+		"file": "motion_frames/frame_019.png",
+		"fx": -1,
+		"phase": "ACCEPTED RUN",
+		"pose": 2
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 333,
+		"file": "motion_frames/frame_020.png",
+		"fx": -1,
+		"phase": "ACCEPTED RUN",
+		"pose": 3
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 350,
+		"file": "motion_frames/frame_021.png",
+		"fx": -1,
+		"phase": "ACCEPTED RUN",
+		"pose": 3
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 367,
+		"file": "motion_frames/frame_022.png",
+		"fx": -1,
+		"phase": "ACCEPTED RUN",
+		"pose": 3
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 383,
+		"file": "motion_frames/frame_023.png",
+		"fx": -1,
+		"phase": "ACCEPTED RUN",
+		"pose": 4
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 400,
+		"file": "motion_frames/frame_024.png",
+		"fx": -1,
+		"phase": "ACCEPTED RUN",
+		"pose": 4
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 417,
+		"file": "motion_frames/frame_025.png",
+		"fx": -1,
+		"phase": "ACCEPTED RUN",
+		"pose": 4
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 433,
+		"file": "motion_frames/frame_026.png",
+		"fx": -1,
+		"phase": "ACCEPTED RUN",
+		"pose": 5
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 450,
+		"file": "motion_frames/frame_027.png",
+		"fx": -1,
+		"phase": "ACCEPTED RUN",
+		"pose": 5
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 467,
+		"file": "motion_frames/frame_028.png",
+		"fx": -1,
+		"phase": "ACCEPTED RUN",
+		"pose": 6
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 483,
+		"file": "motion_frames/frame_029.png",
+		"fx": -1,
+		"phase": "ACCEPTED RUN",
+		"pose": 6
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 500,
+		"file": "motion_frames/frame_030.png",
+		"fx": -1,
+		"phase": "ACCEPTED RUN",
+		"pose": 6
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 517,
+		"file": "motion_frames/frame_031.png",
+		"fx": -1,
+		"phase": "ACCEPTED RUN",
+		"pose": 7
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 533,
+		"file": "motion_frames/frame_032.png",
+		"fx": -1,
+		"phase": "ACCEPTED RUN",
+		"pose": 7
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 550,
+		"file": "motion_frames/frame_033.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 567,
+		"file": "motion_frames/frame_034.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 583,
+		"file": "motion_frames/frame_035.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 600,
+		"file": "motion_frames/frame_036.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 617,
+		"file": "motion_frames/frame_037.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 633,
+		"file": "motion_frames/frame_038.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 650,
+		"file": "motion_frames/frame_039.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 667,
+		"file": "motion_frames/frame_040.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 683,
+		"file": "motion_frames/frame_041.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 700,
+		"file": "motion_frames/frame_042.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 717,
+		"file": "motion_frames/frame_043.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 733,
+		"file": "motion_frames/frame_044.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 750,
+		"file": "motion_frames/frame_045.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 0
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 767,
+		"file": "motion_frames/frame_046.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 0
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 783,
+		"file": "motion_frames/frame_047.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 1
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 800,
+		"file": "motion_frames/frame_048.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 1
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 817,
+		"file": "motion_frames/frame_049.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 1
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 833,
+		"file": "motion_frames/frame_050.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 2
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 850,
+		"file": "motion_frames/frame_051.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 2
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 867,
+		"file": "motion_frames/frame_052.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 3
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 883,
+		"file": "motion_frames/frame_053.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 3
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 900,
+		"file": "motion_frames/frame_054.png",
+		"fx": 0,
+		"phase": "CONTACT",
+		"pose": 4
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 917,
+		"file": "motion_frames/frame_055.png",
+		"fx": 1,
+		"phase": "CONTACT",
+		"pose": 5
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 933,
+		"file": "motion_frames/frame_056.png",
+		"fx": 2,
+		"phase": "CONTACT",
+		"pose": 7
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 950,
+		"file": "motion_frames/frame_057.png",
+		"fx": 2,
+		"phase": "CONTACT",
+		"pose": 8
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 967,
+		"file": "motion_frames/frame_058.png",
+		"fx": 3,
+		"phase": "CONTACT",
+		"pose": 9
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 983,
+		"file": "motion_frames/frame_059.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 13
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 1000,
+		"file": "motion_frames/frame_060.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 13
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 1017,
+		"file": "motion_frames/frame_061.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 13
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 1033,
+		"file": "motion_frames/frame_062.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 14
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 1050,
+		"file": "motion_frames/frame_063.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 14
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 1067,
+		"file": "motion_frames/frame_064.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 14
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 1083,
+		"file": "motion_frames/frame_065.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 15
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 1100,
+		"file": "motion_frames/frame_066.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 15
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 1117,
+		"file": "motion_frames/frame_067.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 15
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 1133,
+		"file": "motion_frames/frame_068.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 0
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 1150,
+		"file": "motion_frames/frame_069.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 0
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 1167,
+		"file": "motion_frames/frame_070.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 1
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 1183,
+		"file": "motion_frames/frame_071.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 1
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 1200,
+		"file": "motion_frames/frame_072.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 2
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 1217,
+		"file": "motion_frames/frame_073.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 2
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 1233,
+		"file": "motion_frames/frame_074.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 3
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 1250,
+		"file": "motion_frames/frame_075.png",
+		"fx": 0,
+		"phase": "CONTACT",
+		"pose": 4
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 1267,
+		"file": "motion_frames/frame_076.png",
+		"fx": 0,
+		"phase": "CONTACT",
+		"pose": 5
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 1283,
+		"file": "motion_frames/frame_077.png",
+		"fx": 1,
+		"phase": "CONTACT",
+		"pose": 6
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 1300,
+		"file": "motion_frames/frame_078.png",
+		"fx": 2,
+		"phase": "CONTACT",
+		"pose": 7
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 1317,
+		"file": "motion_frames/frame_079.png",
+		"fx": 3,
+		"phase": "CONTACT",
+		"pose": 8
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 1333,
+		"file": "motion_frames/frame_080.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 13
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 1350,
+		"file": "motion_frames/frame_081.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 13
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 1367,
+		"file": "motion_frames/frame_082.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 13
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 1383,
+		"file": "motion_frames/frame_083.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 14
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 1400,
+		"file": "motion_frames/frame_084.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 14
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 1417,
+		"file": "motion_frames/frame_085.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 14
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 1433,
+		"file": "motion_frames/frame_086.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 15
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 1450,
+		"file": "motion_frames/frame_087.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 15
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 1467,
+		"file": "motion_frames/frame_088.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 15
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1483,
+		"file": "motion_frames/frame_089.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 0
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1500,
+		"file": "motion_frames/frame_090.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 1
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1517,
+		"file": "motion_frames/frame_091.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 1
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1533,
+		"file": "motion_frames/frame_092.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 1
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1550,
+		"file": "motion_frames/frame_093.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 2
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1567,
+		"file": "motion_frames/frame_094.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 2
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1583,
+		"file": "motion_frames/frame_095.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 2
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1600,
+		"file": "motion_frames/frame_096.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 3
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1617,
+		"file": "motion_frames/frame_097.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 3
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1633,
+		"file": "motion_frames/frame_098.png",
+		"fx": 0,
+		"phase": "CONTACT",
+		"pose": 4
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1650,
+		"file": "motion_frames/frame_099.png",
+		"fx": 1,
+		"phase": "CONTACT",
+		"pose": 5
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1667,
+		"file": "motion_frames/frame_100.png",
+		"fx": 1,
+		"phase": "CONTACT",
+		"pose": 6
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1683,
+		"file": "motion_frames/frame_101.png",
+		"fx": 2,
+		"phase": "CONTACT",
+		"pose": 7
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1700,
+		"file": "motion_frames/frame_102.png",
+		"fx": 3,
+		"phase": "CONTACT",
+		"pose": 8
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1717,
+		"file": "motion_frames/frame_103.png",
+		"fx": 3,
+		"phase": "CONTACT",
+		"pose": 9
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1733,
+		"file": "motion_frames/frame_104.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 13
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1750,
+		"file": "motion_frames/frame_105.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 13
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1767,
+		"file": "motion_frames/frame_106.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 13
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1783,
+		"file": "motion_frames/frame_107.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 14
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1800,
+		"file": "motion_frames/frame_108.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 14
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1817,
+		"file": "motion_frames/frame_109.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 14
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1833,
+		"file": "motion_frames/frame_110.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 15
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1850,
+		"file": "motion_frames/frame_111.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 15
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1867,
+		"file": "motion_frames/frame_112.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 15
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 1883,
+		"file": "motion_frames/frame_113.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 0
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 1900,
+		"file": "motion_frames/frame_114.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 1
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 1917,
+		"file": "motion_frames/frame_115.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 1
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 1933,
+		"file": "motion_frames/frame_116.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 1
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 1950,
+		"file": "motion_frames/frame_117.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 1
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 1967,
+		"file": "motion_frames/frame_118.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 2
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 1983,
+		"file": "motion_frames/frame_119.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 2
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2000,
+		"file": "motion_frames/frame_120.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 2
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2017,
+		"file": "motion_frames/frame_121.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 3
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2033,
+		"file": "motion_frames/frame_122.png",
+		"fx": 0,
+		"phase": "CONTACT",
+		"pose": 4
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2050,
+		"file": "motion_frames/frame_123.png",
+		"fx": 0,
+		"phase": "CONTACT",
+		"pose": 4
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2067,
+		"file": "motion_frames/frame_124.png",
+		"fx": 0,
+		"phase": "CONTACT",
+		"pose": 5
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2083,
+		"file": "motion_frames/frame_125.png",
+		"fx": 0,
+		"phase": "CONTACT",
+		"pose": 5
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2100,
+		"file": "motion_frames/frame_126.png",
+		"fx": 1,
+		"phase": "CONTACT",
+		"pose": 5
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2117,
+		"file": "motion_frames/frame_127.png",
+		"fx": 1,
+		"phase": "CONTACT",
+		"pose": 6
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2133,
+		"file": "motion_frames/frame_128.png",
+		"fx": 1,
+		"phase": "CONTACT",
+		"pose": 6
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2150,
+		"file": "motion_frames/frame_129.png",
+		"fx": 2,
+		"phase": "CONTACT",
+		"pose": 7
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2167,
+		"file": "motion_frames/frame_130.png",
+		"fx": 2,
+		"phase": "CONTACT",
+		"pose": 7
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2183,
+		"file": "motion_frames/frame_131.png",
+		"fx": 2,
+		"phase": "CONTACT",
+		"pose": 8
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2200,
+		"file": "motion_frames/frame_132.png",
+		"fx": 3,
+		"phase": "CONTACT",
+		"pose": 8
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2217,
+		"file": "motion_frames/frame_133.png",
+		"fx": 3,
+		"phase": "CONTACT",
+		"pose": 9
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2233,
+		"file": "motion_frames/frame_134.png",
+		"fx": 3,
+		"phase": "CONTACT",
+		"pose": 9
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2250,
+		"file": "motion_frames/frame_135.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 13
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2267,
+		"file": "motion_frames/frame_136.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 13
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2283,
+		"file": "motion_frames/frame_137.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 13
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2300,
+		"file": "motion_frames/frame_138.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 13
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2317,
+		"file": "motion_frames/frame_139.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 14
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2333,
+		"file": "motion_frames/frame_140.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 14
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2350,
+		"file": "motion_frames/frame_141.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 15
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2367,
+		"file": "motion_frames/frame_142.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 15
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2383,
+		"file": "motion_frames/frame_143.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 15
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2400,
+		"file": "motion_frames/frame_144.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 15
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2417,
+		"file": "motion_frames/frame_145.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 0
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2433,
+		"file": "motion_frames/frame_146.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 0
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2450,
+		"file": "motion_frames/frame_147.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 1
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2467,
+		"file": "motion_frames/frame_148.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 1
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2483,
+		"file": "motion_frames/frame_149.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 1
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2500,
+		"file": "motion_frames/frame_150.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 1
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2517,
+		"file": "motion_frames/frame_151.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 2
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2533,
+		"file": "motion_frames/frame_152.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 2
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2550,
+		"file": "motion_frames/frame_153.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 2
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2567,
+		"file": "motion_frames/frame_154.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 2
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2583,
+		"file": "motion_frames/frame_155.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 2
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2600,
+		"file": "motion_frames/frame_156.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 3
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2617,
+		"file": "motion_frames/frame_157.png",
+		"fx": -1,
+		"phase": "LOAD",
+		"pose": 3
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2633,
+		"file": "motion_frames/frame_158.png",
+		"fx": 0,
+		"phase": "CONTACT",
+		"pose": 4
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2650,
+		"file": "motion_frames/frame_159.png",
+		"fx": 0,
+		"phase": "CONTACT",
+		"pose": 5
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2667,
+		"file": "motion_frames/frame_160.png",
+		"fx": 1,
+		"phase": "CONTACT",
+		"pose": 6
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2683,
+		"file": "motion_frames/frame_161.png",
+		"fx": 2,
+		"phase": "CONTACT",
+		"pose": 7
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2700,
+		"file": "motion_frames/frame_162.png",
+		"fx": 2,
+		"phase": "CONTACT",
+		"pose": 8
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2717,
+		"file": "motion_frames/frame_163.png",
+		"fx": 3,
+		"phase": "CONTACT",
+		"pose": 9
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2733,
+		"file": "motion_frames/frame_164.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 13
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2750,
+		"file": "motion_frames/frame_165.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 13
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2767,
+		"file": "motion_frames/frame_166.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 13
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2783,
+		"file": "motion_frames/frame_167.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 13
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2800,
+		"file": "motion_frames/frame_168.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 13
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2817,
+		"file": "motion_frames/frame_169.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 14
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2833,
+		"file": "motion_frames/frame_170.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 14
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2850,
+		"file": "motion_frames/frame_171.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 14
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2867,
+		"file": "motion_frames/frame_172.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 14
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2883,
+		"file": "motion_frames/frame_173.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 15
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2900,
+		"file": "motion_frames/frame_174.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 15
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2917,
+		"file": "motion_frames/frame_175.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 15
+	},
+	{
+		"cut": 4,
+		"elapsed_ms": 2933,
+		"file": "motion_frames/frame_176.png",
+		"fx": -1,
+		"phase": "FOLLOW THROUGH",
+		"pose": 15
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 2950,
+		"file": "motion_frames/frame_177.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 2967,
+		"file": "motion_frames/frame_178.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 2983,
+		"file": "motion_frames/frame_179.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3000,
+		"file": "motion_frames/frame_180.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3017,
+		"file": "motion_frames/frame_181.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3033,
+		"file": "motion_frames/frame_182.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3050,
+		"file": "motion_frames/frame_183.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3067,
+		"file": "motion_frames/frame_184.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3083,
+		"file": "motion_frames/frame_185.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3100,
+		"file": "motion_frames/frame_186.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3117,
+		"file": "motion_frames/frame_187.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3133,
+		"file": "motion_frames/frame_188.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3150,
+		"file": "motion_frames/frame_189.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3167,
+		"file": "motion_frames/frame_190.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3183,
+		"file": "motion_frames/frame_191.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3200,
+		"file": "motion_frames/frame_192.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3217,
+		"file": "motion_frames/frame_193.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3233,
+		"file": "motion_frames/frame_194.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3250,
+		"file": "motion_frames/frame_195.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3267,
+		"file": "motion_frames/frame_196.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3283,
+		"file": "motion_frames/frame_197.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3300,
+		"file": "motion_frames/frame_198.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3317,
+		"file": "motion_frames/frame_199.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3333,
+		"file": "motion_frames/frame_200.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3350,
+		"file": "motion_frames/frame_201.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3367,
+		"file": "motion_frames/frame_202.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3383,
+		"file": "motion_frames/frame_203.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3400,
+		"file": "motion_frames/frame_204.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3417,
+		"file": "motion_frames/frame_205.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3433,
+		"file": "motion_frames/frame_206.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3450,
+		"file": "motion_frames/frame_207.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3467,
+		"file": "motion_frames/frame_208.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	},
+	{
+		"cut": -1,
+		"elapsed_ms": 3483,
+		"file": "motion_frames/frame_209.png",
+		"fx": -1,
+		"phase": "ACCEPTED IDLE",
+		"pose": 0
+	}
+]

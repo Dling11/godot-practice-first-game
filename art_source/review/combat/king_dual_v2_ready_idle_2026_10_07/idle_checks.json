@@ -1,0 +1,5 @@
+{
+	"checks": 100,
+	"failures": 0,
+	"scope": "Actual Player uncrossed post-walk ready, neutral idle entry, slow glance, retrieval, delayed cancellation and swap"
+}

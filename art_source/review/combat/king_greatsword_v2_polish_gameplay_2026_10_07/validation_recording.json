@@ -1,0 +1,12 @@
+{
+  "recording": {
+    "frames_per_facing": 55,
+    "facings": 4,
+    "zoom": 2.5
+  },
+  "native": true,
+  "engine": "4.7.2-stable (official)",
+  "failures": 0,
+  "checks": 184,
+  "scope": "Real F9/F7, all equipment/Bag, four-facing contact/buffering, expanded spin, jump, steps, cancels, original V1, Stage I and four recorded combos"
+}

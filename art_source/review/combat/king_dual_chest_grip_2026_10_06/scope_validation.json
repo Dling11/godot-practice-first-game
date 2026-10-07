@@ -1,0 +1,11 @@
+{
+  "runtime_files": 66,
+  "changed_paths": [
+    "assets/characters/playable/king/dual_twinsteel/run_body.png",
+    "assets/characters/playable/king/dual_twinsteel/run_hands.png",
+    "assets/characters/playable/king/dual_twinsteel/run.tres"
+  ],
+  "unchanged_runtime_files": 63,
+  "protected_files": 92,
+  "protected_mismatches": []
+}

@@ -1,0 +1,14 @@
+{
+	"audition": "three normal contacts then jump finisher; this is isolated audition, not live speaker approval",
+	"duration_seconds": 0.467301587301587,
+	"finisher": "new mixed recording, pitch .9, -4dB; fourth cut only; existing floor-contact sound remains separate",
+	"license": "CC0 1.0",
+	"normal": "existing three meat variations, pitch .74, -4dB; one cue per accepted swing",
+	"peak_dbfs": -4.01318907667051,
+	"processing": "mono PCM16 at 44100Hz; trim/fade; aligned 65% meat + 20% wood + 30% stone mix; normalize peak -4dBFS; no metal sample or runtime DSP",
+	"rms_dbfs": -23.8786461870676,
+	"runtime_sha256": "f76df4f18c351137b1ea59b6502eb6ff5a3d430dd66a313d3191fe06e98766ee",
+	"source": "Impact by Iwan qubodup Gabovitch",
+	"source_archive_sha256": "98d72b55d6f78a32072439ed4d052fc43fdd80b8b409d18a9bb3150fc2ccd97b",
+	"source_url": "https://opengameart.org/content/impact"
+}

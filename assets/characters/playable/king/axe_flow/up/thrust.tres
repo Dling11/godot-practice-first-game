@@ -1,0 +1,29 @@
+[gd_resource type="Resource" load_steps=5 format=3]
+[ext_resource type="Script" path="res://data/weapons/weapon_family_pose_definition.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/axe_flow/up/thrust_body.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/axe_flow/up/thrust_hands.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/axe_proof/iron_beard.png" id="4"]
+[resource]
+script = ExtResource("1")
+body_atlas = ExtResource("2")
+hand_atlas = ExtResource("3")
+weapon_texture = ExtResource("4")
+primary_hands = PackedVector2Array(111, 62.800003, 110, 66.4, 110, 66.4, 111, 66.4, 114, 55.6, 113, 55.6, 114, 55.6, 110, 66.4, 110, 66.4, 89, 66.4, 110, 66.4, 110, 66.4, 110, 66.4)
+secondary_hands = PackedVector2Array(115.01504, 68.534065, 108.91076, 73.314735, 105.2138, 71.508064, 104.7813, 69.61369, 107.7813, 58.81369, 106.7813, 58.81369, 107.7813, 58.81369, 103.7813, 69.61369, 103.7813, 69.61369, 86.04167, 72.744156, 103.7813, 69.61369, 103.7813, 69.61369, 103.7813, 69.61369)
+lift_pixels = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+weapon_behind_body = PackedByteArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+single_hand_poses = PackedByteArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+stowed_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+released_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+ground_clipped_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+pose_count = 13
+pose_order = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+weapon_primary_grip = Vector2(39, 33)
+weapon_handle_axis = Vector2(4, 10)
+mirror_cutting_edge = false
+phase_windows = PackedVector2Array(0, 3, 4, 6, 7, 9)
+queued_recovery_window = Vector2(10, 12)
+pose_weights = PackedFloat32Array(0.15, 0.6, 0.8, 1, 1, 1, 1, 0.7, 0.8, 1, 0.65, 0.85, 1)
+interpolate_blade_angles = false
+identity_regions = Array[Rect2]([Rect2(83, 39, 25, 24), Rect2(85, 34, 25, 24), Rect2(85, 34, 25, 24), Rect2(87, 34, 25, 24), Rect2(86, 35, 25, 24), Rect2(85, 34, 25, 24), Rect2(85, 35, 25, 24), Rect2(85, 34, 25, 24), Rect2(85, 33, 25, 24), Rect2(89, 40, 25, 24), Rect2(85, 34, 25, 24), Rect2(85, 33, 25, 24), Rect2(85, 33, 25, 24)])
+identity_source_region = Rect2(86, 41, 23, 21)

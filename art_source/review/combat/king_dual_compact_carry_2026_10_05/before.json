@@ -1,0 +1,262 @@
+[
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/cross_finish_body.png",
+    "sha256": "0BE899805E1B960BC6E2D62D214A0A3E695BD6FFA26CDEEBA55CDB8CA1FFA32A"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/cross_finish_hands.png",
+    "sha256": "380DE079FBF7287765649A510B23ADC9120BC94F852F7C2665EB946A137F79DD"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/cross_finish.tres",
+    "sha256": "9E0737F6B78E5662D88E85DD9F28E6A81B392421A022AD3E6559CB875C6A3189"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/descending_body.png",
+    "sha256": "D2531896B5D826BDD12D75D315BBB21AF16609F049B213A9737EC07BA2FEDC02"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/descending_hands.png",
+    "sha256": "09B71F60843D003F3CCFD813FB4719D89030FA36D8BEF1822B010F7F51C629E5"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/descending.tres",
+    "sha256": "3A327060438BD0B8F90DDA78DD54FF4D7E1A9E2C546D4C3C1A8BD1DC268810FC"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/idle_body.png",
+    "sha256": "1A60BD7B344C7121A7741AC2119EEA9A146158101C21A2CCF2EEAF2044E02A4B"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/idle_hands.png",
+    "sha256": "B9BCA093AA20A935EBFAFBC59BB1CFDABC8A39F5488BE4A25BE7548087F1B3F0"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/idle.tres",
+    "sha256": "EA589121BC36523DE6E7B747C5E1AFB7A308D1138FED460BC50B507BA8ED3818"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/rising_body.png",
+    "sha256": "D035B3746DCF5EA1F098FF97172C7CA404A8BBD04F162A1ECB5EC49B221AF0C7"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/rising_hands.png",
+    "sha256": "4C1BF2F4285D46802908304877DA633F2B12DDE1E5F75C373B1E32E699EEC7D0"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/rising.tres",
+    "sha256": "61D5917623CCB8FB2A6FE3B4386E28A9220E74A4FE2229377AFED2880C11A704"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/run_body.png",
+    "sha256": "D556B67C065A1CD1C672FB6DC5A86DC83B8F2D732FEECCD63A4B9E00AEE72BDE"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/run_hands.png",
+    "sha256": "7D9042E3C63E5AE88FA4AE285F6DD8370DF7B1C92907404421005CA1F92275ED"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/run.tres",
+    "sha256": "C3C1C7BFD077AE034795FB0F70314E1C5B645DEAB14FFA8B0F60CEBE961F3F06"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/scissors_body.png",
+    "sha256": "F57D19B4483A154A8605757537FEB1EBC3F097D99EA2128DB8DCBA64D1048E91"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/scissors_hands.png",
+    "sha256": "FB282EBB2CE2560334399007E81DE8D250CBFB55E31A923231EF710963618AB2"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/scissors.tres",
+    "sha256": "4C84C8322935E3918DE4C0008143867CDB869E540A3346FC08AD64CB009DEC18"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/spin_body.png",
+    "sha256": "F3CD61AB3CBF6927AB1E3F5BEFE2C2AE299F3A71F59C5FFC0EB1B23384ED5174"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/spin_hands.png",
+    "sha256": "674FF147BA4DEA910E4D50BD9747415087AF7C8965FFEED3EADFF0C9D34A7B0B"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/spin.tres",
+    "sha256": "8570EC1C4E91D61D72E0676CD12390ED05555A1CDA0C0CCF7AB498EEBA5D8011"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/swing.png",
+    "sha256": "62629494C2F0ADE9336A925FC44FE9DE67912A3A9D722934775D2760B6009F56"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/twinsteel.png",
+    "sha256": "0F8E52CAE7D2492E52B3F8DE06B41A2A5679EB136343D5D5BA3800BEDE63DAF8"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/down/cross_finish_body.png",
+    "sha256": "7F5025E4829827B8D792A41D041913892A8EE097C79AB45ACDCDEC1B404A6C30"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/down/cross_finish_hands.png",
+    "sha256": "76D9AABC8E8A97A6F6FE46D13B950F8EB89AE7FC2E7400513B95EAA16814C089"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/down/cross_finish.tres",
+    "sha256": "FF062757F2060C779FCAB3E6D86546004633E15C47D2AD79C534F4E1034AE764"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/down/descending_body.png",
+    "sha256": "44860A659B5CB1E739053F519DA1764D766FE495F806CD895B2102F0EDA16F8B"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/down/descending_hands.png",
+    "sha256": "88E02EB38A54E0ACFA33F6CAC98972F38E293315E89DF4511AE17A31A7855116"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/down/descending.tres",
+    "sha256": "A93B8B6F19F2424251FA0910E2DEA97091463BF301877A137C2EB5BE11FDD419"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/down/idle_body.png",
+    "sha256": "39456C97BC234886FBD6E0DB215DB9924410F1396A9093126AD504E0B0F9D1C1"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/down/idle_hands.png",
+    "sha256": "B9BCA093AA20A935EBFAFBC59BB1CFDABC8A39F5488BE4A25BE7548087F1B3F0"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/down/idle.tres",
+    "sha256": "25C34055EEDAAB4E8FE492F640EA3C56C7C8272C1758C10F1558D3263E8661D8"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/down/rising_body.png",
+    "sha256": "5F7B78DFFFE6A47A4885DBB91B0B7ADD6C8EFF5F1196FC472CF87E2E76E41FC6"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/down/rising_hands.png",
+    "sha256": "F11F0CDCEEC7799E126F50081D3B3EF7A6F5E83B29DFC6C338711090CF565D29"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/down/rising.tres",
+    "sha256": "A19AE9C94F43D5035EF3702FB427345BC049EEC98772E20952ADBAD5D1AAEDF0"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/down/run_body.png",
+    "sha256": "04C31F9D41BB46F11A25006E2135AE279FEED3E070901D6AC06FCEF3FDBD8C95"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/down/run_hands.png",
+    "sha256": "1F65093102B958B3F9AF97745A28493E4227D4EEE1034305A524D1E0EDFC24CC"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/down/run.tres",
+    "sha256": "32B537EAF254E58C233C5A28DAF0C7C16B0A9BD5FCD5A62197F77C0BEA2C9901"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/down/scissors_body.png",
+    "sha256": "12FF47BAF09D643341076811FD05B3B2AE4D60A5608FE00DFD7F2AFD218D2167"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/down/scissors_hands.png",
+    "sha256": "77DB3975C4135FDBB8F0CEF8F094393D2EE5102F0DBD652E48A51875A93A0E4B"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/down/scissors.tres",
+    "sha256": "78B9FEE04A4B53106E1C9AC9CB48C5F8DC2445B7ACDEA6F97CF25170094A1128"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/down/spin_body.png",
+    "sha256": "C8C16858FC7D38AE0953EDDECAE5368ADEFC26DE0AE24AC1BBBFB165EFCE6AE2"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/down/spin_hands.png",
+    "sha256": "7141C196BBFC4310416A214DEBD6020CB21BDB4ADB7C5D9C66F39B6850965225"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/down/spin.tres",
+    "sha256": "CBA52281C0B549E5C6372F0E87F03567AE9D68530783063CB7C3102D3DC107A1"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/up/cross_finish_body.png",
+    "sha256": "0B03B1ABE6F8D85D08F63737D5B01AA0A96335F8683B7CC95976AC635D29D2BD"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/up/cross_finish_hands.png",
+    "sha256": "488DAC843E8C7D7324C7666F35ACEBACD7217A72DC800440864371007EBA94B9"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/up/cross_finish.tres",
+    "sha256": "5F76CF1D2B936344E22FE518E6F2A5A24AA7EC5169944ADCFECB51E05EA8A743"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/up/descending_body.png",
+    "sha256": "150BE60081FFEE9EB9E55C2D612E5D30BE89533B97C5A048F6D37DD1A7307D48"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/up/descending_hands.png",
+    "sha256": "0D58C84B37237FC6466FF074C2FA52EADDE0008CC9892E4589FBD3525290F870"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/up/descending.tres",
+    "sha256": "912BA06961C05CAE479BAC2806C3FD27005512B4F43BDEEE589EB60B73D33FC9"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/up/idle_body.png",
+    "sha256": "BD4C1BFD5A5664D25AD78EB2BAF5A3251438F9B477138D4DE798D558A2A03488"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/up/idle_hands.png",
+    "sha256": "B9BCA093AA20A935EBFAFBC59BB1CFDABC8A39F5488BE4A25BE7548087F1B3F0"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/up/idle.tres",
+    "sha256": "8D2BFBC59FF4E490E4AEB4863AFBFA85A806C40C06D4F54CB38529F3D5638513"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/up/rising_body.png",
+    "sha256": "9FF5382983544B2B322EF1917CB7728BC0DA5E0D069EC78F96B307122A5111A7"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/up/rising_hands.png",
+    "sha256": "E04B81707CA77405D02025B8B39142F161EB03656EEA5A3D6D07E05D51ED64AE"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/up/rising.tres",
+    "sha256": "E291D826EF1961C0F46945B772EE7FBA739FC581D6DE342FE8C6E5A4D8B0FC24"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/up/run_body.png",
+    "sha256": "0875FE628FE2091EF1397758B91A3EE3B1FD2DBA651461291F3786DFB508D4CC"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/up/run_hands.png",
+    "sha256": "6D2E4F158B14E7A99082C8BC74654E70CB62AB375FFB96B421C13C82D4110440"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/up/run.tres",
+    "sha256": "ECEA21F58D88ADCC56B58DDDAB1011974D41945E123D04BCE9443B8A279F3CA6"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/up/scissors_body.png",
+    "sha256": "F0BA138D3D26E9B3B7A3F8F37F333C9732A0A55195C1900623D656763DBFDBBB"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/up/scissors_hands.png",
+    "sha256": "6021972901724E58C8F91CA06345FF54847844FF0A595F68A645A6EBB74A7E7D"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/up/scissors.tres",
+    "sha256": "939F5FCD46872AD3C38B40B0F6AB96FB1209F88D7B6839508ECEDA994623E3EC"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/up/spin_body.png",
+    "sha256": "A32315E9F91A4A427749356CB849608AB74F19C6E9022C563F0261A5FDE5EAD6"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/up/spin_hands.png",
+    "sha256": "7A7F4E204857380285556729642D32D9B5004A84E294423D44B59F480A624BE3"
+  },
+  {
+    "path": "assets/characters/playable/king/dual_twinsteel/up/spin.tres",
+    "sha256": "2235C03F2491491BAC971EF916A333C494316F1C4AA477F2E08A756B51AAE1EA"
+  }
+]

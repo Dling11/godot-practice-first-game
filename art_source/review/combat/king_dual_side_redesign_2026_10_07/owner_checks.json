@@ -1,0 +1,28 @@
+{
+	"assertions": 619,
+	"combo_seconds": 2.2,
+	"contact": [
+		0.08,
+		0.08,
+		0.1,
+		0.22,
+		0.1
+	],
+	"failures": [],
+	"frames": 0,
+	"recovery": [
+		0.16,
+		0.14,
+		0.15,
+		0.15,
+		0.22
+	],
+	"scope": "Native LEFT/RIGHT presentation only; not installed gameplay, enemy balance or performance profiling",
+	"wind": [
+		0.14,
+		0.12,
+		0.15,
+		0.16,
+		0.23
+	]
+}

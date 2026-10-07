@@ -1,0 +1,466 @@
+[
+  {
+    "path": "data/items/equipment/king_royal_greatsword.tres",
+    "sha256": "CD221C3F8A985D5F93F2A5B92FAACCA9A2334790F829488719A54224165560B9"
+  },
+  {
+    "path": "data/weapons/king_royal_greatsword.tres",
+    "sha256": "E92D8DD34FFD95B590050A9E33FBCAB02BB8A7F3C55C3242C729C9AB52C40EC4"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/turn_hands.png.import",
+    "sha256": "AE4AFF0014E47232D2E93FCC13730D6F4A6D9B6E13B2617450BD4D56F9976AFF"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/turn_hands.png",
+    "sha256": "240BEB14C13EF6E211F1CBBF17609B73ED41023131C33ACC98A74BFC32A2116E"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/turn_body.png.import",
+    "sha256": "B4EB0AD9B011CF378FE5A9CEAD83F15FA7C318B97221376CD3A621606E9CF82B"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/turn_body.png",
+    "sha256": "87F564A7A65F595CBB933590530A61899E8A2BE0B1F2D0D1833A8CD6E416024F"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/turn.tres",
+    "sha256": "E9DB1DC950EF490BA0327BF93AE6A0D95E333D10873FAC76F7FB767F4720DD78"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/sweep_hands.png.import",
+    "sha256": "3F480C93F86E0C91974B3D80DBAB0681F7CAA415E10059BA835EB3DC792FA8CA"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/sweep_hands.png",
+    "sha256": "D72CD5A510E69583C380C8F7DBEC77ECAC46CB656CADFF3486645DA04E5B8EA4"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/sweep_body.png.import",
+    "sha256": "799793CC64DFBDB3C1232C12D55727ADF18ABCA3C097F3155E5A7E704290AEDA"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/sweep_body.png",
+    "sha256": "7CB74358780D6C2A4F0CFFF94113CA947A94149F9A3AFB0761B12E8FBDF6AD81"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/sweep.tres",
+    "sha256": "A11D94857BAFCC4F41B0B127B965AE252C8345BC07AEE1650C207A958BB4734D"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/slam_hands.png.import",
+    "sha256": "AEBBA9D8F328120CFF871614374E8DF4CF333E57D82EB9AC302287B7DB90164D"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/slam_hands.png",
+    "sha256": "70F33B01CA9AF7BB00F048DF43A9E71E839FF822A8B87AF7882262B21171C1AE"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/slam_body.png.import",
+    "sha256": "804674594B86EA2462B8F18874FE33AF6AF75B8F397CF73CDF218D09D62C9136"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/slam_body.png",
+    "sha256": "0050380B48D67CDFFE1CFB8829D189D2045AA7D288CB840F20281578EAC56A66"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/slam.tres",
+    "sha256": "BEEABDF43BCE24F6A0AF343F0C742921922758555FB6D24815F8DB457A3D45BC"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/rise_hands.png.import",
+    "sha256": "AF801D89F403C15A6E013D4FE29C4444828A2F17E228EEB6858BC2B781A369DE"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/rise_hands.png",
+    "sha256": "AD5720F440CD994492A0FB6F6E8510A4FF31B28A59BEDE16DD55A4E6C21B73B3"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/rise_body.png.import",
+    "sha256": "5CFA3465DB7B4B3D9AC63309F30D91F7B7D30E22334DAB324A9DA6242A2E08C4"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/rise_body.png",
+    "sha256": "0CBBC3D16C808ABD96D1D02F44BD32BE4B91ACCA08509B386B96DABA6EB25BBA"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/rise.tres",
+    "sha256": "CBC7F9BE3AFA79CF39251840C86CE81FA54B6B6A5D2A2E49A8EC679DD614FA1A"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/return_hands.png.import",
+    "sha256": "E4AEE678F7442605709FD9BE3148A4FF54A8D31ADB4E4F2292D80D180B817D89"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/return_hands.png",
+    "sha256": "755F2CA3FD6B6E22D32F3F043BF71C463FED8F6D83044CEB5A4D07FF49406A0D"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/return_body.png.import",
+    "sha256": "744F89C2B82874983337C85E93B9E086FB4F63155D5F809D7DD9C64731778E47"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/return_body.png",
+    "sha256": "57F90FA16216A8CFB3147BDF6D66BF59F234E70A2F575010C626B8F41F7D3E5D"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/up/return.tres",
+    "sha256": "66395590188EFEDA68586DB96DFA3C11FC15799BA3E5CB93F0F07A5C948A2A8E"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/turn_hands.png.import",
+    "sha256": "6EF218F8C551296839F66DA682E7098BD091796D3DF041388AC6CAEB3FF61C17"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/turn_hands.png",
+    "sha256": "6330095E2C8F026B70743144E67AF1B84B8D6921690BA277F115FD226BD9A510"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/turn_body.png.import",
+    "sha256": "02E1E0E020788524722C1C0949D77B88C8B5AD54B21B82243D82F45EEF0B3B7C"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/turn_body.png",
+    "sha256": "C68D47E7D2DC9031A2076CF59A24B39013DFF9D15F421D16FC7AA9C1B3E2FBFC"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/turn.tres",
+    "sha256": "9F17E92427D068830315E341274751449BA71C3F58D7D484B28D4DC9CB4639D6"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/sweep_hands.png.import",
+    "sha256": "B6827E705F4EBD12C92B36432EEE7C449093C17BD5FD5B5A86FE21C7830074EC"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/sweep_hands.png",
+    "sha256": "E9FD3E625F8A1B4B9D1A4CFEDEB4580DBA9CD8C8432376F9DC133A302E0A68D1"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/sweep_body.png.import",
+    "sha256": "3CFC6CCB8D7C9778FE0CAB48F7506FAAAB644693D21C9F824688224166ACD241"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/sweep_body.png",
+    "sha256": "17A3CDD678BA339962A9B12EA8B3D8233ECFE70F2DB007D46E7FC9D73EC6CBC0"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/sweep.tres",
+    "sha256": "C64413AA1227286421697A704724A893707188C65F03AB01FC3F5CF02A789A86"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/slam_hands.png.import",
+    "sha256": "13C62CD035C821C51899CA4A9AA614AF9CE2BDA02C45D49085EE1DBA0C318665"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/slam_hands.png",
+    "sha256": "A22500A753C243CD9B6858EB34776CB7063BAF5760D2549EA450D0CF4677E570"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/slam_body.png.import",
+    "sha256": "16FF3162993AD8BB916B48EA9B2705114F2285B60FC548CC65D58578B311CE76"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/slam_body.png",
+    "sha256": "2275DED054EF9D5D66F8DCD62AA0CC5FFF87EB1A449DB9A94F82A4D573CCB3AB"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/slam.tres",
+    "sha256": "303750ABEA51EB6233F5AC92AA3B3C8F2DB57B9D1C1A8A30D0E0E648D6ACC2BF"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/rise_hands.png.import",
+    "sha256": "DCB0A3642F4B5A6E038944A69EA9D6869B786687DC30D1E192D2B7968CAF80C3"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/rise_hands.png",
+    "sha256": "4BB1470D2596EE5E212B2F787C1651989E5261F2AF037F7642787F02695499B1"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/rise_body.png.import",
+    "sha256": "0622C72190C8B36563CB136FFAF9FBFA47B7678957DF1D41FB41DBB6B90582F2"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/rise_body.png",
+    "sha256": "32BB5DCFCB049EE29D7F9C687B9C2E7254A08F9AC48340EEFB42824EC8870626"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/rise.tres",
+    "sha256": "18132C3F142AAA8013ABD363D81AF6402CB82EFB342E069DB9853078B664D419"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/return_hands.png.import",
+    "sha256": "76BFC40F819BF8FAF66D67603C9D281C1D846DE4DD60A18EC9654E083B19470C"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/return_hands.png",
+    "sha256": "6FA93914E2182AE641D119E7A9F0147188A3D363D2943952FC91CA5E7C59B6B8"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/return_body.png.import",
+    "sha256": "B5FC713B205C7123B15EF770F5A9347B7C4B2B6FD5CC0B11EE65155DC1A79FF6"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/return_body.png",
+    "sha256": "07E2598159C1F30745B951DB4FE4C286382B840E7057FAF1335C9B7AA5A0F165"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/side/return.tres",
+    "sha256": "F92485462D4FF4403BAA69E57F50EFE48081DFD059DA6C5FAC3BD68F503FA812"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/turn_hands.png.import",
+    "sha256": "079067B43D5E06D396E0524D8DC6BA524C00FB6A6A990667A2F58F305B8CBB7F"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/turn_hands.png",
+    "sha256": "32CB0F1F840DC4FFC98DFE03691DB59C33507B71C0E2123D0B42735F70C6B434"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/turn_body.png.import",
+    "sha256": "C053560C4F5B0D1AFAA89EF539F8A25F213F7352B88F98195600B46F06835388"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/turn_body.png",
+    "sha256": "43BF75979898B05017B6D35AF2D14846A95633A644B4AACFA9A5C990B9DE6A21"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/turn.tres",
+    "sha256": "6CFD29017C2225E08E3769DB9599C2F110BFC315C0F96BFB50241F128F65996A"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/sweep_hands.png.import",
+    "sha256": "9C3A145C567A3FD3EAA69FFAE7C0C90492A10C1F3CB8F292133D1DF0E538C9CE"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/sweep_hands.png",
+    "sha256": "AC9E729208E820583F32596320AD5AC7B45A2A82554F361ECE69E48CA1329D31"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/sweep_body.png.import",
+    "sha256": "DF78073FF89377E7C3E885760E7B19157058B3A0B2200842AEBD4EEBA411A6FA"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/sweep_body.png",
+    "sha256": "C56DB9D4E17F63B37C1724CDBA273AC313EBD7CFF876B33AF0FFE100074DBE2F"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/sweep.tres",
+    "sha256": "CDA9D633FE652DA99D493BC078A3C5245D8822947DB75950DDFCBABB0493A3C1"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/slam_hands.png.import",
+    "sha256": "7068AAEB9802669CAACE40B2E838225C532FE9C906C91651033195353B942C13"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/slam_hands.png",
+    "sha256": "4F79297E0D100BABCD83500804520AA1155029979D0366692714BC659CBA0F1A"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/slam_body.png.import",
+    "sha256": "D773ED336FF2A0D88A3188BDA773892F49018B105ABEEEC2A0E4EE43B6A94069"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/slam_body.png",
+    "sha256": "633AF445910192551FD76FFAE3A86763EBBE129806261525984182F180589AAE"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/slam.tres",
+    "sha256": "7DA5FC2A087AD877388384A5723203B22111F0E11C8F596FBA4BBC88260B38C5"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/rise_hands.png.import",
+    "sha256": "879DBA753D40D42677AF29F2E3FF7E181AE393C8C07FC72368FEA457DA47906E"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/rise_hands.png",
+    "sha256": "D50CF4DA063BBCA20BE1BE9D3D4DDD4AC9BE2E299EAC3CA370186AB34E0A8C1E"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/rise_body.png.import",
+    "sha256": "77F36A50BB451169C243A7EBA4C39767040364B611D6A9B7434EE567BB4E4E6F"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/rise_body.png",
+    "sha256": "0ED6CD1B0C115ABABC1E69865513FE98B632E993A6B86E6F85D379A74C10442A"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/rise.tres",
+    "sha256": "9C15556093BD29D629960A82268C5232C0EC61ED95DA06CECC9BFC68E4E1A8F5"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/return_hands.png.import",
+    "sha256": "EF0B6FDD888358201E813E65C660487AA03EC0E0141ACA241EEAAA3829F31454"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/return_hands.png",
+    "sha256": "EEE68FDFE873A70CC55D4B9877F90C3BF71CC54D06EB3BA33C5988BD3AF43D5C"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/return_body.png.import",
+    "sha256": "32F33CA03F5BE4EE34BDF153C1E31F9B9128D6BB63B1D86751B7D09A7D9C447F"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/return_body.png",
+    "sha256": "558ACF6BBF4C784D32FCD34DCA9959671151697CF25EDF5B50E17644C5ADE8C2"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_oathbound/down/return.tres",
+    "sha256": "82B60595139B1BAD092A77D39B4868382A7C01AD415B081292E758196679444C"
+  },
+  {
+    "path": "data/weapons/families/royal_greatsword/presentation.tres",
+    "sha256": "97C67691C6467DC5BE2775633107651F6935B52BD72EFFF692DC804FBDBD5179"
+  },
+  {
+    "path": "data/weapons/families/royal_greatsword/poses.tres",
+    "sha256": "C64413AA1227286421697A704724A893707188C65F03AB01FC3F5CF02A789A86"
+  },
+  {
+    "path": "data/weapons/families/royal_greatsword/linked_turn.tres",
+    "sha256": "55B04F8E532BCDC6C64B598E9BF250931427F029DAB91646E8FAE0E6BBAF649F"
+  },
+  {
+    "path": "data/weapons/families/royal_greatsword/combo.tres",
+    "sha256": "A88E75C86731EA7AB69F05CC84B8F4AAAC54794D24E7F8A4D77F85EACFE43459"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_confidence_v2/opening_hands.png.import",
+    "sha256": "F99008C26FAB469B10CA0ADB7F1026BC565FD1AC7BF649F4DB4B0013DB2ABFFC"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_confidence_v2/opening_hands.png",
+    "sha256": "2CD5860ECF8748627E114DCBB8DBCCA587E9B60FB5571D54A25DA55521B84689"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_confidence_v2/opening_body.png.import",
+    "sha256": "8267E0A54441AF359F4CA154F66658F7A689F4173B80E64952B4E67461DDBC5E"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_confidence_v2/opening_body.png",
+    "sha256": "2AFDCDC4BCACCB9D90AC04EDB4B1DFE970ABC67C8639F03B49E5A902A99BD00B"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_confidence_v2/opening.tres",
+    "sha256": "E55DEB1BD4A0F10236D621C3A7C7EFA83A717E858B5B536A309DBC2C7C231C30"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_confidence_v2/idle_hands.png.import",
+    "sha256": "30219E3D058152AB0F8E1B9D552604A3BCE9DC29382ED4061CC2CED19906A305"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_confidence_v2/idle_hands.png",
+    "sha256": "B7BAD9EC3FE5E3E63D8AB7C75F7DA02D9E6314943DA1B53784EB6E0A2339047B"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_confidence_v2/idle_body.png.import",
+    "sha256": "3A6750D719E40D5076F7339112A41DB642E9621E5561E40153704DC9CD6275AF"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_confidence_v2/idle_body.png",
+    "sha256": "27F5BA80E204751C105658BA61A18EF5DF4E2860E599431BC37E25BC5603E79B"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_confidence_v2/idle.tres",
+    "sha256": "ACFC4FF3899135A5FE6CBBF8799D12DD53133CD1763A29AAF2537CDF008E2AD9"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_confidence_v2/greatsword_run_hands.png.import",
+    "sha256": "E6AA4F47324690B6EFC77CEA9DAF94AC7F0C6911FC2B5270A6B5BF36D30FAE25"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_confidence_v2/greatsword_run_hands.png",
+    "sha256": "8FBDCB4A106A86148A60F86371343424817CB8B07F64D09A1882922CF68C061C"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_confidence_v2/greatsword_run_body.png.import",
+    "sha256": "CCD07D5CACDC22D399F888D5A2A9D0995A51731B4C20818EC6365581EBF18800"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_confidence_v2/greatsword_run_body.png",
+    "sha256": "9C49359187059C9F0EDBDEC6BE890876EBFCD656B602167F9C2600FD0D3BAA1D"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_confidence_v2/greatsword_run.tres",
+    "sha256": "8B7AC14100E63E20387C6C13E53C41CA5F98D1D4C2A4C4A20AC6F82BC425E048"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_confidence_v2/axe_run_hands.png.import",
+    "sha256": "517CCE5A5689DB91FBEE487149431739FB4280D849DD7E7FA16F0C290A1B8761"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_confidence_v2/axe_run_hands.png",
+    "sha256": "8DF9360A66B70AB63774C276E57ED13B832C6D9083DD88CF9EB276BA8042A758"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_confidence_v2/axe_run_body.png.import",
+    "sha256": "26C18D22E1F81C88ACDA461544B3BC2050BCA80CCCABF5DDAA908D5229DBA9F2"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_confidence_v2/axe_run_body.png",
+    "sha256": "97615B007DE280EE8A8C2C29D2125A6940085329263CAF9BB783A62C8154CBBA"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_confidence_v2/axe_run.tres",
+    "sha256": "924562D77DFF86C1EEAC13EA8AB40ED7C959557802650AD8AC5CA57B8E22E9DB"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/up/idle_hands.png.import",
+    "sha256": "62464104C2105CFFE2DA65E8F76B83863B93E76B43C54C7BD0A4E7E4F26667BE"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/up/idle_hands.png",
+    "sha256": "FBCB268F1891F757127BDA3137822347EA51809C3F68C709F4D3C17C9F883D8A"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/up/idle_body.png.import",
+    "sha256": "9EC4920BD17FC8C9824ADFF171341F05AC756E1311ECC202CBA26C625C2BB4AC"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/up/idle_body.png",
+    "sha256": "5B4C33EBDFEE5C4F2D20ED2CFF4AE7E464FFCE02ACB7DBBA93C09AD71C29E6AD"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/up/idle.tres",
+    "sha256": "FD17B4FA30E3592CEDAD74B2B608D81BA6F8DBC24C6B858D318786AFE96F472A"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/down/idle_hands.png.import",
+    "sha256": "B6094534CD9DF7B500383E56FFCDBC53746F61B6CB038354C150F8E7540AD95E"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/down/idle_hands.png",
+    "sha256": "1F9706A32BEE753D78C64A349C236F63095333C3F449B0524B2CB17378958418"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/down/idle_body.png.import",
+    "sha256": "F060CB7778634FFF5A8250C1BDE87B932D0E508E30095921B7A1DF183FB059DF"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/down/idle_body.png",
+    "sha256": "06434D708364906E14D0151BC4339BEFA8D5961ECC842C9013E9B7A2FDFBB79D"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/down/idle.tres",
+    "sha256": "EE53BC19419A204299E40849D50DBFE753D3DF241133182F0E5A76E37C1C9423"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/side/run_hands.png.import",
+    "sha256": "F66B449BB5D22A3F2B574DCFB9E84D41E334F799FE9340CCE8827679055889B3"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/side/run_hands.png",
+    "sha256": "4D97F957815921F958B337544DA18B38EC5F9B0748C3ECD411A70328D6198AA4"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/side/run_body.png.import",
+    "sha256": "808E354BA34F04A7FFFDD709873692FCD04D9EA139A50640152A270E5607307E"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/side/run_body.png",
+    "sha256": "42AB29CCE07AEB3584265C83EA2B91CD5D35BCF97296BAF05984102FA19693B2"
+  },
+  {
+    "path": "assets/characters/playable/king/greatsword_readability/side/run.tres",
+    "sha256": "885E50588BAA8FADCB9BA24AADAFDB4551C8371A3A4DAB4433C2CCD97B58EE97"
+  }
+]

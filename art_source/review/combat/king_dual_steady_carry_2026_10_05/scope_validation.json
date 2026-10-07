@@ -1,0 +1,19 @@
+{
+  "protected_files": 92,
+  "changed_files": [
+    "run_body.png",
+    "run_hands.png",
+    "run.tres",
+    "down/cross_finish_body.png",
+    "down/descending_body.png",
+    "down/idle_body.png",
+    "down/rising_body.png",
+    "down/run.tres",
+    "down/scissors_body.png",
+    "down/spin_body.png",
+    "up/run.tres"
+  ],
+  "runtime_files": 65,
+  "protected_mismatches": [],
+  "unchanged_files": 54
+}

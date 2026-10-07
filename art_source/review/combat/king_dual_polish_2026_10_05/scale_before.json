@@ -1,0 +1,702 @@
+[
+	{
+		"label": "axe_side",
+		"path": "res://assets/characters/playable/king/axe_proof_v3/carry.tres",
+		"poses": [
+			{
+				"head": "unregistered",
+				"height": 57,
+				"key": 0,
+				"main_hand": "Vector2(109, 78)",
+				"used": "Rect2i(79, 40, 33, 57)",
+				"world_height": 28.5
+			},
+			{
+				"head": "unregistered",
+				"height": 57,
+				"key": 1,
+				"main_hand": "Vector2(105, 73)",
+				"used": "Rect2i(79, 40, 35, 57)",
+				"world_height": 28.5
+			},
+			{
+				"head": "unregistered",
+				"height": 57,
+				"key": 2,
+				"main_hand": "Vector2(109, 77)",
+				"used": "Rect2i(79, 40, 35, 57)",
+				"world_height": 28.5
+			},
+			{
+				"head": "unregistered",
+				"height": 57,
+				"key": 3,
+				"main_hand": "Vector2(109, 77)",
+				"used": "Rect2i(79, 40, 35, 57)",
+				"world_height": 28.5
+			},
+			{
+				"head": "unregistered",
+				"height": 58,
+				"key": 4,
+				"main_hand": "Vector2(85, 52)",
+				"used": "Rect2i(77, 39, 37, 58)",
+				"world_height": 29.0
+			},
+			{
+				"head": "unregistered",
+				"height": 58,
+				"key": 5,
+				"main_hand": "Vector2(86, 57)",
+				"used": "Rect2i(79, 39, 35, 58)",
+				"world_height": 29.0
+			},
+			{
+				"head": "unregistered",
+				"height": 57,
+				"key": 6,
+				"main_hand": "Vector2(91, 78)",
+				"used": "Rect2i(79, 40, 33, 57)",
+				"world_height": 28.5
+			},
+			{
+				"head": "unregistered",
+				"height": 57,
+				"key": 7,
+				"main_hand": "Vector2(91, 78)",
+				"used": "Rect2i(79, 40, 33, 57)",
+				"world_height": 28.5
+			}
+		]
+	},
+	{
+		"label": "greatsword_side",
+		"path": "res://assets/characters/playable/king/greatsword_confidence_v2/idle.tres",
+		"poses": [
+			{
+				"head": "unregistered",
+				"height": 54,
+				"key": 0,
+				"main_hand": "Vector2(84, 58)",
+				"used": "Rect2i(77, 42, 38, 54)",
+				"world_height": 27.0
+			},
+			{
+				"head": "unregistered",
+				"height": 54,
+				"key": 1,
+				"main_hand": "Vector2(83, 59)",
+				"used": "Rect2i(77, 42, 38, 54)",
+				"world_height": 27.0
+			},
+			{
+				"head": "unregistered",
+				"height": 54,
+				"key": 2,
+				"main_hand": "Vector2(82, 58)",
+				"used": "Rect2i(76, 42, 39, 54)",
+				"world_height": 27.0
+			},
+			{
+				"head": "unregistered",
+				"height": 54,
+				"key": 3,
+				"main_hand": "Vector2(82, 58)",
+				"used": "Rect2i(76, 42, 39, 54)",
+				"world_height": 27.0
+			},
+			{
+				"head": "unregistered",
+				"height": 54,
+				"key": 4,
+				"main_hand": "Vector2(82, 54)",
+				"used": "Rect2i(75, 42, 43, 54)",
+				"world_height": 27.0
+			},
+			{
+				"head": "unregistered",
+				"height": 53,
+				"key": 5,
+				"main_hand": "Vector2(86, 71)",
+				"used": "Rect2i(72, 43, 48, 53)",
+				"world_height": 26.5
+			},
+			{
+				"head": "unregistered",
+				"height": 54,
+				"key": 6,
+				"main_hand": "Vector2(86, 71)",
+				"used": "Rect2i(76, 42, 41, 54)",
+				"world_height": 27.0
+			},
+			{
+				"head": "unregistered",
+				"height": 57,
+				"key": 7,
+				"main_hand": "Vector2(86, 71)",
+				"used": "Rect2i(76, 40, 39, 57)",
+				"world_height": 28.5
+			}
+		]
+	},
+	{
+		"label": "greatsword_up",
+		"path": "res://assets/characters/playable/king/greatsword_readability/up/idle.tres",
+		"poses": [
+			{
+				"head": "Rect2(81, 46, 28, 27)",
+				"height": 44,
+				"key": 0,
+				"main_hand": "Vector2(83, 81)",
+				"used": "Rect2i(79, 52, 34, 44)",
+				"world_height": 22.0
+			},
+			{
+				"head": "Rect2(81, 46, 28, 27)",
+				"height": 44,
+				"key": 1,
+				"main_hand": "Vector2(83, 81)",
+				"used": "Rect2i(79, 52, 34, 44)",
+				"world_height": 22.0
+			},
+			{
+				"head": "Rect2(81, 46, 28, 27)",
+				"height": 44,
+				"key": 2,
+				"main_hand": "Vector2(83, 81)",
+				"used": "Rect2i(79, 52, 34, 44)",
+				"world_height": 22.0
+			},
+			{
+				"head": "Rect2(81, 46, 28, 27)",
+				"height": 44,
+				"key": 3,
+				"main_hand": "Vector2(83, 81)",
+				"used": "Rect2i(79, 52, 34, 44)",
+				"world_height": 22.0
+			},
+			{
+				"head": "Rect2(83, 46, 28, 27)",
+				"height": 44,
+				"key": 4,
+				"main_hand": "Vector2(82, 64)",
+				"used": "Rect2i(81, 52, 31, 44)",
+				"world_height": 22.0
+			},
+			{
+				"head": "Rect2(83, 45, 28, 27)",
+				"height": 45,
+				"key": 5,
+				"main_hand": "Vector2(82, 64)",
+				"used": "Rect2i(72, 51, 40, 45)",
+				"world_height": 22.5
+			},
+			{
+				"head": "Rect2(82, 46, 28, 27)",
+				"height": 44,
+				"key": 6,
+				"main_hand": "Vector2(82, 64)",
+				"used": "Rect2i(81, 52, 31, 44)",
+				"world_height": 22.0
+			},
+			{
+				"head": "Rect2(82, 46, 28, 27)",
+				"height": 44,
+				"key": 7,
+				"main_hand": "Vector2(82, 64)",
+				"used": "Rect2i(82, 52, 29, 44)",
+				"world_height": 22.0
+			}
+		]
+	},
+	{
+		"label": "greatsword_down",
+		"path": "res://assets/characters/playable/king/greatsword_readability/down/idle.tres",
+		"poses": [
+			{
+				"head": "Rect2(80, 47, 32, 29)",
+				"height": 45,
+				"key": 0,
+				"main_hand": "Vector2(96, 82)",
+				"used": "Rect2i(76, 51, 41, 45)",
+				"world_height": 22.5
+			},
+			{
+				"head": "Rect2(80, 47, 32, 29)",
+				"height": 45,
+				"key": 1,
+				"main_hand": "Vector2(96, 82)",
+				"used": "Rect2i(76, 51, 41, 45)",
+				"world_height": 22.5
+			},
+			{
+				"head": "Rect2(80, 47, 32, 29)",
+				"height": 45,
+				"key": 2,
+				"main_hand": "Vector2(96, 82)",
+				"used": "Rect2i(76, 51, 41, 45)",
+				"world_height": 22.5
+			},
+			{
+				"head": "Rect2(80, 47, 32, 29)",
+				"height": 45,
+				"key": 3,
+				"main_hand": "Vector2(96, 82)",
+				"used": "Rect2i(76, 51, 41, 45)",
+				"world_height": 22.5
+			},
+			{
+				"head": "Rect2(81, 42, 32, 29)",
+				"height": 50,
+				"key": 4,
+				"main_hand": "Vector2(83, 71)",
+				"used": "Rect2i(80, 46, 32, 50)",
+				"world_height": 25.0
+			},
+			{
+				"head": "Rect2(81, 43, 32, 29)",
+				"height": 49,
+				"key": 5,
+				"main_hand": "Vector2(83, 71)",
+				"used": "Rect2i(72, 47, 40, 49)",
+				"world_height": 24.5
+			},
+			{
+				"head": "Rect2(81, 43, 32, 29)",
+				"height": 49,
+				"key": 6,
+				"main_hand": "Vector2(83, 71)",
+				"used": "Rect2i(82, 47, 30, 49)",
+				"world_height": 24.5
+			},
+			{
+				"head": "Rect2(80, 42, 32, 29)",
+				"height": 50,
+				"key": 7,
+				"main_hand": "Vector2(83, 71)",
+				"used": "Rect2i(81, 46, 30, 50)",
+				"world_height": 25.0
+			}
+		]
+	},
+	{
+		"label": "dual_side",
+		"path": "res://assets/characters/playable/king/dual_twinsteel/idle.tres",
+		"poses": [
+			{
+				"head": "Rect2(86, 39, 25, 24)",
+				"height": 55,
+				"key": 0,
+				"main_hand": "Vector2(83, 76)",
+				"used": "Rect2i(78, 40, 38, 55)",
+				"world_height": 27.5
+			},
+			{
+				"head": "Rect2(84, 38, 25, 24)",
+				"height": 56,
+				"key": 1,
+				"main_hand": "Vector2(82, 75)",
+				"used": "Rect2i(77, 39, 38, 56)",
+				"world_height": 28.0
+			},
+			{
+				"head": "Rect2(85, 39, 25, 24)",
+				"height": 55,
+				"key": 2,
+				"main_hand": "Vector2(81, 75)",
+				"used": "Rect2i(76, 40, 40, 55)",
+				"world_height": 27.5
+			},
+			{
+				"head": "Rect2(84, 39, 25, 24)",
+				"height": 55,
+				"key": 3,
+				"main_hand": "Vector2(80, 76)",
+				"used": "Rect2i(75, 40, 40, 55)",
+				"world_height": 27.5
+			},
+			{
+				"head": "Rect2(85, 39, 25, 24)",
+				"height": 55,
+				"key": 4,
+				"main_hand": "Vector2(81, 75)",
+				"used": "Rect2i(76, 40, 40, 55)",
+				"world_height": 27.5
+			},
+			{
+				"head": "Rect2(84, 39, 25, 24)",
+				"height": 55,
+				"key": 5,
+				"main_hand": "Vector2(82, 75)",
+				"used": "Rect2i(77, 40, 38, 55)",
+				"world_height": 27.5
+			},
+			{
+				"head": "Rect2(85, 40, 25, 24)",
+				"height": 54,
+				"key": 6,
+				"main_hand": "Vector2(81, 75)",
+				"used": "Rect2i(76, 41, 40, 54)",
+				"world_height": 27.0
+			},
+			{
+				"head": "Rect2(84, 39, 25, 24)",
+				"height": 55,
+				"key": 7,
+				"main_hand": "Vector2(82, 75)",
+				"used": "Rect2i(77, 40, 38, 55)",
+				"world_height": 27.5
+			}
+		]
+	},
+	{
+		"label": "dual_up",
+		"path": "res://assets/characters/playable/king/dual_twinsteel/up/idle.tres",
+		"poses": [
+			{
+				"head": "Rect2(85, 51, 23, 20)",
+				"height": 43,
+				"key": 0,
+				"main_hand": "Vector2(84, 80)",
+				"used": "Rect2i(81, 52, 31, 43)",
+				"world_height": 21.5
+			},
+			{
+				"head": "Rect2(85, 50, 23, 20)",
+				"height": 44,
+				"key": 1,
+				"main_hand": "Vector2(84, 80)",
+				"used": "Rect2i(81, 51, 31, 44)",
+				"world_height": 22.0
+			},
+			{
+				"head": "Rect2(85, 51, 23, 20)",
+				"height": 43,
+				"key": 2,
+				"main_hand": "Vector2(84, 80)",
+				"used": "Rect2i(81, 52, 31, 43)",
+				"world_height": 21.5
+			},
+			{
+				"head": "Rect2(85, 50, 23, 20)",
+				"height": 44,
+				"key": 3,
+				"main_hand": "Vector2(84, 80)",
+				"used": "Rect2i(81, 51, 31, 44)",
+				"world_height": 22.0
+			},
+			{
+				"head": "Rect2(85, 51, 23, 20)",
+				"height": 43,
+				"key": 4,
+				"main_hand": "Vector2(85, 80)",
+				"used": "Rect2i(81, 52, 31, 43)",
+				"world_height": 21.5
+			},
+			{
+				"head": "Rect2(85, 50, 23, 20)",
+				"height": 44,
+				"key": 5,
+				"main_hand": "Vector2(84, 80)",
+				"used": "Rect2i(81, 51, 31, 44)",
+				"world_height": 22.0
+			},
+			{
+				"head": "Rect2(85, 51, 23, 20)",
+				"height": 43,
+				"key": 6,
+				"main_hand": "Vector2(84, 80)",
+				"used": "Rect2i(81, 52, 31, 43)",
+				"world_height": 21.5
+			},
+			{
+				"head": "Rect2(85, 50, 23, 20)",
+				"height": 44,
+				"key": 7,
+				"main_hand": "Vector2(84, 80)",
+				"used": "Rect2i(81, 51, 31, 44)",
+				"world_height": 22.0
+			}
+		]
+	},
+	{
+		"label": "dual_down",
+		"path": "res://assets/characters/playable/king/dual_twinsteel/down/idle.tres",
+		"poses": [
+			{
+				"head": "Rect2(79, 43, 32, 29)",
+				"height": 48,
+				"key": 0,
+				"main_hand": "Vector2(85, 80)",
+				"used": "Rect2i(80, 47, 33, 48)",
+				"world_height": 24.0
+			},
+			{
+				"head": "Rect2(80, 44, 32, 29)",
+				"height": 47,
+				"key": 1,
+				"main_hand": "Vector2(88, 80)",
+				"used": "Rect2i(80, 48, 33, 47)",
+				"world_height": 23.5
+			},
+			{
+				"head": "Rect2(80, 44, 32, 29)",
+				"height": 47,
+				"key": 2,
+				"main_hand": "Vector2(83, 80)",
+				"used": "Rect2i(80, 48, 33, 47)",
+				"world_height": 23.5
+			},
+			{
+				"head": "Rect2(80, 43, 32, 29)",
+				"height": 48,
+				"key": 3,
+				"main_hand": "Vector2(84, 79)",
+				"used": "Rect2i(80, 47, 33, 48)",
+				"world_height": 24.0
+			},
+			{
+				"head": "Rect2(80, 44, 32, 29)",
+				"height": 47,
+				"key": 4,
+				"main_hand": "Vector2(84, 80)",
+				"used": "Rect2i(80, 48, 33, 47)",
+				"world_height": 23.5
+			},
+			{
+				"head": "Rect2(80, 44, 32, 29)",
+				"height": 47,
+				"key": 5,
+				"main_hand": "Vector2(84, 79)",
+				"used": "Rect2i(80, 48, 33, 47)",
+				"world_height": 23.5
+			},
+			{
+				"head": "Rect2(79, 43, 32, 29)",
+				"height": 48,
+				"key": 6,
+				"main_hand": "Vector2(83, 80)",
+				"used": "Rect2i(80, 47, 33, 48)",
+				"world_height": 24.0
+			},
+			{
+				"head": "Rect2(79, 43, 32, 29)",
+				"height": 48,
+				"key": 7,
+				"main_hand": "Vector2(85, 79)",
+				"used": "Rect2i(80, 47, 33, 48)",
+				"world_height": 24.0
+			}
+		]
+	},
+	{
+		"label": "dual_run_side",
+		"path": "res://assets/characters/playable/king/dual_twinsteel/run.tres",
+		"poses": [
+			{
+				"head": "Rect2(83, 39, 25, 24)",
+				"height": 55,
+				"key": 0,
+				"main_hand": "Vector2(78, 71)",
+				"used": "Rect2i(71, 40, 40, 55)",
+				"world_height": 27.5
+			},
+			{
+				"head": "Rect2(83, 39, 25, 24)",
+				"height": 55,
+				"key": 1,
+				"main_hand": "Vector2(75, 74)",
+				"used": "Rect2i(69, 40, 36, 55)",
+				"world_height": 27.5
+			},
+			{
+				"head": "Rect2(97, 38, 25, 24)",
+				"height": 56,
+				"key": 2,
+				"main_hand": "Vector2(95, 71)",
+				"used": "Rect2i(85, 39, 39, 56)",
+				"world_height": 28.0
+			},
+			{
+				"head": "Rect2(77, 38, 25, 24)",
+				"height": 56,
+				"key": 3,
+				"main_hand": "Vector2(72, 71)",
+				"used": "Rect2i(64, 39, 42, 56)",
+				"world_height": 28.0
+			},
+			{
+				"head": "Rect2(102, 40, 25, 24)",
+				"height": 54,
+				"key": 4,
+				"main_hand": "Vector2(95, 71)",
+				"used": "Rect2i(88, 41, 41, 54)",
+				"world_height": 27.0
+			},
+			{
+				"head": "Rect2(81, 39, 25, 24)",
+				"height": 55,
+				"key": 5,
+				"main_hand": "Vector2(74, 70)",
+				"used": "Rect2i(67, 40, 39, 55)",
+				"world_height": 27.5
+			},
+			{
+				"head": "Rect2(101, 39, 25, 24)",
+				"height": 55,
+				"key": 6,
+				"main_hand": "Vector2(98, 68)",
+				"used": "Rect2i(90, 40, 33, 55)",
+				"world_height": 27.5
+			},
+			{
+				"head": "Rect2(78, 39, 25, 24)",
+				"height": 55,
+				"key": 7,
+				"main_hand": "Vector2(73, 72)",
+				"used": "Rect2i(65, 40, 42, 55)",
+				"world_height": 27.5
+			}
+		]
+	},
+	{
+		"label": "dual_run_up",
+		"path": "res://assets/characters/playable/king/dual_twinsteel/up/run.tres",
+		"poses": [
+			{
+				"head": "Rect2(84, 47, 23, 20)",
+				"height": 47,
+				"key": 0,
+				"main_hand": "Vector2(82, 77)",
+				"used": "Rect2i(79, 48, 32, 47)",
+				"world_height": 23.5
+			},
+			{
+				"head": "Rect2(89, 47, 23, 20)",
+				"height": 47,
+				"key": 1,
+				"main_hand": "Vector2(88, 76)",
+				"used": "Rect2i(84, 48, 32, 47)",
+				"world_height": 23.5
+			},
+			{
+				"head": "Rect2(83, 47, 23, 20)",
+				"height": 47,
+				"key": 2,
+				"main_hand": "Vector2(81, 77)",
+				"used": "Rect2i(78, 48, 32, 47)",
+				"world_height": 23.5
+			},
+			{
+				"head": "Rect2(89, 47, 23, 20)",
+				"height": 47,
+				"key": 3,
+				"main_hand": "Vector2(87, 78)",
+				"used": "Rect2i(84, 48, 32, 47)",
+				"world_height": 23.5
+			},
+			{
+				"head": "Rect2(83, 49, 23, 20)",
+				"height": 45,
+				"key": 4,
+				"main_hand": "Vector2(81, 78)",
+				"used": "Rect2i(78, 50, 32, 45)",
+				"world_height": 22.5
+			},
+			{
+				"head": "Rect2(89, 47, 23, 20)",
+				"height": 47,
+				"key": 5,
+				"main_hand": "Vector2(87, 77)",
+				"used": "Rect2i(84, 48, 32, 47)",
+				"world_height": 23.5
+			},
+			{
+				"head": "Rect2(82, 46, 23, 20)",
+				"height": 48,
+				"key": 6,
+				"main_hand": "Vector2(81, 76)",
+				"used": "Rect2i(78, 47, 31, 48)",
+				"world_height": 24.0
+			},
+			{
+				"head": "Rect2(84, 47, 23, 20)",
+				"height": 47,
+				"key": 7,
+				"main_hand": "Vector2(83, 77)",
+				"used": "Rect2i(79, 48, 31, 47)",
+				"world_height": 23.5
+			}
+		]
+	},
+	{
+		"label": "dual_run_down",
+		"path": "res://assets/characters/playable/king/dual_twinsteel/down/run.tres",
+		"poses": [
+			{
+				"head": "Rect2(84, 41, 32, 29)",
+				"height": 50,
+				"key": 0,
+				"main_hand": "Vector2(88, 75)",
+				"used": "Rect2i(84, 45, 33, 50)",
+				"world_height": 25.0
+			},
+			{
+				"head": "Rect2(77, 42, 32, 29)",
+				"height": 49,
+				"key": 1,
+				"main_hand": "Vector2(81, 75)",
+				"used": "Rect2i(77, 46, 32, 49)",
+				"world_height": 24.5
+			},
+			{
+				"head": "Rect2(84, 45, 32, 29)",
+				"height": 46,
+				"key": 2,
+				"main_hand": "Vector2(87, 79)",
+				"used": "Rect2i(83, 49, 34, 46)",
+				"world_height": 23.0
+			},
+			{
+				"head": "Rect2(77, 42, 32, 29)",
+				"height": 49,
+				"key": 3,
+				"main_hand": "Vector2(82, 75)",
+				"used": "Rect2i(77, 46, 32, 49)",
+				"world_height": 24.5
+			},
+			{
+				"head": "Rect2(84, 42, 32, 29)",
+				"height": 49,
+				"key": 4,
+				"main_hand": "Vector2(87, 75)",
+				"used": "Rect2i(83, 46, 34, 49)",
+				"world_height": 24.5
+			},
+			{
+				"head": "Rect2(77, 41, 32, 29)",
+				"height": 50,
+				"key": 5,
+				"main_hand": "Vector2(81, 75)",
+				"used": "Rect2i(77, 45, 33, 50)",
+				"world_height": 25.0
+			},
+			{
+				"head": "Rect2(84, 41, 32, 29)",
+				"height": 50,
+				"key": 6,
+				"main_hand": "Vector2(87, 75)",
+				"used": "Rect2i(84, 45, 33, 50)",
+				"world_height": 25.0
+			},
+			{
+				"head": "Rect2(82, 42, 32, 29)",
+				"height": 49,
+				"key": 7,
+				"main_hand": "Vector2(87, 75)",
+				"used": "Rect2i(83, 46, 32, 49)",
+				"world_height": 24.5
+			}
+		]
+	}
+]

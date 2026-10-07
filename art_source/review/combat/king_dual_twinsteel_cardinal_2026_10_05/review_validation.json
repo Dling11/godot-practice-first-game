@@ -1,0 +1,128 @@
+{
+	"cardinal_contacts": [
+		{
+			"began": [
+				0,
+				1,
+				2,
+				3,
+				4
+			],
+			"contacts": [
+				{
+					"step": 0,
+					"target": 343026961409
+				},
+				{
+					"step": 1,
+					"target": 343026961409
+				},
+				{
+					"step": 2,
+					"target": 343026961409
+				},
+				{
+					"step": 3,
+					"target": 343026961409
+				},
+				{
+					"step": 3,
+					"target": 343194733123
+				},
+				{
+					"step": 4,
+					"target": 343026961409
+				}
+			],
+			"direction": "Vector2(0, -1)",
+			"rear_steps": [
+				3
+			]
+		},
+		{
+			"began": [
+				0,
+				1,
+				2,
+				3,
+				4
+			],
+			"contacts": [
+				{
+					"step": 0,
+					"target": 356884943052
+				},
+				{
+					"step": 1,
+					"target": 356884943052
+				},
+				{
+					"step": 2,
+					"target": 356884943052
+				},
+				{
+					"step": 3,
+					"target": 356884943052
+				},
+				{
+					"step": 3,
+					"target": 357052715144
+				},
+				{
+					"step": 4,
+					"target": 356884943052
+				}
+			],
+			"direction": "Vector2(0, 1)",
+			"rear_steps": [
+				3
+			]
+		},
+		{
+			"began": [
+				0,
+				1,
+				2,
+				3,
+				4
+			],
+			"contacts": [
+				{
+					"step": 0,
+					"target": 370642259074
+				},
+				{
+					"step": 1,
+					"target": 370642259074
+				},
+				{
+					"step": 2,
+					"target": 370642259074
+				},
+				{
+					"step": 3,
+					"target": 370642259074
+				},
+				{
+					"step": 3,
+					"target": 370810032326
+				},
+				{
+					"step": 4,
+					"target": 370642259074
+				}
+			],
+			"direction": "Vector2(-1, 0)",
+			"rear_steps": [
+				3
+			]
+		}
+	],
+	"checks": 89,
+	"failures": 0,
+	"rear_steps": [
+		3
+	],
+	"rewardless": true,
+	"tab_controls": true
+}

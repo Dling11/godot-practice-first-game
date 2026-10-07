@@ -1,0 +1,7 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Another resource is loaded from path 'res://assets/characters/playable/king/dual_twinsteel/twinsteel.png' (possible cyclic resource inclusion).
+   at: set_path (core/io/resource.cpp:104)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://tools/build_king_dual_unified.gd:25)
+DUAL_UNIFIED: one identity scale/palette; thrust / alternating cuts / hopping spin / X

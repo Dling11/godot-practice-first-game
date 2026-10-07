@@ -1,0 +1,16 @@
+{
+  "runtime_files": 66,
+  "identical_rebuilds": 66,
+  "rebuild_mismatches": [],
+  "changed_from_previous_pass": 3,
+  "unchanged_from_previous_pass": 63,
+  "changed_paths": [
+    "assets/characters/playable/king/dual_twinsteel/run_body.png",
+    "assets/characters/playable/king/dual_twinsteel/run_hands.png",
+    "assets/characters/playable/king/dual_twinsteel/run.tres"
+  ],
+  "added_paths": [],
+  "protected_files": 92,
+  "protected_mismatches": [],
+  "current_proof": "art_source/review/combat/king_dual_chest_grip_2026_10_06"
+}

@@ -1,0 +1,39 @@
+# Twinsteel V2 — installed four-direction combat and dramatic idle
+
+2026-10-07 latest owner request supersedes the preceding body-size freeze: correct broader vertical attack bodies and smaller rear presentation against the accepted side frames. [Current proportional registration and review](king-cardinal-proportions.md), [Decision191](../decisions/191-match-vertical-king-body-proportions.md). The ready/idle timing correction below remains; no attack timing, steel, FX or contact changes.
+
+2026-10-07 owner follow-up: the installed attacks are accepted. Correct the crossed post-walk ready pair by opening each rigid blade outward from its existing palm. Entry now plants/folds through keys1–4 in1.10s, holds the centered folded pose for1.40s, then starts the existing slow5–7 head loop. The previous entry traversed the glance cels at entry speed before repeating them slowly. Attacking/moving cancels the delayed callback normally. Current body size is accepted; the owner warns against steadily bulkier art. Preserve native head/body density, colors and outlines in future generations; do not enlarge this silhouette. Dedicated correction proof is [here](../../art_source/review/combat/king_dual_v2_ready_idle_2026_10_07/README.md). Earlier delivery counters below retain their original scope.
+
+2026-10-07, Decision190. Owner accepts the fresh side combo enthusiastically, then authorizes normal-game installation, UP/DOWN attacks, fresh walking in every direction and a dramatic planted-pair idle with head glances. This guide supersedes the side-only/preserved-old-gait scope in Decision189 and older Twinsteel guides. The accepted Greatsword V2 remains unchanged.
+
+## Play
+
+Restart F5 → F9 test kit → F7 Combat Lab → Weapons → Twinsteel. Tab → Bag → Twinsteel → Equip also uses the same normal equipment entry in Sanctuary/stages. The direct launcher `tools/launch_king_twinsteel_training.ps1` opens the actual Combat Lab with Twinsteel V2 equipped and three paused Rootlings. WASD moves, held world LMB repeats the five-cut chain, Space dodges, Tab opens the visible Bag. The test kit/launcher suppress autosave; no campaign unlock or new save ID is introduced.
+
+Stop moving/attacking for four seconds: King raises the pair, plants both beside him with small existing raster dust bursts, folds his arms, then glances around. The two tips sit on his existing ground plane, never assigned to the folded palms. Attack retrieves the pair in0.28s before normal input resumes; movement/dodge/skills/reaction/equipment changes cancel the presentation through the existing controller. A4.2s three-cel head-glance loop uses timed callbacks, not a runtime head layer or idle per-frame polling. UP glances are subtle baked hair shifts; side/front turn the native head while the lower folded stance stays fixed.
+
+## Combat
+
+Diagonal cut → returning cut → rising crosscut → small hopping full-body spin → springing crossing finish. Opening thrust removed, including its narrow hitbox. The selected side motion's load/contact/recovery clocks are now live:0.14/0.08/0.16,0.12/0.08/0.14,0.15/0.10/0.15,0.16/0.22/0.15,0.23/0.10/0.22 seconds, total2.20s. First three contacts are72px frontal fans, spin58px radial, finish80px frontal. Two blades retain one deduplicated accepted hit/crit/impact cue per target/input; only spin hits behind.
+
+Existing9–11 physical base rolls,25 Skill Power,5.30 base-hit chain units and approximately24.1 nominal base DPS remain. Existing multipliers/push, collision-checked4/4/4/0/6 steps and50/0/75% phase walking remain. `Player`, held-input component and `MeleeAttackComponent` own gameplay. Frame-generation/FX/idle cannot grant damage, alter range or issue movement. Encounter balance and campaign acquisition remain separate work.
+
+## Sources and consistency
+
+Runtime: `assets/characters/playable/king/dual_v2/`, family `data/weapons/families/twinsteel_v2/`, existing `weapon_king_twinsteel` item. Legacy dual art resources and the accepted side study remain inputs/rollback; the new profile is the sole normal Twinsteel selection. Canonical outlined16×62 steel and side rear-handle texture are reused. No new weapon/recipe/versioned save identity is created.
+
+Built-in imagegen supplies six final alpha sheets: dedicated back/front attack bodies, three-view eight-step gait, three-view eight-cel idle and two vertical FX sheets. Wrong-facing first-generation sheets were rejected before installation. The final rear/front sources contain10/9 isolated cels per row; chronological motion-phase selection maps each into the16-key contact/release/queue clips. One fixed density per sheet, full boot registration, native head/scarf socket attachment, palette quantization and retained thin forearm coverage preserve King. Travel drives the eight-step gait; upper-body scalp registration avoids an extended foot dragging the head sideways. Side gait's far handle stays behind the torso; DOWN steel opens outward instead of crossing.
+
+Vertical cuts1/2/3/5 use new front/back drawings. Spin uses the accepted complete-body rotation with dedicated cardinal phase registration, preserving real front/back torso anatomy; it is shared motion, not a newly drawn full vertical spin. Genuinely occluded rear palms hide their blades with optional pose visibility metadata. Both hand masks and shaft landmarks remain independent.
+
+The accepted side cut drawings/FX are retained; only carry/released/queued endpoint copies prepare the new idle. Native extraction uses whole ribbons and real source gutters, padded192px FX cells, nearest/lossless imports and clipped AtlasTextures. Dedicated front/back rasters receive camera-plane registration; the spin ellipse stays horizontal in the floor perspective. `dual_v2_swing.gd` observes actual contact phases and owns one reusable slash sprite plus short planting dust. No per-enemy slash allocations or contact-fan clipping.
+
+The empty vertical spin→finish endpoint came from copying an identical source/target slot through a shared image cache: clearing the target erased the source before blitting. Explicit raster duplicates protect immutable source images before remapping. The native audit checks every cell, including release/queue boundaries, so valid resource metadata alone cannot hide an empty body.
+
+## Verification and remaining review
+
+Native Godot4.7.2 compatibility rendering: motion953/0 with300 captures; actual Player/Bag/four-direction queue/skills/dash/hit/swap/Stage I244/0; actual idle/head-loop/retrieval/travel/swap57/0; held input40/0; unchanged Greatsword planted idle21/0; actual Rootling/horde/Hog weapon comparison1256/0. Current fixtures exit cleanly. The moving comparison was run alongside native verification and is functional coverage, not an uncontended performance benchmark. Cold campaign/Skill1/phone/export profiling remains open.
+
+Owner visual judgement of the newly generated vertical/gait/idle is still required. Side motion has owner acceptance. Iron Reaper remains selected but deferred until this pass is reviewed. No scythe frames or equipment were introduced.
+
+[Source prompts and registration](../../art_source/generated/characters/king/dual_v2_cardinal_2026_10_07/README.md) · [native GIF/live proof](../../art_source/review/combat/king_dual_v2_cardinal_2026_10_07/README.md) · [before-work rollback](../../art_source/archive/dual_v2_before_cardinal_2026_10_07/README.md).

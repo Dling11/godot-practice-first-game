@@ -1,0 +1,387 @@
+[
+	{
+		"cut": 0,
+		"elapsed_ms": 43,
+		"file": "motion_frames/frame_000.png",
+		"phase": 1,
+		"pose": 1
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 85,
+		"file": "motion_frames/frame_001.png",
+		"phase": 1,
+		"pose": 2
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 128,
+		"file": "motion_frames/frame_002.png",
+		"phase": 1,
+		"pose": 3
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 176,
+		"file": "motion_frames/frame_003.png",
+		"phase": 1,
+		"pose": 3
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 223,
+		"file": "motion_frames/frame_004.png",
+		"phase": 2,
+		"pose": 5
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 269,
+		"file": "motion_frames/frame_005.png",
+		"phase": 2,
+		"pose": 8
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 316,
+		"file": "motion_frames/frame_006.png",
+		"phase": 2,
+		"pose": 9
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 359,
+		"file": "motion_frames/frame_007.png",
+		"phase": 3,
+		"pose": 13
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 404,
+		"file": "motion_frames/frame_008.png",
+		"phase": 3,
+		"pose": 14
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 449,
+		"file": "motion_frames/frame_009.png",
+		"phase": 3,
+		"pose": 15
+	},
+	{
+		"cut": 0,
+		"elapsed_ms": 491,
+		"file": "motion_frames/frame_010.png",
+		"phase": 3,
+		"pose": 15
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 533,
+		"file": "motion_frames/frame_011.png",
+		"phase": 1,
+		"pose": 1
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 576,
+		"file": "motion_frames/frame_012.png",
+		"phase": 1,
+		"pose": 2
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 619,
+		"file": "motion_frames/frame_013.png",
+		"phase": 1,
+		"pose": 3
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 664,
+		"file": "motion_frames/frame_014.png",
+		"phase": 1,
+		"pose": 3
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 707,
+		"file": "motion_frames/frame_015.png",
+		"phase": 2,
+		"pose": 7
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 749,
+		"file": "motion_frames/frame_016.png",
+		"phase": 2,
+		"pose": 9
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 795,
+		"file": "motion_frames/frame_017.png",
+		"phase": 3,
+		"pose": 13
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 836,
+		"file": "motion_frames/frame_018.png",
+		"phase": 3,
+		"pose": 14
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 878,
+		"file": "motion_frames/frame_019.png",
+		"phase": 3,
+		"pose": 15
+	},
+	{
+		"cut": 1,
+		"elapsed_ms": 919,
+		"file": "motion_frames/frame_020.png",
+		"phase": 3,
+		"pose": 15
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 961,
+		"file": "motion_frames/frame_021.png",
+		"phase": 1,
+		"pose": 1
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1003,
+		"file": "motion_frames/frame_022.png",
+		"phase": 1,
+		"pose": 2
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1047,
+		"file": "motion_frames/frame_023.png",
+		"phase": 1,
+		"pose": 2
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1091,
+		"file": "motion_frames/frame_024.png",
+		"phase": 1,
+		"pose": 3
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1137,
+		"file": "motion_frames/frame_025.png",
+		"phase": 2,
+		"pose": 4
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1182,
+		"file": "motion_frames/frame_026.png",
+		"phase": 2,
+		"pose": 5
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1224,
+		"file": "motion_frames/frame_027.png",
+		"phase": 2,
+		"pose": 6
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1267,
+		"file": "motion_frames/frame_028.png",
+		"phase": 2,
+		"pose": 6
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1312,
+		"file": "motion_frames/frame_029.png",
+		"phase": 2,
+		"pose": 7
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1363,
+		"file": "motion_frames/frame_030.png",
+		"phase": 2,
+		"pose": 8
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1413,
+		"file": "motion_frames/frame_031.png",
+		"phase": 2,
+		"pose": 9
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1463,
+		"file": "motion_frames/frame_032.png",
+		"phase": 3,
+		"pose": 13
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1505,
+		"file": "motion_frames/frame_033.png",
+		"phase": 3,
+		"pose": 14
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1547,
+		"file": "motion_frames/frame_034.png",
+		"phase": 3,
+		"pose": 15
+	},
+	{
+		"cut": 2,
+		"elapsed_ms": 1593,
+		"file": "motion_frames/frame_035.png",
+		"phase": 3,
+		"pose": 15
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 1637,
+		"file": "motion_frames/frame_036.png",
+		"phase": 1,
+		"pose": 0
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 1679,
+		"file": "motion_frames/frame_037.png",
+		"phase": 1,
+		"pose": 1
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 1721,
+		"file": "motion_frames/frame_038.png",
+		"phase": 1,
+		"pose": 1
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 1764,
+		"file": "motion_frames/frame_039.png",
+		"phase": 1,
+		"pose": 2
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 1807,
+		"file": "motion_frames/frame_040.png",
+		"phase": 1,
+		"pose": 2
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 1849,
+		"file": "motion_frames/frame_041.png",
+		"phase": 1,
+		"pose": 2
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 1890,
+		"file": "motion_frames/frame_042.png",
+		"phase": 1,
+		"pose": 3
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 1934,
+		"file": "motion_frames/frame_043.png",
+		"phase": 2,
+		"pose": 4
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 1976,
+		"file": "motion_frames/frame_044.png",
+		"phase": 2,
+		"pose": 5
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2021,
+		"file": "motion_frames/frame_045.png",
+		"phase": 2,
+		"pose": 8
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2062,
+		"file": "motion_frames/frame_046.png",
+		"phase": 3,
+		"pose": 10
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2104,
+		"file": "motion_frames/frame_047.png",
+		"phase": 3,
+		"pose": 10
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2145,
+		"file": "motion_frames/frame_048.png",
+		"phase": 3,
+		"pose": 11
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2187,
+		"file": "motion_frames/frame_049.png",
+		"phase": 3,
+		"pose": 11
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2230,
+		"file": "motion_frames/frame_050.png",
+		"phase": 3,
+		"pose": 11
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2285,
+		"file": "motion_frames/frame_051.png",
+		"phase": 3,
+		"pose": 12
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2328,
+		"file": "motion_frames/frame_052.png",
+		"phase": 3,
+		"pose": 12
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2368,
+		"file": "motion_frames/frame_053.png",
+		"phase": 3,
+		"pose": 12
+	},
+	{
+		"cut": 3,
+		"elapsed_ms": 2409,
+		"file": "motion_frames/frame_054.png",
+		"phase": 0,
+		"pose": 0
+	}
+]

@@ -1,0 +1,13 @@
+{
+	"assertions": 1663,
+	"combo_seconds": 2.14,
+	"contact_seconds": [
+		0.1,
+		0.1,
+		0.2,
+		0.1
+	],
+	"failures": [],
+	"frames": 207,
+	"mode": "deterministic native presentation; not gameplay or performance profiling"
+}

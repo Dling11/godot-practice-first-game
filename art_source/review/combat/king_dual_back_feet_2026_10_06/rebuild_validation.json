@@ -1,0 +1,13 @@
+{
+  "runtime_files": 65,
+  "identical_rebuilds": 65,
+  "rebuild_mismatches": [],
+  "changed_from_previous_pass": 1,
+  "unchanged_from_previous_pass": 64,
+  "changed_paths": [
+    "assets/characters/playable/king/dual_twinsteel\\up\\run_body.png"
+  ],
+  "protected_files": 92,
+  "protected_mismatches": [],
+  "current_proof": "art_source/review/combat/king_dual_back_feet_2026_10_06"
+}

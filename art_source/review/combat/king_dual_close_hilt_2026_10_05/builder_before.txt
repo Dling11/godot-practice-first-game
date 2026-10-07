@@ -1,0 +1,371 @@
+extends "res://tools/build_king_dual_polish.gd"
+
+## One offline body calibration across carry, gait and all five cuts.
+const UNIFIED := "res://art_source/generated/characters/king/dual_unified_2026_10_05/"
+const INPUT := "res://art_source/archive/dual_existing_gait_rejected_2026_10_05/dual_twinsteel/"
+const REFERENCES := {
+	"side":["greatsword_confidence_v2/idle.tres",Rect2i(87,41,25,24)],
+	"up":["greatsword_cardinal/up/run.tres",Rect2i(84,41,23,22)],
+	"down":["greatsword_cardinal/down/run.tres",Rect2i(84,40,24,24)]}
+const SIDE_RUN_SEAM := 77
+const SIDE_RUN_BOB := [0,1,0,-1,0,1,0,-1]
+const COMPACT_BLADE_SIZE := Vector2i(16,62)
+const COMPACT_BLADE_GRIP := Vector2(8,50)
+const COMPACT_BLADE_TIP := Vector2(8,0)
+var refs := {}
+var canonical_head := Rect2i()
+
+func _initialize() -> void:
+	# Always resize the immutable source, never the previous build's blade.
+	var compact := Image.load_from_file(ProjectSettings.globalize_path(INPUT+"twinsteel.png"))
+	compact.resize(COMPACT_BLADE_SIZE.x,COMPACT_BLADE_SIZE.y,Image.INTERPOLATE_NEAREST)
+	assert(compact.save_png(OUTPUT+"twinsteel.png")==OK)
+	blade=ImageTexture.create_from_image(compact)
+	blade.resource_path=OUTPUT+"twinsteel.png"
+	if not FileAccess.file_exists(INPUT+"metadata.cfg"):
+		for direction in ["side","up","down"]:
+			for label in CUTS+["idle","run"]:
+				var clip: Resource = load(OUTPUT+("" if direction=="side" else direction+"/")+label+".tres")
+				for property in META_FIELDS+["interpolate_blade_angles"]: meta.set_value(direction+"/"+label,property,clip.get(property))
+				for property in ["hands","axes","behind_body","visible_poses"]: meta.set_value(direction+"/"+label,"off_"+property,clip.offhand.get(property))
+		assert(meta.save(INPUT+"metadata.cfg")==OK)
+	else: assert(meta.load(INPUT+"metadata.cfg")==OK)
+	for direction in REFERENCES:
+		var resource: Resource = load("res://assets/characters/playable/king/"+REFERENCES[direction][0])
+		var body: Image = resource.body_atlas.get_image().get_region(Rect2i(0,0,192,128))
+		refs[direction]=body
+		for y in 128:
+			for x in 192:
+				var c := body.get_pixel(x,y)
+				if c.a>.65 and not palette.has(Color(c.r,c.g,c.b,1)): palette.append(Color(c.r,c.g,c.b,1))
+	refs["left"]=refs["side"].duplicate()
+	refs["left"].flip_x()
+	var rows := extract_bodies(Image.load_from_file(ProjectSettings.globalize_path(UNIFIED+"thrust_source.png")),3)
+	for row in rows:
+		if row.size()!=8:
+			push_error("Unified source needs eight complete cels in each row")
+			quit(1); return
+	for direction in ["side","up","down"]:
+		view=direction
+		identity=refs[view]
+		canonical_head=REFERENCES[view][1]
+		var row: Array = rows[["side","down","up"].find(view)]
+		var density := 54.0/float(row[0].image.get_height())
+		# Fit standing anatomy once per source row, never zoom each frame.
+		var initial_density := density
+		var best_error := 999
+		for attempt in 121:
+			var candidate := initial_density*(0.7+attempt*.005)
+			var sample := generated_body(row[0].image,candidate)
+			var height: int = sample.body.get_used_rect().size.y
+			if absi(54-height)<best_error:
+				density=candidate
+				best_error=absi(54-height)
+			if best_error==0: break
+		var idle := source_clip(view,"idle")
+		var run := source_clip(view,"run")
+		var clips: Array[Resource] = []
+		for label in CUTS: clips.append(source_clip(view,label))
+		make_idle(idle,row[0].image,density)
+		make_thrust(clips[0],row,density)
+		if view=="side": make_side_run(run)
+		else:
+			calibrate(run,1.0,"run")
+			steady_cardinal_run(run)
+		for cut in range(1,5):
+			var factor := (0.82 if view=="up" else (0.88 if view=="down" else 1.0))
+			if cut==3:
+				var widths: Array[int] = []
+				for key in range(1,9): widths.append(hair_bounds(cel(clips[cut],key),red_center_y(cel(clips[cut],key))-2).size.x)
+				widths.sort()
+				factor=float(canonical_head.size.x)/float(widths[4])
+			calibrate(clips[cut],factor,CUTS[cut])
+			if cut==3:
+				clips[cut].lift_pixels=PackedFloat32Array([0,-2,-8,-12,-12,-10,-8,-4,0,0,-4,0,0])
+			elif cut==4:
+				clips[cut].lift_pixels=PackedFloat32Array([0,0,-4,-8,-6,0,0,0,0,0,0,0,0])
+			if cut in [1,2]: alternate_angles(clips[cut],cut)
+		for clip in clips: register_attack_ground(clip)
+		for cut in 5:
+			copy_dual_slot(clips[cut],0,idle if cut==0 else clips[cut-1],0 if cut==0 else 12)
+			copy_dual_slot(clips[cut],9,idle,0)
+			if cut==4: copy_dual_slot(clips[cut],12,idle,0)
+			var folder: String = OUTPUT+("" if view=="side" else view+"/")
+			write_dual(CUTS[cut],clips[cut],CUTS.slice(1) if cut==0 else [],folder)
+		var folder: String = OUTPUT+("" if view=="side" else view+"/")
+		write_dual("idle",idle,[],folder)
+		write_dual("run",run,[],folder)
+		if failed: quit(1); return
+	FileAccess.open(UNIFIED+"registration.json",FileAccess.WRITE).store_string(JSON.stringify(audit,"\t")+"\n")
+	var colors := []
+	for c in palette: colors.append(c.to_html(true))
+	FileAccess.open(UNIFIED+"palette.json",FileAccess.WRITE).store_string(JSON.stringify(colors,"\t")+"\n")
+	print("DUAL_UNIFIED: one identity scale/palette; thrust / alternating cuts / hopping spin / X")
+	quit()
+
+func source_clip(direction: String,label: String) -> Resource:
+	var section := direction+"/"+label
+	var clip := Definition.new()
+	for property in META_FIELDS+["interpolate_blade_angles"]: clip.set(property,meta.get_value(section,property))
+	var path: String = INPUT+("" if direction=="side" else direction+"/")+label
+	clip.body_atlas=ImageTexture.create_from_image(Image.load_from_file(ProjectSettings.globalize_path(path+"_body.png")))
+	clip.hand_atlas=ImageTexture.create_from_image(Image.load_from_file(ProjectSettings.globalize_path(path+"_hands.png")))
+	clip.weapon_texture=blade
+	clip.weapon_primary_grip=COMPACT_BLADE_GRIP
+	clip.weapon_tip=COMPACT_BLADE_TIP
+	clip.offhand=Offhand.new()
+	clip.offhand.texture=blade
+	clip.offhand.grip=clip.weapon_primary_grip
+	clip.offhand.tip=clip.weapon_tip
+	for property in ["hands","axes","behind_body","visible_poses"]: clip.offhand.set(property,meta.get_value(section,"off_"+property))
+	return clip
+
+func cel(clip: Resource,key: int) -> Image:
+	return clip.body_atlas.get_image().get_region(Rect2i(key%4*192,key/4*128,192,128))
+
+func generated_body(source: Image,density: float) -> Dictionary:
+	var part: Image = source.duplicate()
+	part.resize(roundi(part.get_width()*density),roundi(part.get_height()*density),Image.INTERPOLATE_NEAREST)
+	var body := Image.create(192,128,false,Image.FORMAT_RGBA8)
+	body.blit_rect(part,Rect2i(Vector2i.ZERO,part.get_size()),Vector2i((Vector2(96,94)-foot_anchor(part)).round()))
+	quantize(body)
+	var original: Image = body.duplicate()
+	var drawn_head := hair_bounds(body,red_center_y(body)-2)
+	var original_gloves := glove_centers(body,drawn_head)
+	var foreground := Image.create(192,128,false,Image.FORMAT_RGBA8)
+	var head := attach_back_head(body,identity,canonical_head,foreground) if view=="up" else attach_head(body,identity,canonical_head,view,foreground)
+	# A gray cuff connected to the scalp can enter its rectangular bounds.
+	# Restore original arm pixels in empty space outside the new head only.
+	for glove in original_gloves:
+		for y in range(maxi(0,int(glove.y)-8),mini(128,int(glove.y)+9)):
+			for x in range(maxi(0,int(glove.x)-8),mini(192,int(glove.x)+9)):
+				if not head.has_point(Vector2i(x,y)) and body.get_pixel(x,y).a<.5 and original.get_pixel(x,y).a>.65:
+					body.set_pixel(x,y,original.get_pixel(x,y))
+	remove_specks(body)
+	return {"body":body,"head":head}
+
+func put_cel(clip: Resource,key: int,body: Image,head: Rect2i,main: Vector2,off: Vector2,a: float,b: float,stowed := false) -> void:
+	var origin := Vector2i(key%4*192,key/4*128)
+	var atlas: Image = clip.body_atlas.get_image()
+	var mask: Image = clip.hand_atlas.get_image()
+	atlas.blit_rect(body,Rect2i(0,0,192,128),origin)
+	mask.fill_rect(Rect2i(origin,Vector2i(192,128)),Color.TRANSPARENT)
+	if not stowed:
+		for grip in [main,off] if clip.offhand.visible_poses[key] else [main]:
+			var rect := Rect2i(Vector2i(grip)-Vector2i(3,3),Vector2i(7,7))
+			mask.blit_rect(body,rect,origin+rect.position)
+	clip.body_atlas=ImageTexture.create_from_image(atlas)
+	clip.hand_atlas=ImageTexture.create_from_image(mask)
+	clip.identity_regions[key]=Rect2(head)
+	clip.primary_hands[key]=main
+	clip.secondary_hands[key]=main-Vector2.from_angle(deg_to_rad(a))*7
+	clip.offhand.hands[key]=off
+	clip.offhand.axes[key]=off-Vector2.from_angle(deg_to_rad(b))*7
+	clip.stowed_poses[key]=1 if stowed else 0
+	audit.append({"view":view,"key":key,"head":var_to_str(head),"height":body.get_used_rect().size.y,"main":var_to_str(main),"off":var_to_str(off),"a":a,"b":b,"stowed":stowed})
+
+func make_idle(clip: Resource,source: Image,density: float) -> void:
+	# Keep the front identity and torso as one existing cel. Matching height
+	# alone had made a wider generated body look large and its head displaced.
+	var registered: Dictionary
+	if view=="down":
+		var native: Image = refs["down"].duplicate()
+		var shift := Vector2i(0,94-(native.get_used_rect().end.y-1))
+		var grounded := Image.create(192,128,false,Image.FORMAT_RGBA8)
+		grounded.blit_rect(native,Rect2i(0,0,192,128),shift)
+		# The first native gait cel staggered the feet. Reuse its planted
+		# foreground leg on both sides, leaving the accepted upper body intact.
+		var leg := grounded.get_region(Rect2i(93,77,12,18))
+		grounded.fill_rect(Rect2i(0,77,192,51),Color.TRANSPARENT)
+		grounded.blit_rect(leg,Rect2i(0,0,12,18),Vector2i(97,77))
+		leg.flip_x()
+		grounded.blit_rect(leg,Rect2i(0,0,12,18),Vector2i(84,77))
+		registered={"body":grounded,"head":Rect2i(canonical_head.position+shift,canonical_head.size)}
+	else:
+		registered=generated_body(source,density)
+	clip.allow_rest=false
+	clip.lift_pixels.fill(0)
+	for key in 8:
+		# Up shows King's actual back: blades belong OVER the visible back.
+		# Down shows his chest: back blades belong behind that silhouette.
+		clip.weapon_behind_body[key]=0 if view=="up" else 1
+		clip.offhand.behind_body[key]=clip.weapon_behind_body[key]
+		clip.offhand.visible_poses[key]=1
+		put_cel(clip,key,registered.body,registered.head,Vector2(88,56),Vector2(104,56),35,145,true)
+
+func make_side_run(clip: Resource) -> void:
+	var source: Resource = load("res://assets/characters/playable/king/greatsword_confidence_v2/axe_run.tres")
+	var steady := cel(source,0)
+	var steady_head := hair_bounds(steady,red_center_y(steady)-2)
+	# Repose only the two forearms around their shoulder attachments. The
+	# installed head, neck, torso and full eight-cel leg cycle stay intact.
+	var main := bend_carry_arm(steady,PackedVector2Array([
+		Vector2(79,68),Vector2(86,64),Vector2(92,69),
+		Vector2(91,76),Vector2(80,79),Vector2(77,74)]),Vector2(87,63),-20,Vector2(83,74))
+	var off := bend_carry_arm(steady,PackedVector2Array([
+		Vector2(102,65),Vector2(107,65),Vector2(113,66),
+		Vector2(119,68),Vector2(119,73),Vector2(111,76),
+		Vector2(104,73)]),Vector2(102,65),38,Vector2(111,71))
+	remove_specks(steady)
+	for key in clip.pose_count:
+		var bob := Vector2i(0,SIDE_RUN_BOB[key])
+		var body := Image.create(192,128,false,Image.FORMAT_RGBA8)
+		# Head, neck, torso and carrying arms remain one coherent cel. All
+		# sword/finger attachments receive that same one-pixel run bob.
+		body.blit_rect(steady,Rect2i(0,0,192,80),bob)
+		body.fill_rect(Rect2i(0,SIDE_RUN_SEAM,192,128-SIDE_RUN_SEAM),Color.TRANSPARENT)
+		body.blit_rect(cel(source,key),Rect2i(0,SIDE_RUN_SEAM,192,128-SIDE_RUN_SEAM),Vector2i(0,SIDE_RUN_SEAM))
+		var head := Rect2i(steady_head.position+bob,steady_head.size)
+		clip.offhand.visible_poses[key]=1
+		clip.weapon_behind_body[key]=1
+		clip.offhand.behind_body[key]=0
+		put_cel(clip,key,body,head,main+Vector2(bob),off+Vector2(bob),-8,5)
+		audit[-1]["clip"]="run"
+		audit[-1]["steady_carry_bob"]=bob.y
+		audit[-1]["native_legs_unchanged"]=true
+		audit[-1]["hip_carry"]=true
+
+func bend_carry_arm(body: Image,polygon: PackedVector2Array,pivot: Vector2,degrees: float,grip: Vector2) -> Vector2:
+	var patch := Image.create(192,128,false,Image.FORMAT_RGBA8)
+	for y in 128:
+		for x in 192:
+			var point := Vector2(x,y)
+			if Geometry2D.is_point_in_polygon(point,polygon):
+				patch.set_pixel(x,y,body.get_pixel(x,y))
+				body.set_pixel(x,y,Color.TRANSPARENT)
+	var angle := deg_to_rad(degrees)
+	# Inverse nearest-neighbour sampling keeps the installed palette and
+	# avoids transparent gaps from forward-splatting a rotated pixel arm.
+	for y in 128:
+		for x in 192:
+			var source := Vector2i(((Vector2(x,y)-pivot).rotated(-angle)+pivot).round())
+			if source.x<0 or source.y<0 or source.x>=192 or source.y>=128: continue
+			var color := patch.get_pixelv(source)
+			if color.a>.65: body.set_pixel(x,y,color)
+	return ((grip-pivot).rotated(angle)+pivot).round()
+
+func steady_cardinal_run(clip: Resource) -> void:
+	var steady := cel(clip,0)
+	var head := Rect2i(clip.identity_regions[0])
+	var main: Vector2 = clip.primary_hands[0]
+	var off: Vector2 = clip.offhand.hands[0]
+	for key in clip.pose_count:
+		var legs := cel(clip,key)
+		var bob := Vector2i(0,SIDE_RUN_BOB[key])
+		var body := Image.create(192,128,false,Image.FORMAT_RGBA8)
+		body.blit_rect(steady,Rect2i(0,0,192,80),bob)
+		body.fill_rect(Rect2i(0,SIDE_RUN_SEAM,192,128-SIDE_RUN_SEAM),Color.TRANSPARENT)
+		body.blit_rect(legs,Rect2i(0,SIDE_RUN_SEAM,192,128-SIDE_RUN_SEAM),Vector2i(0,SIDE_RUN_SEAM))
+		# Three degrees only: a shallow outward V, never crossed hilts.
+		var a := -93.0 if view=="up" else 93.0
+		var b := -87.0 if view=="up" else 87.0
+		put_cel(clip,key,body,Rect2i(head.position+bob,head.size),main+Vector2(bob),off+Vector2(bob),a,b)
+		audit[-1]["clip"]="run"
+		audit[-1]["steady_carry_bob"]=bob.y
+		audit[-1]["cardinal_tilt_degrees"]=3
+
+func make_thrust(clip: Resource,row: Array,density: float) -> void:
+	var order := [0,1,2,3,4,5,5,6,7,0,6,7,7]
+	var rotation := -90.0 if view=="up" else (90.0 if view=="down" else 0.0)
+	clip.interpolate_blade_angles=true
+	clip.lift_pixels.fill(0)
+	for key in 13:
+		var registered := generated_body(row[order[key]].image,density)
+		var hands := glove_centers(registered.body,registered.head)
+		if hands.size()!=2:
+			push_error("Thrust needs visible hands: "+view+"/"+str(key)); failed=true; return
+		clip.offhand.visible_poses[key]=0 if offhand_occluded else 1
+		clip.weapon_behind_body[key]=1 if view=="up" else 0
+		clip.offhand.behind_body[key]=clip.weapon_behind_body[key]
+		put_cel(clip,key,registered.body,registered.head,hands[0],hands[1],rotation-6,rotation+6)
+
+func calibrate(clip: Resource,factor: float,label: String) -> void:
+	if not is_equal_approx(factor,1): scale_body_clip(clip,factor)
+	for key in clip.pose_count:
+		var body := cel(clip,key)
+		quantize(body)
+		var foreground := Image.create(192,128,false,Image.FORMAT_RGBA8)
+		var head := hair_bounds(body,red_center_y(body)-2)
+		# Turning body cels use the matching canonical front/profile/back head.
+		var facing := view
+		if label=="spin" and key in [1,2,3,4,5,6,7,8,10,11,12]:
+			var cycle := ["side","down","left","left","up","up","side","side"] if view=="side" else (["up","left","down","down","side","side","up","up"] if view=="up" else ["down","side","up","up","left","left","down","down"])
+			facing=cycle[mini(key-1 if key<10 else key-4,7)]
+		var ref: Image = refs[facing]
+		var region: Rect2i = REFERENCES["side" if facing=="left" else facing][1]
+		if facing=="left": region.position.x=192-region.end.x
+		if label=="spin" or label=="run":
+			if facing=="up": head=attach_back_head(body,ref,region,foreground)
+			else: head=attach_head(body,ref,region,facing,foreground)
+		elif view=="side":
+			# Accepted side cuts already contain the exact installed head.
+			# Preserve their original forearms and anatomy intact.
+			head=Rect2i(clip.identity_regions[key])
+		else:
+			# Scale complete existing vertical bodies together, keeping cuffs.
+			# The original head is already installed identity; no second graft.
+			head=hair_bounds(body,red_center_y(body)-2)
+			head.size=Vector2i(canonical_head.size.x,canonical_head.size.y)
+		remove_specks(body)
+		var main: Vector2 = find_glove(body,clip.primary_hands[key],head,6)
+		var off: Vector2 = find_glove(body,clip.offhand.hands[key],head,6)
+		if main==Vector2.ZERO: main=clip.primary_hands[key]
+		if off==Vector2.ZERO: off=clip.offhand.hands[key]
+		var a := rad_to_deg((clip.primary_hands[key]-clip.secondary_hands[key]).angle())
+		var b := rad_to_deg((clip.offhand.hands[key]-clip.offhand.axes[key]).angle())
+		if label=="run":
+			# Cardinal carry keeps separate parallel blades in their own hand
+			# lanes. Opposed diagonal angles crossed over the head/boots.
+			a=-90 if view=="up" else 90
+			b=a
+			clip.weapon_behind_body[key]=1 if view in ["side","up"] else 0
+			clip.offhand.behind_body[key]=1 if view=="up" else 0
+		put_cel(clip,key,body,head,main,off,a,b,clip.stowed_poses[key]>0)
+		# Calibration is clip-wide; stance crouch remains actual anatomy.
+		audit[-1]["clip"]=label
+		audit[-1]["density_factor"]=factor
+
+func scale_body_clip(clip: Resource,factor: float) -> void:
+	var atlas := Image.create(clip.body_atlas.get_width(),clip.body_atlas.get_height(),false,Image.FORMAT_RGBA8)
+	var offset := Vector2i((Vector2(96,94)*(1.0-factor)).round())
+	for key in clip.pose_count:
+		var part := cel(clip,key)
+		part.resize(roundi(192*factor),roundi(128*factor),Image.INTERPOLATE_NEAREST)
+		atlas.blit_rect(part,Rect2i(Vector2i.ZERO,part.get_size()),Vector2i(key%4*192,key/4*128)+offset)
+		clip.primary_hands[key]=(clip.primary_hands[key]*factor+Vector2(offset)).round()
+		clip.secondary_hands[key]=clip.secondary_hands[key]*factor+Vector2(offset)
+		clip.offhand.hands[key]=(clip.offhand.hands[key]*factor+Vector2(offset)).round()
+		clip.offhand.axes[key]=clip.offhand.axes[key]*factor+Vector2(offset)
+	clip.body_atlas=ImageTexture.create_from_image(atlas)
+
+func alternate_angles(clip: Resource,cut: int) -> void:
+	var main := [-95,-110,-100,-50,20,65,105,130,100,50,-20,-50,-75]
+	var off := [60,40,10,-35,-70,-105,-130,-150,-120,-90,40,65,85]
+	var rotation := -90.0 if view=="up" else (90.0 if view=="down" else 0.0)
+	for key in 13:
+		var a: float = (main[key] if cut==1 else off[key])+rotation
+		var b: float = (off[key] if cut==1 else main[key])+rotation
+		clip.secondary_hands[key]=clip.primary_hands[key]-Vector2.from_angle(deg_to_rad(a))*7
+		clip.offhand.axes[key]=clip.offhand.hands[key]-Vector2.from_angle(deg_to_rad(b))*7
+
+func register_attack_ground(clip: Resource) -> void:
+	var atlas: Image = clip.body_atlas.get_image()
+	var mask: Image = clip.hand_atlas.get_image()
+	for key in clip.pose_count:
+		var origin := Vector2i(key%4*192,key/4*128)
+		var part := atlas.get_region(Rect2i(origin,Vector2i(192,128)))
+		var delta := Vector2i(0,94-(part.get_used_rect().end.y-1))
+		if delta.y==0: continue
+		var shifted := Image.create(192,128,false,Image.FORMAT_RGBA8)
+		shifted.blit_rect(part,Rect2i(0,0,192,128),delta)
+		atlas.blit_rect(shifted,Rect2i(0,0,192,128),origin)
+		shifted.fill(Color.TRANSPARENT)
+		shifted.blit_rect(mask.get_region(Rect2i(origin,Vector2i(192,128))),Rect2i(0,0,192,128),delta)
+		mask.blit_rect(shifted,Rect2i(0,0,192,128),origin)
+		clip.primary_hands[key]+=Vector2(delta)
+		clip.secondary_hands[key]+=Vector2(delta)
+		clip.offhand.hands[key]+=Vector2(delta)
+		clip.offhand.axes[key]+=Vector2(delta)
+		clip.identity_regions[key].position+=Vector2(delta)
+	clip.body_atlas=ImageTexture.create_from_image(atlas)
+	clip.hand_atlas=ImageTexture.create_from_image(mask)

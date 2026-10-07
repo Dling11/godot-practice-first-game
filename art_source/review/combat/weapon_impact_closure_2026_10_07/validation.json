@@ -1,0 +1,34 @@
+{
+	"checks": 301,
+	"failures": 0,
+	"weapons": [
+		{
+			"base_dps": 21.8848160539835,
+			"base_roll": "(10.0, 12.0)",
+			"chain_damage": "(38.0, 45.6)",
+			"combo_seconds": 1.91000002622604,
+			"item": "King's Sword"
+		},
+		{
+			"base_dps": 28.9184951843348,
+			"base_roll": "(14.0, 16.0)",
+			"chain_damage": "(86.1, 98.4)",
+			"combo_seconds": 3.19000001251698,
+			"item": "Iron Beard Axe"
+		},
+		{
+			"base_dps": 24.090909925251,
+			"base_roll": "(9.0, 11.0)",
+			"chain_damage": "(47.7, 58.3)",
+			"combo_seconds": 2.20000000298023,
+			"item": "Twinsteel · Dual Swords"
+		},
+		{
+			"base_dps": 29.6153841497846,
+			"base_roll": "(10.0, 12.0)",
+			"chain_damage": "(63.0, 75.6)",
+			"combo_seconds": 2.34000001102686,
+			"item": "Royal Greatsword"
+		}
+	]
+}

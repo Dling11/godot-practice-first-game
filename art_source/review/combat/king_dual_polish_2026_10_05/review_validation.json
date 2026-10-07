@@ -1,0 +1,160 @@
+{
+	"cardinal_contacts": [
+		{
+			"began": [
+				0,
+				1,
+				2,
+				3,
+				4
+			],
+			"contacts": [
+				{
+					"step": 0,
+					"target": 342825634817
+				},
+				{
+					"step": 1,
+					"target": 342825634817
+				},
+				{
+					"step": 2,
+					"target": 342825634817
+				},
+				{
+					"step": 3,
+					"target": 342825634817
+				},
+				{
+					"step": 3,
+					"target": 342993406531
+				},
+				{
+					"step": 4,
+					"target": 342825634817
+				}
+			],
+			"direction": "Vector2(0, -1)",
+			"rear_steps": [
+				3
+			]
+		},
+		{
+			"began": [
+				0,
+				1,
+				2,
+				3,
+				4
+			],
+			"contacts": [
+				{
+					"step": 0,
+					"target": 356683616417
+				},
+				{
+					"step": 1,
+					"target": 356683616417
+				},
+				{
+					"step": 2,
+					"target": 356683616417
+				},
+				{
+					"step": 3,
+					"target": 356683616417
+				},
+				{
+					"step": 3,
+					"target": 356851388567
+				},
+				{
+					"step": 4,
+					"target": 356683616417
+				}
+			],
+			"direction": "Vector2(0, 1)",
+			"rear_steps": [
+				3
+			]
+		},
+		{
+			"began": [
+				0,
+				1,
+				2,
+				3,
+				4
+			],
+			"contacts": [
+				{
+					"step": 0,
+					"target": 370440933518
+				},
+				{
+					"step": 1,
+					"target": 370440933518
+				},
+				{
+					"step": 2,
+					"target": 370440933518
+				},
+				{
+					"step": 3,
+					"target": 370440933518
+				},
+				{
+					"step": 3,
+					"target": 370608704633
+				},
+				{
+					"step": 4,
+					"target": 370440933518
+				}
+			],
+			"direction": "Vector2(-1, 0)",
+			"rear_steps": [
+				3
+			]
+		}
+	],
+	"checks": 109,
+	"failures": 0,
+	"handoff_physics_ticks": [
+		0,
+		0,
+		0,
+		0
+	],
+	"reach_proof": [
+		{
+			"contacts": 1,
+			"direction": "Vector2(1, 0)",
+			"inside_distance": 68,
+			"outside_distance": 110
+		},
+		{
+			"contacts": 1,
+			"direction": "Vector2(-1, 0)",
+			"inside_distance": 68,
+			"outside_distance": 110
+		},
+		{
+			"contacts": 1,
+			"direction": "Vector2(0, -1)",
+			"inside_distance": 68,
+			"outside_distance": 110
+		},
+		{
+			"contacts": 1,
+			"direction": "Vector2(0, 1)",
+			"inside_distance": 68,
+			"outside_distance": 110
+		}
+	],
+	"rear_steps": [
+		3
+	],
+	"rewardless": true,
+	"tab_controls": true
+}

@@ -1,0 +1,14 @@
+{
+  "SnapshotFiles": 129,
+  "ChangedExpectedFiles": [
+    "data/weapons/king_twinsteel.tres",
+    "data/items/equipment/king_twinsteel.tres",
+    "gameplay/presentation/weapon_family_pose_presenter.gd",
+    "data/weapons/weapon_family_pose_definition.gd"
+  ],
+  "InvalidBackupFiles": [],
+  "RebuiltOutputs": 66,
+  "DifferentOutputs": [],
+  "PngImports": 45,
+  "InvalidImports": []
+}

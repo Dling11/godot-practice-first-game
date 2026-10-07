@@ -1,0 +1,12 @@
+{
+  "changed_runtime": [
+    "CONTINUE_WEAPONS.md",
+    "data/weapons/weapon_family_presentation_definition.gd",
+    "docs/design/king-greatsword-oathbound-motion.md",
+    "entities/player/player.gd",
+    "entities/player/presentation/player_weapon_family_presentation.gd",
+    "gameplay/presentation/weapon_family_pose_presenter.gd"
+  ],
+  "invalid_archive": [],
+  "archive_count": 679
+}
