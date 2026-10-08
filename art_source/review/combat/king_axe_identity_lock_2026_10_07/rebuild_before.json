@@ -1,0 +1,278 @@
+[
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\presentation.tres",
+    "sha256": "DB68D0BB4E286510D9F68A4BD600A9B1DF22E3E82945DE103A1C388A57728D96"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\down\\chop_body.png",
+    "sha256": "2BDB310618665F3B3C87A1901716C49DE209FC99112A0FB13DBFBA8ADF9106DB"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\down\\chop_hands.png",
+    "sha256": "46B4BBC606F36AA08BF2357C9DE2E2E41DBBFF9FAD201E376ACF70000AF6E830"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\down\\chop.tres",
+    "sha256": "E28F715C4B63816E3A68824BC49E66364229BE147572FC9EFF3C71C967C3EE2E"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\down\\idle_body.png",
+    "sha256": "8CF455D00F108BD9E7D2CC95262D070A07939D5A6E8556B96CCCBF8D83068261"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\down\\idle_hands.png",
+    "sha256": "8791F8F427887693C85C4F9DAA42A8BF5E573EBE84C9C0BEF9D6EE482313EFD3"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\down\\idle.tres",
+    "sha256": "A124C8A58A5097B842439173369E214E6DCD7DE78CA63B9B4511C918F1032DAA"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\down\\rise_body.png",
+    "sha256": "D4E3A3884096D49B31F10F52EA584665D55876AD4BC16AF5572AD1231C7E3FBA"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\down\\rise_hands.png",
+    "sha256": "19B2A9399ACA4025CD6C78C2795044A6ADB3087F470BF130C8E828EEF018378B"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\down\\rise.tres",
+    "sha256": "7533BFBE3868A781E444A8484DA9CB412C76C3E0A49CBFB3613A5C95D3B2D783"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\down\\run_body.png",
+    "sha256": "5308EEEA15BC68650E73486F7C287532019C779C272A90E564578D257870D4BC"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\down\\run_hands.png",
+    "sha256": "8DF9360A66B70AB63774C276E57ED13B832C6D9083DD88CF9EB276BA8042A758"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\down\\run.tres",
+    "sha256": "0D0CBC139557166B1FCCCD9067ACC290ACF1AB49C77AF9D7432F4675F7A0E040"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\down\\slam_body.png",
+    "sha256": "626AEF3017896BDB52CD3261D0481A8ADB8C3649D1039A69AD31215A261B516D"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\down\\slam_hands.png",
+    "sha256": "69091D1588E9830FDA1637C7D408BFA5EAFFB99AD54F78E7EA3AE302144CA170"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\down\\slam.tres",
+    "sha256": "7780C597EC6F4CEAF9D7FD8182F06369F2E8AA009DE4FA6FEF7EB5A3D4B3AB52"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\down\\spin_body.png",
+    "sha256": "BDC8615BCF0EE17C8F6EC6CEB1DA617E9DC3396EAF08808AA9830924596D8AF7"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\down\\spin_hands.png",
+    "sha256": "74E387FE6B2D0FAB3863C977CCEB0A239A7D38DEE5E14B247B76D91A44C691A7"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\down\\spin.tres",
+    "sha256": "CECCDD86329F47DE72D5977768B6B8DB8A6BE263AA1C13848DDFD22D59E9F1AF"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\down\\thrust_body.png",
+    "sha256": "7A08BE4178F812B11DA04E14C423CFB0C3ACB94E7FBD38D89A1E1928FC4774B0"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\down\\thrust_hands.png",
+    "sha256": "D3C0CCC40CE4736F5A1BC065FB4C2EB3C5BA97FB704C9DBEB6359018E392BFCF"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\down\\thrust.tres",
+    "sha256": "40CE4A77E44CC50F91513C961536DF5E4CFAC86A418060349BBEB39FFA4B7E15"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\up\\chop_body.png",
+    "sha256": "7A9087096CE5ACEBC79987AAEAA1BC1137EFB4E2116D05F8AEB3596C19693548"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\up\\chop_hands.png",
+    "sha256": "9C54CF82C68631EE13C2BBEED33D245403EE857A5935327567FC72B5DA3D93CE"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\up\\chop.tres",
+    "sha256": "935754C374C339D89A5438EF723B087E1E5C973C901B38465F93CF157FEB1D2F"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\up\\idle_body.png",
+    "sha256": "BDCC20C542EC7FB72C99B33492C3C55E0BF04E876D06A10A721B9233C887E256"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\up\\idle_hands.png",
+    "sha256": "1CE446B05757595E6C96CFD8C356EC647915A53A6DFE7B45F9A4720EF12B59A7"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\up\\idle.tres",
+    "sha256": "ADBD268C5B3A051714C9C8D195010FD89C3EC1A96A799450C2DB054621D57B4D"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\up\\rise_body.png",
+    "sha256": "FF4E42DF28C052F01339BDE5230E15086A6C826A0B085A4BA88C4B9D92D7B309"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\up\\rise_hands.png",
+    "sha256": "E0EDD718970B2F01DC804E77B87E4DDF24D72C7C55139CF92A50EEB183269708"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\up\\rise.tres",
+    "sha256": "511BAAAB9984C758259E6CD8637FDCE120059408F0119E8BB27308C66A657AEF"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\up\\run_body.png",
+    "sha256": "BF770714FA9773321FA7BF2C0FA6C1CF400327D3769B48C84AA69BDA8E60D2C2"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\up\\run_hands.png",
+    "sha256": "8DF9360A66B70AB63774C276E57ED13B832C6D9083DD88CF9EB276BA8042A758"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\up\\run.tres",
+    "sha256": "9F2D6390FE4E582C00DF778848135DD7D9C18B48A7FC5489149CB22DA513D1F0"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\up\\slam_body.png",
+    "sha256": "A8F2D80FC7BFD128FE8745621DA7D5C697CBAE59F90D46A3116663501CCF8A64"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\up\\slam_hands.png",
+    "sha256": "18EE50387AA0A82CEB826A333075D96817EB3E8B62BA835CC107473C370197D3"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\up\\slam.tres",
+    "sha256": "B97D4918B52C4911DB04E0845D55BF4191FEC871CB2B8C0BDC18B7E051F95C33"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\up\\spin_body.png",
+    "sha256": "9EFD39DD692EF3BA4203F1D24189335B5AFCA2AD21C3A5EC8043B304ABAC6635"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\up\\spin_hands.png",
+    "sha256": "1AE48DDCF925CB4EC2C3F2BB3B91680D741782F09B6E39EC546C8C1FB1D5AD86"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\up\\spin.tres",
+    "sha256": "2D75E456C67ADDE32EEA94CD646B2F8FA8CB45C509018D0DF4DB172912636941"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\up\\thrust_body.png",
+    "sha256": "043774F13F71616984A5E350AE576F09686E2799E22DD7F4D6B317E92A901EE3"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\up\\thrust_hands.png",
+    "sha256": "B3655D5A7A00300137B0276810ABD94DE4C21D799DC20F66862860E7471178DB"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\axe_identity_lock\\up\\thrust.tres",
+    "sha256": "D2AF13EC324C40845FECB7D9C82E919A2EBA8249447B850F11DED2B3B2FDFF53"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\presentation.tres",
+    "sha256": "B3C84AF1FE59923F05AAD77E39A1D1D98FADDBC1E821FBEDF07F193DEF87B4A0"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\run_body.png",
+    "sha256": "42AB29CCE07AEB3584265C83EA2B91CD5D35BCF97296BAF05984102FA19693B2"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\run_hands.png",
+    "sha256": "19F3A6E9A0855163F91F1AFCF2A243CBB0319BE3DE0C3AE0615D9449C3CD89D7"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\run.tres",
+    "sha256": "19F8214D2BDF04FCB43C7478C93FF3737E3F6375236AC5E1216E1FD08032DEE5"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\down\\cross_finish_body.png",
+    "sha256": "764A45C8830C99CD41561B3320E63CA37A6BAAAA510FFED43181B59535A26E65"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\down\\cross_finish_hands.png",
+    "sha256": "7738B751BACF992365A6CE0FA210BDB11AD967ECCC558924834C0CDDB5AE72C1"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\down\\cross_finish.tres",
+    "sha256": "FE48B2EEBDEF3600B73DD536B4765EA06FFB75C046E5E5D81D0BD093FC6B49E6"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\down\\diagonal_body.png",
+    "sha256": "67BF85FBC694552B4E090C30A466E08BA2C8B9D3028EDA969473EFE795C6AA29"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\down\\diagonal_hands.png",
+    "sha256": "AB15B94E66B725D37AABB86D778701FE83EAC1F706C7D77BB9537DD1C5CBF1F3"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\down\\diagonal.tres",
+    "sha256": "47FB12B81A91403D62C799FB67EE5209D7D2DE57D94A0B95354D0AD5D8F1E86D"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\down\\hop_spin_body.png",
+    "sha256": "2A850A54363BBA11D30B6618C3E1F026A69D5F6AEDEB94EA889F3FD8850420A1"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\down\\hop_spin_hands.png",
+    "sha256": "F8A435B7C89428EE782AB19B8FE7BD93D840B07A0391F3AC91FA7DD85EACB173"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\down\\hop_spin.tres",
+    "sha256": "1BF40FD20D36548BC5D1DC855DDFA0E86D64DF8C7D75F30D3918E907BE4C089A"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\down\\idle_body.png",
+    "sha256": "7FEB6EE0C6D542BE382BDAB9F800A6A8A47360FB933EEE47A4B656780208BA49"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\down\\idle_hands.png",
+    "sha256": "1F9B8E38353A982AED78B9BF0250AFAADB4F52A4F7D35AA302C823AFA54C0576"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\down\\idle.tres",
+    "sha256": "85C8F007283E0E384D8A09C530ED18C5D8789C4CA7EC1A5858F53639DDDBC3F0"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\down\\return_body.png",
+    "sha256": "983A2512270BCBFDE0B83A373AA283B490E735EBF1D094B444B7B59F630136E6"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\down\\return_hands.png",
+    "sha256": "CC0E5A6320A97FBBBD7DA59A9CD30E865694B00A68EBA8B644D97852895C4EA2"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\down\\return.tres",
+    "sha256": "8A8A7FB4DD767FAC469E3D953A0C575D55B43040E9305D93286E826D74CF4606"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\down\\rising_cross_body.png",
+    "sha256": "3F7BD3CEB511149CF8225A751766A140577DCB61B176571C261199D1EA24DFA4"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\down\\rising_cross_hands.png",
+    "sha256": "38D7F28EF995B6FB95B9DBF50B3D4A546739ADE7E5691BDB1B86021F814D8D20"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\down\\rising_cross.tres",
+    "sha256": "46D4AB9A95C73186F4CF8A4A100A8A4801BBE95553EAECDA4E5EB68154828B36"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\down\\run_body.png",
+    "sha256": "8D207DD99429528FC9DFC6FD15C745B6C480EB5554249E3B779127697454FF0A"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\down\\run_hands.png",
+    "sha256": "17248260B3A5029C82C4A2F222B029411BE551D0E20723D23BE1A53C5840E041"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\dual_identity_lock\\down\\run.tres",
+    "sha256": "701D6649C0BC65B079FD9C0BFFEC57F10CDA4AC0DF344B781E3362AA65131C05"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\gameplay\\presentation\\axe_identity_lock_swing.tscn",
+    "sha256": "315590213A648A428AABEE68AD18846F0862C04C6863CDD05205F282E564BD54"
+  }
+]

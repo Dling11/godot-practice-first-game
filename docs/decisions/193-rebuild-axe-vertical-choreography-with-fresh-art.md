@@ -1,5 +1,7 @@
 # Decision193 — Fresh axe vertical choreography
 
+**Superseded on2026-10-08 by [Decision194](194-freeze-king-anatomy-and-repair-axe-dual-motion.md).** Owner testing found rear wobble/broadening and a front head size jump. The original counters below describe that historical delivery, not owner acceptance. Its generated camera effect atlases remain active dependencies; its body motion is replaced by the frozen-reference rebuild.
+
 2026-10-07. The owner rejects the proportion-only Decision192 delivery. The intended correction is new UP/DOWN attack motion, spin and impact artwork, with fresh generation comparable to the accepted Greatsword/Twinsteel renewal.
 
 Status: installed, native Player verified2852/0, actual practice/Bag/contact138/0 and all33 new outputs reproduce identically. The132-frame animated native preview was shown before stock selection.440 of441 protected files remain identical; only the stock axe profile selection changes. A visible responding real-Lab session is open. Owner visual/feel judgement remains pending; Iron Reaper is deferred. Existing57-object gameplay-fixture exit debt remains separate from assertion passes.

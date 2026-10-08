@@ -1,8 +1,12 @@
 # Iron Beard axe: five-hit combo and head-led thrust
 
+**Current correction (2026-10-08, Decision194):** The owner found wobble, a broad rear torso and a front ready head that changed size on attack in Decision193. Fresh five-row UP/DOWN body sheets now register against a permanent [four-view native tracing reference](../../art_source/reference/characters/king/native_identity_v1/README.md). Exact native crowns replace the entire generated scalp; the front's visible hair stays21×19. Collar/torso registration uses one density per sheet and sole94, not the lowest boot or an arbitrary head crop. Rear landing uses the new sheet's actual rear compression rather than a pose that turned toward the camera; the front hidden collar is traced explicitly. Vertical idle/run and all five cuts select sibling `axe_identity_lock/{up,down}` resources. Accepted side PNG/TRES, gait, steel and side effects remain exact.
+
+Current builder: `tools/build_king_axe_identity_lock.gd`; offline helper: `tools/king_native_identity.gd`. Thirteen keys separate load0–3, contact4–6, release7–9 and queue10–12, with exact ready/queue endpoints. Existing camera-authored four-frame effects remain; `axe_identity_lock_swing.tscn` optionally registers vertical jump origins to the actual blade. Origin(0,-16) remains exact for every side/non-landing contact. Gameplay stays3.19s; frame count does not change speed. Native actual Player2858/0 with132 frames, practice/Bag/contact138/0, and shared anatomy1068/0 across251 poses pass. The57-object axe gameplay-fixture exit warning remains. [Fresh source/prompts](../../art_source/generated/characters/king/axe_identity_lock_2026_10_07/README.md), [current preview/play/backup/rebuild proof](../../art_source/review/combat/king_axe_identity_lock_2026_10_07/README.md), [Decision194](../decisions/194-freeze-king-anatomy-and-repair-axe-dual-motion.md). Owner visual review precedes Iron Reaper. Earlier deliveries below are history.
+
 **Current fresh UP/DOWN motion (2026-10-07, Decision193):** The owner rejects the previous proportion-only delivery as a redesign: attack movement, spin and impact still look wrong. All five vertical cuts now use new generated body studies and independently generated white/silver ground-perspective effects. New rear jump cels load overhead and strike ahead above the crown at the first grounded ACTIVE pose; the spin shares a complete newly generated front/side/back turn with a half-turn UP offset. Accepted native heads/palette/scale, real source sleeves/gloves, sole94, corrected carry/gait and exact released/queued endpoints stay. Existing side motion/FX and3.19s damage/reach/knockback/audio/control/save rules remain. Native Player2852/0 with132 actual captures; owner visual judgement remains. [Fresh source/prompts/rebuild](../../art_source/generated/characters/king/axe_vertical_redesign_2026_10_07/README.md), [animated native preview/play/backup](../../art_source/review/combat/king_axe_vertical_redesign_2026_10_07/README.md).
 
-Current vertical builder: tools/build_king_axe_vertical_v2.gd, sibling assets/characters/playable/king/axe_vertical_v2/{up,down}. Stock profile selects these attack roots and gameplay/presentation/axe_vertical_v2_swing.tscn. Sixteen keys separate loading0–3, contact4–9, released10–12 and queued13–15. Contact/phase time remains in SwordComboDefinition; extra authored cels cannot lengthen the five-hit clock. Camera-specific effect atlases contain four frames per cut; the subclass switches only at phase transitions, using the original side registration otherwise. The old flow builder/assets remain retained dependencies for accepted side/carry/gait, not the selected vertical choreography.
+Historical Decision193 builder: tools/build_king_axe_vertical_v2.gd and sibling axe_vertical_v2 body resources. Its sixteen-key bodies are superseded. Its camera-specific effect atlases remain active dependencies; contact/phase time remains in SwordComboDefinition. Old flow assets remain inputs for accepted side and registered vertical carry/gait.
 
 Final closure: real Lab/Player/Bag/contact138/0, all33 new outputs rebuild identically,22 lossless/no-mipmap/no-alpha-border imports pass. Of441 protected files,440 remain identical and only stock presentation selection changes. The visible native axe training window is open with normal controls; its isolated session does not save. Existing57-object gameplay-fixture exit debt remains. Current source metadata describes raw assembled keys before exact ready/queued copies; compiled resources and native captures show the final endpoints.
 
@@ -26,15 +30,15 @@ A new built-in imagegen sheet supplies four broad white/silver thrust impact cel
 
 | Hit | Wind-up | Contact | Recovery | Damage | Knockback |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Chop | .24s | .18s | .22s |115% |130% |
-| Rising axe cut | .20s | .16s | .20s |110% |110% |
-| Axe-head thrust | .20s | .18s | .20s |105% |140% |
-| Hop slam | .36s | .20s | .28s |150% |180% |
-| Whirlwind | .28s | .30s | .32s |135% |150% |
+| Chop | .21s | .18s | .19s |115% |130% |
+| Rising axe cut | .17s | .16s | .17s |110% |110% |
+| Axe-head thrust | .17s | .18s | .17s |105% |140% |
+| Hop slam | .32s | .20s | .24s |150% |180% |
+| Whirlwind | .25s | .30s | .28s |135% |150% |
 
-Nominal chain:3.52s and6.15 base-hit units (approximately1.747 units/s). Current14–16 physical rolls give86.1–98.4 unempowered chain damage and26.2 base DPS, before defenses/buffs/criticals/hitstop/speed gear. This is uninterrupted-chain arithmetic, not measured effective DPS or final campaign balance. Attack-speed bonuses scale phases. Skill Power25, item/save IDs and session F9 access remain; no crafting recipe or milestone gate is added.
+Current nominal chain:3.19s and6.15 base-hit units (approximately1.928 units/s). Current14–16 physical rolls give86.1–98.4 unempowered chain damage and28.9 base DPS, before defenses/buffs/criticals/hitstop/speed gear. This is uninterrupted-chain arithmetic, not measured effective DPS or final campaign balance. Attack-speed bonuses scale phases. Skill Power25, item/save IDs and session F9 access remain; no crafting recipe or milestone gate is added.
 
-Walking remains25% wind-up,0% contact,60% recovery/full idle. Incoming knockback and dodge retain independent authority; hop lift is cosmetic. Accepted carry, four-second back stow/retrieval and eight-cel resolved-travel gait remain untouched. Blocked movement freezes gait. Skills/dash/reactions keep existing action sprites and return to the family afterward.
+Walking remains25% wind-up,0% contact,60% recovery/full idle. Incoming knockback and dodge retain independent authority; hop lift is cosmetic. Accepted side carry/gait stay exact; registered vertical carry/gait retain four-second back stow/retrieval and eight resolved-travel keys. Blocked movement freezes gait. Skills/dash/reactions keep existing action sprites and return to the family afterward.
 
 Play: stop the running game; restart F5 → F9 → Tab → Iron Beard Axe → Equip, then F7 Combat Lab. WASD walks; left click attacks; SPACE dodges. tools/launch_king_axe_training.ps1 opens the real Lab with the axe equipped and normal controls/Bag, isolated storage and suppressed saving. The older side-review launcher follows the same five-cut data.
 

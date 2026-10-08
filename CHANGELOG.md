@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-08 — Freeze King anatomy and correct axe/dual motion
+
+- Freeze accepted four-camera body/head PNGs and a reusable tracing board,192×128 cells/half-scale/sole94. Add offline source ownership, crown-relative collar, anatomical lane registration and exact native head stamping; a reference rebuild cannot overwrite an existing version.
+- Generate fresh axe vertical body sheets. Correct oversized ready hair, rear torso width/wobble, raised-arm collar detection and a camera-facing rear landing. Register actual palms/canonical steel, exact ready/queue endpoints and optional vertical jump effect origins; accepted side art/gait/effect origin and3.19s melee rules stay.
+- Copy accepted Greatsword side gait body pixels for dual running; correct front gait/head, complete five front cuts and planted/folded-arm front rest. Retain side/upper cuts, upper locomotion/idle, steel/slashes and2.20s rules. Sample per-clip phase windows in the native viewer, supporting13/16-key resources.
+- Native axe2858/0, dual938/0, shared anatomy1068/0 over251 poses; actual practice/Bag/contact138/0 and244/0; four-facing idle100/0.69 outputs rebuild identically and44 PNG imports pass.472-file pre-work backup protects469 unchanged files; two stock profiles and the axe verification script are the only protected changes. Existing actual-player shutdown diagnostics remain57 objects axe /6 objects+2 resources dual; native and idle exits are clean. Owner feel/performance are not asserted.
+- [Decision194](docs/decisions/194-freeze-king-anatomy-and-repair-axe-dual-motion.md), [axe sources/GIF/proof](art_source/review/combat/king_axe_identity_lock_2026_10_07/README.md), [dual sources/GIF/proof](art_source/review/combat/king_dual_identity_lock_2026_10_08/README.md), [King tracing reference](art_source/reference/characters/king/native_identity_v1/README.md). Iron Reaper remains deferred until owner review.
+
 ## 2026-10-07 — Rebuild rejected axe vertical attacks with fresh art
 
 - Owner rejects the previous proportion-only pass as a motion redesign. Generate new complete UP/DOWN body sheets, a real front/side/back spin, a targeted rear overhead jump strip and independent broad white/silver effects painted in ground perspective.

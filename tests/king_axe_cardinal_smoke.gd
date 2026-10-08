@@ -106,6 +106,10 @@ func _run() -> void:
 				var clips: Resource = PROFILE.attack_for(DIRECTIONS[index])
 				expected=clips if attack.combo_step==0 else clips.follow_up_clips[attack.combo_step-1]
 			check(p.definition==expected,"Attack body belongs to another direction/cut")
+			if attack.phase==MeleeAttackComponent.Phase.ACTIVE and PROFILE.swing_scene.resource_path.ends_with("axe_identity_lock_swing.tscn"):
+				var trail: Node2D = family.trail
+				if absf(DIRECTIONS[index].x)>.5 or attack.combo_step!=3:
+					check(trail.world_origin==Vector2(0,-16),"Landing registration shifted an accepted non-landing effect")
 			states.append({"direction":var_to_str(DIRECTIONS[index]),"step":attack.combo_step,"phase":attack.phase,"pose":p.pose_index})
 		timeline.append({"frame":frame,"file":"motion_frames/frame_%03d.png"%frame,"elapsed_ms":roundi(frame*1000.0/30.0),"actors":states})
 		var attack := actors[0].attack_component
@@ -268,11 +272,12 @@ func _validate_art(direction: Vector2) -> void:
 			var body: Image = clip.body_atlas.get_image().get_region(Rect2i(key%4*192,key/4*128,192,128))
 			var head: Rect2i = Rect2i(clip.identity_regions[key])
 			check(body.get_used_rect().end.y==95,"Attack soles do not share the94 plane")
-			check(body.get_used_rect().size.y<=78 and body.get_used_rect().size.y>=42,"Axe body has changed scale")
-			check(head.size in [Vector2i(25,24),Vector2i(27,29)],"Head differs from approved cardinal density")
+			check(body.get_used_rect().size.y<=78 and body.get_used_rect().size.y>=42,"Axe body has changed scale: "+clip.resource_path+" key"+str(key)+" bounds"+str(body.get_used_rect())+" head"+str(head))
+			check(head.size in [Vector2i(25,24),Vector2i(27,29),Vector2i(27,27)],"Head differs from frozen camera references")
 			var c := body.get_pixelv(Vector2i(clip.primary_hands[key].round()))
-			check(c.a>.65 and c.r>.18 and c.r<.80 and c.r>c.g*1.35 and c.g>c.b*1.25,"Axe hilt is not attached to a real brown glove")
-			check(anatomy_connected(body,Vector2i(clip.primary_hands[key].round()),head),"Axe glove/head is disconnected from the torso: "+clip.resource_path+" key"+str(key))
+			var occluded: bool = clip.hands_are_occluded(key)
+			check(occluded or (c.a>.65 and c.r>.18 and c.r<.80 and c.r>c.g*1.35 and c.g>c.b*1.25),"Axe hilt is not attached to a real brown glove")
+			check(anatomy_connected(body,Vector2i(head.get_center()) if occluded else Vector2i(clip.primary_hands[key].round()),head),"Axe glove/head is disconnected from the torso: "+clip.resource_path+" key"+str(key))
 	var idle: Resource = PROFILE.idle_for(direction)
 	var ready: Image = idle.body_atlas.get_image().get_region(Rect2i(0,0,192,128))
 	check(absi(ready.get_used_rect().size.y-54)<=1,"Axe ready shrinks relative to approved King baseline")
@@ -296,10 +301,10 @@ func _validate_art(direction: Vector2) -> void:
 	check(stride_keys>=6,"Axe walk lost its authored stride keys")
 
 func _fresh_vertical() -> bool:
-	return PROFILE.attack_for(Vector2.UP).resource_path.contains("axe_vertical_v2/")
+	return PROFILE.attack_for(Vector2.UP).resource_path.contains("axe_vertical_v2/") or PROFILE.attack_for(Vector2.UP).resource_path.contains("axe_identity_lock/")
 
 func _validate_fresh_vertical() -> void:
-	check(PROFILE.swing_scene.resource_path.ends_with("axe_vertical_v2_swing.tscn"),"Fresh axe profile has no camera-specific effects")
+	check(PROFILE.swing_scene.resource_path.ends_with("axe_vertical_v2_swing.tscn") or PROFILE.swing_scene.resource_path.ends_with("axe_identity_lock_swing.tscn"),"Fresh axe profile has no camera-specific effects")
 	for direction in [Vector2.UP,Vector2.DOWN]:
 		var clips: Resource = PROFILE.attack_for(direction)
 		var jump: Resource = clips.follow_up_clips[2]

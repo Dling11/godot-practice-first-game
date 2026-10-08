@@ -1,5 +1,7 @@
 # Decisions Index
 
+- [194 — Freeze King anatomy and repair axe/dual motion](docs/decisions/194-freeze-king-anatomy-and-repair-axe-dual-motion.md): frozen native four-view tracing reference, fresh registered vertical axe bodies, accepted Greatsword-derived dual gait and corrected complete front cuts/idle; original axe sides/Greatsword and combat rules preserved. Installed for owner review before Iron Reaper.
+
 - [193 — Rebuild rejected axe vertical choreography with fresh art](docs/decisions/193-rebuild-axe-vertical-choreography-with-fresh-art.md): fresh full-body vertical cuts/real turn/rear overhead jump and independent floor-perspective effects replace the insufficient proportion pass; accepted side/carry/gait/steel and melee authority stay.
 
 - [192 — Polish axe vertical proportions before scythe](docs/decisions/192-polish-axe-vertical-proportions-before-scythe.md): owner prioritizes UP/DOWN axe against the approved King baseline; shared offline complete-cel registration, rigid one-hand shaft basis, exact carry/queue endpoints, preserved side art/gameplay and deferred Iron Reaper.

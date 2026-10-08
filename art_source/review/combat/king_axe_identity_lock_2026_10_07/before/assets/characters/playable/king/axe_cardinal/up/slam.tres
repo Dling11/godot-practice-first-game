@@ -1,0 +1,27 @@
+[gd_resource type="Resource" load_steps=5 format=3]
+[ext_resource type="Script" path="res://data/weapons/weapon_family_pose_definition.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/axe_cardinal/up/slam_body.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/axe_cardinal/up/slam_hands.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/characters/playable/king/axe_proof/iron_beard.png" id="4"]
+[resource]
+script = ExtResource("1")
+body_atlas = ExtResource("2")
+hand_atlas = ExtResource("3")
+weapon_texture = ExtResource("4")
+pose_count = 8
+pose_order = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)
+primary_hands = PackedVector2Array(84, 75, 81, 49, 103, 49, 103, 47, 111, 49, 115, 77, 110, 77, 89, 71)
+secondary_hands = PackedVector2Array(81.04167, 81.344154, 81, 56, 103, 56, 103, 54, 113.39414, 55.57785, 113.18826, 83.76148, 106.5, 83.06218, 86.04167, 77.344154)
+weapon_primary_grip = Vector2(39, 33)
+weapon_handle_axis = Vector2(4, 10)
+mirror_cutting_edge = false
+phase_windows = PackedVector2Array(0, 1, 2, 5, 6, 7)
+weapon_behind_body = PackedByteArray(1, 1, 1, 1, 1, 1, 1, 1)
+single_hand_poses = PackedByteArray(1, 1, 1, 1, 1, 1, 1, 1)
+stowed_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0)
+released_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0)
+ground_clipped_poses = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0)
+lift_pixels = PackedFloat32Array(0, -5, -11, -7, 0, 0, 0, 0)
+identity_regions = Array[Rect2]([Rect2(83, 49, 23, 21), Rect2(77, 47, 23, 21), Rect2(89, 48, 23, 21), Rect2(92, 48, 23, 21), Rect2(99, 49, 23, 21), Rect2(86, 53, 23, 21), Rect2(85, 50, 23, 21), Rect2(90, 48, 23, 21)])
+identity_source_region = Rect2(86, 41, 23, 21)
+allow_rest = true

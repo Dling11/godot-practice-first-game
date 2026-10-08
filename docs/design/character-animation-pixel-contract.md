@@ -8,7 +8,7 @@ This contract applies to generated, downloaded, and hand-authored character anim
 |---|---:|---|
 | King current Spellward | 192x128, Body scene scale0.5 | Current player.tscn/Spellward SpriteFrames runtime truth; retain the approved visible body scale, cardinal directions, connected limbs and integrated sword |
 | King simple reboot (historical) | 32x32 locomotion target | Historical turnaround/foot reference; not the active player sheet or a new equipment-family canvas requirement |
-| King future equipment families | Unset; native-scale proof first | Concept boards are not runtime cells. Preserve current visible body scale, shared feet and sufficient rigid-weapon margins before choosing registered canvases |
+| King equipment families | 192x128, four columns, presentation scale0.5 | Sole94, native upright54–57texels; frozen four-camera body/head tracing in `art_source/reference/characters/king/native_identity_v1/`. Canonical weapon textures remain rigid and separately registered |
 | Small forest creatures | 32x32 | Fixed scale and foot baseline across all direction rows |
 | Existing extended enemy attacks | 64x48 | Use only when a validated action cannot fit the locomotion cell |
 | Examiner locomotion/idle | `192x128` debug cell | Six-column source with two idle plus four walk poses across `down/left/right/up`; compact-pixel V3 style, `0.42` scale, `y=120` cell baseline, and `-56 px` visual origin are the current F7 proof values |
@@ -41,6 +41,12 @@ Runtime PNG dimensions must equal `cell width * columns` by `cell height * rows`
 - Generated output with indivisible dimensions is legacy input, not an approved runtime grid. The processor may recover it with rounded cell boundaries, but a new board should target an exact divisible size.
 
 ## Processing Guarantees
+
+- For active King equipment, use the [frozen native identity reference](../../art_source/reference/characters/king/native_identity_v1/README.md) before generating or ingesting new art. Historical32px turnaround art is not the equipment-family sizing authority. A head provenance rectangle can contain transparent padding, shoulders or collar; never stretch visible hair/face to fill it.
+- Register a whole motion lane from armor width and collar-to-sole distance once. Keep native head pixels unchanged; center X on the collar below the crown, not a moving boot. Raised arms require collar-relative detection. Record any traced socket for a source pose whose collar is genuinely hidden.
+- Assign complete source ownership before raster registration. Transparent gutters suit separated guide boards; overlapping body-only boards require complete actor components. Preserve legitimate arms hidden by guide pixels and reject neighboring scarves/boots. Do not assume every generated sheet has the same extraction contract.
+- Contact phase windows and release/queue windows belong to each pose resource. Mixed13/16-key clips are valid; neither the viewer nor playback may assume a single global pose count. Gameplay durations belong to combo data.
+- Verify every visible grip on actual leather pixels, all head/body connections, native crown identity and atlas safety margins. Compare walking/ready/contact/rest at native scale and in the actual Player before promoting the profile. Technical checks do not establish owner feel approval.
 
 - Derive one scale from the approved standing frame for each direction row and apply that scale unchanged across the row.
 - Run containment/debris filtering before accepting the visible scale result. Every upright locomotion frame must still retain the actor's target visible height after filtering; a removed disconnected foot must not silently turn one frame into a smaller body.

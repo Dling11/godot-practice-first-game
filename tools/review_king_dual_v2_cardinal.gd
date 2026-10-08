@@ -2,7 +2,7 @@ extends SceneTree
 
 ## Native four-direction motion capture, sampled from the installed family data.
 const Presenter = preload("res://gameplay/presentation/weapon_family_pose_presenter.gd")
-const PROFILE = preload("res://data/weapons/families/twinsteel_v2/presentation.tres")
+var PROFILE: Resource = preload("res://data/weapons/families/twinsteel_v2/presentation.tres")
 const COMBO = preload("res://data/weapons/families/twinsteel_v2/combo.tres")
 var output := "res://art_source/review/combat/king_dual_v2_cardinal_2026_10_07/"
 const DIRECTIONS := [Vector2.LEFT,Vector2.RIGHT,Vector2.UP,Vector2.DOWN]
@@ -17,6 +17,7 @@ var checked_fx := {}
 func _initialize() -> void:
 	for argument in OS.get_cmdline_user_args():
 		if argument.begins_with("--output="): output = argument.trim_prefix("--output=").trim_suffix("/")+"/"
+		if argument.begins_with("--profile=res://"): PROFILE=load(argument.trim_prefix("--profile="))
 	_run.call_deferred()
 
 func check(ok: bool,message: String) -> void:
@@ -114,16 +115,16 @@ func sample_motion(time: float) -> String:
 				if local<duration or index==4:
 					cut = index
 					clip = base if index==0 else base.follow_up_clips[index-1]
-					var window := Vector2(0,3)
+					var window: Vector2 = clip.phase_windows[0]
 					var progress := local/COMBO.windups[index]
 					phase = "LOAD"
 					if local>=COMBO.windups[index]+COMBO.contacts[index]:
 						phase = "RECOVER"
-						window = Vector2(13,15)
+						window = clip.queued_recovery_window
 						progress = (local-COMBO.windups[index]-COMBO.contacts[index])/COMBO.recoveries[index]
 					elif local>=COMBO.windups[index]:
 						phase = "CUT %d"%(index+1)
-						window = Vector2(4,9)
+						window = clip.phase_windows[1]
 						progress = (local-COMBO.windups[index])/COMBO.contacts[index]
 						effect_frame = mini(3,int(progress*4))
 					pose = weighted_key(clip,window,progress)

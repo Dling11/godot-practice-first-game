@@ -1,0 +1,3 @@
+# Historical offline diagnostics
+
+These task-created audit/probe scripts and rejected debug rasters are retained only as investigation evidence, under the parent `.gdignore`. They are not runtime dependencies or rebuild inputs. `audit_king_identity.gd` produced the pre-work native size comparison; the probe inspected source alpha, guide ownership and traced collar/grip placement. Current builders use only the original selected source sheets, frozen references and metadata described in the parent README. Use `tests/king_identity_lock_smoke.gd` and the current native/player checks for final validation.
