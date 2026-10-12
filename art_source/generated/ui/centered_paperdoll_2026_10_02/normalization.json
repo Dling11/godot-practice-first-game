@@ -1,8 +1,0 @@
-{
-	"alpha": "binary",
-	"crop": "[P: (26, 108), S: (1534, 750)]",
-	"sampling": "nearest",
-	"size": "(256, 128)",
-	"slice_margin": 16,
-	"source_size": "(1586, 992)"
-}

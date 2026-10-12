@@ -1,6 +1,0 @@
-{
-  "tool": "builtin image_gen",
-  "prompt": "Edit this exact transparent 2 by 2 pixel-art targeting asset sheet. Preserve every asset, shape, cell, position, outline, transparent hole, and transparent background exactly. Recolor ALL yellow, gold, orange and warm ivory pixels into restrained cool silver, slate grey and muted pale lavender. Keep small violet gems but desaturate them slightly. NO gold or yellow anywhere in any ring, cursor or diamond. Maintain crisp deliberate pixel art, dark outline and actual alpha transparency. No glow, text or new decorative objects. Silver-grey and soft violet should be calm and easy to look at on a fantasy RPG battlefield.",
-  "reference": "rejected_gold_source.png",
-  "transparent_background": true
-}

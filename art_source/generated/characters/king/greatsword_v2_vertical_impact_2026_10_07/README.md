@@ -1,7 +1,0 @@
-# Greatsword V2 directional jump impact sources
-
-Built-in image_gen,2026-10-07. [Exact prompts and references](prompts.json), [immutable source hashes](source_hashes.json). `slash_source.png` and `ground_source.png` are the returned alpha rasters copied into this workspace. Each has four frames for UP/rear and four separately drawn DOWN/front frames. Existing LEFT/RIGHT artwork is preserved.
-
-Offline `build_king_front_combo_preview.gd` finds/removes magenta endpoint crosses, quantizes silver-white/charcoal, and uses one density per row with complete transparent margins. [Registration](registration.json) records every actual source guide, target pivot, density and alpha bounds. No guide appears in runtime. Cleave pivots(96,40)/(96,152); floor pivots(96,128)/(96,64). Native renderer depth scales are(.8,.55) and(.45,.30); source frames stay in the camera plane rather than rotating side art.
-
-Saved runtime assets: `assets/characters/playable/king/greatsword_front_combo_preview/vertical_slash.png` and `vertical_landing.png`, two768x384 atlases. [Runtime hashes](runtime_hashes.json) cover40 reproducible PNG/TRES outputs. All38 existing V2 runtime files are identical to the pre-directional-impact snapshot. Timing, damage, reach, audio, camera strength, original steel, body/carry/gait and the prior rear/edge correction remain. [Native proof](../../../../review/combat/king_greatsword_v2_vertical_impact_2026_10_07/README.md), [rules](../../../../../docs/design/king-greatsword-front-combo.md).

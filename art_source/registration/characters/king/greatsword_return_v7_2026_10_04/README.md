@@ -1,9 +1,0 @@
-# Matched King return V7 — 2026-10-04
-
-Owner rejects V6's fifth body design/colors. Its generated sheet introduced wider anatomy, changed tunic/belt shapes and a different palette. Passing contact/continuity checks did not establish character consistency. V6 source/evidence are preserved as rejected history, not runtime reference.
-
-V7 registers only existing accepted cells, copied byte-for-byte at their original192x128 resolution. No generation, recoloring, resizing, filtering or repainting is performed. Runtime order: turn7, turn6, rise2, rise3, rise4, rise5, idle2, idle0. registration.json points to each original body atlas and cell. This is a chronological upward return assembled from the already playable fourth/second/carry artwork, not V5's reversal of the entire fourth attack.
-
-All leading gloves retain original anchors. Recovery key5 uses the accepted rise5 body and upper gripping glove with a declared one-hand shaft axis toward the shoulder. The free hand remains part of the original body, not a second grip or foreground mask. Keys6/7 reuse existing one-handed carry. The same rigid sword, active white drawings/rotations, contact authority, damage/timing, queued follow-through hold and shallow idle remain.
-
-Build: Godot --headless --path . --script res://tools/build_king_greatsword_return_v7.gd, followed by --headless --editor --quit. Existing tools/launch_king_greatsword_review.ps1 opens V7 MATCHED KING. Runtime: assets/characters/playable/king/greatsword_return_v7/return.tres. Native evidence: art_source/review/combat/king_matched_return_v7_2026_10_04/. Native test now compares every fifth body cell against the exact accepted source bytes, in addition to motion/contact/raster/pause/cancel checks. Owner feel remains pending; no normal equipment/save promotion is claimed.

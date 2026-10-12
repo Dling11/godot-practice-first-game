@@ -1,9 +1,0 @@
-[
-  {
-    "key": "chests",
-    "prompt": "Create a production pixel art sprite sheet for Battle of Gods stage reward chests, matching the provided in-game screenshot's small overhead 3/4 perspective, dark charcoal outlines, restrained gold details and King-scale pixel density. EXACTLY TWO COLUMNS and THREE ROWS, six equal cells on true transparent background. Left column CLOSED, right column OPEN state of SAME chest. Row1 compact forest cache: walnut planks, dark iron braces, antique gold central lock, a few amber coins visible when open. Row2 Rootbound Reliquary: compact black iron/wood, subdued violet root knot in lock plate, angular root carvings, purple interior glimmer when open. Row3 Varkuun cache: slightly heavier charred wood and black iron, muted gold thorn emblem, warm amber greenish reward interior, no demon face or story spoilers. Keep exactly matching camera, footprint/base and fixed bottom baseline in each paired state, lid hinges at back, overhead lid top visible. Pixel blocks clean and chunky, no painterly soft brush, no outside bloom, NO labels/UI/background/scenery/people. Not large monster props; target native body widths 48/58/62 pixels with strong readable silhouettes. Show six complete isolated assets centered in equal cells with generous transparent padding; open lid extends UP, never moves chest feet. Avoid same-colored top and bottom washing out shape.",
-    "reference": "art_source/review/ui/expedition_feedback_2026_10_03/objective_chest.png",
-    "source": "chests_source.png",
-    "transparent_background": true
-  }
-]

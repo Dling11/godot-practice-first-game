@@ -1,5 +1,0 @@
-# Silver/violet RPG targeting
-
-**Current revision:** Owner rejects large ornate frames. The builder now emits only a24px aiming cursor into runtime and sends historical192px rings/32px landing sigil into art_source/archive/ornate_targeting_2026_10_03/. Exact native circle geometry supplies current subtle targeting; source images/prompts remain untouched. Current proof: targeting_subtle_2026_10_03/.
-
-source.png is the final builtin imagegen recolor with true alpha. rejected_gold_source.png retains the preceding owner-rejected palette. prompt.json and recolor_prompt.json preserve exact requests. tools/build_targeting_art.gd removes faint alpha before bounds, registers192px circular art (80px ring centerline) and32px glyphs, then applies nearest sampling/binary alpha. registration.json records crops/pivots. Runtime assets live in assets/ui/targeting/; mechanics and native evidence are routed by docs/design/king-targeting-and-terrain.md. Logs in this folder are test evidence, not imports/runtime content.

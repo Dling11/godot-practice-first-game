@@ -1,3 +1,0 @@
-# Muted hardware cursors
-
-Original2172x724 transparent builtin source and exact prompt retained. Three equal724px cells normalize to24px hardware cursors with aspect preserved,20px maximum content edge,2px padding and binary alpha. tools/build_muted_cursors.gd rebuilds assets/ui/targeting/pointer.png, interact.png and selected.png; registration.json records each crop/scale/hotspot. The separately registered targeting crosshair is built from targeting_2026_10_03/. No gold remains in any active cursor. Previous gold outputs are archived and the historical builder no longer writes them under runtime assets.
