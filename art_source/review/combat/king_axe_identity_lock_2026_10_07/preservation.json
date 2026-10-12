@@ -1,9 +1,0 @@
-{
-  "protected": 472,
-  "identical": 469,
-  "changed": [
-    "data/weapons/families/iron_beard/presentation.tres",
-    "tests/king_axe_cardinal_smoke.gd",
-    "data/weapons/families/twinsteel_v2/presentation.tres"
-  ]
-}

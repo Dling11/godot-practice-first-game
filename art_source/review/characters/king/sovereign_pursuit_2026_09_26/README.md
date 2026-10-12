@@ -1,5 +1,0 @@
-# Sovereign Pursuit blade-cut comparison
-
-`sovereign_pursuit.mp4` compares original and the corrected blade-cut review art at 60 FPS in Godot Compatibility, with the existing launch and landing sounds. `sovereign_pursuit.gif` is a smaller silent preview. The stills show travel, contact, open pressure arcs and a brief fixed afterglow at game scale. `playable_lab.png` shows the F7 control row; press KING REVIEW -> SKILL 3 to switch art, then 3, aim and click to cast. The capture waits for the original crater to clear before toggling and verifies that the review art is active.
-
-This is a presentation-only prototype. Range, movement, invulnerability, damage, control time, cooldown and the Skill 2 link are unchanged. The original art and campaign appearance remain available. New generated source and prompts are under `art_source/generated/vfx/king/sovereign_pursuit_2026_09_26/`; `tools/build_sovereign_pursuit_review.gd` packs the sheets, and `tools/capture_sovereign_pursuit_review.gd` records the comparison. The longer-range, three-charge upgrade ladder is only a [design proposal](../../../../../docs/design/sovereign-pursuit-charge-progression.md).

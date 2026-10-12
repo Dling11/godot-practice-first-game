@@ -1,5 +1,0 @@
-{
-	"checks": 39,
-	"failures": 0,
-	"scope": "catalog removal; version1/2 full-profile migration; duplicate collapse; validation retained; fresh campaign unchanged"
-}

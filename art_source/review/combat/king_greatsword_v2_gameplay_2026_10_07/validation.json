@@ -1,7 +1,0 @@
-{
-	"checks": 181,
-	"engine": "4.7.2-stable (official)",
-	"failures": 0,
-	"native": true,
-	"scope": "F9/F7, all weapon/Bag equip, four-facing contacts/buffering, landing, collision steps, cancels, V1 and Stage I carry"
-}

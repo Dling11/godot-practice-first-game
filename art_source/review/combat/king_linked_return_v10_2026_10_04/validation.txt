@@ -1,5 +1,0 @@
-Godot 4.7.2 native Compatibility renderer
-KING_FIVE_CUT checks=190 failures=0
-KING_PLANTED_WEAPON checks=21 failures=0
-GIF decoded frame count=120, actual sample delays preserved
-No claim of owner approval or a performance benchmark.

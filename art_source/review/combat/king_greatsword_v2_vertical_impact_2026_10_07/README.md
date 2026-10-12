@@ -1,7 +1,0 @@
-# V2 directional-impact native proof
-
-2026-10-07, Godot4.7.2 Compatibility. Native cardinal1529/0; real Player202/0. Checks retain rear hand occlusion/paired source palms/head connectivity/queue endpoints/edge repairs and additionally verify16 complete directional effect cels, transparent margins, removed guides, correct rear/front atlas rows and actual blade-tip floor contact without90-degree rotation. [Checks](cardinal_checks.json), [preservation/rebuild/import verification](verification.json), [cardinal body contacts](cardinal_contacts.png).
-
-40 output PNG/TRES files rebuild identically. All38 preceding V2 runtime art/resources are identical, including LEFT/RIGHT jump effect/landing art.41 pre-impact snapshot copies match. All28 PNG imports use lossless compression, no mipmaps and no alpha-border fix; rendering is nearest. Original V1 and other weapon gameplay/art regression results from the rear correction remain applicable; the subsequent changes affect only the V2 impact scene and two new atlases.
-
-[Actual Player cardinal GIFs and impact contacts](../king_greatsword_v2_vertical_impact_gameplay_2026_10_07/README.md), [new generated sources/exact prompts](../../../generated/characters/king/greatsword_v2_vertical_impact_2026_10_07/README.md). Owner feel/visual acceptance remains pending. The recorded hub→Lab→Stage I fixture still reports58 ObjectDB/1-resource shutdown warnings despite passing assertions; no performance or clean-teardown claim.

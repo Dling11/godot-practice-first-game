@@ -1,5 +1,0 @@
-{
-  "ComparedCoordinateValues": 1056,
-  "UnexpectedAttackChanges": 0,
-  "AllowedChanges": "Only ready key0 and released/closing ready endpoints; idle entry endpoint=4"
-}
