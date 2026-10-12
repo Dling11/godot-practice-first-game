@@ -1,6 +1,6 @@
 # Decision194 — Freeze King anatomy and repair axe/dual motion
 
-2026-10-08. Status: installed for owner review. This supersedes Decision193's vertical axe bodies and the affected Twinsteel gait/front presentation. Technical verification is recorded in the two linked proof folders; it is not owner motion approval. Iron Reaper remains deferred.
+2026-10-08. Status: historical; owner rejected equipped axe DOWN proportions on2026-10-11. [Decision195](195-reuse-complete-king-bodies-across-weapons.md) supersedes standing/gait selections and the sole sizing gate. The following records that delivery. This supersedes Decision193's vertical axe bodies and the affected Twinsteel gait/front presentation. Technical verification is recorded in the two linked proof folders; it is not owner motion approval. Iron Reaper remains deferred.
 
 The owner reports wobbling upper axe attacks, a broader rear torso, and a front ready head that shrinks on attack. Accepted axe side motion must remain exact. The owner also reports wrong dual side running, a wobbling downward walking head, fragments in downward cuts, and a downward proud idle that differs from the sides.
 

@@ -31,8 +31,8 @@ func _run() -> void:
 	check(PROFILE.is_valid_profile(),"Axe complete direction profile rejected")
 	var edge_pixel := AXE.get_image().get_pixel(8,30)
 	check(edge_pixel.a>.9 and minf(edge_pixel.r,minf(edge_pixel.g,edge_pixel.b))>.8,"Head-push landmark is not on the actual white cutting edge")
-	check(PROFILE.attack_poses.resource_path.ends_with("axe_flow/side/chop.tres"),"Axe does not start with the accepted downward chop")
-	check(PROFILE.running_poses.resource_path.ends_with("greatsword_confidence_v2/axe_run.tres"),"Accepted side gait changed")
+	check(PROFILE.attack_poses.resource_path.ends_with("axe_flow/side/chop.tres") or PROFILE.attack_poses.resource_path.ends_with("shared_bodies/axe/side/chop.tres"),"Axe does not start with the accepted downward chop")
+	check(PROFILE.running_poses.resource_path.ends_with("greatsword_confidence_v2/axe_run.tres") or PROFILE.running_poses.body_atlas.resource_path.ends_with("body_library/v1/side_run_body.png"),"Axe gait does not use the accepted body")
 	var seconds := 0.0
 	for step in WEAPON.combo.step_count(): seconds+=WEAPON.combo.windups[step]+WEAPON.combo.contacts[step]+WEAPON.combo.recoveries[step]
 	check(is_equal_approx(seconds,3.19),"Accepted faster five-hit axe clock changed")
@@ -288,7 +288,10 @@ func _validate_art(direction: Vector2) -> void:
 		check(clip.primary_hands[endpoint_key]==idle.primary_hands[0] and clip.secondary_hands[endpoint_key]==idle.secondary_hands[0],"Released grip does not meet ready grip")
 	var gait: Resource = PROFILE.run_for(direction)
 	var first: Image = gait.body_atlas.get_image().get_region(Rect2i(0,0,192,128))
-	check(absi(first.get_used_rect().size.y-54)<=1,"Axe run changes approved body baseline")
+	if PROFILE.running_poses.resource_path.contains("shared_bodies/"):
+		var great: Resource = load("res://data/weapons/families/royal_greatsword_v2/presentation.tres")
+		check(same_opaque(gait.body_atlas.get_image(),great.run_for(direction).body_atlas.get_image()),"Axe run differs from the complete canonical body cycle")
+	else: check(absi(first.get_used_rect().size.y-54)<=1,"Axe run changes approved body baseline")
 	var stride_keys := 0
 	for key in 8:
 		var rectangle := Rect2i(key%4*192,key/4*128,192,128)
@@ -301,7 +304,7 @@ func _validate_art(direction: Vector2) -> void:
 	check(stride_keys>=6,"Axe walk lost its authored stride keys")
 
 func _fresh_vertical() -> bool:
-	return PROFILE.attack_for(Vector2.UP).resource_path.contains("axe_vertical_v2/") or PROFILE.attack_for(Vector2.UP).resource_path.contains("axe_identity_lock/")
+	return PROFILE.attack_for(Vector2.UP).resource_path.contains("axe_vertical_v2/") or PROFILE.attack_for(Vector2.UP).resource_path.contains("axe_identity_lock/") or PROFILE.attack_for(Vector2.UP).resource_path.contains("shared_bodies/axe/")
 
 func _validate_fresh_vertical() -> void:
 	check(PROFILE.swing_scene.resource_path.ends_with("axe_vertical_v2_swing.tscn") or PROFILE.swing_scene.resource_path.ends_with("axe_identity_lock_swing.tscn"),"Fresh axe profile has no camera-specific effects")

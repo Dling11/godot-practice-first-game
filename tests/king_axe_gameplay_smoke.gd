@@ -140,7 +140,7 @@ func _run() -> void:
 	var old_pose: int = family.presenter.pose_index
 	actor.global_position += Vector2(18,0)
 	await physics_frame
-	check(family.presenter._running and family.presenter.pose_index!=old_pose and family.presenter.definition==RUN_POSES,"Accepted back-mounted axe gait does not advance from movement")
+	check(family.presenter._running and family.presenter.pose_index!=old_pose and family.presenter.definition==GAME_ITEM.weapon_definition.family_presentation.run_for(actor.facing_direction),"Selected back-mounted axe gait does not advance from movement")
 	await capture("axe_run.png")
 	actor.velocity = Vector2.ZERO
 	await physics_frame

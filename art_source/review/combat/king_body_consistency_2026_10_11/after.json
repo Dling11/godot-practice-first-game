@@ -1,0 +1,98 @@
+[
+	{
+		"armor_width": 14.0,
+		"body": "[P: (78, 41), S: (36, 54)]",
+		"family": "iron_beard",
+		"head": "[P: (86, 40), S: (25, 24)]",
+		"socket": "(95.65385, 62.38462)",
+		"view": "right"
+	},
+	{
+		"armor_width": 11.0,
+		"body": "[P: (79, 40), S: (34, 55)]",
+		"family": "iron_beard",
+		"head": "[P: (86, 39), S: (25, 24)]",
+		"socket": "(97.65625, 64.65625)",
+		"view": "up"
+	},
+	{
+		"armor_width": 8.0,
+		"body": "[P: (76, 40), S: (41, 55)]",
+		"family": "iron_beard",
+		"head": "[P: (83, 36), S: (27, 29)]",
+		"socket": "(94.66666, 63.0)",
+		"view": "down"
+	},
+	{
+		"armor_width": 14.0,
+		"body": "[P: (77, 42), S: (38, 54)]",
+		"family": "royal_greatsword_v2",
+		"head": "[P: (0, 0), S: (0, 0)]",
+		"socket": "(96.51852, 63.44444)",
+		"view": "right"
+	},
+	{
+		"armor_width": 11.0,
+		"body": "[P: (79, 40), S: (34, 55)]",
+		"family": "royal_greatsword_v2",
+		"head": "[P: (86, 39), S: (25, 24)]",
+		"socket": "(97.65625, 64.65625)",
+		"view": "up"
+	},
+	{
+		"armor_width": 8.0,
+		"body": "[P: (76, 40), S: (41, 55)]",
+		"family": "royal_greatsword_v2",
+		"head": "[P: (83, 36), S: (27, 29)]",
+		"socket": "(94.66666, 63.0)",
+		"view": "down"
+	},
+	{
+		"armor_width": 14.0,
+		"body": "[P: (78, 41), S: (36, 54)]",
+		"family": "twinsteel_v2",
+		"head": "[P: (86, 40), S: (25, 24)]",
+		"socket": "(95.65385, 62.38462)",
+		"view": "right"
+	},
+	{
+		"armor_width": 13.0,
+		"body": "[P: (79, 40), S: (36, 55)]",
+		"family": "twinsteel_v2",
+		"head": "[P: (84, 39), S: (25, 24)]",
+		"socket": "(95.65625, 64.65625)",
+		"view": "up"
+	},
+	{
+		"armor_width": 12.0,
+		"body": "[P: (81, 40), S: (30, 55)]",
+		"family": "twinsteel_v2",
+		"head": "[P: (84, 36), S: (27, 29)]",
+		"socket": "(95.90476, 65.14286)",
+		"view": "down"
+	},
+	{
+		"armor_width": 16.0,
+		"body": "[P: (47, 38), S: (68, 58)]",
+		"family": "signature",
+		"head": "[P: (0, 0), S: (0, 0)]",
+		"socket": "(91.91666, 61.58333)",
+		"view": "right"
+	},
+	{
+		"armor_width": 29.0,
+		"body": "[P: (54, 40), S: (59, 55)]",
+		"family": "signature",
+		"head": "[P: (0, 0), S: (0, 0)]",
+		"socket": "(91.14286, 61.71429)",
+		"view": "up"
+	},
+	{
+		"armor_width": 18.0,
+		"body": "[P: (67, 40), S: (50, 55)]",
+		"family": "signature",
+		"head": "[P: (0, 0), S: (0, 0)]",
+		"socket": "(87.75, 60.16667)",
+		"view": "down"
+	}
+]

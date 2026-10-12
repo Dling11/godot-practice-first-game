@@ -1,0 +1,20 @@
+[
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_gait_v2\\down\\run_hands.png.import",
+    "lossless": true,
+    "no_mipmaps": true,
+    "no_alpha_expansion": true
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_gait_v2\\side\\run_hands.png.import",
+    "lossless": true,
+    "no_mipmaps": true,
+    "no_alpha_expansion": true
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_gait_v2\\up\\run_hands.png.import",
+    "lossless": true,
+    "no_mipmaps": true,
+    "no_alpha_expansion": true
+  }
+]

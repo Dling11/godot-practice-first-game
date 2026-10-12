@@ -1,0 +1,6 @@
+{
+  "scope": "Exact canonical gait for all families, native sword body pixels, mirrored side, approved axe contacts preserved, entry/recovery endpoints and immutable library",
+  "checks": 864,
+  "recovered_from": "Pre-polish shared_body.log; current verification is in king_down_body_polish_2026_10_11",
+  "failures": 0
+}

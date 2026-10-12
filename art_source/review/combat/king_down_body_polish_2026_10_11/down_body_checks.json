@@ -1,0 +1,6 @@
+{
+	"checks": 2373,
+	"failures": 0,
+	"protected_files": 1041,
+	"scope": "Complete DOWN cels and both grips shift together without resizing/redrawing; exact ready/queue/release; fixed soles; immutable other views/Greatsword/gaits; axe relaxed rest"
+}

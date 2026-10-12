@@ -1,5 +1,7 @@
 # Frozen King anatomy v1
 
+**2026-10-11 superseding body authority:** This folder remains immutable historical head/source provenance. Its height/armor-width registration alone did not prevent the equipped axe torso mismatch. Future weapons must use [complete body_library/v1](../body_library_v1/README.md) and exact reuse gates from [Decision195](../../../../../docs/decisions/195-reuse-complete-king-bodies-across-weapons.md).
+
 Captured from owner-approved art on 2026-10-07. These PNGs are immutable offline references, ignored by Godot imports. `tools/build_king_identity_reference.gd` deliberately refuses to overwrite an existing reference. Read `reference.json` and `trace_board.png` before future weapon generation; a replacement needs a new reference version.
 
 - 192×128 body cells; presentation scale 0.5; grounded sole y94. Upright native bodies occupy 54–57 pixels. Crouching, airborne or turning poses may change occupied bounds without changing anatomical scale.

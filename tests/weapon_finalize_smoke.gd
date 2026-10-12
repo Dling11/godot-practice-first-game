@@ -4,6 +4,7 @@ const LAB = preload("res://levels/combat_lab/combat_lab.tscn")
 const TARGET = preload("res://entities/training/training_target.tscn")
 const ITEMS := [preload("res://data/items/equipment/king_signature_sword.tres"),preload("res://data/items/equipment/king_iron_beard_axe.tres"),preload("res://data/items/equipment/king_twinsteel.tres"),preload("res://data/items/equipment/king_royal_greatsword_v2.tres")]
 const OUT := "res://art_source/review/combat/weapon_impact_closure_2026_10_07/"
+var evidence_path := OUT
 var checks := 0
 var failures := 0
 var accepted: Array[Dictionary] = []
@@ -11,6 +12,9 @@ var phases: Array[float] = []
 var rows: Array[Dictionary] = []
 
 func _initialize() -> void:
+	for argument in OS.get_cmdline_user_args():
+		if argument.begins_with("--output=res://art_source/review/"):
+			evidence_path=argument.trim_prefix("--output=").trim_suffix("/")+"/"
 	call_deferred("_run")
 
 func check(ok: bool, message: String) -> void:
@@ -143,7 +147,8 @@ func _run() -> void:
 	check(menu._equipment_sort_less(ITEMS[1],ITEMS[2]) and menu._equipment_sort_less(ITEMS[2],ITEMS[0]),"DPS sort does not order actual nominal weapon DPS")
 	menu._inventory_sort_mode=&"hit"
 	check(menu._equipment_sort_less(ITEMS[1],ITEMS[0]) and menu._equipment_sort_less(ITEMS[0],ITEMS[2]),"Hit sort does not order maximum base rolls")
-	FileAccess.open(OUT+"validation.json",FileAccess.WRITE).store_string(JSON.stringify({"checks":checks,"failures":failures,"weapons":rows},"\t"))
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(evidence_path))
+	FileAccess.open(evidence_path+"validation.json",FileAccess.WRITE).store_string(JSON.stringify({"checks":checks,"failures":failures,"weapons":rows},"\t"))
 	lab.clear_simulation()
 	# Let the last audition's transient stream finish before fixture teardown.
 	await create_timer(.65).timeout
@@ -155,4 +160,5 @@ func _run() -> void:
 
 func capture(filename: String) -> void:
 	await RenderingServer.frame_post_draw
-	check(root.get_texture().get_image().save_png(OUT+filename)==OK,"Failed native Bag capture")
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(evidence_path))
+	check(root.get_texture().get_image().save_png(evidence_path+filename)==OK,"Failed native Bag capture")

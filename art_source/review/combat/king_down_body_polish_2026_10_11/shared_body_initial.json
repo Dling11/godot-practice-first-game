@@ -1,0 +1,5 @@
+{
+	"checks": 864,
+	"failures": 56,
+	"scope": "Exact canonical gait for all families, native sword body pixels, mirrored side, approved axe contacts preserved, entry/recovery endpoints and immutable library"
+}

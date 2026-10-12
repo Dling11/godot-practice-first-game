@@ -1,0 +1,402 @@
+[
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\cross_finish_body.png",
+    "sha256": "8ADDFB9CBDC7E2A84F49B49A30610749D3F29AA3AD0FD04619A7E1FF51010B63"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\cross_finish_body.png.import",
+    "sha256": "B3B59ADAF6E0E8C5F83C9A167221D4FDAB652773B9CE5A02BB432C947182DD75"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\cross_finish_hands.png",
+    "sha256": "62852C5C3D8FFB96EB9210378AA08A3D048BF6F159B4D5141316F9D32879044F"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\cross_finish_hands.png.import",
+    "sha256": "3F3A376955C455E43F73CEFDD5476BA3488385442F02F4063B92AC5EEACA5402"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\cross_finish.tres",
+    "sha256": "2623C50BE24B17B50414D48C36644270E0DF69AFB445ACCA5093A3154BAB1D92"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\diagonal_body.png",
+    "sha256": "60B04FE15934D14161C7EF632EF828917AD61801AB3C1013A1ACC16678470BF1"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\diagonal_body.png.import",
+    "sha256": "9C319AE3740029A59541B09DE705242115FCF249E5ADAF9714B383C152FC52C2"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\diagonal_hands.png",
+    "sha256": "70B8AB6CFB4E7D462C41BBE14850D6A425B5E0CC92DB27758966B4E63E0A5793"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\diagonal_hands.png.import",
+    "sha256": "EE6D56F93E84A63DA7644FF9699A22CCB21D0CCB18C7D4A44D05DE47C8658FB3"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\diagonal.tres",
+    "sha256": "9C569E826F6BCC79CC89BCD127909D2E65B84D94500697ADA212B776ED97C9FD"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\hop_spin_body.png",
+    "sha256": "CB5925562F516E2C28E837CE016D74DE92463212CBCDC057E4F5039FBF4A1831"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\hop_spin_body.png.import",
+    "sha256": "D8183B372AB5DE9C2F504DAD7A19F953183A7891D24F22C71E791669255158E9"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\hop_spin_hands.png",
+    "sha256": "C2093833D21E93B9B3AF886A549E8DB9E26B0A00568CE27CE2E9BCA57820307B"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\hop_spin_hands.png.import",
+    "sha256": "8D3A98B0B8B4B6F2D272B74F7514E22DF190EC589B696A93CBAF9E3296E58D49"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\hop_spin.tres",
+    "sha256": "E5D3E7A416C56E0A3E02FD751609E966ACBD724F83747F4A34EF83B40DA22ED8"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\idle_hands.png",
+    "sha256": "F799DF813E1300C3D885B9FDCD29A84EEE3F6454C212100FE161C003CE20F0A8"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\idle_hands.png.import",
+    "sha256": "218DC95A3F8D20A66F09D7EFC2742F66A93A358DC7B0CD3E4FEEC0DCCDEA6BCD"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\idle.tres",
+    "sha256": "E90CE8F9AE57F7EC8713A91127BFD1EF74A7FA62F403B50C1FD9D066028BB053"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\return_body.png",
+    "sha256": "6AE1383BEEAE69D25D2AFB338E866536991B8B95E1B0D16C1C7204BDDBA4ACFD"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\return_body.png.import",
+    "sha256": "FEDE73B7C38E2D22D0A5A54B49E6B1CE914EAB19EA70E8458F3DA37170319A3D"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\return_hands.png",
+    "sha256": "3BB19541635717F0BB170CE3DBDCF424326B71E41B1DCBF67572FC090EF777AC"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\return_hands.png.import",
+    "sha256": "B1231B0832B3E30756A39D86EF73E7FBD12276CD283E20AB3412C5DA37EF65B6"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\return.tres",
+    "sha256": "CA60D8DB3BFD8C50C46FE640E192FFD666CC2D70C09F843A030D8887BEC597FA"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\rising_cross_body.png",
+    "sha256": "085C371D757DECE5654F1BE1C91183E276F3235E93996D0DC2F4998E32EAF6D9"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\rising_cross_body.png.import",
+    "sha256": "20179B940487AAAB4659D4DF15BFEC6258ECF6ED46154172DE8D5E30664272A2"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\rising_cross_hands.png",
+    "sha256": "9A520E2191483F8E48CB61DB55475AAF407D5A23289183D93697E4983617324E"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\rising_cross_hands.png.import",
+    "sha256": "BB83718F55A9BE86AF46B7C2C310197642C5BD5F5A4CB8D8D279E1EA77CE2A79"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\rising_cross.tres",
+    "sha256": "19ADDC66B9846AAF912473661E4FDF38E12F9DC0BFBB71FC5F2B65E9B4BB49CC"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\run_body.png",
+    "sha256": "9441D4D668CFF18B4BD4947086C23E1E29428C3510EA4A54E6D6BA3DAD152B29"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\run_body.png.import",
+    "sha256": "C71674A9875631B6A27DF6AC25AED9C80446CA5C7B20E7CFD5B466F77B0EC64A"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\run_hands.png",
+    "sha256": "83163AB3AFF4E5B9A34E42934E13A39C23678D42A4D3463780DDF910FE99001B"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\run_hands.png.import",
+    "sha256": "5A656FF80FF1F5668FF4DE832EEA819F13F3F554F25AE90A9866DF64F8C7F106"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\down\\run.tres",
+    "sha256": "D8DCB52BFD9F8ABD58F7EDEBBC993DD9A1F71CF68B6A66CF1070DC8EBD2179DC"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\cross_finish_body.png",
+    "sha256": "0ADB944609BC42E6BDB861E4A840A41B581CC44E31D14D04C713B5737F85DFB4"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\cross_finish_body.png.import",
+    "sha256": "62C295BED442FF15C6999B11E73D9895FB31EE1BF54E57A4A8BB52167E114E39"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\cross_finish_hands.png",
+    "sha256": "91D0A9F749A1A76B69DE04B041FFFA005A6C1DAA51F51A18291D4B2EA4283D87"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\cross_finish_hands.png.import",
+    "sha256": "13F480E4748C0E283E7CB8BE29618DFA8A9A4BA8FDF1C7576BE88189504D4E57"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\cross_finish.tres",
+    "sha256": "D297662F89A1970664D479371A7184A47871A6AA57A30D6A84BD2C278EB7F518"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\diagonal_body.png",
+    "sha256": "A8D1B9BC0BBFFE9E4EC487B3F494B39F3002B5D213F5A1EA3D0713C77E9B1AF9"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\diagonal_body.png.import",
+    "sha256": "3AB96F8FA150EC9EB2229249029DA4F08820F2719EE31DF0BDDB972D12D74ECA"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\diagonal_hands.png",
+    "sha256": "E5814E5ECDBE0B2E95722FF0D7479B12F41BF643DA61CC403C93A790D0904DE8"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\diagonal_hands.png.import",
+    "sha256": "FD42A7BCFCCC1CCF0F100D09C242BA312AD506605441C8A0CC29DEA16D46361D"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\diagonal.tres",
+    "sha256": "D77C0402441B3FE3AFC1706F235B6587D403F9E6FED99780D64375795D0346B7"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\hop_spin_body.png",
+    "sha256": "DF78581AE5612E1E70FA6F8B83E586D6E6D057F37C7BD7A4562CE6E7843B57AA"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\hop_spin_body.png.import",
+    "sha256": "7DDD7CD9C072A45456C2155F50553A1E876F42B489BD25AB64BEE1BDE6886C3C"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\hop_spin_hands.png",
+    "sha256": "60230943839B0C682620FC71C567C7A765B6888F13B00762C5E10BA383F9B272"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\hop_spin_hands.png.import",
+    "sha256": "4560168A5FC369107A7E09C4310088967E11D48B0EEAABCF907E7F9B5E3F4972"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\hop_spin.tres",
+    "sha256": "42A2B78237595E792E229EEE20547EFA615CF2AEDBA2FF3B603689118C701497"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\idle_hands.png",
+    "sha256": "AF1DC0E0294ECF04F0A1B5CAB626755438B653F78FB6E7B5C6053CCCAEF67D8C"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\idle_hands.png.import",
+    "sha256": "F9839DD2C08C4DECA8088588581ECA33DEBCFAA61C3C5E43E94423775D92DD48"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\idle.tres",
+    "sha256": "BCFAC174EEE4711BE9FEDDFC8142AA189A244FD3BDF725B438E504773BA8C314"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\return_body.png",
+    "sha256": "DE5F613E6C6FAA6F1FFD50B0270EDE9FEBF5A2EEADE2FF4367EDA8511C6B2615"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\return_body.png.import",
+    "sha256": "7AB65400C7E96AD7DCA7F0F89FD6776B20A4E3F5D46143DD4D461032C2CFEE79"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\return_hands.png",
+    "sha256": "8F6FD22E634FD52CCA5918AE75EADD0633DC10C462FB7040410EAE322E9185B9"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\return_hands.png.import",
+    "sha256": "1695198CF89334AFB6BE97E57424B7AF483B6BC773D12C4ADA22480C0766A119"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\return.tres",
+    "sha256": "8CF85ED521F1B2711C380760616A200990FC0AD62192F5D060DAC57A759C9C8C"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\rising_cross_body.png",
+    "sha256": "34714E48448FC513E34584D9BEFB4114BD737AB948A462FE73F401E206F3244D"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\rising_cross_body.png.import",
+    "sha256": "372E575EAAE13983D882D6989F28E374B90C5C0B8C4845068C222B9374E768BE"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\rising_cross_hands.png",
+    "sha256": "62B2CA576ACE022DE5B55B17EC9EF1FEB3E7745C29A9FD4A31B9F9462B70D6B7"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\rising_cross_hands.png.import",
+    "sha256": "A5311BB0E5B3E85C5859A39A8ED08C1F3FD65BCEE786F8DBD2D621E8AD5D765E"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\rising_cross.tres",
+    "sha256": "413D49B824837625E04975307309153C91CA5210CE8BF8F57C32F0DBF2B1B8FA"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\run_body.png",
+    "sha256": "CC3859BD46CD029E7943248E095C41E265BDBF5855303D8CFD1AFC2F98134010"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\run_body.png.import",
+    "sha256": "7904D8E88FDA0A5D1075781FC493B04ED13052FC3031FF1ACD7EB1127EBA9F43"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\run_hands.png",
+    "sha256": "656155C28376020B9B6CDB0B8E1C504946AE2B6FE323CF0F9955515EAA516599"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\run_hands.png.import",
+    "sha256": "5458898A873190EA3F72E3D42CB7B49D1D7BA8BAD2E2336B1E80F155ED53263E"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\side\\run.tres",
+    "sha256": "7EBA5EAA33DE1707FF974CB7D20B085A9AE4F5F912B13D15D8270AA57315943F"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\cross_finish_body.png",
+    "sha256": "98F50B5FF96C2DC95024AAC2B9FA60DE4A5A9E39C9A2C74E2320CAC78B80EBA5"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\cross_finish_body.png.import",
+    "sha256": "DFB1F24313CCCA89E57BE5BDA2F64934D4ED3511A0E5042D473B1E337BB7D14D"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\cross_finish_hands.png",
+    "sha256": "E0B03088F35774FBA71A2CCB04B2430A6BC6CA8A8C9DBE455EC384FC598DB862"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\cross_finish_hands.png.import",
+    "sha256": "3D0BAAB2CE5ACC025B156B211B1092A3E355042F39ABBA74F23F1324AC450D9D"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\cross_finish.tres",
+    "sha256": "3088CDC15F378CAFD488AF6B8583ED7B1F68A3070689C09908877B85886DCC12"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\diagonal_body.png",
+    "sha256": "E2BFE85F3800F217C68A8AD6EA98E1F22D9D4D3B5FCF74F8BF4421E76D4A3789"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\diagonal_body.png.import",
+    "sha256": "05E9709565E550B80AD9AC2325BBEDC08D161A1656DA1368E756623DB7DD9334"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\diagonal_hands.png",
+    "sha256": "C41D620A339C8C517EF2ACFE963FDF5DE78A7CB837CEB17CB8A2049BBE584F31"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\diagonal_hands.png.import",
+    "sha256": "945649C3D6633142C54B2E12FDFE009EBB5CDBBE7BAE70C21E334046D0A18340"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\diagonal.tres",
+    "sha256": "BF4211C37D5AB491E0F06C40F4F5F89AC2CBD19217D9404563E7B55495952A4A"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\hop_spin_body.png",
+    "sha256": "78E0A0B81FDAB326D8CD08279479D4EF148ECE3481FEBD970EAFACAF51DEC907"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\hop_spin_body.png.import",
+    "sha256": "854BF402C78978ADC03C95F7922AE81CE84239A03995413EFEE9954BB26B7E41"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\hop_spin_hands.png",
+    "sha256": "02924848042D7F21B5ED412688FF030D6392FFFFAE2E3973A9D83CCFAB868204"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\hop_spin_hands.png.import",
+    "sha256": "5A6A9F384ACBC8F687575AEE7847A75D8D3AE6096C27058CFB1EA5BE6CF380F1"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\hop_spin.tres",
+    "sha256": "8A7DCE9F71364637ED04F05E10308766900A9950227C7C382792F6F8DAB2F222"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\idle_hands.png",
+    "sha256": "B06252210949CE2860D550E1F7501C5AD52548B9DBF790F7DFE5029AB4B24C38"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\idle_hands.png.import",
+    "sha256": "19C9542D775D3AD538D5DD3AA1F1294436D064793CA6F9DCDDED9BB0CDA56B7A"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\idle.tres",
+    "sha256": "AB6FF3298F4930BB59A22E1747EFECC204AC19B3E85089B136B27A15B4767161"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\return_body.png",
+    "sha256": "0E81E74E0A0555C12031F3816154770E020D94C900FC9045C0879F14CFB716C8"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\return_body.png.import",
+    "sha256": "9CF991E04B9FDC444152C470BF44339CEE51797E00E748D89119042CAD37AC24"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\return_hands.png",
+    "sha256": "35FEE10FAD7E42B91B8F700B24289E172457CD584BCBB08DDBD48C51319D3A0A"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\return_hands.png.import",
+    "sha256": "F8EEC4264FE9B40B69C8263F860DDEC323B44E3090CE663449819EA3BC536C28"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\return.tres",
+    "sha256": "5C20170BEF3F0912B1C3C57A4C83B496783AE942107D170FEC4921BC51F73232"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\rising_cross_body.png",
+    "sha256": "074AA0FEF9846B464F40468B310E7CDEFAD57D3E6ED11F27F87122E9D0949521"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\rising_cross_body.png.import",
+    "sha256": "680ABD77C034634DFE63A8E7AC0E29B71664C498261E8C670BE4D594A90C8C24"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\rising_cross_hands.png",
+    "sha256": "AF5B8FD5BC923393E200DCFA20E03DB86B6AC98EBFEBB5F172724453F986C11C"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\rising_cross_hands.png.import",
+    "sha256": "DDABE359E92F6C8D6CB55DB5186DC51D78F97F648D2251E0703239322DAACAE9"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\rising_cross.tres",
+    "sha256": "ECAAACD44929136A90E4C6583212200A008EDA6B520576609980890F990F85CB"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\run_body.png",
+    "sha256": "2B6BFB76DCF49B8A940D2F10B801DEC4B9366BF60403F029678C63C86C337B16"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\run_body.png.import",
+    "sha256": "1B5BA4F64A44EC3527D33412880034EF6D54CD244DC3F2237179EBEDB8ECC095"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\run_hands.png",
+    "sha256": "429F8BCA5DAA1E98D29607CE9B7F6598E006C5352198DF3838315C2B368ED272"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\run_hands.png.import",
+    "sha256": "B995258CE5099EC1BCC8167F6075D4E20995B845A7231C423F43E5D95804AFD5"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\assets\\characters\\playable\\king\\shared_bodies\\dual_carry_v3\\up\\run.tres",
+    "sha256": "49321EC0EA184F3BB2C2EAEE82043F3A240162D545E1ABCFE30CB521B9167A83"
+  },
+  {
+    "path": "D:\\React_ONLY_2026\\GODOT-BATTLE-OF-GODS\\data\\weapons\\families\\twinsteel_v2\\presentation.tres",
+    "sha256": "2B29DE88EC594C173134252C980CF4D111CE89AFBC3BA263C3A9CC9AEB18FA4F"
+  }
+]

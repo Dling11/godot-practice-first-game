@@ -1,8 +1,15 @@
 extends "res://entities/player/presentation/king_greatsword_animation.gd"
 
 ## Production King C body; gameplay components retain all control timing.
+var _legacy_outline: Material
+var _uses_shared_body := false
+
 func _ready() -> void:
+	_legacy_outline = material
+	_uses_shared_body = sprite_frames.resource_path.ends_with("shared_bodies/sword/frames.tres")
+	animation_changed.connect(_sync_body_material)
 	super._ready()
+	_sync_body_material()
 	sprite_frames = sprite_frames.duplicate(true)
 	var sheet := preload("res://assets/vfx/abilities/king/unbroken_vow_test/body_down.png")
 	sprite_frames.add_animation("unbroken_vow_down")
@@ -13,6 +20,12 @@ func _ready() -> void:
 		texture.region = Rect2(Vector2(index%4,index/4)*Vector2(192,128),Vector2(192,128))
 		texture.filter_clip = true
 		sprite_frames.add_frame("unbroken_vow_down", texture)
+
+func _sync_body_material() -> void:
+	# The complete canonical body already owns its outline, like the family
+	# presenters. Retain the old shader only for untouched legacy action art.
+	var locomotion := String(animation).begins_with("idle_") or String(animation).begins_with("walk_")
+	material = null if _uses_shared_body and locomotion else _legacy_outline
 
 func _play_action_phase(phase: int, seconds: float) -> void:
 	var active := (owner as Player).get_active_ability_component()
@@ -51,8 +64,7 @@ func _play_locomotion() -> void:
 	var previous_count := maxi(1, sprite_frames.get_frame_count(previous))
 	var stride_phase := (frame + frame_progress) / previous_count
 	super._play_locomotion()
-	# Side walks have eight drawings, front/back have four. Preserve cycle phase
-	# across a turn rather than wrapping the raw frame number into a shorter clip.
+	# Preserve cycle phase across a turn even if a loadout has another count.
 	if previous != animation and String(previous).begins_with("walk_") and String(animation).begins_with("walk_"):
 		var next_frame := stride_phase * sprite_frames.get_frame_count(animation)
 		set_frame_and_progress(int(next_frame), fposmod(next_frame, 1.0))

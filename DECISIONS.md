@@ -1,6 +1,10 @@
 # Decisions Index
 
-- [194 — Freeze King anatomy and repair axe/dual motion](docs/decisions/194-freeze-king-anatomy-and-repair-axe-dual-motion.md): frozen native four-view tracing reference, fresh registered vertical axe bodies, accepted Greatsword-derived dual gait and corrected complete front cuts/idle; original axe sides/Greatsword and combat rules preserved. Installed for owner review before Iron Reaper.
+- [196 — Steady Twinsteel carry with frozen upper anatomy](docs/decisions/196-steady-twinsteel-carry-with-frozen-upper-anatomy.md): distinct complete-cel walking variant fixes rejected idle/run pose mismatch; exact approved upper carry, registered stepping legs and matched blade endpoints. Frozen references/other weapons/contacts/rest/gameplay protected; owner motion review pending.
+
+- [195 — Reuse complete King bodies across weapons](docs/decisions/195-reuse-complete-king-bodies-across-weapons.md): fix equipped axe with approved whole poses, share exact gait across all four weapons, freeze full-body references and reject same-height torso drift; Greatsword/gameplay protected. Installed for owner visual review.
+
+- [194 — Freeze King anatomy and repair axe/dual motion](docs/decisions/194-freeze-king-anatomy-and-repair-axe-dual-motion.md): frozen native four-view tracing reference, fresh registered vertical axe bodies, accepted Greatsword-derived dual gait and corrected complete front cuts/idle; original axe sides/Greatsword and combat rules preserved. Historical; owner rejected equipped axe DOWN proportions on2026-10-11. Decision195 supersedes standing/gait selections and the sizing gate.
 
 - [193 — Rebuild rejected axe vertical choreography with fresh art](docs/decisions/193-rebuild-axe-vertical-choreography-with-fresh-art.md): fresh full-body vertical cuts/real turn/rear overhead jump and independent floor-perspective effects replace the insufficient proportion pass; accepted side/carry/gait/steel and melee authority stay.
 

@@ -1,5 +1,31 @@
 # Changelog
 
+## 2026-10-12 — Remodel Twinsteel carry motion
+
+- Replace the insufficient grip-only walking selection with distinct complete steady-carry cels: approved native upper anatomy, canonical side legs and fresh generated UP/DOWN steps at a fixed density/native palette. Match ready/run blades and genuine masks; retain hidden side rear handle and normal carry attack endpoints.
+- Preserve immutable body-library/source hashes, original idle/rest and accepted attack-contact art, other weapons, combat/audio/controls and saves. Add scoped14-file pre-remodel backup, source/brief/registration, moving actual-Player comparison and focused anatomy/alternation/transition regression gates.
+- Installed for owner review; current [native proof, counts and play](art_source/review/combat/king_dual_carry_motion_2026_10_12/README.md). Decision196 supersedes Twinsteel exact full-gait reuse, not the immutable reference policy.
+
+## 2026-10-12 — Twinsteel four-direction walking grip correction
+
+- Replace automatic brown-component ranking for shared Twinsteel gaits with reviewed per-frame near/far palm landmarks. Remove attachment jumps onto shoulders, boots and the opposite hand; retain the full native closed fist/cuff outline over each blade.
+- Select sibling `shared_bodies/dual_gait_v2` walking resources using the unchanged complete body_library/v1 PNGs. LEFT mirrors RIGHT; canonical steel/scale, side hidden rear handle and camera depth remain. Accepted attacks/idles, axe/Greatsword/Sword, clocks, damage, controls and saves stay unchanged.
+- Add actual equipped before/after views, real input/all-key/collision/transition regression and a verified1097-file pre-work snapshot. Body-pixel preservation, ordinary Bag/gameplay, idle timing and deterministic rebuild checks complement owner walking review. [Current proof and play](art_source/review/combat/king_dual_gait_2026_10_12/README.md). The previous DOWN idle/attack correction is accepted for now; Iron Reaper follows this walking review.
+
+## 2026-10-11 — Focused axe DOWN idle and axe/Twinsteel DOWN body registration
+
+- Preserve the owner's accepted weapon foundation and other directions. Axe DOWN now reuses complete relaxed ready/folded rest cels, replacing the braced-to-upright transition that raised its crown8 source pixels. Position its held axe outside the waist so face, boots and lower body remain readable.
+- Re-register existing DOWN attack cels around reviewed lower-torso X landmarks, moving the complete body, hand masks, head metadata and both blade anchors together. Preserve source pixels/palette, fixed sole/lift/scale, choreography, phase budgets and all combat/equipment/save rules. Copy exact ready/queued/released endpoints afterward; avoid duplicate head-rectangle offsets in endpoint copies. Select sibling Twinsteel DOWN clips through its normal family profile.
+- Keep all Greatsword files, other views and canonical gait PNGs exact. Add scoped1076-file pre-polish snapshot, complete-source/anchor/preservation checks and actual equipped Player before/after views. Offline rebuilds skip unchanged family selectors and report replacement failures. [Current proof, measured results, limitations and play](art_source/review/combat/king_down_body_polish_2026_10_11/README.md). Focused owner appearance review remains; Iron Reaper stays deferred.
+
+## 2026-10-11 — Share complete King bodies across weapons
+
+- Fix equipped axe UP/DOWN standing and released recovery with complete accepted body poses. Height/head-only matching had missed a51px-wide axe beside41px-wide Greatsword at the same55px height; Decision194's installed equip proportions were rejected by owner review.
+- Freeze complete standing/gait/relaxed body references, source hashes and a four-camera native board. Sword/axe/Greatsword/dual now share exact eight-frame gait bodies. Independent steel follows real palms/back mounts; weapon extent never resizes King. Greatsword and all combat rules remain protected.
+- Select sibling Sword locomotion/Bag frames preserving every body texel and historical action image. Neutral standing avoids a planted-rest loop; vertical gait cadence matches sides. Animation-change material selection avoids adding another outline to canonical locomotion while retaining legacy action shading.
+- Add immutable/candidate/stock body gates, explicitly rejecting same-height foreign anatomy.864 shared-body checks,62 actual-Player body checks,2858 native axe checks,138 axe practice,244 dual gameplay,100 real-time idle and301 weapon-role checks pass.103 rebuilt outputs are identical;66 PNG imports valid.907 source files backed up,904 unchanged. Existing fixture shutdown warnings remain; owner art approval/device performance are not claimed.
+- [Current contract/rebuild](docs/design/king-shared-body-library.md), [native screenshots/proof/limits](art_source/review/combat/king_body_consistency_2026_10_11/README.md), [full-body reference](art_source/reference/characters/king/body_library_v1/README.md), [Decision195](docs/decisions/195-reuse-complete-king-bodies-across-weapons.md). Future new action anatomy requires full-body review; Iron Reaper remains deferred.
+
 ## 2026-10-08 — Freeze King anatomy and correct axe/dual motion
 
 - Freeze accepted four-camera body/head PNGs and a reusable tracing board,192×128 cells/half-scale/sole94. Add offline source ownership, crown-relative collar, anatomical lane registration and exact native head stamping; a reference rebuild cannot overwrite an existing version.

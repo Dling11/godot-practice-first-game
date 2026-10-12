@@ -20,7 +20,7 @@
 [ext_resource type="Script" uid="uid://edpqlhbhvhav" path="res://gameplay/combat/hurtbox_component.gd" id="12_hurtbox"]
 [ext_resource type="Script" uid="uid://c6tnb2d6x4r3l" path="res://entities/player/presentation/dash_visual.gd" id="13_dash_visual"]
 [ext_resource type="Script" uid="uid://bfftqao8u5k1s" path="res://entities/player/presentation/player_state_visual.gd" id="14_state_visual"]
-[ext_resource type="SpriteFrames" path="res://assets/characters/playable/king/spellward/spellward_frames.tres" id="15_player_frames"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/playable/king/shared_bodies/sword/frames.tres" id="15_player_frames"]
 [ext_resource type="Script" path="res://entities/player/presentation/king_spellward_animation.gd" id="16_player_animation"]
 [ext_resource type="Script" path="res://gameplay/abilities/king/earthsplitter_component.gd" id="17_ability"]
 [ext_resource type="Resource" path="res://data/abilities/king/earthsplitter.tres" id="18_ability_data"]

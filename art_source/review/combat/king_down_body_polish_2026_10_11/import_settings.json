@@ -1,0 +1,296 @@
+{
+  "files": [
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/down/chop_body.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/down/chop_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/down/idle_body.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/down/idle_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/down/rise_body.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/down/rise_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/down/run_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/down/slam_body.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/down/slam_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/down/spin_body.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/down/spin_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/down/thrust_body.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/down/thrust_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/side/chop_body.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/side/chop_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/side/idle_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/side/rise_body.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/side/rise_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/side/run_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/side/slam_body.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/side/slam_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/side/spin_body.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/side/spin_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/side/thrust_body.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/side/thrust_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/up/chop_body.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/up/chop_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/up/idle_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/up/rise_body.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/up/rise_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/up/run_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/up/slam_body.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/up/slam_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/up/spin_body.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/up/spin_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/up/thrust_body.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/axe/up/thrust_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/dual/down/cross_finish_body.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/dual/down/cross_finish_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/dual/down/diagonal_body.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/dual/down/diagonal_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/dual/down/hop_spin_body.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/dual/down/hop_spin_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/dual/down/return_body.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/dual/down/return_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/dual/down/rising_cross_body.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/dual/down/rising_cross_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/dual/down/run_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/dual/side/run_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/dual/up/run_hands.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/sword/down_idle.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/sword/down_walk.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/sword/left_idle.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/sword/left_walk.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/sword/side_idle.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/sword/side_walk.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/sword/up_idle.png.import"
+    },
+    {
+      "source_exists": true,
+      "valid": true,
+      "path": "assets/characters/playable/king/shared_bodies/sword/up_walk.png.import"
+    }
+  ],
+  "count": 58,
+  "invalid": 0
+}

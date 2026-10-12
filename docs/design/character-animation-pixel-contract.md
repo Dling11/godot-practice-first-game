@@ -1,14 +1,16 @@
 # Character Animation Pixel Contract
 
+**King current authority (Decision195):** [Complete-body reuse and verification](king-shared-body-library.md). body_library/v1 owns whole standing/walking poses with exact hashes. All four families share eight-frame gait bodies; player.tscn and Bag select shared_bodies/sword/frames.tres for locomotion, retaining legacy Spellward actions. Height/head-only tracing is insufficient. New action anatomy needs complete-pose native review and a separate reviewed version.
+
 This contract applies to generated, downloaded, and hand-authored character animation before it becomes a runtime Godot asset.
 
 ## Runtime Cell Contracts
 
 | Actor or effect | Runtime cell | Direction and frame contract |
 |---|---:|---|
-| King current Spellward | 192x128, Body scene scale0.5 | Current player.tscn/Spellward SpriteFrames runtime truth; retain the approved visible body scale, cardinal directions, connected limbs and integrated sword |
+| King current Sword | 192x128, Body scene scale0.5 | player.tscn/Bag select shared_bodies/sword/frames.tres: complete canonical standing/walking body texels; historical Spellward action art stays |
 | King simple reboot (historical) | 32x32 locomotion target | Historical turnaround/foot reference; not the active player sheet or a new equipment-family canvas requirement |
-| King equipment families | 192x128, four columns, presentation scale0.5 | Sole94, native upright54–57texels; frozen four-camera body/head tracing in `art_source/reference/characters/king/native_identity_v1/`. Canonical weapon textures remain rigid and separately registered |
+| King equipment families | 192x128, four columns, presentation scale0.5 | Sole94, native upright54–57texels; immutable complete body_library/v1 poses and full turnaround/gait board. All four weapons share exact walking bodies; steel remains separate. Height/head alone cannot certify torso size |
 | Small forest creatures | 32x32 | Fixed scale and foot baseline across all direction rows |
 | Existing extended enemy attacks | 64x48 | Use only when a validated action cannot fit the locomotion cell |
 | Examiner locomotion/idle | `192x128` debug cell | Six-column source with two idle plus four walk poses across `down/left/right/up`; compact-pixel V3 style, `0.42` scale, `y=120` cell baseline, and `-56 px` visual origin are the current F7 proof values |
