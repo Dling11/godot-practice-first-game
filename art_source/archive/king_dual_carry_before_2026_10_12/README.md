@@ -1,5 +1,0 @@
-# Twinsteel pre-remodel snapshot — 2026-10-12
-
-`manifest.json` records SHA256s for14 independently copied files: all nine previous dual_gait_v2 resource/body-mask import files, the stock Twinsteel selector, shared builder, old palm-track helper and both walking/shared-body tests. This scoped snapshot precedes the new steady-carry motion. The earlier `king_dual_gait_before_2026_10_12` snapshot preserves1097 original files, including1095 protected King asset files. Existing approved full-body library, idle and attack roots remain unchanged.
-
-Archived `.tres` files contain absolute `res://` dependencies. Loading an archived profile does not isolate every dependency automatically. The moving comparison explicitly selects this profile's unchanged old idle/gait roots; new production siblings use `dual_carry_v3`. To roll back, restore the profile and builder/tests together and verify dependencies plus manifest, then reimport. `.gdignore` excludes all backups from normal asset imports. No campaign save is copied or modified.

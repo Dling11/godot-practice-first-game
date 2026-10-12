@@ -6,7 +6,7 @@ const ACTIVE_PATHS := [
 "res://assets/characters/npcs/skillkeeper/renewal/sprite_frames.tres",
 "res://assets/characters/npcs/rootweaver/renewal/sprite_frames.tres",
 "res://assets/characters/npcs/umi/renewal/sprite_frames.tres",
-	"res://assets/characters/playable/king/simple_reboot/king_simple_sprite_frames.tres",
+	"res://assets/characters/playable/king/shared_bodies/sword/frames.tres",
 	"res://assets/characters/enemies/rootbound_husk/rootbound_husk_sprite_frames.tres",
 	"res://assets/characters/enemies/rootbound_husk/rootbound_husk_root_spear_vfx_sprite_frames.tres",
 ]
@@ -45,18 +45,8 @@ func _initialize() -> void:
 		if FileAccess.file_exists(absolute_path) or DirAccess.dir_exists_absolute(absolute_path):
 			_fail("Retired material leaked back into Godot runtime folders: %s" % path)
 			return
-	var archive_root := ProjectSettings.globalize_path("res://art_source/archive")
-	if not DirAccess.dir_exists_absolute(archive_root):
-		_fail("The Godot-ignored archive root is missing.")
-		return
-	var closeout := "res://art_source/archive/sanctuary_retired_2026_10_02/"
-	var retired: Array = JSON.parse_string(FileAccess.get_file_as_string(closeout+"retired_paths.json"))
-	for relative: String in retired:
-		if FileAccess.file_exists("res://"+relative) or not FileAccess.file_exists(closeout+"retired/"+relative):
-			_fail("Sanctuary archive is incomplete or retired content is active: "+relative)
-			return
-	if not FileAccess.file_exists(closeout+".gdignore"):
-		_fail("Sanctuary recovery archive lacks its Godot import exclusion.")
+	if DirAccess.dir_exists_absolute(ProjectSettings.globalize_path("res://art_source/archive")):
+		_fail("Retired archives must remain outside the maintained working tree.")
 		return
 	print("Runtime/archive boundary smoke test passed.")
 	quit(0)
