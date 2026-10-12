@@ -155,5 +155,10 @@
     },
     "production_profile_matches_pre_test_hashes": true
   },
-  "temporary_test_copy_cleanup": "Automatic approval review rejected recursive deletion of exports/cleanup_fresh_project with reason blocked by policy; ignored copy remains."
+  "temporary_test_copy_cleanup": "Automatic approval review rejected recursive deletion of exports/cleanup_fresh_project with reason blocked by policy; ignored copy remains.",
+  "followup_clone_audit": {
+    "removed_tracked_temporary_files": 26,
+    "removed_tracked_temporary_bytes": 15841974,
+    "reason": "Temporary paths were tracked before tmp/ became ignored; .gitignore alone does not remove existing tracked files."
+  }
 }

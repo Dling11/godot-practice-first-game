@@ -2,6 +2,8 @@
 
 ## 2026-10-13 — Repository cleanup
 
+The subsequent clone-size audit removes 26 previously tracked temporary art/sidecar/diagnostic UID files (15.84 MB) under tmp/. Ignore rules prevent new additions but do not retire files already in Git. Preserve all current runtime dependencies and production art.
+
 Delete historical archives/review recordings, discarded source art, obsolete frame resources and redundant builders/comparison fixtures. Keep production asset bytes, frozen King references, current gameplay and useful regressions. Replace archive-dependent Twinsteel rebuilding with a compact production-only tool, route captures to ignored tmp/, consolidate docs and add compact source packaging/resource checks. Removed about 6.50 GB total; source now about 54 MiB and the fresh-tested source ZIP 44.4 MiB. All134 active smoke scripts pass assertions and all 868 resources load; all 646 protected assets are unchanged. Restore pre-test save hashes and isolate the Stage VI access fixture before Sanctuary entry. Teardown warnings remain documented. Measured scope and verification: docs/maintenance/repository-cleanup.md. The owner subsequently authorized logical cleanup commits and ordinary GitHub delivery; no history rewrite or force-push.
 
 ## 2026-10-12 — Current Twinsteel carry
