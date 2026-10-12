@@ -2,7 +2,7 @@
 
 2026-10-03. Requested alongside the expedition refactor. **Decision171 integrates Rotcaller into III before Husk, IV waves2–5 and the finite V approach; its isolated no-save trial remains available.** Stage III normal13 roots +1 caster/five live and optional18+1/six-live comparison are distinct. Hunts and Burrowkin remain planned. See [live rules, art and verification](stage-5-renewal-and-combat-polish.md). The board below remains illustrative concept art.
 
-![Rotcaller and Burrowkin concept board](../../art_source/generated/characters/enemies/forest_roles_2026_10_03/concepts.png)
+Rotcaller and Burrowkin concept board
 
 ## Implemented fresh role: Rotcaller
 

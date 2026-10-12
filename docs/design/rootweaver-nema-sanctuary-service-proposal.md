@@ -56,7 +56,7 @@ Her first service appearance may occur immediately in Sanctuary, but the menu mu
   - tongs drawing one strand of restrained relic-gold living thread
 - No antlers, horns, plant face, grandmother hood, gray hair, tall anatomy, pin-up armor, combat weapon, or excessive magical aura
 
-The accepted grove-smith concept establishes identity, materials, portrait, and Rootforge language. A separate generated 4x2 actor source board was component-isolated and normalized through `tools/process_rootweaver_service_assets.gd` into exact native-style `48x48` cells. Visible arms/tools are a deliberate Nema-owned work-animation silhouette and do not define playable-character anatomy.
+The accepted grove-smith concept establishes identity, materials, portrait, and Rootforge language. A separate generated 4x2 actor source board was component-isolated and normalized through `retired generation tool (recover from Git history only)` into exact native-style `48x48` cells. Visible arms/tools are a deliberate Nema-owned work-animation silhouette and do not define playable-character anatomy.
 
 ### Runtime actor package
 
@@ -222,7 +222,7 @@ Style: crisp retro pixel art matching the reference, compact 32-to-48-pixel game
 Constraints: character and handheld tools only. Absolutely no anvil, forge, sparks, molten metal, workstation, furniture, text, watermark, extra character, or background object. Generous equal padding around every sprite. Stable foot baseline within each row. Do not crop anything.
 ```
 
-The built-in image result was chroma-removed with the image-generation skill's standard helper, then processed through `tools/process_rootweaver_service_assets.gd`. The processor keeps one scale across the eight connected actors, hardens binary alpha, adds the project outline, fits content within a `40x40` limit, and aligns the complete boots to a 44-pixel baseline inside every `48x48` cell.
+The built-in image result was chroma-removed with the image-generation skill's standard helper, then processed through `retired generation tool (recover from Git history only)`. The processor keeps one scale across the eight connected actors, hardens binary alpha, adds the project outline, fits content within a `40x40` limit, and aligns the complete boots to a 44-pixel baseline inside every `48x48` cell.
 
 ### Runtime actor board
 
@@ -310,3 +310,5 @@ Composition/framing: landscape concept board, generous separation between the ch
 Color palette: void ink and obsidian shadows, bark brown, muted moss, warm cloth, relic-gold thread and lantern, very restrained divine violet accent.
 Constraints: original design; clearly human and friendly; readable at small scale; no text, labels, logos, UI, watermark, weapons, combat pose, baked rarity frames, floor reflections, antlers, horns, tree-face, monstrous anatomy, mascot smile, chibi roundness, anime rendering, excessive detail, dithering, gradients, or anti-aliased softness.
 ```
+
+2026-10-13 maintenance: previous generation/comparison commands were retired; current output assets remain authoritative. New captures use ignored tmp/review/. See docs/maintenance/repository-cleanup.md.

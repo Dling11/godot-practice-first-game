@@ -10,4 +10,4 @@ Use complete installed raster body/hand cels, with event-selected drawn queued/r
 
 The faster combo raises damage throughput; comparative balance remains provisional. Discrete authored cel playback trades continuous independent bone movement for coherent silhouettes at each key. Complete endpoints and real input/native axe comparison supplement authority tests; final owner feel remains open.
 
-Current implementation and evidence: [Responsive Greatsword](../design/king-greatsword-responsive-motion.md).
+Current implementation and evidence: Responsive Greatsword.

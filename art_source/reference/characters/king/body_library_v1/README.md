@@ -8,6 +8,8 @@
 
 Actual immutable PNGs/resources and hashes live in `assets/characters/playable/king/body_library/v1/`. Pose width can change with extended arms/scarf; the whole approved body, not a nominal width/height, governs reuse. For genuinely new attack motion, use this reference plus the accepted full-body action family and require native visual review before a new versioned pose is adopted. Do not transplant the head onto a separately oversized torso and claim identity has been checked.
 
-The reference ready board remains the canonical Greatsword stance, not a requirement that every weapon brace its arms identically. Axe DOWN now reuses the existing complete `down_relaxed` body: neutral0 during ready and folded4–7 during rest. The frozen library PNGs/hashes are unchanged. [Current DOWN comparison](../../../../review/combat/king_down_body_polish_2026_10_11/axe_idle_comparison.png) shows this approved-pose reuse and its stable standing/rest height.
+The reference ready board remains the canonical Greatsword stance, not a requirement that every weapon brace its arms identically. Axe DOWN now reuses the existing complete `down_relaxed` body: neutral0 during ready and folded4–7 during rest. The frozen library PNGs/hashes are unchanged. Current DOWN comparison shows this approved-pose reuse and its stable standing/rest height.
 
-Reproduce the board with `tools/review_king_shared_body_runtime.gd` under native Compatibility rendering. [Required workflow/checks](../../../../../docs/design/king-shared-body-library.md) · [runtime comparison and owner-review status](../../../../review/combat/king_body_consistency_2026_10_11/README.md).
+Reproduce the board with `retired generation tool (recover from Git history only)` under native Compatibility rendering. [Required workflow/checks](../../../../../docs/design/king-shared-body-library.md) · runtime comparison and owner-review status.
+
+2026-10-13 maintenance: previous generation/comparison commands were retired; current output assets remain authoritative. New captures use ignored tmp/review/. See docs/maintenance/repository-cleanup.md.

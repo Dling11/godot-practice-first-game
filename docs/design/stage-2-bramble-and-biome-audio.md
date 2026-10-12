@@ -25,8 +25,8 @@ Sources are public HQ MP3 previews of two CC0 recordings, not original WAVs or n
 - Props: `assets/environment/forest/thorns_renewal/`, `environment/props/thorns/`.
 - Ground source: `data/environment/layouts/stage_2_forest_ground.tres`, shared `grove_ground_tileset.tres`.
 - Generated source/prompt/crops: `art_source/generated/environment/forest/thorns_renewal_2026_10_03/`.
-- Builder: `tools/build_stage_2_renewal.gd`; run --art-only -> Godot editor import -> normal bake. Inherits Stage I's prop-scene authoring with virtual output-directory hooks. The Stage II scene UID is retained. Existing OutdoorAudio/StageMusic nodes survive rebakes.
-- Recovery: `art_source/archive/stage_2_pre_renewal_2026_10_03/` (.gdignore). Shared coarse terrain/tree/statue resources still serve later stages; do not delete them.
+- Builder: `retired generation tool (recover from Git history only)`; run --art-only -> Godot editor import -> normal bake. Inherits Stage I's prop-scene authoring with virtual output-directory hooks. The Stage II scene UID is retained. Existing OutdoorAudio/StageMusic nodes survive rebakes.
+- Recovery: `historical Git-only archive/stage_2_pre_renewal_2026_10_03/` (.gdignore). Shared coarse terrain/tree/statue resources still serve later stages; do not delete them.
 
 ## Ready no-save review
 
@@ -34,10 +34,12 @@ Run `powershell -NoProfile -ExecutionPolicy Bypass -File ./tools/launch_stage_2_
 
 The same normal Stage II scene opens peacefully with saving suppressed before scene entry and damage-immune King. WASD explores; Arrival/Broken Heart/North threshold and Overview visit the layout. **Start normal waves** runs the actual authored encounter. Music/Outdoor sound toggles separate the review layers; Local bird call demonstrates attenuation. Music handoff demo temporarily requests the existing Varkuun composition then returns to the Grove; it is a presentation demonstration, not a boss encounter or new score. Review tools do not write progression to the normal profile. Restart normal F5/expedition play for ordinary saving and vulnerability.
 
-`--capture` produces native960x540 arrival, ruin, threshold, canopy, overview and live-wave proof in `art_source/review/environment/stage_2_renewal_2026_10_03/`.
+`--capture` produces native960x540 arrival, ruin, threshold, canopy, overview and live-wave proof in `historical Git-only review/environment/stage_2_renewal_2026_10_03/`.
 
 ## Verification
 
 Stage II environment smoke:178 checks for world/grid, all reinforcement/exit paths sampled against physical collisions, every base/cutout, passable decoration, canopy restore/fixed roots and animated birds. Stage I regression:183 checks. Stage II encounter, wave structure, reinforcement, pause and Stage V music/environment regressions are required alongside shared audio checks.
 
-`tests/biome_audio_smoke.gd`:18 headless /22 rendered checks for gain transitions, same-track continuity, latest-request/stop cancellation, paused handoff, outgoing-scene guards, looping without resource mutation, timer cadence, actual device playback/measured bus signal, combat duck/recovery, disable/re-enable and scene teardown. The clear signal in this audio test is a presentation fixture; it does not prove rewards. The rendered expedition integration passed91 checks, separately exercising actual Stage II deaths/clear/receipt/return/save before existing milestone/crafting/equip/training checks, using an isolated profile and accelerated encounters. Its updated UI proof is under art_source/review/ui/expedition_feedback_2026_10_03/; prior evidence is preserved. Owner listening/visual review, whole-loop balance and representative-phone performance remain unverified. Existing shared GPU shutdown texture/RID warnings persist.
+`tests/biome_audio_smoke.gd`:18 headless /22 rendered checks for gain transitions, same-track continuity, latest-request/stop cancellation, paused handoff, outgoing-scene guards, looping without resource mutation, timer cadence, actual device playback/measured bus signal, combat duck/recovery, disable/re-enable and scene teardown. The clear signal in this audio test is a presentation fixture; it does not prove rewards. The rendered expedition integration passed91 checks, separately exercising actual Stage II deaths/clear/receipt/return/save before existing milestone/crafting/equip/training checks, using an isolated profile and accelerated encounters. Its updated UI proof is under historical Git-only review/ui/expedition_feedback_2026_10_03/; prior evidence is preserved. Owner listening/visual review, whole-loop balance and representative-phone performance remain unverified. Existing shared GPU shutdown texture/RID warnings persist.
+
+2026-10-13 maintenance: previous generation/comparison commands were retired; current output assets remain authoritative. New captures use ignored tmp/review/. See docs/maintenance/repository-cleanup.md.

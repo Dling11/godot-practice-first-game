@@ -16,4 +16,4 @@ Preserve accepted side motion, corrected ready/gait/rest/draw, steel, other weap
 
 Alternatives rejected: re-fitting rejected motion again, rotating side effects for vertical contacts, weapon-only spin, invented forearm bridges, per-cel zoom, rewriting melee authority or starting the scythe before this correction.
 
-[Current guide](../design/king-axe-cardinal-motion.md), [source/prompts/rebuild](../../art_source/generated/characters/king/axe_vertical_redesign_2026_10_07/README.md), [native preview/play/proof](../../art_source/review/combat/king_axe_vertical_redesign_2026_10_07/README.md).
+[Current guide](../design/king-axe-cardinal-motion.md), source/prompts/rebuild, native preview/play/proof.

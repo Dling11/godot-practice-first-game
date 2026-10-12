@@ -49,4 +49,4 @@ The review disables player locomotion, hides the baked sword body/trail, reuses 
 
 Prove other directions, genuine leg-exchange walking and skill/weapon transitions before normal equipment switching. Generalize CraftingService's fixed Stage V output catalog and explicit seal routing while preserving canonical validation, transaction rollback and old profiles. Then add the first two-family recipe choice through the existing Nema interface. Do not add fake recipes before these dependencies exist.
 
-Sources: [weapon-family plan](../design/king-weapon-family-and-basic-hit-redesign.md), [proof source and prompt](../../art_source/generated/characters/king/iron_beard_motion_proof_2026_10_04/README.md).
+Sources: [weapon-family plan](../design/king-weapon-family-and-basic-hit-redesign.md), proof source and prompt.

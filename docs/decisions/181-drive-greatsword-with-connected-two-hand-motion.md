@@ -19,4 +19,4 @@ Use installed Spellward sprites as edit references. Reject the armor-heavy gener
 
 Repeated frame patches/held endpoints did not correct the motion inside each cut. Replacing all complete character/weapon drawings risks identity drift and changing the blade. A full skeletal character migration would broaden scope unnecessarily. The chosen rig adds arm registration/IK and requires native geometry, identity, directional and contact checks. It is cosmetic, data-driven and reusable, but different weapon shapes still require their own authored registration and visual review.
 
-Current implementation and validation: [Greatsword motion polish](../design/king-greatsword-motion-polish.md).
+Current implementation and validation: Greatsword motion polish.

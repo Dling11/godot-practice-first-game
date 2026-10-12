@@ -35,12 +35,14 @@ Prioritize the [Rotcaller and Burrowkin recommendations](forest-enemy-mechanics-
 - Runtime kit: assets/environment/forest/hollow_renewal/ and environment/props/hollow/.
 - Authored ground: data/environment/layouts/stage_3_rootbound_ground.tres; dedicated hollow_ground_tileset.tres has corrupted, living and mixed sources.
 - Source/crops/exact prompt: art_source/generated/environment/forest/hollow_renewal_2026_10_03/.
-- Offline builder: tools/build_stage_3_renewal.gd; --art-only -> Godot editor import -> normal bake. Reuses Stage I footprint/canopy authoring; rebakes replace existing Stage III props/ambience rather than accumulating them.
-- Recovery: art_source/archive/stage_3_pre_renewal_2026_10_03/ (.gdignore). Shared old64px terrain/tree assets remain live in later stages; they must remain available.
-- Native captures: art_source/review/environment/stage_3_renewal_2026_10_03/; rendered service/reward proof uses separate expedition_feedback_stage_3_2026_10_03/ evidence.
+- Offline builder: retired generation tool (recover from Git history only); --art-only -> Godot editor import -> normal bake. Reuses Stage I footprint/canopy authoring; rebakes replace existing Stage III props/ambience rather than accumulating them.
+- Recovery: historical Git-only archive/stage_3_pre_renewal_2026_10_03/ (.gdignore). Shared old64px terrain/tree assets remain live in later stages; they must remain available.
+- Native captures: historical Git-only review/environment/stage_3_renewal_2026_10_03/; rendered service/reward proof uses separate expedition_feedback_stage_3_2026_10_03/ evidence.
 
 ## Verification boundary
 
 137 environment/navigation checks cover the32px grid, unchanged bounds/waves, every spawn/exit route, physical base/cutout, passable decoration, canopy restoration/fixed roots and actual bird animation. Stage III encounter checks cover west-incursion ratio, small seal,16px Husk path clearance, portrait pause/skip and canonical reward/portal gates.10 pressure checks cover18 real Rootling spawns plus one caster, a six-live cap, unchanged campaign resources, dialogue gate, solo280HP Husk and unchanged normal profile/backup/temp hashes after a save request. Husk combat behavior remains separately tested. Hollow audio passed18 headless/22 rendered lifecycle, gain, actual device playback and measured-bus checks; I/II navigation regressions passed183/178 checks.
 
 The original rendered expedition integration passed95 checks; Decision171 now passes108 checks using an isolated profile and accelerated authoritative deaths. It checks actual chest F input, first/replay rewards, cap handling, clear music/ambience recovery, Sanctuary return, Nema craft, bag equip, Eira training and save/Continue. This does not establish normal fight/economy balance. Owner visual/listening review, full vulnerable combat and representative-phone performance remain open. Existing shared GPU texture/RID teardown warnings persist.
+
+2026-10-13 maintenance: previous generation/comparison commands were retired; current output assets remain authoritative. New captures use ignored tmp/review/. See docs/maintenance/repository-cleanup.md.

@@ -10,4 +10,4 @@ Match the ready and walking blade angles/depth at genuine palms. Retain hidden s
 
 Rejected: another grip-only correction, resizing a newly generated torso to pass a height check, stamping a separate head onto unreviewed anatomy, freezing the entire character/feet, and altering accepted attacks or other weapons. The new full-body variant is checked independently: exact upper identity, connected waist/feet, distinct alternating steps, source preservation, margins/soles, unchanged rest/contact art, normal equipment, actual travel/walls and transition continuity. Automated checks do not establish owner approval of motion quality.
 
-[Source and brief](../../art_source/generated/characters/king/dual_carry_gait_2026_10_12/README.md) · [moving comparison, verification and play](../../art_source/review/combat/king_dual_carry_motion_2026_10_12/README.md).
+[Source and brief](../../art_source/generated/characters/king/dual_carry_gait_2026_10_12/README.md) · moving comparison, verification and play.

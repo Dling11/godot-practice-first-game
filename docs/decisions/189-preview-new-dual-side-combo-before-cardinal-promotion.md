@@ -10,4 +10,4 @@ Use fresh complete-body and raster FX sources for diagonal → return → rising
 
 The isolated simultaneous side viewer is the review deliverable. Its proposed 2.20s phase clock cannot award damage or mutate equipment/saves. Installing unreviewed side attacks behind old vertical motions would obscure what is complete; scaling the body to sell reach would repeat a rejected failure. After side selection, author vertical art and validate through existing combat authority before normal-game promotion.
 
-Iron Reaper is the chosen scythe silhouette, not an implemented weapon. Defer its frames/equipment while completing this requested dual-sword pass. [Current scope, sources, play and evidence](../design/king-dual-side-redesign.md).
+Iron Reaper is the chosen scythe silhouette, not an implemented weapon. Defer its frames/equipment while completing this requested dual-sword pass. Current scope, sources, play and evidence.

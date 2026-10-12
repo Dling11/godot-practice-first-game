@@ -26,14 +26,16 @@ An incoming blade can briefly coexist with the previous sword's destruction and 
 
 ## Assets and sound
 
-Approved sword art remains at `assets/vfx/abilities/king/worldsplitter/detailed/sword.png`. New original ImageGen sources/prompts live in `art_source/generated/vfx/king/worldsplitter_summoned_2026_09_27/`. `tools/build_worldsplitter_summoned.gd` packs two 16-frame atlases into `assets/vfx/abilities/king/worldsplitter/summoned/`, using 512px padded cells, nearest sampling and binary alpha. The old recoil/sideways-splash assets are historical and no longer referenced by the active visual.
+Approved sword art remains at `assets/vfx/abilities/king/worldsplitter/detailed/sword.png`. New original ImageGen sources/prompts live in `art_source/generated/vfx/king/worldsplitter_summoned_2026_09_27/`. `retired generation tool (recover from Git history only)` packs two 16-frame atlases into `assets/vfx/abilities/king/worldsplitter/summoned/`, using 512px padded cells, nearest sampling and binary alpha. The old recoil/sideways-splash assets are historical and no longer referenced by the active visual.
 
 The existing original gather/descent cues sound for every fresh sword. Contact, light-shard and low rupture accents accompany each burst, with softer earlier hits and the strongest final impact/camera pulse. No King model or Skill 4 changes, and no downloaded audio.
 
 ## Verification and review
 
-Focused rendered tests cover distinct sword instances, no upward bounce, deep burial before blast, summoning overlays, all-direction rim hits/outside-radius exclusion, exact damage budgets, final-only stun, movement/dodge, rank colors, target locking, defeat cleanup and all 48 available frames' padding/alpha/distinctness. The source atlas is also checked for a round footprint and damage-scale agreement. Latest GPU captures are in `art_source/review/characters/king/worldsplitter_momentum_2026_09_27/`; the previous summon revision remains in `worldsplitter_summoned_2026_09_27/`.
+Focused rendered tests cover distinct sword instances, no upward bounce, deep burial before blast, summoning overlays, all-direction rim hits/outside-radius exclusion, exact damage budgets, final-only stun, movement/dodge, rank colors, target locking, defeat cleanup and all 48 available frames' padding/alpha/distinctness. The source atlas is also checked for a round footprint and damage-scale agreement. Latest GPU captures are in `historical Git-only review/characters/king/worldsplitter_momentum_2026_09_27/`; the previous summon revision remains in `worldsplitter_summoned_2026_09_27/`.
 
 Latest momentum rendered run: **142 checks, 0 failures**, with 24 native captures including the higher arrival pose. Additional activation (13), combined Vow/combat (49), training (14), sidebar (26) and production-kit (zero failures) tests pass. Final editor import has no script/import errors. Existing shared GPU shutdown texture warnings persist; owner feel/audio judgment and representative-phone profiling remain open.
 
 Run `tools/launch_king_skills.ps1`. The review opens Mature as a session-only preview. Press **5**, aim/click, then move or dodge. **F7 -> Skills -> Worldsplitter** compares forms; **F9** refills the kit. No training/save mutations.
+
+2026-10-13 maintenance: previous generation/comparison commands were retired; current output assets remain authoritative. New captures use ignored tmp/review/. See docs/maintenance/repository-cleanup.md.

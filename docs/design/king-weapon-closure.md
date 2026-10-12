@@ -40,10 +40,12 @@ Only these three EquipmentDefinition resources opt into show_combo_details, a64p
 - `gameplay/presentation/combat_feedback_presenter.gd`: bounded accepted-contact observer and backward-compatible gain argument.
 - `ui/equipment/equipment_detail_panel.gd`, `ui/character_menu.gd`: opted-in preview/readout, numeric sorting.
 - `assets/ui/inventory/weapons/`: three icons. `assets/audio/sfx/player/weapon_contact/`: three PCM recordings, decoded offline.
-- `tools/build_weapon_bag_icons.gd`, `tools/build_weapon_contact_audio.gd`: reproducible offline builders.
+- `retired generation tool (recover from Git history only)`, `tools/build_weapon_contact_audio.gd`: reproducible offline builders.
 
 ## Play and verification
 
 Restart F5 → F9 → Tab → choose/equip one of these three → F7 Combat Lab. F9 is a non-saving testing kit; crafting/acquisition remains pending. Normal gameplay shares these definitions. Test air swings, clustered targets, switching weapons, Bag/ESC controls and the full combo.
 
-[Native proof, Bag captures and audio auditions](../../art_source/review/combat/weapon_finalize_2026_10_06/README.md) documents checks and actual limits. Automated assertions are not owner audio/feel approval. Next is scythe design samples before animation; see [handoff](../../CONTINUE_WEAPONS.md).
+Native proof, Bag captures and audio auditions documents checks and actual limits. Automated assertions are not owner audio/feel approval. Next is scythe design samples before animation; see [handoff](../../CONTINUE_WEAPONS.md).
+
+2026-10-13 maintenance: previous generation/comparison commands were retired; current output assets remain authoritative. New captures use ignored tmp/review/. See docs/maintenance/repository-cleanup.md.

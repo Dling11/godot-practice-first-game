@@ -20,4 +20,4 @@ Complete raster cels keep limbs connected and avoid runtime bone allocation. Pro
 
 Archive rejected runtime atlases/builders/arm solver with original paths/hashes and import exclusion. Keep raw sources and accepted locomotion/idle assets. Existing public smoke commands follow current runtime. No acquisition, recipe, armor, skill or damage rule changes.
 
-Current implementation, sources, tests and owner access: [Oathbound motion](../design/king-greatsword-oathbound-motion.md).
+Current implementation, sources, tests and owner access: Oathbound motion.

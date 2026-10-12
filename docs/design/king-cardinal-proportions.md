@@ -18,4 +18,4 @@ Greatsword's new `greatsword_v2_cardinal_carry/up|down/` outputs preserve the or
 
 Restart F5 → F9 → F7 → Weapons → Twinsteel or Royal Greatsword. WASD/held world LMB/Tab Bag retain existing controls. The direct Twinsteel training launcher opens the same real Combat Lab; its Weapons tab can equip both families. Four seconds still triggers the existing proud idle.
 
-[Native before/after, assertions and backup](../../art_source/review/combat/king_cardinal_proportions_2026_10_07/README.md). Owners should judge silhouette consistency in movement and held combos; automated checks do not approve art. Body-only sheets intentionally omit steel and slash FX.
+Native before/after, assertions and backup. Owners should judge silhouette consistency in movement and held combos; automated checks do not approve art. Body-only sheets intentionally omit steel and slash FX.

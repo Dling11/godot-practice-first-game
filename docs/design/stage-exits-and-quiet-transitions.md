@@ -24,13 +24,13 @@ StagePortalArt now provides unique per-instance material and whole-pixel registr
 
 Native portal_surface_stability_smoke:144 checks,0 failures. At authored scales every frame and halfway blend has zero changed silhouette pixels across all six families; upper/middle/lower current RGB still changes with glimmer disabled. Frame7 blend1 equals frame0 exactly. Actual Sprite frame/progress/material blend stay frozen under gameplay pause. Native integrated stage_transition_presentation_smoke rerun:54/0; real loading seal/King changed7/13 frames. Focused headless portal interaction and real stage travel pass. These checks do not claim whole-game profiling or resolved shutdown ownership.
 
-Current source/render geometry, native stability/integration logs and a32-frame10fps comparison GIF live in art_source/review/ui/portal_stability_2026_10_03/. Before is raw source playback on the left; after is the actual corrected material on the right. Both use the same native tier scale; lightning is intentionally hidden only in this diagnostic comparison. Existing gallery captures and Grasp/Maw motion GIFs were refreshed with complete production lightning. Restart a running playtest to load this correction.
+Current source/render geometry, native stability/integration logs and a32-frame10fps comparison GIF live in historical Git-only review/ui/portal_stability_2026_10_03/. Before is raw source playback on the left; after is the actual corrected material on the right. Both use the same native tier scale; lightning is intentionally hidden only in this diagnostic comparison. Existing gallery captures and Grasp/Maw motion GIFs were refreshed with complete production lightning. Restart a running playtest to load this correction.
 
 ## Earlier homepage/loading wobble correction (title superseded)
 
 Owner follow-up identified the shared seal too. Source audit shows666–1736 alpha pixels change versus frame0, and ornament bounds move despite shared112x112 cells. ui/presentation/quiet_seal_animation.gd creates a unique quiet_seal_surface.gdshader material per actual title/loading instance: fixed frame0 engraving and alpha, restrained moving angular light driven by real Sprite frame/progress. Source art remains unchanged. Hidden ancestry disables processing; UI always-process behavior preserves motion during gameplay pause. Homepage decorative pixels now fade in place, removing snapped drift and their loop reset.
 
-Native quiet_ui_stability_smoke:195 checks,0 failures. Both actual screens have zero silhouette changes at all8 frames and halfway phases, changing light, exact seam, advancing paused UI, stopped hidden processing and independent materials; all6 title specks retain their positions. Loading keeps actual37.3% (display37%) and walking King. Native integrated transition rerun55/0 (seal/King7/13), native title and headless Continue pass. Evidence/GIFs: art_source/review/ui/quiet_ui_stability_2026_10_03/. Native GIFs are24-frame10fps rehearsals; loading preview is labelled37%, not real loading progress. Existing stage presentation gallery captures and loading GIF refreshed. No whole-game profiling/teardown fix claimed.
+Native quiet_ui_stability_smoke:195 checks,0 failures. Both actual screens have zero silhouette changes at all8 frames and halfway phases, changing light, exact seam, advancing paused UI, stopped hidden processing and independent materials; all6 title specks retain their positions. Loading keeps actual37.3% (display37%) and walking King. Native integrated transition rerun55/0 (seal/King7/13), native title and headless Continue pass. Evidence/GIFs: historical Git-only review/ui/quiet_ui_stability_2026_10_03/. Native GIFs are24-frame10fps rehearsals; loading preview is labelled37%, not real loading progress. Existing stage presentation gallery captures and loading GIF refreshed. No whole-game profiling/teardown fix claimed.
 
 ## Files and provenance
 
@@ -41,11 +41,11 @@ Native quiet_ui_stability_smoke:195 checks,0 failures. Both actual screens have 
 - ui/transitions/quiet_loading_view.gd/.tscn: disposable native presentation.
 - ui/screens/title/title_background.gd/.tscn and title_screen.gd/.tscn: quiet title and failure recovery.
 - gameplay/loot/stage_reward_chest.tscn: new texture references; reward script unchanged.
-- tools/build_threat_transition_art.gd and tools/build_reward_chest_art.gd: reproducible technical normalization.
+- retired generation tool (recover from Git history only) and retired generation tool (recover from Git history only): reproducible technical normalization.
 - art_source/generated/environment/portals/threat_family_2026_10_03/: six source sheets, exact prompts, normalization.
 - art_source/generated/ui/quiet_transition_2026_10_03/: background/seal sources and prompts.
 - art_source/generated/environment/chests/renewal_2026_10_03/: six-state source, prompts and pair manifest.
-- art_source/archive/stage_presentation_pre_renewal_2026_10_03/: retired transition/title/portal-frame/chest-scene snapshots. Runtime never loads the archive. Legacy neutral portal and old chest PNGs are retained for existing offline tools/recovery; this is not a repository-wide deletion pass.
+- historical Git-only archive/stage_presentation_pre_renewal_2026_10_03/: retired transition/title/portal-frame/chest-scene snapshots. Runtime never loads the archive. Legacy neutral portal and old chest PNGs are retained for existing offline tools/recovery; this is not a repository-wide deletion pass.
 
 Builder order after editing sources: run threat builder with --art-only, editor --import, threat builder with --frames-only; run chest builder, then editor --import. Do not substitute color-key removal for source alpha or scale/crop each animation frame independently.
 
@@ -57,7 +57,7 @@ F5 uses normal title/startup and the existing ordinary save. To see campaign exi
 
 Affected checks pass: portal_interaction_smoke, scene_transition_smoke, title_screen_smoke, title_continue_smoke, stage_transition_presentation_smoke and rendered expedition_feedback_smoke. The new presentation check exercises wrong-resource failure, prior paused state, title recovery, real overlap/F departure/failure prompt restoration, six anchored live families, FX ordering, slim progress bounds, concurrent-request rejection and a real StageI install with animated seal/King during the paused transition. Real native final pass:54 checks,0 failures; seal/King changed6/12 frames. Headless final focused pass:45 checks,0 failures; changed5/10 frames. Counts vary slightly with loader progress events. Existing full rendered expedition run:108 checks,0 failures. Verify subsequent logs before quoting later runs.
 
-Evidence: art_source/review/ui/stage_presentation_2026_10_03/. title.png, portal_1.png–portal_6.png, loading_real_transition.png, loading_motion_preview.png and arrived_stage_1.png are rendered engine captures. GIFs are native motion rehearsals, not recorded resource progress; grasp/maw16 frames each, loading24 frames at fixed37%. The preceding integration baseline recorded ordinary profile SHA25661064D867D024D1F63491540ECF67F3118244177F2131724EEDDA79AD2EEF8BA. The wobble follow-up observed a different current hash while a separate normal game was running; latest observation is recorded in CONTINUE_PROGRESS.md. Focused verification suppresses saves or uses isolated storage. Never restore historical profile bytes.
+Evidence: historical Git-only review/ui/stage_presentation_2026_10_03/. title.png, portal_1.png–portal_6.png, loading_real_transition.png, loading_motion_preview.png and arrived_stage_1.png are rendered engine captures. GIFs are native motion rehearsals, not recorded resource progress; grasp/maw16 frames each, loading24 frames at fixed37%. The preceding integration baseline recorded ordinary profile SHA25661064D867D024D1F63491540ECF67F3118244177F2131724EEDDA79AD2EEF8BA. The wobble follow-up observed a different current hash while a separate normal game was running; latest observation is recorded in CONTINUE_PROGRESS.md. Focused verification suppresses saves or uses isolated storage. Never restore historical profile bytes.
 
 Existing GPU shutdown warnings persist: two Texture/RID allocations,5460bytes each, and RenderingServer null during cleanup. Some early-exit scripts report ObjectDB references. Do not describe these as new gameplay freezes or as resolved.
 
@@ -75,3 +75,5 @@ Enemy emergence/arrival sound is implemented in normal I–VI; see docs/design/e
 
 Read CONTINUE_PROGRESS.md before resuming. Story expansion remains documentation/proposals; this art pass implements no divine gifts, gods, demon attacks, dialogue reveals or ending.
 
+
+2026-10-13 maintenance: previous generation/comparison commands were retired; current output assets remain authoritative. New captures use ignored tmp/review/. See docs/maintenance/repository-cleanup.md.

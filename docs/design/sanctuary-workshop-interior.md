@@ -10,4 +10,6 @@ levels/sanctuary/town/workshop_visit.gd owns F prompts, validated transfer/inspe
 
 Normal saving remains active. Explicit no-save launchers/F10 keep suppression until restart. Visit state is transient; Continue returns to the Sanctuary checkpoint.
 
-Builder: tools/build_orren_interior_art.gd; sources/prompts: art_source/generated/environment/sanctuary/. Retained tests cover physical doorway F, near-threshold entry, furniture/mouse routes, inspection/pause/inventory and safe return. Indoor audio, phone profiling and further rooms are deferred.
+Builder: retired generation tool (recover from Git history only); sources/prompts: art_source/generated/environment/sanctuary/. Retained tests cover physical doorway F, near-threshold entry, furniture/mouse routes, inspection/pause/inventory and safe return. Indoor audio, phone profiling and further rooms are deferred.
+
+2026-10-13 maintenance: previous generation/comparison commands were retired; current output assets remain authoritative. New captures use ignored tmp/review/. See docs/maintenance/repository-cleanup.md.

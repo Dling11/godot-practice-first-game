@@ -16,4 +16,4 @@ All registration is offline. Player, MeleeAttackComponent, SwordComboDefinition,
 
 Alternatives rejected: per-frame actor zoom, replacing accepted axe sides/Greatsword, stamping a larger head to fill its crop, inventing arm bridges, widening test limits to hide a bad collar, and starting another weapon before owner review.
 
-[Frozen reference](../../art_source/reference/characters/king/native_identity_v1/README.md) · [axe sources/prompts](../../art_source/generated/characters/king/axe_identity_lock_2026_10_07/README.md) · [axe proof/play](../../art_source/review/combat/king_axe_identity_lock_2026_10_07/README.md) · [dual proof/play/rebuild](../../art_source/review/combat/king_dual_identity_lock_2026_10_08/README.md).
+[Frozen reference](../../art_source/reference/characters/king/native_identity_v1/README.md) · axe sources/prompts · axe proof/play · dual proof/play/rebuild.
