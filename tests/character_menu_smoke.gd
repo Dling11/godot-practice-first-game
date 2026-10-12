@@ -3,7 +3,7 @@ extends SceneTree
 const PlayerScene = preload("res://entities/player/player.tscn")
 const CharacterMenuScene = preload("res://ui/character_menu.tscn")
 const HudScene = preload("res://ui/combat_hud.tscn")
-const KingFrames = preload("res://assets/characters/playable/king/spellward/spellward_frames.tres")
+const KingFrames = preload("res://assets/characters/playable/king/shared_bodies/sword/frames.tres")
 
 
 func _initialize() -> void:

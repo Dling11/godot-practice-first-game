@@ -1,6 +1,6 @@
 extends "res://tools/launch_generic_spawn_review.gd"
 
-const OUT := "res://art_source/review/ui/targeting_recovery_2026_10_04/"
+const OUT := "res://tmp/review/ui/targeting_recovery_2026_10_04/"
 var checks := 0
 var failures := 0
 

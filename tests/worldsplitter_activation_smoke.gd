@@ -1,7 +1,7 @@
 extends SceneTree
 
 const Burst = preload("res://entities/player/presentation/king_contact_burst.gd")
-const OUT := "res://art_source/review/characters/king/worldsplitter_activation_fix/"
+const OUT := "res://tmp/review/characters/king/worldsplitter_activation_fix/"
 var failures := 0
 var checks := 0
 

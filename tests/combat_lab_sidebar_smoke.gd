@@ -1,7 +1,7 @@
 extends SceneTree
 
 const LAB = preload("res://levels/combat_lab/combat_lab.tscn")
-const OUT := "res://art_source/review/ui/combat_lab_tabs_2026_09_27/"
+const OUT := "res://tmp/review/ui/combat_lab_tabs_2026_09_27/"
 var failures := 0
 var checks := 0
 

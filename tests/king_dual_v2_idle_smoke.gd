@@ -4,7 +4,7 @@ extends "res://tests/sanctuary_test_base.gd"
 const LAB = preload("res://levels/combat_lab/combat_lab.tscn")
 const ITEM = preload("res://data/items/equipment/king_twinsteel.tres")
 const GREAT = preload("res://data/items/equipment/king_royal_greatsword_v2.tres")
-var output := "res://art_source/review/combat/king_dual_v2_ready_idle_2026_10_07/"
+var output := "res://tmp/review/combat/king_dual_v2_ready_idle_2026_10_07/"
 
 func _initialize() -> void:
 	for argument in OS.get_cmdline_user_args():

@@ -8,7 +8,7 @@ const STAGE4 = preload("res://levels/stage_4/stage_4.tscn")
 const STAGE5 = preload("res://levels/stage_5/stage_5.tscn")
 const MATERIALS = preload("res://data/items/materials/material_catalog.tres")
 const PROFILE := "user://expedition_feedback_smoke.json"
-const EVIDENCE := "res://art_source/review/ui/expedition_feedback_2026_10_03/"
+const EVIDENCE := "res://tmp/review/ui/expedition_feedback_2026_10_03/"
 
 func _run() -> void:
 	root.size = Vector2i(960,540)
@@ -290,8 +290,8 @@ func capture(file: String) -> void:
 	if DisplayServer.get_name() == "headless": return
 	await process_frame
 	await RenderingServer.frame_post_draw
-	var evidence := "res://art_source/review/ui/expedition_feedback_stage_3_2026_10_03/" if "--stage-3-evidence" in OS.get_cmdline_user_args() else EVIDENCE
-	if "--stage-4-evidence" in OS.get_cmdline_user_args(): evidence = "res://art_source/review/ui/expedition_feedback_stage_4_2026_10_03/"
+	var evidence := "res://tmp/review/ui/expedition_feedback_stage_3_2026_10_03/" if "--stage-3-evidence" in OS.get_cmdline_user_args() else EVIDENCE
+	if "--stage-4-evidence" in OS.get_cmdline_user_args(): evidence = "res://tmp/review/ui/expedition_feedback_stage_4_2026_10_03/"
 	DirAccess.make_dir_recursive_absolute(evidence)
 	check(root.get_texture().get_image().save_png(evidence+file) == OK, "Evidence capture failed")
 

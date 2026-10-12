@@ -1,6 +1,6 @@
 extends "res://tests/sanctuary_test_base.gd"
 
-const EVIDENCE := "res://art_source/review/environment/sanctuary_closeout_2026_10_02/workshop/"
+const EVIDENCE := "res://tmp/review/environment/sanctuary_closeout_2026_10_02/workshop/"
 
 func _run() -> void:
 	root.size = Vector2i(960,540)
@@ -11,6 +11,7 @@ func _run() -> void:
 	await process_frame
 	var study: Node = hub.get_node("SanctuaryTown")
 	study.enable_test_controls()
+	var selected_destination: String = study.town_map.selected_id
 	var visit: Node = study.workshop_visit
 	var player: Player = hub.player
 	var bounds: Rect2 = player.movement_bounds
@@ -109,7 +110,7 @@ func _run() -> void:
 	check(not camera.is_set_as_top_level() and camera.zoom == Vector2.ONE and camera.limit_right == 1152,"Exit fails to restore courtyard camera")
 	await create_timer(.2).timeout
 	check(not visit.inside,"Courtyard return immediately re-enters workshop")
-	check(study.town_map.mini.visible and study.town_map.selected_id == "eira" and study._panel.visible,"Exit fails to restore selected town map/controls")
+	check(not study.town_map.enabled and not study.town_map.mini.visible and study.town_map.selected_id == selected_destination and study._panel.visible,"Exit must preserve the withdrawn map and restore town controls")
 	await capture("courtyard_return.png")
 	study.visit_workshop()
 	await create_timer(.2).timeout

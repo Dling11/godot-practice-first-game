@@ -3,11 +3,10 @@ extends "res://tests/sanctuary_test_base.gd"
 ## A moving comparison through the actual equipped Player presenter.
 const PLAYER=preload("res://entities/player/player.tscn")
 const ITEMS=[preload("res://data/items/equipment/king_twinsteel.tres"),preload("res://data/items/equipment/king_royal_greatsword_v2.tres")]
-const OUT="res://art_source/review/combat/king_dual_carry_motion_2026_10_12/"
+const OUT="res://tmp/review/combat/king_dual_carry_motion_2026_10_12/"
 const DIRECTIONS=[Vector2.LEFT,Vector2.RIGHT,Vector2.UP,Vector2.DOWN]
 const NAMES=["LEFT","RIGHT","UP / BACK","DOWN / FRONT"]
-const BEFORE="res://art_source/archive/king_dual_carry_before_2026_10_12/data/weapons/families/twinsteel_v2/presentation.tres"
-var variant:="before"
+var variant:="current"
 
 func _run() -> void:
 	for argument in OS.get_cmdline_user_args():
@@ -33,10 +32,6 @@ func _run() -> void:
 			actor._set_facing_direction(DIRECTIONS[column])
 			var family:=actor.get_node("WeaponFamilyPresentation")
 			family.set_physics_process(false); family.presenter._rest_timer.stop()
-			if row==0 and variant.begins_with("before"):
-				family.profile=load(BEFORE)
-				family.presenter.idle_definition=family.profile.idle_for(DIRECTIONS[column])
-				family.presenter._carry(); family.presenter._rest_timer.stop()
 			actors.append(actor)
 			_title(NAMES[column],Vector2(25+264*column,80+330*row))
 	for frame in 62:

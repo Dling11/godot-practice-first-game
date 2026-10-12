@@ -3,7 +3,7 @@ extends SceneTree
 const LAB = preload("res://levels/combat_lab/combat_lab.tscn")
 const VISUAL = preload("res://gameplay/abilities/king/worldsplitter_visual.gd")
 const TARGET = preload("res://entities/training/training_target.tscn")
-const OUT := "res://art_source/review/characters/king/worldsplitter_momentum_2026_09_27/"
+const OUT := "res://tmp/review/characters/king/worldsplitter_momentum_2026_09_27/"
 var checks := 0
 var failures := 0
 var hits := [0,0,0,0,0,0,0]

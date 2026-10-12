@@ -28,9 +28,14 @@ func _run() -> void:
 	root.add_child(stage)
 	await process_frame
 	root.get_node("RunSession").update_progression(304, 46)
-	root.get_node("RunSession").update_player_health(118.0)
+	var actor := stage.get_node("World/Actors/Player") as Player
+	actor.health_component.set_current_health(118.0)
+	var previous_maximum := actor.health_component.maximum_health
 	var controller := stage.get_node("GameplayServices/EncounterController")
 	controller.stage_cleared.emit()
+	# The new stage flag unlocks a level cap. Vitality preserves missing HP,
+	# so that earned maximum-health increase belongs in the saved snapshot.
+	var expected_health := 118.0 + actor.health_component.maximum_health - previous_maximum
 	if not _save_service.has_valid_profile():
 		_fail("Stage completion did not create a safe autosave.")
 		return
@@ -43,7 +48,7 @@ func _run() -> void:
 	if (
 		root.get_node("RunSession").total_experience != 304
 		or root.get_node("RunSession").coins != 46
-		or not is_equal_approx(root.get_node("RunSession").player_current_health, 118.0)
+		or not is_equal_approx(root.get_node("RunSession").player_current_health, expected_health)
 		or not root.get_node("StoryState").has_story_flag(
 			&"forgotten_grove_stage_1_cleared"
 		)

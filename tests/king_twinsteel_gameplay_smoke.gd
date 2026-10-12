@@ -5,14 +5,14 @@ const ITEM = preload("res://data/items/equipment/king_twinsteel.tres")
 const AXE = preload("res://data/items/equipment/king_iron_beard_axe.tres")
 const GREAT = preload("res://data/items/equipment/king_royal_greatsword_v2.tres")
 const TARGET = preload("res://entities/training/training_target.tscn")
-const OUT := "res://art_source/review/combat/king_twinsteel_gameplay_2026_10_05/"
+const OUT := "res://tmp/review/combat/king_twinsteel_gameplay_2026_10_05/"
 var evidence_path := OUT
 var starts: Array[int] = []
 var contacts: Array[Dictionary] = []
 
 func _initialize() -> void:
 	for argument in OS.get_cmdline_user_args():
-		if argument.begins_with("--output=res://art_source/review/"):
+		if argument.begins_with("--output=res://tmp/review/"):
 			evidence_path=argument.trim_prefix("--output=").trim_suffix("/")+"/"
 	super._initialize()
 

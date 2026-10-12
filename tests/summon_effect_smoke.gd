@@ -3,7 +3,7 @@ extends "res://tests/sanctuary_test_base.gd"
 const STAGE := preload("res://levels/stage_4/stage_4.tscn")
 const ROOTLING := preload("res://entities/enemies/rootling/rootling.tscn")
 const ROTCALLER := preload("res://entities/enemies/rotcaller/rotcaller.tscn")
-const EVIDENCE := "res://art_source/review/encounters/arrival_2026_10_03/"
+const EVIDENCE := "res://tmp/review/encounters/arrival_2026_10_03/"
 var stage: Node
 var encounter: EncounterController
 var spawned: Array[Node] = []

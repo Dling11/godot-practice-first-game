@@ -1,6 +1,6 @@
 extends "res://tools/launch_stage_1_renewal.gd"
 
-const ROT_EVIDENCE := "res://art_source/review/environment/stage_4_renewal_2026_10_03/"
+const ROT_EVIDENCE := "res://tmp/review/environment/stage_4_renewal_2026_10_03/"
 const Trial = preload("res://tools/rotcaller_trial_setup.gd")
 var _trial := false
 var _with_spitter := false
@@ -9,6 +9,7 @@ var _trial_status: Label
 var _interrupts := 0
 
 func _run() -> void:
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://tmp/review/environment/stage_4_renewal_2026_10_03/"))
 	root.get_node("SaveService").suppress_autosave_for_debug_session()
 	root.mode = Window.MODE_WINDOWED
 	root.grab_focus()

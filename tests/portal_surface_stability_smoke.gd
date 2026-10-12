@@ -1,7 +1,7 @@
 extends "res://tests/sanctuary_test_base.gd"
 
 const Portal = preload("res://gameplay/encounters/stage_portal.tscn")
-const OUTPUT := "res://art_source/review/ui/portal_stability_2026_10_03/"
+const OUTPUT := "res://tmp/review/ui/portal_stability_2026_10_03/"
 const KEYS := ["calm","ominous","grasp","maw","divine","unknowable"]
 
 func _run() -> void:

@@ -1,11 +1,12 @@
 extends "res://tools/launch_combat_impact_review.gd"
 
 ## Native Stage IV / moving AI. Record evidence; do not assert machine timings.
-const OUT := "res://art_source/review/combat/critical_impact_2026_10_04/"
+const OUT := "res://tmp/review/combat/critical_impact_2026_10_04/"
 var contacts := 0
 var contact_ticks: Dictionary = {}
 
 func _run() -> void:
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://tmp/review/combat/critical_impact_2026_10_04/"))
 	_showcase_crit = false
 	_counter_enabled = false
 	await super._run()

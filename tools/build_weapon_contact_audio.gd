@@ -4,10 +4,11 @@ extends SceneTree
 ## No runtime DSP, remote download or audio dependency. Retains original pack.
 const SOURCE := "res://art_source/audio/weapon_contact_2026_10_06/qubodupImpact/qubodupImpact/"
 const OUTPUT := "res://assets/audio/sfx/player/weapon_contact/"
-const REVIEW := "res://art_source/review/combat/weapon_finalize_2026_10_06/"
+const REVIEW := "res://tmp/review/combat/weapon_finalize_2026_10_06/"
 var sample_rate := 44100
 
 func _initialize() -> void:
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://tmp/review/combat/weapon_finalize_2026_10_06/"))
 	sample_rate = roundi(AudioServer.get_mix_rate())
 	var first := decode("qubodupImpactMeat01.ogg")
 	var second := decode("qubodupImpactMeat02.ogg")

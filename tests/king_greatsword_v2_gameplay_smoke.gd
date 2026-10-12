@@ -3,7 +3,7 @@ extends "res://tests/sanctuary_test_base.gd"
 const ITEM = preload("res://data/items/equipment/king_royal_greatsword_v2.tres")
 const ALTERNATIVE = preload("res://data/items/equipment/king_iron_beard_axe.tres")
 const TARGET = preload("res://entities/training/training_target.tscn")
-var OUT := "res://art_source/review/combat/weapon_impact_closure_2026_10_07/greatsword/"
+var OUT := "res://tmp/review/combat/weapon_impact_closure_2026_10_07/greatsword/"
 var started: Array[int] = []
 var target_hits: Array[Array] = [[],[],[]]
 var timeline: Array[Dictionary] = []

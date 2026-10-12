@@ -1,7 +1,7 @@
 extends "res://tests/sanctuary_test_base.gd"
 
 const Title := preload("res://ui/screens/title/title_screen.tscn")
-const OUTPUT := "res://art_source/review/ui/title_trio_2026_10_03/"
+const OUTPUT := "res://tmp/review/ui/title_trio_2026_10_03/"
 
 func _run() -> void:
 	root.size = Vector2i(960, 540)

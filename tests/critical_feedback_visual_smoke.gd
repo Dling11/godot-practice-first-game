@@ -2,11 +2,12 @@ extends "res://tools/launch_generic_spawn_review.gd"
 
 const TARGET = preload("res://entities/training/training_target.tscn")
 const WEAPON = preload("res://data/weapons/varkuun_edge_essence.tres")
-const OUT := "res://art_source/review/combat/critical_impact_2026_10_04/"
+const OUT := "res://tmp/review/combat/critical_impact_2026_10_04/"
 var checks := 0
 var failures := 0
 
 func _run() -> void:
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://tmp/review/combat/critical_impact_2026_10_04/"))
 	await super._run()
 	root.size = Vector2i(960,540)
 	toolbar.hide()

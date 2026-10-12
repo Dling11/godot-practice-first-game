@@ -2,11 +2,12 @@ extends "res://tools/launch_combat_impact_review.gd"
 
 const TARGET = preload("res://entities/training/training_target.tscn")
 const CRIT_FRAMES = preload("res://assets/vfx/combat/critical_impact/frames.tres")
-const OUT := "res://art_source/review/combat/critical_impact_2026_10_04/"
+const OUT := "res://tmp/review/combat/critical_impact_2026_10_04/"
 var checks := 0
 var failures := 0
 
 func _run() -> void:
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://tmp/review/combat/critical_impact_2026_10_04/"))
 	await super._run()
 	root.size = Vector2i(960,540)
 	check(root.get_node("SaveService").is_autosave_suppressed_for_debug(), "Review can mutate normal saves")

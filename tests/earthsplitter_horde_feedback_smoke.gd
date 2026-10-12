@@ -87,7 +87,7 @@ func _run() -> void:
 			assert(pauses == 0,"Authored travelling wave must not pause the whole game per target")
 			assert(CombatFeedbackPresenter.find_for_player(player) == feedback,"Feedback must resolve independently of service folder names")
 	if "--profile" in OS.get_cmdline_user_args():
-		var folder := "res://art_source/review/encounters/arrival_2026_10_03/"
+		var folder := "res://tmp/review/encounters/arrival_2026_10_03/"
 		DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(folder))
 		var file := FileAccess.open(folder+"skill1_%d_%d_%s.json" % [target_count,form,DisplayServer.get_name()],FileAccess.WRITE)
 		file.store_string(JSON.stringify({"engine":Engine.get_version_info().string, "display":DisplayServer.get_name(), "fixture":"stationary high-HP targets, no enemy AI; first/repeated cast, not a full cold campaign or phone GPU profile", "results":results},"\t"))

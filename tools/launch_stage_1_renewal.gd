@@ -1,11 +1,12 @@
 extends SceneTree
 
-const EVIDENCE := "res://art_source/review/environment/stage_1_renewal_2026_10_02/"
+const EVIDENCE := "res://tmp/review/environment/stage_1_renewal_2026_10_02/"
 var stage: Node
 var toolbar: CanvasLayer
 var _overview := false
 
 func _initialize() -> void:
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://tmp/review/environment/stage_1_renewal_2026_10_02/"))
 	call_deferred("_run")
 
 func _run() -> void:

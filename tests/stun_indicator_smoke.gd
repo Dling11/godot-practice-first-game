@@ -23,14 +23,15 @@ func _run() -> void:
 	await process_frame
 	await process_frame
 	var player: Player = lab.player
-	var review: Node = lab.get_node("KingSpellwardReview")
-	review.open_review()
+	lab.clear_simulation()
+	player.health_component.is_damage_immune = false
+	player.health_component.set_invulnerable(false)
 	var marker: StunIndicator = player.get_node("StunIndicator")
 	_check(not marker.visible and not marker.is_processing(), "Idle marker must do no animation work")
-	review.sample_hit(.11)
+	player.health_component.apply_damage(DamageInfo.new(.1, null, Vector2.ZERO, 0.0, .11))
 	_check(not marker.visible, "King's short hurt must not be labelled a stun")
 	await create_timer(.2).timeout
-	review.sample_hit(.8)
+	player.health_component.apply_damage(DamageInfo.new(.1, null, Vector2.ZERO, 0.0, 0.0, false, .8))
 	_check(marker.visible, "Real King stun must show overhead stars")
 	var original_health := player.health_component.current_health
 	await create_timer(.15).timeout

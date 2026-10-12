@@ -7,7 +7,7 @@ const FOES := [
 	{"name": "Large: Crag Bear", "tag": "bear", "scene": preload("res://entities/enemies/crag_bear/crag_bear.tscn")},
 	{"name": "Miniboss: Husk", "tag": "husk", "scene": preload("res://entities/enemies/rootbound_husk/rootbound_husk.tscn")}
 ]
-const GENERIC_EVIDENCE := "res://art_source/review/encounters/generic_spawn_2026_10_03/"
+const GENERIC_EVIDENCE := "res://tmp/review/encounters/generic_spawn_2026_10_03/"
 var _foe_index := 0
 var _dark_ground := false
 var _last_count := 1

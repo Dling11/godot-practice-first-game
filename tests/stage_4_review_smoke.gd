@@ -4,6 +4,7 @@ var checks := 0
 var failures := 0
 
 func _run() -> void:
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://tmp/review/characters/rotcaller_2026_10_03/"))
 	root.get_node("SaveService").suppress_autosave_for_debug_session()
 	root.size = Vector2i(960,540)
 	root.mode = Window.MODE_WINDOWED
@@ -75,7 +76,7 @@ func _key(code: Key) -> void:
 
 func _capture_trial() -> void:
 	await RenderingServer.frame_post_draw
-	var path := "res://art_source/review/characters/rotcaller_2026_10_03/trial_controls.png"
+	var path := "res://tmp/review/characters/rotcaller_2026_10_03/trial_controls.png"
 	_check(root.get_texture().get_image().save_png(path) == OK,"Trial control capture failed")
 
 func _check(ok: bool,message: String) -> void:

@@ -2,7 +2,7 @@ extends "res://tools/build_weapon_contact_audio.gd"
 
 ## Reuse the retained CC0 pack. Only the new finisher and review audition are
 ## written; approved sword/axe/dual recordings and all animation remain intact.
-const PROOF := "res://art_source/review/combat/weapon_impact_closure_2026_10_07/"
+const PROOF := "res://tmp/review/combat/weapon_impact_closure_2026_10_07/"
 
 func _initialize() -> void:
 	sample_rate = 44100

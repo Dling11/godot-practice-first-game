@@ -6,7 +6,7 @@ const LAB = preload("res://levels/combat_lab/combat_lab.tscn")
 const ROOTLING = preload("res://entities/enemies/rootling/rootling.tscn")
 const HOG = preload("res://entities/enemies/armored_hog/armored_hog.tscn")
 const ITEMS := [preload("res://data/items/equipment/king_signature_sword.tres"),preload("res://data/items/equipment/king_iron_beard_axe.tres"),preload("res://data/items/equipment/king_twinsteel.tres"),preload("res://data/items/equipment/king_royal_greatsword_v2.tres")]
-const OUT := "res://art_source/review/combat/weapon_impact_closure_2026_10_07/"
+const OUT := "res://tmp/review/combat/weapon_impact_closure_2026_10_07/"
 var evidence_path := OUT
 var checks := 0
 var failures := 0
@@ -21,7 +21,7 @@ var moving_rows: Array[Dictionary] = []
 
 func _initialize() -> void:
 	for argument in OS.get_cmdline_user_args():
-		if argument.begins_with("--output=res://art_source/review/"):
+		if argument.begins_with("--output=res://tmp/review/"):
 			evidence_path = argument.trim_prefix("--output=").trim_suffix("/")+"/"
 	_run.call_deferred()
 

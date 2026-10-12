@@ -10,7 +10,10 @@ func _initialize() -> void:
 
 
 func _run() -> void:
+	root.get_node("SaveService").configure_storage_path_for_testing("user://king_production_kit_smoke.json")
 	root.get_node("SaveService").suppress_autosave_for_debug_session()
+	root.get_node("WeaponInventory").reset_inventory()
+	root.get_node("RunSession").reset_run()
 	var lab := Lab.instantiate()
 	root.add_child(lab)
 	await process_frame
@@ -19,8 +22,8 @@ func _run() -> void:
 	var library: KingSkillLibrary = actor.get_node("KingSkillLibrary")
 	var review: Node = lab.get_node("KingCombatReview")
 	var body: AnimatedSprite2D = actor.get_node("VisualRoot/Body")
-	check(body.sprite_frames.get_frame_texture("idle_down",0).atlas == (load("res://assets/characters/playable/king/spellward/spellward_frames.tres") as SpriteFrames).get_frame_texture("idle_down",0).atlas and body.scale == Vector2(.5, .5), "Current King C art is not production")
-	check(body.material is ShaderMaterial and body.get_script().resource_path == "res://entities/player/presentation/king_spellward_animation.gd", "Current outline and animation are not production")
+	check(body.sprite_frames.get_frame_texture("idle_down",0).atlas == (load("res://assets/characters/playable/king/shared_bodies/sword/frames.tres") as SpriteFrames).get_frame_texture("idle_down",0).atlas and body.scale == Vector2(.5, .5), "Current canonical Sword art is not production")
+	check(body.material == null and body.get_script().resource_path == "res://entities/player/presentation/king_spellward_animation.gd", "Canonical Sword locomotion should retain its baked outline")
 	check(library.entries().size() == 5 and library.current_ids().slice(0, 5) == KingSkillCatalog.IDS, "Retired Oath abilities leaked into the collection")
 	check(actor.ability_1_component is EarthsplitterComponent and actor.ability_1_component.definition.display_name == "Earthsplitter", "Skill 1 is not Earthsplitter")
 	check(actor.ability_2_component is MoltenCrashComponent and actor.ability_2_component.definition.form == MoltenCrashDefinition.Form.FOUNDATION, "Skill 2 is not blue Foundation")

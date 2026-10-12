@@ -1,4 +1,4 @@
-extends "res://tests/sanctuary_test_base.gd"
+extends "res://tests/king_art_test_base.gd"
 
 const PLAYER = preload("res://entities/player/player.tscn")
 var WEAPON: WeaponDefinition = preload("res://data/weapons/king_iron_beard_axe.tres")
@@ -7,7 +7,7 @@ const Presenter = preload("res://gameplay/presentation/weapon_family_pose_presen
 const AXE = preload("res://assets/characters/playable/king/axe_proof/iron_beard.png")
 const DIRECTIONS := [Vector2.UP,Vector2.DOWN,Vector2.RIGHT,Vector2.LEFT,Vector2.UP,Vector2.DOWN]
 const LOCATIONS := [Vector2(235,250),Vector2(780,250),Vector2(235,650),Vector2(780,650),Vector2(105,940),Vector2(205,940)]
-var output := "res://art_source/review/combat/king_axe_head_thrust_2026_10_06/"
+var output := "res://tmp/review/combat/king_axe_head_thrust_2026_10_06/"
 var actors: Array[Player] = []
 var starts: Array[Array] = [[],[],[],[],[],[]]
 var timeline: Array[Dictionary] = []
@@ -18,7 +18,7 @@ var verified_fresh_contacts: Array[int] = []
 
 func _initialize() -> void:
 	for argument in OS.get_cmdline_user_args():
-		if argument.begins_with("--output=res://art_source/review/"): output=argument.trim_prefix("--output=").trim_suffix("/")+"/"
+		if argument.begins_with("--output=res://tmp/review/"): output=argument.trim_prefix("--output=").trim_suffix("/")+"/"
 		if argument.begins_with("--profile=res://"):
 			PROFILE = load(argument.trim_prefix("--profile="))
 			WEAPON = WEAPON.duplicate(true)
@@ -333,42 +333,3 @@ func _validate_fresh_vertical() -> void:
 				var bounds := effect.get_image().get_region(Rect2i(frame*192,row*192,192,192)).get_used_rect()
 				check(bounds.position.x>=6 and bounds.position.y>=6 and bounds.end.x<=186 and bounds.end.y<=186,"Fresh effect touches an adjacent atlas cell")
 				check(bounds.size.x>bounds.size.y and bounds.size.x>80,"Fresh vertical effect lost ground perspective or broad reach")
-
-func same_opaque(a: Image,b: Image) -> bool:
-	for y in a.get_height():
-		for x in a.get_width():
-			var ac := a.get_pixel(x,y)
-			var bc := b.get_pixel(x,y)
-			if ac.a!=bc.a or (ac.a>.65 and ac!=bc): return false
-	return true
-
-func anatomy_connected(body: Image,glove: Vector2i,head: Rect2i) -> bool:
-	body.convert(Image.FORMAT_RGBA8)
-	var bytes := body.get_data()
-	var width := body.get_width()
-	var visited := PackedByteArray()
-	visited.resize(width*body.get_height())
-	var queue := PackedInt32Array([glove.y*width+glove.x])
-	visited[queue[0]]=1
-	var cursor := 0
-	while cursor<queue.size():
-		var point := Vector2i(queue[cursor]%width,queue[cursor]/width)
-		cursor+=1
-		for dy in range(-1,2):
-			for dx in range(-1,2):
-				var next := point+Vector2i(dx,dy)
-				if next.x<0 or next.y<0 or next.x>=width or next.y>=body.get_height(): continue
-				var id := next.y*width+next.x
-				if visited[id] or bytes[id*4+3]<200: continue
-				visited[id]=1
-				queue.append(id)
-	var opaque := 0
-	var head_opaque := 0
-	var connected_head := 0
-	for id in visited.size():
-		if bytes[id*4+3]<200: continue
-		opaque+=1
-		if head.has_point(Vector2i(id%width,id/width)):
-			head_opaque+=1
-			if visited[id]: connected_head+=1
-	return queue.size()>=opaque*.97 and head_opaque>200 and connected_head>=head_opaque*.97

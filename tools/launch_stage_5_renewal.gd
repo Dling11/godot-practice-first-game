@@ -1,6 +1,6 @@
 extends "res://tools/launch_stage_4_renewal.gd"
 
-const DEAD_EVIDENCE := "res://art_source/review/environment/stage_5_renewal_2026_10_03/"
+const DEAD_EVIDENCE := "res://tmp/review/environment/stage_5_renewal_2026_10_03/"
 
 func _run() -> void:
 	root.get_node("SaveService").suppress_autosave_for_debug_session()

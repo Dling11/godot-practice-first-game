@@ -1,11 +1,12 @@
 extends "res://tools/launch_stage_1_renewal.gd"
 
-const HOLLOW_EVIDENCE := "res://art_source/review/environment/stage_3_renewal_2026_10_03/"
+const HOLLOW_EVIDENCE := "res://tmp/review/environment/stage_3_renewal_2026_10_03/"
 const Pressure = preload("res://tools/stage_3_pressure_review.gd")
 var _music_enabled := true
 var _ambience_enabled := true
 
 func _run() -> void:
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://tmp/review/environment/stage_3_renewal_2026_10_03/"))
 	root.get_node("SaveService").suppress_autosave_for_debug_session()
 	stage = load("res://levels/stage_3/stage_3.tscn").instantiate()
 	stage.review_hold_encounter = true

@@ -87,6 +87,6 @@ func normal_stage() -> void:
 
 func capture_review(name: String) -> void:
 	await RenderingServer.frame_post_draw
-	var folder := "res://art_source/review/encounters/arrival_2026_10_03/"
+	var folder := "res://tmp/review/encounters/arrival_2026_10_03/"
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(folder))
 	assert(root.get_texture().get_image().save_png(folder+name) == OK)

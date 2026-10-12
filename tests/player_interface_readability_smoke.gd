@@ -5,7 +5,7 @@ const Study = preload("res://levels/sanctuary/town/sanctuary_town.gd")
 const MATERIALS = preload("res://data/items/materials/material_catalog.tres")
 const GEAR = preload("res://data/items/equipment/forest/stage_5_core_catalog.tres")
 const PROFILE := "user://player_interface_readability_smoke.json"
-const EVIDENCE := "res://art_source/review/ui/centered_paperdoll_2026_10_02/"
+const EVIDENCE := "res://tmp/review/ui/centered_paperdoll_2026_10_02/"
 var checks := 0
 var failures := 0
 

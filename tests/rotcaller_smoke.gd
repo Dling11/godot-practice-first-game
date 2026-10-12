@@ -2,7 +2,7 @@ extends SceneTree
 
 const Trial = preload("res://tools/rotcaller_trial_setup.gd")
 const Caster = preload("res://entities/enemies/rotcaller/rotcaller.tscn")
-const EVIDENCE := "res://art_source/review/characters/rotcaller_2026_10_03/"
+const EVIDENCE := "res://tmp/review/characters/rotcaller_2026_10_03/"
 var checks := 0
 var failures := 0
 var stage: Node

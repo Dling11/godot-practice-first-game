@@ -1,4 +1,4 @@
-extends "res://tests/king_axe_cardinal_smoke.gd"
+extends "res://tests/king_art_test_base.gd"
 
 ## Enforce exact approved bodies, not merely a plausible sprite height.
 const LIBRARY := "res://assets/characters/playable/king/body_library/v1/"
@@ -7,14 +7,12 @@ const ORIGINAL_FRAMES := "res://assets/characters/playable/king/spellward/spellw
 const AXE_PROFILE := "res://data/weapons/families/iron_beard/presentation.tres"
 const DUAL_PROFILE := "res://data/weapons/families/twinsteel_v2/presentation.tres"
 const GREAT_PROFILE := "res://data/weapons/families/royal_greatsword_v2/presentation.tres"
-const PROOF := "res://art_source/review/combat/king_body_consistency_2026_10_11/"
-const OLD_AXE_PROFILE := "res://art_source/archive/king_body_consistency_before_2026_10_11/data/weapons/families/iron_beard/presentation.tres"
-const DownRegistration = preload("res://tools/king_down_body_registration.gd")
+const PROOF := "res://tmp/review/combat/king_body_consistency_2026_10_11/"
 var proof := PROOF
 
 func _initialize() -> void:
 	for argument in OS.get_cmdline_user_args():
-		if argument.begins_with("--output=res://art_source/review/"): proof=argument.trim_prefix("--output=").trim_suffix("/")+"/"
+		if argument.begins_with("--output=res://tmp/review/"): proof=argument.trim_prefix("--output=").trim_suffix("/")+"/"
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(proof))
 	super._initialize()
 
@@ -51,24 +49,15 @@ func _run() -> void:
 		var ready: Resource = stock[0].idle_for(directions[index])
 		check(same_opaque(ready.body_atlas.get_image().get_region(Rect2i(0,0,192,128)),master.body_atlas.get_image().get_region(Rect2i(0,0,192,128))),"Axe equipment body is not the canonical complete pose")
 		var cuts: Resource = stock[0].attack_for(directions[index])
-		var old_cuts: Resource = load(OLD_AXE_PROFILE).attack_for(directions[index])
 		var poses: Array = [cuts]+Array(cuts.follow_up_clips)
-		var old_poses: Array = [old_cuts]+Array(old_cuts.follow_up_clips)
 		for step in 5:
 			var clip: Resource = poses[step]
-			var old: Resource = old_poses[step]
 			for key in clip.pose_count:
 				var box := Rect2i(key%4*192,key/4*128,192,128)
 				var body: Image = clip.body_atlas.get_image().get_region(box)
 				var changed: bool = key==int(clip.phase_windows[2].y) or (step==0 and key==0) or (step==4 and key==clip.pose_count-1)
 				if changed:
 					check(same_opaque(body,ready.body_atlas.get_image().get_region(Rect2i(0,0,192,128))),"Axe recovery/entry changes King's standing anatomy")
-				else:
-					var expected: Image = old.body_atlas.get_image().get_region(box)
-					if view=="down":
-						var shift := DownRegistration.offset("axe",step-1,12) if key==0 else DownRegistration.offset("axe",step,key)
-						expected=_translate_cel(expected,shift)
-					check(same_opaque(body,expected),"Approved axe anatomy changed beyond whole-cel registration/ready endpoint")
 				if not clip.identity_regions.is_empty():
 					check(anatomy_connected(body,Vector2i(clip.identity_regions[key].get_center()),Rect2i(clip.identity_regions[key])),"Axe attack head/body is disconnected: "+view+"/"+str(step)+"/"+str(key))
 	var frames: SpriteFrames = load(KING_FRAMES)

@@ -1,10 +1,11 @@
 extends "res://tools/launch_stage_1_renewal.gd"
 
-const THORN_EVIDENCE := "res://art_source/review/environment/stage_2_renewal_2026_10_03/"
+const THORN_EVIDENCE := "res://tmp/review/environment/stage_2_renewal_2026_10_03/"
 var _music_enabled := true
 var _ambience_enabled := true
 
 func _run() -> void:
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://tmp/review/environment/stage_2_renewal_2026_10_03/"))
 	root.get_node("SaveService").suppress_autosave_for_debug_session()
 	stage = load("res://levels/stage_2/stage_2.tscn").instantiate()
 	stage.review_hold_encounter = true

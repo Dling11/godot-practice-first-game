@@ -114,7 +114,7 @@ func _capture(name: String) -> void:
 	root.mode = Window.MODE_WINDOWED
 	root.grab_focus()
 	await RenderingServer.frame_post_draw
-	var directory := "res://art_source/review/environment/stage_5_renewal_2026_10_03/"
+	var directory := "res://tmp/review/environment/stage_5_renewal_2026_10_03/"
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(directory))
 	root.get_texture().get_image().save_png(directory+name)
 

@@ -9,8 +9,10 @@ func _initialize() -> void:
 
 
 func _run() -> void:
+	root.get_node("SaveService").suppress_autosave_for_debug_session()
 	var sanctuary := SanctuaryScene.instantiate()
 	root.add_child(sanctuary)
+	current_scene = sanctuary
 	await process_frame
 	await process_frame
 
@@ -50,6 +52,14 @@ func _run() -> void:
 		_fail("The visible Stage VI button did not request the preview scene.")
 		return
 
+	# Let the threaded scene request finish before quitting the test process.
+	await transition.transition_finished
+	if current_scene == null or current_scene.scene_file_path != STAGE_6_SCENE:
+		_fail("The Stage VI debug request did not finish loading its scene.")
+		return
+	current_scene.queue_free()
+	await process_frame
+	await process_frame
 	print("STAGE_6_DEBUG_ACCESS_SMOKE_PASSED")
 	quit()
 

@@ -1,7 +1,7 @@
 extends "res://tests/sanctuary_test_base.gd"
 
 const Loading = preload("res://ui/transitions/quiet_loading_view.tscn")
-const OUTPUT := "res://art_source/review/ui/quiet_ui_stability_2026_10_03/"
+const OUTPUT := "res://tmp/review/ui/quiet_ui_stability_2026_10_03/"
 
 func _run() -> void:
 	var save := root.get_node("SaveService")

@@ -28,7 +28,9 @@ func _run() -> void:
 	var spawned := [0]
 	encounter.enemy_spawned.connect(func(_position: Vector2) -> void: spawned[0] += 1)
 	encounter.start_encounter()
-	await create_timer(.6).timeout
+	var initial_deadline := Time.get_ticks_msec() + int((encounter.arrival_warning_seconds + 5 * encounter.waves[0].spawn_interval + 1.0) * 1000)
+	while spawned[0] < 6 and Time.get_ticks_msec() < initial_deadline:
+		await process_frame
 	_check(spawned[0] == 6 and encounter._active_enemies == 6,"Pressure did not fill its bounded six-enemy first group")
 	var exceeded_cap := false
 	var deadline := Time.get_ticks_msec()+12000
